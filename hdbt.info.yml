@@ -3,3 +3,4 @@ description: Helsinki Drupal Base theme
 type: theme
 base theme: claro
 tags: sub-theme
+core_version_requirement: ^8 || ^9
