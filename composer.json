@@ -1,0 +1,8 @@
+{
+  "name": "drupal/hdbt",
+  "type": "drupal-custom-theme",
+  "description": "Helsinki Drupal Base theme",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev"
+}
