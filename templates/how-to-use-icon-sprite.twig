@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+#}
+{%
+  set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
+%}
+
+{% if content.field_district|render %}
+  {% set address = content.field_district.0['#context'].value %}
+{% endif %}
+{% if content.field_district|render and content.field_street_address|render %}
+  {% set address = address ~ ', ' %}
+{% endif %}
+{% if content.field_street_address|render %}
+  {% set address = address ~ content.field_street_address.0['#context'].value %}
+{% endif %}
+
+{{ attach_library('claro/classy.node') }}
+<article{{ attributes.addClass(classes) }}>
+  <header class="project__header">
+    {% if content.field_housing_company|render %}
+      <h2 class="project__header__title">{{ content.field_housing_company }}</h2>
+    {% endif %}
+
+    <div class="project__header__address">
+      <span>{{ address }}</span>
+    </div>
+
+    <div class="project__header__completion">
+      {% if content.field_holding_type|render %}
+        <div class="holding-type">{{ content.field_holding_type }}</div>
+      {% endif %}
+      {% if content.field_estimated_completion|render %}
+        <div>
+          {{ content.field_estimated_completion.0['#context'].value }}
+        </div>
+      {% endif %}
+    </div>
+  </header>
+  <div class="project__content">
+    {{ content|without(
+      'field_housing_company',
+      'field_district',
+      'field_street_address',
+      'field_holding_type',
+      'field_estimated_completion'
+    ) }}
+  </div>
+</article>
+
+{% include "@hdbt/misc/icon.twig" with {icon: 'icon', label: 'Test label for the icon'|t } %}

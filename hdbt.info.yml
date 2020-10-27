@@ -1,6 +1,6 @@
-name: HDBT
-description: Helsinki Drupal Base theme
+name: HDBT - Helsinki Drupal Base theme
+description: Base theme for Helsinki Drupal instances.
 type: theme
-base theme: claro
+base theme: stable9
 tags: sub-theme
 core_version_requirement: ^8 || ^9

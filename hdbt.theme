@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the hdbt theme.
+ */
+
+/**
+ * Implements hook_preprocess().
+ */
+function hdbt_preprocess(&$variables) {
+  $variables['icons_path'] = hdbt_get_icons_path();
+  $variables['current_language'] = Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+  $variables['#attached']['drupalSettings']['iconsPath'] = $variables['icons_path'];
+}
+
+/**
+ * Helper function to get the icons path.
+ *
+ * @return string|null
+ *   Returns path for the icons SVG or null.
+ */
+function hdbt_get_icons_path() {
+  static $icon_path;
+  if (!isset($icon_path)) {
+    global $base_secure_url;
+    $icon_path = $base_secure_url . '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
+
+    if (!empty($icon_path)) {
+      // Add icons path as a global variable.
+      return $icon_path;
+    }
+  }
+  return $icon_path;
+}

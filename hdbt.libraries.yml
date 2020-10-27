@@ -1,0 +1,13 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      dist/css/styles.min.css: {}
+
+global-scripting:
+  js:
+    dist/js/bundle.min.js: {}
+  version: 1.x
+  dependencies:
+    - core/drupal
+    - core/jquery

@@ -1,0 +1,6 @@
+{% if icons_path %}
+  <svg {% if label %} aria-labelledby="{{ icon }}" {% endif %} class="icon">
+    {% if label %} <title id="{{ icon }}">{{ label }}</title>  {% endif %}
+    <use xlink:href="{{ icons_path|trim }}#{{ icon }}"/>
+  </svg>
+{% endif %}
