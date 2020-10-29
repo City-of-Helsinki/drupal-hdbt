@@ -1,0 +1,12 @@
+// Calculate rem (root em) units from pixels for font-size and line-height
+@mixin font-size($font-size, $line-height: "") {
+  font-size: ($font-size / $base-font-size) * 1rem;
+  @if $line-height != "" {
+    line-height: ($line-height / $font-size) * $font-size;
+  }
+}
+
+// Mixin - Font weight
+@mixin font-weight($font-weight) {
+  font-weight: $font-weight;
+}

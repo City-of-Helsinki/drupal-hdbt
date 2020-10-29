@@ -4,3 +4,8 @@ type: theme
 base theme: stable9
 tags: sub-theme
 core_version_requirement: ^8 || ^9
+
+# Define Libraries
+libraries:
+  - hdbt/global-styling
+  - hdbt/global-scripting
