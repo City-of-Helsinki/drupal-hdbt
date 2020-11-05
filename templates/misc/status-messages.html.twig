@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Theme override for status messages.
+ *
+ * Displays status, error, and warning messages, grouped by type.
+ *
+ * An invisible heading identifies the messages for assistive technology.
+ * Sighted users see a colored box. See http://www.w3.org/TR/WCAG-TECHS/H69.html
+ * for info.
+ *
+ * Add an ARIA label to the contentinfo area so that assistive technology
+ * user agents will better describe this landmark.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ * - title_ids: A list of unique ids keyed by message type.
+ *
+ * @see claro_preprocess_status_messages().
+ */
+#}
+{% set section_classes = ['hds-notification'] %}
+{% set classes = ['hds-notification__content'] %}
+
+{% for type, messages in message_list %}
+  {% if type == 'error' %}
+    {% set section_classes = section_classes|merge(['hds-notification--error']) %}
+    {% set notification_icon = 'error' %}
+  {% elseif type == 'warning' %}
+    {% set section_classes = section_classes|merge(['hds-notification--alert']) %}
+    {% set notification_icon = 'alert-circle' %}
+  {% else %}
+    {% set section_classes = section_classes|merge(['hds-notification--success']) %}
+    {% set notification_icon = 'check' %}
+  {% endif %}
+
+  <section data-drupal-messages aria-label="{{ 'Notification'|t }}" class="{{ section_classes|without('messages-list')|join(' ') }}">
+    {% set is_message_with_title = status_headings[type] %}
+    {% set is_message_with_icon = type in ['error', 'status', 'warning'] %}
+    <div role="contentinfo" aria-labelledby="{{ title_ids[type] }}" class="{{ classes|without('messages-list__item')|join(' ') }}">
+      {% if is_message_with_title or is_message_with_icon %}
+        {% if is_message_with_title %}
+          <div class="hds-notification__label" role="heading" aria-level="2">
+            {% include "@asu_admin/misc/icon.twig" with {icon: notification_icon} %}
+            <span id="{{ title_ids[type] }}">{{ status_headings[type] }}</span>
+          </div>
+        {% endif %}
+      {% endif %}
+      <div class="hds-notification__body">
+        {% if messages|length > 1 %}
+          <ul class="messages__list">
+            {% for message in messages %}
+              <li class="messages__item">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          {{ messages|first }}
+        {% endif %}
+      </div>
+    </div>
+    {# Remove type specific classes. #}
+    {% set attributes = attributes.removeClass(classes) %}
+  </section>
+{% endfor %}
