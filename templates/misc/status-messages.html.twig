@@ -44,7 +44,7 @@
       {% if is_message_with_title or is_message_with_icon %}
         {% if is_message_with_title %}
           <div class="hds-notification__label" role="heading" aria-level="2">
-            {% include "@asu_admin/misc/icon.twig" with {icon: notification_icon} %}
+            {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
             <span id="{{ title_ids[type] }}">{{ status_headings[type] }}</span>
           </div>
         {% endif %}
