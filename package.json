@@ -8,15 +8,18 @@
   "scripts": {
     "dev": "webpack --progress --mode development --config  webpack.config.dev.js --watch",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
-    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds && find node_modules/ -name \"*.info\" -type f -delete"
+    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds && find node_modules/ -name \"*.info\" -type f -delete",
+    "lint": "lint-staged",
+    "lint:js": "node ./node_modules/eslint/bin/eslint.js src/"
   },
-  "browserslist": [
-    "last 2 versions",
-    "> 1%",
-    "ie > 10",
-    "iOS > 9"
-  ],
   "devDependencies": {
+    "css-declaration-sorter": "^6.0.2",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "postcss-cli": "^8.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
     "@babel/preset-env": "^7.10.3",
@@ -26,27 +29,28 @@
     "babel-minify-webpack-plugin": "^0.3.1",
     "breakpoint-sass": "^2.7.1",
     "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^6.0.2",
+    "copy-webpack-plugin": "^6.3.0",
     "css-loader": "^1.0.0",
-    "csscomb": "4.2.0",
     "es6-promise": "^4.1.1",
     "eslint": "5.7.0",
     "eslint-config-drupal-bundle": "^1.0.2",
     "eslint-import-resolver-webpack": "0.10.1",
-    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-import": "^2.22.1",
     "expose-loader": "^0.7.5",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "glob": "^7.1.6",
     "hds-design-tokens": "^0.14.0",
     "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/master.tar.gz",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.4.1",
+    "modernizr": "^3.11.2",
     "node-sass": "^4.14.1",
     "node-sass-glob-importer": "^5.3.2",
     "normalize.css": "^8.0.1",
-    "postcss": "^8.1",
+    "postcss": "^8.1.4",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-easy-import": "^3.0.0",
     "postcss-extend": "^1.0.5",
@@ -58,9 +62,10 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-scss": "^3.0.2",
     "postcss-strip-inline-comments": "^0.1.5",
+    "prettier": "^2.1.2",
     "sass-loader": "^8.0.0",
     "svg-inline-loader": "^0.8.0",
-    "svg-spritemap-webpack-plugin": "^3.5.6",
+    "svg-spritemap-webpack-plugin": "^3.7.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-fix-style-only-entries": "^0.4.0",
@@ -68,8 +73,23 @@
     "webpack-modernizr-loader": "^4.0.1",
     "webpack-notifier": "^1.6.0"
   },
-  "dependencies": {
-    "glob": "^7.1.6",
-    "modernizr": "^3.11.2"
-  }
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/scss/**/*.scss": [
+      "postcss *.scss --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
+    ],
+    "src/js/**/*.js": [
+      "eslint --fix"
+    ]
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "ie > 10",
+    "iOS > 9"
+  ]
 }
