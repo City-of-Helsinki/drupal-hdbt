@@ -1,0 +1,41 @@
+.component-library-wrapper {
+  background-color: white;
+  font-family: Arial, serif;
+  padding: 2rem;
+}
+
+.component-library__accordion {
+  background-color: #eee;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  font-size: 20px;
+  outline: none;
+  padding: 18px;
+  text-align: left;
+  transition: 0.4s;
+  width: 100%;
+
+  &.active, &:hover {
+    background-color: #ccc;
+  }
+}
+
+.component-library__panel {
+  background-color: white;
+  border: 2px solid #ccc;
+  margin: 0 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.component-library__code,
+.component-library__example {
+  padding: 15px;
+}
+
+.component-library__code {
+  background-color: #f3f3f3;
+  font-family: monospace;
+}
