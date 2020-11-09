@@ -11,4 +11,3 @@ jobs:
           repo: City-of-Helsinki/drupal-repository
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: "main"
-          inputs: '{ "message": "Re-build repository" }'
