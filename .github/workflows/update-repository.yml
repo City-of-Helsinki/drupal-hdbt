@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches:
+      - 1.x
 name: Update Drupal repository
 jobs:
   update:
