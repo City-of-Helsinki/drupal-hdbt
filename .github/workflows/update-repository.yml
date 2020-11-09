@@ -10,4 +10,5 @@ jobs:
           workflow: Build package repository
           repo: City-of-Helsinki/drupal-repository
           token: ${{ secrets.ACCESS_TOKEN }}
+          ref: ${{ github.sha }}
           inputs: '{ "message": "Re-build repository" }'
