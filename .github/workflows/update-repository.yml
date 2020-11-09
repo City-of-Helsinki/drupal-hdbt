@@ -7,7 +7,7 @@ jobs:
       - name: Re-build Drupal repository
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: build
+          workflow: build.yml
           repo: City-of-Helsinki/drupal-repository
           token: ${{ secrets.GITHUB_TOKEN }}
           inputs: '{ "message": "Re-build repository" }'
