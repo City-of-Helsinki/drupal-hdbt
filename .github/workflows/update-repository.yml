@@ -4,10 +4,10 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger build
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/city-of-helsinki/drupal-repository/actions/workflows/build.yml/dispatches \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{"ref": "${{ github.sha }}"}'
+      - name: Re-build Drupal repository
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: build
+          repo: City-of-Helsinki/drupal-repository
+          token: ${{ secrets.GITHUB_TOKEN }}
+          inputs: '{ "message": "Re-build repository" }'
