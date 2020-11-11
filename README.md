@@ -1,4 +1,6 @@
-# hdbt Theme
+# HDBT Theme
+
+![CI](https://github.com/City-of-Helsinki/drupal-hdbt/workflows/Lint/badge.svg)
 
 ## Introduction
 
@@ -29,10 +31,10 @@ Setup the developing environment by running
     npm i
     npx husky i
 
-Explanations for commands. 
-- `nvm use` : Install and use the correct version of Node.  
+Explanations for commands.
+- `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
-- `npx husky i` : Execute husky package binary; Install git-hooks for the project.  
+- `npx husky i` : Execute husky package binary; Install git-hooks for the project.
 
 ## Structure for files and folders
 

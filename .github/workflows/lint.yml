@@ -1,13 +1,15 @@
 on: [push]
-name: CI
+name: Lint
 jobs:
-  tests:
-    - uses: actions/checkout@v2
-    - uses: setup-node@v1
-        with:
-          node-version: $(cat .nvmrc)
+  lint:
 
-    - name: Install dependencies
-      run: |
-        npm i
-        npx husky i
+    steps:
+      - uses: actions/checkout@v2
+      - uses: setup-node@v1
+          with:
+            node-version: $(cat .nvmrc)
+
+      - name: Install dependencies
+        run: |
+          npm i
+          npx husky i
