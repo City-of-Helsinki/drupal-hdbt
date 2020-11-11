@@ -4,9 +4,7 @@
 //
 @import "~normalize.css";
 
-// Import SCSS variables, f.e. $color-white.
-@import "~hds-design-tokens/lib/all.scss";
-// Import CSS variables, f.e. var(--color-white).
+// Import HDS Tokens.
 @import "~hds-design-tokens/lib/all.css";
 
 @import "~helsinki-design-system/packages/core/src/utils/animations.css";
