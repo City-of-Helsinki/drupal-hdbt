@@ -1,22 +1,26 @@
+@import "~hds-design-tokens/lib/all.scss";
+@import "library/variables/*.*";
+@import "library/mixins/*.*";
+
 .component-library-wrapper {
-  background-color: white;
+  background-color: $color-white;
   font-family: Arial, serif;
-  padding: 2rem;
+  padding: $spacing-s;
 }
 
 .component-library__nav {
-  margin: 0 -5px;
+  margin: 0 -$spacing-3-xs;
 
   a {
-    border-right: 1px solid gray;
-    color: black;
-    font-size: 12px;
-    padding: 3px 5px;
+    @include font-size(12px);
+    border-right: 1px solid $color-black-50;
+    color: $color-black;
+    padding: $spacing-4-xs $spacing-3-xs;
     text-decoration: none;
     text-transform: uppercase;
 
     &:hover {
-      color: var(--color-bus-dark-50);
+      color: $color-bus-dark-50;
     }
 
     &:last-of-type {
@@ -26,26 +30,26 @@
 }
 
 .component-library__accordion {
-  background-color: #eee;
+  @include font-size(20px);
+  background-color: $color-black-10;
   border: none;
-  color: #444;
+  color: $color-black-70;
   cursor: pointer;
-  font-size: 20px;
   outline: none;
-  padding: 18px;
+  padding: $spacing-s;
   text-align: left;
   transition: 0.4s;
   width: 100%;
 
   &.active, &:hover {
-    background-color: #ccc;
+    background-color: $color-black-20;
   }
 }
 
 .component-library__panel {
-  background-color: white;
-  border: 2px solid #ccc;
-  margin: 0 0 15px;
+  background-color: $color-white;
+  border: 2px solid $color-black-20;
+  margin: 0 0 $spacing-s;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -53,10 +57,10 @@
 
 .component-library__code,
 .component-library__example {
-  padding: 15px;
+  padding: $spacing-s;
 }
 
 .component-library__code {
-  background-color: #f3f3f3;
+  background-color: $color-black-5;
   font-family: monospace;
 }
