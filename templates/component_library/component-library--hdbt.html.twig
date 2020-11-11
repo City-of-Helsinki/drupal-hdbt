@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Consists a list of all components with a markup example and componnet.
+#}
+<div class="component-library-wrapper">
+  <div class="component-library__nav"></div>
+  <h2>Components</h2>
+
+  {#
+  Example.
+  <button class="component-library__accordion">Icon</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/misc/icon.twig' with {icon: 'icon', label: 'Test label for the icon'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/icon.twig' with {icon: 'icon', label: 'Test label for the icon'|t } %}
+      " }}
+    </div>
+  </div>
+  #}
+
+  <button class="component-library__accordion">Icon</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', label: 'Test label for the icon'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', label: 'Test label for the icon'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Status messages</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% set message_list = {
+        error: ['First error message'],
+        warning: ['First warning message', 'Second warning message'],
+        default: ['First normal message', 'Second normal message'],
+      } %}
+      {% set status_headings = { error: 'Error', warning: 'Warning', default: 'Info' } %}
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
+      " }}
+    </div>
+  </div>
+</div>

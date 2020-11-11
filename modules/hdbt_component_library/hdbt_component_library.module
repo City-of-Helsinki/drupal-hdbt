@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function hdbt_component_library_theme() {
+
+  return [
+    'component_library' => [
+      'variables' => [
+        'label' => NULL,
+      ]
+    ],
+  ];
+}
