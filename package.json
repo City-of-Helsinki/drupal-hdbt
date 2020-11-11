@@ -10,7 +10,7 @@
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
     "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds",
     "lint": "lint-staged",
-    "lint:js": "node ./node_modules/eslint/bin/eslint.js src/"
+    "lint:js": "eslint --fix src/"
   },
   "devDependencies": {
     "css-declaration-sorter": "^6.0.2",

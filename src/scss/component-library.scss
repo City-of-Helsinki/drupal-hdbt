@@ -4,6 +4,27 @@
   padding: 2rem;
 }
 
+.component-library__nav {
+  margin: 0 -5px;
+
+  a {
+    border-right: 1px solid gray;
+    color: black;
+    font-size: 12px;
+    padding: 3px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--color-bus-dark-50);
+    }
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+}
+
 .component-library__accordion {
   background-color: #eee;
   border: none;
