@@ -5,9 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Read .nvmrc
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          node-version: $(cat .nvmrc)
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
 
       - name: Install dependencies
         run: |
