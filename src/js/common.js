@@ -3,7 +3,7 @@
   Drupal.behaviors.themeCommon = {
     attach: function attach() {
       // Code here.
-    }
+    },
   };
-// eslint-disable-next-line no-undef
+  // eslint-disable-next-line no-undef
 })(jQuery, Drupal, drupalSettings);
