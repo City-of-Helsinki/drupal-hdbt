@@ -43,11 +43,11 @@
         default: ['First normal message', 'Second normal message'],
       } %}
       {% set status_headings = { error: 'Error', warning: 'Warning', default: 'Info' } %}
-      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, label: 'Test label for the icon'|t } %}
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
     </div>
     <div class="component-library__code">
       {{ "
-        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, label: 'Test label for the icon'|t } %}
+        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
       " }}
     </div>
   </div>
