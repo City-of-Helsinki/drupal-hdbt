@@ -20,7 +20,7 @@ jobs:
           npm run build
           npm run postinstall
           zip latest.zip *.json dist/ *.theme *.yml *.md *.png templates/
-          tar -zcf latest.tar.gz *.json dist/ *.theme .yml *.md *.png templates/
+          tar -zcf latest.tar.gz *.json dist/ *.theme *.yml *.md *.png templates/
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
