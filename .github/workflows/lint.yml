@@ -2,7 +2,7 @@ on: [push]
 name: Lint
 jobs:
   lint:
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: setup-node@v1
