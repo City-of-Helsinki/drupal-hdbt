@@ -2,9 +2,6 @@
 node_modules
 npm-debug.log
 
-# Dist folder
-dist
-
 # HDS icons
 src/icons/hds
 
