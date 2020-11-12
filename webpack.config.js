@@ -47,6 +47,9 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        include: [
+          path.resolve(__dirname, "src/icons")
+        ],
         use: [
           {
             loader: "file-loader",
@@ -58,6 +61,19 @@ module.exports = {
               disable: true, // webpack@2.x and newer
             },
           },
+        ],
+      },
+      {
+        test: /\.(woff|ttf|eot|svg)$/,
+        include: [
+          path.resolve(__dirname, "src/fonts")
+        ],
+        use: [{
+          loader: "file-loader",
+          options: {
+            name: "fonts/[name].[ext]",
+          },
+        },
         ],
       },
       {
