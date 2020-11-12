@@ -17,7 +17,7 @@
           }
         });
 
-        // Create navigation.
+        // Create navigation for the components.
         let panel = acc[i];
         let panelName = acc[i].innerText.replace(/\s+/g, '-').toLowerCase();
         let anchor = document.createElement('a');
