@@ -1,4 +1,4 @@
-# hdbt Theme
+# HDBT-theme
 
 ## Introduction
 
@@ -29,10 +29,10 @@ Setup the developing environment by running
     npm i
     npx husky i
 
-Explanations for commands. 
-- `nvm use` : Install and use the correct version of Node.  
+Explanations for commands.
+- `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
-- `npx husky i` : Execute husky package binary; Install git-hooks for the project.  
+- `npx husky i` : Execute husky package binary; Install git-hooks for the project.
 
 ## Structure for files and folders
 
@@ -63,3 +63,15 @@ Once installed it can be accessed in `/admin/appearance/hdbt/component-library`.
 ### Development
 
 Add new components to the library manually via the twig template. `./templates/component_library/component-library--hdbt.html.twig`
+
+### Usage as a base-theme
+
+When building new projects using the drupal-helfi-platform you are provided with this theme. To maintain upgradeability
+of this theme you should never add it to your version control and/or make changes to this theme directly, but instead
+create a sub-theme that uses this HDBT-theme as the base theme for your project. You can read more about building sub-themes here:
+[https://www.drupal.org/docs/theming-drupal/creating-sub-themes](https://www.drupal.org/docs/theming-drupal/creating-sub-themes).
+
+This theme is under constant development and features, fixes and improvements will be added in new releases. To benefit
+from these updates use `composer update drupal/hdbt` to update the theme regularly. Please notice however that updating the
+theme can break some of the functionality that you have done in your site so test the changes carefully before applying them.
+The version control for this theme can be found from [https://github.com/City-of-Helsinki/drupal-hdbt](https://github.com/City-of-Helsinki/drupal-hdbt).
