@@ -22,6 +22,19 @@
   </div>
   #}
 
+  <button class="component-library__accordion">Button - Primary</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: false,  label: 'Primary'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: true,  label: 'Primary disabled'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', label: 'Test label for the icon'|t } %}
+      " }}
+    </div>
+  </div>
+
   <button class="component-library__accordion">Icon</button>
   <div class="component-library__panel">
     <div class="component-library__example">

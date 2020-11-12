@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Button example.
+ */
+#}
+{% set button_classes = [
+    'hds-button',
+    'hds-button--' ~ type,
+  ]
+%}
+
+<button type="button" {{ attributes.addClass(button_classes) }}" {% if disabled == true %}disabled{% endif %}>
+  <span class="hds-button__label">{{ label }}</span>
+</button>
