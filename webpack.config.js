@@ -11,7 +11,8 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 module.exports = {
   entry: {
     styles: ["./src/scss/styles.scss"],
-    "bundle": ["./src/js/common.js"],
+    bundle: ["./src/js/common.js"],
+    "component-library": ["./src/js/component-library.js", "./src/scss/component-library.scss"],
   },
   output: {
     devtoolLineToLine: true,

@@ -27,13 +27,13 @@
 
 {% for type, messages in message_list %}
   {% if type == 'error' %}
-    {% set section_classes = section_classes|merge(['hds-notification--error']) %}
+    {% set section_classes = ['hds-notification', 'hds-notification--error'] %}
     {% set notification_icon = 'error' %}
   {% elseif type == 'warning' %}
-    {% set section_classes = section_classes|merge(['hds-notification--alert']) %}
+    {% set section_classes = ['hds-notification', 'hds-notification--alert'] %}
     {% set notification_icon = 'alert-circle' %}
   {% else %}
-    {% set section_classes = section_classes|merge(['hds-notification--success']) %}
+    {% set section_classes = ['hds-notification', 'hds-notification--success'] %}
     {% set notification_icon = 'check' %}
   {% endif %}
 

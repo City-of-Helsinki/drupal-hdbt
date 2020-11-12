@@ -8,9 +8,9 @@
   "scripts": {
     "dev": "webpack --progress --mode development --config  webpack.config.dev.js --watch",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
-    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds && find node_modules/ -name \"*.info\" -type f -delete",
+    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds && husky install",
     "lint": "lint-staged",
-    "lint:js": "node ./node_modules/eslint/bin/eslint.js src/"
+    "lint:js": "eslint --fix src/"
   },
   "devDependencies": {
     "css-declaration-sorter": "^6.0.2",
@@ -75,7 +75,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run build && git commit --amend --no-edit"
     }
   },
   "lint-staged": {

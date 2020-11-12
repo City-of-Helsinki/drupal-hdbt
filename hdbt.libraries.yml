@@ -11,3 +11,10 @@ global-scripting:
   dependencies:
     - core/drupal
     - core/jquery
+
+component-library:
+  css:
+    theme:
+      dist/css/component-library.min.css: {}
+  js:
+    dist/js/component-library.min.js: {}
