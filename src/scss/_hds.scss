@@ -7,6 +7,7 @@
 // Import HDS Tokens.
 @import "~hds-design-tokens/lib/all.css";
 
-@import "~helsinki-design-system/packages/core/src/utils/animations.css";
-@import "~helsinki-design-system/packages/core/src/utils/helpers.css";
-@import "~helsinki-design-system/packages/core/src/components/all.css";
+@import "~hds-core/lib/base.css";
+@import "~hds-core/lib/utils/animations.css";
+@import "~hds-core/lib/utils/helpers.css";
+@import "~hds-core/lib/components/all.css";

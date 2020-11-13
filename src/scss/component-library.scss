@@ -1,25 +1,24 @@
-@import "~hds-design-tokens/lib/all.scss";
 @import "library/variables/*.*";
 @import "library/mixins/*.*";
 
 .component-library-wrapper {
   background-color: $color-white;
-  padding: $spacing-s;
+  padding: $spacing;
 }
 
 .component-library__nav {
-  margin: 0 -$spacing-3-xs;
+  margin: 0 -$spacing-quarter;
 
   a {
     @include font-size(12px);
     border-right: 1px solid $color-black-50;
     color: $color-black;
-    padding: $spacing-4-xs $spacing-3-xs;
+    padding: ($spacing-quarter / 2) $spacing-quarter;
     text-decoration: none;
     text-transform: uppercase;
 
     &:hover {
-      color: $color-bus-dark-50;
+      color: $color-bus-dark;
     }
 
     &:last-of-type {
@@ -35,7 +34,7 @@
   color: $color-black-70;
   cursor: pointer;
   outline: none;
-  padding: $spacing-s;
+  padding: $spacing;
   text-align: left;
   transition: 0.4s;
   width: 100%;
@@ -48,7 +47,7 @@
 .component-library__panel {
   background-color: $color-white;
   border: 2px solid $color-black-20;
-  margin: 0 0 $spacing-s;
+  margin: 0 0 $spacing;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -56,7 +55,7 @@
 
 .component-library__code,
 .component-library__example {
-  padding: $spacing-s;
+  padding: $spacing;
 }
 
 .component-library__code {

@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "webpack --progress --mode development --config  webpack.config.dev.js --watch",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
-    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds && husky install",
+    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds",
     "lint": "lint-staged",
     "lint:js": "eslint --fix src/"
   },
@@ -40,7 +40,8 @@
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
-    "hds-design-tokens": "^0.14.0",
+    "hds-core": "^0.15.1",
+    "hds-design-tokens": "^0.15.1",
     "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/master.tar.gz",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
