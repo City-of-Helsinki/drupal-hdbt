@@ -4,12 +4,9 @@
  * Button example.
  */
 #}
-{% set button_classes = [
-    'hds-button',
-    'hds-button--' ~ type,
-  ]
-%}
 
-<button type="button" {{ attributes.addClass(button_classes) }}" {% if disabled == true %}disabled{% endif %}>
+<button type="button" class="hds-button {% if type %}{{ 'hds-button--' ~ type }}{% endif %} {% if size %}{{ 'hds-button--' ~ size }}{% endif %}" {% if disabled == true %}disabled{% endif %}>
+  {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
   <span class="hds-button__label">{{ label }}</span>
+  {% if icon_last == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_last_type }}"></span>{% endif %}
 </button>
