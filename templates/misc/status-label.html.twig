@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme file for status labels.
+ *
+ * Displays status labels.
+#}
+
+{% set classes = ['hds-status-label'] %}
+
+{% if type == 'info' %}
+  {% set classes = classes|merge(['hds-status-label--info']) %}
+{% elseif type == 'success' %}
+  {% set classes = classes|merge(['hds-status-label--success']) %}
+{% elseif type == 'alert' %}
+  {% set classes = classes|merge(['hds-status-label--alert']) %}
+{% elseif type == 'error' %}
+  {% set classes = classes|merge(['hds-status-label--error']) %}
+{% endif %}
+
+{% if label %}
+  <span class="{{ classes|join(' ') }}">{{ label }}</span>
+{% endif %}
