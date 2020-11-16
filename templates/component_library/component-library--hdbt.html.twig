@@ -131,7 +131,9 @@
         error: { type: 'error', label: 'Status label - Error' },
       } %}
       {% for status in status_labels %}
-        {% include '@hdbt/misc/status-label.html.twig' with { type: status.type, label: status.label } %}
+        <div style="display:inline-block; margin-bottom: 1rem; margin-right: 1rem;">
+          {% include '@hdbt/misc/status-label.html.twig' with { type: status.type, label: status.label } %}
+        </div>
       {% endfor %}
     </div>
     <div class="component-library__code">
