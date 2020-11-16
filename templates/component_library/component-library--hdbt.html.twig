@@ -43,8 +43,11 @@
         default: 'Info',
         success: 'Success'
       } %}
+      <h4>Notification size: Default</h4>
       {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
+      <h4>Notification size: Small</h4>
       {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: '', message_list: small_message_list, size: 'small' } %}
+      <h4>Notification size: Large</h4>
       {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, size: 'large' } %}
     </div>
     <div class="component-library__code">
