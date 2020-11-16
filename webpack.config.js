@@ -163,5 +163,13 @@ module.exports = {
   ],
   watchOptions: {
     aggregateTimeout: 300,
+  },
+  // Tell us only about the errors.
+  stats: 'errors-only',
+  // Suppress performance errors.
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   }
 };
