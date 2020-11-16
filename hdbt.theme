@@ -66,6 +66,9 @@ function hdbt_preprocess_form_element(&$variables) {
       case 'checkbox':
         $element_label_class = 'hds-checkbox__label';
         break;
+      case 'radio':
+        $element_label_class = 'hds-radio-button__label';
+        break;
     }
 
     if (isset($element_label_class)) {
