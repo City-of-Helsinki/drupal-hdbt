@@ -22,6 +22,65 @@
   </div>
   #}
 
+  <button class="component-library__accordion">Status labels</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% set status_labels = {
+        default: { label: 'Status label - Default' },
+        info: { type: 'info', label: 'Status label - Info' },
+        success: { type: 'success', label: 'Status label - Success' },
+        alert: { type: 'alert', label: 'Status label - Alert' },
+        error: { type: 'error', label: 'Status label - Error' },
+      } %}
+      {% for status in status_labels %}
+        <div style="display:inline-block; margin-bottom: 1rem; margin-right: 1rem;">
+          {% include '@hdbt/misc/status-label.html.twig' with { type: status.type, label: status.label } %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+          {% include '@hdbt/misc/status-label.html.twig' with { type: 'error', label: 'Label which indicates error' } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Status messages</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% set message_list = {
+        error: ['First error message'],
+        warning: ['First warning message', 'Second warning message'],
+        default: ['First normal message', 'Second normal message'],
+        success: ['First success message', 'Second success message'],
+      } %}
+      {% set small_message_list = {
+        error: ['First error message'],
+        warning: ['First warning message'],
+        default: ['First normal message'],
+        success: ['First success message'],
+      } %}
+      {% set status_headings = {
+        error: 'Error',
+        warning: 'Warning',
+        default: 'Info',
+        success: 'Success'
+      } %}
+      <h4>Notification size: Default</h4>
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
+      <h4>Notification size: Small</h4>
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: '', message_list: small_message_list, size: 'small' } %}
+      <h4>Notification size: Large</h4>
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, size: 'large' } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, size: 'large' } %}
+      " }}
+    </div>
+  </div>
+
+  <h3>Form elements</h3>
   <button class="component-library__accordion">Button - Primary</button>
   <div class="component-library__panel">
     <div class="component-library__example">
@@ -102,48 +161,6 @@
     </div>
   </div>
 
-  <button class="component-library__accordion">Status messages</button>
-  <div class="component-library__panel">
-    <div class="component-library__example">
-      {% set message_list = {
-        error: ['First error message'],
-        warning: ['First warning message', 'Second warning message'],
-        default: ['First normal message', 'Second normal message'],
-      } %}
-      {% set status_headings = { error: 'Error', warning: 'Warning', default: 'Info' } %}
-      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
-    </div>
-    <div class="component-library__code">
-      {{ "
-        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
-      " }}
-    </div>
-  </div>
-
-  <button class="component-library__accordion">Status labels</button>
-  <div class="component-library__panel">
-    <div class="component-library__example">
-      {% set status_labels = {
-        default: { label: 'Status label - Default' },
-        info: { type: 'info', label: 'Status label - Info' },
-        success: { type: 'success', label: 'Status label - Success' },
-        alert: { type: 'alert', label: 'Status label - Alert' },
-        error: { type: 'error', label: 'Status label - Error' },
-      } %}
-      {% for status in status_labels %}
-        <div style="display:inline-block; margin-bottom: 1rem; margin-right: 1rem;">
-          {% include '@hdbt/misc/status-label.html.twig' with { type: status.type, label: status.label } %}
-        </div>
-      {% endfor %}
-    </div>
-    <div class="component-library__code">
-      {{ "
-          {% include '@hdbt/misc/status-label.html.twig' with { type: 'error', label: 'Label which indicates error' } %}
-      " }}
-    </div>
-  </div>
-
-  <h3>Form elements</h3>
   <button class="component-library__accordion">Checkbox</button>
   <div class="component-library__panel">
     <div class="component-library__example">
@@ -173,6 +190,39 @@
       {{ '<div class="hds-checkbox">'|e('html') }}<br />
       &nbsp;&nbsp;{{ '<input type="checkbox" id="checkbox1" class="hds-checkbox__input" value="foo" />'|e('html') }}<br />
       &nbsp;&nbsp;{{ '<label for="checkbox1" class="hds-checkbox__label">Option</label>\n'|e('html') }}<br />
+      {{ '</div>'|e('html') }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Radio button</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      <!-- Enabled-->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio1" class="hds-radio-button__input" name="example" value="foo" />
+        <label for="radio1" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Enabled & selected -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio2" class="hds-radio-button__input" name="example" value="bar" checked />
+        <label for="radio2" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Disabled -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio3" class="hds-radio-button__input" name="example" value="baz" disabled />
+        <label for="radio3" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Disabled & selected -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio4" class="hds-radio-button__input" checked disabled />
+        <label for="radio4" class="hds-radio-button__label">Option</label>
+      </div>
+    </div>
+    <div class="component-library__code">
+      Use Drupal Form API Radio button or this markup:<br /><br />
+      {{ '<div class="hds-radio-button">'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<input type="radio" id="radio" class="hds-radio-button__input" />\n'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<label for="radio" class="hds-radio-button__label">Label</label>\n'|e('html') }}<br />
       {{ '</div>'|e('html') }}
     </div>
   </div>
