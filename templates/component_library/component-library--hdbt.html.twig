@@ -22,14 +22,82 @@
   </div>
   #}
 
-  <button class="component-library__accordion">Icon</button>
+  <button class="component-library__accordion">Button - Primary</button>
   <div class="component-library__panel">
     <div class="component-library__example">
-      {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', label: 'Test label for the icon'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: false, label: 'Primary'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: true, label: 'Primary disabled'|t } %}
     </div>
     <div class="component-library__code">
       {{ "
-      {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', label: 'Test label for the icon'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: false, label: 'Primary'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Button - Secondary</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: 'Secondary'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: true, label: 'Secondary disabled'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: 'Secondary'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Button - Supplementary</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'supplementary', icon_first: true, icon_first_type: 'trash', disabled: false, label: 'Supplementary'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'supplementary', icon_first: true, icon_first_type: 'trash', disabled: true, label: 'Supplementary disabled'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/button/button.html.twig' with {type: 'supplementary', icon_first: true, icon_first_type: 'trash', disabled: false, label: 'Supplementary'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Button - Icon buttons</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', icon_first: true, icon_first_type: 'trash', disabled: false, label: 'Button'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', icon_last: true, icon_last_type: 'trash', disabled: false, label: 'Button'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', icon_first: true, icon_first_type: 'trash', icon_last: true, icon_last_type: 'trash', disabled: false, label: 'Button'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', icon_first: true, icon_first_type: 'trash', icon_last: true, icon_last_type: 'trash', disabled: false, label: 'Button'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Button - Small buttons</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', size: 'small', disabled: false, label: 'Button'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'secondary', size: 'small', disabled: false, label: 'Button'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'supplementary', size: 'small', disabled: false, label: 'Button'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/button/button.html.twig' with {type: 'primary', size: 'small', disabled: false, label: 'Button'|t } %}
+      " }}
+    </div>
+  </div>
+
+  <button class="component-library__accordion">Button - Utility buttons</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% include '@hdbt/button/button.html.twig' with {type: 'success', disabled: false, label: 'Success'|t } %}
+      {% include '@hdbt/button/button.html.twig' with {type: 'danger', disabled: false, label: 'Danger'|t } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/button/button.html.twig' with {type: 'success', disabled: false, label: 'Success'|t } %}
       " }}
     </div>
   </div>
