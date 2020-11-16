@@ -124,9 +124,25 @@
   <button class="component-library__accordion">Checkbox</button>
   <div class="component-library__panel">
     <div class="component-library__example">
+      <!-- Enabled -->
       <div class="hds-checkbox">
-        <input type="checkbox" id="checkbox1" class="hds-checkbox__input" value="foo" />
-        <label for="checkbox1"  class="hds-checkbox__label">Option</label>
+        <input type="checkbox" id="checkbox" class="hds-checkbox__input" />
+        <label for="checkbox"  class="hds-checkbox__label">Label</label>
+      </div>
+      <!-- Enabled & selected -->
+      <div class="hds-checkbox">
+        <input type="checkbox" id="checkbox" class="hds-checkbox__input" checked />
+        <label for="checkbox"  class="hds-checkbox__label">Label</label>
+      </div>
+      <!-- Disabled -->
+      <div class="hds-checkbox">
+        <input type="checkbox" id="checkbox" class="hds-checkbox__input" disabled />
+        <label for="checkbox"  class="hds-checkbox__label">Label</label>
+      </div>
+      <!-- Disabled & selected -->
+      <div class="hds-checkbox">
+        <input type="checkbox" id="checkbox" class="hds-checkbox__input" checked disabled />
+        <label for="checkbox"  class="hds-checkbox__label">Label</label>
       </div>
     </div>
     <div class="component-library__code">
