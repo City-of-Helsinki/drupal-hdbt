@@ -154,4 +154,37 @@
     </div>
   </div>
 
+  <button class="component-library__accordion">Radio button</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      <!-- Enabled-->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio1" class="hds-radio-button__input" name="example" value="foo" />
+        <label for="radio1" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Enabled & selected -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio2" class="hds-radio-button__input" name="example" value="bar" checked />
+        <label for="radio2" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Disabled -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio3" class="hds-radio-button__input" name="example" value="baz" disabled />
+        <label for="radio3" class="hds-radio-button__label">Option</label>
+      </div>
+      <!-- Disabled & selected -->
+      <div class="hds-radio-button">
+        <input type="radio" id="radio4" class="hds-radio-button__input" checked disabled />
+        <label for="radio4" class="hds-radio-button__label">Option</label>
+      </div>
+    </div>
+    <div class="component-library__code">
+      Use Drupal Form API Radio button or this markup:<br /><br />
+      {{ '<div class="hds-radio-button">'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<input type="radio" id="radio" class="hds-radio-button__input" />\n'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<label for="radio" class="hds-radio-button__label">Label</label>\n'|e('html') }}<br />
+      {{ '</div>'|e('html') }}
+    </div>
+  </div>
+
 </div>
