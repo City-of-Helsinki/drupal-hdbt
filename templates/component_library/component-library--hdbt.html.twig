@@ -22,6 +22,39 @@
   </div>
   #}
 
+  <button class="component-library__accordion">Status messages</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      {% set message_list = {
+        error: ['First error message'],
+        warning: ['First warning message', 'Second warning message'],
+        default: ['First normal message', 'Second normal message'],
+        success: ['First success message', 'Second success message'],
+      } %}
+      {% set small_message_list = {
+        error: ['First error message'],
+        warning: ['First warning message'],
+        default: ['First normal message'],
+        success: ['First success message'],
+      } %}
+      {% set status_headings = {
+        error: 'Error',
+        warning: 'Warning',
+        default: 'Info',
+        success: 'Success'
+      } %}
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: '', message_list: small_message_list, size: 'small' } %}
+      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, size: 'large' } %}
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list, size: 'large' } %}
+      " }}
+    </div>
+  </div>
+
+  <h3>Form elements</h3>
   <button class="component-library__accordion">Button - Primary</button>
   <div class="component-library__panel">
     <div class="component-library__example">
@@ -102,25 +135,6 @@
     </div>
   </div>
 
-  <button class="component-library__accordion">Status messages</button>
-  <div class="component-library__panel">
-    <div class="component-library__example">
-      {% set message_list = {
-        error: ['First error message'],
-        warning: ['First warning message', 'Second warning message'],
-        default: ['First normal message', 'Second normal message'],
-      } %}
-      {% set status_headings = { error: 'Error', warning: 'Warning', default: 'Info' } %}
-      {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
-    </div>
-    <div class="component-library__code">
-      {{ "
-        {% include '@hdbt/misc/status-messages.html.twig' with { status_headings: status_headings, message_list: message_list } %}
-      " }}
-    </div>
-  </div>
-
-  <h3>Form elements</h3>
   <button class="component-library__accordion">Checkbox</button>
   <div class="component-library__panel">
     <div class="component-library__example">
