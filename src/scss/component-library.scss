@@ -6,23 +6,85 @@
   padding: $spacing;
 }
 
+.component-library__nav-wrapper {
+  align-items: center;
+  display: flex;
+  position: relative;
+  user-select: none;
+
+  label {
+    display: block;
+    margin-left: $spacing-half;
+    position: relative;
+    z-index: 1;
+
+    .icon {
+      --icon-proportions: 2.5rem;
+    }
+  }
+
+  span {
+    margin-left: $spacing;
+  }
+}
+
+.component-library__toggle {
+  -webkit-touch-callout: none;
+  cursor: pointer;
+  display: block;
+  height: $spacing-double;
+  left: 12px; // Position the input field on top of the icon.
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  width: $spacing-double;
+  z-index: 2;
+
+  + label .toggle--open {
+    display: block;
+  }
+
+  + label .toggle--close {
+    display: none;
+  }
+
+  &:checked + label .toggle--open {
+    display: none;
+  }
+
+  &:checked + label .toggle--close {
+    display: block;
+  }
+
+  &:checked ~ ul {
+    left: 0;
+  }
+}
+
 .component-library__nav {
-  margin: 0 -$spacing-quarter;
+  background-color: $color-black-10;
+  box-shadow: 3px 3px 4px $color-black-20;
+  left: -100%;
+  list-style-type: none;
+  min-width: 250px; // Min-width for the navigation to prevent automatic expanding on wider links.
+  padding: $spacing $spacing $spacing $spacing-quadruple;
+  position: absolute;
+  top: -$spacing-double;
+  transition: left 0.3s ease;
+
+  li {
+    padding: $spacing-quarter 0 0;
+  }
 
   a {
-    @include font-size(12px);
-    border-right: 1px solid $color-black-50;
-    color: $color-black;
-    padding: ($spacing-quarter / 2) $spacing-quarter;
+    @include font-size(16px);
+    color: $color-black-70;
     text-decoration: none;
-    text-transform: uppercase;
+    transition: color 0.3s ease;
 
     &:hover {
+      @include font-weight($font-weight-bold);
       color: $color-bus-dark;
-    }
-
-    &:last-of-type {
-      border-right: none;
     }
   }
 }

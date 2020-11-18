@@ -4,7 +4,15 @@
  * Consists a list of all components with a markup example and componnet.
 #}
 <div class="component-library-wrapper">
-  <div class="component-library__nav"></div>
+  <nav role="navigation" class="component-library__nav-wrapper">
+    <input class="component-library__toggle" name="toggle" type="checkbox" />
+    <label for="toggle">
+      <div class="toggle--open">{% include "@hdbt/misc/icon.twig" with {icon: 'menu-hamburger', label: 'Open menu'|t } %}</div>
+      <div class="toggle--close">{% include "@hdbt/misc/icon.twig" with {icon: 'cross', label: 'Close menu'|t } %}</div>
+    </label>
+    <ul class="component-library__nav" id="menu"></ul>
+  </nav>
+
   <h2>Components</h2>
 
   {#
