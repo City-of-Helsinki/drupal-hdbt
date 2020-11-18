@@ -2,7 +2,7 @@ name: "Create pre-release"
 on:
   push:
     branches:
-      - 1.x
+      - UHF-X-automatic-release
 
 jobs:
   pre-release:
