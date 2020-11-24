@@ -4,5 +4,8 @@
   "description": "Helsinki Drupal Base theme",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/twig_tweak": "^2.8"
+  }
 }

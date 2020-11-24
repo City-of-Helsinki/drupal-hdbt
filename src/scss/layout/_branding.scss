@@ -1,0 +1,16 @@
+// TODO: Fix in actual theming task.
+#block-hdbt-branding {
+  align-items: center;
+  display: flex;
+  padding: $spacing;
+}
+
+.site-logo {
+  margin-right: $spacing-half;
+  width: 80px;
+}
+
+.site-name {
+  color: $color-black;
+  padding: 0 0 $spacing-half;
+}
