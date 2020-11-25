@@ -120,6 +120,10 @@
   padding: $spacing;
 }
 
+.component-library__example--text-input {
+  max-width: 400px;
+}
+
 .component-library__code {
   background-color: $color-black-5;
   font-family: monospace;
