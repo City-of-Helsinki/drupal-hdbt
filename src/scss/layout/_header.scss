@@ -1,0 +1,15 @@
+.region--header-top {
+  background-color: $color-black-5;
+  display: none;
+  padding: 0 $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding: 0 $spacing-double;
+  }
+}

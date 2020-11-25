@@ -14,13 +14,28 @@
  */
 #}
 {% block content %}
-  {% if site_logo %}
-    <a href="{{ path('<front>') }}" class="site-logo" rel="home">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
-    </a>
-  {% endif %}
-  {% if site_name %}
-    <a href="{{ path('<front>') }}" class="site-name" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
-  {% endif %}
-  {{ site_slogan }}
+  <a href="{{ path('<front>') }}" class="logo logo--header" title="{{ 'Back to front page'|t }}" rel="home">
+    {% set logo = 'helsinki' %}
+    {% set logo_class = '' %}
+    {% set logo_alt = 'Helsinki' %}
+
+    {% if current_language == 'sv' %}
+      {% set logo = 'helsinki-sv' %}
+      {% set logo_class = 'icon--logo-sv' %}
+      {% set logo_alt = 'Helsingfors' %}
+    {% endif %}
+
+    {% if current_language == 'ru' %}
+      {% set logo = 'helsinki-ru' %}
+      {% set logo_class = 'icon--logo-ru' %}
+      {% set logo_alt = 'Xeльcинки' %}
+    {% endif %}
+
+    {% if icons_path %}
+      <svg class="icon {{ logo_class }}">
+        <title>{{ logo_alt }}</title>
+        <use href="{{ icons_path|trim }}#{{ logo }}" />
+      </svg>
+    {% endif %}
+  </a>
 {% endblock %}
