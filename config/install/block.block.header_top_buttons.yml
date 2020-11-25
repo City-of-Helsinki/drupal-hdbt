@@ -8,7 +8,7 @@ dependencies:
 id: header_top_buttons
 theme: hdbt
 region: header_top
-weight: -2
+weight: -3
 provider: null
 plugin: header_top_buttons_block
 settings:

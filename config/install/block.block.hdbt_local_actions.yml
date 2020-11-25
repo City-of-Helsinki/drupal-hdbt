@@ -5,8 +5,8 @@ dependencies:
     - hdbt
 id: hdbt_local_actions
 theme: hdbt
-region: content
-weight: -10
+region: before_content
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:

@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.tools
@@ -9,15 +9,15 @@ dependencies:
     - hdbt
 id: hdbt_tools
 theme: hdbt
-region: sidebar_first
-weight: 0
+region: tools
+weight: -3
 provider: null
 plugin: 'system_menu_block:tools'
 settings:
   id: 'system_menu_block:tools'
   label: Tools
   provider: system
-  label_display: visible
+  label_display: '0'
   level: 1
   depth: 0
   expand_all_items: false
