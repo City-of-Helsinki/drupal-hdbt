@@ -124,3 +124,35 @@
   background-color: $color-black-5;
   font-family: monospace;
 }
+
+.component-library__icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.component-library__icon {
+  align-items: center;
+  border: 1px solid $color-black-30;
+  display: flex;
+  flex-flow: column;
+  margin: $spacing-half;
+}
+
+.component-library__icon__svg {
+  padding: $spacing-half;
+
+  .icon {
+    --icon-proportions: 4rem;
+  }
+}
+
+.component-library__icon__name {
+  @include font-size(16px);
+  @include font-weight($font-weight-medium);
+  background-color: $color-black-10;
+  height: 100%;
+  padding: $spacing-half;
+  text-align: center;
+  width: calc(100% - #{$spacing});
+}
