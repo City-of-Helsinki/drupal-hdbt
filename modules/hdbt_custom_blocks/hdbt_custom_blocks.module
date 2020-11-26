@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function hdbt_custom_blocks_theme() {
+  return [
+    'header_top_button' => [
+      'variables' => [
+        'button_title' => NULL,
+      ],
+    ],
+  ];
+}
