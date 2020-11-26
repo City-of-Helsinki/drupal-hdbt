@@ -1,0 +1,18 @@
+// Temporary styles for the navigation links.
+.region--header-top {
+  .hds-button {
+    @include font-size(14px);
+    @include font-weight($font-weight-regular);
+    border: 0;
+    border-right: 1px solid $color-white;
+    padding: 0 $spacing;
+
+    &:last-of-type {
+      border-right: 0;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

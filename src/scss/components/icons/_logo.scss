@@ -1,0 +1,14 @@
+.logo {
+  align-items: center;
+  display: flex;
+
+  .icon {
+    height: 32px;
+    width: 64px;
+  }
+
+  .icon--logo-sv,
+  .icon--logo-ru {
+    width: 78px;
+  }
+}
