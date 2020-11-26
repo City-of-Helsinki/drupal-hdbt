@@ -58,6 +58,7 @@
 
   &:checked ~ ul {
     left: 0;
+    opacity: 1;
   }
 }
 
@@ -67,10 +68,11 @@
   left: -100%;
   list-style-type: none;
   min-width: 250px; // Min-width for the navigation to prevent automatic expanding on wider links.
+  opacity: 0;
   padding: $spacing $spacing $spacing $spacing-quadruple;
   position: absolute;
   top: -$spacing-double;
-  transition: left 0.3s ease;
+  transition: opacity 0.3s ease, left 0.3s ease;
 
   li {
     padding: $spacing-quarter 0 0;
