@@ -256,4 +256,100 @@
     </div>
   </div>
 
+  <button class="component-library__accordion">Text input</button>
+  <div class="component-library__panel">
+    <div class="component-library__example component-library__example--text-input">
+      <!-- Default -->
+      <h3>Default</h3>
+      <div class="hds-text-input">
+        <label for="text-input1"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <input type="text" id="text-input1" class="hds-text-input__input" placeholder="Placeholder" />
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Read-only -->
+      <h3>Read-only</h3>
+      <div class="hds-text-input">
+        <label for="text-input2"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <input type="text" id="text-input2" class="hds-text-input__input" value="Read-only" readonly />
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Disabled -->
+      <h3>Disabled</h3>
+      <div class="hds-text-input">
+        <label for="text-input3"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <input type="text" id="text-input3" class="hds-text-input__input" value="Disabled" disabled />
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Invalid -->
+      <h3>Invalid</h3>
+      <div class="hds-text-input hds-text-input--invalid">
+        <label for="text-input4"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <input type="text" id="text-input4" class="hds-text-input__input" placeholder="Placeholder" />
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Required -->
+      <h3>Required</h3>
+      <div class="hds-text-input">
+        <label for="text-input5"  class="hds-text-input__label">Label<span class="hds-text-input__required">*</span></label>
+        <div class="hds-text-input__input-wrapper">
+          <input type="text" id="text-input5" class="hds-text-input__input" placeholder="Placeholder" required />
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+    </div>
+    <div class="component-library__code">
+      Use Drupal Form API Checkbox or this markup:<br /><br />
+      {{ '<div class="hds-text-input">'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<label for="text-input1"  class="hds-text-input__label">Label<span class="hds-text-input__required">*</span></label>\n'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<div class="hds-text-input__input-wrapper">\n'|e('html') }}<br />
+          {{ '<input type="text" id="text-input1" class="hds-text-input__input" placeholder="Placeholder" />\n'|e('html') }}<br />
+        {{ '</div>\n'|e('html') }}<br />
+        {{ '<span class="hds-text-input__helper-text">Assistive text</span>\n'|e('html') }}<br />
+      {{ '</div>'|e('html') }}
+    </div>
+  </div>
+
+  <h2>Icons</h2>
+  <button class="component-library__accordion">Icons</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      <div class="component-library__icons">
+        {% for icon in icons %}
+          <div class="component-library__icon">
+            <div class="component-library__icon__svg">
+              {% include '@hdbt/misc/icon.twig' with {icon: icon, label: 'Test label for the ' ~ icon|t } %}
+            </div>
+            <div class="component-library__icon__name">
+              {{ icon }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/icon.twig' with {icon: 'icon', label: 'Test label for the icon'|t } %}
+      " }}
+    </div>
+  </div>
 </div>
