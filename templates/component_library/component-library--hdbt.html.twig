@@ -329,6 +329,67 @@
     </div>
   </div>
 
+  <button class="component-library__accordion">Textarea</button>
+  <div class="component-library__panel">
+    <div class="component-library__example component-library__example--text-input">
+      <!-- Default -->
+      <h3>Default</h3>
+      <div class="hds-text-input">
+        <label for="textarea1"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <textarea id="textarea1" class="hds-text-input__input" placeholder="Placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Disabled -->
+      <h3>Disabled</h3>
+      <div class="hds-text-input">
+        <label for="textarea2"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <textarea id="textarea2" class="hds-text-input__input" placeholder="Placeholder" disabled>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Invalid -->
+      <h3>Invalid</h3>
+      <div class="hds-text-input hds-text-input--invalid">
+        <label for="textarea3"  class="hds-text-input__label">Label</label>
+        <div class="hds-text-input__input-wrapper">
+          <textarea id="textarea3" class="hds-text-input__input" placeholder="Placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <!-- Required -->
+      <h3>Required</h3>
+      <div class="hds-text-input">
+        <label for="textarea4"  class="hds-text-input__label">Label<span class="hds-text-input__required">*</span></label>
+        <div class="hds-text-input__input-wrapper">
+          <textarea id="textarea4" class="hds-text-input__input" placeholder="Placeholder" required>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+        </div>
+        <span class="hds-text-input__helper-text">Assistive text</span>
+      </div>
+    </div>
+    <div class="component-library__code">
+      Use Drupal Form API Checkbox or this markup:<br /><br />
+      {{ '<div class="hds-text-input">'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<label for="textarea1"  class="hds-text-input__label">Label<span class="hds-text-input__required">*</span></label>\n'|e('html') }}<br />
+      &nbsp;&nbsp;{{ '<div class="hds-text-input__input-wrapper">\n'|e('html') }}<br />
+      {{ '<textarea id="textarea1" class="hds-text-input__input" placeholder="Placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>\n'|e('html') }}<br />
+      {{ '</div>\n'|e('html') }}<br />
+      {{ '<span class="hds-text-input__helper-text">Assistive text</span>\n'|e('html') }}<br />
+      {{ '</div>'|e('html') }}
+    </div>
+  </div>
+
   <h2>Icons</h2>
   <button class="component-library__accordion">Icons</button>
   <div class="component-library__panel">
