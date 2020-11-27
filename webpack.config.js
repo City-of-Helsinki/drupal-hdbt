@@ -7,6 +7,7 @@ const SVGSpritemapPlugin = require("svg-spritemap-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const globImporter = require("node-sass-glob-importer");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const SvgToJson = require('./webpack.svgToJson');
 
 module.exports = {
   entry: {
@@ -73,8 +74,7 @@ module.exports = {
           options: {
             name: "fonts/[name].[ext]",
           },
-        },
-        ],
+        }],
       },
       {
         test: /modernizrrc\.js$/,
@@ -132,6 +132,7 @@ module.exports = {
     extensions: [".js", ".json"],
   },
   plugins: [
+    new SvgToJson(path.resolve(__dirname, "src/icons/**/*.svg"),"icons.json"),
     new FriendlyErrorsWebpackPlugin(),
     new FixStyleOnlyEntriesPlugin(),
     new CleanWebpackPlugin(["dist"], {

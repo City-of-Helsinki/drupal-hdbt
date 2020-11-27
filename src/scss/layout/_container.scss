@@ -6,10 +6,10 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  padding: $spacing;
+  padding: 0 $spacing $spacing;
   transition: padding 100ms linear;
 
   @include breakpoint($breakpoint-l) {
-    padding: $spacing $spacing-double;
+    padding: 0 $spacing-double $spacing;
   }
 }
