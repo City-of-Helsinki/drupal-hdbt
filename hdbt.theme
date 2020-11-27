@@ -72,6 +72,9 @@ function hdbt_preprocess_form_element(&$variables) {
       case 'textfield':
         $element_label_class = 'hds-text-input__label';
         break;
+      case 'textarea':
+        $element_label_class = 'hds-text-input__label';
+        break;
     }
 
     if (isset($element_label_class)) {
