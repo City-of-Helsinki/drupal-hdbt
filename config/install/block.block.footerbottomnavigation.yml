@@ -4,7 +4,7 @@ dependencies:
   config:
     - system.menu.footer-bottom-navigation
   module:
-    - system
+    - menu_block_current_language
   theme:
     - hdbt
 id: footerbottomnavigation
@@ -12,11 +12,11 @@ theme: hdbt
 region: footer_bottom
 weight: 0
 provider: null
-plugin: 'system_menu_block:footer-bottom-navigation'
+plugin: 'menu_block_current_language:footer-bottom-navigation'
 settings:
-  id: 'system_menu_block:footer-bottom-navigation'
+  id: 'menu_block_current_language:footer-bottom-navigation'
   label: 'Footer - Bottom navigation'
-  provider: system
+  provider: menu_block_current_language
   label_display: '0'
   level: 1
   depth: 1
