@@ -1,0 +1,24 @@
+<a href="{{ path('<front>') }}" class="logo {{ 'logo--' ~ logo_position }}" title="{{ 'Back to front page'|t }}" rel="home">
+  {% set logo = 'helsinki' %}
+  {% set logo_class = '' %}
+  {% set logo_alt = 'Helsinki' %}
+
+  {% if current_language == 'sv' %}
+    {% set logo = 'helsinki-sv' %}
+    {% set logo_class = 'icon--logo-sv' %}
+    {% set logo_alt = 'Helsingfors' %}
+  {% endif %}
+
+  {% if current_language == 'ru' %}
+    {% set logo = 'helsinki-ru' %}
+    {% set logo_class = 'icon--logo-ru' %}
+    {% set logo_alt = 'Xeльcинки' %}
+  {% endif %}
+
+  {% if icons_path %}
+    <svg class="icon {{ logo_class }}">
+      <title>{{ logo_alt }}</title>
+      <use href="{{ icons_path|trim }}#{{ logo }}" />
+    </svg>
+  {% endif %}
+</a>

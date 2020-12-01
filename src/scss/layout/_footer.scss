@@ -1,0 +1,137 @@
+.footer {
+  background-color: $color-black-90;
+  color: $color-white;
+  padding-top: $spacing;
+  flex-shrink: 0;
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+
+  a {
+    color: $color-white;
+    text-decoration: underline;
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--color-black-80);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--color-black-80);
+    --background-color-disabled: transparent;
+    --border-color: var(--color-white);
+    --border-color-hover: var(--color-black-10);
+    --border-color-focus: var(--color-white);
+    --border-color-hover-focus: var(--color-black-10);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-white);
+    --color-hover: var(--color-black-10);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-black-10);
+  }
+}
+
+.footer-top {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    @include breakpoint($breakpoint-m) {
+      margin-right: $spacing-triple;
+    }
+  }
+
+  .footer-top__content {
+    @include breakpoint($breakpoint-m) {
+      max-width: $container-width-s;
+    }
+  }
+
+  h2 {
+    font-size: $fontsize-heading-m;
+    line-height: $lineheight-m;
+    font-weight: 500;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing-double;
+    }
+  }
+
+  .menu {
+    font-size: $fontsize-heading-xs;
+    line-height: $lineheight-l;
+    margin: $spacing 0 $spacing-double;
+  }
+
+  .menu__item {
+    margin-bottom: $spacing;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid $color-white;
+  padding-top: $spacing;
+  padding-bottom: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: center;
+    display: flex;
+  }
+
+  .menu {
+    font-size: $fontsize-body-s;
+    line-height: $lineheight-xl;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .menu__item {
+    display: flex;
+    align-items: center;
+
+    &::after {
+      background-color: $color-white;
+      display: block;
+      content: "";
+      width: 1px;
+      height: 15px;
+      margin: 0 $spacing-half;
+    }
+
+    // Menu item with <nolink>.
+    &.menu__item--nolink {
+      display: block;
+      width: 100%;
+
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        width: auto;
+      }
+
+      &::after {
+        display: none;
+
+        @include breakpoint($breakpoint-m) {
+          display: block;
+        }
+      }
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
