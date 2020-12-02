@@ -10,6 +10,7 @@
  */
 function hdbt_preprocess(&$variables) {
   $variables['icons_path'] = hdbt_get_icons_path();
+  $variables['koro'] = 'basic';
   $variables['current_language'] = Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();

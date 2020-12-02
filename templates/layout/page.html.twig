@@ -78,6 +78,7 @@
 
 {% if page.footer_top or page.footer_bottom %}
   <footer role="contentinfo" class="footer footer--dark">
+    {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
     {% if page.footer_top %}
       {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-top'} %}
         {% block container_content %}

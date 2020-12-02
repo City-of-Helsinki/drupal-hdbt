@@ -1,5 +1,4 @@
 .footer {
-  padding-top: $spacing;
   flex-shrink: 0;
   max-width: 1920px;
   margin: 0 auto;
@@ -17,6 +16,8 @@
 }
 
 .footer-top {
+  padding-top: $spacing * 3;
+
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-wrap: wrap;
@@ -118,7 +119,7 @@
 
 .footer--light {
   background-color: $hdbt-color-white;
-  color: $color-black;
+  color: $color-white;
 
   a {
     color: $color-black;
@@ -139,6 +140,11 @@
     --color-hover: var(--color-black-90);
     --color-focus: var(--color-black);
     --color-hover-focus: var(--color-black-90);
+  }
+
+  .footer-bottom,
+  .footer-top {
+    color: $color-black;
   }
 
   .footer-bottom {
@@ -176,6 +182,11 @@
     --color-hover: var(--color-black-10);
     --color-focus: var(--color-white);
     --color-hover-focus: var(--color-black-10);
+  }
+
+  .footer-bottom,
+  .footer-top {
+    color: $color-white;
   }
 
   .footer-bottom {
