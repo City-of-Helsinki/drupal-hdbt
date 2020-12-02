@@ -413,4 +413,38 @@
       " }}
     </div>
   </div>
+
+  <h2>Koros</h2>
+  <button class="component-library__accordion">Koros</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      <div class="component-library__icons">
+        Basic:<br />
+        {% include '@hdbt/misc/koro.twig' %}
+        <br /><br />
+        Pulse:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'pulse'} %}
+        <br /><br />
+        Beat:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'beat'} %}
+        <br /><br />
+        Wave:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'wave'} %}
+        <br /><br />
+        Storm:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'storm'} %}
+        <br /><br />
+        Pulse (inverted):<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'pulse', flip: true} %}
+        <br /><br />
+        Basic (custom color):<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'basic', color: 'var(--color-copper)'} %}
+      </div>
+    </div>
+    <div class="component-library__code">
+      {{ "
+        {% include '@hdbt/misc/koro.twig' with {koro: 'basic', flip: true, color: 'var(--color-copper)'} %}
+      " }}
+    </div>
+  </div>
 </div>
