@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-bottom-navigation
+  module:
+    - menu_block_current_language
+  theme:
+    - hdbt
+id: footerbottomnavigation
+theme: hdbt
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:footer-bottom-navigation'
+settings:
+  id: 'menu_block_current_language:footer-bottom-navigation'
+  label: 'Footer - Bottom navigation'
+  provider: menu_block_current_language
+  label_display: '0'
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

@@ -4,6 +4,7 @@
  * Theme override to display a single page.
  */
 #}
+<div class="wrapper">
 {% if page.header_top or page.header_bottom %}
   <header role="banner">
     {% if page.header_top %}
@@ -73,9 +74,11 @@
   {% endblock container_content %}
 {% endembed %}
 
+</div>
 
 {% if page.footer_top or page.footer_bottom %}
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="footer footer--dark">
+    {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
     {% if page.footer_top %}
       {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-top'} %}
         {% block container_content %}
@@ -93,4 +96,3 @@
     {% endif %}
   </footer>
 {% endif %}
-

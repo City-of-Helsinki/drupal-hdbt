@@ -2,13 +2,32 @@
   align-items: center;
   display: flex;
 
+  .icon--logo-sv,
+  .icon--logo-ru {
+    width: 78px;
+  }
+}
+
+.logo--header {
+  color: $color-black;
+
   .icon {
     height: 32px;
     width: 64px;
   }
+}
 
-  .icon--logo-sv,
-  .icon--logo-ru {
-    width: 78px;
+.logo--footer {
+  margin-bottom: $spacing-half;
+  margin-top: $spacing-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: 0;
+    margin-right: $spacing;
+  }
+
+  .icon {
+    height: 40px;
+    width: 87px;
   }
 }
