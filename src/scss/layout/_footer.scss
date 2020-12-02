@@ -1,7 +1,7 @@
 .footer {
   flex-shrink: 0;
-  max-width: 1920px;
   margin: 0 auto;
+  max-width: 1920px;
   width: 100%;
 
   a {
@@ -10,8 +10,8 @@
 
   .menu {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 }
 
@@ -37,8 +37,8 @@
 
   h2 {
     font-size: $fontsize-heading-m;
-    line-height: $lineheight-m;
     font-weight: 500;
+    line-height: $lineheight-m;
 
     @include breakpoint($breakpoint-m) {
       margin-bottom: $spacing-double;
@@ -61,8 +61,8 @@
 }
 
 .footer-bottom {
-  padding-top: $spacing;
   padding-bottom: $spacing;
+  padding-top: $spacing;
 
   @include breakpoint($breakpoint-m) {
     align-items: center;
@@ -70,22 +70,22 @@
   }
 
   .menu {
-    font-size: $fontsize-body-s;
-    line-height: $lineheight-xl;
     display: flex;
     flex-wrap: wrap;
+    font-size: $fontsize-body-s;
+    line-height: $lineheight-xl;
   }
 
   .menu__item {
-    display: flex;
     align-items: center;
+    display: flex;
 
     &::after {
-      display: block;
       content: "";
-      width: 1px;
+      display: block;
       height: 15px;
       margin: 0 $spacing-half;
+      width: 1px;
     }
 
     // Menu item with <nolink>.
@@ -116,7 +116,6 @@
 }
 
 // Footer color-schemes
-
 .footer--light {
   background-color: $hdbt-color-white;
   color: $color-white;
