@@ -1,4 +1,4 @@
-<a href="{{ path('<front>') }}" class="logo {{ 'logo--' ~ logo_position }}" title="{{ 'Back to front page'|t }}" rel="home">
+<a href="{{ path('<front>') }}" class="logo{% if logo_position %} {{ 'logo--' ~ logo_position }}{% endif %}" title="{{ 'Back to front page'|t }}" rel="home">
   {% set logo = 'helsinki' %}
   {% set logo_class = '' %}
   {% set logo_alt = 'Helsinki' %}
