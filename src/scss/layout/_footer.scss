@@ -1,6 +1,4 @@
 .footer {
-  background-color: $color-black-90;
-  color: $color-white;
   padding-top: $spacing;
   flex-shrink: 0;
   max-width: 1920px;
@@ -8,7 +6,6 @@
   width: 100%;
 
   a {
-    color: $color-white;
     text-decoration: underline;
   }
 
@@ -16,23 +13,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-black-80);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-black-80);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
   }
 }
 
@@ -80,7 +60,6 @@
 }
 
 .footer-bottom {
-  border-top: 1px solid $color-white;
   padding-top: $spacing;
   padding-bottom: $spacing;
 
@@ -101,7 +80,6 @@
     align-items: center;
 
     &::after {
-      background-color: $color-white;
       display: block;
       content: "";
       width: 1px;
@@ -131,6 +109,82 @@
     &:last-child {
       &::after {
         display: none;
+      }
+    }
+  }
+}
+
+// Footer color-schemes
+
+.footer--light {
+  background-color: $hdbt-color-white;
+  color: $color-black;
+
+  a {
+    color: $color-black;
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--color-black-10);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--color-black-10);
+    --background-color-disabled: transparent;
+    --border-color: var(--color-black);
+    --border-color-hover: var(--color-black-90);
+    --border-color-focus: var(--color-black);
+    --border-color-hover-focus: var(--color-black-90);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-black);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black);
+    --color-hover-focus: var(--color-black-90);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid $color-black;
+
+    .menu__item {
+
+      &::after {
+        background-color: $color-black;
+      }
+    }
+  }
+}
+
+.footer--dark {
+  background-color: $hdbt-color-black;
+  color: $color-white;
+
+  a {
+    color: $color-white;
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--color-black-80);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--color-black-80);
+    --background-color-disabled: transparent;
+    --border-color: var(--color-white);
+    --border-color-hover: var(--color-black-10);
+    --border-color-focus: var(--color-white);
+    --border-color-hover-focus: var(--color-black-10);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-white);
+    --color-hover: var(--color-black-10);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-black-10);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid $color-white;
+
+    .menu__item {
+
+      &::after {
+        background-color: $color-white;
       }
     }
   }
