@@ -1,11 +1,14 @@
 {% if not koro %}
   {% set koro = 'basic' %}
 {% endif %}
+{% set koros = ['basic', 'beat', 'pulse', 'vibration', 'wave', 'calm'] %}
 {% set koro_path = '@hdbt/misc/koros/koro-' ~ koro ~ '.twig' %}
 
 <div
   class="hds-koros {% if flip %} hds-koros--flip-horizontal {% endif %}"
   {% if color %}style="color: {{ color }};"{% endif %}
 >
-  {% include koro_path  %}
+  {% if koro_path and koro in koros %}
+    {% include koro_path  %}
+  {% endif %}
 </div>

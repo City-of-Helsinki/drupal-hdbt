@@ -77,7 +77,12 @@
 </div>
 
 {% if page.footer_top or page.footer_bottom %}
-  <footer role="contentinfo" class="footer footer--dark">
+  {% set footer_variant = '' %}
+  {% if page.footer_color %}
+    {% set footer_variant = 'footer--' ~ page.footer_color|clean_class %}
+  {% endif %}
+
+  <footer role="contentinfo" class="footer {{ footer_variant }}">
     {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
     {% if page.footer_top %}
       {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-top'} %}

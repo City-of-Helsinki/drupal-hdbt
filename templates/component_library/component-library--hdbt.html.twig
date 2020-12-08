@@ -419,22 +419,25 @@
   <div class="component-library__panel">
     <div class="component-library__example">
       <div class="component-library__icons">
-        Basic:<br />
-        {% include '@hdbt/misc/koro.twig' %}
+        Wave:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'wave'} %}
         <br /><br />
-        Pulse:<br />
-        {% include '@hdbt/misc/koro.twig' with {koro: 'pulse'} %}
+        Vibration:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'vibration'} %}
         <br /><br />
         Beat:<br />
         {% include '@hdbt/misc/koro.twig' with {koro: 'beat'} %}
         <br /><br />
-        Wave:<br />
-        {% include '@hdbt/misc/koro.twig' with {koro: 'wave'} %}
+        Pulse:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'pulse'} %}
         <br /><br />
-        Storm:<br />
-        {% include '@hdbt/misc/koro.twig' with {koro: 'storm'} %}
+        Basic:<br />
+        {% include '@hdbt/misc/koro.twig' %}
         <br /><br />
-        Pulse (inverted):<br />
+        Calm:<br />
+        {% include '@hdbt/misc/koro.twig' with {koro: 'calm'} %}
+        <br /><br />
+        Basic (inverted):<br />
         {% include '@hdbt/misc/koro.twig' with {koro: 'pulse', flip: true} %}
         <br /><br />
         Basic (custom color):<br />

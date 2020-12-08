@@ -10,5 +10,11 @@ function hdbt_custom_blocks_theme() {
         'button_title' => NULL,
       ],
     ],
+    'footer_top_content' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
   ];
 }

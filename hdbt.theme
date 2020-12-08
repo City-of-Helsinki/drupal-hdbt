@@ -5,12 +5,14 @@
  * Functions to support theming in the hdbt theme.
  */
 
+use Drupal\Core\Cache\Cache;
+
 /**
  * Implements hook_preprocess().
  */
 function hdbt_preprocess(&$variables) {
   $variables['icons_path'] = hdbt_get_icons_path();
-  $variables['koro'] = 'basic';
+  $variables['koro'] = hdbt_get_settings('koro');
   $variables['current_language'] = Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
@@ -35,6 +37,53 @@ function hdbt_get_icons_path() {
     }
   }
   return $icon_path;
+}
+
+/**
+ * Helper function to get the settings from configurations.
+ *
+ * @param $setting string
+ *   Setting to be retrieved from config/cache.
+ *
+ * @return string|null
+ *   Returns koro as a string or false.
+ */
+function hdbt_get_settings($setting) {
+  if (empty($setting)) {
+    return FALSE;
+  }
+
+  $cached = \Drupal::cache()->get('hdbt_settings_' . $setting);
+  if ($cached) {
+    return $cached->data;
+  }
+
+  $settings = \Drupal::config('hdbt_admin_tools.site_settings');
+
+  try {
+    $data = ($setting == 'koro')
+      ? $settings->get("koro_settings.$setting")
+      : $settings->get("footer_settings.$setting");
+
+    if (!empty($data)) {
+      \Drupal::cache()->set('hdbt_settings_' . $setting, $data, Cache::PERMANENT, ['hdbt_settings_' . $setting]);
+      return $data;
+    }
+    return FALSE;
+  }
+  catch (RequestException $error) {
+    watchdog_exception('hdbt', $error);
+    return FALSE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_page(&$variables) {
+  if ($data = hdbt_get_settings('footer_color')) {
+    $variables['page']['footer_color'] = $data;
+  }
 }
 
 /**
@@ -71,11 +120,7 @@ function hdbt_preprocess_form_element(&$variables) {
         $element_label_class = 'hds-radio-button__label';
         break;
       case 'textfield':
-        $element_label_class = 'hds-text-input__label';
-        break;
       case 'password':
-        $element_label_class = 'hds-text-input__label';
-        break;
       case 'textarea':
         $element_label_class = 'hds-text-input__label';
         break;
