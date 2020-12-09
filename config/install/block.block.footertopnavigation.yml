@@ -10,7 +10,7 @@ dependencies:
 id: footertopnavigation
 theme: hdbt
 region: footer_top
-weight: 0
+weight: -4
 provider: null
 plugin: 'menu_block_current_language:footer-top-navigation'
 settings:
@@ -18,6 +18,10 @@ settings:
   label: 'Footer top navigation'
   provider: menu_block_current_language
   label_display: visible
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
   level: 1
   depth: 1
   expand_all_items: false
