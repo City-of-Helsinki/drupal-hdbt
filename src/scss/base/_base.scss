@@ -4,8 +4,9 @@ body {
 }
 
 body {
-  font-family: $base-font-family;
-  line-height: $lineheight-l;
+  background-color: $body-bg-color;
   display: flex;
   flex-direction: column;
+  font-family: $base-font-family;
+  line-height: $lineheight-l;
 }

@@ -41,38 +41,34 @@
   {% endembed %}
 {% endif %}
 
-{# TODO #}
-{% embed "@hdbt/misc/container.twig" with {container_element: 'main'} %}
-  {% block container_content %}
-    <main role="main">
-      <a id="main-content" tabindex="-1"></a>
+<main role="main">
+  <a id="main-content" tabindex="-1"></a>
 
-      {% if page.before_content %}
-        {{ page.before_content }}
-      {% endif %}
+  {% if page.before_content %}
+    {{ page.before_content }}
+  {% endif %}
 
-      <div class="layout-content">
-        {{ page.content }}
-      </div>{# /.layout-content #}
+  <div class="layout-content">
+    {{ page.content }}
+  </div>{# /.layout-content #}
 
-      {% if page.sidebar_first %}
-        <aside class="layout-sidebar-first" role="complementary">
-          {{ page.sidebar_first }}
-        </aside>
-      {% endif %}
+  {% if page.sidebar_first %}
+    <aside class="layout-sidebar-first" role="complementary">
+      {{ page.sidebar_first }}
+    </aside>
+  {% endif %}
 
-      {% if page.sidebar_second %}
-        <aside class="layout-sidebar-second" role="complementary">
-          {{ page.sidebar_second }}
-        </aside>
-      {% endif %}
+  {% if page.sidebar_second %}
+    <aside class="layout-sidebar-second" role="complementary">
+      {{ page.sidebar_second }}
+    </aside>
+  {% endif %}
 
-      {% if page.after_content %}
-        {{ page.after_content }}
-      {% endif %}
-    </main>
-  {% endblock container_content %}
-{% endembed %}
+  {% if page.after_content %}
+    {{ page.after_content }}
+  {% endif %}
+</main>
+
 
 </div>
 
