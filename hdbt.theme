@@ -53,7 +53,8 @@ function hdbt_get_settings($setting) {
     return FALSE;
   }
 
-  $cached = \Drupal::cache()->get('hdbt_settings_' . $setting);
+  $cached = \Drupal::cache()->get("hdbt_settings:$setting");
+
   if ($cached) {
     return $cached->data;
   }
@@ -66,7 +67,7 @@ function hdbt_get_settings($setting) {
       : $settings->get("footer_settings.$setting");
 
     if (!empty($data)) {
-      \Drupal::cache()->set('hdbt_settings_' . $setting, $data, Cache::PERMANENT, ['hdbt_settings_' . $setting]);
+      \Drupal::cache()->set("hdbt_settings:$setting", $data, Cache::PERMANENT);
       return $data;
     }
     return FALSE;
