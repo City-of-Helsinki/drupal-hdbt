@@ -3,8 +3,8 @@
 
   .hero__container {
     color: $color-black-90;
-    margin-bottom: $spacing-triple;
     overflow: hidden;
+    padding-bottom: $spacing-triple;
 
     @include breakpoint(max-width $breakpoint-s) {
       max-width: 100%;
@@ -23,6 +23,10 @@
   .hero__description {
     p {
       line-height: $lineheight-xxl;
+    }
+
+    a {
+      color: currentColor;
     }
   }
 
@@ -472,88 +476,6 @@
   }
 }
 
-.hero--text-color--white {
-  .hero__description a {
-    color: currentColor;
-  }
-
-  .hds-button--primary {
-    --background-color: var(--color-white);
-    --background-color-hover: var(--color-black-10);
-    --background-color-focus: var(--color-white);
-    --background-color-hover-focus: var(--color-black-10);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-black-90);
-    --color-disabled: var(--color-black-90);
-    --focus-outline-color: var(--color-white);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-black-10);
-    --background-color-hover-focus: var(--color-black-10);
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-90);
-    --focus-outline-color: var(--color-white);
-  }
-}
-
-.hero--text-color--black {
-  .hero__container {
-    color: $color-black-90;
-  }
-
-  .hero__description a {
-    color: currentColor;
-  }
-
-  .hero__title {
-    color: $color-black-90;
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-black-90);
-    --background-color-hover-focus: var(--color-black);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black-90);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-  }
-
-  .hds-button--supplementary {
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-black);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-black);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-  }
-}
-
 /**
  * DESIGNS
  */
@@ -576,7 +498,7 @@
 .hero--with-image-bottom {
 
   .hero__container {
-    margin-bottom: 0;
+    padding-bottom: $spacing;
   }
 
   .hds-koros {
@@ -595,6 +517,7 @@
     .hds-koros {
       display: block;
       position: absolute;
+      z-index: 1;
     }
   }
 }
@@ -650,6 +573,26 @@
   }
 }
 
+.hero--with-image-bottom {
+  .hero__image-container {
+    height: 300px;
+    overflow: hidden;
+
+    @include breakpoint($breakpoint-l) {
+      height: 400px;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+  }
+}
+
 // Background image design.
 .hero--background-image {
   display: flex;
@@ -660,15 +603,15 @@
   position: relative;
 
   @include breakpoint($breakpoint-s) {
-    min-height: 420px;
+    min-height: 400px;
   }
 
   @include breakpoint($breakpoint-m) {
-    min-height: 500px;
+    min-height: 440px;
   }
 
   @include breakpoint($breakpoint-l) {
-    min-height: 650px;
+    min-height: 480px;
   }
 
   .hero__container {
@@ -704,5 +647,175 @@
     bottom: 0;
     position: absolute;
     z-index: 2;
+  }
+
+  // The text color needs to be applied only when using hero with background image.
+  &.hero--text-color--white {
+    .hds-button--primary {
+      --background-color: var(--color-white);
+      --background-color-hover: var(--color-black-10);
+      --background-color-focus: var(--color-white);
+      --background-color-hover-focus: var(--color-black-10);
+      --background-color-disabled: var(--color-black-20);
+      --border-color: var(--color-white);
+      --border-color-hover: var(--color-black-10);
+      --border-color-focus: var(--color-white);
+      --border-color-hover-focus: var(--color-black-10);
+      --border-color-disabled: var(--color-black-20);
+      --color: var(--color-black-90);
+      --color-hover: var(--color-black-90);
+      --color-focus: var(--color-black-90);
+      --color-hover-focus: var(--color-black-90);
+      --color-disabled: var(--color-black-90);
+      --focus-outline-color: var(--color-white);
+      --submit-input-focus-gutter-color: var(--color-white);
+    }
+
+    .hds-button--secondary {
+      --background-color-hover: var(--color-black-10);
+      --background-color-hover-focus: var(--color-black-10);
+      --border-color: var(--color-white);
+      --border-color-hover: var(--color-black-10);
+      --border-color-focus: var(--color-white);
+      --border-color-hover-focus: var(--color-black-10);
+      --border-color-disabled: var(--color-black-50);
+      --color: var(--color-white);
+      --color-hover: var(--color-black-90);
+      --color-focus: var(--color-white);
+      --color-hover-focus: var(--color-black-90);
+      --focus-outline-color: var(--color-white);
+    }
+  }
+
+  &.hero--text-color--black {
+    .hero__container {
+      color: $color-black-90;
+    }
+
+    .hero__title {
+      color: $color-black-90;
+    }
+
+    .hds-button--secondary {
+      --background-color-hover: var(--color-black-90);
+      --background-color-hover-focus: var(--color-black);
+      --border-color: var(--color-black-90);
+      --border-color-hover: var(--color-black-90);
+      --border-color-focus: var(--color-black-90);
+      --border-color-hover-focus: var(--color-black);
+      --border-color-disabled: var(--color-black-50);
+      --color: var(--color-black-90);
+      --color-hover: var(--color-white);
+      --color-focus: var(--color-black-90);
+      --color-hover-focus: var(--color-white);
+      --focus-outline-color: var(--color-black-90);
+    }
+
+    .hds-button--supplementary {
+      --border-color-focus: var(--color-black-90);
+      --border-color-hover-focus: var(--color-black);
+      --color: var(--color-black-90);
+      --color-hover: var(--color-black);
+      --color-focus: var(--color-black-90);
+      --color-hover-focus: var(--color-black);
+      --color-disabled: var(--color-black-40);
+      --focus-outline-color: transparent;
+      --submit-input-focus-gutter-color: transparent;
+    }
+  }
+}
+
+.hero--diagonal {
+  @include breakpoint($breakpoint-l) {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero__container {
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    @include breakpoint($breakpoint-l) {
+      min-height: 480px;
+    }
+  }
+
+  .hero__text-content {
+    @include breakpoint($breakpoint-l) {
+      max-width: 400px;
+    }
+    @include breakpoint($breakpoint-xl) {
+      max-width: 500px;
+    }
+  }
+
+  .hero__image-container {
+    line-height: 0;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .hds-koros {
+      display: block;
+      position: absolute;
+
+      @include breakpoint($breakpoint-l) {
+        bottom: 50%;
+        left: 14%;
+        transform: rotate(-230deg);
+        transform-origin: center;
+        width: 100%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        left: 7%;
+      }
+
+      &::after {
+        @include breakpoint($breakpoint-l) {
+          background-color: currentColor;
+          content: "";
+          display: block;
+          height: 1000px;
+          left: 15%;
+          position: absolute;
+          // Koro-element height - 1px
+          top: 84px;
+          width: 1500px;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          left: 25%;
+        }
+      }
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+
+      @include breakpoint($breakpoint-l) {
+        height: 100%;
+        margin-left: 30%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        margin-left: 40%;
+      }
+    }
+  }
+
+  .hds-koros {
+    display: none;
   }
 }

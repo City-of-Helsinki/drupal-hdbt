@@ -71,13 +71,12 @@
       {% endblock %}
     {% endembed %}
 
-    {% if design == "with-image-right" or design == "with-image-left" or design == "with-image-bottom" or design == "background-image" %}
+    {% if design == "with-image-right" or design == "with-image-left" or design == "with-image-bottom" or design == "background-image" or design == "diagonal" %}
       <div class="hero__image-container">
         {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
         {{ content.field_hero_image }}
       </div>
     {% endif %}
-
     {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
   </div>
 {% endblock paragraph %}
