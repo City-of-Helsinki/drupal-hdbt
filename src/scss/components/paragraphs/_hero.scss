@@ -472,6 +472,93 @@
   }
 }
 
+.hero--text-color--white {
+  .hero__description a {
+    color: currentColor;
+  }
+
+  .hds-button--primary {
+    --background-color: var(--color-white);
+    --background-color-hover: var(--color-black-10);
+    --background-color-focus: var(--color-white);
+    --background-color-hover-focus: var(--color-black-10);
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--color-white);
+    --border-color-hover: var(--color-black-10);
+    --border-color-focus: var(--color-white);
+    --border-color-hover-focus: var(--color-black-10);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-black-90);
+    --focus-outline-color: var(--color-white);
+    --submit-input-focus-gutter-color: var(--color-white);
+  }
+
+  .hds-button--secondary {
+    --background-color-hover: var(--color-black-10);
+    --background-color-hover-focus: var(--color-black-10);
+    --border-color: var(--color-white);
+    --border-color-hover: var(--color-black-10);
+    --border-color-focus: var(--color-white);
+    --border-color-hover-focus: var(--color-black-10);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-white);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-black-90);
+    --focus-outline-color: var(--color-white);
+  }
+}
+
+.hero--text-color--black {
+  .hero__container {
+    color: $color-black-90;
+  }
+
+  .hero__description a {
+    color: currentColor;
+  }
+
+  .hero__title {
+    color: $color-black-90;
+  }
+
+  .hds-button--secondary {
+    --background-color-hover: var(--color-black-90);
+    --background-color-hover-focus: var(--color-black);
+    --border-color: var(--color-black-90);
+    --border-color-hover: var(--color-black-90);
+    --border-color-focus: var(--color-black-90);
+    --border-color-hover-focus: var(--color-black);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-black-90);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-white);
+    --focus-outline-color: var(--color-black-90);
+  }
+
+  .hds-button--supplementary {
+    --border-color-focus: var(--color-black-90);
+    --border-color-hover-focus: var(--color-black);
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black);
+    --color-disabled: var(--color-black-40);
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
+  }
+}
+
+/**
+ * DESIGNS
+ */
+
+// Without images design.
 .hero--without-image-center {
   .hero__container {
     text-align: center;
@@ -483,6 +570,7 @@
   }
 }
 
+// With image designs.
 .hero--with-image-right,
 .hero--with-image-left,
 .hero--with-image-bottom {
@@ -562,6 +650,59 @@
   }
 }
 
-.hero--with-image-bottom {
+// Background image design.
+.hero--background-image {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 380px;
+  overflow: hidden;
+  padding-bottom: 85px;
+  position: relative;
 
+  @include breakpoint($breakpoint-s) {
+    min-height: 420px;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    min-height: 500px;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    min-height: 650px;
+  }
+
+  .hero__container {
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .hero__image-container {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    line-height: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+
+    .hds-koros {
+      display: none;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .hds-koros {
+    bottom: 0;
+    position: absolute;
+    z-index: 2;
+  }
 }
