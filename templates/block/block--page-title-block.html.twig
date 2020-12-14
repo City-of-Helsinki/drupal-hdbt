@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override to display a Page title block.
+ */
+#}
+{% if hide_block != true %}
+  <div{{ attributes }}>
+    {{ title_prefix }}
+    {% if label %}
+      <h2{{ title_attributes }}>{{ label }}</h2>
+    {% endif %}
+    {{ title_suffix }}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+{% endif %}

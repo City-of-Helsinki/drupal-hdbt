@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Cache\Cache;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_preprocess().
@@ -147,6 +148,30 @@ function hdbt_preprocess_menu(&$variables) {
 
       if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
         $item['is_nolink'] = TRUE;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_block(&$variables) {
+  // Handle only Page title block.
+  if ($variables['plugin_id'] == 'page_title_block') {
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+      // Retrieve the node object for revisions.
+      $node = (is_numeric($node) && !$node instanceof Node)
+        ? Node::load($node) : $node;
+
+      // Hide block if current node is front page.
+      if (
+        $node->hasField('field_hero') &&
+        $node->hasField('field_has_hero')
+      ) {
+        if (boolval($node->get('field_has_hero')->getString())) {
+          $variables['hide_block'] = TRUE;
+        }
       }
     }
   }
