@@ -41,7 +41,6 @@
 
 {% set background_color = content.field_hero_bg_color[0]['#markup'] %}
 {% set design = content.field_hero_design[0]['#markup'] %}
-{% set text_color = content.field_hero_text_color[0]['#markup'] %}
 {% set description = content.field_hero_desc %}
 
 {%
@@ -50,8 +49,7 @@
     view_mode ? 'hero--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'hero--unpublished',
     design ? 'hero--' ~ design,
-    background_color ? 'hero--bg-color--' ~ background_color,
-    text_color ? 'hero--text-color--' ~ text_color
+    background_color ? 'hero--bg-color--' ~ background_color
   ]
 %}
 
