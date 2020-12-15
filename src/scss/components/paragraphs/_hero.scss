@@ -651,6 +651,14 @@
 
   // The text color needs to be applied only when using hero with background image.
   &.hero--text-color--white {
+    .hero__container {
+      color: $color-white;
+    }
+
+    .hero__title {
+      color: $color-white;
+    }
+
     .hds-button--primary {
       --background-color: var(--color-white);
       --background-color-hover: var(--color-black-10);
@@ -684,6 +692,18 @@
       --color-focus: var(--color-white);
       --color-hover-focus: var(--color-black-90);
       --focus-outline-color: var(--color-white);
+    }
+
+    .hds-button--supplementary {
+      --border-color-focus: var(--color-white);
+      --border-color-hover-focus: var(--color-black-10);
+      --color: var(--color-white);
+      --color-hover: var(--color-black-10);
+      --color-focus: var(--color-white);
+      --color-hover-focus: var(--color-black-10);
+      --color-disabled: var(--color-black-40);
+      --focus-outline-color: transparent;
+      --submit-input-focus-gutter-color: transparent;
     }
   }
 
