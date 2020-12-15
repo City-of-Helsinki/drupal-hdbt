@@ -79,20 +79,24 @@
       design == "diagonal"
     %}
       {% set image_id = content.field_hero_image[0]['#media'].id %}
-      {% set image_style = 'hero__background' %}
 
-      {% if design == "with-image-right" or design == "with-image-left" %}
-        {% set image_style = 'hero__left_right' %}
-      {% elseif design == "with-image-bottom" %}
-        {% set image_style = 'hero__bottom' %}
-      {% elseif design == "diagonal" %}
-        {% set image_style = 'hero__diagonal' %}
+      {# This check should be done in edit form. #}
+      {% if image_id %}
+        {% set image_style = 'hero__background' %}
+
+        {% if design == "with-image-right" or design == "with-image-left" %}
+          {% set image_style = 'hero__left_right' %}
+        {% elseif design == "with-image-bottom" %}
+          {% set image_style = 'hero__bottom' %}
+        {% elseif design == "diagonal" %}
+          {% set image_style = 'hero__diagonal' %}
+        {% endif %}
+
+        <div class="hero__image-container">
+          {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
+          {{ drupal_image(image_id, image_style, responsive=true) }}
+        </div>
       {% endif %}
-
-      <div class="hero__image-container">
-        {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
-        {{ drupal_image(image_id, image_style, responsive=true) }}
-      </div>
     {% endif %}
     {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
   </div>
