@@ -1,3 +1,10 @@
+hdbt.xxs:
+  label: XXS
+  mediaQuery: 'all and (max-width: 320px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
 hdbt.xs:
   label: XS
   mediaQuery: 'all and (min-width: 320px)'
@@ -33,3 +40,4 @@ hdbt.xl:
   multipliers:
     - 1x
     - 2x
+

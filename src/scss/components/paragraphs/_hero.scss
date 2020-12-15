@@ -506,12 +506,19 @@
   }
 
   .hero__image-container {
+    height: 300px;
     line-height: 0;
+    overflow: hidden;
     position: relative;
 
     img {
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       width: 100%;
+      z-index: 0;
     }
 
     .hds-koros {
@@ -548,15 +555,24 @@
   .hero__image-container {
     @include breakpoint($breakpoint-m)  {
       box-sizing: border-box;
+      height: auto;
       margin-top: $spacing-quadruple;
       max-width: $container-width-xl / 2;
       padding: 0 $spacing $spacing-quadruple;
       width: 50%;
     }
 
-    // TODO: For some reason the above overwrites the one below. Don't know why.
     @include breakpoint($breakpoint-l) {
       padding: 0 $spacing-double $spacing-quadruple;
+    }
+
+    img {
+      @include breakpoint($breakpoint-m) {
+        height: auto;
+        position: static;
+        transform: none;
+        width: 100%;
+      }
     }
 
     .hds-koros {
@@ -575,20 +591,8 @@
 
 .hero--with-image-bottom {
   .hero__image-container {
-    height: 300px;
-    overflow: hidden;
-
     @include breakpoint($breakpoint-l) {
       height: 400px;
-    }
-
-    img {
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 0;
     }
   }
 }
@@ -772,8 +776,16 @@
     }
   }
 
+  .hero__title {
+    @include breakpoint($breakpoint-l) {
+      margin-top: 0;
+    }
+  }
+
   .hero__image-container {
-    line-height: 0;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
 
     @include breakpoint($breakpoint-l) {
       bottom: 0;
@@ -788,17 +800,18 @@
     .hds-koros {
       display: block;
       position: absolute;
+      z-index: 1;
 
       @include breakpoint($breakpoint-l) {
         bottom: 50%;
-        left: 14%;
-        transform: rotate(-230deg);
+        left: 5%;
+        transform: rotate(135deg);
         transform-origin: center;
         width: 100%;
       }
 
       @include breakpoint($breakpoint-xl) {
-        left: 7%;
+        left: 0%;
       }
 
       &::after {
@@ -821,16 +834,18 @@
     }
 
     img {
+      height: 100%;
       object-fit: cover;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       width: 100%;
+      z-index: 0;
 
       @include breakpoint($breakpoint-l) {
-        height: 100%;
         margin-left: 30%;
-      }
-
-      @include breakpoint($breakpoint-xl) {
-        margin-left: 40%;
+        position: static;
+        transform: none;
       }
     }
   }
