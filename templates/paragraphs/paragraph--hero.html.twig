@@ -42,6 +42,8 @@
 {% set background_color = content.field_hero_bg_color[0]['#markup'] %}
 {% set design = content.field_hero_design[0]['#markup'] %}
 {% set text_color = content.field_hero_text_color[0]['#markup'] %}
+{% set description = content.field_hero_desc %}
+
 {%
   set classes = [
     'hero',
@@ -61,9 +63,20 @@
           <h1 class="hero__title">
             {{ content.field_hero_title }}
           </h1>
-          <div class="hero__description">
-            {{ content.field_hero_desc }}
-          </div>
+          {% if description[0]['#text'] is not empty %}
+            {% if
+              design == "without-image-left" or
+              design == "without-image-center" or
+              design == "with-image-right" or
+              design == "with-image-left" or
+              design == "with-image-bottom" or
+              design == "diagonal"
+            %}
+              <div class="hero__description">
+                {{ description }}
+              </div>
+            {% endif %}
+          {% endif %}
           <div class="hero__cta">
             {{ content.field_hero_cta }}
           </div>
