@@ -1,3 +1,5 @@
+$koro-height: 50px;
+
 .hero {
   color: $body-bg-color;
 
@@ -795,8 +797,8 @@
           height: 1000px;
           left: 15%;
           position: absolute;
-          // Koro-element height - 1px
-          top: 84px;
+          // Koro-element height - 2px
+          top: $koro-height - 2px;
           width: 1500px;
         }
 
