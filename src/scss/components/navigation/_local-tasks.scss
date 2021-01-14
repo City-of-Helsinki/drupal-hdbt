@@ -36,6 +36,7 @@
     padding: $spacing-quarter;
     text-decoration: none;
 
+    &.is-active,
     &:hover {
       border-bottom: 4px solid $color-black-90;
       padding-bottom: 0;
