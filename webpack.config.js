@@ -1,19 +1,29 @@
-const path = require("path");
 const isDev = (process.env.NODE_ENV !== "production");
 
+const path = require("path");
+const glob = require("glob");
+const globImporter = require("node-sass-glob-importer");
+
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const SVGSpritemapPlugin = require("svg-spritemap-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const globImporter = require("node-sass-glob-importer");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const SvgToJson = require('./webpack.svgToJson');
 
 module.exports = {
   entry: {
     styles: ["./src/scss/styles.scss"],
-    bundle: ["./src/js/common.js"],
-    "component-library": ["./src/js/component-library.js", "./src/scss/component-library.scss"],
+    bundle: glob.sync("./src/js/**/*.js",{
+      ignore: [
+        './src/js/component-library.js',
+      ]
+    }),
+    "component-library": [
+      "./src/js/component-library.js",
+      "./src/scss/component-library.scss"
+    ],
   },
   output: {
     devtoolLineToLine: true,
@@ -157,6 +167,26 @@ module.exports = {
           view: "-view"
         }
       },
+    }),
+    new CopyPlugin({
+      "patterns": [
+        {
+          "context": "./",
+          "from": "node_modules/hyphenopoly/min/{Hyphenopoly_Loader,Hyphenopoly}.js",
+          "to": path.resolve(__dirname, "dist") + "/js/hyphenopoly/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/hyphenopoly/min/patterns/{fi,sv,en-gb,ru}.wasm",
+          "to": path.resolve(__dirname, "dist") + "/js/hyphenopoly/patterns/",
+          "globOptions": {
+            "extglob": true
+          },
+          "force": true,
+          "flatten": true
+        }
+      ]
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].min.css",
