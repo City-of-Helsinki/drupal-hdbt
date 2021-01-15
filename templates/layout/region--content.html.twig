@@ -13,12 +13,7 @@
  */
 #}
 {% if content %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-bottom'} %}
-    {% block container_content %}
-      <div{{ attributes.addClass(region|clean_class) }}>
-        {% embed "@hdbt/misc/logo.twig" with {logo_position: 'footer'} %}{% endembed %}
-        {{ content }}
-      </div>
-    {% endblock container_content %}
-  {% endembed %}
+  <div{{ attributes }}>
+    {{ content }}
+  </div>
 {% endif %}

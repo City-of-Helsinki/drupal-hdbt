@@ -18,27 +18,15 @@
 {% endif %}
 
 {% if page.messages %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: 'messages'} %}
-    {% block container_content %}
-      {{ page.messages }}
-    {% endblock container_content %}
-  {% endembed %}
+  {{ page.messages }}
 {% endif %}
 
 {% if page.breadcrumb %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: 'breadcrumb'} %}
-    {% block container_content %}
-      {{ page.breadcrumb }}
-    {% endblock container_content %}
-  {% endembed %}
+  {{ page.breadcrumb }}
 {% endif %}
 
 {% if page.tools %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: 'tools'} %}
-    {% block container_content %}
-      {{ page.tools }}
-    {% endblock container_content %}
-  {% endembed %}
+  {{ page.tools }}
 {% endif %}
 
 <main role="main">
@@ -81,19 +69,11 @@
   <footer role="contentinfo" class="footer {{ footer_variant }}">
     {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
     {% if page.footer_top %}
-      {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-top'} %}
-        {% block container_content %}
-          {{ page.footer_top }}
-        {% endblock container_content %}
-      {% endembed %}
+      {{ page.footer_top }}
     {% endif %}
 
     {% if page.footer_bottom %}
-      {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-bottom'} %}
-        {% block container_content %}
-          {{ page.footer_bottom }}
-        {% endblock container_content %}
-      {% endembed %}
+      {{ page.footer_bottom }}
     {% endif %}
   </footer>
 {% endif %}

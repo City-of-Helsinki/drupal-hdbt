@@ -4,10 +4,18 @@
 //
 .hds-notification {
   margin-bottom: $spacing;
+
+  &:first-child {
+    margin-top: $spacing;
+  }
 }
 
 .hds-notification__label {
   .icon {
     margin-right: $spacing-half;
   }
+}
+
+.messages__container {
+  padding-bottom: 0;
 }

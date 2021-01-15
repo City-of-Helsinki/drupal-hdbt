@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for the messages block.
+ *
+ * Removes wrapper elements from block so that empty block does not appear when
+ * there are no messages.
+ *
+ * Available variables:
+ * - content: The content of this block.
+ */
+#}
+{% if content %}
+  {% embed "@hdbt/misc/container.twig" with {container_element: 'messages'} %}
+    {% block container_content %}
+      <div{{ attributes.addClass(region|clean_class) }}>
+        {{ content }}
+      </div>
+    {% endblock container_content %}
+  {% endembed %}
+{% endif %}
