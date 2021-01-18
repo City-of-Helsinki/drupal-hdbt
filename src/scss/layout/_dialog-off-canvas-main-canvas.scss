@@ -3,3 +3,14 @@
   flex-direction: column;
   height: 100%;
 }
+
+.gin--horizontal-toolbar {
+  .dialog-off-canvas-main-canvas {
+    // Gin horizontal toolbar adjustments.
+    padding-top: 39px;
+
+    @media (min-width: 976px) {
+      padding-top: 54px !important;
+    }
+  }
+}
