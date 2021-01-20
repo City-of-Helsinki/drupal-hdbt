@@ -87,13 +87,15 @@
   display: none;
 
   &.is-active {
-    background: $color-white;
-    border-radius: 0 0 3px 3px;
-    display: flex;
-    padding: $spacing;
-    position: absolute;
-    right: 0;
-    top: 45px;
+    @include breakpoint(max-width $breakpoint-m) {
+      background: $color-white;
+      border-radius: 0 0 3px 3px;
+      display: flex;
+      padding: $spacing;
+      position: absolute;
+      right: 0;
+      top: 45px;
+    }
   }
 
   @include breakpoint($breakpoint-m) {
