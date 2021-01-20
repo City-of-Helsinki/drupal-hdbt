@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hdbt_custom_blocks\Plugin\Block;
+namespace Drupal\hdbt_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
