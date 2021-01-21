@@ -90,6 +90,7 @@
     @include breakpoint(max-width $breakpoint-m) {
       background: $color-white;
       border-radius: 0 0 3px 3px;
+      box-shadow: 0 3px 4px #00000033;
       display: flex;
       padding: $spacing;
       position: absolute;
