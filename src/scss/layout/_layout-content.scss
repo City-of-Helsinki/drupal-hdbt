@@ -1,0 +1,8 @@
+.layout-content {
+  margin: 0 $spacing-double;
+
+  // Negate layout content margins on articles since we want node content to be able to strech from edge to edge.
+  > article {
+    margin: 0 (-$spacing-double);
+  }
+}
