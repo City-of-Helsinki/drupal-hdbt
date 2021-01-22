@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Contains alterations for content.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+
+const ALTERNATIVE_LANGUAGES = [
+  'ru',
+];
+
+/**
+ * Implements hook_theme().
+ */
+function hdbt_content_theme() {
+  return [
+    'header_top_button' => [
+      'variables' => [
+        'button_title' => NULL,
+      ],
+    ],
+    'footer_top_content' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_language_switch_links_alter().
+ */
+function hdbt_content_language_switch_links_alter(array &$links) {
+  $route_match = \Drupal::routeMatch();
+  $entity = FALSE;
+
+  // Determine if the current route represents an entity.
+  if (
+    ($route = $route_match->getRouteObject()) &&
+    ($parameters = $route->getOption('parameters'))
+  ) {
+    foreach ($parameters as $name => $options) {
+      if (isset($options['type']) && strpos($options['type'], 'entity:') === 0) {
+        $parameter = $route_match->getParameter($name);
+        if ($parameter instanceof ContentEntityInterface && $parameter->hasLinkTemplate('canonical')) {
+          $entity = $parameter;
+          break;
+        }
+      }
+    }
+  }
+
+  // Compare the links with current entity and check for possible translations.
+  foreach ($links as $lang_code => &$link) {
+    $link['#abbreviation'] = $lang_code;
+
+    // TODO: Needs a functionality for the alternative languages which should be shown in an alternative menu.
+    if (in_array($lang_code, ALTERNATIVE_LANGUAGES)) {
+      $link['#alternative_language'] = TRUE;
+    }
+
+    if ($entity && $entity instanceof ContentEntityInterface) {
+      if (
+        !$entity->hasTranslation($lang_code) ||
+        (
+          method_exists($entity->getTranslation($lang_code), 'isPublished') &&
+          !$entity->getTranslation($lang_code)->isPublished()
+        )
+      ) {
+        $link['#untranslated'] = TRUE;
+      }
+    }
+  }
+}

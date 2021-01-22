@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains hyphenation functionalities.
+ */
+
 use Drupal\hdbt_hyphenopoly\CleanMarkup;
 
 /**
@@ -12,7 +17,7 @@ function hdbt_hyphenopoly_page_attachments_alter(array &$attachments) {
   if (!$route->isAdminRoute()) {
     $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $theme = \Drupal::theme()->getActiveTheme();
-    $hyphenopoly_path = '/'. $theme->getPath() . '/dist/js/hyphenopoly';
+    $hyphenopoly_path = '/' . $theme->getPath() . '/dist/js/hyphenopoly';
 
     // Hyphenopoly settings needs to be added inline.
     $settings = <<<EOF

@@ -14,9 +14,9 @@ use Drupal\node\Entity\Node;
 function hdbt_preprocess(&$variables) {
   $variables['icons_path'] = hdbt_get_icons_path();
   $variables['koro'] = hdbt_get_settings('koro');
-  $variables['current_language'] = Drupal::languageManager()
-    ->getCurrentLanguage()
-    ->getId();
+  $language = Drupal::languageManager()->getCurrentLanguage();
+  $variables['current_langcode'] = $language->getId();
+  $variables['current_language'] = $language->getName();
   $variables['#attached']['drupalSettings']['iconsPath'] = $variables['icons_path'];
 }
 
@@ -43,7 +43,7 @@ function hdbt_get_icons_path() {
 /**
  * Helper function to get the settings from configurations.
  *
- * @param $setting string
+ * @param string $setting
  *   Setting to be retrieved from config/cache.
  *
  * @return string|null
@@ -118,9 +118,11 @@ function hdbt_preprocess_form_element(&$variables) {
       case 'checkbox':
         $element_label_class = 'hds-checkbox__label';
         break;
+
       case 'radio':
         $element_label_class = 'hds-radio-button__label';
         break;
+
       case 'textfield':
       case 'password':
       case 'textarea':

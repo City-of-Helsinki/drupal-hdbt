@@ -26,4 +26,3 @@ global-scripting:
   version: 1.x
   dependencies:
     - core/drupal
-    - core/jquery
