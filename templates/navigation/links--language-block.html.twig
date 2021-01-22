@@ -32,7 +32,7 @@
  */
 #}
 
-{% if links -%}
+{% if links %}
   <div {{ attributes.addClass('language-switcher') }}>
     <button id="language-switcher-toggle" class="language-switcher__button" aria-expanded="false" aria-controls="language-switcher-dropdown" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'Select language'|t }}">
       <span class="icon--globe" aria-hidden="true">
@@ -47,7 +47,7 @@
     </button>
     <div aria-hidden="true" id="language-switcher-dropdown" class="language-switcher__dropdown">
       <div class="language-links">
-        {%- for item in links -%}
+        {% for item in links %}
           {% set language_link = '' %}
           {% set lang = item.link['#options']['#abbreviation'] %}
           {% set untranslated = item.link['#options']['#untranslated'] %}
@@ -57,16 +57,16 @@
           {# Check if link is part of alternative menu and set class accordingly. #}
           {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
-          {%- if not untranslated and lang != current_langcode -%}
+          {% if not untranslated and lang != current_langcode %}
             {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
             {% set element = 'a' %}
-          {%- elseif lang == current_langcode -%}
+          {% elseif lang == current_langcode %}
             {% set element = 'span' %}
             {% set classes = classes|merge([lang == current_langcode ? 'is-active' : '']) %}
-          {%- else -%}
+          {% else %}
             {% set element = 'span' %}
             {% set classes = classes|merge(['is-disabled']) %}
-          {%- endif -%}
+          {% endif %}
 
           {# Construct the element based on variables. #}
           {# TODO: Find out the best way to indicate inactive languages from accessibility point of view #}
@@ -75,8 +75,8 @@
             {{ language_link ? create_attribute({'href': language_link}) }}
             {{ element == 'a' ? create_attribute({'lang': lang}) }}
           >{{ item.text|capitalize }}</{{ element }}>
-        {%- endfor -%}
+        {% endfor %}
       </div>
     </div>
   </div>
-{%- endif %}
+{% endif %}

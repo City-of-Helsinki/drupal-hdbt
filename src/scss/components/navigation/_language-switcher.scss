@@ -3,8 +3,8 @@
 
   .language-link {
     @include font-size(16px);
-    @include font-weight($font-weight-regular);
     color: $color-black;
+    font-weight: $font-weight-regular;
     text-decoration: none;
 
     @include breakpoint($breakpoint-m) {
@@ -13,8 +13,8 @@
     }
 
     &.is-active {
-      @include font-weight($font-weight-bold);
       cursor: default;
+      font-weight: $font-weight-bold;
     }
 
     &.is-disabled {
@@ -96,6 +96,7 @@
       position: absolute;
       right: 0;
       top: 45px;
+      z-index: 100;
     }
   }
 

@@ -1,19 +1,10 @@
-// Helper function for multiple event listeners.
-function addMultipleEventListener(element, events, handler) {
-  events.forEach((e) => element.addEventListener(e, handler));
-}
-
+// Set constants.
 const languageSwitcherButton = document.querySelector(
   '#language-switcher-toggle'
 );
 const languageSwitcherDropdown = document.querySelector(
   '#language-switcher-dropdown'
 );
-
-// Check if language switcher button exists and add the event listeners.
-if (languageSwitcherButton) {
-  addMultipleEventListener(document, ['touchstart', 'click'], handleDropdown);
-}
 
 // Button event handler.
 function handleDropdown(event) {
@@ -61,3 +52,11 @@ function handleDropdown(event) {
     }
   }
 }
+
+// Add event listeners.
+document.addEventListener('DOMContentLoaded', function () {
+  // Check if language switcher button exists and add the event listeners.
+  if (languageSwitcherButton) {
+    document.addEventListener('click', handleDropdown);
+  }
+});
