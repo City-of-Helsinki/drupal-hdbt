@@ -64,7 +64,7 @@ function hdbt_get_settings($setting) {
 
   try {
     $data = ($setting == 'koro')
-      ? $settings->get("koro_settings.$setting")
+      ? $settings->get("site_settings.$setting")
       : $settings->get("footer_settings.$setting");
 
     if (!empty($data)) {
