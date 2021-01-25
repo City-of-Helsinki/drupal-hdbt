@@ -5,9 +5,3 @@
     line-height: ($line-height / $font-size) * $font-size;
   }
 }
-
-// Mixin - Font weight
-@mixin font-weight($font-weight) {
-  font-weight: $font-weight;
-}
-

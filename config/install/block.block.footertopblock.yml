@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - hdbt_custom_blocks
+    - hdbt_content
   theme:
     - hdbt
 id: footertopblock
@@ -14,6 +14,6 @@ plugin: footer_top_block
 settings:
   id: footer_top_block
   label: 'Footer top block'
-  provider: hdbt_custom_blocks
+  provider: hdbt_content
   label_display: '0'
 visibility: {  }

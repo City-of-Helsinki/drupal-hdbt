@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Contains functionalities for the component library.
+ */
+
+/**
  * Implements hook_theme().
  */
 function hdbt_component_library_theme() {
@@ -10,7 +15,7 @@ function hdbt_component_library_theme() {
       'variables' => [
         'label' => NULL,
         'icons' => NULL,
-      ]
+      ],
     ],
   ];
 }

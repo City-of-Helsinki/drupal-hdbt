@@ -21,14 +21,13 @@ class CleanMarkup implements TrustedCallbackInterface {
   /**
    * Clean element markup from obsolete tags.
    *
-   * @param Markup $element
+   * @param \Drupal\Core\Render\Markup $element
    *   Markup Element.
    *
-   * @return MarkupInterface
+   * @return \Drupal\Component\Render\MarkupInterface
    *   Cleansed output.
    */
-  public static function postRender(Markup $element): MarkupInterface
-  {
+  public static function postRender(Markup $element): MarkupInterface {
     return Markup::create(trim(strip_tags($element->__toString())));
   }
 
