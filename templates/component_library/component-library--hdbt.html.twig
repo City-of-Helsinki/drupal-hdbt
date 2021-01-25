@@ -13,6 +13,11 @@
     <ul class="component-library__nav" id="menu"></ul>
   </nav>
 
+  {#
+  /**
+   * Components
+   */
+  #}
   <h2>Components</h2>
 
   {#
@@ -29,6 +34,20 @@
     </div>
   </div>
   #}
+
+  <button class="component-library__accordion">Card - Image placeholder</button>
+  <div class="component-library__panel">
+    <div class="component-library__example">
+      <div style="max-width: 400px;">
+        {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
+      </div>
+    </div>
+    <div class="component-library__code">
+      {{ "
+      {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
+      " }}
+    </div>
+  </div>
 
   <button class="component-library__accordion">Status labels</button>
   <div class="component-library__panel">
@@ -109,7 +128,13 @@
     </div>
   </div>
 
+  {#
+  /**
+   * Form elements
+   */
+  #}
   <h3>Form elements</h3>
+
   <button class="component-library__accordion">Button - Primary</button>
   <div class="component-library__panel">
     <div class="component-library__example">
