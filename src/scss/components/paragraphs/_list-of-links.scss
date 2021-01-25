@@ -1,0 +1,38 @@
+.list-of-links__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: -$spacing;
+  overflow: hidden;
+  width: calc(100% + #{$spacing});
+}
+
+.list-of-links__item {
+  box-sizing: border-box;
+  padding-left: $spacing;
+  width: 25%;
+
+  // If there is 1,2 or 3 items inside the list of links:
+  @include content_count(1, 2, 3) {
+    width: 33.3333%;
+  }
+
+  .list-of-links__item__link {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .list-of-links__item__image {
+    line-height: 0;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+
+.list-of-links__title {
+  width: 100%;
+}
