@@ -1,0 +1,5 @@
+.page-title__container {
+  @include breakpoint(max-width $breakpoint-s) {
+    max-width: 100%;
+  }
+}

@@ -40,26 +40,17 @@
 #}
 {%
   set classes = [
-  'link',
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
+  'text',
+  view_mode ? 'text--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'text--unpublished'
 ]
 %}
-
-{% set link = content.field_link_link.0['#url'] %}
-{% set text = content.field_link_link.0['#title'] %}
-{% set link_type = content.field_link_design[0]['#markup'] %}
-
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'link'} %}
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'text'} %}
       {% block container_content %}
-        <div class="link__content">
-          <a href="{{ link }}" class="hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %} {% if size %}{{ 'hds-button--' ~ size }}{% endif %}">
-            {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
-            <span class="hds-button__label">{{ text }}</span>
-            {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
-          </a>
+        <div class="text__text-content">
+          {{ content }}
         </div>
       {% endblock %}
     {% endembed %}

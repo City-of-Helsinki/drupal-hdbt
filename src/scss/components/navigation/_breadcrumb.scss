@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   list-style: none;
-  margin: $spacing-half $spacing;
+  margin: $spacing-half $spacing $spacing-double;
   padding: 0;
 
   @include breakpoint($breakpoint-m) {

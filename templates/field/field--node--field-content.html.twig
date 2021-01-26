@@ -36,19 +36,38 @@
  * @see template_preprocess_field()
  */
 #}
+
+{%
+  set classes = [
+    'paragraph-content'
+  ]
+%}
+
 {%
   set title_classes = [
-  label_display == 'visually_hidden' ? 'visually-hidden',
-]
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
 %}
 
 {% if label_hidden %}
-  {% for item in items %}
-    {{ item.content }}
-  {% endfor %}
+  {% if multiple %}
+    <div{{ attributes.addClass(classes) }}>
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes)  }}>
+        {{ item.content }}
+      </div>
+    {% endfor %}
+  {% endif %}
 {% else %}
-  <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-  {% for item in items %}
-    {{ item.content }}
-  {% endfor %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% for item in items %}
+      <div{{ item.attributes.addClass(classes) }}>{{ item.content }}</div>
+    {% endfor %}
+  </div>
 {% endif %}

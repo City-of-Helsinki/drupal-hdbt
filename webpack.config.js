@@ -24,6 +24,9 @@ module.exports = {
       "./src/js/component-library.js",
       "./src/scss/component-library.scss"
     ],
+    "ckeditor": [
+      "./src/scss/ckeditor.scss"
+    ],
   },
   output: {
     devtoolLineToLine: true,
