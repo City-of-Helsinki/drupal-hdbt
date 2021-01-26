@@ -1,12 +1,11 @@
 {% set korosId = 'koros' ~ random() %}
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="100%" height="85" fill="currentColor">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="100%" height="50" fill="currentColor">
   <defs>
-    <pattern id="{{ korosId }}" x="0" y="0" width="106" height="85" patternUnits="userSpaceOnUse">
+    <pattern id="{{ korosId }}" x="0" y="0" width="67" height="50" patternUnits="userSpaceOnUse">
       <path
-          transform="scale(5.3)"
-          d="M20,800H0V0c2.8,0,3.5,2.3,3.5,2.3l2.8,8.4c0.6,1.5,1.9,2.5,3.6,2.5c2.8,0,3.6-2.5,3.6-2.5s2.8-8.1,2.8-8.2 C17,1,18.3,0,20,0V800z"
+        d="M67,50v-5h-.14c-8.59,0-11.79-8-11.79-8S45.79,8.82,45.7,8.61A13,13,0,0,0,33.53,0C24.28,0,21.35,8.61,21.35,8.61L12,36.71A12.94,12.94,0,0,1,0,45.06V50Z"
       />
     </pattern>
   </defs>
-  <rect fill="url(#{{ korosId }})" width="100%" height="85" />
+  <rect fill="url(#{{ korosId }})" width="100%" height="50" />
 </svg>

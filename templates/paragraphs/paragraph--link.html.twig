@@ -52,12 +52,16 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      <a href="{{ link }}" class="hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %} {% if size %}{{ 'hds-button--' ~ size }}{% endif %}">
-        {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
-        <span class="hds-button__label">{{ text }}</span>
-        {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
-      </a>
-    {% endblock %}
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'link'} %}
+      {% block container_content %}
+        <div class="link__content">
+          <a href="{{ link }}" class="hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %} {% if size %}{{ 'hds-button--' ~ size }}{% endif %}">
+            {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
+            <span class="hds-button__label">{{ text }}</span>
+            {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
+          </a>
+        </div>
+      {% endblock %}
+    {% endembed %}
   </div>
 {% endblock paragraph %}

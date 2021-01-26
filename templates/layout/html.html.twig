@@ -31,7 +31,11 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes }}>
+  {%
+    set hdbt_defaults = '--hdbt-theme-color: var(--color-' ~ theme_color ~ ');'
+     ~ '--hdbt-text-color: var(--hdbt-text-color--' ~ theme_color ~ ');'
+  %}
+  <body{{ attributes.setAttribute('style', hdbt_defaults) }}>
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.

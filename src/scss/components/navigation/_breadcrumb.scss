@@ -1,0 +1,63 @@
+.breadcrumb {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: $spacing-half $spacing $spacing-double;
+  padding: 0;
+
+  @include breakpoint($breakpoint-m) {
+    @include font-size(14px);
+    margin: $spacing $spacing-double;
+  }
+
+  .icon {
+    display: none;
+
+    @include breakpoint($breakpoint-m) {
+      display: block;
+      margin: 0 $spacing-quarter / 2;
+      width: 14px;
+    }
+  }
+}
+
+.breadcrumb__link {
+  display: none;
+  text-decoration: underline;
+
+  @include breakpoint($breakpoint-m) {
+    display: block;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:last-of-type {
+    align-items: center;
+    display: flex;
+
+    &::before {
+      background-image: url('../icons/hds/ui/angle-left.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      content: "";
+      height: 24px;
+      width: 24px;
+
+      @include breakpoint($breakpoint-m) {
+        display: none;
+      }
+    }
+  }
+}
+
+.breadcrumb__current {
+  display: none;
+
+  @include breakpoint($breakpoint-m) {
+    display: block;
+    font-weight: $font-weight-bold;
+  }
+}

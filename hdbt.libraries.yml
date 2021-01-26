@@ -1,3 +1,19 @@
+component-library:
+  css:
+    theme:
+      dist/css/component-library.min.css: {}
+  js:
+    dist/js/component-library.min.js: {}
+
+# Should be removed when all major browsers on most used operating systems
+# can handle CSS3 hyphens: auto. See. https://caniuse.com/#search=hyphens or
+# https://www.w3schools.com/cssref/css3_pr_hyphens.asp.
+hyphenopoly:
+  version: 4.9.0
+  header: true
+  js:
+    /themes/custom/hdbt/dist/js/hyphenopoly/Hyphenopoly_Loader.js: {type: external, preprocess: false}
+
 global-styling:
   version: 1.x
   css:
@@ -10,11 +26,3 @@ global-scripting:
   version: 1.x
   dependencies:
     - core/drupal
-    - core/jquery
-
-component-library:
-  css:
-    theme:
-      dist/css/component-library.min.css: {}
-  js:
-    dist/js/component-library.min.js: {}

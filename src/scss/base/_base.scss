@@ -9,4 +9,9 @@ body {
   flex-direction: column;
   font-family: $base-font-family;
   line-height: $lineheight-l;
+
+  &.gin--horizontal-toolbar {
+    // Move toolbar paddings to dialog-off-canvas.
+    padding-top: 0 !important;
+  }
 }

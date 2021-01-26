@@ -1,0 +1,12 @@
+.tools__container {
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing;
+  }
+}
+
+.breadcrumb__container + .tools__container {
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: ($spacing + $spacing-quarter);
+    margin-top: (-$spacing-half);
+  }
+}

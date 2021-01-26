@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Contains hyphenation functionalities.
+ */
+
+use Drupal\hdbt_hyphenopoly\CleanMarkup;
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function hdbt_hyphenopoly_page_attachments_alter(array &$attachments) {
+  $route = \Drupal::service('router.admin_context');
+
+  // Skip admin routes.
+  if (!$route->isAdminRoute()) {
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $theme = \Drupal::theme()->getActiveTheme();
+    $hyphenopoly_path = '/' . $theme->getPath() . '/dist/js/hyphenopoly';
+
+    // Hyphenopoly settings needs to be added inline.
+    $settings = <<<EOF
+const Hyphenopoly = {
+  require: {
+    "{$language}": "FORCEHYPHENOPOLY"
+  },
+  fallbacks: {
+    "en": "en-gb",
+  },
+  paths: {
+    maindir: "{$hyphenopoly_path}/",
+    patterndir: "{$hyphenopoly_path}/patterns/"
+  },
+  setup: {
+    hide: "text",
+    selectors: {
+      'h1': {},
+      'h2': {},
+      'h3': {},
+      'h4': {},
+      'h5': {},
+      'h1 > *': {},
+      'h2 > *': {},
+      'h3 > *': {},
+      'h4 > *': {},
+      'h5 > *': {},
+    },
+  }
+};
+EOF;
+
+    // Add hyphenopoly settings to html head.
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#theme' => 'inline_js',
+        '#script' => $settings,
+        '#tag' => 'script',
+        '#post_render' => [[CleanMarkup::class, 'postRender']],
+      ],
+      'inline_js',
+    ];
+
+    // Attach the library containing hyphenopoly loader.
+    $attachments['#attached']['library'][] = 'hdbt/hyphenopoly';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hdbt_hyphenopoly_theme() {
+  return [
+    'inline_js' => [
+      'variables' => [
+        'script' => NULL,
+      ],
+    ],
+  ];
+}
