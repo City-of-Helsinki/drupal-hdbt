@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - eu_cookie_compliance
+    - system
+  theme:
+    - hdbt
+id: eucookiecomplianceblock
+theme: hdbt
+region: after_content
+weight: -5
+provider: null
+plugin: eu_cookie_compliance_block
+settings:
+  id: eu_cookie_compliance_block
+  label: 'EU Cookie Compliance Block'
+  provider: eu_cookie_compliance
+  label_display: '0'
+  eu_cookie_compliance_block_settings:
+    description:
+      value: ''
+      format: full_html
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: /node/1
+    negate: false
