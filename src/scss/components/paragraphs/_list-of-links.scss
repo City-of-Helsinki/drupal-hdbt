@@ -25,10 +25,31 @@
 
   .list-of-links__item__image {
     line-height: 0;
+    margin-bottom: $spacing;
 
     img {
       height: auto;
       width: 100%;
+    }
+
+    .image-placeholder {
+      padding-bottom: 100%;
+    }
+  }
+
+  .list-of-links__item__title {
+    @include font-size(24px);
+    font-weight: 500;
+    margin: 0 0 $spacing;
+    text-decoration: none;
+  }
+
+  .list-of-links__item__arrow {
+    // Offset icon to left since there is white spacing on the icon
+    margin-left: -#{$spacing-half};
+
+    .icon {
+      --icon-proportions: 3rem;
     }
   }
 }
