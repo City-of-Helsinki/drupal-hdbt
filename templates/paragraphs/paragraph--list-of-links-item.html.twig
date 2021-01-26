@@ -40,10 +40,8 @@
 #}
 {%
   set classes = [
-  'list-of-links__item',
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
-]
+    'list-of-links__item'
+  ]
 %}
 
 {% set url = content.field_list_of_links_link.0['#url'] %}
@@ -68,14 +66,14 @@
         {% endif %}
       {% endif %}
       <h3 class="list-of-links__item__title">{{ text }}</h3>
-      <span class="list-of-links__item__arrow">
-        {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Test label for the icon'|t } %}
-      </span>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>
         {% endif %}
       {% endif %}
+      <span class="list-of-links__item__arrow">
+        {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Test label for the icon'|t } %}
+      </span>
     </a>
     {% endblock %}
   </div>

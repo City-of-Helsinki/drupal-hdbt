@@ -46,19 +46,19 @@
   set classes = [
     'list-of-links',
     'list-of-links--' ~ design,
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
+    view_mode ? 'list-of-links--' ~ view_mode|clean_class,
   ]
 %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      <h2 class="list-of-links__title">{{ title }}</h2>
-      <div class="list-of-links__content">
-        {{ content|without('field_list_of_links_design', 'field_list_of_links_title') }}
-      </div>
-    {% endblock %}
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'list-of-links'} %}
+      {% block container_content %}
+        <h2 class="list-of-links__title">{{ title }}</h2>
+        <div class="list-of-links__content">
+          {{ content|without('field_list_of_links_design', 'field_list_of_links_title') }}
+        </div>
+      {% endblock %}
+    {% endembed %}
   </div>
 {% endblock paragraph %}
