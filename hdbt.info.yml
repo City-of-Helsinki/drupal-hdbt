@@ -25,3 +25,6 @@ regions:
 libraries:
   - hdbt/global-styling
   - hdbt/global-scripting
+
+ckeditor_stylesheets:
+  - dist/css/ckeditor.min.css

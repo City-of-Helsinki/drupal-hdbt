@@ -5,8 +5,8 @@ dependencies:
     - hdbt
 id: hdbt_local_tasks
 theme: hdbt
-region: before_content
-weight: -20
+region: tools
+weight: -4
 provider: null
 plugin: local_tasks_block
 settings:

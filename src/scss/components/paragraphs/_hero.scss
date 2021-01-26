@@ -505,6 +505,10 @@ $koro-height: 50px;
 
   .hero__container {
     padding-bottom: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      padding-bottom: $spacing-quadruple;
+    }
   }
 
   .hds-koros {
@@ -537,11 +541,22 @@ $koro-height: 50px;
 
 .hero--with-image-right,
 .hero--with-image-left {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-s) {
+    margin-bottom: $spacing-double;
+  }
+
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: $spacing;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing;
   }
 
   .hero__container {
@@ -596,6 +611,24 @@ $koro-height: 50px;
 }
 
 .hero--with-image-bottom {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-s) {
+    margin-bottom: $spacing-double;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-quadruple;
+  }
+
+  .hero__container {
+    padding-bottom: $spacing;
+  }
+
   .hero__image-container {
     @include breakpoint($breakpoint-l) {
       height: 400px;
@@ -613,14 +646,17 @@ $koro-height: 50px;
   position: relative;
 
   @include breakpoint($breakpoint-s) {
+    margin-bottom: $spacing;
     min-height: 400px;
   }
 
   @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-double;
     min-height: 440px;
   }
 
   @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-triple;
     min-height: 480px;
   }
 
@@ -725,7 +761,18 @@ $koro-height: 50px;
 }
 
 .hero--diagonal {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-s) {
+    margin-bottom: $spacing-double;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+  }
+
   @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-quadruple;
     overflow: hidden;
     position: relative;
   }

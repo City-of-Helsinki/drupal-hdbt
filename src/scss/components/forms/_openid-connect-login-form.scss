@@ -1,4 +1,6 @@
 .openid-connect-login-form {
   border-top: 1px solid $color-black-60;
+  // Make the user login form look decent
+  max-width: 600px;
   padding-top: $spacing;
 }
