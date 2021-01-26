@@ -14,6 +14,8 @@ use Drupal\node\Entity\Node;
 function hdbt_preprocess(&$variables) {
   $variables['icons_path'] = hdbt_get_icons_path();
   $variables['koro'] = hdbt_get_settings('koro');
+  $variables['theme_color'] = hdbt_get_settings('theme_color');
+  $variables['image_placeholder'] = hdbt_get_settings('default_icon');
   $language = Drupal::languageManager()->getCurrentLanguage();
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
@@ -45,11 +47,13 @@ function hdbt_get_icons_path() {
  *
  * @param string $setting
  *   Setting to be retrieved from config/cache.
+ * @param string $group
+ *   Indicates which group does the settings belong to.
  *
  * @return string|null
- *   Returns koro as a string or false.
+ *   Returns the desired setting as a string or false.
  */
-function hdbt_get_settings($setting) {
+function hdbt_get_settings($setting, $group = 'site_settings') {
   if (empty($setting)) {
     return FALSE;
   }
@@ -63,9 +67,7 @@ function hdbt_get_settings($setting) {
   $settings = \Drupal::config('hdbt_admin_tools.site_settings');
 
   try {
-    $data = ($setting == 'koro')
-      ? $settings->get("koro_settings.$setting")
-      : $settings->get("footer_settings.$setting");
+    $data = $settings->get("$group.$setting");
 
     if (!empty($data)) {
       \Drupal::cache()->set("hdbt_settings:$setting", $data, Cache::PERMANENT);
@@ -83,7 +85,7 @@ function hdbt_get_settings($setting) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_page(&$variables) {
-  if ($data = hdbt_get_settings('footer_color')) {
+  if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
   }
 }

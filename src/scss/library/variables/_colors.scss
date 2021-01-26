@@ -5,3 +5,23 @@ $hdbt-color-black: #121212;
 $hdbt-color-white: #f7f7f8;
 
 $body-bg-color: $color-white;
+
+:root {
+  // Default color variables.
+  --hdbt-theme-color: var(--color-black);
+  --hdbt-text-color: var(--color-white);
+
+  // Default text colors based on background colors.
+  --hdbt-text-color--coat-of-arms: var(--color-white);
+  --hdbt-text-color--brick: var(--color-white);
+  --hdbt-text-color--bus: var(--color-white);
+  --hdbt-text-color--metro: var(--color-white);
+  --hdbt-text-color--tram: var(--color-white);
+  --hdbt-text-color--gold: var(--color-black);
+  --hdbt-text-color--silver: var(--color-black);
+  --hdbt-text-color--copper: var(--color-black);
+  --hdbt-text-color--engel: var(--color-black);
+  --hdbt-text-color--fog: var(--color-black);
+  --hdbt-text-color--summer: var(--color-black);
+  --hdbt-text-color--suomenlinna: var(--color-black);
+}
