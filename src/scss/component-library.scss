@@ -85,8 +85,8 @@
     transition: color 0.3s ease;
 
     &:hover {
-      @include font-weight($font-weight-bold);
       color: $color-bus-dark;
+      font-weight: $font-weight-bold;
     }
   }
 }
@@ -155,8 +155,8 @@
 
 .component-library__icon__name {
   @include font-size(16px);
-  @include font-weight($font-weight-medium);
   background-color: $color-black-10;
+  font-weight: $font-weight-medium;
   height: 100%;
   padding: $spacing-half;
   text-align: center;

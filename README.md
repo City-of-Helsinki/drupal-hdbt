@@ -75,3 +75,50 @@ This theme is under constant development and features, fixes and improvements wi
 from these updates use `composer update drupal/hdbt` to update the theme regularly. Please notice however that updating the
 theme can break some of the functionality that you have done in your site so test the changes carefully before applying them.
 The version control for this theme can be found from [https://github.com/City-of-Helsinki/drupal-hdbt](https://github.com/City-of-Helsinki/drupal-hdbt).
+
+## How tos
+
+### My javascript has unexpected errors when loading a page in Drupal.
+
+If you have compiled the code with dev-flag (`nmp run dev`), then the sourcemaps expects the JS files to be found in correct places.
+This means that JS preprocessing (minifying) should be turned off. Just add the following lines to local.settings.php. 
+```
+$config['system.performance']['css']['preprocess'] = 0;
+$config['system.performance']['js']['preprocess'] = 0;
+```
+
+### I need to rebuild caches every time I build the css or change the twig files. How can I automate it?
+
+You can create a `local.settings.php` and `local.services.yml` files to `/sites/default/` folder and paste the following contents in them.
+
+_Keep in mind that using the Null Cache Backend is the primary culprit for caching issues. F.e. Something works in local environment, but not in production environment._
+
+local.services.yml:
+```
+parameters:
+  twig.config:
+    debug: true # Displays twig debug messages, developers like them
+    auto_reload: true # Reloads the twig files on every request, so no drush cache rebuild is required
+    cache: false # No twig internal cache, important: check the example.settings.local.php to fully disable the twig cache
+
+services:
+  cache.backend.null: # Defines a Cache Backend Factory which is just empty, it is not used by default
+    class: Drupal\Core\Cache\NullBackendFactory
+```
+local.settings.php:
+```
+<?php
+/**
+ * @file
+ * An example of Drupal 9 development environment configuration file.
+ */
+$settings['cache']['bins']['render'] = 'cache.backend.null';
+$settings['cache']['bins']['page'] = 'cache.backend.null';
+$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+
+$settings['skip_permissions_hardening'] = TRUE;
+
+$config['system.performance']['css']['preprocess'] = 0;
+$config['system.performance']['js']['preprocess'] = 0;
+$config['system.logging']['error_level'] = 'some';
+```
