@@ -1,3 +1,9 @@
+.link {
+  .link__container {
+    max-width: $content-width-max;
+  }
+}
+
 // Apply styles for Basic page only.
 .page-type--page {
 
