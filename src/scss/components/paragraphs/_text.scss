@@ -1,5 +1,10 @@
 .text {
+  @include font-size(18px, 27px);
+
   .text__container {
+    max-width: $content-area-width-max;
+  }
+  .text__text-content {
     max-width: $content-width-max;
   }
 }

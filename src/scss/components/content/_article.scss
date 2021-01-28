@@ -9,7 +9,7 @@
     }
 
     > div {
-      max-width: $content-header-area-width-max;
+      max-width: $content-width-max;
     }
   }
 
@@ -33,12 +33,12 @@
 
   .article__date {
     @include font-size(16px, 24px);
-    color: $color-black-50;
+    color: $color-black-40;
     font-weight: $font-weight-regular;
   }
 
   .article-content__container {
-    max-width: $content-width-max;
+    max-width: $content-area-width-max;
   }
 
   .article__keywords {
