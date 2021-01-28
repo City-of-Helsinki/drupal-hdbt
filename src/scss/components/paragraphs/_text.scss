@@ -1,5 +1,10 @@
 .text {
+  margin-bottom: $spacing-double;
   position: relative;
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-quadruple;
+  }
 
   .text__container {
     // OPTION 1:
