@@ -48,7 +48,7 @@
     {{ item.content }}
   {% endfor %}
 {% else %}
-  <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+  <div{{ title_attributes.addClass(title_classes) }}>{{ label }}: </div>
   {% for item in items %}
     {{ item.content }}
   {% endfor %}
