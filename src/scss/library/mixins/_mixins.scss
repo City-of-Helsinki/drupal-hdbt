@@ -5,3 +5,28 @@
     line-height: ($line-height / $font-size) * $font-size;
   }
 }
+
+/**
+ * To give different styles depending on how many items a wrapper has you can use this mixing to assign the styles
+ * to correct element. For example:
+ *
+ * If the wrapper has 1, 2 or 3 items make the items 30% wide, otherwise they should be 20% wide:
+ * .wrapper .item {
+ *   width: 20%;
+ *
+ *   @include content_count(1, 2, 3) {
+ *     width: 30%;
+ *   }
+ * }
+ */
+@mixin content_count($number_of_items...) {
+  @each $item in $number_of_items {
+    @if type-of($item) == number {
+      @for $i from 1 through $item {
+        &:nth-child(#{$i}):nth-last-child(#{$item - $i + 1}) {
+          @content;
+        }
+      }
+    }
+  }
+}

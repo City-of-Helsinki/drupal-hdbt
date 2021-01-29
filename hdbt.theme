@@ -181,3 +181,25 @@ function hdbt_preprocess_block(&$variables) {
     }
   }
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ *   - paragraph: The paragraph object.
+ *   - view_mode: View mode; e.g., 'full', 'teaser'...
+ */
+function hdbt_preprocess_paragraph(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraph_type = $paragraph->getType();
+
+  // Check if the paragraph is type list of links item and tell it its parents design.
+  if ($paragraph_type == 'list_of_links_item') {
+    $paragraph_parent = $paragraph->getParentEntity();
+    $design = $paragraph_parent->get('field_list_of_links_design')->getString();
+    $variables['list_of_links_design'] = $design;
+  }
+}
