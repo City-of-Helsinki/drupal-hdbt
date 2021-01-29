@@ -101,6 +101,8 @@
         <div class="{{ node.bundle|clean_class }}__date">
           {{ created_date }}
         </div>
+
+        {{ drupal_block('hdbt_content_social_sharing_block') }}
       {% endif %}
     {% endblock container_content %}
   {% endembed %}

@@ -35,6 +35,7 @@
     @include font-size(16px, 24px);
     color: $color-black-40;
     font-weight: $font-weight-regular;
+    margin-bottom: $spacing;
   }
 
   .article-content__container {
