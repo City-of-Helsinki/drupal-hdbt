@@ -7,8 +7,6 @@
       {% set dialogOptions = "data-dialog-options=" ~ {'width': '600'}|json_encode %}
     {% endif %}
 
-      {{ devel_breakpoint() }}
-
     <a {{ dialogType }} {{ dialogOptions }} {{ element.attr.target }} {{ element.attr.class.addClass(classes) }} {{ element.api }} title="{{ element.text }}">
       {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
     </a>
