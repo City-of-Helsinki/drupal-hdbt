@@ -1,0 +1,15 @@
+<div class="social-media-sharing">
+  {% set classes = ['share'] %}
+  {% for element in elements %}
+    {% if element.forward_dialog == 1 %}
+      {% set classes = classes|merge(['use-ajax']) %}
+      {% set dialogType = "data-dialog-type=dialog" %}
+      {% set dialogOptions = "data-dialog-options=" ~ {'width': '600'}|json_encode %}
+    {% endif %}
+
+    <a {{ dialogType }} {{ dialogOptions }} {{ element.attr.target }} {{ element.attr.class.addClass(classes) }} {{ element.api }} title="{{ element.text }}">
+      {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
+    </a>
+  {% endfor %}
+</div>
+

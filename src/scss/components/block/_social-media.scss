@@ -1,0 +1,36 @@
+.social-media-sharing {
+  display: flex;
+  line-height: 0;
+  margin: 0 -6px $spacing-and-half; // By design the margin is 12px.
+
+  .share {
+    color: $color-black;
+    list-style: none;
+    margin: 0 6px; // By design the margin is 12px.
+    text-decoration: none;
+
+    .icon {
+      --icon-proportions: #{$spacing-and-half};
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      &.email {
+        color: $color-black-70;
+      }
+
+      &.facebook-share {
+        color: #4169AF;
+      }
+
+      &.linkedin {
+        color: #0079B2;
+      }
+
+      &.twitter {
+        color: #0DA4EE;
+      }
+    }
+  }
+}
