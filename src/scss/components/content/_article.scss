@@ -17,7 +17,7 @@
     @include font-size(20px, 32px);
     color: $color-black;
     font-weight: $font-weight-regular;
-    margin-bottom: $spacing * 1.5;
+    margin-bottom: $spacing-and-half;
   }
 
   .article__author {
@@ -44,7 +44,7 @@
 
   .article__keywords {
     background: $color-silver-light;
-    padding: $spacing * 1.5 0;
+    padding: $spacing-and-half 0;
 
     @include breakpoint($breakpoint-m) {
       padding: $spacing-quadruple 0;
@@ -77,7 +77,7 @@
       a {
         @include font-size(16px, 24px);
         background-color: $color-black;
-        border-radius: $spacing * 1.5;
+        border-radius: $spacing-and-half;
         color: $color-white;
         font-weight: $font-weight-regular;
         margin: $spacing-quarter;
