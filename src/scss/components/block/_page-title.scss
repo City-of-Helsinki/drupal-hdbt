@@ -1,5 +1,10 @@
 .page-title__container {
-  @include breakpoint(max-width $breakpoint-s) {
-    max-width: 100%;
+  max-width: $content-area-width-max;
+
+  .page-type--article & {
+    h1 {
+      margin-bottom: $spacing;
+      max-width: $content-width-max;
+    }
   }
 }

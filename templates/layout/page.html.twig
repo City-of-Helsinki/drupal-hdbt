@@ -4,60 +4,65 @@
  * Theme override to display a single page.
  */
 #}
-<div class="wrapper">
-{% if page.header_top or page.header_bottom %}
-  <header role="banner">
-    {% if page.header_top %}
-      {{ page.header_top }}
+
+{% set page_classes = [
+    node.getType() ? 'page-type--' ~ node.getType()|clean_class,
+    'wrapper',
+  ]
+%}
+
+<div{{ create_attribute({'class': page_classes} ) }}>
+  {% if page.header_top or page.header_bottom %}
+    <header role="banner">
+      {% if page.header_top %}
+        {{ page.header_top }}
+      {% endif %}
+
+      {% if page.header_bottom %}
+        {{ page.header_bottom }}
+      {% endif %}
+    </header>
+  {% endif %}
+
+  {% if page.messages %}
+    {{ page.messages }}
+  {% endif %}
+
+  {% if page.breadcrumb %}
+    {{ page.breadcrumb }}
+  {% endif %}
+
+  {% if page.tools %}
+    {{ page.tools }}
+  {% endif %}
+
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>
+
+    {% if page.before_content %}
+      {{ page.before_content }}
     {% endif %}
 
-    {% if page.header_bottom %}
-      {{ page.header_bottom }}
+    <div class="layout-content">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+
+    {% if page.sidebar_first %}
+      <aside class="layout-sidebar-first" role="complementary">
+        {{ page.sidebar_first }}
+      </aside>
     {% endif %}
-  </header>
-{% endif %}
 
-{% if page.messages %}
-  {{ page.messages }}
-{% endif %}
+    {% if page.sidebar_second %}
+      <aside class="layout-sidebar-second" role="complementary">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
 
-{% if page.breadcrumb %}
-  {{ page.breadcrumb }}
-{% endif %}
-
-{% if page.tools %}
-  {{ page.tools }}
-{% endif %}
-
-<main role="main">
-  <a id="main-content" tabindex="-1"></a>
-
-  {% if page.before_content %}
-    {{ page.before_content }}
-  {% endif %}
-
-  <div class="layout-content">
-    {{ page.content }}
-  </div>{# /.layout-content #}
-
-  {% if page.sidebar_first %}
-    <aside class="layout-sidebar-first" role="complementary">
-      {{ page.sidebar_first }}
-    </aside>
-  {% endif %}
-
-  {% if page.sidebar_second %}
-    <aside class="layout-sidebar-second" role="complementary">
-      {{ page.sidebar_second }}
-    </aside>
-  {% endif %}
-
-  {% if page.after_content %}
-    {{ page.after_content }}
-  {% endif %}
-</main>
-
-
+    {% if page.after_content %}
+      {{ page.after_content }}
+    {% endif %}
+  </main>
 </div>
 
 {% if page.footer_top or page.footer_bottom %}
