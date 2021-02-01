@@ -1,15 +1,26 @@
-.quoted {
-  @include font-size(20px);
-  color: $color-metro;
-  display: block;
-  font-weight: $font-weight-bold;
-  margin: $spacing-double 0;
-
-  .quote__author {
-    // Author styles.
-  }
+.quote {
+  @extend .highlighted;
 
   .quote__text {
-    // Text styles.
+    font-style: italic;
+    margin-bottom: $spacing-and-half;
+
+    &::before {
+      content: "“";
+    }
+
+    &::after {
+      content: "”";
+    }
   }
+  .quote__author {
+    @include font-size(18px);
+    line-height: $lineheight-l;
+
+    &::before {
+      content: "-";
+      margin-right: 3px;
+    }
+  }
+
 }
