@@ -3,7 +3,7 @@
 
   .quote__text {
     font-style: italic;
-    margin-bottom: $spacing-and-half;
+    margin-top: 0;
 
     &::before {
       content: "“";
@@ -16,6 +16,7 @@
   .quote__author {
     @include font-size(18px);
     line-height: $lineheight-l;
+    margin-top: $spacing-and-half;
 
     &::before {
       content: "-";

@@ -1,10 +1,10 @@
 $item_spacing: $spacing-double;
 
 .list-of-links {
-  margin-bottom: $spacing-double;
+  margin-top: $spacing-double;
 
   @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing-quadruple;
+    margin-top: $spacing-quadruple;
   }
 }
 
@@ -55,8 +55,12 @@ $item_spacing: $spacing-double;
   }
 
   .list-of-links__item__link {
+    box-sizing: border-box;
     display: block;
+    height: 100%;
     overflow: hidden;
+    padding-bottom: $spacing-quadruple;
+    position: relative;
     text-decoration: none;
     width: 100%;
   }
@@ -78,12 +82,15 @@ $item_spacing: $spacing-double;
   .list-of-links__item__title {
     @include font-size(24px);
     font-weight: 500;
-    margin: 0 0 $spacing-half;
+    margin: 0;
   }
 
   .list-of-links__item__arrow {
+    bottom: 0;
+    left: 0;
     // Offset icon to left since there is white spacing on the icon
     margin-left: -#{$spacing-half};
+    position: absolute;
 
     .icon {
       --icon-proportions: 3rem;
@@ -93,12 +100,16 @@ $item_spacing: $spacing-double;
 
 .list-of-links__title {
   @include font-size(36px);
-  margin-bottom: $spacing-double;
+  margin-top: 0;
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
     @include font-size(48px);
   }
+}
+
+.list-of-links__content {
+  margin-top: $spacing-triple;
 }
 
 // Without image variants
@@ -128,7 +139,14 @@ $item_spacing: $spacing-double;
       }
     }
 
+    .list-of-links__item__link {
+      padding-bottom: 0;
+      position: static;
+    }
+
     .list-of-links__item__arrow {
+      bottom: auto;
+      left: auto;
       line-height: 0;
       margin: -#{$spacing-half} 0 0;
       position: absolute;
@@ -184,12 +202,20 @@ $item_spacing: $spacing-double;
       padding-right: 250px;
     }
 
+    .list-of-links__item__title {
+      @include breakpoint($breakpoint-l) {
+        @include font-size(36px);
+      }
+    }
+
     .list-of-links__item__desc {
       @include font-size(16px);
       color: $color-black-60;
+      margin-top: $spacing;
 
       @include breakpoint($breakpoint-l) {
         @include font-size(20px);
+        margin-top: $spacing-quarter;
       }
     }
   }

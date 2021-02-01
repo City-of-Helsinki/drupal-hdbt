@@ -6,7 +6,7 @@ h5,
 h6 {
   hyphens: auto;
   line-height: $lineheight-m;
-  margin: 0 0 $spacing;
+  margin: $spacing 0 0;
   word-break: break-word;
 }
 
@@ -77,10 +77,10 @@ a {
 }
 
 p {
-  margin: 0 0 $spacing-double;
+  margin: $spacing-double 0 0;
 }
 
 ul, ol {
-  margin: 0 0 $spacing-double;
-  padding: 0 0 0 $spacing-and-half;
+  margin: $spacing-double 0 0;
+  padding: $spacing-and-half 0 0;
 }
