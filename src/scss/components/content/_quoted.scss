@@ -1,0 +1,15 @@
+.quoted {
+  @include font-size(20px);
+  color: $color-metro;
+  display: block;
+  font-weight: $font-weight-bold;
+  margin: $spacing-double 0;
+
+  .quote__author {
+    // Author styles.
+  }
+
+  .quote__text {
+    // Text styles.
+  }
+}
