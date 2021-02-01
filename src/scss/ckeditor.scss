@@ -12,3 +12,7 @@
 @import "base/**/*.*";
 @import "components/content/highlighted";
 @import "components/content/quoted";
+
+body.cke_editable {
+  display: block;
+}
