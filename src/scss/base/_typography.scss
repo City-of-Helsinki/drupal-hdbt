@@ -82,5 +82,10 @@ p {
 
 ul, ol {
   margin: $spacing-double 0 0;
-  padding: $spacing-and-half 0 0;
+  padding: 0;
+
+  li {
+    margin-left: $spacing-double;
+    padding-left: $spacing;
+  }
 }
