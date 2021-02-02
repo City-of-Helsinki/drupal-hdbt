@@ -15,4 +15,21 @@
 
 body.cke_editable {
   display: block;
+
+  ul, ol {
+    padding: 0;
+
+    li {
+      margin-left: $spacing-double;
+      padding-left: $spacing;
+    }
+
+    ul, ol {
+      margin-top: $spacing;
+
+      li {
+        margin-left: $spacing;
+      }
+    }
+  }
 }
