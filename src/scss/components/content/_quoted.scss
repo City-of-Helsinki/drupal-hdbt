@@ -1,0 +1,27 @@
+.quote {
+  @extend .highlighted;
+
+  .quote__text {
+    font-style: italic;
+    margin-top: 0;
+
+    &::before {
+      content: "“";
+    }
+
+    &::after {
+      content: "”";
+    }
+  }
+  .quote__author {
+    @include font-size(18px);
+    line-height: $lineheight-l;
+    margin-top: $spacing-and-half;
+
+    &::before {
+      content: "-";
+      margin-right: 3px;
+    }
+  }
+
+}

@@ -4,6 +4,10 @@
 
   @include breakpoint($breakpoint-m) {
     display: block;
+    margin: 0 $spacing;
+  }
+
+  @include breakpoint($breakpoint-l) {
     margin: 0 $spacing-double $spacing;
   }
 }

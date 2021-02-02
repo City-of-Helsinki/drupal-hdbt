@@ -26,6 +26,10 @@ $koro-height: 50px;
     margin-top: $spacing-triple;
   }
 
+  .hero__cta {
+    margin-top: $spacing-double;
+  }
+
   .hero__description {
     p {
       line-height: $lineheight-xxl;
@@ -541,26 +545,16 @@ $koro-height: 50px;
 
 .hero--with-image-right,
 .hero--with-image-left {
-  margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-s) {
-    margin-bottom: $spacing-double;
-  }
-
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: $spacing;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing;
   }
 
   .hero__container {
     @include breakpoint($breakpoint-m) {
+      box-sizing: border-box;
       margin: 0;
       max-width: $container-width-xl / 2;
       width: 50%;
@@ -611,20 +605,6 @@ $koro-height: 50px;
 }
 
 .hero--with-image-bottom {
-  margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-s) {
-    margin-bottom: $spacing-double;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    margin-bottom: $spacing-triple;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing-quadruple;
-  }
-
   .hero__container {
     padding-bottom: $spacing;
   }
@@ -646,17 +626,14 @@ $koro-height: 50px;
   position: relative;
 
   @include breakpoint($breakpoint-s) {
-    margin-bottom: $spacing;
     min-height: 400px;
   }
 
   @include breakpoint($breakpoint-m) {
-    margin-bottom: $spacing-double;
     min-height: 440px;
   }
 
   @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing-triple;
     min-height: 480px;
   }
 
@@ -761,18 +738,7 @@ $koro-height: 50px;
 }
 
 .hero--diagonal {
-  margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-s) {
-    margin-bottom: $spacing-double;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    margin-bottom: $spacing-triple;
-  }
-
   @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing-quadruple;
     overflow: hidden;
     position: relative;
   }
@@ -806,13 +772,13 @@ $koro-height: 50px;
 
   .hero__image-container {
     height: 300px;
-    overflow: hidden;
     position: relative;
 
     @include breakpoint($breakpoint-l) {
       bottom: 0;
       height: 100%;
       left: 0;
+      overflow: hidden;
       position: absolute;
       right: 0;
       top: 0;
@@ -822,11 +788,13 @@ $koro-height: 50px;
     .hds-koros {
       display: block;
       position: absolute;
+      top: -1px; // To avoid occasional 1px line on top of the koro when being scaled.
       z-index: 1;
 
       @include breakpoint($breakpoint-l) {
         bottom: 50%;
         left: 5%;
+        top: auto;
         transform: rotate(135deg);
         transform-origin: center;
         width: 100%;

@@ -7,6 +7,10 @@
 
   @include breakpoint($breakpoint-m) {
     @include font-size(14px);
+    margin: $spacing;
+  }
+
+  @include breakpoint($breakpoint-l) {
     margin: $spacing $spacing-double;
   }
 
@@ -36,6 +40,11 @@
   &:last-of-type {
     align-items: center;
     display: flex;
+    margin-left: -$spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: 0;
+    }
 
     &::before {
       background-image: url('../icons/hds/ui/angle-left.svg');

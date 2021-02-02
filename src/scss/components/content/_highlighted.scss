@@ -1,0 +1,25 @@
+.highlighted {
+  @include font-size(24px);
+  display: block;
+  font-weight: $font-weight-regular;
+  line-height: $lineheight-m;
+  margin: $spacing-triple 0;
+  padding: $spacing-half 0 $spacing-half $spacing-and-half;
+  position: relative;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(36px);
+    margin: $spacing-quadruple 0;
+    padding: 0 0 0 $spacing-double + $spacing-half;
+  }
+
+  &::before {
+    background-color: var(--hdbt-theme-color);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+  }
+}
