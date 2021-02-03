@@ -6,11 +6,12 @@
     margin-top: $spacing-quadruple;
   }
 
-  .text__container {
-    max-width: $content-area-width-max;
-  }
   .text__text-content {
     max-width: $content-width-max;
+
+    @include breakpoint($breakpoint-m) {
+      padding-left: $spacing-triple * 2;
+    }
 
     > *:first-child {
       margin-top: 0;
@@ -38,77 +39,6 @@
 
       li {
         margin-left: $spacing;
-      }
-    }
-  }
-}
-
-// Apply styles for Basic page only.
-.page-type--page {
-
-  .text {
-    position: relative;
-
-    .text__container {
-      // OPTION 1:
-      @include breakpoint(max-width $breakpoint-s) {
-        max-width: 100%;
-      }
-
-      // OPTION 2:
-      //max-width: var(--container-width-xl);
-
-      @include breakpoint($breakpoint-s) {
-        //  max-width: var(--container-width-s);
-      }
-
-      @include breakpoint($breakpoint-m) {
-        //  max-width: var(--container-width-xl);
-      }
-
-      .text__text-content {
-        @include breakpoint($breakpoint-m) {
-          padding-left: 50%;
-        }
-
-        > *:first-child {
-          margin-top: 0;
-        }
-
-        > *:last-child {
-          margin-bottom: 0;
-        }
-      }
-
-      h2, h3, h4, h5, h6 {
-
-        @include breakpoint($breakpoint-m) {
-          box-sizing: border-box;
-          height: 0;
-          margin: 0 0 0 -100%;
-          padding-right: $spacing;
-          width: 100%;
-        }
-
-        @include breakpoint($breakpoint-l) {
-          padding-right: $spacing-double;
-        }
-      }
-
-      p, ul, ol, .quote {
-        margin-left: $spacing-double;
-
-        @include breakpoint($breakpoint-s) {
-          margin-left: $spacing-quadruple;
-        }
-
-        @include breakpoint($breakpoint-m) {
-          margin-left: $spacing;
-        }
-      }
-
-      .quote p, .highlighted p {
-        margin-left: 0;
       }
     }
   }

@@ -3,7 +3,7 @@
   background-color: $hdbt-color-white;
   display: flex;
   justify-content: space-between;
-  padding: 0 $spacing;
+  padding: 0 $spacing-and-half;
 
   @include breakpoint($breakpoint-l) {
     padding: 0 $spacing-double;
