@@ -554,7 +554,6 @@ $koro-height: 50px;
 
   .hero__container {
     @include breakpoint($breakpoint-m) {
-      box-sizing: border-box;
       margin: 0;
       max-width: $container-width-xl / 2;
       width: 50%;
@@ -569,7 +568,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     @include breakpoint($breakpoint-m)  {
-      box-sizing: border-box;
       height: auto;
       margin-top: $spacing-quadruple;
       max-width: $container-width-xl / 2;

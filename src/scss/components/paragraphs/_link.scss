@@ -1,6 +1,10 @@
 .link {
-  .link__container {
+  .link__content {
     max-width: $content-area-width-max;
+
+    @include breakpoint($breakpoint-m) {
+      padding-left: $spacing-triple * 2;
+    }
   }
 }
 
@@ -28,7 +32,12 @@
 .hero .link {
   .link__container {
     margin: 0;
-    max-width: 100%;
     padding: 0;
+
+    .link__content {
+      margin: 0;
+      max-width: 100%;
+      padding: 0;
+    }
   }
 }

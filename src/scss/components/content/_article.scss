@@ -2,7 +2,6 @@
 
   .article-header__container {
     margin-bottom: $spacing-double;
-    max-width: $content-area-width-max;
 
     @include breakpoint($breakpoint-m) {
       margin-bottom: $spacing-triple;
@@ -10,6 +9,10 @@
 
     > div {
       max-width: $content-width-max;
+
+      @include breakpoint($breakpoint-m) {
+        padding-left: $spacing-triple * 2;
+      }
     }
   }
 
