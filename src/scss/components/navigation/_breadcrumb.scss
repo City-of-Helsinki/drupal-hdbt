@@ -7,7 +7,7 @@
 
   @include breakpoint($breakpoint-m) {
     @include font-size(14px);
-    margin: $spacing;
+    margin: $spacing $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-l) {

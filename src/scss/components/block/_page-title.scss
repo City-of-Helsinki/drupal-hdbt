@@ -1,10 +1,10 @@
 .page-title__container {
-  max-width: $content-area-width-max;
+  h1 {
+    margin-bottom: $spacing;
+    max-width: $content-width-max;
 
-  .page-type--article & {
-    h1 {
-      margin-bottom: $spacing;
-      max-width: $content-width-max;
+    @include breakpoint($breakpoint-m) {
+      padding-left: $spacing-triple * 2;
     }
   }
 }
