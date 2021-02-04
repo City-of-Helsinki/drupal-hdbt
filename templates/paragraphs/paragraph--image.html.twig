@@ -61,13 +61,14 @@
           {% for key, image in content.field_image %}
             {% if image.entity %}
               {% set media = image.entity %}
+              {% set alt = media.fields.field_media_image.alt %}
               {% if original_aspect_ratio %}
                 {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'original', responsive=true)
+                  drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
                 %}
               {% else %}
                 {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', responsive=true)
+                  drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
                 %}
               {% endif %}
               {{ image }}

@@ -13,18 +13,10 @@
     }
   }
 
-  .image__image-content {
-    max-width: $image-content-width-max;
-
-    @include breakpoint($breakpoint-m) {
-      padding-left: $spacing-triple * 2;
-    }
-
-    picture, img {
-      display: block;
-      line-height: 0;
-      width: 100%;
-    }
+  picture, img {
+    display: block;
+    line-height: 0;
+    width: 100%;
   }
 
   .image__caption {

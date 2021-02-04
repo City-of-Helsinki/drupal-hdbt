@@ -18,6 +18,6 @@ $spacing-quadruple: $spacing * 4; // 64px
 
 $wrapper-width-max: 1920px;
 
-$content-area-wrapper-width-max: 1200px;
+$content-area-wrapper-width-max: 1200px + $spacing-quadruple;
 $image-content-width-max: 996px;
 $content-width-max: 790px;
