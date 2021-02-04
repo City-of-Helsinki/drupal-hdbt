@@ -1,0 +1,76 @@
+.columns {
+  margin: $spacing-double auto 0;
+  max-width: 100%;
+  padding: 0 $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-triple;
+    max-width: $container-width-xl;
+    padding: 0 $spacing-double;
+  }
+
+  .columns__title {
+    display: block;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .columns-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      margin: $spacing-double -#{$spacing-double} 0;
+      max-width: $container-width-xl;
+    }
+  }
+
+  .columns__column {
+    align-self: stretch;
+
+    @include breakpoint($breakpoint-m) {
+      margin: 0 $spacing-double;
+    }
+
+    &.column--50 {
+      @include breakpoint($breakpoint-m) {
+        width: 50%;
+      }
+    }
+    &.column--30 {
+      @include breakpoint($breakpoint-m) {
+        width: 30%
+      }
+    }
+    &.column--70 {
+      @include breakpoint($breakpoint-m) {
+        width: 70%;
+      }
+    }
+
+    + .columns__column {
+      margin-top: $spacing-double;
+
+      @include breakpoint($breakpoint-m) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  // Overrides for text paragraph styles.
+  .text {
+    margin-top: 0;
+
+    .text__container {
+      padding: 0;
+    }
+
+    .text__text-content {
+      padding-left: 0;
+    }
+  }
+
+}
