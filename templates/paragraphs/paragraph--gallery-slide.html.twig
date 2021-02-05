@@ -40,61 +40,33 @@
 #}
 {%
   set classes = [
-    'image',
-    view_mode ? 'image--' ~ view_mode|clean_class,
-  ]
+  'gallery-slide',
+  view_mode ? 'gallery-slide--' ~ view_mode|clean_class,
+]
 %}
-
-{# Check if the image should be printed in original aspect ratio or not #}
-{% set original_aspect_ratio = false %}
-{% if content.field_original_aspect_ratio[0]['#markup'] == 'true' %}
-  {% set original_aspect_ratio = true %}
-{% endif %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'image'} %}
-      {% block container_content %}
-        <div class="media--image__content">
-        {# Check if there is image set and print it with correct aspect ratio #}
-        {% if content.field_image|render %}
-          {% for key, image in content.field_image %}
-            {% if image.entity %}
-              {% set media = image.entity %}
-              {% set alt = media.fields.field_media_image.alt %}
-              {% if original_aspect_ratio %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
-                %}
-              {% else %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
-                %}
-              {% endif %}
-              {{ image }}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+    <div class="media--image__content">
+      {{ content.field_gallery_slide_media }}
+      {% if content.field_gallery_slide_caption[0] is not empty %}
         {% spaceless %}
           <figcaption class="media--image__caption">
-            {{ content.field_image_caption }}
-
-            {# The image caption is attached to each image so we need to get it from the media entity #}
-            {% if content.field_image|render %}
-              {% for key, image in content.field_image %}
+            {{ content.field_gallery_slide_caption }}
+            {% if content.field_gallery_slide_media|render %}
+              {% for key, image in content.field_gallery_slide_media %}
                 {% if image.entity %}
-                {% set media = image.entity %}
-                {% set image_caption = media.fields.field_photographer.value %}
-                {% if image_caption %}
-                  {{ 'Photo:'|trans }} {{ image_caption }}
-                {% endif %}
+                  {% set media = image.entity %}
+                  {% set image_caption = media.fields.field_photographer.value %}
+                  {% if image_caption %}
+                    {{ 'Photo:'|trans }} {{ image_caption }}
+                  {% endif %}
                 {% endif %}
               {% endfor %}
             {% endif %}
           </figcaption>
         {% endspaceless %}
-        </div>
-      {% endblock %}
-    {% endembed %}
+      {% endif %}
+    </div>
   </div>
 {% endblock paragraph %}
