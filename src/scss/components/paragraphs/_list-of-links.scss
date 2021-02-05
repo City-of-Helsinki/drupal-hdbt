@@ -203,7 +203,7 @@ $item_spacing: $spacing-triple;
       }
 
       @include breakpoint($breakpoint-xl) {
-        right: 110px;
+        right: 80px;
       }
 
       .icon {
@@ -245,7 +245,7 @@ $item_spacing: $spacing-triple;
 .list-of-links--without-image {
   .list-of-links__item {
     @include breakpoint($breakpoint-xl) {
-      padding-right: 250px;
+      padding-right: 200px;
     }
 
     .list-of-links__item__title {

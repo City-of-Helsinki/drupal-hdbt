@@ -1,6 +1,6 @@
 .link {
   .link__content {
-    max-width: $content-area-width-max;
+    max-width: $content-width-max;
 
     @include breakpoint($breakpoint-m) {
       padding-left: $spacing-triple * 2;
