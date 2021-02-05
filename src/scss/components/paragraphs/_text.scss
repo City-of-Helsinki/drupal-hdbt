@@ -1,9 +1,9 @@
 .text {
   @include font-size(18px, 27px);
-  margin-top: $spacing-double;
+  margin-top: $spacing-double - $spacing-and-half;
 
   @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
+    margin-top: $spacing-quadruple - $spacing-and-half;
   }
 
   .text__text-content {
@@ -14,6 +14,14 @@
     }
 
     > *:first-child {
+      margin-top: $spacing-double - $spacing-and-half;
+
+      @include breakpoint($breakpoint-m) {
+        margin-top: $spacing-quadruple - $spacing-and-half;
+      }
+    }
+
+    > p:first-child {
       margin-top: 0;
     }
 
@@ -23,7 +31,7 @@
   }
 
   + .text {
-    margin-top: $spacing;
+    margin-top: 0;
   }
 
   ul, ol {
