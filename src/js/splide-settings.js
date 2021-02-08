@@ -1,4 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  /*global Splide */
+  /* global Splide */
   new Splide('.splide').mount();
 });
