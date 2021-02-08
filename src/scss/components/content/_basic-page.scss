@@ -1,5 +1,5 @@
 .node--type-page {
-  .paragraph-content .image {
+  .paragraph-content > .image {
     .image__image-content {
       max-width: $image-content-width-max + ($spacing-triple * 2);
 
