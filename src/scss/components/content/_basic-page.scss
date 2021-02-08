@@ -1,0 +1,11 @@
+.node--type-page {
+  .paragraph-content .image {
+    .image__image-content {
+      max-width: $image-content-width-max + ($spacing-triple * 2);
+
+      @include breakpoint($breakpoint-m) {
+        padding-left: $spacing-triple * 2;
+      }
+    }
+  }
+}

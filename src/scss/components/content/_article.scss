@@ -41,17 +41,14 @@
     margin-bottom: $spacing;
   }
 
-  .article-content__container {
-    max-width: $content-area-width-max;
-  }
-
   .article__keywords {
     background: $color-silver-light;
     margin-top: $spacing-double;
-    padding: 0 0 $spacing-and-half;
+    padding: $spacing-half 0 $spacing-double;
 
     @include breakpoint($breakpoint-m) {
-      padding: $spacing-and-half 0 $spacing-quadruple;
+      margin-top: $spacing-quadruple;
+      padding: ($spacing-quadruple - $spacing-and-half) 0 $spacing-quadruple;
     }
 
     @include breakpoint($breakpoint-l) {
@@ -71,10 +68,11 @@
       @include font-size(18px, 30px);
       color: $color-black-90;
       font-weight: $font-weight-medium;
-      margin: $spacing $spacing-quarter;
+      margin: 0 $spacing-quarter $spacing-half;
 
       @include breakpoint($breakpoint-m) {
         @include font-size(24px, 30px);
+        margin: 0 $spacing-quarter $spacing;
       }
     }
 
