@@ -202,6 +202,10 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $design = $paragraph_parent->get('field_list_of_links_design')->getString();
     $variables['list_of_links_design'] = $design;
   }
+
+  if ($paragraph_type == 'gallery') {
+    $variables['#attached']['library'][] = 'hdbt/splide';
+  }
 }
 
 /**

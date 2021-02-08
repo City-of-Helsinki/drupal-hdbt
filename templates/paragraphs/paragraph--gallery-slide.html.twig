@@ -42,11 +42,12 @@
   set classes = [
   'gallery-slide',
   view_mode ? 'gallery-slide--' ~ view_mode|clean_class,
+  'splide__slide'
 ]
 %}
 
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
+  <li{{ attributes.addClass(classes) }}>
     <div class="media--image__content">
       {{ content.field_gallery_slide_media }}
       {% if content.field_gallery_slide_caption[0] is not empty %}
@@ -68,5 +69,5 @@
         {% endspaceless %}
       {% endif %}
     </div>
-  </div>
+  </li>
 {% endblock paragraph %}

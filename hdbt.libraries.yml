@@ -14,6 +14,15 @@ hyphenopoly:
   js:
     /themes/custom/hdbt/dist/js/hyphenopoly/Hyphenopoly_Loader.js: {type: external, preprocess: false}
 
+splide:
+  version: 2.4.21
+  js:
+    dist/js/splide/splide.min.js: {}
+    dist/js/splide-settings.min.js: {}
+  css:
+    theme:
+      dist/css/splide/splide.min.css: {}
+
 global-styling:
   version: 1.x
   css:

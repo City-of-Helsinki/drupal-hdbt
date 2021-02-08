@@ -18,6 +18,7 @@ module.exports = {
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
         './src/js/component-library.js',
+        './src/js/splide-settings.js'
       ]
     }),
     "component-library": [
@@ -26,6 +27,9 @@ module.exports = {
     ],
     "ckeditor": [
       "./src/scss/ckeditor.scss"
+    ],
+    "splide-settings": [
+      "./src/js/splide-settings.js"
     ],
   },
   output: {
@@ -186,6 +190,18 @@ module.exports = {
           "globOptions": {
             "extglob": true
           },
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/@splidejs/splide/dist/js/splide.min.js",
+          "to": path.resolve(__dirname, "dist") + "/js/splide/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/@splidejs/splide/dist/css/splide.min.css",
+          "to": path.resolve(__dirname, "dist") + "/css/splide/",
           "force": true,
           "flatten": true
         }

@@ -38,24 +38,49 @@
  * @ingroup themeable
  */
 #}
+
+{% set design = content.field_columns_design[0]['#markup'] %}
+
 {%
   set classes = [
-  'gallery',
-  view_mode ? 'gallery--' ~ view_mode|clean_class,
-  'splide'
-]
+    'columns',
+    view_mode ? 'columns--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'columns--unpublished',
+    design ? 'columns--' ~ design,
+  ]
 %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'gallery'} %}
-      {% block container_content %}
-        <div class="gallery__slides splide__track">
-          <ul class="splide__list">
-            {{ content }}
-          </ul>
-        </div>
-      {% endblock %}
-    {% endembed %}
+    {% if content.field_columns_title|render %}
+      <h2 class="columns__title">
+        {{ content.field_columns_title }}
+      </h2>
+    {% endif %}
+
+    {% set left_column_classes = ['columns__column'] %}
+    {% set right_column_classes = ['columns__column'] %}
+
+    {# // Set the correct classes for the columns. #}
+    {% if design == "30-70" %}
+      {% set left_column_classes = left_column_classes|merge(['column--30'])%}
+      {% set right_column_classes = right_column_classes|merge(['column--70']) %}
+    {% elseif design == "70-30" %}
+      {% set left_column_classes = left_column_classes|merge(['column--70'])%}
+      {% set right_column_classes = right_column_classes|merge(['column--30']) %}
+    {% else %}
+      {% set left_column_classes = left_column_classes|merge(['column--50'])%}
+      {% set right_column_classes = right_column_classes|merge(['column--50']) %}
+    {% endif %}
+
+    <div class="columns-wrapper">
+      <div class="{{ left_column_classes|join(' ') }}">
+        {{ content.field_columns_left_column }}
+      </div>
+
+      <div class="{{ right_column_classes|join(' ') }}">
+        {{ content.field_columns_right_column }}
+      </div>
+    </div>
   </div>
 {% endblock paragraph %}
