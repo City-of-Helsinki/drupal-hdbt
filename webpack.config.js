@@ -200,8 +200,20 @@ module.exports = {
           "flatten": true
         }, {
           "context": "./",
-          "from": "node_modules/@splidejs/splide/dist/css/splide.min.css",
+          "from": "node_modules/@splidejs/splide/dist/css/splide-core.min.css",
           "to": path.resolve(__dirname, "dist") + "/css/splide/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/tiny-slider/dist/min/tiny-slider.js",
+          "to": path.resolve(__dirname, "dist") + "/js/tiny-slider/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/tiny-slider/dist/tiny-slider.css",
+          "to": path.resolve(__dirname, "dist") + "/css/tiny-slider/",
           "force": true,
           "flatten": true
         }

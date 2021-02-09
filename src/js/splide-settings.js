@@ -45,4 +45,21 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   splide.mount();
+
+  /* global tns */
+  const tinySlider = new tns({
+    container: '.gallery__thumbnails__list',
+    mouseDrag: true,
+    items: 6,
+    center: false,
+    loop: false,
+    slideBy: 1,
+    autoplay: false,
+    gutter: 16,
+    nav: false,
+    edgePadding: 0,
+  });
+
+  // This is obsolete - remove it
+  tinySlider.mount();
 });

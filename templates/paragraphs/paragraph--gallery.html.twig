@@ -42,7 +42,6 @@
   set classes = [
   'gallery',
   view_mode ? 'gallery--' ~ view_mode|clean_class,
-  'splide'
 ]
 %}
 
@@ -50,10 +49,12 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'gallery'} %}
       {% block container_content %}
-        <div class="gallery__slides splide__track">
-          <ul class="splide__list">
-            {{ content }}
-          </ul>
+        <div class="gallery__main splide">
+          <div class="gallery__slides splide__track">
+            <ul class="splide__list">
+              {{ content }}
+            </ul>
+          </div>
         </div>
         <div class="gallery__thumbnails js-gallery__thumbnails">
           <ul class="gallery__thumbnails__list">

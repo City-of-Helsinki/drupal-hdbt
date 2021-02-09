@@ -21,7 +21,15 @@ splide:
     dist/js/splide-settings.min.js: {}
   css:
     theme:
-      dist/css/splide/splide.min.css: {}
+      dist/css/splide/splide-core.min.css: {}
+
+tiny-slider:
+  version: 2.9.3
+  js:
+    dist/js/tiny-slider/tiny-slider.js: {}
+  css:
+    theme:
+      dist/css/tiny-slider/tiny-slider.css: {}
 
 global-styling:
   version: 1.x
