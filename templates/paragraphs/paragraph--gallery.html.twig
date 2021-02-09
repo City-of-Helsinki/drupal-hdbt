@@ -55,6 +55,16 @@
             {{ content }}
           </ul>
         </div>
+        <div class="gallery__thumbnails js-gallery__thumbnails">
+          <ul class="gallery__thumbnails__list">
+            {% for key, image in gallery_slide_thumbnails %}
+              {% set alt = image.alt %}
+              <li class="gallery__thumbnails__item" role="button" tabindex="0">
+                {{ drupal_image(image.uri.value, 'gallery_thumbnail', {alt: alt}, responsive=true) }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endblock %}
     {% endembed %}
   </div>

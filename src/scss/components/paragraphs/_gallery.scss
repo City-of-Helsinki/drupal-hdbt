@@ -1,0 +1,14 @@
+.gallery {
+  .gallery__thumbnails__list {
+    display: flex;
+    list-style: none;
+
+    .gallery__thumbnails__item {
+      line-height: 0;
+
+      picture, img {
+        line-height: 0;
+      }
+    }
+  }
+}
