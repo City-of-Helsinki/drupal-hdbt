@@ -31,6 +31,9 @@ module.exports = {
     "splide-settings": [
       "./src/js/splide-settings.js"
     ],
+    "tiny-slider-settings": [
+      "./src/js/tiny-slider-settings.js"
+    ],
   },
   output: {
     devtoolLineToLine: true,

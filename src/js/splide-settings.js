@@ -1,65 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
-  /* global Splide */
-  const splide = new Splide('.splide', {
-    pagination: false,
-  });
+  // Find all gallery paragraphs.
+  const galleries = document.getElementsByClassName('gallery');
 
-  // Collect elements of thumbnails.
-  const images = document.querySelectorAll(
-    '.js-gallery__thumbnails .gallery__thumbnails__item'
-  );
+  for (let gallery of galleries) {
+    // Find the main part of the gallery inside the gallery paragraph.
+    const galleryMain = gallery.getElementsByClassName('splide')[0];
 
-  let activeImage;
-  const activeClass = 'is-active';
+    /* global Splide */
+    const splide = new Splide(galleryMain, {
+      pagination: false,
+    });
 
-  // Listen a click event and toggle a class.
-  for (let i = 0, len = images.length; i < len; i++) {
-    let image = images[i];
-
-    splide.on(
-      'click',
-      function () {
-        if (activeImage !== image) {
-          activeImage.classList.remove(activeClass);
-          image.classList.add(activeClass);
-          splide.go(i);
-          activeImage = image;
-        }
-      },
-      image
+    // Find all the thumbnails inside the gallery.
+    const thumbnails = gallery.getElementsByClassName(
+      'gallery__thumbnails__item'
     );
-  }
 
-  splide.on('mounted move', function (newIndex) {
-    // newIndex will be undefined through the "mounted" event.
-    const image = images[newIndex !== undefined ? newIndex : splide.index];
+    let activeThumb;
+    let activeCount;
+    const activeClass = 'is-active';
 
-    if (image && activeImage !== image) {
-      if (activeImage) {
-        activeImage.classList.remove(activeClass);
+    // Listen a click event and toggle the active class.
+    for (let i = 0, len = thumbnails.length; i < len; i++) {
+      let thumbnail = thumbnails[i];
+
+      splide.on(
+        'click',
+        function () {
+          if (activeThumb !== thumbnail) {
+            activeThumb.classList.remove(activeClass);
+            thumbnail.classList.add(activeClass);
+            splide.go(i);
+            activeThumb = thumbnail;
+          }
+        },
+        thumbnail
+      );
+    }
+
+    // Find the slide count element inside the gallery.
+    const slideCount = gallery.getElementsByClassName(
+      'gallery__slide-count'
+    )[0];
+
+    splide.on('mounted move', function (newIndex) {
+      // newIndex will be undefined through the "mounted" event.
+      const thumbnail =
+        thumbnails[newIndex !== undefined ? newIndex : splide.index];
+
+      if (newIndex === undefined) {
+        activeCount = 1;
+      } else {
+        activeCount = newIndex + 1;
       }
 
-      image.classList.add(activeClass);
-      activeImage = image;
-    }
-  });
+      slideCount.innerText = activeCount + '/' + thumbnails.length;
 
-  splide.mount();
+      if (thumbnail && activeThumb !== thumbnail) {
+        if (activeThumb) {
+          activeThumb.classList.remove(activeClass);
+        }
 
-  /* global tns */
-  const tinySlider = new tns({
-    container: '.gallery__thumbnails__list',
-    mouseDrag: true,
-    items: 6,
-    center: false,
-    loop: false,
-    slideBy: 1,
-    autoplay: false,
-    gutter: 16,
-    nav: false,
-    edgePadding: 0,
-  });
+        thumbnail.classList.add(activeClass);
+        activeThumb = thumbnail;
+      }
+    });
 
-  // This is obsolete - remove it
-  tinySlider.mount();
+    splide.mount();
+  }
 });

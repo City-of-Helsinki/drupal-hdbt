@@ -1,6 +1,8 @@
 $arrow-container-height: 48px;
 
 .gallery {
+  position: relative;
+
   .media--image__caption {
     padding-left: 0;
     padding-right: 0;
@@ -35,28 +37,52 @@ $arrow-container-height: 48px;
   }
 }
 
+.gallery__slide-count {
+  @include font-size(18px, 23px);
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: $arrow-container-height;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  width: 50%;
+
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+}
+
 .gallery__thumbnails {
   display: none;
 
   @include breakpoint($breakpoint-l) {
     display: block;
-    margin: 0;
+    margin: $spacing-quadruple 0 0;
   }
 
   .gallery__thumbnails__list {
     display: flex;
     flex-wrap: nowrap;
     list-style: none;
-    margin: $spacing-quadruple 0 0;
+    margin: 0;
     padding: 0;
 
     .gallery__thumbnails__item {
-      height: 180px;
+      height: auto;
       line-height: 0;
-      margin: $spacing-quarter 0;
+      margin: 0;
       width: 180px;
 
-      picture, img {
+      picture {
+        display: block;
+        line-height: 0;
+        width: 100%;
+      }
+
+      img {
         border: $spacing-quarter solid $color-white;
         display: block;
         line-height: 0;
@@ -64,7 +90,7 @@ $arrow-container-height: 48px;
       }
 
       &.is-active img {
-        border: $spacing-quarter solid $hdbt-color-black;
+        border-color: $hdbt-color-black;
       }
     }
   }
@@ -106,7 +132,7 @@ $arrow-container-height: 48px;
     }
 
     &[disabled] {
-      opacity: 0.5;
+      opacity: 0.2;
     }
 
     svg {
@@ -126,6 +152,39 @@ $arrow-container-height: 48px;
 }
 
 // Tiny-slider overrides {
-.tns-controls {
+.tns-outer {
+  position: relative;
+}
 
+.tns-controls {
+  button {
+    background-color: rgba($color-white,0.8);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 0;
+    display: block;
+    height: 40px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-indent: -999px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    z-index: 1;
+
+    &[disabled] {
+      display: none;
+    }
+
+    &[data-controls=prev] {
+      background-image: url('../icons/hds/ui/angle-left.svg');
+      left: $spacing-quarter;
+    }
+
+    &[data-controls=next] {
+      background-image: url('../icons/hds/ui/angle-right.svg');
+      right: $spacing-quarter;
+    }
+  }
 }
