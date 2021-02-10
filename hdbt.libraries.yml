@@ -14,6 +14,14 @@ hyphenopoly:
   js:
     /themes/custom/hdbt/dist/js/hyphenopoly/Hyphenopoly_Loader.js: {type: external, preprocess: false}
 
+mmenu:
+  version: 8.5.21
+  js:
+    dist/js/mmenu/mmenu.js: {}
+  css:
+    theme:
+      dist/css/mmenu/mmenu.css: {}
+
 global-styling:
   version: 1.x
   css:

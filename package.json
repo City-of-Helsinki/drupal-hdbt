@@ -48,6 +48,7 @@
     "hyphenopoly": "^4.9.0",
     "image-webpack-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.4.1",
+    "mmenu-js": "^8.5.21",
     "modernizr": "^3.11.4",
     "node-sass": "^4.14.1",
     "node-sass-glob-importer": "^5.3.2",

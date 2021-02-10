@@ -188,6 +188,18 @@ module.exports = {
           },
           "force": true,
           "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/mmenu-js/dist/mmenu.js",
+          "to": path.resolve(__dirname, "dist") + "/js/mmenu/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/mmenu-js/dist/mmenu.css",
+          "to": path.resolve(__dirname, "dist") + "/css/mmenu/",
+          "force": true,
+          "flatten": true
         }
       ]
     }),
