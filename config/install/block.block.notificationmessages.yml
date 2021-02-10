@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - notification_message
+  theme:
+    - hdbt
+id: notificationmessages
+theme: hdbt
+region: messages
+weight: 0
+provider: null
+plugin: notification_message
+settings:
+  id: notification_message
+  label: 'Notification messages'
+  provider: notification_message
+  label_display: '0'
+  notification_message:
+    type: {  }
+    display_mode: default
+visibility: {  }
