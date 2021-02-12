@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     }
 
+    // This variable decides maximum amount of thumbnails visible at once in
+    // the gallery.
+    const thumbnailsVisibleAtOnce = 6;
+
     // Collect all the thumbnails related to the gallery.
     const galleryThumbnails = gallery.getElementsByClassName(
       'gallery__thumbnails__list'
     )[0];
-
-    // This variable decides maximum amount of thumbnails visible at once in
-    // the gallery.
-    const thumbnailsVisibleAtOnce = 6;
 
     // Initiate the tiny slider for the thumbnails so that users are able
     // to browse the available thumbnails independently.
@@ -83,6 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
     });
+
+    // Add tns-disabled class if there is less slides than the
+    // thumbnailsVisibleAtOnce
+    if (tinySlider.getInfo().slideCount < thumbnailsVisibleAtOnce) {
+      const thumbnailContainer = gallery.getElementsByClassName(
+        'gallery__thumbnails'
+      )[0];
+      thumbnailContainer.classList.add('tns-disabled');
+    }
 
     // Find the slide count element inside the gallery.
     const slideCount = gallery.getElementsByClassName(

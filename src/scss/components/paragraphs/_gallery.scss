@@ -161,6 +161,17 @@ $arrow-container-height: 48px;
   position: relative;
 }
 
+.tns-disabled {
+  .tns-controls {
+    display: none;
+  }
+
+  .tns-inner {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .tns-controls {
   button {
     background-color: rgba($color-white,0.8);
