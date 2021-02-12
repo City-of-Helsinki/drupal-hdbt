@@ -38,6 +38,34 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     }
 
+    const galleryThumbnails = gallery.getElementsByClassName(
+      'gallery__thumbnails__list'
+    )[0];
+
+    const thumbnailsVisibleAtOnce = 6;
+
+    /* global tns */
+    const tinySlider = new tns({
+      container: galleryThumbnails,
+      mouseDrag: true,
+      items: thumbnailsVisibleAtOnce,
+      center: false,
+      loop: false,
+      slideBy: 1,
+      autoplay: false,
+      gutter: 16,
+      nav: false,
+      edgePadding: 0,
+      responsive: {
+        0: {
+          disable: true,
+        },
+        992: {
+          disable: false,
+        },
+      },
+    });
+
     // Find the slide count element inside the gallery.
     const slideCount = gallery.getElementsByClassName(
       'gallery__slide-count'
@@ -64,6 +92,65 @@ document.addEventListener('DOMContentLoaded', function () {
         thumbnail.classList.add(activeClass);
         activeThumb = thumbnail;
       }
+    });
+
+    const allThumbnails = gallery.querySelectorAll(
+      '.gallery__thumbnails__item'
+    );
+
+    let firstVisibleSlide = 0;
+    // We start from 0 so we need to substract 1 from the thumbnails visible
+    // at once.
+    let lastVisibleSlide = thumbnailsVisibleAtOnce - 1;
+    let splideMoved = false;
+
+    splide.on('moved', function () {
+      for (let selectedThumbnail of allThumbnails) {
+        if (selectedThumbnail.classList.contains('is-active')) {
+          let activeThumbnailIndex = splide.index;
+
+          if (activeThumbnailIndex === lastVisibleSlide + 1) {
+            splideMoved = true;
+            tinySlider.goTo('next');
+            firstVisibleSlide = firstVisibleSlide + 1;
+            lastVisibleSlide = lastVisibleSlide + 1;
+          } else if (activeThumbnailIndex < firstVisibleSlide) {
+            splideMoved = true;
+            tinySlider.goTo(activeThumbnailIndex);
+            firstVisibleSlide = activeThumbnailIndex;
+            lastVisibleSlide =
+              activeThumbnailIndex + (thumbnailsVisibleAtOnce - 1);
+          }
+
+          if (
+            firstVisibleSlide > 0 &&
+            activeThumbnailIndex + 1 === firstVisibleSlide
+          ) {
+            splideMoved = true;
+            tinySlider.goTo('prev');
+            firstVisibleSlide = firstVisibleSlide - 1;
+            lastVisibleSlide = lastVisibleSlide - 1;
+          } else if (activeThumbnailIndex > lastVisibleSlide) {
+            splideMoved = true;
+            tinySlider.goTo(activeThumbnailIndex);
+            firstVisibleSlide =
+              activeThumbnailIndex - (thumbnailsVisibleAtOnce - 1);
+            lastVisibleSlide = activeThumbnailIndex;
+          }
+        }
+      }
+    });
+
+    tinySlider.events.on('indexChanged', function () {
+      if (splideMoved === false) {
+        /* eslint-disable-next-line */
+        for (let selectedThumbnail of allThumbnails) {
+          firstVisibleSlide = tinySlider.getInfo().index;
+          lastVisibleSlide =
+            thumbnailsVisibleAtOnce - 1 + tinySlider.getInfo().index;
+        }
+      }
+      splideMoved = false;
     });
 
     splide.mount();

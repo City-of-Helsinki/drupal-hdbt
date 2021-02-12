@@ -18,7 +18,7 @@ module.exports = {
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
         './src/js/component-library.js',
-        './src/js/splide-settings.js'
+        './src/js/splide-settings.js',
       ]
     }),
     "component-library": [
@@ -30,9 +30,6 @@ module.exports = {
     ],
     "splide-settings": [
       "./src/js/splide-settings.js"
-    ],
-    "tiny-slider-settings": [
-      "./src/js/tiny-slider-settings.js"
     ],
   },
   output: {
