@@ -204,8 +204,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
   }
 
   if ($paragraph_type == 'gallery') {
-    $variables['#attached']['library'][] = 'hdbt/splide';
-    $variables['#attached']['library'][] = 'hdbt/tiny-slider';
+    $variables['#attached']['library'][] = 'hdbt/gallery';
 
     $slide_paragraphs = $paragraph->get('field_gallery_slides')->getValue();
     $slide_ids = [];

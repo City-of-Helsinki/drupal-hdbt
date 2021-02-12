@@ -18,7 +18,7 @@ module.exports = {
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
         './src/js/component-library.js',
-        './src/js/splide-settings.js',
+        './src/js/gallery-settings.js',
       ]
     }),
     "component-library": [
@@ -28,8 +28,8 @@ module.exports = {
     "ckeditor": [
       "./src/scss/ckeditor.scss"
     ],
-    "splide-settings": [
-      "./src/js/splide-settings.js"
+    "gallery-settings": [
+      "./src/js/gallery-settings.js"
     ],
   },
   output: {

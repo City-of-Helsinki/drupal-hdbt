@@ -18,7 +18,6 @@ splide:
   version: 2.4.21
   js:
     dist/js/splide/splide.min.js: {}
-    dist/js/splide-settings.min.js: {}
   css:
     theme:
       dist/css/splide/splide-core.min.css: {}
@@ -31,6 +30,15 @@ tiny-slider:
     theme:
       dist/css/tiny-slider/tiny-slider.css: {}
 
+gallery:
+  version: 1.x
+  js:
+    dist/js/gallery-settings.min.js: {}
+  dependencies:
+    - hdbt/splide
+    - hdbt/tiny-slider
+
+
 global-styling:
   version: 1.x
   css:
@@ -38,8 +46,8 @@ global-styling:
       dist/css/styles.min.css: {}
 
 global-scripting:
+  version: 1.x
   js:
     dist/js/bundle.min.js: {}
-  version: 1.x
   dependencies:
     - core/drupal

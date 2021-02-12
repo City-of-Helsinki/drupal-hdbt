@@ -143,12 +143,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tinySlider.events.on('indexChanged', function () {
       if (splideMoved === false) {
-        /* eslint-disable-next-line */
-        for (let selectedThumbnail of allThumbnails) {
-          firstVisibleSlide = tinySlider.getInfo().index;
-          lastVisibleSlide =
-            thumbnailsVisibleAtOnce - 1 + tinySlider.getInfo().index;
-        }
+        firstVisibleSlide = tinySlider.getInfo().index;
+        lastVisibleSlide =
+          thumbnailsVisibleAtOnce - 1 + tinySlider.getInfo().index;
       }
       splideMoved = false;
     });
