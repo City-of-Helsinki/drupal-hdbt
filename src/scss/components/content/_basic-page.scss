@@ -1,6 +1,6 @@
 .node--type-page {
   .paragraph-content > .image {
-    .image__image-content {
+    .media--image__content {
       max-width: $image-content-width-max + ($spacing-triple * 2);
 
       @include breakpoint($breakpoint-m) {

@@ -1,0 +1,17 @@
+.media--image__content {
+  picture, img {
+    display: block;
+    line-height: 0;
+    width: 100%;
+  }
+}
+
+.media--image__caption {
+  @include font-size(14px, 24px);
+  padding: $spacing $spacing-and-half 0;
+
+  @include breakpoint($breakpoint-m) {
+    @include font-size(20px, 32px);
+    padding: $spacing 0 0;
+  }
+}

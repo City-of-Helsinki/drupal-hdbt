@@ -5,7 +5,7 @@
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-triple;
-    max-width: $container-width-xl;
+    max-width: $content-area-wrapper-width-max;
     padding: 0 $spacing-double;
   }
 
@@ -24,7 +24,7 @@
     @include breakpoint($breakpoint-m) {
       flex-direction: row;
       margin: $spacing-double -#{$spacing-double} 0;
-      max-width: $container-width-xl;
+      max-width: $content-area-wrapper-width-max;
     }
   }
 
