@@ -23,7 +23,6 @@
   margin-top: $spacing-half;
 
   @include breakpoint($breakpoint-m) {
-    margin-bottom: 0;
     margin-right: $spacing;
   }
 
