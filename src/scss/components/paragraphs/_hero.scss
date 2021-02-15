@@ -32,7 +32,7 @@ $koro-height: 50px;
 
   .hero__description {
     p {
-      line-height: $lineheight-xxl;
+      @include font-size(16px, $lineheight-xxl);
     }
 
     a {

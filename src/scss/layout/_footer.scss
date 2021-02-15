@@ -36,9 +36,8 @@
   }
 
   h2 {
-    font-size: $fontsize-heading-m;
+    @include font-size($fontsize-heading-m, $lineheight-m);
     font-weight: 500;
-    line-height: $lineheight-m;
 
     &:first-child {
       margin-top: 0;
@@ -54,8 +53,7 @@
   }
 
   .menu {
-    font-size: $fontsize-heading-xs;
-    line-height: $lineheight-l;
+    @include font-size(18px, 27px);
     margin: $spacing 0 $spacing-double;
   }
 
@@ -86,10 +84,9 @@
   }
 
   .menu {
+    @include font-size($fontsize-body-s, $lineheight-xl);
     display: flex;
     flex-wrap: wrap;
-    font-size: $fontsize-body-s;
-    line-height: $lineheight-xl;
   }
 
   .menu__item {

@@ -1,8 +1,43 @@
-// Calculate rem (root em) units from pixels for font-size and line-height
+// Function nounit strips any unit from variable.
+@function nounit($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+// Calculate rem (root em) units from pixels for font-size and line-height.
 @mixin font-size($font-size, $line-height: "") {
-  font-size: ($font-size / $base-font-size) * 1rem;
+  @if $font-size == 'inherit' {
+    @error 'No inherit values allowed in font-size mixin!';
+  } @else if unit($font-size) == 'rem' {
+    font-size: $font-size;
+  } @else {
+    font-size: ($font-size / $base-font-size) * 1rem;
+  }
+
+  // Handle the line-height.
   @if $line-height != "" {
-    line-height: ($line-height / $font-size) * $font-size;
+    // Check if line-height is in px.
+    @if unit($line-height) == 'px' {
+      line-height: ($line-height / $base-font-size) * 1rem;
+    }
+    @else {
+      // Check if line-height is in rem and handle the line-height.
+      @if unit($line-height) == 'rem' {
+        line-height: $line-height;
+      }
+      // The line-height is a multiplier.
+      @else {
+        $font-size-px: nounit($font-size);
+        $base-font-size-px: nounit($base-font-size);
+
+        // Convert the font-size if it is in rem.
+        @if unit($font-size) == 'rem' {
+          $font-size-px: nounit($font-size) * nounit($base-font-size);
+        }
+
+        $conversion: $base-font-size-px * ($font-size-px / $base-font-size-px) * $line-height / $base-font-size-px;
+        line-height: #{$conversion}rem;
+      }
+    }
   }
 }
 
