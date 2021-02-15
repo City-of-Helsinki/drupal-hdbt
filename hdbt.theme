@@ -202,6 +202,41 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $design = $paragraph_parent->get('field_list_of_links_design')->getString();
     $variables['list_of_links_design'] = $design;
   }
+
+  if ($paragraph_type == 'gallery') {
+    $variables['#attached']['library'][] = 'hdbt/gallery';
+
+    $slide_paragraphs = $paragraph->get('field_gallery_slides')->getValue();
+    $slide_ids = [];
+
+    foreach ($slide_paragraphs as $slide_paragraph) {
+      $slide_ids[] = $slide_paragraph['target_id'];
+    }
+
+    // Get a paragraph storage object.
+    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+    // Load all slide paragraphs.
+    $slides = $paragraph_storage->loadMultiple($slide_ids);
+
+    $slide_thumbnails = [];
+    foreach ($slides as $slide) {
+      $slide_media = $slide
+        ->get('field_gallery_slide_media')
+        ->first()
+        ->get('entity')
+        ->getTarget()
+        ->getValue();
+      $image = $slide_media
+        ->get('field_media_image')
+        ->first()
+        ->get('entity')
+        ->getTarget()
+        ->getValue();
+      $slide_thumbnails[] = $image;
+    }
+
+    $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
+  }
 }
 
 /**
