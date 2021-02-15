@@ -14,8 +14,7 @@
     }
   }
   .quote__author {
-    @include font-size(18px);
-    line-height: $lineheight-l;
+    @include font-size(18px, $lineheight-l);
     margin-top: $spacing-and-half;
 
     &::before {

@@ -1,8 +1,7 @@
 .highlighted {
-  @include font-size(24px);
+  @include font-size(24px, $lineheight-m);
   display: block;
   font-weight: $font-weight-regular;
-  line-height: $lineheight-m;
   margin: $spacing-triple 0;
   padding: $spacing-half 0 $spacing-half $spacing-and-half;
   position: relative;
