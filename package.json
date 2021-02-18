@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "webpack --progress --mode development --config  webpack.config.dev.js --watch",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
-    "postinstall": "npx husky & cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds",
+    "postinstall": "cp -r node_modules/helsinki-design-system/packages/core/src/svg/ src/icons/hds",
     "lint": "lint-staged",
     "lint:js": "eslint --fix src/"
   },
@@ -45,7 +45,6 @@
     "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/master.tar.gz",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^4.3.6",
     "hyphenopoly": "^4.9.0",
     "image-webpack-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.4.1",
@@ -77,11 +76,7 @@
     "webpack-modernizr-loader": "^4.0.1",
     "webpack-notifier": "^1.12.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  "pre-commit": "lint-staged",
   "lint-staged": {
     "src/scss/**/*.scss": [
       "postcss *.scss --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
