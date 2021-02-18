@@ -226,6 +226,12 @@ module.exports = {
           "to": path.resolve(__dirname, "dist") + "/js/handorgel/",
           "force": true,
           "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/handorgel/lib/css/handorgel.min.css",
+          "to": path.resolve(__dirname, "dist") + "/css/handorgel/",
+          "force": true,
+          "flatten": true
         }
       ]
     }),
