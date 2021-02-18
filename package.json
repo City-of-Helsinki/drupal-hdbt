@@ -81,7 +81,6 @@
     "webpack-modernizr-loader": "^4.0.1",
     "webpack-notifier": "^1.13.0"
   },
-  "pre-commit": "lint-staged",
   "lint-staged": {
     "src/scss/**/*.scss": [
       "postcss *.scss --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
