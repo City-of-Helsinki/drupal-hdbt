@@ -52,35 +52,37 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% if content.field_columns_title|render %}
-      <h2 class="columns__title">
-        {{ content.field_columns_title }}
-      </h2>
-    {% endif %}
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'columns'} %}
+      {% block container_content %}
+        {% if content.field_columns_title|render %}
+          <h2 class="columns__title">{{ content.field_columns_title }}</h2>
+        {% endif %}
 
-    {% set left_column_classes = ['columns__column'] %}
-    {% set right_column_classes = ['columns__column'] %}
+        {% set left_column_classes = ['columns__column'] %}
+        {% set right_column_classes = ['columns__column'] %}
 
-    {# // Set the correct classes for the columns. #}
-    {% if design == "30-70" %}
-      {% set left_column_classes = left_column_classes|merge(['column--30'])%}
-      {% set right_column_classes = right_column_classes|merge(['column--70']) %}
-    {% elseif design == "70-30" %}
-      {% set left_column_classes = left_column_classes|merge(['column--70'])%}
-      {% set right_column_classes = right_column_classes|merge(['column--30']) %}
-    {% else %}
-      {% set left_column_classes = left_column_classes|merge(['column--50'])%}
-      {% set right_column_classes = right_column_classes|merge(['column--50']) %}
-    {% endif %}
+        {# // Set the correct classes for the columns. #}
+        {% if design == "30-70" %}
+          {% set left_column_classes = left_column_classes|merge(['column--30'])%}
+          {% set right_column_classes = right_column_classes|merge(['column--70']) %}
+        {% elseif design == "70-30" %}
+          {% set left_column_classes = left_column_classes|merge(['column--70'])%}
+          {% set right_column_classes = right_column_classes|merge(['column--30']) %}
+        {% else %}
+          {% set left_column_classes = left_column_classes|merge(['column--50'])%}
+          {% set right_column_classes = right_column_classes|merge(['column--50']) %}
+        {% endif %}
 
-    <div class="columns-wrapper">
-      <div class="{{ left_column_classes|join(' ') }}">
-        {{ content.field_columns_left_column }}
-      </div>
+        <div class="columns__content">
+          <div class="{{ left_column_classes|join(' ') }}">
+            {{ content.field_columns_left_column }}
+          </div>
 
-      <div class="{{ right_column_classes|join(' ') }}">
-        {{ content.field_columns_right_column }}
-      </div>
-    </div>
+          <div class="{{ right_column_classes|join(' ') }}">
+            {{ content.field_columns_right_column }}
+          </div>
+        </div>
+      {% endblock %}
+    {% endembed %}
   </div>
 {% endblock paragraph %}
