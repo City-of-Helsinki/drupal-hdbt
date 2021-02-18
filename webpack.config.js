@@ -19,6 +19,7 @@ module.exports = {
       ignore: [
         './src/js/component-library.js',
         './src/js/gallery-settings.js',
+        './src/js/handorgel-settings.js',
       ]
     }),
     "component-library": [
@@ -30,6 +31,9 @@ module.exports = {
     ],
     "gallery-settings": [
       "./src/js/gallery-settings.js"
+    ],
+    "accordion-settings": [
+      "./src/js/accordion-settings.js"
     ],
   },
   output: {
@@ -214,6 +218,12 @@ module.exports = {
           "context": "./",
           "from": "node_modules/tiny-slider/dist/tiny-slider.css",
           "to": path.resolve(__dirname, "dist") + "/css/tiny-slider/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/handorgel/lib/js/umd/handorgel.min.js",
+          "to": path.resolve(__dirname, "dist") + "/js/handorgel/",
           "force": true,
           "flatten": true
         }

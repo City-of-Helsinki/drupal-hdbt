@@ -40,6 +40,7 @@
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
+    "handorgel": "^0.5.0",
     "hds-core": "^0.17",
     "hds-design-tokens": "^0.17",
     "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/master.tar.gz",
