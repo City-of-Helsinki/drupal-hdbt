@@ -1,5 +1,5 @@
 .highlighted {
-  @include font-size(24px, $lineheight-m);
+  @include font-size(24px, 28px);
   display: block;
   font-weight: $font-weight-regular;
   margin: $spacing-triple 0;
@@ -7,7 +7,7 @@
   position: relative;
 
   @include breakpoint($breakpoint-l) {
-    @include font-size(36px);
+    @include font-size(36px, 43px);
     margin: $spacing-quadruple 0;
     padding: 0 0 0 $spacing-double + $spacing-half;
   }
