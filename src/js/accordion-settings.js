@@ -1,11 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Find all gallery paragraphs.
+  // Bind closing function to the additional close button at the bottom of
+  // the content. For reasons unknown to man the close button cannot be
+  // actual button. If you change it from span to button the click event
+  // is no longer registered and the functionality doesn't work.
+  function closeFold(folds) {
+    let closeButton = folds.content.querySelector(
+      '.accordion-item__button--close'
+    );
+    closeButton.addEventListener('click', function () {
+      folds.close();
+    });
+  }
+
+  // Find all accordion paragraphs.
   const accordions = document.getElementsByClassName('accordion');
 
-  for (let accordion of accordions) {
+  for (let singleAccordion of accordions) {
     /* global handorgel */
-    const singleAccordion = new handorgel(
-      accordion.querySelector('.handorgel'),
+    const accordion = new handorgel(
+      singleAccordion.querySelector('.handorgel'),
       {
         // whether multiple folds can be opened at once
         multiSelectable: false,
@@ -44,14 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     );
 
-    const closeButtons = accordion.querySelectorAll(
-      '.accordion-item__button--close'
-    );
+    // Get all the folds associated to the accordion.
+    let folds = accordion.folds;
 
-    for (let closeButton of closeButtons) {
-      closeButton.addEventListener('click', function () {
-        singleAccordion.close();
-      });
-    }
+    // Go through each fold.
+    folds.forEach(closeFold);
   }
 });

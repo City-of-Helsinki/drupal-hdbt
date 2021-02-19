@@ -19,7 +19,7 @@ module.exports = {
       ignore: [
         './src/js/component-library.js',
         './src/js/gallery-settings.js',
-        './src/js/handorgel-settings.js',
+        './src/js/accordion-settings.js',
       ]
     }),
     "component-library": [

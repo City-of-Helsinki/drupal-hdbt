@@ -47,7 +47,7 @@
   <div class="accordion-item__content handorgel__content">
     <div class="accordion-item__content__inner handorgel__content__inner">
       {{ content.field_accordion_item_content}}
-      <button class="accordion-item__button accordion-item__button--close">{{ 'Close'|t }}{% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', label: 'Close'|t } %}</button>
+      <span class="accordion-item__button accordion-item__button--close" role="button">{{ 'Close'|t }}{% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', label: 'Close'|t } %}</span>
     </div>
   </div>
 {% endblock paragraph %}
