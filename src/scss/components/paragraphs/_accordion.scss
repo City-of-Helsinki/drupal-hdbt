@@ -77,7 +77,7 @@
       content: "";
       height: 30px;
       position: absolute;
-      right: 0;
+      right: 4px; // Move the icon slightly to the left
       top: $spacing-and-half - 1px; // Adjusting position because slightly different line-height
       width: 30px;
 
@@ -92,11 +92,11 @@
   .accordion-item__button--close {
     @include font-size(16px, 24px);
     align-items: center;
-    bottom: 6px;
+    bottom: 4px;
     display: flex;
     padding: $spacing-half;
     position: absolute;
-    right: 0;
+    right: -1px; // To adjust the positioning so that the element lines up nicely.
 
     &:focus {
       border-radius: 2px;
@@ -115,7 +115,7 @@
   }
 
   .accordion-item__content__inner {
-    padding: 0 0 $spacing-and-half;
+    padding: 0 0 $spacing-triple;
     position: relative;
 
     @include breakpoint($breakpoint-l) {
@@ -153,15 +153,21 @@
   }
 
   .columns {
-    padding: 0;
+    &:first-child .columns__container {
+      padding-top: 0;
+    }
 
-    &:first-child {
-      .columns-wrapper:first-child {
-        margin-top: 0;
-      }
+    .columns__container {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
     }
 
     .columns__title {
+      margin-top: 0;
+    }
+
+    .columns__content:first-child {
       margin-top: 0;
     }
 
@@ -208,7 +214,7 @@
       }
 
       &::after {
-        right: 12px;// To remove the extra spacing that the icons have on the right.
+        right: $spacing-double + $spacing-quarter;
       }
     }
   }
@@ -221,10 +227,6 @@
     background-color: $color-black-5;
     padding-left: $spacing-double;
     padding-right: $spacing-double;
-
-    .accordion-item__button--close {
-      right: -12px; // To line up the button nicely with content.
-    }
   }
 }
 
