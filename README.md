@@ -81,7 +81,7 @@ The version control for this theme can be found from [https://github.com/City-of
 ### My javascript has unexpected errors when loading a page in Drupal.
 
 If you have compiled the code with dev-flag (`nmp run dev`), then the sourcemaps expects the JS files to be found in correct places.
-This means that JS preprocessing (minifying) should be turned off. Just add the following lines to local.settings.php. 
+This means that JS preprocessing (minifying) should be turned off. Just add the following lines to local.settings.php.
 ```
 $config['system.performance']['css']['preprocess'] = 0;
 $config['system.performance']['js']['preprocess'] = 0;
@@ -122,3 +122,26 @@ $config['system.performance']['css']['preprocess'] = 0;
 $config['system.performance']['js']['preprocess'] = 0;
 $config['system.logging']['error_level'] = 'some';
 ```
+## Component documentation
+
+### Accordion paragraph
+The accordion paragraph uses handorgel-javascript for the accordion functionality (https://github.com/oncode/handorgel)
+and it is configured in the accordion-settings.js file under the theme. The handorger library is set up as a separate,
+stand-alone library in the theme and an accordion library is set up to provide the settings file with dependency
+to the handorgel-library.
+
+Each accordion paragraph consists of accordion items and each of these items is also a paragraph, so it is a paragraph-
+inception like we like to call it.
+
+### Gallery paragraph
+The Gallery paragraph is done using two separate javascript libraries: Splide (https://github.com/Splidejs/splide) and
+Tiny Slider (https://github.com/ganlanyuan/tiny-slider). The Splide library is used to provide the actual gallery
+functionality so it handles displaying the big images with arrows on both sides to move the slides back and forward.
+The Splide library had all the tools to create thumbnails under the main gallery and link them, but the thumbnail-list
+was not scrollable. To make it scrollable we brought in Tiny Slider and fused the two libraries to work together so
+that thumbnails can be scrolled using the Tiny Slider. Both Splide and Tiny Slider are set up as a separate, stand-alone
+libraries in the theme and they are brought together using gallery library that has dependency to both. The library
+configuration and fusing is done in gallery-settings.js under the theme.
+
+Much like the accordion the gallery also consist of gallery paragraph that in turn consists of gallery slide paragraphs.
+This means that also the gallery paragraph is so-called paragraph-inception.

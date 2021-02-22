@@ -1,0 +1,255 @@
+.accordion {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-quadruple;
+  }
+
+  .accordion__container {
+    padding-top: $spacing-double;
+
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-quadruple;
+    }
+  }
+
+  .accordion__wrapper {
+    border-bottom: 1px solid $color-black-20;
+  }
+
+  .accordion-item__header {
+    @include font-size(24px, 28px);
+    border-top: 1px solid $color-black-20;
+    font-weight: $font-weight-regular;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(36px, 43px);
+    }
+
+    // Accordion open state.
+    &.handorgel__header--open .accordion-item__button--toggle {
+      background-color: transparent;
+
+      &::after {
+        background-image: url('../icons/hds/ui/angle-up.svg');
+      }
+    }
+
+    // Accordion focused state.
+    &.handorgel__header--focus .accordion-item__button--toggle {
+      position: relative;
+
+      &::after {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black-90;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .accordion-item__button {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .accordion-item__button--toggle {
+    @include font-size(24px, 28px);
+    border: none;
+    padding: $spacing-and-half 50px $spacing-and-half 0;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(36px, 43px);
+      padding: $spacing-double 50px $spacing-double 0;
+    }
+
+    &::after {
+      background-image: url('../icons/hds/ui/angle-down.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      content: "";
+      height: 30px;
+      position: absolute;
+      right: 4px; // Move the icon slightly to the left
+      top: $spacing-and-half - 1px; // Adjusting position because slightly different line-height
+      width: 30px;
+
+      @include breakpoint($breakpoint-l) {
+        height: 50px;
+        top: $spacing-double - 3;  // Adjusting position because slightly different line-height
+        width: 50px;
+      }
+    }
+  }
+
+  .accordion-item__button--close {
+    @include font-size(16px, 24px);
+    align-items: center;
+    bottom: 4px;
+    display: flex;
+    padding: $spacing-half;
+    position: absolute;
+    right: -1px; // To adjust the positioning so that the element lines up nicely.
+
+    &:focus {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black-90;
+      outline: none;
+      pointer-events: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .accordion-item__content {
+    border: none;
+  }
+
+  .accordion-item__content__inner {
+    padding: 0 0 $spacing-triple;
+    position: relative;
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-triple;
+    }
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // This heading-level shouldn't probably semantically ever be used since the main header is h2 or lower.
+  h2 {
+    @include font-size(24px, 28px);
+    font-weight: $font-weight-regular;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(36px, 43px);
+    }
+  }
+
+  h3 {
+    @include font-size(22px, 26px);
+    font-weight: $font-weight-regular;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(28px, 36px);
+    }
+  }
+
+  h2, h3, h4, h5, h6 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .columns {
+    &:first-child .columns__container {
+      padding-top: 0;
+    }
+
+    .columns__container {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+    }
+
+    .columns__title {
+      margin-top: 0;
+    }
+
+    .columns__content:first-child {
+      margin-top: 0;
+    }
+
+    .list-of-links {
+      margin-top: 0;
+
+      .list-of-links__container {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .text {
+    &:first-child .text__container {
+      padding-top: 0;
+    }
+
+    .text__container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .text__text-content {
+      padding-left: 0;
+
+      > *:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// Grey accordion styles
+.accordion--grey {
+  .accordion-item__header {
+    background-color: $color-black-5;
+    border-color: $color-white;
+
+    .accordion-item__button--toggle {
+      padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-double;
+
+      @include breakpoint($breakpoint-l) {
+        padding: $spacing-double ($spacing-double + 50px) $spacing-double $spacing-double;
+      }
+
+      &::after {
+        right: $spacing-double + $spacing-quarter;
+      }
+    }
+  }
+
+  .accordion__wrapper {
+    border-color: $color-black-5;
+  }
+
+  .accordion-item__content {
+    background-color: $color-black-5;
+    padding-left: $spacing-double;
+    padding-right: $spacing-double;
+  }
+}
+
+// Handorgel library style overrides
+.accordion .handorgel {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+
+  .handorgel__header--open .handorgel__header__button {
+    background-color: transparent;
+  }
+
+  .handorgel__header--focus .handorgel__header__button {
+    background-color: transparent;
+  }
+
+  .handorgel__header__button {
+    background-color: transparent;
+    border: none;
+  }
+
+  .handorgel__content {
+    border: 0;
+  }
+}

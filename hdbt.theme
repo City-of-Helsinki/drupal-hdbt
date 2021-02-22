@@ -203,6 +203,17 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['list_of_links_design'] = $design;
   }
 
+  if ($paragraph_type == 'accordion') {
+    $variables['#attached']['library'][] = 'hdbt/accordion';
+  }
+
+  // Check if the paragraph is type accordion and tell its children the heading level.
+  if ($paragraph_type == 'accordion_item') {
+    $paragraph_parent = $paragraph->getParentEntity();
+    $accordion_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
+    $variables['accordion_heading_level'] = $accordion_heading_level;
+  }
+
   if ($paragraph_type == 'gallery') {
     $variables['#attached']['library'][] = 'hdbt/gallery';
 

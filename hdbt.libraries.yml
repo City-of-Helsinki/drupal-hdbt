@@ -38,6 +38,20 @@ gallery:
     - hdbt/splide
     - hdbt/tiny-slider
 
+handorgel:
+  version: 0.5.0
+  js:
+    dist/js/handorgel/handorgel.min.js: {}
+  css:
+    theme:
+      dist/css/handorgel/handorgel.min.css: {}
+
+accordion:
+  version: 1.x
+  js:
+    dist/js/accordion-settings.min.js: {}
+  dependencies:
+    - hdbt/handorgel
 
 global-styling:
   version: 1.x
