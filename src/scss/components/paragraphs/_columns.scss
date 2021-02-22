@@ -1,63 +1,27 @@
 .columns {
-  margin: $spacing-double auto 0;
-  max-width: 100%;
-  padding: 0 $spacing-and-half;
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+  }
+}
+
+.columns__container {
+  @include breakpoint(max-width $breakpoint-s) {
+    max-width: 100%;
+  }
+}
+
+.columns__content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing;
 
   @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-triple;
+    flex-direction: row;
+    margin: $spacing-double -#{$spacing-double} 0;
     max-width: $content-area-wrapper-width-max;
-    padding: 0 $spacing-double;
-  }
-
-  .columns__title {
-    display: block;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  .columns-wrapper {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin-top: $spacing;
-
-    @include breakpoint($breakpoint-m) {
-      flex-direction: row;
-      margin: $spacing-double -#{$spacing-double} 0;
-      max-width: $content-area-wrapper-width-max;
-    }
-  }
-
-  .columns__column {
-    align-self: stretch;
-
-    @include breakpoint($breakpoint-m) {
-      margin: 0 $spacing-double;
-    }
-
-    &.column--50 {
-      @include breakpoint($breakpoint-m) {
-        width: 50%;
-      }
-    }
-    &.column--30 {
-      @include breakpoint($breakpoint-m) {
-        width: 30%
-      }
-    }
-    &.column--70 {
-      @include breakpoint($breakpoint-m) {
-        width: 70%;
-      }
-    }
-
-    + .columns__column {
-      margin-top: $spacing-double;
-
-      @include breakpoint($breakpoint-m) {
-        margin-top: 0;
-      }
-    }
   }
 
   // Overrides for text paragraph styles.
@@ -72,5 +36,42 @@
       padding-left: 0;
     }
   }
+}
 
+.columns__title {
+  display: block;
+  margin-right: auto;
+  width: 100%;
+}
+
+.columns__column {
+  align-self: stretch;
+
+  @include breakpoint($breakpoint-m) {
+    margin: 0 $spacing-double;
+  }
+
+  &.column--50 {
+    @include breakpoint($breakpoint-m) {
+      width: 50%;
+    }
+  }
+  &.column--30 {
+    @include breakpoint($breakpoint-m) {
+      width: 30%
+    }
+  }
+  &.column--70 {
+    @include breakpoint($breakpoint-m) {
+      width: 70%;
+    }
+  }
+
+  + .columns__column {
+    margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: 0;
+    }
+  }
 }
