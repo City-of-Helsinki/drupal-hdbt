@@ -58,12 +58,14 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'banner'} %}
       {% block container_content %}
-        <h2 class="banner__title">{{ content.field_banner_title }}</h2>
-        {% if content.field_banner_desc|render %}
-          <div class="banner__content">{{ content.field_banner_desc }}</div>
-        {% endif %}
+        <div class="banner__wrapper">
+          <h2 class="banner__title">{{ content.field_banner_title }}</h2>
+          {% if content.field_banner_desc|render %}
+            <div class="banner__content">{{ content.field_banner_desc }}</div>
+          {% endif %}
+        </div>
         {% if content.field_banner_link|render %}
-          <a href="{{ link }}" class="hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
+          <a href="{{ link }}" class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
             {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
             <span class="hds-button__label">{{ text }}</span>
             {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
