@@ -1,0 +1,41 @@
+.banner {
+  background-color: var(--hdbt-theme-color);
+  margin-top: $spacing-double;
+  padding: $spacing-triple 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+  }
+
+  .banner__title {
+    margin-top: 0;
+  }
+}
+
+$colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
+
+@each $color in $colors {
+  .banner--color-#{$color} {
+    color: var(--hdbt-text-color--#{$color});
+
+    .hds-button--primary {
+      --background-color: var(--hdbt-text-color--#{$color});
+      --background-color-hover: var(--hdbt-text-color--#{$color});
+      --background-color-focus: var(--hdbt-text-color--#{$color});
+      --background-color-hover-focus: var(--hdbt-text-color--#{$color});
+      --background-color-disabled: var(--color-black-20);
+      --border-color: var(--hdbt-text-color--#{$color});
+      --border-color-hover: var(--hdbt-text-color--#{$color});
+      --border-color-focus: var(--hdbt-text-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-text-color--#{$color});
+      --border-color-disabled: var(--color-black-20);
+      --color: var(--hdbt-button-text-color--#{$color});
+      --color-hover: var(--hdbt-button-text-color--#{$color});
+      --color-focus: var(--hdbt-button-text-color--#{$color});
+      --color-hover-focus: var(--hdbt-button-text-color--#{$color});
+      --color-disabled: var(--color-black);
+      --focus-outline-color: var(--hdbt-text-color--#{$color});
+      --submit-input-focus-gutter-color: var(--hdbt-button-text-color--#{$color});
+    }
+  }
+}

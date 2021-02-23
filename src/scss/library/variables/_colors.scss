@@ -24,4 +24,18 @@ $body-bg-color: $color-white;
   --hdbt-text-color--fog: var(--color-black);
   --hdbt-text-color--summer: var(--color-black);
   --hdbt-text-color--suomenlinna: var(--color-black);
+
+  // Default button colors based on background colors.
+  --hdbt-button-text-color--coat-of-arms: var(--color-black);
+  --hdbt-button-text-color--brick: var(--color-black);
+  --hdbt-button-text-color--bus: var(--color-black);
+  --hdbt-button-text-color--metro: var(--color-black);
+  --hdbt-button-text-color--tram: var(--color-black);
+  --hdbt-button-text-color--gold: var(--color-white);
+  --hdbt-button-text-color--silver: var(--color-white);
+  --hdbt-button-text-color--copper: var(--color-white);
+  --hdbt-button-text-color--engel: var(--color-white);
+  --hdbt-button-text-color--fog: var(--color-white);
+  --hdbt-button-text-color--summer: var(--color-white);
+  --hdbt-button-text-color--suomenlinna: var(--color-white);
 }
