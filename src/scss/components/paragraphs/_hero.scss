@@ -27,7 +27,22 @@ $koro-height: 50px;
   }
 
   .hero__cta {
+    display: flex;
+    flex-flow: column;
     margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-s) {
+      flex-flow: row;
+      margin: $spacing-double -#{$spacing-half} 0;
+    }
+
+    .hero__button {
+      margin: $spacing-half 0 0;
+
+      @include breakpoint($breakpoint-s) {
+        margin: $spacing-half $spacing-half 0;
+      }
+    }
   }
 
   .hero__description {

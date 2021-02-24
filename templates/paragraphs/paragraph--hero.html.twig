@@ -75,6 +75,24 @@
               </div>
             {% endif %}
           {% endif %}
+
+          {% if
+            design == "background-image" and
+            content.field_hero_link|render
+          %}
+            {% set link_type = content.field_hero_link_design[0]['#markup'] %}
+            <div class="hero__cta">
+              {% for key, item in content.field_hero_link if key|first != '#' %}
+                {% set link = item['#url'] %}
+                {% set text = item['#title'] %}
+                <a href="{{ link }}" class="hero__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
+                  {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
+                  <span class="hds-button__label">{{ text }}</span>
+                  {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       {% endblock %}
     {% endembed %}
