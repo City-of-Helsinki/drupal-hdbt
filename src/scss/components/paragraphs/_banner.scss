@@ -1,0 +1,154 @@
+.banner {
+  background-color: var(--hdbt-theme-color);
+  margin-top: $spacing-double;
+  padding: $spacing-triple 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+  }
+
+  .banner__title {
+    @include font-size(24px, 29px);
+    margin-top: 0;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(36px, 43px);
+    }
+  }
+
+  .banner__container {
+    padding-top: 0;
+  }
+
+  .banner__button {
+    margin: $spacing-double auto 0;
+  }
+}
+
+.banner--design-align-center {
+  text-align: center;
+
+  .banner__container {
+    max-width: $content-width-max;
+  }
+}
+
+.banner--design-align-left {
+  .banner__container {
+    max-width: 620px + $spacing-triple; // According to layouts.
+
+    @include breakpoint($breakpoint-l) {
+      max-width: 700px + $spacing-quadruple;
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: $content-area-wrapper-width-max;
+    }
+  }
+
+  .banner__title,
+  .banner__content {
+    max-width: 620px; // According to layouts.
+  }
+
+  .banner__wrapper {
+    @include breakpoint($breakpoint-xl) {
+      width: 60%;
+    }
+  }
+
+  .banner__button {
+    @include breakpoint($breakpoint-xl) {
+      display: flex;
+      margin-top: 0;
+    }
+  }
+
+  // The supplementary button just won't work with the focus and default layout in the left aligned layout
+  // so these changes are required to make it look even a bit more decent.
+  .banner__button.hds-button--supplementary {
+    --min-size: 24px;
+    margin-left: calc(-1 * var(--spacing-2-xs));
+
+    @include breakpoint($breakpoint-xl) {
+      margin-left: 0;
+    }
+
+    .hds-button__label {
+      padding: 0;
+    }
+  }
+}
+
+$colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
+
+@each $color in $colors {
+  .banner--color-#{$color} {
+    color: var(--hdbt-text-color--#{$color});
+
+    .hds-button--primary {
+      --background-color: var(--hdbt-text-color--#{$color});
+      --background-color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --background-color-focus: var(--hdbt-text-color--#{$color});
+      --background-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --background-color-disabled: var(--color-black-20);
+      --border-color: var(--hdbt-text-color--#{$color});
+      --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-focus: var(--hdbt-text-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-disabled: var(--color-black-20);
+      --color: var(--hdbt-button-text-color--#{$color});
+      --color-hover: var(--hdbt-button-text-color--#{$color});
+      --color-focus: var(--hdbt-button-text-color--#{$color});
+      --color-hover-focus: var(--hdbt-button-text-color--#{$color});
+      --color-disabled: var(--color-black);
+      --focus-outline-color: var(--hdbt-text-color--#{$color});
+      --submit-input-focus-gutter-color: var(--hdbt-button-text-color--#{$color});
+    }
+
+    .hds-button--secondary {
+      --background-color: transparent;
+      --background-color-hover: var(--color-#{$color}-dark);
+      --background-color-focus: transparent;
+      --background-color-hover-focus: var(--color-#{$color}-dark);
+      --background-color-disabled: transparent;
+      --border-color: var(--hdbt-text-color--#{$color});
+      --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-focus: var(--hdbt-text-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-disabled: var(--hdbt-text-color--#{$color});
+      --color: var(--hdbt-text-color--#{$color});
+      --color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --color-focus: var(--hdbt-text-color--#{$color});
+      --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+    }
+
+    .hds-button--supplementary {
+      --background-color: transparent;
+      --background-color-hover: transparent;
+      --background-color-focus: transparent;
+      --background-color-hover-focus: transparent;
+      --background-color-disabled: transparent;
+      --border-color: transparent;
+      --border-color-hover: transparent;
+      --border-color-focus: var(--hdbt-text-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-text-color--#{$color});
+      --border-color-disabled: transparent;
+      --color: var(--hdbt-text-color--#{$color});
+      --color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --color-focus: var(--hdbt-text-color--#{$color});
+      --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --color-disabled: var(--hdbt-text-color--#{$color});
+      --focus-outline-color: transparent;
+      --submit-input-focus-gutter-color: transparent;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

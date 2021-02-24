@@ -1,12 +1,9 @@
 // Color variables from HDS.
 @import "~hds-design-tokens/lib/color/all.scss";
 
-$hdbt-color-black: #121212;
-$hdbt-color-white: #f7f7f8;
-
-$body-bg-color: $color-white;
-
 :root {
+  --hdbt-color-black: #121212;
+
   // Default color variables.
   --hdbt-theme-color: var(--color-black);
   --hdbt-text-color: var(--color-white);
@@ -17,11 +14,44 @@ $body-bg-color: $color-white;
   --hdbt-text-color--bus: var(--color-white);
   --hdbt-text-color--metro: var(--color-white);
   --hdbt-text-color--tram: var(--color-white);
-  --hdbt-text-color--gold: var(--color-black);
-  --hdbt-text-color--silver: var(--color-black);
-  --hdbt-text-color--copper: var(--color-black);
-  --hdbt-text-color--engel: var(--color-black);
-  --hdbt-text-color--fog: var(--color-black);
-  --hdbt-text-color--summer: var(--color-black);
-  --hdbt-text-color--suomenlinna: var(--color-black);
+  --hdbt-text-color--gold: var(--hdbt-color-black);
+  --hdbt-text-color--silver: var(--hdbt-color-black);
+  --hdbt-text-color--copper: var(--hdbt-color-black);
+  --hdbt-text-color--engel: var(--hdbt-color-black);
+  --hdbt-text-color--fog: var(--hdbt-color-black);
+  --hdbt-text-color--summer: var(--hdbt-color-black);
+  --hdbt-text-color--suomenlinna: var(--hdbt-color-black);
+
+  // Default button colors based on background colors.
+  --hdbt-button-text-color--coat-of-arms: var(--hdbt-color-black);
+  --hdbt-button-text-color--brick: var(--hdbt-color-black);
+  --hdbt-button-text-color--bus: var(--hdbt-color-black);
+  --hdbt-button-text-color--metro: var(--hdbt-color-black);
+  --hdbt-button-text-color--tram: var(--hdbt-color-black);
+  --hdbt-button-text-color--gold: var(--color-white);
+  --hdbt-button-text-color--silver: var(--color-white);
+  --hdbt-button-text-color--copper: var(--color-white);
+  --hdbt-button-text-color--engel: var(--color-white);
+  --hdbt-button-text-color--fog: var(--color-white);
+  --hdbt-button-text-color--summer: var(--color-white);
+  --hdbt-button-text-color--suomenlinna: var(--color-white);
+
+  // Default button highlight colors based on background colors.
+  --hdbt-button-highlight-color--coat-of-arms: var(--color-black-10);
+  --hdbt-button-highlight-color--brick: var(--color-black-10);
+  --hdbt-button-highlight-color--bus: var(--color-black-10);
+  --hdbt-button-highlight-color--metro: var(--color-black-10);
+  --hdbt-button-highlight-color--tram: var(--color-black-10);
+  --hdbt-button-highlight-color--gold: var(--color-black);
+  --hdbt-button-highlight-color--silver: var(--color-black);
+  --hdbt-button-highlight-color--copper: var(--color-black);
+  --hdbt-button-highlight-color--engel: var(--color-black);
+  --hdbt-button-highlight-color--fog: var(--color-black);
+  --hdbt-button-highlight-color--summer: var(--color-black);
+  --hdbt-button-highlight-color--suomenlinna: var(--color-black);
 }
+
+$hdbt-color-black: var(--hdbt-color-black);
+$hdbt-color-white: #f7f7f8;
+
+$body-bg-color: $color-white;
