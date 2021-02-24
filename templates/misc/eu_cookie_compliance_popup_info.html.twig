@@ -54,6 +54,13 @@
     {% endif %}
 
     <div class="eu-cookie-compliance-all-buttons">
+      <div id="popup-buttons" class="eu-cookie-compliance-buttons{% if cookie_categories %} eu-cookie-compliance-has-categories{% endif %}">
+        <button type="button" class="{{ primary_button_class }} hds-button hds-button--primary"><span class="hds-button__label">{{ agree_button }}</span></button>
+        {% if secondary_button_label %}
+          <button type="button" class="{{ secondary_button_class }}">{{ secondary_button_label }}</button>
+        {% endif %}
+      </div>
+
       {% if cookie_categories %}
         <div id="eu-cookie-compliance-categories" class="eu-cookie-compliance-categories">
 
@@ -74,13 +81,6 @@
           {% endif %}
         </div>
       {% endif %}
-
-      <div id="popup-buttons" class="eu-cookie-compliance-buttons{% if cookie_categories %} eu-cookie-compliance-has-categories{% endif %}">
-        <button type="button" class="{{ primary_button_class }} hds-button hds-button--primary"><span class="hds-button__label">{{ agree_button }}</span></button>
-        {% if secondary_button_label %}
-          <button type="button" class="{{ secondary_button_class }}">{{ secondary_button_label }}</button>
-        {% endif %}
-      </div>
     </div>
   </div>
 </div>
