@@ -114,10 +114,6 @@ $koro-height: 50px;
 
     // Negate the padding on the right in supplementary button.
     margin-left: calc(-1 * (var(--spacing-2-xs) + var(--spacing-s) + var(--border-width)));
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 

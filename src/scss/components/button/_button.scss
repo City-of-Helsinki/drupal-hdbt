@@ -1,3 +1,32 @@
 a.hds-button {
   text-decoration: none;
+
+  // The supplementary button just won't work with the focus and default layout in the left aligned layout
+  // so these changes are required to make it look even a bit more decent.
+  &.hds-button--supplementary {
+    --min-size: 24px;
+    margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
+
+    @include breakpoint($breakpoint-xl) {
+      margin-left: 0;
+    }
+
+    .hds-button__label {
+      line-height: $spacing-and-half; // To avoid too low link buttons
+      padding: 0;
+
+      &:only-child {
+        margin: 0;
+      }
+    }
+
+    .hds-icon:last-of-type:not(:first-of-type) {
+      margin-left: $spacing-quarter;
+      margin-right: -$spacing-quarter;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
