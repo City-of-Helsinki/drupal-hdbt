@@ -48,6 +48,11 @@ body {
     > h2 {
       @include font-size(24px, 29px);
       margin-top: 0;
+      max-width: $content-width-max;
+    }
+
+    > p {
+      max-width: $content-width-max;
     }
   }
 
