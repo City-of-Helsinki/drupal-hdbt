@@ -5,6 +5,7 @@ a.hds-button {
   // so these changes are required to make it look even a bit more decent.
   &.hds-button--supplementary {
     --min-size: 24px;
+    justify-content: flex-start;
     margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
 
     @include breakpoint($breakpoint-xl) {
