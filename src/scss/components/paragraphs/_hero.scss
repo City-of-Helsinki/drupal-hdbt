@@ -51,6 +51,14 @@ $koro-height: 50px;
         }
       }
     }
+
+    .hds-button--supplementary {
+      margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
+
+      @include breakpoint($breakpoint-s) {
+        margin-left: 0;
+      }
+    }
   }
 
   .hero__description {

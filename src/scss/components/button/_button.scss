@@ -8,10 +8,6 @@ a.hds-button {
     justify-content: flex-start;
     margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
 
-    @include breakpoint($breakpoint-xl) {
-      margin-left: 0;
-    }
-
     .hds-button__label {
       line-height: $spacing-and-half; // To avoid too low link buttons
       padding: 0;

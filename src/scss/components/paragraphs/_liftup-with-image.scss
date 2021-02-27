@@ -3,10 +3,10 @@
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-triple;
+    position: relative;
   }
   .liftup-with-image__container {
     padding-top: 0;
-    position: relative;
   }
 
   .liftup-with-image__image {
@@ -112,6 +112,22 @@
     }
   }
 
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .liftup-with-image__image {
+    margin: 0 auto;
+    max-width: $content-area-wrapper-width-max;
+    padding: 0 $spacing-and-half;
+  }
+
   .liftup-with-image__content {
     background-color: var(--hdbt-theme-color);
 
@@ -160,6 +176,53 @@
 
 .liftup-with-image--design-background-text-on-right,
 .liftup-with-image--design-background-text-on-left {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .liftup-with-image__content {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include breakpoint($breakpoint-l) {
+      background-color: $color-white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: $spacing-quadruple 0;
+      min-height: 350px; // According to layouts
+      padding-left: $spacing-and-half;
+      padding-right: $spacing-and-half;
+      width: 460px; // According to layouts
+    }
+  }
+
+  .liftup-with-image__image {
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      line-height: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    img {
+      @include breakpoint($breakpoint-l) {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
+
   .hds-button--primary {
     --background-color: var(--hdbt-color-black);
     --background-color-hover: var(--color-black);
@@ -219,6 +282,22 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+.liftup-with-image--design-background-text-on-right {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.liftup-with-image--design-background-text-on-left {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      justify-content: flex-start;
     }
   }
 }

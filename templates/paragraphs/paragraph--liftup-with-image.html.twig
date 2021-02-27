@@ -52,31 +52,31 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    <div class="liftup-with-image__image">
+      {% if content.field_liftup_with_image_image|render %}
+        {% for key, image in content.field_liftup_with_image_image %}
+          {% if image.entity %}
+            {% set media = image.entity %}
+            {% set alt = media.fields.field_media_image.alt %}
+            {% if
+              design == "image-on-right" or
+              design == "image-on-left"
+            %}
+              {% set image =
+                drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
+              %}
+            {% else %}
+              {% set image =
+                drupal_image(media.fields.field_media_image.entity.uri.value, 'hero__background', {alt: alt}, responsive=true)
+              %}
+            {% endif %}
+            {{ image }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'liftup-with-image'} %}
       {% block container_content %}
-        <div class="liftup-with-image__image">
-          {% if content.field_liftup_with_image_image|render %}
-            {% for key, image in content.field_liftup_with_image_image %}
-              {% if image.entity %}
-                {% set media = image.entity %}
-                {% set alt = media.fields.field_media_image.alt %}
-                {% if
-                  design == "image-on-right" or
-                  design == "image-on-left"
-                %}
-                  {% set image =
-                    drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
-                  %}
-                {% else %}
-                  {% set image =
-                    drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
-                  %}
-                {% endif %}
-                {{ image }}
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-        </div>
         <div class="liftup-with-image__content">
           <h2 class="liftup-with-image__title">{{ content.field_liftup_with_image_title }}</h2>
           {% if content.field_liftup_with_image_desc|render %}
