@@ -48,6 +48,10 @@
     &.liftup-with-image--color-#{$color} {
       color: var(--hdbt-text-color--#{$color});
 
+      a {
+        color: var(--hdbt-text-color--#{$color});
+      }
+
       .hds-button--primary {
         --background-color: var(--hdbt-text-color--#{$color});
         --background-color-hover: var(--hdbt-button-highlight-color--#{$color});
@@ -221,6 +225,10 @@
         width: 100%;
       }
     }
+  }
+
+  a {
+    color: var(--hdbt-color-black);
   }
 
   .hds-button--primary {

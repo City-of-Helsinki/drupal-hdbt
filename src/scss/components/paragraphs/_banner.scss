@@ -82,6 +82,10 @@ $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog
   .banner--color-#{$color} {
     color: var(--hdbt-text-color--#{$color});
 
+    a {
+      color: var(--hdbt-text-color--#{$color});
+    }
+
     .hds-button--primary {
       --background-color: var(--hdbt-text-color--#{$color});
       --background-color-hover: var(--hdbt-button-highlight-color--#{$color});
