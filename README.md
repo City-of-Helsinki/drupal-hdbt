@@ -122,6 +122,12 @@ $config['system.performance']['css']['preprocess'] = 0;
 $config['system.performance']['js']['preprocess'] = 0;
 $config['system.logging']['error_level'] = 'some';
 ```
+### I get some mysterious 404 errors on console after building my theme using the 'npm run dev'
+The issue here is actually in the combination of source maps and theme js aggregation. The system cannot find the files
+associated with source maps because the aggregation names the files differently. What you need to do is disable js
+aggregation from Drupal. Go to /admin/config/development/performance and uncheck 'Aggregate JavaScript files'. Clear
+site caches and you should be able to continue with your work.
+
 ## Component documentation
 
 ### Accordion paragraph
