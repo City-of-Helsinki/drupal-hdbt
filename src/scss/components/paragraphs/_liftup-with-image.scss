@@ -49,7 +49,7 @@
       color: var(--hdbt-text-color--#{$color});
 
       a {
-        color: var(--hdbt-text-color--#{$color});
+        --hdbt-default-link-color: var(--hdbt-text-color--#{$color});
       }
 
       .hds-button--primary {
