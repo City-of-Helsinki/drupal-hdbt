@@ -228,7 +228,7 @@
   }
 
   a {
-    color: var(--hdbt-color-black);
+    --hdbt-default-link-color: var(--color-white);
   }
 
   .hds-button--primary {
