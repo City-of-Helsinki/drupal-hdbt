@@ -1,6 +1,7 @@
 .banner {
   background-color: var(--hdbt-theme-color);
-  margin-top: $spacing-double;
+  margin: $spacing-double auto 0;
+  max-width: $container-width-xl; // 1200px since we don't have extra paddings on the sides here.
   padding: $spacing-triple 0;
 
   @include breakpoint($breakpoint-l) {
@@ -51,11 +52,11 @@
   }
 
   .banner__title,
-  .banner__content {
-    max-width: 620px; // According to layouts.
+  .banner__desc {
+    max-width: 700px; // According to layouts.
   }
 
-  .banner__wrapper {
+  .banner__content {
     @include breakpoint($breakpoint-xl) {
       width: 60%;
     }
@@ -66,20 +67,11 @@
       display: flex;
       margin-top: 0;
     }
-  }
 
-  // The supplementary button just won't work with the focus and default layout in the left aligned layout
-  // so these changes are required to make it look even a bit more decent.
-  .banner__button.hds-button--supplementary {
-    --min-size: 24px;
-    margin-left: calc(-1 * var(--spacing-2-xs));
-
-    @include breakpoint($breakpoint-xl) {
-      margin-left: 0;
-    }
-
-    .hds-button__label {
-      padding: 0;
+    &.hds-button--supplementary {
+      @include breakpoint($breakpoint-xl) {
+        margin-left: auto;
+      }
     }
   }
 }
@@ -89,6 +81,10 @@ $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog
 @each $color in $colors {
   .banner--color-#{$color} {
     color: var(--hdbt-text-color--#{$color});
+
+    a {
+      --hdbt-default-link-color: var(--hdbt-text-color--#{$color});
+    }
 
     .hds-button--primary {
       --background-color: var(--hdbt-text-color--#{$color});

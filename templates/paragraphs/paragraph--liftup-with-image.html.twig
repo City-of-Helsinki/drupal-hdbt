@@ -38,39 +38,51 @@
  * @ingroup themeable
  */
 #}
-{% set design = content.field_banner_design[0]['#markup'] %}
+{% set design = content.field_liftup_with_image_design[0]['#markup'] %}
 
 {%
   set classes = [
-    'banner',
-    view_mode ? 'banner--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'banner--unpublished',
-    'banner--design-' ~ design,
-    'banner--color-' ~ theme_color
+    'liftup-with-image',
+    view_mode ? 'liftup-with-image--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'liftup-with-image--unpublished',
+    'liftup-with-image--design-' ~ design,
+    'liftup-with-image--color-' ~ theme_color
   ]
 %}
 
-{% set link = content.field_banner_link.0['#url'] %}
-{% set text = content.field_banner_link.0['#title'] %}
-{% set link_type = content.field_banner_link_design[0]['#markup'] %}
-
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'banner'} %}
+    <div class="liftup-with-image__image">
+      {% if content.field_liftup_with_image_image|render %}
+        {% for key, image in content.field_liftup_with_image_image %}
+          {% if image.entity %}
+            {% set media = image.entity %}
+            {% set alt = media.fields.field_media_image.alt %}
+            {% if
+              design == "image-on-right" or
+              design == "image-on-left"
+            %}
+              {% set image =
+                drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
+              %}
+            {% else %}
+              {% set image =
+                drupal_image(media.fields.field_media_image.entity.uri.value, 'hero__background', {alt: alt}, responsive=true)
+              %}
+            {% endif %}
+            {{ image }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'liftup-with-image'} %}
       {% block container_content %}
-        <div class="banner__content">
-          <h2 class="banner__title">{{ content.field_banner_title }}</h2>
-          {% if content.field_banner_desc|render %}
-            <div class="banner__desc">{{ content.field_banner_desc }}</div>
+        <div class="liftup-with-image__content">
+          <h2 class="liftup-with-image__title">{{ content.field_liftup_with_image_title }}</h2>
+          {% if content.field_liftup_with_image_desc|render %}
+            <div class="liftup-with-image__desc">{{ content.field_liftup_with_image_desc }}</div>
           {% endif %}
         </div>
-        {% if content.field_banner_link|render %}
-          <a href="{{ link }}" class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
-            {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
-            <span class="hds-button__label">{{ text }}</span>
-            {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
-          </a>
-        {% endif %}
       {% endblock %}
     {% endembed %}
   </div>
