@@ -1,8 +1,12 @@
 .footer {
   flex-shrink: 0;
-  margin: $spacing-double auto 0;
+  margin: calc(#{$footer-koro-height} + #{$spacing-triple}) auto 0;
   max-width: 1920px;
   width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: calc(#{$footer-koro-height} + #{$spacing-quadruple});
+  }
 
   a {
     text-decoration: underline;
@@ -12,6 +16,10 @@
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .hds-koros {
+    margin-top: calc(-1 * (#{$footer-koro-height} - 1px)); // Offset the koro a bit lower to avoid half a pixel bleeds.
   }
 }
 
@@ -71,16 +79,12 @@
 }
 
 .footer-bottom {
-  padding-bottom: $spacing-double;
+  padding-bottom: $spacing-triple;
   padding-top: $spacing;
 
   @include breakpoint($breakpoint-m) {
     align-items: center;
     display: flex;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    padding-bottom: $spacing;
   }
 
   .menu {
@@ -133,6 +137,10 @@
   background-color: $hdbt-color-white;
   color: $color-white;
 
+  .hds-koros {
+    color: $hdbt-color-white;
+  }
+
   a {
     color: $color-black;
   }
@@ -174,6 +182,10 @@
 .footer--dark {
   background-color: $hdbt-color-black;
   color: $color-white;
+
+  .hds-koros {
+    color: $hdbt-color-black;
+  }
 
   a {
     color: $color-white;
