@@ -13,11 +13,14 @@ html {
 }
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   background-color: $body-bg-color;
   display: flex;
   flex-direction: column;
   font-family: $base-font-family;
   line-height: $lineheight-l;
+
 
   &.gin--horizontal-toolbar {
     // Move toolbar paddings to dialog-off-canvas.
