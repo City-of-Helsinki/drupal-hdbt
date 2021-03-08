@@ -41,3 +41,20 @@
     }
   }
 }
+
+// Plain text links that open in new tab.
+a.link[target="_blank"] {
+  align-items: center;
+  display: inline-flex;
+
+  &:after {
+    background-color: $color-black;
+    background-size: contain;
+    content: "";
+    display: block;
+    height: 0.9em;
+    margin: 0 0.1em 0.3em 0.2em;
+    mask-image: url('../icons/hds/ui/link-external.svg');
+    width: 0.9em;
+  }
+}

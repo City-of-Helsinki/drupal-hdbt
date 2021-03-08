@@ -53,6 +53,7 @@
 {% set link = content.field_banner_link.0['#url'] %}
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
+{% set target_new = content.field_banner_link.0['#options']['target_new'] %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
@@ -65,10 +66,22 @@
           {% endif %}
         </div>
         {% if content.field_banner_link|render %}
-          <a href="{{ link }}" class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
+          <a
+            href="{{ link }}"
+            class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}"
+            {% if target_new %}target="_blank"{% endif %}
+          >
             {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
             <span class="hds-button__label">{{ text }}</span>
-            {% if link_type == 'supplementary' %}<span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>{% endif %}
+            {% if link_type == 'supplementary' %}
+              {% if target_new %}
+                <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
+              {% else %}
+                <span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>
+              {% endif %}
+            {% elseif target_new %}
+              <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
+            {% endif %}
           </a>
         {% endif %}
       {% endblock %}
