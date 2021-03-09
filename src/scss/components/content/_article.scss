@@ -55,6 +55,16 @@
       margin-top: $spacing-triple;
     }
 
+    &:last-child {
+      // Make the keywords element go "under" the footer.
+      margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+      padding-bottom: $spacing-double + $footer-koro-height;
+
+      @include breakpoint($breakpoint-l) {
+        padding-bottom: $spacing-quadruple + $footer-koro-height;
+      }
+    }
+
     .container {
       max-width: $content-area-wrapper-width-max;
     }
