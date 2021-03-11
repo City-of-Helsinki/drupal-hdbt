@@ -113,6 +113,15 @@ $item_spacing: $spacing-triple;
     margin-left: -$spacing-quarter;
     margin-top: $spacing-half;
 
+    @include breakpoint($breakpoint-s) {
+      margin-left: -$spacing-half;
+      margin-top: 0;
+    }
+
+    &.is-outbound {
+      transform: rotate(-45deg);
+    }
+
     .icon {
       --icon-proportions: 1.5rem;
 
@@ -141,6 +150,9 @@ $item_spacing: $spacing-triple;
 .list-of-links--without-image,
 .list-of-links--without-image-desc {
   .list-of-links__item {
+    align-self: flex-start;
+    display: flex;
+    
     @include breakpoint($breakpoint-m) {
       width: 33.3333%;
     }
