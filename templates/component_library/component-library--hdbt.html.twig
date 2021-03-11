@@ -457,13 +457,13 @@
         {% include '@hdbt/misc/koro.twig' with {koro: 'pulse'} %}
         <br /><br />
         Basic:<br />
-        {% include '@hdbt/misc/koro.twig' %}
+        {% include '@hdbt/misc/koro.twig' with {koro: 'basic'} %}
         <br /><br />
         Calm:<br />
         {% include '@hdbt/misc/koro.twig' with {koro: 'calm'} %}
         <br /><br />
         Basic (inverted):<br />
-        {% include '@hdbt/misc/koro.twig' with {koro: 'pulse', flip: true} %}
+        {% include '@hdbt/misc/koro.twig' with {koro: 'basic', flip: true} %}
         <br /><br />
         Basic (custom color):<br />
         {% include '@hdbt/misc/koro.twig' with {koro: 'basic', color: 'var(--color-copper)'} %}
