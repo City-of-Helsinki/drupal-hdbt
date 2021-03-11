@@ -1,104 +1,105 @@
-.node-type--article {
-
-  .article-header__container {
-    margin-bottom: $spacing-double;
-
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: $spacing-triple;
-    }
-
-    > div {
-      max-width: $content-width-max;
+.page-type--article {
+  .node-type--article {
+    .article-header__container {
+      margin-bottom: $spacing-double;
 
       @include breakpoint($breakpoint-m) {
-        padding-left: $spacing-triple * 2;
+        margin-bottom: $spacing-triple;
+      }
+
+      > div {
+        max-width: $content-width-max;
+
+        @include breakpoint($breakpoint-m) {
+          padding-left: $spacing-triple * 2;
+        }
       }
     }
-  }
 
-  .article__lead {
-    @include font-size(20px, 32px);
-    color: $color-black;
-    font-weight: $font-weight-regular;
-    margin-bottom: $spacing-and-half;
-  }
-
-  .article__author {
-    @include font-size(16px, 24px);
-    color: $color-black-90;
-    display: flex;
-    font-weight: $font-weight-medium;
-
-    .label {
-      margin-right: $spacing-quarter;
-    }
-  }
-
-  .article__date {
-    @include font-size(16px, 24px);
-    color: $color-black-40;
-    font-weight: $font-weight-regular;
-    margin-bottom: $spacing;
-  }
-
-  .article__keywords {
-    background: $color-silver-light;
-    margin-top: $spacing-double;
-    padding: $spacing-half 0 $spacing-double;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-      padding: ($spacing-quadruple - $spacing-and-half) 0 $spacing-quadruple;
+    .article__lead {
+      @include font-size(20px, 32px);
+      color: $color-black;
+      font-weight: $font-weight-regular;
+      margin-bottom: $spacing-and-half;
     }
 
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-triple;
+    .article__author {
+      @include font-size(16px, 24px);
+      color: $color-black-90;
+      display: flex;
+      font-weight: $font-weight-medium;
+
+      .label {
+        margin-right: $spacing-quarter;
+      }
     }
 
-    &:last-child {
-      // Make the keywords element go "under" the footer.
-      margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
-      padding-bottom: $spacing-double + $footer-koro-height;
+    .article__date {
+      @include font-size(16px, 24px);
+      color: $color-black-40;
+      font-weight: $font-weight-regular;
+      margin-bottom: $spacing;
+    }
+
+    .article__keywords {
+      background: $color-silver-light;
+      margin-top: $spacing-double;
+      padding: $spacing-half 0 $spacing-double;
+
+      @include breakpoint($breakpoint-m) {
+        margin-top: $spacing-quadruple;
+        padding: ($spacing-quadruple - $spacing-and-half) 0 $spacing-quadruple;
+      }
 
       @include breakpoint($breakpoint-l) {
-        padding-bottom: $spacing-quadruple + $footer-koro-height;
+        margin-top: $spacing-triple;
       }
-    }
 
-    .container {
-      max-width: $content-area-wrapper-width-max;
-    }
-
-    .keywords__wrapper {
-      margin-left: -#{$spacing-quarter};
-      margin-right: -#{$spacing-quarter};
-    }
-
-    .label {
-      @include font-size(18px, 30px);
-      color: $color-black-90;
-      font-weight: $font-weight-medium;
-      margin: 0 $spacing-quarter $spacing-half;
-
-      @include breakpoint($breakpoint-m) {
-        @include font-size(24px, 30px);
-        margin: 0 $spacing-quarter $spacing;
+      .container {
+        max-width: $content-area-wrapper-width-max;
       }
-    }
 
-    .keywords {
-      display: flex;
-      flex-flow: row wrap;
+      &:last-child {
+        // Make the keywords element go "under" the footer.
+        margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+        padding-bottom: $spacing-double + $footer-koro-height;
 
-      a {
-        @include font-size(16px, 24px);
-        background-color: $color-black;
-        border-radius: $spacing-and-half;
-        color: $color-white;
-        font-weight: $font-weight-regular;
-        margin: $spacing-quarter;
-        padding: $spacing-half $spacing-double;
-        text-decoration: none;
+        @include breakpoint($breakpoint-l) {
+          padding-bottom: $spacing-quadruple + $footer-koro-height;
+        }
+      }
+      
+      .keywords__wrapper {
+        margin-left: -#{$spacing-quarter};
+        margin-right: -#{$spacing-quarter};
+      }
+
+      .label {
+        @include font-size(18px, 30px);
+        color: $color-black-90;
+        font-weight: $font-weight-medium;
+        margin: 0 $spacing-quarter $spacing-half;
+
+        @include breakpoint($breakpoint-m) {
+          @include font-size(24px, 30px);
+          margin: 0 $spacing-quarter $spacing;
+        }
+      }
+
+      .keywords {
+        display: flex;
+        flex-flow: row wrap;
+
+        a {
+          @include font-size(16px, 24px);
+          background-color: $color-black;
+          border-radius: $spacing-and-half;
+          color: $color-white;
+          font-weight: $font-weight-regular;
+          margin: $spacing-quarter;
+          padding: $spacing-half $spacing-double;
+          text-decoration: none;
+        }
       }
     }
   }
