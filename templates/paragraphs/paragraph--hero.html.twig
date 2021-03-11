@@ -129,12 +129,7 @@
         {% endif %}
 
         <div class="hero__image-container">
-          {% if design == "diagonal" and koro == "wave" %}
-            {% include '@hdbt/misc/koro.twig' with {koro: 'wave--negative', flip: true } %}
-          {% else %}
-            {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
-          {% endif %}
-
+          {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
           {{ drupal_image(image_id, image_style, responsive=true) }}
         </div>
       {% endif %}
