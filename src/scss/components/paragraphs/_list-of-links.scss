@@ -122,6 +122,10 @@ $item_spacing: $spacing-triple;
       position: absolute;
     }
 
+    &.is-outbound {
+      transform: rotate(-45deg);
+    }
+
     .icon {
       --icon-proportions: 1.5rem;
 

@@ -32,7 +32,8 @@ function hdbt_get_icons_path() {
   static $icon_path;
   if (!isset($icon_path)) {
     global $base_secure_url;
-    $icon_path = $base_secure_url . '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
+    $theme_handler = \Drupal::service('theme_handler');
+    $icon_path = $base_secure_url . '/' . $theme_handler->getTheme('hdbt')->getPath() . '/dist/icons/sprite.svg';
 
     if (!empty($icon_path)) {
       // Add icons path as a global variable.
