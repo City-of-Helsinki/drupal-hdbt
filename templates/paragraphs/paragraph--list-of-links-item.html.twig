@@ -66,15 +66,16 @@
           </div>
         {% endif %}
       {% endif %}
-      <h3 class="list-of-links__item__title">{{ text }}</h3>
+      <h3 class="list-of-links__item__title">{{ text }}
+        <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
+          {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Test label for the icon'|t } %}
+        </span>
+      </h3>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>
         {% endif %}
       {% endif %}
-      <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
-        {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Test label for the icon'|t } %}
-      </span>
     </a>
     {% endblock %}
   </div>
