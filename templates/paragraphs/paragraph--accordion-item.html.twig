@@ -41,6 +41,9 @@
 {% block paragraph %}
   <h{{ accordion_heading_level}} class="accordion-item__header handorgel__header">
     <button class="accordion-item__button accordion-item__button--toggle handorgel__header__button">
+      {% if content.field_icon|render %}
+        <div class="accordion-item__icon">{{ content.field_icon }}</div>
+      {% endif %}
       {{ content.field_accordion_item_heading }}
     </button>
   </h{{ accordion_heading_level}}>
