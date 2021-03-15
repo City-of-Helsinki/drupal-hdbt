@@ -46,7 +46,8 @@
     view_mode ? 'banner--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'banner--unpublished',
     'banner--design-' ~ design,
-    'banner--color-' ~ theme_color
+    'banner--color-' ~ theme_color,
+    content.field_icon|render ? 'banner--has-icon'
   ]
 %}
 
@@ -59,31 +60,37 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'banner'} %}
       {% block container_content %}
-        <div class="banner__content">
-          <h2 class="banner__title">{{ content.field_banner_title }}</h2>
-          {% if content.field_banner_desc|render %}
-            <div class="banner__desc">{{ content.field_banner_desc }}</div>
+        {% if content.field_icon|render %}
+          <div class="banner__icon">{{ content.field_icon }}</div>
+        {% endif %}
+
+        <div class="banner__content-wrapper">
+          <div class="banner__content">
+            <h2 class="banner__title">{{ content.field_banner_title }}</h2>
+            {% if content.field_banner_desc|render %}
+              <div class="banner__desc">{{ content.field_banner_desc }}</div>
+            {% endif %}
+          </div>
+          {% if content.field_banner_link|render %}
+            <a
+              href="{{ link }}"
+              class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}"
+              {% if target_new %}target="_blank"{% endif %}
+            >
+              {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
+              <span class="hds-button__label">{{ text }}</span>
+              {% if link_type == 'supplementary' %}
+                {% if target_new %}
+                  <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
+                {% else %}
+                  <span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>
+                {% endif %}
+              {% elseif target_new %}
+                <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
+              {% endif %}
+            </a>
           {% endif %}
         </div>
-        {% if content.field_banner_link|render %}
-          <a
-            href="{{ link }}"
-            class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}"
-            {% if target_new %}target="_blank"{% endif %}
-          >
-            {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
-            <span class="hds-button__label">{{ text }}</span>
-            {% if link_type == 'supplementary' %}
-              {% if target_new %}
-                <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
-              {% else %}
-                <span aria-hidden="true" class="hds-icon hds-icon--arrow-right"></span>
-              {% endif %}
-            {% elseif target_new %}
-              <span aria-hidden="true" class="hds-icon hds-icon--link-external"></span>
-            {% endif %}
-          </a>
-        {% endif %}
       {% endblock %}
     {% endembed %}
   </div>

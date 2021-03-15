@@ -17,6 +17,25 @@
     }
   }
 
+  .banner__icon {
+    display: inline-flex;
+    margin-bottom: $spacing-and-half;
+    margin-right: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing;
+      margin-right: $spacing-triple;
+    }
+
+    .icon {
+      --icon-proportions: #{$spacing-quadruple};
+
+      @include breakpoint($breakpoint-m) {
+        --icon-proportions: 6.25rem;
+      }
+    }
+  }
+
   .banner__container {
     padding-top: 0;
   }
@@ -36,16 +55,20 @@
 
 .banner--design-align-left {
   .banner__container {
+    display: flex;
+    flex-flow: column;
     max-width: 620px + $spacing-triple; // According to layouts.
 
-    @include breakpoint($breakpoint-l) {
+    @include breakpoint($breakpoint-m) {
+      flex-flow: row;
       max-width: 700px + $spacing-quadruple;
     }
 
     @include breakpoint($breakpoint-xl) {
       align-items: center;
       display: flex;
-      flex-wrap: wrap;
+      flex-flow: row;
+      flex-wrap: nowrap;
       justify-content: center;
       max-width: $content-area-wrapper-width-max;
     }
@@ -54,6 +77,17 @@
   .banner__title,
   .banner__desc {
     max-width: 700px; // According to layouts.
+  }
+
+  .banner__content-wrapper {
+    @include breakpoint($breakpoint-xl) {
+      align-items: center;
+      display: flex;
+      flex-flow: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      width: 100%;
+    }
   }
 
   .banner__content {
@@ -71,6 +105,21 @@
     &.hds-button--supplementary {
       @include breakpoint($breakpoint-xl) {
         margin-left: auto;
+      }
+    }
+  }
+
+  &.banner--has-icon {
+    .banner__content {
+      @include breakpoint($breakpoint-xl) {
+        max-width: 37.5rem;
+      }
+    }
+
+    .banner__button {
+      @include breakpoint($breakpoint-l) {
+        margin-left: auto;
+        margin-right: 0;
       }
     }
   }
