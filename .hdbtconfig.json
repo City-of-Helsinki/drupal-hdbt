@@ -1,0 +1,4 @@
+{
+  "pathToIconSprite": "/dist/icons/sprite.svg",
+  "pathToIconJson": "/src/icons/ui-icons.json"
+}
