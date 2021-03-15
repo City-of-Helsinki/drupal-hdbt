@@ -98,7 +98,7 @@
         </div>
       {% endif %}
 
-      {% set created_date = node.createdtime|format_date('long') %}
+      {% set created_date = node.createdtime|format_date('medium') %}
       {% if created_date|render %}
         <div class="{{ node.bundle|clean_class }}__date">
           {{ created_date }}
