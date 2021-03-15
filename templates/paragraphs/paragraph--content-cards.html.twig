@@ -54,7 +54,9 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'content-cards'} %}
       {% block container_content %}
+        {% if title %}
         <h2 class="content-cards__title">{{ title }}</h2>
+        {% endif %}
         <div class="content-cards__content">
           {{ content|without('field_content_cards_design', 'field_content_cards_title') }}
         </div>
