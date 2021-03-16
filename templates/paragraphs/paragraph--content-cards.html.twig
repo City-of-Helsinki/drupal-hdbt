@@ -38,43 +38,29 @@
  * @ingroup themeable
  */
 #}
+
+{% set title = content.field_content_cards_title.0 %}
+{% set design = content.field_content_cards_design.0|first|clean_class %}
+
 {%
   set classes = [
-    'list-of-links__item'
+    'content-cards',
+    'content-cards--' ~ design,
+    view_mode ? 'content-cards--' ~ view_mode|clean_class,
   ]
 %}
 
-{% set url = content.field_list_of_links_link.0['#url'] %}
-{% set target_new = content.field_list_of_links_link.0['#options']['target_new'] %}
-{% set text = content.field_list_of_links_link.0['#title'] %}
-{% set image = content.field_list_of_links_image %}
-{% set desc = content.field_list_of_links_desc.0 %}
-
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-
-    <a href="{{ url }}" {% if target_new %}target="_blank"{% endif %} class="list-of-links__item__link">
-      {% if list_of_links_design == 'with-image' %}
-        <div class="list-of-links__item__image">
-          {% if image.0 %}
-            {{ image }}
-          {% else %}
-            {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
-          {% endif %}
-        </div>
-      {% endif %}
-      <h3 class="list-of-links__item__title">{{ text }}
-        <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
-          {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right' } %}
-        </span>
-      </h3>
-      {% if list_of_links_design == 'without-image' %}
-        {% if desc %}
-          <div class="list-of-links__item__desc">{{ desc }}</div>
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'content-cards'} %}
+      {% block container_content %}
+        {% if title %}
+        <h2 class="content-cards__title">{{ title }}</h2>
         {% endif %}
-      {% endif %}
-    </a>
-    {% endblock %}
+        <div class="content-cards__content">
+          {{ content|without('field_content_cards_design', 'field_content_cards_title') }}
+        </div>
+      {% endblock %}
+    {% endembed %}
   </div>
 {% endblock paragraph %}
