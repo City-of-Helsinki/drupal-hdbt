@@ -582,6 +582,8 @@ $koro-height: 50px;
 
   .hero__container {
     @include breakpoint($breakpoint-m) {
+      align-items: center;
+      display: flex;
       margin: 0;
       max-width: $container-width-xl / 2;
       width: 50%;
@@ -710,7 +712,7 @@ $koro-height: 50px;
   }
 
   .hds-koros {
-    bottom: 0;
+    bottom: -1px;
     position: absolute;
     z-index: 2;
   }
