@@ -94,14 +94,13 @@
             {{ content.field_unit_short_description }}
           </div>
         {% endif %}
-        {# {% if content.field_unit_main_image_url|render %}
-          <div class="unit__image">
-            {{ content.field_unit_main_image_url }}
-          </div>
-        {% endif %} #}
         {% if content.field_unit_alternative_image|render %}
           <div class="unit__image">
             {{ content.field_unit_alternative_image }}
+          </div>
+        {% elseif content.field_unit_main_image_url|render %}
+          <div class="unit__image">
+            {{ content.field_unit_main_image_url }}
           </div>
         {% endif %}
         {% if content.field_unit_long_description|render %}
