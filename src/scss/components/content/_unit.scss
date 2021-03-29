@@ -39,3 +39,13 @@
     }
   }
 }
+
+.node--type-unit--with-hero {
+  .unit__title {
+    margin-top: $spacing-double;
+  }
+
+  .container {
+    padding-top: 0;
+  }
+}

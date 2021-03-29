@@ -265,10 +265,17 @@ function hdbt_preprocess_image(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_field(&$variables) {
-  if ($variables["field_name"] === 'field_unit_main_image_url') {
-    $token = $variables["items"][0]["content"]["#text"];
+  if ($variables['field_name'] === 'field_unit_main_image_url') {
+    $token = $variables['items'][0]['content']['#text'];
     $rendered_token = \Drupal::token()->replace("$token");
 
     $variables['unit_main_image_rendered_token'] = $rendered_token;
+  }
+
+  if ($variables['field_name'] === 'field_unit_visible_title') {
+    $token = $variables['items'][0]['content']['#text'];
+    $rendered_token = \Drupal::token()->replace("$token");
+
+    $variables['unit_visible_title_rendered_token'] = $rendered_token;
   }
 }

@@ -71,8 +71,6 @@
  */
 #}
 
-{% set is_parent = content.field_unit_is_parent[0]['#markup'] %}
-
 {%
   set classes = [
     'node--type-' ~ node.bundle|clean_class,
@@ -80,105 +78,37 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    content.field_unit_parent_unit|render or is_parent ? 'node--type-' ~ node.bundle|clean_class ~ '--with-hero',
-  ]
-%}
-
-{% set hero_attributes = create_attribute() %}
-
-{%
-  set hero_classes = [
     'hero',
     'hero--with-image-right',
     'hero--bg-color--' ~ theme_color
   ]
 %}
 
-<article{{ attributes.addClass(classes) }}>
-  {% if is_parent == 'true' %}
-    <div{{ hero_attributes.addClass(hero_classes) }}>
-      {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
-        {% block container_content %}
-          <div class="hero__text-content">
-            <h1 class="hero__title">
-              {{ content.field_unit_visible_title }}
-            </h1>
-            {% if content.field_unit_short_description|render %}
-              <div class="hero__description">
-                {{ content.field_unit_short_description }}
-              </div>
-            {% endif %}
-          </div>
-        {% endblock %}
-      {% endembed %}
-      {% if content.field_unit_alternative_image|render %}
-        <div class="hero__image-container">
-          {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
-          {{ content.field_unit_alternative_image }}
-        </div>
-      {% elseif content.field_unit_main_image_url|render %}
-        <div class="hero__image-container">
-          {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
-          {{ content.field_unit_main_image_url }}
-        </div>
-      {% endif %}
-      {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
-    </div>
-  {% endif %}
-
-  {% if content.field_unit_parent_unit|render %}
-    <div class="unit__parent">
-      {{ content.field_unit_parent_unit }}
-    </div>
-  {% endif %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: node.bundle|clean_class ~ '_header'} %}
+<div{{ attributes.addClass(classes) }}>
+  {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
     {% block container_content %}
-      {% if is_parent == 'true' %}
-        <div{{ content_attributes.addClass('unit__header') }}>
-          {% if content.field_unit_long_description|render %}
-            <div class="unit__long-desc">
-              {{ content.field_unit_long_description }}
-            </div>
-          {% endif %}
-        </div>
-      {% else %}
-        {{ title_prefix }}
-        {% if content.field_unit_parent_unit|render or is_parent == true %}
-          <h2{{ title_attributes.addClass('unit__title') }}>
-            {{ content.field_unit_visible_title }}
-          </h2>
-        {% else %}
-          <h1{{ title_attributes.addClass('unit__title') }}>
-            {{ content.field_unit_visible_title }}
-          </h1>
+      <div class="hero__text-content">
+        <h1 class="hero__title">
+          {{ content.field_unit_visible_title }}
+        </h1>
+        {% if content.field_unit_short_description|render %}
+          <div class="hero__description">
+            {{ content.field_unit_short_description }}
+          </div>
         {% endif %}
-        {{ title_suffix }}
-
-        <div{{ content_attributes.addClass('unit__header') }}>
-          {% if content.field_unit_short_description|render %}
-            <div class="unit__short-desc">
-              {{ content.field_unit_short_description }}
-            </div>
-          {% endif %}
-          {% if content.field_unit_alternative_image|render %}
-            <div class="unit__image">
-              {{ content.field_unit_alternative_image }}
-            </div>
-          {% elseif content.field_unit_main_image_url|render %}
-            <div class="unit__image">
-              {{ content.field_unit_main_image_url }}
-            </div>
-          {% endif %}
-          {% if content.field_unit_long_description|render %}
-            <div class="unit__long-desc">
-              {{ content.field_unit_long_description }}
-            </div>
-          {% endif %}
-
-        </div>
-      {% endif %}
-
-    {% endblock container_content %}
+      </div>
+    {% endblock %}
   {% endembed %}
-
-</article>
+  {% if content.field_unit_alternative_image|render %}
+    <div class="hero__image-container">
+      {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
+      {{ content.field_unit_alternative_image }}
+    </div>
+  {% elseif content.field_unit_main_image_url|render %}
+    <div class="hero__image-container">
+      {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
+      {{ content.field_unit_main_image_url }}
+    </div>
+  {% endif %}
+  {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
+</div>
