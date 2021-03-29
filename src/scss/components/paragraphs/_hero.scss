@@ -585,7 +585,7 @@ $koro-height: 50px;
       align-items: center;
       display: flex;
       margin: 0;
-      max-width: $container-width-xl / 2;
+      max-width: ($container-width-xl + $spacing-quadruple) / 2;
       width: 50%;
     }
   }
@@ -600,7 +600,7 @@ $koro-height: 50px;
     @include breakpoint($breakpoint-m)  {
       height: auto;
       margin-top: $spacing-quadruple;
-      max-width: $container-width-xl / 2;
+      max-width: ($container-width-xl + $spacing-quadruple) / 2;
       padding: 0 $spacing $spacing-quadruple;
       width: 50%;
     }
