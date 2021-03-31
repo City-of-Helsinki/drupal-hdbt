@@ -133,6 +133,7 @@
   {% endif %}
   {% embed "@hdbt/misc/container.twig" with {container_element: node.bundle|clean_class ~ '_header'} %}
     {% block container_content %}
+
       {% if is_parent == 'true' %}
         <div{{ content_attributes.addClass('unit__header') }}>
           {% if content.field_unit_long_description|render %}
@@ -174,10 +175,22 @@
               {{ content.field_unit_long_description }}
             </div>
           {% endif %}
-
         </div>
-      {% endif %}
 
+        <div class="unit__contact">
+          <h3>{% trans with {'context': 'Contact card title'} %}Contact{% endtrans %}</h3>
+          {% if content.field_unit_alternative_address|render %}
+            <div class="unit__address">
+              {{ content.field_unit_alternative_address }}
+            </div>
+          {% elseif content.field_unit_address_tpr|render %}
+            <div class="unit__address">
+              {{ content.field_unit_address_tpr }}
+            </div>
+          {% endif %}
+        </div>
+
+      {% endif %}
     {% endblock container_content %}
   {% endembed %}
 
