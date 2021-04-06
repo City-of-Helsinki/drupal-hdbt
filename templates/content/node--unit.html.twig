@@ -134,28 +134,28 @@
   {% embed "@hdbt/misc/container.twig" with {container_element: node.bundle|clean_class ~ '_header'} %}
     {% block container_content %}
 
-      {% if is_parent == 'true' %}
-        <div{{ content_attributes.addClass('unit__header') }}>
-          {% if content.field_unit_long_description|render %}
-            <div class="unit__long-desc">
-              {{ content.field_unit_long_description }}
-            </div>
-          {% endif %}
-        </div>
-      {% else %}
-        {{ title_prefix }}
-        {% if content.field_unit_parent_unit|render or is_parent == true %}
-          <h2{{ title_attributes.addClass('unit__title') }}>
-            {{ content.field_unit_visible_title }}
-          </h2>
+      <div{{ content_attributes.addClass('unit__header') }}>
+        {% if is_parent == 'true' %}
+          <div{{ content_attributes.addClass('unit__header') }}>
+            {% if content.field_unit_long_description|render %}
+              <div class="unit__long-desc">
+                {{ content.field_unit_long_description }}
+              </div>
+            {% endif %}
+          </div>
         {% else %}
-          <h1{{ title_attributes.addClass('unit__title') }}>
-            {{ content.field_unit_visible_title }}
-          </h1>
-        {% endif %}
-        {{ title_suffix }}
+          {{ title_prefix }}
+          {% if content.field_unit_parent_unit|render %}
+            <h2{{ title_attributes.addClass('unit__title') }}>
+              {{ content.field_unit_visible_title }}
+            </h2>
+          {% else %}
+            <h1{{ title_attributes.addClass('unit__title') }}>
+              {{ content.field_unit_visible_title }}
+            </h1>
+          {% endif %}
+          {{ title_suffix }}
 
-        <div{{ content_attributes.addClass('unit__header') }}>
           {% if content.field_unit_short_description|render %}
             <div class="unit__short-desc">
               {{ content.field_unit_short_description }}
@@ -178,14 +178,39 @@
         </div>
 
         <div class="unit__contact">
-          <h3>{% trans with {'context': 'Contact card title'} %}Contact{% endtrans %}</h3>
-          {% if content.field_unit_alternative_address|render %}
-            <div class="unit__address">
-              {{ content.field_unit_alternative_address }}
+          <h3 class="unit__contact__title">{% trans with {'context': 'Contact card title'} %}Contact{% endtrans %}</h3>
+          {% if content.field_unit_alt_address|render %}
+            <div class="unit__contact-row unit__contact-row--address">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t } %}{{ 'Visiting address'|t }}:</label>
+              {{ content.field_unit_alt_address }}
             </div>
           {% elseif content.field_unit_address_tpr|render %}
-            <div class="unit__address">
+            <div class="unit__contact-row unit__contact-row--address">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t  } %}{{ 'Visiting address'|t }}:</label>
               {{ content.field_unit_address_tpr }}
+            </div>
+          {% endif %}
+          {% if content.field_unit_email|render %}
+            <div class="unit__contact-row unit__contact-row--email">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'envelope', label: 'E-mail'|t } %}{{ 'E-mail'|t }}:</label>
+              {{ content.field_unit_email }}
+            </div>
+          {% endif %}
+          {% if content.field_unit_phone_number|render %}
+            <div class="unit__contact-row unit__contact-row--phone">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}{{ 'Phone number'|t }}:</label>
+              {{ content.field_unit_phone_number }}
+            </div>
+          {% endif %}
+          {% if content.field_unit_alt_postal_address|render %}
+            <div class="unit__contact-row unit__contact-row--postal-address">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Postal address'|t } %}{{ 'Postal address'|t }}:</label>
+              {{ content.field_unit_alt_postal_address }}
+            </div>
+          {% elseif content.field_unit_postal_address_tpr|render %}
+            <div class="unit__contact-row unit__contact-row--postal-address">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Postal address'|t } %}{{ 'Postal address'|t }}:</label>
+              {{ content.field_unit_postal_address_tpr }}
             </div>
           {% endif %}
         </div>
