@@ -1,0 +1,41 @@
+.node--type-service {
+  .service__title {
+    margin-bottom: $spacing-and-half;
+  }
+
+  .service__short-desc {
+    @include font-size(24px, 32px);
+    margin-bottom: $spacing-triple;
+    padding-bottom: $spacing-triple - $spacing-quarter;
+    position: relative;
+
+    &::after {
+      background-color: $color-black;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 0;
+      position: absolute;
+      width: $spacing-quadruple;
+    }
+  }
+
+  .service__long-desc {
+    @include font-size(20px, 32px);
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.node--type-service--with-hero {
+  .service__title {
+    margin-top: $spacing-double;
+  }
+
+  .container {
+    padding-top: 0;
+  }
+}

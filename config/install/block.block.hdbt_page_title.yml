@@ -21,6 +21,7 @@ visibility:
     id: 'entity_bundle:node'
     bundles:
       unit: unit
+      service: service
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
