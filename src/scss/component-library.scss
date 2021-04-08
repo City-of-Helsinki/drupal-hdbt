@@ -160,5 +160,5 @@
   height: 100%;
   padding: $spacing-half;
   text-align: center;
-  width: calc(100% - #{$spacing});
+  min-width: 100%;
 }
