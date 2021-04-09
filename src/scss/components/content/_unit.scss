@@ -38,6 +38,43 @@
       max-width: 100%;
     }
   }
+
+  .unit-header__container {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .unit__header {
+      @include breakpoint($breakpoint-m) {
+        padding-right: $spacing-double;
+        width: 70%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-right: $spacing-triple;
+      }
+    }
+    .unit__contact {
+      @include breakpoint($breakpoint-m) {
+        width: 30%;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        padding-left: $spacing-double;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-left: $spacing-triple;
+      }
+
+      .unit__contact__title {
+        @include breakpoint($breakpoint-m) {
+          margin-top: $spacing-double;
+        }
+      }
+    }
+  }
 }
 
 .node--type-unit--with-hero {
@@ -47,5 +84,42 @@
 
   .container {
     padding-top: 0;
+  }
+}
+
+.unit__contact {
+  .unit__contact__title {
+    border-bottom: 2px solid $color-black;
+    margin-bottom: $spacing-and-half;
+    padding-bottom: $spacing;
+  }
+
+  .unit__contact-row {
+    border-bottom: 1px solid $color-black-20;
+    margin-bottom: $spacing;
+    padding-bottom: $spacing;
+    padding-left: $spacing-double;
+
+    &:last-of-type {
+      border-bottom: 0 none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .unit__contact-row__label {
+      align-items: flex-start;
+      display: flex;
+      font-weight: 600;
+      margin-bottom: 8px;
+
+      .icon {
+        margin-left: -$spacing-double;
+        margin-right: $spacing-half;
+      }
+    }
+
+    p:first-of-type {
+      margin-top: 0;
+    }
   }
 }

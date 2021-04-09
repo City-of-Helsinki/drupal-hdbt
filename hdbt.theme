@@ -278,4 +278,25 @@ function hdbt_preprocess_field(&$variables) {
 
     $variables['unit_visible_title_rendered_token'] = $rendered_token;
   }
+
+  if ($variables['field_name'] === 'field_unit_address_tpr') {
+    $token = $variables['items'][0]['content']['#text'];
+    $rendered_token = \Drupal::token()->replace("$token");
+
+    $variables['unit_address_tpr_rendered_token'] = $rendered_token;
+  }
+
+  if ($variables['field_name'] === 'field_unit_email') {
+    $token = $variables['items'][0]['content']['#text'];
+    $rendered_token = \Drupal::token()->replace("$token");
+
+    $variables['unit_email_rendered_token'] = $rendered_token;
+  }
+
+  if ($variables['field_name'] === 'field_unit_phone_number') {
+    $token = $variables['items'][0]['content']['#text'];
+    $rendered_token = \Drupal::token()->replace("$token");
+
+    $variables['unit_phone_number_rendered_token'] = $rendered_token;
+  }
 }
