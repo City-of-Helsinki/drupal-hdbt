@@ -267,22 +267,51 @@ function hdbt_preprocess_image(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_field(&$variables) {
-  // Craft a rendered token variable for Unit main image.
-  if ($variables['field_name'] === 'field_unit_main_image_url') {
-    $token = $variables['items'][0]['content']['#text'];
-    $rendered_token = \Drupal::token()->replace("$token");
-    $variables['unit_main_image_rendered_token'] = $rendered_token;
+  switch ($variables['field_name']) {
+    // Units.
+    case 'field_unit_main_image_url':
+      // Craft a rendered token variable for Unit main image.
+      _hdbt_craft_token('unit_main_image_rendered_token', $variables);
+      break;
+
+    case 'field_unit_visible_title':
+      // Craft a rendered token variable for Unit visible title.
+      _hdbt_craft_token('unit_visible_title_rendered_token', $variables);
+      break;
+
+    case 'field_unit_address_tpr':
+      // Craft a rendered token variable for Unit address.
+      _hdbt_craft_token('unit_address_tpr_rendered_token', $variables);
+      break;
+
+    case 'field_unit_email':
+      // Craft a rendered token variable for Unit email.
+      _hdbt_craft_token('unit_email_rendered_token', $variables);
+      break;
+
+    case 'field_unit_phone_number':
+      // Craft a rendered token variable for Unit phone number.
+      _hdbt_craft_token('unit_phone_number_rendered_token', $variables);
+      break;
+
+    // Services.
+    case 'field_service_visible_title':
+      // Craft a rendered token variable for Service visible title.
+      _hdbt_craft_token('service_visible_title_rendered_token', $variables);
+      break;
   }
+}
 
-  // Craft a rendered token variable for node type visible title.
-  if (isset($variables['element']['#bundle'])) {
-    $bundle = $variables['element']['#bundle'];
-
-    if ($variables['field_name'] === "field_{$bundle}_visible_title") {
-      $token = $variables['items'][0]['content']['#text'];
-      $rendered_token = \Drupal::token()->replace("$token");
-
-      $variables["{$bundle}_visible_title_rendered_token"] = $rendered_token;
-    }
-  }
+/**
+ * Helper function to craft rendered token.
+ *
+ * @param string $name
+ *   Variable name for the template.
+ * @param array $variables
+ *   Variables array.
+ */
+function _hdbt_craft_token($name, &$variables) {
+  $token = $variables['items'][0]['content']['#text'];
+  $rendered_token = \Drupal::token()->replace("$token");
+  $variables[$name] = ($rendered_token !== $token) ? $rendered_token : NULL;
 }
