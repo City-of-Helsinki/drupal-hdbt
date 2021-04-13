@@ -157,18 +157,15 @@
           {{ title_suffix }}
 
           {% if content.field_unit_short_description|render %}
-            <div class="unit__short-desc">
-              {{ content.field_unit_short_description }}
-            </div>
+            {{ content.field_unit_short_description }}
           {% endif %}
+          <span class="unit__divider"></span>
           {% if content.field_unit_alternative_image|render %}
             <div class="unit__image">
               {{ content.field_unit_alternative_image }}
             </div>
           {% elseif content.field_unit_main_image_url|render %}
-            <div class="unit__image">
-              {{ content.field_unit_main_image_url }}
-            </div>
+            {{ content.field_unit_main_image_url }}
           {% endif %}
           {% if content.field_unit_long_description|render %}
             <div class="unit__long-desc">
@@ -185,22 +182,13 @@
               {{ content.field_unit_alt_address }}
             </div>
           {% elseif content.field_unit_address_tpr|render %}
-            <div class="unit__contact-row unit__contact-row--address">
-              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t  } %}{{ 'Visiting address'|t }}:</label>
-              {{ content.field_unit_address_tpr }}
-            </div>
+            {{ content.field_unit_address_tpr }}
           {% endif %}
           {% if content.field_unit_email|render %}
-            <div class="unit__contact-row unit__contact-row--email">
-              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'envelope', label: 'E-mail'|t } %}{{ 'E-mail'|t }}:</label>
-              {{ content.field_unit_email }}
-            </div>
+            {{ content.field_unit_email }}
           {% endif %}
           {% if content.field_unit_phone_number|render %}
-            <div class="unit__contact-row unit__contact-row--phone">
-              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}{{ 'Phone number'|t }}:</label>
-              {{ content.field_unit_phone_number }}
-            </div>
+            {{ content.field_unit_phone_number }}
           {% endif %}
           {% if content.field_unit_alt_postal_address|render %}
             <div class="unit__contact-row unit__contact-row--postal-address">
@@ -208,10 +196,7 @@
               {{ content.field_unit_alt_postal_address }}
             </div>
           {% elseif content.field_unit_postal_address_tpr|render %}
-            <div class="unit__contact-row unit__contact-row--postal-address">
-              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Postal address'|t } %}{{ 'Postal address'|t }}:</label>
-              {{ content.field_unit_postal_address_tpr }}
-            </div>
+            {{ content.field_unit_postal_address_tpr }}
           {% endif %}
         </div>
 

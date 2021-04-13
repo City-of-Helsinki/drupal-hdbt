@@ -7,10 +7,6 @@
 
 use Drupal\Core\Entity\ContentEntityInterface;
 
-const ALTERNATIVE_LANGUAGES = [
-  'ru',
-];
-
 /**
  * Implements hook_theme().
  */
@@ -53,12 +49,16 @@ function hdbt_content_language_switch_links_alter(array &$links) {
     }
   }
 
+  // @todo Needs a functionality for the alternative languages which should be shown in an alternative menu.
+  $alternative_languages = [
+    'ru',
+  ];
+
   // Compare the links with current entity and check for possible translations.
   foreach ($links as $lang_code => &$link) {
     $link['#abbreviation'] = $lang_code;
 
-    // TODO: Needs a functionality for the alternative languages which should be shown in an alternative menu.
-    if (in_array($lang_code, ALTERNATIVE_LANGUAGES)) {
+    if (in_array($lang_code, $alternative_languages)) {
       $link['#alternative_language'] = TRUE;
     }
 

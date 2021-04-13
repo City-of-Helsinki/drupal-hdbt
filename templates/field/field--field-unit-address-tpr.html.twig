@@ -36,4 +36,9 @@
  * @see template_preprocess_field()
  */
 #}
-{{ unit_visible_title_rendered_token }}
+{% if unit_address_tpr_rendered_token %}
+  <div class="unit__contact-row unit__contact-row--address">
+    <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t  } %}{{ 'Visiting address'|t }}:</label>
+    {{ unit_address_tpr_rendered_token|raw }}
+  </div>
+{% endif %}

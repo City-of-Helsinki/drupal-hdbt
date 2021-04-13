@@ -1,6 +1,10 @@
-<picture>
-  <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s_2x') }} 2x" media="all and (min-width: 576px)" type="image/jpeg"/>
-  <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_xs') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_xs_2x') }} 2x" media="all and (min-width: 320px)" type="image/jpeg"/>
-  <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('23_10_xxs') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('23_10_xxs_2x') }} 2x" media="all and (max-width: 320px)" type="image/jpeg"/>
-  <img src="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s') }}" alt="" typeof="foaf:Image" />
-</picture>
+{% if unit_main_image_rendered_token %}
+  <div class="unit__image">
+    <picture>
+      <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s_2x') }} 2x" media="all and (min-width: 576px)" type="image/jpeg"/>
+      <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_xs') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_xs_2x') }} 2x" media="all and (min-width: 320px)" type="image/jpeg"/>
+      <source srcset="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('23_10_xxs') }} 1x, {{ (unit_main_image_rendered_token) | helfi_imagecache_external('23_10_xxs_2x') }} 2x" media="all and (max-width: 320px)" type="image/jpeg"/>
+      <img src="{{ (unit_main_image_rendered_token) | helfi_imagecache_external('3_2_s') }}" alt="" typeof="foaf:Image" />
+    </picture>
+  </div>
+{% endif %}
