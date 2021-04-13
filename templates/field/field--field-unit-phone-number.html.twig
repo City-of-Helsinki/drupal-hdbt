@@ -36,6 +36,9 @@
  * @see template_preprocess_field()
  */
 #}
-{% for item in items %}
-  <a href="tel:{{ unit_phone_number_rendered_token }}">{{ unit_phone_number_rendered_token }}</a>
-{% endfor %}
+{% if unit_phone_number_rendered_token %}
+  <div class="unit__contact-row unit__contact-row--phone">
+    <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}{{ 'Phone number'|t }}:</label>
+    <a href="tel:{{ unit_phone_number_rendered_token }}">{{ unit_phone_number_rendered_token }}</a>
+  </div>
+{% endif %}

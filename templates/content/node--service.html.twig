@@ -107,10 +107,9 @@
 
       <div{{ content_attributes.addClass('service__header') }}>
         {% if content.field_service_short_description|render %}
-          <div class="service__short-desc">
-            {{ content.field_service_short_description }}
-          </div>
+          {{ content.field_service_short_description }}
         {% endif %}
+        <span class="service__divider"></span>
         {% if content.field_service_long_description|render %}
           <div class="service__long-desc">
             {{ content.field_service_long_description }}
