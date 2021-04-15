@@ -13,6 +13,12 @@ $koro-height: 50px;
     }
   }
 
+  .hds-koros {
+    svg {
+      margin-bottom: -1px;
+    }
+  }
+
   .hero__text-content {
     max-width: 690px;
   }
