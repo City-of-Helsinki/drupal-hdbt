@@ -201,6 +201,13 @@
         </div>
 
       {% endif %}
+      {# If Service list exists, render it. #}
+      {% if content.field_unit_services|render %}
+        <div class="unit__services">
+          <h2 class="unit__services__title">{% trans with {'context': 'Unit services title'} %}Services{% endtrans %}</h2>
+          {{ content.field_unit_services }}
+        </div>
+      {% endif %}
     {% endblock container_content %}
   {% endembed %}
 
