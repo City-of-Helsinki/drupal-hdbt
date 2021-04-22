@@ -35,6 +35,9 @@ module.exports = {
     "accordion-settings": [
       "./src/js/accordion-settings.js"
     ],
+    "throbber": [
+      "./src/js/throbber.js"
+    ],
   },
   output: {
     devtoolLineToLine: true,

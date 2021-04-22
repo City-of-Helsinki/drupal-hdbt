@@ -53,6 +53,14 @@ accordion:
   dependencies:
     - hdbt/handorgel
 
+throbber:
+  version: 1.x
+  js:
+    dist/js/throbber.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
 global-styling:
   version: 1.x
   css:

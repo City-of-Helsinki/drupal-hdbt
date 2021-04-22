@@ -1,0 +1,7 @@
+.hds-loading-spinner {
+  /* Can't do center:50% middle: 50%, so approximate it for a typical window size. */
+  left: 49%; /* LTR */
+  position: fixed;
+  top: 48.5%;
+  z-index: 1000;
+}
