@@ -40,6 +40,8 @@ $teaser-icon-size: 48px;
 }
 
 .node--type-service--teaser {
+  background-color: $color-white;
+
   .service__link {
     display: block;
     padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
