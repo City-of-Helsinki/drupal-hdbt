@@ -199,29 +199,12 @@
             {{ content.field_unit_postal_address_tpr }}
           {% endif %}
         </div>
-
       {% endif %}
     {% endblock container_content %}
   {% endembed %}
 
-  {# If Service list exists, render it. #}
-  {% if content.field_unit_services|render %}
-    <div class="unit__services">
-      {% embed "@hdbt/misc/container.twig" with {container_element: 'unit__services'} %}
-        {% block container_content %}
-          <div class="unit__services__header">
-            <h2 class="unit__services__title">{% trans with {'context': 'Unit services title'} %}Services{% endtrans %}</h2>
-            <span class="unit__services__count-container"><span class="unit__services__count">X</span> {% trans with {'context': 'Unit services count'} %}services{% endtrans %}</span>
-          </div>
-          <div class="unit__services__content">
-            {{ content.field_unit_services }}
-            {# <span class="unit__services__load-more-container">
-              {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: 'Show all services'|t } %}
-            </span> #}
-          </div>
-        {% endblock container_content %}
-      {% endembed %}
-    </div>
+  {% if content.field_content|render %}
+    {{ content.field_content }}
   {% endif %}
 
 </article>

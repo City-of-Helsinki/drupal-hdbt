@@ -182,11 +182,15 @@
       }
     }
   }
+  .unit__services__pager {
+    list-style: none;
+    margin: $spacing-quadruple 0 0;
+    padding: 0;
+  }
 
   .unit__services__load-more-container {
     display: flex;
     justify-content: center;
-    margin-top: $spacing-quadruple;
     width: 100%;
 
     .hds-button {
