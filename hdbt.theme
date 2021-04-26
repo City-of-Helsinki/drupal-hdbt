@@ -7,6 +7,7 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\views_infinite_scroll\Plugin\views\pager\InfiniteScroll;
 
 /**
@@ -251,17 +252,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
 
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
   }
-
-  if ($paragraph_type == 'view') {
-    if (
-      $paragraph->hasField('field_title') &&
-      $paragraph->hasField('field_view')
-    ) {
-      // Insert paragraph title to view title.
-      // TODO lisää unit__services
-      $variables['content']['field_view'][0]['contents']['#view']->override_view_title = $paragraph->field_title->value;
-    }
-  }
 }
 
 /**
@@ -364,6 +354,19 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_viewsreference__view_title(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    // Override viewsreference title in unit and service content type.
+    if ($node->bundle() === 'unit' || $node->bundle() === 'service') {
+      unset($variables['title']);
+    }
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
@@ -403,20 +406,25 @@ function hdbt_preprocess_views_view(&$variables) {
     $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = 'unit__services__content';
 
     // Apply override title if one exists.
+    $node = \Drupal::routeMatch()->getParameter('node');
     if (
-      isset($variables['view']->override_view_title) &&
-      !empty($variables['view']->override_view_title)
+      $node instanceof NodeInterface &&
+      $node->hasField('field_unit_service_list_title')
     ) {
-      $variables['title'] = $variables['view']->override_view_title;
+      // You can get nid and anything else you need from the node object.
+      if (!empty($node->field_unit_service_list_title->value)) {
+        $variables['title'] = $node->field_unit_service_list_title->value;
+      }
     }
 
+    // Apply classes and pager button text for the view.
     if (
       $view->getDisplay()->isPagerEnabled() &&
       !empty($variables['rows'])
     ) {
       $pager = $view->getPager();
       if ($pager && $pager instanceof InfiniteScroll) {
-        $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = 'listing--grid';
+        $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = 'unit__services__content';
 
         if ($view->id() == 'services') {
           $variables['pager']['#options']['button_text'] = t(
