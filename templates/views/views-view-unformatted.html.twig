@@ -18,6 +18,15 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-{% for row in rows %}
-  {{- row.content -}}
-{% endfor %}
+<div class="views-row-wrapper {% if rows|length is even %}views-row-wrapper--even{% else %}views-row-wrapper--odd{% endif %}">
+  {% for row in rows %}
+    {%
+      set row_classes = [
+        default_row_class ? 'views__row',
+      ]
+    %}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      {{ row.content }}
+    </div>
+  {% endfor %}
+</div>
