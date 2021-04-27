@@ -120,4 +120,8 @@
     {% endblock container_content %}
   {% endembed %}
 
+  {% if content.field_service_units_list|render %}
+    {{ content.field_service_units_list }}
+  {% endif %}
+
 </article>

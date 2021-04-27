@@ -384,6 +384,23 @@ function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$suggestions, array $variables) {
+  if (isset($variables['view'])) {
+    $view = $variables['view'];
+
+    if (!empty($view->id())) {
+      $suggestions[] = 'views_infinite_scroll_pager__' . $view->id();
+
+      if (!empty($view->getDisplay()->display['id'])) {
+        $suggestions[] = 'views_infinite_scroll_pager__' . $view->id() . '__' . $view->getDisplay()->display['id'];
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_views_view(&$variables) {
@@ -392,28 +409,50 @@ function hdbt_preprocess_views_view(&$variables) {
   // Views to be handled.
   $view_ids = [
     'services',
+    'units',
+  ];
+
+  // Settings.
+  $settings = [
+    'list_title' => NULL,
+    'wrapper_class' => NULL,
+    'container_class' => NULL,
+    'pager_button' => NULL,
   ];
 
   if (in_array($view->id(), $view_ids)) {
+    // Apply override title if one exists.
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    if ($node instanceof NodeInterface) {
+      if ($node->bundle() === 'unit') {
+        $settings['list_title'] = 'field_unit_service_list_title';
+        $settings['wrapper_class'] = 'unit__services';
+        $settings['container_class'] = 'unit__services__content';
+        $settings['pager_button'] = t('Show all services', [], ['context' => 'Service list pager button']);
+      }
+      if ($node->bundle() === 'service') {
+        $settings['list_title'] = 'field_service_units_list_title';
+        $settings['wrapper_class'] = 'service__units';
+        $settings['container_class'] = 'service__units__content';
+        $settings['pager_button'] = t('Show all units', [], ['context' => 'Unit list pager button']);
+      }
+    }
+
     // Add total rows as a variable.
     $variables['total_rows'] = $variables['view']->total_rows;
 
     // Construct custom class for the view.
     $variables['attributes']['class'][] = 'view--' . $variables['view']->id();
 
-    // Add necessary classes for the unit services list.
-    $variables['view']->style_plugin->view->element['#attributes']['class'][] = 'unit__services';
-    $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = 'unit__services__content';
+    // Add necessary classes for the unit/service lists.
+    $variables['view']->style_plugin->view->element['#attributes']['class'][] = $settings['wrapper_class'];
+    $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = $settings['container_class'];
 
-    // Apply override title if one exists.
-    $node = \Drupal::routeMatch()->getParameter('node');
-    if (
-      $node instanceof NodeInterface &&
-      $node->hasField('field_unit_service_list_title')
-    ) {
+    if (!empty($settings['list_title']) && $node->hasField($settings['list_title'])) {
       // You can get nid and anything else you need from the node object.
-      if (!empty($node->field_unit_service_list_title->value)) {
-        $variables['title'] = $node->field_unit_service_list_title->value;
+      if (!empty($node->{$settings['list_title']}->value)) {
+        $variables['title'] = $node->{$settings['list_title']}->value;
       }
     }
 
@@ -424,13 +463,7 @@ function hdbt_preprocess_views_view(&$variables) {
     ) {
       $pager = $view->getPager();
       if ($pager && $pager instanceof InfiniteScroll) {
-        $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = 'unit__services__content';
-
-        if ($view->id() == 'services') {
-          $variables['pager']['#options']['button_text'] = t(
-            'Show all services'
-          );
-        }
+        $variables['pager']['#options']['button_text'] = $settings['pager_button'];
       }
     }
   }

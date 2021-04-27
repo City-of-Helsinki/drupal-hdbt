@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {{- row.content -}}
+{% endfor %}
