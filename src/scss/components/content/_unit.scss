@@ -240,6 +240,7 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: $spacing-half;
+    padding: $spacing-double $spacing-triple;
   }
 
   .unit__title {
@@ -256,6 +257,7 @@
 
   .unit__info {
     @include breakpoint($breakpoint-m) {
+      @include font-size(18px, 26px);
       width: 60%;
     }
   }
@@ -274,6 +276,7 @@
 
     .icon {
       margin-right: $spacing-half;
+      
     }
   }
 
