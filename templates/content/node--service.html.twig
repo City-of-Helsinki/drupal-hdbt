@@ -94,7 +94,7 @@
   {% embed "@hdbt/misc/container.twig" with {container_element: node.bundle|clean_class ~ '_header'} %}
     {% block container_content %}
       {{ title_prefix }}
-      {% if content.field_service_parent_service|render or is_parent == true %}
+      {% if content.field_service_parent_service|render %}
         <h2{{ title_attributes.addClass('service__title') }}>
           {{ content.field_service_visible_title }}
         </h2>
