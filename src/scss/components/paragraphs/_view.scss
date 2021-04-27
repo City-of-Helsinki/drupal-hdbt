@@ -1,0 +1,27 @@
+.view {
+  position: relative;
+}
+
+.view__title {
+  margin-top: 0;
+
+  @include breakpoint($breakpoint-s) {
+    margin-top: $spacing-double;
+  }
+}
+
+.view__content {
+  overflow: hidden;
+  padding-top: $spacing-double;
+
+  .view__total-rows {
+    @include font-size(24px, 30px);
+    position: absolute;
+    right: 0;
+    top: 60px;
+
+    .view__total-rows--count {
+      font-weight: $font-weight-bold;
+    }
+  }
+}

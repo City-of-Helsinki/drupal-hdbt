@@ -1,3 +1,5 @@
+$teaser-icon-size: 48px;
+
 .node--type-service {
   .service__title {
     margin-bottom: $spacing-and-half;
@@ -34,5 +36,41 @@
 
   .container {
     padding-top: 0;
+  }
+}
+
+.node--type-service--teaser {
+  background-color: $color-white;
+
+  .service__link {
+    display: block;
+    padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
+    position: relative;
+    text-decoration: none;
+
+    &:hover {
+      .icon {
+        margin-left: $spacing;
+      }
+    }
+  }
+
+  .service__title {
+    @include font-size(22px, 22px);
+    margin: 0;
+  }
+
+  .service__short-desc {
+    color: $color-black-50;
+    margin-top: $spacing-half;
+  }
+
+  .icon {
+    bottom: $spacing;
+    height: $teaser-icon-size;
+    left: $spacing;
+    position: absolute;
+    transition: all .3s;
+    width: $teaser-icon-size;
   }
 }

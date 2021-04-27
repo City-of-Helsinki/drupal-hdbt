@@ -26,5 +26,10 @@ libraries:
   - hdbt/global-styling
   - hdbt/global-scripting
 
+# Libraries extend
+libraries-extend:
+  core/drupal.ajax:
+    - hdbt/throbber
+
 ckeditor_stylesheets:
   - dist/css/ckeditor.min.css

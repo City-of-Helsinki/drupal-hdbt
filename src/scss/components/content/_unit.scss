@@ -120,3 +120,181 @@
     }
   }
 }
+
+.unit__services {
+  background-color: $color-black-5;
+  margin-top: $spacing-double;
+  overflow: hidden;
+  padding-bottom: $spacing-and-half;
+
+  .node--type-service--teaser {
+    margin-top: $spacing-and-half;
+  }
+
+  .unit__services__header {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .unit__services__count-container {
+    @include font-size(18px, 32px);
+    margin-left: $spacing-and-half;
+    white-space: nowrap;
+
+    .unit__services__count {
+      font-weight: 700;
+    }
+  }
+
+  .unit__services__content {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint($breakpoint-s) {
+      margin-right: -$spacing-and-half;
+    }
+
+    .node--type-service--teaser {
+      width: 100%;
+
+      @include breakpoint($breakpoint-s) {
+        margin-right: $spacing-and-half;
+        width: calc(50% - #{$spacing-and-half});
+      }
+
+      @include breakpoint($breakpoint-l) {
+        width: calc(25% - #{$spacing-and-half});
+      }
+
+      // If there is 1 or 2 items inside the services listing:
+      @include content_count(1, 2) {
+        @include breakpoint($breakpoint-l) {
+          width: calc(50% - #{$spacing-and-half});
+        }
+      }
+
+      // If there 3 items inside the services listing:
+      @include content_count(3) {
+        @include breakpoint($breakpoint-l) {
+          width: calc(33.33% - #{$spacing-and-half});
+        }
+      }
+    }
+  }
+  .unit__services__pager {
+    list-style: none;
+    margin: $spacing-quadruple 0 0;
+    padding: 0;
+  }
+
+  .unit__services__load-more-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .hds-button {
+      --background-color: transparent;
+      --background-color-hover: var(--color-black-10);
+      --background-color-focus: transparent;
+      --background-color-hover-focus: var(--color-black-10);
+      --background-color-disabled: transparent;
+      --border-color: var(--hdbt-color-black);
+      --border-color-hover: var(--hdbt-color-black);
+      --border-color-focus: var(--hdbt-color-black);
+      --border-color-hover-focus: var(--hdbt-color-black);
+      --border-color-disabled: var(--hdbt-color-black);
+      --color: var(--hdbt-color-black);
+      --color-hover: var(--hdbt-color-black);
+      --color-focus: var(--hdbt-color-black);
+      --color-hover-focus: var(--hdbt-color-black);
+      --focus-outline-color: var(--hdbt-color-black);
+    }
+  }
+}
+
+.node--type-unit.node--view-mode-full {
+  .unit__services:last-child {
+    // Make the keywords element go "under" the footer.
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+    padding-bottom: $spacing-double + $footer-koro-height;
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-quadruple + $footer-koro-height;
+    }
+  }
+}
+
+.node--type-unit--teaser {
+  align-items: flex-start;
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: $spacing-and-half;
+  padding: $spacing-and-half;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: $spacing-half;
+  }
+
+  .unit__title {
+    @include font-size(24px, 29px);
+    font-weight: 500;
+    margin-bottom: $spacing-and-half;
+    margin-top: 0;
+    padding-right: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      width: 30%;
+    }
+  }
+
+  .unit__info {
+    @include breakpoint($breakpoint-m) {
+      width: 60%;
+    }
+  }
+
+  .unit__info-row {
+    display: flex;
+    margin-bottom: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .icon {
+      margin-right: $spacing-half;
+    }
+  }
+
+  .unit__info-row--address .address {
+    margin-top: 0;
+  }
+
+  .unit__link {
+    line-height: 0;
+    margin-top: 32px;
+
+    @include breakpoint($breakpoint-m) {
+      align-items: flex-end;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0;
+      width: 10%;
+    }
+
+    .icon {
+      --icon-proportions: 48px;
+    }
+  }
+}

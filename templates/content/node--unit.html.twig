@@ -182,13 +182,19 @@
               {{ content.field_unit_alt_address }}
             </div>
           {% elseif content.field_unit_address_tpr|render %}
-            {{ content.field_unit_address_tpr }}
+            <div class="unit__contact-row unit__contact-row--address">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t  } %}{{ 'Visiting address'|t }}:</label>
+              {{ content.field_unit_address_tpr }}
+            </div>
           {% endif %}
           {% if content.field_unit_email|render %}
             {{ content.field_unit_email }}
           {% endif %}
           {% if content.field_unit_phone_number|render %}
-            {{ content.field_unit_phone_number }}
+            <div class="unit__contact-row unit__contact-row--phone">
+              <label class="unit__contact-row__label">{% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}{{ 'Phone number'|t }}:</label>
+              {{ content.field_unit_phone_number }}
+            </div>
           {% endif %}
           {% if content.field_unit_alt_postal_address|render %}
             <div class="unit__contact-row unit__contact-row--postal-address">
@@ -199,9 +205,12 @@
             {{ content.field_unit_postal_address_tpr }}
           {% endif %}
         </div>
-
       {% endif %}
     {% endblock container_content %}
   {% endembed %}
+
+  {% if content.field_unit_services_list|render %}
+    {{ content.field_unit_services_list }}
+  {% endif %}
 
 </article>
