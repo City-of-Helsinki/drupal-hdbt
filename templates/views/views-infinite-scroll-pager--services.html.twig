@@ -9,7 +9,7 @@
   <ul{{ attributes.addClass('unit__services__pager') }}>
     <li class="pager__item">
       <a class="unit__services__load-more-container button" href="{{ items.next.href }}" rel="next">
-        {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: 'Show all services'|t } %}
+        {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: options.button_text } %}
       </a>
     </li>
   </ul>

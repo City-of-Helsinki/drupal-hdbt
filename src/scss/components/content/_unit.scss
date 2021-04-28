@@ -134,7 +134,7 @@
   }
 
   .unit__services__count-container {
-    @include font-size(18px, 32px);
+    @include font-size(24px, 30px);
     margin-left: $spacing-and-half;
     white-space: nowrap;
 
@@ -236,6 +236,7 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: $spacing-half;
+    padding: $spacing-double $spacing-triple;
   }
 
   .unit__title {
@@ -252,6 +253,7 @@
 
   .unit__info {
     @include breakpoint($breakpoint-m) {
+      @include font-size(18px, 26px);
       width: 60%;
     }
   }
@@ -270,6 +272,7 @@
 
     .icon {
       margin-right: $spacing-half;
+      
     }
   }
 
