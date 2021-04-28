@@ -82,28 +82,28 @@
 %}
 
 <div{{ attributes.addClass(classes) }}>
-    <h3 class="unit__title">
-      {{ content.field_unit_visible_title }}
-    </h3>
-    <div class="unit__info">
-      {% if content.field_unit_alt_address|render %}
-        <div class="unit__info-row unit__info-row--address">
-          {% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t } %}
-          {{ content.field_unit_alt_address }}
-        </div>
-      {% elseif content.field_unit_address_tpr|render %}
-        <div class="unit__info-row unit__info-row--address">
-          {% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t } %}
-          {{ content.field_unit_address_tpr }}
-        </div>
-      {% endif %}
-      {% if content.field_unit_phone_number|render %}
-        <div class="unit__info-row unit__info-row--phone">
-          {% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}
-          {{ content.field_unit_phone_number }}
-        </div>
-      {% endif %}
-    </div>
+  <h3 class="unit__title">
+    {{ content.field_unit_visible_title }}
+  </h3>
+  <div class="unit__info">
+    {% if content.field_unit_alt_address|render %}
+      <div class="unit__info-row unit__info-row--address">
+        {% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t } %}
+        {{ content.field_unit_alt_address }}
+      </div>
+    {% elseif content.field_unit_address_tpr|render %}
+      <div class="unit__info-row unit__info-row--address">
+        {% include '@hdbt/misc/icon.twig' with {icon: 'location', label: 'Visiting address'|t } %}
+        {{ content.field_unit_address_tpr }}
+      </div>
+    {% endif %}
+    {% if content.field_unit_phone_number|render %}
+      <div class="unit__info-row unit__info-row--phone">
+        {% include '@hdbt/misc/icon.twig' with {icon: 'phone', label: 'Phone number'|t } %}
+        {{ content.field_unit_phone_number }}
+      </div>
+    {% endif %}
+  </div>
   <a href="{{ url }}" class="unit__link">
     <span class="is-hidden">{% trans with {'context': 'Unit teaser link'} %}Go to{% endtrans %} {{ content.field_unit_visible_title }}</span>
     {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Unit page'|t } %}

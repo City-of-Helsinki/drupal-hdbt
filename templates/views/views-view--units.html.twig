@@ -36,13 +36,13 @@
   ]
 %}
 
-{% embed "@hdbt/misc/container.twig" with {container_element: 'unit__services'} %}
+{% embed "@hdbt/misc/container.twig" with {container_element: 'service__units'} %}
   {% block container_content %}
-    <div class="unit__services__header">
-      <h2 class="unit__services__title">{{ title }}</h2>
-      <span class="unit__services__count-container">
-        <span class="unit__services__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Unit services count'}%}service{% plural total_rows %}services{% endtrans %}
+    <div class="service__units__header">
+      <h2 class="service__units__title">{{ title }}</h2>
+      <span class="service__units__count-container">
+        <span class="service__units__count">{{ total_rows }}</span>
+        {% trans with {'context': 'Service units count'}%}unit{% plural total_rows %}units{% endtrans %}
       </span>
     </div>
     <div{{ attributes.addClass(classes) }}>
