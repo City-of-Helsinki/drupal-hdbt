@@ -6,6 +6,6 @@
   "license": "GPL-2.0+",
   "minimum-stability": "dev",
   "require": {
-    "drupal/twig_tweak": "^2.8"
+    "drupal/twig_tweak": "^3.0"
   }
 }
