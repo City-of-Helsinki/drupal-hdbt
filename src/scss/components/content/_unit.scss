@@ -1,6 +1,7 @@
-.node--type-unit {
+.unit {
   .unit__title {
     margin-bottom: $spacing-and-half;
+    margin-top: $spacing-double;
   }
 
   .unit__short-desc {
@@ -71,12 +72,6 @@
         }
       }
     }
-  }
-}
-
-.node--type-unit--with-hero {
-  .unit__title {
-    margin-top: $spacing-double;
   }
 }
 
@@ -209,7 +204,7 @@
   }
 }
 
-.node--type-unit.node--view-mode-full {
+.unit.unit--view-mode-full {
   .unit__services:last-child {
     // Make the keywords element go "under" the footer.
     margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
@@ -221,7 +216,7 @@
   }
 }
 
-.node--type-unit--teaser {
+.unit.unit--view-mode-teaser {
   align-items: flex-start;
   background-color: $color-white;
   display: flex;
@@ -272,7 +267,7 @@
 
     .icon {
       margin-right: $spacing-half;
-      
+
     }
   }
 
