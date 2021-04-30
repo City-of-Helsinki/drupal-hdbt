@@ -47,6 +47,7 @@ $teaser-icon-size: 48px;
 
   .service__link {
     display: block;
+    height: 100%;
     padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
     position: relative;
     text-decoration: none;
@@ -99,7 +100,7 @@ $teaser-icon-size: 48px;
     }
   }
 
-  .view--units {
+  .service__units__list {
     margin-top: $spacing-and-half;
   }
 

@@ -118,7 +118,7 @@
   overflow: hidden;
   padding-bottom: $spacing-and-half;
 
-  .node--type-service--teaser {
+  .service.service--view-mode-teaser {
     margin-top: $spacing-and-half;
   }
 
@@ -138,7 +138,8 @@
     }
   }
 
-  .unit__services__content {
+  // TODO: Fix this with some views template etc.
+  .unit__services__list .views-row-wrapper {
     display: flex;
     flex-wrap: wrap;
 
@@ -146,7 +147,7 @@
       margin-right: -$spacing-and-half;
     }
 
-    .node--type-service--teaser {
+    .views__row {
       width: 100%;
 
       @include breakpoint($breakpoint-s) {
@@ -171,8 +172,15 @@
           width: calc(33.33% - #{$spacing-and-half});
         }
       }
+
+      .views-field,
+      .views-field .field-content,
+      .service {
+        height: 100%;
+      }
     }
   }
+
   .unit__services__pager {
     list-style: none;
     margin: $spacing-quadruple 0 0;
