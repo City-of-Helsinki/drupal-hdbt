@@ -354,19 +354,6 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_viewsreference__view_title(&$variables) {
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof NodeInterface) {
-    // Override viewsreference title in unit and service content type.
-    if ($node->bundle() === 'unit' || $node->bundle() === 'service') {
-      unset($variables['title']);
-    }
-  }
-}
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
@@ -404,43 +391,6 @@ function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$sugges
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
-
-  // Views to be handled.
-  $view_ids = [
-    'unit_services',
-    'service_units',
-  ];
-
-  // Settings.
-  $settings = [
-    'wrapper_class' => NULL,
-    'container_class' => NULL,
-    'pager_button' => NULL,
-  ];
-
-  if (in_array($view->id(), $view_ids)) {
-    // Add total rows as a variable.
-    $variables['total_rows'] = $variables['view']->total_rows;
-
-    // Construct custom class for the view.
-    $variables['attributes']['class'][] = 'view--' . $variables['view']->id();
-
-    // Add necessary classes for the unit/service lists.
-    $variables['view']->style_plugin->view->element['#attributes']['class'][] = $settings['wrapper_class'];
-    $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = $settings['container_class'];
-
-    $variables['title'] = $settings['list_title'];
-
-    // Apply classes and pager button text for the view.
-    if (
-      $view->getDisplay()->isPagerEnabled() &&
-      !empty($variables['rows'])
-    ) {
-      $pager = $view->getPager();
-      if ($pager && $pager instanceof InfiniteScroll) {
-        $variables['pager']['#options']['button_text'] = $settings['pager_button'];
-      }
-    }
-  }
+  // Add total rows as a variable.
+  $variables['total_rows'] = $variables['view']->total_rows;
 }

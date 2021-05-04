@@ -180,10 +180,14 @@
     padding: 0;
   }
 
-  .unit__services__load-more-container {
+  .unit__services__pager-button-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
+
+    .unit__services__pager-button {
+      text-decoration: none;
+    }
 
     .hds-button {
       --background-color: transparent;
