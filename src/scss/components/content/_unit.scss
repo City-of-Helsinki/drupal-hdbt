@@ -138,8 +138,7 @@
     }
   }
 
-  // TODO: Fix this with some views template etc.
-  .unit__services__list .views-row-wrapper {
+  .unit__services__list > * {
     display: flex;
     flex-wrap: wrap;
 
@@ -147,7 +146,7 @@
       margin-right: -$spacing-and-half;
     }
 
-    .views__row {
+    .service {
       width: 100%;
 
       @include breakpoint($breakpoint-s) {
@@ -171,12 +170,6 @@
         @include breakpoint($breakpoint-l) {
           width: calc(33.33% - #{$spacing-and-half});
         }
-      }
-
-      .views-field,
-      .views-field .field-content,
-      .service {
-        height: 100%;
       }
     }
   }

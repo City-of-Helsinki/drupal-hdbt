@@ -39,7 +39,7 @@
 {% embed "@hdbt/misc/container.twig" with {container_element: 'unit__services'} %}
   {% block container_content %}
     <div class="unit__services__header">
-      <h2 class="unit__services__title">{{ title }}</h2>
+      <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
       <span class="unit__services__count-container">
         <span class="unit__services__count">{{ total_rows }}</span>
         {% trans with {'context': 'Unit services count'}%}service{% plural total_rows %}services{% endtrans %}
@@ -55,12 +55,14 @@
       {{ exposed }}
       {{ attachment_before }}
 
-      {% if rows -%}
-        {{ rows }}
-      {% elseif empty -%}
-        {{ empty }}
-      {% endif %}
-      {{ pager }}
+      <div class="unit__services__list">
+        {% if rows -%}
+          {{ rows }}
+        {% elseif empty -%}
+          {{ empty }}
+        {% endif %}
+        {{ pager }}
+      </div>
 
       {{ attachment_after }}
       {{ more }}
