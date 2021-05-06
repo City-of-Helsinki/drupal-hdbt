@@ -110,6 +110,19 @@
       margin-top: 0;
     }
   }
+
+  .address .country {
+    display: none;
+  }
+
+  .phone {
+    display: block;
+    margin-bottom: $spacing-half;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .unit__services {
@@ -272,12 +285,39 @@
 
     .icon {
       margin-right: $spacing-half;
-
     }
   }
 
   .unit__info-row--address .address {
+    display: flex;
     margin-top: 0;
+
+    .address-line1,
+    .address-line2,
+    .postal-code {
+      margin-right: 5px;
+
+      &::after {
+        content: ",";
+      }
+    }
+
+    .country {
+      display: none;
+    }
+  }
+
+  .unit__info-row--phone .phones {
+    display: flex;
+    flex-direction: column;
+
+    .phone {
+      margin-top: $spacing-half;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
   }
 
   .unit__link {
