@@ -7,8 +7,6 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
-use Drupal\views_infinite_scroll\Plugin\views\pager\InfiniteScroll;
 
 /**
  * Implements hook_preprocess().
@@ -327,17 +325,18 @@ function hdbt_preprocess_field(&$variables) {
  * @param array $variables
  *   Variables array.
  */
-function _hdbt_craft_token($name, &$variables) {
+function _hdbt_craft_token(string $name, array &$variables) {
   $token = $variables['items'][0]['content']['#text'];
   if (
-    strpos($token,'[') !== false &&
-    strpos($token, ']') !== false
+    strpos($token, '[') !== FALSE &&
+    strpos($token, ']') !== FALSE
   ) {
     $rendered_token = \Drupal::token()->replace("$token");
     if ($rendered_token !== $token) {
       $variables[$name] = $rendered_token;
     }
-  } else {
+  }
+  else {
     $variables[$name] = $token;
   }
 }
@@ -351,19 +350,6 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
     !empty($variables['view']->id())
   ) {
     $suggestions[] = 'view__' . $variables['view']->id();
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_viewsreference__view_title(&$variables) {
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof NodeInterface) {
-    // Override viewsreference title in unit and service content type.
-    if ($node->bundle() === 'unit' || $node->bundle() === 'service') {
-      unset($variables['title']);
-    }
   }
 }
 
@@ -405,67 +391,6 @@ function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$sugges
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
-
-  // Views to be handled.
-  $view_ids = [
-    'services',
-    'units',
-  ];
-
-  // Settings.
-  $settings = [
-    'list_title' => NULL,
-    'wrapper_class' => NULL,
-    'container_class' => NULL,
-    'pager_button' => NULL,
-  ];
-
-  if (in_array($view->id(), $view_ids)) {
-    // Apply override title if one exists.
-    $node = \Drupal::routeMatch()->getParameter('node');
-
-    if ($node instanceof NodeInterface) {
-      if ($node->bundle() === 'unit') {
-        $settings['list_title'] = 'field_unit_service_list_title';
-        $settings['wrapper_class'] = 'unit__services';
-        $settings['container_class'] = 'unit__services__content';
-        $settings['pager_button'] = t('Show all services', [], ['context' => 'Service list pager button']);
-      }
-      if ($node->bundle() === 'service') {
-        $settings['list_title'] = 'field_service_units_list_title';
-        $settings['wrapper_class'] = 'service__units';
-        $settings['container_class'] = 'service__units__content';
-        $settings['pager_button'] = t('Show all units', [], ['context' => 'Unit list pager button']);
-      }
-    }
-
-    // Add total rows as a variable.
-    $variables['total_rows'] = $variables['view']->total_rows;
-
-    // Construct custom class for the view.
-    $variables['attributes']['class'][] = 'view--' . $variables['view']->id();
-
-    // Add necessary classes for the unit/service lists.
-    $variables['view']->style_plugin->view->element['#attributes']['class'][] = $settings['wrapper_class'];
-    $variables['rows']['#theme_wrappers']['container']['#attributes']['class'][] = $settings['container_class'];
-
-    if (!empty($settings['list_title']) && $node->hasField($settings['list_title'])) {
-      // You can get nid and anything else you need from the node object.
-      if (!empty($node->{$settings['list_title']}->value)) {
-        $variables['title'] = $node->{$settings['list_title']}->value;
-      }
-    }
-
-    // Apply classes and pager button text for the view.
-    if (
-      $view->getDisplay()->isPagerEnabled() &&
-      !empty($variables['rows'])
-    ) {
-      $pager = $view->getPager();
-      if ($pager && $pager instanceof InfiniteScroll) {
-        $variables['pager']['#options']['button_text'] = $settings['pager_button'];
-      }
-    }
-  }
+  // Add total rows as a variable.
+  $variables['total_rows'] = $variables['view']->total_rows;
 }

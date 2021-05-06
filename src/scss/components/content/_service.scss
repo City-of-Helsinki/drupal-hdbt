@@ -1,8 +1,9 @@
 $teaser-icon-size: 48px;
 
-.node--type-service {
+.service {
   .service__title {
     margin-bottom: $spacing-and-half;
+    margin-top: $spacing-double;
   }
 
   .service__short-desc {
@@ -29,21 +30,24 @@ $teaser-icon-size: 48px;
   }
 }
 
-.node--type-service--with-hero {
-  .service__title {
-    margin-top: $spacing-double;
-  }
+.service.service--view-mode-full {
+  .service__units:last-child {
+    // Make the keywords element go "under" the footer.
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+    padding-bottom: $spacing-double + $footer-koro-height;
 
-  .container {
-    padding-top: 0;
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-quadruple + $footer-koro-height;
+    }
   }
 }
 
-.node--type-service--teaser {
+.service.service--view-mode-teaser {
   background-color: $color-white;
 
   .service__link {
     display: block;
+    height: 100%;
     padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
     position: relative;
     text-decoration: none;
@@ -61,10 +65,10 @@ $teaser-icon-size: 48px;
   }
 
   .service__short-desc {
-    color: $color-black-50;
-    margin-top: $spacing-half;
+    @include font-size(18px, 24px);
+    margin-top: $spacing;
   }
-
+  
   .icon {
     bottom: $spacing;
     height: $teaser-icon-size;
@@ -72,18 +76,6 @@ $teaser-icon-size: 48px;
     position: absolute;
     transition: all .3s;
     width: $teaser-icon-size;
-  }
-}
-
-.node--type-service.node--view-mode-full {
-  .service__units:last-child {
-    // Make the keywords element go "under" the footer.
-    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
-    padding-bottom: $spacing-double + $footer-koro-height;
-
-    @include breakpoint($breakpoint-l) {
-      padding-bottom: $spacing-quadruple + $footer-koro-height;
-    }
   }
 }
 
@@ -108,7 +100,7 @@ $teaser-icon-size: 48px;
     }
   }
 
-  .view--units {
+  .service__units__list {
     margin-top: $spacing-and-half;
   }
 
@@ -118,10 +110,14 @@ $teaser-icon-size: 48px;
     padding: 0;
   }
 
-  .service__units__load-more-container {
+  .service__units__pager-button-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
+
+    .service__units__pager-button {
+      text-decoration: none;
+    }
 
     .hds-button {
       --background-color: transparent;

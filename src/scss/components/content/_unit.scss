@@ -1,6 +1,7 @@
-.node--type-unit {
+.unit {
   .unit__title {
     margin-bottom: $spacing-and-half;
+    margin-top: $spacing-double;
   }
 
   .unit__short-desc {
@@ -74,12 +75,6 @@
   }
 }
 
-.node--type-unit--with-hero {
-  .unit__title {
-    margin-top: $spacing-double;
-  }
-}
-
 .unit__contact {
   .unit__contact__title {
     border-bottom: 2px solid $color-black;
@@ -123,7 +118,7 @@
   overflow: hidden;
   padding-bottom: $spacing-and-half;
 
-  .node--type-service--teaser {
+  .service.service--view-mode-teaser {
     margin-top: $spacing-and-half;
   }
 
@@ -143,7 +138,7 @@
     }
   }
 
-  .unit__services__content {
+  .unit__services__list > * {
     display: flex;
     flex-wrap: wrap;
 
@@ -151,7 +146,7 @@
       margin-right: -$spacing-and-half;
     }
 
-    .node--type-service--teaser {
+    .service {
       width: 100%;
 
       @include breakpoint($breakpoint-s) {
@@ -178,16 +173,21 @@
       }
     }
   }
+
   .unit__services__pager {
     list-style: none;
     margin: $spacing-quadruple 0 0;
     padding: 0;
   }
 
-  .unit__services__load-more-container {
+  .unit__services__pager-button-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
+
+    .unit__services__pager-button {
+      text-decoration: none;
+    }
 
     .hds-button {
       --background-color: transparent;
@@ -209,7 +209,7 @@
   }
 }
 
-.node--type-unit.node--view-mode-full {
+.unit.unit--view-mode-full {
   .unit__services:last-child {
     // Make the keywords element go "under" the footer.
     margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
@@ -221,7 +221,7 @@
   }
 }
 
-.node--type-unit--teaser {
+.unit.unit--view-mode-teaser {
   align-items: flex-start;
   background-color: $color-white;
   display: flex;
@@ -272,7 +272,7 @@
 
     .icon {
       margin-right: $spacing-half;
-      
+
     }
   }
 
