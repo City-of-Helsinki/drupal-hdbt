@@ -7,8 +7,6 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
-use Drupal\views_infinite_scroll\Plugin\views\pager\InfiniteScroll;
 
 /**
  * Implements hook_preprocess().
@@ -326,17 +324,18 @@ function hdbt_preprocess_field(&$variables) {
  * @param array $variables
  *   Variables array.
  */
-function _hdbt_craft_token($name, &$variables) {
+function _hdbt_craft_token(string $name, array &$variables) {
   $token = $variables['items'][0]['content']['#text'];
   if (
-    strpos($token,'[') !== false &&
-    strpos($token, ']') !== false
+    strpos($token, '[') !== FALSE &&
+    strpos($token, ']') !== FALSE
   ) {
     $rendered_token = \Drupal::token()->replace("$token");
     if ($rendered_token !== $token) {
       $variables[$name] = $rendered_token;
     }
-  } else {
+  }
+  else {
     $variables[$name] = $token;
   }
 }
