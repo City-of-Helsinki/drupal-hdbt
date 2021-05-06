@@ -111,6 +111,12 @@
     }
   }
 
+  .address {
+    > * {
+      display: block;
+    }
+  }
+
   .phone {
     display: block;
     margin-bottom: $spacing-half;
