@@ -51,3 +51,12 @@
     }
   }
 }
+
+.has-sidebar--first {
+  // Only directly under the paragraph content wrapper text paragraphs should have this padding.
+  .paragraph-content > .text .text__text-content {
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
+    }
+  }
+}

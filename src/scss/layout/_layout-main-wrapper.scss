@@ -1,0 +1,8 @@
+.has-sidebar--first .layout-main-wrapper {
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    margin: 0 auto;
+    max-width: $content-area-wrapper-width-max;
+    padding: 0 $spacing-double;
+  }
+}

@@ -1,10 +1,17 @@
-.page-title__container {
-  h1 {
-    margin-bottom: $spacing;
-    max-width: $content-width-max;
+.page-title__container h1 {
+  margin-bottom: $spacing;
+  margin-top: 0;
+  max-width: $content-width-max;
 
-    @include breakpoint($breakpoint-m) {
-      padding-left: $spacing-triple * 2;
+  @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-triple * 2;
+  }
+}
+
+.has-sidebar--first {
+  .page-title__container h1 {
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
     }
   }
 }
