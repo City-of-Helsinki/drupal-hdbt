@@ -61,6 +61,11 @@ throbber:
     - core/jquery
     - core/drupal
 
+menu-toggle:
+  version: 1.x
+  js:
+    dist/js/menu-toggle.min.js: {}
+
 global-styling:
   version: 1.x
   css:

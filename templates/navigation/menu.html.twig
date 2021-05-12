@@ -18,37 +18,44 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
+{{ attach_library('hdbt/menu-toggle') }}
 {% import _self as menus %}
 
 {#
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0) }}
+{{ menus.menu_links(items, attributes, 0, icons_path) }}
 
-{% macro menu_links(items, attributes, menu_level) %}
+{% macro menu_links(items, attributes, menu_level, icons_path) %}
   {% import _self as menus %}
 
   {% set menu_classes = ['menu'] %}
 
   {% if items %}
-    {% if menu_level == 0 %}
-      <ul{{ attributes.addClass(menu_classes) }}>
-    {% else %}
-      <ul class="{{ classes|join(' ') }}">
-    {% endif %}
+    <ul{{ attributes.addClass(menu_classes).setAttribute('id', 'menu--level-' ~ menu_level) }}>
     {% for item in items %}
 
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
-        item.is_external ?'menu__item--external'
+        item.is_external ? 'menu__item--external',
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
+        item.is_expanded and not item.in_active_trail ? 'menu__item--collapsed',
+        item.in_active_trail ? 'menu__item--expanded'
       ]%}
 
       <li{{ item.attributes.addClass(item_classes) }}>
-        {{ link(item.title, item.url) }}
+        <span class="menu__link-wrapper">
+          {{ link(item.title, item.url) }}
+          {% if item.is_collapsed or item.is_expanded %}
+            <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button">
+              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down', icons_path: icons_path} %}
+            </button>
+          {% endif %}
+        </span>
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, icons_path) }}
         {% endif %}
       </li>
     {% endfor %}

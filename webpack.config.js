@@ -20,6 +20,7 @@ module.exports = {
         './src/js/component-library.js',
         './src/js/gallery-settings.js',
         './src/js/accordion-settings.js',
+        './src/js/menu-toggle.js',
       ]
     }),
     "component-library": [
@@ -37,6 +38,9 @@ module.exports = {
     ],
     "throbber": [
       "./src/js/throbber.js"
+    ],
+    "menu-toggle": [
+      "./src/js/menu-toggle.js"
     ],
   },
   output: {
