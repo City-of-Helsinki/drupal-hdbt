@@ -251,6 +251,35 @@ function hdbt_preprocess_paragraph(array &$variables) {
 
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
   }
+
+  // Unit search paragraph.
+  if ($paragraph_type == 'unit_search') {
+
+    // Get all unit ids what content producer has selected for the unit search
+    // view and set them as variables for the template.
+    if ($paragraph->hasField('field_unit_search_units')) {
+      $units = $paragraph->field_unit_search_units->getValue();
+      $ids = [];
+      foreach ($units as $unit) {
+        $ids[] = $unit['target_id'];
+      }
+      $variables['unit_search_arguments'] = implode(',', $ids);
+    }
+
+    // Set meta information fields based on how content producer
+    // has defined the fields.
+    $fields = [
+      'field_unit_search_meta_button',
+      'field_unit_search_meta_label',
+      'field_unit_search_meta_placehold',
+    ];
+
+    foreach ($fields as $field) {
+      if ($paragraph->hasField($field)) {
+        $variables['unit_search_meta'][$field] = $paragraph->{$field}->value;
+      }
+    }
+  }
 }
 
 /**

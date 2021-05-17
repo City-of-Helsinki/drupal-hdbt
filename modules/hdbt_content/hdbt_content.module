@@ -75,3 +75,56 @@ function hdbt_content_language_switch_links_alter(array &$links) {
     }
   }
 }
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function hdbt_content_views_pre_view($view) {
+  // Handle only Unit search view at this point.
+  if ($view->id() !== 'unit_search') return;
+
+  // Apply modified meta field values to view exposed form elements.
+  if (!empty($view->args)) {
+    $meta_fields = [];
+
+    // Get the meta field values via arguments. Better way to override exposed
+    // form values with paragraph field values would be preferable.
+    foreach($view->args as $key => $arg) {
+      if (!is_array($arg)) continue;
+      $meta_fields = $arg;
+      unset($view->args[$key]);
+    }
+
+    // Apply the meta fields.
+    if (!empty($meta_fields)) {
+      $view->meta_field_values = $meta_fields;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
+
+  // Handle only Unit search view form at this point.
+  if ($form['#id'] !== 'views-exposed-form-unit-search-block') return;
+
+  // Get view from form state.
+  $view = $form_state->getStorage()['view'];
+
+  // Apply the meta fields values to form values.
+  if (is_array($view->meta_field_values)) {
+    if (!empty($view->meta_field_values['field_unit_search_meta_button'])) {
+      $form['actions']['submit']['#value'] = $view->meta_field_values['field_unit_search_meta_button'];
+    }
+    if (!empty($view->meta_field_values['field_unit_search_meta_label'])) {
+      $form['#info']['filter-combine']['label'] = $view->meta_field_values['field_unit_search_meta_label'];
+    }
+    if (!empty($view->meta_field_values['field_unit_search_meta_placehold'])) {
+      $form['unit_search']['#attributes']['placeholder'] = $view->meta_field_values['field_unit_search_meta_placehold'];
+    }
+  }
+}
+
+
