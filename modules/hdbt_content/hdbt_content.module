@@ -81,7 +81,9 @@ function hdbt_content_language_switch_links_alter(array &$links) {
  */
 function hdbt_content_views_pre_view($view) {
   // Handle only Unit search view at this point.
-  if ($view->id() !== 'unit_search') return;
+  if ($view->id() !== 'unit_search') {
+    return;
+  }
 
   // Apply modified meta field values to view exposed form elements.
   if (!empty($view->args)) {
@@ -89,8 +91,10 @@ function hdbt_content_views_pre_view($view) {
 
     // Get the meta field values via arguments. Better way to override exposed
     // form values with paragraph field values would be preferable.
-    foreach($view->args as $key => $arg) {
-      if (!is_array($arg)) continue;
+    foreach ($view->args as $key => $arg) {
+      if (!is_array($arg)) {
+        continue;
+      }
       $meta_fields = $arg;
       unset($view->args[$key]);
     }
@@ -108,7 +112,9 @@ function hdbt_content_views_pre_view($view) {
 function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
 
   // Handle only Unit search view form at this point.
-  if ($form['#id'] !== 'views-exposed-form-unit-search-block') return;
+  if ($form['#id'] !== 'views-exposed-form-unit-search-block') {
+    return;
+  }
 
   // Get view from form state.
   $view = $form_state->getStorage()['view'];
@@ -126,5 +132,3 @@ function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
     }
   }
 }
-
-
