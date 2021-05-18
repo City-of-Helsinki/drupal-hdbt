@@ -275,6 +275,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
       'field_unit_search_meta_button',
       'field_unit_search_meta_label',
       'field_unit_search_meta_placehold',
+      'field_unit_search_meta_load_more',
     ];
 
     foreach ($fields as $field) {
