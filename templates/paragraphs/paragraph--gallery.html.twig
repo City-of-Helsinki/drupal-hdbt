@@ -46,7 +46,7 @@
 %}
 
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
+  <div{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true') }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'gallery'} %}
       {% block container_content %}
         <div class="gallery__main splide">
