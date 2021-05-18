@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implements hook_theme().
@@ -88,7 +89,7 @@ function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
 
   // Get view from form state.
   $view = $form_state->getStorage()['view'];
-  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $current_language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
   // Apply the cached meta fields values to form values.
   $cached = \Drupal::cache()->get(

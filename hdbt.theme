@@ -294,7 +294,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
         \Drupal::cache()->set(
           'unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments'],
           $meta,
-          strtotime("+1 month"),
+          Cache::PERMANENT,
           $tags
         );
       }
