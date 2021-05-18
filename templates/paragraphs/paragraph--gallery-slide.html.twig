@@ -47,7 +47,7 @@
 %}
 
 {% block paragraph %}
-  <li{{ attributes.addClass(classes) }}>
+  <li{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true') }}>
     <div class="media--image__content">
       {{ content.field_gallery_slide_media }}
       {% if content.field_gallery_slide_caption[0] is not empty %}
