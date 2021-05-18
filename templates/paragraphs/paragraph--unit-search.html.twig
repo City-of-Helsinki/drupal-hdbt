@@ -58,7 +58,7 @@
               <div class="unit-search__header__description">{{ content.field_unit_search_description }}</div>
             {% endif %}
           </div>
-          {{ drupal_view('unit_search', 'block', unit_search_arguments, unit_search_meta) }}
+          {{ drupal_view('unit_search', 'block', unit_search_arguments) }}
         {% endblock container_content %}
       {% endembed %}
     {% endblock %}
