@@ -339,11 +339,95 @@
 }
 
 .unit.unit--teaser-with-image {
+  @include breakpoint($breakpoint-m) {
+    display: block;
+    margin-bottom: $spacing;
+    padding-left: 325px + $spacing-double; // Width of the unit picture from the designs + spacing
+    position: relative;
+  }
+
   .unit__image {
+    background-color: var(--hdbt-theme-color);
     margin: (-$spacing-and-half) (-$spacing-and-half) $spacing-double;
+    overflow: hidden;
 
     @include breakpoint($breakpoint-m) {
-      margin: (-$spacing-double) $spacing-double (-$spacing-double) (-$spacing-triple);
+      height: 100%;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 325px;
+    }
+
+    img {
+      @include breakpoint($breakpoint-m) {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
+
+  .unit__image--placeholder {
+    width: calc(100% + #{$spacing-and-half} + #{$spacing-and-half});
+
+    @include breakpoint($breakpoint-m) {
+      align-items: center;
+      display: flex;
+      width: 325px;
+    }
+  }
+
+  .unit__text {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .unit__text__content {
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+      }
+    }
+
+    .unit__title {
+      @include breakpoint($breakpoint-m) {
+        @include font-size(32px, 40px);
+        margin-bottom: 0;
+        padding-right: 0;
+        width: 100%;
+      }
+    }
+
+    .unit__info {
+      @include breakpoint($breakpoint-m) {
+        width: 100%;
+      }
+    }
+
+    .unit__info-row--address {
+      @include breakpoint($breakpoint-m) {
+        @include font-size(20px, 32px);
+        margin-bottom: $spacing-double;
+      }
+
+      .icon {
+        @include breakpoint($breakpoint-m) {
+          display: none;
+        }
+      }
+    }
+
+    .unit__link {
+      display: inline-block;
+
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        width: 20%;
+      }
     }
   }
 }

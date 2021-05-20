@@ -1,6 +1,6 @@
 {% if icons_path %}
   {% set icon_id = icon ~ '-' ~ random() %}
-  <svg {% if label %} aria-labelledby="{{ icon_id }}" {% endif %} class="icon">
+  <svg {% if label %} aria-labelledby="{{ icon_id }}" {% else %} aria-hidden="true" {% endif %} class="icon">
     {% if label %}<title id="{{ icon_id }}">{{ label }}</title>{% endif %}
     <use xlink:href="{{ icons_path|trim }}#{{ icon }}"/>
   </svg>

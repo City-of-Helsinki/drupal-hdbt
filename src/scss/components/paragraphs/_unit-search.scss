@@ -87,6 +87,10 @@
 
   .views-infinite-scroll-content-wrapper {
     margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-double;
+    }
   }
 
   .unit__search__pager {
@@ -95,5 +99,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-quadruple;
+    }
   }
 }
