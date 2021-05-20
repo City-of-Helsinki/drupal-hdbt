@@ -40,15 +40,45 @@
 
   .form-actions .hds-button--primary {
     width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing-and-half;
+    }
+  }
+
+  .views-exposed-form {
+    @include breakpoint($breakpoint-m) {
+      align-items: flex-end;
+      display: flex;
+    }
+
+    .form-item {
+      @include breakpoint($breakpoint-m) {
+        margin-bottom: 0;
+        width: 70%;
+      }
+    }
+
+    .form-actions {
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        width: 30%;
+      }
+    }
   }
 
   .unit-search__count-container {
+    @include font-size(23px, 30px);
     border-top: 1px solid $color-black-10;
     display: block;
     margin-top: $spacing-double;
     padding-top: $spacing-double;
     width: 100%;
-    @include font-size(20px, 24px);
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-quadruple;
+      padding-top: $spacing-quadruple;
+    }
 
     .unit-search__count {
       font-weight: 700;
