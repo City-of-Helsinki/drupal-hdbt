@@ -217,6 +217,8 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['accordion_heading_level'] = $accordion_heading_level;
   }
 
+  // Check if the paragraph is a type of gallery and prepare the slides
+  // and generate the thumbnails.
   if ($paragraph_type == 'gallery') {
     $variables['#attached']['library'][] = 'hdbt/gallery';
 
@@ -233,6 +235,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $slides = $paragraph_storage->loadMultiple($slide_ids);
 
     $slide_thumbnails = [];
+    $slide_thumbnails_alternative_texts = [];
     foreach ($slides as $slide) {
       $slide_media = $slide
         ->get('field_gallery_slide_media')
@@ -246,10 +249,18 @@ function hdbt_preprocess_paragraph(array &$variables) {
         ->get('entity')
         ->getTarget()
         ->getValue();
+
+      $alternative_text = [
+        'caption' => $slide->field_gallery_slide_caption->value,
+        'alt' => $slide_media->field_media_image->first()->alt,
+      ];
+
+      $slide_thumbnails_alternative_texts[] = $alternative_text;
       $slide_thumbnails[] = $image;
     }
 
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
+    $variables['gallery_slide_thumbnails_alt_texts'] = $slide_thumbnails_alternative_texts;
   }
 
   // Unit search paragraph.
