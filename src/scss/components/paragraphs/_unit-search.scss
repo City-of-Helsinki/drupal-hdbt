@@ -3,6 +3,12 @@
   padding: 0 0 $spacing-double;
 }
 
+.unit-search__container {
+  @include breakpoint($breakpoint-m) {
+    padding-top: $spacing-quadruple;
+  }
+}
+
 .unit-search__header__title {
   margin-top: 0;
 }
@@ -56,6 +62,26 @@
       @include breakpoint($breakpoint-m) {
         margin-bottom: 0;
         width: 70%;
+      }
+    }
+
+    .hds-text-input__input-wrapper {
+      &::after {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: block;
+        height: 20px;
+        mask-image: url('../icons/hds/ui/search.svg');
+        position: absolute;
+        right: $spacing;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+      }
+
+      .hds-text-input__input {
+        padding-right: $spacing-triple;
       }
     }
 
