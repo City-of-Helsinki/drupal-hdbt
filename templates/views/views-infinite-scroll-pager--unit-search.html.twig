@@ -9,7 +9,7 @@
   <ul{{ attributes.addClass('unit__search__pager') }}>
     <li class="pager__item unit__search__pager-button-wrapper">
       <a class="unit__search__pager-button button" href="{{ items.next.href }}" rel="next">
-        {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: options.button_text } %}
+        {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: false, label: options.button_text } %}
       </a>
     </li>
   </ul>
