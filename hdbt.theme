@@ -95,6 +95,7 @@ function hdbt_preprocess_page(&$variables) {
  */
 function hdbt_preprocess_node(&$variables) {
   $node = $variables['node'];
+
   // Handle only landing page.
   if ($node->getType() === 'landing_page') {
     // Get a paragraph storage object.
@@ -103,9 +104,12 @@ function hdbt_preprocess_node(&$variables) {
     // and add classes accordingly.
     $paragraphs = $node->get('field_content')->getValue();
     $first_paragraph = reset($paragraphs);
-    $paragraph = $paragraph_storage->load($first_paragraph['target_id']);
-    if ($paragraph->getType() === 'unit_search') {
-      $variables['first_paragraph_grey'] = TRUE;
+
+    if (!empty($first_paragraph)) {
+      $paragraph = $paragraph_storage->load($first_paragraph['target_id']);
+      if ($paragraph->getType() === 'unit_search') {
+        $variables['first_paragraph_grey'] = TRUE;
+      }
     }
   }
 }
