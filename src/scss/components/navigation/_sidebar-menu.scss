@@ -10,6 +10,29 @@
     border-bottom: 2px solid $color-black;
     margin-top: $spacing-half;
     padding-bottom: $spacing-and-half;
+
+    a {
+      display: flex;
+      padding-left: 20px + $spacing; // Width of the arrow icon.
+      position: relative;
+      text-decoration: none;
+
+      &:before {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: flex;
+        height: 30px;
+        left: 0;
+        mask-image: url('../icons/hds/ui/arrow-left.svg');
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 25px;
+        position: absolute;
+        top: 0;
+        width: 20px;
+      }
+    }
   }
 
   .menu {
