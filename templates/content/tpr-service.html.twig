@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme for service entity.
+ */
+#}
+
+{% embed '@helfi_tpr/tpr-service.html.twig' %}
+  {% block main_content %}
+    {{ content.field_content }}
+  {% endblock main_content %}
+{% endembed %}

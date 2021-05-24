@@ -1,5 +1,7 @@
 {% if paragraphs %}
-  {% for paragraph in paragraphs %}
-    {{ drupal_entity('paragraph', paragraph.target_id) }}
-  {% endfor %}
+  <div class="secondary-content-wrapper">
+    {% for paragraph in paragraphs %}
+      {{ drupal_entity('paragraph', paragraph.target_id) }}
+    {% endfor %}
+  </div>
 {% endif %}
