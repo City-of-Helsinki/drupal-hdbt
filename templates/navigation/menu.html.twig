@@ -47,7 +47,12 @@
 
       <li{{ item.attributes.addClass(item_classes) }}>
         <span class="menu__link-wrapper">
-          {{ link(item.title, item.url) }}
+          {% if not item.is_nolink %}
+            {{ link(item.title, item.url) }}
+          {% else %}
+            <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
+          {% endif %}
+
           {% if item.is_collapsed or item.is_expanded %}
             <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button">
               {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down', icons_path: icons_path} %}

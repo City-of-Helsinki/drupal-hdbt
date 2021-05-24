@@ -56,6 +56,7 @@
         width: 100%;
       }
 
+      span.menu__item--nolink,
       a {
         display: block;
         padding: $spacing 0;
@@ -92,10 +93,12 @@
         @include font-size(16px, 24px);
         border-top: none;
 
+        &:last-child span.menu__item--nolink,
         &:last-child a {
           margin-bottom: ($spacing-and-half / 2);
         }
 
+        span.menu__item--nolink,
         a {
           padding: ($spacing-and-half / 2) 0 ($spacing-and-half / 2) $spacing;
           position: relative;
