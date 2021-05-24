@@ -53,21 +53,23 @@
       {{ page.before_content }}
     {% endif %}
 
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
+    <div class="main-content">
+      <div class="layout-content">
+        {{ page.content }}
+      </div>{# /.layout-content #}
 
-    {% if sidebar_first_output %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
+      {% if sidebar_first_output %}
+        <aside class="layout-sidebar-first" role="complementary">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
 
-    {% if sidebar_second_output %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
+      {% if sidebar_second_output %}
+        <aside class="layout-sidebar-second" role="complementary">
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+    </div>
 
     {% if page.after_content %}
       {{ page.after_content }}

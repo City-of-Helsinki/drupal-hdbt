@@ -24,6 +24,7 @@ $arrow-container-height: 48px;
 
 .gallery__main {
   padding-bottom: $arrow-container-height + $spacing-half;
+  width: 100%;
 
   @include breakpoint($breakpoint-m) {
     padding-bottom: $arrow-container-height + $spacing-double;
@@ -152,6 +153,15 @@ $arrow-container-height: 48px;
     &.splide__arrow--next {
       background-image: url('../icons/hds/ui/arrow-right.svg');
       margin-right: -$spacing-half;
+    }
+  }
+}
+
+.has-sidebar--first {
+  .splide__arrows .splide__arrow {
+    @include breakpoint($breakpoint-xl) {
+      height: 64px;
+      width: 64px;
     }
   }
 }

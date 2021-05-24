@@ -24,6 +24,12 @@ function hdbt_content_theme() {
         'content' => NULL,
       ],
     ],
+    'hero_block' => [
+      'variables' => [
+        'title' => NULL,
+        'paragraph_id' => NULL,
+      ],
+    ],
   ];
 }
 
