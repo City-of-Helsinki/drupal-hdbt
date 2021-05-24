@@ -25,6 +25,30 @@
         border-top: 0;
       }
 
+      &.menu__item--external a {
+        display: block;
+        padding-right: 40px; // Width of the external icon.
+        position: relative;
+        width: 100%;
+
+        &:after {
+          background-color: $color-black;
+          background-size: contain;
+          content: "";
+          display: flex;
+          height: 20px;
+          mask-image: url('../icons/hds/ui/link-external.svg');
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: 20px;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 40px;
+        }
+      }
+
       .menu__link-wrapper {
         align-content: center;
         display: flex;
@@ -87,6 +111,10 @@
             transform: translateY(-50%);
             width: 3px;
           }
+        }
+
+        &.menu__item--external a {
+          padding-right: 40px; // Width of the external icon.
         }
       }
     }
