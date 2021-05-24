@@ -97,13 +97,12 @@ function hdbt_preprocess_node(&$variables) {
   $node = $variables['node'];
   // Handle only landing page.
   if ($node->getType() === 'landing_page') {
-    // Get a paragraph storage object.
-    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
     // Check if the content field first paragraph is Unit search
     // and add classes accordingly.
-    $paragraphs = $node->get('field_content')->getValue();
-    $first_paragraph = reset($paragraphs);
-    $paragraph = $paragraph_storage->load($first_paragraph['target_id']);
+    $paragraph = $node->get('field_content')->first()->entity;
+    if (empty($paragraph)) {
+      return;
+    }
     if ($paragraph->getType() === 'unit_search') {
       $variables['first_paragraph_grey'] = TRUE;
     }
