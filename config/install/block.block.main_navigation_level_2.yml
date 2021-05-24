@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - ctools
+    - menu_block_current_language
+  theme:
+    - hdbt
+id: main_navigation_level_2
+theme: hdbt
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:main'
+settings:
+  id: 'menu_block_current_language:main'
+  label: 'Main navigation (Level 2 ->)'
+  provider: menu_block_current_language
+  label_display: '0'
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
+  level: 2
+  depth: 0
+  expand_all_items: true
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      article: article
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
