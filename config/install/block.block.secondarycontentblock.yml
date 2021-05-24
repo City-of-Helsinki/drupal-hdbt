@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - hdbt_content
+  theme:
+    - hdbt
+id: secondarycontentblock
+theme: hdbt
+region: after_content
+weight: -6
+provider: null
+plugin: secondary_content_block
+settings:
+  id: secondary_content_block
+  label: 'Secondary content block'
+  provider: hdbt_content
+  label_display: '0'
+visibility: {  }

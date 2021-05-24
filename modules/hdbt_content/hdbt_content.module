@@ -31,6 +31,12 @@ function hdbt_content_theme() {
         'first_paragraph_grey' => NULL,
       ],
     ],
+    'secondary_content_block' => [
+      'variables' => [
+        'title' => NULL,
+        'paragraphs' => NULL,
+      ],
+    ],
   ];
 }
 
