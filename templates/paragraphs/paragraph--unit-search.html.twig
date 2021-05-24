@@ -40,34 +40,27 @@
 #}
 {%
   set classes = [
-  'gallery-slide',
-  view_mode ? 'gallery-slide--' ~ view_mode|clean_class,
-  'splide__slide'
-]
+    'unit-search',
+    view_mode ? 'unit-search--' ~ view_mode|clean_class,
+  ]
 %}
 
 {% block paragraph %}
-  <li{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true') }}>
-    <div class="media--image__content">
-      {{ content.field_gallery_slide_media }}
-      {% if content.field_gallery_slide_caption[0] is not empty %}
-        {% spaceless %}
-          <figcaption class="media--image__caption">
-            {{ content.field_gallery_slide_caption }}
-            {% if content.field_gallery_slide_media|render %}
-              {% for key, image in content.field_gallery_slide_media %}
-                {% if image.entity %}
-                  {% set media = image.entity %}
-                  {% set image_caption = media.fields.field_photographer.value %}
-                  {% if image_caption %}
-                    {{ 'Photo:'|trans }} {{ image_caption }}
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      {% embed "@hdbt/misc/container.twig" with {container_element: 'unit-search'} %}
+        {% block container_content %}
+          <div class="unit-search__header">
+            {% if content.field_unit_search_title|render %}
+              <h2 class="unit-search__header__title">{{ content.field_unit_search_title }}</h2>
             {% endif %}
-          </figcaption>
-        {% endspaceless %}
-      {% endif %}
-    </div>
-  </li>
+            {% if content.field_unit_search_description|render %}
+              <div class="unit-search__header__description">{{ content.field_unit_search_description }}</div>
+            {% endif %}
+          </div>
+          {{ drupal_view('unit_search', 'block', unit_search_arguments) }}
+        {% endblock container_content %}
+      {% endembed %}
+    {% endblock %}
+  </div>
 {% endblock paragraph %}

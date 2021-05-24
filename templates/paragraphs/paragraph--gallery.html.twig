@@ -46,7 +46,7 @@
 %}
 
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
+  <div{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true').setAttribute('aria-label', 'Image gallery'|t) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'gallery'} %}
       {% block container_content %}
         <div class="gallery__main splide">
@@ -60,9 +60,18 @@
         <div class="gallery__thumbnails js-gallery__thumbnails">
           <ul class="gallery__thumbnails__list">
             {% for key, image in gallery_slide_thumbnails %}
-              {% set alt = image.alt %}
-              <li class="gallery__thumbnails__item" role="button" tabindex="0">
-                {{ drupal_image(image.uri.value, 'gallery_thumbnail', {alt: alt}, responsive=true) }}
+              {% set gallery_thumbnails_item = create_attribute({'class': 'gallery__thumbnails__item'}).setAttribute('role', 'button').setAttribute('tabindex', '0') %}
+              {% if gallery_slide_thumbnails_alt_texts[key].caption %}
+                {% set alt = gallery_slide_thumbnails_alt_texts[key].caption %}
+                {% set gallery_thumbnails_item = gallery_thumbnails_item.setAttribute('aria-label', gallery_slide_thumbnails_alt_texts[key].caption) %}
+              {% elseif gallery_slide_thumbnails_alt_texts[key].alt is not same as('""') %}
+                {% set alt = gallery_slide_thumbnails_alt_texts[key].alt %}
+                {% set gallery_thumbnails_item = gallery_thumbnails_item.setAttribute('aria-label', gallery_slide_thumbnails_alt_texts[key].alt) %}
+              {% else %}
+                {% set alt = false %}
+              {% endif %}
+              <li{{ gallery_thumbnails_item }}>
+                {{ drupal_image(image.uri.value, 'gallery_thumbnail', { alt: alt }, responsive=true) }}
               </li>
             {% endfor %}
           </ul>

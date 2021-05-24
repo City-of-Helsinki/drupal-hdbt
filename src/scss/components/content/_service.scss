@@ -70,7 +70,7 @@ $teaser-icon-size: 48px;
   }
 }
 
-.service.service--view-mode-full {
+.service.service--full {
   .service__units:last-child {
     // Make the keywords element go "under" the footer.
     margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
@@ -82,7 +82,7 @@ $teaser-icon-size: 48px;
   }
 }
 
-.service.service--view-mode-teaser {
+.service.service--teaser {
   background-color: $color-white;
 
   .service__link {

@@ -534,6 +534,16 @@ $koro-height: 50px;
     margin-left: auto;
     margin-right: auto;
   }
+
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
+  }
+}
+
+.hero--without-image-left {
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
+  }
 }
 
 // With image designs.
@@ -604,6 +614,10 @@ $koro-height: 50px;
     @include breakpoint($breakpoint-m) {
       display: block;
     }
+  }
+
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
   }
 
   .hero__image-container {
@@ -724,8 +738,13 @@ $koro-height: 50px;
 
   .hds-koros {
     bottom: -1px;
+    color: $color-white;
     position: absolute;
     z-index: 2;
+  }
+
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
   }
 
   .hds-button--primary {

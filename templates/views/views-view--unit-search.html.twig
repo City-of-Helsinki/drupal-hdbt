@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
- * - css_name: A CSS-safe version of the view name.
+ * - css_name: A css-safe version of the view name.
  * - css_class: The user-specified classes names, if any.
  * - header: The optional header.
  * - footer: The optional footer.
@@ -32,48 +32,46 @@
 #}
 {%
   set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-  ]
+  'views',
+  'views--' ~ id|clean_class,
+  'views--' ~ display_id|clean_class,
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'unit-search__content'
+]
 %}
 
-{% embed "@hdbt/misc/container.twig" with {container_element: 'service__units'} %}
-  {% block container_content %}
-    <div class="service__units__header">
-      <h2 class="service__units__title">{% trans %}Service locations{% endtrans %}</h2>
-      <span class="service__units__count-container">
-        <span class="service__units__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Service units count'}%}unit{% plural total_rows %}units{% endtrans %}
-      </span>
-    </div>
-    <div{{ attributes.addClass(classes) }}>
-      {% if header %}
-        <header>
-          {{ header }}
-        </header>
-      {% endif %}
+<div{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
 
-      {{ exposed }}
-      {{ attachment_before }}
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
 
-      <div class="service__units__list">
-        {% if rows -%}
-          {{ rows }}
-        {% elseif empty -%}
-          {{ empty }}
-        {% endif %}
-        {{ pager }}
-      </div>
+  {{ exposed }}
+  {{ attachment_before }}
 
-      {{ attachment_after }}
-      {{ more }}
+  <span class="unit-search__count-container">
+    <span class="unit-search__count">{{ total_rows }}</span>
+    {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+  </span>
 
-      {% if footer %}
-        <footer>
-          {{ footer }}
-        </footer>
-      {% endif %}
+  {{ rows }}
 
-      {{ feed_icons }}
-    </div>
-  {% endblock container_content %}
-{% endembed %}
+  {{ empty }}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>

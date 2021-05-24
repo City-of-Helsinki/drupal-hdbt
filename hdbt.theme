@@ -91,6 +91,26 @@ function hdbt_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  // Handle only landing page.
+  if ($node->getType() === 'landing_page') {
+    // Get a paragraph storage object.
+    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+    // Check if the content field first paragraph is Unit search
+    // and add classes accordingly.
+    $paragraphs = $node->get('field_content')->getValue();
+    $first_paragraph = reset($paragraphs);
+    $paragraph = $paragraph_storage->load($first_paragraph['target_id']);
+    if ($paragraph->getType() === 'unit_search') {
+      $variables['first_paragraph_grey'] = TRUE;
+    }
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_component_library_alter(array &$suggestions, array $variables) {
@@ -217,6 +237,8 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['accordion_heading_level'] = $accordion_heading_level;
   }
 
+  // Check if the paragraph is a type of gallery and prepare the slides
+  // and generate the thumbnails.
   if ($paragraph_type == 'gallery') {
     $variables['#attached']['library'][] = 'hdbt/gallery';
 
@@ -233,6 +255,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $slides = $paragraph_storage->loadMultiple($slide_ids);
 
     $slide_thumbnails = [];
+    $slide_thumbnails_alternative_texts = [];
     foreach ($slides as $slide) {
       $slide_media = $slide
         ->get('field_gallery_slide_media')
@@ -246,10 +269,71 @@ function hdbt_preprocess_paragraph(array &$variables) {
         ->get('entity')
         ->getTarget()
         ->getValue();
+
+      $alternative_text = [
+        'caption' => $slide->field_gallery_slide_caption->value,
+        'alt' => $slide_media->field_media_image->first()->alt,
+      ];
+
+      $slide_thumbnails_alternative_texts[] = $alternative_text;
       $slide_thumbnails[] = $image;
     }
 
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
+    $variables['gallery_slide_thumbnails_alt_texts'] = $slide_thumbnails_alternative_texts;
+  }
+
+  // Unit search paragraph.
+  if (
+    $paragraph_type == 'unit_search' &&
+    $paragraph->hasField('field_unit_search_units')
+  ) {
+    // Get all unit ids what content producer has selected for the unit search
+    // view and set them as variables for the template.
+    $unit_ids = [];
+    $units = $paragraph->field_unit_search_units->getValue();
+    $ids = [];
+    foreach ($units as $unit) {
+      $ids[] = $unit['target_id'];
+      $unit_ids[] = 'tpr_unit:' . $unit['target_id'];
+    }
+
+    // Set the unit ids to a unit_search_arguments variable for the template.
+    $variables['unit_search_arguments'] = implode(',', $ids);
+
+    // Get previously cached meta information field values and set them
+    // if no cached items are found.
+    $cached = \Drupal::cache()->get('unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments']);
+
+    if (!$cached) {
+      // Set meta information fields based on how content producer
+      // has defined the fields.
+      $meta = [];
+      $fields = [
+        'field_unit_search_meta_button',
+        'field_unit_search_meta_label',
+        'field_unit_search_meta_placehold',
+        'field_unit_search_meta_load_more',
+      ];
+
+      foreach ($fields as $field) {
+        if ($paragraph->hasField($field)) {
+          $meta[$field] = $paragraph->{$field}->value;
+        }
+      }
+
+      // Cache the meta fields based on view id and units.
+      if (!empty($meta) && !empty($unit_ids)) {
+        $tags = array_merge(['paragraph:' . $paragraph->id()], $unit_ids);
+
+        \Drupal::cache()->set(
+          'unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments'],
+          $meta,
+          Cache::PERMANENT,
+          $tags
+        );
+      }
+    }
   }
 }
 
