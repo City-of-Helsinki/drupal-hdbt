@@ -95,6 +95,7 @@ function hdbt_preprocess_page(&$variables) {
  */
 function hdbt_preprocess_node(&$variables) {
   $node = $variables['node'];
+
   // Handle only landing page.
   if ($node->getType() === 'landing_page') {
     // Check if the content field first paragraph is Unit search
