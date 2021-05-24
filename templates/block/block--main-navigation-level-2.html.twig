@@ -34,7 +34,7 @@
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }} class="sidebar-menu">
   <h3{{ title_attributes.setAttribute('id', heading_id) }} class="sidebar-menu__title">
-    {% trans with {'context': 'Sidebar menu title'}  %}Menu placeholder title{% endtrans %}
+    {{ link(menu_link_parent.title, menu_link_parent.url) }}
   </h3>
 
   {# Menu. #}
