@@ -3,25 +3,26 @@ status: true
 dependencies:
   module:
     - ctools
+    - hdbt_content
   theme:
     - hdbt
-id: hdbt_page_title
+id: heroblock
 theme: hdbt
 region: before_content
-weight: -6
+weight: -5
 provider: null
-plugin: page_title_block
+plugin: hero_block
 settings:
-  id: page_title_block
-  label: 'Page title'
-  provider: core
+  id: hero_block
+  label: 'Hero block'
+  provider: hdbt_content
   label_display: '0'
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
-      unit: unit
-      service: service
-    negate: true
+      landing_page: landing_page
+      page: page
+    negate: false
     context_mapping:
       node: '@node.node_route_context:node'

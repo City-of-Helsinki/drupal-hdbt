@@ -5,9 +5,19 @@
  */
 #}
 
+{% if page.sidebar_first|render|striptags|trim is not empty %}
+  {% set sidebar_first_output = TRUE %}
+{% endif %}
+
+{% if page.sidebar_second|render|striptags|trim is not empty %}
+  {% set sidebar_second_output = render_var(page.sidebar_second) %}
+{% endif %}
+
 {% set page_classes = [
     node.getType() ? 'page-type--' ~ node.getType()|clean_class,
     'wrapper',
+    sidebar_first_output ? 'has-sidebar has-sidebar--first',
+    sidebar_second_output ? 'has-sidebar has-sidebar--second'
   ]
 %}
 
@@ -36,28 +46,30 @@
     {{ page.tools }}
   {% endif %}
 
-  <main role="main">
+  <main role="main" class="layout-main-wrapper">
     <a id="main-content" tabindex="-1"></a>
 
     {% if page.before_content %}
       {{ page.before_content }}
     {% endif %}
 
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
+    <div class="main-content">
+      <div class="layout-content">
+        {{ page.content }}
+      </div>{# /.layout-content #}
 
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
+      {% if sidebar_first_output %}
+        <aside class="layout-sidebar-first" role="complementary">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
 
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
+      {% if sidebar_second_output %}
+        <aside class="layout-sidebar-second" role="complementary">
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+    </div>
 
     {% if page.after_content %}
       {{ page.after_content }}

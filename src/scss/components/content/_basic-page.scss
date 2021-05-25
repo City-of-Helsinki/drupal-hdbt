@@ -9,3 +9,11 @@
     }
   }
 }
+
+.has-sidebar--first {
+  .node--type-page .paragraph-content > .image .media--image__content {
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 .unit {
   .unit__title {
     margin-bottom: $spacing-and-half;
-    margin-top: $spacing-double;
+    margin-top: 0;
   }
 
   .unit__short-desc {
@@ -43,6 +43,34 @@
       flex-wrap: wrap;
     }
 
+    &.has-navigation {
+      .unit__header {
+        order: 2;
+        padding-right: 0;
+
+        @include breakpoint($breakpoint-m) {
+          padding-left: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing-triple;
+        }
+      }
+
+      .unit__sidebar {
+        order: 1;
+        padding-left: 0;
+
+        @include breakpoint($breakpoint-l) {
+          padding-right: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-right: $spacing-triple;
+        }
+      }
+    }
+
     .unit__header {
       @include breakpoint($breakpoint-m) {
         padding-right: $spacing-double;
@@ -53,7 +81,7 @@
         padding-right: $spacing-triple;
       }
     }
-    .unit__contact {
+    .unit__sidebar {
       @include breakpoint($breakpoint-m) {
         width: 30%;
       }
@@ -65,21 +93,27 @@
       @include breakpoint($breakpoint-xl) {
         padding-left: $spacing-triple;
       }
-
-      .unit__contact__title {
-        @include breakpoint($breakpoint-m) {
-          margin-top: $spacing-double;
-        }
-      }
     }
   }
 }
 
 .unit__contact {
+  &:first-child .unit__contact__title {
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-half;
+    }
+  }
+
   .unit__contact__title {
+    @include font-size(24px, 28px);
     border-bottom: 2px solid $color-black;
     margin-bottom: $spacing-and-half;
+    margin-top: $spacing-half;
     padding-bottom: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-double;
+    }
   }
 
   .unit__contact-row {
@@ -287,7 +321,6 @@
 
     .icon {
       margin-right: $spacing-half;
-
     }
   }
 

@@ -1,0 +1,161 @@
+.sidebar-menu {
+  display: none;
+
+  @include breakpoint($breakpoint-l) {
+    display: block;
+  }
+
+  .sidebar-menu__title {
+    @include font-size(24px, 28px);
+    border-bottom: 2px solid $color-black;
+    margin-top: $spacing-half;
+    padding-bottom: $spacing-and-half;
+
+    a {
+      display: flex;
+      padding-left: 20px + $spacing; // Width of the arrow icon.
+      position: relative;
+      text-decoration: none;
+
+      &:before {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: flex;
+        height: 30px;
+        left: 0;
+        mask-image: url('../icons/hds/ui/arrow-left.svg');
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 25px;
+        position: absolute;
+        top: 0;
+        width: 20px;
+      }
+    }
+  }
+
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .menu__item {
+      @include font-size(18px, 24px);
+      border-top: 1px solid $color-black-20;
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      &.menu__item--external a {
+        display: block;
+        padding-right: 40px; // Width of the external icon.
+        position: relative;
+        width: 100%;
+
+        &:after {
+          background-color: $color-black;
+          background-size: contain;
+          content: "";
+          display: flex;
+          height: 20px;
+          mask-image: url('../icons/hds/ui/link-external.svg');
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: 20px;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 40px;
+        }
+      }
+
+      .menu__link-wrapper {
+        align-content: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      span.menu__item--nolink,
+      a {
+        display: block;
+        padding: $spacing 0;
+        text-decoration: none;
+        width: 100%;
+
+        &.is-active {
+          font-weight: 700;
+        }
+      }
+
+      &.menu__item--collapsed,
+      &.menu__item--expanded {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &.menu__item--collapsed {
+        .menu {
+          display: none;
+        }
+
+        .menu__toggle-button .icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      // Second level
+      .menu {
+        width: 100%;
+      }
+
+      .menu__item {
+        @include font-size(16px, 24px);
+        border-top: none;
+
+        &:last-child span.menu__item--nolink,
+        &:last-child a {
+          margin-bottom: ($spacing-and-half / 2);
+        }
+
+        span.menu__item--nolink,
+        a {
+          padding: ($spacing-and-half / 2) 0 ($spacing-and-half / 2) $spacing;
+          position: relative;
+          width: 100%;
+
+          &.is-active::before {
+            background-color: $color-black;
+            content: "";
+            height: 24px; // Line-height
+            left: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+          }
+        }
+
+        &.menu__item--external a {
+          padding-right: 40px; // Width of the external icon.
+        }
+      }
+    }
+  }
+
+  .menu__toggle-button {
+    background: transparent;
+    border: 0 none;
+    display: block;
+    min-height: 40px;
+    min-width: 40px;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

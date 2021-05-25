@@ -91,26 +91,6 @@ function hdbt_preprocess_page(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_node(&$variables) {
-  $node = $variables['node'];
-
-  // Handle only landing page.
-  if ($node->getType() === 'landing_page') {
-    // Check if the content field first paragraph is Unit search
-    // and add classes accordingly.
-    $paragraph = $node->get('field_content')->first()->entity;
-    if (empty($paragraph)) {
-      return;
-    }
-    if ($paragraph->getType() === 'unit_search') {
-      $variables['first_paragraph_grey'] = TRUE;
-    }
-  }
-}
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_component_library_alter(array &$suggestions, array $variables) {
@@ -164,17 +144,37 @@ function hdbt_preprocess_form_element(&$variables) {
  */
 function hdbt_preprocess_menu(&$variables) {
   foreach ($variables['items'] as &$item) {
-    if (isset($item['url'])) {
-      /** @var \Drupal\Core\Url $url */
-      $url = $item['url'];
+    _hdbt_menu_item_apply_attributes($item);
+  }
+}
 
-      if ($url->isExternal()) {
-        $item['is_external'] = TRUE;
-      }
+/**
+ * Iterate through menu items and apply custom attributes to each item.
+ *
+ * @param array $item
+ *   Menu item.
+ */
+function _hdbt_menu_item_apply_attributes(array &$item) {
+  // Iterate through child menu items.
+  if (!empty($item['below'])) {
+    foreach ($item['below'] as &$item_below) {
+      _hdbt_menu_item_apply_attributes($item_below);
+    }
+  }
 
-      if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
-        $item['is_nolink'] = TRUE;
-      }
+  // Check if URL is present.
+  if (isset($item['url'])) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $item['url'];
+
+    // Check if the URL is external and add variable accordingly.
+    if ($url->isExternal()) {
+      $item['is_external'] = TRUE;
+    }
+
+    // Check if the URL is <nolink> and add variable accordingly.
+    if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
+      $item['is_nolink'] = TRUE;
     }
   }
 }
@@ -183,7 +183,7 @@ function hdbt_preprocess_menu(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_block(&$variables) {
-  // Handle only Page title block.
+  // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
     if ($node = \Drupal::routeMatch()->getParameter('node')) {
       // Retrieve the node object for revisions.
@@ -197,6 +197,34 @@ function hdbt_preprocess_block(&$variables) {
       ) {
         if (boolval($node->get('field_has_hero')->getString())) {
           $variables['hide_block'] = TRUE;
+        }
+      }
+    }
+  }
+
+  // Handle Sidebar menu block.
+  if (
+    $variables['base_plugin_id'] === 'menu_block_current_language' &&
+    $variables['elements']['#id'] === 'main_navigation_level_2' &&
+    !empty($variables['content']['#items'])
+  ) {
+    // Get any current menu level item.
+    $current_level_menu_item = reset($variables['content']['#items']);
+
+    if (isset($current_level_menu_item['original_link'])) {
+      $original_link = $current_level_menu_item['original_link'];
+      $parent = $original_link->getParent();
+
+      // Check if current menu item has parent and serve it as variable.
+      if ($parent) {
+        $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+        $parent_item = $menu_link_manager->createInstance($parent);
+
+        if ($parent_item) {
+          $variables['menu_link_parent'] = [
+            'title' => $parent_item->getTitle(),
+            'url' => $parent_item->getUrlObject(),
+          ];
         }
       }
     }
