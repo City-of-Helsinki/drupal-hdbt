@@ -29,8 +29,13 @@ class SecondaryContentBlock extends BlockBase {
     // Get the route parameters.
     $route_parameters = \Drupal::routeMatch()->getParameters();
     $entity = FALSE;
-    $type = '';
-    $build = [];
+    $build = [
+      '#cache' => [
+        'contexts' => [
+          'route',
+        ],
+      ],
+    ];
 
     // Match the entity types with current entity type.
     foreach ($entity_types as $entity_type) {
@@ -38,26 +43,21 @@ class SecondaryContentBlock extends BlockBase {
         continue;
       }
       $entity = $route_parameters->get($entity_type);
-      $type = $entity_type;
+      break;
+    }
+
+    if (!$entity || !$entity->hasField('field_secondary_content')) {
+      return $build;
     }
 
     // Build render array if current entity has secondary content field.
-    if ($entity && $entity->hasField('field_secondary_content')) {
-      $build = [
-        '#theme' => 'secondary_content_block',
-        '#title' => $this->t('Secondary content block'),
-        '#paragraphs' => $entity->field_secondary_content,
-        '#cache' => [
-          'tags' => [
-            $type . ':' . $entity->id(),
-          ],
-          'contexts' => [
-            'route',
-          ],
-        ],
-      ];
-    }
-
-    return $build;
+    return $build['secondary_content'] = [
+      '#theme' => 'secondary_content_block',
+      '#title' => $this->t('Secondary content block'),
+      '#paragraphs' => $entity->field_secondary_content,
+      '#cache' => [
+        'tags' => $entity->getCacheTags(),
+      ],
+    ];
   }
 }
