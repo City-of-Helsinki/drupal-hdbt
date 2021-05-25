@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme for unit entity.
+ */
+#}
+{% if drupal_entity('block', 'main_navigation_level_2', check_access=false)|render|striptags|trim is not empty %}
+  {% set in_menu =  TRUE %}
+{% endif %}
+
+{% embed '@helfi_tpr/tpr-unit.html.twig' with {in_menu: in_menu} %}
+  {% block sidebar_block %}
+    {{ drupal_entity('block', 'main_navigation_level_2', check_access=false) }}
+  {% endblock sidebar_block %}
+{% endembed %}
