@@ -1,3 +1,4 @@
+.has-sidebar .layout-sidebar-first,
 .layout-sidebar-first {
   @include breakpoint($breakpoint-l) {
     order: 1;

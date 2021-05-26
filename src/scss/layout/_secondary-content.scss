@@ -1,3 +1,14 @@
-.secondary-content-wrapper {
+.secondary-content {
+  margin-top: $spacing-double;
   width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-quadruple;
+  }
+
+  .layout-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
 }

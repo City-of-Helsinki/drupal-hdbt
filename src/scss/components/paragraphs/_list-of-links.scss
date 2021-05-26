@@ -152,7 +152,7 @@ $item_spacing: $spacing-triple;
   .list-of-links__item {
     align-self: flex-start;
     display: flex;
-    
+
     @include breakpoint($breakpoint-m) {
       width: 33.3333%;
     }
@@ -234,6 +234,30 @@ $item_spacing: $spacing-triple;
       @include breakpoint($breakpoint-l) {
         @include font-size(20px);
         margin-top: $spacing-quarter;
+      }
+    }
+  }
+}
+
+// Sidebar layout.
+.has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
+.has-sidebar .main-content {
+  // With image.
+  .list-of-links__item {
+    @include breakpoint($breakpoint-l) {
+      width: 33%;
+    }
+
+    .list-of-links__item__link {
+      padding-bottom: $spacing-and-half;
+    }
+  }
+
+  // Without image.
+  .list-of-links--without-image {
+    .list-of-links__item {
+      @include breakpoint($breakpoint-l) {
+        width: 50%;
       }
     }
   }

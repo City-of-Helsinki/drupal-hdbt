@@ -1,5 +1,5 @@
 {% if paragraphs %}
-  <div class="secondary-content-wrapper">
+  <div class="secondary-content layout-content">
     {% for paragraph in paragraphs %}
       {{ drupal_entity('paragraph', paragraph.target_id) }}
     {% endfor %}

@@ -14,3 +14,13 @@
     padding: $spacing-and-half $spacing-double 0;
   }
 }
+
+// Sidebar layout.
+.has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
+.has-sidebar .main-content {
+  .container {
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing-and-half 0 0;
+    }
+  }
+}
