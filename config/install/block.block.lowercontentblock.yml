@@ -5,15 +5,15 @@ dependencies:
     - hdbt_content
   theme:
     - hdbt
-id: secondarycontentblock
+id: lowercontentblock
 theme: hdbt
 region: after_content
 weight: -6
 provider: null
-plugin: secondary_content_block
+plugin: lower_content_block
 settings:
-  id: secondary_content_block
-  label: 'Secondary content block'
+  id: lower_content_block
+  label: 'Lower content block'
   provider: hdbt_content
   label_display: '0'
 visibility: {  }

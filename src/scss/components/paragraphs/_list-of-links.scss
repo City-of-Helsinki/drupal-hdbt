@@ -115,7 +115,7 @@ $item_spacing: $spacing-triple;
 
     @include breakpoint($breakpoint-s) {
       margin-left: -$spacing-half;
-      margin-top: 0;
+      margin-top: $spacing;
     }
 
     &.is-outbound {
@@ -242,10 +242,19 @@ $item_spacing: $spacing-triple;
 // Sidebar layout.
 .has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
 .has-sidebar .main-content {
+
   // With image.
+  .list-of-links__content {
+    @include breakpoint($breakpoint-l) {
+      margin-left: -$spacing-quadruple;
+      width: calc(100% + #{$spacing-quadruple});
+    }
+  }
+
   .list-of-links__item {
     @include breakpoint($breakpoint-l) {
-      width: 33%;
+      padding-left: $spacing-quadruple;
+      width: 50%;
     }
 
     .list-of-links__item__link {

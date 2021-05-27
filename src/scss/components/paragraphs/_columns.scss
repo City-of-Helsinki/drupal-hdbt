@@ -102,40 +102,31 @@
 .has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
 .has-sidebar .main-content {
 
-  // Columns in content area.
+  // Columns in content area and inside accordion.
   .columns__content {
-    @include breakpoint($breakpoint-m) {
-      margin: $spacing-double -#{$spacing-and-half} 0;
+    @include breakpoint($breakpoint-l) {
+      flex-direction: column;
     }
-  }
 
-  // Columns inside accordion.
-  .accordion {
-    .columns__content {
+    @include breakpoint(1220px) {
+      flex-direction: row;
+    }
+
+    .columns__column.column--50 {
       @include breakpoint($breakpoint-l) {
-        flex-direction: column;
+        width: auto;
+
+        &:not(:first-of-type) {
+          margin-top: $spacing-double;
+        }
       }
 
       @include breakpoint(1220px) {
-        flex-direction: row;
-      }
+        margin-top: 0;
+        width: 50%;
 
-      .columns__column.column--50 {
-        @include breakpoint($breakpoint-l) {
-          width: auto;
-
-          &:not(:first-of-type) {
-            margin-top: $spacing-double;
-          }
-        }
-
-        @include breakpoint(1220px) {
+        &:not(:first-of-type) {
           margin-top: 0;
-          width: 50%;
-
-          &:not(:first-of-type) {
-            margin-top: 0;
-          }
         }
       }
     }

@@ -63,10 +63,12 @@
       }
 
       .unit__sidebar {
+        margin-top: $spacing-double;
         order: 1;
         padding-left: 0;
 
         @include breakpoint($breakpoint-l) {
+          margin-top: 0;
           padding-right: $spacing-double;
         }
 
@@ -87,7 +89,10 @@
       }
     }
     .unit__sidebar {
+      margin-top: $spacing-double;
+
       @include breakpoint($breakpoint-l) {
+        margin-top: 0;
         padding-left: $spacing-double;
         width: 30%;
       }

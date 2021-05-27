@@ -5,21 +5,21 @@ namespace Drupal\hdbt_content\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 
 /**
- * Provides a 'SecondaryContentBlock' block.
+ * Provides a 'LowerContentBlock' block.
  *
  * @Block(
- *  id = "secondary_content_block",
- *  admin_label = @Translation("Secondary content block"),
+ *  id = "lower_content_block",
+ *  admin_label = @Translation("Lower content block"),
  * )
  */
-class SecondaryContentBlock extends BlockBase {
+class LowerContentBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
    */
   public function build() {
 
-    // These entity types have secondary content field.
+    // These entity types have lower content field.
     $entity_types = [
       'node',
       'tpr_unit',
@@ -46,15 +46,15 @@ class SecondaryContentBlock extends BlockBase {
       break;
     }
 
-    if (!$entity || !$entity->hasField('field_secondary_content')) {
+    if (!$entity || !$entity->hasField('field_lower_content')) {
       return $build;
     }
 
-    // Build render array if current entity has secondary content field.
-    return $build['secondary_content'] = [
-      '#theme' => 'secondary_content_block',
-      '#title' => $this->t('Secondary content block'),
-      '#paragraphs' => $entity->field_secondary_content,
+    // Build render array if current entity has lower content field.
+    return $build['lower_content'] = [
+      '#theme' => 'lower_content_block',
+      '#title' => $this->t('Lower content block'),
+      '#paragraphs' => $entity->field_lower_content,
       '#cache' => [
         'tags' => $entity->getCacheTags(),
       ],
