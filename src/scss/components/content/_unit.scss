@@ -21,6 +21,7 @@
 
   .unit__long-desc {
     @include font-size(20px, 32px);
+    margin-top: $spacing-quadruple;
 
     p:first-child {
       margin-top: 0;
@@ -29,8 +30,12 @@
 
   .unit__image {
     line-height: 0;
-    margin-bottom: $spacing-quadruple;
-    max-width: 690px;
+    margin: 0 -#{$spacing-and-half};
+
+    @include breakpoint($breakpoint-m) {
+      margin: 0;
+      max-width: 690px;
+    }
 
     img {
       max-width: 100%;
@@ -38,7 +43,7 @@
   }
 
   .unit-header__container {
-    @include breakpoint($breakpoint-m) {
+    @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
     }
@@ -48,7 +53,7 @@
         order: 2;
         padding-right: 0;
 
-        @include breakpoint($breakpoint-m) {
+        @include breakpoint($breakpoint-l) {
           padding-left: $spacing-double;
         }
 
@@ -58,10 +63,12 @@
       }
 
       .unit__sidebar {
+        margin-top: $spacing-double;
         order: 1;
         padding-left: 0;
 
         @include breakpoint($breakpoint-l) {
+          margin-top: 0;
           padding-right: $spacing-double;
         }
 
@@ -72,7 +79,7 @@
     }
 
     .unit__header {
-      @include breakpoint($breakpoint-m) {
+      @include breakpoint($breakpoint-l) {
         padding-right: $spacing-double;
         width: 70%;
       }
@@ -82,12 +89,12 @@
       }
     }
     .unit__sidebar {
-      @include breakpoint($breakpoint-m) {
-        width: 30%;
-      }
+      margin-top: $spacing-double;
 
       @include breakpoint($breakpoint-l) {
+        margin-top: 0;
         padding-left: $spacing-double;
+        width: 30%;
       }
 
       @include breakpoint($breakpoint-xl) {
@@ -460,6 +467,31 @@
       @include breakpoint($breakpoint-m) {
         display: flex;
         width: 20%;
+      }
+    }
+  }
+}
+
+// Sidebar layout.
+// TODO: Clean up these styles after unit sidebar actually lives in sidebar as a block.
+.enriched-content.has-sidebar {
+
+  // With image.
+  .list-of-links__item {
+    @include breakpoint($breakpoint-l) {
+      width: 33%;
+    }
+
+    .list-of-links__item__link {
+      padding-bottom: $spacing-and-half;
+    }
+  }
+
+  // Without image.
+  .list-of-links--without-image {
+    .list-of-links__item {
+      @include breakpoint($breakpoint-l) {
+        width: 50%;
       }
     }
   }

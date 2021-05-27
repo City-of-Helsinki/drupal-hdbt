@@ -60,3 +60,12 @@
     }
   }
 }
+
+// Sidebar layout.
+.has-sidebar.enriched-content { // TODO: Clean up when unit sidebar block has been created.
+  .text__text-content {
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
+    }
+  }
+}

@@ -157,15 +157,6 @@ $arrow-container-height: 48px;
   }
 }
 
-.has-sidebar--first {
-  .splide__arrows .splide__arrow {
-    @include breakpoint($breakpoint-xl) {
-      height: 64px;
-      width: 64px;
-    }
-  }
-}
-
 // Tiny-slider overrides {
 .tns-outer {
   position: relative;
@@ -211,6 +202,19 @@ $arrow-container-height: 48px;
     &[data-controls=next] {
       background-image: url('../icons/hds/ui/angle-right.svg');
       right: $spacing-quarter;
+    }
+  }
+}
+
+// Sidebar layout.
+.has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
+.has-sidebar .main-content {
+
+  // Gallery arrows.
+  .splide__arrows .splide__arrow {
+    @include breakpoint($breakpoint-xl) {
+      height: 64px;
+      width: 64px;
     }
   }
 }
