@@ -7,7 +7,7 @@ dependencies:
     - hdbt
 id: sitebranding
 theme: hdbt
-region: header_top
+region: header_branding
 weight: -4
 provider: null
 plugin: system_branding_block

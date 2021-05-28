@@ -7,7 +7,7 @@ dependencies:
     - hdbt
 id: language_switcher
 theme: hdbt
-region: header_top
+region: header_branding
 weight: 0
 provider: null
 plugin: 'language_block:language_content'

@@ -8,6 +8,7 @@ core_version_requirement: ^8 || ^9
 # Regions
 regions:
   header_top: Header - Top
+  header_branding: Header - Branding
   header_bottom: Header - Bottom
   messages: Messages
   tools: Tools
