@@ -5,7 +5,7 @@
     @include font-size(16px);
     color: $color-black;
     font-weight: $font-weight-regular;
-    text-decoration: none;
+    text-decoration: underline;
 
     @include breakpoint($breakpoint-m) {
       @include font-size(14px);
@@ -15,11 +15,13 @@
     &.is-active {
       cursor: default;
       font-weight: $font-weight-bold;
+      text-decoration: none;
     }
 
     &.is-disabled {
       color: $color-black-40;
       cursor: default;
+      text-decoration: none;
     }
 
     // TODO: Needs functionality for alternative menu items.
@@ -32,7 +34,7 @@
 
   a {
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 }
