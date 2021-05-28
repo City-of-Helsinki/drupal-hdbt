@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-top-navigation
+  module:
+    - menu_block_current_language
+  theme:
+    - hdbt
+id: headertopnavigation
+theme: hdbt
+region: header_top
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:header-top-navigation'
+settings:
+  id: 'menu_block_current_language:header-top-navigation'
+  label: 'Header - Top navigation'
+  provider: menu_block_current_language
+  label_display: '0'
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }
