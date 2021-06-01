@@ -1,0 +1,15 @@
+.block--language-switcher {
+  border-top: 1px solid $color-black-10;
+  margin: 0 -#{$spacing};
+  order: 3;
+  padding: 12px $spacing;
+  width: calc(100% + #{$spacing-double});
+
+  @include breakpoint($breakpoint-m) {
+    border-top: none;
+    margin: 0;
+    order: 2;
+    padding: 0;
+    width: auto;
+  }
+}

@@ -1,6 +1,7 @@
 .block--branding {
   align-items: center;
   display: flex;
+  order: 1;
 
   .site-name {
     color: $color-black;

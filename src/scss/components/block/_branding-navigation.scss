@@ -1,0 +1,7 @@
+.block--branding-navigation {
+  order: 2;
+
+  @include breakpoint($breakpoint-m) {
+    order: 3;
+  }
+}

@@ -34,49 +34,36 @@
 
 {% if links %}
   <div {{ attributes.addClass('language-switcher') }}>
-    <button id="language-switcher-toggle" class="language-switcher__button" aria-expanded="false" aria-controls="language-switcher-dropdown" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'Select language'|t }}">
-      <span class="icon--globe" aria-hidden="true">
-        {% include "@hdbt/misc/icon.twig" with {icon: 'globe', label: current_language } %}
-      </span>
-      <span class="icon--angle-down" aria-hidden="true">
-        {% include "@hdbt/misc/icon.twig" with {icon: 'angle-down', label: current_language } %}
-      </span>
-      {% if current_language %}
-        <span class="label" aria-label="{{ 'Current language is'|t }} {{ current_language|capitalize }}">{{ current_language|capitalize }}</span>
-      {% endif %}
-    </button>
-    <div id="language-switcher-dropdown" class="language-switcher__dropdown">
-      <div class="language-links">
-        {% for item in links %}
-          {% set language_link = '' %}
-          {% set lang = item.link['#options']['#abbreviation'] %}
-          {% set untranslated = item.link['#options']['#untranslated'] %}
-          {% set alternative_language = item.link['#options']['#alternative_language'] %}
-          {% set classes = ['language-link'] %}
+    <div class="language-links">
+      {% for item in links %}
+        {% set language_link = '' %}
+        {% set lang = item.link['#options']['#abbreviation'] %}
+        {% set untranslated = item.link['#options']['#untranslated'] %}
+        {% set alternative_language = item.link['#options']['#alternative_language'] %}
+        {% set classes = ['language-link'] %}
 
-          {# Check if link is part of alternative menu and set class accordingly. #}
-          {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
+        {# Check if link is part of alternative menu and set class accordingly. #}
+        {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
-          {% if not untranslated and lang != current_langcode %}
-            {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
-            {% set element = 'a' %}
-          {% elseif lang == current_langcode %}
-            {% set element = 'span' %}
-            {% set classes = classes|merge([lang == current_langcode ? 'is-active' : '']) %}
-          {% else %}
-            {% set element = 'span' %}
-            {% set classes = classes|merge(['is-disabled']) %}
-          {% endif %}
+        {% if not untranslated and lang != current_langcode %}
+          {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
+          {% set element = 'a' %}
+        {% elseif lang == current_langcode %}
+          {% set element = 'span' %}
+          {% set classes = classes|merge([lang == current_langcode ? 'is-active' : '']) %}
+        {% else %}
+          {% set element = 'span' %}
+          {% set classes = classes|merge(['is-disabled']) %}
+        {% endif %}
 
-          {# Construct the element based on variables. #}
-          {# TODO: Find out the best way to indicate inactive languages from accessibility point of view #}
-          <{{ element }}
-            {{ create_attribute({'class': classes}) }}
-            {{ language_link ? create_attribute({'href': language_link}) }}
-            {{ element == 'a' ? create_attribute({'lang': lang}) }}
-          >{{ item.text|capitalize }}</{{ element }}>
-        {% endfor %}
-      </div>
+        {# Construct the element based on variables. #}
+        {# TODO: Find out the best way to indicate inactive languages from accessibility point of view #}
+        <{{ element }}
+          {{ create_attribute({'class': classes}) }}
+          {{ language_link ? create_attribute({'href': language_link}) }}
+          {{ element == 'a' ? create_attribute({'lang': lang}) }}
+        >{{ item.text|capitalize }}</{{ element }}>
+      {% endfor %}
     </div>
   </div>
 {% endif %}
