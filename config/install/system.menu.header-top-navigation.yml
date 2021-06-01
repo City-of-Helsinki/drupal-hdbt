@@ -1,0 +1,7 @@
+langcode: und
+status: true
+dependencies: {  }
+id: header-top-navigation
+label: 'Header - Top navigation'
+description: 'Navigation that is located in the top part of header.'
+locked: false
