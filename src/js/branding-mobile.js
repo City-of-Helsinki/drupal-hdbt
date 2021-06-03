@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const languageSwitcher = document.getElementById('block-language-switcher');
 
-  var checkScroll = function () {
+  const checkScroll = function () {
     /*
      ** Find the direction of scroll
      ** 0 - initial, 1 - up, 2 - down
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     prevScroll = currentScroll;
   };
 
-  var toggleLanguageSwitcher = function (direction, curScroll) {
+  const toggleLanguageSwitcher = function (direction, curScroll) {
     if (direction === 2 && curScroll > 48) {
       languageSwitcher.classList.add('scroll-up');
       prevDirection = direction;

@@ -48,7 +48,12 @@
       <li{{ item.attributes.addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
-            {{ link(item.title, item.url) }}
+            {% set title_with_icon %}
+              {%- set icon = (item.url.getOption('attributes')).class[0] -%}
+              {% include '@hdbt/misc/icon.twig' with {icon: icon, icons_path: icons_path} %}
+              {{ item.title }}
+            {% endset %}
+            {{ link(title_with_icon, item.url) }}
           {% else %}
             <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
           {% endif %}
