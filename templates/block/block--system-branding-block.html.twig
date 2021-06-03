@@ -13,6 +13,10 @@
  * - site_slogan: Slogan for site as defined in Site information settings.
  */
 #}
+
+{% set attributes = attributes.addClass('block--branding') %}
+
 {% block content %}
   {% embed "@hdbt/misc/logo.twig" with {logo_position: 'header'} %}{% endembed %}
+  <span class="site-name">{{ site_name }}</span>
 {% endblock %}

@@ -1,9 +1,10 @@
-.header-top {
+.header-branding {
   align-items: center;
-  background-color: $hdbt-color-white;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-black-20;
   display: flex;
   justify-content: space-between;
-  padding: 0 $spacing-and-half;
+  padding: 0 $spacing;
 
   @include breakpoint($breakpoint-l) {
     padding: 0 $spacing-double;

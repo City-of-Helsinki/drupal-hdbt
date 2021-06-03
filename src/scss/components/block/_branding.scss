@@ -1,0 +1,14 @@
+.block--branding {
+  align-items: center;
+  display: flex;
+
+  .site-name {
+    color: $color-black;
+    margin: 0 $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      @include font-size(20px, 24px);
+      margin: 0 $spacing;
+    }
+  }
+}
