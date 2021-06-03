@@ -6,7 +6,21 @@
 
   .menu__link-wrapper a {
     @include font-size(12px, 14px);
+    display: block;
     margin: 0 $spacing-half;
     text-decoration: none;
+
+    &.icon-user {
+      &::before {
+        background-color: $color-black;
+        content: "";
+        display: block;
+        height: 24px;
+        margin-bottom: $spacing-quarter;
+        mask-image: url('../icons/hds/ui/signout.svg');
+        mask-position: center;
+        mask-repeat: no-repeat;
+      }
+    }
   }
 }
