@@ -1,0 +1,180 @@
+$teaser-icon-size: 48px;
+
+.service {
+  .service__title {
+    margin-bottom: $spacing-and-half;
+    margin-top: 0;
+  }
+
+  .service__short-desc {
+    @include font-size(24px, 32px);
+    padding-bottom: $spacing-half;
+    position: relative;
+  }
+
+  .service__divider {
+    background-color: $color-black;
+    display: block;
+    height: 2px;
+    margin-bottom: $spacing-triple;
+    margin-top: $spacing-double;
+    width: $spacing-quadruple;
+  }
+
+  .service__long-desc {
+    @include font-size(20px, 32px);
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .service-header__container {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &.has-navigation {
+      .service__header {
+        order: 2;
+        padding-right: 0;
+
+        @include breakpoint($breakpoint-m) {
+          padding-left: $spacing-double;
+          width: 70%;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing-triple;
+        }
+      }
+
+      .service__sidebar {
+        order: 1;
+        padding-left: 0;
+
+        @include breakpoint($breakpoint-m) {
+          width: 30%;
+        }
+
+        @include breakpoint($breakpoint-l) {
+          padding-right: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-right: $spacing-triple;
+        }
+      }
+    }
+  }
+}
+
+.service.service--full {
+  .service__units:last-child {
+    // Make the keywords element go "under" the footer.
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+    padding-bottom: $spacing-double + $footer-koro-height;
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-quadruple + $footer-koro-height;
+    }
+  }
+}
+
+.service.service--teaser {
+  background-color: $color-white;
+
+  .service__link {
+    display: block;
+    height: 100%;
+    padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
+    position: relative;
+    text-decoration: none;
+
+    &:hover {
+      .icon {
+        margin-left: $spacing;
+      }
+    }
+  }
+
+  .service__title {
+    @include font-size(22px, 22px);
+    margin: 0;
+  }
+
+  .service__short-desc {
+    @include font-size(18px, 24px);
+    margin-top: $spacing;
+  }
+
+  .icon {
+    bottom: $spacing;
+    height: $teaser-icon-size;
+    left: $spacing;
+    position: absolute;
+    transition: all .3s;
+    width: $teaser-icon-size;
+  }
+}
+
+.service__units {
+  background-color: $color-black-5;
+  margin-top: $spacing-double;
+  overflow: hidden;
+  padding-bottom: $spacing-and-half;
+
+  .service__units__header {
+    display: block;
+  }
+
+  .service__units__count-container {
+    @include font-size(24px, 30px);
+    display: block;
+    margin-top: $spacing-double;
+    white-space: nowrap;
+
+    .service__units__count {
+      font-weight: 700;
+    }
+  }
+
+  .service__units__list {
+    margin-top: $spacing-and-half;
+  }
+
+  .service__units__pager {
+    list-style: none;
+    margin: $spacing-quadruple 0 0;
+    padding: 0;
+  }
+
+  .service__units__pager-button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .service__units__pager-button {
+      text-decoration: none;
+    }
+
+    .hds-button {
+      --background-color: transparent;
+      --background-color-hover: var(--color-black-10);
+      --background-color-focus: transparent;
+      --background-color-hover-focus: var(--color-black-10);
+      --background-color-disabled: transparent;
+      --border-color: var(--hdbt-color-black);
+      --border-color-hover: var(--hdbt-color-black);
+      --border-color-focus: var(--hdbt-color-black);
+      --border-color-hover-focus: var(--hdbt-color-black);
+      --border-color-disabled: var(--hdbt-color-black);
+      --color: var(--hdbt-color-black);
+      --color-hover: var(--hdbt-color-black);
+      --color-focus: var(--hdbt-color-black);
+      --color-hover-focus: var(--hdbt-color-black);
+      --focus-outline-color: var(--hdbt-color-black);
+    }
+  }
+}

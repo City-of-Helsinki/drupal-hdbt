@@ -20,7 +20,7 @@ class HeaderTopButtonsBlock extends BlockBase {
   public function build() {
     $build = [];
 
-    $build['#button_title'] = t('Placeholder');
+    $build['#button_title'] = $this->t('Placeholder');
     $build['#theme'] = 'header_top_button';
 
     return $build;

@@ -1,0 +1,7 @@
+.has-sidebar--first .layout-main-wrapper {
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+}

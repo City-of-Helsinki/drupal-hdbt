@@ -1,0 +1,149 @@
+body {
+  &::after {
+    background-color: rgba($color-black, 0.4);
+    content: "";
+    height: 0;
+    opacity: 0;
+    pointer-events:none;
+    visibility: hidden;
+    width: 0;
+  }
+}
+
+.eu-cookie-compliance-popup-open {
+  &::after {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity 0.2s ease;
+    visibility: visible;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+.eu-cookie-compliance-banner {
+  background-color: $color-bus;
+  color: $color-white;
+  padding: 0 0 $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    padding: 0 0 $spacing-double;
+  }
+
+  .eu-cookie-compliance-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .eu-cookie-compliance-message {
+    float: none;
+    max-width: 100%;
+    width: 100%;
+
+    > h2 {
+      @include font-size(24px, 29px);
+      margin-top: 0;
+      max-width: $content-width-max;
+    }
+
+    > p {
+      max-width: $content-width-max;
+    }
+  }
+
+  .eu-cookie-compliance-more-info,
+  .eu-cookie-compliance-all-buttons {
+    margin-top: $spacing-double;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .eu-cookie-compliance-more-info {
+    @include breakpoint($breakpoint-m) {
+      width: 30%;
+    }
+  }
+
+  .eu-cookie-compliance-all-buttons {
+    @include breakpoint($breakpoint-m) {
+      justify-content: flex-end;
+      width: 70%;
+    }
+  }
+
+  .eu-cookie-compliance-more-button.hds-button {
+    background-color: transparent;
+    border: none;
+    color: $color-white;
+    padding: 0;
+    text-decoration: underline;
+    width: auto;
+  }
+
+  .eu-cookie-compliance-categories-buttons {
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing;
+      margin-top: 0;
+    }
+  }
+
+  .eu-cookie-compliance-buttons {
+    float: none;
+    max-width: 100%;
+  }
+
+  .hds-button {
+    max-width: 400px;
+    width: 100%;
+
+    &.hds-button--primary {
+      background-color: $color-white;
+      color: $color-bus;
+
+      &:not(:disabled):focus:after {
+        border-color: $color-white;
+      }
+
+      &:active,
+      &:hover {
+        color: $color-bus;
+      }
+    }
+
+    &.hds-button--secondary {
+      border-color: $color-white;
+      color: $color-white;
+
+      &:active {
+        color: $color-white;
+      }
+
+      &:not(:disabled):focus:after {
+        border-color: $color-white;
+      }
+
+      &:hover {
+        color: $color-bus;
+
+        &:active {
+          color: $color-bus;
+        }
+      }
+    }
+  }
+}
+
+.sliding-popup-bottom {
+  width: 100%;
+}

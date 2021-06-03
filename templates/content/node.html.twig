@@ -78,6 +78,7 @@
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  first_paragraph_grey ? 'has-first-gray-bg-block'
 ]
 %}
 
@@ -90,9 +91,6 @@
     </h2>
   {% endif %}
   {{ title_suffix }}
-
-  <div{{ content_attributes }}>
-    {{ content }}
-  </div>
+  {{ content|without('field_lower_content') }}
 
 </article>

@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * The views infinite scroll pager template.
+ */
+#}
+
+{% if items.next %}
+  <ul{{ attributes.addClass('service__units__pager') }}>
+    <li class="pager__item service__units__pager-button-wrapper">
+      <a class="service__units__pager-button button" href="{{ items.next.href }}" rel="next">
+        {% include '@hdbt/button/button.html.twig' with {type: 'secondary', disabled: false, label: options.button_text } %}
+      </a>
+    </li>
+  </ul>
+{% endif %}

@@ -12,6 +12,8 @@
 @import "base/**/*.*";
 @import "components/content/highlighted";
 @import "components/content/quoted";
+@import "components/paragraphs/link";
+@import "components/button/button";
 
 body.cke_editable {
   display: block;

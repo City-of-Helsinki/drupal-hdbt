@@ -31,8 +31,8 @@ function hdbt_preprocess(&$variables) {
 function hdbt_get_icons_path() {
   static $icon_path;
   if (!isset($icon_path)) {
-    global $base_secure_url;
-    $icon_path = $base_secure_url . '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
+    $theme_handler = \Drupal::service('theme_handler');
+    $icon_path = '/' . $theme_handler->getTheme('hdbt')->getPath() . '/dist/icons/sprite.svg';
 
     if (!empty($icon_path)) {
       // Add icons path as a global variable.
@@ -127,9 +127,10 @@ function hdbt_preprocess_form_element(&$variables) {
         $element_label_class = 'hds-radio-button__label';
         break;
 
-      case 'textfield':
+      case 'email':
       case 'password':
       case 'textarea':
+      case 'textfield':
         $element_label_class = 'hds-text-input__label';
         break;
     }
@@ -144,18 +145,38 @@ function hdbt_preprocess_form_element(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_menu(&$variables) {
-  foreach ($variables['items'] as $key => &$item) {
-    if (isset($item['url'])) {
-      /** @var \Drupal\Core\Url $url */
-      $url = $item['url'];
+  foreach ($variables['items'] as &$item) {
+    _hdbt_menu_item_apply_attributes($item);
+  }
+}
 
-      if ($url->isExternal()) {
-        $item['is_external'] = TRUE;
-      }
+/**
+ * Iterate through menu items and apply custom attributes to each item.
+ *
+ * @param array $item
+ *   Menu item.
+ */
+function _hdbt_menu_item_apply_attributes(array &$item) {
+  // Iterate through child menu items.
+  if (!empty($item['below'])) {
+    foreach ($item['below'] as &$item_below) {
+      _hdbt_menu_item_apply_attributes($item_below);
+    }
+  }
 
-      if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
-        $item['is_nolink'] = TRUE;
-      }
+  // Check if URL is present.
+  if (isset($item['url'])) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $item['url'];
+
+    // Check if the URL is external and add variable accordingly.
+    if ($url->isExternal()) {
+      $item['is_external'] = TRUE;
+    }
+
+    // Check if the URL is <nolink> and add variable accordingly.
+    if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
+      $item['is_nolink'] = TRUE;
     }
   }
 }
@@ -164,7 +185,7 @@ function hdbt_preprocess_menu(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_block(&$variables) {
-  // Handle only Page title block.
+  // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
     if ($node = \Drupal::routeMatch()->getParameter('node')) {
       // Retrieve the node object for revisions.
@@ -178,6 +199,34 @@ function hdbt_preprocess_block(&$variables) {
       ) {
         if (boolval($node->get('field_has_hero')->getString())) {
           $variables['hide_block'] = TRUE;
+        }
+      }
+    }
+  }
+
+  // Handle Sidebar menu block.
+  if (
+    $variables['base_plugin_id'] === 'menu_block_current_language' &&
+    $variables['elements']['#id'] === 'main_navigation_level_2' &&
+    !empty($variables['content']['#items'])
+  ) {
+    // Get any current menu level item.
+    $current_level_menu_item = reset($variables['content']['#items']);
+
+    if (isset($current_level_menu_item['original_link'])) {
+      $original_link = $current_level_menu_item['original_link'];
+      $parent = $original_link->getParent();
+
+      // Check if current menu item has parent and serve it as variable.
+      if ($parent) {
+        $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+        $parent_item = $menu_link_manager->createInstance($parent);
+
+        if ($parent_item) {
+          $variables['menu_link_parent'] = [
+            'title' => $parent_item->getTitle(),
+            'url' => $parent_item->getUrlObject(),
+          ];
         }
       }
     }
@@ -198,11 +247,123 @@ function hdbt_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
 
-  // Check if the paragraph is type list of links item and tell it its parents design.
+  // Check if the paragraph is a type of list of links item
+  // and tell it its parents design.
   if ($paragraph_type == 'list_of_links_item') {
     $paragraph_parent = $paragraph->getParentEntity();
     $design = $paragraph_parent->get('field_list_of_links_design')->getString();
     $variables['list_of_links_design'] = $design;
+  }
+
+  if ($paragraph_type == 'accordion') {
+    $variables['#attached']['library'][] = 'hdbt/accordion';
+  }
+
+  // Check if the paragraph is a type of accordion
+  // and tell its children the heading level.
+  if ($paragraph_type == 'accordion_item') {
+    $paragraph_parent = $paragraph->getParentEntity();
+    $accordion_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
+    $variables['accordion_heading_level'] = $accordion_heading_level;
+  }
+
+  // Check if the paragraph is a type of gallery and prepare the slides
+  // and generate the thumbnails.
+  if ($paragraph_type == 'gallery') {
+    $variables['#attached']['library'][] = 'hdbt/gallery';
+
+    $slide_paragraphs = $paragraph->get('field_gallery_slides')->getValue();
+    $slide_ids = [];
+
+    foreach ($slide_paragraphs as $slide_paragraph) {
+      $slide_ids[] = $slide_paragraph['target_id'];
+    }
+
+    // Get a paragraph storage object.
+    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+    // Load all slide paragraphs.
+    $slides = $paragraph_storage->loadMultiple($slide_ids);
+
+    $slide_thumbnails = [];
+    $slide_thumbnails_alternative_texts = [];
+    foreach ($slides as $slide) {
+      $slide_media = $slide
+        ->get('field_gallery_slide_media')
+        ->first()
+        ->get('entity')
+        ->getTarget()
+        ->getValue();
+      $image = $slide_media
+        ->get('field_media_image')
+        ->first()
+        ->get('entity')
+        ->getTarget()
+        ->getValue();
+
+      $alternative_text = [
+        'caption' => $slide->field_gallery_slide_caption->value,
+        'alt' => $slide_media->field_media_image->first()->alt,
+      ];
+
+      $slide_thumbnails_alternative_texts[] = $alternative_text;
+      $slide_thumbnails[] = $image;
+    }
+
+    $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
+    $variables['gallery_slide_thumbnails_alt_texts'] = $slide_thumbnails_alternative_texts;
+  }
+
+  // Unit search paragraph.
+  if (
+    $paragraph_type == 'unit_search' &&
+    $paragraph->hasField('field_unit_search_units')
+  ) {
+    // Get all unit ids what content producer has selected for the unit search
+    // view and set them as variables for the template.
+    $unit_ids = [];
+    $units = $paragraph->field_unit_search_units->getValue();
+    $ids = [];
+    foreach ($units as $unit) {
+      $ids[] = $unit['target_id'];
+      $unit_ids[] = 'tpr_unit:' . $unit['target_id'];
+    }
+
+    // Set the unit ids to a unit_search_arguments variable for the template.
+    $variables['unit_search_arguments'] = implode(',', $ids);
+
+    // Get previously cached meta information field values and set them
+    // if no cached items are found.
+    $cached = \Drupal::cache()->get('unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments']);
+
+    if (!$cached) {
+      // Set meta information fields based on how content producer
+      // has defined the fields.
+      $meta = [];
+      $fields = [
+        'field_unit_search_meta_button',
+        'field_unit_search_meta_label',
+        'field_unit_search_meta_placehold',
+        'field_unit_search_meta_load_more',
+      ];
+
+      foreach ($fields as $field) {
+        if ($paragraph->hasField($field)) {
+          $meta[$field] = $paragraph->{$field}->value;
+        }
+      }
+
+      // Cache the meta fields based on view id and units.
+      if (!empty($meta) && !empty($unit_ids)) {
+        $tags = array_merge(['paragraph:' . $paragraph->id()], $unit_ids);
+
+        \Drupal::cache()->set(
+          'unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments'],
+          $meta,
+          Cache::PERMANENT,
+          $tags
+        );
+      }
+    }
   }
 }
 
@@ -214,4 +375,136 @@ function hdbt_preprocess_image(&$variables) {
   if (isset($variables['alt']) && $variables['alt'] === '""') {
     $variables['attributes']['alt'] = '';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_field(&$variables) {
+  switch ($variables['field_name']) {
+    // Units.
+    case 'field_unit_main_image_url':
+      // Craft a rendered token variable for Unit main image.
+      _hdbt_craft_token('unit_main_image_rendered_token', $variables);
+      break;
+
+    case 'field_unit_visible_title':
+      // Craft a rendered token variable for Unit visible title.
+      _hdbt_craft_token('unit_visible_title_rendered_token', $variables);
+      break;
+
+    case 'field_unit_short_description':
+      // Craft a rendered token variable for Unit short description.
+      _hdbt_craft_token('unit_short_description_rendered_token', $variables);
+      break;
+
+    case 'field_unit_address_tpr':
+      // Craft a rendered token variable for Unit address.
+      _hdbt_craft_token('unit_address_tpr_rendered_token', $variables);
+      break;
+
+    case 'field_unit_email':
+      // Craft a rendered token variable for Unit email.
+      _hdbt_craft_token('unit_email_rendered_token', $variables);
+      break;
+
+    case 'field_unit_phone_number':
+      // Craft a rendered token variable for Unit phone number.
+      _hdbt_craft_token('unit_phone_number_rendered_token', $variables);
+      break;
+
+    case 'field_unit_postal_address_tpr':
+      // Craft a rendered token variable for Unit postal address.
+      _hdbt_craft_token('unit_postal_address_tpr_rendered_token', $variables);
+      break;
+
+    // Services.
+    case 'field_service_visible_title':
+      // Craft a rendered token variable for Service visible title.
+      _hdbt_craft_token('service_visible_title_rendered_token', $variables);
+      break;
+
+    case 'field_service_short_description':
+      // Craft a rendered token variable for Service short description.
+      _hdbt_craft_token('service_short_description_rendered_token', $variables);
+      break;
+  }
+}
+
+/**
+ * Helper function to craft rendered token.
+ *
+ * @param string $name
+ *   Variable name for the template.
+ * @param array $variables
+ *   Variables array.
+ */
+function _hdbt_craft_token(string $name, array &$variables) {
+  $token = $variables['items'][0]['content']['#text'];
+  if (
+    strpos($token, '[') !== FALSE &&
+    strpos($token, ']') !== FALSE
+  ) {
+    $rendered_token = \Drupal::token()->replace("$token");
+    if ($rendered_token !== $token) {
+      $variables[$name] = $rendered_token;
+    }
+  }
+  else {
+    $variables[$name] = $token;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+  if (
+    isset($variables['view']) &&
+    !empty($variables['view']->id())
+  ) {
+    $suggestions[] = 'view__' . $variables['view']->id();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
+  if (isset($variables['view'])) {
+    $view = $variables['view'];
+
+    if (!empty($view->id())) {
+      $suggestions[] = 'views_view_unformatted__' . $view->id();
+
+      if (!empty($view->getDisplay()->display['id'])) {
+        $suggestions[] = 'views_view_unformatted__' . $view->id() . '__' . $view->getDisplay()->display['id'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$suggestions, array $variables) {
+  if (isset($variables['view'])) {
+    $view = $variables['view'];
+
+    if (!empty($view->id())) {
+      $suggestions[] = 'views_infinite_scroll_pager__' . $view->id();
+
+      if (!empty($view->getDisplay()->display['id'])) {
+        $suggestions[] = 'views_infinite_scroll_pager__' . $view->id() . '__' . $view->getDisplay()->display['id'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_views_view(&$variables) {
+  // Add total rows as a variable.
+  $variables['total_rows'] = $variables['view']->total_rows;
 }

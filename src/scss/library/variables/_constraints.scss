@@ -18,6 +18,8 @@ $spacing-quadruple: $spacing * 4; // 64px
 
 $wrapper-width-max: 1920px;
 
-$content-area-wrapper-width-max: 1200px + $spacing-quadruple;
+$content-area-wrapper-width-max: $container-width-xl + $spacing-quadruple;
 $image-content-width-max: 996px;
 $content-width-max: 790px;
+
+$footer-koro-height: 50px;

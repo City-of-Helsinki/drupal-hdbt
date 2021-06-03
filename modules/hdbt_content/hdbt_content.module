@@ -6,10 +6,7 @@
  */
 
 use Drupal\Core\Entity\ContentEntityInterface;
-
-const ALTERNATIVE_LANGUAGES = [
-  'ru',
-];
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implements hook_theme().
@@ -25,6 +22,19 @@ function hdbt_content_theme() {
       'variables' => [
         'title' => NULL,
         'content' => NULL,
+      ],
+    ],
+    'hero_block' => [
+      'variables' => [
+        'title' => NULL,
+        'paragraph_id' => NULL,
+        'first_paragraph_grey' => NULL,
+      ],
+    ],
+    'lower_content_block' => [
+      'variables' => [
+        'title' => NULL,
+        'paragraphs' => NULL,
       ],
     ],
   ];
@@ -53,12 +63,16 @@ function hdbt_content_language_switch_links_alter(array &$links) {
     }
   }
 
+  // @todo Needs a functionality for the alternative languages which should be shown in an alternative menu.
+  $alternative_languages = [
+    'ru',
+  ];
+
   // Compare the links with current entity and check for possible translations.
   foreach ($links as $lang_code => &$link) {
     $link['#abbreviation'] = $lang_code;
 
-    // TODO: Needs a functionality for the alternative languages which should be shown in an alternative menu.
-    if (in_array($lang_code, ALTERNATIVE_LANGUAGES)) {
+    if (in_array($lang_code, $alternative_languages)) {
       $link['#alternative_language'] = TRUE;
     }
 
@@ -72,6 +86,63 @@ function hdbt_content_language_switch_links_alter(array &$links) {
       ) {
         $link['#untranslated'] = TRUE;
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
+
+  // Handle only Unit search view form at this point.
+  if ($form['#id'] !== 'views-exposed-form-unit-search-block') {
+    return;
+  }
+
+  // Get view from form state.
+  $view = $form_state->getStorage()['view'];
+  $current_language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+
+  // Apply the cached meta fields values to form values.
+  $cached = \Drupal::cache()->get(
+    $view->id() .
+    $view->current_display .
+    $current_language .
+    $view->args[0]
+  );
+
+  if ($cached) {
+    $meta_fields = $cached->data;
+    if (!empty($meta_fields['field_unit_search_meta_button'])) {
+      $form['actions']['submit']['#value'] = $meta_fields['field_unit_search_meta_button'];
+    }
+    if (!empty($meta_fields['field_unit_search_meta_label'])) {
+      $form['#info']['filter-combine']['label'] = $meta_fields['field_unit_search_meta_label'];
+    }
+    if (!empty($meta_fields['field_unit_search_meta_placehold'])) {
+      $form['unit_search']['#attributes']['placeholder'] = $meta_fields['field_unit_search_meta_placehold'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$variables) {
+  $view = $variables['view'];
+
+  if (isset($view)) {
+    // Apply the cached meta fields values to form values.
+    $cached = \Drupal::cache()->get(
+      $view->id() .
+      $view->current_display .
+      $variables['current_langcode'] .
+      $view->args[0]
+    );
+
+    if ($cached && !empty($cached->data['field_unit_search_meta_load_more'])) {
+      $variables['options']['button_text'] = $cached->data['field_unit_search_meta_load_more'];
     }
   }
 }

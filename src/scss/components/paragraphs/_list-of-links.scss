@@ -110,16 +110,16 @@ $item_spacing: $spacing-triple;
   .list-of-links__item__arrow {
     display: block;
     line-height: 0;
-    // Offset icon to left since there is white spacing on the icon
-    margin-left: (100px + $spacing - $spacing-quarter);
+    margin-left: -$spacing-quarter;
     margin-top: $spacing-half;
 
     @include breakpoint($breakpoint-s) {
-      bottom: 0;
-      left: 0;
       margin-left: -$spacing-half;
-      margin-top: 0;
-      position: absolute;
+      margin-top: $spacing;
+    }
+
+    &.is-outbound {
+      transform: rotate(-45deg);
     }
 
     .icon {
@@ -150,24 +150,15 @@ $item_spacing: $spacing-triple;
 .list-of-links--without-image,
 .list-of-links--without-image-desc {
   .list-of-links__item {
-    padding-right: 100px;
-    position: relative;
-
-    @include breakpoint($breakpoint-s) {
-      padding-right: 80px;
-      width: 50%;
-    }
+    align-self: flex-start;
+    display: flex;
 
     @include breakpoint($breakpoint-m) {
-      padding-right: 100px;
-    }
-
-    @include breakpoint($breakpoint-l) {
-      padding-right: 160px;
+      width: 33.3333%;
     }
 
     // If there is 1,2 or 3 items inside the list of links:
-    @include content_count(1, 2, 3) {
+    @include content_count(1, 2) {
       @include breakpoint($breakpoint-m) {
         width: 50%;
       }
@@ -180,30 +171,25 @@ $item_spacing: $spacing-triple;
       position: static;
     }
 
-    .list-of-links__item__arrow {
-      bottom: auto;
-      left: auto;
-      line-height: 0;
-      margin: 0;
-      position: absolute;
-      right: 30px;
-      top: 0;
-
-      @include breakpoint($breakpoint-s) {
-        margin-top: -$spacing-half;
-        right: 20px;
-      }
-
-      @include breakpoint($breakpoint-m) {
-        right: 30px;
-      }
+    .list-of-links__item__title {
+      @include font-size(24px);
+      display: flex;
+      margin-left: 0;
+      text-decoration: underline;
 
       @include breakpoint($breakpoint-l) {
-        right: 60px;
+        @include font-size(28px);
       }
+    }
 
-      @include breakpoint($breakpoint-xl) {
-        right: 80px;
+    .list-of-links__item__arrow {
+      line-height: 0;
+      // Pull the arrow a bit higher to match the text line-height.
+      margin: -2px 0 0 $spacing;
+
+      @include breakpoint($breakpoint-s) {
+        // Pull the arrow a bit higher to match the text line-height.
+        margin-top: -8px;
       }
 
       .icon {
@@ -212,16 +198,6 @@ $item_spacing: $spacing-triple;
         @include breakpoint($breakpoint-s) {
           --icon-proportions: 3rem;
         }
-      }
-    }
-
-    .list-of-links__item__title {
-      @include font-size(24px);
-      margin-left: 0;
-      text-decoration: underline;
-
-      @include breakpoint($breakpoint-l) {
-        @include font-size(28px);
       }
     }
 
@@ -244,10 +220,6 @@ $item_spacing: $spacing-triple;
 // Without image but with description variant
 .list-of-links--without-image {
   .list-of-links__item {
-    @include breakpoint($breakpoint-xl) {
-      padding-right: 200px;
-    }
-
     .list-of-links__item__title {
       @include breakpoint($breakpoint-l) {
         @include font-size(36px);
@@ -262,6 +234,39 @@ $item_spacing: $spacing-triple;
       @include breakpoint($breakpoint-l) {
         @include font-size(20px);
         margin-top: $spacing-quarter;
+      }
+    }
+  }
+}
+
+// Sidebar layout.
+.has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
+.has-sidebar .main-content {
+
+  // With image.
+  .list-of-links__content {
+    @include breakpoint($breakpoint-l) {
+      margin-left: -$spacing-quadruple;
+      width: calc(100% + #{$spacing-quadruple});
+    }
+  }
+
+  .list-of-links__item {
+    @include breakpoint($breakpoint-l) {
+      padding-left: $spacing-quadruple;
+      width: 50%;
+    }
+
+    .list-of-links__item__link {
+      padding-bottom: $spacing-and-half;
+    }
+  }
+
+  // Without image.
+  .list-of-links--without-image {
+    .list-of-links__item {
+      @include breakpoint($breakpoint-l) {
+        width: 50%;
       }
     }
   }

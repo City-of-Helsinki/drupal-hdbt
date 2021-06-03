@@ -45,6 +45,7 @@
 %}
 
 {% set url = content.field_list_of_links_link.0['#url'] %}
+{% set target_new = content.field_list_of_links_link.0['#options']['target_new'] %}
 {% set text = content.field_list_of_links_link.0['#title'] %}
 {% set image = content.field_list_of_links_image %}
 {% set desc = content.field_list_of_links_desc.0 %}
@@ -53,27 +54,26 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
 
-    <a href="{{ link }}" class="list-of-links__item__link">
+    <a href="{{ url }}" {% if target_new %}target="_blank"{% endif %} class="list-of-links__item__link">
       {% if list_of_links_design == 'with-image' %}
-        {% if image.0 %}
-          <div class="list-of-links__item__image">
+        <div class="list-of-links__item__image">
+          {% if image.0 %}
             {{ image }}
-          </div>
-        {% else %}
-          <div class="list-of-links__item__image">
+          {% else %}
             {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       {% endif %}
-      <h3 class="list-of-links__item__title">{{ text }}</h3>
+      <h3 class="list-of-links__item__title">{{ text }}
+        <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
+          {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right' } %}
+        </span>
+      </h3>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>
         {% endif %}
       {% endif %}
-      <span class="list-of-links__item__arrow">
-        {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Test label for the icon'|t } %}
-      </span>
     </a>
     {% endblock %}
   </div>

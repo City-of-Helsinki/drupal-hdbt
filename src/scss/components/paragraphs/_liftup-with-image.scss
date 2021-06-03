@@ -1,0 +1,311 @@
+.liftup-with-image {
+  margin: $spacing-double auto 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+    position: relative;
+  }
+  .liftup-with-image__container {
+    padding-top: 0;
+  }
+
+  .liftup-with-image__image {
+    line-height: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .liftup-with-image__content {
+    padding: $spacing-double $spacing-and-half $spacing-triple;
+  }
+
+  .liftup-with-image__title {
+    @include font-size(24px, 29px);
+    margin-top: 0;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(32px, 40px);
+    }
+  }
+
+  .liftup-with-image__desc {
+    margin-top: $spacing;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.liftup-with-image--design-image-on-right,
+.liftup-with-image--design-image-on-left {
+
+  $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
+
+  @each $color in $colors {
+    &.liftup-with-image--color-#{$color} {
+      color: var(--hdbt-text-color--#{$color});
+
+      a {
+        --hdbt-default-link-color: var(--hdbt-text-color--#{$color});
+      }
+
+      .hds-button--primary {
+        --background-color: var(--hdbt-text-color--#{$color});
+        --background-color-hover: var(--hdbt-button-highlight-color--#{$color});
+        --background-color-focus: var(--hdbt-text-color--#{$color});
+        --background-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+        --background-color-disabled: var(--color-black-20);
+        --border-color: var(--hdbt-text-color--#{$color});
+        --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+        --border-color-focus: var(--hdbt-text-color--#{$color});
+        --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+        --border-color-disabled: var(--color-black-20);
+        --color: var(--hdbt-button-text-color--#{$color});
+        --color-hover: var(--hdbt-button-text-color--#{$color});
+        --color-focus: var(--hdbt-button-text-color--#{$color});
+        --color-hover-focus: var(--hdbt-button-text-color--#{$color});
+        --color-disabled: var(--color-black);
+        --focus-outline-color: var(--hdbt-text-color--#{$color});
+        --submit-input-focus-gutter-color: var(--hdbt-button-text-color--#{$color});
+      }
+
+      .hds-button--secondary {
+        --background-color: transparent;
+        --background-color-hover: var(--color-#{$color}-dark);
+        --background-color-focus: transparent;
+        --background-color-hover-focus: var(--color-#{$color}-dark);
+        --background-color-disabled: transparent;
+        --border-color: var(--hdbt-text-color--#{$color});
+        --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+        --border-color-focus: var(--hdbt-text-color--#{$color});
+        --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+        --border-color-disabled: var(--hdbt-text-color--#{$color});
+        --color: var(--hdbt-text-color--#{$color});
+        --color-hover: var(--hdbt-button-highlight-color--#{$color});
+        --color-focus: var(--hdbt-text-color--#{$color});
+        --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+        --focus-outline-color: var(--hdbt-text-color--#{$color});
+      }
+
+      .hds-button--supplementary {
+        --background-color: transparent;
+        --background-color-hover: transparent;
+        --background-color-focus: transparent;
+        --background-color-hover-focus: transparent;
+        --background-color-disabled: transparent;
+        --border-color: transparent;
+        --border-color-hover: transparent;
+        --border-color-focus: var(--hdbt-text-color--#{$color});
+        --border-color-hover-focus: var(--hdbt-text-color--#{$color});
+        --border-color-disabled: transparent;
+        --color: var(--hdbt-text-color--#{$color});
+        --color-hover: var(--hdbt-button-highlight-color--#{$color});
+        --color-focus: var(--hdbt-text-color--#{$color});
+        --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+        --color-disabled: var(--hdbt-text-color--#{$color});
+        --focus-outline-color: transparent;
+        --submit-input-focus-gutter-color: transparent;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .liftup-with-image__image {
+    margin: 0 auto;
+    max-width: $content-area-wrapper-width-max;
+    padding: 0 $spacing-and-half;
+  }
+
+  .liftup-with-image__content {
+    background-color: var(--hdbt-theme-color);
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 350px; // According to layouts
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 460px; // According to layouts
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      min-height: 435px; // According to layouts
+    }
+  }
+}
+
+.liftup-with-image--design-image-on-right {
+  .liftup-with-image__image {
+    @include breakpoint($breakpoint-l) {
+      padding-left: 20%;
+    }
+  }
+
+  .liftup-with-image__content {
+    left: $spacing-double;
+    right: auto;
+  }
+}
+
+.liftup-with-image--design-image-on-left {
+  .liftup-with-image__image {
+    @include breakpoint($breakpoint-l) {
+      padding-right: 20%;
+    }
+  }
+
+  .liftup-with-image__content {
+    left: auto;
+    right: $spacing-double;
+  }
+}
+
+.liftup-with-image--design-background-text-on-right,
+.liftup-with-image--design-background-text-on-left {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .liftup-with-image__content {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include breakpoint($breakpoint-l) {
+      background-color: $color-white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: $spacing-quadruple 0;
+      min-height: 350px; // According to layouts
+      padding-left: $spacing-and-half;
+      padding-right: $spacing-and-half;
+      width: 460px; // According to layouts
+    }
+  }
+
+  .liftup-with-image__image {
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      line-height: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    img {
+      @include breakpoint($breakpoint-l) {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
+
+  a {
+    --hdbt-default-link-color: var(--color-white);
+  }
+
+  .hds-button--primary {
+    --background-color: var(--hdbt-color-black);
+    --background-color-hover: var(--color-black);
+    --background-color-focus: var(--hdbt-color-black);
+    --background-color-hover-focus: var(--color-black);
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--hdbt-color-black);
+    --border-color-hover: var(--color-black);
+    --border-color-focus: var(--hdbt-color-black);
+    --border-color-hover-focus: var(--color-black);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+    --color-disabled: var(--color-black);
+    --focus-outline-color: var(--hdbt-color-black);
+    --submit-input-focus-gutter-color: var(--color-white);
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--color-black);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--color-black);
+    --background-color-disabled: transparent;
+    --border-color: var(--hdbt-color-black);
+    --border-color-hover: var(--color-black);
+    --border-color-focus: var(--hdbt-color-black);
+    --border-color-hover-focus: var(--color-black);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--hdbt-color-black);
+    --color-hover: var(--color-white);
+    --color-focus: var(--hdbt-color-black);
+    --color-hover-focus: var(--color-white);
+    --focus-outline-color: var(--hdbt-color-black);
+  }
+
+  .hds-button--supplementary {
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: var(--hdbt-color-black);
+    --border-color-hover-focus: var(--hdbt-color-black);
+    --border-color-disabled: transparent;
+    --color: var(--hdbt-color-black);
+    --color-hover: var(--color-black);
+    --color-focus: var(--hdbt-color-black);
+    --color-hover-focus: var(--color-black);
+    --color-disabled:  var(--color-black-20);
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.liftup-with-image--design-background-text-on-right {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.liftup-with-image--design-background-text-on-left {
+  .liftup-with-image__container {
+    @include breakpoint($breakpoint-l) {
+      justify-content: flex-start;
+    }
+  }
+}

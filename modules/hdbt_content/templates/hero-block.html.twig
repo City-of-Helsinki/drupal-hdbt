@@ -1,0 +1,5 @@
+{% if paragraph_id %}
+  <div class="hero-wrapper {{ first_paragraph_grey }}">
+    {{ drupal_entity('paragraph', paragraph_id) }}
+  </div>
+{% endif %}

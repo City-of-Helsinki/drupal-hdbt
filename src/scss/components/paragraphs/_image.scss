@@ -16,34 +16,5 @@
     @include breakpoint($breakpoint-l) {
       padding: $spacing-double $spacing-double 0;
     }
-
-    // Do not apply padding for images inside columns.
-    .columns & {
-      padding: 0;
-
-      @include breakpoint($breakpoint-m) {
-        padding: 0;
-      }
-
-      @include breakpoint($breakpoint-l) {
-        padding: 0;
-      }
-    }
-  }
-
-  picture, img {
-    display: block;
-    line-height: 0;
-    width: 100%;
-  }
-
-  .image__caption {
-    @include font-size(14px, 24px);
-    padding: $spacing-half $spacing-and-half 0;
-
-    @include breakpoint($breakpoint-m) {
-      @include font-size(20px, 32px);
-      padding: $spacing 0 0;
-    }
   }
 }

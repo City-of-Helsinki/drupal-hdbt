@@ -6,6 +6,10 @@
     margin-top: $spacing-quadruple - $spacing-and-half;
   }
 
+  &:first-child {
+    margin-top: 0;
+  }
+
   .text__text-content {
     max-width: $content-width-max;
 
@@ -14,11 +18,7 @@
     }
 
     > *:first-child {
-      margin-top: $spacing-double - $spacing-and-half;
-
-      @include breakpoint($breakpoint-m) {
-        margin-top: $spacing-quadruple - $spacing-and-half;
-      }
+      margin-top: 0;
     }
 
     > p:first-child {
@@ -48,6 +48,24 @@
       li {
         margin-left: $spacing;
       }
+    }
+  }
+}
+
+.has-sidebar--first {
+  // Only directly under the paragraph content wrapper text paragraphs should have this padding.
+  .paragraph-content > .text .text__text-content {
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
+    }
+  }
+}
+
+// Sidebar layout.
+.has-sidebar.enriched-content { // TODO: Clean up when unit sidebar block has been created.
+  .text__text-content {
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
     }
   }
 }

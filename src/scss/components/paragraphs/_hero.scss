@@ -13,13 +13,19 @@ $koro-height: 50px;
     }
   }
 
+  .hds-koros {
+    svg {
+      margin-bottom: -1px;
+    }
+  }
+
   .hero__text-content {
     max-width: 690px;
   }
 
   .hero__title {
     margin-bottom: $spacing;
-    margin-top: $spacing-quadruple;
+    margin-top: $spacing;
   }
 
   .hero__title + .hero__cta {
@@ -27,15 +33,46 @@ $koro-height: 50px;
   }
 
   .hero__cta {
+    display: inline-flex;
+    flex-flow: column;
     margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-s) {
+      flex-flow: row;
+      margin: $spacing-double -#{$spacing-half} 0;
+    }
+
+    .hero__button {
+      margin: $spacing 0 0;
+
+      @include breakpoint($breakpoint-s) {
+        margin: 0 $spacing-half 0;
+      }
+
+      &:first-child {
+        margin-top: 0;
+
+        @include breakpoint($breakpoint-s) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .hds-button--supplementary {
+      margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
+
+      @include breakpoint($breakpoint-s) {
+        margin-left: 0;
+      }
+    }
   }
 
   .hero__description {
     p {
-      line-height: $lineheight-xxl;
+      @include font-size(16px, $lineheight-xxl);
     }
 
-    a {
+    a:not(.hds-button) {
       color: currentColor;
     }
   }
@@ -99,9 +136,6 @@ $koro-height: 50px;
 
     // Negate the padding on the right in supplementary button.
     margin-left: calc(-1 * (var(--spacing-2-xs) + var(--spacing-s) + var(--border-width)));
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
@@ -500,6 +534,16 @@ $koro-height: 50px;
     margin-left: auto;
     margin-right: auto;
   }
+
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
+  }
+}
+
+.hero--without-image-left {
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
+  }
 }
 
 // With image designs.
@@ -511,7 +555,7 @@ $koro-height: 50px;
     padding-bottom: $spacing;
 
     @include breakpoint($breakpoint-m) {
-      padding-bottom: $spacing-quadruple;
+      padding-bottom: $spacing-triple;
     }
   }
 
@@ -520,10 +564,14 @@ $koro-height: 50px;
   }
 
   .hero__image-container {
-    height: 300px;
+    height: 200px;
     line-height: 0;
     overflow: hidden;
     position: relative;
+
+    @include breakpoint($breakpoint-xs) {
+      height: 300px;
+    }
 
     img {
       height: 100%;
@@ -554,8 +602,10 @@ $koro-height: 50px;
 
   .hero__container {
     @include breakpoint($breakpoint-m) {
+      align-items: center;
+      display: flex;
       margin: 0;
-      max-width: $container-width-xl / 2;
+      max-width: ($container-width-xl + $spacing-quadruple) / 2;
       width: 50%;
     }
   }
@@ -566,11 +616,15 @@ $koro-height: 50px;
     }
   }
 
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
+  }
+
   .hero__image-container {
     @include breakpoint($breakpoint-m)  {
       height: auto;
       margin-top: $spacing-quadruple;
-      max-width: $container-width-xl / 2;
+      max-width: ($container-width-xl + $spacing-quadruple) / 2;
       padding: 0 $spacing $spacing-quadruple;
       width: 50%;
     }
@@ -651,6 +705,7 @@ $koro-height: 50px;
     align-items: center;
     color: $color-white;
     display: flex;
+    padding-top: $spacing-quadruple;
     position: relative;
     width: 100%;
     z-index: 2;
@@ -682,9 +737,14 @@ $koro-height: 50px;
   }
 
   .hds-koros {
-    bottom: 0;
+    bottom: -1px;
+    color: $color-white;
     position: absolute;
     z-index: 2;
+  }
+
+  .has-first-gray-bg-block & .hds-koros {
+    color: $color-silver-light;
   }
 
   .hds-button--primary {
@@ -744,12 +804,14 @@ $koro-height: 50px;
   .hero__container {
     align-items: center;
     display: flex;
+    padding-bottom: $spacing;
     position: relative;
     width: 100%;
     z-index: 2;
 
     @include breakpoint($breakpoint-l) {
       min-height: 480px;
+      padding-bottom: $spacing-triple;
     }
   }
 
@@ -764,13 +826,17 @@ $koro-height: 50px;
 
   .hero__title {
     @include breakpoint($breakpoint-l) {
-      margin-top: 0;
+      margin-top: $spacing;
     }
   }
 
   .hero__image-container {
-    height: 300px;
+    height: 200px;
     position: relative;
+
+    @include breakpoint($breakpoint-xs) {
+      height: 300px;
+    }
 
     @include breakpoint($breakpoint-l) {
       bottom: 0;

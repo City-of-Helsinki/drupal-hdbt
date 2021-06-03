@@ -45,7 +45,7 @@
         <span class="label" aria-label="{{ 'Current language is'|t }} {{ current_language|capitalize }}">{{ current_language|capitalize }}</span>
       {% endif %}
     </button>
-    <div aria-hidden="true" id="language-switcher-dropdown" class="language-switcher__dropdown">
+    <div id="language-switcher-dropdown" class="language-switcher__dropdown">
       <div class="language-links">
         {% for item in links %}
           {% set language_link = '' %}

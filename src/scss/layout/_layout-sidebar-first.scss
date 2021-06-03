@@ -1,0 +1,21 @@
+.has-sidebar .layout-sidebar-first,
+.layout-sidebar-first {
+  @include breakpoint($breakpoint-l) {
+    order: 1;
+    width: 30%;
+  }
+
+  .sidebar-first__container {
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding-left: 0;
+      padding-right: $spacing-and-half * 2;
+    }
+  }
+}
+
+.sidebar-first {
+  width: 100%;
+}

@@ -73,7 +73,7 @@
 
 {%
   set classes = [
-  'node-type--' ~ node.bundle|clean_class,
+  'node--type-' ~ node.bundle|clean_class,
   node.isPromoted() ? 'node--promoted',
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
@@ -98,7 +98,7 @@
         </div>
       {% endif %}
 
-      {% set created_date = node.createdtime|format_date('long') %}
+      {% set created_date = node.createdtime|format_date('medium') %}
       {% if created_date|render %}
         <div class="{{ node.bundle|clean_class }}__date">
           {{ created_date }}

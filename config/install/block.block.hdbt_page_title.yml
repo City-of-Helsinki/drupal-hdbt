@@ -1,12 +1,14 @@
 langcode: en
 status: true
 dependencies:
+  module:
+    - ctools
   theme:
     - hdbt
 id: hdbt_page_title
 theme: hdbt
-region: content
-weight: -3
+region: before_content
+weight: -6
 provider: null
 plugin: page_title_block
 settings:
@@ -14,4 +16,12 @@ settings:
   label: 'Page title'
   provider: core
   label_display: '0'
-visibility: {  }
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      unit: unit
+      service: service
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

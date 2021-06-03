@@ -18,6 +18,9 @@ module.exports = {
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
         './src/js/component-library.js',
+        './src/js/gallery-settings.js',
+        './src/js/accordion-settings.js',
+        './src/js/menu-toggle.js',
       ]
     }),
     "component-library": [
@@ -26,6 +29,18 @@ module.exports = {
     ],
     "ckeditor": [
       "./src/scss/ckeditor.scss"
+    ],
+    "gallery-settings": [
+      "./src/js/gallery-settings.js"
+    ],
+    "accordion-settings": [
+      "./src/js/accordion-settings.js"
+    ],
+    "throbber": [
+      "./src/js/throbber.js"
+    ],
+    "menu-toggle": [
+      "./src/js/menu-toggle.js"
     ],
   },
   output: {
@@ -186,6 +201,42 @@ module.exports = {
           "globOptions": {
             "extglob": true
           },
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/@splidejs/splide/dist/js/splide.min.js",
+          "to": path.resolve(__dirname, "dist") + "/js/splide/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/@splidejs/splide/dist/css/splide-core.min.css",
+          "to": path.resolve(__dirname, "dist") + "/css/splide/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/tiny-slider/dist/min/tiny-slider.js",
+          "to": path.resolve(__dirname, "dist") + "/js/tiny-slider/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/tiny-slider/dist/tiny-slider.css",
+          "to": path.resolve(__dirname, "dist") + "/css/tiny-slider/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/handorgel/lib/js/umd/handorgel.min.js",
+          "to": path.resolve(__dirname, "dist") + "/js/handorgel/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/handorgel/lib/css/handorgel.min.css",
+          "to": path.resolve(__dirname, "dist") + "/css/handorgel/",
           "force": true,
           "flatten": true
         }, {

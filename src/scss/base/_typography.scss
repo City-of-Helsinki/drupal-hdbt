@@ -15,9 +15,8 @@ h6 {
 }
 
 h1 {
-  font-size: $fontsize-heading-xl;
+  @include font-size($fontsize-heading-xl, $lineheight-s);
   font-weight: $font-weight-regular;
-  line-height: $lineheight-s;
 
   @include breakpoint($breakpoint-m) {
     // Margin on top needed to create enough space on top when there is no hero.
@@ -25,50 +24,50 @@ h1 {
   }
 
   @include breakpoint($breakpoint-l) {
-    font-size: 4.5rem;
+    @include font-size(72px, $lineheight-s);
     margin-bottom: $spacing-quadruple;
   }
 }
 
 h2 {
-  font-size: $fontsize-heading-l;
+  @include font-size($fontsize-heading-l);
   font-weight: $font-weight-regular;
 
   @include breakpoint($breakpoint-l) {
-    font-size: $fontsize-heading-xl;
+    @include font-size($fontsize-heading-xl);
   }
 }
 
 h3 {
-  font-size: $fontsize-heading-m;
+  @include font-size($fontsize-heading-m);
   font-weight: $font-weight-regular;
 
   @include breakpoint($breakpoint-l) {
-    font-size: $fontsize-heading-l;
+    @include font-size($fontsize-heading-l);
   }
 }
 
 h4 {
-  font-size: $fontsize-heading-s;
+  @include font-size($fontsize-heading-s);
   font-weight: $font-weight-regular;
 
   @include breakpoint($breakpoint-l) {
-    font-size: $fontsize-heading-m;
+    @include font-size($fontsize-heading-m);
   }
 }
 
 h5 {
-  font-size: $fontsize-heading-xs;
+  @include font-size($fontsize-heading-xs);
   font-weight: $font-weight-medium;
 
   @include breakpoint($breakpoint-l) {
-    font-size: $fontsize-heading-s;
+    @include font-size($fontsize-heading-s);
     font-weight: $font-weight-regular;
   }
 }
 
 h6 {
-  font-size: $fontsize-heading-xxs;
+  @include font-size($fontsize-heading-xxs);
   font-weight: $font-weight-medium;
 
   @include breakpoint($breakpoint-l) {
@@ -77,7 +76,7 @@ h6 {
 }
 
 a {
-  color: $color-black-90;
+  color: var(--hdbt-default-link-color);
 }
 
 p {
