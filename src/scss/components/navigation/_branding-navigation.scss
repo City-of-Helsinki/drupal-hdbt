@@ -1,0 +1,13 @@
+.header-branding .menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .menu__link-wrapper a {
+    @include font-size(12px, 14px);
+    display: block;
+    margin: 0 $spacing-half;
+    text-decoration: none;
+  }
+}

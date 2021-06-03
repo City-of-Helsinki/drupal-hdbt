@@ -43,7 +43,7 @@ module.exports = {
     "menu-toggle": [
       "./src/js/menu-toggle.js"
     ],
-    "mnenu-config": [
+    "mmenu-config": [
       "./src/js/mmenu-config.js"
     ],
   },
