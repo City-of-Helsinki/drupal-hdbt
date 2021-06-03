@@ -6,8 +6,15 @@
 
   .menu__link-wrapper a {
     @include font-size(12px, 14px);
-    display: block;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin: 0 $spacing-half;
     text-decoration: none;
+
+    .icon {
+      display: block;
+      margin-bottom: $spacing-half;
+    }
   }
 }

@@ -8,6 +8,10 @@
     margin: 0 $spacing-half;
     text-decoration: underline;
 
+    &:first-child {
+      margin-left: 0;
+    }
+
     &.is-active {
       cursor: default;
       font-weight: $font-weight-bold;
