@@ -21,6 +21,7 @@ module.exports = {
         './src/js/gallery-settings.js',
         './src/js/accordion-settings.js',
         './src/js/menu-toggle.js',
+        './src/js/mmenu-config.js',
       ]
     }),
     "component-library": [
@@ -41,6 +42,9 @@ module.exports = {
     ],
     "menu-toggle": [
       "./src/js/menu-toggle.js"
+    ],
+    "mnenu-config": [
+      "./src/js/mmenu-config.js"
     ],
   },
   output: {
