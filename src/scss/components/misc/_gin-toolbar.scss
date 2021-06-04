@@ -1,0 +1,6 @@
+.gin--horizontal-toolbar .toolbar-bar {
+  // Make the toolbar ALWAYS fixed if it is visible. It is fixed already always UNLESS you are viewing the page
+  // in small mobile and that tends to break things with the branding bar. This fix is more reasonable than the fix
+  // that would include moving the branding bar with javascript.
+  position: fixed;
+}

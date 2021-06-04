@@ -1,0 +1,7 @@
+langcode: und
+status: true
+dependencies: {  }
+id: branding-navigation
+label: 'Branding - Navigation'
+description: 'Navigation for branding bar'
+locked: false
