@@ -1,0 +1,7 @@
+.block--mobile-navigation {
+  order: 3;
+
+  @include breakpoint($breakpoint-m) {
+    display: none;
+  }
+}

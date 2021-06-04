@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* global Mmenu */
-  const menu = new Mmenu('#mainmenu', {
+  const menu = new Mmenu('#mobile-navigation', {
     lazySubmenus: true,
     extensions: ['pagedim-black'],
     // columns: true,
@@ -27,17 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
   });
 
-  // const burger = document.getElementById('burger');
-  //
-  // burger.addEventListener('click', function (event) {
-  //   let parent = menu.querySelector('.is-active');
-  //   parent.parentNode.querySelector('.mm-btn_next').trigger('click');
-  // });
+  const burger = document.getElementById('menu-hamburger');
+
+  burger.addEventListener('click', function () {
+    let parent = menu.querySelector('.is-active');
+    parent.parentNode.querySelector('.mm-btn_next').trigger('click');
+  });
 
   // Get the API
   const api = menu.API;
 
   // Invoke a method
-  const panel = document.querySelector('#mainmenu .is-active');
+  const panel = document.querySelector('#mobile-navigation .is-active');
   api.openPanel(panel.parentNode.parentNode);
 });
