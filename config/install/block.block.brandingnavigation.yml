@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.branding-navigation
+  module:
+    - menu_block_current_language
+  theme:
+    - hdbt
+id: brandingnavigation
+theme: hdbt
+region: header_branding
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:branding-navigation'
+settings:
+  id: 'menu_block_current_language:branding-navigation'
+  label: 'Branding - Navigation'
+  provider: menu_block_current_language
+  label_display: '0'
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (direction !== prevDirection) {
       toggleLanguageSwitcher(direction, currentScroll);
     }
-
     prevScroll = currentScroll;
   };
 
