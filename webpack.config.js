@@ -17,10 +17,11 @@ module.exports = {
     styles: ["./src/scss/styles.scss"],
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
-        './src/js/component-library.js',
-        './src/js/gallery-settings.js',
         './src/js/accordion-settings.js',
-        './src/js/menu-toggle.js',
+        './src/js/component-library.js',
+        './src/js/desktop-menu-toggle.js',
+        './src/js/gallery-settings.js',
+        './src/js/sidebar-menu-toggle.js',
       ]
     }),
     "component-library": [
@@ -29,6 +30,9 @@ module.exports = {
     ],
     "ckeditor": [
       "./src/scss/ckeditor.scss"
+    ],
+    "desktop-menu-toggle": [
+      "./src/js/desktop-menu-toggle.js"
     ],
     "gallery-settings": [
       "./src/js/gallery-settings.js"
@@ -39,8 +43,8 @@ module.exports = {
     "throbber": [
       "./src/js/throbber.js"
     ],
-    "menu-toggle": [
-      "./src/js/menu-toggle.js"
+    "sidebar-menu-toggle": [
+      "./src/js/sidebar-menu-toggle.js"
     ],
   },
   output: {

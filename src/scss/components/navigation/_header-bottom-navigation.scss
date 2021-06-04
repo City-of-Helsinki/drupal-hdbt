@@ -1,0 +1,187 @@
+.header-bottom .menu {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  // First level items
+  .menu__item {
+    list-style: none;
+    margin: 0 $spacing;
+
+    &:first-child {
+      margin-left: $spacing-double;
+    }
+
+    &:last-child {
+      margin-right: $spacing-double;
+    }
+  }
+
+  .menu__link-wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative;
+
+    a {
+      @include font-size(18px, 24px);
+      padding: $spacing-and-half 0;
+      text-decoration: none;
+
+      &::before {
+        background-color: $color-black;
+        bottom: 0;
+        content: "";
+        height: 0;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        transition: all .5s cubic-bezier(.19,1,.22,1);
+        width: 0;
+      }
+
+      &:hover,
+      &.is-active {
+        &::before {
+          height: 4px;
+          width: 100%;
+        }
+      }
+
+      &.is-active {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .menu__item--collapsed {
+    position: relative;
+
+    .menu__toggle-button .icon {
+      transform: rotate(180deg);
+    }
+
+    // Secondary menu items
+    .menu {
+      background-color: $color-white;
+      border: 1px solid $color-black-20;
+      bottom: auto;
+      display: block;
+      left: -$spacing-double;
+      position: absolute;
+      width: 310px;
+      z-index: 100;
+
+      .menu__item {
+        margin: 0;
+
+        .menu__toggle-button {
+          display: none;
+        }
+      }
+
+      .menu__link-wrapper {
+        width: 100%;
+
+        a {
+          @include font-size(16px, 20px);
+          display: block;
+          padding: $spacing $spacing-double;
+          width: 100%;
+
+          &::before {
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            margin: 0;
+            right: auto;
+            top: 0;
+            transition: width 100ms ease-in;
+          }
+
+          &.is-active {
+            font-weight: 700;
+          }
+
+          &:hover,
+          &.is-active {
+            &::before {
+              height: 100%;
+              width: 4px;
+            }
+          }
+        }
+      }
+
+      // Links on second level that point to external site.
+      .menu__item--external a {
+        padding-right: 52px; // Width of the external icon and padding.
+        position: relative;
+        width: 100%;
+
+        &:after {
+          background-color: $color-black;
+          background-size: contain;
+          content: "";
+          display: flex;
+          height: 20px;
+          mask-image: url('../icons/hds/ui/link-external.svg');
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: 20px;
+          position: absolute;
+          right: $spacing-double;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  // Active trail items, first level
+  .menu__item--active-trail {
+    .menu__link-wrapper a {
+      font-weight: 700;
+
+      &::before {
+        height: 4px;
+        width: 100%;
+      }
+    }
+
+    // Active trail items, second level
+    .menu__item {
+      .menu__link-wrapper a {
+        font-weight: normal;
+
+        &::before {
+          height: 100%;
+          width: 0;
+        }
+      }
+    }
+  }
+
+  // Menu toggle button
+  .menu__toggle-button {
+    background-color: transparent;
+    border: none;
+    margin: 0 0 0 $spacing-half;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .icon {
+      transition: all .2s ease-in;
+    }
+  }
+
+  // By default hide the secondary items
+  .menu {
+    display: none;
+  }
+}

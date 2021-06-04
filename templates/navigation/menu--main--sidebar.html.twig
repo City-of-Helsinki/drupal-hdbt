@@ -18,7 +18,7 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
-
+{{ attach_library('hdbt/sidebar-menu-toggle') }}
 {% import _self as menus %}
 
 {#
@@ -40,9 +40,9 @@
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
         item.is_external ? 'menu__item--external',
-        item.is_expanded ? 'menu__item--expanded',
-        item.is_collapsed ? 'menu__item--collapsed',
-        item.in_active_trail ? 'menu__item--active-trail'
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
+        item.is_expanded and not item.in_active_trail ? 'menu__item--collapsed',
+        item.in_active_trail ? 'menu__item--expanded'
       ]%}
 
       <li{{ item.attributes.addClass(item_classes) }}>

@@ -18,7 +18,7 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
-
+{{ attach_library('hdbt/desktop-menu-toggle') }}
 {% import _self as menus %}
 
 {#
@@ -42,6 +42,7 @@
         item.is_external ? 'menu__item--external',
         item.is_expanded ? 'menu__item--expanded',
         item.is_collapsed ? 'menu__item--collapsed',
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
         item.in_active_trail ? 'menu__item--active-trail'
       ]%}
 
