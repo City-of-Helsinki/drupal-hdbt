@@ -2,132 +2,35 @@
   display: none;
 }
 
-.mobile-navigation {
-
-}
-
 .mobile-navigation__trigger {
+  @include font-size(12px, 14px);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 $spacing-half;
+  order: 2;
+  text-align: center;
+  text-decoration: none;
+  z-index: 10;
+
   &:hover {
     cursor: pointer;
   }
 
+  .icon {
+    display: block;
+    margin-bottom: $spacing-half;
+  }
+
   @include breakpoint($breakpoint-m) {
+    order: 3;
+  }
+
+  @include breakpoint($breakpoint-l) {
     display: none;
   }
 }
 
-.sfidebar-menu {
-  display: none;
-
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .menu__item {
-      @include font-size(18px, 24px);
-      border-top: 1px solid $color-black-20;
-
-      &:first-child {
-        border-top: 0;
-      }
-
-      &.menu__item--external a {
-        display: block;
-        padding-right: 40px; // Width of the external icon.
-        position: relative;
-        width: 100%;
-
-        &:after {
-          background-color: $color-black;
-          background-size: contain;
-          content: "";
-          display: flex;
-          height: 20px;
-          mask-image: url('../icons/hds/ui/link-external.svg');
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: 20px;
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 40px;
-        }
-      }
-
-      .menu__link-wrapper {
-        align-content: center;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      span.menu__item--nolink,
-      a {
-        display: block;
-        padding: $spacing 0;
-        text-decoration: none;
-        width: 100%;
-
-        &.is-active {
-          font-weight: 700;
-        }
-      }
-
-      &.menu__item--collapsed,
-      &.menu__item--expanded {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      &.menu__item--collapsed {
-        .menu {
-          display: none;
-        }
-
-        .menu__toggle-button .icon {
-          transform: rotate(180deg);
-        }
-      }
-
-      // Second level
-      .menu {
-        width: 100%;
-      }
-
-      .menu__item {
-        @include font-size(16px, 24px);
-        border-top: none;
-
-        &:last-child span.menu__item--nolink,
-        &:last-child a {
-          margin-bottom: ($spacing-and-half / 2);
-        }
-
-        span.menu__item--nolink,
-        a {
-          padding: ($spacing-and-half / 2) 0 ($spacing-and-half / 2) $spacing;
-          position: relative;
-          width: 100%;
-
-          &.is-active::before {
-            background-color: $color-black;
-            content: "";
-            height: 24px; // Line-height
-            left: 0;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-          }
-        }
-
-        &.menu__item--external a {
-          padding-right: 40px; // Width of the external icon.
-        }
-      }
-    }
-  }
+.mobile-navigation {
 
 }

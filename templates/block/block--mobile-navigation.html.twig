@@ -33,9 +33,6 @@
 #}
 {% set attributes = attributes.addClass('block--mobile-navigation') %}
 
-<a id="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation">
-  {% include '@hdbt/misc/icon.twig' with {icon: 'menu-hamburger', label: 'Open mobile navigation'|t} %}
-</a>
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('id','mobile-navigation') }} class="mobile-navigation">
   {% block content %}
     {{ content }}

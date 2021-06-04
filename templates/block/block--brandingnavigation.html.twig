@@ -37,4 +37,8 @@
   {% block content %}
     {{ content }}
   {% endblock %}
+  <a id="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation">
+    {% include '@hdbt/misc/icon.twig' with {icon: 'menu-hamburger', label: 'Open navigation'|t} %}
+    {{ 'Menu'|t }}
+  </a>
 </div>
