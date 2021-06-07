@@ -1,7 +1,11 @@
 .header-bottom .menu {
-  display: flex;
+  display: none;
   margin: 0;
   padding: 0;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+  }
 
   // First level items
   .menu__item {
@@ -41,6 +45,14 @@
         width: 0;
       }
 
+      &:focus {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black;
+        margin: 0 -#{$spacing-half};
+        outline: none;
+        padding: $spacing-half;
+      }
+
       &:hover,
       &.is-active {
         &::before {
@@ -55,6 +67,7 @@
     }
   }
 
+  .menu__item--hover ,
   .menu__item--collapsed {
     position: relative;
 
@@ -102,6 +115,10 @@
 
           &.is-active {
             font-weight: 700;
+          }
+
+          &:focus {
+            margin: 0;
           }
 
           &:hover,
@@ -173,6 +190,13 @@
 
     &:hover {
       cursor: pointer;
+    }
+
+    &:focus {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black;
+      outline: none;
+      padding: 6px 0;
     }
 
     .icon {
