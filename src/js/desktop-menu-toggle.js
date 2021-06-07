@@ -1,8 +1,15 @@
-function closeOpenItems() {
-  let allOpenItems = document.querySelector('.menu__item--collapsed');
+function closeOpenItems(element) {
+  let allOpenItems = document.querySelectorAll('.menu__item--open');
+
   if (allOpenItems) {
-    allOpenItems.classList.toggle('menu__item--collapsed');
-    allOpenItems.classList.toggle('menu__item--expanded');
+    for (let item of allOpenItems) {
+      // Check that the item we are about to close is not the
+      // element-variable given to the function.
+      if (item === element) {
+        return;
+      }
+      item.classList.remove('menu__item--open');
+    }
   }
 }
 
@@ -12,19 +19,18 @@ function toggleDesktopMenuLevel(item) {
   // Check if there was menu toggle button under the menu item.
   if (toggleButton !== null) {
     toggleButton.addEventListener('click', function () {
-      item.classList.toggle('menu__item--collapsed');
-      item.classList.toggle('menu__item--expanded');
+      item.classList.toggle('menu__item--open');
     });
   }
 }
 
-function mouserOver() {
-  this.classList.toggle('menu__item--hover');
-  closeOpenItems();
+function mouseOver() {
+  this.closest('.menu__item--children').classList.add('menu__item--hover');
+  closeOpenItems(this.closest('.menu__item--children'));
 }
 
-function mouseOut() {
-  this.classList.toggle('menu__item--hover');
+function mouseLeave() {
+  this.classList.remove('menu__item--hover');
 }
 
 // Utility functions
@@ -45,12 +51,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Find all menu items with children menus.
   const itemsWithChildren = document
     .getElementById('block-mainnavigation')
-    .getElementsByClassName('menu__item--children');
+    .querySelectorAll('#menu--level-0 > .menu__item--children');
 
   for (let item of itemsWithChildren) {
-    toggleDesktopMenuLevel(item);
-    item.addEventListener('mouseover', mouserOver, false);
-    item.addEventListener('mouseout', mouseOut, false);
+    if (item) {
+      let firstLevelItem = item.querySelector(
+        '#menu--level-0 > .menu__item--children > .menu__link-wrapper > a'
+      );
+
+      toggleDesktopMenuLevel(item);
+      firstLevelItem.addEventListener('mouseover', mouseOver, false);
+      item.addEventListener('mouseleave', mouseLeave, false);
+    }
   }
 });
 
@@ -70,11 +82,8 @@ window.addEventListener('click', function (event) {
 
       // Loop through all siblings and if there is some open, close them.
       for (let i = 0; i < clickedElementSiblings.length; i++) {
-        if (
-          clickedElementSiblings[i].classList.contains('menu__item--collapsed')
-        ) {
-          clickedElementSiblings[i].classList.toggle('menu__item--collapsed');
-          clickedElementSiblings[i].classList.toggle('menu__item--expanded');
+        if (clickedElementSiblings[i].classList.contains('menu__item--open')) {
+          clickedElementSiblings[i].classList.toggle('menu__item--open');
         }
       }
     }
