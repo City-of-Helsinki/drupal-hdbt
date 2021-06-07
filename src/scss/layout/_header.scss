@@ -1,11 +1,9 @@
-.header-top {
-  align-items: center;
-  background-color: $hdbt-color-white;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 $spacing-and-half;
+// Header element directly under the wrapper element.
+.wrapper > .header {
+  // TODO: needs to be calculated dynamically
+  padding-top: 114px; // Height of the navigation element
 
-  @include breakpoint($breakpoint-l) {
-    padding: 0 $spacing-double;
+  @include breakpoint($breakpoint-m) {
+    padding-top: 0;
   }
 }

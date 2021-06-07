@@ -10,11 +10,16 @@
 
 .logo--header {
   color: $color-black;
-  padding: $spacing-half 0;
+  padding: $spacing 0;
 
   .icon {
     height: 32px;
-    width: 64px;
+    width: 69px;
+
+    @include breakpoint($breakpoint-m) {
+      height: 54px;
+      width: 117px;
+    }
   }
 }
 

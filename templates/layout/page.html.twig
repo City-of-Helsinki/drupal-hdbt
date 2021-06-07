@@ -22,10 +22,14 @@
 %}
 
 <div{{ create_attribute({'class': page_classes} ) }}>
-  {% if page.header_top or page.header_bottom %}
-    <header role="banner">
+  {% if page.header_top or page.header_bottom or page.header_branding %}
+    <header role="banner" class="header">
       {% if page.header_top %}
         {{ page.header_top }}
+      {% endif %}
+
+      {% if page.header_branding %}
+        {{ page.header_branding }}
       {% endif %}
 
       {% if page.header_bottom %}

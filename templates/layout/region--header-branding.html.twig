@@ -13,8 +13,7 @@
  */
 #}
 {% if content %}
-  <div{{ attributes.addClass('header-top') }}>
-    <a href="https://hel.fi">Hel.fi</a>
+  <div{{ attributes.addClass('header-branding').setAttribute('id', 'header-branding') }}>
     {{ content }}
   </div>
 {% endif %}

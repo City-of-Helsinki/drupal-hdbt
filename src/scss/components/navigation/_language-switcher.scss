@@ -2,105 +2,37 @@
   position: relative;
 
   .language-link {
-    @include font-size(16px);
+    @include font-size(14px);
     color: $color-black;
     font-weight: $font-weight-regular;
-    text-decoration: none;
+    margin: 0 $spacing-half;
+    text-decoration: underline;
 
-    @include breakpoint($breakpoint-m) {
-      @include font-size(14px);
-      margin: 0 $spacing-half;
+    &:first-child {
+      margin-left: 0;
     }
 
     &.is-active {
       cursor: default;
       font-weight: $font-weight-bold;
+      text-decoration: none;
     }
 
     &.is-disabled {
       color: $color-black-40;
       cursor: default;
+      text-decoration: none;
     }
 
     // TODO: Needs functionality for alternative menu items.
     &.is-alternative {
-      @include breakpoint($breakpoint-m) {
-        display: none;
-      }
+      display: none;
     }
   }
 
   a {
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
-  }
-}
-
-.language-switcher__button {
-  @include font-size(13px);
-  background: transparent;
-  border: 0;
-  display: grid;
-  gap: 0 0;
-  grid-template-areas:
-    "globe caret"
-    "label caret";
-  grid-template-columns: 3.6fr 2.4fr;
-  grid-template-rows: 2.4fr 1.3fr;
-
-  @include breakpoint($breakpoint-m) {
-    display: none;
-  }
-
-  &.is-active {
-    .icon--angle-down {
-      svg {
-        transform: scale(1,-1);
-      }
-    }
-  }
-
-  .icon--angle-down {
-    align-self: center;
-    grid-area: caret;
-
-    svg {
-      --icon-proportions: 24px;
-    }
-  }
-
-  .icon--globe {
-    grid-area: globe;
-
-    svg {
-      --icon-proportions: 24px;
-    }
-  }
-
-  .label {
-    grid-area: label;
-  }
-}
-
-.language-switcher__dropdown {
-  display: none;
-
-  &.is-active {
-    @include breakpoint(max-width $breakpoint-m) {
-      background: $color-white;
-      border-radius: 0 0 3px 3px;
-      box-shadow: 0 3px 4px #00000033;
-      display: flex;
-      padding: $spacing;
-      position: absolute;
-      right: 0;
-      top: 45px;
-      z-index: 100;
-    }
-  }
-
-  @include breakpoint($breakpoint-m) {
-    display: flex;
   }
 }

@@ -1,0 +1,38 @@
+.header-top .menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .menu__item {
+    margin-left: $spacing;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.menu__item--external a {
+      display: block;
+      padding-right: 24px; // Width of the external icon plus.
+      position: relative;
+      width: 100%;
+
+      &:after {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: flex;
+        height: 20px;
+        mask-image: url('../icons/hds/ui/link-external.svg');
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 14px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+      }
+    }
+  }
+}

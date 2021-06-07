@@ -1,0 +1,21 @@
+.header-branding .menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .menu__link-wrapper a {
+    @include font-size(12px, 14px);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 $spacing-half;
+    text-align: center;
+    text-decoration: none;
+
+    .icon {
+      display: block;
+      margin-bottom: $spacing-half;
+    }
+  }
+}

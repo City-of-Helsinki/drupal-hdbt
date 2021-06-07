@@ -1,0 +1,23 @@
+.block--branding {
+  align-items: center;
+  display: flex;
+  height: 65px; // Height on mobile for the branding area.
+  order: 1;
+  z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    height: auto;
+  }
+
+  .site-name {
+    color: $color-black;
+    margin: 0 $spacing-half;
+    max-width: 136px; // This is decided by the design.
+
+    @include breakpoint($breakpoint-m) {
+      @include font-size(20px, 24px);
+      margin: 0 $spacing;
+      max-width: 100%;
+    }
+  }
+}
