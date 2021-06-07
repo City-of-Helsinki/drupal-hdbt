@@ -1,0 +1,24 @@
+.remote-video {
+  margin-top: $spacing-triple;
+  position: relative;
+
+  @media screen and (min-width: $breakpoint-l) {
+    margin-top: $spacing-quadruple;
+  }
+
+  .responsive-video-container {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.5%;
+    position: relative;
+
+    iframe {
+      border: 0;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
