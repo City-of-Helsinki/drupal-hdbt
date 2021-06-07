@@ -1,0 +1,9 @@
+.block--branding-navigation {
+  order: 2;
+  z-index: 2;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: $spacing-double;
+    order: 3;
+  }
+}

@@ -1,0 +1,9 @@
+// Header element directly under the wrapper element.
+.wrapper > .header {
+  // TODO: needs to be calculated dynamically
+  padding-top: 114px; // Height of the navigation element
+
+  @include breakpoint($breakpoint-m) {
+    padding-top: 0;
+  }
+}

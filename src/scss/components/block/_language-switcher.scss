@@ -1,0 +1,25 @@
+.block--language-switcher {
+  margin: 0 -#{$spacing};
+  order: 3;
+  padding: 12px $spacing;
+  position: relative;
+  transition: all .3s ease;
+  width: calc(100% + #{$spacing-double});
+  z-index: 0;
+
+  @include breakpoint($breakpoint-m) {
+    border-top: none;
+    margin: 0 0 0 auto;
+    order: 2;
+    padding: 0;
+    width: auto;
+  }
+
+  &.scroll-up {
+    margin-top: -48px;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: 0;
+    }
+  }
+}
