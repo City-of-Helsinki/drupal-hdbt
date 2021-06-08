@@ -152,6 +152,33 @@
     }
   }
 
+  // Opening hours link (always external)
+  .unit__contact-row--opening-hours a {
+    padding-right: 24px; // Width of the external icon plus.
+    position: relative;
+
+    &:after {
+      background-color: $color-black;
+      background-size: contain;
+      content: "";
+      display: flex;
+      height: 20px;
+      mask-image: url('../icons/hds/ui/link-external.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 14px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .address {
     > * {
       display: block;
