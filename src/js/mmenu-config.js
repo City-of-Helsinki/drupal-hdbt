@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get the burger link element.
   const burger = document.getElementById('menu-hamburger');
   const languageSwitcher = document.getElementById('block-language-switcher');
+  const mobileFooterTemplate = document.getElementById(
+    'mobile-navigation-footer-template'
+  );
+  const mobileFooter = mobileFooterTemplate.cloneNode(true);
+  const headerTop = document.getElementById('hdbt-header-top');
+
+  if (headerTop) {
+    // Mobile footer elements.
+    mobileFooterTemplate.remove();
+    mobileFooter.id = 'mobile-navigation-footer';
+    mobileFooter.classList.add('mobile-navigation__footer');
+    mobileFooter.appendChild(headerTop.cloneNode(true)); //add the DOM reference you have
+  }
 
   // Fire the mmenu plugin.
   /* global Mmenu */
@@ -16,14 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     keyboardNavigation: {
       enable: true,
     },
-    navbars: [
-      {
-        position: 'bottom',
-        content: [
-          '<div id="mobile-navigation-footer" class="mobile-navigation__footer"></div>',
-        ],
-      },
-    ],
   });
 
   // Get the mmenu API
@@ -40,17 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.setAttribute('aria-expanded', 'false');
   });
 
-  // Adter menu has initialized, copy contents.
-  api.bind('initMenu:after', () => {
-    // const headerTop = document.getElementById('hdbt-header-top');
-  });
-
-  // Get the links from the universal header.
-  // const headerTop = document.getElementById('hdbt-header-top');
-  //
-  // if (headerTop) {
-  //   Mobile footer elements.
-  // let mobileFooter = document.getElementById('mobile-navigation-footer');
-  // mobileFooter = headerTop.contents().clone();
-  // }
+  // Apply the mobile navigation footer.
+  const mobileNavigation = document.getElementById('mm-1');
+  mobileNavigation.appendChild(mobileFooter);
 });

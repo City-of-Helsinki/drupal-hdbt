@@ -153,6 +153,43 @@ $spacing-menu-item: 20px;
   }
 }
 
+// Mobile navigation footer.
+.mobile-navigation__footer {
+  @include font-size(16px, 16px);
+  flex-shrink: 0;
+  min-height: 110px;
+  padding-top: $spacing;
+
+  .hds-koros {
+    color: $color-black;
+    padding: 0;
+  }
+
+  .header-top {
+    background-color: $color-black;
+    color: $color-white;
+    display: block;
+    padding: 0 $spacing-menu-item $spacing-double;
+    text-align: left;
+    width: 100%;
+
+    > * {
+      display: block;
+      padding: $spacing 0;
+    }
+
+    // Mmenu styles overrides.
+    a {
+      color: $color-white;
+      text-decoration: underline !important;
+
+      &::after {
+        background-color: $color-white !important;
+      }
+    }
+  }
+}
+
 // Menu trigger (burger).
 .mobile-navigation__trigger {
   @include font-size(12px, 14px);
@@ -216,17 +253,26 @@ $spacing-menu-item: 20px;
     }
   }
 
-  .mm-navbar {
+  // Hide "Menu" text.
+  .mm-navbar.mm-navbar_sticky {
     display: none;
   }
 
   .mm-listitem:after {
     left: 0;
   }
+
+  // Enable sticky footer for the menu.
+  .mm-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .mm-listview {
+    flex: 1 0 auto;
+  }
 }
 
-// Mobile navigation footer.
-.mobile-navigation__footer {
-  background-color: $color-black;
-  color: $color-white;
+// Hide the mobile navigation footer template.
+#mobile-navigation-footer-template {
+  display: none;
 }
