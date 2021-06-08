@@ -31,7 +31,7 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
-{% set attributes = attributes.addClass('block--mobile-navigation') %}
+{% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('id','mobile-navigation') }} class="mobile-navigation">
   {% block content %}
