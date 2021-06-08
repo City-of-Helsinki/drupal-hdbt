@@ -3,6 +3,10 @@
 // This file includes all imports
 //
 
+// Load fonts first to prevent
+@import "library/variables/_typography.*";
+@import "library/fonts/*.*";
+
 @import "~breakpoint-sass";
 
 @import "hds";

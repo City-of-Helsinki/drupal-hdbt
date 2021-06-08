@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Find all menu items with children menus.
   const itemsWithChildren = document
-    .getElementById('block-main-navigation-level-2')
+    .getElementsByClassName('sidebar-navigation')[0]
     .getElementsByClassName('menu__item--children');
 
   for (let item of itemsWithChildren) {

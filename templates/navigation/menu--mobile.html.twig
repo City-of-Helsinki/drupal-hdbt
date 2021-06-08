@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see https://twig.symfony.com/doc/1.x/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0, icons_path) }}
+
+{% macro menu_links(items, attributes, menu_level, icons_path) %}
+  {% import _self as menus %}
+
+  {% set menu_classes = [
+    'menu',
+    'menu--mobile',
+  ] %}
+
+  {% if items %}
+    <ul{{ attributes.addClass(menu_classes) }}>
+    {% for item in items %}
+      {% set level = menu_level + 1 %}
+      {% set item_classes = [
+        'menu__item',
+        item.is_nolink ? 'menu__item--nolink',
+        item.is_external ? 'menu__item--external',
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
+        item.in_active_trail ? 'menu__item--active-trail',
+        'menu__item--level-' ~ level,
+      ]%}
+
+      <li{{ item.attributes.addClass(item_classes) }}>
+        {% if not item.is_nolink %}
+          {% set item_title = item.title %}
+
+          {%- set icon_name = (item.url.getOption('attributes')).icon -%}
+          {% if icon_name %}
+            {% set item_title %}
+              {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
+              {{ item.title }}
+            {% endset %}
+          {% endif %}
+
+          {{ link(item_title, item.url) }}
+        {% else %}
+          <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
+        {% endif %}
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, icons_path) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

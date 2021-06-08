@@ -8,7 +8,7 @@ dependencies:
 id: sitebranding
 theme: hdbt
 region: header_branding
-weight: -4
+weight: 1
 provider: null
 plugin: system_branding_block
 settings:

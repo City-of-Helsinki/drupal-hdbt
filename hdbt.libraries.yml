@@ -71,6 +71,21 @@ sidebar-menu-toggle:
   js:
     dist/js/sidebar-menu-toggle.min.js: {}
 
+mmenu:
+  version: 8.5.21
+  js:
+    dist/js/mmenu/mmenu.js: {}
+  css:
+    theme:
+      dist/css/mmenu/mmenu.css: {}
+
+mmenu-config:
+  version: 8.5.21
+  js:
+    dist/js/mmenu-config.min.js: {}
+  dependencies:
+    - hdbt/mmenu
+
 global-styling:
   version: 1.x
   css:
