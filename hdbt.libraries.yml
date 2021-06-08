@@ -5,6 +5,11 @@ component-library:
   js:
     dist/js/component-library.min.js: {}
 
+desktop-menu-toggle:
+  version: 1.x
+  js:
+    dist/js/desktop-menu-toggle.min.js: {}
+
 # Should be removed when all major browsers on most used operating systems
 # can handle CSS3 hyphens: auto. See. https://caniuse.com/#search=hyphens or
 # https://www.w3schools.com/cssref/css3_pr_hyphens.asp.
@@ -61,10 +66,10 @@ throbber:
     - core/jquery
     - core/drupal
 
-menu-toggle:
+sidebar-menu-toggle:
   version: 1.x
   js:
-    dist/js/menu-toggle.min.js: {}
+    dist/js/sidebar-menu-toggle.min.js: {}
 
 mmenu:
   version: 8.5.21

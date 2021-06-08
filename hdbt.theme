@@ -130,6 +130,14 @@ function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables) {
         $suggestions[] = 'menu__mobile';
         break;
 
+      case 'mainnavigation':
+        $suggestions[] = 'menu__main__desktop';
+        break;
+
+      case 'main_navigation_level_2':
+        $suggestions[] = 'menu__main__sidebar';
+        break;
+
       default:
         $suggestions[] = 'menu__' . $variables['attributes']['block_id'];
         break;

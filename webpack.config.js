@@ -17,13 +17,17 @@ module.exports = {
     styles: ["./src/scss/styles.scss"],
     bundle: glob.sync("./src/js/**/*.js",{
       ignore: [
-        './src/js/component-library.js',
-        './src/js/gallery-settings.js',
         './src/js/accordion-settings.js',
-        './src/js/menu-toggle.js',
+        './src/js/component-library.js',
+        './src/js/desktop-menu-toggle.js',
+        './src/js/gallery-settings.js',
         './src/js/mmenu-config.js',
+        './src/js/sidebar-menu-toggle.js',
       ]
     }),
+    "accordion-settings": [
+      "./src/js/accordion-settings.js"
+    ],
     "component-library": [
       "./src/js/component-library.js",
       "./src/scss/component-library.scss"
@@ -31,20 +35,20 @@ module.exports = {
     "ckeditor": [
       "./src/scss/ckeditor.scss"
     ],
+    "desktop-menu-toggle": [
+      "./src/js/desktop-menu-toggle.js"
+    ],
     "gallery-settings": [
       "./src/js/gallery-settings.js"
     ],
-    "accordion-settings": [
-      "./src/js/accordion-settings.js"
+    "mmenu-config": [
+      "./src/js/mmenu-config.js"
+    ],
+    "sidebar-menu-toggle": [
+      "./src/js/sidebar-menu-toggle.js"
     ],
     "throbber": [
       "./src/js/throbber.js"
-    ],
-    "menu-toggle": [
-      "./src/js/menu-toggle.js"
-    ],
-    "mmenu-config": [
-      "./src/js/mmenu-config.js"
     ],
   },
   output: {
