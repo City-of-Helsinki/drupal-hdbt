@@ -21,9 +21,13 @@ module.exports = {
         './src/js/component-library.js',
         './src/js/desktop-menu-toggle.js',
         './src/js/gallery-settings.js',
+        './src/js/mmenu-config.js',
         './src/js/sidebar-menu-toggle.js',
       ]
     }),
+    "accordion-settings": [
+      "./src/js/accordion-settings.js"
+    ],
     "component-library": [
       "./src/js/component-library.js",
       "./src/scss/component-library.scss"
@@ -37,14 +41,14 @@ module.exports = {
     "gallery-settings": [
       "./src/js/gallery-settings.js"
     ],
-    "accordion-settings": [
-      "./src/js/accordion-settings.js"
-    ],
-    "throbber": [
-      "./src/js/throbber.js"
+    "mmenu-config": [
+      "./src/js/mmenu-config.js"
     ],
     "sidebar-menu-toggle": [
       "./src/js/sidebar-menu-toggle.js"
+    ],
+    "throbber": [
+      "./src/js/throbber.js"
     ],
   },
   output: {
@@ -241,6 +245,18 @@ module.exports = {
           "context": "./",
           "from": "node_modules/handorgel/lib/css/handorgel.min.css",
           "to": path.resolve(__dirname, "dist") + "/css/handorgel/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/mmenu-js/dist/mmenu.js",
+          "to": path.resolve(__dirname, "dist") + "/js/mmenu/",
+          "force": true,
+          "flatten": true
+        }, {
+          "context": "./",
+          "from": "node_modules/mmenu-js/dist/mmenu.css",
+          "to": path.resolve(__dirname, "dist") + "/css/mmenu/",
           "force": true,
           "flatten": true
         }

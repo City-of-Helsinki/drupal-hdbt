@@ -1,11 +1,11 @@
-.sidebar-menu {
+.sidebar-navigation {
   display: none;
 
   @include breakpoint($breakpoint-l) {
     display: block;
   }
 
-  .sidebar-menu__title {
+  .sidebar-navigation__title {
     @include font-size(24px, 28px);
     border-bottom: 2px solid $color-black;
     margin-top: $spacing-half;
