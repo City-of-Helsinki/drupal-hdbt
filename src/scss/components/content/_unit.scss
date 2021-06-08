@@ -156,7 +156,7 @@
   .unit__contact-row--opening-hours a {
     padding-right: 24px; // Width of the external icon plus.
     position: relative;
-    
+
     &:after {
       background-color: $color-black;
       background-size: contain;
@@ -172,6 +172,10 @@
       top: 50%;
       transform: translateY(-50%);
       width: 24px;
+    }
+
+    &:hover {
+      text-decoration: none;
     }
   }
 
