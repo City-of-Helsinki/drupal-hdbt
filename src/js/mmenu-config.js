@@ -48,4 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Apply the mobile navigation footer.
   const mobileNavigation = document.getElementById('mm-1');
   mobileNavigation.appendChild(mobileFooter);
+
+  // Open panel with active element.
+  const panel = document.querySelector('#mobile-navigation .is-active');
+  api.openPanel(panel.parentNode.parentNode);
 });
