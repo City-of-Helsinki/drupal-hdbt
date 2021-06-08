@@ -112,6 +112,33 @@ function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $v
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Provide block based menu suggestions.
+ */
+function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables) {
+  if (isset($variables['attributes']['block_id'])) {
+    switch ($variables['attributes']['block_id']) {
+      case 'mobile_navigation':
+        $suggestions[] = 'menu__mobile';
+        break;
+
+      case 'mainnavigation':
+        $suggestions[] = 'menu__main__desktop';
+        break;
+
+      case 'main_navigation_level_2':
+        $suggestions[] = 'menu__main__sidebar';
+        break;
+
+      default:
+        $suggestions[] = 'menu__' . $variables['attributes']['block_id'];
+        break;
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_form_element(&$variables) {
@@ -183,6 +210,10 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $variables['content']['#attributes']['block_id'] = $variables['elements']['#id'];
+  }
+
   // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
     if ($node = \Drupal::routeMatch()->getParameter('node')) {
