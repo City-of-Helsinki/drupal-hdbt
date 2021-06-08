@@ -8,7 +8,7 @@ dependencies:
 id: language_switcher
 theme: hdbt
 region: header_branding
-weight: 0
+weight: 2
 provider: null
 plugin: 'language_block:language_content'
 settings:

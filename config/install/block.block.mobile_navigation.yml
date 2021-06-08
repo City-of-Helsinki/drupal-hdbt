@@ -2,20 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.branding-navigation
+    - system.menu.main
   module:
     - menu_block_current_language
   theme:
     - hdbt
-id: brandingnavigation
+id: mobile_navigation
 theme: hdbt
 region: header_branding
-weight: 3
+weight: 4
 provider: null
-plugin: 'menu_block_current_language:branding-navigation'
+plugin: 'menu_block_current_language:main'
 settings:
-  id: 'menu_block_current_language:branding-navigation'
-  label: 'Branding - Navigation'
+  id: 'menu_block_current_language:main'
+  label: 'Mobile navigation'
   provider: menu_block_current_language
   label_display: '0'
   translation_providers:
@@ -24,5 +24,5 @@ settings:
     default: '0'
   level: 1
   depth: 0
-  expand_all_items: false
+  expand_all_items: true
 visibility: {  }

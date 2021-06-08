@@ -11,3 +11,10 @@
 function hdbt_content_update_9001() {
   \Drupal::service('config.installer')->installDefaultConfig('theme', 'hdbt');
 }
+
+/**
+ * Re-import the default config for the theme.
+ */
+function hdbt_content_update_9002() {
+  \Drupal::service('config.installer')->installDefaultConfig('theme', 'hdbt');
+}
