@@ -51,6 +51,12 @@
   .banner__container {
     max-width: $content-width-max;
   }
+
+  .banner__icon {
+    @include breakpoint($breakpoint-m) {
+      margin-right: $spacing;
+    }
+  }
 }
 
 .banner--design-align-left {
