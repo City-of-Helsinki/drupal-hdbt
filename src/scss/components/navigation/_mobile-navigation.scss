@@ -46,7 +46,7 @@ $spacing-menu-item: 20px;
           bottom: 0;
           content: "";
           display: inline-block;
-          height: $spacing-quadruple;
+          height: 100%;
           left: 0;
           position: absolute;
           top: 0;
@@ -88,7 +88,7 @@ $spacing-menu-item: 20px;
     .mm-panel {
       background-color: $color-black-5;
       border-top: 1px solid $color-black-20;
-      padding: $spacing-half 0 $spacing-half;
+      padding: 0;
     }
 
     &.menu__item--active-trail > .mm-listitem__text {
@@ -108,7 +108,8 @@ $spacing-menu-item: 20px;
 
     .mm-listitem__text {
       @include font-size(16px, 26px);
-      padding: $spacing-half 0 $spacing-half $spacing-double;
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-double;
     }
 
     .mm-btn {
@@ -126,7 +127,6 @@ $spacing-menu-item: 20px;
     .mm-panel {
       background: $color-white;
       border: none;
-      margin-bottom: -$spacing-half;
     }
   }
 
@@ -142,7 +142,8 @@ $spacing-menu-item: 20px;
 
     .mm-listitem__text {
       @include font-size(16px, 26px);
-      padding: $spacing-half 0 $spacing-half $spacing-triple;
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-triple;
 
       &.is-active {
         &::before {
