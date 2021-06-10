@@ -2,7 +2,7 @@
   margin-top: $spacing-triple;
   position: relative;
 
-  @media screen and (min-width: $breakpoint-l) {
+  @include breakpoint($breakpoint-l) {
     margin-top: $spacing-quadruple;
   }
 
