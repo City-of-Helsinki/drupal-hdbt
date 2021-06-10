@@ -9,13 +9,47 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0 $spacing-half;
+    height: 40px;
+    justify-content: center;
+    margin: 0 $spacing-quarter;
     text-align: center;
     text-decoration: none;
+    width: 40px;
+
+    @include breakpoint(440px) {
+      height: 60px;
+      margin: 0 $spacing-half;
+      padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
+      position: relative;
+      width: 50px;
+    }
 
     .icon {
       display: block;
-      margin-bottom: $spacing-half;
+
+      @include breakpoint(440px) {
+        margin-bottom: $spacing-quarter;
+      }
+    }
+
+    .menu__link__text {
+      display: none;
+
+      @include breakpoint(440px) {
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        height: 28px; // Enough space for the text to go to two lines.
+        justify-content: center;
+        left: 0;
+        line-height: 13px; // If the text goes on two lines this still looks good.
+        position: absolute;
+        width: 100%;
+      }
+
+      @include breakpoint($breakpoint-m) {
+        bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
+      }
     }
   }
 }

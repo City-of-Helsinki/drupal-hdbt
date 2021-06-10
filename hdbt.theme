@@ -138,6 +138,10 @@ function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables) {
         $suggestions[] = 'menu__main__sidebar';
         break;
 
+      case 'brandingnavigation':
+        $suggestions[] = 'menu__main__branding';
+        break;
+
       default:
         $suggestions[] = 'menu__' . $variables['attributes']['block_id'];
         break;
