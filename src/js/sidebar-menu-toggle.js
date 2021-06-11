@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check if there was menu toggle button under the menu item.
     if (toggleButton !== null) {
       toggleButton.addEventListener('click', function (event) {
-        item.classList.toggle('menu__item--collapsed');
-        item.classList.toggle('menu__item--expanded');
+        item.classList.toggle('menu__item--open');
         event.stopPropagation();
       });
     }

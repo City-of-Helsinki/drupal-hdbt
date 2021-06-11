@@ -41,8 +41,8 @@
         item.is_nolink ? 'menu__item--nolink',
         item.is_external ? 'menu__item--external',
         item.is_expanded or item.in_active_trail ? 'menu__item--children',
-        item.is_expanded and not item.in_active_trail ? 'menu__item--collapsed',
-        item.in_active_trail ? 'menu__item--expanded'
+        item.in_active_trail ? 'menu__item--active-trail',
+        item.in_active_trail ? 'menu__item--open'
       ]%}
 
       <li{{ item.attributes.addClass(item_classes) }}>

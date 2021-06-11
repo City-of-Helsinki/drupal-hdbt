@@ -13,9 +13,6 @@
 
   // Links inside the paragraph content area
   .paragraph-content .link {
-    // Add extra margin around the link paragraph.
-    margin: $spacing 0;
-
     .link__content {
       @include breakpoint($breakpoint-s) {
         padding-left: $spacing-quadruple;
