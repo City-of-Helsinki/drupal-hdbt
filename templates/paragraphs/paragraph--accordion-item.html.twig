@@ -39,18 +39,10 @@
  */
 #}
 {% block paragraph %}
-  <h{{ accordion_heading_level}} class="accordion-item__header handorgel__header">
-    <button class="accordion-item__button accordion-item__button--toggle handorgel__header__button">
-      {% if content.field_icon|render %}
-        <div class="accordion-item__icon">{{ content.field_icon }}</div>
-      {% endif %}
-      {{ content.field_accordion_item_heading }}
-    </button>
-  </h{{ accordion_heading_level}}>
-  <div class="accordion-item__content handorgel__content">
-    <div class="accordion-item__content__inner handorgel__content__inner">
-      {{ content.field_accordion_item_content}}
-      <span class="accordion-item__button accordion-item__button--close" role="button">{{ 'Close'|t }}{% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', label: 'Close'|t } %}</span>
-    </div>
-  </div>
+  {% include '@hdbt/component/accordion.twig' with {
+    heading_level: 'h' ~ accordion_heading_level,
+    heading_icon: content.field_icon[0]['#icon_id'],
+    heading: content.field_accordion_item_heading,
+    content: content.field_accordion_item_content,
+  } %}
 {% endblock paragraph %}

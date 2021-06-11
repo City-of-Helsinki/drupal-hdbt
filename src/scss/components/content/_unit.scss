@@ -292,6 +292,30 @@
   }
 }
 
+.unit__accessibility_sentences {
+  margin-top: $spacing-double;
+
+  &.accordion {
+    .accordion-item__content {
+      span:not(.accordion-item__button) {
+        display: list-item;
+        margin-left: $spacing-and-half;
+        margin-top: $spacing;
+      }
+    }
+
+    .accordion-item__content__inner {
+      @include breakpoint($breakpoint-s) {
+        padding-left: 50px;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        padding-left: 72px;
+      }
+    }
+  }
+}
+
 .unit.unit--full {
   .unit__services:last-child {
     // Make the keywords element go "under" the footer.

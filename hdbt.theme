@@ -291,10 +291,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['list_of_links_design'] = $design;
   }
 
-  if ($paragraph_type == 'accordion') {
-    $variables['#attached']['library'][] = 'hdbt/accordion';
-  }
-
   // Check if the paragraph is a type of accordion
   // and tell its children the heading level.
   if ($paragraph_type == 'accordion_item') {
