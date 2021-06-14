@@ -52,9 +52,7 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
       {% block container_content %}
-        <div class="accordion__wrapper handorgel">
-          {{ content.field_accordion_items }}
-        </div>
+        {{ content.field_accordion_items }}
       {% endblock %}
     {% endembed %}
   </div>
