@@ -292,6 +292,43 @@
   }
 }
 
+.unit__accessibility_sentences {
+  margin-top: $spacing-double;
+
+  &.accordion {
+    .accordion-item__content {
+      h3 {
+        margin-top: 0;
+
+        &:not(:first-of-type) {
+          padding-top: $spacing-double;
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        display: list-item;
+        margin-left: $spacing-and-half;
+        margin-top: $spacing;
+      }
+    }
+
+    .accordion-item__content__inner {
+      @include breakpoint($breakpoint-s) {
+        padding-left: 50px;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        padding-left: 72px;
+      }
+    }
+  }
+}
+
 .unit.unit--full {
   .unit__services:last-child {
     // Make the keywords element go "under" the footer.
