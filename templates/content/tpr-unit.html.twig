@@ -19,4 +19,21 @@
       {{ content.field_content }}
     </div>
   {% endblock main_content %}
+
+  {% block accessibility_sentences_block %}
+    {% if content.accessibility_sentences|render %}
+      <div class="unit__accessibility_sentences accordion accordion--grey">
+        {% embed "@hdbt/misc/container.twig" ignore missing with {container_element: 'accordion'} %}
+          {% block container_content %}
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading_icon: 'person-wheelchair',
+              heading: 'Accessibility information'|t,
+              content: content.accessibility_sentences,
+            } %}
+          {% endblock %}
+        {% endembed %}
+      </div>
+    {% endif %}
+  {% endblock accessibility_sentences_block %}
 {% endembed %}
