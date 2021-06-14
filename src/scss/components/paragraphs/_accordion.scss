@@ -178,9 +178,14 @@
     }
 
     .columns__container {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: $spacing-half;
+      padding-right: $spacing-half;
       padding-top: 0;
+
+      @include breakpoint($breakpoint-l) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     .columns__title {
@@ -215,6 +220,17 @@
 
       > *:first-child {
         margin-top: 0;
+      }
+    }
+  }
+}
+
+// Show border-top only on first accordion item header in white accordion.
+.accordion--white {
+  .accordion__container {
+    > .accordion__wrapper {
+      ~ .accordion__wrapper .accordion-item__header {
+        border-top: none;
       }
     }
   }
