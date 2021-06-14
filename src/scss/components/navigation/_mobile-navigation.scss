@@ -46,7 +46,7 @@ $spacing-menu-item: 20px;
           bottom: 0;
           content: "";
           display: inline-block;
-          height: $spacing-quadruple;
+          height: 100%;
           left: 0;
           position: absolute;
           top: 0;
@@ -88,7 +88,7 @@ $spacing-menu-item: 20px;
     .mm-panel {
       background-color: $color-black-5;
       border-top: 1px solid $color-black-20;
-      padding: $spacing-half 0 $spacing-half;
+      padding: 0;
     }
 
     &.menu__item--active-trail > .mm-listitem__text {
@@ -108,7 +108,8 @@ $spacing-menu-item: 20px;
 
     .mm-listitem__text {
       @include font-size(16px, 26px);
-      padding: $spacing-half 0 $spacing-half $spacing-double;
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-double;
     }
 
     .mm-btn {
@@ -126,7 +127,6 @@ $spacing-menu-item: 20px;
     .mm-panel {
       background: $color-white;
       border: none;
-      margin-bottom: -$spacing-half;
     }
   }
 
@@ -142,7 +142,8 @@ $spacing-menu-item: 20px;
 
     .mm-listitem__text {
       @include font-size(16px, 26px);
-      padding: $spacing-half 0 $spacing-half $spacing-triple;
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-triple;
 
       &.is-active {
         &::before {
@@ -196,11 +197,21 @@ $spacing-menu-item: 20px;
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 $spacing-half;
+  height: 40px;
+  justify-content: center;
+  margin: 0 0 0 $spacing-half;
   order: 2;
   text-align: center;
   text-decoration: none;
+  width: 40px;
   z-index: 10;
+
+  @include breakpoint(440px) {
+    height: 60px;
+    padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
+    position: relative;
+    width: 50px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -214,17 +225,40 @@ $spacing-menu-item: 20px;
     display: none;
   }
 
+  .mobile-navigation__trigger__text {
+    display: none;
+
+    @include breakpoint(440px) {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      height: 28px; // Enough space for the text to go to two lines.
+      justify-content: center;
+      left: 0;
+      line-height: 13px; // If the text goes on two lines this still looks good.
+      position: absolute;
+      width: 100%;
+    }
+
+    @include breakpoint($breakpoint-m) {
+      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
+    }
+  }
+
   .icon {
     background-color: $color-black;
     background-size: contain;
     content: "";
     display: flex;
-    margin-bottom: $spacing-half;
     mask-image: url('../icons/hds/ui/menu-hamburger.svg');
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: 25px;
     width: 20px;
+
+    @include breakpoint(440px) {
+      margin-bottom: $spacing-quarter;
+    }
   }
 
   &[aria-expanded="true"] .icon {

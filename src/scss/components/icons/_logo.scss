@@ -1,6 +1,7 @@
 .logo {
   align-items: center;
   display: flex;
+  text-decoration: none;
 
   .icon--logo-sv,
   .icon--logo-ru {
@@ -18,7 +19,8 @@
 
     @include breakpoint($breakpoint-m) {
       height: 54px;
-      width: 117px;
+      max-width: 117px;
+      width: auto;
     }
   }
 }

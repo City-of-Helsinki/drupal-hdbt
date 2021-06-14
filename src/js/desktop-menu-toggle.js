@@ -1,5 +1,7 @@
 function closeOpenItems(element) {
-  let allOpenItems = document.querySelectorAll('.menu__item--open');
+  let allOpenItems = document.querySelectorAll(
+    '.desktop-menu .menu__item--open'
+  );
 
   if (allOpenItems) {
     for (let item of allOpenItems) {
@@ -49,9 +51,9 @@ function getSiblings(n) {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Find all menu items with children menus.
-  const itemsWithChildren = document
-    .getElementById('block-mainnavigation')
-    .querySelectorAll('#menu--level-0 > .menu__item--children');
+  const itemsWithChildren = document.querySelectorAll(
+    '.desktop-menu #menu--level-0 > .menu__item--children'
+  );
 
   for (let item of itemsWithChildren) {
     if (item) {
