@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Open panel with active element.
     const panel = document.querySelector('#mobile-navigation .is-active');
-    if (panel.parentNode.parentNode) {
+    if (panel && panel.parentNode.parentNode) {
       api.openPanel(panel.parentNode.parentNode);
     }
   }

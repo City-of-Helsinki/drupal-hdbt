@@ -44,7 +44,7 @@ a.link[target="_blank"] {
   align-items: center;
   display: inline-flex;
 
-  &:after {
+  &::after {
     background-color: $color-black;
     background-size: contain;
     content: "";
