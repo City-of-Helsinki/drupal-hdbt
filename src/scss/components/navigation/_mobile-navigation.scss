@@ -10,7 +10,7 @@ $spacing-menu-item: 20px;
   --mm-color-button: var(--color-black);
   --mm-color-text: var(--color--black);
   --mm-color-text-dimmed: silver;
-  --mm-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+  --mm-shadow:0 0 10px rgba($color-black, 0.3);
 
   // Default MM positioning.
   --mm-offset-top: 0;
