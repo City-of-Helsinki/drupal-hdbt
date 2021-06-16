@@ -46,11 +46,20 @@
       }
 
       &:focus {
-        border-radius: 2px;
-        box-shadow: 0 0 0 3px $color-black;
-        margin: 0 -#{$spacing-half};
         outline: none;
-        padding: $spacing-half;
+
+        &::after {
+          border-radius: 2px;
+          box-shadow: 0 0 0 3px $color-black;
+          content: "";
+          display: block;
+          height: 50%;
+          left: -#{$spacing-quarter};
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(100% + #{$spacing-half});
+        }
       }
 
       &:hover,
@@ -63,6 +72,20 @@
 
       &.is-active {
         font-weight: 700;
+      }
+    }
+
+    .menu__item--nolink {
+      @include font-size(18px, 24px);
+      padding: $spacing-and-half 0;
+      text-decoration: none;
+    }
+  }
+
+  .menu__item--children .menu__link-wrapper a {
+    &:focus {
+      &::after {
+        width: calc(100% - 24px); // Width of the dropdown button.
       }
     }
   }
@@ -119,6 +142,12 @@
 
           &:focus {
             margin: 0;
+
+            &::after {
+              height: 100%;
+              left: $spacing-half;
+              width: calc(100% - #{$spacing});
+            }
           }
 
           &:hover,
@@ -133,25 +162,28 @@
 
       // Links on second level that point to external site.
       .menu__item--external a {
-        padding-right: 52px; // Width of the external icon and padding.
-        position: relative;
-        width: 100%;
+        .menu__link__text {
+          display: block;
+          padding-right: 52px; // Width of the external icon and padding.
+          position: relative;
+          width: 100%;
 
-        &:after {
-          background-color: $color-black;
-          background-size: contain;
-          content: "";
-          display: flex;
-          height: 20px;
-          mask-image: url('../icons/hds/ui/link-external.svg');
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: 20px;
-          position: absolute;
-          right: $spacing-double;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 20px;
+          &:after {
+            background-color: $color-black;
+            background-size: contain;
+            content: "";
+            display: flex;
+            height: 20px;
+            mask-image: url('../icons/hds/ui/link-external.svg');
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: 20px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+          }
         }
       }
     }

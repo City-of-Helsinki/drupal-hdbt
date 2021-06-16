@@ -32,6 +32,23 @@
         top: 0;
         width: 20px;
       }
+
+      &:focus {
+        outline: none;
+
+        &::after {
+          border-radius: 2px;
+          box-shadow: 0 0 0 3px $color-black;
+          content: "";
+          display: block;
+          height: 150%;
+          left: -$spacing-half;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(100% + #{$spacing-half});
+        }
+      }
     }
   }
 
@@ -70,6 +87,12 @@
           transform: translateY(-50%);
           width: 40px;
         }
+
+        &:focus {
+          &::before {
+            width: calc(100% + #{$spacing-half});
+          }
+        }
       }
 
       .menu__link-wrapper {
@@ -83,23 +106,46 @@
       a {
         display: block;
         padding: $spacing 0;
+        position: relative;
         text-decoration: none;
         width: 100%;
 
         &.is-active {
           font-weight: 700;
         }
+
+        &:focus {
+          outline: none;
+
+          &::before {
+            border-radius: 2px;
+            box-shadow: 0 0 0 3px $color-black;
+            content: "";
+            display: block;
+            height: calc(100% - #{$spacing});
+            left: -#{$spacing-half};
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+          }
+        }
       }
 
-      &.menu__item--collapsed,
-      &.menu__item--expanded {
+      &.menu__item--children {
+        .menu {
+          display: none;
+        }
+      }
+
+      &.menu__item--active-trail {
         display: flex;
         flex-wrap: wrap;
       }
 
-      &.menu__item--collapsed {
+      &.menu__item--open {
         .menu {
-          display: none;
+          display: block;
         }
 
         .menu__toggle-button .icon {
@@ -109,6 +155,7 @@
 
       // Second level
       .menu {
+        display: none;
         width: 100%;
       }
 
@@ -130,12 +177,27 @@
           &.is-active::before {
             background-color: $color-black;
             content: "";
-            height: 24px; // Line-height
+            height: 100%; // Line-height
             left: 0;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             width: 3px;
+          }
+
+          &:focus {
+            &::before {
+              border-radius: 2px;
+              box-shadow: 0 0 0 3px $color-black;
+              content: "";
+              display: block;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 100%; // Width of the dropdown button.
+            }
           }
         }
 
@@ -153,9 +215,27 @@
     min-height: 40px;
     min-width: 40px;
     padding: 0;
+    position: relative;
 
     &:hover {
       cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black;
+        content: "";
+        display: block;
+        height: calc(100% - #{$spacing});
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
     }
   }
 }

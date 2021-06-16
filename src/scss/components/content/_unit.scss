@@ -42,6 +42,47 @@
     }
   }
 
+  .unit__map {
+    background-color: $color-silver-light;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: $spacing-double -#{$spacing-and-half} 0;
+    padding: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin: $spacing-triple 0 0;
+    }
+
+    .unit__map__label {
+      @include font-size(18px, 24px);
+      display: flex;
+      font-weight: 700;
+      width: 100%;
+
+      .icon {
+        margin-right: $spacing-half;
+      }
+    }
+
+    iframe {
+      height: 312px; // Height from design
+      margin-top: $spacing-and-half;
+      width: 100%;
+    }
+
+    .link {
+      font-weight: 500;
+      justify-content: flex-end;
+      margin-top: $spacing;
+
+      @include breakpoint($breakpoint-m) {
+        margin-top: $spacing-and-half;
+      }
+    }
+  }
+
   .unit-header__container {
     @include breakpoint($breakpoint-l) {
       display: flex;
@@ -73,6 +114,7 @@
         }
 
         @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing;
           padding-right: $spacing-triple;
         }
       }
@@ -81,7 +123,7 @@
     .unit__header {
       @include breakpoint($breakpoint-l) {
         padding-right: $spacing-double;
-        width: 70%;
+        width: 68%;
       }
 
       @include breakpoint($breakpoint-xl) {
@@ -94,11 +136,12 @@
       @include breakpoint($breakpoint-l) {
         margin-top: 0;
         padding-left: $spacing-double;
-        width: 30%;
+        width: 32%;
       }
 
       @include breakpoint($breakpoint-xl) {
         padding-left: $spacing-triple;
+        padding-right: $spacing;
       }
     }
   }
