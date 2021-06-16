@@ -1,0 +1,59 @@
+.map {
+  background-color: $color-silver-light;
+  margin-top: $spacing-double;
+  padding: 0 0 $spacing-triple;
+}
+
+.map__header__title {
+  margin-top: 0;
+}
+
+.map__header__description {
+  margin-top: $spacing-and-half;
+
+  p:first-child {
+    margin-top: 0;
+  }
+}
+
+.map__container {
+  position: relative;
+
+  .map__wrapper {
+    height: 0;
+    margin: $spacing 0;
+    padding-bottom: 56.5%;
+    position: relative;
+
+    iframe {
+      border: 0;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    a {
+      @include font-size(16px, 24px);
+      align-items: center;
+      bottom: -40px;
+      display: inline-flex;
+      font-weight: $font-weight-medium;
+      position: absolute;
+      right: 0;
+      text-decoration: underline;
+
+      &:after {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: block;
+        height: 0.9em;
+        margin: 0 0.1em 0.3em 0.2em;
+        mask-image: url('../icons/hds/ui/link-external.svg');
+        width: 0.9em;
+      }
+    }
+  }
+}
