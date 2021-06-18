@@ -37,6 +37,12 @@ function hdbt_content_theme() {
         'paragraphs' => NULL,
       ],
     ],
+    'cookie_consent_intro' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
   ];
 }
 

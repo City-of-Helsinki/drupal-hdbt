@@ -1,0 +1,7 @@
+hdbt_content.cookie_consent:
+  path: '/cookie-information-and-settings'
+  defaults:
+    _controller: '\Drupal\hdbt_content\Controller\CookieConsentController::content'
+    _title: 'Cookie settings'
+  requirements:
+    _permission: 'access content'
