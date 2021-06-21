@@ -37,6 +37,12 @@ function hdbt_content_theme() {
         'paragraphs' => NULL,
       ],
     ],
+    'cookie_consent_intro' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
   ];
 }
 
@@ -145,4 +151,12 @@ function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$vari
       $variables['options']['button_text'] = $cached->data['field_unit_search_meta_load_more'];
     }
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_content_form_eu_cookie_compliance_block_form_alter(&$form) {
+  // Hide 'withdraw' button from EU Cookie compliance block form.
+  $form['buttons']['withdraw']['#access'] = FALSE;
 }
