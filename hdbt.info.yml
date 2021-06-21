@@ -21,6 +21,7 @@ regions:
   before_footer: Before footer
   footer_top: Footer - Top
   footer_bottom: Footer - Bottom
+  attachments: Attachments
 
 # Libraries
 libraries:
