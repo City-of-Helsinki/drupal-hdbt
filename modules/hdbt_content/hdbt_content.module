@@ -152,3 +152,11 @@ function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$vari
     }
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_content_form_eu_cookie_compliance_block_form_alter(&$form) {
+  // Hide 'withdraw' button from EU Cookie compliance block form.
+  $form['buttons']['withdraw']['#access'] = FALSE;
+}
