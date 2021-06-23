@@ -1,14 +1,22 @@
 const merge = require('webpack-merge');
 const webpackConfig = require('./webpack.config');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(webpackConfig, {
   mode: 'production',
-  devtool: '',
-  plugins: [
-    new MinifyPlugin({}, {
-      comments: false,
-      sourceMap: '',
-    })
-  ]
+  devtool: false,
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          ecma: 2015,
+          format: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
+    ],
+  },
 });
