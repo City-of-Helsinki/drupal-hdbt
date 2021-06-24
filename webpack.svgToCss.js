@@ -19,7 +19,7 @@ class svgToScss {
         let fullFilename = this.files.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        filelist += `.hdbt-icon--${name[0]}::after{mask-image:url('../icons/svg/${filename}');-webkit-mask-image:url('../icons/svg/${filename}');}`;
+        filelist += `.hdbt-icon--${name[0]}::before{mask-image:url('../icons/svg/${filename}');-webkit-mask-image:url('../icons/svg/${filename}');}`;
       }
 
       compilation.assets[this.output] = {
