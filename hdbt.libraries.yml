@@ -79,10 +79,10 @@ mmenu:
     theme:
       dist/css/mmenu/mmenu.css: {}
 
-mmenu-config:
+mmenu-settings:
   version: 8.5.21
   js:
-    dist/js/mmenu-config.min.js: {}
+    dist/js/mmenu-settings.min.js: {}
   dependencies:
     - hdbt/mmenu
 
@@ -92,9 +92,10 @@ global-styling:
     theme:
       dist/css/styles.min.css: {}
 
+# TODO Convert branding mobile to its own library.
 global-scripting:
   version: 1.x
   js:
-    dist/js/bundle.min.js: {}
+    dist/js/branding-mobile.min.js: {}
   dependencies:
     - core/drupal
