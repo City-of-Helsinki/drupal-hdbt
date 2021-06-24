@@ -90,6 +90,7 @@ global-styling:
   version: 1.x
   css:
     theme:
+      dist/css/hdbt-icons.css: {}
       dist/css/styles.min.css: {}
 
 # TODO Convert branding mobile to its own library.

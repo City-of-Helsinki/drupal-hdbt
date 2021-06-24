@@ -1,0 +1,11 @@
+.hdbt-icon {
+  &::after {
+    --icon-proportions: #{$spacing};
+    background-color: $color-black;
+    content: "";
+    display: inline-block;
+    height: var(--icon-proportions);
+    mask-size: var(--icon-proportions);
+    width: var(--icon-proportions);
+  }
+}
