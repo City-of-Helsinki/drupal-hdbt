@@ -115,7 +115,7 @@ module.exports = {
   },
   plugins: [
     new SvgToJson(path.resolve(__dirname, 'src/icons/**/*.svg'),'icons.json'),
-    new SvgToCss(path.resolve(__dirname, 'src/icons/**/*.svg'), 'css/hdbt-icons.css', 'hdbt'),
+    new SvgToCss(path.resolve(__dirname, 'src/icons/**/*.svg'), 'css/hdbt-icons.css'),
     new FriendlyErrorsWebpackPlugin(),
     new RemoveEmptyScriptsPlugin(),
     new CleanWebpackPlugin(['dist'], {

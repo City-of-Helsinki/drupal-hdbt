@@ -4,10 +4,9 @@ const glob = require('glob');
 
 // Generates styles for each icon.
 class svgToScss {
-  constructor(inputPattern, outputFilename, theme) {
+  constructor(inputPattern, outputFilename) {
     this.inputPattern = inputPattern;
     this.output = outputFilename;
-    this.theme = theme;
     this.files = [];
   }
 
@@ -18,10 +17,9 @@ class svgToScss {
 
       while(this.files.length) {
         let fullFilename = this.files.shift();
-        let svg = fullFilename.split('/' + this.theme + '/')[1];
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        filelist += `.hdbt-icon--${name[0]}::after{mask-image:url('../../${svg}');-webkit-mask-image:url('../../${svg}');}`;
+        filelist += `.hdbt-icon--${name[0]}::after{mask-image:url('../icons/svg/${filename}');-webkit-mask-image:url('../icons/svg/${filename}');}`;
       }
 
       compilation.assets[this.output] = {
