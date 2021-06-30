@@ -1,29 +1,34 @@
 $card_spacing: $spacing-and-half;
 
+.content-cards {
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+}
+
+.content-cards__container {
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.content-cards__title {
+  margin-bottom: $spacing-triple;
+  margin-top: 0;
+}
+
 .content-cards__content {
   display: flex;
   flex-direction: column;
   margin-bottom: 0;
-  margin-top: $spacing-double;
+  margin-top: 0;
 
   @include breakpoint($breakpoint-s) {
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: -$card_spacing;
     width: calc(100% + #{$card_spacing});
-  }
-}
-
-.content-cards__container {
-  overflow: hidden;
-  padding-top: $spacing-double;
-}
-
-.content-cards__title {
-  margin-top: 0;
-
-  @include breakpoint($breakpoint-s) {
-    margin-top: $spacing-double;
   }
 }
 
