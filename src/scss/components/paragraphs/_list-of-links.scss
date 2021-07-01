@@ -2,7 +2,6 @@ $item_spacing: $spacing-triple;
 
 .list-of-links {
   margin-top: $spacing-double;
-  max-width: 640px;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-quadruple;
