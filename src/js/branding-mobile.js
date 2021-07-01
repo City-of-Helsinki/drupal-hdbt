@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let direction = 0;
   let prevDirection = 0;
 
-  const languageSwitcher = document.getElementById('block-language-switcher');
-
+  const languageSwitcher = document.querySelector(
+    '[data-hdbt-selector="language-switcher"]'
+  );
   const checkScroll = function () {
     /*
      ** Find the direction of scroll
