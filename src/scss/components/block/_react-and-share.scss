@@ -50,6 +50,16 @@
               margin-top: 0;
             }
           }
+
+          .rns-reaction-button {
+            &:focus {
+              &:hover {
+                .rns-label {
+                  color: $color-bus;
+                }
+              }
+            }
+          }
         }
       }
     }
