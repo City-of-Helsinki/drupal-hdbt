@@ -73,7 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('click', function (event) {
   // First make sure that clicks inside the menu are ignored unless the
   // click is to a menu-link that needs to open another sub menu.
-  if (document.getElementById('block-mainnavigation').contains(event.target)) {
+  if (
+    document
+      .querySelector('[data-hdbt-selector="main-navigation"]')
+      .contains(event.target)
+  ) {
     let clickedElement = event.target;
 
     if (clickedElement.classList.contains('menu__toggle-button')) {

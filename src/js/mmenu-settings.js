@@ -3,12 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function initializeMobileMenu() {
     // Get the burger link element, language switcher, a template for mobile
     // footer and header links.
-    const burger = document.getElementById('menu-hamburger');
-    const languageSwitcher = document.getElementById('block-language-switcher');
-    const mobileFooterTemplate = document.getElementById(
-      'mobile-navigation-footer-template'
+    const burger = document.querySelector(
+      '[data-hdbt-selector="menu-hamburger"]'
     );
-    const headerTop = document.getElementById('hdbt-header-top');
+    const languageSwitcher = document.querySelector(
+      '[data-hdbt-selector="language-switcher"]'
+    );
+    const mobileFooterTemplate = document.querySelector(
+      '[data-hdbt-selector="mobile-navigation-footer-template"]'
+    );
+    const headerTop = document.querySelector(
+      '[data-hdbt-selector="hdbt-header-top"]'
+    );
     // Fire the mmenu plugin.
     /* global Mmenu */
     const menu = new Mmenu('#mobile-navigation', {
@@ -53,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   // Get the mobile navigation.
-  const initializeMenu = document.getElementById('mobile-navigation');
+  const initializeMenu = document.querySelector(
+    '[data-hdbt-selector="mobile-navigation"]'
+  );
   // Initialize mobile navigation if the mobile navigation element exists.
   if (initializeMenu) {
     initializeMobileMenu();
