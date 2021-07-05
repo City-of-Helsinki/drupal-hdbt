@@ -13,7 +13,7 @@
  */
 #}
 {% if content %}
-  <div{{ attributes.addClass('header-top').setAttribute('id', 'hdbt-header-top') }}>
+  <div{{ attributes.addClass('header-top').setAttribute('id', 'hdbt-header-top').setAttribute('drupal-hdbt-selector', 'hdbt-header-top') }}>
     <a href="https://hel.fi">Hel.fi</a>
     {{ content }}
   </div>

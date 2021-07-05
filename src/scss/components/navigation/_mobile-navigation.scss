@@ -307,6 +307,6 @@ $spacing-menu-item: 20px;
 }
 
 // Hide the mobile navigation footer template.
-#mobile-navigation-footer-template {
+[data-hdbt-selector="mobile-navigation-footer-template"] {
   display: none;
 }
