@@ -86,12 +86,20 @@ mmenu-settings:
   dependencies:
     - hdbt/mmenu
 
+color-palette:
+  version: 1.0
+  css:
+    theme:
+      dist/css/color-palette.min.css: {}
+
 global-styling:
   version: 1.x
   css:
     theme:
       dist/css/hdbt-icons.css: {}
       dist/css/styles.min.css: {}
+  dependencies:
+    - hdbt/color-palette
 
 # TODO Convert branding mobile to its own library.
 global-scripting:
