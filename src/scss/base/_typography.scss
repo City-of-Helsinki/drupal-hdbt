@@ -14,8 +14,14 @@ h6 {
   }
 }
 
+h1,
+h2,
+h3 {
+  line-height: $lineheight-s;
+}
+
 h1 {
-  @include font-size($fontsize-heading-xl, $lineheight-s);
+  @include font-size($fontsize-heading-xl);
   font-weight: $font-weight-regular;
 
   @include breakpoint($breakpoint-m) {

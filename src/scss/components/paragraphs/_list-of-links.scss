@@ -8,6 +8,16 @@ $item_spacing: $spacing-triple;
   }
 }
 
+.list-of-links__container {
+  @include breakpoint(max-width $breakpoint-s) {
+    max-width: 100%;
+  }
+}
+
+.list-of-links__title {
+  margin-bottom: $spacing-triple;
+}
+
 .list-of-links__content {
   display: flex;
   flex-direction: column;
@@ -20,12 +30,6 @@ $item_spacing: $spacing-triple;
     flex-direction: row;
     margin-left: -$item_spacing;
     width: calc(100% + #{$item_spacing});
-  }
-}
-
-.list-of-links__container {
-  @include breakpoint(max-width $breakpoint-s) {
-    max-width: 100%;
   }
 }
 
@@ -205,14 +209,6 @@ $item_spacing: $spacing-triple;
       .list-of-links__item__title {
         text-decoration: none;
       }
-    }
-  }
-
-  .list-of-links__title {
-    margin-bottom: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      margin-bottom: $spacing-quadruple;
     }
   }
 }

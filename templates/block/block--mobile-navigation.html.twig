@@ -33,11 +33,11 @@
 #}
 {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('id','mobile-navigation') }} class="mobile-navigation">
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('id','mobile-navigation').setAttribute('data-hdbt-selector','mobile-navigation') }} class="mobile-navigation">
   {% block content %}
     {{ content }}
   {% endblock %}
 </nav>
-<div id="mobile-navigation-footer-template">
+<div data-hdbt-selector="mobile-navigation-footer-template">
   {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
 </div>
