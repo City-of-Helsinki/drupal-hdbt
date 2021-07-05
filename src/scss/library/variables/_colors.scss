@@ -1,9 +1,13 @@
 // Color variables from HDS.
 @import "~hds-design-tokens/lib/color/all.scss";
+@import "_color-palette";
 
 :root {
   --hdbt-color-black: #121212;
   --hdbt-default-link-color: var(--color-black-90);
+
+  // HDBT Color palette.
+  --hdbt-color-palette:
 
   // Default color variables.
   --hdbt-theme-color: var(--color-black);
