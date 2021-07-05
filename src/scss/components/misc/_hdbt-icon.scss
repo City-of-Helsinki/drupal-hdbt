@@ -1,0 +1,30 @@
+.hdbt-icon {
+  // Using before pseudo element because hds has already used after on buttons for example.
+  &::before {
+    --icon-proportions: #{$spacing-and-half};
+    background-color: $color-black;
+    content: "";
+    display: inline-block;
+    height: var(--icon-proportions);
+    mask-size: var(--icon-proportions);
+    position: static;
+    width: var(--icon-proportions);
+  }
+}
+
+.hds-button.hdbt-icon {
+  // Change the order of the elements inside buttons to print the icon in correct place.
+  .hds-button__label {
+    order: 1;
+  }
+
+  &::after {
+    order: 2;
+  }
+
+  &::before {
+    background-color: var(--color);
+    margin-right: $spacing;
+    order: 3;
+  }
+}
