@@ -8,10 +8,10 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 
 ## Requirements
 
-This theme requires Drupal core >= 8.8.0.
+This theme requires Drupal core >= 9.1.0.
 
 Requirements for developing:
-- [NodeJS ( ^ 12.18 )](https://nodejs.org/en/)
+- [NodeJS ( ^ 14.17.1 )](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
 
 ## Commands
@@ -27,12 +27,10 @@ Setup the developing environment by running
 
     nvm use
     npm i
-    npx husky i
 
 Explanations for commands.
 - `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
-- `npx husky i` : Execute husky package binary; Install git-hooks for the project.
 
 ## Structure for files and folders
 
