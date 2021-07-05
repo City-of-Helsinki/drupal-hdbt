@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const SvgToJson = require('./webpack.svgToJson');
+const SvgToCss = require('./webpack.svgToCss');
 
 // Handle entry points.
 const Entries = () => {
@@ -114,6 +115,7 @@ module.exports = {
   },
   plugins: [
     new SvgToJson(path.resolve(__dirname, 'src/icons/**/*.svg'),'icons.json'),
+    new SvgToCss(path.resolve(__dirname, 'src/icons/**/*.svg'), 'css/hdbt-icons.css'),
     new FriendlyErrorsWebpackPlugin(),
     new RemoveEmptyScriptsPlugin(),
     new CleanWebpackPlugin(['dist'], {
@@ -204,7 +206,13 @@ module.exports = {
           'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
           'force': true,
           'flatten': true
-        }
+        }, {
+          'context': './',
+          'from': 'src/icons/**/*.svg',
+          'to': path.resolve(__dirname, 'dist') + '/icons/svg/',
+          'force': true,
+          'flatten': true
+        },
       ]
     }),
     new MiniCssExtractPlugin({
