@@ -1,22 +1,36 @@
 .columns {
-  margin-top: $spacing-double;
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
 }
 
 .columns__container {
+  padding-top: 0;
+
   @include breakpoint(max-width $breakpoint-s) {
     max-width: 100%;
   }
+}
+
+.columns__title {
+  display: block;
+  margin-bottom: $spacing-triple;
+  margin-right: auto;
+  margin-top: 0;
+  max-width: 640px;
+  width: 100%;
 }
 
 .columns__content {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: $spacing;
 
   @include breakpoint($breakpoint-m) {
     flex-direction: row;
-    margin: $spacing-double -#{$spacing-double} 0;
+    margin: 0 -#{$spacing-double} 0;
     max-width: $content-area-wrapper-width-max;
   }
 
@@ -53,13 +67,6 @@
       }
     }
   }
-}
-
-.columns__title {
-  display: block;
-  margin-right: auto;
-  margin-top: 0;
-  width: 100%;
 }
 
 .columns__column {
