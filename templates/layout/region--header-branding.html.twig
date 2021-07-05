@@ -15,7 +15,7 @@
 {% if content %}
   <div{{ attributes.addClass('header-branding').setAttribute('id', 'header-branding') }}>
     {{ content }}
-    <a id="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation" aria-expanded="false">
+    <a id="menu-hamburger" data-hdbt-selector="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation" aria-expanded="false">
       <span class="icon"></span>
       <span class="mobile-navigation__trigger__text">{{ 'Menu'|t }}</span>
     </a>

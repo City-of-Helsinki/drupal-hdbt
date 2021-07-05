@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }} class="desktop-menu">
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
   {# Menu. #}
   {% block content %}
     {{ content }}
