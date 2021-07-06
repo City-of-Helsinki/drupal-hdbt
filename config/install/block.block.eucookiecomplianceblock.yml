@@ -8,8 +8,8 @@ dependencies:
     - hdbt
 id: eucookiecomplianceblock
 theme: hdbt
-region: content
-weight: 10
+region: after_content
+weight: -8
 provider: null
 plugin: eu_cookie_compliance_block
 settings:

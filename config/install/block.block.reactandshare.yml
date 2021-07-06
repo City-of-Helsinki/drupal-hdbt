@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   module:
-    - hdbt_content
+    - helfi_platform_config
   theme:
     - hdbt
-id: lowercontentblock
+id: reactandshare
 theme: hdbt
 region: after_content
-weight: -9
+weight: -7
 provider: null
-plugin: lower_content_block
+plugin: react_and_share
 settings:
-  id: lower_content_block
-  label: 'Lower content block'
-  provider: hdbt_content
+  id: react_and_share
+  label: 'React and Share'
+  provider: helfi_platform_config
   label_display: '0'
 visibility: {  }
