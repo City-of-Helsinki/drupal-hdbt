@@ -22,6 +22,9 @@ const Entries = () => {
       './src/scss/component-library.scss',
       './src/js/component-library.js',
     ],
+    'color-palette': [
+      './src/scss/color-palette.scss'
+    ],
   };
 
   const pattern = './src/js/**/*.js';

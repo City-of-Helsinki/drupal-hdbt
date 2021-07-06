@@ -32,8 +32,12 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
   {%
-    set hdbt_defaults = '--hdbt-theme-color: var(--color-' ~ theme_color ~ ');'
-     ~ '--hdbt-text-color: var(--hdbt-text-color--' ~ theme_color ~ ');'
+    set hdbt_defaults = '--hdbt-color-palette--primary: var(--hdbt-color-' ~ theme_color ~ '--primary);'
+                      ~ '--hdbt-color-palette--secondary: var(--hdbt-color-' ~ theme_color ~ '--secondary);'
+                      ~ '--hdbt-color-palette--accent: var(--hdbt-color-' ~ theme_color ~ '--accent);'
+                      ~ '--hdbt-color-palette-text--primary: var(--hdbt-color-' ~ theme_color ~ '-text--primary);'
+                      ~ '--hdbt-color-palette-text--secondary: var(--hdbt-color-' ~ theme_color ~ '-text--secondary);'
+                      ~ '--hdbt-color-palette-text--accent: var(--hdbt-color-' ~ theme_color ~ '-text--accent);'
   %}
   <body{{ attributes.setAttribute('style', hdbt_defaults) }}>
     {#
