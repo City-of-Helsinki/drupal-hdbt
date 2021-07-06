@@ -25,19 +25,16 @@
  * @see template_preprocess_block()
  */
 #}
-{% if content|render|striptags|trim is not empty %}
-  {% set content_output = TRUE %}
-{% endif %}
 
-{% if content_output|render %}
-  <div{{ attributes.addClass('lower-content') }}>
-    {{ title_prefix }}
-    {% if label %}
-      <h2{{ title_attributes }}>{{ label }}</h2>
-    {% endif %}
-    {{ title_suffix }}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </div>
-{% endif %}
+{% set attributes = attributes.addClass('block--react-and-share') %}
+
+<div{{ attributes.setAttribute('data-hdbt-selector','react-and-share') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

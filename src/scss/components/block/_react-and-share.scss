@@ -1,0 +1,134 @@
+// React & Share block
+.block--react-and-share {
+  margin-top: $spacing-triple;
+  width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+}
+
+.rns {
+  margin: 0 auto;
+  max-width: $content-area-wrapper-width-max;
+  padding: 0 $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    margin: 0 auto;
+    padding: 0 $spacing-double;
+  }
+
+  .rns-plugin {
+    margin: 0;
+
+    .rns-reactions {
+      .rns-header {
+        @include font-size(24px, 24px);
+        margin-bottom: $spacing-and-half;
+      }
+
+      .reactions {
+        @media only screen and (min-width: 681px) {
+          margin-left: -$spacing-half;
+          margin-right: -$spacing-half;
+        }
+
+        .rns-reaction {
+          margin: 0 $spacing-half;
+          padding: 0;
+          width: calc(33.333% - #{$spacing-double});
+
+          // Mobile styles
+          @media only screen and (max-width: 680px) {
+            margin: $spacing-half 0 0;
+            padding: 0;
+            width: 100%;
+          }
+
+          &:first-child {
+            @media only screen and (max-width: 680px) {
+              margin-top: 0;
+            }
+          }
+
+          .rns-reaction-button {
+            &:focus {
+              &:hover {
+                .rns-label {
+                  color: $color-bus;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .rns-shares {
+      margin-top: $spacing-triple;
+
+      .rns-header {
+        @include font-size(24px, 24px);
+        margin-bottom: $spacing-and-half;
+      }
+
+      .rns-shares-list {
+        @media only screen and (min-width: 681px) {
+          margin-bottom: -#{$spacing};
+          margin-left: -$spacing-half;
+          margin-right: -$spacing-half;
+        }
+
+        .rns-share {
+          margin: 0 $spacing-half $spacing;
+          padding: 0 !important;
+          width: calc(33.333% - #{$spacing});
+
+          // Mobile styles
+          @media only screen and (max-width: 680px) {
+            margin: $spacing-half 0 0;
+            padding: 0 !important;
+            width: calc(50% - #{$spacing-half});
+          }
+
+          &:first-child,
+          &:nth-child(2) {
+            @media only screen and (max-width: 680px) {
+              margin: 0;
+            }
+          }
+
+          &:nth-child(odd) {
+            @media only screen and (max-width: 680px) {
+              margin-right: $spacing-quarter;
+            }
+          }
+
+          &:nth-child(even) {
+            @media only screen and (max-width: 680px) {
+              margin-left: $spacing-quarter;
+            }
+          }
+        }
+      }
+    }
+
+    .rns-inputs {
+      margin-top: $spacing-triple;
+
+      .rns-header {
+        @include font-size(24px, 24px);
+        margin-bottom: $spacing-and-half;
+      }
+    }
+  }
+
+  .rns-plugin .rns-inputs .rns-form-submit {
+    @include font-size(16px, 24px);
+    border: 2px solid $color-bus;
+    color: $color-white;
+    font-weight: 500;
+    margin-top: $spacing-and-half;
+    padding: $spacing $spacing-double;
+  }
+}

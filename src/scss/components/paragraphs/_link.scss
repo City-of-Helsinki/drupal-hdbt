@@ -49,9 +49,12 @@ a.link[target="_blank"] {
     background-size: contain;
     content: "";
     display: block;
-    height: 0.9em;
+    height: 16px;
     margin: 0 0.1em 0.3em 0.2em;
     mask-image: url('../icons/hds/ui/link-external.svg');
-    width: 0.9em;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 16px;
+    width: 16px;
   }
 }

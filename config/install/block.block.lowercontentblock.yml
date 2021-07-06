@@ -8,7 +8,7 @@ dependencies:
 id: lowercontentblock
 theme: hdbt
 region: after_content
-weight: -6
+weight: -9
 provider: null
 plugin: lower_content_block
 settings:

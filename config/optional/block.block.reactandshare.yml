@@ -1,0 +1,19 @@
+langcode: en
+status: false
+dependencies:
+  module:
+    - helfi_platform_config
+  theme:
+    - hdbt
+id: reactandshare
+theme: hdbt
+region: after_content
+weight: -7
+provider: null
+plugin: react_and_share
+settings:
+  id: react_and_share
+  label: 'React and Share'
+  provider: helfi_platform_config
+  label_display: '0'
+visibility: {  }
