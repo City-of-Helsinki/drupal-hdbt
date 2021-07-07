@@ -55,6 +55,7 @@
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
 {% set target_new = content.field_banner_link.0['#options']['target_new'] %}
+{% set icon = content.field_banner_link.0['#options']['icon'] %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
@@ -74,7 +75,9 @@
           {% if content.field_banner_link|render %}
             <a
               href="{{ link }}"
-              class="banner__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}"
+              class="banner__button hds-button
+              {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}
+              {% if icon %}{{ 'hdbt-icon hdbt-icon--' ~ icon }}{% endif %}"
               {% if target_new %}target="_blank"{% endif %}
             >
               {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}

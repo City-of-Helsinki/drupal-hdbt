@@ -35,3 +35,4 @@ libraries-extend:
 
 ckeditor_stylesheets:
   - dist/css/ckeditor.min.css
+  - dist/css/hdbt-icons.css
