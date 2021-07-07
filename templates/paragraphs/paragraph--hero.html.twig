@@ -86,8 +86,15 @@
                 {% set link = item['#url'] %}
                 {% set text = item['#title'] %}
                 {% set target_new = item['#options']['target_new'] %}
+                {% set icon = item['#options']['icon'] %}
 
-                <a href="{{ link }}" {% if target_new %}target="_blank"{% endif %} class="hero__button hds-button {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}">
+                <a
+                  href="{{ link }}"
+                  class="hero__button hds-button
+                  {% if link_type %}{{ 'hds-button--' ~ link_type }}{% endif %}
+                  {% if icon %}{{ 'hdbt-icon hdbt-icon--' ~ icon }}{% endif %}"
+                  {% if target_new %}target="_blank"{% endif %}
+                >
                   {% if icon_first == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
                   <span class="hds-button__label">{{ text }}</span>
                   {% if link_type == 'supplementary' %}
