@@ -1,4 +1,4 @@
-body {
+.dialog-off-canvas-main-canvas {
   &::after {
     background-color: rgba($color-black, 0.4);
     content: "";
@@ -10,7 +10,7 @@ body {
   }
 }
 
-.eu-cookie-compliance-popup-open {
+.eu-cookie-compliance-popup-open .dialog-off-canvas-main-canvas {
   &::after {
     bottom: 0;
     height: 100%;
@@ -22,7 +22,7 @@ body {
     transition: opacity 0.2s ease;
     visibility: visible;
     width: 100%;
-    z-index: 10;
+    z-index: 9999;
   }
 }
 
