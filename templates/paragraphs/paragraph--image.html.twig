@@ -56,43 +56,46 @@
     {% embed "@hdbt/misc/container.twig" with {container_element: 'image'} %}
       {% block container_content %}
         <div class="media--image__content">
-        {# Check if there is image set and print it with correct aspect ratio #}
-        {% if content.field_image|render %}
-          {% for key, image in content.field_image %}
-            {% if image.entity %}
-              {% set media = image.entity %}
-              {% set alt = media.fields.field_media_image.alt %}
-              {% if original_aspect_ratio %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
-                %}
-              {% else %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
-                %}
-              {% endif %}
-              {{ image }}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-        {% spaceless %}
-          <figcaption class="media--image__caption">
-            {{ content.field_image_caption }}
-
+          {% set caption = content.field_image_caption[0]['#context']['value'] %}
+          {% if content.field_image|render %}
             {# The image caption is attached to each image so we need to get it from the media entity #}
-            {% if content.field_image|render %}
-              {% for key, image in content.field_image %}
-                {% if image.entity %}
+            {% for key, image in content.field_image %}
+              {% if image.entity %}
                 {% set media = image.entity %}
-                {% set image_caption = media.fields.field_photographer.value %}
-                {% if image_caption %}
-                  {{ 'Photo:'|trans }} {{ image_caption }}
+                {% set photographer = media.fields.field_photographer.value %}
+                {% if photographer %}
+                  {% set caption = caption is not null ? caption ~ ' ' %}
+                  {% set caption = caption ~ 'Photo:'|trans ~ ' ' ~ photographer %}
                 {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {# Check if there is image set and print it with correct aspect ratio #}
+          {% if content.field_image|render %}
+            {% for key, image in content.field_image %}
+              {% if image.entity %}
+                {% set media = image.entity %}
+                {% set alt = content.field_image_caption[0] is not empty ? caption : media.fields.field_media_image.alt %}
+                {% if original_aspect_ratio %}
+                  {% set image =
+                    drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
+                  %}
+                {% else %}
+                  {% set image =
+                    drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
+                  %}
                 {% endif %}
-              {% endfor %}
-            {% endif %}
-          </figcaption>
-        {% endspaceless %}
+                {{ image }}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% if caption %}
+            {% spaceless %}
+              <figcaption class="media--image__caption">
+                {{ caption }}
+              </figcaption>
+            {% endspaceless %}
+          {% endif %}
         </div>
       {% endblock %}
     {% endembed %}
