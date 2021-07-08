@@ -6,6 +6,7 @@
     content: "";
     display: inline-block;
     height: var(--icon-proportions);
+    mask-repeat: no-repeat;
     mask-size: var(--icon-proportions);
     position: static;
     width: var(--icon-proportions);
@@ -15,6 +16,7 @@
 .hds-button.hdbt-icon {
   // Change the order of the elements inside buttons to print the icon in correct place.
   .hds-button__label {
+    margin: 0;
     order: 1;
   }
 
