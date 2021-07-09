@@ -43,6 +43,15 @@
 .liftup-with-image--design-image-on-left {
 
   $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
+  color: var(--hdbt-color-palette-text--primary);
+
+  a.link {
+    color: var(--hdbt-color-palette-text--primary);
+
+    &[target="_blank"]::after {
+      background-color: var(--hdbt-color-palette-text--primary);
+    }
+  }
 
   @each $color in $colors {
     &.liftup-with-image--color-#{$color} {
@@ -133,7 +142,8 @@
   }
 
   .liftup-with-image__content {
-    background-color: var(--hdbt-theme-color);
+    background-color: var(--hdbt-color-palette--primary);
+    color: var(--hdbt-color-palette-text--primary);
 
     @include breakpoint($breakpoint-l) {
       display: flex;

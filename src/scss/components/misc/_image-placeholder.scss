@@ -1,13 +1,13 @@
 // TODO: Move under correct component when correct component is done.
 .image-placeholder {
-  background-color: var(--hdbt-theme-color);
+  background-color: var(--hdbt-color-palette--primary);
   padding-bottom: 67%;
   position: relative;
   width: 100%;
 
   .icon {
     --icon-proportions: 50%;
-    color: var(--hdbt-text-color);
+    color: var(--hdbt-color-palette-text--primary);
     left: 25%;
     position: absolute;
     top: 25%;
