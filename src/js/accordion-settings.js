@@ -7,8 +7,26 @@ document.addEventListener('DOMContentLoaded', function () {
     let closeButton = folds.content.querySelector(
       '.accordion-item__button--close'
     );
-    closeButton.addEventListener('click', function () {
+
+    function moveFocus(element) {
+      element
+        .closest('.accordion__wrapper')
+        .querySelector('.accordion-item__button--toggle')
+        .focus();
+    }
+
+    closeButton.addEventListener('mousedown', function (e) {
       folds.close();
+      e.preventDefault();
+      moveFocus(this);
+    });
+
+    closeButton.addEventListener('keypress', function (e) {
+      if (e.which === 13 || e.which === 32) {
+        folds.close();
+        e.preventDefault();
+        moveFocus(this);
+      }
     });
   }
 

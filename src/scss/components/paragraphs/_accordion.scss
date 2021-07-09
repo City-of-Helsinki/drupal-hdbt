@@ -38,6 +38,7 @@
     }
 
     // Accordion focused state.
+    .accordion-item__button--toggle:focus,
     &.handorgel__header--focus .accordion-item__button--toggle {
       position: relative;
 
