@@ -494,7 +494,8 @@
   }
 
   .unit__image {
-    background-color: var(--hdbt-theme-color);
+    background-color: var(--hdbt-color-palette--primary);
+    color: var(--hdbt-color-palette-text--primary);
     margin: (-$spacing-and-half) (-$spacing-and-half) $spacing-double;
     overflow: hidden;
 

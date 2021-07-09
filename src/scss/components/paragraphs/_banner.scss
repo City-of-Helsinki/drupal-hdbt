@@ -1,5 +1,6 @@
 .banner {
-  background-color: var(--hdbt-theme-color);
+  background-color: var(--hdbt-color-palette--primary);
+  color: var(--hdbt-color-palette-text--primary);
   margin: $spacing-double auto 0;
   max-width: $container-width-xl; // 1200px since we don't have extra paddings on the sides here.
   padding: $spacing-triple 0;
