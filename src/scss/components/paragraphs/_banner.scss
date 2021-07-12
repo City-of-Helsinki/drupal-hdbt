@@ -110,6 +110,8 @@
     }
 
     &.hds-button--supplementary {
+      margin-left: calc(-#{$spacing-half} + 2px);
+
       @include breakpoint($breakpoint-xl) {
         margin-left: auto;
       }
@@ -127,6 +129,14 @@
       @include breakpoint($breakpoint-l) {
         margin-left: auto;
         margin-right: 0;
+      }
+
+      &.hds-button--supplementary {
+        margin-left: calc(-#{$spacing-half} + (-2px));
+
+        @include breakpoint($breakpoint-xl) {
+          margin-left: auto;
+        }
       }
     }
   }
@@ -149,14 +159,14 @@ $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog
       --background-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
       --background-color-disabled: var(--color-black-20);
       --border-color: var(--hdbt-text-color--#{$color});
-      --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-hover: var(--hdbt-text-color--#{$color});
       --border-color-focus: var(--hdbt-text-color--#{$color});
-      --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-text-color--#{$color});
       --border-color-disabled: var(--color-black-20);
       --color: var(--hdbt-button-text-color--#{$color});
-      --color-hover: var(--hdbt-button-text-color--#{$color});
+      --color-hover: var(--hdbt-text-color--#{$color});
       --color-focus: var(--hdbt-button-text-color--#{$color});
-      --color-hover-focus: var(--hdbt-button-text-color--#{$color});
+      --color-hover-focus: var(--hdbt-text-color--#{$color});
       --color-disabled: var(--color-black);
       --focus-outline-color: var(--hdbt-text-color--#{$color});
       --submit-input-focus-gutter-color: var(--hdbt-button-text-color--#{$color});
@@ -164,19 +174,20 @@ $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog
 
     .hds-button--secondary {
       --background-color: transparent;
-      --background-color-hover: var(--color-#{$color}-dark);
+      --background-color-hover: var(--hdbt-text-color--#{$color});
       --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-#{$color}-dark);
+      --background-color-hover-focus: var(--hdbt-text-color--#{$color});
       --background-color-disabled: transparent;
       --border-color: var(--hdbt-text-color--#{$color});
-      --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-hover: var(--hdbt-text-color--#{$color});
       --border-color-focus: var(--hdbt-text-color--#{$color});
-      --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --border-color-hover-focus: var(--hdbt-text-color--#{$color});
       --border-color-disabled: var(--hdbt-text-color--#{$color});
       --color: var(--hdbt-text-color--#{$color});
       --color-hover: var(--hdbt-button-highlight-color--#{$color});
       --color-focus: var(--hdbt-text-color--#{$color});
       --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --focus-outline-color: var(--hdbt-text-color--#{$color});
     }
 
     .hds-button--supplementary {
@@ -191,9 +202,9 @@ $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog
       --border-color-hover-focus: var(--hdbt-text-color--#{$color});
       --border-color-disabled: transparent;
       --color: var(--hdbt-text-color--#{$color});
-      --color-hover: var(--hdbt-button-highlight-color--#{$color});
+      --color-hover: var(--hdbt-text-color--#{$color});
       --color-focus: var(--hdbt-text-color--#{$color});
-      --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
+      --color-hover-focus: var(--hdbt-text-color--#{$color});
       --color-disabled: var(--hdbt-text-color--#{$color});
       --focus-outline-color: transparent;
       --submit-input-focus-gutter-color: transparent;
