@@ -5,8 +5,8 @@ $koro-height: 50px;
 
   .hero__container {
     color: $color-black-90;
-    overflow: hidden;
     padding-bottom: $spacing-triple;
+    position: relative;
 
     @include breakpoint(max-width $breakpoint-s) {
       max-width: 100%;
@@ -136,6 +136,27 @@ $koro-height: 50px;
 
     // Negate the padding on the right in supplementary button.
     margin-left: calc(-1 * (var(--spacing-2-xs) + var(--spacing-s) + var(--border-width)));
+  }
+
+  .hero__arrow {
+    background-color: var(--hdbt-color-palette--accent);
+    bottom: -90px;
+    height: 100px;
+    left: $spacing-and-half;
+    mask-image: url('../icons/hero_arrow_mobile.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    position: absolute;
+    width: 94px;
+    z-index: 10;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: -100px;
+      height: 110px;
+      left: $spacing-double;
+      mask-image: url('../icons/hero_arrow_desktop.svg');
+      width: 94px;
+    }
   }
 }
 
@@ -566,7 +587,6 @@ $koro-height: 50px;
   .hero__image-container {
     height: 200px;
     line-height: 0;
-    overflow: hidden;
     position: relative;
 
     @include breakpoint($breakpoint-xs) {
@@ -673,7 +693,6 @@ $koro-height: 50px;
   display: flex;
   flex-wrap: wrap;
   min-height: 380px;
-  overflow: hidden;
   padding-bottom: 85px;
   position: relative;
 
@@ -706,9 +725,8 @@ $koro-height: 50px;
     color: $color-white;
     display: flex;
     padding-top: $spacing-quadruple;
-    position: relative;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   .hero__title {
@@ -797,7 +815,6 @@ $koro-height: 50px;
 
 .hero--diagonal {
   @include breakpoint($breakpoint-l) {
-    overflow: hidden;
     position: relative;
   }
 
