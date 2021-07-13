@@ -61,7 +61,7 @@
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'banner'} %}
       {% block container_content %}
-        {% if content.field_icon|render %}
+        {% if content.field_icon|render and design is same as('align-left') %}
           <div class="banner__icon">{{ content.field_icon }}</div>
         {% endif %}
 
