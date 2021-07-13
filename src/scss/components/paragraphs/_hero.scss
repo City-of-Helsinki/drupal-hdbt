@@ -668,11 +668,25 @@ $koro-height: 50px;
       }
     }
   }
+
+  .hero__arrow {
+    bottom: -355px;
+
+    @include breakpoint($breakpoint-m) {
+      bottom: -90px;
+    }
+  }
 }
 
 .hero--with-image-left {
   @include breakpoint($breakpoint-m) {
     flex-direction: row-reverse;
+  }
+
+  .hero__arrow {
+    @include breakpoint($breakpoint-m) {
+      left: calc(-100% + 24px);
+    }
   }
 }
 
@@ -684,6 +698,14 @@ $koro-height: 50px;
   .hero__image-container {
     @include breakpoint($breakpoint-l) {
       height: 400px;
+    }
+  }
+
+  .hero__arrow {
+    bottom: -355px;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: -470px;
     }
   }
 }
@@ -811,6 +833,14 @@ $koro-height: 50px;
     --focus-outline-color: transparent;
     --submit-input-focus-gutter-color: transparent;
   }
+
+  .hero__arrow {
+    bottom: -130px;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: -140px;
+    }
+  }
 }
 
 .hero--diagonal {
@@ -923,5 +953,13 @@ $koro-height: 50px;
 
   .hds-koros {
     display: none;
+  }
+
+  .hero__arrow {
+    bottom: -355px;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: -70px;
+    }
   }
 }
