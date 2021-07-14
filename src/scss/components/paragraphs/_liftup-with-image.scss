@@ -1,9 +1,11 @@
+$breakpoint-design-image-on-left-right: 830px;
+
 .liftup-with-image {
-  margin: $spacing-double auto 0;
+  margin: $spacing-quadruple auto 0;
+  position: relative;
 
   @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-triple;
-    position: relative;
+    margin-top: $spacing-sextuple;
   }
   .liftup-with-image__container {
     padding-top: 0;
@@ -18,7 +20,7 @@
   }
 
   .liftup-with-image__content {
-    padding: $spacing-double $spacing-and-half $spacing-triple;
+    padding: $spacing-double;
   }
 
   .liftup-with-image__title {
@@ -31,7 +33,12 @@
   }
 
   .liftup-with-image__desc {
+    @include font-size(18px, 28px);
     margin-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(20px, 32px);
+    }
 
     > *:first-child {
       margin-top: 0;
@@ -41,7 +48,6 @@
 
 .liftup-with-image--design-image-on-right,
 .liftup-with-image--design-image-on-left {
-
   $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
   color: var(--hdbt-color-palette-text--primary);
 
@@ -126,7 +132,7 @@
   }
 
   .liftup-with-image__container {
-    @include breakpoint($breakpoint-l) {
+    @include breakpoint($breakpoint-design-image-on-left-right) {
       bottom: 0;
       left: 0;
       position: absolute;
@@ -145,7 +151,7 @@
     background-color: var(--hdbt-color-palette--primary);
     color: var(--hdbt-color-palette-text--primary);
 
-    @include breakpoint($breakpoint-l) {
+    @include breakpoint($breakpoint-design-image-on-left-right) {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -162,29 +168,106 @@
   }
 }
 
+.liftup-with-image--design-image-on-right,
+.liftup-with-image--design-image-on-left {
+  max-width: $container-width-xl;
+
+  .liftup-with-image__image,
+  .liftup-with-image__container {
+    display: flex;
+    padding: 0;
+  }
+}
+
 .liftup-with-image--design-image-on-right {
   .liftup-with-image__image {
-    @include breakpoint($breakpoint-l) {
+    justify-content: flex-end;
+    padding-left: 10%;
+    position: relative;
+    z-index: 0;
+
+    @include breakpoint($breakpoint-s) {
+      padding-left: 20%;
+    }
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      padding-left: 30%;
+    }
+
+    @include breakpoint($breakpoint-xl) {
       padding-left: 20%;
     }
   }
 
+  .liftup-with-image__container {
+    justify-content: flex-start;
+    margin-right: 10%;
+    margin-top: -#{$spacing-double};
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint($breakpoint-s) {
+      margin-right: 20%;
+    }
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      margin-right: auto;
+      margin-top: 0;
+      position: absolute;
+    }
+  }
+
   .liftup-with-image__content {
-    left: $spacing-double;
-    right: auto;
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      left: 0;
+      right: auto;
+    }
   }
 }
 
 .liftup-with-image--design-image-on-left {
   .liftup-with-image__image {
-    @include breakpoint($breakpoint-l) {
+    justify-content: flex-start;
+    padding-right: 10%;
+    position: relative;
+    z-index: 0;
+
+    @include breakpoint($breakpoint-s) {
+      padding-right: 20%;
+    }
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      padding-right: 30%;
+    }
+
+    @include breakpoint($breakpoint-xl) {
       padding-right: 20%;
     }
   }
 
+  .liftup-with-image__container {
+    justify-content: flex-end;
+    margin-left: 10%;
+    margin-top: -#{$spacing-double};
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint($breakpoint-s) {
+      margin-left: 20%;
+    }
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      margin-left: auto;
+      margin-top: 0;
+      position: absolute;
+    }
+  }
+
   .liftup-with-image__content {
-    left: auto;
-    right: $spacing-double;
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      left: auto;
+      right: 0;
+    }
   }
 }
 
@@ -192,7 +275,9 @@
 .liftup-with-image--design-background-text-on-left {
   .liftup-with-image__container {
     @include breakpoint($breakpoint-l) {
+      align-items: center;
       display: flex;
+      min-height: 540px; // Minimum height determined with designers.
       overflow: hidden;
       position: relative;
       z-index: 2;
@@ -210,8 +295,8 @@
       justify-content: center;
       margin: $spacing-quadruple 0;
       min-height: 350px; // According to layouts
-      padding-left: $spacing-and-half;
-      padding-right: $spacing-and-half;
+      padding-left: $spacing-double;
+      padding-right: $spacing-double;
       width: 460px; // According to layouts
     }
   }
@@ -222,6 +307,7 @@
       height: 100%;
       left: 0;
       line-height: 0;
+      min-height: 540px; // Minimum height determined with designers.
       position: absolute;
       right: 0;
       top: 0;
