@@ -44,95 +44,29 @@ $breakpoint-design-image-on-left-right: 830px;
       margin-top: 0;
     }
   }
+
+  .hds-button {
+    @include font-size(16px, 24px);
+  }
 }
 
+// Designs with image on the left or right.
 .liftup-with-image--design-image-on-right,
 .liftup-with-image--design-image-on-left,
 .liftup-with-image--design-image-on-right-secondary,
 .liftup-with-image--design-image-on-left-secondary {
+  max-width: $container-width-xl;
 
-  
-  $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
-  color: var(--hdbt-color-palette-text--primary);
-
-  a.link {
-    color: var(--hdbt-color-palette-text--primary);
-
-    &[target="_blank"]::after {
-      background-color: var(--hdbt-color-palette-text--primary);
-    }
+  .liftup-with-image__image,
+  .liftup-with-image__container {
+    display: flex;
+    padding: 0;
   }
 
-  @each $color in $colors {
-    &.liftup-with-image--color-#{$color} {
-      color: var(--hdbt-text-color--#{$color});
-
-      a {
-        --hdbt-default-link-color: var(--hdbt-text-color--#{$color});
-      }
-
-      .hds-button--primary {
-        --background-color: var(--hdbt-text-color--#{$color});
-        --background-color-hover: var(--hdbt-button-highlight-color--#{$color});
-        --background-color-focus: var(--hdbt-text-color--#{$color});
-        --background-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
-        --background-color-disabled: var(--color-black-20);
-        --border-color: var(--hdbt-text-color--#{$color});
-        --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
-        --border-color-focus: var(--hdbt-text-color--#{$color});
-        --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
-        --border-color-disabled: var(--color-black-20);
-        --color: var(--hdbt-button-text-color--#{$color});
-        --color-hover: var(--hdbt-button-text-color--#{$color});
-        --color-focus: var(--hdbt-button-text-color--#{$color});
-        --color-hover-focus: var(--hdbt-button-text-color--#{$color});
-        --color-disabled: var(--color-black);
-        --focus-outline-color: var(--hdbt-text-color--#{$color});
-        --submit-input-focus-gutter-color: var(--hdbt-button-text-color--#{$color});
-      }
-
-      .hds-button--secondary {
-        --background-color: transparent;
-        --background-color-hover: var(--color-#{$color}-dark);
-        --background-color-focus: transparent;
-        --background-color-hover-focus: var(--color-#{$color}-dark);
-        --background-color-disabled: transparent;
-        --border-color: var(--hdbt-text-color--#{$color});
-        --border-color-hover: var(--hdbt-button-highlight-color--#{$color});
-        --border-color-focus: var(--hdbt-text-color--#{$color});
-        --border-color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
-        --border-color-disabled: var(--hdbt-text-color--#{$color});
-        --color: var(--hdbt-text-color--#{$color});
-        --color-hover: var(--hdbt-button-highlight-color--#{$color});
-        --color-focus: var(--hdbt-text-color--#{$color});
-        --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
-        --focus-outline-color: var(--hdbt-text-color--#{$color});
-      }
-
-      .hds-button--supplementary {
-        --background-color: transparent;
-        --background-color-hover: transparent;
-        --background-color-focus: transparent;
-        --background-color-hover-focus: transparent;
-        --background-color-disabled: transparent;
-        --border-color: transparent;
-        --border-color-hover: transparent;
-        --border-color-focus: var(--hdbt-text-color--#{$color});
-        --border-color-hover-focus: var(--hdbt-text-color--#{$color});
-        --border-color-disabled: transparent;
-        --color: var(--hdbt-text-color--#{$color});
-        --color-hover: var(--hdbt-button-highlight-color--#{$color});
-        --color-focus: var(--hdbt-text-color--#{$color});
-        --color-hover-focus: var(--hdbt-button-highlight-color--#{$color});
-        --color-disabled: var(--hdbt-text-color--#{$color});
-        --focus-outline-color: transparent;
-        --submit-input-focus-gutter-color: transparent;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+  .liftup-with-image__image {
+    margin: 0 auto;
+    max-width: $content-area-wrapper-width-max;
+    padding: 0 $spacing-and-half;
   }
 
   .liftup-with-image__container {
@@ -145,16 +79,7 @@ $breakpoint-design-image-on-left-right: 830px;
     }
   }
 
-  .liftup-with-image__image {
-    margin: 0 auto;
-    max-width: $content-area-wrapper-width-max;
-    padding: 0 $spacing-and-half;
-  }
-
   .liftup-with-image__content {
-    background-color: var(--hdbt-color-palette--primary);
-    color: var(--hdbt-color-palette-text--primary);
-
     @include breakpoint($breakpoint-design-image-on-left-right) {
       display: flex;
       flex-direction: column;
@@ -169,19 +94,6 @@ $breakpoint-design-image-on-left-right: 830px;
     @include breakpoint($breakpoint-xl) {
       min-height: 435px; // According to layouts
     }
-  }
-}
-
-.liftup-with-image--design-image-on-right,
-.liftup-with-image--design-image-on-left,
-.liftup-with-image--design-image-on-right-secondary,
-.liftup-with-image--design-image-on-left-secondary  {
-  max-width: $container-width-xl;
-
-  .liftup-with-image__image,
-  .liftup-with-image__container {
-    display: flex;
-    padding: 0;
   }
 }
 
@@ -279,15 +191,161 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
+// Designs with primary background color.
+.liftup-with-image--design-image-on-right,
+.liftup-with-image--design-image-on-left {
+  color: var(--hdbt-color-palette-text--primary);
+
+  a.link {
+    color: var(--hdbt-color-palette-text--primary);
+
+    &[target="_blank"]::after {
+      background-color: var(--hdbt-color-palette-text--primary);
+    }
+  }
+
+  .liftup-with-image__content {
+    background-color: var(--hdbt-color-palette--primary);
+    color: var(--hdbt-color-palette-text--primary);
+  }
+
+  .hds-button--primary {
+    --background-color: var(--hdbt-color-palette-button--primary);
+    --background-color-hover: transparent;
+    --background-color-focus: var(--hdbt-color-palette-button--primary);
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--hdbt-color-palette-button--primary);
+    --border-color-hover: var(--hdbt-color-palette-button--primary);
+    --border-color-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--hdbt-color-palette-button-contrast--primary);
+    --color-hover: var(--hdbt-color-palette-button--primary);
+    --color-focus: var(--hdbt-color-palette-button-contrast--primary);
+    --color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --color-disabled: var(--color-black);
+    --focus-outline-color: var(--hdbt-color-palette-button--primary);
+    --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--primary);
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--hdbt-color-palette-button--primary);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --background-color-disabled: transparent;
+    --border-color: var(--hdbt-color-palette-button--primary);
+    --border-color-hover: var(--hdbt-color-palette-button--primary);
+    --border-color-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-disabled: var(--hdbt-color-palette-button--primary);
+    --color: var(--hdbt-color-palette-button--primary);
+    --color-hover: var(--hdbt-color-palette-button-contrast--primary);
+    --color-focus: var(--hdbt-color-palette-button--primary);
+    --color-hover-focus: var(--hdbt-color-palette-button-contrast--primary);
+    --focus-outline-color: var(--hdbt-color-palette-button--primary);
+  }
+
+  .hds-button--supplementary {
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --border-color-disabled: transparent;
+    --color: var(--hdbt-color-palette-button--primary);
+    --color-hover: var(--hdbt-color-palette-button--primary);
+    --color-focus: var(--hdbt-color-palette-button--primary);
+    --color-hover-focus: var(--hdbt-color-palette-button--primary);
+    --color-disabled: var(--hdbt-color-palette-button--primary);
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
+  }
+}
+
+// Designs with secondary background color.
 .liftup-with-image--design-image-on-right-secondary,
 .liftup-with-image--design-image-on-left-secondary {
+  color: var(--hdbt-color-palette-text--secondary);
+
+  a.link {
+    color: var(--hdbt-color-palette-text--secondary);
+
+    &[target="_blank"]::after {
+      background-color: var(--hdbt-color-palette-text--secondary);
+    }
+  }
+
   .liftup-with-image__content {
     background-color: var(--hdbt-color-palette--secondary);
     color: var(--hdbt-color-palette-text--secondary);
   }
+
+  .hds-button--primary {
+    --background-color: var(--hdbt-color-palette-button--secondary);
+    --background-color-hover: transparent;
+    --background-color-focus: var(--hdbt-color-palette-button--secondary);
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover: var(--hdbt-color-palette-button--secondary);
+    --border-color-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--hdbt-color-palette-button-contrast--secondary);
+    --color-hover: var(--hdbt-color-palette-button--secondary);
+    --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
+    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --color-disabled: var(--color-black);
+    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
+    --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--secondary);
+  }
+
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--hdbt-color-palette-button--secondary);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --background-color-disabled: transparent;
+    --border-color: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover: var(--hdbt-color-palette-button--secondary);
+    --border-color-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-disabled: var(--hdbt-color-palette-button--secondary);
+    --color: var(--hdbt-color-palette-button--secondary);
+    --color-hover: var(--hdbt-color-palette-button-contrast--secondary);
+    --color-focus: var(--hdbt-color-palette-button--secondary);
+    --color-hover-focus: var(--hdbt-color-palette-button-contrast--secondary);
+    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
+  }
+
+  .hds-button--supplementary {
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-disabled: transparent;
+    --color: var(--hdbt-color-palette-button--secondary);
+    --color-hover: var(--hdbt-color-palette-button--secondary);
+    --color-focus: var(--hdbt-color-palette-button--secondary);
+    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --color-disabled: var(--hdbt-color-palette-button--secondary);
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
+  }
 }
 
-
+// Designs with image as background.
 .liftup-with-image--design-background-text-on-right,
 .liftup-with-image--design-background-text-on-left {
   .liftup-with-image__container {
