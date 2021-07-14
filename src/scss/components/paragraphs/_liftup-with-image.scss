@@ -47,7 +47,11 @@ $breakpoint-design-image-on-left-right: 830px;
 }
 
 .liftup-with-image--design-image-on-right,
-.liftup-with-image--design-image-on-left {
+.liftup-with-image--design-image-on-left,
+.liftup-with-image--design-image-on-right-secondary,
+.liftup-with-image--design-image-on-left-secondary {
+
+  
   $colors: coat-of-arms, brick, bus, metro, tram, gold, silver, copper, engel, fog, summer, suomenlinna;
   color: var(--hdbt-color-palette-text--primary);
 
@@ -169,7 +173,9 @@ $breakpoint-design-image-on-left-right: 830px;
 }
 
 .liftup-with-image--design-image-on-right,
-.liftup-with-image--design-image-on-left {
+.liftup-with-image--design-image-on-left,
+.liftup-with-image--design-image-on-right-secondary,
+.liftup-with-image--design-image-on-left-secondary  {
   max-width: $container-width-xl;
 
   .liftup-with-image__image,
@@ -179,7 +185,8 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
-.liftup-with-image--design-image-on-right {
+.liftup-with-image--design-image-on-right,
+.liftup-with-image--design-image-on-right-secondary {
   .liftup-with-image__image {
     justify-content: flex-end;
     padding-left: 10%;
@@ -225,7 +232,8 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
-.liftup-with-image--design-image-on-left {
+.liftup-with-image--design-image-on-left,
+.liftup-with-image--design-image-on-left-secondary {
   .liftup-with-image__image {
     justify-content: flex-start;
     padding-right: 10%;
@@ -270,6 +278,15 @@ $breakpoint-design-image-on-left-right: 830px;
     }
   }
 }
+
+.liftup-with-image--design-image-on-right-secondary,
+.liftup-with-image--design-image-on-left-secondary {
+  .liftup-with-image__content {
+    background-color: var(--hdbt-color-palette--secondary);
+    color: var(--hdbt-color-palette-text--secondary);
+  }
+}
+
 
 .liftup-with-image--design-background-text-on-right,
 .liftup-with-image--design-background-text-on-left {
