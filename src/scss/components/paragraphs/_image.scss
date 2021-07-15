@@ -1,5 +1,5 @@
 .image {
-  margin-top: $spacing-double;
+  margin-top: $spacing-triple;
 
   // Do not apply margin for images inside columns.
   .columns & {
@@ -7,14 +7,14 @@
   }
 
   .image__container {
-    padding: $spacing-double 0 0;
+    padding: 0;
 
     @include breakpoint($breakpoint-m) {
-      padding: $spacing-double $spacing-and-half 0;
+      padding: 0 $spacing-and-half 0;
     }
 
     @include breakpoint($breakpoint-l) {
-      padding: $spacing-double $spacing-double 0;
+      padding: 0 $spacing-double 0;
     }
   }
 }
