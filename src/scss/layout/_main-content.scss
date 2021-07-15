@@ -1,9 +1,5 @@
 .main-content {
-  margin-top: $spacing-triple;
-
-  @include breakpoint($breakpoint-s) {
-    margin-top: $spacing-quadruple;
-  }
+  margin-top: $spacing-quadruple;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-sextuple;
