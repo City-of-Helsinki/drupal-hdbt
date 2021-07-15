@@ -16,6 +16,7 @@ $card_spacing: $spacing-and-half;
 .content-cards__title {
   margin-bottom: $spacing-triple;
   margin-top: 0;
+  max-width: 640px;
 }
 
 .content-cards__content {
@@ -33,6 +34,8 @@ $card_spacing: $spacing-and-half;
 }
 
 .content-card {
+  margin-top: $spacing-quadruple;
+
   @include breakpoint($breakpoint-s) {
     padding-left: $card_spacing;
     width: 50%;
@@ -40,6 +43,10 @@ $card_spacing: $spacing-and-half;
 
   @include breakpoint($breakpoint-l) {
     width: 25%;
+  }
+
+  &:first-child {
+    margin-top: 0;
   }
 }
 
@@ -52,7 +59,8 @@ $card_spacing: $spacing-and-half;
 }
 
 .content-card__title {
-  @include font-size(22px, 24px);
+  @include font-size(24px, 28px);
+  font-weight: 500;
   margin-top: $spacing;
 }
 
@@ -61,12 +69,13 @@ $card_spacing: $spacing-and-half;
 }
 
 .content-card__arrow {
-  display: inline-block;
+  display: block;
   line-height: 0;
   // Pull the arrow a bit to the left to align with text.
-  margin: $spacing-half 0 0 -2px;
+  margin: $spacing 0 0 -2px;
   padding-left: 0;
   transition: all .3s;
+  width: 48px;
 
   @include breakpoint($breakpoint-s) {
     // Pull the arrow a bit to the left to align with text.
@@ -85,7 +94,6 @@ $card_spacing: $spacing-and-half;
 .content-card__link {
   display: block;
   overflow: hidden;
-  padding-bottom: $spacing;
   text-decoration: none;
 
   &:hover {
@@ -116,14 +124,9 @@ $card_spacing: $spacing-and-half;
 .content-cards--small-cards-grey,
 .content-cards--large-cards-grey {
   background: $color-silver-light;
-  margin-top: $spacing-triple;
 
-  .content-card {
-    margin-top: $spacing-and-half;
-
-    &:first-child {
-      margin-top: 0;
-    }
+  .hds-koros {
+    color: $color-white;
   }
 
   .content-card__link {
@@ -136,23 +139,28 @@ $card_spacing: $spacing-and-half;
     margin: -#{$spacing} -#{$spacing} 0;
   }
 
-  .content-cards__title {
-    margin-top: 0;
+  .content-cards__container {
+    padding-top: $spacing-triple;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-double;
+      padding-top: $spacing-quadruple;
     }
   }
 
+  .content-cards__title {
+    margin-top: 0;
+  }
+
   .content-cards__content {
-    margin-bottom: $spacing-double;
+    margin-bottom: $spacing-quadruple;
 
     @include breakpoint($breakpoint-l) {
-      margin-bottom: $spacing-quadruple;
+      margin-bottom: $spacing-sextuple;
     }
   }
 }
 
+.content-cards--small-cards,
 .content-cards--small-cards-grey {
   .content-card {
     &:nth-child(-n+2) {
@@ -169,6 +177,7 @@ $card_spacing: $spacing-and-half;
   }
 }
 
+.content-cards--large-cards,
 .content-cards--large-cards-grey {
   .content-card {
     &:nth-child(-n+2) {
@@ -183,4 +192,21 @@ $card_spacing: $spacing-and-half;
       }
     }
   }
+}
+
+.node--type-page {
+  .content-cards {
+    margin-top: $spacing-triple;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-quadruple;
+    }
+  }
+}
+
+// If the content-cards with grey design is just before footer.
+.layout-main-wrapper > *:last-child .content-cards--small-cards-grey:last-child,
+.layout-main-wrapper > *:last-child .content-cards--large-cards-grey:last-child {
+  margin-bottom: -115px; // Enough to get the block under the footer.
+  padding-bottom: 55px; // Leave enough room between the last card and footer.
 }
