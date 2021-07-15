@@ -6,12 +6,8 @@ h5,
 h6 {
   hyphens: auto;
   line-height: $lineheight-m;
-  margin: $spacing-double 0 0;
+  margin: $spacing-triple 0 0;
   word-break: break-word;
-
-  @include breakpoint($breakpoint-m) {
-    margin: $spacing-quadruple 0 0;
-  }
 }
 
 h1,
@@ -55,7 +51,7 @@ h3 {
 
 h4 {
   @include font-size($fontsize-heading-s);
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-medium;
 
   @include breakpoint($breakpoint-l) {
     @include font-size($fontsize-heading-m);
@@ -86,7 +82,7 @@ a {
 }
 
 p {
-  margin: $spacing-and-half 0 0;
+  margin: $spacing 0 0;
 }
 
 ul, ol {
