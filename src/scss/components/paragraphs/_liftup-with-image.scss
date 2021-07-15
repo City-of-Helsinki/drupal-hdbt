@@ -102,6 +102,7 @@ $breakpoint-design-image-on-left-right: 830px;
   .liftup-with-image__image {
     justify-content: flex-end;
     padding-left: 10%;
+    padding-right: 0;
     position: relative;
     z-index: 0;
 
@@ -148,6 +149,7 @@ $breakpoint-design-image-on-left-right: 830px;
 .liftup-with-image--design-image-on-left-secondary {
   .liftup-with-image__image {
     justify-content: flex-start;
+    padding-left: 0;
     padding-right: 10%;
     position: relative;
     z-index: 0;
