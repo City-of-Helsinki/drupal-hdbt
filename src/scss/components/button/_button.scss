@@ -4,26 +4,59 @@ a.hds-button {
   // The supplementary button just won't work with the focus and default layout in the left aligned layout
   // so these changes are required to make it look even a bit more decent.
   &.hds-button--supplementary {
-    --min-size: 24px;
-    justify-content: flex-start;
-    margin-left: calc(-1 * var(--spacing-2-xs) - var(--spacing-4-xs));
+    margin: 0;
+    padding: 0 $spacing-half 0 0;
+    text-decoration: underline;
 
     .hds-button__label {
       line-height: $spacing-and-half; // To avoid too low link buttons
-      padding: 0;
+      margin: 0 0 -#{$spacing-half} 0;
+      order: 1;
+      padding: $spacing-half;
 
       &:only-child {
         margin: 0;
       }
     }
 
-    .hds-icon:last-of-type:not(:first-of-type) {
-      margin-left: $spacing-quarter;
-      margin-right: -$spacing-quarter;
+    &:before {
+      --icon-proportions: #{$spacing-and-half};
+      background-color: var(--color);
+      content: "";
+      display: inline-block;
+      height: var(--icon-proportions);
+      mask-repeat: no-repeat;
+      mask-size: var(--icon-proportions);
+      order: 3;
+      position: static;
+      width: var(--icon-proportions);
     }
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
+
+  // The hdbt-icon needs additional 8px of margin on the right because the design on hds-buttons includes margin
+  // on the right for the icon but hdbt-icons don't get the margin by default.
+  &.hds-button--primary,
+  &.hds-button--secondary {
+    &.hdbt-icon::before {
+      margin-right: $spacing;
+    }
+  }
+}
+
+.hds-button--supplementary:not(.hdbt-icon) {
+  &:before {
+    // Add default icon (arrow icon) for the supplementary button.
+    mask-image: url('../icons/arrow-right.svg');
+  }
+}
+
+// In case a button with supplementary style is the first child inside a p-tag we can assume it is next to
+// spacing of the element that contains the link so we want to move the supplementary button little bit to the left.
+// Example: A button is written inside of a WYSIWYG-element and it is inside its p-tag as first item.
+p > a.hds-button.hds-button--supplementary:first-child {
+  margin-left: calc(-#{$spacing-half} + (-2px));
 }
