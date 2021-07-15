@@ -1,9 +1,13 @@
 .text {
   @include font-size(18px, 27px);
-  margin-top: $spacing-double - $spacing-and-half;
+  margin-top: $spacing-double;
 
   @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple - $spacing-and-half;
+    margin-top: $spacing-triple;
+  }
+
+  .text__container {
+    padding-top: 0;
   }
 
   .text__text-content {
@@ -84,10 +88,6 @@
       --focus-outline-color: transparent;
       --submit-input-focus-gutter-color: transparent;
     }
-  }
-
-  + .text {
-    margin-top: 0;
   }
 
   ul, ol {
