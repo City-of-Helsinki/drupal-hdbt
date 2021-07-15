@@ -13,3 +13,12 @@
     }
   }
 }
+
+.lead-in {
+  @include font-size(18px, 27px);
+  margin-bottom: $spacing-triple;
+
+  .lead-in__container {
+    padding-top: 0;
+  }
+}
