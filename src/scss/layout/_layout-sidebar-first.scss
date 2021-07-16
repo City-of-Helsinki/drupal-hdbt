@@ -6,6 +6,8 @@
   }
 
   .sidebar-first__container {
+    padding-top: 0;
+
     @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
