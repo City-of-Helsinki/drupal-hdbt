@@ -8,6 +8,8 @@
     height: var(--icon-proportions);
     mask-repeat: no-repeat;
     mask-size: var(--icon-proportions);
+    min-height: var(--icon-proportions);
+    min-width: var(--icon-proportions);
     position: static;
     width: var(--icon-proportions);
   }
@@ -16,8 +18,26 @@
 .hds-button.hdbt-icon {
   // Change the order of the elements inside buttons to print the icon in correct place.
   .hds-button__label {
-    margin: 0;
+    margin: 0 0 0 var(--spacing-2-xs);
     order: 1;
+  }
+
+  &:focus {
+    &::before {
+      background-color: var(--color-focus);
+    }
+  }
+
+  &:hover {
+    &::before {
+      background-color: var(--color-hover);
+    }
+  }
+
+  &:focus:hover {
+    &::before {
+      background-color: var(--color-hover-focus);
+    }
   }
 
   &::after {
@@ -26,7 +46,6 @@
 
   &::before {
     background-color: var(--color);
-    margin-right: $spacing;
     order: 3;
   }
 }
