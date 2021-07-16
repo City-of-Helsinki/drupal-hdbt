@@ -11,6 +11,12 @@ $hdbt-color-bus-text--primary: $hdbt-color-white;
 $hdbt-color-bus-text--secondary: $hdbt-color-black;
 $hdbt-color-bus-text--accent: $hdbt-color-black;
 
+$hdbt-color-bus-button--primary: $hdbt-color-white;
+$hdbt-color-bus-button-contrast--primary: $hdbt-color-black;
+
+$hdbt-color-bus-button--secondary: $hdbt-color-black;
+$hdbt-color-bus-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-bus--primary: #{$hdbt-color-bus--primary};
   --hdbt-color-bus--secondary: #{$hdbt-color-bus--secondary};
@@ -19,6 +25,12 @@ $hdbt-color-bus-text--accent: $hdbt-color-black;
   --hdbt-color-bus-text--primary: #{$hdbt-color-bus-text--primary};
   --hdbt-color-bus-text--secondary: #{$hdbt-color-bus-text--secondary};
   --hdbt-color-bus-text--accent: #{$hdbt-color-bus-text--accent};
+
+  --hdbt-color-bus-button--primary: #{$hdbt-color-bus-button--primary};
+  --hdbt-color-bus-button-contrast--primary: #{$hdbt-color-bus-button-contrast--primary};
+
+  --hdbt-color-bus-button--secondary: #{$hdbt-color-bus-button--secondary};
+  --hdbt-color-bus-button-contrast--secondary: #{$hdbt-color-bus-button-contrast--secondary};
 }
 
 // Coat of arms
@@ -30,6 +42,12 @@ $hdbt-color-coat-of-arms-text--primary: $hdbt-color-white;
 $hdbt-color-coat-of-arms-text--secondary: $hdbt-color-black;
 $hdbt-color-coat-of-arms-text--accent: $hdbt-color-black;
 
+$hdbt-color-coat-of-arms-button--primary: $hdbt-color-white;
+$hdbt-color-coat-of-arms-button-contrast--primary: $hdbt-color-black;
+
+$hdbt-color-coat-of-arms-button--secondary: $hdbt-color-black;
+$hdbt-color-coat-of-arms-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-coat-of-arms--primary: #{$hdbt-color-coat-of-arms--primary};
   --hdbt-color-coat-of-arms--secondary: #{$hdbt-color-coat-of-arms--secondary};
@@ -38,6 +56,12 @@ $hdbt-color-coat-of-arms-text--accent: $hdbt-color-black;
   --hdbt-color-coat-of-arms-text--primary: #{$hdbt-color-coat-of-arms-text--primary};
   --hdbt-color-coat-of-arms-text--secondary: #{$hdbt-color-coat-of-arms-text--secondary};
   --hdbt-color-coat-of-arms-text--accent: #{$hdbt-color-coat-of-arms-text--accent};
+
+  --hdbt-color-coat-of-arms-button--primary: #{$hdbt-color-coat-of-arms-button--primary};
+  --hdbt-color-coat-of-arms-button-contrast--primary: #{$hdbt-color-coat-of-arms-button-contrast--primary};
+
+  --hdbt-color-coat-of-arms-button--secondary: #{$hdbt-color-coat-of-arms-button--secondary};
+  --hdbt-color-coat-of-arms-button-contrast--secondary: #{$hdbt-color-coat-of-arms-button-contrast--secondary};
 }
 
 // Copper
@@ -49,6 +73,12 @@ $hdbt-color-copper-text--primary: $hdbt-color-black;
 $hdbt-color-copper-text--secondary: $hdbt-color-black;
 $hdbt-color-copper-text--accent: $hdbt-color-black;
 
+$hdbt-color-copper-button--primary: $hdbt-color-black;
+$hdbt-color-copper-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-copper-button--secondary: $hdbt-color-black;
+$hdbt-color-copper-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-copper--primary: #{$hdbt-color-copper--primary};
   --hdbt-color-copper--secondary: #{$hdbt-color-copper--secondary};
@@ -57,6 +87,12 @@ $hdbt-color-copper-text--accent: $hdbt-color-black;
   --hdbt-color-copper-text--primary: #{$hdbt-color-copper-text--primary};
   --hdbt-color-copper-text--secondary: #{$hdbt-color-copper-text--secondary};
   --hdbt-color-copper-text--accent: #{$hdbt-color-copper-text--accent};
+
+  --hdbt-color-copper-button--primary: #{$hdbt-color-copper-button--primary};
+  --hdbt-color-copper-button-contrast--primary: #{$hdbt-color-copper-button-contrast--primary};
+
+  --hdbt-color-copper-button--secondary: #{$hdbt-color-copper-button--secondary};
+  --hdbt-color-copper-button-contrast--secondary: #{$hdbt-color-copper-button-contrast--secondary};
 }
 
 // Engel
@@ -68,6 +104,12 @@ $hdbt-color-engel-text--primary: $hdbt-color-black;
 $hdbt-color-engel-text--secondary: $hdbt-color-black;
 $hdbt-color-engel-text--accent: $hdbt-color-black;
 
+$hdbt-color-engel-button--primary: $hdbt-color-black;
+$hdbt-color-engel-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-engel-button--secondary: $hdbt-color-black;
+$hdbt-color-engel-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-engel--primary: #{$hdbt-color-engel--primary};
   --hdbt-color-engel--secondary: #{$hdbt-color-engel--secondary};
@@ -76,6 +118,12 @@ $hdbt-color-engel-text--accent: $hdbt-color-black;
   --hdbt-color-engel-text--primary: #{$hdbt-color-engel-text--primary};
   --hdbt-color-engel-text--secondary: #{$hdbt-color-engel-text--secondary};
   --hdbt-color-engel-text--accent: #{$hdbt-color-engel-text--accent};
+
+  --hdbt-color-engel-button--primary: #{$hdbt-color-engel-button--primary};
+  --hdbt-color-engel-button-contrast--primary: #{$hdbt-color-engel-button-contrast--primary};
+
+  --hdbt-color-engel-button--secondary: #{$hdbt-color-engel-button--secondary};
+  --hdbt-color-engel-button-contrast--secondary: #{$hdbt-color-engel-button-contrast--secondary};
 }
 
 // Gold
@@ -87,6 +135,12 @@ $hdbt-color-gold-text--primary: $hdbt-color-black;
 $hdbt-color-gold-text--secondary: $hdbt-color-black;
 $hdbt-color-gold-text--accent: $hdbt-color-white;
 
+$hdbt-color-gold-button--primary: $hdbt-color-black;
+$hdbt-color-gold-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-gold-button--secondary: $hdbt-color-black;
+$hdbt-color-gold-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-gold--primary: #{$hdbt-color-gold--primary};
   --hdbt-color-gold--secondary: #{$hdbt-color-gold--secondary};
@@ -95,6 +149,12 @@ $hdbt-color-gold-text--accent: $hdbt-color-white;
   --hdbt-color-gold-text--primary: #{$hdbt-color-gold-text--primary};
   --hdbt-color-gold-text--secondary: #{$hdbt-color-gold-text--secondary};
   --hdbt-color-gold-text--accent: #{$hdbt-color-gold-text--accent};
+
+  --hdbt-color-gold-button--primary: #{$hdbt-color-gold-button--primary};
+  --hdbt-color-gold-button-contrast--primary: #{$hdbt-color-gold-button-contrast--primary};
+
+  --hdbt-color-gold-button--secondary: #{$hdbt-color-gold-button--secondary};
+  --hdbt-color-gold-button-contrast--secondary: #{$hdbt-color-gold-button-contrast--secondary};
 }
 
 // Metro
@@ -106,6 +166,12 @@ $hdbt-color-metro-text--primary: $hdbt-color-white;
 $hdbt-color-metro-text--secondary: $hdbt-color-black;
 $hdbt-color-metro-text--accent: $hdbt-color-black;
 
+$hdbt-color-metro-button--primary: $hdbt-color-white;
+$hdbt-color-metro-button-contrast--primary: $hdbt-color-black;
+
+$hdbt-color-metro-button--secondary: $hdbt-color-black;
+$hdbt-color-metro-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-metro--primary: #{$hdbt-color-metro--primary};
   --hdbt-color-metro--secondary: #{$hdbt-color-metro--secondary};
@@ -114,6 +180,12 @@ $hdbt-color-metro-text--accent: $hdbt-color-black;
   --hdbt-color-metro-text--primary: #{$hdbt-color-metro-text--primary};
   --hdbt-color-metro-text--secondary: #{$hdbt-color-metro-text--secondary};
   --hdbt-color-metro-text--accent: #{$hdbt-color-metro-text--accent};
+
+  --hdbt-color-metro-button--primary: #{$hdbt-color-metro-button--primary};
+  --hdbt-color-metro-button-contrast--primary: #{$hdbt-color-metro-button-contrast--primary};
+
+  --hdbt-color-metro-button--secondary: #{$hdbt-color-metro-button--secondary};
+  --hdbt-color-metro-button-contrast--secondary: #{$hdbt-color-metro-button-contrast--secondary};
 }
 
 // Silver
@@ -125,6 +197,12 @@ $hdbt-color-silver-text--primary: $hdbt-color-black;
 $hdbt-color-silver-text--secondary: $hdbt-color-black;
 $hdbt-color-silver-text--accent: $hdbt-color-black;
 
+$hdbt-color-silver-button--primary: $hdbt-color-black;
+$hdbt-color-silver-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-silver-button--secondary: $hdbt-color-black;
+$hdbt-color-silver-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-silver--primary: #{$hdbt-color-silver--primary};
   --hdbt-color-silver--secondary: #{$hdbt-color-silver--secondary};
@@ -133,6 +211,12 @@ $hdbt-color-silver-text--accent: $hdbt-color-black;
   --hdbt-color-silver-text--primary: #{$hdbt-color-silver-text--primary};
   --hdbt-color-silver-text--secondary: #{$hdbt-color-silver-text--secondary};
   --hdbt-color-silver-text--accent: #{$hdbt-color-silver-text--accent};
+
+  --hdbt-color-silver-button--primary: #{$hdbt-color-silver-button--primary};
+  --hdbt-color-silver-button-contrast--primary: #{$hdbt-color-silver-button-contrast--primary};
+
+  --hdbt-color-silver-button--secondary: #{$hdbt-color-silver-button--secondary};
+  --hdbt-color-silver-button-contrast--secondary: #{$hdbt-color-silver-button-contrast--secondary};
 }
 
 // Summer
@@ -144,6 +228,12 @@ $hdbt-color-summer-text--primary: $hdbt-color-black;
 $hdbt-color-summer-text--secondary: $hdbt-color-black;
 $hdbt-color-summer-text--accent: $hdbt-color-white;
 
+$hdbt-color-summer-button--primary: $hdbt-color-black;
+$hdbt-color-summer-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-summer-button--secondary: $hdbt-color-black;
+$hdbt-color-summer-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-summer--primary: #{$hdbt-color-summer--primary};
   --hdbt-color-summer--secondary: #{$hdbt-color-summer--secondary};
@@ -152,6 +242,12 @@ $hdbt-color-summer-text--accent: $hdbt-color-white;
   --hdbt-color-summer-text--primary: #{$hdbt-color-summer-text--primary};
   --hdbt-color-summer-text--secondary: #{$hdbt-color-summer-text--secondary};
   --hdbt-color-summer-text--accent: #{$hdbt-color-summer-text--accent};
+
+  --hdbt-color-summer-button--primary: #{$hdbt-color-summer-button--primary};
+  --hdbt-color-summer-button-contrast--primary: #{$hdbt-color-summer-button-contrast--primary};
+
+  --hdbt-color-summer-button--secondary: #{$hdbt-color-summer-button--secondary};
+  --hdbt-color-summer-button-contrast--secondary: #{$hdbt-color-summer-button-contrast--secondary};
 }
 
 // Suomenlinna
@@ -163,6 +259,12 @@ $hdbt-color-suomenlinna-text--primary: $hdbt-color-black;
 $hdbt-color-suomenlinna-text--secondary: $hdbt-color-black;
 $hdbt-color-suomenlinna-text--accent: $hdbt-color-white;
 
+$hdbt-color-suomenlinna-button--primary: $hdbt-color-black;
+$hdbt-color-suomenlinna-button-contrast--primary: $hdbt-color-white;
+
+$hdbt-color-suomenlinna-button--secondary: $hdbt-color-black;
+$hdbt-color-suomenlinna-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-suomenlinna--primary: #{$hdbt-color-suomenlinna--primary};
   --hdbt-color-suomenlinna--secondary: #{$hdbt-color-suomenlinna--secondary};
@@ -171,6 +273,12 @@ $hdbt-color-suomenlinna-text--accent: $hdbt-color-white;
   --hdbt-color-suomenlinna-text--primary: #{$hdbt-color-suomenlinna-text--primary};
   --hdbt-color-suomenlinna-text--secondary: #{$hdbt-color-suomenlinna-text--secondary};
   --hdbt-color-suomenlinna-text--accent: #{$hdbt-color-suomenlinna-text--accent};
+
+  --hdbt-color-suomenlinna-button--primary: #{$hdbt-color-suomenlinna-button--primary};
+  --hdbt-color-suomenlinna-button-contrast--primary: #{$hdbt-color-suomenlinna-button-contrast--primary};
+
+  --hdbt-color-suomenlinna-button--secondary: #{$hdbt-color-suomenlinna-button--secondary};
+  --hdbt-color-suomenlinna-button-contrast--secondary: #{$hdbt-color-suomenlinna-button-contrast--secondary};
 }
 
 // Tram
@@ -182,6 +290,12 @@ $hdbt-color-tram-text--primary: $hdbt-color-white;
 $hdbt-color-tram-text--secondary: $hdbt-color-black;
 $hdbt-color-tram-text--accent: $hdbt-color-black;
 
+$hdbt-color-tram-button--primary: $hdbt-color-white;
+$hdbt-color-tram-button-contrast--primary: $hdbt-color-black;
+
+$hdbt-color-tram-button--secondary: $hdbt-color-black;
+$hdbt-color-tram-button-contrast--secondary: $hdbt-color-white;
+
 :root {
   --hdbt-color-tram--primary: #{$hdbt-color-tram--primary};
   --hdbt-color-tram--secondary: #{$hdbt-color-tram--secondary};
@@ -190,6 +304,12 @@ $hdbt-color-tram-text--accent: $hdbt-color-black;
   --hdbt-color-tram-text--primary: #{$hdbt-color-tram-text--primary};
   --hdbt-color-tram-text--secondary: #{$hdbt-color-tram-text--secondary};
   --hdbt-color-tram-text--accent: #{$hdbt-color-tram-text--accent};
+
+  --hdbt-color-tram-button--primary: #{$hdbt-color-tram-button--primary};
+  --hdbt-color-tram-button-contrast--primary: #{$hdbt-color-tram-button-contrast--primary};
+
+  --hdbt-color-tram-button--secondary: #{$hdbt-color-tram-button--secondary};
+  --hdbt-color-tram-button-contrast--secondary: #{$hdbt-color-tram-button-contrast--secondary};
 }
 
 // HELfi / HDBT Default color palette.
@@ -197,7 +317,14 @@ $hdbt-color-tram-text--accent: $hdbt-color-black;
   --hdbt-color-palette--primary: #{$hdbt-color-coat-of-arms--primary};
   --hdbt-color-palette--secondary: #{$hdbt-color-coat-of-arms--secondary};
   --hdbt-color-palette--accent: #{$hdbt-color-coat-of-arms--accent};
+
   --hdbt-color-palette-text--primary: #{$hdbt-color-coat-of-arms-text--primary};
   --hdbt-color-palette-text--secondary: #{$hdbt-color-coat-of-arms-text--secondary};
   --hdbt-color-palette-text--accent: #{$hdbt-color-coat-of-arms-text--accent};
+
+  --hdbt-color-palette-button--primary: #{$hdbt-color-coat-of-arms-button--primary};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-coat-of-arms-button-contrast--primary};
+
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-coat-of-arms-button--secondary};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-coat-of-arms-button-contrast--secondary};
 }
