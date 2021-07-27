@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const languageSwitcher = document.querySelector(
     '[data-hdbt-selector="language-switcher"]'
   );
+
   const checkScroll = function () {
     /*
      ** Find the direction of scroll
@@ -41,5 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  window.addEventListener('scroll', checkScroll);
+  if (languageSwitcher) {
+    window.addEventListener('scroll', checkScroll);
+  }
 });
