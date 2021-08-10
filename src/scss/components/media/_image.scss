@@ -7,11 +7,10 @@
 }
 
 .media--image__caption {
-  @include font-size(14px, 24px);
+  @include font-size(16px, 24px);
   padding: $spacing $spacing-and-half 0;
 
   @include breakpoint($breakpoint-m) {
-    @include font-size(20px, 32px);
     padding: $spacing 0 0;
   }
 }
