@@ -1,10 +1,22 @@
-.page-title__container h1 {
-  margin-bottom: $spacing;
-  margin-top: 0;
-  max-width: $content-width-max;
+.page-title {
+  margin-top: $spacing-triple;
 
-  @include breakpoint($breakpoint-m) {
-    padding-left: $spacing-triple * 2;
+  @include breakpoint($breakpoint-s) {
+    margin-top: $spacing-quadruple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+}
+
+.page-title__container {
+  padding-top: 0;
+
+  h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    max-width: $content-width-max;
   }
 }
 

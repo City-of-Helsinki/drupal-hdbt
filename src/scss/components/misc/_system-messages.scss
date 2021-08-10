@@ -5,7 +5,7 @@
 .hds-notification {
   margin-bottom: $spacing;
 
-  &:first-child {
+  &:first-of-type {
     margin-top: $spacing;
   }
 }
@@ -17,5 +17,5 @@
 }
 
 .messages__container {
-  padding-top: $spacing;
+  padding-top: 0;
 }
