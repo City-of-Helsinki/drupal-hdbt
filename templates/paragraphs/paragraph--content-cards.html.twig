@@ -52,6 +52,9 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    {% if 'grey' in design %}
+      {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
+    {% endif %}
     {% embed "@hdbt/misc/container.twig" with {container_element: 'content-cards'} %}
       {% block container_content %}
         {% if title %}
