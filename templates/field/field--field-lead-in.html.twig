@@ -39,35 +39,36 @@
 
 {%
   set classes = [
-    'paragraph-content'
-  ]
+  'lead-in'
+]
 %}
 
 {%
   set title_classes = [
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
+  'label',
+  label_display == 'visually_hidden' ? 'visually-hidden',
+]
 %}
 
 {% if label_hidden %}
-  {% if multiple %}
-    <div{{ attributes.addClass(classes) }}>
-      {% for item in items %}
-        {{ item.content }}
-      {% endfor %}
-    </div>
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes) }}>
-        {{ item.content }}
-      </div>
-    {% endfor %}
-  {% endif %}
+  <section{{ attributes.addClass(classes) }} aria-label="'{% trans %}Lead-in paragraph{% endtrans %}')">
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'lead-in'} %}
+      {% block container_content %}
+        {% for item in items %}
+          {{ item.content }}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  </section>
 {% else %}
-  <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-    {% for item in items %}
-      <div{{ item.attributes.addClass(classes) }}>{{ item.content }}</div>
-    {% endfor %}
-  </div>
+  <section{{ title_attributes.addClass(title_classes) }}>{{ label }}: </section>
+  <section{{ attributes.addClass(classes) }}>
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'lead-inn'} %}
+      {% block container_content %}
+        {% for item in items %}
+          {{ item.content }}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  </section>
 {% endif %}

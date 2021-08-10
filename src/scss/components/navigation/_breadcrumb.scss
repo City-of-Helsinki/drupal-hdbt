@@ -2,16 +2,16 @@
   align-items: center;
   display: flex;
   list-style: none;
-  margin: $spacing-half $spacing;
-  padding: 0;
+  margin: 0;
+  padding: $spacing-half $spacing;
 
   @include breakpoint($breakpoint-m) {
     @include font-size(14px);
-    margin: $spacing $spacing-and-half;
+    padding: $spacing $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-l) {
-    margin: $spacing $spacing-double;
+    padding: $spacing $spacing-double;
   }
 
   .icon {

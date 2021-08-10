@@ -13,10 +13,6 @@
   .text__text-content {
     max-width: $content-width-max;
 
-    @include breakpoint($breakpoint-m) {
-      padding-left: $spacing-triple * 2;
-    }
-
     > *:first-child {
       margin-top: 0;
     }
