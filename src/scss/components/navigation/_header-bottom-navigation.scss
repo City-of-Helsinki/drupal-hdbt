@@ -105,8 +105,9 @@
       bottom: auto;
       display: block;
       left: -$spacing-double;
+      min-width: 310px;
       position: absolute;
-      width: 310px;
+      width: calc(100% + #{$spacing-quadruple});
       z-index: 100;
 
       .menu__item {

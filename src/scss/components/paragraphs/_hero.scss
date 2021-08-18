@@ -160,6 +160,16 @@ $koro-height: 50px;
   }
 }
 
+.hero-wrapper.has-first-gray-bg-block {
+  background-color: $color-silver-light;;
+  margin-bottom: -$spacing-quadruple;
+  padding-bottom: $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: -$spacing-sextuple;
+  }
+}
+
 // Hero colors
 .hero--bg-color--coat-of-arms {
   background-color: $color-coat-of-arms;
