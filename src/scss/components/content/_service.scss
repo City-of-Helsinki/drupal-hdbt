@@ -30,7 +30,7 @@ $teaser-icon-size: 48px;
   }
 
   .service-header__container {
-    @include breakpoint($breakpoint-m) {
+    @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
     }
@@ -40,7 +40,7 @@ $teaser-icon-size: 48px;
         order: 2;
         padding-right: 0;
 
-        @include breakpoint($breakpoint-m) {
+        @include breakpoint($breakpoint-l) {
           padding-left: $spacing-double;
           width: 70%;
         }
@@ -54,12 +54,9 @@ $teaser-icon-size: 48px;
         order: 1;
         padding-left: 0;
 
-        @include breakpoint($breakpoint-m) {
-          width: 30%;
-        }
-
         @include breakpoint($breakpoint-l) {
           padding-right: $spacing-double;
+          width: 30%;
         }
 
         @include breakpoint($breakpoint-xl) {
