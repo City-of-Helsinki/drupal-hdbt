@@ -372,13 +372,14 @@
   }
 }
 
-.unit.unit--full {
+.main-content:last-child .unit.unit--full {
   .unit__services:last-child {
     // Make the keywords element go "under" the footer.
     margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
     padding-bottom: $spacing-double + $footer-koro-height;
 
     @include breakpoint($breakpoint-l) {
+      margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
       padding-bottom: $spacing-quadruple + $footer-koro-height;
     }
   }
