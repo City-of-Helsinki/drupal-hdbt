@@ -20,6 +20,32 @@ function hdbt_preprocess(&$variables) {
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
   $variables['#attached']['drupalSettings']['iconsPath'] = $variables['icons_path'];
+
+  // Apply override for the theme color.
+  if (!empty($theme_color = hdbt_get_theme_color_override())) {
+    $variables['theme_color'] = $theme_color;
+  }
+}
+
+/**
+ * Retrieve possible theme color palette override.
+ */
+function hdbt_get_theme_color_override() {
+  $color = &drupal_static(__FUNCTION__);
+
+  if (!isset($color)) {
+    $color = FALSE;
+    if (\Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+      $page_entity = hdbt_content_get_page_entity();
+      if (
+        $page_entity->hasField('color_palette') &&
+        !empty($page_entity->color_palette->value)
+      ) {
+        $color = $page_entity->color_palette->value;
+      }
+    }
+  }
+  return $color;
 }
 
 /**
