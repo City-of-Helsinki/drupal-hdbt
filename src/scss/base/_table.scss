@@ -1,0 +1,88 @@
+table {
+  background-color: $color-white;
+  border: 1px solid $color-black-60;
+  border-spacing: 0;
+  display: block;
+  margin: $spacing-double 0;
+  max-width: fit-content;
+  overflow-x: auto;
+  table-layout: fixed;
+  white-space: nowrap;
+
+  caption {
+    @include font-size(18px, 20px);
+    background-color: $color-black;
+    color: $color-white;
+    font-weight: $font-weight-medium;
+    padding: $spacing-double $spacing;
+    text-align: left;
+  }
+
+  thead {
+    background-color: $color-black;
+
+    th {
+      @include font-size(16px, 18px);
+      color: $color-white;
+      font-weight: $font-weight-medium;
+      min-width: 140px;
+      padding: $spacing;
+      text-align: left;
+      vertical-align: middle;
+      white-space: normal;
+
+      p {
+        font-size: inherit;
+        font-weight: inherit;
+        margin: 0;
+      }
+    }
+  }
+
+  tbody,
+  tfoot {
+    background-color: $color-white;
+
+    tr {
+      background-color: $color-white;
+
+      &:hover,
+      &:active {
+        background-color: $color-black-5;
+      }
+
+      th,
+      td {
+        @include font-size(16px, 18px);
+        color: $hdbt-color-black;
+        font-weight: $font-weight-regular;
+        min-width: 140px;
+        padding: $spacing;
+        text-align: left;
+        vertical-align: middle;
+        white-space: normal;
+
+        p {
+          margin: 0;
+
+          & + p {
+            margin: $spacing 0 0;
+          }
+        }
+      }
+
+      th {
+        background-color: $color-black;
+        color: $color-white;
+        font-weight: $font-weight-medium;
+      }
+
+      // Row border-color.
+      &:not(:last-of-type) {
+        td {
+          border-bottom: 1px solid $color-black-10;
+        }
+      }
+    }
+  }
+}
