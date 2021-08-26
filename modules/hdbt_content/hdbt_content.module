@@ -160,3 +160,27 @@ function hdbt_content_form_eu_cookie_compliance_block_form_alter(&$form) {
   // Hide 'withdraw' button from EU Cookie compliance block form.
   $form['buttons']['withdraw']['#access'] = FALSE;
 }
+
+/**
+ * Gets the current page main entity.
+ *
+ * @return \Drupal\Core\Entity\EntityInterface
+ *   Current page main entity.
+ */
+function hdbt_content_get_page_entity() {
+  $page_entity = &drupal_static(__FUNCTION__, NULL);
+  if (!empty($page_entity)) {
+    return $page_entity;
+  }
+  $types = array_keys(\Drupal::entityTypeManager()->getDefinitions());
+  $route = \Drupal::routeMatch();
+  $page_entity = NULL;
+  $params = $route->getParameters()->all();
+  foreach ($types as $type) {
+    if (!empty($params[$type])) {
+      $page_entity = $params[$type];
+      return $page_entity;
+    }
+  }
+  return NULL;
+}

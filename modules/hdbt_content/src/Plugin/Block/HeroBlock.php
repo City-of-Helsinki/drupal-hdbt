@@ -41,7 +41,10 @@ class HeroBlock extends BlockBase {
     }
 
     // Handle only landing page.
-    if ($node->getType() === 'landing_page') {
+    if (
+      $node->getType() === 'landing_page' &&
+      isset($node->get('field_content')->first()->entity)
+    ) {
       // Check if the content field first paragraph is Unit search
       // and add classes accordingly.
       $paragraph = $node->get('field_content')->first()->entity;
