@@ -52,12 +52,15 @@
           }
 
           .rns-reaction-button {
-            &:focus {
-              &:hover {
-                .rns-label {
-                  color: $color-bus;
-                }
-              }
+            border-color: $color-black;
+
+            .rns-label {
+              color: $color-black;
+              width: 100%;
+            }
+
+            &:focus:hover .rns-label {
+              color: $color-black;
             }
           }
         }
