@@ -17,7 +17,7 @@
 
 // Sidebar layout.
 .has-sidebar.enriched-content { // TODO: Clean up when unit sidebar block has been created.
-  .container {
+  .container:not(.banner__container) {
     @include breakpoint($breakpoint-m) {
       padding: $spacing-and-half 0 0;
     }

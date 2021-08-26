@@ -604,4 +604,14 @@
       }
     }
   }
+
+  .banner {
+    margin-left: -$spacing-and-half;
+    margin-right: -$spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
