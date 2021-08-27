@@ -19,28 +19,40 @@
   }
 
   .rns-plugin {
+    border-bottom: 1px solid $color-black;
+    border-top: 1px solid $color-black;
     margin: 0;
+    padding: $spacing-double 0;
 
+    // Reactions
     .rns-reactions {
+      max-width: 688px; // Abstract width from the designs.
+
       .rns-header {
         @include font-size(24px, 24px);
-        margin-bottom: $spacing-and-half;
+        margin-bottom: 0;
       }
 
       .reactions {
+        margin-top: $spacing-and-half;
+
         @media only screen and (min-width: 681px) {
-          margin-left: -$spacing-half;
-          margin-right: -$spacing-half;
+          margin-left: calc(-#{$spacing-and-half} / 2);
+          margin-right: calc(-#{$spacing-and-half} / 2);
         }
 
         .rns-reaction {
-          margin: 0 $spacing-half;
+          margin: 0 calc(#{$spacing-and-half} / 2);
+          max-width: 190px; // Abstract width from the designs.
           padding: 0;
-          width: calc(33.333% - #{$spacing-double});
+
+          @media only screen and (max-width: 680px) {
+            max-width: 100%;
+          }
 
           // Mobile styles
           @media only screen and (max-width: 680px) {
-            margin: $spacing-half 0 0;
+            margin: $spacing 0 0;
             padding: 0;
             width: 100%;
           }
@@ -52,43 +64,123 @@
           }
 
           .rns-reaction-button {
+            border-color: $color-black;
+            padding: $spacing-half $spacing;
+            position: relative;
+
+            &:before {
+              --size: 100%;
+              border: 2px solid transparent;
+              content: "";
+              height: var(--size);
+              left: 0;
+              position: absolute;
+              width: var(--size);
+            }
+
+            .rns-label {
+              @include font-size(16px, 24px);
+              align-items: center;
+              color: $color-black;
+              display: flex;
+              font-weight: $font-weight-medium;
+              justify-content: center;
+              width: 100%;
+
+              &:after {
+                background-color: $color-black;
+                background-size: contain;
+                content: "";
+                display: flex;
+                height: 24px;
+                margin-left: $spacing-half;
+                mask-image: url('../icons/hds/ui/face-neutral.svg');
+                mask-position: center;
+                mask-repeat: no-repeat;
+                mask-size: 24px;
+                width: 24px;
+              }
+            }
+
             &:focus {
-              &:hover {
-                .rns-label {
-                  color: $color-bus;
+              box-shadow: none;
+
+              &:before {
+                --size: calc(100% + calc(#{$spacing-and-half} / 2));
+                border-color: $color-black;
+                left: calc(-#{$spacing-and-half} / 4);
+              }
+            }
+
+            &:hover {
+              background-color: $color-black;
+
+              .rns-label {
+                color: $color-white;
+
+                &:after {
+                  background-color: $color-white;
                 }
               }
             }
+
+            &:focus:hover .rns-label {
+              color: $color-white;
+            }
+          }
+
+          &.selected .rns-reaction-button {
+            background-color: $color-black !important;
+
+            .rns-label {
+              color: $color-white;
+
+              &:after {
+                background-color: $color-white;
+              }
+            }
+          }
+
+          &:first-child .rns-label:after {
+            mask-image: url('../icons/hds/ui/face-smile.svg');
+          }
+
+          &:last-child .rns-label:after {
+            mask-image: url('../icons/hds/ui/face-sad.svg');
           }
         }
       }
     }
 
+    // Shares
     .rns-shares {
-      margin-top: $spacing-triple;
+      margin-top: $spacing-quadruple;
+      padding: 0 calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font-size(24px, 24px);
-        margin-bottom: $spacing-and-half;
+        @include font-size(20px, 20px);
+        margin-bottom: 0;
       }
 
       .rns-shares-list {
+        margin-top: $spacing-double;
         @media only screen and (min-width: 681px) {
-          margin-bottom: -#{$spacing};
+          margin-bottom: 0;
           margin-left: -$spacing-half;
           margin-right: -$spacing-half;
+          margin-top: $spacing-double;
         }
 
         .rns-share {
-          margin: 0 $spacing-half $spacing;
+          margin: 0 $spacing-half;
           padding: 0 !important;
-          width: calc(33.333% - #{$spacing});
+          width: auto;
 
           // Mobile styles
           @media only screen and (max-width: 680px) {
-            margin: $spacing-half 0 0;
+            margin: $spacing 0 0;
             padding: 0 !important;
-            width: calc(50% - #{$spacing-half});
+            width: calc(50% - #{$spacing});
           }
 
           &:first-child,
@@ -109,26 +201,168 @@
               margin-left: $spacing-quarter;
             }
           }
+
+          .rns-share-button {
+            align-items: center;
+            background-color: transparent;
+            color: $color-black;
+            display: flex;
+            justify-content: left;
+
+            &:after {
+              --size: 100%;
+              border: 2px solid transparent;
+              content: "";
+              height: var(--size);
+              left: 0;
+              position: absolute;
+              width: var(--size);
+            }
+
+            &:before {
+              background-color: $color-black;
+              background-size: contain;
+              content: "";
+              display: flex;
+              height: 32px;
+              margin-right: $spacing-half;
+              mask-image: url('../icons/hds/ui/share.svg');
+              mask-position: center;
+              mask-repeat: no-repeat;
+              mask-size: 32px;
+              width: 32px;
+            }
+
+            &:focus {
+              box-shadow: none;
+              outline: none;
+
+              &:after {
+                --size: calc(100% + #{$spacing-half});
+                border-color: $color-black;
+                left: -3px; // Things look out of place if this is calculated the same way as the top.
+                top: calc(-#{$spacing-half} / 2);
+              }
+            }
+
+            &:hover {
+              background-color: $color-black;
+
+              &:before {
+                background-color: $color-white;
+              }
+
+              .rns-label {
+                color: $color-white;
+              }
+            }
+
+            .rns-label {
+              @include font-size(16px, 24px);
+              font-weight: $font-weight-regular;
+            }
+          }
+
+          &.rns-share-facebook .rns-share-button:before {
+            mask-image: url('../icons/hds/some/facebook.svg');
+          }
+
+          &.rns-share-twitter .rns-share-button:before {
+            mask-image: url('../icons/hds/some/twitter.svg');
+          }
+
+          &.rns-share-email .rns-share-button:before {
+            mask-image: url('../icons/hds/ui/envelope.svg');
+          }
         }
       }
     }
 
+    // Inputs
     .rns-inputs {
       margin-top: $spacing-triple;
+      max-width: 688px; // Abstract width from designs.
+      padding: calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font-size(24px, 24px);
-        margin-bottom: $spacing-and-half;
+        @include font-size(20px, 20px);
+        margin-bottom: 0;
+      }
+
+      .rns-input-field {
+        @include font-size(18px, 27px);
+        border: 2px solid $color-black-50;
+        font-family: $font-default;
+        height: 188px; // Abstract width from designs.
+        margin-top: $spacing-and-half;
+        padding: $spacing;
+      }
+
+      .rns-input-footer {
+        @include font-size(16px, 24px);
+        color: $color-black-60;
       }
     }
   }
 
   .rns-plugin .rns-inputs .rns-form-submit {
     @include font-size(16px, 24px);
-    border: 2px solid $color-bus;
+    background-color: $color-black;
+    border: 2px solid $color-black;
     color: $color-white;
+    display: inline-flex;
     font-weight: 500;
     margin-top: $spacing-and-half;
-    padding: $spacing $spacing-double;
+    padding: $spacing $spacing-and-half;
+    position: relative;
+
+    &:after {
+      background-color: $color-white;
+      background-size: contain;
+      content: "";
+      display: flex;
+      height: 24px;
+      margin-left: $spacing;
+      mask-image: url('../icons/hds/ui/arrow-right.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 24px;
+      width: 24px;
+    }
+
+    &:before {
+      --size: 100%;
+      border: 2px solid transparent;
+      content: "";
+      height: var(--size);
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: var(--size);
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+
+      &:before {
+        --size: calc(100% + calc(#{$spacing-and-half} / 2));
+        border-color: $color-black;
+        left: calc(-#{$spacing-and-half} / 4);
+        top: calc(-#{$spacing-and-half} / 4);
+      }
+    }
+
+    &:hover {
+      background-color: $color-white;
+
+      .rns-label {
+        color: $color-black;
+
+        &:after {
+          background-color: $color-black;
+        }
+      }
+    }
   }
 }
