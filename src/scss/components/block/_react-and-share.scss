@@ -163,17 +163,18 @@
       }
 
       .rns-shares-list {
+        margin-top: $spacing-double;
         @media only screen and (min-width: 681px) {
-          margin-bottom: -#{$spacing};
+          margin-bottom: 0;
           margin-left: -$spacing-half;
           margin-right: -$spacing-half;
           margin-top: $spacing-double;
         }
 
         .rns-share {
-          margin: 0 $spacing-half $spacing;
+          margin: 0 $spacing-half;
           padding: 0 !important;
-          width: 120px; // Abstract width from the designs.
+          width: auto;
 
           // Mobile styles
           @media only screen and (max-width: 680px) {
@@ -239,7 +240,7 @@
               &:after {
                 --size: calc(100% + #{$spacing-half});
                 border-color: $color-black;
-                left: calc(-#{$spacing-half} / 2);
+                left: -3px; // Things look out of place if this is calculated the same way as the top.
                 top: calc(-#{$spacing-half} / 2);
               }
             }
