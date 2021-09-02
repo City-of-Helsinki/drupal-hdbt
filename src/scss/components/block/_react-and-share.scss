@@ -21,6 +21,7 @@
   .rns-plugin {
     border-bottom: 1px solid $color-black;
     border-top: 1px solid $color-black;
+    font-family: $font-default;
     margin: 0;
     padding: $spacing-double 0;
 
@@ -30,6 +31,7 @@
 
       .rns-header {
         @include font-size(24px, 24px);
+        font-weight: 500;
         margin-bottom: 0;
       }
 
@@ -102,8 +104,18 @@
               }
             }
 
+            .rns-reaction-count {
+              display: none;
+            }
+
             &:focus {
+              background-color: $color-white;
               box-shadow: none;
+              color: $color-black;
+
+              .rns-label {
+                color: $color-black;
+              }
 
               &:before {
                 --size: calc(100% + calc(#{$spacing-and-half} / 2));
@@ -205,9 +217,11 @@
           .rns-share-button {
             align-items: center;
             background-color: transparent;
+            border: 0;
             color: $color-black;
             display: flex;
             justify-content: left;
+            padding: 0;
 
             &:after {
               --size: 100%;
@@ -240,13 +254,14 @@
               &:after {
                 --size: calc(100% + #{$spacing-half});
                 border-color: $color-black;
-                left: -3px; // Things look out of place if this is calculated the same way as the top.
+                left: calc(-#{$spacing-half} / 2);
                 top: calc(-#{$spacing-half} / 2);
               }
             }
 
             &:hover {
               background-color: $color-black;
+              opacity: 1;
 
               &:before {
                 background-color: $color-white;
@@ -257,9 +272,14 @@
               }
             }
 
+            .rns-icon {
+              display: none;
+            }
+
             .rns-label {
               @include font-size(16px, 24px);
               font-weight: $font-weight-regular;
+              padding-right: calc(#{$spacing-half} / 2);
             }
           }
 
@@ -286,7 +306,14 @@
 
       .rns-header {
         @include font-size(20px, 20px);
+        font-weight: 500;
         margin-bottom: 0;
+      }
+
+      .rns-input-description {
+        margin: $spacing-and-half 0 0;
+        @include font-size(16px, 24px);
+        color: $color-black-60;
       }
 
       .rns-input-field {
@@ -296,11 +323,6 @@
         height: 188px; // Abstract width from designs.
         margin-top: $spacing-and-half;
         padding: $spacing;
-      }
-
-      .rns-input-footer {
-        @include font-size(16px, 24px);
-        color: $color-black-60;
       }
     }
   }
@@ -355,13 +377,10 @@
 
     &:hover {
       background-color: $color-white;
+      color: $color-black;
 
-      .rns-label {
-        color: $color-black;
-
-        &:after {
-          background-color: $color-black;
-        }
+      &:after {
+        background-color: $color-black;
       }
     }
   }
