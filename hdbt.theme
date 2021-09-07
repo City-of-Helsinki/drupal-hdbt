@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\node\Entity\Node;
 
 /**
@@ -39,6 +40,7 @@ function hdbt_get_theme_color_override() {
       $page_entity = hdbt_content_get_page_entity();
       if (
         !empty($page_entity) &&
+        $page_entity instanceof ContentEntityInterface &&
         $page_entity->hasField('color_palette') &&
         !empty($page_entity->color_palette->value)
       ) {
