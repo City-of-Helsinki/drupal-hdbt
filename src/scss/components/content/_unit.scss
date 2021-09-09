@@ -581,6 +581,124 @@
   }
 }
 
+.unit.unit--wide-teaser {
+  border: 2px solid $color-black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: $spacing-and-half;
+  margin-right: $spacing-and-half;
+  margin-top: $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+    flex-direction: row;
+    margin-left: $spacing-double;
+    margin-right: $spacing-double;
+    margin-top: $spacing-quadruple;
+  }
+
+  .unit__image {
+    margin: 0;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      width: 30%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .unit__text {
+    @include font-size(18px, 26px);
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-double $spacing-and-half;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      align-items: flex-end;
+      flex-direction: row;
+      padding: $spacing-and-half 0 $spacing-and-half $spacing-double;
+      width: 70%;
+    }
+  }
+
+  .unit__text__content {
+    height: 100%;
+  }
+
+  .unit__title {
+    @include font-size(24px, 32px);
+    font-weight: 500;
+    margin-bottom: 0;
+
+    @include breakpoint($breakpoint-m) {
+      @include font-size(32px, 32px);
+    }
+  }
+
+  .unit__info {
+    overflow: hidden;
+  }
+
+  .unit__info-row {
+    align-items: center;
+    display: flex;
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing;
+    }
+
+    .icon {
+      margin-right: $spacing;
+    }
+
+    .address {
+      margin: 0;
+    }
+  }
+
+  .unit__info-row--opening-hours {
+    flex-wrap: wrap;
+
+    .unit__info-row__label {
+      align-items: center;
+      display: flex;
+      width: 100%;
+    }
+
+    .unit__info-row__content {
+      margin-left: calc(24px + #{$spacing}); // icon width + spacing
+
+      .form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .unit__link {
+    line-height: 0;
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: -#{$spacing-half};
+      margin-right: $spacing;
+      margin-top: 0;
+    }
+
+    .icon {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}
+
 // Sidebar layout.
 // TODO: Clean up these styles after unit sidebar actually lives in sidebar as a block.
 .enriched-content.has-sidebar {
