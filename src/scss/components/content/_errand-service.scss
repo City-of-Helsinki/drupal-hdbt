@@ -1,0 +1,30 @@
+.errand-service {
+  margin-top: $spacing-triple;
+}
+
+.errand-service__container {
+  padding: 0;
+}
+
+.errand-service__title {
+  margin-top: 0;
+}
+
+.errand-service__description {
+  @include font-size(18px, 27px);
+  margin-top: $spacing-and-half;
+
+  p:first-child {
+    margin-top: 0;
+  }
+}
+
+.errand-service__accordion.accordion {
+  margin-top: $spacing-double;
+
+  .accordion__container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
+}
