@@ -47,14 +47,10 @@
 ]
 %}
 
-{% if referenced_content_type == 'tpr_unit' %}
-  {% block paragraph %}
-    <div{{ attributes.addClass(classes) }}>
-      {% block content %}
-        {{ content }}
-      {% endblock %}
-    </div>
-  {% endblock paragraph %}
-{% else %}
-  <!-- Other types are currently not supported -->
-{% endif %}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

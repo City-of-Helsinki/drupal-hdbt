@@ -430,14 +430,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
       }
     }
   }
-
-  // Content liftup paragraph.
-  if (
-    $paragraph_type == 'content_liftup' &&
-    $paragraph->hasField('field_content_liftup_content')
-  ) {
-    $variables['referenced_content_type'] = $paragraph->get('field_content_liftup_content')->getValue()[0]['target_type'];
-  }
 }
 
 /**
