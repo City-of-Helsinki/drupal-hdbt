@@ -128,7 +128,15 @@
     }
 
     .views-row {
-      width: 25%;
+      @include breakpoint($breakpoint-l) {
+        margin-top: $spacing-and-half;
+        width: 25%;
+      }
+
+      &:nth-child(-n+4) {
+        margin-top: 0;
+      }
+
     }
   }
 

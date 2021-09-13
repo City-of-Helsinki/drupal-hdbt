@@ -97,11 +97,16 @@ $teaser-icon-size-desktop: 48px;
     text-decoration: none;
 
     @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      line-height: 0; // Remove extra space under the arrow icon on larger card
       margin-top: 0;
+      padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
     }
 
     &:before {
-      background-color: var(--hdbt-color-palette--accent);
+      background-color: var(--hdbt-color-gold--primary);
       content: "";
       display: block;
       height: 100%;
@@ -109,6 +114,14 @@ $teaser-icon-size-desktop: 48px;
       position: absolute;
       top: 0;
       width: $spacing-half;
+
+      @include breakpoint($breakpoint-l) {
+        bottom: 0;
+        height: $spacing-and-half;
+        right: 0;
+        top: auto;
+        width: 100%;
+      }
     }
 
     &:hover {
@@ -138,6 +151,15 @@ $teaser-icon-size-desktop: 48px;
     transform: translateY(50%);
     transition: all .3s;
     width: $teaser-icon-size-mobile;
+
+    @include breakpoint($breakpoint-l) {
+      height: $teaser-icon-size-desktop;
+      margin-top: $spacing-and-half;
+      position: static;
+      right: auto;
+      transform: none;
+      width: $teaser-icon-size-desktop;
+    }
   }
 }
 
