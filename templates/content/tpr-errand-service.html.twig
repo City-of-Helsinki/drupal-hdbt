@@ -1,0 +1,96 @@
+{#
+/**
+ * @file
+ * Template for a TPR Service Channel entity.
+ */
+#}
+
+{%
+  set classes = [
+  'errand-service',
+  view_mode ? 'errand-service--' ~ view_mode|clean_class,
+]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+
+  <div class="errand-service__container container">
+    <div{{ content_attributes.addClass('errand-service__header') }}>
+      <h2{{ title_attributes.addClass('errand-service__title') }}>
+        {{ content.name }}
+      </h2>
+    </div>
+
+    {% if content.description|render %}
+      <div class="errand-service__description">
+        {{ content.description }}
+      </div>
+    {% endif %}
+
+    {% if content.channels|render %}
+      <div class="errand-service__channels">
+        {{ content.channels }}
+      </div>
+    {% endif %}
+
+    {% if
+      content.process_description|render or
+      content.processing_time|render or
+      content.expiration_time|render or
+      content.costs|render or
+      content.information|render
+    %}
+
+      <div class="errand-service__accordion accordion accordion--white">
+        {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
+          {% block container_content %}
+
+            {% if content.process_description|render %}
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Process description'|t,
+                content: content.process_description,
+              } %}
+            {% endif %}
+
+            {% if content.processing_time|render %}
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Processing time'|t,
+                content: content.processing_time,
+              } %}
+            {% endif %}
+
+            {% if content.expiration_time|render %}
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Expiration time'|t,
+                content: content.expiration_time,
+              } %}
+            {% endif %}
+
+            {% if content.costs|render %}
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Costs'|t,
+                content: content.costs,
+              } %}
+            {% endif %}
+
+            {% if content.information|render %}
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Additional information'|t,
+                content: content.information,
+              } %}
+            {% endif %}
+
+          {% endblock %}
+        {% endembed %}
+      </div>
+
+    {% endif %}
+
+  </div>
+
+</article>
