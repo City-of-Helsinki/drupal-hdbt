@@ -124,7 +124,7 @@
       flex-wrap: wrap;
       margin-left: calc(-#{$spacing-and-half} / 2);
       margin-right: calc(-#{$spacing-and-half} / 2);
-      margin-top: $spacing-double;
+      margin-top: $spacing-triple;
     }
 
     .views-row {
@@ -136,7 +136,6 @@
       &:nth-child(-n+4) {
         margin-top: 0;
       }
-
     }
   }
 
