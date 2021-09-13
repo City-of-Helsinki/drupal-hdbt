@@ -330,25 +330,7 @@
     width: 100%;
 
     .unit__services__pager-button {
-      text-decoration: none;
-    }
-
-    .hds-button {
-      --background-color: transparent;
-      --background-color-hover: var(--color-black-10);
-      --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-black-10);
-      --background-color-disabled: transparent;
-      --border-color: var(--hdbt-color-black);
-      --border-color-hover: var(--hdbt-color-black);
-      --border-color-focus: var(--hdbt-color-black);
-      --border-color-hover-focus: var(--hdbt-color-black);
-      --border-color-disabled: var(--hdbt-color-black);
-      --color: var(--hdbt-color-black);
-      --color-hover: var(--hdbt-color-black);
-      --color-focus: var(--hdbt-color-black);
-      --color-hover-focus: var(--hdbt-color-black);
-      --focus-outline-color: var(--hdbt-color-black);
+      @extend .emulate-button--primary;
     }
   }
 }

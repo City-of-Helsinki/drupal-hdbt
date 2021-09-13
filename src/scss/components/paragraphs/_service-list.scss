@@ -149,5 +149,9 @@
     @include breakpoint($breakpoint-m) {
       margin-top: $spacing-quadruple;
     }
+
+    .service-list__pager-button {
+      @extend .emulate-button--primary;
+    }
   }
 }

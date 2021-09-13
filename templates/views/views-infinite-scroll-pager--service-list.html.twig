@@ -9,7 +9,7 @@
   <ul{{ attributes.addClass('service-list__pager') }}>
     <li class="pager__item service-list__pager-button-wrapper">
       <a class="service-list__pager-button button" href="{{ items.next.href }}" rel="next">
-        {% include '@hdbt/button/button.html.twig' with {type: 'primary', disabled: false, label: options.button_text } %}
+        {{ options.button_text }}
       </a>
     </li>
   </ul>
