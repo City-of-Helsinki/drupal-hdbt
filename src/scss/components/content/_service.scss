@@ -102,6 +102,7 @@ $teaser-icon-size-desktop: 48px;
       justify-content: space-between;
       line-height: 0; // Remove extra space under the arrow icon on larger card
       margin-top: 0;
+      min-height: 240px; // As in designs
       padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
     }
 
@@ -135,11 +136,10 @@ $teaser-icon-size-desktop: 48px;
     @include font-size(20px, 22px);
     font-weight: 500;
     margin: 0;
-  }
 
-  .service__short-desc {
-    @include font-size(18px, 24px);
-    margin-top: $spacing;
+    @include breakpoint($breakpoint-l) {
+      @include font-size(24px, 28px);
+    }
   }
 
   .icon {
