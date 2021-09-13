@@ -54,14 +54,9 @@
   margin-top: $spacing-double;
 
   a {
-    --border-width: 2px;
-    --min-size: 56px;
-    --outline-gutter: 2px;
-    --outline-width: 3px;
+    @extend .emulate-button--primary;
     --background-color: var(--hdbt-color-palette-button--secondary);
-    --background-color-hover: transparent;
     --background-color-focus: var(--hdbt-color-palette-button--secondary);
-    --background-color-hover-focus: transparent;
     --border-color: var(--hdbt-color-palette-button--secondary);
     --border-color-hover: var(--hdbt-color-palette-button--secondary);
     --border-color-focus: var(--hdbt-color-palette-button--secondary);
@@ -71,64 +66,6 @@
     --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
     --color-hover-focus: var(--hdbt-color-palette-button--secondary);
     --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-
-    @include font-size(16px, 20px);
-    align-content: flex-start;
-    align-items: center;
-    background-color: var(--background-color);
-    border: var(--border-width) solid var(--border-color, transparent);
-    border-radius: 0;
-    box-sizing: border-box;
-    color: var(--color);
-    cursor: pointer;
-    display: flex;
-    font-weight: 500;
-    justify-content: center;
-    margin-top: $spacing;
-    min-height: var(--min-size);
-    min-width: var(--min-size);
-    padding: $spacing $spacing-double;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: top;
-
-    @include breakpoint($breakpoint-l) {
-      display: inline-flex;
-    }
-
-    &:after {
-      --size: 100%;
-      border: var(--outline-width) solid transparent;
-      content: "";
-      height: var(--size);
-      position: absolute;
-      width: var(--size);
-    }
-
-    &:focus {
-      background-color: var(--background-color-focus);
-      border-color: var(--border-color-focus);
-      color: var(--color-focus);
-      outline: none;
-
-      &:after {
-        --size: calc(100% + calc(var(--outline-width) * 2 + var(--border-width) * 2 + var(--outline-gutter) * 2));
-        border-color: var(--focus-outline-color);
-      }
-
-      &:hover {
-        background-color: var(--background-color-hover-focus);
-        border-color: var(--border-color-hover-focus);
-        color: var(--color-hover-focus);
-      }
-    }
-
-    &:hover {
-      background-color: var(--background-color-hover);
-      border-color: var(--border-color-hover);
-      color: var(--color-hover);
-    }
 
     &:first-child {
       margin-top: 0;

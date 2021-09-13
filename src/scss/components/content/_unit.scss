@@ -239,62 +239,80 @@
 }
 
 .unit__services {
-  background-color: $color-black-5;
-  margin-top: $spacing-double;
-  overflow: hidden;
-  padding-bottom: $spacing-and-half;
+  margin-top: $spacing-quadruple;
+  padding: 0;
 
-  .service.service--teaser {
-    margin-top: $spacing-and-half;
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
   }
 
-  .unit__services__header {
-    align-items: flex-end;
-    display: flex;
-    justify-content: space-between;
+  .unit--services__container {
+    padding-top: 0;
+  }
+
+  .unit__services__title {
+    margin-top: 0;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(48px, 48px);
+    }
   }
 
   .unit__services__count-container {
-    @include font-size(24px, 30px);
-    margin-left: $spacing-and-half;
-    white-space: nowrap;
+    @include font-size(18px, 24px);
+    display: block;
+    margin-top: $spacing-and-half;
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(24px, 30px);
+    }
 
     .unit__services__count {
       font-weight: 700;
     }
   }
 
-  .unit__services__list > * {
-    display: flex;
-    flex-wrap: wrap;
+  .unit__services__list {
+    margin-top: $spacing-and-half;
 
-    @include breakpoint($breakpoint-s) {
-      margin-right: -$spacing-and-half;
-    }
-
-    .service {
-      width: 100%;
-
-      @include breakpoint($breakpoint-s) {
-        margin-right: $spacing-and-half;
-        width: calc(50% - #{$spacing-and-half});
-      }
-
+    > * {
       @include breakpoint($breakpoint-l) {
-        width: calc(25% - #{$spacing-and-half});
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: calc(-#{$spacing-and-half} / 2);
+        margin-right: calc(-#{$spacing-and-half} / 2);
+        margin-top: $spacing-triple;
       }
 
-      // If there is 1 or 2 items inside the services listing:
-      @include content_count(1, 2) {
+      .service {
+        width: 100%;
+
         @include breakpoint($breakpoint-l) {
-          width: calc(50% - #{$spacing-and-half});
+          margin-top: $spacing-and-half;
+          width: 25%;
         }
-      }
 
-      // If there 3 items inside the services listing:
-      @include content_count(3) {
+        &:nth-child(-n+4) {
+          margin-top: 0;
+        }
+
         @include breakpoint($breakpoint-l) {
-          width: calc(33.33% - #{$spacing-and-half});
+          width: calc(25% - #{$spacing-and-half});
+        }
+
+        // If there is 1 or 2 items inside the services listing:
+        @include content_count(1, 2) {
+          @include breakpoint($breakpoint-l) {
+            width: calc(50% - #{$spacing-and-half});
+          }
+        }
+
+        // If there 3 items inside the services listing:
+        @include content_count(3) {
+          @include breakpoint($breakpoint-l) {
+            width: calc(33.33% - #{$spacing-and-half});
+          }
         }
       }
     }
@@ -312,25 +330,7 @@
     width: 100%;
 
     .unit__services__pager-button {
-      text-decoration: none;
-    }
-
-    .hds-button {
-      --background-color: transparent;
-      --background-color-hover: var(--color-black-10);
-      --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-black-10);
-      --background-color-disabled: transparent;
-      --border-color: var(--hdbt-color-black);
-      --border-color-hover: var(--hdbt-color-black);
-      --border-color-focus: var(--hdbt-color-black);
-      --border-color-hover-focus: var(--hdbt-color-black);
-      --border-color-disabled: var(--hdbt-color-black);
-      --color: var(--hdbt-color-black);
-      --color-hover: var(--hdbt-color-black);
-      --color-focus: var(--hdbt-color-black);
-      --color-hover-focus: var(--hdbt-color-black);
-      --focus-outline-color: var(--hdbt-color-black);
+      @extend .emulate-button--primary;
     }
   }
 }
