@@ -1,0 +1,74 @@
+.service-channel {
+  background-color: var(--hdbt-color-palette--secondary);
+}
+
+.errand-service .service-channel {
+  margin: $spacing-and-half -#{$spacing-and-half} 0;
+  padding: $spacing-and-half $spacing-and-half $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin: $spacing-double 0 0;
+    padding: $spacing-triple $spacing-double;
+  }
+}
+
+.service-channel__type {
+  @include font-size(16px, 24px);
+  font-weight: 500;
+}
+
+.service-channel__title {
+  @include font-size(28px, 43px); // Design has larger font size on mobile than normal h3.
+  font-weight: 500;
+  margin-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(36px, 43px);
+    margin-top: $spacing;
+  }
+}
+
+.service-channel__info {
+  align-items: center;
+  display: flex;
+  margin-top: $spacing-and-half;
+
+  > * {
+    align-items: center;
+    display: flex;
+
+    &:after {
+      content: "|";
+      margin: 0 $spacing;
+    }
+
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
+}
+
+.service-channel__links {
+  margin-top: $spacing-double;
+
+  a {
+    @extend .emulate-button--primary;
+    --background-color: var(--hdbt-color-palette-button--secondary);
+    --background-color-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover: var(--hdbt-color-palette-button--secondary);
+    --border-color-focus: var(--hdbt-color-palette-button--secondary);
+    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --color: var(--hdbt-color-palette-button-contrast--secondary);
+    --color-hover: var(--hdbt-color-palette-button--secondary);
+    --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
+    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
+    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

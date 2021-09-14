@@ -1,4 +1,5 @@
-$teaser-icon-size: 48px;
+$teaser-icon-size-mobile: 32px;
+$teaser-icon-size-desktop: 48px;
 
 .service {
   .service__title {
@@ -106,14 +107,49 @@ $teaser-icon-size: 48px;
 }
 
 .service.service--teaser {
-  background-color: $color-white;
+  @include breakpoint($breakpoint-l) {
+    height: 100%;
+    margin-left: calc(#{$spacing-and-half} / 2);
+    margin-right: calc(#{$spacing-and-half} / 2);
+  }
 
   .service__link {
+    border: 1px solid $color-black;
     display: block;
     height: 100%;
-    padding: $spacing-double $spacing ($spacing + $teaser-icon-size + $spacing);
+    margin-top: $spacing-half;
+    padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
     position: relative;
     text-decoration: none;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      line-height: 0; // Remove extra space under the arrow icon on larger card
+      margin-top: 0;
+      min-height: 240px; // As in designs
+      padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
+    }
+
+    &:before {
+      background-color: var(--hdbt-color-gold--primary);
+      content: "";
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: $spacing-half;
+
+      @include breakpoint($breakpoint-l) {
+        bottom: 0;
+        height: $spacing-and-half;
+        right: 0;
+        top: auto;
+        width: 100%;
+      }
+    }
 
     &:hover {
       .icon {
@@ -123,22 +159,33 @@ $teaser-icon-size: 48px;
   }
 
   .service__title {
-    @include font-size(22px, 22px);
+    @include font-size(20px, 22px);
+    font-weight: 500;
     margin: 0;
-  }
 
-  .service__short-desc {
-    @include font-size(18px, 24px);
-    margin-top: $spacing;
+    @include breakpoint($breakpoint-l) {
+      @include font-size(24px, 28px);
+    }
   }
 
   .icon {
-    bottom: $spacing;
-    height: $teaser-icon-size;
-    left: $spacing;
+    bottom: 50%;
+    height: $teaser-icon-size-mobile;
+    left: auto;
     position: absolute;
+    right: $spacing;
+    transform: translateY(50%);
     transition: all .3s;
-    width: $teaser-icon-size;
+    width: $teaser-icon-size-mobile;
+
+    @include breakpoint($breakpoint-l) {
+      height: $teaser-icon-size-desktop;
+      margin-top: $spacing-and-half;
+      position: static;
+      right: auto;
+      transform: none;
+      width: $teaser-icon-size-desktop;
+    }
   }
 }
 

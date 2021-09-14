@@ -1,0 +1,157 @@
+.service-list {
+  margin-top: $spacing-quadruple;
+  padding: 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+}
+
+.service-list__container {
+  padding-top: 0;
+}
+
+.service-list__header__title {
+  margin-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(48px, 48px);
+  }
+}
+
+.service-list__header__description {
+  margin-top: $spacing-and-half;
+
+  p:first-child {
+    margin-top: 0;
+  }
+}
+
+.views--service-list {
+  margin-top: $spacing-and-half;
+
+  .hds-button--primary {
+    --background-color: var(--color-black);
+    --background-color-hover: var(--color-black);
+    --background-color-focus: var(--color-black);
+    --background-color-hover-focus: var(--color-black);
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--color-black);
+    --border-color-hover: var(--color-black);
+    --border-color-focus: var(--color-black);
+    --border-color-hover-focus: var(--color-black);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+    --color-disabled: var(--color-black);
+    --focus-outline-color: var(--color-black);
+    --submit-input-focus-gutter-color: var(--color-white);
+  }
+
+  .form-actions .hds-button--primary {
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing-and-half;
+    }
+  }
+
+  .views-exposed-form {
+    @include breakpoint($breakpoint-m) {
+      align-items: flex-end;
+      display: flex;
+    }
+
+    .form-item {
+      @include breakpoint($breakpoint-m) {
+        margin-bottom: 0;
+        width: 70%;
+      }
+    }
+
+    .hds-text-input__input-wrapper {
+      &::after {
+        background-color: $color-black;
+        background-size: contain;
+        content: "";
+        display: block;
+        height: 20px;
+        mask-image: url('../icons/hds/ui/search.svg');
+        position: absolute;
+        right: $spacing;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+      }
+
+      .hds-text-input__input {
+        padding-right: $spacing-triple;
+      }
+    }
+
+    .form-actions {
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        width: 30%;
+      }
+    }
+  }
+
+  .service-list__count-container {
+    @include font-size(18px, 24px);
+    border-top: 1px solid $color-black-10;
+    display: block;
+    margin-top: $spacing-and-half;
+    padding-top: $spacing-and-half;
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(24px, 30px);
+    }
+
+    .service-list__count {
+      font-weight: 700;
+    }
+  }
+
+  .views-infinite-scroll-content-wrapper {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: calc(-#{$spacing-and-half} / 2);
+      margin-right: calc(-#{$spacing-and-half} / 2);
+      margin-top: $spacing-triple;
+    }
+
+    .views-row {
+      @include breakpoint($breakpoint-l) {
+        margin-top: $spacing-and-half;
+        width: 25%;
+      }
+
+      &:nth-child(-n+4) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .service-list__pager {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: $spacing-double 0 0;
+    padding: 0;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-quadruple;
+    }
+
+    .service-list__pager-button {
+      @extend .emulate-button--primary;
+    }
+  }
+}
