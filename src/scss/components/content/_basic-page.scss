@@ -27,3 +27,35 @@
     padding-top: 0;
   }
 }
+
+.page-type--page.has-sidebar {
+  .before-content--in-main {
+    .page-title {
+      margin-top: 0;
+
+      .page-title__container {
+        padding-left: 0;
+      }
+    }
+    .node--type-page {
+      margin-top: $spacing-and-half;
+    }
+
+    // Unset container paddings if basic page has sidebar.
+    @include breakpoint($breakpoint-l) {
+      &.has-navigation {
+        .container {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  @include breakpoint($breakpoint-l) {
+    .main-content .layout-content {
+      .container {
+        padding-left: 0;
+     }
+    }
+  }
+}

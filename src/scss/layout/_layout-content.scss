@@ -1,24 +1,25 @@
 .layout-content {
-  margin: 0 $spacing-double;
+  margin: 0 $spacing-and-half;
 
   // Negate layout content margins on articles since we want node content to be able to strech from edge to edge.
   > article,
   > .page-title {
-    margin: 0 (-$spacing-double);
+    margin: 0 (-$spacing-and-half);
   }
 }
 
 .has-sidebar--first {
   .layout-content {
     @include breakpoint($breakpoint-l) {
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
       order: 2;
-      padding-left: $spacing;
       width: 70%;
 
       > article,
       > .page-title {
-        margin: 0;
+        margin-left: 0;
+        margin-right: 0;
       }
     }
   }

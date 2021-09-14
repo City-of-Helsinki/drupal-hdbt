@@ -1,0 +1,106 @@
+.sidebar-text {
+  @include font-size(18px, 27px);
+  margin-top: $spacing;
+
+  &.has-title:first-of-type,
+  &:first-of-type {
+    // Node (basic page).
+    margin-top: $spacing-and-half;
+
+    // Service.
+    .service__sidebar & {
+      margin-top: $spacing;
+    }
+
+    // If sidebar navigation exists.
+    .has-navigation & {
+      margin-top: $spacing-triple;
+    }
+  }
+
+  &.has-title {
+    margin-top: $spacing-double;
+  }
+
+  .sidebar-text__title {
+    @include font-size(24px, 24px);
+    color: $color-black;
+    font-weight: $font-weight-medium;
+
+    & + .sidebar-text__text-content {
+      margin-top: $spacing-and-half;
+    }
+  }
+
+  .sidebar-text__text-content {
+    @include font-size(18px, 32px);
+    color: var(--hdbt-color-palette-text--secondary);
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > p:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    > p {
+      background-color: var(--hdbt-color-palette--secondary);
+      padding: $spacing;
+    }
+
+    .hds-button--primary,
+    .hds-button--secondary,
+    .hds-button--supplementary {
+      @include font-size(18px, 32px);
+      background: transparent;
+      border: none;
+      color: var(--hdbt-color-palette-text--secondary);
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0;
+      min-height: 0;
+      padding: 0;
+      text-decoration: underline;
+
+      &:focus,
+      &:active,
+      &:hover {
+        background: transparent;
+        border: none;
+        color: var(--hdbt-color-palette-text--secondary);
+      }
+
+      &::before {
+        background-color: var(--hdbt-color-palette-text--secondary);
+        margin-left: $spacing-half;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  ul, ol {
+    background-color: var(--hdbt-color-palette--secondary);
+    padding: $spacing;
+
+    li {
+      margin-left: $spacing-double;
+      padding-left: $spacing-half;
+    }
+
+    ul, ol {
+      margin-top: 0;
+
+      li {
+        margin-left: $spacing-half;
+      }
+    }
+  }
+}
