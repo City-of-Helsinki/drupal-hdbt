@@ -1,8 +1,25 @@
 .has-sidebar .layout-sidebar-first,
 .layout-sidebar-first {
   @include breakpoint($breakpoint-l) {
-    order: 1;
-    width: 30%;
+    order: 2;
+    width: 32%;
+
+    &.has-navigation {
+      order: 1;
+
+      .sidebar-first__container {
+        //margin-top: $spacing;
+
+        @include breakpoint($breakpoint-l) {
+          padding-left: 0;
+          padding-right: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-right: $spacing-triple;
+        }
+      }
+    }
   }
 
   .sidebar-first__container {
@@ -12,8 +29,12 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      padding-left: 0;
-      padding-right: $spacing-and-half * 2;
+      padding-left: $spacing-double;
+      padding-right: 0;
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      padding-left: $spacing-triple;
     }
   }
 }

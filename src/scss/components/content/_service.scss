@@ -43,7 +43,6 @@ $teaser-icon-size-desktop: 48px;
 
         @include breakpoint($breakpoint-l) {
           padding-left: $spacing-double;
-          width: 70%;
         }
 
         @include breakpoint($breakpoint-xl) {
@@ -52,17 +51,44 @@ $teaser-icon-size-desktop: 48px;
       }
 
       .service__sidebar {
+        margin-top: $spacing-double;
         order: 1;
         padding-left: 0;
 
         @include breakpoint($breakpoint-l) {
+          margin-top: 0;
           padding-right: $spacing-double;
-          width: 30%;
         }
 
         @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing;
           padding-right: $spacing-triple;
         }
+      }
+    }
+
+    .service__header {
+      @include breakpoint($breakpoint-l) {
+        padding-right: $spacing-double;
+        width: 68%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-right: $spacing-triple;
+      }
+    }
+    .service__sidebar {
+      margin-top: $spacing-double;
+
+      @include breakpoint($breakpoint-l) {
+        margin-top: 0;
+        padding-left: $spacing-double;
+        width: 32%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-left: $spacing-triple;
+        padding-right: $spacing;
       }
     }
   }

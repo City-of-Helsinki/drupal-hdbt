@@ -21,6 +21,10 @@
   ]
 %}
 
+{% if not has_hero and node.getType()|clean_class is same as('page') and sidebar_first_output %}
+  {% set move_before_content = TRUE %}
+{% endif %}
+
 <div{{ create_attribute({'class': page_classes} ) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
     <header role="banner" class="header">
@@ -53,17 +57,21 @@
   <main role="main" class="layout-main-wrapper">
     <a id="main-content" tabindex="-1"></a>
 
-    {% if page.before_content %}
+    {# Move title inside the content area if page has navigation set to true. #}
+    {% if page.before_content and not move_before_content %}
       {{ page.before_content }}
     {% endif %}
 
     <div class="main-content">
-      <div class="layout-content">
+      <div class="layout-content {% if has_navigation %}has-navigation{% endif %} {% if move_before_content %}before-content--in-main{% endif %}">
+        {% if page.before_content and move_before_content %}
+          {{ page.before_content }}
+        {% endif %}
         {{ page.content }}
       </div>{# /.layout-content #}
 
       {% if sidebar_first_output %}
-        <aside class="layout-sidebar-first" role="complementary">
+        <aside class="layout-sidebar-first {% if has_navigation %}has-navigation{% endif %}" role="complementary">
           {{ page.sidebar_first }}
         </aside>
       {% endif %}

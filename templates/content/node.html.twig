@@ -91,6 +91,6 @@
     </h2>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_lower_content') }}
+  {{ content|without('field_lower_content', 'field_sidebar_content') }}
 
 </article>
