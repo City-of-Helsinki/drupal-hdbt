@@ -8,6 +8,7 @@
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_preprocess().
@@ -123,6 +124,22 @@ function hdbt_get_settings($setting, $group = 'site_settings') {
 function hdbt_preprocess_page(&$variables) {
   if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
+  }
+
+  // If we're handling page which is in menu, set variable accordingly.
+  if (
+    isset($variables['node']) &&
+    $variables['node'] instanceof NodeInterface &&
+    $variables['node']->getType() == 'page'
+  ) {
+    $defaults = menu_ui_get_menu_link_defaults($variables['node']);
+    if ($defaults['id'] && !empty($defaults['parent'])) {
+      $variables['has_navigation'] = TRUE;
+    }
+
+    if ($variables['node']->hasField('field_has_hero')) {
+      $variables['has_hero'] = $variables['node']->field_has_hero->value;
+    }
   }
 }
 
