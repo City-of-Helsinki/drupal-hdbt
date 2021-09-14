@@ -602,6 +602,9 @@
     width: 100%;
 
     @include breakpoint($breakpoint-m) {
+      align-items: center;
+      background-color: var(--hdbt-color-palette--primary);
+      display: flex;
       width: 30%;
     }
 
