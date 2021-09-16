@@ -1,3 +1,5 @@
 .region--attachments {
-  display: none; // The region does not display anything that the user would see - just blocks that add libraries etc.
+  height: 0;
+  visibility: hidden;
+  width: 0;
 }
