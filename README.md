@@ -149,3 +149,9 @@ configuration and fusing is done in gallery-settings.js under the theme.
 
 Much like the accordion the gallery also consist of gallery paragraph that in turn consists of gallery slide paragraphs.
 This means that also the gallery paragraph is so-called paragraph-inception.
+
+### Kuura Health Chat
+Kuura Health chat is attached to a block id `block-kuurahealthchat` when adding the external library. This causes the
+chat to appear in inline-mode which adds class `kuura-widget-container-inline` for the widget. These styles are
+overridden in the `_kuura-health-chat.scss` file. If in some cases the chat doesn't appear on the site even if adding
+it on the block layout, make sure that there is a block with the correct id on the html-dom.
