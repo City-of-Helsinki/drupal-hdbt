@@ -160,6 +160,27 @@ function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$vari
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_content_preprocess_views_infinite_scroll_pager__service_list(&$variables) {
+  $view = $variables['view'];
+
+  if (isset($view)) {
+    // Apply the cached meta fields values to form values.
+    $cached = \Drupal::cache()->get(
+      $view->id() .
+      $view->current_display .
+      $variables['current_langcode'] .
+      $view->args[0]
+    );
+
+    if ($cached && !empty($cached->data['field_service_list_meta_load_mor'])) {
+      $variables['options']['button_text'] = $cached->data['field_service_list_meta_load_mor'];
+    }
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function hdbt_content_form_eu_cookie_compliance_block_form_alter(&$form) {
