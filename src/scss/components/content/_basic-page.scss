@@ -50,12 +50,4 @@
       }
     }
   }
-
-  @include breakpoint($breakpoint-l) {
-    .main-content .layout-content {
-      .container {
-        padding-left: 0;
-     }
-    }
-  }
 }
