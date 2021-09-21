@@ -475,7 +475,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
       // has defined the fields.
       $meta = [];
       $fields = [
-        'field_service_list_meta_load_more',
+        'field_service_list_meta_load_mor',
       ];
 
       foreach ($fields as $field) {
