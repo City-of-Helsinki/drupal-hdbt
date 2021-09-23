@@ -1,0 +1,8 @@
+<h4 class="errand-service__detail-title">{{ title }}</h4>
+<ul>
+  {% for link in links %}
+    <li>
+      <a href="{{ link.url }}" target="_blank" class="errand-service__detail-link">{{ link.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

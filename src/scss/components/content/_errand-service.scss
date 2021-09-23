@@ -27,4 +27,10 @@
     padding-right: 0;
     padding-top: 0;
   }
+
+  .accordion-item__content__inner {
+    .errand-service__detail-title {
+      margin-top: $spacing-and-half;
+    }
+  }
 }
