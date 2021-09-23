@@ -1,0 +1,27 @@
+{% if node.field_announcement_type.value == 'alert' %}
+  {% set block_modifier = 'announcement--alert' %}
+{% elseif node.field_announcement_type.value == 'attention' %}
+  {% set block_modifier = 'announcement--attention' %}
+{% else %}
+  {% set block_modifier = 'announcement--notification' %}
+{% endif %}
+
+{% set link = content.field_announcement_link[0] %}
+
+<div class="announcement {{ block_modifier }}" data-nodeid="{{ node.id }}">
+  <div class="announcement__content">
+    <span class="announcenemnt__content-body">{{ content.body }}</span>
+    {% if link != null %}
+      <div class="announcement__link">
+        {{ link }}
+      </div>
+    {% endif %}
+  </div>
+  {#
+  This is disabled until we have a better plan for storing closing of these notifications
+
+  <button type="button" class="announcement__close" aria-label="{{ "Close announcement"|t }}">
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'cross'} %}
+  </button>
+  #}
+</div>

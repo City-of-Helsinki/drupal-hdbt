@@ -65,3 +65,27 @@
     }
   }
 }
+
+/**
+ * Allow changing icon easily on hover, etc.
+ */
+@mixin icon-mask-image( $icon ) {
+  mask-image: url("../icons/hds/ui/" + $icon + ".svg");
+}
+
+/**
+ * Add pseudo element (::before, ::after) styling for icons
+ */
+@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black) {
+  @include icon-mask-image( $icon );
+  background-color: $color;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: $size;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: $size;
+  vertical-align: bottom;
+  width: $size;
+}
