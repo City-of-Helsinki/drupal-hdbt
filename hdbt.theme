@@ -654,8 +654,8 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
   $details = [];
 
   $detail_fields = [
-    'costs' => t('Costs'),
     'processing_time' => t('Processing time'),
+    'costs' => t('Costs'),
     'expiration_time' => t('Expiration time'),
     'information' => t('Additional information'),
     'links' => t('Additional links'),

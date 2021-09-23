@@ -1,7 +1,7 @@
 <h4 class="errand-service__detail-title">{{ title }}</h4>
-<ul>
+<ul class="errand-service__detail-links">
   {% for link in links %}
-    <li>
+    <li class="errand-service__detail-link-wrapper">
       <a href="{{ link.url }}" target="_blank" class="errand-service__detail-link">{{ link.title }}</a>
     </li>
   {% endfor %}
