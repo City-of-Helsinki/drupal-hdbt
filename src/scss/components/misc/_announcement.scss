@@ -5,7 +5,7 @@
   align-items: flex-start;
   background: linear-gradient(90deg, var(--announcement-color) 0, var(--announcement-color) var(--announcement-bg-size), var(--announcement-bg-color) var(--announcement-bg-size));
   background-color: var(--announcement-bg-color);
-  box-shadow: 2px 2px 10px 0px rgba(210, 210, 210, 0.6);
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   margin-bottom: $spacing;
