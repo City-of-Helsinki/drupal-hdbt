@@ -139,6 +139,9 @@
   mask-image: url('../icons/hds/ui/location.svg');
 }
 
+.service-channel--mail .service-channel__type:after {
+  mask-image: url('../icons/hds/ui/envelope.svg');
+}
 
 .service-channel__phone,
 .service-channel__email {
