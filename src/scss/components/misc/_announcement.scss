@@ -55,9 +55,17 @@
   }
 }
 
-.announcement__link a::after {
-   @include pseudo-icon("arrow-right", $spacing-and-half);
-   margin-left: $spacing-quarter;
+.announcement__link {
+  margin-top: $spacing;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  a::after {
+    @include pseudo-icon("arrow-right", $spacing-and-half);
+    margin-left: $spacing-quarter;
+  }
 }
 
 // Disabled until we want to introduce announcement close functionality
