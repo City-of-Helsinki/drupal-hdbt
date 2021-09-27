@@ -70,7 +70,7 @@
  * Allow changing icon easily on hover, etc.
  */
 @mixin icon-mask-image( $icon ) {
-  mask-image: url("../icons/hds/ui/" + $icon + ".svg");
+  mask-image: url('../icons/hds/' + $icon + '.svg');
 }
 
 /**
@@ -80,7 +80,7 @@
   @include icon-mask-image( $icon );
   background-color: $color;
   background-size: contain;
-  content: "";
+  content: '';
   display: inline-block;
   height: $size;
   mask-position: center;

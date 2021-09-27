@@ -19,7 +19,7 @@
   position: relative;
 
   &::before {
-    @include pseudo-icon("info-circle-fill", $spacing-and-half, $color-white); // Defaults to .announcement--notification styles
+    @include pseudo-icon('ui/info-circle-fill', $spacing-and-half, $color-white); // Defaults to .announcement--notification styles
     left: calc(0.5 * (var(--announcement-bg-size) - #{$spacing-and-half}));
     margin-top: (- $spacing-and-half / 2);
     position: absolute;
@@ -37,14 +37,14 @@
   --announcement-bg-color: #{$color-error-light};
   --announcement-color: #{$color-error};
   &::before {
-    @include icon-mask-image('error-fill');
+    @include icon-mask-image('ui/error-fill');
   }
 }
 
 .announcement--attention {
   --announcement-color: #{$color-alert};
   &::before {
-    @include icon-mask-image('alert-circle-fill');
+    @include icon-mask-image('ui/alert-circle-fill');
     background-color: $color-black;
   }
 }
@@ -63,7 +63,7 @@
   }
 
   a::after {
-    @include pseudo-icon("arrow-right", $spacing-and-half);
+    @include pseudo-icon('ui/arrow-right', $spacing-and-half);
     margin-left: $spacing-quarter;
   }
 }
