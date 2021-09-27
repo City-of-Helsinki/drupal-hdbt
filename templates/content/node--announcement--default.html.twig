@@ -10,7 +10,11 @@
 
 <div class="announcement {{ block_modifier }}" data-nodeid="{{ node.id }}">
   <div class="announcement__content">
-    <span class="announcenemnt__content-body">{{ content.body }}</span>
+    {% if content.body|render != null %}
+      <span class="announcenemnt__content-body">
+        {{ content.body }}
+      </span>
+    {% endif %}
     {% if link != null %}
       <div class="announcement__link">
         {{ link }}
