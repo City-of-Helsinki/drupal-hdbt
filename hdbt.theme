@@ -7,6 +7,7 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
@@ -639,4 +640,47 @@ function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$sugges
 function hdbt_preprocess_views_view(&$variables) {
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows;
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_errand_service(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof ErrandService) {
+    return;
+  }
+  $entity = $variables['entity'];
+  $details = [];
+
+  $detail_fields = [
+    'processing_time' => t('Processing time', [], ['context' => 'Errand service detail heading']),
+    'costs' => t('Costs', [], ['context' => 'Errand service detail heading']),
+    'expiration_time' => t('Expiration time', [], ['context' => 'Errand service detail heading']),
+    'information' => t('Additional information', [], ['context' => 'Errand service detail heading']),
+    'links' => t('Additional links', [], ['context' => 'Errand service detail heading']),
+  ];
+
+  foreach ($detail_fields as $detail_key => $heading) {
+    if (!$entity->{$detail_key}->isEmpty()) {
+      $content = [];
+      if ($detail_key !== 'links') {
+        $content['#theme'] = 'tpr_errand_service_detail';
+        $content['#title'] = $heading;
+        $content['#content'] = [
+          '#type' => 'processed_text',
+          '#text' => $entity->{$detail_key}->value,
+          '#format' => 'full_html',
+        ];
+      } else {
+        $content['#theme'] = 'tpr_errand_service_detail_link';
+        $content['#title'] = $heading;
+        $content['#links'] = $entity->links;
+      }
+
+      $details[] = $content;
+    }
+  }
+
+  $variables['errand_service_details'] = $details;
 }
