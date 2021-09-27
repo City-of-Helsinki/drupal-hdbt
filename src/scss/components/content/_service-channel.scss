@@ -51,7 +51,7 @@
     height: 24px;
     margin-left: calc(-#{$spacing-and-half} - #{$spacing-half});
     overflow: hidden;
-    position: relative;
+    position: absolute;
     text-indent: -9999px;
     width: 24px;
 
@@ -75,7 +75,6 @@
     @include font-size(18px, 26px); // Design has smaller font size than normal h3.
     font-weight: 500;
     margin-top: 0;
-    padding-left: $spacing-half;
     width: 100%;
   }
 
@@ -149,6 +148,13 @@
 
   > a {
     @include font-size(24px, 26px);
+  }
+}
+
+.service-channel--no-title {
+  .service-channel__phone,
+  .service-channel__email {
+    margin-top: 0;
   }
 }
 
