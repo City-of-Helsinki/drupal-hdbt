@@ -5,3 +5,5 @@ hdbt_content.cookie_consent:
     _title: 'Cookie settings'
   requirements:
     _permission: 'access content'
+  options:
+    no_cache: 'TRUE'
