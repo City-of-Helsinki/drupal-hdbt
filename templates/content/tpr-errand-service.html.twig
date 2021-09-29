@@ -27,12 +27,6 @@
       </div>
     {% endif %}
 
-    {% if content.channels|render %}
-      <div class="errand-service__channels">
-        {{ content.channels }}
-      </div>
-    {% endif %}
-
     {% if
       content.process_description|render or
       content.processing_time|render or
@@ -41,54 +35,24 @@
       content.information|render
     %}
 
-      <div class="errand-service__accordion accordion accordion--white">
+      <div class="errand-service__accordion accordion accordion--grey">
         {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
           {% block container_content %}
-
-            {% if content.process_description|render %}
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Process description'|t,
-                content: content.process_description,
-              } %}
-            {% endif %}
-
-            {% if content.processing_time|render %}
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Processing time'|t,
-                content: content.processing_time,
-              } %}
-            {% endif %}
-
-            {% if content.expiration_time|render %}
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Expiration time'|t,
-                content: content.expiration_time,
-              } %}
-            {% endif %}
-
-            {% if content.costs|render %}
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Costs'|t,
-                content: content.costs,
-              } %}
-            {% endif %}
-
-            {% if content.information|render %}
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Additional information'|t,
-                content: content.information,
-              } %}
-            {% endif %}
-
+            {% include '@hdbt/component/accordion.twig' with {
+              heading_level: 'h3',
+              heading: 'Details'|t,
+              content: errand_service_details,
+            } %}
           {% endblock %}
         {% endembed %}
       </div>
 
+    {% endif %}
+
+    {% if content.channels|render %}
+      <div class="errand-service__channels">
+        {{ content.channels }}
+      </div>
     {% endif %}
 
   </div>

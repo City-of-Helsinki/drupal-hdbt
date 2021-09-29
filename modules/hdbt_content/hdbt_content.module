@@ -49,6 +49,18 @@ function hdbt_content_theme() {
         'content' => NULL,
       ],
     ],
+    'tpr_errand_service_detail' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
+    'tpr_errand_service_detail_link' => [
+      'variables' => [
+        'title' => NULL,
+        'links' => NULL,
+      ],
+    ]
   ];
 }
 
