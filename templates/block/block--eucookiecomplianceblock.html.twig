@@ -10,13 +10,14 @@
  * - content: The content of this block.
  */
 #}
+
 {% if content %}
-  {% embed "@hdbt/misc/container.twig" with {container_element: 'cookie-compliance'} %}
-    {% block container_content %}
-      <div{{ attributes.addClass(region|clean_class) }}>
+  <div class="layout-content">
+    {% embed "@hdbt/misc/container.twig" with {container_element: 'cookie-compliance'} %}
+      {% block container_content %}
         {{ content }}
-      </div>
-    {% endblock container_content %}
-  {% endembed %}
+      {% endblock container_content %}
+    {% endembed %}
+  </div>
 {% endif %}
 

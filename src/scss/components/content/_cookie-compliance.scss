@@ -10,10 +10,8 @@
 
 .cookie-compliance__container {
   max-width: $content-width-max;
-
-  @include breakpoint($breakpoint-l) {
-    padding: 0;
-  }
+  padding-left: 0;
+  padding-right: 0;
 
   .cookie-selection-instruction {
     @include font-size(18px, 32px);
