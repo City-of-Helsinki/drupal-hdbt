@@ -132,6 +132,42 @@
 
   .accordion-item__content {
     border: none;
+
+    h3, h4, h5, h6 {
+      margin-top: $spacing-double;
+    }
+
+    h3 {
+      @include font-size(20px, 24px);
+      font-weight: 500;
+
+      @include breakpoint($breakpoint-l) {
+        @include font-size(24px, 28px);
+      }
+    }
+
+    h4 {
+      @include font-size(18px, 18px);
+      font-weight: 500;
+
+      @include breakpoint($breakpoint-l) {
+        @include font-size(22px, 22px);
+      }
+    }
+
+    h5 {
+      @include font-size(18px, 18px);
+      font-weight: 500;
+    }
+
+    h6 {
+      @include font-size(16px, 16px);
+      font-weight: 700;
+
+      @include breakpoint($breakpoint-l) {
+        @include font-size(16px, 16px);
+      }
+    }
   }
 
   .accordion-item__content__inner {
