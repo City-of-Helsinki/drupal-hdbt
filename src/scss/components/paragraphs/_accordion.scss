@@ -18,14 +18,14 @@
   }
 
   .accordion-item__header {
-    @include font-size(24px, 28px);
+    @include font-size(20px, 22px);
     border-top: 1px solid $color-black-20;
     font-weight: $font-weight-regular;
     margin: 0;
     padding: 0;
 
     @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 43px);
+      @include font-size(24px, 28px);
     }
 
     // Accordion open state.
@@ -51,6 +51,7 @@
   }
 
   .accordion-item__button {
+    align-items: center;
     background: transparent;
     border: none;
     display: flex;
@@ -61,12 +62,10 @@
 
   .accordion-item__icon {
     display: inline-flex;
-    margin-right: $spacing;
-    margin-top: -2px; // Icon has safe boundaries which breaks alignment.
+    margin-right: $spacing-half;
 
     @include breakpoint($breakpoint-l) {
-      margin-right: $spacing-and-half;
-      margin-top: -3px; // Icon has safe boundaries which breaks alignment.
+      margin-right: $spacing;
     }
 
     .icon {
@@ -79,15 +78,15 @@
   }
 
   .accordion-item__button--toggle {
-    @include font-size(24px, 28px);
+    @include font-size(20px, 22px);
     border: none;
-    padding: $spacing-and-half 60px $spacing-and-half 0;
+    padding: $spacing 60px $spacing 0;
     position: relative;
     width: 100%;
 
     @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 43px);
-      padding: $spacing-double 60px $spacing-double 0;
+      @include font-size(24px, 28px);
+      padding: $spacing-and-half 60px $spacing-and-half 0;
     }
 
     &::after {
@@ -99,13 +98,13 @@
       height: 30px;
       position: absolute;
       right: 4px; // Move the icon slightly to the left
-      top: $spacing-and-half - 1px; // Adjusting position because slightly different line-height
+      top: 50%;
+      transform: translateY(-50%);
       width: 30px;
 
       @include breakpoint($breakpoint-l) {
-        height: 50px;
-        top: $spacing-double - 3;  // Adjusting position because slightly different line-height
-        width: 50px;
+        height: 32px;
+        width: 32px;
       }
     }
   }
@@ -113,7 +112,7 @@
   .accordion-item__button--close {
     @include font-size(16px, 24px);
     align-items: center;
-    bottom: 4px;
+    bottom: $spacing;
     display: flex;
     padding: $spacing-half;
     position: absolute;
@@ -136,12 +135,8 @@
   }
 
   .accordion-item__content__inner {
-    padding: 0 0 $spacing-triple;
+    padding: 0 0 $spacing-quadruple;
     position: relative;
-
-    @include breakpoint($breakpoint-l) {
-      padding-bottom: $spacing-triple;
-    }
 
     > *:first-child {
       margin-top: 0;
@@ -207,6 +202,8 @@
   }
 
   .text {
+    @include font-size(16px, 24px);
+
     &:first-child .text__container {
       padding-top: 0;
     }
@@ -244,14 +241,18 @@
     border-color: $color-white;
 
     .accordion-item__button--toggle {
-      padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-double;
+      padding: $spacing ($spacing-double + 50px) $spacing $spacing;
 
       @include breakpoint($breakpoint-l) {
-        padding: $spacing-double ($spacing-double + 50px) $spacing-double $spacing-double;
+        padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
       }
 
       &::after {
-        right: $spacing-double + $spacing-quarter;
+        right: $spacing;
+
+        @include breakpoint($breakpoint-l) {
+          right: $spacing-and-half;
+        }
       }
     }
   }
@@ -262,8 +263,13 @@
 
   .accordion-item__content {
     background-color: $color-black-5;
-    padding-left: $spacing-double;
-    padding-right: $spacing-double;
+    padding-left: $spacing;
+    padding-right: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-left: $spacing-and-half;
+      padding-right: $spacing-and-half;
+    }
   }
 }
 
