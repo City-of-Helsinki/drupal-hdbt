@@ -77,5 +77,9 @@
 
   .buttons {
     text-align: right;
+
+    input {
+      margin-bottom: $spacing-half;
+    }
   }
 }
