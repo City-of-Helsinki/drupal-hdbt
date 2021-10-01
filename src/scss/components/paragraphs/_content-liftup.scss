@@ -10,4 +10,8 @@
     margin-top: $spacing-quadruple;
     padding: 0 $spacing-double;
   }
+
+  > * {
+    border: 2px solid $color-black;
+  }
 }
