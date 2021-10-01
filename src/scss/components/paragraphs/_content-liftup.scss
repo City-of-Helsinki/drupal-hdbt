@@ -1,5 +1,13 @@
 .paragraph--type--content-liftup {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: $spacing-and-half;
+  margin-right: $spacing-and-half;
+  margin-top: $spacing-triple;
   max-width: $content-area-wrapper-width-max;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $spacing-quadruple;
+    padding: 0 $spacing-double;
+  }
 }
