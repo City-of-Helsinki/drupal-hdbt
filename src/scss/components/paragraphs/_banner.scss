@@ -58,9 +58,12 @@
     margin-right: 0;
     // Arbitrary max-width that was determined to look good with the designers.
     max-width: 1030px;
-    padding-left: $spacing-triple;
-    padding-right: $spacing-triple;
     padding-top: 0;
+
+    @include breakpoint($breakpoint-l) {
+      padding-left: $spacing-triple;
+      padding-right: $spacing-triple;
+    }
   }
 
   a.banner__button {
