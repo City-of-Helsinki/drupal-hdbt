@@ -5,8 +5,11 @@
  * Contains alterations for content.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Implements hook_theme().
@@ -27,19 +30,22 @@ function hdbt_content_theme() {
     'hero_block' => [
       'variables' => [
         'title' => NULL,
-        'paragraph_id' => NULL,
+        'paragraphs' => NULL,
+        'is_revision' => NULL,
         'first_paragraph_grey' => NULL,
       ],
     ],
     'lower_content_block' => [
       'variables' => [
         'title' => NULL,
+        'is_revision' => NULL,
         'paragraphs' => NULL,
       ],
     ],
     'sidebar_content_block' => [
       'variables' => [
         'title' => NULL,
+        'is_revision' => NULL,
         'paragraphs' => NULL,
       ],
     ],
@@ -222,4 +228,23 @@ function hdbt_content_get_page_entity() {
     }
   }
   return NULL;
+}
+
+/**
+ * Implements hook_block_access().
+ */
+function hdbt_content_block_access(Block $block, $operation, AccountInterface $account) {
+  // Handle only page title block.
+  if ($operation === 'view' && $block->getPluginId() === 'page_title_block') {
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = \Drupal::service('hdbt_content.entity_version_matcher')->getType()['entity'];
+
+    if (!$entity instanceof ContentEntityInterface || !$entity->hasField('field_has_hero')) {
+      return AccessResult::neutral();
+    }
+
+    return AccessResult::forbiddenIf(boolval($entity->field_has_hero->value))->addCacheableDependency($block);
+  }
+
+  return AccessResult::neutral();
 }
