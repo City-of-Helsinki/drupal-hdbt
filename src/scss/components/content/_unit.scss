@@ -226,6 +226,10 @@
     }
   }
 
+  .unit__contact-row--email a {
+    word-break: break-all;
+  }
+
   .address {
     > * {
       display: block;
@@ -441,6 +445,7 @@
     padding-right: $spacing-and-half;
 
     @include breakpoint($breakpoint-m) {
+      margin-bottom: 0;
       width: 30%;
     }
   }

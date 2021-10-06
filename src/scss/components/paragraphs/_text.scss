@@ -91,14 +91,20 @@
   }
 
   ul, ol {
+    margin-bottom: $spacing-and-half;
     padding: 0;
 
     li {
       margin-left: $spacing-double;
-      padding-left: $spacing;
+      padding-left: $spacing-half;
+    }
+
+    li + li {
+      margin-top: $spacing;
     }
 
     ul, ol {
+      margin-bottom: 0;
       margin-top: $spacing;
 
       li {
