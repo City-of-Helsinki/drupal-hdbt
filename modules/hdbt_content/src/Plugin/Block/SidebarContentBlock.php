@@ -4,6 +4,8 @@ namespace Drupal\hdbt_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\hdbt_content\EntityVersionMatcher;
 
 /**
  * Provides a 'SidebarContentBlock' block.
@@ -18,17 +20,6 @@ use Drupal\Core\Cache\Cache;
 class SidebarContentBlock extends BlockBase {
 
   /**
-   * Allowed entity types.
-   *
-   * @var string[]
-   */
-  protected array $allowedTypes = [
-    'node',
-    'tpr_unit',
-    'tpr_service'
-  ];
-
-  /**
    * The current entity.
    *
    * @var bool|object
@@ -36,20 +27,12 @@ class SidebarContentBlock extends BlockBase {
   protected $entity = FALSE;
 
   /**
-   * Set the entity as current entity.
+   * The current entity version.
    *
-   * @param $entity
-   *   Either TPR entity or node.
-   * @param $entity_type
-   *   Entity type to be set.
+   * @var bool|object
    */
-  public function setEntity($entity, $entity_type) {
-    if (is_numeric($entity)) {
-      $entity_type_manager = \Drupal::entityTypeManager();
-      $entity = $entity_type_manager->getStorage($entity_type)->load($entity);
-    }
-    $this->entity = $entity;
-  }
+  protected $entityVersion = FALSE;
+
   /**
    * {@inheritdoc}
    */
@@ -60,41 +43,49 @@ class SidebarContentBlock extends BlockBase {
     }
     return Cache::mergeTags(parent::getCacheTags(), $this->entity->getCacheTags());
   }
+
   /**
    * {@inheritDoc}
    */
   public function getCacheContexts() {
     return Cache::mergeContexts(parent::getCacheContexts(), ['route']);
   }
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $build = [];
     $this->entityMatch();
-    if (!$this->entity || !$this->entity->hasField('field_sidebar_content')) {
+
+    // Handle only if sidebar content exists.
+    if (
+      !$this->entity instanceof ContentEntityInterface ||
+      !$this->entity->hasField('field_sidebar_content')
+    ) {
       return $build;
     }
+
     // Build render array if current entity has sidebar content field.
     return $build['sidebar_content'] = [
       '#theme' => 'sidebar_content_block',
+      '#is_revision' => $this->entityVersion == EntityVersionMatcher::ENTITY_VERSION_REVISION,
       '#title' => $this->t('Sidebar content block'),
       '#paragraphs' => $this->entity->field_sidebar_content,
+      '#cache' => [
+        'tags' => $this->entity->getCacheTags(),
+      ],
     ];
   }
+
   /**
-   * Match current route with entity.
+   * Get current entity and entity version (canonical, revision or preview).
    */
   protected function entityMatch() {
-    // Get the route parameters.
-    $route_parameters = \Drupal::routeMatch()->getParameters();
-    // Match the entity types with current entity type.
-    foreach ($this->allowedTypes as $entity_type) {
-      if (!$route_parameters->has($entity_type)) {
-        continue;
-      }
-      $this->setEntity($route_parameters->get($entity_type), $entity_type);
-      break;
-    }
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+    $this->entity = $entity_matcher['entity'];
+    $this->entityVersion = $entity_matcher['entity_version'];
   }
+
 }

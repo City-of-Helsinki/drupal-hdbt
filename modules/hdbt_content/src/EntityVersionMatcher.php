@@ -4,6 +4,8 @@ namespace Drupal\hdbt_content;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -41,16 +43,26 @@ class EntityVersionMatcher {
   protected RouteMatchInterface $routeMatch;
 
   /**
+   * The language manager service.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface|null
+   */
+  protected $languageManager;
+
+  /**
    * Creates a new EntityVersionMatcher instance.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity manager.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The currently active route match object.
+   * @param \Drupal\Core\Language\LanguageManagerInterface|null $language_manager
+   *   The language manager service.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, RouteMatchInterface $route_match) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, RouteMatchInterface $route_match, LanguageManagerInterface $language_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->routeMatch = $route_match;
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -84,6 +96,7 @@ class EntityVersionMatcher {
   public function getType() {
     $entity_version = static::ENTITY_VERSION_CANONICAL;
     $entity = FALSE;
+    $language = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
 
     if ($entity_type = $this->getCurrentEntityType()) {
       switch ($this->routeMatch->getRouteName()) {
@@ -96,11 +109,13 @@ class EntityVersionMatcher {
         // Revision.
         case "entity.{$entity_type}.revision":
           $entity_version = static::ENTITY_VERSION_REVISION;
+          $storage = $this->entityTypeManager->getStorage($entity_type);
           $revision_id = $this->routeMatch->getParameter("{$entity_type}_revision");
           if ($revision_id instanceof ContentEntityInterface) {
             $revision_id = $revision_id->getRevisionId();
           }
-          $entity = $this->entityTypeManager->getStorage($entity_type)->loadRevision($revision_id);
+          $revision = $storage->loadRevision($revision_id);
+          $entity = $revision->getTranslation($language->getId());
           break;
 
         // Preview.
