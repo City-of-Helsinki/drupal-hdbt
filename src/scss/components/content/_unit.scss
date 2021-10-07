@@ -454,7 +454,7 @@
   }
 
   .unit__image--placeholder {
-    width: calc(100% + #{$spacing-and-half} + #{$spacing-and-half});
+    width: 100%;
 
     @include breakpoint($breakpoint-m) {
       align-items: center;
