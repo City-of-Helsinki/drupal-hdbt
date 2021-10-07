@@ -226,6 +226,10 @@
     }
   }
 
+  .unit__contact-row--email a {
+    word-break: break-all;
+  }
+
   .address {
     > * {
       display: block;
