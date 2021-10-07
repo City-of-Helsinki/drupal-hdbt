@@ -1,0 +1,9 @@
+services:
+  hdbt_content.entity_version_matcher:
+    class: Drupal\hdbt_content\EntityVersionMatcher
+    arguments: ['@entity_type.manager', '@current_route_match', '@language_manager']
+
+  hdbt_content.twig.DrupalEntityRevision:
+    class: Drupal\hdbt_content\TwigExtension\DrupalEntityRevision
+    tags:
+      - { name: twig.extension }

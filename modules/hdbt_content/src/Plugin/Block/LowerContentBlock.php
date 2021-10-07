@@ -1,7 +1,12 @@
 <?php
+
 namespace Drupal\hdbt_content\Plugin\Block;
+
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\hdbt_content\EntityVersionMatcher;
+
 /**
  * Provides a 'LowerContentBlock' block.
  *
@@ -11,82 +16,60 @@ use Drupal\Core\Cache\Cache;
  * )
  */
 class LowerContentBlock extends BlockBase {
-  /**
-   * Allowed entity types.
-   *
-   * @var string[]
-   */
-  protected array $allowedTypes = [
-    'node',
-    'tpr_unit',
-    'tpr_service'
-  ];
-  /**
-   * The current entity.
-   *
-   * @var bool|object
-   */
-  protected $entity = FALSE;
-  /**
-   * Set the entity as current entity.
-   *
-   * @param $entity
-   *   Either TPR entity or node.
-   * @param $entity_type
-   *   Entity type to be set.
-   */
-  public function setEntity($entity, $entity_type) {
-    if (is_numeric($entity)) {
-      $entity_type_manager = \Drupal::entityTypeManager();
-      $entity = $entity_type_manager->getStorage($entity_type)->load($entity);
-    }
-    $this->entity = $entity;
-  }
+
   /**
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    $this->entityMatch();
-    if (!$this->entity) {
+    $matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
+    if (
+      !$matcher['entity'] ||
+      $matcher['entity_version'] == EntityVersionMatcher::ENTITY_VERSION_REVISION
+    ) {
       return parent::getCacheTags();
     }
-    return Cache::mergeTags(parent::getCacheTags(), $this->entity->getCacheTags());
+    return Cache::mergeTags(parent::getCacheTags(), $matcher['entity']->getCacheTags());
   }
+
   /**
    * {@inheritDoc}
    */
   public function getCacheContexts() {
     return Cache::mergeContexts(parent::getCacheContexts(), ['route']);
   }
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $build = [];
-    $this->entityMatch();
-    if (!$this->entity || !$this->entity->hasField('field_lower_content')) {
+
+    // Get current entity and entity version.
+    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = $entity_matcher['entity'];
+    $entity_version = $entity_matcher['entity_version'];
+
+    // Handle only if lower content exists.
+    if (
+      !$entity instanceof ContentEntityInterface ||
+      !$entity->hasField('field_lower_content')
+    ) {
       return $build;
     }
+
     // Build render array if current entity has lower content field.
     return $build['lower_content'] = [
       '#theme' => 'lower_content_block',
+      '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
       '#title' => $this->t('Lower content block'),
-      '#paragraphs' => $this->entity->field_lower_content,
+      '#paragraphs' => $entity->field_lower_content,
+      '#cache' => [
+        'tags' => $entity->getCacheTags(),
+      ],
     ];
   }
-  /**
-   * Match current route with entity.
-   */
-  protected function entityMatch() {
-    // Get the route parameters.
-    $route_parameters = \Drupal::routeMatch()->getParameters();
-    // Match the entity types with current entity type.
-    foreach ($this->allowedTypes as $entity_type) {
-      if (!$route_parameters->has($entity_type)) {
-        continue;
-      }
-      $this->setEntity($route_parameters->get($entity_type), $entity_type);
-      break;
-    }
-  }
+
 }
