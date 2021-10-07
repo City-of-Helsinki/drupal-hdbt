@@ -405,13 +405,10 @@
 
   .unit--full & {
     margin-bottom: $spacing-and-half;
+
     @include breakpoint($breakpoint-m) {
       margin-bottom: $spacing-double;
     }
-  }
-
-  .unit--teaser-with-image & {
-    margin-top: $spacing-and-half;
   }
 }
 
@@ -422,119 +419,24 @@
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: $spacing-and-half;
-  padding: $spacing-and-half;
-  width: 100%;
+  position: relative;
 
   @include breakpoint($breakpoint-m) {
     align-items: stretch;
     flex-direction: row;
-    justify-content: flex-end;
-    padding: $spacing-double $spacing-triple;
-    padding-bottom: $spacing-and-half;
+    margin-bottom: $spacing;
+    min-height: 220px; // From designs.
+    padding-left: 325px; // Width of the unit picture from the designs + spacing
   }
 
   .views-row:last-child & {
     margin-bottom: 0;
   }
 
-  .unit__title {
-    @include font-size(24px, 29px);
-    font-weight: 500;
-    margin-bottom: $spacing-quarter;
-    margin-top: 0;
-    padding-right: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: 0;
-      width: 30%;
-    }
-  }
-
-  .unit__info {
-    margin-top: $spacing-quarter;
-    @include breakpoint($breakpoint-m) {
-      @include font-size(18px, 26px);
-      width: 60%;
-    }
-  }
-
-  .unit__info-row {
-    @include font-size(18px, 26px);
-    display: flex;
-    margin-bottom: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: $spacing;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .icon {
-      margin-right: $spacing-half;
-    }
-  }
-
-  .unit__info-row--address .address {
-    display: inline;
-    margin-top: 0;
-
-    .address-line1,
-    .address-line2,
-    .postal-code {
-      margin-right: 3px; // Some spacing between the address parts when they are displayed inline.
-
-      &::after {
-        content: ",";
-        margin-left: -2px; // Because of display inline there is automatically some extra spacing. This removes it.
-      }
-    }
-  }
-
-  .unit__info-row--phone .phones {
-    display: flex;
-    flex-direction: column;
-
-    .phone {
-      margin-top: $spacing-half;
-
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-  }
-
-  .unit__link {
-    line-height: 0;
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      align-items: flex-end;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 0;
-      width: 10%;
-    }
-
-    .icon {
-      --icon-proportions: 48px;
-    }
-  }
-}
-
-.unit.unit--teaser-with-image {
-  @include breakpoint($breakpoint-m) {
-    display: block;
-    margin-bottom: $spacing;
-    padding-left: 325px + $spacing-double; // Width of the unit picture from the designs + spacing
-    position: relative;
-  }
-
   .unit__image {
     background-color: var(--hdbt-color-palette--primary);
     color: var(--hdbt-color-palette-text--primary);
-    margin: (-$spacing-and-half) (-$spacing-and-half) $spacing-double;
+    margin: 0;
     overflow: hidden;
 
     @include breakpoint($breakpoint-m) {
@@ -556,7 +458,7 @@
   }
 
   .unit__image--placeholder {
-    width: calc(100% + #{$spacing-and-half} + #{$spacing-and-half});
+    width: 100%;
 
     @include breakpoint($breakpoint-m) {
       align-items: center;
@@ -566,177 +468,124 @@
   }
 
   .unit__text {
+    margin-top: $spacing-double;
+    padding: 0 $spacing-and-half $spacing-double;
+    width: 100%;
+
     @include breakpoint($breakpoint-m) {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 0;
+      padding: $spacing-double;
     }
 
     .unit__text__content {
       align-content: flex-start;
+
       @include breakpoint($breakpoint-m) {
         display: flex;
         flex-wrap: wrap;
-        min-height: 160px; // Min height of the card is set to match a card with a single line title, address, phone and swedish language support so that the photo is closer to native aspect ratio.
-        width: 80%;
-      }
-    }
-
-    .unit__title {
-      @include breakpoint($breakpoint-m) {
-        @include font-size(32px, 40px);
-        margin-bottom: 0;
-        padding-right: 0;
-        width: 100%;
-      }
-    }
-
-    .unit__info {
-      @include breakpoint($breakpoint-m) {
-        width: 100%;
-      }
-    }
-
-    .unit__info-row--address {
-      @include breakpoint($breakpoint-m) {
-        margin-bottom: $spacing-half;
-      }
-
-      .icon {
-        display: inline-block;
-        @include breakpoint($breakpoint-m) {
-          display: none;
-        }
-      }
-    }
-
-    .unit__link {
-      display: inline-block;
-
-      @include breakpoint($breakpoint-m) {
-        display: flex;
-        width: 20%;
-      }
-    }
-  }
-}
-
-.unit.unit--wide-teaser {
-  border: 2px solid $color-black;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-left: $spacing-and-half;
-  margin-right: $spacing-and-half;
-  margin-top: $spacing-triple;
-
-  @include breakpoint($breakpoint-m) {
-    flex-direction: row;
-    margin-left: $spacing-double;
-    margin-right: $spacing-double;
-    margin-top: $spacing-quadruple;
-  }
-
-  .unit__image {
-    margin: 0;
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      align-items: center;
-      background-color: var(--hdbt-color-palette--primary);
-      display: flex;
-      width: 30%;
-    }
-
-    img {
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .unit__text {
-    @include font-size(18px, 26px);
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: $spacing-double $spacing-and-half;
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      align-items: flex-end;
-      flex-direction: row;
-      padding: $spacing-and-half 0 $spacing-and-half $spacing-double;
-      width: 70%;
-    }
-  }
-
-  .unit__text__content {
-    height: 100%;
-  }
-
-  .unit__title {
-    @include font-size(24px, 32px);
-    font-weight: 500;
-    margin-bottom: 0;
-
-    @include breakpoint($breakpoint-m) {
-      @include font-size(32px, 32px);
-    }
-  }
-
-  .unit__info {
-    overflow: hidden;
-  }
-
-  .unit__info-row {
-    align-items: center;
-    display: flex;
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing;
-    }
-
-    .icon {
-      margin-right: $spacing;
-    }
-
-    .address {
-      margin: 0;
-    }
-  }
-
-  .unit__info-row--opening-hours {
-    flex-wrap: wrap;
-
-    .unit__info-row__label {
-      align-items: center;
-      display: flex;
-      width: 100%;
-    }
-
-    .unit__info-row__content {
-      margin-left: calc(24px + #{$spacing}); // icon width + spacing
-
-      .form-item {
-        margin-bottom: 0;
+        max-width: 530px;
       }
     }
   }
 
   .unit__link {
-    line-height: 0;
-    margin-top: $spacing-and-half;
+    text-decoration: none;
+
+    &::after {
+      bottom: 0;
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .unit__title {
+    @include font-size(24px, 28px);
+    font-weight: 500;
+    margin-bottom: $spacing-quarter;
+    margin-top: 0;
+    padding-right: $spacing-and-half;
 
     @include breakpoint($breakpoint-m) {
-      margin-bottom: -#{$spacing-half};
-      margin-right: $spacing;
+      @include font-size(32px, 37px);
+      margin-bottom: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+
+  .unit__info {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      width: 100%;
+    }
+  }
+
+  .unit__info-row {
+    @include font-size(18px, 26px);
+    display: flex;
+    margin-bottom: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .unit__info-row--address {
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing-half;
+    }
+
+    .address {
+      display: inline;
       margin-top: 0;
+
+      .address-line1,
+      .address-line2,
+      .postal-code {
+        margin-right: 3px; // Some spacing between the address parts when they are displayed inline.
+      }
+
+      .address-line1::after,
+      .address-line2::after {
+        content: ",";
+        margin-left: -2px; // Because of display inline there is automatically some extra spacing. This removes it.
+      }
+    }
+  }
+
+  .unit__supports_language_sv {
+    margin-top: $spacing;
+  }
+
+  .unit__read-more {
+    display: flex;
+    margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      justify-content: flex-end;
+      margin-top: $spacing;
+    }
+
+    .unit__read-more__text {
+      @include font-size(16px, 24px);
+      font-weight: 500;
     }
 
     .icon {
-      height: 48px;
-      width: 48px;
+      margin-left: $spacing-half;
     }
   }
 }
