@@ -18,31 +18,18 @@ use Drupal\hdbt_content\EntityVersionMatcher;
 class HeroBlock extends BlockBase {
 
   /**
-   * The current entity.
-   *
-   * @var bool|object
-   */
-  protected $entity = FALSE;
-
-  /**
-   * The current entity version.
-   *
-   * @var bool|object
-   */
-  protected $entityVersion = FALSE;
-
-  /**
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    $this->entityMatch();
+    $matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
     if (
-      !$this->entity ||
-      $this->entityVersion == EntityVersionMatcher::ENTITY_VERSION_REVISION
+      !$matcher['entity'] ||
+      $matcher['entity_version'] == EntityVersionMatcher::ENTITY_VERSION_REVISION
     ) {
       return parent::getCacheTags();
     }
-    return Cache::mergeTags(parent::getCacheTags(), $this->entity->getCacheTags());
+    return Cache::mergeTags(parent::getCacheTags(), $matcher['entity']->getCacheTags());
   }
 
   /**
@@ -57,28 +44,34 @@ class HeroBlock extends BlockBase {
    */
   public function build() {
     $build = [];
-    $this->entityMatch();
+
+    // Get current entity and entity version.
+    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = $entity_matcher['entity'];
+    $entity_version = $entity_matcher['entity_version'];
 
     // No need to continue if current entity doesn't have has_hero field.
     if (
-      !$this->entity instanceof ContentEntityInterface ||
-      !$this->entity->hasField('field_has_hero')
+      !$entity instanceof ContentEntityInterface ||
+      !$entity->hasField('field_has_hero')
     ) {
       return $build;
     }
 
-    // TODO: Support preview on entity reference fields ie. paragraphs.
-    if ((bool) $this->entity->get('field_has_hero')->value) {
+    // @todo Support preview on entity reference fields ie. paragraphs.
+    if ((bool) $entity->get('field_has_hero')->value) {
       $first_paragraph_grey = '';
 
       // Handle only landing page.
       if (
-        $this->entity->getType() === 'landing_page' &&
-        isset($this->entity->get('field_content')->first()->entity)
+        $entity->getType() === 'landing_page' &&
+        isset($entity->get('field_content')->first()->entity)
       ) {
         // Check if the content field first paragraph is Unit search
         // and add classes accordingly.
-        $paragraph = $this->entity->get('field_content')->first()->entity;
+        $paragraph = $entity->get('field_content')->first()->entity;
         if (!empty($paragraph) && $paragraph->getType() === 'unit_search') {
           $first_paragraph_grey = 'has-first-gray-bg-block';
         }
@@ -87,26 +80,16 @@ class HeroBlock extends BlockBase {
       $build['hero_block'] = [
         '#theme' => 'hero_block',
         '#title' => $this->t('Hero block'),
-        '#paragraphs' => $this->entity->field_hero,
-        '#is_revision' => $this->entityVersion == EntityVersionMatcher::ENTITY_VERSION_REVISION,
+        '#paragraphs' => $entity->field_hero,
+        '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
         '#first_paragraph_grey' => $first_paragraph_grey,
         '#cache' => [
-          'tags' => $this->entity->getCacheTags(),
+          'tags' => $entity->getCacheTags(),
         ],
       ];
     }
 
     return $build;
-  }
-
-  /**
-   * Get current entity and entity version (canonical, revision or preview).
-   */
-  protected function entityMatch() {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
-    $this->entity = $entity_matcher['entity'];
-    $this->entityVersion = $entity_matcher['entity_version'];
   }
 
 }

@@ -18,28 +18,18 @@ use Drupal\hdbt_content\EntityVersionMatcher;
 class LowerContentBlock extends BlockBase {
 
   /**
-   * The current entity.
-   *
-   * @var bool|object
-   */
-  protected $entity = FALSE;
-
-  /**
-   * The current entity version.
-   *
-   * @var bool|object
-   */
-  protected $entityVersion = FALSE;
-
-  /**
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    $this->entityMatch();
-    if (!$this->entity) {
+    $matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
+    if (
+      !$matcher['entity'] ||
+      $matcher['entity_version'] == EntityVersionMatcher::ENTITY_VERSION_REVISION
+    ) {
       return parent::getCacheTags();
     }
-    return Cache::mergeTags(parent::getCacheTags(), $this->entity->getCacheTags());
+    return Cache::mergeTags(parent::getCacheTags(), $matcher['entity']->getCacheTags());
   }
 
   /**
@@ -54,12 +44,18 @@ class LowerContentBlock extends BlockBase {
    */
   public function build() {
     $build = [];
-    $this->entityMatch();
+
+    // Get current entity and entity version.
+    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
+
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = $entity_matcher['entity'];
+    $entity_version = $entity_matcher['entity_version'];
 
     // Handle only if lower content exists.
     if (
-      !$this->entity instanceof ContentEntityInterface ||
-      !$this->entity->hasField('field_lower_content')
+      !$entity instanceof ContentEntityInterface ||
+      !$entity->hasField('field_lower_content')
     ) {
       return $build;
     }
@@ -67,23 +63,13 @@ class LowerContentBlock extends BlockBase {
     // Build render array if current entity has lower content field.
     return $build['lower_content'] = [
       '#theme' => 'lower_content_block',
-      '#is_revision' => $this->entityVersion == EntityVersionMatcher::ENTITY_VERSION_REVISION,
+      '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
       '#title' => $this->t('Lower content block'),
-      '#paragraphs' => $this->entity->field_lower_content,
+      '#paragraphs' => $entity->field_lower_content,
       '#cache' => [
-        'tags' => $this->entity->getCacheTags(),
+        'tags' => $entity->getCacheTags(),
       ],
     ];
-  }
-
-  /**
-   * Get current entity and entity version (canonical, revision or preview).
-   */
-  protected function entityMatch() {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
-    $this->entity = $entity_matcher['entity'];
-    $this->entityVersion = $entity_matcher['entity_version'];
   }
 
 }

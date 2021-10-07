@@ -16,7 +16,7 @@ class DrupalEntityRevision extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction('drupal_entity_revision', [$this, 'DrupalEntityRevision']),
+      new TwigFunction('drupal_entity_revision', [$this, 'entityRevision']),
     ];
   }
 
@@ -37,7 +37,7 @@ class DrupalEntityRevision extends AbstractExtension {
    * @return array
    *   Returns a render array for a given entity.
    */
-  public function DrupalEntityRevision(string $entity_type, string $selector): array {
+  public static function entityRevision(string $entity_type, string $selector): array {
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
 
     if (Uuid::isValid($selector)) {

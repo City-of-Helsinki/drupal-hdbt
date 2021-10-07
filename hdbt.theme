@@ -474,7 +474,8 @@ function hdbt_preprocess_paragraph(array &$variables) {
       $service_ids[] = 'tpr_service:' . $service['target_id'];
     }
 
-    // Set the service ids to a service_list_arguments variable for the template.
+    // Set the service ids to a service_list_arguments
+    // variable for the template.
     $variables['service_list_arguments'] = implode(',', $ids);
 
     // Get previously cached meta information field values and set them
@@ -652,7 +653,6 @@ function hdbt_preprocess_views_view(&$variables) {
   $variables['total_rows'] = $variables['view']->total_rows;
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
@@ -682,7 +682,8 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
           '#text' => $entity->{$detail_key}->value,
           '#format' => 'full_html',
         ];
-      } else {
+      }
+      else {
         $content['#theme'] = 'tpr_errand_service_detail_link';
         $content['#title'] = $heading;
         $content['#links'] = $entity->links;

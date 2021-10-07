@@ -31,6 +31,8 @@ class EntityVersionMatcher {
   const ENTITY_VERSION_PREVIEW = 'preview';
 
   /**
+   * The entity type manager.
+   *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected EntityTypeManagerInterface $entityTypeManager;
@@ -87,7 +89,9 @@ class EntityVersionMatcher {
   }
 
   /**
-   * Determine whether the current entity is viewed as full entity,
+   * Get type information for the current entity.
+   *
+   * Check whether the current entity is viewed as full entity,
    * entity preview or entity revision.
    *
    * @return array
@@ -127,7 +131,7 @@ class EntityVersionMatcher {
     }
     return [
       'entity_version' => $entity_version,
-      'entity' => $entity
+      'entity' => $entity,
     ];
   }
 
