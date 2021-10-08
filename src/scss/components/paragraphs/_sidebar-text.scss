@@ -117,3 +117,35 @@
     }
   }
 }
+
+.sidebar-text--service-links {
+  .sidebar-text__text-content {
+    > a {
+      background-color: var(--hdbt-color-palette--secondary);
+      display: grid;
+      grid-template-columns: 1fr calc(#{$spacing-and-half} + #{$spacing-half});
+      margin-top: $spacing;
+      padding: $spacing-and-half $spacing;
+      text-decoration: none;
+
+      &:after {
+        --icon-proportions: #{$spacing-and-half};
+        align-self: center;
+        background-color: $color-black;
+        content: "";
+        display: inline-block;
+        height: 24px;
+        justify-self: end;
+        mask-image: url('../icons/arrow-right.svg');
+        mask-repeat: no-repeat;
+        mask-size: 24px;
+        order: 3;
+        width: 24px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
