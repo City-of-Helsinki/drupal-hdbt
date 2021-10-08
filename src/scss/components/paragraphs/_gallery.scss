@@ -11,14 +11,6 @@ $arrow-container-height: 48px;
   .media--image__caption {
     padding-left: 0;
     padding-right: 0;
-
-    @include breakpoint($breakpoint-m) {
-      @include font-size(14px, 18px);
-    }
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(20px, 32px);
-    }
   }
 }
 
