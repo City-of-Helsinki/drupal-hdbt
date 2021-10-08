@@ -127,6 +127,10 @@ $card_spacing: $spacing-and-half;
 
   .hds-koros {
     color: $color-white;
+
+    .has-sidebar & {
+      display: none; // Koro should not be visible when the component is inside narrow column due to sidebar.
+    }
   }
 
   .content-card__link {
