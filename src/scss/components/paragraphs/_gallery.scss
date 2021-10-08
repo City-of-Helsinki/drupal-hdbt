@@ -58,7 +58,7 @@ $arrow-container-height: 48px;
 
   @include breakpoint($breakpoint-l) {
     display: block;
-    margin: $spacing-quadruple 0 0;
+    margin: $spacing-double 0 0;
   }
 
   .gallery__thumbnails__list {
