@@ -103,10 +103,12 @@ $item_spacing: $spacing-triple;
   .list-of-links__item__title {
     @include font-size(20px);
     font-weight: 500;
+    line-height: 24px;
     margin: 0 0 0 (100px + $spacing);
 
     @include breakpoint($breakpoint-s) {
       @include font-size(24px);
+      line-height: 28px;
       margin: 0;
     }
   }
@@ -176,14 +178,9 @@ $item_spacing: $spacing-triple;
     }
 
     .list-of-links__item__title {
-      @include font-size(24px);
       display: flex;
       margin-left: 0;
       text-decoration: underline;
-
-      @include breakpoint($breakpoint-l) {
-        @include font-size(28px);
-      }
     }
 
     .list-of-links__item__arrow {
@@ -216,19 +213,15 @@ $item_spacing: $spacing-triple;
 // Without image but with description variant
 .list-of-links--without-image {
   .list-of-links__item {
-    .list-of-links__item__title {
-      @include breakpoint($breakpoint-l) {
-        @include font-size(36px);
-      }
-    }
-
     .list-of-links__item__desc {
       @include font-size(16px);
       color: $color-black-60;
+      line-height: 1.3;
       margin-top: $spacing-half;
 
       @include breakpoint($breakpoint-l) {
-        @include font-size(20px);
+        @include font-size(18px);
+        line-height: 1.3;
         margin-top: $spacing-quarter;
       }
     }

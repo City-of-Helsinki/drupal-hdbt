@@ -219,7 +219,8 @@
   .menu__toggle-button {
     background-color: transparent;
     border: none;
-    margin: 0 0 0 $spacing-half;
+    // Adjusting chevron position to match text.
+    margin: 5px 0 0 $spacing-half;
     padding: 0;
 
     &:hover {

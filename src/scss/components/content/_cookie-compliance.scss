@@ -1,0 +1,85 @@
+.cookie-compliance--lead-in__container {
+  max-width: $content-width-max;
+  padding: 0;
+
+  h1 {
+    margin-bottom: $spacing-double;
+    margin-top: 0;
+  }
+}
+
+.cookie-compliance__container {
+  max-width: $content-width-max;
+  padding-left: 0;
+  padding-right: 0;
+
+  .cookie-selection-instruction {
+    @include font-size(18px, 32px);
+    border-bottom: 1px solid $color-black-20;
+    display: flex;
+    margin-top: $spacing-double;
+    padding-bottom: $spacing-double;
+
+    &:before {
+      background-color: $color-black;
+      background-size: contain;
+      content: "";
+      display: flex;
+      height: $spacing-double;
+      margin-right: $spacing-half;
+      mask-image: url('../icons/hds/ui/info-circle.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: $spacing-double;
+      min-width: $spacing-double;
+    }
+
+    p {
+      margin-top: 0;
+    }
+  }
+
+  .form-item-categories-essential,
+  .form-item-categories-performance-ux {
+    display: block;
+    margin-top: $spacing-double;
+
+    .hds-checkbox__label {
+      @include font-size(22px, 26px);
+      // Icon size + spacing.
+      display: block;
+      padding-left: calc(var(--size) + #{$spacing});
+    }
+
+    .hds-checkbox__input,
+    .hds-checkbox__label {
+      // Fix checkbox alignment.
+      &::after,
+      &::before {
+        top: 3px;
+      }
+    }
+  }
+
+  .form-item:not(:last-of-type) {
+    .description {
+      border-bottom: 1px solid $color-black-20;
+    }
+  }
+
+  .description {
+    display: block;
+
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing;
+    }
+  }
+
+  .buttons {
+    text-align: right;
+
+    input {
+      margin-bottom: $spacing-half;
+    }
+  }
+}

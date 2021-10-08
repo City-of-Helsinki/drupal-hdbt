@@ -33,7 +33,7 @@
   }
 
   .sidebar-text__text-content {
-    @include font-size(18px, 32px);
+    @include font-size(16px, 24px);
     color: var(--hdbt-color-palette-text--secondary);
 
     > *:first-child {
@@ -50,38 +50,51 @@
 
     > p {
       background-color: var(--hdbt-color-palette--secondary);
-      padding: $spacing;
+      padding: $spacing-and-half $spacing;
+    }
+
+    .hds-button--primary {
+      @extend .emulate-button--primary;
+    }
+
+    .hds-button--secondary {
+      @extend .emulate-button--secondary;
     }
 
     .hds-button--primary,
-    .hds-button--secondary,
+    .hds-button--secondary {
+      display: inline-flex;
+
+      &:only-child {
+        margin-top: 0;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        display: flex;
+      }
+    }
+
     .hds-button--supplementary {
-      @include font-size(18px, 32px);
-      background: transparent;
-      border: none;
-      color: var(--hdbt-color-palette-text--secondary);
-      font-size: 18px;
-      font-weight: 400;
-      margin: 0;
-      min-height: 0;
-      padding: 0;
-      text-decoration: underline;
+      --background-color: transparent;
+      --background-color-hover: transparent;
+      --background-color-focus: transparent;
+      --background-color-hover-focus: transparent;
+      --border-color: transparent;
+      --border-color-hover: transparent;
+      --border-color-focus: transparent;
+      --border-color-hover-focus: transparent;
+      --color: var(--hdbt-color-black);
+      --color-hover: var(--hdbt-color-black);
+      --color-focus: var(--hdbt-color-black);
+      --color-hover-focus: var(--hdbt-color-black);
+      --focus-outline-color: var(--hdbt-color-black);
 
-      &:focus,
-      &:active,
-      &:hover {
-        background: transparent;
-        border: none;
-        color: var(--hdbt-color-palette-text--secondary);
+      &:first-child {
+        margin-left: 0;
       }
 
-      &::before {
-        background-color: var(--hdbt-color-palette-text--secondary);
+      &.hdbt-icon::before {
         margin-left: $spacing-half;
-      }
-
-      &::after {
-        display: none;
       }
     }
   }

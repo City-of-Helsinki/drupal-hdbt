@@ -54,4 +54,5 @@ class CookieConsentController extends ControllerBase {
 
     return $content;
   }
+
 }

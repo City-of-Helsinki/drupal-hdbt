@@ -66,12 +66,7 @@
 
           {# Hide categories by using hidden fields in place of checkboxes on popup #}
           {% for key, category in cookie_categories %}
-            {% if category.checkbox_default_state in ['checked', 'required'] %}
-              <input type="hidden" name="cookie-categories[]" id="cookie-category-{{ key }}" value="{{ key }}">
-            {% else %}
-              <input type="hidden" name="cookie-categories[]" id="cookie-category-{{ key }}" value="">
-            {% endif %}
-            {# <label for="cookie-category-{{ key }}">{{ category.label }}</label> #}
+            <input type="hidden" name="cookie-categories[]" id="cookie-category-{{ key }}" value="{{ key }}">
           {% endfor %}
 
           {% if save_preferences_button_label %}

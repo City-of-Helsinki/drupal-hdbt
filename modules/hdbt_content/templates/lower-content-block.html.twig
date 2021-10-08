@@ -1,7 +1,11 @@
 {% if paragraphs %}
   <div class="lower-content layout-content">
     {% for paragraph in paragraphs %}
-      {{ drupal_entity('paragraph', paragraph.target_id) }}
+      {% if is_revision %}
+        {{ drupal_entity_revision('paragraph', paragraph.target_revision_id) }}
+      {% else %}
+        {{ drupal_entity('paragraph', paragraph.target_id) }}
+      {% endif %}
     {% endfor %}
   </div>
 {% endif %}
