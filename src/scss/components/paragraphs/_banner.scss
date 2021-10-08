@@ -3,7 +3,6 @@
   color: var(--hdbt-color-palette-text--primary);
   margin: $spacing-double auto 0;
   max-width: $container-width-xl; // 1200px since we don't have extra paddings on the sides here.
-  padding: $spacing-triple 0;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-triple;
@@ -58,11 +57,12 @@
     margin-right: 0;
     // Arbitrary max-width that was determined to look good with the designers.
     max-width: 1030px;
-    padding-top: 0;
+    padding-bottom: $spacing-double;
+    padding-top: $spacing-double;
 
     @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-triple;
-      padding-right: $spacing-triple;
+      padding-left: $spacing-double;
+      padding-right: $spacing-double;
     }
   }
 
