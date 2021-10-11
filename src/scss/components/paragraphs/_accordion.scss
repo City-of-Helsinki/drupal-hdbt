@@ -13,8 +13,34 @@
     }
   }
 
+  .accordion__title {
+    @include font-size(32px, 32px);
+
+    @include breakpoint($breakpoint-l) {
+      @include font-size(52px, 52px);
+    }
+  }
+
+  .accordion__description {
+    @include font-size(18px, 27px);
+    margin-top: $spacing;
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
   .accordion__wrapper {
     border-bottom: 1px solid $color-black-20;
+  }
+
+  .accordion__title + .accordion__wrapper,
+  .accordion__description + .accordion__wrapper {
+    margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-quadruple;
+    }
   }
 
   .accordion-item__header {
