@@ -32,7 +32,7 @@
     "css-loader": "^5.2.6",
     "es6-promise": "^4.1.1",
     "eslint": "^7.32.0",
-    "eslint-config-drupal-bundle": "^1.0.2",
+    "eslint-config-drupal-bundle": "^1.0.3",
     "eslint-import-resolver-webpack": "0.13.1",
     "eslint-plugin-import": "^2.23.4",
     "expose-loader": "^3.0.0",
