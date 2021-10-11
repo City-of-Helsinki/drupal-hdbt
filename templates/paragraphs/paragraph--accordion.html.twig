@@ -48,8 +48,17 @@
     not paragraph.isPublished() ? 'accordion--unpublished'
   ]
 %}
+
+{% set title_level = 'h' ~ accordion_title_level %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    <{{ title_level|default('h2') }} class="accordion__title">
+      {{ content.field_accordion_title }}
+    </{{ title_level|default('h2')}}>
+    <div class="accordion__description">
+      {{ content.field_accordion_description}}
+    </div>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
       {% block container_content %}
         {{ content.field_accordion_items }}

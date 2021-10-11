@@ -40,7 +40,7 @@
 #}
 {% block paragraph %}
   {% include '@hdbt/component/accordion.twig' with {
-    heading_level: 'h' ~ accordion_heading_level,
+    heading_level: 'h' ~ accordion_item_heading_level,
     heading_icon: content.field_icon[0]['#icon_id'],
     heading: content.field_accordion_item_heading,
     content: content.field_accordion_item_content,
