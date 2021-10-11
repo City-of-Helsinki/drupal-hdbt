@@ -148,21 +148,6 @@ module.exports = {
       'patterns': [
         {
           'context': './',
-          'from': 'node_modules/hyphenopoly/min/{Hyphenopoly_Loader,Hyphenopoly}.js',
-          'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
-          'force': true,
-          'flatten': true
-        }, {
-          'context': './',
-          'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv,en-gb,ru}.wasm',
-          'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/patterns/',
-          'globOptions': {
-            'extglob': true
-          },
-          'force': true,
-          'flatten': true
-        }, {
-          'context': './',
           'from': 'node_modules/@splidejs/splide/dist/js/splide.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/splide/',
           'force': true,
