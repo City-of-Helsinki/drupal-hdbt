@@ -1,17 +1,9 @@
-.accordion {
-  margin-top: $spacing-double;
+// TODO: This whole file should be rewritten
+// * Handorgel library CSS codes should be moved here
+// * Overriding default handorgel styles should be cleaned up, so that they are not defined to begin with.
+// * Nesting should be avoided as much as possible
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
-  }
-
-  .accordion__container {
-    padding-top: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      padding-top: $spacing-quadruple;
-    }
-  }
+.component--accordion {
 
   .accordion__title {
     @include font-size(32px, 32px);
@@ -265,18 +257,13 @@
 }
 
 // Show border-top only on first accordion item header in white accordion.
-.accordion--white {
-  .accordion__container {
-    > .accordion__wrapper {
-      ~ .accordion__wrapper .accordion-item__header {
-        border-top: none;
-      }
-    }
-  }
+.component--accordion-bg-white .accordion__wrapper ~ .accordion__wrapper .accordion-item__header {
+  border-top: none;
 }
 
+
 // Grey accordion styles
-.accordion--grey {
+.component--accordion-bg-grey {
   .accordion-item__header {
     background-color: $color-black-5;
     border-color: $color-white;
@@ -314,8 +301,18 @@
   }
 }
 
+// Accordions following each other with same background color should not have margin between them.
+.component--accordion-bg-white + .component--accordion-bg-white,
+.component--accordion-bg-grey + .component--accordion-bg-grey {
+  margin-top: 0;
+}
+// White accordions following each other should have only a single border between them.
+.component--accordion-bg-white + .component--accordion-bg-white .accordion-item__header {
+  border-top: 0 none;
+}
+
 // Handorgel library style overrides
-.accordion .handorgel {
+.component--accordion .handorgel {
   border-left: none;
   border-right: none;
   border-top: none;
