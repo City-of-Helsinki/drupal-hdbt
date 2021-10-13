@@ -18,3 +18,15 @@ function hdbt_content_update_9001() {
 function hdbt_content_update_9002() {
   \Drupal::service('config.installer')->installDefaultConfig('theme', 'hdbt');
 }
+
+/**
+ * Uninstall HDBT Hyphenopoly module.
+ */
+function hdbt_content_update_9003() {
+  // Uninstall hdbt_hyphenopoly module if it exists.
+  if (Drupal::moduleHandler()->moduleExists('hdbt_hyphenopoly')) {
+    Drupal::service('module_installer')->uninstall([
+      'hdbt_hyphenopoly',
+    ]);
+  }
+}

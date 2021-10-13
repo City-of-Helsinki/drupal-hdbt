@@ -95,7 +95,7 @@
     }
 
     .icon {
-      --icon-proportions: 2.2rem;
+      --icon-proportions: 1.5rem;
 
       @include breakpoint($breakpoint-l) {
         --icon-proportions: 3rem;
@@ -264,7 +264,7 @@
   }
 
   .text {
-    @include font-size(16px, 24px);
+    @include font-size(18px, 24px);
 
     &:first-child .text__container {
       padding-top: 0;

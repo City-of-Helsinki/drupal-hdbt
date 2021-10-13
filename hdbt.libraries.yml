@@ -10,15 +10,6 @@ desktop-menu-toggle:
   js:
     dist/js/desktop-menu-toggle.min.js: {}
 
-# Should be removed when all major browsers on most used operating systems
-# can handle CSS3 hyphens: auto. See. https://caniuse.com/#search=hyphens or
-# https://www.w3schools.com/cssref/css3_pr_hyphens.asp.
-hyphenopoly:
-  version: 4.9.0
-  header: true
-  js:
-    /themes/contrib/hdbt/dist/js/hyphenopoly/Hyphenopoly_Loader.js: {type: external, preprocess: false}
-
 splide:
   version: 2.4.21
   js:
