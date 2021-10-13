@@ -262,27 +262,6 @@
       }
     }
   }
-
-  .text {
-    @include font-size(18px, 24px);
-
-    &:first-child .text__container {
-      padding-top: 0;
-    }
-
-    .text__container {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .text__text-content {
-      padding-left: 0;
-
-      > *:first-child {
-        margin-top: 0;
-      }
-    }
-  }
 }
 
 // Show border-top only on first accordion item header in white accordion.

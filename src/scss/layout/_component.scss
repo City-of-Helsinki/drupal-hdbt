@@ -1,0 +1,19 @@
+$component-margin-top-mobile: $spacing-double;
+$component-margin-top-desktop: $spacing-quadruple;
+
+@mixin component-margins(){
+  margin-top: $component-margin-top-mobile;
+  @include breakpoint($breakpoint-m) {
+    margin-top: $component-margin-top-desktop;
+  }
+}
+
+// Margins between components
+.component {
+  @include component-margins();
+
+  // First component in each area should have no margin-top
+  &:first-child {
+    margin-top: 0;
+  }
+}

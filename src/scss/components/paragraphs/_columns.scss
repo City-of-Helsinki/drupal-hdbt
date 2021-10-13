@@ -34,19 +34,6 @@
     max-width: $content-area-wrapper-width-max;
   }
 
-  // Overrides for text paragraph styles.
-  .text {
-    margin-top: 0;
-
-    .text__container {
-      padding: 0;
-    }
-
-    .text__text-content {
-      padding-left: 0;
-    }
-  }
-
   // Overrides for image paragraph styles.
   .image {
     .image__container {
