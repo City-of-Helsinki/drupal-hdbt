@@ -2,7 +2,7 @@
 .layout-sidebar-first {
   @include breakpoint($breakpoint-l) {
     order: 2;
-    width: 32%;
+    width: 30%;
 
     &.has-navigation {
       order: 1;
