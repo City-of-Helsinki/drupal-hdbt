@@ -1,15 +1,1 @@
-.image {
-  margin-top: $spacing-triple;
-
-  .image__container {
-    padding: 0;
-
-    @include breakpoint($breakpoint-m) {
-      padding: 0 $spacing-and-half 0;
-    }
-
-    @include breakpoint($breakpoint-l) {
-      padding: 0 $spacing-double 0;
-    }
-  }
-}
+// Since image component contains only common image block from ../media/_image.scss this file is empty on purpose
