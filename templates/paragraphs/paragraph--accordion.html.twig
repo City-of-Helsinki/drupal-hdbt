@@ -45,13 +45,26 @@
     'accordion',
     view_mode ? 'accordion--' ~ view_mode|clean_class,
     'accordion--' ~ design,
-    not paragraph.isPublished() ? 'accordion--unpublished'
+    not paragraph.isPublished() ? 'accordion--unpublished',
   ]
 %}
+
+{% set title_level = 'h' ~ accordion_title_level %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
       {% block container_content %}
+        {% if content.field_accordion_title|render %}
+          <{{ title_level|default('h2') }} class="accordion__title">
+            {{ content.field_accordion_title }}
+          </{{ title_level|default('h2')}}>
+        {% endif %}
+        {% if content.field_accordion_description|render %}
+          <div class="accordion__description">
+            {{ content.field_accordion_description}}
+          </div>
+        {% endif %}
         {{ content.field_accordion_items }}
       {% endblock %}
     {% endembed %}

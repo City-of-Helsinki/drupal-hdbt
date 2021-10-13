@@ -353,11 +353,18 @@ function hdbt_preprocess_paragraph(array &$variables) {
   }
 
   // Check if the paragraph is a type of accordion
+  // and dig out the title level.
+  if ($paragraph_type == 'accordion') {
+    $accordion_title_level = $paragraph->get('field_accordion_title_level')->getString();
+    $variables['accordion_title_level'] = $accordion_title_level;
+  }
+
+  // Check if the paragraph is a type of accordion item
   // and tell its children the heading level.
   if ($paragraph_type == 'accordion_item') {
     $paragraph_parent = $paragraph->getParentEntity();
-    $accordion_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
-    $variables['accordion_heading_level'] = $accordion_heading_level;
+    $accordion_item_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
+    $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
   }
 
   // Check if the paragraph is a type of gallery and prepare the slides
