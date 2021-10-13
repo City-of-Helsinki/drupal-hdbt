@@ -16,7 +16,7 @@
 
 .lead-in {
   @include font-size(20px, 32px);
-  margin-bottom: $spacing-triple;
+  @include component-margin-bottom();
   margin-left: auto;
   margin-right: auto;
   max-width: $content-area-wrapper-width-max;

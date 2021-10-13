@@ -1,19 +1,37 @@
-$component-margin-top-mobile: $spacing-double;
-$component-margin-top-desktop: $spacing-quadruple;
+// TODO: move mixins and variables to proper files
 
-@mixin component-margins(){
-  margin-top: $component-margin-top-mobile;
-  @include breakpoint($breakpoint-m) {
-    margin-top: $component-margin-top-desktop;
+$component-spacing-mobile: 32px;
+$component-spacing-desktop: 64px;
+$component-spacing-breakpoint: $breakpoint-m;
+
+@mixin component-margin-top(){
+  margin-top: $component-spacing-mobile;
+  @include breakpoint($component-spacing-breakpoint) {
+    margin-top: $component-spacing-desktop;
+  }
+}
+
+@mixin component-margin-bottom(){
+  margin-bottom: $component-spacing-mobile;
+  @include breakpoint($component-spacing-breakpoint) {
+    margin-bottom: $component-spacing-desktop;
   }
 }
 
 // Margins between components
-.component {
-  @include component-margins();
+.component ~ .component {
+  @include component-margin-top();
+}
 
-  // First component in each area should have no margin-top
-  &:first-child {
-    margin-top: 0;
+.component__container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-area-wrapper-width-max;
+}
+
+.component__title {
+  margin-bottom: $spacing-and-half;
+  @include breakpoint($component-spacing-breakpoint) {
+    margin-bottom: $spacing-triple;
   }
 }
