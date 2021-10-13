@@ -1,11 +1,6 @@
 .image {
   margin-top: $spacing-triple;
 
-  // Do not apply margin for images inside columns.
-  .columns & {
-    margin-top: 0;
-  }
-
   .image__container {
     padding: 0;
 

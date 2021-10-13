@@ -221,39 +221,6 @@
       margin-top: 0;
     }
   }
-
-  .columns {
-    &:first-child .columns__container {
-      padding-top: 0;
-    }
-
-    .columns__container {
-      padding-left: $spacing-half;
-      padding-right: $spacing-half;
-      padding-top: 0;
-
-      @include breakpoint($breakpoint-l) {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-
-    .columns__title {
-      margin-top: 0;
-    }
-
-    .columns__content:first-child {
-      margin-top: 0;
-    }
-
-    .list-of-links {
-      margin-top: 0;
-
-      .list-of-links__container {
-        padding-top: 0;
-      }
-    }
-  }
 }
 
 // Show border-top only on first accordion item header in white accordion.
