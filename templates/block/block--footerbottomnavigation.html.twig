@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" {{ attributes|without('role', 'aria-labelledby') }}>
+<nav role="navigation" {{ attributes|without('role', 'aria-labelledby').addClass('footer-bottom__navigation') }}>
   {# Menu. #}
   {% block content %}
     {{ content }}
