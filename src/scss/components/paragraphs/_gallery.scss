@@ -1,13 +1,10 @@
 $arrow-container-height: 48px;
 
-.gallery {
-  margin-top: $spacing-triple;
+.component--gallery {
   position: relative;
+}
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
-  }
-
+.gallery {
   .media--image__caption {
     padding-left: 0;
     padding-right: 0;
