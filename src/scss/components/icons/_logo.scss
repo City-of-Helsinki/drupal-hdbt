@@ -26,11 +26,11 @@
 }
 
 .logo--footer {
-  margin-bottom: $spacing-half;
   margin-top: $spacing-half;
 
   @include breakpoint($breakpoint-m) {
     margin-right: $spacing;
+    margin-top: 0;
   }
 
   .icon {
