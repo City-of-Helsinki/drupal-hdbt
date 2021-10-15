@@ -1,5 +1,10 @@
 {% set design = content.field_accordion_design.0|first|clean_class %}
 
+{% set header_class = null %}
+{% if not content.field_accordion_title|render and not content.field_accordion_description|render  %}
+  {% set header_class = 'component--no-header' %}
+{% endif %}
+
 {% if design == 'white'  %}
   {% set design_class = 'component--accordion-bg-white' %}
 {% elseif design == 'grey' %}
@@ -12,6 +17,7 @@
     'component',
     'component--accordion',
     design_class,
+    header_class,
   ]
 %}
 

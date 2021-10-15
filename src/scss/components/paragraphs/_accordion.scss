@@ -5,34 +5,8 @@
 
 .component--accordion {
 
-  .accordion__title {
-    @include font-size(32px, 32px);
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(52px, 52px);
-    }
-  }
-
-  .accordion__description {
-    @include font-size(18px, 27px);
-    margin-top: $spacing;
-
-    p:first-child {
-      margin-top: 0;
-    }
-  }
-
   .accordion__wrapper {
     border-bottom: 1px solid $color-black-20;
-  }
-
-  .accordion__title + .accordion__wrapper,
-  .accordion__description + .accordion__wrapper {
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-triple;
-    }
   }
 
   .accordion-item__header {
@@ -268,13 +242,13 @@
   }
 }
 
-// Accordions following each other with same background color should not have margin between them.
-.component--accordion-bg-white + .component--accordion-bg-white,
-.component--accordion-bg-grey + .component--accordion-bg-grey {
+// Accordions following each other with same background color should not have margin between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header,
+.component--accordion-bg-grey + .component--accordion-bg-grey.component--no-header {
   margin-top: 0;
 }
-// White accordions following each other should have only a single border between them.
-.component--accordion-bg-white + .component--accordion-bg-white .accordion-item__header {
+// White accordions following each other should have only a single border between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header .accordion-item__header {
   border-top: 0 none;
 }
 
