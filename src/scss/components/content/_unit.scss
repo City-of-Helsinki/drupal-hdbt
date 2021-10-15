@@ -593,27 +593,6 @@
 // Sidebar layout.
 // TODO: Clean up these styles after unit sidebar actually lives in sidebar as a block.
 .enriched-content.has-sidebar {
-
-  // With image.
-  .list-of-links__item {
-    @include breakpoint($breakpoint-l) {
-      width: 33%;
-    }
-
-    .list-of-links__item__link {
-      padding-bottom: $spacing-and-half;
-    }
-  }
-
-  // Without image.
-  .list-of-links--without-image {
-    .list-of-links__item {
-      @include breakpoint($breakpoint-l) {
-        width: 50%;
-      }
-    }
-  }
-
   .banner {
     margin-left: -$spacing-and-half;
     margin-right: -$spacing-and-half;
