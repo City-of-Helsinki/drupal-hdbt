@@ -1,8 +1,12 @@
 // TODO: move mixins and variables to proper files
 
+$component-spacing-breakpoint: $breakpoint-l;
 $component-spacing-mobile: 32px;
 $component-spacing-desktop: 64px;
-$component-spacing-breakpoint: $breakpoint-m;
+$component-title-spacing-mobile: 16px;
+$component-title-spacing-desktop: 16px;
+$component-desc-spacing-mobile: 24px;
+$component-desc-spacing-desktop: 48px;
 
 @mixin component-margin-top(){
   margin-top: $component-spacing-mobile;
@@ -29,9 +33,37 @@ $component-spacing-breakpoint: $breakpoint-m;
   max-width: $content-area-wrapper-width-max;
 }
 
-.component__title {
-  margin-bottom: $spacing-and-half;
+// By default title and description should have no margins
+.component__title,
+.component__description {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+// If component description exists with title, it should have margin top like this
+.component__title + .component__description {
+  margin-top: $component-title-spacing-mobile;
   @include breakpoint($component-spacing-breakpoint) {
-    margin-bottom: $spacing-triple;
+    margin-top: $component-title-spacing-desktop;
+  }
+}
+
+// Lonely title should have same distance to content as component description
+.component__title + .component__content,
+.component__description + .component__content {
+  margin-top: $component-desc-spacing-mobile;
+  @include breakpoint($component-spacing-breakpoint) {
+    margin-top: $component-desc-spacing-desktop;
+  }
+}
+
+.component__description {
+  @include font-size(18px, 27px);
+
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
   }
 }
