@@ -5,9 +5,13 @@
 
   @include breakpoint($breakpoint-m) {
     flex-direction: row;
-    margin-left: -#{$spacing-double};
-    margin-right: -#{$spacing-double};
-    max-width: $content-area-wrapper-width-max;
+    margin-left: -$spacing-and-half;
+    margin-right: -$spacing-and-half;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-left: -$spacing-double;
+    margin-right: -$spacing-double;
   }
 
   // Overrides for image paragraph styles.
@@ -78,7 +82,7 @@
       flex-direction: row;
     }
   }
-  .columns__column.column--50 {
+  .columns__column {
     @include breakpoint($breakpoint-l) {
       width: auto;
 
@@ -86,14 +90,28 @@
         margin-top: $spacing-double;
       }
     }
-
     @include breakpoint($breakpoint-xl) {
       margin-top: 0;
-      width: 50%;
 
       &:not(:first-of-type) {
         margin-top: 0;
       }
+    }
+  }
+
+  .columns__column.column--50 {
+    @include breakpoint($breakpoint-xl) {
+      width: 50%;
+    }
+  }
+  .columns__column.column--30 {
+    @include breakpoint($breakpoint-xl) {
+      width: 30%;
+    }
+  }
+  .columns__column.column--70 {
+    @include breakpoint($breakpoint-xl) {
+      width: 70%;
     }
   }
 }
