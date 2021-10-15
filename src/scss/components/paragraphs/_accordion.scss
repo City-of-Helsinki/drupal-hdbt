@@ -170,31 +170,6 @@
       margin-top: 0;
     }
   }
-
-  // This heading-level shouldn't probably semantically ever be used since the main header is h2 or lower.
-  h2 {
-    @include font-size(24px, 28px);
-    font-weight: $font-weight-regular;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 43px);
-    }
-  }
-
-  h3 {
-    @include font-size(22px, 26px);
-    font-weight: $font-weight-regular;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(28px, 36px);
-    }
-  }
-
-  h2, h3, h4, h5, h6 {
-    &:first-child {
-      margin-top: 0;
-    }
-  }
 }
 
 // Show border-top only on first accordion item header in white accordion.
