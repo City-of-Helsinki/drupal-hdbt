@@ -1,25 +1,10 @@
 $card_spacing: $spacing-and-half;
 
-.content-cards {
-  margin-top: $spacing-quadruple;
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
-}
-
-.content-cards__container {
+.component-content-cards .component__container {
   overflow: hidden;
-  padding-top: 0;
 }
 
-.content-cards__title {
-  margin-bottom: $spacing-triple;
-  margin-top: 0;
-  max-width: 640px;
-}
-
-.content-cards__content {
+.content-cards {
   display: flex;
   flex-direction: column;
   margin-bottom: 0;
@@ -107,8 +92,7 @@ $card_spacing: $spacing-and-half;
   }
 }
 
-.content-cards--large-cards,
-.content-cards--large-cards-grey {
+.component--content-cards-large {
   .content-card {
     @include breakpoint($breakpoint-s) {
       padding-left: $card_spacing;
@@ -121,15 +105,32 @@ $card_spacing: $spacing-and-half;
   }
 }
 
-.content-cards--small-cards-grey,
-.content-cards--large-cards-grey {
+.component--content-cards-grey {
   background: $color-silver-light;
 
   .hds-koros {
     color: $color-white;
 
-    .has-sidebar & {
+    .has-sidebar .components--upper & {
       display: none; // Koro should not be visible when the component is inside narrow column due to sidebar.
+    }
+  }
+
+  .component__container {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-triple;
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-sextuple;
+      padding-top: $spacing-quadruple;
+    }
+
+     // Since the component is not "full width" next to a sidebar, we should uniform padding around
+    .has-sidebar .components--upper & {
+      padding-bottom: $spacing-double;
+      padding-left: $spacing-double;
+      padding-right: $spacing-double;
+      padding-top: $spacing-double;
     }
   }
 
@@ -142,30 +143,9 @@ $card_spacing: $spacing-and-half;
   .content-card__image {
     margin: -#{$spacing} -#{$spacing} 0;
   }
-
-  .content-cards__container {
-    padding-top: $spacing-triple;
-
-    @include breakpoint($breakpoint-l) {
-      padding-top: $spacing-quadruple;
-    }
-  }
-
-  .content-cards__title {
-    margin-top: 0;
-  }
-
-  .content-cards__content {
-    margin-bottom: $spacing-quadruple;
-
-    @include breakpoint($breakpoint-l) {
-      margin-bottom: $spacing-sextuple;
-    }
-  }
 }
 
-.content-cards--small-cards,
-.content-cards--small-cards-grey {
+.component--content-cards-small {
   .content-card {
     &:nth-child(-n+2) {
       @include breakpoint($breakpoint-s) {
@@ -181,8 +161,7 @@ $card_spacing: $spacing-and-half;
   }
 }
 
-.content-cards--large-cards,
-.content-cards--large-cards-grey {
+.component--content-cards-large {
   .content-card {
     &:nth-child(-n+2) {
       @include breakpoint($breakpoint-s) {
@@ -198,19 +177,8 @@ $card_spacing: $spacing-and-half;
   }
 }
 
-.node--type-page {
-  .content-cards {
-    margin-top: $spacing-triple;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-quadruple;
-    }
-  }
-}
-
 // If the content-cards with grey design is just before footer.
-.layout-main-wrapper > *:last-child .content-cards--small-cards-grey:last-child,
-.layout-main-wrapper > *:last-child .content-cards--large-cards-grey:last-child {
+.layout-main-wrapper > *:last-child .component--content-cards-grey:last-child {
   margin-bottom: -115px; // Enough to get the block under the footer.
   padding-bottom: 55px; // Leave enough room between the last card and footer.
 }
