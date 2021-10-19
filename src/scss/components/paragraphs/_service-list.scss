@@ -1,6 +1,4 @@
 .views--service-list {
-  margin-top: $spacing-and-half;
-
   .hds-button--primary {
     --background-color: var(--color-black);
     --background-color-hover: var(--color-black);
@@ -72,10 +70,7 @@
 
   .service-list__count-container {
     @include font-size(18px, 24px);
-    border-top: 1px solid $color-black-10;
     display: block;
-    margin-top: $spacing-and-half;
-    padding-top: $spacing-and-half;
     width: 100%;
 
     @include breakpoint($breakpoint-l) {
