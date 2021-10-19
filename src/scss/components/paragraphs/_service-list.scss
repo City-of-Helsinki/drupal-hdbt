@@ -1,32 +1,3 @@
-.service-list {
-  margin-top: $spacing-quadruple;
-  padding: 0;
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
-}
-
-.service-list__container {
-  padding-top: 0;
-}
-
-.service-list__header__title {
-  margin-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(48px, 48px);
-  }
-}
-
-.service-list__header__description {
-  margin-top: $spacing-and-half;
-
-  p:first-child {
-    margin-top: 0;
-  }
-}
-
 .views--service-list {
   margin-top: $spacing-and-half;
 
