@@ -39,7 +39,7 @@
     margin-top: $spacing-double;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-quadruple;
+      margin-top: $spacing-triple;
     }
   }
 
