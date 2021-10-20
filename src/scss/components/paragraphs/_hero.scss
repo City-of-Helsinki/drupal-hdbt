@@ -647,7 +647,9 @@ $koro-height: 50px;
   }
 
   .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
+    @include breakpoint($breakpoint-m) {
+      color: $color-silver-light;
+    }
   }
 
   .hero__image-container {
