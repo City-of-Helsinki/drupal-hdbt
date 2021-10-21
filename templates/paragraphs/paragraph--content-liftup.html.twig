@@ -1,16 +1,9 @@
-{%
-  set classes = [
-  'component',
-  'component--content-liftup'
-]
-%}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
+  {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--content-liftup' ] } %}
+    {% block component_content %}
       {% block content %}
         {{ content }}
       {% endblock %}
-    </div>
-  </div>
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

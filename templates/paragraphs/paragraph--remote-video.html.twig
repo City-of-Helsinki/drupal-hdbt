@@ -8,13 +8,18 @@
 {% set video = content.field_remote_video %}
 
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      <div class="component__content remote-video">
-        <div class="responsive-video-container">
-          {{ video }}
-        </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--remote-video' ],
+      component_content_class: 'remote-video',
+    }
+  %}
+    {% block component_content %}
+
+      <div class="responsive-video-container">
+        {{ video }}
       </div>
-    </div>
-  </div>
+
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

@@ -37,15 +37,6 @@
   {% set has_icon = true %}
 {% endif %}
 
-{%
-  set classes = [
-    'component',
-    'component--banner',
-    design_class,
-    has_icon ? 'banner--has-icon'
-  ]
-%}
-
 {% set link = content.field_banner_link.0['#url'] %}
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
@@ -54,9 +45,18 @@
 
 {% block paragraph %}
   {% if has_content %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      <div class="component__content banner">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--banner',
+          design_class,
+          has_icon ? 'component--banner-has-icon'
+        ],
+        component_content_class: 'banner',
+      }
+    %}
+      {% block component_content %}
+
         {% if content.field_icon|render and 'align-left' in design %}
           <div class="banner__icon">{{ content.field_icon }}</div>
         {% endif %}
@@ -86,8 +86,8 @@
             </a>
           {% endif %}
         </div>
-      </div>
-    </div>
-  </div>
+
+      {% endblock component_content %}
+    {% endembed %}
   {% endif %}
 {% endblock paragraph %}

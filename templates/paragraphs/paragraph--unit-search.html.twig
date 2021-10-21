@@ -1,22 +1,16 @@
-{%
-  set classes = [
-    'component',
-    'component--unit-search',
-  ]
-%}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      {% if content.field_unit_search_title|render %}
-        <h2 class="component__title">{{ content.field_unit_search_title }}</h2>
-      {% endif %}
-      {% if content.field_unit_search_description|render %}
-        <div class="component__description">{{ content.field_unit_search_description }}</div>
-      {% endif %}
-      <div class="component__content unit-search">
-        {{ drupal_view('unit_search', 'block', unit_search_arguments) }}
-      </div>
-    </div>
-  </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--unit-search' ],
+      component_title: content.field_unit_search_title,
+      component_description: content.field_unit_search_description,
+      component_content_class: 'unit-search',
+    }
+  %}
+    {% block component_content %}
+
+      {{ drupal_view('unit_search', 'block', unit_search_arguments) }}
+
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

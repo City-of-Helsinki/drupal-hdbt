@@ -1,23 +1,17 @@
-{%
-  set classes = [
-    'component',
-    'component--map',
-  ]
-%}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      {% if content.field_map_title|render %}
-        <h2 class="component__title">{{ content.field_map_title }}</h2>
-      {% endif %}
-      {% if content.field_map_description|render %}
-        <div class="component__description">{{ content.field_map_description }}</div>
-      {% endif %}
-      <div class="component__content map">
-        {{ content.field_map_map }}
-      </div>
-    </div>
-  </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--map' ],
+      component_title: content.field_map_title,
+      component_description: content.field_map_description,
+      component_content_class: 'map',
+    }
+  %}
+    {% block component_content %}
+
+      {{ content.field_map_map }}
+
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}
 

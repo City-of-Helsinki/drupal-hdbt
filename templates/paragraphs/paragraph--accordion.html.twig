@@ -11,34 +11,22 @@
   {% set design_class = 'component--accordion-bg-grey' %}
 {% endif %}
 
-
-{%
-  set classes = [
-    'component',
-    'component--accordion',
-    design_class,
-    header_class,
-  ]
-%}
-
-{% set title_level = 'h' ~ accordion_title_level %}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      {% if content.field_accordion_title|render %}
-        <{{ title_level|default('h2') }} class="component__title">
-          {{ content.field_accordion_title }}
-        </{{ title_level|default('h2')}}>
-      {% endif %}
-      {% if content.field_accordion_description|render %}
-        <div class="component__description">
-          {{ content.field_accordion_description}}
-        </div>
-      {% endif %}
-      <div class="component__content">
-        {{ content.field_accordion_items }}
-      </div>
-    </div>
-  </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--accordion',
+        design_class,
+        header_class,
+      ],
+      component_title_level: 'h' ~ accordion_title_level,
+      component_title: content.field_accordion_title,
+      component_description: content.field_accordion_description,
+      component_content_class: 'accordion',
+    }
+  %}
+    {% block component_content %}
+      {{ content.field_accordion_items }}
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

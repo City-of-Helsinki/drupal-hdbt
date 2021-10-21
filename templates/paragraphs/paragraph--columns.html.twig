@@ -1,20 +1,14 @@
 {% set design = content.field_columns_design[0]['#markup'] %}
 
-{%
-  set classes = [
-    'component',
-    'component--columns',
-  ]
-%}
-
-{% set title = content.field_columns_title %}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="component__container">
-      {% if title|render %}
-        <h2 class="component__title">{{ title }}</h2>
-      {% endif %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--columns' ],
+      component_title: content.field_columns_title,
+      component_content_class: 'columns',
+    }
+  %}
+    {% block component_content %}
 
       {% set left_column_classes = ['columns__column'] %}
       {% set right_column_classes = ['columns__column'] %}
@@ -31,15 +25,14 @@
         {% set right_column_classes = right_column_classes|merge(['column--50']) %}
       {% endif %}
 
-      <div class="component__content columns">
-        <div class="{{ left_column_classes|join(' ') }}">
-          {{ content.field_columns_left_column }}
-        </div>
-
-        <div class="{{ right_column_classes|join(' ') }}">
-          {{ content.field_columns_right_column }}
-        </div>
+      <div class="{{ left_column_classes|join(' ') }}">
+        {{ content.field_columns_left_column }}
       </div>
-    </div>
-  </div>
+
+      <div class="{{ right_column_classes|join(' ') }}">
+        {{ content.field_columns_right_column }}
+      </div>
+
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

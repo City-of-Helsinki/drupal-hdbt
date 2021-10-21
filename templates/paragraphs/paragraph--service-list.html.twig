@@ -1,28 +1,15 @@
-{%
-  set classes = [
-    'component',
-    'component--service-list',
-  ]
-%}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      <div class="component__container">
-        {% if content.field_service_list_title|render %}
-          <h2 class="component__title">
-            {{ content.field_service_list_title }}
-          </h2>
-        {% endif %}
-        {% if content.field_service_list_description|render %}
-          <div class="component__description">
-            {{ content.field_service_list_description }}
-          </div>
-        {% endif %}
-        <div class="component__content">
-          {{ drupal_view('service_list', 'block', service_list_arguments) }}
-        </div>
-      </div>
-    {% endblock %}
-  </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--service-list' ],
+      component_title: content.field_service_list_title,
+      component_description: content.field_service_list_description,
+    }
+  %}
+    {% block component_content %}
+
+      {{ drupal_view('service_list', 'block', service_list_arguments) }}
+
+    {% endblock component_content %}
+  {% endembed %}
 {% endblock paragraph %}

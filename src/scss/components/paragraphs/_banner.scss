@@ -80,7 +80,7 @@ a.banner__button {
     }
   }
 
-  &.banner--has-icon {
+  &.component--banner-has-icon {
     .banner__button {
       @include breakpoint($breakpoint-l) {
         margin-left: auto;
