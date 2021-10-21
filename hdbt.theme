@@ -58,6 +58,8 @@ function hdbt_get_theme_color_override() {
  */
 function hdbt_preprocess_html(&$variables) {
   $variables['#attached']['library'][] = 'hdbt/mmenu-settings';
+  $variables['#attached']['library'][] = 'hdbt/siteimprove';
+  $variables['#attached']['library'][] = 'hdbt/matomo';
 }
 
 /**
