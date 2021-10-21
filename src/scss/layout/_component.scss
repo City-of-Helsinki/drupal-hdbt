@@ -7,18 +7,45 @@ $component-title-spacing-mobile: 16px;
 $component-title-spacing-desktop: 16px;
 $component-desc-spacing-mobile: 24px;
 $component-desc-spacing-desktop: 48px;
+$component-side-padding-mobile: 32px;
+$component-side-padding-desktop: 32px;
 
 @mixin component-margin-top(){
   margin-top: $component-spacing-mobile;
-  @include breakpoint($component-spacing-breakpoint) {
-    margin-top: $component-spacing-desktop;
+  @if $component-spacing-mobile != $component-spacing-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      margin-top: $component-spacing-desktop;
+    }
   }
 }
 
 @mixin component-margin-bottom(){
   margin-bottom: $component-spacing-mobile;
-  @include breakpoint($component-spacing-breakpoint) {
-    margin-bottom: $component-spacing-desktop;
+  @if $component-spacing-mobile != $component-spacing-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      margin-bottom: $component-spacing-desktop;
+    }
+  }
+}
+
+@mixin component-side-padding() {
+  padding-left: $component-side-padding-mobile;
+  padding-right: $component-side-padding-mobile;
+
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      padding-left: $component-side-padding-desktop;
+      padding-right: $component-side-padding-desktop;
+    }
+  }
+}
+
+@mixin components-container-max-width() {
+  max-width: $component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile;
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      max-width: $component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop;
+    }
   }
 }
 
@@ -43,8 +70,10 @@ $component-desc-spacing-desktop: 48px;
 // If component description exists with title, it should have margin top like this
 .component__title + .component__description {
   margin-top: $component-title-spacing-mobile;
-  @include breakpoint($component-spacing-breakpoint) {
-    margin-top: $component-title-spacing-desktop;
+  @if $component-title-spacing-mobile != $component-title-spacing-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      margin-top: $component-title-spacing-desktop;
+    }
   }
 }
 
@@ -52,13 +81,16 @@ $component-desc-spacing-desktop: 48px;
 .component__title + .component__content,
 .component__description + .component__content {
   margin-top: $component-desc-spacing-mobile;
-  @include breakpoint($component-spacing-breakpoint) {
-    margin-top: $component-desc-spacing-desktop;
+  @if $component-desc-spacing-mobile != $component-desc-spacing-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      margin-top: $component-desc-spacing-desktop;
+    }
   }
 }
 
 .component__description {
   @include font-size(18px, 27px);
+  max-width: $content-width-max;
 
   :first-child {
     margin-top: 0;
