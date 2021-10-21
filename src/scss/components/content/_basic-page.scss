@@ -16,6 +16,12 @@
   }
 }
 
+.no-sidebar .lead-in,
+.no-sidebar .components--upper > .component,
+.components--lower > .component {
+  @include component-side-padding();
+}
+
 .page-type--page.has-sidebar {
   .before-content--in-main {
     .page-title {
