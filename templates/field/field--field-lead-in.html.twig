@@ -54,9 +54,11 @@
   <section{{ attributes.addClass(classes) }} aria-label="'{% trans %}Lead-in paragraph{% endtrans %}')">
     {% embed "@hdbt/misc/container.twig" with {container_element: 'lead-in'} %}
       {% block container_content %}
-        {% for item in items %}
-          {{ item.content }}
-        {% endfor %}
+        <div class="lead-in__content">
+          {% for item in items %}
+            {{ item.content }}
+          {% endfor %}
+        </div>
       {% endblock %}
     {% endembed %}
   </section>
@@ -65,9 +67,11 @@
   <section{{ attributes.addClass(classes) }}>
     {% embed "@hdbt/misc/container.twig" with {container_element: 'lead-inn'} %}
       {% block container_content %}
-        {% for item in items %}
-          {{ item.content }}
-        {% endfor %}
+        <div class="lead-in__content">
+          {% for item in items %}
+            {{ item.content }}
+          {% endfor %}
+        </div>
       {% endblock %}
     {% endembed %}
   </section>
