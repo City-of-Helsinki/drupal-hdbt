@@ -40,12 +40,19 @@
 #}
 {% set design = content.field_accordion_design.0|first|clean_class %}
 
+{% set header_class = null %}
+{% if not content.field_accordion_title|render and not content.field_accordion_description|render %}
+  {% set header_class = 'accordion--no-header' %}
+{% endif %}
+
+
 {%
   set classes = [
     'accordion',
     view_mode ? 'accordion--' ~ view_mode|clean_class,
     'accordion--' ~ design,
     not paragraph.isPublished() ? 'accordion--unpublished',
+    header_class,
   ]
 %}
 
