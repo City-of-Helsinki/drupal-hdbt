@@ -100,19 +100,10 @@ global-scripting:
   dependencies:
     - core/drupal
 
-siteimprove:
-  version: 1.x
-  js:
-    'https://siteimproveanalytics.com/js/siteanalyze_6047173.js': {
-      type: external,
-      minified: true,
-      attributes: {
-        async: true
-      }
-    }
-
 matomo:
   version: 1.x
   header: true
   js:
     dist/js/matomo.min.js: {}
+  dependencies:
+    - core/drupalSettings
