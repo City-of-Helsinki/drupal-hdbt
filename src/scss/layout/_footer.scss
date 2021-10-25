@@ -165,6 +165,7 @@ a.footer__back-to-top {
   float: right;
   font-weight: 500;
   height: 40px; // Match footer logo height
+  margin-right: $spacing-half;
   margin-top: $spacing-triple;
   position: relative;
   text-decoration: none;
@@ -172,7 +173,6 @@ a.footer__back-to-top {
   @include breakpoint($breakpoint-m) {
     margin-bottom: $spacing-triple;
     margin-left: $spacing-double;
-    margin-right: $spacing-half;
     margin-top: 0;
   }
 

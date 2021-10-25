@@ -1,5 +1,9 @@
 .layout-main-wrapper * {
-  scroll-margin-top: 144px;
+  scroll-margin-top: 113px; // Mobile header + language switcher.
+
+  @include breakpoint($breakpoint-m) {
+    scroll-margin-top: 0; // No fixed elements on desktop.
+  }
 }
 
 .has-sidebar--first .layout-main-wrapper {
