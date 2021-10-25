@@ -62,6 +62,13 @@ function hdbt_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_media(&$variables) {
+  $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
+}
+
+/**
  * Helper function to get the icons path.
  *
  * @return string|null

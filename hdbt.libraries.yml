@@ -83,6 +83,16 @@ color-palette:
     theme:
       dist/css/color-palette.min.css: {}
 
+embedded-content-cookie-compliance:
+  version: 1.x
+  js:
+    dist/js/embedded-content-cookie-compliance.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - eu_cookie_compliance/eu_cookie_compliance
+
 global-styling:
   version: 1.x
   css:
