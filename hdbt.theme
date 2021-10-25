@@ -7,6 +7,7 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -325,6 +326,19 @@ function hdbt_preprocess_block(&$variables) {
             'url' => $parent_item->getUrlObject(),
           ];
         }
+      }
+      else {
+        $front_page = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+        $uri_parts = parse_url($front_page->toString());
+        $url = Url::fromUri('internal:' . $uri_parts['path']);
+        $params = $url->getRouteParameters();
+        $entity_type = key($params);
+        $node = \Drupal::entityTypeManager()->getStorage($entity_type)->load($params[$entity_type]);
+
+        $variables['menu_link_parent'] = [
+          'title' => $node->getTitle(),
+          'url' => $node->toUrl('canonical', ['absolute' => TRUE])->toString(),
+        ];
       }
     }
   }
