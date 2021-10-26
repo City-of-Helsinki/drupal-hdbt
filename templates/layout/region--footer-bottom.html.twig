@@ -16,10 +16,15 @@
   {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-bottom'} %}
     {% block container_content %}
       <div{{ attributes.addClass(region|clean_class) }}>
-        <a href="{{ path('<front>') }}" class="logo logo--footer" title="{{ site_name }}" rel="home">
-          {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
+        <div class="footer-bottom__navigation-wrapper">
+          <a href="{{ path('<front>') }}" class="logo logo--footer" title="{{ site_name }}" rel="home">
+            {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
+          </a>
+          {{ content }}
+        </div>
+        <a href="#skip-to-main" onclick="document.getElementById('skip-to-main').focus();" class="footer__back-to-top">
+          {% trans with {'context': 'Footer back to top link'}  %}Back to top{% endtrans %}{% include '@hdbt/misc/icon.twig' with {icon: 'arrow-up'} %}
         </a>
-        {{ content }}
       </div>
     {% endblock container_content %}
   {% endembed %}

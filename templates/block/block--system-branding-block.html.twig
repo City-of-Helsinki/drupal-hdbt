@@ -17,7 +17,7 @@
 {% set attributes = attributes.addClass('block--branding') %}
 
 {% block content %}
-  <a href="{{ path('<front>') }}" class="logo logo--header" title="{{ site_name }}" rel="home">
+  <a href="{{ path('<front>') }}" class="logo logo--header" title="{{ site_name }}" id="logo--header" rel="home">
     {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
     <span class="site-name">{{ site_name }}</span>
   </a>
