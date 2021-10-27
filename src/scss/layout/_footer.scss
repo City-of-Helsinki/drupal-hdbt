@@ -249,4 +249,8 @@ a.footer__back-to-top {
       background-color: $color-white;
     }
   }
+
+  a.footer__back-to-top {
+    --focus-outline-color: var(--color-white);
+  }
 }
