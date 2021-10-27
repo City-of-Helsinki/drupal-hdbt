@@ -1,10 +1,3 @@
-{# {%
-  set classes = [
-    'component',
-    'component--gallery',
-  ]
-%} #}
-
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
@@ -44,38 +37,4 @@
 
     {% endblock component_content %}
   {% endembed %}
-
-  {# <div{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true').setAttribute('aria-label', 'Image gallery'|t) }}>
-    <div class="component__container">
-      <div class="component__content gallery">
-        <div class="gallery__main splide">
-          <div class="gallery__slides splide__track">
-            <ul class="splide__list">
-              {{ content }}
-            </ul>
-          </div>
-        </div>
-        <div class="gallery__slide-count"></div>
-        <div class="gallery__thumbnails js-gallery__thumbnails">
-          <ul class="gallery__thumbnails__list">
-            {% for key, image in gallery_slide_thumbnails %}
-              {% set gallery_thumbnails_item = create_attribute({'class': 'gallery__thumbnails__item'}).setAttribute('role', 'button').setAttribute('tabindex', '0') %}
-              {% if gallery_slide_thumbnails_alt_texts[key].caption %}
-                {% set alt = gallery_slide_thumbnails_alt_texts[key].caption %}
-                {% set gallery_thumbnails_item = gallery_thumbnails_item.setAttribute('aria-label', gallery_slide_thumbnails_alt_texts[key].caption) %}
-              {% elseif gallery_slide_thumbnails_alt_texts[key].alt is not same as('""') %}
-                {% set alt = gallery_slide_thumbnails_alt_texts[key].alt %}
-                {% set gallery_thumbnails_item = gallery_thumbnails_item.setAttribute('aria-label', gallery_slide_thumbnails_alt_texts[key].alt) %}
-              {% else %}
-                {% set alt = false %}
-              {% endif %}
-              <li{{ gallery_thumbnails_item }}>
-                {{ drupal_image(image.uri.value, 'gallery_thumbnail', { alt: alt }, responsive=true) }}
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div> #}
 {% endblock paragraph %}
