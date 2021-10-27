@@ -66,7 +66,7 @@ function hdbt_content_theme() {
         'title' => NULL,
         'links' => NULL,
       ],
-    ]
+    ],
   ];
 }
 
