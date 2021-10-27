@@ -1,0 +1,64 @@
+.skip-to-main {
+  --border-width: 2px;
+  --border-color: var(--color-white);
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+  --background-color: var(--hdbt-color-black);
+  --color: var(--color-white);
+  --focus-outline-color: var(--hdbt-color-black);
+  clip: rect(1px, 1px, 1px, 1px); // visually hidden
+  word-wrap: normal;
+  background-color: var(--background-color);
+  border: var(--border-width) solid var(--border-color);
+  color: var(--color);
+  font-weight: 500;
+  height: 1px; // visually hidden
+  left: 50%;
+  overflow: hidden; // visually hidden
+  position: absolute;
+  scroll-margin-top: 105px; // Amount of air that should be left when scrolled to top.
+  text-decoration: none;
+  top: 102px; // A little overlap with language switcher header on mobile.
+  transform: translateX(-50%);
+  width: 1px; // visually hidden
+
+  z-index: 2;
+
+  @include breakpoint($breakpoint-m) {
+    scroll-margin-top: 24px; // Amount of air that should be left when scrolled to top.
+    top: 24px; // Half of the top navigation bar.
+  }
+
+  &:after {
+    --size: 100%;
+    border: var(--outline-width) solid transparent;
+    content: "";
+    height: var(--size);
+    left: -5px;
+    position: absolute;
+    top: -5px;
+    width: var(--size);
+  }
+
+  &:focus {
+    clip: auto;
+    height: auto;
+    outline: none;
+    overflow: visible;
+    padding: $spacing-half $spacing-and-half;
+    width: auto;
+
+    &:after {
+      --size: calc(100% + calc(var(--outline-width) * 2 + var(--outline-gutter) * 2));
+      border-color: var(--focus-outline-color);
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

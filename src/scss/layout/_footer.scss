@@ -90,14 +90,23 @@
 .footer-bottom {
   border-top: 1px solid $color-black-30;
   margin-top: $spacing-triple;
+  overflow: hidden;
   padding-bottom: $spacing-triple;
   padding-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-sextuple;
+    padding-bottom: 0;
+  }
+}
+
+.footer-bottom__navigation-wrapper {
+  @include breakpoint($breakpoint-m) {
     align-items: center;
     display: flex;
-    margin-top: $spacing-sextuple;
-    padding-bottom: $spacing-double;
+    flex-wrap: nowrap;
+    float: left;
+    margin-bottom: $spacing-triple;
   }
 }
 
@@ -141,6 +150,54 @@
         display: none;
       }
     }
+  }
+}
+
+a.footer__back-to-top {
+  --border-width: 2px;
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+  --focus-outline-color: var(--hdbt-color-black);
+
+  @include font-size(24px,24px);
+  align-items: center;
+  display: flex;
+  float: right;
+  font-weight: 500;
+  height: 40px; // Match footer logo height
+  margin-right: $spacing-half;
+  margin-top: $spacing-triple;
+  position: relative;
+  text-decoration: none;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+    margin-left: $spacing-double;
+    margin-top: 0;
+  }
+
+  &:after {
+    --size: 100%;
+    border: var(--outline-width) solid transparent;
+    content: "";
+    height: var(--size);
+    position: absolute;
+    right: calc(50% + var(--outline-width)); // Move the outline left to nullify the space around the icon.
+    transform: translateX(50%);
+    width: var(--size);
+  }
+
+  &:focus {
+    outline: none;
+
+    &:after {
+      --size: calc(100% + calc(var(--outline-width) * 2 + var(--border-width) * 2 + var(--outline-gutter) * 2));
+      border-color: var(--focus-outline-color);
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -191,5 +248,9 @@
     .menu__item::after {
       background-color: $color-white;
     }
+  }
+
+  a.footer__back-to-top {
+    --focus-outline-color: var(--color-white);
   }
 }

@@ -39,7 +39,7 @@
     margin-top: $spacing-double;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-quadruple;
+      margin-top: $spacing-triple;
     }
   }
 
@@ -357,4 +357,18 @@
   .handorgel__content {
     border: 0;
   }
+}
+
+// Remove accordion margin-top when it's after another similar margin and has no header
+.accordion--white + .accordion--white.accordion--no-header,
+.accordion--grey + .accordion--grey.accordion--no-header {
+  margin-top: 0;
+  > .container {
+    padding-top: 0;
+  }
+}
+
+// Remove extra line from white accordion when accordions are touching
+.accordion--white + .accordion--white.accordion--no-header > .container > .accordion__wrapper > .accordion-item__header {
+  border-top: 0 none;
 }
