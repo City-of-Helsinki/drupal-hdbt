@@ -2,7 +2,7 @@
   @include font-size(20px, 32px);
 }
 
-.no-sidebar .components--lead-in,
+.no-sidebar .component--lead-in,
 .no-sidebar .components--upper > .component,
 .components--lower > .component {
   @include component-side-padding();
