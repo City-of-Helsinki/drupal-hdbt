@@ -636,8 +636,13 @@ $koro-height: 50px;
       align-items: center;
       display: flex;
       margin: 0;
-      max-width: ($container-width-xl + $spacing-quadruple) / 2;
+      max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) / 2;
       width: 50%;
+    }
+    @if $component-side-padding-mobile != $component-side-padding-desktop {
+      @include breakpoint($component-spacing-breakpoint) {
+        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
+      }
     }
   }
 
@@ -657,13 +662,14 @@ $koro-height: 50px;
     @include breakpoint($breakpoint-m)  {
       height: auto;
       margin-top: $spacing-quadruple;
-      max-width: ($container-width-xl + $spacing-quadruple) / 2;
-      padding: 0 $spacing $spacing-quadruple;
+      max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) / 2;
+      padding: 0 $spacing-double $spacing-quadruple;
       width: 50%;
     }
-
-    @include breakpoint($breakpoint-l) {
-      padding: 0 $spacing-double $spacing-quadruple;
+    @if $component-side-padding-mobile != $component-side-padding-desktop {
+      @include breakpoint($component-spacing-breakpoint) {
+        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
+      }
     }
 
     img {
