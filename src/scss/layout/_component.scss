@@ -5,6 +5,27 @@
   @include component-margin-top();
 }
 
+// When components are full width and do not contain liftup-with-img-bg,
+// they should have padding that keeps them from touching side.
+.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg),
+.components--lower > .component:not(.component--liftup-with-image-bg) {
+  @include component-side-padding();
+}
+
+// Koro should touch the sides
+.component--has-koro > .hds-koros  {
+  margin-left: -$component-side-padding-mobile;
+  margin-right: -$component-side-padding-mobile;
+  width: calc(#{$component-side-padding-mobile} + 100% + #{$component-side-padding-mobile});
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-side-padding-breakpoint) {
+      margin-left: -$component-side-padding-desktop;
+      margin-right: -$component-side-padding-desktop;
+      width: calc(#{$component-side-padding-desktop} + 100% + #{$component-side-padding-desktop});
+    }
+  }
+}
+
 .component__container {
   margin-left: auto;
   margin-right: auto;
