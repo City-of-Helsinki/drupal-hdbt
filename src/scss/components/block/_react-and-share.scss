@@ -314,6 +314,7 @@
         margin: $spacing-and-half 0 0;
         @include font-size(16px, 24px);
         color: $color-black-60;
+        opacity: 1;
       }
 
       .rns-input-field {
