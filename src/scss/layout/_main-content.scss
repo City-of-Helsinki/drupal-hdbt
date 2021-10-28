@@ -1,12 +1,4 @@
 .main-content {
-  margin-top: $spacing-quadruple;
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
-}
-
-.main-content {
   width: 100%;
 }
 

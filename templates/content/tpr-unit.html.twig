@@ -22,18 +22,38 @@
 
   {% block accessibility_sentences_block %}
     {% if content.accessibility_sentences|render %}
-      <div class="unit__accessibility_sentences accordion accordion--grey">
-        {% embed "@hdbt/misc/container.twig" ignore missing with {container_element: 'accordion'} %}
-          {% block container_content %}
-            {% include '@hdbt/component/accordion.twig' ignore missing with {
-              heading_level: 'h2',
-              heading_icon: 'person-wheelchair',
-              heading: 'Accessibility information'|t,
-              content: content.accessibility_sentences,
-            } %}
-          {% endblock %}
-        {% endembed %}
-      </div>
+
+      {% embed "@hdbt/misc/component.twig" with
+        {
+          component_classes: [
+            'component--accordion',
+            'component--accordion-bg-grey',
+          ],
+          component_content_class: 'accordion',
+        }
+      %}
+        {% block component_content %}
+
+          {% set accordion_content %}
+
+            {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+              {% block component_content %}
+                  {{ content.accessibility_sentences }}
+              {% endblock component_content %}
+            {% endembed %}
+
+          {% endset %}
+
+          {% include '@hdbt/component/accordion.twig' ignore missing with {
+            heading_level: 'h2',
+            heading_icon: 'person-wheelchair',
+            heading: 'Accessibility information'|t,
+            content: accordion_content,
+          } %}
+
+        {% endblock component_content %}
+      {% endembed %}
+
     {% endif %}
   {% endblock accessibility_sentences_block %}
 {% endembed %}

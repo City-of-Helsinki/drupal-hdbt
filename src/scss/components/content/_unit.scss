@@ -84,6 +84,11 @@
   }
 
   .unit-header__container {
+    @include components-container-max-width();
+    @include component-side-padding();
+    margin-left: auto;
+    margin-right: auto;
+
     @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
@@ -344,9 +349,8 @@
 }
 
 .unit__accessibility_sentences {
-  margin-top: $spacing-double;
 
-  &.accordion {
+  &.component--accordion {
     .accordion-item__content {
       h3 {
         margin-top: 0;

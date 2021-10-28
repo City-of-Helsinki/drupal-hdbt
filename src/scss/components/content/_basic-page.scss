@@ -1,22 +1,8 @@
 .lead-in {
   @include font-size(20px, 32px);
-  @include component-margin-top();
-  @include component-margin-bottom();
-
-  .lead-in__container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $content-area-wrapper-width-max;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    .lead-in__content {
-      max-width: $content-width-max;
-    }
-  }
 }
 
-.no-sidebar .lead-in,
+.no-sidebar .components--lead-in,
 .no-sidebar .components--upper > .component,
 .components--lower > .component {
   @include component-side-padding();

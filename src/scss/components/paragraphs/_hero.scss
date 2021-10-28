@@ -6,6 +6,7 @@ $koro-height: 50px;
   .hero__container {
     color: $color-black-90;
     padding-bottom: $spacing-triple;
+    padding-top: $spacing-and-half;
     position: relative;
 
     @include breakpoint(max-width $breakpoint-s) {
