@@ -9,6 +9,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\node\Entity\Node;
@@ -776,7 +777,7 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
 /**
  * Helper function to get the privacy policy link URL.
  */
-function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): \Drupal\Core\GeneratedUrl|string {
+function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {
   $config = \Drupal::config('eu_cookie_compliance.settings');
 
   $popup_link_config = $config->get('popup_link');
