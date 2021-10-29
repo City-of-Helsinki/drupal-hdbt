@@ -8,26 +8,28 @@
   'use strict';
 
   var loadEmbeddedContent = function () {
-    if (typeof Drupal.eu_cookie_compliance !== 'undefined') {
-      if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
-        for (const [id, attributes] of Object.entries(
-          drupalSettings.embedded_media_attributes
-        )) {
-          var elem = document.createElement('iframe');
-          elem.classList.add('media-oembed-content');
-          elem.src = attributes.src;
-          elem.height = attributes.height;
-          elem.width = attributes.width;
-          elem.title = attributes.title;
-          $('.embedded-content-cookie-compliance.media-' + id)
-            .empty()
-            .append(elem)
-            .removeClass('media-' + id);
-        }
+    if (typeof Drupal.eu_cookie_compliance === 'undefined') {
+      return;
+    }
 
-        // Only load the embedded content once.
-        loadEmbeddedContent = function () {};
+    if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+      for (const [id, attributes] of Object.entries(
+        drupalSettings.embedded_media_attributes
+      )) {
+        var elem = document.createElement('iframe');
+        elem.classList.add('media-oembed-content');
+        elem.src = attributes.src;
+        elem.height = attributes.height;
+        elem.width = attributes.width;
+        elem.title = attributes.title;
+        $('.embedded-content-cookie-compliance.media-' + id)
+          .empty()
+          .append(elem)
+          .removeClass('media-' + id);
       }
+
+      // Only load the embedded content once.
+      loadEmbeddedContent = function () {};
     }
   };
 
