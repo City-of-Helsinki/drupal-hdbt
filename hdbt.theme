@@ -5,6 +5,7 @@
  * Functions to support theming in the hdbt theme.
  */
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -111,6 +112,7 @@ function hdbt_preprocess_media(&$variables) {
     return;
   }
   if ($variables['media']->bundle() === 'remote_video') {
+    $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
   }
 }
@@ -769,4 +771,17 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
   }
 
   $variables['errand_service_details'] = $details;
+}
+
+/**
+ * Helper function to get the privacy policy link URL.
+ */
+function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): \Drupal\Core\GeneratedUrl|string {
+  $config = \Drupal::config('eu_cookie_compliance.settings');
+
+  $popup_link_config = $config->get('popup_link');
+  if (UrlHelper::isExternal($popup_link_config)) {
+    return Url::fromUri($popup_link_config)->toString();
+  }
+  return Url::fromUserInput($popup_link_config === '<front>' ? '/' : $popup_link_config)->toString();
 }

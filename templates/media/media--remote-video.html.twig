@@ -25,6 +25,7 @@
  * - attributes: HTML attributes for the containing element.
  * - title_attributes: Same as attributes, except applied to the main title
  *   tag that appears in the template.
+ * - privacy_policy_url: The URL for the privacy policy page.
  *
  * @see template_preprocess_media()
  */
@@ -32,9 +33,28 @@
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
 <div class="embedded-content-cookie-compliance media-{{ media.id }}">
-  <h2>{{ 'Unable to show embedded video'|t }}</h2>
-  <p>{{ 'Approve statistics cookies in order to show embedded videos.'|t }}</p>
-  <p><a href="{{ media_url }}" target="_blank">{{ 'Watch video on YouTube.'|t }}</a></p>
+  <h2>{{ 'Content cannot be displayed'|t }}</h2>
+  <p>{{ 'This content is hosted by an external site. To see the content, switch over to the external site or modify your cookie settings.'|t }}</p>
+  {%
+    set external_link_classes = [
+    'hds-button',
+    'hds-button--secondary',
+    'hdbt-icon',
+    'hdbt-icon--link-external'
+  ]
+  %}
+  <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
+    <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+  </a>
+  {%
+    set settings_link_classes = [
+    'hds-button',
+    'hds-button--primary',
+  ]
+  %}
+  <a href="{{ privacy_policy_url }}" {{ create_attribute({'class': settings_link_classes} ) }}>
+    <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
+  </a>
 </div>
 
 {% set drupal_settings = {
