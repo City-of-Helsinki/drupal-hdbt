@@ -176,7 +176,7 @@ function hdbt_preprocess_page(&$variables) {
     $variables['node']->getType() == 'page'
   ) {
     $defaults = menu_ui_get_menu_link_defaults($variables['node']);
-    if ($defaults['id'] && !empty($defaults['parent'])) {
+    if ($defaults['id']) {
       $variables['has_navigation'] = TRUE;
     }
 
@@ -355,10 +355,23 @@ function hdbt_preprocess_block(&$variables) {
     if (isset($current_level_menu_item['original_link'])) {
       $original_link = $current_level_menu_item['original_link'];
       $parent = $original_link->getParent();
+      $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+      $page_entity = hdbt_content_get_page_entity();
+
+      // Compare the current page menu link and parent menu link.
+      if (!empty($page_entity) && $page_entity instanceof ContentEntityInterface) {
+        $menu_links = $menu_link_manager->loadLinksByRoute(
+          "entity.{$page_entity->getEntityTypeId()}.canonical",
+          [$page_entity->getEntityTypeId() => $page_entity->id()]
+        );
+        // Set parent link false if it matches to current page menu link.
+        if (!empty($menu_links) && array_key_exists($parent, $menu_links)) {
+          $parent = FALSE;
+        }
+      }
 
       // Check if current menu item has parent and serve it as variable.
       if ($parent) {
-        $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
         $parent_item = $menu_link_manager->createInstance($parent);
 
         if ($parent_item) {
@@ -374,8 +387,10 @@ function hdbt_preprocess_block(&$variables) {
         $url = Url::fromUri('internal:' . $uri_parts['path']);
         $params = $url->getRouteParameters();
         $entity_type = key($params);
-        $node = \Drupal::entityTypeManager()->getStorage($entity_type)->load($params[$entity_type]);
-
+        $node = \Drupal::entityTypeManager()
+          ->getStorage($entity_type)
+          ->load($params[$entity_type])
+          ->getTranslation($variables['current_langcode']);
         $variables['menu_link_parent'] = [
           'title' => $node->getTitle(),
           'url' => $node->toUrl('canonical', ['absolute' => TRUE])->toString(),
