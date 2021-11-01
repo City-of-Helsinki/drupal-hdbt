@@ -33,28 +33,33 @@
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
 <div class="embedded-content-cookie-compliance media-{{ media.id }}">
-  <h2>{{ 'Content cannot be displayed'|t }}</h2>
-  <p>{{ 'This content is hosted by an external site. To see the content, switch over to the external site or modify your cookie settings.'|t }}</p>
-  {%
-    set external_link_classes = [
-    'hds-button',
-    'hds-button--secondary',
-    'hdbt-icon',
-    'hdbt-icon--link-external'
-  ]
-  %}
-  <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
-    <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
-  </a>
-  {%
-    set settings_link_classes = [
-    'hds-button',
-    'hds-button--primary',
-  ]
-  %}
-  <a href="{{ privacy_policy_url }}" {{ create_attribute({'class': settings_link_classes} ) }}>
-    <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
-  </a>
+  <div class="message">
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+    <h2>{{ 'Content cannot be displayed'|t }}</h2>
+    <p>{{ 'This content is hosted by an external site. To see the content, switch over to the external site or modify your cookie settings.'|t }}</p>
+    <div class="buttons">
+      {%
+        set external_link_classes = [
+        'hds-button',
+        'hds-button--primary',
+        'hdbt-icon',
+        'hdbt-icon--link-external'
+      ]
+      %}
+      <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
+        <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+      </a>
+      {%
+        set settings_link_classes = [
+        'hds-button',
+        'hds-button--secondary',
+      ]
+      %}
+      <a href="{{ privacy_policy_url }}" {{ create_attribute({'class': settings_link_classes} ) }}>
+        <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 {% set drupal_settings = {

@@ -82,3 +82,94 @@
     }
   }
 }
+
+.embedded-content-cookie-compliance {
+  align-content: center;
+  background-color: $color-black-5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .message {
+    background-color: $color-white;
+    margin: $spacing;
+    padding: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin: $spacing-quadruple;
+      padding: $spacing-double;
+    }
+
+    > h2 {
+      margin-top: 0;
+      @include font-size(24px, 29px);
+      font-weight: $font-weight-medium;
+    }
+
+    > .buttons {
+      display: flex;
+      flex-direction: column;
+      margin-top: $spacing;
+
+      @include breakpoint($breakpoint-m) {
+        flex-direction: row;
+      }
+
+      > .hds-button {
+        margin-top: $spacing;
+        @include breakpoint($breakpoint-m) {
+          margin-left: $spacing;
+          margin-top: 0;
+        }
+      }
+
+      > .hds-button:first-child {
+        margin-left: 0;
+        margin-top: 0;
+      }
+    }
+
+    .hds-button__label {
+      padding: $spacing-quarter;
+    }
+  }
+
+  .hds-button {
+    max-width: 400px;
+    width: 100%;
+
+    &:not(:disabled):focus {
+      border-color: $color-black;
+
+      &:after {
+        border-color: $color-black;
+      }
+    }
+  }
+
+  .hds-button--primary {
+    background-color: $color-black;
+    border-color: $color-black;
+    color: $color-white;
+
+    &:hover {
+      &:focus {
+        background-color: $color-black;
+      }
+    }
+  }
+
+  .hds-button--secondary {
+    border-color: $color-black;
+    color: $color-black;
+
+    &:hover {
+      background-color: $color-black;
+      color: $color-white;
+
+      &:focus {
+        color: $color-white;
+      }
+    }
+  }
+}
