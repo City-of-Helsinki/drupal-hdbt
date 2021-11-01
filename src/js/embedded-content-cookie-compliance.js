@@ -16,15 +16,20 @@
       for (const [id, attributes] of Object.entries(
         drupalSettings.embedded_media_attributes
       )) {
-        var elem = document.createElement('iframe');
-        elem.classList.add('media-oembed-content');
-        elem.src = attributes.src;
-        elem.height = attributes.height;
-        elem.width = attributes.width;
-        elem.title = attributes.title;
+        var iframeElement = document.createElement('iframe');
+        iframeElement.classList.add('media-oembed-content');
+        iframeElement.src = attributes.src;
+        iframeElement.height = attributes.height;
+        iframeElement.width = attributes.width;
+        iframeElement.title = attributes.title;
+
+        var containerElement = document.createElement('div');
+        containerElement.classList.add('responsive-video-container');
+        containerElement.appendChild(iframeElement);
+
         $('.embedded-content-cookie-compliance.media-' + id)
           .empty()
-          .append(elem)
+          .append(containerElement)
           .removeClass('media-' + id);
       }
 
