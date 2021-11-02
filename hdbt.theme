@@ -346,7 +346,7 @@ function hdbt_preprocess_block(&$variables) {
   // Handle Sidebar menu block.
   if (
     $variables['base_plugin_id'] === 'menu_block_current_language' &&
-    $variables['elements']['#id'] === 'main_navigation_level_2' &&
+    str_contains($variables['elements']['#id'], 'main_navigation_level_2') &&
     !empty($variables['content']['#items'])
   ) {
     // Get any current menu level item.
