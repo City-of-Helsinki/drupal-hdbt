@@ -36,14 +36,5 @@
     .node--type-page {
       margin-top: $spacing-and-half;
     }
-
-    // Unset container paddings if basic page has sidebar.
-    @include breakpoint($breakpoint-l) {
-      &.has-navigation {
-        .container {
-          padding-right: 0;
-        }
-      }
-    }
   }
 }
