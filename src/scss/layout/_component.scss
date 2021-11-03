@@ -71,3 +71,8 @@
     margin-bottom: 0;
   }
 }
+
+.component--tpr-unit,
+.component--unit-services {
+  @include component-side-padding();
+}
