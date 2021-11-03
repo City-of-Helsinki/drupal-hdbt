@@ -5,7 +5,11 @@
  */
 #}
 
-{% if drupal_entity('block', 'main_navigation_level_2', check_access=false)|render|striptags|trim is not empty %}
+{% if not block_name %}
+  {% set block_name = 'main_navigation_level_2' %}
+{% endif %}
+
+{% if drupal_entity('block', block_name, check_access=false)|render|striptags|trim is not empty %}
   {% set in_menu =  TRUE %}
 {% endif %}
 
@@ -15,7 +19,7 @@
 
 {% embed '@helfi_tpr/tpr-service.html.twig' with {in_menu: in_menu, sidebar_content: sidebar_content} %}
   {% block sidebar_block %}
-    {{ drupal_entity('block', 'main_navigation_level_2', check_access=false) }}
+    {{ drupal_entity('block', block_name, check_access=false) }}
     {{ content.field_sidebar_content }}
   {% endblock sidebar_block %}
   {% block main_content %}
