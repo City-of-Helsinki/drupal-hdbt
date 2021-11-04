@@ -1,11 +1,7 @@
 // React & Share block
 .block--react-and-share {
-  margin-top: $spacing-triple;
+  @include component-margin-top();
   width: 100%;
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
 }
 
 .rns {

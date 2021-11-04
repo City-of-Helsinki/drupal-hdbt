@@ -29,6 +29,8 @@
   }
 
   .unit__image {
+    @include component-negative-side-margin();
+
     img {
       max-width: 100%;
       vertical-align: top;

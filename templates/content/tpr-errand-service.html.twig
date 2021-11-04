@@ -39,17 +39,32 @@
         content.information|render
       %}
 
-        <div class="errand-service__accordion accordion accordion--grey">
-          {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
-            {% block container_content %}
+        {% block paragraph %}
+          {% embed "@hdbt/misc/component.twig" with
+            {
+              component_classes: [
+                'component--accordion',
+                'component--accordion-bg-grey',
+                'component--hardcoded',
+                'errand-service__accordion',
+              ],
+              component_title_level: 'h3',
+              component_title: 'Details'|t,
+              component_description: errand_service_details,
+              component_content_class: 'accordion',
+            }
+          %}
+            {% block component_content %}
+
               {% include '@hdbt/component/accordion.twig' with {
                 heading_level: 'h3',
                 heading: 'Details'|t,
                 content: errand_service_details,
               } %}
-            {% endblock %}
+
+            {% endblock component_content %}
           {% endembed %}
-        </div>
+        {% endblock paragraph %}
 
       {% endif %}
     {% endif %}

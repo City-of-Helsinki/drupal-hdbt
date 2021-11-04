@@ -23,8 +23,10 @@
     {{ content.field_sidebar_content }}
   {% endblock sidebar_block %}
   {% block main_content %}
-    <div class="enriched-content has-sidebar components components--service">
-      {{ content.field_content }}
-    </div>
+    {% if content.field_content|render|striptags|trim is not empty %}
+      <div class="enriched-content has-sidebar components components--service">
+        {{ content.field_content }}
+      </div>
+    {% endif %}
   {% endblock main_content %}
 {% endembed %}
