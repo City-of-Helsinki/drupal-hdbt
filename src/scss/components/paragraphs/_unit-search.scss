@@ -129,7 +129,7 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    margin: 0;
+    margin: $spacing-double 0 0;
     padding: 0;
 
     @include breakpoint($breakpoint-m) {
