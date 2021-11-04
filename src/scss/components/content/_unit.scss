@@ -29,16 +29,13 @@
   }
 
   .unit__image {
-    line-height: 0;
-    margin: 0 -#{$spacing-and-half};
-
     @include breakpoint($breakpoint-m) {
-      margin: 0;
       max-width: 690px;
     }
 
     img {
       max-width: 100%;
+      vertical-align: top;
     }
   }
 
