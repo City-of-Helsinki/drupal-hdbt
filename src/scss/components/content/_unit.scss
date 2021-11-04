@@ -29,10 +29,6 @@
   }
 
   .unit__image {
-    @include breakpoint($breakpoint-m) {
-      max-width: 690px;
-    }
-
     img {
       max-width: 100%;
       vertical-align: top;
