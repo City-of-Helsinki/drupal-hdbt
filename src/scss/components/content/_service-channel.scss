@@ -84,8 +84,7 @@
 }
 
 .service-channel--eservice {
-  background-color: var(--hdbt-color-palette--secondary);;
-  margin: $spacing-and-half -#{$spacing-and-half} 0;
+  background-color: var(--hdbt-color-palette--secondary);
   padding: $spacing-and-half $spacing-and-half $spacing-double;
 
   @include breakpoint($breakpoint-l) {

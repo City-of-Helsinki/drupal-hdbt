@@ -1,78 +1,60 @@
-.banner {
-  background-color: var(--hdbt-color-palette--primary);
-  color: var(--hdbt-color-palette-text--primary);
-  margin: $spacing-double auto 0;
-  max-width: $container-width-xl; // 1200px since we don't have extra paddings on the sides here.
-  padding: $spacing-triple 0;
+.banner__title {
+  @include font-size(24px, 29px);
+  margin-top: 0;
 
   @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-triple;
-  }
-
-  .banner__title {
-    @include font-size(24px, 29px);
-    margin-top: 0;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 36px);
-    }
-  }
-
-  .banner__desc {
-    @include font-size(18px, 28px);
-    margin-top: $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-and-half;
-    }
-
-    p:first-child {
-      margin: 0;
-    }
-  }
-
-  .banner__icon {
-    display: inline-flex;
-    margin-bottom: $spacing-and-half;
-    margin-right: $spacing;
-
-    @include breakpoint($breakpoint-m) {
-      margin-right: $spacing-and-half;
-    }
-
-    .icon {
-      --icon-proportions: #{$spacing-quadruple};
-
-      @include breakpoint($breakpoint-m) {
-        --icon-proportions: 6.25rem;
-      }
-    }
-
-    a {
-      --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
-    }
-  }
-
-  .banner__container {
-    margin-left: 0;
-    margin-right: 0;
-    // Arbitrary max-width that was determined to look good with the designers.
-    max-width: 1030px;
-    padding-top: 0;
-
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-triple;
-      padding-right: $spacing-triple;
-    }
-  }
-
-  a.banner__button {
-    margin: $spacing-double auto 0;
+    @include font-size(36px, 36px);
   }
 }
 
-.banner--design-align-center,
-.banner--design-align-center-secondary {
+.banner__desc {
+  @include font-size(18px, 28px);
+  margin-top: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-and-half;
+  }
+
+  p:first-child {
+    margin: 0;
+  }
+}
+
+.banner__icon {
+  display: inline-flex;
+  margin-bottom: $spacing-and-half;
+  margin-right: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    margin-right: $spacing-and-half;
+  }
+
+  .icon {
+    --icon-proportions: #{$spacing-quadruple};
+
+    @include breakpoint($breakpoint-m) {
+      --icon-proportions: 6.25rem;
+    }
+  }
+
+  a {
+    --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
+  }
+}
+
+.component--banner .banner {
+  padding-bottom: $spacing-double;
+  padding-left: $spacing-double;
+  padding-right: $spacing-double;
+  padding-top: $spacing-double;
+}
+
+a.banner__button {
+  margin: $spacing-double auto 0;
+}
+
+
+.component--banner-align-center {
   text-align: center;
 
   .banner__title,
@@ -82,15 +64,14 @@
     max-width: 700px; // According to layouts.
   }
 
-  .banner__container {
+  .component__content {
     margin-left: auto;
     margin-right: auto;
   }
 }
 
-.banner--design-align-left,
-.banner--design-align-left-secondary {
-  .banner__container {
+.component--banner-align-left {
+  .banner {
     display: flex;
     flex-flow: column;
 
@@ -99,7 +80,7 @@
     }
   }
 
-  &.banner--has-icon {
+  &.component--banner-has-icon {
     .banner__button {
       @include breakpoint($breakpoint-l) {
         margin-left: auto;
@@ -114,8 +95,12 @@
   }
 }
 
-.banner--design-align-center,
-.banner--design-align-left {
+.component--banner .component__container {
+  background-color: var(--hdbt-color-palette--primary);
+  color: var(--hdbt-color-palette-text--primary);
+}
+
+.banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
   }
@@ -179,11 +164,12 @@
   }
 }
 
-.banner--design-align-left-secondary,
-.banner--design-align-center-secondary {
+.component--banner-secondary .component__container {
   background-color: var(--hdbt-color-palette--secondary);
   color: var(--hdbt-color-palette-text--secondary);
+}
 
+.component--banner-secondary .banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--secondary);
   }

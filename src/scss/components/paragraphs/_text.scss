@@ -1,93 +1,78 @@
-.text {
+.component--paragraph-text .component__content {
   @include font-size(18px, 27px);
-  margin-top: $spacing-double;
+  max-width: $content-width-max;
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-triple;
+  > *:first-child,
+  > p:first-child {
+    margin-top: 0;
   }
 
-  .text__container {
-    padding-top: 0;
+  > *:last-child {
+    margin-bottom: 0;
   }
 
-  .text__text-content {
-    max-width: $content-width-max;
+  .hds-button--primary,
+  .hds-button--secondary,
+  .hds-button--supplementary {
+    @include font-size(16px, 24px);
+  }
 
-    > *:first-child {
-      margin-top: 0;
-    }
+  .hds-button--primary {
+    --background-color: var(--color-black-90);
+    --background-color-hover: var(--color-white);
+    --background-color-focus: var(--color-black-90);
+    --background-color-hover-focus: var(--color-white);
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--color-black-90);
+    --border-color-hover: var(--color-black);
+    --border-color-focus: var(--color-black-90);
+    --border-color-hover-focus: var(--color-black-90);
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--color-white);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-white);
+    --focus-outline-color: var(--color-black-90);
+    --submit-input-focus-gutter-color: var(--color-white);
+  }
 
-    > p:first-child {
-      margin-top: 0;
-    }
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--color-black-90);
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--color-black-90);
+    --background-color-disabled: transparent;
+    --border-color: var(--color-black-90);
+    --border-color-hover: var(--color-black-90);
+    --border-color-focus: var(--color-black-90);
+    --border-color-hover-focus: var(--color-black-90);
+    --border-color-disabled: var(--color-black-50);
+    --color: var(--color-black-90);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-white);
+    --focus-outline-color: var(--color-black-90);
+  }
 
-    > *:last-child {
-      margin-bottom: 0;
-    }
-
-    .hds-button--primary,
-    .hds-button--secondary,
-    .hds-button--supplementary {
-      @include font-size(16px, 24px);
-    }
-
-    .hds-button--primary {
-      --background-color: var(--color-black-90);
-      --background-color-hover: var(--color-white);
-      --background-color-focus: var(--color-black-90);
-      --background-color-hover-focus: var(--color-white);
-      --background-color-disabled: var(--color-black-20);
-      --border-color: var(--color-black-90);
-      --border-color-hover: var(--color-black);
-      --border-color-focus: var(--color-black-90);
-      --border-color-hover-focus: var(--color-black-90);
-      --border-color-disabled: var(--color-black-20);
-      --color: var(--color-white);
-      --color-hover: var(--color-black-90);
-      --color-focus: var(--color-white);
-      --color-hover-focus: var(--color-black-90);
-      --color-disabled: var(--color-white);
-      --focus-outline-color: var(--color-black-90);
-      --submit-input-focus-gutter-color: var(--color-white);
-    }
-
-    .hds-button--secondary {
-      --background-color: transparent;
-      --background-color-hover: var(--color-black-90);
-      --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-black-90);
-      --background-color-disabled: transparent;
-      --border-color: var(--color-black-90);
-      --border-color-hover: var(--color-black-90);
-      --border-color-focus: var(--color-black-90);
-      --border-color-hover-focus: var(--color-black-90);
-      --border-color-disabled: var(--color-black-50);
-      --color: var(--color-black-90);
-      --color-hover: var(--color-white);
-      --color-focus: var(--color-black-90);
-      --color-hover-focus: var(--color-white);
-      --focus-outline-color: var(--color-black-90);
-    }
-
-    .hds-button--supplementary {
-      --background-color: transparent;
-      --background-color-hover: transparent;
-      --background-color-focus: transparent;
-      --background-color-hover-focus: transparent;
-      --background-color-disabled: transparent;
-      --border-color: transparent;
-      --border-color-hover: transparent;
-      --border-color-focus: var(--color-black-90);
-      --border-color-hover-focus: var(--color-black-90);
-      --border-color-disabled: transparent;
-      --color: var(--color-black-90);
-      --color-hover: var(--color-black-90);
-      --color-focus: var(--color-black-90);
-      --color-hover-focus: var(--color-black-90);
-      --color-disabled: var(--color-black-40);
-      --focus-outline-color: transparent;
-      --submit-input-focus-gutter-color: transparent;
-    }
+  .hds-button--supplementary {
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: var(--color-black-90);
+    --border-color-hover-focus: var(--color-black-90);
+    --border-color-disabled: transparent;
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-black-40);
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
   }
 
   ul, ol {
@@ -110,24 +95,6 @@
       li {
         margin-left: $spacing;
       }
-    }
-  }
-}
-
-.has-sidebar--first {
-  // Only directly under the paragraph content wrapper text paragraphs should have this padding.
-  .paragraph-content > .text .text__text-content {
-    @include breakpoint($breakpoint-l) {
-      padding-left: 0;
-    }
-  }
-}
-
-// Sidebar layout.
-.has-sidebar.enriched-content { // TODO: Clean up when unit sidebar block has been created.
-  .text__text-content {
-    @include breakpoint($breakpoint-m) {
-      padding-left: 0;
     }
   }
 }

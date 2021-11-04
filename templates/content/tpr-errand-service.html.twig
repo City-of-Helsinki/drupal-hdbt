@@ -15,38 +15,58 @@
 <article{{ attributes.addClass(classes) }}>
 
   <div class="errand-service__container container">
-    <div{{ content_attributes.addClass('errand-service__header') }}>
-      <h2{{ title_attributes.addClass('errand-service__title') }}>
-        {{ content.name }}
-      </h2>
-    </div>
 
-    {% if content.description|render %}
-      <div class="errand-service__description">
-        {{ content.description }}
-      </div>
-    {% endif %}
+    {# Sote uses simple mode, for the rest this is enabled by default (check sote tpr-errand-service.html.twig) #}
+    {% if not errand_service_simple_mode %}
 
-    {% if
-      content.process_description|render or
-      content.processing_time|render or
-      content.expiration_time|render or
-      content.costs|render or
-      content.information|render
-    %}
-
-      <div class="errand-service__accordion accordion accordion--grey">
-        {% embed "@hdbt/misc/container.twig" with {container_element: 'accordion'} %}
-          {% block container_content %}
-            {% include '@hdbt/component/accordion.twig' with {
-              heading_level: 'h3',
-              heading: 'Details'|t,
-              content: errand_service_details,
-            } %}
-          {% endblock %}
-        {% endembed %}
+      <div{{ content_attributes.addClass('errand-service__header') }}>
+        <h2{{ title_attributes.addClass('errand-service__title') }}>
+          {{ content.name }}
+        </h2>
       </div>
 
+      {% if content.description|render %}
+        <div class="errand-service__description">
+          {{ content.description }}
+        </div>
+      {% endif %}
+
+      {% if
+        content.process_description|render or
+        content.processing_time|render or
+        content.expiration_time|render or
+        content.costs|render or
+        content.information|render
+      %}
+
+        {% block paragraph %}
+          {% embed "@hdbt/misc/component.twig" with
+            {
+              component_classes: [
+                'component--accordion',
+                'component--accordion-bg-grey',
+                'component--hardcoded',
+                'errand-service__accordion',
+              ],
+              component_title_level: 'h3',
+              component_title: 'Details'|t,
+              component_description: errand_service_details,
+              component_content_class: 'accordion',
+            }
+          %}
+            {% block component_content %}
+
+              {% include '@hdbt/component/accordion.twig' with {
+                heading_level: 'h3',
+                heading: 'Details'|t,
+                content: errand_service_details,
+              } %}
+
+            {% endblock component_content %}
+          {% endembed %}
+        {% endblock paragraph %}
+
+      {% endif %}
     {% endif %}
 
     {% if content.channels|render %}

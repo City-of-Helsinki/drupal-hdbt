@@ -4,16 +4,13 @@
 //
 
 // Load fonts first to prevent
-@import "library/variables/_typography.*";
-@import "library/fonts/*.*";
+@import "library/variables/typography";
 
 @import "~breakpoint-sass";
 
 @import "hds";
-@import "library/variables/*.*";
-@import "library/mixins/*.*";
-@import "library/fonts/*.*";
-@import "layout/*";
-@import "state/*";
-@import "base/**/*.*";
-@import "components/**/*.*";
+@import "library/_index";
+@import "layout/_index";
+@import "state/_index";
+@import "base/_index";
+@import "components/_index";

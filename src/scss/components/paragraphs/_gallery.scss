@@ -1,24 +1,13 @@
 $arrow-container-height: 48px;
 
-.gallery {
-  margin-top: $spacing-triple;
+.component--gallery {
   position: relative;
+}
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
-  }
-
+.gallery {
   .media--image__caption {
     padding-left: 0;
     padding-right: 0;
-
-    @include breakpoint($breakpoint-m) {
-      @include font-size(14px, 18px);
-    }
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(20px, 32px);
-    }
   }
 }
 
@@ -66,7 +55,7 @@ $arrow-container-height: 48px;
 
   @include breakpoint($breakpoint-l) {
     display: block;
-    margin: $spacing-quadruple 0 0;
+    margin: $spacing-double 0 0;
   }
 
   .gallery__thumbnails__list {

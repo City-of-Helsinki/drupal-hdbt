@@ -1,50 +1,17 @@
 .columns {
-  margin-top: $spacing-quadruple;
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
-}
-
-.columns__container {
-  padding-top: 0;
-
-  @include breakpoint(max-width $breakpoint-s) {
-    max-width: 100%;
-  }
-}
-
-.columns__title {
-  display: block;
-  margin-bottom: $spacing-triple;
-  margin-right: auto;
-  margin-top: 0;
-  max-width: 640px;
-  width: 100%;
-}
-
-.columns__content {
   align-items: center;
   display: flex;
   flex-direction: column;
 
   @include breakpoint($breakpoint-m) {
     flex-direction: row;
-    margin: 0 -#{$spacing-double} 0;
-    max-width: $content-area-wrapper-width-max;
+    margin-left: -$spacing-and-half;
+    margin-right: -$spacing-and-half;
   }
 
-  // Overrides for text paragraph styles.
-  .text {
-    margin-top: 0;
-
-    .text__container {
-      padding: 0;
-    }
-
-    .text__text-content {
-      padding-left: 0;
-    }
+  @include breakpoint($breakpoint-l) {
+    margin-left: -$spacing-double;
+    margin-right: -$spacing-double;
   }
 
   // Overrides for image paragraph styles.
@@ -59,12 +26,6 @@
       @include breakpoint($breakpoint-l) {
         padding: 0;
       }
-
-      .media--image__caption {
-        @include breakpoint($breakpoint-m) {
-          @include font-size(14px, 24px);
-        }
-      }
     }
   }
 }
@@ -73,11 +34,13 @@
   align-self: stretch;
 
   @include breakpoint($breakpoint-m) {
-    margin: 0 $spacing-and-half;
+    margin-left: $spacing-and-half;
+    margin-right: $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-l) {
-    margin: 0 $spacing-double;
+    margin-left: $spacing-double;
+    margin-right: $spacing-double;
   }
 
   &.column--50 {
@@ -110,32 +73,45 @@
 .has-sidebar .main-content {
 
   // Columns in content area and inside accordion.
-  .columns__content {
+  .columns {
     @include breakpoint($breakpoint-l) {
       flex-direction: column;
     }
 
-    @include breakpoint(1220px) {
+    @include breakpoint($breakpoint-xl) {
       flex-direction: row;
     }
+  }
+  .columns__column {
+    @include breakpoint($breakpoint-l) {
+      width: auto;
 
-    .columns__column.column--50 {
-      @include breakpoint($breakpoint-l) {
-        width: auto;
-
-        &:not(:first-of-type) {
-          margin-top: $spacing-double;
-        }
+      &:not(:first-of-type) {
+        margin-top: $spacing-double;
       }
+    }
+    @include breakpoint($breakpoint-xl) {
+      margin-top: 0;
 
-      @include breakpoint(1220px) {
+      &:not(:first-of-type) {
         margin-top: 0;
-        width: 50%;
-
-        &:not(:first-of-type) {
-          margin-top: 0;
-        }
       }
+    }
+  }
+
+  .columns__column.column--50 {
+    @include breakpoint($breakpoint-xl) {
+      width: 50%;
+    }
+  }
+  .columns__column.column--30 {
+    @include breakpoint($breakpoint-xl) {
+      width: 30%;
+    }
+  }
+  .columns__column.column--70 {
+    @include breakpoint($breakpoint-xl) {
+      width: 70%;
     }
   }
 }

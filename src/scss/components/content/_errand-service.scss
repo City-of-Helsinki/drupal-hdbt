@@ -23,8 +23,8 @@
   }
 }
 
-.errand-service__accordion.accordion {
-  margin-top: $spacing-double;
+.errand-service__accordion {
+  @include component-margin-top();
 
   .accordion__container {
     padding-left: 0;
@@ -34,6 +34,7 @@
 
   .errand-service__detail-links {
     list-style: none;
+    padding-left: 0;
     padding-top: 0;
 
     .errand-service__detail-link-wrapper {
