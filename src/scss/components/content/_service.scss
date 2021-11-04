@@ -92,10 +92,14 @@ $teaser-icon-size-desktop: 48px;
       }
     }
   }
+
+  .service__units {
+    @include component-margin-top();
+  }
 }
 
 .main-content:last-child .service.service--full {
-  .component--service_units:last-child {
+  .component--service-units:last-child {
     // Make the keywords element go "under" the footer.
     margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
     padding-bottom: $spacing-triple + $footer-koro-height;
@@ -194,7 +198,7 @@ $teaser-icon-size-desktop: 48px;
   margin-top: $spacing-quadruple;
 }
 
-.component--service_units {
+.component--service-units {
   background-color: $color-black-5;
   padding-bottom: $spacing-sextuple;
   padding-top: $spacing-sextuple;

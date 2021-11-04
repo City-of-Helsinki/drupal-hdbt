@@ -73,6 +73,7 @@
 }
 
 .component--tpr-unit,
-.component--unit-services {
+.component--unit-services,
+.component--service-units {
   @include component-side-padding();
 }
