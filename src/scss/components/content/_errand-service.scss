@@ -53,6 +53,7 @@
         background-size: contain;
         content: "";
         display: flex;
+        flex-shrink: 0;
         height: 24px;
         margin-right: $spacing-half;
         mask-image: url('../icons/hds/ui/globe.svg');
