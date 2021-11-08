@@ -114,6 +114,8 @@ function hdbt_preprocess_media(&$variables) {
   }
   if ($variables['media']->bundle() === 'remote_video') {
     $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+    // @todo Get correct video service URL once multiple services are supported.
+    $variables['video_service_url'] = 'youtube.com';
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
   }
 }

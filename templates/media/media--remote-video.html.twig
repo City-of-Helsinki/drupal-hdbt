@@ -36,7 +36,11 @@
   <div class="message">
     {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
     <h2>{{ 'Content cannot be displayed'|t }}</h2>
-    <p>{{ 'This content is hosted by an external site. To see the content, switch over to the external site or modify your cookie settings.'|t }}</p>
+    <p>
+      {% trans %}
+        This content is hosted by {{ video_service_url }}. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.
+      {% endtrans %}
+    </p>
     <div class="buttons">
       {%
         set external_link_classes = [
