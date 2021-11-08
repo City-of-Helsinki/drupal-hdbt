@@ -12,7 +12,10 @@
       return;
     }
 
-    if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+    if (
+      Drupal.eu_cookie_compliance.hasAgreed('preference') &&
+      Drupal.eu_cookie_compliance.hasAgreed('statistics')
+    ) {
       for (const [id, attributes] of Object.entries(
         drupalSettings.embedded_media_attributes
       )) {
