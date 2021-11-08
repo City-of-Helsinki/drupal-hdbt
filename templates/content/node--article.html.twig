@@ -82,30 +82,27 @@
 %}
 
 <article{{ attributes.addClass(classes) }}>
-  {% embed "@hdbt/misc/container.twig" with {container_element: node.bundle|clean_class ~ '_header'} %}
-    {% block container_content %}
-      {% if content.field_lead|render %}
-        <div class="{{ node.bundle|clean_class }}__lead">
-          {{ content.field_lead }}
-        </div>
-      {% endif %}
 
-      {{ drupal_block('hdbt_content_social_sharing_block') }}
+  {% if content.field_lead|render %}
+    <div class="{{ node.bundle|clean_class }}__lead">
+      {{ content.field_lead }}
+    </div>
+  {% endif %}
 
-      {% if content.field_author|render %}
-        <div class="{{ node.bundle|clean_class }}__author">
-          {{ content.field_author }}
-        </div>
-      {% endif %}
+  {{ drupal_block('hdbt_content_social_sharing_block') }}
 
-      {% set created_date = node.createdtime|format_date('medium') %}
-      {% if created_date|render %}
-        <div class="{{ node.bundle|clean_class }}__date">
-          {{ created_date }}
-        </div>
-      {% endif %}
-    {% endblock container_content %}
-  {% endembed %}
+  {% if content.field_author|render %}
+    <div class="{{ node.bundle|clean_class }}__author">
+      {{ content.field_author }}
+    </div>
+  {% endif %}
+
+  {% set created_date = node.createdtime|format_date('medium') %}
+  {% if created_date|render %}
+    <div class="{{ node.bundle|clean_class }}__date">
+      {{ created_date }}
+    </div>
+  {% endif %}
 
   {% if content.field_content|render %}
     <div class="{{ node.bundle|clean_class }}__content">
@@ -115,13 +112,9 @@
 
   {% if content.field_keywords|render %}
     <div class="{{ node.bundle|clean_class }}__keywords">
-      {% embed "@hdbt/misc/container.twig" with {container_element: 'keywords'} %}
-        {% block container_content %}
-          <div class="keywords__wrapper">
-            {{ content.field_keywords }}
-          </div>
-        {% endblock container_content %}
-      {% endembed %}
+      <div class="keywords__wrapper">
+        {{ content.field_keywords }}
+      </div>
     </div>
   {% endif %}
 </article>

@@ -36,8 +36,16 @@
   ]
 %}
 
-{% embed "@hdbt/misc/container.twig" with {container_element: 'unit__services'} %}
-  {% block container_content %}
+{% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [
+      'component--unit-services',
+      'component--hardcoded',
+    ]
+  }
+%}
+  {% block component_content %}
+
     <div class="unit__services__header">
       <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
       <span class="unit__services__count-container">
@@ -75,5 +83,6 @@
 
       {{ feed_icons }}
     </div>
-  {% endblock container_content %}
+
+  {% endblock component_content %}
 {% endembed %}

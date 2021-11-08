@@ -1,12 +1,8 @@
 .remote-video {
-  margin-top: $spacing-triple;
   position: relative;
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
-  }
-
   .responsive-video-container {
+    background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading
     height: 0;
     overflow: hidden;
     padding-bottom: 56.5%;

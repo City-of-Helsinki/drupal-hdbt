@@ -92,13 +92,17 @@ $teaser-icon-size-desktop: 48px;
       }
     }
   }
+
+  .service__units {
+    @include component-margin-top();
+  }
 }
 
 .main-content:last-child .service.service--full {
-  .service__units:last-child {
+  .component--service-units:last-child {
     // Make the keywords element go "under" the footer.
-    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
-    padding-bottom: $spacing-double + $footer-koro-height;
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
+    padding-bottom: $spacing-triple + $footer-koro-height;
 
     @include breakpoint($breakpoint-l) {
       padding-bottom: $spacing-quadruple + $footer-koro-height;
@@ -194,11 +198,10 @@ $teaser-icon-size-desktop: 48px;
   margin-top: $spacing-quadruple;
 }
 
-.service__units {
+.component--service-units {
   background-color: $color-black-5;
-  margin-top: $spacing-double;
-  overflow: hidden;
-  padding-bottom: $spacing-and-half;
+  padding-bottom: $spacing-sextuple;
+  padding-top: $spacing-sextuple;
 
   .service__units__header {
     display: block;

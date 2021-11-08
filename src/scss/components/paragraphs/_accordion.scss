@@ -1,46 +1,12 @@
-.accordion {
-  margin-top: $spacing-double;
+// TODO: This whole file should be rewritten
+// * Handorgel library CSS codes should be moved here
+// * Overriding default handorgel styles should be cleaned up, so that they are not defined to begin with.
+// * Nesting should be avoided as much as possible
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-quadruple;
-  }
-
-  .accordion__container {
-    padding-top: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      padding-top: $spacing-quadruple;
-    }
-  }
-
-  .accordion__title {
-    @include font-size(32px, 32px);
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(52px, 52px);
-    }
-  }
-
-  .accordion__description {
-    @include font-size(18px, 27px);
-    margin-top: $spacing;
-
-    p:first-child {
-      margin-top: 0;
-    }
-  }
+.component--accordion {
 
   .accordion__wrapper {
     border-bottom: 1px solid $color-black-20;
-  }
-
-  .accordion__title + .accordion__wrapper,
-  .accordion__description + .accordion__wrapper {
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-triple;
-    }
   }
 
   .accordion-item__header {
@@ -204,100 +170,16 @@
       margin-top: 0;
     }
   }
-
-  // This heading-level shouldn't probably semantically ever be used since the main header is h2 or lower.
-  h2 {
-    @include font-size(24px, 28px);
-    font-weight: $font-weight-regular;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 43px);
-    }
-  }
-
-  h3 {
-    @include font-size(22px, 26px);
-    font-weight: $font-weight-regular;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(28px, 36px);
-    }
-  }
-
-  h2, h3, h4, h5, h6 {
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .columns {
-    &:first-child .columns__container {
-      padding-top: 0;
-    }
-
-    .columns__container {
-      padding-left: $spacing-half;
-      padding-right: $spacing-half;
-      padding-top: 0;
-
-      @include breakpoint($breakpoint-l) {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-
-    .columns__title {
-      margin-top: 0;
-    }
-
-    .columns__content:first-child {
-      margin-top: 0;
-    }
-
-    .list-of-links {
-      margin-top: 0;
-
-      .list-of-links__container {
-        padding-top: 0;
-      }
-    }
-  }
-
-  .text {
-    @include font-size(18px, 24px);
-
-    &:first-child .text__container {
-      padding-top: 0;
-    }
-
-    .text__container {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .text__text-content {
-      padding-left: 0;
-
-      > *:first-child {
-        margin-top: 0;
-      }
-    }
-  }
 }
 
 // Show border-top only on first accordion item header in white accordion.
-.accordion--white {
-  .accordion__container {
-    > .accordion__wrapper {
-      ~ .accordion__wrapper .accordion-item__header {
-        border-top: none;
-      }
-    }
-  }
+.component--accordion-bg-white .accordion__wrapper ~ .accordion__wrapper .accordion-item__header {
+  border-top: none;
 }
 
+
 // Grey accordion styles
-.accordion--grey {
+.component--accordion-bg-grey {
   .accordion-item__header {
     background-color: $color-black-5;
     border-color: $color-white;
@@ -335,8 +217,18 @@
   }
 }
 
+// Accordions following each other with same background color should not have margin between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header,
+.component--accordion-bg-grey + .component--accordion-bg-grey.component--no-header {
+  margin-top: 0;
+}
+// White accordions following each other should have only a single border between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header .accordion-item__header {
+  border-top: 0 none;
+}
+
 // Handorgel library style overrides
-.accordion .handorgel {
+.component--accordion .handorgel {
   border-left: none;
   border-right: none;
   border-top: none;

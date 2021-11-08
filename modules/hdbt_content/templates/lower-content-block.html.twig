@@ -1,5 +1,5 @@
 {% if paragraphs %}
-  <div class="lower-content layout-content">
+  <div class="lower-content layout-content components components--lower">
     {% for paragraph in paragraphs %}
       {% if is_revision %}
         {{ drupal_entity_revision('paragraph', paragraph.target_revision_id) }}

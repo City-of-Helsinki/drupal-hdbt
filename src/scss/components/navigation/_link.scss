@@ -1,0 +1,19 @@
+// Plain text links that open in new tab.
+a.link[target="_blank"] {
+  align-items: center;
+  display: inline-flex;
+
+  &::after {
+    background-color: $color-black;
+    background-size: contain;
+    content: "";
+    display: block;
+    height: 16px;
+    margin: 0 0.1em 0.3em 0.2em;
+    mask-image: url('../icons/hds/ui/link-external.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 16px;
+    width: 16px;
+  }
+}

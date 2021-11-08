@@ -12,12 +12,23 @@
 #}
 
 {% if content %}
-  <div class="layout-content">
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'cookie-compliance'} %}
-      {% block container_content %}
-        {{ content }}
-      {% endblock container_content %}
-    {% endembed %}
+  <div class="layout-content components components--cookie-compliance-block">
+
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--cookie-compliance',
+        'component--simulated',
+      ],
+      component_content_class: 'cookie-compliance-block',
+    }
+  %}
+    {% block component_content %}
+
+      {{ content }}
+
+    {% endblock component_content %}
+  {% endembed %}
   </div>
 {% endif %}
 

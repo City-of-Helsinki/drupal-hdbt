@@ -1,0 +1,68 @@
+{#
+  Component styles are meant to be used only for components that editors can drag and drop in drupal editor.
+
+  Components handle common distance between components, side padding, optional title and optional description together
+  with actual component content.
+
+  .component [.component--modifier] = Component base class with modifiers
+    [koro]                          = Optional koro, if koro option object has been given in component_koro
+    .component__container           = container for mostly background colors and paddings
+      h2.component__title           = Optional title element, with optional heading level
+      .component__description       = Optional description element
+      .component__content [.block]  = Component content with optional custom class
+
+Example usage:
+
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--example',
+        'component--example-modifier'
+      ],
+      component_koro: {koro: koro, flip: true },
+      component_title_level: 'h' ~ example_title_level,
+      component_title: example_title,
+      component_description: example_description,
+      component_content_class: 'example',
+    }
+  %}
+    {% block component_content %}
+
+      {{ example_items }}
+
+    {% endblock component_content %}
+  {% endembed %}
+
+#}
+
+{% set component_attr = create_attribute() %}
+{% set container_attr = create_attribute() %}
+
+<div{{ component_attr.addClass('component', component_classes) }}>
+
+  {% if component_koro %}
+    {% include '@hdbt/misc/koro.twig' with component_koro %}
+  {% endif %}
+
+  <div class="component__container">
+
+    {% if component_title|render %}
+      <{{ component_title_level|default('h2') }} class="component__title">
+        {{ component_title }}
+      </{{ component_title_level|default('h2')}}>
+    {% endif %}
+
+    {% if component_description|render %}
+      <div class="component__description">
+        {{ component_description}}
+      </div>
+    {% endif %}
+
+    <div{{ container_attr.addClass('component__content', component_content_class) }}>
+      {% block component_content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+
+  </div>
+</div>

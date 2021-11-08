@@ -1,6 +1,7 @@
 .cookie-compliance--lead-in__container {
-  max-width: $content-width-max;
-  padding: 0;
+  @include components-container-max-width();
+  @include component-side-padding();
+  padding-top: 0;
 
   h1 {
     margin-bottom: $spacing-double;
@@ -8,10 +9,7 @@
   }
 }
 
-.cookie-compliance__container {
-  max-width: $content-width-max;
-  padding-left: 0;
-  padding-right: 0;
+.cookie-compliance-block {
 
   .cookie-selection-instruction {
     @include font-size(18px, 32px);
@@ -75,11 +73,16 @@
   }
 
   .buttons {
-    text-align: right;
-
     input {
       margin-bottom: $spacing-half;
     }
+  }
+}
+
+.cookie-compliance--lead-in__container,
+.cookie-compliance-block {
+  p {
+    max-width: $content-width-max;
   }
 }
 

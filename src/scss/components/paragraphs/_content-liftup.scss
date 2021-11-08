@@ -1,17 +1,8 @@
-.paragraph--type--content-liftup {
-  margin-left: $spacing-and-half;
-  margin-right: $spacing-and-half;
-  margin-top: $spacing-triple;
-  max-width: $content-area-wrapper-width-max;
+.component--content-liftup  .component__content > * {
+  border: 2px solid $color-black;
 
-  @include breakpoint($breakpoint-m) {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: $spacing-quadruple;
-    padding: 0 $spacing-double;
-  }
-
-  > * {
-    border: 2px solid $color-black;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
+
