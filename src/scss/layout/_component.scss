@@ -1,6 +1,6 @@
 // Margins between components
 * ~ .components,
-.unit__services + .component, // unit page accessability sentences accordion neeeds this
+.unit__services + .component, // unit page accessibility sentences accordion needs this
 .component ~ .component {
   @include component-margin-top();
 }
