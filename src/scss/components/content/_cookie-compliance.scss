@@ -10,7 +10,6 @@
 }
 
 .cookie-compliance-block {
-
   .cookie-selection-instruction {
     @include font-size(18px, 32px);
     border-bottom: 1px solid $color-black-20;
@@ -103,13 +102,13 @@
       padding: $spacing-double;
     }
 
-    > h2 {
+    h2 {
       margin-top: 0;
       @include font-size(24px, 29px);
       font-weight: $font-weight-medium;
     }
 
-    > .buttons {
+    .buttons {
       display: flex;
       flex-direction: column;
       margin-top: $spacing;
@@ -117,16 +116,61 @@
       @include breakpoint($breakpoint-m) {
         flex-direction: row;
       }
+    }
 
-      > .hds-button {
-        margin-top: $spacing;
-        @include breakpoint($breakpoint-m) {
-          margin-left: $spacing;
-          margin-top: 0;
-        }
+    .hds-button--primary,
+    .hds-button--secondary {
+      @include font-size(16px, 24px);
+    }
+
+    .hds-button--primary {
+      --background-color: var(--color-black-90);
+      --background-color-hover: var(--color-white);
+      --background-color-focus: var(--color-black-90);
+      --background-color-hover-focus: var(--color-white);
+      --background-color-disabled: var(--color-black-20);
+      --border-color: var(--color-black-90);
+      --border-color-hover: var(--color-black);
+      --border-color-focus: var(--color-black-90);
+      --border-color-hover-focus: var(--color-black-90);
+      --border-color-disabled: var(--color-black-20);
+      --color: var(--color-white);
+      --color-hover: var(--color-black-90);
+      --color-focus: var(--color-white);
+      --color-hover-focus: var(--color-black-90);
+      --color-disabled: var(--color-white);
+      --focus-outline-color: var(--color-black-90);
+      --submit-input-focus-gutter-color: var(--color-white);
+    }
+
+    .hds-button--secondary {
+      --background-color: transparent;
+      --background-color-hover: var(--color-black-90);
+      --background-color-focus: transparent;
+      --background-color-hover-focus: var(--color-black-90);
+      --background-color-disabled: transparent;
+      --border-color: var(--color-black-90);
+      --border-color-hover: var(--color-black-90);
+      --border-color-focus: var(--color-black-90);
+      --border-color-hover-focus: var(--color-black-90);
+      --border-color-disabled: var(--color-black-50);
+      --color: var(--color-black-90);
+      --color-hover: var(--color-white);
+      --color-focus: var(--color-black-90);
+      --color-hover-focus: var(--color-white);
+      --focus-outline-color: var(--color-black-90);
+    }
+
+    .hds-button {
+      margin-top: $spacing;
+      max-width: 400px; // To avoid too long buttons.
+
+      @include breakpoint($breakpoint-m) {
+        margin-left: $spacing;
+        margin-top: 0;
       }
 
-      > .hds-button:first-child {
+      &:first-child {
         margin-left: 0;
         margin-top: 0;
       }
@@ -134,45 +178,6 @@
 
     .hds-button__label {
       padding: $spacing-quarter;
-    }
-  }
-
-  .hds-button {
-    max-width: 400px;
-    width: 100%;
-
-    &:not(:disabled):focus {
-      border-color: $color-black;
-
-      &:after {
-        border-color: $color-black;
-      }
-    }
-  }
-
-  .hds-button--primary {
-    background-color: $color-black;
-    border-color: $color-black;
-    color: $color-white;
-
-    &:hover {
-      &:focus {
-        background-color: $color-black;
-      }
-    }
-  }
-
-  .hds-button--secondary {
-    border-color: $color-black;
-    color: $color-black;
-
-    &:hover {
-      background-color: $color-black;
-      color: $color-white;
-
-      &:focus {
-        color: $color-white;
-      }
     }
   }
 }
