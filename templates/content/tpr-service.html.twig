@@ -22,6 +22,13 @@
     {{ drupal_entity('block', block_name, check_access=false) }}
     {{ content.field_sidebar_content }}
   {% endblock sidebar_block %}
+
+  {% if content.toc_enabled|render|striptags|trim is not empty %}
+    {% block toc_content %}
+      {{ content.toc_enabled }}
+    {% endblock toc_content %}
+  {% endif %}
+
   {% block main_content %}
     {% if content.field_content|render|striptags|trim is not empty %}
       <div class="enriched-content has-sidebar components components--service">

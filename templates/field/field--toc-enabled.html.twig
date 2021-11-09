@@ -1,0 +1,12 @@
+{% if toc_enabled %}
+  <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
+    {% if toc_title|render %}
+      <h2 class="table-of-contents__title">{{ toc_title }}</h2>
+    {% endif %}
+    <nav id="helfi-toc-table-of-contents-list" role="navigation" class="table-of-contents">
+      <ul class="table-of-contents__list">
+        <li class="js-remove table-of-contents__item">{{ 'Loading table of contents'|t }}</li>
+      </ul>
+    </nav>
+  </div>
+{% endif %}
