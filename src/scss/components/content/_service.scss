@@ -226,6 +226,14 @@ $teaser-icon-size-desktop: 48px;
     margin-top: $spacing-and-half;
   }
 
+  .unit.unit--teaser {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing;
+    }
+  }
+
   .service__units__pager {
     list-style: none;
     margin: $spacing-quadruple 0 0;
@@ -238,25 +246,7 @@ $teaser-icon-size-desktop: 48px;
     width: 100%;
 
     .service__units__pager-button {
-      text-decoration: none;
-    }
-
-    .hds-button {
-      --background-color: transparent;
-      --background-color-hover: var(--color-black-10);
-      --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-black-10);
-      --background-color-disabled: transparent;
-      --border-color: var(--hdbt-color-black);
-      --border-color-hover: var(--hdbt-color-black);
-      --border-color-focus: var(--hdbt-color-black);
-      --border-color-hover-focus: var(--hdbt-color-black);
-      --border-color-disabled: var(--hdbt-color-black);
-      --color: var(--hdbt-color-black);
-      --color-hover: var(--hdbt-color-black);
-      --color-focus: var(--hdbt-color-black);
-      --color-hover-focus: var(--hdbt-color-black);
-      --focus-outline-color: var(--hdbt-color-black);
+      @extend .emulate-button--primary;
     }
   }
 }
