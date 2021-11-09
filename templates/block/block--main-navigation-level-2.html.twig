@@ -34,7 +34,9 @@
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }} class="sidebar-navigation">
   <h3{{ title_attributes.setAttribute('id', heading_id) }} class="sidebar-navigation__title">
-    {{ link(menu_link_parent.title, menu_link_parent.url) }}
+    {% if menu_link_parent.title and menu_link_parent.url %}
+      {{ link(menu_link_parent.title, menu_link_parent.url) }}
+    {% endif %}
   </h3>
 
   {# Menu. #}
