@@ -1,10 +1,25 @@
 .table-of-contents {
   @include components-container-max-width();
+  margin-left: 0;
+  margin-right: 0;
 
   @include breakpoint($breakpoint-m) {
     @include component-side-padding();
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .has-sidebar & {
+    @include component-negative-side-margin;
+  }
+
+  // In rare cases TPR Service page can be rendered without sidebar.
+  // In these cases remove the left and right paddings from table of contents.
+  .service-header__container:not(.has-sidebar) & {
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 
@@ -42,10 +57,29 @@
 
 .table-of-contents__link {
   @include font-size(20px, 28px);
+  display: inline-block;
   font-weight: $font-weight-medium;
+  position: relative;
   text-decoration: underline;
 
   @include breakpoint($breakpoint-l) {
     @include font-size(20px, 28px);
+  }
+
+  &:focus {
+    outline: none;
+
+    &::after {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black;
+      content: "";
+      display: block;
+      height: 100%;
+      left: -#{$spacing-quarter};
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% + #{$spacing-half});
+    }
   }
 }
