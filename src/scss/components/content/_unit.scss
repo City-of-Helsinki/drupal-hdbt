@@ -246,13 +246,16 @@
   }
 }
 
-.unit__services {
+.unit__content {
   margin-top: $spacing-quadruple;
-  padding: 0;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-sextuple;
   }
+}
+
+.unit__services {
+  padding: 0;
 
   .unit--services__container {
     padding-top: 0;
@@ -292,35 +295,35 @@
         margin-right: calc(-#{$spacing-and-half} / 2);
         margin-top: $spacing-triple;
       }
+    }
 
-      .service {
-        width: 100%;
+    .service {
+      width: 100%;
 
+      @include breakpoint($breakpoint-l) {
+        margin-top: $spacing-and-half;
+        width: 25%;
+      }
+
+      &:nth-child(-n+4) {
+        margin-top: 0;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        width: calc(25% - #{$spacing-and-half});
+      }
+
+      // If there is 1 or 2 items inside the services listing:
+      @include content_count(1, 2) {
         @include breakpoint($breakpoint-l) {
-          margin-top: $spacing-and-half;
-          width: 25%;
+          width: calc(50% - #{$spacing-and-half});
         }
+      }
 
-        &:nth-child(-n+4) {
-          margin-top: 0;
-        }
-
+      // If there 3 items inside the services listing:
+      @include content_count(3) {
         @include breakpoint($breakpoint-l) {
-          width: calc(25% - #{$spacing-and-half});
-        }
-
-        // If there is 1 or 2 items inside the services listing:
-        @include content_count(1, 2) {
-          @include breakpoint($breakpoint-l) {
-            width: calc(50% - #{$spacing-and-half});
-          }
-        }
-
-        // If there 3 items inside the services listing:
-        @include content_count(3) {
-          @include breakpoint($breakpoint-l) {
-            width: calc(33.33% - #{$spacing-and-half});
-          }
+          width: calc(33.33% - #{$spacing-and-half});
         }
       }
     }
@@ -336,10 +339,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
+  }
 
-    .unit__services__pager-button {
-      @extend .emulate-button--primary;
-    }
+  .unit__services__pager-button {
+    @extend .emulate-button--primary;
   }
 }
 
@@ -417,13 +420,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: $spacing-and-half;
   position: relative;
 
   @include breakpoint($breakpoint-m) {
     align-items: stretch;
     flex-direction: row;
-    margin-bottom: $spacing;
     min-height: 220px; // From designs.
     padding-left: 325px; // Width of the unit picture from the designs + spacing
   }
