@@ -3,6 +3,10 @@ $koro-height: 50px;
 .hero {
   color: $body-bg-color;
 
+  .has-sidebar & {
+    margin-bottom: $spacing-sextuple;
+  }
+
   .hero__container {
     color: $color-black-90;
     padding-bottom: $spacing-triple;
