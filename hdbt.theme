@@ -5,8 +5,11 @@
  * Functions to support theming in the hdbt theme.
  */
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\node\Entity\Node;
@@ -99,6 +102,21 @@ function hdbt_preprocess_html(&$variables) {
 
   if ($siteimprove_id) {
     $variables['#attached']['library'][] = 'hdbt/siteimprove';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_media(&$variables) {
+  if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
+    return;
+  }
+  if ($variables['media']->bundle() === 'remote_video') {
+    $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+    // @todo Get correct video service URL once multiple services are supported.
+    $variables['video_service_url'] = 'youtube.com';
+    $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
   }
 }
 
@@ -771,4 +789,17 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
   }
 
   $variables['errand_service_details'] = $details;
+}
+
+/**
+ * Helper function to get the privacy policy link URL.
+ */
+function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {
+  $config = \Drupal::config('eu_cookie_compliance.settings');
+
+  $popup_link_config = $config->get('popup_link');
+  if (UrlHelper::isExternal($popup_link_config)) {
+    return Url::fromUri($popup_link_config)->toString();
+  }
+  return Url::fromUserInput($popup_link_config === '<front>' ? '/' : $popup_link_config)->toString();
 }
