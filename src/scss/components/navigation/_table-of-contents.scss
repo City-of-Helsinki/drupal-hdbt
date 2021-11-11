@@ -74,6 +74,8 @@
     @include font-size(20px, 28px);
   }
 
+  // TODO Unify focuses/hovers and other link styles once UHF-643 is being
+  // developed. https://helsinkisolutionoffice.atlassian.net/browse/UHF-643
   &:focus {
     outline: none;
 
