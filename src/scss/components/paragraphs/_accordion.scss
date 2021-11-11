@@ -170,6 +170,10 @@
       margin-top: 0;
     }
   }
+
+  .component--image .component__content {
+    max-width: $content-width-max;
+  }
 }
 
 // Show border-top only on first accordion item header in white accordion.
