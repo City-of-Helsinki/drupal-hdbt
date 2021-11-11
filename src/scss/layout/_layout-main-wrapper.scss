@@ -12,6 +12,10 @@
 
   @include breakpoint($breakpoint-m) {
     scroll-margin-top: 0; // No fixed elements on desktop.
+
+    .toolbar-horizontal & {
+      scroll-margin-top: $spacing-quadruple;
+    }
   }
 }
 
