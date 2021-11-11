@@ -1,7 +1,5 @@
 .table-of-contents {
   @include components-container-max-width();
-  margin-left: 0;
-  margin-right: 0;
 
   @include breakpoint($breakpoint-m) {
     @include component-side-padding();
@@ -27,7 +25,8 @@
   @include component-margin-top();
   background-color: $hdbt-color-white;
   border-left: 8px solid var(--hdbt-color-gold--primary);
-  max-width: $content-width-max;
+  // Max-width: Content max width (860px) + left and right paddings + border width.
+  max-width: $content-width-max + $spacing-triple + 8px;
   padding: $spacing-double $spacing-and-half;
 }
 
@@ -39,19 +38,28 @@
   @include breakpoint($breakpoint-l) {
     @include font-size(36px, 42px);
   }
+
+  & + .table-of-contents__content {
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-and-half;
+    }
+  }
 }
 
 .table-of-contents__list {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
 
-.table-of-contents__item {
-  padding-top: $spacing;
+  // Add top padding to each table of contents item, except the first one.
+  > .table-of-contents__item ~ .table-of-contents__item {
+    padding-top: $spacing;
 
-  @include breakpoint($breakpoint-l) {
-    padding-top: $spacing-and-half;
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-and-half;
+    }
   }
 }
 
