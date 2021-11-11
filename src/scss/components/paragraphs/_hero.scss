@@ -4,7 +4,10 @@ $koro-height: 50px;
   color: $body-bg-color;
 
   .has-sidebar & {
-    margin-bottom: $spacing-sextuple;
+    margin-bottom: $spacing-quadruple;
+    @include breakpoint($breakpoint-l) {
+      margin-bottom: $spacing-sextuple;
+    }
   }
 
   .hero__container {
