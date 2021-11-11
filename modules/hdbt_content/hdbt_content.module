@@ -10,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme().
@@ -261,6 +262,11 @@ function hdbt_content_preprocess_page(&$variables) {
   // Check if the current page entity is content entity.
   if (!empty($page_entity) && $page_entity instanceof ContentEntityInterface) {
 
+    // Set has_hero variable according to field_has_hero.
+    if ($page_entity->hasField('field_has_hero')) {
+      $variables['has_hero'] = $page_entity->field_has_hero->value;
+    }
+
     // Load menu links for the current page entity.
     $menu_links = $menu_link_manager->loadLinksByRoute(
       "entity.{$page_entity->getEntityTypeId()}.canonical",
@@ -275,6 +281,7 @@ function hdbt_content_preprocess_page(&$variables) {
       // if menu link is enabled and it has parent.
       if ($menu_Link->isEnabled() && $menu_Link->getParent()) {
         $variables['page_has_sidebar'] = TRUE;
+        $variables['has_navigation'] = TRUE;
         return;
       }
     }
