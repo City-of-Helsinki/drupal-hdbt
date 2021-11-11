@@ -271,15 +271,16 @@ function hdbt_content_preprocess_page(&$variables) {
     if (!empty($menu_links) && is_array($menu_links)) {
       $menu_Link = reset($menu_links);
 
-      // Set page_has_sidebar value true, if menu link is enabled and it has parent.
+      // Set page_has_sidebar value true,
+      // if menu link is enabled and it has parent.
       if ($menu_Link->isEnabled() && $menu_Link->getParent()) {
         $variables['page_has_sidebar'] = TRUE;
         return;
       }
     }
 
-    // Set page_has_sidebar value ture, if page entity has sidebar content field
-    // and it is not empty.
+    // Set page_has_sidebar value true,
+    // if page entity has sidebar content field and it is not empty.
     if (
       $page_entity->hasField('field_sidebar_content') &&
       !$page_entity->get('field_sidebar_content')->isEmpty()) {
