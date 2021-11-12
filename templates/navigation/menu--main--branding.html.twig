@@ -36,6 +36,8 @@
     <ul{{ attributes.addClass(menu_classes).setAttribute('id', 'menu--level-' ~ menu_level) }}>
     {% for item in items %}
 
+      {% set link_id = 'aria-id-' ~ random() %}
+
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
@@ -58,13 +60,13 @@
               {% endset %}
             {% endif %}
 
-            {{ link(item_title, item.url) }}
+            {{ link(item_title, item.url, {'id': link_id}) }}
           {% else %}
-            <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
+            <span{{ create_attribute({'class': item_classes}).setAttribute('id', link_id) }}>{{ item.title }}</span>
           {% endif %}
 
           {% if item.is_collapsed or item.is_expanded %}
-            <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button">
+            <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button" aria-labelledby="{{ link_id }}">
               {% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', icons_path: icons_path} %}
             </button>
           {% endif %}
