@@ -13,7 +13,6 @@ use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\Core\Site\Settings;
 
 /**
