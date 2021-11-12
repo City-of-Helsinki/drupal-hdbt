@@ -10,7 +10,7 @@ table {
   white-space: nowrap;
 
   caption {
-    @include font-size(18px, 20px);
+    @include font-size(18px, 28px);
     background-color: $color-black;
     color: $color-white;
     font-weight: $font-weight-medium;
@@ -22,7 +22,7 @@ table {
     background-color: $color-black;
 
     th {
-      @include font-size(16px, 18px);
+      @include font-size(16px, 24px);
       color: $color-white;
       font-weight: $font-weight-medium;
       min-width: 140px;
@@ -53,7 +53,7 @@ table {
 
       th,
       td {
-        @include font-size(16px, 18px);
+        @include font-size(16px, 24px);
         color: $hdbt-color-black;
         font-weight: $font-weight-regular;
         min-width: 140px;
