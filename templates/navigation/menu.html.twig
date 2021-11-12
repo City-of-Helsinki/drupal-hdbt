@@ -30,10 +30,15 @@
 {% macro menu_links(items, attributes, menu_level, icons_path) %}
   {% import _self as menus %}
 
-  {% set menu_classes = ['menu'] %}
+  {%
+    set menu_classes = [
+      'menu',
+      'menu--level-' ~ menu_level
+    ]
+  %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes).setAttribute('id', 'menu--level-' ~ menu_level) }}>
+    <ul{{ attributes.addClass(menu_classes) }}>
     {% for item in items %}
 
       {% set link_id = 'aria-id-' ~ random() %}
@@ -72,7 +77,7 @@
           {% endif %}
         </span>
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, icons_path) }}
+          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path) }}
         {% endif %}
       </li>
     {% endfor %}
