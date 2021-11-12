@@ -70,11 +70,6 @@
             <span{{ create_attribute({'class': item_classes}).setAttribute('id', link_id) }}>{{ item.title }}</span>
           {% endif %}
 
-          {% if item.is_collapsed or item.is_expanded %}
-            <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button" aria-labelledby="{{ link_id }}">
-              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', icons_path: icons_path} %}
-            </button>
-          {% endif %}
         </span>
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path) }}
