@@ -65,11 +65,13 @@
               {% endset %}
             {% endif %}
 
-            {% if item['is_currentPage'] %}
-              {{ link(item_title, item.url, {'id': link_id, 'aria-current': 'page'}) }}
-            {% else %}
-              {{ link(item_title, item.url, {'id': link_id}) }}
+            {% set link_attributes = { 'id': link_id } %}
+
+            {% if item.is_currentPage %}
+              {% set link_attributes = link_attributes|merge({ 'aria-current': 'page' }) %}
             {% endif %}
+
+            {{ link(item_title, item.url, link_attributes) }}
 
           {% else %}
             <span{{ create_attribute({'class': item_classes}).setAttribute('id', link_id) }}>{{ item.title }}</span>
