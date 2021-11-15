@@ -268,8 +268,8 @@ function hdbt_content_preprocess_page(&$variables) {
       $variables['has_hero'] = $page_entity->field_has_hero->value;
     }
 
-    // Handle only nodes as the TPR Service and TPR Unit has artificial
-    // sidebar, not region based as f.e. Basic page.
+    // Handle only nodes and Basic page as the TPR Service and TPR Unit has
+    // artificial sidebar, not region based as f.e. Basic page.
     if (
       $page_entity instanceof NodeInterface &&
       $page_entity->getType() === 'page'
@@ -281,13 +281,13 @@ function hdbt_content_preprocess_page(&$variables) {
         [$page_entity->getEntityTypeId() => $page_entity->id()]
       );
 
-      // Add "page_has_sidebar" variable if current entity is node and is
-      // type of "Basic page" and it has menu link items set.
+      // Add "page_has_sidebar" variable
+      // if current node has menu link items set.
       if (!empty($menu_links) && is_array($menu_links)) {
         $menu_Link = reset($menu_links);
 
         // Set page_has_sidebar value true,
-        // if menu link is enabled and it has parent.
+        // if menu link is enabled and it has a parent item.
         if ($menu_Link->isEnabled() && $menu_Link->getParent()) {
           $variables['page_has_sidebar'] = TRUE;
           $variables['has_navigation'] = TRUE;
