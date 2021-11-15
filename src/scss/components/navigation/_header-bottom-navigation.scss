@@ -63,14 +63,14 @@
       }
 
       &:hover,
-      &.is-active {
+      &[aria-current="page"] {
         &::before {
           height: 4px;
           width: 100%;
         }
       }
 
-      &.is-active {
+      &[aria-current="page"]{
         font-weight: 700;
       }
     }
@@ -138,7 +138,7 @@
             transition: width 100ms ease-in;
           }
 
-          &.is-active {
+          &[aria-current="page"] {
             font-weight: 700;
           }
 
@@ -153,7 +153,7 @@
           }
 
           &:hover,
-          &.is-active {
+          &[aria-current="page"] {
             &::before {
               height: 100%;
               width: 4px;

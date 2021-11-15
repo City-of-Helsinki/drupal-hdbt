@@ -68,7 +68,12 @@
               {% endset %}
             {% endif %}
 
-            {{ link(item_title, item.url, {'id': link_id}) }}
+            {% if item['is_currentPage'] %}
+              {{ link(item_title, item.url, {'id': link_id, 'aria-current': 'page'}) }}
+            {% else %}
+              {{ link(item_title, item.url, {'id': link_id}) }}
+            {% endif %}
+
           {% else %}
             <span{{ create_attribute({'class': item_classes} ) }}><span class="menu__link__text" id="{{ link_id }}">{{ item.title }}</span></span>
           {% endif %}
