@@ -22,6 +22,10 @@
 .views--unit-search {
   margin-top: $spacing-double;
 
+  & > .views-infinite-scroll-content-wrapper > .views-row + .views-row {
+    margin-top: $spacing;
+  }
+
   .hds-button--primary {
     --background-color: var(--color-black);
     --background-color-hover: var(--color-black);
