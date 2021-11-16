@@ -17,6 +17,10 @@
       position: relative;
       width: 100%;
 
+      .explain-external-icon {
+        @include visually-hidden();
+      }
+
       &:after {
         background-color: $color-black;
         background-size: contain;

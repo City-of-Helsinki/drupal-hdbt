@@ -204,6 +204,10 @@
     padding-right: 24px; // Width of the external icon plus.
     position: relative;
 
+    .explain-external-icon {
+      @include visually-hidden();
+    }
+
     &:after {
       background-color: $color-black;
       background-size: contain;

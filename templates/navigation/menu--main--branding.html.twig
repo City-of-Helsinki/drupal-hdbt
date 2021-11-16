@@ -53,17 +53,22 @@
       ]%}
 
       <li{{ item.attributes.addClass(item_classes) }}>
+
+        {% set explain_external_icon = null %}
+        {% if item.is_external %}
+          {% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
+        {% endif %}
+
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
-            {% set item_title = item.title %}
-
-            {%- set icon_name = (item.url.getOption('attributes')).icon -%}
-            {% if icon_name %}
-              {% set item_title %}
+            {% set item_title %}
+              {%- set icon_name = (item.url.getOption('attributes')).icon -%}
+              {% if icon_name %}
                 {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
-                <span class="menu__link__text">{{ item.title }}</span>
-              {% endset %}
-            {% endif %}
+              {% endif %}
+
+              <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
+            {% endset %}
 
             {% set link_attributes = { 'id': link_id } %}
 

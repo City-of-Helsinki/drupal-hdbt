@@ -30,6 +30,10 @@
     right: 0;
     text-decoration: underline;
 
+    .explain-external-icon {
+      @include visually-hidden();
+    }
+
     &:after {
       background-color: $color-black;
       background-size: contain;
