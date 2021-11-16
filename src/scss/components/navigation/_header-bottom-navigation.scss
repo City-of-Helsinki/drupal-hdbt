@@ -73,6 +73,11 @@
       &[aria-current="page"]{
         font-weight: 700;
       }
+
+      .explain-external-icon {
+        display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
+        // @include visually-hidden();
+      }
     }
 
     .menu__item--nolink {
@@ -171,6 +176,7 @@
           width: 100%;
 
           .explain-external-icon {
+            display: inline; //TODO: Remove this line when the main level navigation supports external links
             @include visually-hidden();
           }
 
