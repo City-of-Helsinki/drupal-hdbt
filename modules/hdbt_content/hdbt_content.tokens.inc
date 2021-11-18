@@ -77,7 +77,7 @@ function hdbt_content_tokens(
       ) {
         $image_style = ImageStyle::load('og_image');
         $image_entity = $node->field_liftup_image->entity->field_media_image;
-        $image_url = $image_style->buildUrl($image_entity->entity->getFileUri(), false);
+        $image_url = $image_style->buildUrl($image_entity->entity->getFileUri());
       }
 
       $replacements[$original] = $image_url;
