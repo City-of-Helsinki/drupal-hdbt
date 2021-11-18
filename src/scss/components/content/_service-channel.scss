@@ -84,8 +84,7 @@
 }
 
 .service-channel--eservice {
-  background-color: var(--hdbt-color-palette--secondary);;
-  margin: $spacing-and-half -#{$spacing-and-half} 0;
+  background-color: var(--hdbt-color-palette--secondary);
   padding: $spacing-and-half $spacing-and-half $spacing-double;
 
   @include breakpoint($breakpoint-l) {
@@ -116,6 +115,10 @@
 
 .service-channel--email .service-channel__type:after {
   mask-image: url('../icons/hds/ui/glyph-at.svg');
+}
+
+.service-channel--sms .service-channel__type:after {
+  mask-image: url('../icons/hds/ui/mobile.svg');
 }
 
 .service-channel--telephone .service-channel__type:after {

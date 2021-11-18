@@ -1,1 +1,83 @@
-{{ content }}
+{#
+/**
+ * @file
+ * Theme override to present a media item.
+ *
+ * Available variables:
+ * - media: The media item, with limited access to object properties and
+ *   methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ *   For example:
+ *   - entity.getEntityTypeId() will return the entity type ID.
+ *   - entity.hasField('field_example') returns TRUE if the entity includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   Calling other methods, such as entity.delete(), will result in
+ *   an exception.
+ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
+ * - name: Name of the media item.
+ * - content: Media content.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - privacy_policy_url: The URL for the privacy policy page.
+ *
+ * @see template_preprocess_media()
+ */
+#}
+{% set media_url = media.field_media_oembed_video.0.value %}
+{% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
+<div class="embedded-content-cookie-compliance media-{{ media.id }}">
+  <div class="message">
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+    <h2>{{ 'Content cannot be displayed'|t }}</h2>
+    <p>
+      {% trans %}
+        This content is hosted by {{ video_service_url }}. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.
+      {% endtrans %}
+    </p>
+    <div class="buttons">
+      {%
+        set external_link_classes = [
+        'hds-button',
+        'hds-button--primary',
+        'hdbt-icon',
+        'hdbt-icon--link-external'
+      ]
+      %}
+      <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
+        <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+      </a>
+      {%
+        set settings_link_classes = [
+        'hds-button',
+        'hds-button--secondary',
+      ]
+      %}
+      <a href="{{ privacy_policy_url }}" {{ create_attribute({'class': settings_link_classes} ) }}>
+        <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% set drupal_settings = {
+  '#attached': {
+    'drupalSettings': {
+      'embedded_media_attributes': {
+        (media.id): {
+          'src': media_attributes.src,
+          'height': media_attributes.height,
+          'width': media_attributes.width,
+          'title': media_attributes.title
+        }
+      }
+    }
+  }
+} %}
+{{ drupal_settings }}

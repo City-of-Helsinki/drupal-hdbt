@@ -6,13 +6,11 @@
 @import "~breakpoint-sass";
 
 @import "hds";
-@import "library/variables/*.*";
-@import "library/mixins/*.*";
-@import "library/fonts/*.*";
-@import "base/**/*.*";
+@import "library/_index";
+@import "base/_index";
 @import "components/content/highlighted";
 @import "components/content/quoted";
-@import "components/paragraphs/link";
+@import "components/navigation/link";
 @import "components/button/button";
 @import "components/icons/hdbt-icon";
 

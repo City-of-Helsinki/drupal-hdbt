@@ -1,0 +1,95 @@
+.table-of-contents {
+  @include components-container-max-width();
+
+  @include breakpoint($breakpoint-m) {
+    @include component-side-padding();
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .has-sidebar & {
+    @include component-negative-side-margin;
+  }
+
+  // In rare cases TPR Service page can be rendered without sidebar.
+  // In these cases remove the left and right paddings from table of contents.
+  .service-header__container:not(.has-sidebar) & {
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.table-of-contents__container {
+  @include component-margin-top();
+  background-color: $hdbt-color-white;
+  border-left: 8px solid var(--hdbt-color-gold--primary);
+  // Max-width: Content max width (860px) + left and right paddings.
+  max-width: $spacing-and-half + $content-width-max + $spacing-and-half;
+  padding: $spacing-double $spacing-and-half;
+}
+
+.table-of-contents__title {
+  @include font-size(24px, 28px);
+  margin-bottom: 0;
+  margin-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(36px, 42px);
+  }
+
+  & + .table-of-contents__content {
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-and-half;
+    }
+  }
+}
+
+.table-of-contents__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  // Add top padding to each table of contents item, except the first one.
+  > .table-of-contents__item ~ .table-of-contents__item {
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-and-half;
+    }
+  }
+}
+
+.table-of-contents__link {
+  @include font-size(20px, 28px);
+  display: inline-block;
+  font-weight: $font-weight-medium;
+  position: relative;
+  text-decoration: underline;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(20px, 28px);
+  }
+
+  // TODO Unify focuses/hovers and other link styles once UHF-643 is being
+  // developed. https://helsinkisolutionoffice.atlassian.net/browse/UHF-643
+  &:focus {
+    outline: none;
+
+    &::after {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black;
+      content: "";
+      display: block;
+      height: 100%;
+      left: -#{$spacing-quarter};
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% + #{$spacing-half});
+    }
+  }
+}

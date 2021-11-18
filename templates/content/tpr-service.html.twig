@@ -5,7 +5,11 @@
  */
 #}
 
-{% if drupal_entity('block', 'main_navigation_level_2', check_access=false)|render|striptags|trim is not empty %}
+{% if not block_name %}
+  {% set block_name = 'main_navigation_level_2' %}
+{% endif %}
+
+{% if drupal_entity('block', block_name, check_access=false)|render|striptags|trim is not empty %}
   {% set in_menu =  TRUE %}
 {% endif %}
 
@@ -13,14 +17,31 @@
   {% set sidebar_content = TRUE %}
 {% endif %}
 
-{% embed '@helfi_tpr/tpr-service.html.twig' with {in_menu: in_menu, sidebar_content: sidebar_content} %}
+{% if sidebar_content or in_menu or content.links|render %}
+  {% set has_sidebar = TRUE %}
+{% endif %}
+
+{% embed '@helfi_tpr/tpr-service.html.twig' with {
+  in_menu: in_menu,
+  sidebar_content: sidebar_content,
+  has_sidebar: has_sidebar
+} %}
   {% block sidebar_block %}
-    {{ drupal_entity('block', 'main_navigation_level_2', check_access=false) }}
+    {{ drupal_entity('block', block_name, check_access=false) }}
     {{ content.field_sidebar_content }}
   {% endblock sidebar_block %}
+
+  {% if content.toc_enabled|render|striptags|trim is not empty %}
+    {% block toc_content %}
+      {{ content.toc_enabled }}
+    {% endblock toc_content %}
+  {% endif %}
+
   {% block main_content %}
-    <div class="enriched-content has-sidebar">
-      {{ content.field_content }}
-    </div>
+    {% if content.field_content|render|striptags|trim is not empty %}
+      <div class="enriched-content has-sidebar components components--service">
+        {{ content.field_content }}
+      </div>
+    {% endif %}
   {% endblock main_content %}
 {% endembed %}

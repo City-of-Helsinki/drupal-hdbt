@@ -1,28 +1,30 @@
-.unit-search {
+.component--unit-search {
   background-color: $color-silver-light;
-  padding: 0 0 $spacing-double;
 }
 
-.unit-search__container {
+// If the unit-search is just before footer.
+.layout-main-wrapper > *:last-child .component--unit-search:last-child {
+  margin-bottom: -115px; // Enough to get the block under the footer.
+  padding-bottom: 55px; // Leave enough room between the last card and footer.
+}
+
+.component--unit-search .component__container {
+  padding-bottom: $spacing-double;
+  padding-top: $spacing-double;
+
   @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
     padding-top: $spacing-quadruple;
   }
 }
 
-.unit-search__header__title {
-  margin-top: 0;
-}
-
-.unit-search__header__description {
-  margin-top: $spacing-and-half;
-
-  p:first-child {
-    margin-top: 0;
-  }
-}
 
 .views--unit-search {
   margin-top: $spacing-double;
+
+  & > .views-infinite-scroll-content-wrapper > .views-row + .views-row {
+    margin-top: $spacing;
+  }
 
   .hds-button--primary {
     --background-color: var(--color-black);
@@ -131,7 +133,7 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    margin: 0;
+    margin: $spacing-double 0 0;
     padding: 0;
 
     @include breakpoint($breakpoint-m) {

@@ -1,31 +1,9 @@
-.node--type-page {
-  .paragraph-content > .image {
-    .media--image__content {
-      max-width: $image-content-width-max + ($spacing-triple * 2);
-    }
-  }
-}
-
-.has-sidebar--first {
-  .node--type-page .paragraph-content > .image .media--image__content {
-    @include breakpoint($breakpoint-l) {
-      padding-left: 0;
-    }
-  }
-}
-
 .lead-in {
   @include font-size(20px, 32px);
-  margin-bottom: $spacing-triple;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: $content-area-wrapper-width-max;
+}
 
-  .lead-in__container {
-    margin: 0;
-    max-width: $content-width-max;
-    padding-top: 0;
-  }
+.no-sidebar .component--lead-in {
+  @include component-side-padding();
 }
 
 .page-type--page.has-sidebar {
@@ -35,15 +13,6 @@
     }
     .node--type-page {
       margin-top: $spacing-and-half;
-    }
-
-    // Unset container paddings if basic page has sidebar.
-    @include breakpoint($breakpoint-l) {
-      &.has-navigation {
-        .container {
-          padding-right: 0;
-        }
-      }
     }
   }
 }

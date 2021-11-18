@@ -10,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme().
@@ -66,7 +67,7 @@ function hdbt_content_theme() {
         'title' => NULL,
         'links' => NULL,
       ],
-    ]
+    ],
   ];
 }
 
@@ -247,4 +248,61 @@ function hdbt_content_block_access(Block $block, $operation, AccountInterface $a
   }
 
   return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_content_preprocess_page(&$variables) {
+  $variables['page_has_sidebar'] = FALSE;
+
+  $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+  $page_entity = hdbt_content_get_page_entity();
+
+  // Check if the current page entity is content entity ie. Basic page or
+  // TRP Service.
+  if (!empty($page_entity) && $page_entity instanceof ContentEntityInterface) {
+
+    // Set has_hero variable according to field_has_hero.
+    if ($page_entity->hasField('field_has_hero')) {
+      $variables['has_hero'] = $page_entity->field_has_hero->value;
+    }
+
+    // Handle only nodes and Basic page as the TPR Service and TPR Unit has
+    // artificial sidebar, not region based as f.e. Basic page.
+    if (
+      $page_entity instanceof NodeInterface &&
+      $page_entity->getType() === 'page'
+    ) {
+
+      // Load menu links for the current page entity.
+      $menu_links = $menu_link_manager->loadLinksByRoute(
+        "entity.{$page_entity->getEntityTypeId()}.canonical",
+        [$page_entity->getEntityTypeId() => $page_entity->id()]
+      );
+
+      // Add "page_has_sidebar" variable
+      // if current node has menu link items set.
+      if (!empty($menu_links) && is_array($menu_links)) {
+        $menu_Link = reset($menu_links);
+
+        // Set page_has_sidebar value true,
+        // if menu link is enabled and it has a parent item.
+        if ($menu_Link->isEnabled() && $menu_Link->getParent()) {
+          $variables['page_has_sidebar'] = TRUE;
+          $variables['has_navigation'] = TRUE;
+          return;
+        }
+      }
+
+      // Set page_has_sidebar value true,
+      // if page entity has sidebar content field and it is not empty.
+      if (
+        $page_entity->hasField('field_sidebar_content') &&
+        !$page_entity->get('field_sidebar_content')->isEmpty()
+      ) {
+        $variables['page_has_sidebar'] = TRUE;
+      }
+    }
+  }
 }

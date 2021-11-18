@@ -92,13 +92,17 @@ $teaser-icon-size-desktop: 48px;
       }
     }
   }
+
+  .service__units {
+    @include component-margin-top();
+  }
 }
 
 .main-content:last-child .service.service--full {
-  .service__units:last-child {
+  .component--service-units:last-child {
     // Make the keywords element go "under" the footer.
-    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
-    padding-bottom: $spacing-double + $footer-koro-height;
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
+    padding-bottom: $spacing-triple + $footer-koro-height;
 
     @include breakpoint($breakpoint-l) {
       padding-bottom: $spacing-quadruple + $footer-koro-height;
@@ -194,11 +198,10 @@ $teaser-icon-size-desktop: 48px;
   margin-top: $spacing-quadruple;
 }
 
-.service__units {
+.component--service-units {
   background-color: $color-black-5;
-  margin-top: $spacing-double;
-  overflow: hidden;
-  padding-bottom: $spacing-and-half;
+  padding-bottom: $spacing-sextuple;
+  padding-top: $spacing-sextuple;
 
   .service__units__header {
     display: block;
@@ -223,6 +226,14 @@ $teaser-icon-size-desktop: 48px;
     margin-top: $spacing-and-half;
   }
 
+  .unit.unit--teaser {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing;
+    }
+  }
+
   .service__units__pager {
     list-style: none;
     margin: $spacing-quadruple 0 0;
@@ -235,25 +246,12 @@ $teaser-icon-size-desktop: 48px;
     width: 100%;
 
     .service__units__pager-button {
-      text-decoration: none;
-    }
-
-    .hds-button {
-      --background-color: transparent;
-      --background-color-hover: var(--color-black-10);
-      --background-color-focus: transparent;
-      --background-color-hover-focus: var(--color-black-10);
-      --background-color-disabled: transparent;
-      --border-color: var(--hdbt-color-black);
-      --border-color-hover: var(--hdbt-color-black);
-      --border-color-focus: var(--hdbt-color-black);
-      --border-color-hover-focus: var(--hdbt-color-black);
-      --border-color-disabled: var(--hdbt-color-black);
-      --color: var(--hdbt-color-black);
-      --color-hover: var(--hdbt-color-black);
-      --color-focus: var(--hdbt-color-black);
-      --color-hover-focus: var(--hdbt-color-black);
-      --focus-outline-color: var(--hdbt-color-black);
+      @extend .emulate-button--primary;
     }
   }
+}
+
+// Add extra margin to service long description if table of contents is enabled.
+.table-of-contents + .service__long-desc {
+  @include component-margin-top();
 }

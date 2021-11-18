@@ -10,15 +10,6 @@ desktop-menu-toggle:
   js:
     dist/js/desktop-menu-toggle.min.js: {}
 
-# Should be removed when all major browsers on most used operating systems
-# can handle CSS3 hyphens: auto. See. https://caniuse.com/#search=hyphens or
-# https://www.w3schools.com/cssref/css3_pr_hyphens.asp.
-hyphenopoly:
-  version: 4.9.0
-  header: true
-  js:
-    /themes/contrib/hdbt/dist/js/hyphenopoly/Hyphenopoly_Loader.js: {type: external, preprocess: false}
-
 splide:
   version: 2.4.21
   js:
@@ -92,6 +83,16 @@ color-palette:
     theme:
       dist/css/color-palette.min.css: {}
 
+embedded-content-cookie-compliance:
+  version: 1.x
+  js:
+    dist/js/embedded-content-cookie-compliance.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - eu_cookie_compliance/eu_cookie_compliance
+
 global-styling:
   version: 1.x
   css:
@@ -108,3 +109,11 @@ global-scripting:
     dist/js/branding-mobile.min.js: {}
   dependencies:
     - core/drupal
+
+matomo:
+  version: 1.x
+  header: true
+  js:
+    dist/js/matomo.min.js: {}
+  dependencies:
+    - core/drupalSettings

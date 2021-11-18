@@ -1,25 +1,6 @@
-//
-// @file
-//
-// This file includes styles for a container.
-//
 .container {
+  @include components-container-max-width();
+  @include component-side-padding();
   margin-left: auto;
   margin-right: auto;
-  max-width: $content-area-wrapper-width-max;
-  padding: $spacing-and-half $spacing-and-half 0;
-  transition: padding 100ms linear;
-
-  @include breakpoint($breakpoint-l) {
-    padding: $spacing-and-half $spacing-double 0;
-  }
-}
-
-// Sidebar layout.
-.has-sidebar.enriched-content { // TODO: Clean up when unit sidebar block has been created.
-  .container:not(.banner__container) {
-    @include breakpoint($breakpoint-m) {
-      padding: $spacing-and-half 0 0;
-    }
-  }
 }

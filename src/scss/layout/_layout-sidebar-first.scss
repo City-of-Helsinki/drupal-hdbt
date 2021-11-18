@@ -1,15 +1,12 @@
-.has-sidebar .layout-sidebar-first,
 .layout-sidebar-first {
   @include breakpoint($breakpoint-l) {
     order: 2;
-    width: 32%;
+    width: 30%;
 
     &.has-navigation {
       order: 1;
 
-      .sidebar-first__container {
-        //margin-top: $spacing;
-
+      .sidebar-first {
         @include breakpoint($breakpoint-l) {
           padding-left: 0;
           padding-right: $spacing-double;
@@ -22,13 +19,17 @@
     }
   }
 
-  .sidebar-first__container {
+  .sidebar-first {
+    margin-top: $component-spacing-mobile;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 0;
 
     @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
+      margin-top: 0;
       padding-left: $spacing-double;
       padding-right: 0;
     }
@@ -39,6 +40,7 @@
   }
 }
 
-.sidebar-first {
+.sidebar-first,
+.sidebar-content {
   width: 100%;
 }

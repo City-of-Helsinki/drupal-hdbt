@@ -23,74 +23,112 @@
   }
 }
 
+.footer-top__container {
+  padding-top: 0;
+}
+
 .footer-top {
-  padding-top: $spacing;
+  @include components-container-max-width();
+  @include component-side-padding();
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: $spacing-quadruple;
 
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-wrap: wrap;
   }
 
-  nav {
-    @include breakpoint($breakpoint-m) {
-      margin-right: $spacing-triple;
-    }
-  }
-
-  .footer-top__content {
-    @include breakpoint($breakpoint-m) {
-      max-width: $container-width-s;
-    }
-  }
-
   h2 {
-    @include font-size($fontsize-heading-m, $lineheight-m);
+    @include font-size(24px, 29px);
     font-weight: 500;
+    margin-top: 0;
 
-    &:first-child {
-      margin-top: 0;
+    &.footer-top__content__title {
+      margin-top: $spacing-double;
+
+      @include breakpoint($breakpoint-m) {
+        margin-top: 0;
+      }
     }
   }
 
   p {
     margin-top: $spacing;
+  }
 
-    .hds-button {
-      margin-top: $spacing-half;
+  nav {
+    @include breakpoint($breakpoint-m) {
+      margin-right: $spacing-sextuple;
     }
   }
 
   .menu {
     @include font-size(18px, 27px);
-    margin: $spacing 0 $spacing-double;
+    margin: $spacing 0 0;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-and-half;
+    }
   }
 
   .menu__item {
-    margin-bottom: $spacing;
+    margin-top: $spacing;
 
-    &:last-child {
-      margin-bottom: 0;
+    &:first-child {
+      margin-top: 0;
     }
   }
 }
 
+.footer-top__content {
+  @include breakpoint($breakpoint-m) {
+    max-width: $container-width-s;
+  }
+}
+
 .footer-bottom__container {
-  padding-top: $spacing-and-half;
+  padding-top: 0;
 }
 
 .footer-bottom {
+  border-top: 1px solid $color-black-30;
+  margin-top: $spacing-triple;
+  overflow: hidden;
   padding-bottom: $spacing-triple;
-  padding-top: $spacing;
+  padding-top: $spacing-and-half;
 
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-sextuple;
+    padding-bottom: 0;
+  }
+}
+
+.footer-bottom__navigation-wrapper {
   @include breakpoint($breakpoint-m) {
     align-items: center;
     display: flex;
+    flex-wrap: nowrap;
+    float: left;
+    margin-bottom: $spacing-triple;
+  }
+}
+
+.footer-bottom__navigation {
+  margin-top: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: 0;
   }
 
   .menu {
-    @include font-size($fontsize-body-s, $lineheight-xl);
+    @include font-size(14px, 24px);
     display: flex;
     flex-wrap: wrap;
+
+    @include breakpoint($breakpoint-m) {
+      @include font-size(16px, 20px);
+    }
   }
 
   .menu__item {
@@ -107,21 +145,8 @@
 
     // Menu item with <nolink>.
     &.menu__item--nolink {
-      display: block;
-      width: 100%;
-
-      @include breakpoint($breakpoint-m) {
-        display: flex;
-        width: auto;
-      }
-
-      &::after {
-        display: none;
-
-        @include breakpoint($breakpoint-m) {
-          display: block;
-        }
-      }
+      display: flex;
+      width: auto;
     }
 
     &:last-child {
@@ -132,7 +157,55 @@
   }
 }
 
-// Footer color-schemes
+a.footer__back-to-top {
+  --border-width: 2px;
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+  --focus-outline-color: var(--hdbt-color-black);
+
+  @include font-size(24px,24px);
+  align-items: center;
+  display: flex;
+  float: right;
+  font-weight: 500;
+  height: 40px; // Match footer logo height
+  margin-right: $spacing-half;
+  margin-top: $spacing-triple;
+  position: relative;
+  text-decoration: none;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+    margin-left: $spacing-double;
+    margin-top: 0;
+  }
+
+  &:after {
+    --size: 100%;
+    border: var(--outline-width) solid transparent;
+    content: "";
+    height: var(--size);
+    position: absolute;
+    right: calc(50% + var(--outline-width)); // Move the outline left to nullify the space around the icon.
+    transform: translateX(50%);
+    width: var(--size);
+  }
+
+  &:focus {
+    outline: none;
+
+    &:after {
+      --size: calc(100% + calc(var(--outline-width) * 2 + var(--border-width) * 2 + var(--outline-gutter) * 2));
+      border-color: var(--focus-outline-color);
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Footer color-scheme Light
 .footer--light {
   background-color: $color-silver-medium-light;
   color: $color-white;
@@ -145,41 +218,17 @@
     color: $color-black;
   }
 
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-black-90);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-black-90);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black-90);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-  }
-
   .footer-bottom,
   .footer-top {
     color: $color-black;
   }
 
-  .footer-bottom {
-    border-top: 1px solid $color-black;
-
-    .menu__item {
-
-      &::after {
-        background-color: $color-black;
-      }
-    }
+  .footer-bottom .menu__item::after {
+    background-color: $color-black;
   }
 }
 
+// Footer color-scheme Dark
 .footer--dark {
   background-color: $hdbt-color-black;
   color: $color-white;
@@ -192,37 +241,20 @@
     color: $color-white;
   }
 
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-white);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-white);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-white);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-white);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-90);
-    --focus-outline-color: var(--color-white);
-  }
-
   .footer-bottom,
   .footer-top {
     color: $color-white;
   }
 
   .footer-bottom {
-    border-top: 1px solid $color-white;
+    border-color: $color-white;
 
-    .menu__item {
-
-      &::after {
-        background-color: $color-white;
-      }
+    .menu__item::after {
+      background-color: $color-white;
     }
+  }
+
+  a.footer__back-to-top {
+    --focus-outline-color: var(--color-white);
   }
 }

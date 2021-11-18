@@ -29,16 +29,11 @@
   }
 
   .unit__image {
-    line-height: 0;
-    margin: 0 -#{$spacing-and-half};
-
-    @include breakpoint($breakpoint-m) {
-      margin: 0;
-      max-width: 690px;
-    }
+    @include component-negative-side-margin();
 
     img {
       max-width: 100%;
+      vertical-align: top;
     }
   }
 
@@ -84,6 +79,11 @@
   }
 
   .unit-header__container {
+    @include components-container-max-width();
+    @include component-side-padding();
+    margin-left: auto;
+    margin-right: auto;
+
     @include breakpoint($breakpoint-l) {
       display: flex;
       flex-wrap: wrap;
@@ -246,13 +246,16 @@
   }
 }
 
-.unit__services {
+.unit__content {
   margin-top: $spacing-quadruple;
-  padding: 0;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-sextuple;
   }
+}
+
+.unit__services {
+  padding: 0;
 
   .unit--services__container {
     padding-top: 0;
@@ -292,35 +295,35 @@
         margin-right: calc(-#{$spacing-and-half} / 2);
         margin-top: $spacing-triple;
       }
+    }
 
-      .service {
-        width: 100%;
+    .service {
+      width: 100%;
 
+      @include breakpoint($breakpoint-l) {
+        margin-top: $spacing-and-half;
+        width: 25%;
+      }
+
+      &:nth-child(-n+4) {
+        margin-top: 0;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        width: calc(25% - #{$spacing-and-half});
+      }
+
+      // If there is 1 or 2 items inside the services listing:
+      @include content_count(1, 2) {
         @include breakpoint($breakpoint-l) {
-          margin-top: $spacing-and-half;
-          width: 25%;
+          width: calc(50% - #{$spacing-and-half});
         }
+      }
 
-        &:nth-child(-n+4) {
-          margin-top: 0;
-        }
-
+      // If there 3 items inside the services listing:
+      @include content_count(3) {
         @include breakpoint($breakpoint-l) {
-          width: calc(25% - #{$spacing-and-half});
-        }
-
-        // If there is 1 or 2 items inside the services listing:
-        @include content_count(1, 2) {
-          @include breakpoint($breakpoint-l) {
-            width: calc(50% - #{$spacing-and-half});
-          }
-        }
-
-        // If there 3 items inside the services listing:
-        @include content_count(3) {
-          @include breakpoint($breakpoint-l) {
-            width: calc(33.33% - #{$spacing-and-half});
-          }
+          width: calc(33.33% - #{$spacing-and-half});
         }
       }
     }
@@ -336,17 +339,16 @@
     display: flex;
     justify-content: center;
     width: 100%;
+  }
 
-    .unit__services__pager-button {
-      @extend .emulate-button--primary;
-    }
+  .unit__services__pager-button {
+    @extend .emulate-button--primary;
   }
 }
 
 .unit__accessibility_sentences {
-  margin-top: $spacing-double;
 
-  &.accordion {
+  &.component--accordion {
     .accordion-item__content {
       h3 {
         margin-top: 0;
@@ -418,13 +420,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: $spacing-and-half;
   position: relative;
 
   @include breakpoint($breakpoint-m) {
     align-items: stretch;
     flex-direction: row;
-    margin-bottom: $spacing;
     min-height: 220px; // From designs.
     padding-left: 325px; // Width of the unit picture from the designs + spacing
   }
@@ -586,41 +586,6 @@
 
     .icon {
       margin-left: $spacing-half;
-    }
-  }
-}
-
-// Sidebar layout.
-// TODO: Clean up these styles after unit sidebar actually lives in sidebar as a block.
-.enriched-content.has-sidebar {
-
-  // With image.
-  .list-of-links__item {
-    @include breakpoint($breakpoint-l) {
-      width: 33%;
-    }
-
-    .list-of-links__item__link {
-      padding-bottom: $spacing-and-half;
-    }
-  }
-
-  // Without image.
-  .list-of-links--without-image {
-    .list-of-links__item {
-      @include breakpoint($breakpoint-l) {
-        width: 50%;
-      }
-    }
-  }
-
-  .banner {
-    margin-left: -$spacing-and-half;
-    margin-right: -$spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-left: auto;
-      margin-right: auto;
     }
   }
 }

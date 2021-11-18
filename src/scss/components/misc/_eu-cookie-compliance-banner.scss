@@ -10,22 +10,6 @@
   }
 }
 
-.eu-cookie-compliance-popup-open .dialog-off-canvas-main-canvas {
-  &::after {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    opacity: 1;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transition: opacity 0.2s ease;
-    visibility: visible;
-    width: 100%;
-    z-index: 9999;
-  }
-}
-
 .eu-cookie-compliance-banner {
   background-color: $color-bus;
   color: $color-white;
@@ -38,6 +22,7 @@
   .eu-cookie-compliance-content {
     display: flex;
     flex-wrap: wrap;
+    padding-top: $spacing-and-half;
   }
 
   .eu-cookie-compliance-message {

@@ -5,7 +5,7 @@
  */
 #}
 
-{% if page.sidebar_first|render|striptags|trim is not empty %}
+{% if page_has_sidebar %}
   {% set sidebar_first_output = TRUE %}
 {% endif %}
 
@@ -13,11 +13,17 @@
   {% set sidebar_second_output = render_var(page.sidebar_second) %}
 {% endif %}
 
+{% set has_sidebar = false %}
+{% if sidebar_first_output or sidebar_second_output %}
+  {% set has_sidebar = true %}
+{% endif %}
+
 {% set page_classes = [
     node.getType() ? 'page-type--' ~ node.getType()|clean_class,
     'wrapper',
-    sidebar_first_output ? 'has-sidebar has-sidebar--first',
-    sidebar_second_output ? 'has-sidebar has-sidebar--second'
+    has_sidebar ? 'has-sidebar' : 'no-sidebar',
+    sidebar_first_output ? 'has-sidebar--first',
+    sidebar_second_output ? 'has-sidebar--second',
   ]
 %}
 

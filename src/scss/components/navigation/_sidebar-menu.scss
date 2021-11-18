@@ -3,6 +3,7 @@
 
   @include breakpoint($breakpoint-l) {
     display: block;
+    width: 100%;
   }
 
   .sidebar-navigation__title {

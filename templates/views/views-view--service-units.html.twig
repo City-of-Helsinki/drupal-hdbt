@@ -1,48 +1,24 @@
-{#
-/**
- * @file
- * Theme override for main view template.
- *
- * Available variables:
- * - attributes: Remaining HTML attributes for the element.
- * - css_name: A CSS-safe version of the view name.
- * - css_class: The user-specified classes names, if any.
- * - header: The optional header.
- * - footer: The optional footer.
- * - rows: The results of the view query, if any.
- * - empty: The content to display if there are no rows.
- * - pager: The optional pager next/prev links to display.
- * - exposed: Exposed widget form/info to display.
- * - feed_icons: Optional feed icons to display.
- * - more: An optional link to the next page of results.
- * - title: Title of the view, only used when displaying in the admin preview.
- * - title_prefix: Additional output populated by modules, intended to be
- *   displayed in front of the view title.
- * - title_suffix: Additional output populated by modules, intended to be
- *   displayed after the view title.
- * - attachment_before: An optional attachment view to be displayed before the
- *   view content.
- * - attachment_after: An optional attachment view to be displayed after the
- *   view content.
- * - dom_id: Unique id for every view being printed to give unique class for
- *   Javascript.
- *
- * @see template_preprocess_views_view()
- */
-#}
 {%
   set classes = [
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
 
-{% embed "@hdbt/misc/container.twig" with {container_element: 'service__units'} %}
-  {% block container_content %}
+{% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [
+      'component--service-units',
+      'component--hardcoded'
+    ]
+  }
+%}
+  {% block component_content %}
+
     <div class="service__units__header">
-      <h2 class="service__units__title">{% trans %}Service locations{% endtrans %}</h2>
+      <h2 class="service__units__title">{% trans %}Service points{% endtrans %}</h2>
       <span class="service__units__count-container">
         <span class="service__units__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Service units count'}%}unit{% plural total_rows %}units{% endtrans %}
+        {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
       </span>
     </div>
     <div{{ attributes.addClass(classes) }}>
@@ -75,5 +51,6 @@
 
       {{ feed_icons }}
     </div>
-  {% endblock container_content %}
+
+  {% endblock component_content %}
 {% endembed %}

@@ -12,11 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Find all menu items with children menus.
-  const itemsWithChildren = document
-    .getElementsByClassName('sidebar-navigation')[0]
-    .getElementsByClassName('menu__item--children');
+  const sidebarNavigation =
+    document.getElementsByClassName('sidebar-navigation');
+  if (typeof sidebarNavigation !== 'undefined') {
+    if (sidebarNavigation[0]) {
+      const itemsWithChildren = sidebarNavigation[0].getElementsByClassName(
+        'menu__item--children'
+      );
 
-  for (let item of itemsWithChildren) {
-    toggleSidebarMenuLevel(item);
+      for (let item of itemsWithChildren) {
+        toggleSidebarMenuLevel(item);
+      }
+    }
   }
 });
