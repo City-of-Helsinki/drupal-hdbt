@@ -42,26 +42,27 @@
     {% for item in items %}
 
       {% set link_id = 'aria-id-' ~ random() %}
+      {% set item_is_collabsible = false %} {# Branding never should have collabsible menu #}
 
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
         item.is_external ? 'menu__item--external',
-        item.is_expanded ? 'menu__item--expanded',
-        item.is_collapsed ? 'menu__item--collapsed',
-        item.in_active_trail ? 'menu__item--active-trail'
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
+        item.in_active_trail ? 'menu__item--active-trail',
+        item.in_active_trail ? 'menu__item--open',
       ]%}
 
+      {% set explain_external_icon = null %}
+      {% if item.is_external %}
+        {% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
+      {% endif %}
+
       <li{{ item.attributes.addClass(item_classes) }}>
-
-        {% set explain_external_icon = null %}
-        {% if item.is_external %}
-          {% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
-        {% endif %}
-
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% set item_title %}
+
               {%- set icon_name = (item.url.getOption('attributes')).icon -%}
               {% if icon_name %}
                 {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
@@ -70,7 +71,7 @@
               <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
             {% endset %}
 
-            {% set link_attributes = { 'id': link_id } %}
+            {% set link_attributes = item_is_collabsible ? { 'id': link_id } : {} %}
 
             {% if item.is_currentPage %}
               {% set link_attributes = link_attributes|merge({ 'aria-current': 'page' }) %}
@@ -79,9 +80,20 @@
             {{ link(item_title, item.url, link_attributes) }}
 
           {% else %}
-            <span{{ create_attribute({'class': item_classes}).setAttribute('id', link_id) }}>{{ item.title }}</span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}{{ explain_external_icon }}</span></span>
           {% endif %}
 
+          {% if item_is_collabsible %}
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="menu--level-{{ menu_level + 1 }}"
+              aria-labelledby="{{ link_id }}"
+              aria-haspopup="true"
+              class="menu__toggle-button">
+              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down', icons_path: icons_path} %}
+            </button>
+          {% endif %}
         </span>
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path) }}

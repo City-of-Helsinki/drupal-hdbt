@@ -42,6 +42,7 @@
     {% for item in items %}
 
       {% set link_id = 'aria-id-' ~ random() %}
+      {% set item_is_collabsible = (item.is_collapsed or item.is_expanded) ? true : false %}
 
       {% set item_classes = [
         'menu__item',
@@ -49,7 +50,7 @@
         item.is_external ? 'menu__item--external',
         item.is_expanded or item.in_active_trail ? 'menu__item--children',
         item.in_active_trail ? 'menu__item--active-trail',
-        item.in_active_trail ? 'menu__item--open'
+        item.in_active_trail ? 'menu__item--open',
       ]%}
 
       {% set explain_external_icon = null %}
@@ -61,14 +62,16 @@
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% set item_title %}
+
               {%- set icon_name = (item.url.getOption('attributes')).icon -%}
               {% if icon_name %}
                 {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
               {% endif %}
-              {{ item.title }}{{ explain_external_icon }}
+
+              <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
             {% endset %}
 
-            {% set link_attributes = { 'id': link_id } %}
+            {% set link_attributes = item_is_collabsible ? { 'id': link_id } : {} %}
 
             {% if item.is_currentPage %}
               {% set link_attributes = link_attributes|merge({ 'aria-current': 'page' }) %}
@@ -77,10 +80,10 @@
             {{ link(item_title, item.url, link_attributes) }}
 
           {% else %}
-            <span{{ create_attribute({'class': item_classes}).setAttribute('id', link_id) }}>{{ item.title }}{{ explain_external_icon }}</span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}{{ explain_external_icon }}</span></span>
           {% endif %}
 
-          {% if item.is_collapsed or item.is_expanded %}
+          {% if item_is_collabsible %}
             <button
               type="button"
               aria-expanded="true"
