@@ -18,8 +18,7 @@
       width: 100%;
 
       .explain-external-icon {
-        display: none; //TODO: Replace this with visually-hidden once header-top-navigation supports external link icons
-        // @include visually-hidden();
+        @include visually-hidden();
       }
 
       &:after {
