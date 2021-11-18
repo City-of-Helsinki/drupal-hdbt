@@ -37,12 +37,15 @@
     ]
   %}
 
+  {# Allow overriding this variable when embedding from other nav types #}
+  {% set allow_collabsible = allow_collabsible|default(false) %}
+
   {% if items %}
     <ul{{ attributes.addClass(menu_classes) }}>
     {% for item in items %}
 
       {% set link_id = 'aria-id-' ~ random() %}
-      {% set item_is_collabsible = (item.is_collapsed or item.is_expanded) ? true : false %}
+      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded)) ? true : false %}
 
       {% set item_classes = [
         'menu__item',
@@ -50,8 +53,8 @@
         item.is_external ? 'menu__item--external',
         item.is_expanded or item.in_active_trail ? 'menu__item--children',
         item.in_active_trail ? 'menu__item--active-trail',
+        (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
-      {# item.in_active_trail ? 'menu__item--open', #}
 
       {% set explain_external_icon = null %}
       {% if item.is_external %}
