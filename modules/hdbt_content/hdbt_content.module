@@ -287,8 +287,8 @@ function hdbt_content_preprocess_page(&$variables) {
         $menu_Link = reset($menu_links);
 
         // Set page_has_sidebar value true,
-        // if menu link is enabled and it has a parent item.
-        if ($menu_Link->isEnabled() && $menu_Link->getParent()) {
+        // if menu link is enabled.
+        if ($menu_Link->isEnabled()) {
           $variables['page_has_sidebar'] = TRUE;
           $variables['has_navigation'] = TRUE;
           return;
