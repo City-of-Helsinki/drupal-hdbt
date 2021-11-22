@@ -1,6 +1,8 @@
+@use "sass:math";
+
 // Function nounit strips any unit from variable.
 @function nounit($number) {
-  @return $number / ($number * 0 + 1);
+  @return math.div($number, $number * 0 + 1);
 }
 
 // Calculate rem (root em) units from pixels for font-size and line-height.
@@ -10,14 +12,14 @@
   } @else if unit($font-size) == 'rem' {
     font-size: $font-size;
   } @else {
-    font-size: ($font-size / $base-font-size) * 1rem;
+    font-size: math.div($font-size, $base-font-size) * 1rem;
   }
 
   // Handle the line-height.
   @if $line-height != "" {
     // Check if line-height is in px.
     @if unit($line-height) == 'px' {
-      line-height: ($line-height / $base-font-size) * 1rem;
+      line-height: math.div($line-height, $base-font-size) * 1rem;
     }
     @else {
       // Check if line-height is in rem and handle the line-height.
@@ -34,7 +36,7 @@
           $font-size-px: nounit($font-size) * nounit($base-font-size);
         }
 
-        $conversion: $base-font-size-px * ($font-size-px / $base-font-size-px) * $line-height / $base-font-size-px;
+        $conversion: math.div($base-font-size-px * math.div($font-size-px, $base-font-size-px) * $line-height, $base-font-size-px);
         line-height: #{$conversion}rem;
       }
     }

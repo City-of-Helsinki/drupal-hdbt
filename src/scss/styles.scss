@@ -3,7 +3,11 @@
 // This file includes all imports
 //
 
-// Load fonts first to prevent
+// Use Dart Sass math module to perform calculations.
+// https://sass-lang.com/documentation/modules/math
+@use "sass:math";
+
+// Load fonts first.
 @import "library/variables/typography";
 
 @import "~breakpoint-sass";
