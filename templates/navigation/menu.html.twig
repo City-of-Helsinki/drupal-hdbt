@@ -25,9 +25,9 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, icons_path) }}
+{{ menus.menu_links(items, attributes, 0, icons_path, allow_collabsible, auto_open) }}
 
-{% macro menu_links(items, attributes, menu_level, icons_path) %}
+{% macro menu_links(items, attributes, menu_level, icons_path, allow_collabsible, auto_open) %}
   {% import _self as menus %}
 
   {%
@@ -37,8 +37,9 @@
     ]
   %}
 
-  {# Allow overriding this variable when embedding from other nav types #}
+  {# Allow overriding these variables when embedding from other nav types #}
   {% set allow_collabsible = allow_collabsible|default(false) %}
+  {% set auto_open = auto_open|default(false) %}
 
   {% if items %}
     <ul{{ attributes.addClass(menu_classes) }}>
@@ -99,7 +100,7 @@
           {% endif %}
         </span>
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path) }}
+          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path, allow_collabsible, auto_open) }}
         {% endif %}
       </li>
     {% endfor %}
