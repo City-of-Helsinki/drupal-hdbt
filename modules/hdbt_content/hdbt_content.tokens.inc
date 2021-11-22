@@ -77,7 +77,15 @@ function hdbt_content_tokens(
       ) {
         $image_style = ImageStyle::load('og_image');
         $image_entity = $node->field_liftup_image->entity->field_media_image;
-        $image_url = $image_style->buildUrl($image_entity->entity->getFileUri());
+        $image_path = $image_entity->entity->getFileUri();
+        $image_uri = $image_style->buildUri($image_path);
+
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
+
+        $image_url = $image_style->buildUrl($image_path);
       }
 
       $replacements[$original] = $image_url;
