@@ -63,15 +63,20 @@
       }
 
       &:hover,
-      &.is-active {
+      &[aria-current="page"] {
         &::before {
           height: 4px;
           width: 100%;
         }
       }
 
-      &.is-active {
+      &[aria-current="page"]{
         font-weight: 700;
+      }
+
+      .explain-external-icon {
+        display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
+        // @include visually-hidden();
       }
     }
 
@@ -138,7 +143,7 @@
             transition: width 100ms ease-in;
           }
 
-          &.is-active {
+          &[aria-current="page"] {
             font-weight: 700;
           }
 
@@ -153,7 +158,7 @@
           }
 
           &:hover,
-          &.is-active {
+          &[aria-current="page"] {
             &::before {
               height: 100%;
               width: 4px;
@@ -169,6 +174,11 @@
           padding-right: 52px; // Width of the external icon and padding.
           position: relative;
           width: 100%;
+
+          .explain-external-icon {
+            display: inline; //TODO: Remove this line when the main level navigation supports external links
+            @include visually-hidden();
+          }
 
           &:after {
             background-color: $color-black;

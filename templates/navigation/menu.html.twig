@@ -25,52 +25,82 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, icons_path) }}
+{{ menus.menu_links(items, attributes, 0, icons_path, allow_collabsible, auto_open) }}
 
-{% macro menu_links(items, attributes, menu_level, icons_path) %}
+{% macro menu_links(items, attributes, menu_level, icons_path, allow_collabsible, auto_open) %}
   {% import _self as menus %}
 
-  {% set menu_classes = ['menu'] %}
+  {%
+    set menu_classes = [
+      'menu',
+      'menu--level-' ~ menu_level
+    ]
+  %}
+
+  {# Allow overriding these variables when embedding from other nav types #}
+  {% set allow_collabsible = allow_collabsible|default(false) %}
+  {% set auto_open = auto_open|default(false) %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes).setAttribute('id', 'menu--level-' ~ menu_level) }}>
+    <ul{{ attributes.addClass(menu_classes) }}>
     {% for item in items %}
+
+      {% set link_id = 'aria-id-' ~ random() %}
+      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded)) ? true : false %}
 
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
         item.is_external ? 'menu__item--external',
-        item.is_expanded ? 'menu__item--expanded',
-        item.is_collapsed ? 'menu__item--collapsed',
-        item.in_active_trail ? 'menu__item--active-trail'
+        item.is_expanded or item.in_active_trail ? 'menu__item--children',
+        item.in_active_trail ? 'menu__item--active-trail',
+        (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
+
+      {% set explain_external_icon = null %}
+      {% if item.is_external %}
+        {% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
+      {% endif %}
 
       <li{{ item.attributes.addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
-            {% set item_title = item.title %}
+            {% set item_title %}
 
-            {%- set icon_name = (item.url.getOption('attributes')).icon -%}
-            {% if icon_name %}
-              {% set item_title %}
+              {%- set icon_name = (item.url.getOption('attributes')).icon -%}
+              {% if icon_name %}
                 {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
-                {{ item.title }}
-              {% endset %}
+              {% endif %}
+
+              <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
+            {% endset %}
+
+            {% set link_attributes = item_is_collabsible ? { 'id': link_id } : {} %}
+
+            {% if item.is_currentPage %}
+              {% set link_attributes = link_attributes|merge({ 'aria-current': 'page' }) %}
             {% endif %}
 
-            {{ link(item_title, item.url) }}
+            {{ link(item_title, item.url, link_attributes) }}
+
           {% else %}
-            <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}{{ explain_external_icon }}</span></span>
           {% endif %}
 
-          {% if item.is_collapsed or item.is_expanded %}
-            <button type="button" aria-expanded="true" aria-controls="menu--level-{{ menu_level + 1 }}" class="menu__toggle-button">
-              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-up', icons_path: icons_path} %}
+          {% if item_is_collabsible %}
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="menu--level-{{ menu_level + 1 }}"
+              aria-labelledby="{{ link_id }}"
+              aria-haspopup="true"
+              class="menu__toggle-button">
+              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down', icons_path: icons_path} %}
             </button>
           {% endif %}
         </span>
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, icons_path) }}
+          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path, allow_collabsible, auto_open) }}
         {% endif %}
       </li>
     {% endfor %}

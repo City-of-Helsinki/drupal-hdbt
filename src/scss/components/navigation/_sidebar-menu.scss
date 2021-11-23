@@ -72,6 +72,10 @@
         position: relative;
         width: 100%;
 
+        .explain-external-icon {
+          @include visually-hidden();
+        }
+
         &:after {
           background-color: $color-black;
           background-size: contain;
@@ -111,7 +115,7 @@
         text-decoration: none;
         width: 100%;
 
-        &.is-active {
+        &[aria-current="page"] {
           font-weight: 700;
         }
 
@@ -175,7 +179,7 @@
           position: relative;
           width: 100%;
 
-          &.is-active::before {
+          &[aria-current="page"]::before {
             background-color: $color-black;
             content: "";
             height: 100%; // Line-height

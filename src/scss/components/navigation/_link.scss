@@ -3,6 +3,7 @@ a.link[target="_blank"] {
   align-items: center;
   display: inline-flex;
 
+  // TODO: This is not wanted, we should separate target="_blank" from external links!
   &::after {
     background-color: $color-black;
     background-size: contain;

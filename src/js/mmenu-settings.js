@@ -57,6 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (panel && panel.parentNode.parentNode) {
       api.openPanel(panel.parentNode.parentNode);
     }
+
+    // Tell screen readers that this is an modal
+    const mobile_panel = document.querySelector(
+      '#mobile-navigation > .mm-panels > .mm-panel'
+    );
+    if (mobile_panel) {
+      mobile_panel.setAttribute('role', 'dialog');
+      mobile_panel.setAttribute('aria-modal', 'true');
+    }
   }
   // Get the mobile navigation.
   const initializeMenu = document.querySelector(
