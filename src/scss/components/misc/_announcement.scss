@@ -21,7 +21,7 @@
   &::before {
     @include pseudo-icon('ui/info-circle-fill', $spacing-and-half, $color-white); // Defaults to .announcement--notification styles
     left: calc(0.5 * (var(--announcement-bg-size) - #{$spacing-and-half}));
-    margin-top: math.div(-$spacing-and-half, 2);
+    margin-top: -$spacing-and-half * 0.5;
     position: absolute;
     top: 50%;
   }
