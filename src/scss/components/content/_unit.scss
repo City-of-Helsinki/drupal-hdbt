@@ -199,10 +199,15 @@
     }
   }
 
+  // TODO: Is this selector still relevant?
   // Opening hours link (always external)
   .unit__contact-row--opening-hours a {
     padding-right: 24px; // Width of the external icon plus.
     position: relative;
+
+    .explain-external-icon {
+      @include visually-hidden();
+    }
 
     &:after {
       background-color: $color-black;

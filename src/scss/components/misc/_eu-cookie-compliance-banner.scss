@@ -13,6 +13,8 @@
 .eu-cookie-compliance-banner {
   background-color: $color-bus;
   color: $color-white;
+  max-height: 100vh;
+  overflow: auto;
   padding: 0 0 $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {

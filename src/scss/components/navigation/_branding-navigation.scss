@@ -50,6 +50,11 @@
       @include breakpoint($breakpoint-m) {
         bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
       }
+
+      .explain-external-icon {
+        display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
+        @include visually-hidden();
+      }
     }
   }
 }

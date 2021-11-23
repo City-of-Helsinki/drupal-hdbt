@@ -50,7 +50,7 @@ a.hds-button {
 .hds-button--supplementary:not(.hdbt-icon) {
   &:before {
     // Add default icon (arrow icon) for the supplementary button.
-    mask-image: url('../icons/arrow-right.svg');
+    mask-image: url('../icons/hds/ui/arrow-right.svg');
   }
 }
 
