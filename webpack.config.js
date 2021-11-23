@@ -2,7 +2,6 @@ const isDev = (process.env.NODE_ENV !== 'production');
 
 const path = require('path');
 const glob = require('glob');
-const globImporter = require('node-sass-glob-importer');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -100,9 +99,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: isDev,
-              sassOptions: {
-                importer: globImporter()
-              },
             },
           },
         ],
