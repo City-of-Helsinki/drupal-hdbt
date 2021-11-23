@@ -40,7 +40,7 @@ $spacing-menu-item: 20px;
     .mm-listitem__text {
       padding: $spacing-menu-item 0 $spacing-menu-item $spacing-menu-item;
 
-      &.is-active {
+      &[aria-current="page"]{
         &::before {
           background-color: $color-black;
           bottom: 0;
@@ -145,7 +145,7 @@ $spacing-menu-item: 20px;
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-triple;
 
-      &.is-active {
+      &[aria-current="page"] {
         &::before {
           top: -8px;
         }

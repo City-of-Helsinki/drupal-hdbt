@@ -59,7 +59,11 @@
             {% endset %}
           {% endif %}
 
-          {{ link(item_title, item.url) }}
+          {% if item.is_currentPage %}
+            {% set link_attributes = { 'aria-current': 'page' } %}
+          {% endif %}
+
+          {{ link(item_title, item.url, link_attributes) }}
         {% else %}
           <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
         {% endif %}
