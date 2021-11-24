@@ -43,7 +43,7 @@
         ],
         "consistent-return": ["off"],
         "no-underscore-dangle": ["off"],
-        "max-nested-callbacks": ["warn", 3],
+        "max-nested-callbacks": ["warn", 5],
         "no-plusplus": ["warn", {
             "allowForLoopAfterthoughts": true
         }],
