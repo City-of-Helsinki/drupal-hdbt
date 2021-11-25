@@ -144,47 +144,38 @@ module.exports = {
     new CopyPlugin({
       'patterns': [
         {
-          'context': './',
           'from': 'node_modules/@splidejs/splide/dist/js/splide.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/splide/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/@splidejs/splide/dist/css/splide-core.min.css',
           'to': path.resolve(__dirname, 'dist') + '/css/splide/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/tiny-slider/dist/min/tiny-slider.js',
           'to': path.resolve(__dirname, 'dist') + '/js/tiny-slider/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/tiny-slider/dist/tiny-slider.css',
           'to': path.resolve(__dirname, 'dist') + '/css/tiny-slider/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/handorgel/lib/js/umd/handorgel.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/handorgel/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/handorgel/lib/css/handorgel.min.css',
           'to': path.resolve(__dirname, 'dist') + '/css/handorgel/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/mmenu-js/dist/mmenu.js',
           'to': path.resolve(__dirname, 'dist') + '/js/mmenu/',
           'force': true,
         }, {
-          'context': './',
           'from': 'node_modules/mmenu-js/dist/mmenu.css',
           'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
           'force': true,
         }, {
-          'context': './',
           'from': 'src/icons/**/*.svg',
           'to': path.resolve(__dirname, 'dist') + '/icons/svg/[name][ext]',
           'force': true,
