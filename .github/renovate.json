@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":preserveSemverRanges"
+  ],
+  "enabledManagers": ["npm", "nvm", "github-actions"],
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 10
+}
