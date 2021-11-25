@@ -226,6 +226,15 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 }
 
+.hds-button--link {
+  --border-width: 2px;
+  --min-size: 56px;
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+}
+
+// Set colors for all hds-button--link elements that have color defined via primary, secondary or supplementary modifier
+@include hds-button-colors-on-light-bg($class: '.hds-button--link');
 
 .hds-button .explain-external-icon {
   @include visually-hidden();

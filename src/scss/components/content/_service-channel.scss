@@ -4,7 +4,7 @@
   gap: $spacing-half;
   place-items: flex-start;
 
-  a:not(.service-channel__link--external) {
+  a:not(.service-channel__link) {
     @extend .emulate-button--primary;
     --background-color: var(--hdbt-color-palette-button--secondary);
     --background-color-focus: var(--hdbt-color-palette-button--secondary);
@@ -22,29 +22,7 @@
       margin-top: 0;
     }
   }
-
-  .service-channel__link--external {
-    --border-width: 2px;
-    --min-size: 56px;
-    --outline-gutter: 2px;
-    --outline-width: 3px;
-    --background-color-hover: transparent;
-    --background-color-hover-focus: transparent;
-
-    --background-color: var(--hdbt-color-palette-button--secondary);
-    --background-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover: var(--hdbt-color-palette-button--secondary);
-    --border-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --color: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover: var(--hdbt-color-palette-button--secondary);
-    --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-  }
 }
-
 
 .service-channel:not(.service-channel--eservice) {
   margin: $spacing-and-half 0 0;
