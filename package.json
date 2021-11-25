@@ -35,7 +35,6 @@
     "eslint-import-resolver-webpack": "0.13.2",
     "eslint-plugin-import": "^2.25.3",
     "expose-loader": "^3.0.0",
-    "fsevents": "^2.3.2",
     "glob": "^7.1.7",
     "handorgel": "^0.5.0",
     "hds-core": "^1.2.0",
