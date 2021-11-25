@@ -225,3 +225,8 @@ p > a.hds-button.hds-button--supplementary:first-child {
     color: var(--color-hover);
   }
 }
+
+
+.hds-button .explain-external-icon {
+  @include visually-hidden();
+}

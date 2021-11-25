@@ -1,0 +1,74 @@
+{#
+/**
+ * Available variables:
+ * - label: String for the label visible in link.
+ * - url: String for the url to link to.
+ * - type: primary, secondary or supplementary type of button.
+ * - size: small or unset.
+ * - open_in_a_new_window: Boolean for opening in a new window and showing explanation.
+ * - is_external: Boolean for showing external icon and explanation when is not part of the same domain. This overrides icon_last and icon_last_type
+ * - icon_first: Boolean if first icon is enabled
+ * - icon_first_type: String for first icon type
+ * - icon_last: Boolean if last icon is enabled (will be set to true if is_external is true)
+ * - icon_last_type: String for last icon type (will be set to link-external if is_external is true)
+ * - class: Optional String to be added to the class list
+ *
+ * Usage example:
+ * {% include '@hdbt/button/link-button.html.twig' with {
+ *   type: 'primary',
+ *   label: item.content['#title'],
+ *   url: item.content['#url'],
+ *   class: 'service-channel__link--external',
+ *   is_external: true,
+ *   open_in_a_new_window: true,
+ * } %}
+ *
+ */
+ #}
+
+{% if type == 'primary' %}
+  {% set type_class = 'hds-button--primary' %}
+{% elseif type == 'secondary' %}
+  {% set type_class = 'hds-button--secondary' %}
+{% elseif type == 'supplementary' %}
+  {% set type_class = 'hds-button--supplementary' %}
+{% endif %}
+
+{% set classes = [
+  'hds-button',
+  'hds-button--link',
+  type_class,
+  size == 'small' ? 'hds-button--small',
+  class,
+] %}
+
+{% set link_options = {class: classes|join(' ')} %}
+
+{% if open_in_a_new_window %}
+  {% set explain_opens_in_new_window %}
+    ({{ 'Opens in a new window'|t({}, {'context': 'Explanation for users that the link opens in a new window or tab instead of the expected current window or tab'}) }})
+  {% endset %}
+  {% set link_options = link_options|merge({target: '_blank'}) %}
+{% endif %}
+
+{% if is_external %}
+  {% set explain_external_icon %}
+    <span class="explain-external-icon">
+      ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})
+    </span>
+  {% endset %}
+  {% set icon_last = true %}
+  {% set icon_last_type = 'link-external' %}
+{% endif %}
+
+{% set title %}
+  {% if icon_first == true  %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
+  <span class="hds-button__label">
+    {{ label }}
+    {{ explain_opens_in_new_window }}
+    {{ explain_external_icon }}
+  </span>
+  {% if icon_last == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_last_type }}"></span>{% endif %}
+{% endset %}
+
+{{ link(title, url, link_options) }}
