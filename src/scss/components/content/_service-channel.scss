@@ -1,5 +1,8 @@
 .service-channel__links {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-half;
+  place-items: flex-start;
 
   a {
     @extend .emulate-button--primary;
@@ -14,8 +17,6 @@
     --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
     --color-hover-focus: var(--hdbt-color-palette-button--secondary);
     --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-    clear: both;
-    float: left;
 
     &:first-child {
       margin-top: 0;
