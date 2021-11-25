@@ -100,10 +100,13 @@
 
 .footer-bottom {
   border-top: 1px solid $color-black-30;
+  column-gap: $spacing-double;
+  display: flex;
+  flex-wrap: wrap;
   margin-top: $spacing-triple;
-  overflow: hidden;
   padding-bottom: $spacing-triple;
   padding-top: $spacing-and-half;
+  row-gap: 16px;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-sextuple;
@@ -116,7 +119,6 @@
     align-items: center;
     display: flex;
     flex-wrap: nowrap;
-    float: left;
     margin-bottom: $spacing-triple;
   }
 }
@@ -172,18 +174,17 @@ a.footer__back-to-top {
 
   @include font-size(24px,24px);
   align-items: center;
+  align-self: flex-end;
   display: flex;
-  float: right;
   font-weight: 500;
   height: 40px; // Match footer logo height
+  margin-left: auto; // Keeps link on the right side
   margin-right: $spacing-half;
-  margin-top: $spacing-triple;
   position: relative;
   text-decoration: none;
 
   @include breakpoint($breakpoint-m) {
     margin-bottom: $spacing-triple;
-    margin-left: $spacing-double;
     margin-top: 0;
   }
 
