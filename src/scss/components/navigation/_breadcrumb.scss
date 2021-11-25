@@ -19,7 +19,7 @@
 
     @include breakpoint($breakpoint-m) {
       display: block;
-      margin: 0 $spacing-quarter / 2;
+      margin: 0 $spacing-quarter * 0.5;
       width: 14px;
     }
   }

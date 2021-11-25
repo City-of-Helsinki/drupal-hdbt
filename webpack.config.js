@@ -2,9 +2,8 @@ const isDev = (process.env.NODE_ENV !== 'production');
 
 const path = require('path');
 const glob = require('glob');
-const globImporter = require('node-sass-glob-importer');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -85,6 +84,7 @@ module.exports = {
             options: {
               sourceMap: isDev,
               importLoaders: 2,
+              esModule: false,
             },
           },
           {
@@ -100,9 +100,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: isDev,
-              sassOptions: {
-                importer: globImporter()
-              },
             },
           },
         ],
@@ -121,8 +118,8 @@ module.exports = {
     new SvgToCss(path.resolve(__dirname, 'src/icons/**/*.svg'), 'css/hdbt-icons.css'),
     new FriendlyErrorsWebpackPlugin(),
     new RemoveEmptyScriptsPlugin(),
-    new CleanWebpackPlugin(['dist'], {
-      root: path.resolve(__dirname),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ['dist']
     }),
     new SVGSpritemapPlugin([
       path.resolve(__dirname, 'src/icons/**/*.svg'),
@@ -147,59 +144,41 @@ module.exports = {
     new CopyPlugin({
       'patterns': [
         {
-          'context': './',
           'from': 'node_modules/@splidejs/splide/dist/js/splide.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/splide/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/@splidejs/splide/dist/css/splide-core.min.css',
           'to': path.resolve(__dirname, 'dist') + '/css/splide/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/tiny-slider/dist/min/tiny-slider.js',
           'to': path.resolve(__dirname, 'dist') + '/js/tiny-slider/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/tiny-slider/dist/tiny-slider.css',
           'to': path.resolve(__dirname, 'dist') + '/css/tiny-slider/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/handorgel/lib/js/umd/handorgel.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/handorgel/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/handorgel/lib/css/handorgel.min.css',
           'to': path.resolve(__dirname, 'dist') + '/css/handorgel/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/mmenu-js/dist/mmenu.js',
           'to': path.resolve(__dirname, 'dist') + '/js/mmenu/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'node_modules/mmenu-js/dist/mmenu.css',
           'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
           'force': true,
-          'flatten': true
         }, {
-          'context': './',
           'from': 'src/icons/**/*.svg',
-          'to': path.resolve(__dirname, 'dist') + '/icons/svg/',
+          'to': path.resolve(__dirname, 'dist') + '/icons/svg/[name][ext]',
           'force': true,
-          'flatten': true
         },
       ]
     }),

@@ -11,13 +11,14 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 This theme requires Drupal core >= 9.1.0.
 
 Requirements for developing:
-- [NodeJS ( ^ 14.17.1 )](https://nodejs.org/en/)
+- [NodeJS ( ^ 16.10 )](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
 
 ## Commands
 
 | Command       | Description                                                                       |
 | ------------- | --------------------------------------------------------------------------------- |
+| nvm use       | Uses correct Node version chosen for the theme compiler.                          |
 | npm i         | Install dependencies and link local packages.                                     |
 | npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
 | npm run dev   | Compile styles for development environment. and watch file changes.               |

@@ -314,6 +314,12 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
       $item['is_nolink'] = TRUE;
     }
+
+    // Check if url is current page where we are now.
+    $current_path = \Drupal::request()->getRequestUri();
+    if ($item['url']->toString() == $current_path) {
+      $item['is_currentPage'] = TRUE;
+    }
   }
 }
 

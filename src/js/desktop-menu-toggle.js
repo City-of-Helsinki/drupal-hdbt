@@ -52,13 +52,13 @@ function getSiblings(n) {
 document.addEventListener('DOMContentLoaded', function () {
   // Find all menu items with children menus.
   const itemsWithChildren = document.querySelectorAll(
-    '.desktop-menu #menu--level-0 > .menu__item--children'
+    '.desktop-menu .menu--level-0 > .menu__item--children'
   );
 
   for (let item of itemsWithChildren) {
     if (item) {
       let firstLevelItem = item.querySelector(
-        '#menu--level-0 > .menu__item--children > .menu__link-wrapper > a'
+        '.menu--level-0 > .menu__item--children > .menu__link-wrapper > a'
       );
 
       toggleDesktopMenuLevel(item);
