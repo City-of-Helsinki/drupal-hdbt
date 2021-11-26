@@ -46,7 +46,7 @@
 
 {% if open_in_a_new_window %}
   {% set explain_opens_in_new_window %}
-    ({{ 'Opens in a new window'|t({}, {'context': 'Explanation for users that the link opens in a new window or tab instead of the expected current window or tab'}) }})
+    ({{ 'opens in a new window'|t({}, {'context': 'Explanation for users that the link opens in a new window or tab instead of the expected current window or tab'}) }})
   {% endset %}
   {% set link_options = link_options|merge({target: '_blank'}) %}
 {% endif %}
