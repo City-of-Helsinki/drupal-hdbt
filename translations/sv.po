@@ -1,5 +1,6 @@
 msgid ""
 msgstr ""
 
-msgid "Opens in a new window"
-msgstr "Öppnas i ett nytt fönster"
+msgctxt "Explanation for users that the link opens in a new window or tab instead of the expected current window or tab"
+msgid "opens in a new window"
+msgstr "öppnas i ett nytt fönster"
