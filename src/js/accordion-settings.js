@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Find all accordions.
   const accordions = document.getElementsByClassName('handorgel');
+  window.handorgel_accordions = [];
 
   for (let singleAccordion of accordions) {
     /* global handorgel */
@@ -71,6 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
       headerDisabledClass: 'handorgel__header--disabled',
       contentDisabledClass: 'handorgel__content--disabled',
     });
+
+    // Add a global variable so that we can open accordions with anchor links where needed
+    window.handorgel_accordions.push(accordion);
 
     // Get all the folds associated to the accordion.
     let folds = accordion.folds;
