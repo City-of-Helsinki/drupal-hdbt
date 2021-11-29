@@ -127,6 +127,30 @@ associated with source maps because the aggregation names the files differently.
 aggregation from Drupal. Go to /admin/config/development/performance and uncheck 'Aggregate JavaScript files'. Clear
 site caches and you should be able to continue with your work.
 
+### How can I add custom translations?
+Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8 documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
+These translations consists of:         
+
+PHP  
+```
+$this->t('Example', [], ['context' => 'My custom context'])
+```
+Twig
+```
+{{ 'Example'|t({}, {'context': 'My custom context'}) }}
+``` 
+JS
+```
+const variable = Drupal.t('Example', {}, {context: 'My custom context'});
+```
+
+And the way to add the actual translation in to f.e. `fi.po` is done like so:   
+```
+msgctxt "My custom context"
+msgid "Example"
+msgstr "Esimerkki"  
+```
+
 ## Component documentation
 
 ### Accordion paragraph
