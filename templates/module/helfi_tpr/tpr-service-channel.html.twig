@@ -23,6 +23,8 @@
 ]
 %}
 
+{% set service_channel_heading_level = service_channel_heading_level|default('h3') %}
+
 <article{{ attributes.addClass(classes) }}>
 
   <div{{ content_attributes.addClass('service-channel__header') }}>
@@ -30,9 +32,9 @@
       {{ content.type_string}}
     </div>
     {% if title_set %}
-      <h2{{ title_attributes.addClass('service-channel__title') }}>
+      <{{ service_channel_heading_level }}{{ title_attributes.addClass('service-channel__title') }}>
         {{ content.name }}
-      </h2>
+      </{{ service_channel_heading_level }}>
     {% endif %}
   </div>
 
