@@ -8,3 +8,11 @@ msgstr "Linkki avautuu uuteen välilehteen"
 msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
 msgid "Link leads to external service"
 msgstr "Linkki johtaa ulkoiseen palveluun"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Päivitetty"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "Jaa"

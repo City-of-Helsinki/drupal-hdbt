@@ -1,0 +1,20 @@
+
+<a href="{{ url }}" class="news__link" rel="bookmark">
+
+  {# Main image #}
+  {% if content.field_main_image|render %}
+    {{ content.field_main_image }}
+  {% else %}
+    {% include "@hdbt/misc/image-placeholder.twig" %}
+  {% endif %}
+
+  {# Short title or Title #}
+  <h3>{{ drupal_token('node:short-title', {'node': node}) }}</h3>
+
+  {# Created date and modified date #}
+  {% if published_at is not empty %}
+    <div class="news-item__date">
+      {{ published_at|format_date('publication_date_format') }}
+    </div>
+  {% endif %}
+</a>

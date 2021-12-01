@@ -268,7 +268,7 @@ function hdbt_content_preprocess_page(&$variables) {
       $variables['has_hero'] = $page_entity->field_has_hero->value;
     }
 
-    // Handle only nodes and Basic page as the TPR Service and TPR Unit has
+    // Handle only Basic page as the TPR Service and TPR Unit has
     // artificial sidebar, not region based as f.e. Basic page.
     if (
       $page_entity instanceof NodeInterface &&
@@ -303,6 +303,15 @@ function hdbt_content_preprocess_page(&$variables) {
       ) {
         $variables['page_has_sidebar'] = TRUE;
       }
+    }
+
+    // News item needs to have the sidebar set at all times.
+    if (
+      $page_entity instanceof NodeInterface &&
+      $page_entity->getType() === 'news_item'
+    ) {
+      $variables['page_has_sidebar'] = TRUE;
+      $variables['move_before_content'] = TRUE;
     }
   }
 }

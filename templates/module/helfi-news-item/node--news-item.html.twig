@@ -1,0 +1,66 @@
+{% embed '@hdbt/content/node.html.twig' %}
+
+  {% block main_content %}
+
+    {# Lead text #}
+    {% if content.field_lead|render %}
+      <div class="news-item__lead">
+        {{ content.field_lead }}
+      </div>
+    {% endif %}
+
+    {# Created date and modified date #}
+    {% if published_at is not empty %}
+      <div class="news-item__date">
+        {{ published_at|format_date('publication_date_format') }}
+
+        {% if modified_at is not empty %}
+          <span class="news-item__date--updated">
+            | {{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }} {{ modified_at|format_date('publication_date_format') }}
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Main image #}
+    {% if content.field_main_image|render %}
+      <div class="news-item__main-image">
+        {{ content.field_main_image }}
+      </div>
+    {% endif %}
+
+    {# Content region #}
+    {% if content.field_content|render %}
+      <div class="news-item__content">
+        {{ content.field_content }}
+      </div>
+    {% endif %}
+
+    {# Links and links title #}
+    {% if content.field_news_item_links_link|render %}
+      <div class="news-item__links">
+        {% if content.field_news_item_links_title|render %}
+          <div class="news-item__links__title">
+            {{ content.field_news_item_links_title }}
+          </div>
+        {% endif %}
+
+        <div class="news-item__links__links">
+          {{ content.field_news_item_links_link }}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Social media share links #}
+    {{ drupal_block('hdbt_content_social_sharing_block') }}
+
+    {# Tags #}
+    {% if content.field_news_item_tags|render %}
+      <div class="news-item__tags">
+        {{ content.field_news_item_tags }}
+      </div>
+    {% endif %}
+
+  {% endblock main_content %}
+
+{% endembed %}

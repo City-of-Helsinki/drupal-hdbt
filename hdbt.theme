@@ -191,10 +191,23 @@ function hdbt_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
   // If node has hero block, set variable accordingly.
-  if ($variables['node']->hasField('field_has_hero')) {
-    $variables['hide_label'] = boolval($variables['node']->field_has_hero->value);
+  if ($node->hasField('field_has_hero')) {
+    $variables['hide_label'] = boolval($node->field_has_hero->value);
   }
+
+  // If node has "published_at" field, set it as variable for the node template.
+  if ($node->hasField('published_at') && $node->isPublished()) {
+    $variables['published_at'] = $node->get('published_at')->getString();
+  }
+
+  // Set "modified_at" variable for the node template.
+  if (!empty($node->getChangedTime())) {
+    $variables['modified_at'] = $node->getChangedTime();
+  }
+
 }
 
 /**
