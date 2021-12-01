@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Template for a TPR Service Channel entity.
+ */
+#}
+
+{% if entity.type.value|lower == 'local' or entity.type.value|lower == 'mail' %}
+  {% set show_mail = true %}
+{% endif %}
+
+{% if content.name|render %}
+  {% set title_set = true %}
+{% endif %}
+
+
+{%
+  set classes = [
+  'service-channel',
+  view_mode ? 'service-channel--' ~ view_mode|clean_class,
+  'service-channel--' ~ entity.type.value|lower,
+  not title_set ? 'service-channel--no-title'
+]
+%}
+
+{% set service_channel_heading_level = service_channel_heading_level|default('h3') %}
+
+<article{{ attributes.addClass(classes) }}>
+
+  <div{{ content_attributes.addClass('service-channel__header') }}>
+    <div {{ content_attributes.addClass('service-channel__type') }}>
+      {{ content.type_string}}
+    </div>
+    {% if title_set %}
+      <{{ service_channel_heading_level }}{{ title_attributes.addClass('service-channel__title') }}>
+        {{ content.name }}
+      </{{ service_channel_heading_level }}>
+    {% endif %}
+  </div>
+
+  {% if content.phone|render %}
+    <div class="service-channel__phone">
+      {{ content.phone }}
+    </div>
+  {% endif %}
+
+  {% if entity.requires_authentication.value == 1 or content.availabilities|render %}
+    <div class="service-channel__info">
+      {% if entity.requires_authentication.value == 1 %}
+        <div class="service-channel__requires_authentication">
+          {{ 'Requires authentication'|t }}
+        </div>
+      {% endif %}
+      {% if content.availabilities|render %}
+        <div class="service-channel__availabilities">
+          {{ content.availabilities }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if content.email|render %}
+    <div class="service-channel__email">
+      <a href="mailto:{{ content.email.0 }}" class="service-channel__email-link">{{ content.email }}</a>
+    </div>
+  {% endif %}
+
+  {% if content.call_charge_info|render %}
+    <div class="service-channel__call_charge">
+      <span class="service-channel__call_charge-label">{{ 'Call charge'|t }}:</span>
+      {{ content.call_charge_info }}
+    </div>
+  {% endif %}
+
+  {% if show_mail and content.address|render %}
+    <div class="service-channel__address">
+      {{ content.address }}
+    </div>
+  {% endif %}
+
+  {% if content.links|render %}
+    <div class="service-channel__links">
+      {{ content.links }}
+    </div>
+  {% endif %}
+
+</article>
