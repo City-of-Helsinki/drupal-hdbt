@@ -305,7 +305,8 @@ function hdbt_content_preprocess_page(&$variables) {
       }
     }
 
-    // News item needs to have the sidebar set at all times.
+    // News item needs to have the sidebar set at all times. Also move the
+    // node title to content area with move_berore_content variable.
     if (
       $page_entity instanceof NodeInterface &&
       $page_entity->getType() === 'news_item'
