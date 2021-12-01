@@ -16,3 +16,7 @@ msgstr "Päivitetty"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Jaa"
+
+msgctxt "Hardcoded label for the image caption"
+msgid "Photo:"
+msgstr "Kuva:"

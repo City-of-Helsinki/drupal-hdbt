@@ -22,7 +22,7 @@
             {% set photographer = media.fields.field_photographer.value %}
             {% if photographer %}
               {% set caption = caption is not null ? caption ~ ' ' %}
-              {% set caption = caption ~ 'Photo:'|trans ~ ' ' ~ photographer %}
+              {% set caption = caption ~ 'Photo:'|t({}, {'context': 'Hardcoded label for the image caption'}) ~ ' ' ~ photographer %}
             {% endif %}
           {% endif %}
         {% endfor %}

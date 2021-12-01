@@ -16,3 +16,7 @@ msgstr "Uppdaterad"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Dela"
+
+msgctxt "Hardcoded label for the image caption"
+msgid "Photo:"
+msgstr "Bild:"
