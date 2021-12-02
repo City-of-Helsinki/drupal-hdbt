@@ -190,7 +190,7 @@
     display: block;
 
     & + * {
-      margin-top: 8px;
+      margin-top: $spacing-half;
     }
   }
 }

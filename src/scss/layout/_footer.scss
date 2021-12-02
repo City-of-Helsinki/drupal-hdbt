@@ -106,7 +106,7 @@
   margin-top: $spacing-triple;
   padding-bottom: $spacing-triple;
   padding-top: $spacing-and-half;
-  row-gap: 16px;
+  row-gap: $spacing;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-sextuple;
