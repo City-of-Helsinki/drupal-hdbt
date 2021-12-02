@@ -57,7 +57,7 @@
 
 {% if open_in_a_new_window %}
   {%- set explain_opens_in_new_window -%}
-    {{ 'the link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}
+    {{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}
   {%- endset -%}
   {% set explain = explain|merge([explain_opens_in_new_window]) %}
   {% set link_options = link_options|merge({target: '_blank'}) %}
@@ -65,7 +65,7 @@
 
 {% if open_in_a_new_window or is_external %}
   {% set explain %}
-    <span class="explain-external-icon">({{ explain|join(', ') }}.)</span>
+    <span class="explain-external-icon">({{ explain|join('. ') }}.)</span>
   {% endset %}
 {% else %}
   {% set explain = null %}

@@ -2,5 +2,5 @@ msgid ""
 msgstr ""
 
 msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
-msgid "the link opens in a new tab"
-msgstr "linkki avautuu uuteen välilehteen"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"
