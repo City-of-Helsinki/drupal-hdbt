@@ -4,6 +4,13 @@
   gap: $spacing-half;
   place-items: flex-start;
 
+  .service-channel__link-explanation {
+    @include font-size(16px, 24px);
+    color: $color-black-60;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
   a:not(.service-channel__link) {
     @extend .emulate-button--primary;
     --background-color: var(--hdbt-color-palette-button--secondary);
@@ -109,7 +116,7 @@
   }
 
   .service-channel__links {
-    margin-top: $spacing-double;
+    margin-top: $spacing-and-half;
   }
 }
 

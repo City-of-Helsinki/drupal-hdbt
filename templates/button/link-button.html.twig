@@ -44,29 +44,38 @@
 
 {% set link_options = {class: classes|join(' ')} %}
 
+{% set explain = [] %}
+
+{% if is_external %}
+  {%- set explain_external_icon -%}
+    {{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }}
+  {%- endset -%}
+  {% set explain = explain|merge([explain_external_icon]) %}
+  {% set icon_last = true %}
+  {% set icon_last_type = 'link-external' %}
+{% endif %}
+
 {% if open_in_a_new_window %}
-  {% set explain_opens_in_new_window %}
-    ({{ 'opens in a new window'|t({}, {'context': 'Explanation for users that the link opens in a new window or tab instead of the expected current window or tab'}) }})
-  {% endset %}
+  {%- set explain_opens_in_new_window -%}
+    {{ 'opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}
+  {%- endset -%}
+  {% set explain = explain|merge([explain_opens_in_new_window]) %}
   {% set link_options = link_options|merge({target: '_blank'}) %}
 {% endif %}
 
-{% if is_external %}
-  {% set explain_external_icon %}
-    <span class="explain-external-icon">
-      ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})
-    </span>
+{% if open_in_a_new_window or is_external %}
+  {% set explain %}
+    <span class="explain-external-icon">({{ explain|join(', ') }}.)</span>
   {% endset %}
-  {% set icon_last = true %}
-  {% set icon_last_type = 'link-external' %}
+{% else %}
+  {% set explain = null %}
 {% endif %}
 
 {% set title %}
   {% if icon_first == true  %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
   <span class="hds-button__label">
     {{ label }}
-    {{ explain_opens_in_new_window }}
-    {{ explain_external_icon }}
+    {{ explain }}
   </span>
   {% if icon_last == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_last_type }}"></span>{% endif %}
 {% endset %}
