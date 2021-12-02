@@ -92,6 +92,7 @@
 
 .service-channel--eservice {
   background-color: var(--hdbt-color-palette--secondary);
+  margin-top: $spacing-and-half;
   padding: $spacing-and-half $spacing-and-half $spacing-double;
 
   @include breakpoint($breakpoint-l) {
@@ -183,22 +184,36 @@
 }
 
 .service-channel__info {
-  align-items: center;
-  display: flex;
   margin-top: $spacing-and-half;
 
   > * {
+    display: block;
+
+    & + * {
+      margin-top: 8px;
+    }
+  }
+}
+
+@include breakpoint($breakpoint-l) {
+  .service-channel__info {
     align-items: center;
     display: flex;
 
-    &:after {
-      content: "|";
-      margin: 0 $spacing;
-    }
+    > * {
+      align-items: center;
+      display: flex;
+      margin-top: 0;
 
-    &:last-child {
       &:after {
-        content: "";
+        content: "|";
+        margin: 0 $spacing;
+      }
+
+      &:last-child {
+        &:after {
+          content: "";
+        }
       }
     }
   }
