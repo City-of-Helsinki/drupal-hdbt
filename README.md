@@ -151,6 +151,11 @@ msgid "Example"
 msgstr "Esimerkki"  
 ```
 
+To see these translation changes in an instance, run in container shell:
+```
+drush locale:check && drush locale:update
+```
+
 ## Component documentation
 
 ### Accordion paragraph
