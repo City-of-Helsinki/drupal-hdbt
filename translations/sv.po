@@ -1,6 +1,10 @@
 msgid ""
 msgstr ""
 
-msgctxt "Explanation for users that the link opens in a new window or tab instead of the expected current window or tab"
-msgid "opens in a new window"
-msgstr "öppnas i ett nytt fönster"
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
+
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
+msgid "Link leads to external service"
+msgstr "Länk leder till extern tjänst"

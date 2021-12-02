@@ -1,0 +1,237 @@
+// Primary button colors on light background
+@mixin hds-button-primary-colors-on-light-bg() {
+  --background-color: var(--hdbt-color-palette-button--secondary);
+  --background-color-hover: transparent;
+  --background-color-focus: var(--hdbt-color-palette-button--secondary);
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: var(--color-black-20);
+  --border-color: var(--hdbt-color-palette-button--secondary);
+  --border-color-hover: var(--hdbt-color-palette-button--secondary);
+  --border-color-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-disabled: var(--color-black-20);
+  --color: var(--hdbt-color-palette-button-contrast--secondary);
+  --color-hover: var(--hdbt-color-palette-button--secondary);
+  --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
+  --color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --color-disabled: var(--color-black);
+  --focus-outline-color: var(--hdbt-color-palette-button--secondary);
+  --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--secondary);
+}
+
+// Secondary button colors on light background
+@mixin hds-button-secondary-colors-on-light-bg() {
+  --background-color: transparent;
+  --background-color-hover: var(--hdbt-color-palette-button--secondary);
+  --background-color-focus: transparent;
+  --background-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --background-color-disabled: transparent;
+  --border-color: var(--hdbt-color-palette-button--secondary);
+  --border-color-hover: var(--hdbt-color-palette-button--secondary);
+  --border-color-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-disabled: var(--hdbt-color-palette-button--secondary);
+  --color: var(--hdbt-color-palette-button--secondary);
+  --color-hover: var(--hdbt-color-palette-button-contrast--secondary);
+  --color-focus: var(--hdbt-color-palette-button--secondary);
+  --color-hover-focus: var(--hdbt-color-palette-button-contrast--secondary);
+  --focus-outline-color: var(--hdbt-color-palette-button--secondary);
+}
+
+// Supplementary button colors on light background
+@mixin hds-button-supplementary-colors-on-light-bg() {
+  --background-color: transparent;
+  --background-color-hover: transparent;
+  --background-color-focus: transparent;
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: transparent;
+  --border-color: transparent;
+  --border-color-hover: transparent;
+  --border-color-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --border-color-disabled: transparent;
+  --color: var(--hdbt-color-palette-button--secondary);
+  --color-hover: var(--hdbt-color-palette-button--secondary);
+  --color-focus: var(--hdbt-color-palette-button--secondary);
+  --color-hover-focus: var(--hdbt-color-palette-button--secondary);
+  --color-disabled: var(--hdbt-color-palette-button--secondary);
+  --focus-outline-color: transparent;
+  --submit-input-focus-gutter-color: transparent;
+}
+
+
+// Allow setting all button colors for button types at once.
+// $class is a helper to allow writing custom class to same element as the button styles are
+@mixin hds-button-colors-on-light-bg($class:'') {
+
+  #{$class}.hds-button--primary {
+    @include hds-button-primary-colors-on-light-bg();
+  }
+
+  #{$class}.hds-button--secondary {
+    @include hds-button-secondary-colors-on-light-bg();
+  }
+
+  #{$class}.hds-button--supplementary {
+    @include hds-button-supplementary-colors-on-light-bg();
+  }
+}
+
+//TODO: Figure out which style is the correct one, above or below.
+
+// Primary button colors on light background
+@mixin hds-button-primary-colors-on-light-bg-black-90() {
+  --background-color: var(--color-black-90);
+  --background-color-hover: var(--color-white);
+  --background-color-focus: var(--color-black-90);
+  --background-color-hover-focus: var(--color-white);
+  --background-color-disabled: var(--color-black-20);
+  --border-color: var(--color-black-90);
+  --border-color-hover: var(--color-black);
+  --border-color-focus: var(--color-black-90);
+  --border-color-hover-focus: var(--color-black-90);
+  --border-color-disabled: var(--color-black-20);
+  --color: var(--color-white);
+  --color-hover: var(--color-black-90);
+  --color-focus: var(--color-white);
+  --color-hover-focus: var(--color-black-90);
+  --color-disabled: var(--color-white);
+  --focus-outline-color: var(--color-black-90);
+  --submit-input-focus-gutter-color: var(--color-white);
+}
+
+// Secondary button colors on light background
+@mixin hds-button-secondary-colors-on-light-bg-black-90() {
+  --background-color: transparent;
+  --background-color-hover: var(--color-black-90);
+  --background-color-focus: transparent;
+  --background-color-hover-focus: var(--color-black-90);
+  --background-color-disabled: transparent;
+  --border-color: var(--color-black-90);
+  --border-color-hover: var(--color-black-90);
+  --border-color-focus: var(--color-black-90);
+  --border-color-hover-focus: var(--color-black-90);
+  --border-color-disabled: var(--color-black-50);
+  --color: var(--color-black-90);
+  --color-hover: var(--color-white);
+  --color-focus: var(--color-black-90);
+  --color-hover-focus: var(--color-white);
+  --focus-outline-color: var(--color-black-90);
+}
+
+// Supplementary button colors on light background
+@mixin hds-button-supplementary-colors-on-light-bg-black-90() {
+  --background-color: transparent;
+  --background-color-hover: transparent;
+  --background-color-focus: transparent;
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: transparent;
+  --border-color: transparent;
+  --border-color-hover: transparent;
+  --border-color-focus: var(--color-black-90);
+  --border-color-hover-focus: var(--color-black-90);
+  --border-color-disabled: transparent;
+  --color: var(--color-black-90);
+  --color-hover: var(--color-black-90);
+  --color-focus: var(--color-black-90);
+  --color-hover-focus: var(--color-black-90);
+  --color-disabled: var(--color-black-40);
+  --focus-outline-color: transparent;
+  --submit-input-focus-gutter-color: transparent;
+}
+
+// Allow setting all button colors for button types at once.
+// $class is a helper to allow writing custom class to same element as the button styles are
+@mixin hds-button-colors-on-light-bg-black-90($class:'') {
+
+  #{$class}.hds-button--primary {
+    @include hds-button-primary-colors-on-light-bg-black-90();
+  }
+
+  #{$class}.hds-button--secondary {
+    @include hds-button-secondary-colors-on-light-bg-black-90();
+  }
+
+  #{$class}.hds-button--supplementary {
+    @include hds-button-supplementary-colors-on-light-bg-black-90();
+  }
+}
+
+// Primary button colors on dark background
+@mixin hds-button-primary-colors-on-dark-bg() {
+  --background-color: var(--hdbt-color-palette-button--primary);
+  --background-color-hover: transparent;
+  --background-color-focus: var(--hdbt-color-palette-button--primary);
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: var(--color-black-20);
+  --border-color: var(--hdbt-color-palette-button--primary);
+  --border-color-hover: var(--hdbt-color-palette-button--primary);
+  --border-color-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-disabled: var(--color-black-20);
+  --color: var(--hdbt-color-palette-button-contrast--primary);
+  --color-hover: var(--hdbt-color-palette-button--primary);
+  --color-focus: var(--hdbt-color-palette-button-contrast--primary);
+  --color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --color-disabled: var(--color-black);
+  --focus-outline-color: var(--hdbt-color-palette-button--primary);
+  --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--primary);
+}
+
+// Secondary button colors on dark background
+@mixin hds-button-secondary-colors-on-dark-bg() {
+  --background-color: transparent;
+  --background-color-hover: var(--hdbt-color-palette-button--primary);
+  --background-color-focus: transparent;
+  --background-color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --background-color-disabled: transparent;
+  --border-color: var(--hdbt-color-palette-button--primary);
+  --border-color-hover: var(--hdbt-color-palette-button--primary);
+  --border-color-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-disabled: var(--hdbt-color-palette-button--primary);
+  --color: var(--hdbt-color-palette-button--primary);
+  --color-hover: var(--hdbt-color-palette-button-contrast--primary);
+  --color-focus: var(--hdbt-color-palette-button--primary);
+  --color-hover-focus: var(--hdbt-color-palette-button-contrast--primary);
+  --focus-outline-color: var(--hdbt-color-palette-button--primary);
+}
+
+// Supplementary button colors on dark background
+@mixin hds-button-supplementary-colors-on-dark-bg() {
+  --background-color: transparent;
+  --background-color-hover: transparent;
+  --background-color-focus: transparent;
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: transparent;
+  --border-color: transparent;
+  --border-color-hover: transparent;
+  --border-color-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --border-color-disabled: transparent;
+  --color: var(--hdbt-color-palette-button--primary);
+  --color-hover: var(--hdbt-color-palette-button--primary);
+  --color-focus: var(--hdbt-color-palette-button--primary);
+  --color-hover-focus: var(--hdbt-color-palette-button--primary);
+  --color-disabled: var(--hdbt-color-palette-button--primary);
+  --focus-outline-color: transparent;
+  --submit-input-focus-gutter-color: transparent;
+}
+
+
+// Allow setting all button colors for button types at once.
+// $class is a helper to allow writing custom class to same element as the button styles are
+@mixin hds-button-colors-on-dark-bg($class:'') {
+
+  #{$class}.hds-button--primary {
+    @include hds-button-primary-colors-on-dark-bg();
+  }
+
+  #{$class}.hds-button--secondary {
+    @include hds-button-secondary-colors-on-dark-bg();
+  }
+
+  #{$class}.hds-button--supplementary {
+    @include hds-button-supplementary-colors-on-dark-bg();
+  }
+}
