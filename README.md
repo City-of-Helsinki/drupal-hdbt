@@ -151,6 +151,12 @@ msgid "Example"
 msgstr "Esimerkki"  
 ```
 
+To see these translation changes in an instance, run in container shell:
+```
+drush locale:check && drush locale:update
+```
+And then flush all caches from top left drupal admin menu under "DruplIcon".
+
 ## Component documentation
 
 ### Accordion paragraph
