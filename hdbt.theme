@@ -711,7 +711,7 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
     isset($variables['view']) &&
     !empty($variables['view']->id())
   ) {
-    $suggestions[] = 'view__' . $variables['view']->id();
+    $suggestions[] = 'views_view__' . $variables['view']->id();
   }
 }
 
