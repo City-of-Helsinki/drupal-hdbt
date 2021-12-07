@@ -39,7 +39,7 @@
     "handorgel": "^0.5.0",
     "hds-core": "^1.2.0",
     "hds-design-tokens": "^1.2.0",
-    "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/refs/tags/v1.6.0.tar.gz",
+    "helsinki-design-system": "https://github.com/City-of-Helsinki/helsinki-design-system/archive/refs/tags/v1.7.1.tar.gz",
     "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^7.0.0",
