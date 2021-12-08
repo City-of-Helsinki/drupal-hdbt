@@ -23,32 +23,11 @@
     {% endif %}
 
     {# Main image #}
-    {# Todo: Combine with paragraph--image.html.twig #}
-    {% set caption = content.field_main_image_caption[0]['#context']['value'] %}
     {% if content.field_main_image|render %}
-      {# The image caption is attached to each image so we need to get it from the media entity #}
-      {% for key, image in content.field_main_image %}
-        {% if image.entity %}
-          {% set media = image.entity %}
-          {% set photographer = media.fields.field_photographer.value %}
-          {% if photographer %}
-            {% set caption = caption is not null ? caption ~ ' ' %}
-            {% set caption = caption ~ 'Photo:'|t({}, {'context': 'Hardcoded label for the image caption'}) ~ ' ' ~ photographer %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-
-      <div class="news-item__main-image">
-        {{ content.field_main_image }}
-      </div>
-
-      {% if caption %}
-        {% spaceless %}
-          <figcaption class="news-item__main-image-caption">
-            {{ caption }}
-          </figcaption>
-        {% endspaceless %}
-      {% endif %}
+      {% include '@hdbt/misc/image-with-caption.twig' with {
+        image: content.field_main_image,
+        image_caption: main_image_caption
+      } %}
     {% endif %}
     {# End of Main image #}
 

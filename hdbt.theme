@@ -208,7 +208,63 @@ function hdbt_preprocess_node(&$variables) {
     $variables['modified_at'] = $node->getChangedTime();
   }
 
+  // Handle image caption preprocessing.
+  if ($node->hasField('field_main_image')) {
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'node',
+      'field_main_image',
+      'field_main_image_caption'
+    );
+  }
 }
+
+/**
+ * Preprocess image caption.
+ *
+ * @param array $variables
+ *   Render array.
+ * @param string $entity_type
+ *   Current entity type.
+ * @param string $image
+ *   Image field name.
+ * @param string $image_caption
+ *   Image caption field name.
+ */
+function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption) {
+  $entity = $variables[$entity_type];
+
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Check for image and image caption availability.
+  if ($entity->hasField($image) && $entity->hasField($image_caption)) {
+    $caption_variable = str_replace('field_', '', $image_caption);
+    $caption = '';
+
+    // If caption exists, set it as initial variable.
+    if (!$entity->{$image_caption}->isEmpty()) {
+      $caption = $entity->{$image_caption}->value;
+    }
+
+    // Combine photographer field value with caption text, if one exists.
+    if (
+      $entity->{$image}->entity &&
+      $entity->{$image}->entity->hasField('field_photographer') &&
+      !$entity->{$image}->entity->field_photographer->isEmpty()
+    ) {
+      $photographer = $entity->{$image}->entity->field_photographer->value;
+      $caption = (!empty($caption))
+        ? t('@caption. Photo: @photographer', ['@photographer' => $photographer, '@caption' => $caption], ['context' => 'Image caption and photographer'])
+        : t('Photo: @photographer', ['@photographer' => $photographer], ['context' => 'Image photographer']);
+    }
+
+    // Set variable based on image caption field.
+    $variables[$caption_variable] = $caption;
+  }
+}
+
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -462,6 +518,25 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_parent = $paragraph->getParentEntity();
     $accordion_item_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
     $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
+  }
+
+  // Check if the paragraph is a type of image.
+  if ($paragraph_type == 'image' && $paragraph->hasField('field_image')) {
+    // Handle image caption preprocessing.
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'paragraph',
+      'field_image',
+      'field_image_caption'
+    );
+
+    // Check if the image should be printed in original aspect ratio and
+    // set variable accordingly. If not, use image 3:2 responsive style.
+    if ($paragraph->hasField('field_original_aspect_ratio')) {
+      $variables['image_aspect_ratio'] = $paragraph->field_original_aspect_ratio->value
+        ? 'original'
+        : 'image__3_2';
+    }
   }
 
   // Check if the paragraph is a type of gallery and prepare the slides

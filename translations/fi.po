@@ -17,6 +17,10 @@ msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Jaa"
 
-msgctxt "Hardcoded label for the image caption"
-msgid "Photo:"
-msgstr "Kuva:"
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption Kuva: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "Kuva: @photographer"
