@@ -802,7 +802,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
  *   Image style name.
  */
 function _hdbt_set_image_style(array &$variables, string $entity_type, string $image, string $image_style) {
-  $entity = $variables[$entity_type];
+  $entity = &$variables[$entity_type];
 
   if (!$entity instanceof ContentEntityInterface) {
     return;
