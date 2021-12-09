@@ -116,22 +116,10 @@
       design == "background-image" or
       design == "diagonal"
     %}
-      {% set image_uri = content.field_hero_image[0]['#media'].field_media_image.entity.uri.value %}
-      {# This check should be done in edit form. #}
-      {% if image_uri %}
-        {% set image_style = 'hero__background' %}
-
-        {% if design == "with-image-right" or design == "with-image-left" %}
-          {% set image_style = 'hero__left_right' %}
-        {% elseif design == "with-image-bottom" %}
-          {% set image_style = 'hero__bottom' %}
-        {% elseif design == "diagonal" %}
-          {% set image_style = 'hero__diagonal' %}
-        {% endif %}
-
+      {% if content.field_hero_image|render %}
         <div class="hero__image-container">
           {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
-          {{ drupal_image(image_uri, image_style, responsive=true) }}
+          {{ content.field_hero_image }}
         </div>
       {% endif %}
     {% endif %}

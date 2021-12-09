@@ -9,12 +9,17 @@
 
       {# Check if there is image set and print it with correct aspect ratio #}
       {% if content.field_image|render %}
-        {% include '@hdbt/misc/image-with-caption.twig' with {
-          image: content.field_image,
-          image_caption: image_caption,
-          aspect_ratio: image_aspect_ratio
-        } %}
+        <figure class="image">
+          {{ content.field_image }}
+
+          {% if image_caption %}
+            <figcaption class="image__caption">
+              {{ image_caption }}
+            </figcaption>
+          {% endif %}
+        </figure>
       {% endif %}
+
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}

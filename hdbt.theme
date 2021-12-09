@@ -12,6 +12,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Site\Settings;
 
@@ -241,30 +242,51 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
   // Check for image and image caption availability.
   if ($entity->hasField($image) && $entity->hasField($image_caption)) {
     $caption_variable = str_replace('field_', '', $image_caption);
+    $alt = '';
     $caption = '';
 
-    // If caption exists, set it as initial variable.
+    // If caption exists, set it as initial variable for the alt text and
+    // image caption.
     if (!$entity->{$image_caption}->isEmpty()) {
-      $caption = $entity->{$image_caption}->value;
+      $alt = $caption = $entity->{$image_caption}->value;
     }
 
-    // Combine photographer field value with caption text, if one exists.
+    // Combine photographer field value with caption and alt text.
     if (
       $entity->{$image}->entity &&
       $entity->{$image}->entity->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
       $photographer = $entity->{$image}->entity->field_photographer->value;
-      $caption = (!empty($caption))
-        ? t('@caption. Photo: @photographer', ['@photographer' => $photographer, '@caption' => $caption], ['context' => 'Image caption and photographer'])
-        : t('Photo: @photographer', ['@photographer' => $photographer], ['context' => 'Image photographer']);
+      $translation_caption_and_photographer = t('@caption. Photo: @photographer', ['@photographer' => $photographer, '@caption' => $caption], ['context' => 'Image caption and photographer']);
+      $translation_photographer = t('Photo: @photographer', ['@photographer' => $photographer], ['context' => 'Image photographer']);
+
+      // If both caption and photographer exists, use targeted translation
+      // for the caption and photographer. Otherwise set only photographer as
+      // caption.
+      if (!empty($caption)) {
+        $alt = $caption = $translation_caption_and_photographer;
+      }
+      else {
+        $caption = $translation_photographer;
+      }
     }
 
-    // Set variable based on image caption field.
+    // Set image caption variable to render array for the templates.
     $variables[$caption_variable] = $caption;
+
+    if (
+      !empty($alt) &&
+      $entity->{$image}->entity &&
+      $entity->{$image}->entity->hasField('field_media_image') &&
+      !$entity->{$image}->entity->field_media_image->first()->isEmpty()
+    ) {
+      // Set altered_alt_text variable based on modified alt text
+      // for the responsive image preprocesses.
+      $entity->{$image}->entity->field_media_image->first()->altered_alt_text = $alt;
+    }
   }
 }
-
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -533,9 +555,86 @@ function hdbt_preprocess_paragraph(array &$variables) {
     // Check if the image should be printed in original aspect ratio and
     // set variable accordingly. If not, use image 3:2 responsive style.
     if ($paragraph->hasField('field_original_aspect_ratio')) {
-      $variables['image_aspect_ratio'] = $paragraph->field_original_aspect_ratio->value
+      $image_style = $paragraph->field_original_aspect_ratio->value
         ? 'original'
         : 'image__3_2';
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_image',
+        $image_style
+      );
+    }
+  }
+
+  // Check if the paragraph is a type of hero and it has image field available.
+  if (
+    $paragraph_type == 'hero' &&
+    $paragraph->hasField('field_hero_image')
+  ) {
+
+    // Determine based on hero design which responsive image style
+    // should be used when rendering the hero image.
+    if ($paragraph->hasField('field_hero_design')) {
+
+      switch ($paragraph->field_hero_design->value) {
+        case 'with-image-right':
+        case 'with-image-left':
+          $image_style = 'hero__left_right';
+          break;
+
+        case 'with-image-bottom':
+          $image_style = 'hero__bottom';
+          break;
+
+        case 'diagonal':
+          $image_style = 'hero__diagonal';
+          break;
+
+        default:
+          $image_style = 'hero__background';
+          break;
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_hero_image',
+        $image_style
+      );
+    }
+  }
+
+  // Check if the paragraph is a type of liftup with image.
+  if (
+    $paragraph_type == 'liftup_with_image' &&
+    $paragraph->hasField('field_liftup_with_image_image')
+  ) {
+
+    // Determine based on image design which responsive image style
+    // should be used when rendering the liftup with image image.
+    if ($paragraph->hasField('field_liftup_with_image_design')) {
+
+      switch ($paragraph->field_liftup_with_image_design->value) {
+        case 'image-on-right':
+        case 'image-on-left':
+        case 'image-on-right-secondary':
+        case 'image-on-left-secondary':
+          $image_style = 'image__3_2';
+          break;
+
+        default:
+          $image_style = 'hero__background';
+          break;
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_liftup_with_image_image',
+        $image_style
+      );
     }
   }
 
@@ -691,12 +790,73 @@ function hdbt_preprocess_paragraph(array &$variables) {
 }
 
 /**
+ * Set image style programmatically.
+ *
+ * @param array $variables
+ *   Render array.
+ * @param string $entity_type
+ *   Current entity type.
+ * @param string $image
+ *   Image field name.
+ * @param string $image_style
+ *   Image style name.
+ */
+function _hdbt_set_image_style(array &$variables, string $entity_type, string $image, string $image_style) {
+  $entity = $variables[$entity_type];
+
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Check that image has proper fields.
+  if (
+    $entity->hasField($image) &&
+    $entity->{$image}->entity &&
+    $entity->{$image}->entity->hasField('field_media_image') &&
+    !$entity->{$image}->entity->field_media_image->first()->isEmpty()
+  ) {
+    // Set altered_image_style variable based on modified image style
+    // for the responsive image preprocesses.
+    $entity->{$image}->entity->field_media_image->first()->altered_image_style = $image_style;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_image(&$variables) {
   // Convert double double quotes to empty string for image alt-texts.
   if (isset($variables['alt']) && $variables['alt'] === '""') {
     $variables['attributes']['alt'] = '';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_responsive_image_formatter(&$variables) {
+  if (!$variables['item'] instanceof ImageItem) {
+    return;
+  }
+
+  // Override alt text if alteration exists.
+  if (!empty($variables['item']->altered_alt_text)) {
+    $variables['responsive_image']['#attributes']['alt'] = $variables['item']->altered_alt_text;
+  }
+
+  // Override responsive image style if alteration exists.
+  if (!empty($variables['item']->altered_image_style)) {
+    $variables['responsive_image']['#responsive_image_style_id'] = $variables['item']->altered_image_style;
+  }
+
+  // Add width and height for the image, if the values exist.
+  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  if (
+    !empty($variables['responsive_image']['#width']) &&
+    !empty($variables['responsive_image']['#height'])
+  ) {
+    $variables['responsive_image']['#attributes']['width'] = $variables['responsive_image']['#width'];
+    $variables['responsive_image']['#attributes']['height'] = $variables['responsive_image']['#height'];
   }
 }
 
