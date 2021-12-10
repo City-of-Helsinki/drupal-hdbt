@@ -24,3 +24,19 @@ msgstr "@caption Kuva: @photographer"
 msgctxt "Image photographer"
 msgid "Photo: @photographer"
 msgstr "Kuva: @photographer"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Päivitetty"
+
+msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
+msgid "Tags"
+msgstr "Tunnisteet"
+
+msgctxt "Page lead-in section explanation for screen readers"
+msgid "Lead-in paragraph"
+msgstr "Johdanto"

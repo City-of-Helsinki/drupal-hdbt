@@ -71,7 +71,7 @@
 {% endset %}
 
 {% if label_hidden %}
-  <section{{ attributes.addClass(classes) }} aria-label="'{% trans %}Lead-in paragraph{% endtrans %}')">{{ lead_in_block }}</section>
+  <section{{ attributes.addClass(classes) }} aria-label="{{ 'Lead-in paragraph'|t({}, {'context': 'Page lead-in section explanation for screen readers'}) }})">{{ lead_in_block }}</section>
 {% else %}
   <section{{ title_attributes.addClass(title_classes) }}>{{ label }}: </section>
   <section{{ attributes.addClass(classes) }}>{{ lead_in_block }}</section>
