@@ -258,17 +258,23 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
       $photographer = $entity->{$image}->entity->field_photographer->value;
-      $translation_caption_and_photographer = t('@caption. Photo: @photographer', ['@photographer' => $photographer, '@caption' => $caption], ['context' => 'Image caption and photographer']);
-      $translation_photographer = t('Photo: @photographer', ['@photographer' => $photographer], ['context' => 'Image photographer']);
 
       // If both caption and photographer exists, use targeted translation
       // for the caption and photographer. Otherwise set only photographer as
       // caption.
       if (!empty($caption)) {
-        $alt = $caption = $translation_caption_and_photographer;
+        $alt = $caption = t(
+          '@caption. Photo: @photographer',
+          ['@photographer' => $photographer, '@caption' => $caption],
+          ['context' => 'Image caption and photographer']
+        );
       }
       else {
-        $caption = $translation_photographer;
+        $caption = t(
+          'Photo: @photographer',
+          ['@photographer' => $photographer],
+          ['context' => 'Image photographer']
+        );
       }
     }
 
