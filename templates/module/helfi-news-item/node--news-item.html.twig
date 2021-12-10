@@ -24,15 +24,10 @@
 
     {# Main image #}
     {% if content.field_main_image|render %}
-      <figure class="image">
-        {{ content.field_main_image }}
-
-        {% if main_image_caption %}
-          <figcaption class="image__caption">
-            {{ main_image_caption }}
-          </figcaption>
-        {% endif %}
-      </figure>
+      {% include '@hdbt/misc/image-with-caption.twig' with {
+        image: content.field_main_image,
+        image_caption: main_image_caption
+      } %}
     {% endif %}
     {# End of Main image #}
 
