@@ -107,3 +107,13 @@
   position: absolute;
   white-space: nowrap;
 }
+
+//TODO: replace with native flex gap once enough users have moved to > ios 14.4
+@mixin flex-gap($gap) {
+  margin-left: -$gap * 0.5;
+  margin-right: -$gap * 0.5;
+  & > * {
+    margin-left:  $gap * 0.5;
+    margin-right:  $gap * 0.5;
+  }
+}
