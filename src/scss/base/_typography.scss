@@ -17,64 +17,27 @@ h3 {
 }
 
 h1 {
-  @include font-size($fontsize-heading-xl);
-  font-weight: $font-weight-regular;
-
-  @include breakpoint($breakpoint-m) {
-    // Margin on top needed to create enough space on top when there is no hero.
-    margin-top: $spacing-quadruple;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(72px, $lineheight-s);
-    margin-bottom: $spacing-quadruple;
-  }
+  @include h1();
 }
 
 h2 {
-  @include font-size($fontsize-heading-l);
-  font-weight: $font-weight-regular;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-xl);
-  }
+  @include h2();
 }
 
 h3 {
-  @include font-size($fontsize-heading-m);
-  font-weight: $font-weight-regular;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-l);
-  }
+  @include h3();
 }
 
 h4 {
-  @include font-size($fontsize-heading-s);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-m);
-  }
+  @include h4();
 }
 
 h5 {
-  @include font-size($fontsize-heading-xs);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-s);
-    font-weight: $font-weight-regular;
-  }
+  @include h5();
 }
 
 h6 {
-  @include font-size($fontsize-heading-xxs);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    font-weight: $font-weight-bold;
-  }
+  @include h6();
 }
 
 a {
