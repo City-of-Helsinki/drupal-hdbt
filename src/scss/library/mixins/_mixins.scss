@@ -80,12 +80,12 @@
 /**
  * Add pseudo element (::before, ::after) styling for icons
  */
-@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black) {
+@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black, $display: inline-block) {
   @include icon-mask-image( $icon );
   background-color: $color;
   background-size: contain;
   content: '';
-  display: inline-block;
+  display: $display;
   height: $size;
   mask-position: center;
   mask-repeat: no-repeat;
