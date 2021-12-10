@@ -1,23 +1,28 @@
-{% embed '@hdbt/content/node.html.twig' %}
+{% embed '@hdbt/content/node.html.twig' with {'node_class': 'components components--news'} %}
 
   {% block main_content %}
 
     {# Lead text #}
-    {% if content.field_lead|render %}
-      <div class="news-item__lead">
-        {{ content.field_lead }}
-      </div>
+    {% if content.field_lead_in|render %}
+      <section class="preamble">
+        {{ content.field_lead_in }}
+      </section>
     {% endif %}
 
     {# Created date and modified date #}
     {% if published_at is not empty %}
-      <div class="news-item__date">
-        {{ published_at|format_date('publication_date_format') }}
+      <div class="content-date">
+        {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+        <time datetime="{{ html_published_at }}" class="content-date__datetime content-date__datetime--published">
+          <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp for screen readers'}) }}</span>
+          {{ published_at|format_date('publication_date_format') }}
+        </time>
 
         {% if modified_at is not empty %}
-          <span class="news-item__date--updated">
-            | {{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }} {{ modified_at|format_date('publication_date_format') }}
-          </span>
+          {% set html_modified_at = modified_at|format_date('custom', 'Y-m-d') ~ 'T' ~ modified_at|format_date('custom', 'H:i') %}
+          <time datetime="{{ html_modified_at }}" class="content-date__datetime content-date__datetime--updated">
+            {{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }} {{ modified_at|format_date('publication_date_format') }}
+          </time>
         {% endif %}
       </div>
     {% endif %}
@@ -33,23 +38,24 @@
 
     {# Content region #}
     {% if content.field_content|render %}
-      <div class="news-item__content">
-        {{ content.field_content }}
-      </div>
+      {{ content.field_content }}
     {% endif %}
 
     {# Links and links title #}
     {% if content.field_news_item_links_link|render %}
-      <div class="news-item__links">
+      <div class="content-links">
+
         {% if content.field_news_item_links_title|render %}
-          <div class="news-item__links__title">
+          <div class="content-links__title">
             {{ content.field_news_item_links_title }}
           </div>
         {% endif %}
 
-        <div class="news-item__links__links">
-          {{ content.field_news_item_links_link }}
-        </div>
+        <ul class="content-links__links">
+          {% for key in content.field_news_item_links_link['#items']|keys %}
+            <li class="content-links__links__link">{{ content.field_news_item_links_link[key] }}</li>
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
 
@@ -58,9 +64,13 @@
 
     {# Tags #}
     {% if content.field_news_item_tags|render %}
-      <div class="news-item__tags">
-        {{ content.field_news_item_tags }}
-      </div>
+      <section class="content-tags"  aria-label="{{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}">
+        <ul class="content-tags__tags">
+          {% for key in content.field_news_item_tags['#items']|keys %}
+            <li class="content-tags__tags__tag">{{ content.field_news_item_tags[key] }}</li>
+          {% endfor %}
+        </ul>
+      </section>
     {% endif %}
 
   {% endblock main_content %}

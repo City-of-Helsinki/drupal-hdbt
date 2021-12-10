@@ -1,5 +1,16 @@
+.preamble,
 .lead-in {
   @include font-size(20px, 32px);
+}
+
+.preamble::after {
+  background: black;
+  content: '';
+  display: block;
+  height: 2px;
+  margin-bottom: $spacing-double;
+  margin-top: $spacing-double;
+  width: $spacing-quadruple;
 }
 
 .no-sidebar .component--lead-in {
@@ -15,4 +26,95 @@
       margin-top: $spacing-and-half;
     }
   }
+}
+
+.content-date {
+  @include font-size(16px, 24px);
+  color: $color-black-60;
+  margin-bottom: $spacing-and-half;
+}
+
+.content-date__datetime--updated::before {
+  background-color: currentColor;
+  content: '';
+  display: inline-block;
+  height: 1em;
+  margin-bottom: -1px; // finetune vertical position to visually match text
+  margin-left: $spacing-half;
+  margin-right: $spacing-half;
+  width: 1px;
+}
+
+.content-links {
+  @include component-margin-top();
+}
+
+.content-links__title {
+  @include h3();
+}
+
+.content-links__links {
+  margin-top: $spacing-and-half;
+  padding: 0;
+}
+
+.content-links__links__link {
+  @include font-size(16px, 22px);
+  font-weight: 500;
+  list-style: none;
+  padding: 0;
+
+  @include breakpoint($breakpoint-l) {
+    @include font-size(20px, 27px);
+  }
+
+  & + & {
+    margin-top: $spacing;
+  }
+
+  a::after {
+    @include pseudo-icon('ui/arrow-right', $spacing-and-half);
+    margin-left: $spacing-quarter;
+  }
+}
+
+.content-tags {
+  border-bottom: 1px solid $color-black-10;
+  border-top: 1px solid $color-black-10;
+}
+
+$tag-gap: $spacing-half;
+.content-tags__tags {
+  @include flex-gap($tag-gap);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: ($spacing-and-half - $tag-gap);
+  padding-left: 0;
+  padding-top: $spacing-and-half;
+}
+
+.content-tags__tags__tag {
+  list-style: none;
+  margin-bottom: $tag-gap;
+  a {
+    background-color: $color-silver;
+    border-radius: 500px;
+    display: inline-block;
+    padding: 12px 20px;
+    text-decoration: none;
+    &:hover {
+      background-color: $color-silver-dark
+    }
+  }
+}
+
+.sidebar_block_heading {
+  @include h3();
+  border-bottom: 2px solid $color-black;
+  margin-top: $spacing-sextuple;
+  padding-bottom: $spacing-and-half;
+  width: 100%;
 }
