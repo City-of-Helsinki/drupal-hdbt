@@ -271,7 +271,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       // caption.
       if (!empty($caption)) {
         $alt = $caption = t(
-          '@caption. Photo: @photographer',
+          '@caption Photo: @photographer',
           ['@photographer' => $photographer, '@caption' => $caption],
           ['context' => 'Image caption and photographer']
         );
