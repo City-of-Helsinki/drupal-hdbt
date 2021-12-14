@@ -202,6 +202,7 @@
       </div>
     </div>
   </div>
+
 {% else %}
 
   {% set image_attributes = create_attribute() %}
@@ -242,7 +243,6 @@
             </div>
           {% endif %}
         </div>
-        {{ supports_swedish }}
       </div>
       <div class="unit__read-more">
         <span class="unit__read-more__text">{% trans with {'context': 'Unit teaser link'} %}See opening hours and contact details{% endtrans %}</span>
@@ -250,4 +250,5 @@
       </div>
     </div>
   </div>
+
 {% endif %}
