@@ -866,6 +866,9 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
   // retrieved from responsive image style. If aforesaid is not possible,
   // use image width and height as fallback values.
   // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  $image_width = FALSE;
+  $image_height = FALSE;
+
   if (isset($variables['responsive_image_style_id'])) {
     $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
     $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
@@ -876,8 +879,8 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
         isset($config['data']['width']) &&
         isset($config['data']['height'])
       ) {
-        $variables['responsive_image']['#attributes']['width'] = $config['data']['width'];
-        $variables['responsive_image']['#attributes']['height'] = $config['data']['height'];
+        $image_width = $config['data']['width'];
+        $image_height = $config['data']['height'];
       }
     }
   }
@@ -885,8 +888,14 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
     !empty($variables['responsive_image']['#width']) &&
     !empty($variables['responsive_image']['#height'])
   ) {
-    $variables['responsive_image']['#attributes']['width'] = $variables['responsive_image']['#width'];
-    $variables['responsive_image']['#attributes']['height'] = $variables['responsive_image']['#height'];
+    $image_width = $variables['responsive_image']['#width'];
+    $image_height = $variables['responsive_image']['#height'];
+  }
+
+  // Set responsive image width and height values if available.
+  if ($image_height && $image_width) {
+    $variables['responsive_image']['#attributes']['width'] = $image_width;
+    $variables['responsive_image']['#attributes']['height'] = $image_height;
   }
 }
 
