@@ -1,14 +1,3 @@
-{# Switch statement using PHP variable 'view_mode' to set modifier for CSS selector '.unit' #}
-{% if view_mode == 'teaser_with_image'  %}
-  {% set classes = 'unit unit--teaser unit--teaser_with_image' %}
-{% elseif view_mode == 'wide_teaser' %}
-  {% set classes = 'unit_teaser' %}
-{% elseif view_mode == 'full' %}
-  {% set classes = 'unit unit--full' %}
-{% else %}
-  {% set classes = 'unit' %}
-{% endif %}
-
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
     <div class="unit__supports_language_sv">
@@ -19,7 +8,7 @@
 
 {% if view_mode == 'full' %}
 
-  <article{{ attributes.addClass(classes) }}>
+  <article class="unit unit--full">
     <div class="unit-header__container container {{ in_menu ? 'has-navigation' }}">
       <div{{ content_attributes.addClass('unit__header') }}>
         <h1{{ title_attributes.addClass('unit__title') }}>
@@ -169,7 +158,7 @@
   ]
   %}
 
-  <div{{ attributes.addClass(classes) }}>
+  <div class="unit unit--teaser unit--teaser_with_image">
     <div{{ image_attributes.addClass(picture_classes) }}>
       {% if content.picture_url_override|render %}
         {{ content.picture_url_override }}
@@ -203,7 +192,7 @@
     </div>
   </div>
 
-{% else %}
+{% elseif 'wide_teaser' %}
 
   {% set image_attributes = create_attribute() %}
 
@@ -218,7 +207,7 @@
   ]
   %}
 
-  <div{{ attributes.addClass(classes) }}>
+  <div class="unit unit--teaser unit--wide_teaser">
     <div{{ image_attributes.addClass(picture_classes) }}>
       {% if content.picture_url_override|render %}
         {{ content.picture_url_override }}
