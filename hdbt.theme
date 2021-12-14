@@ -12,9 +12,11 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Site\Settings;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
  * Implements hook_preprocess().
@@ -860,9 +862,26 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
     $variables['responsive_image']['#responsive_image_style_id'] = $variables['item']->altered_image_style;
   }
 
-  // Add width and height for the image, if the values exist.
+  // Add width and height for the image, if the width and height can be
+  // retrieved from responsive image style. If aforesaid is not possible,
+  // use image width and height as fallback values.
   // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
-  if (
+  if (isset($variables['responsive_image_style_id'])) {
+    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
+    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
+
+    foreach ($fallback_image_style_config as $config) {
+      if (
+        isset($config['data']) &&
+        isset($config['data']['width']) &&
+        isset($config['data']['height'])
+      ) {
+        $variables['responsive_image']['#attributes']['width'] = $config['data']['width'];
+        $variables['responsive_image']['#attributes']['height'] = $config['data']['height'];
+      }
+    }
+  }
+  elseif (
     !empty($variables['responsive_image']['#width']) &&
     !empty($variables['responsive_image']['#height'])
   ) {
