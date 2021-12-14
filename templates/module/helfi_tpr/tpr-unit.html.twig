@@ -1,19 +1,13 @@
-{#
-/**
-* @file
-* Theme for unit entity.
-*
-*/
-#}
-
-{%
-set classes = [
-'unit',
-view_mode == 'teaser_with_image' ? 'unit--teaser',
-view_mode == 'wide_teaser' ? 'unit--teaser',
-view_mode ? 'unit--' ~ view_mode|clean_class,
-]
-%}
+{# Switch statement using PHP variable 'view_mode' to set modifier for CSS selector '.unit' #}
+{% if view_mode == 'teaser_with_image'  %}
+  {% set classes = 'unit unit--teaser unit--teaser_with_image' %}
+{% elseif view_mode == 'wide_teaser' %}
+  {% set classes = 'unit_teaser' %}
+{% elseif view_mode == 'full' %}
+  {% set classes = 'unit unit--full' %}
+{% else %}
+  {% set classes = 'unit' %}
+{% endif %}
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
