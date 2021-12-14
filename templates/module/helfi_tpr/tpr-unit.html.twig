@@ -239,7 +239,15 @@
         <div class="unit__info">
           {% if content.address|render %}
             <div class="unit__info-row unit__info-row--address">
-              {{ content.address }}
+              <div class="unit__info-row__title">{{ 'Visiting address'|t }}:</div>
+              <div class="unit__info-row__content">{{ content.address }}</div>
+            </div>
+          {% endif %}
+
+          {% if content.opening_hours|render %}
+            <div class="unit__info-row unit__info-row--opening-hours">
+              <div class="unit__info-row__title">{{ 'Opening hours'|t }}:</div>
+              <div class="unit__info-row__content">{{ content.opening_hours }}</div>
             </div>
           {% endif %}
         </div>
