@@ -1,0 +1,211 @@
+{#
+/**
+* @file
+* Theme for unit entity.
+*
+*/
+#}
+
+{%
+set classes = [
+'unit',
+view_mode == 'teaser_with_image' ? 'unit--teaser',
+view_mode == 'wide_teaser' ? 'unit--teaser',
+view_mode ? 'unit--' ~ view_mode|clean_class,
+]
+%}
+
+{% set supports_swedish %}
+  {% if 'sv' in provided_languages %}
+    <div class="unit__supports_language_sv">
+      {{ 'Service in Swedish'|t({}, {'context': 'TPR unit also offers service in Swedish'}) }}
+    </div>
+  {% endif %}
+{% endset %}
+
+{% if view_mode == 'full' %}
+
+  <article{{ attributes.addClass(classes) }}>
+    <div class="unit-header__container container {{ in_menu ? 'has-navigation' }}">
+      <div{{ content_attributes.addClass('unit__header') }}>
+        <h1{{ title_attributes.addClass('unit__title') }}>
+          {{ entity.label }}
+        </h1>
+        {% if content.description_summary|render %}
+          <div class="unit__short-desc">
+            {{ content.description_summary }}
+          </div>
+        {% endif %}
+        <span class="unit__divider"></span>
+        {{ supports_swedish }}
+        {% if content.picture_url_override|render %}
+          <div class="unit__image">
+            {{ content.picture_url_override }}
+          </div>
+        {% elseif content.picture_url|render %}
+          <div class="unit__image">
+            {{ content.picture_url }}
+          </div>
+        {% endif %}
+        {% if content.description|render and hide_description == false %}
+          <div class="unit__long-desc">
+            {{ content.description }}
+          </div>
+        {% endif %}
+
+        {% block main_content %}
+        {% endblock main_content %}
+
+        {% if content.service_map_embed|render %}
+          <div class="unit__map">
+            <label class="unit__map__label">
+              {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
+              {{ 'Location'|t }}
+            </label>
+            {{ content.service_map_embed }}
+          </div>
+        {% endif %}
+
+      </div>
+
+      <div class="unit__sidebar">
+        {% block sidebar_block %}
+        {% endblock sidebar_block%}
+
+        {% if
+          content.address|render or
+          content.email|render or
+          content.phone|render or
+          content.address_postal|render or
+          content.opening_hours|render
+        %}
+          <div class="unit__contact">
+            <h3 class="unit__contact__title">
+              {% trans with {'context': 'Contact card title'} %}Contact information{% endtrans %}
+            </h3>
+            {% if content.address|render %}
+              <div class="unit__contact-row unit__contact-row--address">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
+                  {{ 'Visiting address'|t }}:
+                </label>
+                {{ content.address }}
+              </div>
+            {% endif %}
+            {% if content.email|render %}
+              <div class="unit__contact-row unit__contact-row--email">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'glyph-at'} %}
+                  {{ 'E-mail'|t }}:
+                </label>
+                <a href="mailto:{{ content.email|render|striptags|trim|lower }}">{{ content.email }}</a>
+              </div>
+            {% endif %}
+            {% if content.phone|render %}
+              <div class="unit__contact-row unit__contact-row--phone">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'phone'} %}
+                  {{ 'Telephone number'|t }}:
+                </label>
+                {{ content.phone }}
+              </div>
+            {% endif %}
+            {% if content.opening_hours|render %}
+              <div class="unit__contact-row unit__contact-row--opening-hours">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'clock'} %}
+                  {{ 'Opening hours'|t }}:
+                </label>
+                {{ content.opening_hours }}
+              </div>
+            {% endif %}
+            {% if content.address_postal|render %}
+              <div class="unit__contact-row unit__contact-row--postal-address">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
+                  {{ 'Postal address'|t }}:
+                </label>
+                {{ content.address_postal }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+    {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
+
+    {% if services_view > 0 or content.accessibility_sentences|render %}
+      <div class="unit__content">
+    {% endif %}
+
+      {% if services_view > 0 %}
+        <div class="unit__services">
+          {{ drupal_view('unit_services', 'unit_services') }}
+        </div>
+      {% endif %}
+
+      {% block accessibility_sentences_block %}
+        {% if content.accessibility_sentences|render %}
+          <div class="unit__accessibility_sentences">
+            {{ content.accessibility_sentences }}
+          </div>
+        {% endif %}
+      {% endblock accessibility_sentences_block %}
+
+    {% if services_view > 0 or content.accessibility_sentences|render %}
+      </div>
+    {% endif %}
+
+  </article>
+
+{% else %}
+
+  {% set image_attributes = create_attribute() %}
+
+  {% if content.picture_url_override|render or content.picture_url|render %}
+    {% set has_image = TRUE %}
+  {% endif %}
+
+  {%
+    set picture_classes = [
+    'unit__image',
+    has_image ? 'unit__image--image' : 'unit__image--placeholder'
+  ]
+  %}
+
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ image_attributes.addClass(picture_classes) }}>
+      {% if content.picture_url_override|render %}
+        {{ content.picture_url_override }}
+      {% elseif content.picture_url|render %}
+        {{ content.picture_url }}
+      {% else %}
+        {% include "@hdbt/misc/image-placeholder.twig" ignore missing %}
+      {% endif %}
+    </div>
+
+    <div class="unit__text">
+      <div class="unit__text__content">
+        <h3 class="unit__title">
+          <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="unit__link">
+            {{ entity.label }}
+          </a>
+        </h3>
+        <div class="unit__info">
+          {% if content.address|render %}
+            <div class="unit__info-row unit__info-row--address">
+              {{ content.address }}
+            </div>
+          {% endif %}
+        </div>
+        {{ supports_swedish }}
+      </div>
+      <div class="unit__read-more">
+        <span class="unit__read-more__text">{% trans with {'context': 'Unit teaser link'} %}See opening hours and contact details{% endtrans %}</span>
+        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+      </div>
+    </div>
+  </div>
+{% endif %}
