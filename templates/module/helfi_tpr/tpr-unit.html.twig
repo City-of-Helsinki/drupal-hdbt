@@ -194,58 +194,6 @@
 
 {% elseif 'wide_teaser' %}
 
-  {% set image_attributes = create_attribute() %}
-
-  {% if content.picture_url_override|render or content.picture_url|render %}
-    {% set has_image = TRUE %}
-  {% endif %}
-
-  {%
-    set picture_classes = [
-    'unit__image',
-    has_image ? 'unit__image--image' : 'unit__image--placeholder'
-  ]
-  %}
-
-  <div class="unit unit--teaser unit--wide_teaser">
-    <div{{ image_attributes.addClass(picture_classes) }}>
-      {% if content.picture_url_override|render %}
-        {{ content.picture_url_override }}
-      {% elseif content.picture_url|render %}
-        {{ content.picture_url }}
-      {% else %}
-        {% include "@hdbt/misc/image-placeholder.twig" ignore missing %}
-      {% endif %}
-    </div>
-
-    <div class="unit__text">
-      <div class="unit__text__content">
-        <h3 class="unit__title">
-          <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="unit__link">
-            {{ entity.label }}
-          </a>
-        </h3>
-        <div class="unit__info">
-          {% if content.address|render %}
-            <div class="unit__info-row unit__info-row--address">
-              <div class="unit__info-row__title">{{ 'Visiting address'|t }}:</div>
-              <div class="unit__info-row__content">{{ content.address }}</div>
-            </div>
-          {% endif %}
-
-          {% if content.opening_hours|render %}
-            <div class="unit__info-row unit__info-row--opening-hours">
-              <div class="unit__info-row__title">{{ 'Opening hours'|t }}:</div>
-              <div class="unit__info-row__content">{{ content.opening_hours }}</div>
-            </div>
-          {% endif %}
-        </div>
-      </div>
-      <div class="unit__read-more">
-        <span class="unit__read-more__text">{% trans with {'context': 'Unit teaser link'} %}See opening hours and contact details{% endtrans %}</span>
-        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
-      </div>
-    </div>
-  </div>
+  {% include '@hdbt/module/helfi_tpr/tpr-unit-hours.html.twig' %}
 
 {% endif %}

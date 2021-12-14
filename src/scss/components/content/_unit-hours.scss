@@ -1,0 +1,200 @@
+.unit-hours {
+  align-items: flex-start;
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: stretch;
+    flex-direction: row;
+    min-height: 220px; // From designs.
+    padding-left: 325px; // Width of the unit picture from the designs + spacing
+  }
+
+  .views-row:last-child & {
+    margin-bottom: 0;
+  }
+}
+
+.unit-hours__image {
+  @include component-negative-side-margin();
+  background-color: var(--hdbt-color-palette--primary);
+  color: var(--hdbt-color-palette-text--primary);
+  margin: 0;
+  overflow: hidden;
+
+  @include breakpoint($breakpoint-m) {
+    height: 100%;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 325px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+.unit-hours__image--placeholder {
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: center;
+    display: flex;
+    width: 325px;
+  }
+}
+
+.unit-hours__text {
+  margin-top: $spacing-double;
+  padding: 0 $spacing-and-half $spacing-double;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: $spacing-double;
+  }
+}
+
+.unit-hours__text__content {
+  align-content: flex-start;
+
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 530px;
+  }
+}
+
+.unit-hours__title {
+  @include font-size(24px, 28px);
+  font-weight: 500;
+  margin-bottom: $spacing-quarter;
+  margin-top: 0;
+  padding-right: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    @include font-size(32px, 37px);
+    margin-bottom: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+.unit-hours__link {
+  text-decoration: none;
+
+  &::after {
+    bottom: 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+
+.unit-hours__info {
+  margin-left: $spacing-double;
+  margin-top: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    width: 100%;
+  }
+}
+
+.unit-hours__info-row {
+  @include font-size(18px, 26px);
+  margin-bottom: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.unit-hours__info-row__title {
+  font-weight: bold;
+
+  &::before {
+    margin-bottom: 1px; // since icon size is 24px and line-height is 26px and vertical-align to bottom, we need this to center align icon to row.
+    margin-left: -$spacing-double;
+    margin-right: $spacing-half;
+  }
+}
+
+.unit-hours__info-row__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unit-hours__info-row--address {
+
+  .unit-hours__info-row__title::before {
+    @include pseudo-icon('ui/location', $spacing-and-half, currentColor);
+  }
+
+  .address {
+    display: inline;
+    margin-top: 0;
+
+    .address-line1,
+    .address-line2,
+    .postal-code {
+      margin-right: 3px; // Some spacing between the address parts when they are displayed inline.
+    }
+
+    .address-line1::after,
+    .address-line2::after {
+      content: ",";
+      margin-left: -2px; // Because of display inline there is automatically some extra spacing. This removes it.
+    }
+  }
+}
+
+
+.unit-hours__info-row--opening-hours {
+  .unit-hours__info-row__title::before {
+    @include pseudo-icon('ui/clock', $spacing-and-half, currentColor);
+  }
+}
+
+.unit-hours__read-more {
+  display: flex;
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    justify-content: flex-end;
+    margin-top: $spacing;
+  }
+
+  .unit-hours__read-more__text {
+    @include font-size(16px, 24px);
+    font-weight: 500;
+  }
+
+  .icon {
+    margin-left: $spacing-half;
+  }
+}
+
