@@ -205,7 +205,12 @@ function hdbt_preprocess_node(&$variables) {
   }
 
   // Set "modified_at" variable for the node template.
-  if (!empty($node->getChangedTime())) {
+  // Do not show modified timestamp if it's less or equal to published_at date.
+  if (
+    !empty($node->getChangedTime()) &&
+    isset($variables['published_at']) &&
+    $variables['published_at'] < $node->getChangedTime()
+  ) {
     $variables['modified_at'] = $node->getChangedTime();
   }
 
