@@ -154,6 +154,54 @@
 
   </article>
 
+{% elseif view_mode == 'teaser_with_image' %}
+
+  {% set image_attributes = create_attribute() %}
+
+  {% if content.picture_url_override|render or content.picture_url|render %}
+    {% set has_image = TRUE %}
+  {% endif %}
+
+  {%
+    set picture_classes = [
+    'unit__image',
+    has_image ? 'unit__image--image' : 'unit__image--placeholder'
+  ]
+  %}
+
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ image_attributes.addClass(picture_classes) }}>
+      {% if content.picture_url_override|render %}
+        {{ content.picture_url_override }}
+      {% elseif content.picture_url|render %}
+        {{ content.picture_url }}
+      {% else %}
+        {% include "@hdbt/misc/image-placeholder.twig" ignore missing %}
+      {% endif %}
+    </div>
+
+    <div class="unit__text">
+      <div class="unit__text__content">
+        <h3 class="unit__title">
+          <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="unit__link">
+            {{ entity.label }}
+          </a>
+        </h3>
+        <div class="unit__info">
+          {% if content.address|render %}
+            <div class="unit__info-row unit__info-row--address">
+              {{ content.address }}
+            </div>
+          {% endif %}
+        </div>
+        {{ supports_swedish }}
+      </div>
+      <div class="unit__read-more">
+        <span class="unit__read-more__text">{% trans with {'context': 'Unit teaser link'} %}See opening hours and contact details{% endtrans %}</span>
+        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+      </div>
+    </div>
+  </div>
 {% else %}
 
   {% set image_attributes = create_attribute() %}
