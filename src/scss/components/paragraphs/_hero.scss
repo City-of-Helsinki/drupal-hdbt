@@ -604,7 +604,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     height: 200px;
-    line-height: 0;
     position: relative;
 
     @include breakpoint($breakpoint-xs) {
@@ -612,6 +611,7 @@ $koro-height: 50px;
     }
 
     img {
+      display: block;
       height: 100%;
       object-fit: cover;
       position: absolute;
@@ -680,6 +680,7 @@ $koro-height: 50px;
     }
 
     img {
+      display: block;
       @include breakpoint($breakpoint-m) {
         height: auto;
         position: static;
@@ -785,7 +786,6 @@ $koro-height: 50px;
     bottom: 0;
     height: 100%;
     left: 0;
-    line-height: 0;
     position: absolute;
     right: 0;
     top: 0;
@@ -796,6 +796,7 @@ $koro-height: 50px;
     }
 
     img {
+      display: block;
       height: 100%;
       object-fit: cover;
       width: 100%;
@@ -961,6 +962,7 @@ $koro-height: 50px;
     }
 
     img {
+      display: block;
       height: 100%;
       object-fit: cover;
       position: absolute;

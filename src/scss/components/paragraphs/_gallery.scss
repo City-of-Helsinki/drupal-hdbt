@@ -30,6 +30,13 @@ $arrow-container-height: 48px;
       max-width: 83%;
     }
   }
+
+  img {
+    display: block;
+    height: auto;
+    width: 100%;
+    @include loading-image-background();
+  }
 }
 
 .gallery__slide-count {
@@ -67,20 +74,18 @@ $arrow-container-height: 48px;
 
     .gallery__thumbnails__item {
       height: auto;
-      line-height: 0;
       margin: 0;
       width: 180px;
 
       picture {
         display: block;
-        line-height: 0;
         width: 100%;
       }
 
       img {
         border: $spacing-quarter solid $color-white;
         display: block;
-        line-height: 0;
+        height: auto;
         width: 100%;
       }
 

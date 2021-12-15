@@ -76,6 +76,10 @@
   color: $color-black-60;
 }
 
-.components--news figure picture {
-  background-color: $color-black-10;
+.components--news figure picture img{
+  width: 100%;
+}
+
+.news-listing__img {
+  @include loading-image-background();
 }

@@ -3,12 +3,13 @@
 
   picture {
     display: block;
+    @include loading-image-background();
   }
 
   img {
     display: block;
     height: auto;
-    width: 100%; //TODO: should we change this to max-width?
+    max-width: 100%;
   }
 }
 
