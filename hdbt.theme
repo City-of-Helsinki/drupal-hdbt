@@ -311,7 +311,7 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     }
 
     // Check if the URL is <nolink> and add variable accordingly.
-    if (!$url->isExternal() && $url->getRouteName() === '<nolink>') {
+    if ($url->isRouted() && $url->getRouteName() === '<nolink>') {
       $item['is_nolink'] = TRUE;
     }
 
