@@ -32,9 +32,7 @@ $arrow-container-height: 48px;
   }
 
   img {
-    display: block;
-    height: auto;
-    width: 100%;
+    @include image-defaults($width: 100%, $max-width: null);
     @include loading-image-background();
   }
 }
@@ -83,10 +81,8 @@ $arrow-container-height: 48px;
       }
 
       img {
+        @include image-defaults($width: 100%, $max-width: null);
         border: $spacing-quarter solid $color-white;
-        display: block;
-        height: auto;
-        width: 100%;
       }
 
       &.is-active img {

@@ -18,9 +18,7 @@
 }
 
 .news-listing__img img {
-  display: block;
-  height: auto;
-  width: 100%;
+  @include image-defaults($width: 100%, $max-width: null);
 }
 
 .news-listing__img .image-placeholder {

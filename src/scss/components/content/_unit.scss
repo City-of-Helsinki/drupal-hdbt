@@ -32,8 +32,7 @@
     @include component-negative-side-margin();
 
     img {
-      max-width: 100%;
-      vertical-align: top;
+      @include image-defaults($width: 100%, $max-width: null);
     }
   }
 
@@ -455,9 +454,8 @@
 
     img {
       @include breakpoint($breakpoint-m) {
-        height: 100%;
+        @include image-defaults($height: 100%, $width: 100%, $max-width: null);
         object-fit: cover;
-        width: 100%;
       }
     }
   }

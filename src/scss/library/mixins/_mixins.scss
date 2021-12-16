@@ -118,6 +118,15 @@
   }
 }
 
+// This sets smart defaults for image element, but allows overriding each property where needed
+@mixin image-defaults($display: block, $height: auto, $max-width: 100%, $overflow: hidden, $width: null){
+  display: $display; // The default 'block' will fix inline images having extra space below them
+  height: $height; // The default 'auto' will allow image original aspect ratio to set image space while loading and after
+  max-width: $max-width; // The default '100%' will limit image to parent width
+  overflow: $overflow; // The default 'hidden' will hide alt-text that flows outside from image area
+  width: $width; // The default 'null' will disable this, but allow overriding it
+}
+
 @mixin loading-image-background(){
   box-shadow: inset 0 0 0 1px $color-black-10;
 }

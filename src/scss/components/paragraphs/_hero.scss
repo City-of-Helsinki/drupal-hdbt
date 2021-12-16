@@ -611,13 +611,11 @@ $koro-height: 50px;
     }
 
     img {
-      display: block;
-      height: 100%;
+      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
       object-fit: cover;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 100%;
       z-index: 0;
     }
 
@@ -680,7 +678,7 @@ $koro-height: 50px;
     }
 
     img {
-      display: block;
+      // image defaults already set above
       @include breakpoint($breakpoint-m) {
         height: auto;
         position: static;
@@ -796,10 +794,8 @@ $koro-height: 50px;
     }
 
     img {
-      display: block;
-      height: 100%;
+      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
       object-fit: cover;
-      width: 100%;
     }
   }
 
@@ -962,13 +958,11 @@ $koro-height: 50px;
     }
 
     img {
-      display: block;
-      height: 100%;
+      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
       object-fit: cover;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 100%;
       z-index: 0;
 
       @include breakpoint($breakpoint-l) {

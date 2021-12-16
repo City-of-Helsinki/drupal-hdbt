@@ -72,10 +72,8 @@ $item_spacing: $spacing-triple;
     }
 
     img {
+      @include image-defaults($width: 100%, $max-width: null);
       @include loading-image-background();
-      display: block;
-      height: auto;
-      width: 100%;
     }
 
     .image-placeholder {

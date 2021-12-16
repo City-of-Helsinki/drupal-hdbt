@@ -3,13 +3,11 @@
 
   picture {
     display: block;
-    @include loading-image-background();
   }
 
   img {
-    display: block;
-    height: auto;
-    max-width: 100%;
+    @include image-defaults();
+    @include loading-image-background();
   }
 }
 
