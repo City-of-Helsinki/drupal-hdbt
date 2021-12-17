@@ -1,5 +1,5 @@
-<div class="social-media-sharing">
-  {% set classes = ['share'] %}
+<div class="social-media__items">
+  {% set classes = ['social-media__item'] %}
   {% for element in elements %}
     {% if element.forward_dialog == 1 %}
       {% set classes = classes|merge(['use-ajax']) %}

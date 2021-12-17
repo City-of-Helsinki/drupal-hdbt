@@ -30,6 +30,11 @@ $arrow-container-height: 48px;
       max-width: 83%;
     }
   }
+
+  img {
+    @include image-defaults($width: 100%, $max-width: null);
+    @include loading-image-background();
+  }
 }
 
 .gallery__slide-count {
@@ -67,21 +72,17 @@ $arrow-container-height: 48px;
 
     .gallery__thumbnails__item {
       height: auto;
-      line-height: 0;
       margin: 0;
       width: 180px;
 
       picture {
         display: block;
-        line-height: 0;
         width: 100%;
       }
 
       img {
+        @include image-defaults($width: 100%, $max-width: null);
         border: $spacing-quarter solid $color-white;
-        display: block;
-        line-height: 0;
-        width: 100%;
       }
 
       &.is-active img {

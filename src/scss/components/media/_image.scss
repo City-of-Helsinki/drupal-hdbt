@@ -1,12 +1,17 @@
-.media--image__content {
-  picture, img {
+.image {
+  margin: 0; // resets user agent margins from <figure>
+
+  picture {
     display: block;
-    line-height: 0;
-    width: 100%;
+  }
+
+  img {
+    @include image-defaults();
+    @include loading-image-background();
   }
 }
 
-.media--image__caption {
+.image__caption {
   @include font-size(16px, 24px);
   padding: $spacing $spacing-and-half 0;
 

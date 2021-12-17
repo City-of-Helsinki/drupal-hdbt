@@ -80,12 +80,12 @@
 /**
  * Add pseudo element (::before, ::after) styling for icons
  */
-@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black) {
+@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black, $display: inline-block) {
   @include icon-mask-image( $icon );
   background-color: $color;
   background-size: contain;
   content: '';
-  display: inline-block;
+  display: $display;
   height: $size;
   mask-position: center;
   mask-repeat: no-repeat;
@@ -106,4 +106,27 @@
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
+}
+
+//TODO: replace with native flex gap once enough users have moved to > ios 14.4
+@mixin flex-gap($gap) {
+  margin-left: -$gap * 0.5;
+  margin-right: -$gap * 0.5;
+  & > * {
+    margin-left:  $gap * 0.5;
+    margin-right:  $gap * 0.5;
+  }
+}
+
+// This sets smart defaults for image element, but allows overriding each property where needed
+@mixin image-defaults($display: block, $height: auto, $max-width: 100%, $overflow: hidden, $width: null){
+  display: $display; // The default 'block' will fix inline images having extra space below them
+  height: $height; // The default 'auto' will allow image original aspect ratio to set image space while loading and after
+  max-width: $max-width; // The default '100%' will limit image to parent width
+  overflow: $overflow; // The default 'hidden' will hide alt-text that flows outside from image area
+  width: $width; // The default 'null' will disable this, but allow overriding it
+}
+
+@mixin loading-image-background(){
+  box-shadow: inset 0 0 0 1px $color-black-10;
 }

@@ -1,1 +1,4 @@
-// Since image component contains only common image block from ../media/_image.scss this file is empty on purpose
+.component--image img {
+  //image defaults already set in default image styles
+  width: 100%;
+}
