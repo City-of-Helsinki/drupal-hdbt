@@ -667,34 +667,36 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
     // Load all slide paragraphs.
     $slides = $paragraph_storage->loadMultiple($slide_ids);
-
     $slide_thumbnails = [];
-    $slide_thumbnails_alternative_texts = [];
-    foreach ($slides as $slide) {
-      $slide_media = $slide
-        ->get('field_gallery_slide_media')
-        ->first()
-        ->get('entity')
-        ->getTarget()
-        ->getValue();
-      $image = $slide_media
-        ->get('field_media_image')
-        ->first()
-        ->get('entity')
-        ->getTarget()
-        ->getValue();
 
-      $alternative_text = [
-        'caption' => $slide->field_gallery_slide_caption->value,
-        'alt' => $slide_media->field_media_image->first()->alt,
-      ];
-
-      $slide_thumbnails_alternative_texts[] = $alternative_text;
-      $slide_thumbnails[] = $image;
+    // Construct an array of slides and handle the image caption + alt texts.
+    foreach ($slides as $id => $slide) {
+      $slides[$id] = ['gallery_slide' => $slide];
+      _hdbt_preprocess_image_caption(
+        $slides[$id],
+        'gallery_slide',
+        'field_gallery_slide_media',
+        'field_gallery_slide_caption'
+      );
+      $slides[$id]['gallery_slide'] = $slides[$id]['gallery_slide']->field_gallery_slide_media->entity->field_media_image->entity;
+      $slide_thumbnails[] = $slides[$id];
     }
-
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
-    $variables['gallery_slide_thumbnails_alt_texts'] = $slide_thumbnails_alternative_texts;
+  }
+
+  // Check if the paragraph is a type of gallery_slide and handle the slide
+  // image width and height attributes.
+  if (
+    $paragraph_type == 'gallery_slide' &&
+    $paragraph->hasField('field_gallery_slide_media')
+  ) {
+    // Handle image caption preprocessing.
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'paragraph',
+      'field_gallery_slide_media',
+      'field_gallery_slide_caption'
+    );
   }
 
   // Unit search paragraph.
@@ -869,18 +871,21 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
   $image_width = FALSE;
   $image_height = FALSE;
 
-  if (isset($variables['responsive_image_style_id'])) {
-    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
+  if (isset($variables['responsive_image']['#responsive_image_style_id'])) {
+    $variables['responsive_image_style_id'] = $variables['responsive_image']['#responsive_image_style_id'];
+    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image']['#responsive_image_style_id']);
     $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
 
     foreach ($fallback_image_style_config as $config) {
       if (
         isset($config['data']) &&
-        isset($config['data']['width']) &&
-        isset($config['data']['height'])
+        isset($config['data']['width'])
       ) {
         $image_width = $config['data']['width'];
-        $image_height = $config['data']['height'];
+        // If image height is null, treat the image as square image.
+        $image_height = !empty($config['data']['height'])
+          ? $config['data']['height']
+          : $config['data']['width'];
       }
     }
   }
@@ -899,6 +904,49 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_imagecache_external_responsive(&$variables) {
+  if (!isset($variables['img_element'])) {
+    return;
+  }
+
+  // Add width and height for the imagecache external image, if the width and
+  // height can be retrieved from responsive image style. If aforesaid is not
+  // possible, use image width and height as fallback values.
+  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  $image_width = FALSE;
+  $image_height = FALSE;
+
+  if (isset($variables['responsive_image_style_id'])) {
+    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
+    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
+
+    foreach ($fallback_image_style_config as $config) {
+      if (
+        isset($config['data']) &&
+        isset($config['data']['width'])
+      ) {
+        $image_width = $config['data']['width'];
+        // If image height is null, treat the image as square image.
+        $image_height = !empty($config['data']['height'])
+          ? $config['data']['height']
+          : $config['data']['width'];
+      }
+    }
+  }
+  elseif (!empty($variables['width']) && !empty($variables['height'])) {
+    $image_width = $variables['width'];
+    $image_height = $variables['height'];
+  }
+
+  // Set responsive image width and height values if available.
+  if ($image_height && $image_width) {
+    $variables['img_element']['#attributes']['width'] = $image_width;
+    $variables['img_element']['#attributes']['height'] = $image_height;
+  }
+}
 /**
  * Implements hook_preprocess_HOOK().
  */
