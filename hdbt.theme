@@ -947,6 +947,7 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
     $variables['img_element']['#attributes']['height'] = $image_height;
   }
 }
+
 /**
  * Implements hook_preprocess_HOOK().
  */
