@@ -188,4 +188,19 @@
       padding: $spacing-quarter;
     }
   }
+  .layout-main-wrapper &:last-child {
+    margin-bottom: -$spacing-sextuple;
+
+    .message {
+      @include breakpoint($breakpoint-m) {
+        margin-bottom: 80px;
+      }
+    }
+  }
+}
+.react-and-share-cookie-compliance {
+  .message {
+    background-color: transparent;
+    padding: 0;
+  }
 }
