@@ -519,6 +519,27 @@ function hdbt_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_breadcrumb(&$variables) {
+  // If current entity has short title field set, use it to override
+  // current page breadcrumb.
+  if (\Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+    $page_entity = hdbt_content_get_page_entity();
+    if (
+      !empty($page_entity) &&
+      $page_entity instanceof ContentEntityInterface &&
+      $page_entity->hasField('field_short_title') &&
+      !empty($page_entity->field_short_title->value)
+    ) {
+      $current = array_pop($variables['breadcrumb']);
+      $current['text'] = $page_entity->field_short_title->value;
+      array_push($variables['breadcrumb'], $current);
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_paragraph().
  *
  * @param array $variables
