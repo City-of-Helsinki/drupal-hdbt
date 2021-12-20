@@ -40,3 +40,7 @@ msgstr "Tunnisteet"
 msgctxt "Page lead-in section explanation for screen readers"
 msgid "Lead-in paragraph"
 msgstr "Johdanto"
+
+msgctxt "Content liftup card hit for seeing more information on content page"
+msgid "See details"
+msgstr "Katso tarkemmat tiedot"
