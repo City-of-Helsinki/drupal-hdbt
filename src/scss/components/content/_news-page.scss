@@ -1,3 +1,9 @@
+// Fix sidebar width when there are only short news titles
+// TODO: Clean this up with other region things
+.page-type--news-item .sidebar-first {
+  display: block;
+}
+
 .news-listing {
   margin-top: 0;
   padding-left: 0;
