@@ -1,9 +1,3 @@
-{# Check if the image should be printed in original aspect ratio or not #}
-{% set original_aspect_ratio = false %}
-{% if content.field_original_aspect_ratio[0]['#markup'] == 'true' %}
-  {% set original_aspect_ratio = true %}
-{% endif %}
-
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
@@ -13,45 +7,12 @@
   %}
     {% block component_content %}
 
-      {% set caption = content.field_image_caption[0]['#context']['value'] %}
-      {% if content.field_image|render %}
-        {# The image caption is attached to each image so we need to get it from the media entity #}
-        {% for key, image in content.field_image %}
-          {% if image.entity %}
-            {% set media = image.entity %}
-            {% set photographer = media.fields.field_photographer.value %}
-            {% if photographer %}
-              {% set caption = caption is not null ? caption ~ ' ' %}
-              {% set caption = caption ~ 'Photo:'|trans ~ ' ' ~ photographer %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
       {# Check if there is image set and print it with correct aspect ratio #}
       {% if content.field_image|render %}
-        {% for key, image in content.field_image %}
-          {% if image.entity %}
-            {% set media = image.entity %}
-            {% set alt = content.field_image_caption[0] is not empty ? caption : media.fields.field_media_image.alt %}
-            {% if original_aspect_ratio %}
-              {% set image =
-                drupal_image(media.fields.field_media_image.entity.uri.value, 'original', {alt: alt}, responsive=true)
-              %}
-            {% else %}
-              {% set image =
-                drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
-              %}
-            {% endif %}
-            {{ image }}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-      {% if caption %}
-        {% spaceless %}
-          <figcaption class="media--image__caption">
-            {{ caption }}
-          </figcaption>
-        {% endspaceless %}
+        {% include '@hdbt/misc/image-with-caption.twig' with {
+          image: content.field_image,
+          image_caption: image_caption
+        } %}
       {% endif %}
 
     {% endblock component_content %}

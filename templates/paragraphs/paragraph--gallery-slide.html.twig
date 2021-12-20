@@ -49,24 +49,12 @@
 {% block paragraph %}
   <li{{ attributes.addClass(classes).setAttribute('aria-hidden', 'true') }}>
     <div class="media--image__content">
-      {{ content.field_gallery_slide_media }}
-      {% if content.field_gallery_slide_caption[0] is not empty %}
-        {% spaceless %}
-          <figcaption class="media--image__caption">
-            {{ content.field_gallery_slide_caption }}
-            {% if content.field_gallery_slide_media|render %}
-              {% for key, image in content.field_gallery_slide_media %}
-                {% if image.entity %}
-                  {% set media = image.entity %}
-                  {% set image_caption = media.fields.field_photographer.value %}
-                  {% if image_caption %}
-                    {{ 'Photo:'|trans }} {{ image_caption }}
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          </figcaption>
-        {% endspaceless %}
+      {# Check if there is image set and print it with correct aspect ratio #}
+      {% if content.field_gallery_slide_media|render %}
+        {% include '@hdbt/misc/image-with-caption.twig' with {
+          image: content.field_gallery_slide_media,
+          image_caption: gallery_slide_caption
+        } %}
       {% endif %}
     </div>
   </li>

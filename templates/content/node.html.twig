@@ -78,7 +78,8 @@
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  first_paragraph_grey ? 'has-first-gray-bg-block'
+  first_paragraph_grey ? 'has-first-gray-bg-block',
+  node_class,
 ]
 %}
 
@@ -91,6 +92,9 @@
     </h2>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_lower_content', 'field_sidebar_content') }}
+
+  {% block main_content %}
+    {{ content|without('field_lower_content', 'field_sidebar_content') }}
+  {% endblock main_content %}
 
 </article>

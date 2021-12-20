@@ -1,0 +1,26 @@
+{# Main image #}
+<div class="news-listing__img">
+  {% if content.field_main_image|render %}
+    {{ content.field_main_image }}
+  {% else %}
+    {% include "@hdbt/misc/image-placeholder.twig" %}
+  {% endif %}
+</div>
+
+<div class="news-listing__content">
+  {# Short title or Title #}
+  <h3 class="news-listing__title">
+    <a href="{{ url }}" class="news-listing__link" rel="bookmark">
+      {{ drupal_token('node:short-title', {'node': node}) }}
+    </a>
+  </h3>
+
+  {# Created date and modified date #}
+  {% if published_at is not empty %}
+    {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+    <time datetime="{{ html_published_at }}" class="news-listing__datetime news-listing__datetime--published">
+      <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+      {{ published_at|format_date('publication_date_format') }}
+    </time>
+  {% endif %}
+</div>

@@ -28,31 +28,11 @@
   %}
     {% block component_content %}
 
-      <div class="liftup-with-image__image">
-        {% if content.field_liftup_with_image_image|render %}
-          {% for key, image in content.field_liftup_with_image_image %}
-            {% if image.entity %}
-              {% set media = image.entity %}
-              {% set alt = media.fields.field_media_image.alt %}
-              {% if
-                design == "image-on-right" or
-                design == "image-on-left" or
-                design == "image-on-right-secondary" or
-                design == "image-on-left-secondary"
-              %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'image__3_2', {alt: alt}, responsive=true)
-                %}
-              {% else %}
-                {% set image =
-                  drupal_image(media.fields.field_media_image.entity.uri.value, 'hero__background', {alt: alt}, responsive=true)
-                %}
-              {% endif %}
-              {{ image }}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      </div>
+      {% if content.field_liftup_with_image_image|render %}
+        <div class="liftup-with-image__image">
+          {{ content.field_liftup_with_image_image }}
+        </div>
+      {% endif %}
       <div class="liftup-with-image__container">
         <div class="liftup-with-image__content">
           <h2 class="liftup-with-image__title">{{ content.field_liftup_with_image_title }}</h2>

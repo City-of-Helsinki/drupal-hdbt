@@ -39,7 +39,8 @@ $card_spacing: $spacing-and-half;
   line-height: 0;
 
   img {
-    width: 100%;
+    @include image-defaults($width: 100%, $max-width: null);
+    @include loading-image-background();
   }
 }
 

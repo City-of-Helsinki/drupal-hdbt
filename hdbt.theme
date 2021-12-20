@@ -12,8 +12,11 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Site\Settings;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
  * Implements hook_preprocess().
@@ -191,9 +194,110 @@ function hdbt_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
   // If node has hero block, set variable accordingly.
-  if ($variables['node']->hasField('field_has_hero')) {
-    $variables['hide_label'] = boolval($variables['node']->field_has_hero->value);
+  if ($node->hasField('field_has_hero')) {
+    $variables['hide_label'] = boolval($node->field_has_hero->value);
+  }
+
+  // If node has "published_at" field, set it as variable for the node template.
+  if ($node->hasField('published_at') && $node->isPublished()) {
+    $variables['published_at'] = $node->get('published_at')->getString();
+  }
+
+  // Set "modified_at" variable for the node template.
+  // Do not show modified timestamp if it's less or equal to published_at date.
+  if (
+    !empty($node->getChangedTime()) &&
+    isset($variables['published_at']) &&
+    $variables['published_at'] < $node->getChangedTime()
+  ) {
+    $variables['modified_at'] = $node->getChangedTime();
+  }
+
+  // Handle image caption preprocessing.
+  if ($node->hasField('field_main_image')) {
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'node',
+      'field_main_image',
+      'field_main_image_caption'
+    );
+  }
+}
+
+/**
+ * Preprocess image caption.
+ *
+ * @param array $variables
+ *   Render array.
+ * @param string $entity_type
+ *   Current entity type.
+ * @param string $image
+ *   Image field name.
+ * @param string $image_caption
+ *   Image caption field name.
+ */
+function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption) {
+  $entity = $variables[$entity_type];
+
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Check for image and image caption availability.
+  if ($entity->hasField($image) && $entity->hasField($image_caption)) {
+    $caption_variable = str_replace('field_', '', $image_caption);
+    $alt = '';
+    $caption = '';
+
+    // If caption exists, set it as initial variable for the alt text and
+    // image caption.
+    if (!$entity->{$image_caption}->isEmpty()) {
+      $alt = $caption = $entity->{$image_caption}->value;
+    }
+
+    // Combine photographer field value with caption and alt text.
+    if (
+      $entity->{$image}->entity &&
+      $entity->{$image}->entity->hasField('field_photographer') &&
+      !$entity->{$image}->entity->field_photographer->isEmpty()
+    ) {
+      $photographer = $entity->{$image}->entity->field_photographer->value;
+
+      // If both caption and photographer exists, use targeted translation
+      // for the caption and photographer. Otherwise set only photographer as
+      // caption.
+      if (!empty($caption)) {
+        $alt = $caption = t(
+          '@caption Photo: @photographer',
+          ['@photographer' => $photographer, '@caption' => $caption],
+          ['context' => 'Image caption and photographer']
+        );
+      }
+      else {
+        $caption = t(
+          'Photo: @photographer',
+          ['@photographer' => $photographer],
+          ['context' => 'Image photographer']
+        );
+      }
+    }
+
+    // Set image caption variable to render array for the templates.
+    $variables[$caption_variable] = $caption;
+
+    if (
+      !empty($alt) &&
+      $entity->{$image}->entity &&
+      $entity->{$image}->entity->hasField('field_media_image') &&
+      !$entity->{$image}->entity->field_media_image->first()->isEmpty()
+    ) {
+      // Set altered_alt_text variable based on modified alt text
+      // for the responsive image preprocesses.
+      $entity->{$image}->entity->field_media_image->first()->altered_alt_text = $alt;
+    }
   }
 }
 
@@ -415,6 +519,27 @@ function hdbt_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_breadcrumb(&$variables) {
+  // If current entity has short title field set, use it to override
+  // current page breadcrumb.
+  if (\Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+    $page_entity = hdbt_content_get_page_entity();
+    if (
+      !empty($page_entity) &&
+      $page_entity instanceof ContentEntityInterface &&
+      $page_entity->hasField('field_short_title') &&
+      !empty($page_entity->field_short_title->value)
+    ) {
+      $current = array_pop($variables['breadcrumb']);
+      $current['text'] = $page_entity->field_short_title->value;
+      array_push($variables['breadcrumb'], $current);
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_paragraph().
  *
  * @param array $variables
@@ -451,6 +576,102 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
   }
 
+  // Check if the paragraph is a type of image.
+  if ($paragraph_type == 'image' && $paragraph->hasField('field_image')) {
+    // Handle image caption preprocessing.
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'paragraph',
+      'field_image',
+      'field_image_caption'
+    );
+
+    // Check if the image should be printed in original aspect ratio and
+    // set variable accordingly. If not, use image 3:2 responsive style.
+    if ($paragraph->hasField('field_original_aspect_ratio')) {
+      $image_style = $paragraph->field_original_aspect_ratio->value
+        ? 'original'
+        : 'image__3_2';
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_image',
+        $image_style
+      );
+    }
+  }
+
+  // Check if the paragraph is a type of hero and it has image field available.
+  if (
+    $paragraph_type == 'hero' &&
+    $paragraph->hasField('field_hero_image')
+  ) {
+
+    // Determine based on hero design which responsive image style
+    // should be used when rendering the hero image.
+    if ($paragraph->hasField('field_hero_design')) {
+
+      switch ($paragraph->field_hero_design->value) {
+        case 'with-image-right':
+        case 'with-image-left':
+          $image_style = 'hero__left_right';
+          break;
+
+        case 'with-image-bottom':
+          $image_style = 'hero__bottom';
+          break;
+
+        case 'diagonal':
+          $image_style = 'hero__diagonal';
+          break;
+
+        default:
+          $image_style = 'hero__background';
+          break;
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_hero_image',
+        $image_style
+      );
+    }
+  }
+
+  // Check if the paragraph is a type of liftup with image.
+  if (
+    $paragraph_type == 'liftup_with_image' &&
+    $paragraph->hasField('field_liftup_with_image_image')
+  ) {
+
+    // Determine based on image design which responsive image style
+    // should be used when rendering the liftup with image image.
+    if ($paragraph->hasField('field_liftup_with_image_design')) {
+
+      switch ($paragraph->field_liftup_with_image_design->value) {
+        case 'image-on-right':
+        case 'image-on-left':
+        case 'image-on-right-secondary':
+        case 'image-on-left-secondary':
+          $image_style = 'image__3_2';
+          break;
+
+        default:
+          $image_style = 'hero__background';
+          break;
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_liftup_with_image_image',
+        $image_style
+      );
+    }
+  }
+
   // Check if the paragraph is a type of gallery and prepare the slides
   // and generate the thumbnails.
   if ($paragraph_type == 'gallery') {
@@ -467,34 +688,36 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
     // Load all slide paragraphs.
     $slides = $paragraph_storage->loadMultiple($slide_ids);
-
     $slide_thumbnails = [];
-    $slide_thumbnails_alternative_texts = [];
-    foreach ($slides as $slide) {
-      $slide_media = $slide
-        ->get('field_gallery_slide_media')
-        ->first()
-        ->get('entity')
-        ->getTarget()
-        ->getValue();
-      $image = $slide_media
-        ->get('field_media_image')
-        ->first()
-        ->get('entity')
-        ->getTarget()
-        ->getValue();
 
-      $alternative_text = [
-        'caption' => $slide->field_gallery_slide_caption->value,
-        'alt' => $slide_media->field_media_image->first()->alt,
-      ];
-
-      $slide_thumbnails_alternative_texts[] = $alternative_text;
-      $slide_thumbnails[] = $image;
+    // Construct an array of slides and handle the image caption + alt texts.
+    foreach ($slides as $id => $slide) {
+      $slides[$id] = ['gallery_slide' => $slide];
+      _hdbt_preprocess_image_caption(
+        $slides[$id],
+        'gallery_slide',
+        'field_gallery_slide_media',
+        'field_gallery_slide_caption'
+      );
+      $slides[$id]['gallery_slide'] = $slides[$id]['gallery_slide']->field_gallery_slide_media->entity->field_media_image->entity;
+      $slide_thumbnails[] = $slides[$id];
     }
-
     $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
-    $variables['gallery_slide_thumbnails_alt_texts'] = $slide_thumbnails_alternative_texts;
+  }
+
+  // Check if the paragraph is a type of gallery_slide and handle the slide
+  // image width and height attributes.
+  if (
+    $paragraph_type == 'gallery_slide' &&
+    $paragraph->hasField('field_gallery_slide_media')
+  ) {
+    // Handle image caption preprocessing.
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'paragraph',
+      'field_gallery_slide_media',
+      'field_gallery_slide_caption'
+    );
   }
 
   // Unit search paragraph.
@@ -603,12 +826,146 @@ function hdbt_preprocess_paragraph(array &$variables) {
 }
 
 /**
+ * Set image style programmatically.
+ *
+ * @param array $variables
+ *   Render array.
+ * @param string $entity_type
+ *   Current entity type.
+ * @param string $image
+ *   Image field name.
+ * @param string $image_style
+ *   Image style name.
+ */
+function _hdbt_set_image_style(array &$variables, string $entity_type, string $image, string $image_style) {
+  $entity = &$variables[$entity_type];
+
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Check that image has proper fields.
+  if (
+    $entity->hasField($image) &&
+    $entity->{$image}->entity &&
+    $entity->{$image}->entity->hasField('field_media_image') &&
+    !$entity->{$image}->entity->field_media_image->first()->isEmpty()
+  ) {
+    // Set altered_image_style variable based on modified image style
+    // for the responsive image preprocesses.
+    $entity->{$image}->entity->field_media_image->first()->altered_image_style = $image_style;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_image(&$variables) {
   // Convert double double quotes to empty string for image alt-texts.
   if (isset($variables['alt']) && $variables['alt'] === '""') {
     $variables['attributes']['alt'] = '';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_responsive_image_formatter(&$variables) {
+  if (!$variables['item'] instanceof ImageItem) {
+    return;
+  }
+
+  // Override alt text if alteration exists.
+  if (!empty($variables['item']->altered_alt_text)) {
+    $variables['responsive_image']['#attributes']['alt'] = $variables['item']->altered_alt_text;
+  }
+
+  // Override responsive image style if alteration exists.
+  if (!empty($variables['item']->altered_image_style)) {
+    $variables['responsive_image']['#responsive_image_style_id'] = $variables['item']->altered_image_style;
+  }
+
+  // Add width and height for the image, if the width and height can be
+  // retrieved from responsive image style. If aforesaid is not possible,
+  // use image width and height as fallback values.
+  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  $image_width = FALSE;
+  $image_height = FALSE;
+
+  if (isset($variables['responsive_image']['#responsive_image_style_id'])) {
+    $variables['responsive_image_style_id'] = $variables['responsive_image']['#responsive_image_style_id'];
+    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image']['#responsive_image_style_id']);
+    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
+
+    foreach ($fallback_image_style_config as $config) {
+      if (
+        isset($config['data']) &&
+        isset($config['data']['width'])
+      ) {
+        $image_width = $config['data']['width'];
+        // If image height is null, treat the image as square image.
+        $image_height = !empty($config['data']['height'])
+          ? $config['data']['height']
+          : $config['data']['width'];
+      }
+    }
+  }
+  elseif (
+    !empty($variables['responsive_image']['#width']) &&
+    !empty($variables['responsive_image']['#height'])
+  ) {
+    $image_width = $variables['responsive_image']['#width'];
+    $image_height = $variables['responsive_image']['#height'];
+  }
+
+  // Set responsive image width and height values if available.
+  if ($image_height && $image_width) {
+    $variables['responsive_image']['#attributes']['width'] = $image_width;
+    $variables['responsive_image']['#attributes']['height'] = $image_height;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_imagecache_external_responsive(&$variables) {
+  if (!isset($variables['img_element'])) {
+    return;
+  }
+
+  // Add width and height for the imagecache external image, if the width and
+  // height can be retrieved from responsive image style. If aforesaid is not
+  // possible, use image width and height as fallback values.
+  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  $image_width = FALSE;
+  $image_height = FALSE;
+
+  if (isset($variables['responsive_image_style_id'])) {
+    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
+    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
+
+    foreach ($fallback_image_style_config as $config) {
+      if (
+        isset($config['data']) &&
+        isset($config['data']['width'])
+      ) {
+        $image_width = $config['data']['width'];
+        // If image height is null, treat the image as square image.
+        $image_height = !empty($config['data']['height'])
+          ? $config['data']['height']
+          : $config['data']['width'];
+      }
+    }
+  }
+  elseif (!empty($variables['width']) && !empty($variables['height'])) {
+    $image_width = $variables['width'];
+    $image_height = $variables['height'];
+  }
+
+  // Set responsive image width and height values if available.
+  if ($image_height && $image_width) {
+    $variables['img_element']['#attributes']['width'] = $image_width;
+    $variables['img_element']['#attributes']['height'] = $image_height;
   }
 }
 
@@ -698,7 +1055,7 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
     isset($variables['view']) &&
     !empty($variables['view']->id())
   ) {
-    $suggestions[] = 'view__' . $variables['view']->id();
+    $suggestions[] = 'views_view__' . $variables['view']->id();
   }
 }
 

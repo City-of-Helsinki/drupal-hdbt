@@ -8,3 +8,35 @@ msgstr "Länken öppnas i en ny flik"
 msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
 msgid "Link leads to external service"
 msgstr "Länk leder till extern tjänst"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Uppdaterad"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "Dela"
+
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption Bild: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "Bild: @photographer"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "Publicerad"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Uppdaterad"
+
+msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
+msgid "Tags"
+msgstr "Taggar"
+
+msgctxt "Page lead-in section explanation for screen readers"
+msgid "Lead-in paragraph"
+msgstr "Inledande paragraf"
