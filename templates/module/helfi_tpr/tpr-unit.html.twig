@@ -143,7 +143,8 @@
 
   </article>
 
-{% elseif view_mode == 'teaser_with_image' %}
+{# TODO: We should simplify these to have only one style instead of two identical ones #}
+{% elseif view_mode == 'teaser_with_image' or view_mode == 'teaser' %}
 
   {% set image_attributes = create_attribute() %}
 
@@ -192,7 +193,7 @@
     </div>
   </div>
 
-{% elseif 'wide_teaser' %}
+{% elseif view_mode == 'wide_teaser' %}
 
   {% include '@hdbt/module/helfi_tpr/tpr-content-liftup.html.twig' %}
 
