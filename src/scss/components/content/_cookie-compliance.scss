@@ -188,13 +188,9 @@
       padding: $spacing-quarter;
     }
   }
-  .layout-main-wrapper &:last-child {
-    margin-bottom: -$spacing-sextuple;
-
-    .message {
-      @include breakpoint($breakpoint-m) {
-        margin-bottom: 80px;
-      }
+  .layout-main-wrapper &:last-child .message {
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: 80px;
     }
   }
 }
