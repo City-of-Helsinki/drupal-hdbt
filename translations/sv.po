@@ -46,7 +46,7 @@ msgid "See details"
 msgstr "Se detaljer"
 
 msgid "Sorry, the page you were looking for was not found."
-msgstr "Tyvärr hittas inte sidan du sökte"
+msgstr "Tyvärr hittas inte sidan du sökte."
 
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit bort eller flyttat sidan."
