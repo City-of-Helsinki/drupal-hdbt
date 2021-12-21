@@ -1,0 +1,18 @@
+{% embed 'page.html.twig' %}
+  {% block page_before_content %}
+    {% embed '@hdbt/misc/container.twig' with {container_element: 'page-title'} %}
+      {% block container_content %}
+        <div class="page-title">
+          <h1>404 - {{ 'Sorry, the page you were looking for was not found.'|t }}</h1>
+        </div>
+      {% endblock container_content %}
+    {% endembed %}
+  {% endblock page_before_content %}
+  {% block page_content %}
+    {% embed '@hdbt/misc/component.twig' with {container_element: 'error-content'} %}
+      {% block component_content %}
+        <p>{{ 'Check that you have typed in the page address correctly. We may have deleted or moved the content.'|t }}</p>
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock page_content %}
+{% endembed %}

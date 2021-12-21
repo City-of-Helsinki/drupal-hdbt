@@ -1,0 +1,20 @@
+{% embed 'page.html.twig' %}
+  {% block page_before_content %}
+    {% embed '@hdbt/misc/container.twig' with {container_element: 'page-title'} %}
+      {% block container_content %}
+        <div class="page-title">
+          <h1>403 - {{ 'You are not authorized to access this page.'|t }}</h1>
+        </div>
+      {% endblock container_content %}
+    {% endembed %}
+  {% endblock page_before_content %}
+  {% block page_content %}
+    {% embed '@hdbt/misc/component.twig' with {container_element: 'error-content'} %}
+      {% block component_content %}
+        <p>{{ 'The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content.'|t }}</p>
+        <h2>{{ 'Log in'|t }}</h2>
+        {{ drupal_block('user_login_block') }}
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock page_content %}
+{% endembed %}

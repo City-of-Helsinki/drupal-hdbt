@@ -63,17 +63,21 @@
   <main role="main" class="layout-main-wrapper">
     <a id="main-content" tabindex="-1"></a>
 
-    {# Move title inside the content area if page has navigation set to true. #}
-    {% if page.before_content and not move_before_content %}
-      {{ page.before_content }}
-    {% endif %}
+    {% block page_before_content %}
+      {# Move title inside the content area if page has navigation set to true. #}
+      {% if page.before_content and not move_before_content %}
+        {{ page.before_content }}
+      {% endif %}
+    {% endblock page_before_content %}
 
     <div class="main-content">
       <div class="layout-content {% if has_navigation %}has-navigation{% endif %} {% if move_before_content %}before-content--in-main{% endif %}">
         {% if page.before_content and move_before_content %}
           {{ page.before_content }}
         {% endif %}
-        {{ page.content }}
+        {% block page_content %}
+          {{ page.content }}
+        {% endblock page_content %}
       </div>{# /.layout-content #}
 
       {% if sidebar_first_output %}
