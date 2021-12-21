@@ -5,8 +5,14 @@
     font-style: italic;
     margin-top: 0;
 
+
     &::before {
-      content: "“";
+      content: "”"; // Defaults to finnish quotation syntax https://jkorpela.fi/suomi/lain.html
+    }
+
+    [lang='en']&::before,
+    [lang='en'] &::before {
+      content: "“"; // Uses english format when appropriate
     }
 
     &::after {
