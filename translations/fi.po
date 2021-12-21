@@ -44,3 +44,12 @@ msgstr "Johdanto"
 msgctxt "Content liftup card hit for seeing more information on content page"
 msgid "See details"
 msgstr "Katso tarkemmat tiedot"
+
+msgid "Sorry, the page you were looking for was not found."
+msgstr "Etsimääsi sivua ei valitettavasti löytynyt"
+
+msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
+msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
+
+msgid "The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content."
+msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
