@@ -85,7 +85,8 @@
   }
 }
 
-.embedded-content-cookie-compliance {
+.embedded-content-cookie-compliance,
+.react-and-share-cookie-compliance {
   align-content: center;
   align-items: center;
   background-color: $color-black-5;
@@ -186,5 +187,16 @@
     .hds-button__label {
       padding: $spacing-quarter;
     }
+  }
+  .layout-main-wrapper &:last-child .message {
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: 80px;
+    }
+  }
+}
+.react-and-share-cookie-compliance {
+  .message {
+    background-color: transparent;
+    padding: 0;
   }
 }

@@ -26,7 +26,7 @@
  */
 #}
 
-{% set attributes = attributes.addClass('block--react-and-share') %}
+{% set attributes = attributes.addClass(['block--react-and-share', 'js-react-and-share__container']) %}
 
 <div{{ attributes.setAttribute('data-hdbt-selector','react-and-share') }}>
   {{ title_prefix }}

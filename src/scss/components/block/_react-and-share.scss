@@ -2,6 +2,15 @@
 .block--react-and-share {
   @include component-margin-top();
   width: 100%;
+
+  &:last-child {
+    background: $color-black-5;
+    margin-bottom: -112px;
+
+    .rns .rns-plugin {
+      padding-bottom: 112px;
+    }
+  }
 }
 
 .rns {
@@ -11,11 +20,10 @@
   margin-right: auto;
 
   .rns-plugin {
-    border-bottom: 1px solid $color-black;
-    border-top: 1px solid $color-black;
     font-family: $font-default;
     margin: 0;
-    padding: $spacing-double 0;
+    padding-bottom: 80px;
+    padding-top: 80px;
 
     // Reactions
     .rns-reactions {
