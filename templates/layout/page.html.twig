@@ -31,7 +31,18 @@
   {% set move_before_content = TRUE %}
 {% endif %}
 
-<div{{ create_attribute({'class': page_classes} ) }}>
+{% if node.published %}
+  {% set publishAttribute = {'data-published': true} %}
+{% else %}
+  {% set publishAttribute =
+    {
+      'data-unpublished':  'Unpublished'|t({}, {'context': 'Short description for editors about current page being unpublished'}),
+      'data-unpublished-long':  'This page is unpublished'|t({}, {'context': 'Long description for editors about current page being unpublished'}),
+    }
+  %}
+{% endif %}
+
+<div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
     <header role="banner" class="header">
       {% if page.header_top %}

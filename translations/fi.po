@@ -53,3 +53,11 @@ msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattan
 
 msgid "The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content."
 msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
+
+msgctxt "Short description for editors about current page being unpublished"
+msgid "Unpublished"
+msgstr "Julkaisematon"
+
+msgctxt "Long description for editors about current page being unpublished"
+msgid "See details"
+msgstr "Tämä sivu on julkaisematon"

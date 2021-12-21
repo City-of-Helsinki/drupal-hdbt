@@ -50,3 +50,11 @@ msgstr "Tyvärr hittas inte sidan du sökte."
 
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit bort eller flyttat sidan."
+
+msgctxt "Short description for editors about current page being unpublished"
+msgid "Unpublished"
+msgstr "Opublicerad"
+
+msgctxt "Long description for editors about current page being unpublished"
+msgid "See details"
+msgstr "Den här sidan är opublicerad"
