@@ -31,7 +31,8 @@
   {% set move_before_content = TRUE %}
 {% endif %}
 
-{% if node.published %}
+{# The published variable can be true/false/null and only false should be marked with unpublished indicator #}
+{% if published or published is null %}
   {% set publishAttribute = {'data-published': true} %}
 {% else %}
   {% set publishAttribute =
