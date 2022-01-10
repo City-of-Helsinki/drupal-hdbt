@@ -287,6 +287,10 @@
             mask-image: url('../icons/hds/some/facebook.svg');
           }
 
+          &.rns-share-whatsapp .rns-share-button:before {
+            mask-image: url('../icons/hds/some/whatsapp.svg');
+          }
+
           &.rns-share-twitter .rns-share-button:before {
             mask-image: url('../icons/hds/some/twitter.svg');
           }
