@@ -1,3 +1,22 @@
+[data-unpublished]::before{
+  @include font-size(16px, 16px);
+  background: $color-error;
+  color: $color-white;
+  content: attr(data-unpublished);
+  display: block;
+  font-weight: medium;
+  padding-left: $spacing-half;
+  padding-right: $spacing-half;
+  position: fixed;
+  transform: rotate(-90deg) translateX(calc(-50% - 50vh));
+  transform-origin: top left;
+
+  @include breakpoint($breakpoint-m) {
+    @include font-size(18px, 27px);
+    content: attr(data-unpublished-long);
+  }
+}
+
 .preamble,
 .lead-in {
   @include font-size(20px, 32px);
