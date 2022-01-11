@@ -56,5 +56,5 @@ msgid "Unpublished"
 msgstr "Opublicerad"
 
 msgctxt "Long description for editors about current page being unpublished"
-msgid "See details"
+msgid "This page is unpublished"
 msgstr "Den här sidan är opublicerad"
