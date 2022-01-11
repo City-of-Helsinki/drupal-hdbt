@@ -116,9 +116,19 @@ function hdbt_preprocess_media(&$variables) {
   }
   if ($variables['media']->bundle() === 'remote_video') {
     $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
-    // @todo Get correct video service URL once multiple services are supported.
-    $variables['video_service_url'] = 'youtube.com';
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
+
+    // If Oembed providers module is installed, get provider URL based on
+    // current remote video URL.
+    if (
+      Drupal::moduleHandler()->moduleExists('oembed_providers') &&
+      $variables['media']->hasField('field_media_oembed_video')
+    ) {
+      $url_resolver = \Drupal::service('media.oembed.url_resolver');
+      $video_url = $variables['media']->field_media_oembed_video->value;
+      $provider = $url_resolver->getProviderByUrl($video_url);
+      $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
+    }
   }
 }
 
