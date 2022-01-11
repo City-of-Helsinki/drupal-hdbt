@@ -198,6 +198,16 @@ function hdbt_preprocess_page(&$variables) {
   if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
   }
+
+  // Check if current entity is published and set variable accordingly.
+  $page_entity = hdbt_content_get_page_entity();
+  if (
+    !empty($page_entity) &&
+    $page_entity instanceof ContentEntityInterface &&
+    method_exists($page_entity, 'isPublished')
+  ) {
+    $variables['published'] = $page_entity->isPublished();
+  }
 }
 
 /**
