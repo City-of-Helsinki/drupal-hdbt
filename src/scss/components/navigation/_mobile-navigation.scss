@@ -68,7 +68,7 @@ $spacing-menu-item: 20px;
         content: "";
         display: flex;
         height: $spacing-quadruple;
-        mask-image: url('../icons/hds/ui/angle-down.svg');
+        mask-image: icon_url('hds/ui/angle-down');
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: 25px;
@@ -250,7 +250,7 @@ $spacing-menu-item: 20px;
     background-size: contain;
     content: "";
     display: flex;
-    mask-image: url('../icons/hds/ui/menu-hamburger.svg');
+    mask-image: icon_url('hds/ui/menu-hamburger');
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: 25px;
@@ -262,7 +262,7 @@ $spacing-menu-item: 20px;
   }
 
   &[aria-expanded="true"] .icon {
-    mask-image: url('../icons/hds/ui/cross.svg');
+    mask-image: icon_url('hds/ui/cross');
   }
 }
 

@@ -47,7 +47,7 @@
     }
 
     &::before {
-      background-image: url('../icons/hds/ui/angle-left.svg');
+      background-image: icon_url('hds/ui/angle-left');
       background-position: center;
       background-repeat: no-repeat;
       background-size: auto 100%;

@@ -25,7 +25,7 @@
         display: flex;
         height: 30px;
         left: 0;
-        mask-image: url('../icons/hds/ui/arrow-left.svg');
+        mask-image: icon_url('hds/ui/arrow-left');
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: 25px;
@@ -82,7 +82,7 @@
           content: "";
           display: flex;
           height: 20px;
-          mask-image: url('../icons/hds/ui/link-external.svg');
+          mask-image: icon_url('hds/ui/link-external');
           mask-position: center;
           mask-repeat: no-repeat;
           mask-size: 20px;
