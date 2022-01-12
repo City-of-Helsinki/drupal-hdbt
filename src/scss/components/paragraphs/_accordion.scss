@@ -25,7 +25,7 @@
       background-color: transparent;
 
       &::after {
-        background-image: url('../icons/hds/ui/angle-up.svg');
+        background-image: icon_url('hds/ui/angle-up');
       }
     }
 
@@ -82,7 +82,7 @@
     }
 
     &::after {
-      background-image: url('../icons/hds/ui/angle-down.svg');
+      background-image: icon_url('hds/ui/angle-down');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 100%;

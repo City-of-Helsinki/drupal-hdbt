@@ -122,35 +122,35 @@
 }
 
 .service-channel--email .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/glyph-at.svg');
+  mask-image: icon_url('hds/ui/glyph-at');
 }
 
 .service-channel--sms .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/mobile.svg');
+  mask-image: icon_url('hds/ui/mobile');
 }
 
 .service-channel--telephone .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/phone.svg');
+  mask-image: icon_url('hds/ui/phone');
 }
 
 .service-channel--printable_form .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/document.svg');
+  mask-image: icon_url('hds/ui/document');
 }
 
 .service-channel--webpage .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/globe.svg');
+  mask-image: icon_url('hds/ui/globe');
 }
 
 .service-channel--chat .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/speechbubble-text.svg');
+  mask-image: icon_url('hds/ui/speechbubble-text');
 }
 
 .service-channel--local .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/location.svg');
+  mask-image: icon_url('hds/ui/location');
 }
 
 .service-channel--mail .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/envelope.svg');
+  mask-image: icon_url('hds/ui/envelope');
 }
 
 .service-channel__phone,
