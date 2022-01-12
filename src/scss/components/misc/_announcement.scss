@@ -37,14 +37,14 @@
   --announcement-bg-color: #{$color-error-light};
   --announcement-color: #{$color-error};
   &::before {
-    @include icon-mask-image('ui/error-fill');
+    @include pseudo-icon-replace('ui/error-fill');
   }
 }
 
 .announcement--attention {
   --announcement-color: #{$color-alert};
   &::before {
-    @include icon-mask-image('ui/alert-circle-fill');
+    @include pseudo-icon-replace('ui/alert-circle-fill');
     background-color: $color-black;
   }
 }

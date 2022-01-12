@@ -1,0 +1,3 @@
+@function icon_url($icon){
+  @return url('../icons/hds/' + $icon + '.svg');
+}

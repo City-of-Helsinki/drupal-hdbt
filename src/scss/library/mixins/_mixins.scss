@@ -73,20 +73,20 @@
 /**
  * Allow changing icon easily on hover, etc.
  */
-@mixin icon-mask-image( $icon ) {
-  mask-image: url('../icons/hds/' + $icon + '.svg');
+@mixin pseudo-icon-replace( $icon ) {
+  mask-image: icon_url( $icon );
 }
 
 /**
  * Add pseudo element (::before, ::after) styling for icons
  */
 @mixin pseudo-icon($icon, $size: $spacing, $color: $color-black, $display: inline-block) {
-  @include icon-mask-image( $icon );
   background-color: $color;
   background-size: contain;
   content: '';
   display: $display;
   height: $size;
+  mask-image: icon_url( $icon );
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: $size;
