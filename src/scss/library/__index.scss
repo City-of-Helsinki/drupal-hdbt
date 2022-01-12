@@ -1,3 +1,4 @@
-@import 'variables/_index'; // Should be first
+@import 'functions/_index';
+@import 'variables/_index'; // Should be after functions
 @import 'mixins/_index'; // Should be after variables
 @import 'fonts/_index';
