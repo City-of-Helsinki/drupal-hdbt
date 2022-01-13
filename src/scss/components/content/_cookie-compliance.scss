@@ -189,9 +189,7 @@
     }
   }
   .layout-main-wrapper &:last-child .message {
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: 80px;
-    }
+    margin-bottom: 80px;
   }
 }
 .react-and-share-cookie-compliance {
