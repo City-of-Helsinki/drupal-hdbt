@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an oEmbed resource in an iframe.
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <css-placeholder token="{{ placeholder_token }}">
+  </head>
+  {# TODO: Fix "right: -15px" once embedded video is returned without scrollbars. #}
+  <body style="margin: 0; height: 100%; left: 0; right: -15px; position: absolute; top: 0; width: auto; overflow: hidden;">
+    {{ media|raw }}
+  </body>
+</html>
