@@ -136,9 +136,9 @@ module.exports = {
         gutter: 0,
         generate: {
           title: false,
-          symbol: true,
-          use: false,
-          view: false
+          symbol: '-s',
+          use: true,
+          view: true
         }
       },
     }),

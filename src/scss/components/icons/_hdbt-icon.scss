@@ -6,6 +6,7 @@
     content: "";
     display: inline-block;
     height: var(--icon-proportions);
+    mask-image: var(--url); //TODO: add fallback icon
     mask-repeat: no-repeat;
     mask-size: var(--icon-proportions);
     min-height: var(--icon-proportions);
