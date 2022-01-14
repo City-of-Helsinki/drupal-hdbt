@@ -1,4 +1,3 @@
 {
-  "pathToIconSprite": "/dist/icons/sprite.svg",
-  "pathToIconJson": "/src/icons/ui-icons.json"
+  "pathToIconJson": "/src/icons/editor-selectable-icons.json"
 }
