@@ -28,7 +28,6 @@ function hdbt_preprocess(&$variables) {
   $language = Drupal::languageManager()->getCurrentLanguage();
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
-  $variables['#attached']['drupalSettings']['iconsPath'] = $variables['icons_path'];
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
