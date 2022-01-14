@@ -7,21 +7,35 @@ class svgToScss {
   constructor(inputPattern, outputFilename) {
     this.inputPattern = inputPattern;
     this.output = outputFilename;
-    this.files = [];
+    this.cssVariables = [];
+    this.classes = [];
   }
-
   apply(compiler) {
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
 
-      let filelist = '';
-
-      while(this.files.length) {
-        let fullFilename = this.files.shift();
+      // Create --hdbt-icon--{icon name} CSS variables.
+      let cssVariables = 'html{';
+      while(this.cssVariables.length) {
+        let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        filelist += `.hdbt-icon--${name[0]}::before{mask-image:url('../icons/svg/${filename}');-webkit-mask-image:url('../icons/svg/${filename}');}`;
+        cssVariables += `--hdbt-icon--${name[0]}: url(../icons/sprite.svg#${name[0]});`;
+      }
+      cssVariables += '}';
+
+      // Create .hdbt-icon--{icon name} css classes.
+      let cssClasses = '';
+      while(this.classes.length) {
+        let fullFilename = this.classes.shift();
+        let filename = fullFilename.replace(/^.*[\\\/]/, '')
+        let name = filename.split('.');
+        cssClasses += `.hdbt-icon--${name[0]} {--url: var(--hdbt-icon--${name[0]});}`;
       }
 
+      // Combine CSS variables and classes.
+      let filelist = cssVariables + cssClasses;
+
+      // Compile the assets.
       compilation.assets[this.output] = {
         source: function() {
           return filelist;
@@ -42,7 +56,8 @@ class svgToScss {
       const stats = fs.lstatSync(pathname);
 
       if (stats.isFile()) {
-        this.files = [...new Set([...this.files, pathname])];
+        this.classes = [...new Set([...this.classes, pathname])];
+        this.cssVariables = [...new Set([...this.cssVariables, pathname])];
       }
     });
   }
