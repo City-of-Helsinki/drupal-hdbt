@@ -182,7 +182,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
     }),
-    new SvgSpriteHash('./dist/icons', 'sprite', 'svg'),
+    new SvgSpriteHash('./dist/icons', 'sprite', 'svg', 'css/hdbt-icons.css'),
   ],
   watchOptions: {
     aggregateTimeout: 300,
