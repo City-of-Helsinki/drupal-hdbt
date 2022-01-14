@@ -22,7 +22,6 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
  * Implements hook_preprocess().
  */
 function hdbt_preprocess(&$variables) {
-  $variables['icons_path'] = hdbt_get_icons_path();
   $variables['koro'] = hdbt_get_settings('koro');
   $variables['theme_color'] = hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = hdbt_get_settings('default_icon');
@@ -130,26 +129,6 @@ function hdbt_preprocess_media(&$variables) {
       $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
     }
   }
-}
-
-/**
- * Helper function to get the icons path.
- *
- * @return string|null
- *   Returns path for the icons SVG or null.
- */
-function hdbt_get_icons_path() {
-  static $icon_path;
-  if (!isset($icon_path)) {
-    $theme_handler = \Drupal::service('theme_handler');
-    $icon_path = '/' . $theme_handler->getTheme('hdbt')->getPath() . '/dist/icons/sprite.svg';
-
-    if (!empty($icon_path)) {
-      // Add icons path as a global variable.
-      return $icon_path;
-    }
-  }
-  return $icon_path;
 }
 
 /**
