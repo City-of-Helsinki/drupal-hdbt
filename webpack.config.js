@@ -9,6 +9,7 @@ const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugi
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const SvgSpriteHash = require('./webpack.svgSpriteHash');
 const SvgToJson = require('./webpack.svgToJson');
 const SvgToCss = require('./webpack.svgToCss');
 
@@ -136,8 +137,8 @@ module.exports = {
         generate: {
           title: false,
           symbol: true,
-          use: true,
-          view: '-view'
+          use: false,
+          view: false
         }
       },
     }),
@@ -175,16 +176,13 @@ module.exports = {
           'from': 'node_modules/mmenu-js/dist/mmenu.css',
           'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
           'force': true,
-        }, {
-          'from': 'src/icons/**/*.svg',
-          'to': path.resolve(__dirname, 'dist') + '/icons/svg/[name][ext]',
-          'force': true,
-        },
+        }
       ]
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
     }),
+    new SvgSpriteHash('./dist/icons', 'sprite', 'svg'),
   ],
   watchOptions: {
     aggregateTimeout: 300,
