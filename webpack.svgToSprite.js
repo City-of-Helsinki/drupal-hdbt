@@ -113,8 +113,15 @@ class svgToSprite {
         cssClasses += `.hdbt-icon--${name[0]} {--url: var(--hdbt-icon--${name[0]});}`;
       }
 
+      // Add a URL as a CSS variable to the hdbt-icon mask-image.
+      // If icons are used elsewhere (f.e. in a separate theme or module) this
+      // variable will provide the correct URL for the icon.
+      let hdbtIconUrl = ".hdbt-icon{" +
+        "-webkit-mask-image:var(--url);mask-image:var(--url);" +
+      "}";
+
       // Combine CSS variables and classes.
-      let filelist = cssVariables + cssClasses;
+      let filelist = cssVariables + cssClasses + hdbtIconUrl;
 
       // Compile the assets.
       compilation.assets[this.svgToCssOutputFilename] = {
