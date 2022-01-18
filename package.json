@@ -44,7 +44,6 @@
     "joi": "^17.4.0",
     "lint-staged": "^12.0.0",
     "md5": "^2.3.0",
-    "md5-file": "^5.0.0",
     "mini-css-extract-plugin": "^1.6.2",
     "mmenu-js": "^8.5.23",
     "normalize.css": "^8.0.1",
