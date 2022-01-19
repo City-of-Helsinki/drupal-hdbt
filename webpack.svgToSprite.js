@@ -10,11 +10,14 @@ const plugin = {
 
 // Generates styles for each icon.
 class svgToSprite {
-  constructor(inputPattern, outputSvgSpriteFilename, outputIconStylesFilename, outputIconJsonFilename) {
+  constructor(inputPattern, outputSvgSpriteFilename, outputIconJsonFilename) {
+    // Current theme name.
+    this.themeName = path.basename(path.resolve(process.cwd())).replace(/_/g, '-');
+
     // Input and output patterns.
     this.inputPattern = inputPattern;
     this.svgSpriteFilename = outputSvgSpriteFilename;
-    this.svgToCssOutputFilename = outputIconStylesFilename;
+    this.svgToCssOutputFilename = `css/${this.themeName}-icons.css`;
     this.svgToJsonOutputFilename = outputIconJsonFilename;
 
     // Mapped SVG files.
@@ -24,9 +27,9 @@ class svgToSprite {
 
     // Path for icons and icons css file.
     this.path = 'dist/icons';
-    this.iconsCssPath = 'dist/css/hdbt-icons.css';
+    this.iconsCssPath = `dist/css/${this.themeName}-icons.css`;
 
-    // Sprite confiuration files.
+    // Sprite configuration files.
     this.spriteFilename = 'icons/sprite.svg';
     this.spriteHashFilename = '';
   }
@@ -93,32 +96,34 @@ class svgToSprite {
     // SVG to CSS.
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
+      let iconClass = this.themeName === 'hdbt' ? 'hel' : this.themeName;
 
-      // Create --hdbt-icon--{icon name} CSS variables.
+      // Create --{Theme name}-icon--{icon name} CSS variables.
       let cssVariables = 'html{';
+
       while(this.cssVariables.length) {
         let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssVariables += `--hdbt-icon--${name[0]}: url(../icons/sprite.svg#${name[0]});`;
+        cssVariables += `--${iconClass}-icon--${name[0]}: url(../icons/sprite.svg#${name[0]});`;
       }
       cssVariables += '}';
 
-      // Create .hdbt-icon--{icon name} css classes.
+      // Create .{Theme name}-icon--{icon name} css classes.
       let cssClasses = '';
       while(this.classes.length) {
         let fullFilename = this.classes.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssClasses += `.hdbt-icon--${name[0]} {--url: var(--hdbt-icon--${name[0]});}`;
+        cssClasses += `.${iconClass}-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
       }
 
-      // Add a URL as a CSS variable to the hdbt-icon mask-image.
+      // Add a URL as a CSS variable to the {Theme name}-icon mask-image.
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
-      let hdbtIconUrl = ".hdbt-icon{" +
-        "-webkit-mask-image:var(--url);mask-image:var(--url);" +
-      "}";
+      let hdbtIconUrl = `.${iconClass}-icon{` +
+        `-webkit-mask-image:var(--url);mask-image:var(--url);` +
+      `}`;
 
       // Combine CSS variables and classes.
       let filelist = cssVariables + cssClasses + hdbtIconUrl;
@@ -175,11 +180,11 @@ class svgToSprite {
 
     // Rename the sprite filename in icon style file.
     fs.readFile(iconsCssPath, 'utf8', (err, data) => {
-      if (err) return console.log(`ERROR while trying to read hdbt-icons.css: ` + err);
+      if (err) return console.log(`ERROR while trying to read ${this.themeName}-icons.css: ` + err);
       let result = data.replace(new RegExp(this.spriteFilename, 'g'), this.spriteHashFilename);
 
       fs.writeFile(iconsCssPath, result, 'utf8', (err) => {
-        if (err) return console.log(`ERROR while trying to write hdbt-icons.css: ` + err);
+        if (err) return console.log(`ERROR while trying to write ${this.themeName}-icons.css: ` + err);
       });
     });
   }
