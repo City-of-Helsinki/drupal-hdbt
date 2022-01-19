@@ -109,7 +109,7 @@ $item_spacing: $spacing-triple;
       transform: rotate(-45deg);
     }
 
-    .icon {
+    .hel-icon {
       --icon-size: 1.5rem;
 
       @include breakpoint($breakpoint-s) {
@@ -160,7 +160,7 @@ $item_spacing: $spacing-triple;
         margin-top: -8px;
       }
 
-      .icon {
+      .hel-icon {
         --icon-size: 2rem;
 
         @include breakpoint($breakpoint-s) {
