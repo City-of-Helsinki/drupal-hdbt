@@ -137,11 +137,15 @@ $arrow-container-height: 48px;
 
     &.splide__arrow--prev {
       background-image: icon_url('arrow-left');
+      background-position: center center;
+      background-repeat: no-repeat;
       margin-left: -$spacing-half;
     }
 
     &.splide__arrow--next {
       background-image: icon_url('arrow-right');
+      background-position: center center;
+      background-repeat: no-repeat;
       margin-right: -$spacing-half;
     }
   }
@@ -186,11 +190,15 @@ $arrow-container-height: 48px;
 
     &[data-controls=prev] {
       background-image: icon_url('angle-left');
+      background-position: center center;
+      background-repeat: no-repeat;
       left: $spacing-quarter;
     }
 
     &[data-controls=next] {
       background-image: icon_url('angle-right');
+      background-position: center center;
+      background-repeat: no-repeat;
       right: $spacing-quarter;
     }
   }
