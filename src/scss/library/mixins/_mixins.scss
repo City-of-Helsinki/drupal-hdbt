@@ -19,27 +19,35 @@
 
   // Handle the line-height.
   @if $line-height != "" {
-    // Check if line-height is in px.
-    @if unit($line-height) == 'px' {
-      line-height: math.div($line-height, $base-font-size) * 1rem;
+    // If line-height is in correct format or in em units, lets use that
+    @if unit($line-height) == 'em' or unit($line-height) == '' {
+      --line-height: #{nounit($line-height)};
+      line-height: var(--line-height);
     }
     @else {
-      // Check if line-height is in rem and handle the line-height.
-      @if unit($line-height) == 'rem' {
-        line-height: $line-height;
+
+      // First lets convert font-size to unitless px values
+      $font-size-px: nounit($font-size);
+      // Convert the font-size if it is in rem.
+      @if unit($font-size) == 'rem' {
+        $font-size-px: nounit($font-size) * nounit($base-font-size);
       }
-      // The line-height is a multiplier.
+      @else if units($font-size) == 'em' {
+        @error 'Em font units can not be used for converting line-height to unitless automatically!';
+      }
+
+      // Convert line-height from rem to px value if needed
+      @if unit($line-height) == 'rem' {
+        $line-height: nounit($line-height) * $base-font-size;
+      }
+
+      // Check if line-height is now in px and use that.
+      @if unit($line-height) == 'px' {
+        --line-height: #{nounit(math.div($line-height, $font-size-px))};
+        line-height: var(--line-height);
+      }
       @else {
-        $font-size-px: nounit($font-size);
-        $base-font-size-px: nounit($base-font-size);
-
-        // Convert the font-size if it is in rem.
-        @if unit($font-size) == 'rem' {
-          $font-size-px: nounit($font-size) * nounit($base-font-size);
-        }
-
-        $conversion: math.div($base-font-size-px * math.div($font-size-px, $base-font-size-px) * $line-height, $base-font-size-px);
-        line-height: #{$conversion}rem;
+        @error "Unable to convert line-height:#{$line-height} (with font-size:#{$font-size}) to unitless";
       }
     }
   }
