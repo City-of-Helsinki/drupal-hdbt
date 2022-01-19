@@ -16,7 +16,7 @@
   <div{{ attributes.addClass('header-branding').setAttribute('id', 'header-branding') }}>
     {{ content }}
     <a data-hdbt-selector="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation" aria-expanded="false" role="button" aria-haspopup="dialog">
-      <span class="icon"></span>
+      {% include '@hdbt/misc/icon.twig' with {icon: 'menu-hamburger'} %}
       <span class="mobile-navigation__trigger__text">{{ 'Menu'|t }}</span>
     </a>
   </div>
