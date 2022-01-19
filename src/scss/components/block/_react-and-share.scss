@@ -96,7 +96,7 @@
                 display: flex;
                 height: 24px;
                 margin-left: $spacing-half;
-                mask-image: icon_url('hds/ui/face-neutral');
+                mask-image: icon_url('face-neutral');
                 mask-position: center;
                 mask-repeat: no-repeat;
                 mask-size: 24px;
@@ -154,11 +154,11 @@
           }
 
           &:first-child .rns-label:after {
-            mask-image: icon_url('hds/ui/face-smile');
+            mask-image: icon_url('face-smile');
           }
 
           &:last-child .rns-label:after {
-            mask-image: icon_url('hds/ui/face-sad');
+            mask-image: icon_url('face-sad');
           }
         }
       }
@@ -240,7 +240,7 @@
               display: flex;
               height: 32px;
               margin-right: $spacing-half;
-              mask-image: icon_url('hds/ui/share');
+              mask-image: icon_url('share');
               mask-position: center;
               mask-repeat: no-repeat;
               mask-size: 32px;
@@ -284,19 +284,19 @@
           }
 
           &.rns-share-facebook .rns-share-button:before {
-            mask-image: icon_url('hds/some/facebook');
+            mask-image: icon_url('facebook');
           }
 
           &.rns-share-whatsapp .rns-share-button:before {
-            mask-image: icon_url('hds/some/whatsapp');
+            mask-image: icon_url('whatsapp');
           }
 
           &.rns-share-twitter .rns-share-button:before {
-            mask-image: icon_url('hds/some/twitter');
+            mask-image: icon_url('twitter');
           }
 
           &.rns-share-email .rns-share-button:before {
-            mask-image: icon_url('hdbt/some/email');
+            mask-image: icon_url('email');
           }
         }
       }
@@ -350,7 +350,7 @@
       display: flex;
       height: 24px;
       margin-left: $spacing;
-      mask-image: icon_url('hds/ui/arrow-right');
+      mask-image: icon_url('arrow-right');
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: 24px;

@@ -122,35 +122,35 @@
 }
 
 .service-channel--email .service-channel__type:after {
-  mask-image: icon_url('hds/ui/glyph-at');
+  mask-image: icon_url('glyph-at');
 }
 
 .service-channel--sms .service-channel__type:after {
-  mask-image: icon_url('hds/ui/mobile');
+  mask-image: icon_url('mobile');
 }
 
 .service-channel--telephone .service-channel__type:after {
-  mask-image: icon_url('hds/ui/phone');
+  mask-image: icon_url('phone');
 }
 
 .service-channel--printable_form .service-channel__type:after {
-  mask-image: icon_url('hds/ui/document');
+  mask-image: icon_url('document');
 }
 
 .service-channel--webpage .service-channel__type:after {
-  mask-image: icon_url('hds/ui/globe');
+  mask-image: icon_url('globe');
 }
 
 .service-channel--chat .service-channel__type:after {
-  mask-image: icon_url('hds/ui/speechbubble-text');
+  mask-image: icon_url('speechbubble-text');
 }
 
 .service-channel--local .service-channel__type:after {
-  mask-image: icon_url('hds/ui/location');
+  mask-image: icon_url('location');
 }
 
 .service-channel--mail .service-channel__type:after {
-  mask-image: icon_url('hds/ui/envelope');
+  mask-image: icon_url('envelope');
 }
 
 .service-channel__phone,

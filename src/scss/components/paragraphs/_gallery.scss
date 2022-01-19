@@ -136,12 +136,12 @@ $arrow-container-height: 48px;
     }
 
     &.splide__arrow--prev {
-      background-image: icon_url('hds/ui/arrow-left');
+      background-image: icon_url('arrow-left');
       margin-left: -$spacing-half;
     }
 
     &.splide__arrow--next {
-      background-image: icon_url('hds/ui/arrow-right');
+      background-image: icon_url('arrow-right');
       margin-right: -$spacing-half;
     }
   }
@@ -185,12 +185,12 @@ $arrow-container-height: 48px;
     }
 
     &[data-controls=prev] {
-      background-image: icon_url('hds/ui/angle-left');
+      background-image: icon_url('angle-left');
       left: $spacing-quarter;
     }
 
     &[data-controls=next] {
-      background-image: icon_url('hds/ui/angle-right');
+      background-image: icon_url('angle-right');
       right: $spacing-quarter;
     }
   }
