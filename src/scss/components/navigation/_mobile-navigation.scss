@@ -245,23 +245,16 @@ $spacing-menu-item: 20px;
     }
   }
 
-  .icon {
-    background-color: $color-black;
-    background-size: contain;
-    content: "";
-    display: flex;
-    mask-image: icon_url('hds/ui/menu-hamburger');
-    mask-position: center;
-    mask-repeat: no-repeat;
+  .hel-icon {
+    --icon-size: 20px;
     mask-size: 25px;
-    width: 20px;
 
     @include breakpoint(440px) {
       margin-bottom: $spacing-quarter;
     }
   }
 
-  &[aria-expanded="true"] .icon {
+  &[aria-expanded="true"] .hel-icon {
     mask-image: icon_url('hds/ui/cross');
   }
 }

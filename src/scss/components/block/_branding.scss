@@ -45,7 +45,7 @@
 
 .mm-wrapper_opened {
   .block--branding {
-    .logo--header .icon {
+    .logo--header .hel--icon {
       --icon-size: $spacing-and-half;
       @include breakpoint(max-width 440px) {
         opacity: 0;

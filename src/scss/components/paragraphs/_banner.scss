@@ -29,8 +29,7 @@
     margin-right: $spacing-and-half;
   }
 
-  //TODO .hel-icon fix !
-  .icon,.hel-icon {
+  .hel-icon {
     --icon-size: #{$spacing-quadruple};
 
     @include breakpoint($breakpoint-m) {

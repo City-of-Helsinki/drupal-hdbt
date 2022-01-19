@@ -156,7 +156,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:hover {
-      .icon {
+      .hel-icon {
         margin-left: $spacing;
       }
     }
@@ -172,7 +172,7 @@ $teaser-icon-size-desktop: 48px;
     }
   }
 
-  .icon {
+  .hel-icon {
     --icon-size: #{$teaser-icon-size-mobile};
     bottom: 50%;
     left: auto;

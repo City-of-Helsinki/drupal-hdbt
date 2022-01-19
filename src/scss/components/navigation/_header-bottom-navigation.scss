@@ -99,7 +99,7 @@
   .menu__item--open {
     position: relative;
 
-    .menu__toggle-button .icon {
+    .menu__toggle-button .hel-icon {
       transform: rotate(180deg);
     }
 
@@ -244,7 +244,7 @@
       padding: 6px 0;
     }
 
-    .icon {
+    .hel-icon {
       transition: all .2s ease-in;
     }
   }
