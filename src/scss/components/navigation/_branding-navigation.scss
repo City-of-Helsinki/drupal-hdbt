@@ -24,10 +24,11 @@
       width: 50px;
     }
 
-    .icon {
+    .hel-icon {
       display: block;
 
       @include breakpoint(440px) {
+        --icon-size: #{$spacing-and-half};
         margin-bottom: $spacing-quarter;
       }
     }

@@ -153,7 +153,7 @@
           display: block;
         }
 
-        .menu__toggle-button .icon {
+        .menu__toggle-button .hel-icon {
           transform: rotate(180deg);
         }
       }
@@ -221,6 +221,10 @@
     min-width: 40px;
     padding: 0;
     position: relative;
+
+    .hel-icon {
+      transition: $rotating-icon-transition;
+    }
 
     &:hover {
       cursor: pointer;

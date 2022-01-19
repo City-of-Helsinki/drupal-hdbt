@@ -101,6 +101,25 @@
                 <a href="{{ link }}" {% if target_new %}target="_blank"{% endif %}{{ create_attribute({'class': link_classes} ) }}>
                   <span class="hds-button__label">{{ text }}</span>
                 </a>
+
+
+                {# TODO: This button should be refactored to be more like below #}
+                {# TODO: open_in_a_new_window should be explained to the end user (we should hide this feature from admins once external links automation works)  #}
+                {# TODO: We need a better logic for is_external  #}
+                {#
+                {% set open_in_a_new_window = item['#options']['target_new'] %}
+                {% set is_external = open_in_a_new_window %}
+                {% include '@hdbt/button/link-button.html.twig' with {
+                  type: link_type|clean_class,
+                  label: item['#title'],
+                  url: item['#url'],
+                  class: 'hero__button',
+                  is_external: is_external,
+                  open_in_a_new_window: open_in_a_new_window,
+                  icon_last: true,
+                  icon_last_type: item['#options']['icon']|clean_class,
+                } %}
+                #}
               {% endfor %}
             </div>
           {% endif %}
