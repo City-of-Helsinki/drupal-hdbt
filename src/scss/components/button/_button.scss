@@ -25,6 +25,7 @@ a.hds-button {
       content: "";
       display: inline-block;
       height: var(--icon-size);
+      mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: var(--icon-size);
       order: 3;
