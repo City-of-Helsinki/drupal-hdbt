@@ -222,6 +222,10 @@
     padding: 0;
     position: relative;
 
+    .hel-icon {
+      transition: $rotating-icon-transition;
+    }
+
     &:hover {
       cursor: pointer;
     }
