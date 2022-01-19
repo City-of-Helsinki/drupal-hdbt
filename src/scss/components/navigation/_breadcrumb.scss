@@ -18,9 +18,9 @@
     display: none;
 
     @include breakpoint($breakpoint-m) {
+      --icon-size: #{remify(14px)};
       display: block;
       margin: 0 $spacing-quarter * 0.5;
-      width: 14px;
     }
   }
 }

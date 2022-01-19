@@ -18,8 +18,8 @@
     position: relative;
     z-index: 1;
 
-    .icon {
-      --icon-proportions: 2.5rem;
+    .icon,.hel-icon {
+      --icon-size: 2.5rem;
     }
   }
 
@@ -148,8 +148,8 @@
 .component-library__icon__svg {
   padding: $spacing-half;
 
-  .icon {
-    --icon-proportions: 4rem;
+  .icon,.hel-icon {
+    --icon-size: 4rem;
   }
 }
 

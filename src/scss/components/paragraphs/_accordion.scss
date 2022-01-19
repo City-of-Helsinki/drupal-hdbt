@@ -61,10 +61,10 @@
     }
 
     .icon {
-      --icon-proportions: 1.5rem;
+      --icon-size: 1.5rem;
 
       @include breakpoint($breakpoint-l) {
-        --icon-proportions: 3rem;
+        --icon-size: 3rem;
       }
     }
   }

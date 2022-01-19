@@ -129,7 +129,7 @@
       text-decoration: none;
 
       &:after {
-        --icon-proportions: #{$spacing-and-half};
+        --icon-size: #{$spacing-and-half};
         align-self: center;
         background-color: $color-black;
         content: "";

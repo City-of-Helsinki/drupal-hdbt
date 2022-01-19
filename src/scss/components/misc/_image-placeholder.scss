@@ -5,8 +5,8 @@
   position: relative;
   width: 100%;
 
-  .icon {
-    --icon-proportions: 50%;
+  .icon,.hel-icon {
+    --icon-size: 50%;
     color: var(--hdbt-color-palette-text--primary);
     left: 25%;
     position: absolute;
