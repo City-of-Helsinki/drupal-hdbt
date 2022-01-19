@@ -97,6 +97,7 @@ class svgToSprite {
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
       let iconClass = this.themeName === 'hdbt' ? 'hel' : this.themeName;
+      let useOldClass = this.themeName === 'hdbt'; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --{Theme name}-icon--{icon name} CSS variables.
       let cssVariables = 'html{';
@@ -116,6 +117,11 @@ class svgToSprite {
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
         cssClasses += `.${iconClass}-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+
+        // TODO: Remove once hdbt-icon class has been removed.
+        if (useOldClass) {
+          cssClasses += `.hdbt-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+        }
       }
 
       // Add a URL as a CSS variable to the {Theme name}-icon mask-image.
@@ -124,6 +130,13 @@ class svgToSprite {
       let hdbtIconUrl = `.${iconClass}-icon{` +
         `-webkit-mask-image:var(--url);mask-image:var(--url);` +
       `}`;
+
+      // TODO: Remove once hdbt-icon class has been removed.
+      if (useOldClass) {
+        hdbtIconUrl += `.hdbt-icon::before{` +
+          `-webkit-mask-image:var(--url);mask-image:var(--url);` +
+        `}`;
+      }
 
       // Combine CSS variables and classes.
       let filelist = cssVariables + cssClasses + hdbtIconUrl;
