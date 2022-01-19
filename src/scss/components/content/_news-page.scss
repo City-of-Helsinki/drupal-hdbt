@@ -36,7 +36,7 @@
   padding-bottom: 0;
   width: 100%;
   &::before {
-    @include pseudo-icon('hds/ui/camera', $spacing, $color-black-90, block);
+    @include pseudo-icon('camera', $spacing, $color-black-90, block);
   }
 }
 

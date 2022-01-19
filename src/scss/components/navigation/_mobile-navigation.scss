@@ -68,7 +68,7 @@ $spacing-menu-item: 20px;
         content: "";
         display: flex;
         height: $spacing-quadruple;
-        mask-image: icon_url('hds/ui/angle-down');
+        mask-image: icon_url('angle-down');
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: 25px;
@@ -255,7 +255,7 @@ $spacing-menu-item: 20px;
   }
 
   &[aria-expanded="true"] .hel-icon {
-    mask-image: icon_url('hds/ui/cross'); //TODO: convert this to use --url if possible
+    mask-image: icon_url('cross'); //TODO: convert this to use --url if possible
     //--url: var(--hel-icon--cross);
   }
 }

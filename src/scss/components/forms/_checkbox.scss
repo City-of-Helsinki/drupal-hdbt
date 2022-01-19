@@ -6,7 +6,7 @@
   .hds-checkbox__input,
   .hds-checkbox__input:hover {
     &::before {
-      mask-image: icon_url('hds/ui/check');
+      mask-image: icon_url('check');
     }
   }
 }
