@@ -19,12 +19,7 @@ class svgToSprite {
     this.cssVariables = [];
     this.classes = [];
 
-    // Path for icons and icons css file.
-    this.path = 'dist/icons';
-    this.iconsCssPath = `dist/${this.svgToCssOutputFilename}`;
-
-    // Sprite configuration files.
-    this.spriteFilename = 'icons/sprite.svg';
+    // Sprite configuration.
     this.spriteHashFilename = '';
   }
 
