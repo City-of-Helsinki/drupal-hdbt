@@ -115,7 +115,6 @@ module.exports = {
     new SvgToSprite(
       path.resolve(__dirname, 'src/icons/**/*.svg'),
       'icons/sprite.svg',
-      'css/hdbt-icons.css',
       'icons.json'
     ),
     new FriendlyErrorsWebpackPlugin(),
