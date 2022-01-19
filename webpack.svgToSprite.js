@@ -4,20 +4,14 @@ const path = require('path');
 const glob = require('glob');
 const SVGSpriter = require('svg-sprite');
 
-const plugin = {
-  name: 'svgToSprite'
-};
-
 // Generates styles for each icon.
 class svgToSprite {
   constructor(inputPattern, outputSvgSpriteFilename, outputIconJsonFilename) {
-    // Current theme name.
-    this.themeName = path.basename(path.resolve(process.cwd())).replace(/_/g, '-');
 
     // Input and output patterns.
     this.inputPattern = inputPattern;
     this.svgSpriteFilename = outputSvgSpriteFilename;
-    this.svgToCssOutputFilename = `css/${this.themeName}-icons.css`;
+    this.svgToCssOutputFilename = `css/hdbt-icons.css`;
     this.svgToJsonOutputFilename = outputIconJsonFilename;
 
     // Mapped SVG files.
@@ -27,7 +21,7 @@ class svgToSprite {
 
     // Path for icons and icons css file.
     this.path = 'dist/icons';
-    this.iconsCssPath = `dist/css/${this.themeName}-icons.css`;
+    this.iconsCssPath = `dist/${this.svgToCssOutputFilename}`;
 
     // Sprite configuration files.
     this.spriteFilename = 'icons/sprite.svg';
@@ -96,8 +90,8 @@ class svgToSprite {
     // SVG to CSS.
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
-      let iconClass = this.themeName === 'hdbt' ? 'hel' : this.themeName;
-      let useOldClass = this.themeName === 'hdbt'; // TODO: Remove once hdbt-icon class has been removed.
+      let iconClass = 'hel';
+      let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --hel-icon--{icon name} CSS variables.
       let cssVariables = 'html{';
@@ -191,7 +185,6 @@ class svgToSprite {
       const stats = fs.lstatSync(pathname);
 
       if (stats.isFile()) {
-
         this.classes = [...new Set([...this.classes, pathname])];
         this.cssVariables = [...new Set([...this.cssVariables, pathname])];
         this.files = [...new Set([...this.files, pathname])];
