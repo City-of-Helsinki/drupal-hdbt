@@ -151,7 +151,7 @@ $koro-height: 50px;
     bottom: -90px;
     height: 100px;
     left: $spacing-and-half;
-    mask-image: icon_url('hero_arrow_mobile');
+    mask-image: icon_url('hdbt/ui/hero-arrow-mobile');
     mask-position: center;
     mask-repeat: no-repeat;
     position: absolute;
@@ -162,7 +162,7 @@ $koro-height: 50px;
       bottom: -100px;
       height: 110px;
       left: $spacing-double;
-      mask-image: icon_url('hero_arrow_desktop');
+      mask-image: icon_url('hdbt/ui/hero-arrow-desktop');
       width: 94px;
     }
   }
