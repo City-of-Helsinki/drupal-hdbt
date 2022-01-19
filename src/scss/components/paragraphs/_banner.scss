@@ -29,11 +29,12 @@
     margin-right: $spacing-and-half;
   }
 
-  .icon {
-    --icon-proportions: #{$spacing-quadruple};
+  //TODO .hel-icon fix !
+  .icon,.hel-icon {
+    --icon-size: #{$spacing-quadruple};
 
     @include breakpoint($breakpoint-m) {
-      --icon-proportions: 6.25rem;
+      --icon-size: 6.25rem;
     }
   }
 

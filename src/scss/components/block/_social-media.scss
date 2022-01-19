@@ -19,8 +19,8 @@
   list-style: none;
   text-decoration: none;
 
-  .icon {
-    --icon-proportions: #{$spacing-double};
+  .icon,.hel-icon {
+    --icon-size: #{$spacing-double};
   }
 
   &:focus,

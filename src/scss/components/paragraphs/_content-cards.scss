@@ -69,10 +69,10 @@ $card_spacing: $spacing-and-half;
   }
 
   .icon {
-    --icon-proportions: 2rem;
+    --icon-size: 2rem;
 
     @include breakpoint($breakpoint-s) {
-      --icon-proportions: 3rem;
+      --icon-size: 3rem;
     }
   }
 }
