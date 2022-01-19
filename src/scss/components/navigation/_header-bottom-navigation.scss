@@ -22,13 +22,13 @@
   }
 
   .menu__link-wrapper {
+    @include font-size(18px, 24px);
     align-items: center;
     display: flex;
     height: 100%;
     position: relative;
 
     a {
-      @include font-size(18px, 24px);
       padding: $spacing-and-half 0;
       text-decoration: none;
 
@@ -229,8 +229,7 @@
   .menu__toggle-button {
     background-color: transparent;
     border: none;
-    // Adjusting chevron position to match text.
-    margin: 5px 0 0 $spacing-half;
+    margin-left: $spacing-half;
     padding: 0;
 
     &:hover {
@@ -245,7 +244,7 @@
     }
 
     .hel-icon {
-      transition: all .2s ease-in;
+      transition: $rotating-icon-transition;
     }
   }
 

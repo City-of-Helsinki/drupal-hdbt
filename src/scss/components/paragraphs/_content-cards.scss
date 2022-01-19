@@ -59,8 +59,7 @@ $card_spacing: $spacing-and-half;
   line-height: 0;
   // Pull the arrow a bit to the left to align with text.
   margin: $spacing 0 0 -2px;
-  padding-left: 0;
-  transition: all .3s;
+  transition: $hover-link-arrow-transition;
   width: 48px;
 
   @include breakpoint($breakpoint-s) {
@@ -68,7 +67,7 @@ $card_spacing: $spacing-and-half;
     margin-left: -4px;
   }
 
-  .icon {
+  .hel-icon {
     --icon-size: 2rem;
 
     @include breakpoint($breakpoint-s) {
@@ -88,7 +87,7 @@ $card_spacing: $spacing-and-half;
     }
 
     .content-card__arrow {
-      padding-left: $spacing;
+      transform: translateX($spacing);
     }
   }
 }

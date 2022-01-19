@@ -72,7 +72,7 @@ $spacing-menu-item: 20px;
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: 25px;
-        transition: transform .5s cubic-bezier(.19, 1, .22, 1);
+        transition: $rotating-icon-transition;
         width: $spacing-quadruple;
       }
 
@@ -82,7 +82,7 @@ $spacing-menu-item: 20px;
     }
 
     &.mm-listitem_opened > .mm-btn::before {
-      transform: rotate(-180deg);
+      transform: rotate(180deg);
     }
 
     .mm-panel {
@@ -255,7 +255,8 @@ $spacing-menu-item: 20px;
   }
 
   &[aria-expanded="true"] .hel-icon {
-    mask-image: icon_url('hds/ui/cross');
+    mask-image: icon_url('hds/ui/cross'); //TODO: convert this to use --url if possible
+    //--url: var(--hel-icon--cross);
   }
 }
 

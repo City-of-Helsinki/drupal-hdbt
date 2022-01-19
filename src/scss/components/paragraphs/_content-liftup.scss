@@ -184,7 +184,7 @@ $_info-row__icon-size: $spacing-and-half;
   &::after {
     @include pseudo-icon('hds/ui/arrow-right', $spacing-and-half, currentColor);
     flex-shrink: 0;
-    transition: transform linear 100ms;
+    transition: $hover-link-arrow-transition;
 
     .content-liftup:hover &,
     .content-liftup:focus-within & {
