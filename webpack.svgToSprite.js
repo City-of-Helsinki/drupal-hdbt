@@ -71,8 +71,8 @@ class svgToSprite {
             spriter.compile((error, result) => {
               for (let mode in result) {
                 for (let resource in result[mode]) {
-                  let hash = md5(result[mode][resource].contents);
-                  let outputFilename = `icons/sprite-${hash}.svg`;
+                  let hash = md5(result[mode][resource].contents).slice(-5);
+                  let outputFilename = this.svgSpriteFilename.replace(/.svg/g, `-${hash}.svg`);
 
                   if (result[mode][resource].contents) {
                     this.spriteHashFilename = outputFilename;
@@ -99,18 +99,18 @@ class svgToSprite {
       let iconClass = this.themeName === 'hdbt' ? 'hel' : this.themeName;
       let useOldClass = this.themeName === 'hdbt'; // TODO: Remove once hdbt-icon class has been removed.
 
-      // Create --{Theme name}-icon--{icon name} CSS variables.
+      // Create --hel-icon--{icon name} CSS variables.
       let cssVariables = 'html{';
 
       while(this.cssVariables.length) {
         let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssVariables += `--${iconClass}-icon--${name[0]}: url(../icons/sprite.svg#${name[0]});`;
+        cssVariables += `--${iconClass}-icon--${name[0]}: url(../${this.spriteHashFilename}#${name[0]});`;
       }
       cssVariables += '}';
 
-      // Create .{Theme name}-icon--{icon name} css classes.
+      // Create .hel-icon--{icon name} or {theme-name}--{icon name} css classes.
       let cssClasses = '';
       while(this.classes.length) {
         let fullFilename = this.classes.shift();
@@ -124,7 +124,7 @@ class svgToSprite {
         }
       }
 
-      // Add a URL as a CSS variable to the {Theme name}-icon mask-image.
+      // Add a URL as a CSS variable to the hel-icon mask-image.
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
       let hdbtIconUrl = `.${iconClass}-icon{` +
@@ -182,24 +182,6 @@ class svgToSprite {
     });
     compiler.hooks.environment.tap('svgToJson', this.checkForFiles.bind(this));
     compiler.hooks.watchRun.tap('svgToJson', this.checkForFiles.bind(this));
-
-    // Run svgSpriteHash script when other hooks have been run.
-    compiler.hooks.done.tap(plugin, this.generateSpriteHash.bind(this));
-  }
-
-  // Function for converting icons styles to support hashed sprite filename.
-  generateSpriteHash() {
-    const iconsCssPath = this.iconsCssPath;
-
-    // Rename the sprite filename in icon style file.
-    fs.readFile(iconsCssPath, 'utf8', (err, data) => {
-      if (err) return console.log(`ERROR while trying to read ${this.themeName}-icons.css: ` + err);
-      let result = data.replace(new RegExp(this.spriteFilename, 'g'), this.spriteHashFilename);
-
-      fs.writeFile(iconsCssPath, result, 'utf8', (err) => {
-        if (err) return console.log(`ERROR while trying to write ${this.themeName}-icons.css: ` + err);
-      });
-    });
   }
 
   // Map files to suitable variables.
