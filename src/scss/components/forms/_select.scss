@@ -59,7 +59,8 @@
     }
   }
 
-  i.hds-icon {
+  .hel-icon {
+    --icon-size: #{$spacing-double};
     pointer-events: none;
     position: absolute;
     right: calc(var(--spacing-s) - var(--border-width) * 2);
