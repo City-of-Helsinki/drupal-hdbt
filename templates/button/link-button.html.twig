@@ -23,6 +23,7 @@
  *   open_in_a_new_window: true,
  * } %}
  *
+ * TODO: Refactor hds-button.
  */
  #}
 
@@ -72,12 +73,12 @@
 {% endif %}
 
 {% set title %}
-  {% if icon_first == true  %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_first_type }}"></span>{% endif %}
+  {% if icon_first == true  %}<span aria-hidden="true" class="hel-icon {{ 'hel-icon--' ~ icon_first_type }}"></span>{% endif %}
   <span class="hds-button__label">
     {{ label }}
     {{ explain }}
   </span>
-  {% if icon_last == true %}<span aria-hidden="true" class="hds-icon {{ 'hds-icon--' ~ icon_last_type }}"></span>{% endif %}
+  {% if icon_last == true %}<span aria-hidden="true" class="hel-icon {{ 'hel-icon--' ~ icon_last_type }}"></span>{% endif %}
 {% endset %}
 
 {{ link(title, url, link_options) }}

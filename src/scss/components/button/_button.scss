@@ -1,3 +1,24 @@
+// TODO: Refactor hds-button.
+// Fix for button margins when using hel-icon.
+.hds-button {
+  // Set icon size for the button icons.
+  .hel-icon {
+    --icon-size: 24px;
+  }
+
+  // Left icon margin,
+  // copied from HDS (hds-core/lib/components/button/button.css)
+  .hel-icon:first-of-type:not(:last-of-type) {
+    margin: 0 0 0 $spacing-half;
+  }
+
+  // Right icon margin,
+  // copied from HDS (hds-core/lib/components/button/button.css)
+  .hel-icon:last-of-type:not(:first-of-type) {
+    margin: 0 $spacing-half 0 0;
+  }
+}
+
 a.hds-button {
   text-decoration: none;
 
