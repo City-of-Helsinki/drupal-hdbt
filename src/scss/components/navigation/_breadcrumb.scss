@@ -47,13 +47,7 @@
     }
 
     &::before {
-      background-image: icon_url('angle-left');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      content: "";
-      height: 24px;
-      width: 24px;
+      @include pseudo-icon('angle-left', $spacing-and-half);
 
       @include breakpoint($breakpoint-m) {
         display: none;

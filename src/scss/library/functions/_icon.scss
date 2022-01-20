@@ -1,3 +1,6 @@
 @function icon_url($icon){
+  @if ($icon == null) {
+    @return null;
+  }
   @return var(--hel-icon--#{$icon});
 }

@@ -18,17 +18,8 @@
     padding-bottom: $spacing-double;
 
     &:before {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      display: flex;
-      height: $spacing-double;
+      @include pseudo-icon('info-circle', $spacing-double, $color-black, flex);
       margin-right: $spacing-half;
-      mask-image: icon_url('info-circle');
-      mask-position: center;
-      mask-repeat: no-repeat;
-      mask-size: $spacing-double;
-      min-width: $spacing-double;
     }
 
     p {

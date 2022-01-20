@@ -210,15 +210,8 @@
     }
 
     &:after {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      display: flex;
-      height: 20px;
-      mask-image: icon_url('link-external');
-      mask-position: center;
-      mask-repeat: no-repeat;
-      mask-size: 14px;
+      @include pseudo-icon('link-external', 14px, $color-black, flex);
+      height: 20px; //TODO: clean height and width mismatch
       position: absolute;
       right: 0;
       top: 50%;

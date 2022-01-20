@@ -80,6 +80,8 @@
 
 /**
  * Allow changing icon easily on hover, etc.
+ * usage:
+ * @include pseudo-icon-replace('email');
  */
 @mixin pseudo-icon-replace( $icon ) {
   mask-image: icon_url( $icon );
@@ -87,8 +89,10 @@
 
 /**
  * Add pseudo element (::before, ::after) styling for icons
+ * usage:
+ * @include pseudo-icon('share', var(--icon-size), $color-black, inline-block);
  */
-@mixin pseudo-icon($icon, $size: $spacing, $color: $color-black, $display: inline-block) {
+@mixin pseudo-icon($icon, $size: var(--icon-size), $color: $color-black, $display: inline-block) {
   background-color: $color;
   background-size: contain;
   content: '';

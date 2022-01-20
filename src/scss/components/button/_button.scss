@@ -42,16 +42,9 @@ a.hds-button {
 
     &:before {
       --icon-size: #{$spacing-and-half};
-      background-color: var(--color);
-      content: "";
-      display: inline-block;
-      height: var(--icon-size);
-      mask-position: center center;
-      mask-repeat: no-repeat;
-      mask-size: var(--icon-size);
+      @include pseudo-icon(null, var(--icon-size), var(--color), inline-block);
       order: 3;
       position: static;
-      width: var(--icon-size);
     }
 
     &:hover {
@@ -72,7 +65,7 @@ a.hds-button {
 .hds-button--supplementary:not(.hdbt-icon) {
   &:before {
     // Add default icon (arrow icon) for the supplementary button.
-    mask-image: icon_url('arrow-right');
+    @include pseudo-icon-replace('arrow-right');
   }
 }
 

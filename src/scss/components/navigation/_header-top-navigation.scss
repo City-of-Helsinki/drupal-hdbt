@@ -22,20 +22,11 @@
       }
 
       &:after {
-        background-color: $color-black;
-        background-size: contain;
-        content: "";
-        display: flex;
-        height: 20px;
-        mask-image: icon_url('link-external');
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 14px;
+        @include pseudo-icon('link-external', 14px, $color-black, flex);
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: 24px;
       }
     }
   }

@@ -129,18 +129,10 @@
       text-decoration: none;
 
       &:after {
-        --icon-size: #{$spacing-and-half};
+        @include pseudo-icon('arrow-right', $spacing-and-half, $color-black, inline-block);
         align-self: center;
-        background-color: $color-black;
-        content: "";
-        display: inline-block;
-        height: 24px;
         justify-self: end;
-        mask-image: icon_url('arrow-right');
-        mask-repeat: no-repeat;
-        mask-size: 24px;
         order: 3;
-        width: 24px;
       }
 
       &:hover {

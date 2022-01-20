@@ -19,16 +19,10 @@
       text-decoration: none;
 
       &:before {
-        background-color: $color-black;
-        background-size: contain;
-        content: "";
-        display: flex;
+        @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+        //TODO: Clean up this size mess
         height: 30px;
         left: 0;
-        mask-image: icon_url('arrow-left');
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 25px;
         position: absolute;
         top: 0;
         width: 20px;
@@ -77,20 +71,12 @@
         }
 
         &:after {
-          background-color: $color-black;
-          background-size: contain;
-          content: "";
-          display: flex;
-          height: 20px;
-          mask-image: icon_url('link-external');
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: 20px;
+          @include pseudo-icon('link-external', 20px, $color-black, flex);
           position: absolute;
           right: 0;
           top: 50%;
           transform: translateY(-50%);
-          width: 40px;
+          width: 40px; // TODO: clean this width that's fighting common icon rules
         }
 
         &:focus {
