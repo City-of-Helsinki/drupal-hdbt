@@ -73,12 +73,16 @@
 {% endif %}
 
 {% set title %}
-  {% if icon_first == true  %}<span aria-hidden="true" class="hel-icon {{ 'hel-icon--' ~ icon_first_type }}"></span>{% endif %}
+  {% if icon_first == true %}
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: icon_first_type} %}
+  {% endif %}
   <span class="hds-button__label">
     {{ label }}
     {{ explain }}
   </span>
-  {% if icon_last == true %}<span aria-hidden="true" class="hel-icon {{ 'hel-icon--' ~ icon_last_type }}"></span>{% endif %}
+  {% if icon_last == true %}
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: icon_last_type} %}
+  {% endif %}
 {% endset %}
 
 {{ link(title, url, link_options) }}

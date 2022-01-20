@@ -60,11 +60,11 @@
   }
 
   .hel-icon {
-    --icon-size: #{$spacing-double};
+    --icon-size: var(--spacing-m);
     pointer-events: none;
     position: absolute;
     right: calc(var(--spacing-s) - var(--border-width) * 2);
-    top: calc(var(--spacing-s) - var(--border-width) * 2);
+    top: calc(var(--spacing-s) - var(--border-width) * 3);
   }
 
   select,
