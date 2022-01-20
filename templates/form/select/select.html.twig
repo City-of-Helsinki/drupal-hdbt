@@ -44,7 +44,7 @@
         {% endfor %}
       </select>
       <span class="hdbt--select-focus"></span>
-      <i class="hel-icon hel-icon--angle-down" aria-hidden="true"></i>
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-down'} %}
     </div>
   {% endif %}
 {% endapply %}
