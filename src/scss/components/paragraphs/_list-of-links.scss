@@ -125,7 +125,7 @@ $item_spacing: $spacing-triple;
 
   &:hover {
     .list-of-links__item__arrow {
-      transform: translateX($spacing);
+      transform: translateX($spacing-half);
     }
   }
 }
