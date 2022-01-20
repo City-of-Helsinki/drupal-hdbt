@@ -103,6 +103,7 @@ global-styling:
   version: 1.x
   css:
     theme:
+      dist/css/hds.min.css: {}
       dist/css/styles.min.css: {}
   dependencies:
     - hdbt/color-palette
