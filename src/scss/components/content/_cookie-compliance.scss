@@ -110,6 +110,10 @@
       padding: $spacing-double;
     }
 
+    .hel-icon {
+      --icon-size: #{$spacing-and-half};
+    }
+
     h2 {
       margin-top: 0;
       @include font-size(24px, 29px);
