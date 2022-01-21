@@ -3,7 +3,15 @@
 // This file includes Helsinki Design System core packages.
 //
 
-@import "~hds-core/lib/base.min.css";
-@import "~hds-core/lib/utils/animations.min.css";
-@import "~hds-core/lib/utils/helpers.min.css";
-@import "~hds-core/lib/components/all.min.css";
+// Get relevant contents from base.min.css:
+@import "external/normalise.css";
+
+// Get content from:
+// @import "~hds-core/lib/components/all.min.css";
+@import "~hds-core/lib/components/button/button.min.css";
+@import "~hds-core/lib/components/checkbox/checkbox.min.css";
+@import "~hds-core/lib/components/koros/koros.min.css";
+@import "~hds-core/lib/components/notification/notification.min.css";
+@import "~hds-core/lib/components/radio-button/radio-button.min.css";
+@import "~hds-core/lib/components/status-label/status-label.min.css";
+@import "~hds-core/lib/components/text-input/text-input.min.css";
