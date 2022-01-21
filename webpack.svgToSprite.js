@@ -87,17 +87,18 @@ class svgToSprite {
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
       let iconClass = 'hel';
+      let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --hel-icon--{icon name} CSS variables.
-      let cssVariables = ':root{';
+      let cssVariables = [];
 
       while(this.cssVariables.length) {
         let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssVariables += `--${iconClass}-icon--${name[0]}: url(../${this.spriteHashFilename}#${name[0]});`;
+        cssVariables.push(`--${iconClass}-icon--${name[0]}:url(../${this.spriteHashFilename}#${name[0]})`);
       }
-      cssVariables += '}';
+      cssVariables = `:root{${ cssVariables.join(';') }}`;
 
       // Create .hel-icon--{icon name} or {theme-name}--{icon name} css classes.
       let cssClasses = '';
@@ -105,24 +106,32 @@ class svgToSprite {
         let fullFilename = this.classes.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssClasses += `.${iconClass}-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+        cssClasses += `.${iconClass}-icon--${name[0]}{--url:var(--${iconClass}-icon--${name[0]})}`;
 
-        // TODO: Remove once old implementation of hdbt-icon has been removed.
-        cssClasses += `.hdbt-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+        // TODO: Remove once hdbt-icon class has been removed.
+        if (useOldClass) {
+          cssClasses += `.hdbt-icon--${name[0]}{--url:var(--${iconClass}-icon--${name[0]})}`;
+        }
       }
-
-      // TODO: Remove once old implementation of hdbt-icon has been removed.
-      let hdbtIconUrl = '.hdbt-icon::before,';
 
       // Add a URL as a CSS variable to the hel-icon mask-image.
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
-      let inlineIconUrl = `${hdbtIconUrl}.${iconClass}-icon{` +
-        `-webkit-mask-image:var(--url);mask-image:var(--url);` +
+      let hdbtIconUrl = `.${iconClass}-icon{` +
+        `-webkit-mask-image:var(--url);` +
+        `mask-image:var(--url)` +
       `}`;
 
+      // TODO: Remove once hdbt-icon class has been removed.
+      if (useOldClass) {
+        hdbtIconUrl += `.hdbt-icon::before{` +
+          `-webkit-mask-image:var(--url);` +
+          `mask-image:var(--url)` +
+        `}`;
+      }
+
       // Combine CSS variables and classes.
-      let filelist = cssVariables + cssClasses + inlineIconUrl;
+      let filelist = cssVariables + cssClasses + hdbtIconUrl;
 
       // Compile the assets.
       compilation.assets[this.svgToCssOutputFilename] = {
