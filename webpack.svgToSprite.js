@@ -90,15 +90,15 @@ class svgToSprite {
       let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --hel-icon--{icon name} CSS variables.
-      let cssVariables = ':root{';
+      let cssVariables = [];
 
       while(this.cssVariables.length) {
         let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssVariables += `--${iconClass}-icon--${name[0]}: url(../${this.spriteHashFilename}#${name[0]});`;
+        cssVariables.push(`--${iconClass}-icon--${name[0]}:url(../${this.spriteHashFilename}#${name[0]})`);
       }
-      cssVariables += '}';
+      cssVariables = `:root{${ cssVariables.join(';') }}`;
 
       // Create .hel-icon--{icon name} or {theme-name}--{icon name} css classes.
       let cssClasses = '';
@@ -106,11 +106,11 @@ class svgToSprite {
         let fullFilename = this.classes.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssClasses += `.${iconClass}-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+        cssClasses += `.${iconClass}-icon--${name[0]}{--url:var(--${iconClass}-icon--${name[0]})}`;
 
         // TODO: Remove once hdbt-icon class has been removed.
         if (useOldClass) {
-          cssClasses += `.hdbt-icon--${name[0]} {--url: var(--${iconClass}-icon--${name[0]});}`;
+          cssClasses += `.hdbt-icon--${name[0]}{--url:var(--${iconClass}-icon--${name[0]})}`;
         }
       }
 
@@ -118,13 +118,15 @@ class svgToSprite {
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
       let hdbtIconUrl = `.${iconClass}-icon{` +
-        `-webkit-mask-image:var(--url);mask-image:var(--url);` +
+        `-webkit-mask-image:var(--url);` +
+        `mask-image:var(--url)` +
       `}`;
 
       // TODO: Remove once hdbt-icon class has been removed.
       if (useOldClass) {
         hdbtIconUrl += `.hdbt-icon::before{` +
-          `-webkit-mask-image:var(--url);mask-image:var(--url);` +
+          `-webkit-mask-image:var(--url);` +
+          `mask-image:var(--url)` +
         `}`;
       }
 
