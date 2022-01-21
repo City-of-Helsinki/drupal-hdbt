@@ -248,8 +248,7 @@ $spacing-menu-item: 20px;
   }
 
   &[aria-expanded="true"] .hel-icon {
-    mask-image: icon_url('cross'); //TODO: convert this to use --url if possible
-    //--url: var(--hel-icon--cross);
+    mask-image: icon_url('cross');
   }
 }
 
