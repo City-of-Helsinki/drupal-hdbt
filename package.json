@@ -36,7 +36,6 @@
     "expose-loader": "^3.0.0",
     "glob": "^7.1.7",
     "handorgel": "^0.5.0",
-    "hds-core": "^1.2.0",
     "hds-design-tokens": "^1.2.0",
     "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.3.2",
