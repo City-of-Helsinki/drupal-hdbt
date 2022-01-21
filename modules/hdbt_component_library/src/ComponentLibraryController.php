@@ -77,7 +77,7 @@ class ComponentLibraryController extends ControllerBase {
     }
 
     try {
-      $theme_path = $this->themeHandler->getTheme($this->themeHandler->getDefault())->getPath();
+      $theme_path = $this->themeHandler->getTheme('hdbt')->getPath();
       $file_path = 'dist/icons.json';
       $json = file_get_contents(realpath("$theme_path/$file_path"));
 
