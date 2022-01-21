@@ -47,6 +47,7 @@ class svgToSprite {
                 stack: {
                   dest: "dist",
                   sprite: this.svgSpriteFilename,
+                  rootViewBox: false,
                 }
               }
             });
@@ -89,7 +90,7 @@ class svgToSprite {
       let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --hel-icon--{icon name} CSS variables.
-      let cssVariables = 'html{';
+      let cssVariables = ':root{';
 
       while(this.cssVariables.length) {
         let fullFilename = this.cssVariables.shift();
