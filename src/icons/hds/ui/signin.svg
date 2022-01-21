@@ -1,1 +1,6 @@
-<svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M21 2v20H8v-5h2v3h9V4h-9v3H8V2h13zm-8.5 5l5 5-5 5-1.5-1.5 2.5-2.501L2 13v-2l11.499-.001L11 8.5 12.5 7z" fill="currentColor"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="24" height="24"/>
+    <path fill="currentColor" d="M21,2 L21,22 L8,22 L8,17 L10,17 L10,20 L19,20 L19,4 L10,4 L10,7 L8,7 L8,2 L21,2 Z M12.5,7 L17.5,12 L12.5,17 L11,15.5 L13.5,12.999 L2,13 L2,11 L13.499,10.999 L11,8.5 L12.5,7 Z"/>
+  </g>
+</svg>
