@@ -87,6 +87,7 @@ class svgToSprite {
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
       let iconClass = 'hel';
+      let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
 
       // Create --hel-icon--{icon name} CSS variables.
       let cssVariables = [];
@@ -113,9 +114,6 @@ class svgToSprite {
         }
       }
 
-      // TODO: Remove once old implementation of hdbt-icon has been removed.
-      let hdbtIconUrl = '.hdbt-icon::before,';
-
       // Add a URL as a CSS variable to the hel-icon mask-image.
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
@@ -133,7 +131,7 @@ class svgToSprite {
       }
 
       // Combine CSS variables and classes.
-      let filelist = cssVariables + cssClasses + inlineIconUrl;
+      let filelist = cssVariables + cssClasses + hdbtIconUrl;
 
       // Compile the assets.
       compilation.assets[this.svgToCssOutputFilename] = {
