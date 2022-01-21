@@ -1,0 +1,68 @@
+.hds-selection-group {
+  --spacing-col: 1.25rem;
+  --spacing-row: var(--spacing-s);
+  --label-color-default: var(--color-black-90);
+  --icon-size: var(--spacing-m);
+
+  border: 0;
+  padding: 0;
+}
+
+.hds-selection-group > *:not(.hds-selection-group__items) {
+  float: left;
+}
+
+.hds-selection-group__legend {
+  color: var(--label-color-default);
+  display: block;
+  font-size: var(--fontsize-body-m);
+  font-weight: 500;
+  margin-bottom: var(--spacing-row);
+}
+
+.hds-selection-group__required {
+  color: var(--label-color-default);
+  display: inline-block;
+  font-size: var(--fontsize-body-xl);
+  line-height: 1;
+  margin-left: var(--spacing-2-xs);
+  transform: translateY(var(--spacing-3-xs));
+}
+
+.hds-selection-group__items {
+  clear: left;
+  display: grid;
+  grid-gap: var(--spacing-row) var(--spacing-col);
+  gap: var(--spacing-row) var(--spacing-col);
+  justify-content: start;
+}
+
+.hds-selection-group__items--vertical {
+  grid-auto-flow: row;
+}
+
+.hds-selection-group__items--horizontal {
+  grid-auto-flow: column;
+}
+
+.hds-selection-group__error-text {
+  position: relative;
+  color: var(--color-error);
+  display: block;
+  font-size: var(--fontsize-body-m);
+  margin-top: var(--spacing-xs);
+  padding-left: calc(var(--icon-size) + var(--spacing-2-xs));
+}
+
+.hds-selection-group__error-text::before {
+  background: var(--color-error);
+  content: '';
+  height: var(--icon-size);
+  mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='24' height='24'/%3E %3Cpath fill='currentColor' d='M12,3 C16.9705627,3 21,7.02943725 21,12 C21,16.9705627 16.9705627,21 12,21 C7.02943725,21 3,16.9705627 3,12 C3,7.02943725 7.02943725,3 12,3 Z M13,16 L13,18 L11,18 L11,16 L13,16 Z M13,6 L13,14 L11,14 L11,6 L13,6 Z'/%3E %3C/g%3E %3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='24' height='24'/%3E %3Cpath fill='currentColor' d='M12,3 C16.9705627,3 21,7.02943725 21,12 C21,16.9705627 16.9705627,21 12,21 C7.02943725,21 3,16.9705627 3,12 C3,7.02943725 7.02943725,3 12,3 Z M13,16 L13,18 L11,18 L11,16 L13,16 Z M13,6 L13,14 L11,14 L11,6 L13,6 Z'/%3E %3C/g%3E %3C/svg%3E");
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--icon-size);
+}
