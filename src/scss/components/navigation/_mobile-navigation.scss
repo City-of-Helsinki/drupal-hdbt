@@ -240,7 +240,7 @@ $spacing-menu-item: 20px;
 
   .hel-icon {
     --icon-size: 20px;
-    mask-size: 25px;
+    mask-size: 25px 25px; // This is silly, apparently we want to scale the icon larger than its click area and native style indicate.
 
     @include breakpoint(440px) {
       margin-bottom: $spacing-quarter;

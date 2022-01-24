@@ -25,10 +25,10 @@
     }
 
     .hel-icon {
+      --icon-size: #{$spacing-and-half};
       display: block;
 
       @include breakpoint(440px) {
-        --icon-size: #{$spacing-and-half};
         margin-bottom: $spacing-quarter;
       }
     }
