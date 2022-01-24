@@ -9,7 +9,6 @@
 .social-media__items {
   @include flex-gap($spacing-half);
   display: flex;
-  line-height: 0;
   margin-bottom: $spacing-double;
   margin-top: $spacing;
 }
@@ -19,8 +18,8 @@
   list-style: none;
   text-decoration: none;
 
-  .icon {
-    --icon-proportions: #{$spacing-double};
+  .hel-icon {
+    --icon-size: #{$spacing-double};
   }
 
   &:focus,

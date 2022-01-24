@@ -49,18 +49,9 @@
       display: flex;
 
       &:before {
-        background-color: $color-black;
-        background-size: contain;
-        content: "";
-        display: flex;
+        @include pseudo-icon('globe', $spacing-and-half, $color-black, flex);
         flex-shrink: 0;
-        height: 24px;
         margin-right: $spacing-half;
-        mask-image: url('../icons/hds/ui/globe.svg');
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 24px;
-        width: 24px;
       }
     }
   }

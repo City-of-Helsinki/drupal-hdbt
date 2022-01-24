@@ -42,17 +42,11 @@
 
     .hds-text-input__input-wrapper {
       &::after {
-        background-color: $color-black;
-        background-size: contain;
-        content: "";
-        display: block;
-        height: 20px;
-        mask-image: url('../icons/hds/ui/search.svg');
+        @include pseudo-icon('search', 20px, $color-black, block);
         position: absolute;
         right: $spacing;
         top: 50%;
         transform: translateY(-50%);
-        width: 20px;
       }
 
       .hds-text-input__input {

@@ -156,7 +156,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:hover {
-      .icon {
+      .hel-icon {
         margin-left: $spacing;
       }
     }
@@ -172,23 +172,21 @@ $teaser-icon-size-desktop: 48px;
     }
   }
 
-  .icon {
+  .hel-icon {
+    --icon-size: #{$teaser-icon-size-mobile};
     bottom: 50%;
-    height: $teaser-icon-size-mobile;
     left: auto;
     position: absolute;
     right: $spacing;
     transform: translateY(50%);
     transition: all .3s;
-    width: $teaser-icon-size-mobile;
 
     @include breakpoint($breakpoint-l) {
-      height: $teaser-icon-size-desktop;
+      --icon-size: #{ $teaser-icon-size-desktop};
       margin-top: $spacing-and-half;
       position: static;
       right: auto;
       transform: none;
-      width: $teaser-icon-size-desktop;
     }
   }
 }

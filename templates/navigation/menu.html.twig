@@ -25,9 +25,9 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, icons_path, allow_collabsible, auto_open) }}
+{{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
 
-{% macro menu_links(items, attributes, menu_level, icons_path, allow_collabsible, auto_open) %}
+{% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
 
   {%
@@ -69,7 +69,7 @@
 
               {%- set icon_name = (item.url.getOption('attributes')).icon -%}
               {% if icon_name %}
-                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
+                {% include '@hdbt/misc/icon.twig' with {icon: icon_name} %}
               {% endif %}
 
               <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
@@ -95,12 +95,12 @@
               aria-labelledby="{{ link_id }}"
               aria-haspopup="true"
               class="menu__toggle-button">
-              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down', icons_path: icons_path} %}
+              {% include '@hdbt/misc/icon.twig' with {icon: 'angle-down'} %}
             </button>
           {% endif %}
         </span>
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, icons_path, allow_collabsible, auto_open) }}
+          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, allow_collabsible, auto_open) }}
         {% endif %}
       </li>
     {% endfor %}

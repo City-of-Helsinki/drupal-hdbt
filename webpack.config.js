@@ -3,14 +3,11 @@ const isDev = (process.env.NODE_ENV !== 'production');
 const path = require('path');
 const glob = require('glob');
 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-const SvgToJson = require('./webpack.svgToJson');
-const SvgToCss = require('./webpack.svgToCss');
+const SvgToSprite = require('./webpack.svgToSprite');
 
 // Handle entry points.
 const Entries = () => {
@@ -23,6 +20,9 @@ const Entries = () => {
     ],
     'color-palette': [
       './src/scss/color-palette.scss'
+    ],
+    'hds': [
+      './src/scss/_hds.scss'
     ],
   };
 
@@ -47,6 +47,7 @@ module.exports = {
     pathinfo: true,
     filename: 'js/[name].min.js',
     publicPath: '../',
+    clean: true,
   },
   module: {
     rules: [
@@ -114,33 +115,13 @@ module.exports = {
     extensions: ['.js', '.json'],
   },
   plugins: [
-    new SvgToJson(path.resolve(__dirname, 'src/icons/**/*.svg'),'icons.json'),
-    new SvgToCss(path.resolve(__dirname, 'src/icons/**/*.svg'), 'css/hdbt-icons.css'),
+    new SvgToSprite(
+      path.resolve(__dirname, 'src/icons/**/*.svg'),
+      'icons/sprite.svg',
+      'icons.json'
+    ),
     new FriendlyErrorsWebpackPlugin(),
     new RemoveEmptyScriptsPlugin(),
-    new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ['dist']
-    }),
-    new SVGSpritemapPlugin([
-      path.resolve(__dirname, 'src/icons/**/*.svg'),
-    ], {
-      output: {
-        filename: './icons/sprite.svg',
-        svg: {
-          sizes: false
-        }
-      },
-      sprite: {
-        prefix: false,
-        gutter: 0,
-        generate: {
-          title: false,
-          symbol: true,
-          use: true,
-          view: '-view'
-        }
-      },
-    }),
     new CopyPlugin({
       'patterns': [
         {
@@ -175,16 +156,12 @@ module.exports = {
           'from': 'node_modules/mmenu-js/dist/mmenu.css',
           'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
           'force': true,
-        }, {
-          'from': 'src/icons/**/*.svg',
-          'to': path.resolve(__dirname, 'dist') + '/icons/svg/[name][ext]',
-          'force': true,
-        },
+        }
       ]
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
-    }),
+    })
   ],
   watchOptions: {
     aggregateTimeout: 300,

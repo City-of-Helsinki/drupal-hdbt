@@ -1,22 +1,23 @@
 {% set logo = 'helsinki' %}
-{% set logo_class = '' %}
+{% set logo_class = 'logo__icon logo__icon--fi' %}
 {% set logo_alt = 'Helsinki' %}
+
+{% if current_langcode == 'en' %}
+  {% set logo = 'helsinki' %}
+  {% set logo_class = 'logo__icon logo__icon--en' %}
+  {% set logo_alt = 'Helsinki' %}
+{% endif %}
 
 {% if current_langcode == 'sv' %}
   {% set logo = 'helsinki-sv' %}
-  {% set logo_class = 'icon--logo-sv' %}
+  {% set logo_class = 'logo__icon logo__icon--sv' %}
   {% set logo_alt = 'Helsingfors' %}
 {% endif %}
 
 {% if current_langcode == 'ru' %}
   {% set logo = 'helsinki-ru' %}
-  {% set logo_class = 'icon--logo-ru' %}
+  {% set logo_class = 'logo__icon logo__icon--ru' %}
   {% set logo_alt = 'Xeльcинки' %}
 {% endif %}
 
-{% if icons_path %}
-  <svg class="icon {{ logo_class }}">
-    <title>{{ logo_alt }}</title>
-    <use href="{{ icons_path|trim }}#{{ logo }}" />
-  </svg>
-{% endif %}
+{% include "@hdbt/misc/icon.twig" with {icon: logo, label: logo_alt, class: logo_class} %}

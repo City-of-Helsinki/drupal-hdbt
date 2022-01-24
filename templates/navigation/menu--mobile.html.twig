@@ -24,9 +24,9 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, icons_path) }}
+{{ menus.menu_links(items, attributes, 0) }}
 
-{% macro menu_links(items, attributes, menu_level, icons_path) %}
+{% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
 
   {% set menu_classes = [
@@ -55,7 +55,7 @@
           {%- set icon_name = (item.url.getOption('attributes')).icon -%}
           {% if icon_name %}
             {% set item_title %}
-              {% include '@hdbt/misc/icon.twig' with {icon: icon_name, icons_path: icons_path} %}
+              {% include '@hdbt/misc/icon.twig' with {icon: icon_name} %}
               {{ item.title }}
             {% endset %}
           {% endif %}
@@ -65,7 +65,7 @@
           <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
         {% endif %}
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, icons_path) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}
       </li>
     {% endfor %}

@@ -22,13 +22,13 @@
   }
 
   .menu__link-wrapper {
+    @include font-size(18px, 24px);
     align-items: center;
     display: flex;
     height: 100%;
     position: relative;
 
     a {
-      @include font-size(18px, 24px);
       padding: $spacing-and-half 0;
       text-decoration: none;
 
@@ -99,7 +99,7 @@
   .menu__item--open {
     position: relative;
 
-    .menu__toggle-button .icon {
+    .menu__toggle-button .hel-icon {
       transform: rotate(180deg);
     }
 
@@ -181,20 +181,11 @@
           }
 
           &:after {
-            background-color: $color-black;
-            background-size: contain;
-            content: "";
-            display: flex;
-            height: 20px;
-            mask-image: url('../icons/hds/ui/link-external.svg');
-            mask-position: center;
-            mask-repeat: no-repeat;
-            mask-size: 20px;
+            @include pseudo-icon('link-external', 20px, $color-black, flex);
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 20px;
           }
         }
       }
@@ -229,8 +220,7 @@
   .menu__toggle-button {
     background-color: transparent;
     border: none;
-    // Adjusting chevron position to match text.
-    margin: 5px 0 0 $spacing-half;
+    margin-left: $spacing-half;
     padding: 0;
 
     &:hover {
@@ -244,8 +234,8 @@
       padding: 6px 0;
     }
 
-    .icon {
-      transition: all .2s ease-in;
+    .hel-icon {
+      transition: $rotating-icon-transition;
     }
   }
 

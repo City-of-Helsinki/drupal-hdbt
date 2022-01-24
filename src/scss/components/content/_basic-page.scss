@@ -92,7 +92,7 @@
   }
 
   a::after {
-    @include pseudo-icon('ui/arrow-right', $spacing-and-half);
+    @include pseudo-icon('arrow-right', $spacing-and-half);
     margin-left: $spacing-quarter;
   }
 }

@@ -24,7 +24,8 @@
       width: 50px;
     }
 
-    .icon {
+    .hel-icon {
+      --icon-size: #{$spacing-and-half};
       display: block;
 
       @include breakpoint(440px) {
