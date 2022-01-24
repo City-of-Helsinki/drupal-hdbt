@@ -64,7 +64,8 @@
     pointer-events: none;
     position: absolute;
     right: calc(var(--spacing-s) - var(--border-width) * 2);
-    top: calc(var(--spacing-s) - var(--border-width) * 3);
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   select,
