@@ -2,7 +2,8 @@
   --border-width: 2px;
   --input-height: 52px;
   --menu-item-height: 52px;
-  --icon-size: var(--spacing-m);
+  --icon-size: var(--spacing-layout-s);
+  --icon-spacing: calc(((var(--spacing-s) - var(--border-width) * 2) * 2) + var(--icon-size));
   --helper-color-default: var(--color-black-60);
   --helper-color-invalid: var(--color-error);
   --icon-color-invalid: var(--color-error);
@@ -50,7 +51,7 @@
     margin: 0;
     min-height: var(--menu-item-height);
     outline: none;
-    padding: calc(var(--spacing-s) - var(--border-width) * 2) var(--spacing-s);
+    padding: calc(var(--spacing-s) - var(--border-width) * 2) var(--icon-spacing) calc(var(--spacing-s) - var(--border-width) * 2) var(--spacing-s);
     width: 100%;
     z-index: 1;
 
@@ -91,5 +92,18 @@
     position: absolute;
     right: -1px;
     top: -1px;
+  }
+}
+
+// Disabled select styles
+.hdbt--select-wrapper--disabled {
+  background-color: var(--input-background-disabled);
+  border: var(--border-width) solid var(--input-border-color-disabled);
+  color: var(--input-color-disabled);
+  cursor: not-allowed;
+
+  select:disabled {
+    color: var(--input-color-disabled);
+    opacity: 1;
   }
 }
