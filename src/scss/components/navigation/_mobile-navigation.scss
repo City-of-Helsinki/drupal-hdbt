@@ -62,17 +62,10 @@ $spacing-menu-item: 20px;
       width: $spacing-quadruple;
 
       &::before {
-        background-color: $color-black;
-        background-size: contain;
+        @include pseudo-icon('angle-down', 25px, $color-black, flex);
         border: none;
-        content: "";
-        display: flex;
         height: $spacing-quadruple;
-        mask-image: url('../icons/hds/ui/angle-down.svg');
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 25px;
-        transition: transform .5s cubic-bezier(.19, 1, .22, 1);
+        transition: $rotating-icon-transition;
         width: $spacing-quadruple;
       }
 
@@ -82,7 +75,7 @@ $spacing-menu-item: 20px;
     }
 
     &.mm-listitem_opened > .mm-btn::before {
-      transform: rotate(-180deg);
+      transform: rotate(180deg);
     }
 
     .mm-panel {
@@ -245,24 +238,17 @@ $spacing-menu-item: 20px;
     }
   }
 
-  .icon {
-    background-color: $color-black;
-    background-size: contain;
-    content: "";
-    display: flex;
-    mask-image: url('../icons/hds/ui/menu-hamburger.svg');
-    mask-position: center;
-    mask-repeat: no-repeat;
-    mask-size: 25px;
-    width: 20px;
+  .hel-icon {
+    --icon-size: 20px;
+    mask-size: 25px 25px; // This is silly, apparently we want to scale the icon larger than its click area and native style indicate.
 
     @include breakpoint(440px) {
       margin-bottom: $spacing-quarter;
     }
   }
 
-  &[aria-expanded="true"] .icon {
-    mask-image: url('../icons/hds/ui/cross.svg');
+  &[aria-expanded="true"] .hel-icon {
+    mask-image: icon_url('cross');
   }
 }
 

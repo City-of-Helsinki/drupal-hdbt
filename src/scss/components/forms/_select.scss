@@ -60,11 +60,13 @@
     }
   }
 
-  i.hds-icon {
+  .hel-icon {
+    --icon-size: var(--spacing-m);
     pointer-events: none;
     position: absolute;
     right: calc(var(--spacing-s) - var(--border-width) * 2);
-    top: calc(var(--spacing-s) - var(--border-width) * 2);
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   select,

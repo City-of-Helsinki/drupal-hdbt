@@ -94,11 +94,16 @@ $item_spacing: $spacing-triple;
     }
   }
 
+  .list-of-links__item__link:hover .list-of-links__item__title {
+    text-decoration: underline;
+  }
+
   .list-of-links__item__arrow {
     display: block;
     line-height: 0;
     margin-left: -$spacing-quarter;
     margin-top: $spacing-half;
+    transition: $hover-link-arrow-transition;
 
     @include breakpoint($breakpoint-s) {
       margin-left: -$spacing-half;
@@ -109,12 +114,18 @@ $item_spacing: $spacing-triple;
       transform: rotate(-45deg);
     }
 
-    .icon {
-      --icon-proportions: 1.5rem;
+    .hel-icon {
+      --icon-size: 1.5rem;
 
       @include breakpoint($breakpoint-s) {
-        --icon-proportions: 3rem;
+        --icon-size: 3rem;
       }
+    }
+  }
+
+  &:hover {
+    .list-of-links__item__arrow {
+      transform: translateX($spacing-half);
     }
   }
 }
@@ -151,7 +162,6 @@ $item_spacing: $spacing-triple;
     }
 
     .list-of-links__item__arrow {
-      line-height: 0;
       // Pull the arrow a bit higher to match the text line-height.
       margin: -2px 0 0 $spacing;
 
@@ -160,11 +170,11 @@ $item_spacing: $spacing-triple;
         margin-top: -8px;
       }
 
-      .icon {
-        --icon-proportions: 2rem;
+      .hel-icon {
+        --icon-size: 2rem;
 
         @include breakpoint($breakpoint-s) {
-          --icon-proportions: 3rem;
+          --icon-size: 3rem;
         }
       }
     }

@@ -1,11 +1,21 @@
 //
-// @file
 // This file includes Helsinki Design System core packages.
+// These contents have been stripped to bare minimum that we use.
 //
 
-@import "~hds-core/lib/icons/icon.min.css";
-@import "~hds-core/lib/icons/all.min.css";
-@import "~hds-core/lib/base.min.css";
-@import "~hds-core/lib/utils/animations.min.css";
-@import "~hds-core/lib/utils/helpers.min.css";
-@import "~hds-core/lib/components/all.min.css";
+// TODO: We should clean all these codes and move them to our own codebase
+
+// Get stripped contents from base.min.css:
+@import "external/normalise.css";
+@import "external/hds-stripped/base";
+
+// Get content from:
+// Rows below strip only used bits from @import "external/hds-core/lib/components/all.min.css";
+@import "external/hds-core/lib/components/button/button.min.css";
+@import "external/hds-core/lib/components/checkbox/checkbox.min.css";
+@import "external/hds-core/lib/components/koros/koros.min.css";
+@import "external/hds-core/lib/components/loading-spinner/loading-spinner.min.css";
+@import "external/hds-core/lib/components/notification/notification.min.css";
+@import "external/hds-core/lib/components/radio-button/radio-button.min.css";
+@import "external/hds-core/lib/components/status-label/status-label.min.css";
+@import "external/hds-core/lib/components/text-input/text-input.min.css";

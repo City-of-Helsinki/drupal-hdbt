@@ -14,13 +14,13 @@
     padding: $spacing $spacing-double;
   }
 
-  .icon {
+  .hel-icon {
     display: none;
 
     @include breakpoint($breakpoint-m) {
+      --icon-size: #{remify(14px)};
       display: block;
       margin: 0 $spacing-quarter * 0.5;
-      width: 14px;
     }
   }
 }
@@ -47,13 +47,7 @@
     }
 
     &::before {
-      background-image: url('../icons/hds/ui/angle-left.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      content: "";
-      height: 24px;
-      width: 24px;
+      @include pseudo-icon('angle-left', $spacing-and-half);
 
       @include breakpoint($breakpoint-m) {
         display: none;

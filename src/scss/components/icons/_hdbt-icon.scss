@@ -1,17 +1,18 @@
 .hdbt-icon {
   // Using before pseudo element because hds has already used after on buttons for example.
   &::before {
-    --icon-proportions: #{$spacing-and-half};
+    --icon-size: #{$spacing-and-half};
     background-color: $color-black;
     content: "";
     display: inline-block;
-    height: var(--icon-proportions);
+    height: var(--icon-size);
+    mask-position: center center;
     mask-repeat: no-repeat;
-    mask-size: var(--icon-proportions);
-    min-height: var(--icon-proportions);
-    min-width: var(--icon-proportions);
+    mask-size: var(--icon-size) var(--icon-size);
+    min-height: var(--icon-size);
+    min-width: var(--icon-size);
     position: static;
-    width: var(--icon-proportions);
+    width: var(--icon-size);
   }
 }
 

@@ -6,5 +6,6 @@
   ],
   "enabledManagers": ["npm", "nvm", "github-actions"],
   "dependencyDashboard": true,
-  "prConcurrentLimit": 10
+  "prConcurrentLimit": 10,
+  "ignorePaths": ["**/src/**"]
 }

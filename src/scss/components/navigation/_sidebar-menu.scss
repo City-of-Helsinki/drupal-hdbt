@@ -19,16 +19,10 @@
       text-decoration: none;
 
       &:before {
-        background-color: $color-black;
-        background-size: contain;
-        content: "";
-        display: flex;
+        @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+        //TODO: Clean up this size mess
         height: 30px;
         left: 0;
-        mask-image: url('../icons/hds/ui/arrow-left.svg');
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 25px;
         position: absolute;
         top: 0;
         width: 20px;
@@ -77,20 +71,12 @@
         }
 
         &:after {
-          background-color: $color-black;
-          background-size: contain;
-          content: "";
-          display: flex;
-          height: 20px;
-          mask-image: url('../icons/hds/ui/link-external.svg');
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: 20px;
+          @include pseudo-icon('link-external', 20px, $color-black, flex);
           position: absolute;
           right: 0;
           top: 50%;
           transform: translateY(-50%);
-          width: 40px;
+          width: 40px; // TODO: clean this width that's fighting common icon rules
         }
 
         &:focus {
@@ -153,7 +139,7 @@
           display: block;
         }
 
-        .menu__toggle-button .icon {
+        .menu__toggle-button .hel-icon {
           transform: rotate(180deg);
         }
       }
@@ -221,6 +207,10 @@
     min-width: 40px;
     padding: 0;
     position: relative;
+
+    .hel-icon {
+      transition: $rotating-icon-transition;
+    }
 
     &:hover {
       cursor: pointer;

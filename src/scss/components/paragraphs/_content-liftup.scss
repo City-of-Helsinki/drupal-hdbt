@@ -159,7 +159,7 @@ $_info-row__icon-size: $spacing-and-half;
 
 .content-liftup__info-row--address {
   .content-liftup__info-row__title::before {
-    @include pseudo-icon('ui/location', $spacing-and-half, currentColor);
+    @include pseudo-icon('location', $spacing-and-half, currentColor);
   }
 
   .address-line1::after,
@@ -170,7 +170,7 @@ $_info-row__icon-size: $spacing-and-half;
 
 .content-liftup__info-row--opening-hours {
   .content-liftup__info-row__title::before {
-    @include pseudo-icon('ui/clock', $spacing-and-half, currentColor);
+    @include pseudo-icon('clock', $spacing-and-half, currentColor);
   }
 }
 
@@ -182,9 +182,9 @@ $_info-row__icon-size: $spacing-and-half;
   padding-top: $spacing;
 
   &::after {
-    @include pseudo-icon('ui/arrow-right', $spacing-and-half, currentColor);
+    @include pseudo-icon('arrow-right', $spacing-and-half, currentColor);
     flex-shrink: 0;
-    transition: transform linear 100ms;
+    transition: $hover-link-arrow-transition;
 
     .content-liftup:hover &,
     .content-liftup:focus-within & {

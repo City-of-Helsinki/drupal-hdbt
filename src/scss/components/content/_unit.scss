@@ -55,7 +55,7 @@
       font-weight: 700;
       width: 100%;
 
-      .icon {
+      .hel-icon {
         margin-right: $spacing-half;
       }
     }
@@ -178,12 +178,13 @@
     }
 
     .unit__contact-row__label {
+      @include font-size(16px, 24px);
       align-items: flex-start;
       display: flex;
       font-weight: 600;
       margin-bottom: 8px;
 
-      .icon {
+      .hel-icon {
         margin-left: -$spacing-double;
         margin-right: $spacing-half;
       }
@@ -209,15 +210,8 @@
     }
 
     &:after {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      display: flex;
-      height: 20px;
-      mask-image: url('../icons/hds/ui/link-external.svg');
-      mask-position: center;
-      mask-repeat: no-repeat;
-      mask-size: 14px;
+      @include pseudo-icon('link-external', 14px, $color-black, flex);
+      height: 20px; //TODO: clean height and width mismatch
       position: absolute;
       right: 0;
       top: 50%;
@@ -507,6 +501,10 @@
       top: 0;
       width: 100%;
     }
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .unit__title {
@@ -574,6 +572,7 @@
   }
 
   .unit__read-more {
+      @include font-size(16px, 24px);
     display: flex;
     margin-top: $spacing-double;
 
@@ -583,12 +582,20 @@
     }
 
     .unit__read-more__text {
-      @include font-size(16px, 24px);
       font-weight: 500;
     }
 
-    .icon {
+    .hel-icon {
       margin-left: $spacing-half;
+      transition: $hover-link-arrow-transition;
+    }
+  }
+
+  &:hover {
+    .unit__read-more {
+      .hel-icon {
+        transform: translateX($spacing-quarter);
+      }
     }
   }
 }

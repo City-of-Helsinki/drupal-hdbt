@@ -83,6 +83,12 @@ color-palette:
     theme:
       dist/css/color-palette.min.css: {}
 
+hdbt-icons:
+  version: 1.0
+  css:
+    theme:
+      dist/css/hdbt-icons.css: {}
+
 embedded-content-cookie-compliance:
   version: 1.x
   js:
@@ -97,10 +103,11 @@ global-styling:
   version: 1.x
   css:
     theme:
-      dist/css/hdbt-icons.css: {}
+      dist/css/hds.min.css: {}
       dist/css/styles.min.css: {}
   dependencies:
     - hdbt/color-palette
+    - hdbt/hdbt-icons
 
 # TODO Convert branding mobile to its own library.
 global-scripting:

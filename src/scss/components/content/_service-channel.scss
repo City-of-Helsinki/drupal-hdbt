@@ -63,18 +63,11 @@
     width: 24px;
 
     &:after {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      height: 24px;
+      @include pseudo-icon(null, $spacing-and-half, $color-black);
       left: 0;
-      mask-position: center;
-      mask-repeat: no-repeat;
-      mask-size: 24px;
       position: absolute;
       text-indent: 0;
       top: 0;
-      width: 24px;
     }
   }
 
@@ -122,35 +115,35 @@
 }
 
 .service-channel--email .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/glyph-at.svg');
+  @include pseudo-icon-replace('glyph-at');
 }
 
 .service-channel--sms .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/mobile.svg');
+  @include pseudo-icon-replace('mobile');
 }
 
 .service-channel--telephone .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/phone.svg');
+  @include pseudo-icon-replace('phone');
 }
 
 .service-channel--printable_form .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/document.svg');
+  @include pseudo-icon-replace('document');
 }
 
 .service-channel--webpage .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/globe.svg');
+  @include pseudo-icon-replace('globe');
 }
 
 .service-channel--chat .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/speechbubble-text.svg');
+  @include pseudo-icon-replace('speechbubble-text');
 }
 
 .service-channel--local .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/location.svg');
+  @include pseudo-icon-replace('location');
 }
 
 .service-channel--mail .service-channel__type:after {
-  mask-image: url('../icons/hds/ui/envelope.svg');
+  @include pseudo-icon-replace('envelope');
 }
 
 .service-channel__phone,

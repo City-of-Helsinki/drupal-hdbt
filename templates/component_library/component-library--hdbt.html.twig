@@ -107,27 +107,6 @@
     </div>
   </div>
 
-  <button class="component-library__accordion">Tag</button>
-  <div class="component-library__panel">
-    <div class="component-library__example">
-      {% set tags = {
-        default: { label: 'Tag - Default' },
-        clickable: { label: 'Tag - Clickable', url: 'https://hds.hel.fi/components/tag#clickable-tags' },
-        deletable: { label: 'Tag - Deletable', type: 'deletable' },
-      } %}
-      {% for tag in tags %}
-        <div style="display:inline-block; margin-bottom: 1rem; margin-right: 1rem;">
-          {% include '@hdbt/misc/tag.html.twig' with { type: tag.type, label: tag.label, url: tag.url } %}
-        </div>
-      {% endfor %}
-    </div>
-    <div class="component-library__code">
-      {{ "
-          {% include '@hdbt/misc/tag.html.twig' with { label: 'Label for the tag', url: 'https://hds.hel.fi/components/tag#clickable-tags' } %}
-      " }}
-    </div>
-  </div>
-
   {#
   /**
    * Form elements
