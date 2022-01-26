@@ -53,19 +53,19 @@
   }
 }
 
-/**
- * To give different styles depending on how many items a wrapper has you can use this mixing to assign the styles
- * to correct element. For example:
- *
- * If the wrapper has 1, 2 or 3 items make the items 30% wide, otherwise they should be 20% wide:
- * .wrapper .item {
- *   width: 20%;
- *
- *   @include content_count(1, 2, 3) {
- *     width: 30%;
- *   }
- * }
- */
+////
+// To give different styles depending on how many items a wrapper has you can use this mixing to assign the styles
+// to correct element. For example:
+//
+// If the wrapper has 1, 2 or 3 items make the items 30% wide, otherwise they should be 20% wide:
+// .wrapper .item {
+//   width: 20%;
+//
+//   @include content_count(1, 2, 3) {
+//     width: 30%;
+//   }
+// }
+////
 @mixin content_count($number_of_items...) {
   @each $item in $number_of_items {
     @if type-of($item) == number {
@@ -78,20 +78,20 @@
   }
 }
 
-/**
- * Allow changing icon easily on hover, etc.
- * usage:
- * @include pseudo-icon-replace('email');
- */
+////
+// Allow changing icon easily on hover, etc.
+// usage:
+// @include pseudo-icon-replace('email');
+////
 @mixin pseudo-icon-replace( $icon ) {
   mask-image: icon_url( $icon );
 }
 
-/**
- * Add pseudo element (::before, ::after) styling for icons
- * usage:
- * @include pseudo-icon('share', var(--icon-size), $color-black, inline-block);
- */
+////
+// Add pseudo element (::before, ::after) styling for icons
+// usage:
+// @include pseudo-icon('share', var(--icon-size), $color-black, inline-block);
+////
 @mixin pseudo-icon($icon, $size: var(--icon-size), $color: $color-black, $display: inline-block) {
   background-color: $color;
   background-size: contain;
@@ -106,9 +106,9 @@
   width: $size;
 }
 
-/**
-* Mixin to change element to be visually hidden, only visible to screenreaders, etc.
-*/
+////
+// Mixin to change element to be visually hidden, only visible to screenreaders, etc.
+////
 @mixin visually-hidden() {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
