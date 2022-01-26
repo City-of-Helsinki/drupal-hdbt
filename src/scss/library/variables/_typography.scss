@@ -26,3 +26,89 @@ $font-weight-black: 800;
 
 // Line height.
 $lineheight-xxl: 2;
+
+// Add design font tokens to $config
+$config: deep-map-merge($config, (
+  font: (
+    h1: (
+      font-size: remify(40px),
+      font-weight: $font-weight-regular,
+      line-height: 40/40,
+      desktop: (
+        font-size: remify(64px),
+        font-weight: $font-weight-regular,
+        line-height: 64/64,
+      )
+    ),
+    h2: (
+      font-size: remify(32px),
+      font-weight: $font-weight-regular,
+      line-height: 32/32,
+      desktop: (
+        font-size: remify(48px),
+        font-weight: $font-weight-regular,
+        line-height: 48/48,
+      )
+    ),
+    h3: (
+      font-size: remify(24px),
+      font-weight: $font-weight-medium,
+      line-height: 32/24,
+      desktop: (
+        font-size: remify(32px),
+        font-weight: $font-weight-regular,
+        line-height: 32/32,
+      )
+    ),
+    h4: (
+      font-size: remify(20px),
+      font-weight: $font-weight-medium,
+      line-height: 26/20,
+      desktop: (
+        font-size: remify(24px),
+        font-weight: $font-weight-medium,
+        line-height: 28/24,
+      )
+    ),
+    h5: (
+      font-size: remify(18px),
+      font-weight: $font-weight-medium,
+      line-height: 22/18,
+      desktop: (
+        font-size: remify(20px),
+        font-weight: $font-weight-bold,
+        line-height: 30/20,
+      )
+    ),
+    h6: (
+      font-size: remify(16px),
+      font-weight: $font-weight-bold,
+      line-height: 24/16,
+      desktop: (
+        font-size: remify(18px),
+        font-weight: $font-weight-bold,
+        line-height: 28/18,
+      )
+    ),
+    lead: (
+      font-size: remify(20px),
+      font-weight: $font-weight-regular,
+      line-height: 30/20,
+      desktop: (
+        font-size: remify(22px),
+        font-weight: $font-weight-regular,
+        line-height: 33/22,
+      )
+    ),
+    body: (
+      font-size: remify(18px),
+      font-weight: $font-weight-regular,
+      line-height: 28/18
+    ),
+    small: (
+      font-size: remify(16px),
+      font-weight: $font-weight-regular,
+      line-height: 24/16
+    ),
+  )
+));

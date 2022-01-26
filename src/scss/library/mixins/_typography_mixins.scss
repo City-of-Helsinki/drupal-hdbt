@@ -1,3 +1,19 @@
+@mixin font($style){
+  $path: 'font.#{$style}';
+
+  font-size: get('#{$path}.font-size');
+  font-weight: get('#{$path}.font-weight');
+  line-height: get('#{$path}.line-height');
+
+  @if get-check('#{$path}.desktop'){
+    @include breakpoint($breakpoint-m) {
+      font-size: get('#{$path}.desktop.font-size');
+      font-weight: get('#{$path}.desktop.font-weight');
+      line-height: get('#{$path}.desktop.line-height');
+    }
+  }
+}
+
 
 @mixin h1() {
   @include font-size($fontsize-heading-xl);
