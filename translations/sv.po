@@ -58,3 +58,27 @@ msgstr "Opublicerad"
 msgctxt "Long description for editors about current page being unpublished"
 msgid "This page is unpublished"
 msgstr "Den här sidan är opublicerad"
+
+msgctxt "Errand service detail heading"
+msgid "Processing time"
+msgstr "Handläggningstid"
+
+msgctxt "Errand service detail heading"
+msgid "Fees"
+msgstr "Avgifter"
+
+msgctxt "Errand service detail heading"
+msgid "Validity period"
+msgstr "Giltighetstid"
+
+msgctxt "Errand service detail heading"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
+
+msgctxt "Errand service detail heading"
+msgid "Additional links"
+msgstr "Länkar för ytterligare upplysningar"
+
+msgctxt "Errand service detail heading"
+msgid "How the process works"
+msgstr "Hur behandlingen av ärendet fortskrider"
