@@ -3,7 +3,7 @@
 }
 
 .social-media__title {
-  @include h4();
+  @include font('h4');
 }
 
 .social-media__items {

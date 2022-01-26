@@ -69,7 +69,7 @@
 }
 
 .content-links__title {
-  @include h3();
+  @include font('h3');
 }
 
 .content-links__links {
@@ -131,7 +131,7 @@ $tag-gap: $spacing-half;
 }
 
 .sidebar_block_heading {
-  @include h3();
+  @include font('h3');
   border-bottom: 2px solid $color-black;
   margin-top: $spacing-sextuple;
   padding-bottom: $spacing-and-half;

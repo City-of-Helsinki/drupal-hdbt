@@ -2,57 +2,6 @@
 // https://sass-lang.com/documentation/modules/math
 @use "sass:math";
 
-// Function nounit strips any unit from variable.
-@function nounit($number) {
-  @return math.div($number, $number * 0 + 1);
-}
-
-// Calculate rem (root em) units from pixels for font-size and line-height.
-@mixin font-size($font-size, $line-height: "") {
-  @if $font-size == 'inherit' {
-    @error 'No inherit values allowed in font-size mixin!';
-  } @else if unit($font-size) == 'rem' {
-    font-size: $font-size;
-  } @else {
-    font-size: math.div($font-size, $base-font-size) * 1rem;
-  }
-
-  // Handle the line-height.
-  @if $line-height != "" {
-    // If line-height is in correct format or in em units, lets use that
-    @if unit($line-height) == 'em' or unit($line-height) == '' {
-      --line-height: #{nounit($line-height)};
-      line-height: var(--line-height);
-    }
-    @else {
-
-      // First lets convert font-size to unitless px values
-      $font-size-px: nounit($font-size);
-      // Convert the font-size if it is in rem.
-      @if unit($font-size) == 'rem' {
-        $font-size-px: nounit($font-size) * nounit($base-font-size);
-      }
-      @else if units($font-size) == 'em' {
-        @error 'Em font units can not be used for converting line-height to unitless automatically!';
-      }
-
-      // Convert line-height from rem to px value if needed
-      @if unit($line-height) == 'rem' {
-        $line-height: nounit($line-height) * $base-font-size;
-      }
-
-      // Check if line-height is now in px and use that.
-      @if unit($line-height) == 'px' {
-        --line-height: #{nounit(math.div($line-height, $font-size-px))};
-        line-height: var(--line-height);
-      }
-      @else {
-        @error "Unable to convert line-height:#{$line-height} (with font-size:#{$font-size}) to unitless";
-      }
-    }
-  }
-}
-
 ////
 // To give different styles depending on how many items a wrapper has you can use this mixing to assign the styles
 // to correct element. For example:

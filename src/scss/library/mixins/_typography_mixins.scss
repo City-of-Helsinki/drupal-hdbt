@@ -1,77 +1,71 @@
-@mixin font($style){
-  $path: 'font.#{$style}';
+// Use Dart Sass math module to perform calculations.
+// https://sass-lang.com/documentation/modules/math
+@use "sass:math";
 
-  font-size: get('#{$path}.font-size');
-  font-weight: get('#{$path}.font-weight');
-  line-height: get('#{$path}.line-height');
+// Calculate rem (root em) units from pixels for font-size and line-height.
+@mixin _font-size($font-size, $line-height: "") {
+  @if $font-size == 'inherit' {
+    @error 'No inherit values allowed in font-size mixin!';
+  } @else if unit($font-size) == 'rem' {
+    font-size: $font-size;
+  } @else {
+    font-size: math.div($font-size, $base-font-size) * 1rem;
+  }
 
-  @if get-check('#{$path}.desktop'){
-    @include breakpoint($breakpoint-m) {
-      font-size: get('#{$path}.desktop.font-size');
-      font-weight: get('#{$path}.desktop.font-weight');
-      line-height: get('#{$path}.desktop.line-height');
+  // Handle the line-height.
+  @if $line-height != "" {
+    // If line-height is in correct format or in em units, lets use that
+    @if unit($line-height) == 'em' or unit($line-height) == '' {
+      --line-height: #{nounit($line-height)};
+      line-height: var(--line-height);
+    }
+    @else {
+
+      // First lets convert font-size to unitless px values
+      $font-size-px: nounit($font-size);
+      // Convert the font-size if it is in rem.
+      @if unit($font-size) == 'rem' {
+        $font-size-px: nounit($font-size) * nounit($base-font-size);
+      }
+      @else if units($font-size) == 'em' {
+        @error 'Em font units can not be used for converting line-height to unitless automatically!';
+      }
+
+      // Convert line-height from rem to px value if needed
+      @if unit($line-height) == 'rem' {
+        $line-height: nounit($line-height) * $base-font-size;
+      }
+
+      // Check if line-height is now in px and use that.
+      @if unit($line-height) == 'px' {
+        --line-height: #{nounit(math.div($line-height, $font-size-px))};
+        line-height: var(--line-height);
+      }
+      @else {
+        @error "Unable to convert line-height:#{$line-height} (with font-size:#{$font-size}) to unitless";
+      }
     }
   }
 }
 
 
-@mixin h1() {
-  @include font-size($fontsize-heading-xl);
-  font-weight: $font-weight-regular;
-
-  @include breakpoint($breakpoint-m) {
-    // Margin on top needed to create enough space on top when there is no hero.
-    margin-top: $spacing-quadruple;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(72px, $lineheight-s);
-    margin-bottom: $spacing-quadruple;
-  }
+// Deprecated mixin, use font() instead
+@mixin font-size($font-size, $line-height: ""){
+  @include _font-size($font-size, $line-height);
 }
 
-@mixin h2() {
-  @include font-size($fontsize-heading-l);
-  font-weight: $font-weight-regular;
 
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-xl);
-  }
-}
+// Renders font styles based on design tokens
+@mixin font($style){
+  $path: 'font.#{$style}';
 
-@mixin h3() {
-  @include font-size($fontsize-heading-m);
-  font-weight: $font-weight-regular;
+  @include _font-size(get('#{$path}.font-size'), get('#{$path}.line-height'));
+  font-weight: get('#{$path}.font-weight');
 
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-l);
-  }
-}
-
-@mixin h4() {
-  @include font-size($fontsize-heading-s);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-m);
-  }
-}
-
-@mixin h5() {
-  @include font-size($fontsize-heading-xs);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size($fontsize-heading-s);
-    font-weight: $font-weight-regular;
-  }
-}
-
-@mixin h6() {
-  @include font-size($fontsize-heading-xxs);
-  font-weight: $font-weight-medium;
-
-  @include breakpoint($breakpoint-l) {
-    font-weight: $font-weight-bold;
+  @if get-check('#{$path}.desktop'){
+    @include breakpoint($breakpoint-l) {
+      @include _font-size(get('#{$path}.desktop.font-size'), get('#{$path}.desktop.line-height'));
+      font-weight: get('#{$path}.desktop.font-weight');
+    }
   }
 }

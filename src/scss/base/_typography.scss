@@ -17,27 +17,36 @@ h3 {
 }
 
 h1 {
-  @include h1();
+  @include font('h1');
+
+  @include breakpoint($breakpoint-m) {
+    // Margin on top needed to create enough space on top when there is no hero.
+    margin-top: $spacing-quadruple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-quadruple;
+  }
 }
 
 h2 {
-  @include h2();
+  @include font('h2');
 }
 
 h3 {
-  @include h3();
+  @include font('h3');
 }
 
 h4 {
-  @include h4();
+  @include font('h4');
 }
 
 h5 {
-  @include h5();
+  @include font('h5');
 }
 
 h6 {
-  @include h6();
+  @include font('h6');
 }
 
 a {
