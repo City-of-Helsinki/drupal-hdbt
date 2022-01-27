@@ -61,3 +61,27 @@ msgstr "Julkaisematon"
 msgctxt "Long description for editors about current page being unpublished"
 msgid "This page is unpublished"
 msgstr "Tämä sivu on julkaisematon"
+
+msgctxt "Errand service detail heading"
+msgid "Processing time"
+msgstr "Käsittelyaika"
+
+msgctxt "Errand service detail heading"
+msgid "Fees"
+msgstr "Maksut"
+
+msgctxt "Errand service detail heading"
+msgid "Validity period"
+msgstr "Voimassaoloaika"
+
+msgctxt "Errand service detail heading"
+msgid "Additional information"
+msgstr "Lisätiedot"
+
+msgctxt "Errand service detail heading"
+msgid "Additional links"
+msgstr "Lisätietolinkit"
+
+msgctxt "Errand service detail heading"
+msgid "How the process works"
+msgstr "Asian käsittelyn eteneminen"
