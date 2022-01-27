@@ -2,9 +2,8 @@
   position: relative;
 
   .language-link {
-    @include font-size(14px);
+    @include font('small');
     color: $color-black;
-    font-weight: $font-weight-regular;
     margin: 0 $spacing-half;
     text-decoration: underline;
 

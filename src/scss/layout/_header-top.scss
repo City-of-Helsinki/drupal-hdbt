@@ -3,7 +3,7 @@
   display: none;
 
   @include breakpoint($breakpoint-m) {
-    @include font-size(14px, 20px);
+    @include font('special.navigation.header_top');
     align-items: center;
     background-color: $color-black-5;
     display: flex;

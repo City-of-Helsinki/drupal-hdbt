@@ -61,7 +61,7 @@
 }
 
 .component__description {
-  @include font-size(18px, 27px);
+  @include font('body');
   max-width: $content-width-max;
 
   :first-child {

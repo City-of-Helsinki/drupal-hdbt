@@ -8,7 +8,7 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__short-desc {
-    @include font-size(24px, 32px);
+    @include font('lead');
     padding-bottom: $spacing-half;
     position: relative;
   }
@@ -23,7 +23,7 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__long-desc {
-    @include font-size(20px, 32px);
+    @include font('body');
 
     p:first-child {
       margin-top: 0;
@@ -210,7 +210,7 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__units__count-container {
-    @include font-size(24px, 30px);
+    @include font('lead');
     display: block;
     margin-top: $spacing;
     white-space: nowrap;

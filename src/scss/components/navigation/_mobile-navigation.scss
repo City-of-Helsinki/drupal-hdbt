@@ -31,8 +31,7 @@ $spacing-menu-item: 20px;
 
 // Styles for the mobile navigation.
 .mobile-navigation {
-  @include font-size(20px, 20px);
-  font-weight: $font-weight-regular;
+  @include font('special.navigation.mobile_nav');
 
   .mm-listitem {
     min-height: $spacing-quadruple;
@@ -100,7 +99,7 @@ $spacing-menu-item: 20px;
     }
 
     .mm-listitem__text {
-      @include font-size(16px, 26px);
+      @include font('special.navigation.mobile_subnav');
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-double;
     }
@@ -134,7 +133,7 @@ $spacing-menu-item: 20px;
     }
 
     .mm-listitem__text {
-      @include font-size(16px, 26px);
+      @include font('special.navigation.mobile_nav');
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-triple;
 
@@ -186,7 +185,7 @@ $spacing-menu-item: 20px;
 
 // Menu trigger (burger).
 .mobile-navigation__trigger {
-  @include font-size(12px, 14px);
+  @include font('special.navigation.icon_label');
   align-items: center;
   display: flex;
   flex-direction: column;

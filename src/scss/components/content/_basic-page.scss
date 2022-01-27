@@ -19,7 +19,7 @@
 
 .preamble,
 .lead-in {
-  @include font-size(20px, 32px);
+  @include font('lead');
 }
 
 .preamble::after {

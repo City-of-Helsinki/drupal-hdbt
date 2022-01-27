@@ -1,11 +1,4 @@
 // --- Font variables from HDS.
-$fontsize-heading-xl: 3.25rem; // 52px
-$fontsize-heading-l: 2.25rem; // 36px
-$fontsize-heading-m: 1.5rem; // 24px
-$fontsize-heading-s: 1.25rem; // 20px
-$fontsize-heading-xs: 1.125rem; // 18px
-$fontsize-heading-xxs: 1rem; // 16px
-
 $font-default: HelsinkiGrotesk, Arial, sans-serif;
 
 $lineheight-s: 1;
@@ -31,62 +24,62 @@ $lineheight-xxl: 2;
 $config: deep-map-merge($config, (
   font: (
     h1: (
-      font-size: remify(40px),
-      font-weight: $font-weight-regular,
+      font-size: remify(40px), // was 52px
+      font-weight: $font-weight-regular, // was regular
       line-height: 40/40,
-      desktop: (
-        font-size: remify(64px),
+      breakpoint_l: (
+        font-size: remify(64px), // was 72px
         font-weight: $font-weight-regular,
-        line-height: 64/64,
+        line-height: 64/64, // was 1
       )
     ),
     h2: (
-      font-size: remify(32px),
-      font-weight: $font-weight-regular,
+      font-size: remify(32px), // was 36px
+      font-weight: $font-weight-regular, // was regular
       line-height: 32/32,
-      desktop: (
-        font-size: remify(48px),
+      breakpoint_l: (
+        font-size: remify(48px), // was 52px
         font-weight: $font-weight-regular,
         line-height: 48/48,
       )
     ),
     h3: (
-      font-size: remify(24px),
-      font-weight: $font-weight-medium,
+      font-size: remify(24px), // was 24px
+      font-weight: $font-weight-medium, // was regular
       line-height: 32/24,
-      desktop: (
-        font-size: remify(32px),
+      breakpoint_l: (
+        font-size: remify(32px), // was 36px
         font-weight: $font-weight-regular,
         line-height: 32/32,
       )
     ),
     h4: (
-      font-size: remify(20px),
-      font-weight: $font-weight-medium,
+      font-size: remify(20px), // was 20px
+      font-weight: $font-weight-medium, // was medium
       line-height: 26/20,
-      desktop: (
-        font-size: remify(24px),
+      breakpoint_l: (
+        font-size: remify(24px), // was 24px
         font-weight: $font-weight-medium,
         line-height: 28/24,
       )
     ),
     h5: (
-      font-size: remify(18px),
-      font-weight: $font-weight-medium,
+      font-size: remify(18px), // was 18px
+      font-weight: $font-weight-medium, // was medium
       line-height: 22/18,
-      desktop: (
-        font-size: remify(20px),
-        font-weight: $font-weight-bold,
+      breakpoint_l: (
+        font-size: remify(20px), // was 20px
+        font-weight: $font-weight-bold, // was regular
         line-height: 30/20,
       )
     ),
     h6: (
-      font-size: remify(16px),
-      font-weight: $font-weight-bold,
+      font-size: remify(16px), // was 16px
+      font-weight: $font-weight-bold, // was medium
       line-height: 24/16,
-      desktop: (
-        font-size: remify(18px),
-        font-weight: $font-weight-bold,
+      breakpoint_l: (
+        font-size: remify(18px), // was 16px
+        font-weight: $font-weight-bold, // was bold
         line-height: 28/18,
       )
     ),
@@ -94,7 +87,7 @@ $config: deep-map-merge($config, (
       font-size: remify(20px),
       font-weight: $font-weight-regular,
       line-height: 30/20,
-      desktop: (
+      breakpoint_l: (
         font-size: remify(22px),
         font-weight: $font-weight-regular,
         line-height: 33/22,
@@ -110,5 +103,92 @@ $config: deep-map-merge($config, (
       font-weight: $font-weight-regular,
       line-height: 24/16
     ),
+    button: (
+      font-size: remify(16px),
+      font-weight: $font-weight-medium,
+      line-height: 24/16
+    ),
+    special: (
+      card_title: (
+        font-size: remify(26px),
+        font-weight: $font-weight-medium,
+        line-height: 32/26,
+        breakpoint_l: (
+          font-size: remify(34px),
+          font-weight: $font-weight-medium,
+          line-height: 42/34,
+        )
+      ),
+      helper_text: (
+        font-size: remify(14px),
+        font-weight: $font-weight-medium,
+        line-height: 21/14,
+      ),
+      large_link: (
+        font-size: remify(20px),
+        font-weight: $font-weight-medium,
+        line-height: 30/20,
+      ),
+      breadcrumb: (
+        parent: (
+          font-size: remify(18px),
+          font-weight: $font-weight-regular,
+          line-height: 28/18,
+          breakpoint_m: (
+            font-size: remify(14px),
+            font-weight: $font-weight-regular,
+            line-height: 21/14,
+          )
+        ),
+        current: (
+          font-size: remify(14px),
+          font-weight: $font-weight-bold,
+          line-height: 21/14,
+        )
+      ),
+      navigation: (
+        site_name: (
+          font-size: remify(16px),
+          font-weight: $font-weight-regular,
+          line-height: 24/16,
+          breakpoint_m: (
+            font-size: remify(20px),
+            font-weight: $font-weight-regular,
+            line-height: 30/20,
+          )
+        ),
+        icon_label: (
+          font-size: remify(14px),
+          font-weight: $font-weight-regular,
+          line-height: 14/14,
+        ),
+        main_nav: (
+          font-size: remify(18px),
+          font-weight: $font-weight-regular,
+          line-height: 24/18,
+        ),
+        sub_nav: (
+          font-size: remify(16px),
+          font-weight: $font-weight-regular,
+          line-height: 20/16,
+        ),
+        header_top: (
+          font-size: remify(14px),
+          font-weight: $font-weight-regular,
+          line-height: 20/14,
+        ),
+        mobile_nav: (
+          font-size: remify(20px),
+          font-weight: $font-weight-regular,
+          line-height: 30/20,
+        ),
+        mobile_subnav: (
+          font-size: remify(16px),
+          font-weight: $font-weight-regular,
+          line-height: 24/16,
+        ),
+      )
+    )
   )
 ));
+

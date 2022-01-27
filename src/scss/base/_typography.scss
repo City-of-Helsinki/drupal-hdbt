@@ -5,16 +5,11 @@ h4,
 h5,
 h6 {
   hyphens: auto;
-  line-height: $lineheight-m;
-  margin: $spacing-triple 0 0;
+  margin-bottom: 0;
+  margin-top: $spacing-triple;
   word-break: break-word;
 }
 
-h1,
-h2,
-h3 {
-  line-height: $lineheight-s;
-}
 
 h1 {
   @include font('h1');
@@ -54,11 +49,15 @@ a {
 }
 
 p {
-  margin: $spacing 0 0;
+  margin-bottom: 0;
+  margin-top: $spacing;
 }
 
 ul, ol {
-  margin: $spacing-and-half 0 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: $spacing-and-half;
   padding-left: $spacing-double;
   padding-top: $spacing-and-half;
 }

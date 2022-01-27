@@ -59,13 +59,23 @@
 @mixin font($style){
   $path: 'font.#{$style}';
 
-  @include _font-size(get('#{$path}.font-size'), get('#{$path}.line-height'));
+  --line-height: #{get('#{$path}.line-height')};
+  font-size: get('#{$path}.font-size');
   font-weight: get('#{$path}.font-weight');
+  line-height: var(--line-height);
 
-  @if get-check('#{$path}.desktop'){
+  @if get-check('#{$path}.breakpoint_m'){
+    @include breakpoint($breakpoint-m) {
+      --line-height: #{get('#{$path}.breakpoint_m.line-height')};
+      font-size: get('#{$path}.breakpoint_m.font-size');
+      font-weight: get('#{$path}.breakpoint_m.font-weight');
+    }
+  }
+  @if get-check('#{$path}.breakpoint_l'){
     @include breakpoint($breakpoint-l) {
-      @include _font-size(get('#{$path}.desktop.font-size'), get('#{$path}.desktop.line-height'));
-      font-weight: get('#{$path}.desktop.font-weight');
+      --line-height: #{get('#{$path}.breakpoint_l.line-height')};
+      font-size: get('#{$path}.breakpoint_l.font-size');
+      font-weight: get('#{$path}.breakpoint_l.font-weight');
     }
   }
 }
