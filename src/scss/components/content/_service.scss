@@ -163,13 +163,8 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__title {
-    @include font-size(20px, 22px);
-    font-weight: 500;
+    @include font('h4');
     margin: 0;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(24px, 28px);
-    }
   }
 
   .hel-icon {

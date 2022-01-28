@@ -50,9 +50,8 @@
     }
 
     .unit__map__label {
-      @include font-size(18px, 24px);
+      @include font('h6');
       display: flex;
-      font-weight: 700;
       width: 100%;
 
       .hel-icon {
@@ -263,21 +262,13 @@
 
   .unit__services__title {
     margin-top: 0;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(48px, 48px);
-    }
   }
 
   .unit__services__count-container {
-    @include font-size(18px, 24px);
+    @include font('lead');
     display: block;
     margin-top: $spacing-and-half;
     width: 100%;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(24px, 30px);
-    }
 
     .unit__services__count {
       font-weight: 700;

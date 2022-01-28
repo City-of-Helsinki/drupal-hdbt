@@ -78,20 +78,19 @@
   }
 
   a {
-    @include font-size(16px);
+    @include font('small');
     color: $color-black-70;
     text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
       color: $color-bus-dark;
-      font-weight: $font-weight-bold;
     }
   }
 }
 
 .component-library__accordion {
-  @include font-size(20px);
+  @include font('body');
   background-color: $color-black-10;
   border: none;
   color: $color-black-70;
@@ -153,9 +152,8 @@
 }
 
 .component-library__icon__name {
-  @include font-size(16px);
+  @include font('small');
   background-color: $color-black-10;
-  font-weight: $font-weight-medium;
   height: 100%;
   min-width: 100%;
   padding: $spacing-half;

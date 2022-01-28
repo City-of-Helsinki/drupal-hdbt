@@ -20,21 +20,13 @@ $breakpoint-design-image-on-left-right: 830px;
 }
 
 .liftup-with-image__title {
-  @include font-size(24px, 29px);
+  @include font('h3');
   margin-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(32px, 40px);
-  }
 }
 
 .liftup-with-image__desc {
-  @include font-size(18px, 28px);
+  @include font('body');
   margin-top: $spacing;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(20px, 32px);
-  }
 
   > *:first-child {
     margin-top: 0;
@@ -42,7 +34,7 @@ $breakpoint-design-image-on-left-right: 830px;
 }
 
 .liftup-with-image__content .hds-button {
-  @include font-size(16px, 24px);
+  @include font('button');
 }
 
 // Designs with image on the left or right.
