@@ -71,7 +71,7 @@
       }
 
       &[aria-current="page"]{
-        font-weight: 700;
+        font-weight: $font-weight-bold;
       }
 
       .explain-external-icon {
@@ -144,7 +144,7 @@
           }
 
           &[aria-current="page"] {
-            font-weight: 700;
+            font-weight: $font-weight-bold;
           }
 
           &:focus {
@@ -195,7 +195,7 @@
   // Active trail items, first level
   .menu__item--active-trail {
     .menu__link-wrapper a {
-      font-weight: 700;
+      font-weight: $font-weight-bold;
 
       &::before {
         height: 4px;

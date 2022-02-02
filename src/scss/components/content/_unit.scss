@@ -66,7 +66,7 @@
     }
 
     .link {
-      font-weight: 500;
+      font-weight: $font-weight-medium;
       justify-content: flex-end;
       margin-top: $spacing;
 
@@ -271,7 +271,7 @@
     width: 100%;
 
     .unit__services__count {
-      font-weight: 700;
+      font-weight: $font-weight-bold;
     }
   }
 

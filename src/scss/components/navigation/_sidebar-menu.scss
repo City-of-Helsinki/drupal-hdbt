@@ -102,7 +102,7 @@
         width: 100%;
 
         &[aria-current="page"] {
-          font-weight: 700;
+          font-weight: $font-weight-bold;
         }
 
         &:focus {
