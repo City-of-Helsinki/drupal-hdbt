@@ -5,7 +5,7 @@
   }
 
   .unit__short-desc {
-    @include font-size(24px, 32px);
+    @include font('lead');
     padding-bottom: $spacing-half;
     position: relative;
   }
@@ -20,7 +20,7 @@
   }
 
   .unit__long-desc {
-    @include font('lead');
+    @include font('body');
     margin-top: $spacing-quadruple;
 
     p:first-child {
@@ -573,7 +573,7 @@
     }
 
     .unit__read-more__text {
-      font-weight: 500;
+      font-weight: $font-weight-medium;
     }
 
     .hel-icon {

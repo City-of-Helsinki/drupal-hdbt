@@ -46,7 +46,7 @@
 }
 
 .content-date {
-  @include font-size(16px, 24px);
+  @include font('small');
   color: $color-black-60;
   margin-bottom: $spacing-and-half;
 }
@@ -76,14 +76,9 @@
 }
 
 .content-links__links__link {
-  @include font-size(16px, 22px);
-  font-weight: 500;
+  @include font('special.large_link');
   list-style: none;
   padding: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(20px, 27px);
-  }
 
   & + & {
     margin-top: $spacing;
