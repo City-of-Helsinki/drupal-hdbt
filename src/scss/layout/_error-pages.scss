@@ -19,6 +19,10 @@
     }
   }
 
+  .error-page__title {
+    margin-bottom: 0;
+  }
+
   .error-page__description {
     // TODO: change to use correct font-definition once the PR is merged. Change to body.
     @include font-size(18px, 28px);
