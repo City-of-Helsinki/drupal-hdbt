@@ -1,18 +1,24 @@
 {% embed 'page.html.twig' %}
-  {% block page_before_content %}
-    {% embed '@hdbt/misc/container.twig' with {container_element: 'page-title'} %}
+  {% block page_content %}
+    {% embed '@hdbt/misc/container.twig' with {container_element: 'error-page-content'} %}
       {% block container_content %}
-        <div class="page-title">
-          <h1>401 - {{ 'You are unauthorized to view this page.'|t }}</h1>
+        <div class="error-page__text-container">
+          <div class="page-title">
+            <h1>401 - {{ 'You do not have permission to access this page'|t }}</h1>
+          </div>
+          <p class="error-page__description">{{ 'This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content.'|t }}</p>
+          <a href="https://www.hel.fi/helsinki/en" class="error-page__link">{{ 'Go back to the hel.fi homepage'|t }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a><br/>
+          <a href="https://www.hel.fi/helsinki/en/administration/participate/feedback" class="error-page__link">{{ 'Give feedback'|t }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a>
+          <h2>{{ 'Log in'|t }}</h2>
+          {{ drupal_block('user_login_block') }}
+        </div>
+        <div class="error-page__illustration-container">
+          <img src="/themes/contrib/hdbt/src/images/illustration_error_page_403_401.svg" alt="" class="error-page__illustration" width="379" height="566" />
         </div>
       {% endblock container_content %}
     {% endembed %}
-  {% endblock page_before_content %}
-  {% block page_content %}
-    {% embed '@hdbt/misc/component.twig' with {container_element: 'error-content'} %}
-      {% block component_content %}
-        <p>{{ 'Sorry, but you are unauthorized to access this page. Please contact the site administrators.' }}</p>
-      {% endblock component_content %}
-    {% endembed %}
   {% endblock page_content %}
+
+  {% block page_after_content %}
+  {% endblock page_after_content %}
 {% endembed %}
