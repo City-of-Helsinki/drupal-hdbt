@@ -1,0 +1,25 @@
+$_chart-aspect-ratio: 1.78; // 16/9
+
+.chart {
+  figure {
+    // Reset user-agent stylesheet rules for figure.
+    margin: 0;
+  }
+}
+
+.chart__container {
+  height: 0;
+  margin: $spacing 0;
+  padding-bottom: aspect-ratio-padding($_chart-aspect-ratio);
+  position: relative;
+  width: 100%;
+
+  iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
