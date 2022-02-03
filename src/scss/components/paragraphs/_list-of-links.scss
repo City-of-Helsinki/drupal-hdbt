@@ -106,10 +106,6 @@ $item_spacing: $spacing-triple;
       margin-top: $spacing;
     }
 
-    &.is-outbound {
-      transform: rotate(-45deg);
-    }
-
     .hel-icon {
       --icon-size: 1.5rem;
 
@@ -122,6 +118,9 @@ $item_spacing: $spacing-triple;
   &:hover {
     .list-of-links__item__arrow {
       transform: translateX($spacing-half);
+      &.is-outbound {
+        transform: translate($spacing-quarter, - $spacing-quarter);
+      }
     }
   }
 }
