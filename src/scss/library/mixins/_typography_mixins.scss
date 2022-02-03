@@ -1,5 +1,10 @@
 // Renders font styles based on design tokens
 @mixin font($style){
+
+  // Show debug information in browser inspector tools when run with `npm run dev`
+  @if($debug_mode){
+    --DEBUG-FONT-TOKEN: '#{$style}';
+  }
   $path: 'font.#{$style}';
 
   --line-height: #{get('#{$path}.line-height')}; // This --line-height is used for setting the default icon size
