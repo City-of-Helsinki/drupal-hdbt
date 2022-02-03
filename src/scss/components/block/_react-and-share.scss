@@ -20,7 +20,7 @@
   margin-right: auto;
 
   .rns-plugin {
-    font-family: $font-default;
+    font-family: $base-font-family;
     margin: 0;
     padding-bottom: 80px;
     padding-top: 80px;
@@ -303,7 +303,7 @@
       .rns-input-field {
         @include font('body');
         border: 2px solid $color-black-50;
-        font-family: $font-default;
+        font-family: $base-font-family;
         height: 188px; // Abstract width from designs.
         margin-top: $spacing-and-half;
         padding: $spacing;

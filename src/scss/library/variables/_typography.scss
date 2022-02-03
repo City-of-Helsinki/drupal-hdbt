@@ -1,24 +1,13 @@
-// --- Font variables from HDS.
-$font-default: HelsinkiGrotesk, Arial, sans-serif;
-
-$lineheight-s: 1;
-$lineheight-m: 1.2;
-$lineheight-l: 1.5;
-$lineheight-xl: 1.75;
-//---
-
 // Base font family and size.
-$base-font-family: $font-default;
-$base-font-size: 16px;
+$base-font-family: HelsinkiGrotesk, Arial, sans-serif;
+$base-font-size: 16px; // We have to assume that this is the default size in browsers.
+$base-line-height: 1.5;
 
 // Font weight.
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 800;
-
-// Line height.
-$lineheight-xxl: 2;
 
 // Add design font tokens to $config
 $config: deep-map-merge($config, (
