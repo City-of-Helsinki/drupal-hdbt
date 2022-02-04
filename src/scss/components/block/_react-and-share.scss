@@ -20,7 +20,7 @@
   margin-right: auto;
 
   .rns-plugin {
-    font-family: $font-default;
+    font-family: $base-font-family;
     margin: 0;
     padding-bottom: 80px;
     padding-top: 80px;
@@ -30,8 +30,7 @@
       max-width: 688px; // Abstract width from the designs.
 
       .rns-header {
-        @include font-size(24px, 24px);
-        font-weight: 500;
+        @include font('h4');
         margin-bottom: 0;
       }
 
@@ -44,6 +43,7 @@
         }
 
         .rns-reaction {
+          flex-grow: 0;
           margin: 0 calc(#{$spacing-and-half} / 2);
           max-width: 190px; // Abstract width from the designs.
           padding: 0;
@@ -67,7 +67,7 @@
 
           .rns-reaction-button {
             border-color: $color-black;
-            padding: $spacing-half $spacing;
+            padding: 14px $spacing-double;
             position: relative;
 
             &:before {
@@ -81,16 +81,16 @@
             }
 
             .rns-label {
-              @include font-size(16px, 24px);
+              @include font('button');
               align-items: center;
               color: $color-black;
               display: flex;
-              font-weight: $font-weight-medium;
               justify-content: center;
               width: 100%;
 
               &:after {
                 @include pseudo-icon('face-neutral', $spacing-and-half, $color-black, flex);
+                margin-left: 16px;
               }
             }
 
@@ -160,7 +160,7 @@
       padding: 0 calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font-size(20px, 20px);
+        @include font('h5');
         margin-bottom: 0;
       }
 
@@ -258,8 +258,7 @@
             }
 
             .rns-label {
-              @include font-size(16px, 24px);
-              font-weight: $font-weight-regular;
+              @include font('button');
               padding-right: calc(#{$spacing-half} / 2);
             }
           }
@@ -290,22 +289,21 @@
       padding: calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font-size(20px, 20px);
-        font-weight: 500;
+        @include font('h5');
         margin-bottom: 0;
       }
 
       .rns-input-description {
         margin: $spacing-and-half 0 0;
-        @include font-size(16px, 24px);
+        @include font('small');
         color: $color-black-60;
         opacity: 1;
       }
 
       .rns-input-field {
-        @include font-size(18px, 27px);
+        @include font('body');
         border: 2px solid $color-black-50;
-        font-family: $font-default;
+        font-family: $base-font-family;
         height: 188px; // Abstract width from designs.
         margin-top: $spacing-and-half;
         padding: $spacing;
@@ -314,12 +312,11 @@
   }
 
   .rns-plugin .rns-inputs .rns-form-submit {
-    @include font-size(16px, 24px);
+    @include font('button');
     background-color: $color-black;
     border: 2px solid $color-black;
     color: $color-white;
     display: inline-flex;
-    font-weight: 500;
     margin-top: $spacing-and-half;
     padding: $spacing $spacing-and-half;
     position: relative;

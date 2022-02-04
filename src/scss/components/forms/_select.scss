@@ -1,4 +1,5 @@
 .hdbt--select-wrapper {
+  @include font('body');
   --border-width: 2px;
   --input-height: 52px;
   --menu-item-height: 52px;
@@ -28,15 +29,14 @@
   color: var(--input-color-default);
   cursor: pointer;
   display: block;
-
   grid-template-areas: "select";
   min-width: 15ch;
   padding: 0;
   position: relative;
   width: 100%;
-  @include font-size(18px, 24px);
 
   select {
+    @include font('body');
     align-items: center;
     appearance: none;
     background-color: transparent;
@@ -45,9 +45,7 @@
     cursor: inherit;
     display: flex;
     font-family: inherit;
-    font-size: var(--fontsize-body-l);
     height: var(--input-height);
-    line-height: inherit;
     margin: 0;
     min-height: var(--menu-item-height);
     outline: none;

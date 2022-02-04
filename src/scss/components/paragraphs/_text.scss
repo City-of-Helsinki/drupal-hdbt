@@ -1,5 +1,5 @@
 .component--paragraph-text .component__content {
-  @include font-size(18px, 27px);
+  @include font('body');
   max-width: $content-width-max;
 
   > *:first-child,
@@ -14,7 +14,7 @@
   .hds-button--primary,
   .hds-button--secondary,
   .hds-button--supplementary {
-    @include font-size(16px, 24px);
+    @include font('button');
   }
 
   .hds-button--primary {

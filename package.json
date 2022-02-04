@@ -6,8 +6,8 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt",
   "scripts": {
-    "dev": "webpack --progress --mode=development --config  webpack.config.dev.js --watch",
-    "build": "webpack --progress --mode=production --config webpack.config.build.js",
+    "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
+    "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
     "lint": "lint-staged",
     "lint:js": "eslint --fix src/"

@@ -1,5 +1,24 @@
 .quote {
-  @extend .highlighted;
+  @include font('h3');
+  display: block;
+  margin: $spacing-triple 0;
+  padding: $spacing-half 0 $spacing-half $spacing-and-half;
+  position: relative;
+
+  @include breakpoint($breakpoint-l) {
+    margin: $spacing-quadruple 0;
+    padding: 0 0 0 $spacing-double + $spacing-half;
+  }
+
+  &::before {
+    background-color: var(--hdbt-color-palette--primary);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+  }
 }
 
 .quote__text {
@@ -21,11 +40,14 @@
 }
 
 .quote__author {
-  @include font-size(18px, $lineheight-l);
+  @include font('body');
   margin-top: $spacing-and-half;
 
   &::before {
     content: "-";
     margin-right: 3px;
+  }
+  cite {
+    font-style: normal;
   }
 }

@@ -99,7 +99,7 @@
   }
 
   .unit-search__count-container {
-    @include font-size(23px, 30px);
+    @include font('lead');
     border-top: 1px solid $color-black-10;
     display: block;
     margin-top: $spacing-double;
@@ -112,7 +112,7 @@
     }
 
     .unit-search__count {
-      font-weight: 700;
+      font-weight: $font-weight-bold;
     }
   }
 

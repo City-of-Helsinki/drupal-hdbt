@@ -49,14 +49,12 @@
 }
 
 .news-listing__title {
-  @include font-size(16px, 21px);
-  font-weight: 500;
+  @include font('body');
   margin-bottom: $spacing-half;
   margin-top: 0;
 }
 
 .news-listing__link {
-  @include font-size(16px, 21px);
   display: block;
   text-decoration: none;
 
@@ -77,6 +75,7 @@
 }
 
 .news-listing__datetime {
+  @include font('small');
   color: $color-black-60;
 }
 

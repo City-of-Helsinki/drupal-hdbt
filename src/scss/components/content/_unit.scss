@@ -5,7 +5,7 @@
   }
 
   .unit__short-desc {
-    @include font-size(24px, 32px);
+    @include font('lead');
     padding-bottom: $spacing-half;
     position: relative;
   }
@@ -20,7 +20,7 @@
   }
 
   .unit__long-desc {
-    @include font-size(20px, 32px);
+    @include font('body');
     margin-top: $spacing-quadruple;
 
     p:first-child {
@@ -50,9 +50,8 @@
     }
 
     .unit__map__label {
-      @include font-size(18px, 24px);
+      @include font('h6');
       display: flex;
-      font-weight: 700;
       width: 100%;
 
       .hel-icon {
@@ -67,7 +66,7 @@
     }
 
     .link {
-      font-weight: 500;
+      font-weight: $font-weight-medium;
       justify-content: flex-end;
       margin-top: $spacing;
 
@@ -154,7 +153,7 @@
   }
 
   .unit__contact__title {
-    @include font-size(24px, 28px);
+    @include font('h4');
     border-bottom: 2px solid $color-black;
     margin-bottom: $spacing-and-half;
     margin-top: $spacing-half;
@@ -166,6 +165,7 @@
   }
 
   .unit__contact-row {
+    @include font('body');
     border-bottom: 1px solid $color-black-20;
     margin-bottom: $spacing;
     padding-bottom: $spacing;
@@ -178,15 +178,16 @@
     }
 
     .unit__contact-row__label {
-      @include font-size(16px, 24px);
+      @include font('h6');
       align-items: flex-start;
       display: flex;
-      font-weight: 600;
       margin-bottom: 8px;
 
       .hel-icon {
+        --icon-size: 24px;
         margin-left: -$spacing-double;
         margin-right: $spacing-half;
+        margin-top: 2px;
       }
     }
 
@@ -261,24 +262,16 @@
 
   .unit__services__title {
     margin-top: 0;
-
-    @include breakpoint($breakpoint-l) {
-      @include font-size(48px, 48px);
-    }
   }
 
   .unit__services__count-container {
-    @include font-size(18px, 24px);
+    @include font('lead');
     display: block;
     margin-top: $spacing-and-half;
     width: 100%;
 
-    @include breakpoint($breakpoint-l) {
-      @include font-size(24px, 30px);
-    }
-
     .unit__services__count {
-      font-weight: 700;
+      font-weight: $font-weight-bold;
     }
   }
 
@@ -394,13 +387,13 @@
 }
 
 .unit__supports_language_sv {
-  @include font-size(13px, 24px);
+  @include font('special.helper_text');
   background-color: $color-summer;
   border-radius: $spacing;
   display: inline-block;
   padding-bottom: $spacing-quarter;
-  padding-left: $spacing-and-half;
-  padding-right: $spacing-and-half;
+  padding-left: $spacing;
+  padding-right: $spacing;
   padding-top: $spacing-quarter;
 
   .unit--full & {
@@ -508,14 +501,12 @@
   }
 
   .unit__title {
-    @include font-size(24px, 28px);
-    font-weight: 500;
+    @include font('special.card_title');
     margin-bottom: $spacing-quarter;
     margin-top: 0;
     padding-right: $spacing-and-half;
 
     @include breakpoint($breakpoint-m) {
-      @include font-size(32px, 37px);
       margin-bottom: 0;
       padding-right: 0;
       width: 100%;
@@ -531,7 +522,7 @@
   }
 
   .unit__info-row {
-    @include font-size(18px, 26px);
+    @include font('body');
     display: flex;
     margin-bottom: $spacing-and-half;
 
@@ -572,7 +563,7 @@
   }
 
   .unit__read-more {
-      @include font-size(16px, 24px);
+    @include font('button');
     display: flex;
     margin-top: $spacing-double;
 
@@ -582,7 +573,7 @@
     }
 
     .unit__read-more__text {
-      font-weight: 500;
+      font-weight: $font-weight-medium;
     }
 
     .hel-icon {
