@@ -59,7 +59,7 @@
 
       {% set explain_external_icon = null %}
       {% if item.is_external %}
-        {% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
+        {% set explain_external_icon %}<span class="explain-external-icon"> ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
       {% endif %}
 
       <li{{ item.attributes.addClass(item_classes) }}>

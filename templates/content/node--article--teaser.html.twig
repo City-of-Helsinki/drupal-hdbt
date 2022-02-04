@@ -113,7 +113,7 @@
       </div>
     {% endif %}
     <span class="content-card__arrow{% if target_new %} is-outbound{% endif %}">
-      {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right', label: 'Go to content'|t } %}
+      {% include '@hdbt/misc/icon.twig' with {icon: (target_new)?'link-external':'arrow-right' } %}
     </span>
   </a>
 
