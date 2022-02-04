@@ -25,8 +25,7 @@
 }
 
 .error-page__description {
-  // TODO: change to use correct font-definition once the PR is merged. Change to body.
-  @include font-size(18px, 28px);
+  @include font('body');
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-and-half;
@@ -34,8 +33,7 @@
 }
 
 .error-page__link {
-  // TODO: change to use correct font-definition once the PR is merged. Change to large_link.
-  @include font-size(20px, 30px);
+  @include font('special.large_link');
   display: inline-flex;
   margin-top: $spacing-double;
 
@@ -53,12 +51,7 @@
 }
 
 .error-page__login-title {
-  // TODO: change to use correct font-definition once the PR is merged. Change to h3.
-  @include font-size(24px, 32px);
-
-  @include breakpoint($breakpoint-m) {
-    @include font-size(32px, 32px);
-  }
+  @include font('h3');
 }
 
 .error-page__login-form {
