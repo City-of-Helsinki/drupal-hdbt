@@ -85,3 +85,27 @@ msgstr "Lisätietolinkit"
 msgctxt "Errand service detail heading"
 msgid "How the process works"
 msgstr "Asian käsittelyn eteneminen"
+
+msgid "You do not have permission to access this page"
+msgstr "Sinulla ei ole käyttöoikeutta tälle sivulle"
+
+msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
+msgstr "Sivu näkyy vain kirjautuneille käyttäjille. Jos sinulla on riittävät käyttöoikeudet, näet sisällön kirjautumalla sisään."
+
+msgid "Sorry, the page you were looking for was not found"
+msgstr "Etsimääsi sivua ei valitettavasti löytynyt"
+
+msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
+msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
+
+msgctxt "Return to homepage link for error pages"
+msgid "Go back to the hel.fi homepage"
+msgstr "Siirry hel.fin etusivulle"
+
+msgctxt "Feedback link for error pages"
+msgid "Give feedback"
+msgstr "Anna palautetta"
+
+msgctxt "Log in block title on error pages"
+msgid "Log in"
+msgstr "Kirjaudu sisään"
