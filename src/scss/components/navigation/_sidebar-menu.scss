@@ -7,7 +7,7 @@
   }
 
   .sidebar-navigation__title {
-    @include font-size(24px, 28px);
+    @include font('h4');
     border-bottom: 2px solid $color-black;
     margin-top: $spacing-half;
     padding-bottom: $spacing-and-half;
@@ -53,7 +53,7 @@
     padding: 0;
 
     .menu__item {
-      @include font-size(18px, 24px);
+      @include font('body');
       border-top: 1px solid $color-black-20;
 
       &:first-child {
@@ -102,7 +102,7 @@
         width: 100%;
 
         &[aria-current="page"] {
-          font-weight: 700;
+          font-weight: $font-weight-bold;
         }
 
         &:focus {
@@ -151,7 +151,7 @@
       }
 
       .menu__item {
-        @include font-size(16px, 24px);
+        @include font('small');
         border-top: none;
 
         &:last-child span.menu__item--nolink,

@@ -1,14 +1,10 @@
 .banner__title {
-  @include font-size(24px, 29px);
+  @include font('h3');
   margin-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(36px, 36px);
-  }
 }
 
 .banner__desc {
-  @include font-size(18px, 28px);
+  @include font('body');
   margin-top: $spacing;
 
   @include breakpoint($breakpoint-l) {

@@ -5,7 +5,7 @@
   place-items: flex-start;
 
   .service-channel__link-explanation {
-    @include font-size(16px, 24px);
+    @include font('small');
     color: $color-black-60;
     display: inline-block;
     margin-bottom: 8px;
@@ -72,8 +72,7 @@
   }
 
   .service-channel__title {
-    @include font-size(18px, 26px); // Design has smaller font size than normal h3.
-    font-weight: 500;
+    @include font('h6'); // Design has smaller font size than normal h3.
     margin-top: 0;
     width: 100%;
   }
@@ -94,17 +93,14 @@
   }
 
   .service-channel__type {
-    @include font-size(18px, 26px);
-    font-weight: 500;
+    @include font('h6');
   }
 
   .service-channel__title {
-    @include font-size(28px, 43px); // Design has larger font size on mobile than normal h3.
-    font-weight: 500;
+    @include font('special.card_title');
     margin-top: $spacing-and-half;
 
     @include breakpoint($breakpoint-l) {
-      @include font-size(36px, 43px);
       margin-top: $spacing;
     }
   }
@@ -151,7 +147,7 @@
   margin-top: $spacing;
 
   > a {
-    @include font-size(24px, 26px);
+    @include font('h4');
   }
 }
 
@@ -167,7 +163,7 @@
   margin-top: $spacing;
 
   .service-channel__call_charge-label {
-    font-weight: 500;
+    font-weight: $font-weight-medium;
     margin-right: $spacing-quarter;
   }
 
@@ -177,6 +173,7 @@
 }
 
 .service-channel__info {
+  @include font('small');
   margin-top: $spacing-and-half;
 
   > * {

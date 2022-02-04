@@ -5,39 +5,43 @@ h4,
 h5,
 h6 {
   hyphens: auto;
-  line-height: $lineheight-m;
-  margin: $spacing-triple 0 0;
+  margin-bottom: 0;
+  margin-top: $spacing-triple;
   word-break: break-word;
 }
 
-h1,
-h2,
-h3 {
-  line-height: $lineheight-s;
-}
 
 h1 {
-  @include h1();
+  @include font('h1');
+
+  @include breakpoint($breakpoint-m) {
+    // Margin on top needed to create enough space on top when there is no hero.
+    margin-top: $spacing-quadruple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-quadruple;
+  }
 }
 
 h2 {
-  @include h2();
+  @include font('h2');
 }
 
 h3 {
-  @include h3();
+  @include font('h3');
 }
 
 h4 {
-  @include h4();
+  @include font('h4');
 }
 
 h5 {
-  @include h5();
+  @include font('h5');
 }
 
 h6 {
-  @include h6();
+  @include font('h6');
 }
 
 a {
@@ -45,11 +49,15 @@ a {
 }
 
 p {
-  margin: $spacing 0 0;
+  margin-bottom: 0;
+  margin-top: $spacing;
 }
 
 ul, ol {
-  margin: $spacing-and-half 0 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: $spacing-and-half;
   padding-left: $spacing-double;
   padding-top: $spacing-and-half;
 }

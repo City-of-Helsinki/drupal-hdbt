@@ -1,5 +1,5 @@
 .sidebar-text {
-  @include font-size(18px, 27px);
+  @include font('body');
   margin-top: $spacing;
 
   &.has-title:first-of-type,
@@ -23,9 +23,8 @@
   }
 
   .sidebar-text__title {
-    @include font-size(24px, 24px);
+    @include font('h4');
     color: $color-black;
-    font-weight: $font-weight-medium;
 
     & + .sidebar-text__text-content {
       margin-top: $spacing-and-half;
@@ -33,7 +32,7 @@
   }
 
   .sidebar-text__text-content {
-    @include font-size(16px, 24px);
+    @include font('small');
     color: var(--hdbt-color-palette-text--secondary);
 
     > *:first-child {

@@ -45,8 +45,7 @@ $card_spacing: $spacing-and-half;
 }
 
 .content-card__title {
-  @include font-size(24px, 28px);
-  font-weight: 500;
+  @include font('h4');
   margin-top: $spacing;
 }
 

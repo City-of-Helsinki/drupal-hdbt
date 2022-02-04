@@ -93,13 +93,11 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__title {
-  @include font-size(20px, 24px);
-  font-weight: bold;
+  @include font('special.card_title');
   margin-bottom: $spacing-half;
   margin-top: 0;
 
   @include breakpoint($breakpoint-m) {
-    @include font-size(32px, 37px);
     margin-bottom: $spacing;
   }
 }
@@ -124,13 +122,9 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__info-row {
-  @include font-size(16px, 26px);
+  @include font('body');
   --margin-size: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
   margin-left: var(--margin-size);
-
-  @include breakpoint($breakpoint-m) {
-    @include font-size(18px, 26px);
-  }
 
   & + & {
     margin-top: $spacing;
@@ -138,7 +132,7 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__info-row__title {
-  font-weight: bold;
+  @include font('h6');
 
   &::before {
     margin-bottom: ($_info-row__line-height - $_info-row__icon-size) / 2; // Center icon on row
@@ -175,8 +169,8 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__read-more {
+  @include font('button');
   display: flex; // force arrow to stay on same line
-  font-weight: 500;
   margin-left: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
   padding-bottom: $spacing-half;
   padding-top: $spacing;

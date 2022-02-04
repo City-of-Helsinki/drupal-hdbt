@@ -23,7 +23,7 @@
 
 .table-of-contents__container {
   @include component-margin-top();
-  background-color: $hdbt-color-white;
+  background-color: $color-silver-light;
   border-left: 8px solid var(--hdbt-color-gold--primary);
   // Max-width: Content max width (860px) + left and right paddings.
   max-width: $spacing-and-half + $content-width-max + $spacing-and-half;
@@ -31,13 +31,9 @@
 }
 
 .table-of-contents__title {
-  @include font-size(24px, 28px);
+  @include font('h3');
   margin-bottom: 0;
   margin-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(36px, 42px);
-  }
 
   & + .table-of-contents__content {
     padding-top: $spacing;
@@ -56,23 +52,14 @@
   // Add top padding to each table of contents item, except the first one.
   > .table-of-contents__item ~ .table-of-contents__item {
     padding-top: $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      padding-top: $spacing-and-half;
-    }
   }
 }
 
 .table-of-contents__link {
-  @include font-size(20px, 28px);
+  @include font('special.large_link');
   display: inline-block;
-  font-weight: $font-weight-medium;
   position: relative;
   text-decoration: underline;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(20px, 28px);
-  }
 
   // TODO Unify focuses/hovers and other link styles once UHF-643 is being
   // developed. https://helsinkisolutionoffice.atlassian.net/browse/UHF-643

@@ -15,7 +15,7 @@
 }
 
 .errand-service__description {
-  @include font-size(18px, 27px);
+  @include font('body');
   margin-top: $spacing-and-half;
 
   p:first-child {

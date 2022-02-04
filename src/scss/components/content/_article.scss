@@ -17,17 +17,15 @@
     }
 
     .article__lead {
-      @include font-size(20px, 32px);
+      @include font('lead');
       color: $color-black;
-      font-weight: $font-weight-regular;
       margin-bottom: $spacing-and-half;
     }
 
     .article__author {
-      @include font-size(16px, 24px);
+      @include font('small');
       color: $color-black-90;
       display: flex;
-      font-weight: $font-weight-medium;
 
       .label {
         margin-right: $spacing-quarter;
@@ -35,9 +33,8 @@
     }
 
     .article__date {
-      @include font-size(16px, 24px);
+      @include font('small');
       color: $color-black-40;
-      font-weight: $font-weight-regular;
       margin-bottom: $spacing;
     }
 
@@ -75,13 +72,11 @@
       }
 
       .label {
-        @include font-size(18px, 30px);
+        @include font('h4');
         color: $color-black-90;
-        font-weight: $font-weight-medium;
         margin: 0 $spacing-quarter $spacing-half;
 
         @include breakpoint($breakpoint-m) {
-          @include font-size(24px, 30px);
           margin: 0 $spacing-quarter $spacing;
         }
       }
@@ -91,11 +86,10 @@
         flex-flow: row wrap;
 
         a {
-          @include font-size(16px, 24px);
+          @include font('small');
           background-color: $color-black;
           border-radius: $spacing-and-half;
           color: $color-white;
-          font-weight: $font-weight-regular;
           margin: $spacing-quarter;
           padding: $spacing-half $spacing-double;
           text-decoration: none;
