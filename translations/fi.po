@@ -100,7 +100,7 @@ msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattan
 
 msgctxt "Return to homepage link for error pages"
 msgid "Go back to the hel.fi homepage"
-msgstr "Siirry Hel.fin etusivulle"
+msgstr "Siirry hel.fin etusivulle"
 
 msgctxt "Feedback link for error pages"
 msgid "Give feedback"

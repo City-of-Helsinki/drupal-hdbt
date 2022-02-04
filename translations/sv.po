@@ -97,7 +97,7 @@ msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit 
 
 msgctxt "Return to homepage link for error pages"
 msgid "Go back to the hel.fi homepage"
-msgstr "Gå till Hel.fi:s framsida"
+msgstr "Gå till hel.fi:s framsida"
 
 msgctxt "Feedback link for error pages"
 msgid "Give feedback"

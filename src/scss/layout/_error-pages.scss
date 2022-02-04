@@ -70,7 +70,9 @@
     align-items: flex-start;
     display: flex;
     justify-content: center;
-    padding: $spacing-sextuple $spacing-triple 0 $spacing-triple;
+    padding-left: $spacing-triple;
+    padding-right: $spacing-triple;
+    padding-top: $spacing-sextuple;
     width: 50%;
   }
 }

@@ -1,28 +1,2 @@
-{% embed 'page.html.twig' %}
-  {% block page_content %}
-    {% embed '@hdbt/misc/container.twig' with {container_element: 'error-page-content'} %}
-      {% block container_content %}
-        <div class="error-page__text-container">
-          <div class="page-title">
-            <h1 class="error-page__title">403 - {{ 'You do not have permission to access this page'|t }}</h1>
-          </div>
-          <p class="error-page__description">{{ 'This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content.'|t }}</p>
-          <a href="{{ error_page_home_link }}" class="error-page__link">{{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a><br/>
-          <a href="{{ error_page_feedback_link }}" class="error-page__link">{{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a>
-          {% if user_not_logged_in %}
-            <h2 class="error-page__login-title">{{ 'Log in'|t({}, {'context': 'Log in block title on error pages'}) }}</h2>
-          {% endif %}
-          <div class="error-page__login-form">
-            {{ drupal_block('user_login_block') }}
-          </div>
-        </div>
-        <div class="error-page__illustration-container">
-          <img src="/themes/contrib/hdbt/src/images/illustration_error_page_403_401.svg" alt="" class="error-page__illustration" width="379" height="566" />
-        </div>
-      {% endblock container_content %}
-    {% endembed %}
-  {% endblock page_content %}
-
-  {% block page_after_content %}
-  {% endblock page_after_content %}
+{% embed 'page--401.html.twig' with { error_number:'403' } %}
 {% endembed %}
