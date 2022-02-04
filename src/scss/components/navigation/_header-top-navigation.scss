@@ -21,12 +21,9 @@
         @include visually-hidden();
       }
 
-      &:after {
-        @include pseudo-icon('link-external', 14px, $color-black, flex);
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
+      .menu__link__text:after {
+        @include pseudo-icon('link-external', 1em, $color-black, inline-block);
+        vertical-align: middle;
       }
     }
   }
