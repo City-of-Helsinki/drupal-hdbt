@@ -6,86 +6,86 @@
   .no-sidebar .main-content {
     margin-top: 0;
   }
+}
 
-  .error-page-content__container {
-    @include breakpoint($breakpoint-m) {
-      display: flex;
-    }
+.error-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.error-page__text-container {
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+}
+
+.error-page__title {
+  margin-bottom: 0;
+}
+
+.error-page__description {
+  // TODO: change to use correct font-definition once the PR is merged. Change to body.
+  @include font-size(18px, 28px);
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.error-page__link {
+  // TODO: change to use correct font-definition once the PR is merged. Change to large_link.
+  @include font-size(20px, 30px);
+  display: inline-flex;
+  margin-top: $spacing-double;
+
+  .hel-icon {
+    margin-left: $spacing-half;
   }
 
-  .error-page__text-container {
-    @include breakpoint($breakpoint-m) {
-      width: 50%;
-    }
+  &:hover {
+    text-decoration: none;
   }
 
-  .error-page__title {
-    margin-bottom: 0;
+  + .error-page__link {
+    margin-top: $spacing-and-half;
   }
+}
 
-  .error-page__description {
-    // TODO: change to use correct font-definition once the PR is merged. Change to body.
-    @include font-size(18px, 28px);
+.error-page__login-title {
+  // TODO: change to use correct font-definition once the PR is merged. Change to h3.
+  @include font-size(24px, 32px);
 
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-and-half;
-    }
+  @include breakpoint($breakpoint-m) {
+    @include font-size(32px, 32px);
   }
+}
 
-  .error-page__link {
-    // TODO: change to use correct font-definition once the PR is merged. Change to large_link.
-    @include font-size(20px, 30px);
-    display: inline-flex;
-    margin-top: $spacing-double;
+.error-page__login-form {
+  margin-top: $spacing-double;
+}
 
-    .hel-icon {
-      margin-left: $spacing-half;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    + .error-page__link {
-      margin-top: $spacing-and-half;
-    }
+.error-page__illustration-container {
+  @include breakpoint($breakpoint-m) {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-sextuple $spacing-triple 0 $spacing-triple;
+    width: 50%;
   }
+}
 
-  .error-page__login-title {
-    // TODO: change to use correct font-definition once the PR is merged. Change to h3.
-    @include font-size(24px, 32px);
+.error-page__illustration {
+  display: block;
+  height: auto;
+  margin-left: $spacing-double;
+  margin-top: $spacing-triple;
+  width: 264px;
 
-    @include breakpoint($breakpoint-m) {
-      @include font-size(32px, 32px);
-    }
-  }
-
-  .error-page__login-form {
-    margin-top: $spacing-double;
-  }
-
-  .error-page__illustration-container {
-    @include breakpoint($breakpoint-m) {
-      align-items: flex-start;
-      display: flex;
-      justify-content: center;
-      padding: $spacing-sextuple $spacing-triple 0 $spacing-triple;
-      width: 50%;
-    }
-  }
-
-  .error-page__illustration {
-    display: block;
-    height: auto;
-    margin-left: $spacing-double;
-    margin-top: $spacing-triple;
-    width: 264px;
-
-    @include breakpoint($breakpoint-m) {
-      margin-left: 0;
-      margin-top: 0;
-      max-width: 100%;
-      width: 379px;
-    }
+  @include breakpoint($breakpoint-m) {
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 100%;
+    width: 379px;
   }
 }
