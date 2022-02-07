@@ -1,9 +1,0 @@
-$_rem-base-size: 16px; // font-size of html element in pixels
-/// Remify
-/// Convert px to rem units
-///
-/// @param {Number} value - value in px to be converted to rem units.
-/// @param {Number} base-size - font-size of html element in pixels; defaults to $rem-base-size.
-@function remify($value, $base-size: $_rem-base-size) {
-  @return $value / $base-size + 0rem;
-}

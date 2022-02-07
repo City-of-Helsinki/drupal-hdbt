@@ -21,11 +21,10 @@
   }
 
   .map__external-link {
-    @include font-size(16px, 24px);
+    @include font('button');
     align-items: center;
     bottom: -40px;
     display: inline-flex;
-    font-weight: $font-weight-medium;
     position: absolute;
     right: 0;
     text-decoration: underline;

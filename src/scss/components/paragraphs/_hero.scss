@@ -80,7 +80,7 @@ $koro-height: 50px;
 
   .hero__description {
     p {
-      @include font-size(16px, $lineheight-xxl);
+      @include font('body');
     }
 
     a:not(.hds-button) {

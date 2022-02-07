@@ -1,6 +1,8 @@
 // TODO: Refactor hds-button.
 // Fix for button margins when using hel-icon.
 .hds-button {
+  @include font('button');
+
   // Set icon size for the button icons.
   .hel-icon {
     --icon-size: 24px;
@@ -95,7 +97,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
 
-  @include font-size(16px, 20px);
+  @include font('button');
   align-content: flex-start;
   align-items: center;
   background-color: var(--background-color);
@@ -105,7 +107,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
   color: var(--color);
   cursor: pointer;
   display: flex;
-  font-weight: 500;
   justify-content: center;
   min-height: var(--min-size);
   min-width: var(--min-size);
@@ -177,7 +178,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --color-hover-focus: var(--color-white);
   --focus-outline-color: var(--hdbt-color-black);
 
-  @include font-size(16px, 20px);
+  @include font('button');
   align-content: flex-start;
   align-items: center;
   background-color: var(--background-color);
@@ -187,7 +188,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
   color: var(--color);
   cursor: pointer;
   display: flex;
-  font-weight: 500;
   justify-content: center;
   margin-top: $spacing;
   min-height: var(--min-size);

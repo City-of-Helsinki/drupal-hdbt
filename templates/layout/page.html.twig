@@ -106,7 +106,9 @@
     </div>
 
     {% if page.after_content %}
-      {{ page.after_content }}
+      {% block page_after_content %}
+        {{ page.after_content }}
+      {% endblock page_after_content %}
     {% endif %}
   </main>
 </div>

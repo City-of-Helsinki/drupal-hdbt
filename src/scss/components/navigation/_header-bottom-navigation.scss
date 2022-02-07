@@ -22,7 +22,7 @@
   }
 
   .menu__link-wrapper {
-    @include font-size(18px, 24px);
+    @include font('special.navigation.main_nav');
     align-items: center;
     display: flex;
     height: 100%;
@@ -71,7 +71,7 @@
       }
 
       &[aria-current="page"]{
-        font-weight: 700;
+        font-weight: $font-weight-bold;
       }
 
       .explain-external-icon {
@@ -81,7 +81,7 @@
     }
 
     .menu__item--nolink {
-      @include font-size(18px, 24px);
+      @include font('body'); // TODO: is this whole selector unnecessary?
       padding: $spacing-and-half 0;
       text-decoration: none;
     }
@@ -128,7 +128,7 @@
 
         a,
         .menu__item--nolink {
-          @include font-size(16px, 20px);
+          @include font('special.navigation.sub_nav');
           display: block;
           padding: $spacing $spacing-double;
           width: 100%;
@@ -144,7 +144,7 @@
           }
 
           &[aria-current="page"] {
-            font-weight: 700;
+            font-weight: $font-weight-bold;
           }
 
           &:focus {
@@ -195,7 +195,7 @@
   // Active trail items, first level
   .menu__item--active-trail {
     .menu__link-wrapper a {
-      font-weight: 700;
+      font-weight: $font-weight-bold;
 
       &::before {
         height: 4px;

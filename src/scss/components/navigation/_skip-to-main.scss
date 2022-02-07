@@ -10,7 +10,7 @@
   background-color: var(--background-color);
   border: var(--border-width) solid var(--border-color);
   color: var(--color);
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   left: 50%;
   position: absolute;
   scroll-margin-top: 105px; // Amount of air that should be left when scrolled to top.

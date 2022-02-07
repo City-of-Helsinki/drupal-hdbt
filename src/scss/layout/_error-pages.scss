@@ -1,0 +1,86 @@
+.error-page {
+  // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
+  background-color: $color-silver-medium-light;
+
+  // For the error pages the gap on top grows too large if this is left in place.
+  .no-sidebar .main-content {
+    margin-top: 0;
+  }
+}
+
+.error-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.error-page__text-container {
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+}
+
+.error-page__title {
+  margin-bottom: 0;
+}
+
+.error-page__description {
+  @include font('body');
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.error-page__link {
+  @include font('special.large_link');
+  display: inline-flex;
+  margin-top: $spacing-double;
+
+  .hel-icon {
+    margin-left: $spacing-half;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  + .error-page__link {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.error-page__login-title {
+  @include font('h3');
+}
+
+.error-page__login-form {
+  margin-top: $spacing-double;
+}
+
+.error-page__illustration-container {
+  @include breakpoint($breakpoint-m) {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    padding-left: $spacing-triple;
+    padding-right: $spacing-triple;
+    padding-top: $spacing-sextuple;
+    width: 50%;
+  }
+}
+
+.error-page__illustration {
+  display: block;
+  height: auto;
+  margin-left: $spacing-double;
+  margin-top: $spacing-triple;
+  width: 264px;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 100%;
+    width: 379px;
+  }
+}

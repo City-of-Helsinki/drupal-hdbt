@@ -1,10 +1,9 @@
 [data-unpublished]::before{
-  @include font-size(16px, 16px);
+  @include font('body');
   background: $color-error;
   color: $color-white;
   content: attr(data-unpublished);
   display: block;
-  font-weight: medium;
   padding-left: $spacing-half;
   padding-right: $spacing-half;
   position: fixed;
@@ -12,14 +11,13 @@
   transform-origin: top left;
 
   @include breakpoint($breakpoint-m) {
-    @include font-size(18px, 27px);
     content: attr(data-unpublished-long);
   }
 }
 
 .preamble,
 .lead-in {
-  @include font-size(20px, 32px);
+  @include font('lead');
 }
 
 .preamble::after {
@@ -48,7 +46,7 @@
 }
 
 .content-date {
-  @include font-size(16px, 24px);
+  @include font('small');
   color: $color-black-60;
   margin-bottom: $spacing-and-half;
 }
@@ -69,7 +67,7 @@
 }
 
 .content-links__title {
-  @include h3();
+  @include font('h3');
 }
 
 .content-links__links {
@@ -78,14 +76,9 @@
 }
 
 .content-links__links__link {
-  @include font-size(16px, 22px);
-  font-weight: 500;
+  @include font('special.large_link');
   list-style: none;
   padding: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font-size(20px, 27px);
-  }
 
   & + & {
     margin-top: $spacing;
@@ -131,7 +124,7 @@ $tag-gap: $spacing-half;
 }
 
 .sidebar_block_heading {
-  @include h3();
+  @include font('h3');
   border-bottom: 2px solid $color-black;
   margin-top: $spacing-sextuple;
   padding-bottom: $spacing-and-half;

@@ -60,7 +60,8 @@
           content.email|render or
           content.phone|render or
           content.address_postal|render or
-          content.opening_hours|render
+          content.opening_hours|render or
+          content.www|render
         %}
           <div class="unit__contact">
             <h2 class="unit__contact__title">
@@ -109,6 +110,15 @@
                   {{ 'Postal address'|t }}:
                 </label>
                 {{ content.address_postal }}
+              </div>
+            {% endif %}
+            {% if content.www|render and show_www == true %}
+              <div class="unit__contact-row unit__contact-row--www">
+                <label class="unit__contact-row__label">
+                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+                  {{ 'Website link'|t }}:
+                </label>
+                {{ content.www }}
               </div>
             {% endif %}
           </div>

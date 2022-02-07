@@ -82,3 +82,27 @@ msgstr "Länkar för ytterligare upplysningar"
 msgctxt "Errand service detail heading"
 msgid "How the process works"
 msgstr "Hur behandlingen av ärendet fortskrider"
+
+msgid "You do not have permission to access this page"
+msgstr "Du har inte användarrätt till sidan"
+
+msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
+msgstr "Sidan visas endast för inloggade användare. Om du har tillräckliga användarrättigheter kan du se innehållet genom att logga in."
+
+msgid "Sorry, the page you were looking for was not found"
+msgstr "Tyvärr hittas inte sidan du sökte"
+
+msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
+msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit bort eller flyttat sidan."
+
+msgctxt "Return to homepage link for error pages"
+msgid "Go back to the hel.fi homepage"
+msgstr "Gå till hel.fi:s framsida"
+
+msgctxt "Feedback link for error pages"
+msgid "Give feedback"
+msgstr "Ge respons"
+
+msgctxt "Log in block title on error pages"
+msgid "Log in"
+msgstr "Logga in"

@@ -66,7 +66,7 @@
       {% endif %}
       <h3 class="list-of-links__item__title">{{ text }}
         <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
-          {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right' } %}
+          {% include '@hdbt/misc/icon.twig' with {icon: (target_new)?'link-external':'arrow-right' } %}
         </span>
       </h3>
       {% if list_of_links_design == 'without-image' %}

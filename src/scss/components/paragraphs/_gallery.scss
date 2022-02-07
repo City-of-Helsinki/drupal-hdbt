@@ -38,7 +38,7 @@ $arrow-container-height: 48px;
 }
 
 .gallery__slide-count {
-  @include font-size(18px, 23px);
+  @include font('body');
   align-items: center;
   bottom: 0;
   display: flex;
