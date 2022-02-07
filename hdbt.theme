@@ -1179,6 +1179,31 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_maintenance_page(&$variables) {
+  // This same preprocess needs to be done separately for maintenance page.
+  // We check what language is set and provide links to homepage and feedback
+  // accordingly.
+  switch ($variables['current_langcode']) {
+    case 'fi':
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
+      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
+      break;
+
+    case 'sv':
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/sv';
+      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback';
+      break;
+
+    default:
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/en';
+      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
+      break;
+  }
+}
+
+/**
  * Helper function to get the privacy policy link URL.
  */
 function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {

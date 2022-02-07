@@ -1,0 +1,72 @@
+.maintenance-page {
+  // Background on the maintenance page needs to be gray because the illustrations disappear to the background if its white.
+  background-color: $color-silver-medium-light;
+}
+
+.maintenance-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.maintenance-page__text-container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+}
+
+.maintenance-page__title {
+  margin-bottom: 0;
+}
+
+.maintenance-page__description {
+  @include font('body');
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.maintenance-page__link {
+  @include font('special.large_link');
+  display: inline-flex;
+  margin-top: $spacing-double;
+
+  .hel-icon {
+    margin-left: $spacing-half;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  + .maintenance-page__link {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.maintenance-page__illustration-container {
+  @include breakpoint($breakpoint-m) {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-sextuple $spacing-triple;
+    width: 50%;
+  }
+}
+
+.maintenance-page__illustration {
+  display: block;
+  height: auto;
+  margin: $spacing-sextuple auto;
+  width: 350px;
+
+  @include breakpoint($breakpoint-m) {
+    margin: 0;
+    max-width: 100%;
+    width: 460px;
+  }
+}

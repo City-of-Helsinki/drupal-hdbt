@@ -106,3 +106,6 @@ msgstr "Ge respons"
 msgctxt "Log in block title on error pages"
 msgid "Log in"
 msgstr "Logga in"
+
+msgid "The site is currently under maintenance"
+msgstr "Vi uppdaterar sidan som bäst"

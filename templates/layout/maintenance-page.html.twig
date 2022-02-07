@@ -1,0 +1,32 @@
+{#
+/**
+* @file
+* Theme override to display a single Drupal page while offline.
+*
+* All available variables are mirrored in page.html.twig.
+* Some may be blank but they are provided for consistency.
+*
+* @see template_preprocess_maintenance_page()
+*/
+#}
+{% embed '@hdbt/misc/container.twig' with {container_element: 'maintenance-page-content'} %}
+  {% block container_content %}
+    <div class="maintenance-page__text-container">
+      <header role="banner">
+        <div class="page-title">
+          <h1 class="maintenance-page__title">{{ 'The site is currently under maintenance'|t }}</h1>
+        </div>
+      </header>
+      <main role="main">
+        <p class="maintenance-page__description">
+          {{ page.content }}
+        </p>
+        <a href="{{ maintenance_page_home_link }}" class="maintenance-page__link">{{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a><br/>
+        <a href="{{ maintenance_page_feedback_link }}" class="maintenance-page__link">{{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a>
+      </main>
+    </div>
+    <div class="maintenance-page__illustration-container">
+      <img src="/themes/contrib/hdbt/src/images/illustration_maintenance_mode_page.svg" alt="" class="maintenance-page__illustration" width="379" height="566" />
+    </div>
+  {% endblock container_content %}
+{% endembed %}
