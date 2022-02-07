@@ -12,8 +12,6 @@
     <div class="chart__container">
       {{ content.field_helfi_chart_url }}
     </div>
-    {% if content.field_helfi_chart_transcript|render %}
-      <figcaption>{{ content.field_helfi_chart_transcript }}</figcaption>
-    {% endif %}
+    <figcaption class="chart__transcript">{{ content.field_helfi_chart_transcript }}</figcaption>
   </figure>
 {% endif %}
