@@ -5,6 +5,6 @@ a.link[target="_blank"] {
 
   // TODO: This is not wanted, we should separate target="_blank" from external links!
   &::after {
-    @include pseudo-icon('link-external', 1em, $color-black, block);
+    @include pseudo-icon('link-external', 1em, currentColor, block);
   }
 }
