@@ -6,241 +6,240 @@
   @include breakpoint($breakpoint-l) {
     display: flex;
   }
+}
 
-  // First level items
-  .menu__item {
-    list-style: none;
-    margin: 0 $spacing;
+// First level items
+.header-bottom .menu .menu__item {
+  list-style: none;
+  margin: 0 $spacing;
 
-    &:first-child {
-      margin-left: $spacing-double;
-    }
-
-    &:last-child {
-      margin-right: $spacing-double;
-    }
+  &:first-child {
+    margin-left: $spacing-double;
   }
 
-  .menu__link-wrapper {
-    @include font('special.navigation.main_nav');
-    align-items: center;
-    display: flex;
-    height: 100%;
-    position: relative;
+  &:last-child {
+    margin-right: $spacing-double;
+  }
+}
 
-    a {
-      padding: $spacing-and-half 0;
-      text-decoration: none;
+.header-bottom .menu .menu__link-wrapper {
+  @include font('special.navigation.main_nav');
+  align-items: center;
+  display: flex;
+  height: 100%;
+  position: relative;
+}
 
-      &::before {
-        background-color: $color-black;
-        bottom: 0;
-        content: "";
-        height: 0;
-        left: 0;
-        margin: 0 auto;
-        position: absolute;
-        right: 0;
-        transition: all .5s cubic-bezier(.19,1,.22,1);
-        width: 0;
-      }
+.header-bottom .menu .menu__link-wrapper a {
+  padding: $spacing-and-half 0;
+  text-decoration: none;
 
-      &:focus {
-        outline: none;
-
-        &::after {
-          border-radius: 2px;
-          box-shadow: 0 0 0 3px $color-black;
-          content: "";
-          display: block;
-          height: 50%;
-          left: -#{$spacing-quarter};
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: calc(100% + #{$spacing-half});
-        }
-      }
-
-      &:hover,
-      &[aria-current="page"] {
-        &::before {
-          height: 4px;
-          width: 100%;
-        }
-      }
-
-      &[aria-current="page"]{
-        font-weight: $font-weight-bold;
-      }
-
-      .explain-external-icon {
-        display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
-        // @include visually-hidden();
-      }
-    }
-
-    .menu__item--nolink {
-      @include font('body'); // TODO: is this whole selector unnecessary?
-      padding: $spacing-and-half 0;
-      text-decoration: none;
-    }
+  &::before {
+    background-color: $color-black;
+    bottom: 0;
+    content: "";
+    height: 0;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    transition: all .5s cubic-bezier(.19,1,.22,1);
+    width: 0;
   }
 
-  .menu__item--children .menu__link-wrapper a {
-    &:focus {
-      &::after {
-        width: calc(100% - 24px); // Width of the dropdown button.
-      }
-    }
-  }
+  &:focus {
+    outline: none;
 
-  .menu__item--hover ,
-  .menu__item--open {
-    position: relative;
-
-    .menu__toggle-button .hel-icon {
-      transform: rotate(180deg);
-    }
-
-    // Secondary menu items
-    .menu {
-      background-color: $color-white;
-      border: 1px solid $color-black-20;
-      bottom: auto;
-      display: block;
-      left: -$spacing-double;
-      min-width: 310px;
-      position: absolute;
-      width: calc(100% + #{$spacing-quadruple});
-      z-index: 100;
-
-      .menu__item {
-        margin: 0;
-
-        .menu__toggle-button {
-          display: none;
-        }
-      }
-
-      .menu__link-wrapper {
-        width: 100%;
-
-        a,
-        .menu__item--nolink {
-          @include font('special.navigation.sub_nav');
-          display: block;
-          padding: $spacing $spacing-double;
-          width: 100%;
-
-          &::before {
-            bottom: 0;
-            height: 100%;
-            left: 0;
-            margin: 0;
-            right: auto;
-            top: 0;
-            transition: width 100ms ease-in;
-          }
-
-          &[aria-current="page"] {
-            font-weight: $font-weight-bold;
-          }
-
-          &:focus {
-            margin: 0;
-
-            &::after {
-              height: 100%;
-              left: $spacing-half;
-              width: calc(100% - #{$spacing});
-            }
-          }
-
-          &:hover,
-          &[aria-current="page"] {
-            &::before {
-              height: 100%;
-              width: 4px;
-            }
-          }
-        }
-      }
-
-      // Links on second level that point to external site.
-      .menu__item--external a {
-        .menu__link__text {
-          display: block;
-          padding-right: 52px; // Width of the external icon and padding.
-          position: relative;
-          width: 100%;
-
-          .explain-external-icon {
-            display: inline; //TODO: Remove this line when the main level navigation supports external links
-            @include visually-hidden();
-          }
-
-          &:after {
-            @include pseudo-icon('link-external', 20px, $color-black, flex);
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
-      }
-    }
-  }
-
-  // Active trail items, first level
-  .menu__item--active-trail {
-    .menu__link-wrapper a {
-      font-weight: $font-weight-bold;
-
-      &::before {
-        height: 4px;
-        width: 100%;
-      }
-    }
-
-    // Active trail items, second level
-    .menu__item {
-      .menu__link-wrapper a {
-        font-weight: normal;
-
-        &::before {
-          height: 100%;
-          width: 0;
-        }
-      }
-    }
-  }
-
-  // Menu toggle button
-  .menu__toggle-button {
-    background-color: transparent;
-    border: none;
-    margin-left: $spacing-half;
-    padding: 0;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:focus {
+    &::after {
       border-radius: 2px;
       box-shadow: 0 0 0 3px $color-black;
-      outline: none;
-      padding: 6px 0;
-    }
-
-    .hel-icon {
-      transition: $rotating-icon-transition;
+      content: "";
+      display: block;
+      height: 50%;
+      left: -#{$spacing-quarter};
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% + #{$spacing-half});
     }
   }
 
-  // By default hide the secondary items
-  .menu {
-    display: none;
+  &:hover::before,
+  &[aria-current="page"]::before {
+    height: 4px;
+    width: 100%;
   }
+
+  &[aria-current="page"]{
+    font-weight: $font-weight-bold;
+  }
+}
+
+.header-bottom .menu .menu__link-wrapper a .explain-external-icon {
+  display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
+  // @include visually-hidden();
+}
+
+.header-bottom .menu .menu__link-wrapper .menu__item--nolink {
+  @include font('body'); // TODO: is this whole selector unnecessary?
+  padding: $spacing-and-half 0;
+  text-decoration: none;
+}
+
+.header-bottom .menu .menu__item--children .menu__link-wrapper a:focus::after {
+  width: calc(100% - 24px); // Width of the dropdown button.
+}
+
+.header-bottom .menu .menu__item--hover ,
+.header-bottom .menu .menu__item--open {
+  position: relative;
+}
+
+.header-bottom .menu .menu__item--hover .menu__toggle-button .hel-icon,
+.header-bottom .menu .menu__item--open .menu__toggle-button .hel-icon {
+  transform: rotate(180deg);
+}
+
+// Secondary menu items
+.header-bottom .menu .menu__item--hover .menu,
+.header-bottom .menu .menu__item--open .menu {
+  background-color: $color-white;
+  border: 1px solid $color-black-20;
+  bottom: auto;
+  display: block;
+  left: -$spacing-double;
+  min-width: 310px;
+  position: absolute;
+  width: calc(100% + #{$spacing-quadruple});
+  z-index: 100;
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__item ,
+.header-bottom .menu .menu__item--open .menu .menu__item {
+  margin: 0;
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__item .menu__toggle-button,
+.header-bottom .menu .menu__item--open .menu .menu__item .menu__toggle-button {
+  display: none;
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__link-wrapper,
+.header-bottom .menu .menu__item--open .menu .menu__link-wrapper {
+  width: 100%;
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__link-wrapper a,
+.header-bottom .menu .menu__item--hover .menu .menu__link-wrapper .menu__item--nolink,
+.header-bottom .menu .menu__item--open .menu .menu__link-wrapper a,
+.header-bottom .menu .menu__item--open .menu .menu__link-wrapper .menu__item--nolink {
+  @include font('special.navigation.sub_nav');
+  display: block;
+  padding: $spacing $spacing-double;
+  width: 100%;
+
+  &::before {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    right: auto;
+    top: 0;
+    transition: width 100ms ease-in;
+  }
+
+  &[aria-current="page"] {
+    font-weight: $font-weight-bold;
+  }
+
+  &:focus {
+    margin: 0;
+
+    &::after {
+      height: 100%;
+      left: $spacing-half;
+      width: calc(100% - #{$spacing});
+    }
+  }
+
+  &:hover,
+  &[aria-current="page"] {
+    &::before {
+      height: 100%;
+      width: 4px;
+    }
+  }
+}
+
+
+// Links on second level that point to external site.
+.header-bottom .menu .menu__item--hover .menu .menu__item--external a .menu__link__text,
+.header-bottom .menu .menu__item--open .menu .menu__item--external a .menu__link__text {
+  display: block;
+  padding-right: 52px; // Width of the external icon and padding.
+  position: relative;
+  width: 100%;
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__item--external a .menu__link__text .explain-external-icon,
+.header-bottom .menu .menu__item--open .menu .menu__item--external a .menu__link__text .explain-external-icon {
+  display: inline; //TODO: Remove this line when the main level navigation supports external links
+  @include visually-hidden();
+}
+
+.header-bottom .menu .menu__item--hover .menu .menu__item--external a .menu__link__text:after,
+.header-bottom .menu .menu__item--open .menu .menu__item--external a .menu__link__text:after {
+  @include pseudo-icon('link-external', 20px, $color-black, flex);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Active trail items, first level
+.header-bottom .menu .menu__item--active-trail .menu__link-wrapper a {
+  font-weight: $font-weight-bold;
+
+  &::before {
+    height: 4px;
+    width: 100%;
+  }
+}
+
+// Active trail items, second level
+.header-bottom .menu .menu__item--active-trail .menu__item .menu__link-wrapper a {
+  font-weight: normal;
+
+  &::before {
+    height: 100%;
+    width: 0;
+  }
+}
+
+// Menu toggle button
+.header-bottom .menu .menu__toggle-button {
+  background-color: transparent;
+  border: none;
+  margin-left: $spacing-half;
+  padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    border-radius: 2px;
+    box-shadow: 0 0 0 3px $color-black;
+    outline: none;
+    padding: 6px 0;
+  }
+}
+
+.header-bottom .menu .menu__toggle-button .hel-icon {
+  transition: $rotating-icon-transition;
+}
+
+// By default hide the secondary items
+.header-bottom .menu .menu {
+  display: none;
 }
