@@ -1,7 +1,7 @@
-@import "00_functions/_index";
-@import "01_variables/_index";
-@import "02_mixins/_index";
-@import "03_generic/_index";
+@import '00_functions/_index';
+@import '01_variables/_index';
+@import '02_mixins/_index';
+@import '03_generic/_index';
 
 .component-library-wrapper {
   background-color: $color-white;
