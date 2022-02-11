@@ -3,10 +3,16 @@
 // This file includes all imports
 //
 
-@import "~breakpoint-sass";
+@import '~breakpoint-sass';
 
-@import "library/_index";
-@import "layout/_index";
-@import "state/_index";
-@import "base/_index";
-@import "components/_index";
+// This folder structure is based loosely on ITCSS
+@import '00_functions/_index';
+@import '01_variables/_index';
+@import '02_mixins/_index';
+
+/* Content is created after this point */
+@import '03_generic/_index';
+@import '04_elements/_index';
+@import '05_objects/_index';
+@import "06_components/_index";
+@import "07_utilities/_index";

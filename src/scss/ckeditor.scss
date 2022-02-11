@@ -5,13 +5,17 @@
 
 @import "~breakpoint-sass";
 
-@import "library/_index";
-@import "base/_index";
-@import "components/content/quoted";
-@import "components/navigation/link";
-@import "components/button/button";
-@import "components/icons/hdbt-icon";
+@import '00_functions/_index';
+@import '01_variables/_index';
+@import '02_mixins/_index';
 
+// /* Content is created after this point */
+@import '03_generic/_index';
+@import '04_elements/_index';
+@import '05_objects/_index';
+
+
+//TODO: Why is this different from non-edit-mode?
 body.cke_editable {
   display: block;
 
