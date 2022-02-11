@@ -6,16 +6,16 @@
 // TODO: We should clean all these codes and move them to our own codebase
 
 // Get stripped contents from base.min.css:
-@import "xx_external/normalise.css";
-@import "xx_external/hds-stripped/base";
+@import 'xx_external/normalise.css';
+@import 'xx_external/hds-stripped/base';
 
 // Get content from:
-// Rows below strip only used bits from @import "xx_external/hds-core/lib/components/all.min.css";
-@import "xx_external/hds-core/lib/components/button/button.min.css";
-@import "xx_external/hds-core/lib/components/checkbox/checkbox.min.css";
-@import "xx_external/hds-core/lib/components/koros/koros.min.css";
-@import "xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css";
-@import "xx_external/hds-core/lib/components/notification/notification.min.css";
-@import "xx_external/hds-core/lib/components/radio-button/radio-button.min.css";
-@import "xx_external/hds-core/lib/components/status-label/status-label.min.css";
-@import "xx_external/hds-core/lib/components/text-input/text-input.min.css";
+// Rows below strip only used bits from @import 'xx_external/hds-core/lib/components/all.min.css';
+@import 'xx_external/hds-core/lib/components/button/button.min.css';
+@import 'xx_external/hds-core/lib/components/checkbox/checkbox.min.css';
+@import 'xx_external/hds-core/lib/components/koros/koros.min.css';
+@import 'xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css';
+@import 'xx_external/hds-core/lib/components/notification/notification.min.css';
+@import 'xx_external/hds-core/lib/components/radio-button/radio-button.min.css';
+@import 'xx_external/hds-core/lib/components/status-label/status-label.min.css';
+@import 'xx_external/hds-core/lib/components/text-input/text-input.min.css';
