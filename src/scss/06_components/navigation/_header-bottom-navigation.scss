@@ -30,7 +30,7 @@
   position: relative;
 }
 
-.header-bottom .menu .menu__link-wrapper a {
+.header-bottom .menu .menu__link {
   padding: $spacing-and-half 0;
   text-decoration: none;
 
@@ -75,7 +75,7 @@
   }
 }
 
-.header-bottom .menu .menu__link-wrapper a .explain-external-icon {
+.header-bottom .menu .menu__link .explain-external-icon {
   display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
   // @include visually-hidden();
 }
@@ -86,7 +86,7 @@
   text-decoration: none;
 }
 
-.header-bottom .menu .menu__item--children .menu__link-wrapper a:focus::after {
+.header-bottom .menu .menu__item--children .menu__link:focus::after {
   width: calc(100% - 24px); // Width of the dropdown button.
 }
 
@@ -95,8 +95,8 @@
   position: relative;
 }
 
-.header-bottom .menu .menu__item--hover .menu__toggle-button .hel-icon,
-.header-bottom .menu .menu__item--open .menu__toggle-button .hel-icon {
+.header-bottom .menu .menu__item--hover .menu__toggle-button-icon,
+.header-bottom .menu .menu__item--open .menu__toggle-button-icon {
   transform: rotate(180deg);
 }
 
@@ -129,9 +129,9 @@
   width: 100%;
 }
 
-.header-bottom .menu .menu__item--hover .menu .menu__link-wrapper a,
+.header-bottom .menu .menu__item--hover .menu .menu__link,
 .header-bottom .menu .menu__item--hover .menu .menu__link-wrapper .menu__item--nolink,
-.header-bottom .menu .menu__item--open .menu .menu__link-wrapper a,
+.header-bottom .menu .menu__item--open .menu .menu__link,
 .header-bottom .menu .menu__item--open .menu .menu__link-wrapper .menu__item--nolink {
   @include font('special.navigation.sub_nav');
   display: block;
@@ -197,7 +197,7 @@
 }
 
 // Active trail items, first level
-.header-bottom .menu .menu__item--active-trail .menu__link-wrapper a {
+.header-bottom .menu .menu__item--active-trail .menu__link {
   font-weight: $font-weight-bold;
 
   &::before {
@@ -207,7 +207,7 @@
 }
 
 // Active trail items, second level
-.header-bottom .menu .menu__item--active-trail .menu__item .menu__link-wrapper a {
+.header-bottom .menu .menu__item--active-trail .menu__item .menu__link {
   font-weight: normal;
 
   &::before {
@@ -235,7 +235,7 @@
   }
 }
 
-.header-bottom .menu .menu__toggle-button .hel-icon {
+.header-bottom .menu .menu__toggle-button-icon {
   transition: $rotating-icon-transition;
 }
 
