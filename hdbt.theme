@@ -21,7 +21,7 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 /**
  * Implements hook_preprocess().
  */
-function hdbt_preprocess(&$variables) {
+function hdbt_preprocess(&$variables, $hook) {
   $variables['koro'] = hdbt_get_settings('koro');
   $variables['theme_color'] = hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = hdbt_get_settings('default_icon');
@@ -43,7 +43,7 @@ function hdbt_get_theme_color_override() {
 
   if (!isset($color)) {
     $color = FALSE;
-    if (\Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+    if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
       $page_entity = hdbt_content_get_page_entity();
       if (
         !empty($page_entity) &&
@@ -90,13 +90,12 @@ function hdbt_library_info_build() {
  */
 function hdbt_preprocess_html(&$variables) {
   // See if the page we are has exception.
-  $page_status = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+  $page_status = Drupal::requestStack()
+    ->getCurrentRequest()?->attributes->get('exception');
 
   // Check if the page is error-page and add class error-page for the body.
   if (
-    $page_status && $page_status->getStatusCode() == 404 ||
-    $page_status && $page_status->getStatusCode() == 403 ||
-    $page_status && $page_status->getStatusCode() == 401
+    $page_status?->getStatusCode() > 400
   ) {
     $variables['attributes']['class'][] = 'error-page';
   }
@@ -134,7 +133,7 @@ function hdbt_preprocess_media(&$variables) {
       Drupal::moduleHandler()->moduleExists('oembed_providers') &&
       $variables['media']->hasField('field_media_oembed_video')
     ) {
-      $url_resolver = \Drupal::service('media.oembed.url_resolver');
+      $url_resolver = Drupal::service('media.oembed.url_resolver');
       $video_url = $variables['media']->field_media_oembed_video->value;
       $provider = $url_resolver->getProviderByUrl($video_url);
       $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
@@ -153,32 +152,13 @@ function hdbt_preprocess_media(&$variables) {
  * @return string|null
  *   Returns the desired setting as a string or false.
  */
-function hdbt_get_settings($setting, $group = 'site_settings') {
-  if (empty($setting)) {
-    return FALSE;
+function hdbt_get_settings(string $setting, $group = 'site_settings') {
+  static $data;
+
+  if (!$data) {
+    $data = Drupal::config('hdbt_admin_tools.site_settings');
   }
-
-  $cached = \Drupal::cache()->get("hdbt_settings:$setting");
-
-  if ($cached) {
-    return $cached->data;
-  }
-
-  $settings = \Drupal::config('hdbt_admin_tools.site_settings');
-
-  try {
-    $data = $settings->get("$group.$setting");
-
-    if (!empty($data)) {
-      \Drupal::cache()->set("hdbt_settings:$setting", $data, Cache::PERMANENT);
-      return $data;
-    }
-    return FALSE;
-  }
-  catch (RequestException $error) {
-    watchdog_exception('hdbt', $error);
-    return FALSE;
-  }
+  return $data->get("$group.$setting");
 }
 
 /**
@@ -204,7 +184,7 @@ function hdbt_preprocess_page(&$variables) {
       break;
   }
 
-  if (!\Drupal::currentUser()->isAuthenticated()) {
+  if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
 
@@ -215,7 +195,6 @@ function hdbt_preprocess_page(&$variables) {
   // Check if current entity is published and set variable accordingly.
   $page_entity = hdbt_content_get_page_entity();
   if (
-    !empty($page_entity) &&
     $page_entity instanceof ContentEntityInterface &&
     method_exists($page_entity, 'isPublished')
   ) {
@@ -227,6 +206,7 @@ function hdbt_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_node(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
   // If node has hero block, set variable accordingly.
@@ -293,8 +273,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 
     // Combine photographer field value with caption and alt text.
     if (
-      $entity->{$image}->entity &&
-      $entity->{$image}->entity->hasField('field_photographer') &&
+      $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
       $photographer = $entity->{$image}->entity->field_photographer->value;
@@ -323,8 +302,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 
     if (
       !empty($alt) &&
-      $entity->{$image}->entity &&
-      $entity->{$image}->entity->hasField('field_media_image') &&
+      $entity->{$image}->entity?->hasField('field_media_image') &&
       !$entity->{$image}->entity->field_media_image->first()->isEmpty()
     ) {
       // Set altered_alt_text variable based on modified alt text
@@ -442,8 +420,10 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['url'];
 
+    $uriHelper = new \Drupal\hdbt\Url\Helper($url);
+
     // Check if the URL is external and add variable accordingly.
-    if ($url->isExternal()) {
+    if ($uriHelper->isExternal()) {
       $item['is_external'] = TRUE;
     }
 
@@ -453,7 +433,7 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     }
 
     // Check if url is current page where we are now.
-    $current_path = \Drupal::request()->getRequestUri();
+    $current_path = Drupal::request()->getRequestUri();
     if ($item['url']->toString() == $current_path) {
       $item['is_currentPage'] = TRUE;
     }
@@ -470,7 +450,7 @@ function hdbt_preprocess_block(&$variables) {
 
   // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
-    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if ($node = Drupal::routeMatch()->getParameter('node')) {
       // Retrieve the node object for revisions.
       $node = (is_numeric($node) && !$node instanceof Node)
         ? Node::load($node) : $node;
@@ -499,7 +479,7 @@ function hdbt_preprocess_block(&$variables) {
     if (isset($current_level_menu_item['original_link'])) {
       $original_link = $current_level_menu_item['original_link'];
       $parent = $original_link->getParent();
-      $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+      $menu_link_manager = Drupal::service('plugin.manager.menu.link');
       $page_entity = hdbt_content_get_page_entity();
 
       // Compare the current page menu link and parent menu link.
@@ -534,7 +514,7 @@ function hdbt_preprocess_block(&$variables) {
 
         if (!empty($params)) {
           $entity_type = key($params);
-          $node = \Drupal::entityTypeManager()
+          $node = Drupal::entityTypeManager()
             ->getStorage($entity_type)
             ->load($params[$entity_type])
             ->getTranslation($variables['current_langcode']);
@@ -557,7 +537,7 @@ function hdbt_preprocess_block(&$variables) {
 function hdbt_preprocess_breadcrumb(&$variables) {
   // If current entity has short title field set, use it to override
   // current page breadcrumb.
-  if (\Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+  if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
     $page_entity = hdbt_content_get_page_entity();
     if (
       !empty($page_entity) &&
@@ -1070,7 +1050,7 @@ function _hdbt_craft_token(string $name, array &$variables) {
     strpos($token, '[') !== FALSE &&
     strpos($token, ']') !== FALSE
   ) {
-    $rendered_token = \Drupal::token()->replace("$token");
+    $rendered_token = Drupal::token()->replace("$token");
     if ($rendered_token !== $token) {
       $variables[$name] = $rendered_token;
     }
@@ -1207,7 +1187,7 @@ function hdbt_preprocess_maintenance_page(&$variables) {
  * Helper function to get the privacy policy link URL.
  */
 function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {
-  $config = \Drupal::config('eu_cookie_compliance.settings');
+  $config = Drupal::config('eu_cookie_compliance.settings');
 
   $popup_link_config = $config->get('popup_link');
   if (UrlHelper::isExternal($popup_link_config)) {
