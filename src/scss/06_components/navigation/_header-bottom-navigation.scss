@@ -9,9 +9,14 @@
     }
   }
 
-  // First level items
-  .menu .menu__item {
+  .menu__item {
+    @include font('special.navigation.main_nav');
     list-style: none;
+    position: relative;
+  }
+
+  // First level items only
+  .menu--level-0 > .menu__item {
     margin: 0 $spacing;
 
     &:first-child {
@@ -23,202 +28,8 @@
     }
   }
 
-  .menu .menu__link-wrapper {
-    @include font('special.navigation.main_nav');
-    align-items: center;
-    display: flex;
-    height: 100%;
-    position: relative;
-  }
-
-  .menu .menu__link {
-    padding: $spacing-and-half 0;
-    text-decoration: none;
-
-    &::before {
-      background-color: $color-black;
-      bottom: 0;
-      content: "";
-      height: 0;
-      left: 0;
-      margin: 0 auto;
-      position: absolute;
-      right: 0;
-      transition: all .5s cubic-bezier(.19,1,.22,1);
-      width: 0;
-    }
-
-    &:focus {
-      outline: none;
-
-      &::after {
-        border-radius: 2px;
-        box-shadow: 0 0 0 3px $color-black;
-        content: "";
-        display: block;
-        height: 50%;
-        left: -#{$spacing-quarter};
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(100% + #{$spacing-half});
-      }
-    }
-
-    &:hover::before,
-    &[aria-current="page"]::before {
-      height: 4px;
-      width: 100%;
-    }
-
-    &[aria-current="page"]{
-      font-weight: $font-weight-bold;
-    }
-  }
-
-  .menu .menu__link .explain-external-icon {
-    display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
-    // @include visually-hidden();
-  }
-
-  .menu .menu__link-wrapper .menu__item--nolink {
-    @include font('body'); // TODO: is this whole selector unnecessary?
-    padding: $spacing-and-half 0;
-    text-decoration: none;
-  }
-
-  .menu .menu__item--children .menu__link:focus::after {
-    width: calc(100% - 24px); // Width of the dropdown button.
-  }
-
-  .menu .menu__item--hover ,
-  .menu .menu__item--open {
-    position: relative;
-  }
-
-  .menu .menu__item--hover .menu__toggle-button-icon,
-  .menu .menu__item--open .menu__toggle-button-icon {
-    transform: rotate(180deg);
-  }
-
-  // Secondary menu items
-  .menu .menu__item--hover .menu,
-  .menu .menu__item--open .menu {
-    background-color: $color-white;
-    border: 1px solid $color-black-20;
-    bottom: auto;
-    display: block;
-    left: -$spacing-double;
-    min-width: 310px;
-    position: absolute;
-    width: calc(100% + #{$spacing-quadruple});
-    z-index: 100;
-  }
-
-  .menu .menu__item--hover .menu .menu__item ,
-  .menu .menu__item--open .menu .menu__item {
-    margin: 0;
-  }
-
-  .menu .menu__item--hover .menu .menu__item .menu__toggle-button,
-  .menu .menu__item--open .menu .menu__item .menu__toggle-button {
-    display: none;
-  }
-
-  .menu .menu__item--hover .menu .menu__link-wrapper,
-  .menu .menu__item--open .menu .menu__link-wrapper {
-    width: 100%;
-  }
-
-  .menu .menu__item--hover .menu .menu__link,
-  .menu .menu__item--hover .menu .menu__link-wrapper .menu__item--nolink,
-  .menu .menu__item--open .menu .menu__link,
-  .menu .menu__item--open .menu .menu__link-wrapper .menu__item--nolink {
-    @include font('special.navigation.sub_nav');
-    display: block;
-    padding: $spacing $spacing-double;
-    width: 100%;
-
-    &::before {
-      bottom: 0;
-      height: 100%;
-      left: 0;
-      margin: 0;
-      right: auto;
-      top: 0;
-      transition: width 100ms ease-in;
-    }
-
-    &[aria-current="page"] {
-      font-weight: $font-weight-bold;
-    }
-
-    &:focus {
-      margin: 0;
-
-      &::after {
-        height: 100%;
-        left: $spacing-half;
-        width: calc(100% - #{$spacing});
-      }
-    }
-
-    &:hover,
-    &[aria-current="page"] {
-      &::before {
-        height: 100%;
-        width: 4px;
-      }
-    }
-  }
-
-
-  // Links on second level that point to external site.
-  .menu .menu__item--hover .menu .menu__item--external a .menu__link__text,
-  .menu .menu__item--open .menu .menu__item--external a .menu__link__text {
-    display: block;
-    padding-right: 52px; // Width of the external icon and padding.
-    position: relative;
-    width: 100%;
-  }
-
-  .menu .menu__item--hover .menu .menu__item--external a .menu__link__text .explain-external-icon,
-  .menu .menu__item--open .menu .menu__item--external a .menu__link__text .explain-external-icon {
-    display: inline; //TODO: Remove this line when the main level navigation supports external links
-    @include visually-hidden();
-  }
-
-  .menu .menu__item--hover .menu .menu__item--external a .menu__link__text:after,
-  .menu .menu__item--open .menu .menu__item--external a .menu__link__text:after {
-    @include pseudo-icon('link-external', 20px, $color-black, flex);
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  // Active trail items, first level
-  .menu .menu__item--active-trail .menu__link {
-    font-weight: $font-weight-bold;
-
-    &::before {
-      height: 4px;
-      width: 100%;
-    }
-  }
-
-  // Active trail items, second level
-  .menu .menu__item--active-trail .menu__item .menu__link {
-    font-weight: normal;
-
-    &::before {
-      height: 100%;
-      width: 0;
-    }
-  }
-
   // Menu toggle button
-  .menu .menu__toggle-button {
+  .menu__toggle-button {
     background-color: transparent;
     border: none;
     margin-left: $spacing-half;
@@ -236,12 +47,195 @@
     }
   }
 
-  .menu .menu__toggle-button-icon {
+  .menu__toggle-button-icon {
     transition: $rotating-icon-transition;
   }
 
-  // By default hide the secondary items
-  .menu .menu {
+  // Icon rotates around
+  .menu__item--hover,
+  .menu__item--open {
+    .menu__toggle-button-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  .menu__item--nolink {
+    @include font('body'); // TODO: is this whole selector unnecessary?
+    padding: $spacing-and-half 0;
+    text-decoration: none;
+  }
+
+ .menu__link-wrapper {
+    align-items: center;
+    display: block;
+    height: 100%;
+    position: relative;
+  }
+
+ .menu__link {
+    display: inline-block;
+    padding: $spacing-and-half 0;
+    text-decoration: none;
+
+    &::before {
+      background-color: $color-black;
+      bottom: 0;
+      content: "";
+      height: 0;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      transition: all .5s cubic-bezier(.19,1,.22,1);
+      width: 0;
+    }
+
+    &[aria-current="page"]{
+      font-weight: $font-weight-bold;
+    }
+
+    &:hover::before,
+    &[aria-current="page"]::before {
+      height: 4px;
+      width: 100%;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black;
+        content: "";
+        display: block;
+        height: 50%;
+        left: -#{$spacing-quarter};
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% - 24px); // Width of the dropdown button.
+      }
+    }
+  }
+
+  // Active trail items, first level
+  .menu__link--active-trail {
+    font-weight: $font-weight-bold;
+
+    &::before {
+      height: 4px;
+      width: 100%;
+    }
+  }
+  .menu__link--external .menu__link__text {
+    display: inline-block;
+  }
+
+  .menu__link--external .menu__link__text::after {
+    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
+  }
+
+  .explain-external-icon {
+    display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
+    // @include visually-hidden();
+  }
+
+
+  .menu--level-1 {
+    background-color: $color-white;
+    border: 1px solid $color-black-20;
+    bottom: auto;
+    display: none; // By default hide the secondary items
+    left: -$spacing-double;
+    min-width: 310px;
+    position: absolute;
+    width: calc(100% + #{$spacing-quadruple});
+    z-index: 100;
+  }
+
+  // Secondary menu items open
+  .menu__item--hover,
+  .menu__item--open {
+    .menu--level-1 {
+      display: block;
+    }
+  }
+
+  .menu--level-1 .menu__toggle-button {
     display: none;
+  }
+
+  .menu--level-1 .menu__link,
+  .menu--level-1 .menu__item--nolink {
+    @include font('special.navigation.sub_nav');
+    display: block;
+    padding: $spacing $spacing-double;
+
+    &::before {
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      margin: 0;
+      right: auto;
+      top: 0;
+      transition: width 100ms ease-in;
+    }
+
+    &:focus {
+      margin: 0;
+
+      &::after {
+        height: 100%;
+        left: $spacing-half;
+        width: calc(100% - #{$spacing});
+      }
+    }
+
+    &[aria-current="page"] {
+      font-weight: $font-weight-bold;
+    }
+
+    &:hover,
+    &[aria-current="page"] {
+      &::before {
+        height: 100%;
+        width: 4px;
+      }
+    }
+  }
+
+  // Links on second level that point to external site.
+  .menu--level-1 .menu__link--external .menu__link__text {
+    display: block;
+    padding-right: 52px; // Width of the external icon and padding.
+    position: relative;
+    width: 100%;
+  }
+
+  // Links on second level that point to external site.
+  .menu--level-1 .menu__link--external .menu__link__text {
+    display: block;
+    padding-right: 52px; // Width of the external icon and padding.
+    position: relative;
+    width: 100%;
+  }
+
+  .menu--level-1 .explain-external-icon {
+    display: inline; //TODO: Remove this line when the main level navigation supports external links
+    @include visually-hidden();
+  }
+
+  .menu--level-1 .menu__link--external .menu__link__text::after {
+    //@include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // Active trail items, second level
+  .menu--level-1 .menu__item--active-trail::before {
+    height: 100%;
+    width: 0;
   }
 }
