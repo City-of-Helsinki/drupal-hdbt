@@ -11,6 +11,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
+use Drupal\hdbt\Url\UrlHelper;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
@@ -420,7 +421,7 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['url'];
 
-    $uriHelper = new \Drupal\hdbt\Url\Helper($url);
+    $uriHelper = new UrlHelper($url);
 
     // Check if the URL is external and add variable accordingly.
     if ($uriHelper->isExternal()) {
@@ -698,7 +699,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
 
     // Get a paragraph storage object.
-    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+    $paragraph_storage = Drupal::entityTypeManager()->getStorage('paragraph');
     // Load all slide paragraphs.
     $slides = $paragraph_storage->loadMultiple($slide_ids);
     $slide_thumbnails = [];
@@ -753,7 +754,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
 
     // Get previously cached meta information field values and set them
     // if no cached items are found.
-    $cached = \Drupal::cache()->get('unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments']);
+    $cached = Drupal::cache()->get('unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments']);
 
     if (!$cached) {
       // Set meta information fields based on how content producer
@@ -776,7 +777,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
       if (!empty($meta) && !empty($unit_ids)) {
         $tags = array_merge(['paragraph:' . $paragraph->id()], $unit_ids);
 
-        \Drupal::cache()->set(
+        Drupal::cache()->set(
           'unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments'],
           $meta,
           Cache::PERMANENT,
@@ -807,7 +808,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
 
     // Get previously cached meta information field values and set them
     // if no cached items are found.
-    $cached = \Drupal::cache()->get('service_list' . 'block' . $variables['current_langcode'] . $variables['service_list_arguments']);
+    $cached = Drupal::cache()->get('service_list' . 'block' . $variables['current_langcode'] . $variables['service_list_arguments']);
 
     if (!$cached) {
       // Set meta information fields based on how content producer
@@ -827,7 +828,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
       if (!empty($meta) && !empty($service_ids)) {
         $tags = array_merge(['paragraph:' . $paragraph->id()], $service_ids);
 
-        \Drupal::cache()->set(
+        Drupal::cache()->set(
           'service_list' . 'block' . $variables['current_langcode'] . $variables['service_list_arguments'],
           $meta,
           Cache::PERMANENT,

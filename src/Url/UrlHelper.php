@@ -9,7 +9,7 @@ use Drupal\Core\Url;
 /**
  * Provides a helper class to deal with URLs.
  */
-final class Helper {
+final class UrlHelper {
 
   /**
    * Constructs a new object.
