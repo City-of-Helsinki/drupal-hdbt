@@ -61,7 +61,7 @@
         <{{ element }}
           {{ create_attribute({'class': classes}) }}
           {{ language_link ? create_attribute({'href': language_link}) }}
-          {{ element == 'a' ? create_attribute({'lang': lang}) }}
+          {{ create_attribute({'lang': lang}) }}
         >{{ item.text|capitalize }}</{{ element }}>
       {% endfor %}
     </div>
