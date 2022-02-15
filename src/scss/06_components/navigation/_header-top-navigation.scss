@@ -1,30 +1,21 @@
-.header-top .menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.header-top {
 
-  .menu__item {
+  .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__item + .menu__item {
     margin-left: $spacing;
+  }
 
-    &:first-child {
-      margin-left: 0;
-    }
+  .menu__link--external:after {
+    @include pseudo-icon('link-external');
+  }
 
-    &.menu__item--external a {
-      display: block;
-      padding-right: 24px; // Width of the external icon plus.
-      position: relative;
-      width: 100%;
-
-      .explain-external-icon {
-        @include visually-hidden();
-      }
-
-      .menu__link__text:after {
-        @include pseudo-icon('link-external', 1em, $color-black, inline-block);
-        vertical-align: middle;
-      }
-    }
+  .explain-external-icon {
+    @include visually-hidden();
   }
 }

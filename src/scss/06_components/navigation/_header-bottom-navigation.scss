@@ -30,7 +30,7 @@
 
   // Menu toggle button
   .menu__toggle-button {
-    background-color: transparent;
+    background-color: $color-black-5;
     border: none;
     margin-left: $spacing-half;
     padding: 0;
@@ -52,11 +52,8 @@
   }
 
   // Icon rotates around
-  .menu__item--hover,
-  .menu__item--open {
-    .menu__toggle-button-icon {
-      transform: rotate(180deg);
-    }
+  [aria-expanded='true'] > .menu__toggle-button-icon {
+    transform: rotate(180deg);
   }
 
   .menu__item--nolink {
@@ -94,7 +91,10 @@
       font-weight: $font-weight-bold;
     }
 
-    &:hover::before,
+    &:hover {
+      text-decoration: underline;
+    }
+
     &[aria-current="page"]::before {
       height: 4px;
       width: 100%;
@@ -102,6 +102,7 @@
 
     &:focus {
       outline: none;
+      text-decoration: underline;
 
       &::after {
         border-radius: 2px;
