@@ -41,6 +41,8 @@
         {% set untranslated = item.link['#options']['#untranslated'] %}
         {% set alternative_language = item.link['#options']['#alternative_language'] %}
         {% set classes = ['language-link'] %}
+        {% set ariaCurrent = null %}
+        {% set title = null %}
 
         {# Check if link is part of alternative menu and set class accordingly. #}
         {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
@@ -49,11 +51,21 @@
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
         {% elseif lang == current_langcode %}
-          {% set element = 'span' %}
-          {% set classes = classes|merge([lang == current_langcode ? 'is-active' : '']) %}
+          {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
+          {% set element = 'a' %}
+          {% set ariaCurrent = create_attribute({'aria-current': 'page'}) %}
         {% else %}
           {% set element = 'span' %}
           {% set classes = classes|merge(['is-disabled']) %}
+          {% if lang == 'en' %}
+            {% set title = create_attribute({'title': 'There is no English translation for this page'}) %}
+          {% elseif lang == 'fi' %}
+            {% set title = create_attribute({'title': 'Tästä sivusta ei ole suomenkielistä käännöstä'}) %}
+          {% elseif lang == 'sv' %}
+            {% set title = create_attribute({'title': 'Det finns ingen svensk översättning för denna sida'}) %}
+          {% elseif lang == 'ru' %}
+            {% set title = create_attribute({'title': 'Для этой страницы нет русского перевода'}) %}
+          {% endif %}
         {% endif %}
 
         {# Construct the element based on variables. #}
@@ -62,6 +74,8 @@
           {{ create_attribute({'class': classes}) }}
           {{ language_link ? create_attribute({'href': language_link}) }}
           {{ create_attribute({'lang': lang}) }}
+          {{ ariaCurrent }}
+          {{ title }}
         >{{ item.text|capitalize }}</{{ element }}>
       {% endfor %}
     </div>

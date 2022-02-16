@@ -1,4 +1,19 @@
 .header-top {
+  // Hide on mobile
+  display: none;
+
+  @include breakpoint($breakpoint-m) {
+    @include font('special.navigation.header_top');
+    align-items: center;
+    background-color: $color-black-5;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px $spacing-and-half; // Specific pixel size for top and bottom padding from layout.
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding: 14px $spacing-double; // Specific pixel size for top and bottom padding from layout.
+  }
 
   .menu {
     display: flex;
@@ -9,6 +24,15 @@
 
   .menu__item + .menu__item {
     margin-left: $spacing;
+  }
+
+  .link-to-site-frontpage,
+  .menu__link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .menu__link--external:after {

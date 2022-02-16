@@ -1,7 +1,0 @@
-.header-bottom {
-  background-color: $color-white;
-
-  @include breakpoint($breakpoint-l) {
-    border-bottom: 1px solid $color-black-20;
-  }
-}

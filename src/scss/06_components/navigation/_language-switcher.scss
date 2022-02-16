@@ -13,7 +13,7 @@
     margin-left: 0;
   }
 
-  &.is-active {
+  &[aria-current='page'] {
     border-bottom: 3px solid $color-black-90;
     cursor: default;
     font-weight: $font-weight-bold;
@@ -22,10 +22,9 @@
 
   &.is-disabled {
     color: $color-black-60;
-    cursor: default;
+    cursor: not-allowed;
     text-decoration: none;
 
-    // TODO: Needs functionality for alternative menu items.
     &.is-alternative {
       display: none;
     }

@@ -41,6 +41,10 @@
       width: auto;
     }
   }
+
+  a:hover .site-name {
+    text-decoration: underline;
+  }
 }
 
 .mm-wrapper_opened {

@@ -1,4 +1,10 @@
 .header-bottom {
+  background-color: $color-white;
+
+  @include breakpoint($breakpoint-l) {
+    border-bottom: 1px solid $color-black-20;
+  }
+
   .menu {
     display: none;
     margin: 0;
@@ -128,6 +134,11 @@
       width: 100%;
     }
   }
+
+  .menu__link__text {
+    text-decoration: inherit; // fixes a bug where underline was not visible when link is external
+  }
+
   .menu__link--external .menu__link__text {
     display: inline-block;
   }
