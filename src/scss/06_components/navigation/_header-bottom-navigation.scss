@@ -54,7 +54,7 @@
   }
 
   .menu__toggle-button-icon {
-    transition: $rotating-icon-transition;
+    @include rotating-icon-transition();
   }
 
   // Icon rotates around
@@ -78,7 +78,6 @@
  .menu__link {
     display: inline-block;
     padding: $spacing-and-half 0;
-    text-decoration: none;
 
     &::before {
       background-color: $color-black;
@@ -93,14 +92,6 @@
       width: 0;
     }
 
-    &[aria-current="page"]{
-      font-weight: $font-weight-bold;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-
     &[aria-current="page"]::before {
       height: 4px;
       width: 100%;
@@ -108,7 +99,6 @@
 
     &:focus {
       outline: none;
-      text-decoration: underline;
 
       &::after {
         border-radius: 2px;
@@ -136,22 +126,8 @@
   }
 
   .menu__link__text {
-    text-decoration: inherit; // fixes a bug where underline was not visible when link is external
-  }
-
-  .menu__link--external .menu__link__text {
     display: inline-block;
   }
-
-  .menu__link--external .menu__link__text::after {
-    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
-  }
-
-  .explain-external-icon {
-    display: none; //TODO: Replace this with visually-hidden once main navigation supports external link icons
-    // @include visually-hidden();
-  }
-
 
   .menu--level-1 {
     background-color: $color-white;
@@ -203,10 +179,6 @@
       }
     }
 
-    &[aria-current="page"] {
-      font-weight: $font-weight-bold;
-    }
-
     &:hover,
     &[aria-current="page"] {
       &::before {
@@ -222,27 +194,18 @@
     padding-right: 52px; // Width of the external icon and padding.
     position: relative;
     width: 100%;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
-  // Links on second level that point to external site.
-  .menu--level-1 .menu__link--external .menu__link__text {
-    display: block;
-    padding-right: 52px; // Width of the external icon and padding.
-    position: relative;
-    width: 100%;
-  }
-
-  .menu--level-1 .explain-external-icon {
-    display: inline; //TODO: Remove this line when the main level navigation supports external links
-    @include visually-hidden();
-  }
-
-  .menu--level-1 .menu__link--external .menu__link__text::after {
-    //@include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  .menu--level-1 .menu__link--external:focus .menu__link__text::after,
+  .menu--level-1 .menu__link--external:hover .menu__link__text::after {
+    transform: translateY(-50%) var(--external-icon-move);
   }
 
   // Active trail items, second level

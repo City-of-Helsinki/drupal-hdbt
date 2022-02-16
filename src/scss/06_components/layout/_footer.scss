@@ -23,13 +23,6 @@
   }
 }
 
-.footer .menu__item--external {
-  .explain-external-icon {
-    display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
-    // @include visually-hidden();
-  }
-}
-
 .footer-top__container {
   padding-top: 0;
 }

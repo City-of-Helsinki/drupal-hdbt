@@ -84,7 +84,13 @@
 
   .menu__link__text {
     display: none;
-    text-decoration: inherit; // fixes a bug where underline was not visible
+
+    &::after {
+      --external-icon-move: translate(1px, -1px);
+      @media (prefers-reduced-motion) {
+        --external-icon-move: scale(1);
+      }
+    }
 
     @include breakpoint(440px) {
       align-items: center;

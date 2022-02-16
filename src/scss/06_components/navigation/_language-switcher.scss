@@ -1,13 +1,9 @@
 .language-link {
+  @include navigation_link_defaults();
   @include font('small');
   color: $color-black-90;
   margin-left: $spacing-half;
   margin-right: $spacing-half;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 
   &:first-child {
     margin-left: 0;
@@ -16,14 +12,12 @@
   &[aria-current='page'] {
     border-bottom: 3px solid $color-black-90;
     cursor: default;
-    font-weight: $font-weight-bold;
     text-decoration: none;
   }
 
   &.is-disabled {
     color: $color-black-60;
     cursor: not-allowed;
-    text-decoration: none;
 
     &.is-alternative {
       display: none;

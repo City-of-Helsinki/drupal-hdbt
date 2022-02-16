@@ -62,9 +62,9 @@ $spacing-menu-item: 20px;
 
       &::before {
         @include pseudo-icon('angle-down', 25px, $color-black, flex);
+        @include rotating-icon-transition();
         border: none;
         height: $spacing-quadruple;
-        transition: $rotating-icon-transition;
         width: $spacing-quadruple;
       }
 
