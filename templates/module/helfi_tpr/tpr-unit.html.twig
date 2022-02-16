@@ -1,3 +1,19 @@
+{#
+/**
+ * @file
+ * Theme for unit entity.
+ *
+ */
+#}
+
+{% if not block_name %}
+  {% set block_name = 'main_navigation_level_2' %}
+{% endif %}
+
+{% if drupal_entity('block', block_name, check_access=false)|render|striptags|trim is not empty %}
+  {% set in_menu =  TRUE %}
+{% endif %}
+
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
     <div class="unit__supports_language_sv">
@@ -8,7 +24,14 @@
 
 {% if view_mode == 'full' %}
 
-  <article class="unit unit--full">
+  {%
+    set classes = [
+    'unit',
+    'unit--full'
+  ]
+  %}
+
+  <article{{ attributes.addClass(classes) }}>
     <div class="unit-header__container container {{ in_menu ? 'has-navigation' }}">
       <div{{ content_attributes.addClass('unit__header') }}>
         <h1{{ title_attributes.addClass('unit__title') }}>
@@ -37,6 +60,9 @@
         {% endif %}
 
         {% block main_content %}
+          <div class="enriched-content has-sidebar components components--unit">
+            {{ content.field_content }}
+          </div>
         {% endblock main_content %}
 
         {% if content.service_map_embed|render %}
@@ -53,7 +79,8 @@
 
       <div class="unit__sidebar">
         {% block sidebar_block %}
-        {% endblock sidebar_block%}
+          {{ drupal_entity('block', block_name, check_access=false) }}
+        {% endblock sidebar_block %}
 
         {% if
           content.address|render or
@@ -130,8 +157,8 @@
     {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
 
     {% if services_view > 0 or content.accessibility_sentences|render %}
-      <div class="unit__content">
-    {% endif %}
+    <div class="unit__content">
+      {% endif %}
 
       {% if services_view > 0 %}
         <div class="unit__services">
@@ -141,19 +168,50 @@
 
       {% block accessibility_sentences_block %}
         {% if content.accessibility_sentences|render %}
-          <div class="unit__accessibility_sentences">
-            {{ content.accessibility_sentences }}
-          </div>
+
+          {% embed "@hdbt/misc/component.twig" with
+            {
+              component_classes: [
+              'component--accordion',
+              'component--accordion-bg-grey',
+              'component--hardcoded',
+              'component--tpr-unit',
+            ],
+              component_content_class: 'accordion',
+            }
+          %}
+            {% block component_content %}
+
+              {% set accordion_content %}
+
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.accessibility_sentences }}
+                  {% endblock component_content %}
+                {% endembed %}
+
+              {% endset %}
+
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading_icon: 'person-wheelchair',
+                heading: 'Accessibility information'|t,
+                content: accordion_content,
+              } %}
+
+            {% endblock component_content %}
+          {% endembed %}
+
         {% endif %}
       {% endblock accessibility_sentences_block %}
 
-    {% if services_view > 0 or content.accessibility_sentences|render %}
-      </div>
+      {% if services_view > 0 or content.accessibility_sentences|render %}
+    </div>
     {% endif %}
 
   </article>
 
-{# TODO: We should simplify these to have only one style instead of two identical ones #}
+  {# TODO: We should simplify these to have only one style instead of two identical ones #}
 {% elseif view_mode == 'teaser_with_image' or view_mode == 'teaser' %}
 
   {% set image_attributes = create_attribute() %}
