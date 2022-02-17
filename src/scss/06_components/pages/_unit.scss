@@ -544,16 +544,9 @@
       display: inline;
       margin-top: 0;
 
-      .address-line1,
-      .address-line2,
-      .postal-code {
-        margin-right: 3px; // Some spacing between the address parts when they are displayed inline.
-      }
-
       .address-line1::after,
       .address-line2::after {
         content: ",";
-        margin-left: -2px; // Because of display inline there is automatically some extra spacing. This removes it.
       }
     }
   }
