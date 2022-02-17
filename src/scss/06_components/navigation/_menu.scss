@@ -8,8 +8,7 @@
 }
 
 .menu__link--external .menu__link__text::after {
-  // TODO: Enable this when external links work in menu
-  // @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
+  @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
   @include hover-link-arrow-transition();
 }
 

@@ -52,6 +52,10 @@ $spacing-menu-item: 20px;
           width: $spacing-quarter;
         }
       }
+
+      .menu__link__text::after {
+        --line-height: 1;
+      }
     }
 
     .mm-btn {
@@ -102,6 +106,10 @@ $spacing-menu-item: 20px;
       @include font('special.navigation.mobile_subnav');
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-double;
+
+      .menu__link__text::after {
+        --line-height: 1.5;
+      }
     }
 
     .mm-btn {
