@@ -110,9 +110,14 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: calc(100% - 24px); // Width of the dropdown button.
+        width: calc(100% + #{$spacing-half});
       }
     }
+  }
+
+  // Handle menu link focus style when it has children
+  .menu__item--item-below .menu__link:focus::after {
+      width: calc(100% - #{24px + 4px}) ; // Width of the dropdown button and padding.
   }
 
   // Active trail items, first level
