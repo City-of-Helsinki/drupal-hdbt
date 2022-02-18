@@ -75,10 +75,18 @@
 .announcement__close {
   background: transparent;
   border: 0 none;
-  height: 20px;
-  margin: 0;
+  cursor: pointer;
+  height: $spacing-double;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: -$spacing-half;
+  margin-top: -$spacing-half;
   padding: 0;
-  width: 20px;
+  width: $spacing-double;
+  &::after{
+    --icon-size: #{$spacing-double};
+    @include pseudo-icon('cross');
+  }
 }
 
 .js-announcement__close--disabled {

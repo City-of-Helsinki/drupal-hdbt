@@ -8,24 +8,20 @@
 
 {% set link = content.field_announcement_link[0] %}
 
-<div class="announcement {{ block_modifier }}" data-nodeid="{{ node.id }}">
-  <div class="announcement__content">
-    {% if content.body|render != null %}
-      <span class="announcenemnt__content-body">
-        {{ content.body }}
-      </span>
-    {% endif %}
-    {% if link != null %}
-      <div class="announcement__link">
-        {{ link }}
-      </div>
-    {% endif %}
+<div class="announcement js-announcement {{ block_modifier }}" data-uuid="{{ node.uuid.value }}">
+  <div class="announcement__container">
+    <div class="announcement__content">
+      {% if content.body|render != null %}
+        <span class="announcenemnt__content-body">
+          {{ content.body }}
+        </span>
+      {% endif %}
+      {% if link != null %}
+        <div class="announcement__link">
+          {{ link }}
+        </div>
+      {% endif %}
+    </div>
+    <button type="button" class="announcement__close js-announcement__close--disabled" aria-label="{{ "Close announcement"|t }}"></button>
   </div>
-  {#
-  This is disabled until we have a better plan for storing closing of these notifications
-
-  <button type="button" class="announcement__close" aria-label="{{ "Close announcement"|t }}">
-    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'cross'} %}
-  </button>
-  #}
 </div>
