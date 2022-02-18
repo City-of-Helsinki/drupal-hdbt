@@ -109,3 +109,6 @@ msgstr "Logga in"
 
 msgid "The site is currently under maintenance"
 msgstr "Vi uppdaterar sidan som bäst"
+
+msgid "Close announcement"
+msgstr "Stäng undantagsmeddelandet"

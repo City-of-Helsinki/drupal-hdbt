@@ -112,3 +112,6 @@ msgstr "Kirjaudu sisään"
 
 msgid "The site is currently under maintenance"
 msgstr "Päivitämme sivustoa tällä hetkellä"
+
+msgid "Close announcement"
+msgstr "Sulje poikkeustiedote"

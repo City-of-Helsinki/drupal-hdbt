@@ -549,6 +549,11 @@ function hdbt_preprocess_block(&$variables) {
       ];
     }
   }
+
+  // Attach "closable_announcements" library to "announcements" block.
+  if ($variables['plugin_id'] == 'announcements') {
+    $variables['#attached']['library'][] = 'hdbt/closable_announcements';
+  }
 }
 
 /**

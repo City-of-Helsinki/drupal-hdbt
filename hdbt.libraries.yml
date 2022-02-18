@@ -124,3 +124,12 @@ matomo:
     dist/js/matomo.min.js: {}
   dependencies:
     - core/drupalSettings
+
+closable_announcements:
+  version: 1.x
+  js:
+    dist/js/closable-announcements.min.js: {}
+  dependencies:
+  - core/jquery
+  - core/drupal
+  - core/drupalSettings
