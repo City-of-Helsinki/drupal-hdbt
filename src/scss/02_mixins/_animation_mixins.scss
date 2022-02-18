@@ -1,0 +1,15 @@
+@mixin rotating-icon-transition() {
+  transition: transform 0.2s ease-in;
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}
+
+@mixin hover-link-arrow-transition() {
+  transition: transform 0.2s linear;
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}

@@ -173,12 +173,15 @@ $_info-row__icon-size: $spacing-and-half;
 
   &::after {
     @include pseudo-icon('arrow-right', $spacing-and-half, currentColor);
+    @include hover-link-arrow-transition();
     flex-shrink: 0;
-    transition: $hover-link-arrow-transition;
 
     .content-liftup:hover &,
     .content-liftup:focus-within & {
       transform: translateX($spacing-quarter);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
   }
 

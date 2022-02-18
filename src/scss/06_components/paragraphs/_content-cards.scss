@@ -54,11 +54,11 @@ $card_spacing: $spacing-and-half;
 }
 
 .content-card__arrow {
+  @include hover-link-arrow-transition();
   display: block;
   line-height: 0;
   // Pull the arrow a bit to the left to align with text.
   margin: $spacing 0 0 -2px;
-  transition: $hover-link-arrow-transition;
   width: 48px;
 
   @include breakpoint($breakpoint-s) {
@@ -87,6 +87,9 @@ $card_spacing: $spacing-and-half;
 
     .content-card__arrow {
       transform: translateX($spacing);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
   }
 }

@@ -1,10 +1,54 @@
-.header-branding .menu {
+.header-branding {
+  align-items: center;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-black-20;
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 $spacing;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 
-  .menu__link-wrapper a {
+  @include breakpoint($breakpoint-m) {
+    flex-wrap: nowrap;
+    position: static;
+    top: auto;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding: 0 $spacing-double;
+  }
+
+  &::before {
+    background-color: $color-white;
+    border-bottom: 1px solid $color-black-10;
+    content: "";
+    height: 65px; // Height of the mobile header
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @include breakpoint($breakpoint-m) {
+      display: none;
+    }
+  }
+
+  .toolbar-vertical & {
+    top: 39px; // Height of the toolbar
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__link {
     @include font('special.navigation.icon_label');
     align-items: center;
     display: flex;
@@ -23,39 +67,50 @@
       position: relative;
       width: 50px;
     }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
-    .hel-icon {
-      --icon-size: #{$spacing-and-half};
-      display: block;
+  .menu__link__icon {
+    --icon-size: #{$spacing-and-half};
+    display: block;
 
-      @include breakpoint(440px) {
-        margin-bottom: $spacing-quarter;
+    @include breakpoint(440px) {
+      margin-bottom: $spacing-quarter;
+    }
+  }
+
+
+  .menu__link__text {
+    display: none;
+
+    &::after {
+      --external-icon-move: translate(1px, -1px);
+      @media (prefers-reduced-motion) {
+        --external-icon-move: scale(1);
       }
     }
 
-    .menu__link__text {
-      display: none;
-
-      @include breakpoint(440px) {
-        align-items: center;
-        bottom: 0;
-        display: flex;
-        height: 28px; // Enough space for the text to go to two lines.
-        justify-content: center;
-        left: 0;
-        line-height: 13px; // If the text goes on two lines this still looks good.
-        position: absolute;
-        width: 100%;
-      }
-
-      @include breakpoint($breakpoint-m) {
-        bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
-      }
-
-      .explain-external-icon {
-        display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
-        @include visually-hidden();
-      }
+    @include breakpoint(440px) {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      height: 28px; // Enough space for the text to go to two lines.
+      justify-content: center;
+      left: 0;
+      line-height: 13px; // If the text goes on two lines this still looks good.
+      position: absolute;
+      width: 100%;
     }
+
+    @include breakpoint($breakpoint-m) {
+      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
+    }
+  }
+
+  .explain-external-icon {
+    display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
+    @include visually-hidden();
   }
 }

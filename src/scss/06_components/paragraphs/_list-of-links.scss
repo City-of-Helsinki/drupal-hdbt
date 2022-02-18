@@ -95,11 +95,11 @@ $item_spacing: $spacing-triple;
   }
 
   .list-of-links__item__arrow {
+    @include hover-link-arrow-transition();
     display: block;
     line-height: 0;
     margin-left: -$spacing-quarter;
     margin-top: $spacing-half;
-    transition: $hover-link-arrow-transition;
 
     @include breakpoint($breakpoint-s) {
       margin-left: -$spacing-half;
@@ -118,8 +118,14 @@ $item_spacing: $spacing-triple;
   &:hover {
     .list-of-links__item__arrow {
       transform: translateX($spacing-half);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
       &.is-outbound {
         transform: translate($spacing-quarter, - $spacing-quarter);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
       }
     }
   }

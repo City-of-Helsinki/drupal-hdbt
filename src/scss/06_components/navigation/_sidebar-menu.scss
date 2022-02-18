@@ -13,13 +13,14 @@
     padding-bottom: $spacing-and-half;
 
     a {
+      @include navigation_link_defaults();
       display: flex;
       padding-left: 20px + $spacing; // Width of the arrow icon.
       position: relative;
-      text-decoration: none;
 
       &:before {
         @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+        @include hover-link-arrow-transition();
         //TODO: Clean up this size mess
         height: 30px;
         left: 0;
@@ -28,6 +29,13 @@
         width: 20px;
       }
 
+      &:focus::before,
+      &:hover::before {
+        transform: translateX(-$spacing-quarter);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
       &:focus {
         outline: none;
 
@@ -60,30 +68,24 @@
         border-top: 0;
       }
 
-      &.menu__item--external a {
+      .menu__link--external .menu__link__text {
         display: block;
-        padding-right: 40px; // Width of the external icon.
+        padding-right: 52px; // Width of the external icon and padding.
         position: relative;
         width: 100%;
 
-        .explain-external-icon {
-          @include visually-hidden();
-        }
-
-        &:after {
-          @include pseudo-icon('link-external', 20px, $color-black, flex);
+        &::after {
+          min-width: 40px;
           position: absolute;
           right: 0;
           top: 50%;
           transform: translateY(-50%);
-          width: 40px; // TODO: clean this width that's fighting common icon rules
         }
+      }
 
-        &:focus {
-          &::before {
-            width: calc(100% + #{$spacing-half});
-          }
-        }
+      .menu__link--external:focus .menu__link__text::after,
+      .menu__link--external:hover .menu__link__text::after {
+        transform: translateY(-50%) var(--external-icon-move);
       }
 
       .menu__link-wrapper {
@@ -93,17 +95,12 @@
         width: 100%;
       }
 
-      span.menu__item--nolink,
-      a {
+      .menu__item--nolink,
+      .menu__link {
         display: block;
         padding: $spacing 0;
         position: relative;
-        text-decoration: none;
         width: 100%;
-
-        &[aria-current="page"] {
-          font-weight: $font-weight-bold;
-        }
 
         &:focus {
           outline: none;
@@ -159,8 +156,8 @@
           margin-bottom: $spacing-and-half * 0.5;
         }
 
-        span.menu__item--nolink,
-        a {
+        .menu__item--nolink,
+        .menu__link {
           padding: ($spacing-and-half * 0.5) 0 ($spacing-and-half * 0.5) $spacing;
           position: relative;
           width: 100%;
@@ -191,10 +188,6 @@
             }
           }
         }
-
-        &.menu__item--external a {
-          padding-right: 40px; // Width of the external icon.
-        }
       }
     }
   }
@@ -209,7 +202,7 @@
     position: relative;
 
     .hel-icon {
-      transition: $rotating-icon-transition;
+      @include rotating-icon-transition();
     }
 
     &:hover {

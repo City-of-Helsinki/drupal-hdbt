@@ -89,6 +89,7 @@
       }
     }
     &::after {
+      @include rotating-icon-transition();
       background-image: icon_url('angle-down');
       background-position: center;
       background-repeat: no-repeat;
@@ -99,7 +100,6 @@
       right: 4px; // Move the icon slightly to the left
       top: 50%;
       transform: translateY(-50%);
-      transition: $rotating-icon-transition;
       width: 30px;
 
       @include breakpoint($breakpoint-l) {

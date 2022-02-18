@@ -158,6 +158,9 @@ $teaser-icon-size-desktop: 48px;
     &:hover {
       .hel-icon {
         margin-left: $spacing;
+        @media (prefers-reduced-motion) {
+          margin-left: 0;
+        }
       }
     }
   }
@@ -175,6 +178,9 @@ $teaser-icon-size-desktop: 48px;
     right: $spacing;
     transform: translateY(50%);
     transition: all .3s;
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
 
     @include breakpoint($breakpoint-l) {
       --icon-size: #{ $teaser-icon-size-desktop};

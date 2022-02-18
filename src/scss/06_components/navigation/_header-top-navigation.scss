@@ -1,30 +1,44 @@
-.header-top .menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.header-top {
+  // Hide on mobile
+  display: none;
 
-  .menu__item {
+  @include breakpoint($breakpoint-m) {
+    @include font('special.navigation.header_top');
+    align-items: center;
+    background-color: $color-black-5;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px $spacing-and-half; // Specific pixel size for top and bottom padding from layout.
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding: 14px $spacing-double; // Specific pixel size for top and bottom padding from layout.
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__item + .menu__item {
     margin-left: $spacing;
+  }
 
-    &:first-child {
-      margin-left: 0;
+  .link-to-site-frontpage {
+    @include navigation_link_defaults();
+  }
+
+
+  .menu__link__text::after {
+    --external-icon-move: translate(1px, -1px);
+    @media (prefers-reduced-motion) {
+      --external-icon-move: scale(1);
     }
+  }
 
-    &.menu__item--external a {
-      display: block;
-      padding-right: 24px; // Width of the external icon plus.
-      position: relative;
-      width: 100%;
-
-      .explain-external-icon {
-        @include visually-hidden();
-      }
-
-      .menu__link__text:after {
-        @include pseudo-icon('link-external', 1em, $color-black, inline-block);
-        vertical-align: middle;
-      }
-    }
+  .explain-external-icon {
+    @include visually-hidden();
   }
 }

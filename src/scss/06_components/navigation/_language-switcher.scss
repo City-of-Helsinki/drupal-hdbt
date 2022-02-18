@@ -1,37 +1,26 @@
-.language-switcher {
-  position: relative;
+.language-link {
+  @include navigation_link_defaults();
+  @include font('small');
+  color: $color-black-90;
+  margin-left: $spacing-half;
+  margin-right: $spacing-half;
 
-  .language-link {
-    @include font('small');
-    color: $color-black;
-    margin: 0 $spacing-half;
-    text-decoration: underline;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &.is-active {
-      cursor: default;
-      font-weight: $font-weight-bold;
-      text-decoration: none;
-    }
-
-    &.is-disabled {
-      color: $color-black-60;
-      cursor: default;
-      text-decoration: none;
-    }
-
-    // TODO: Needs functionality for alternative menu items.
-    &.is-alternative {
-      display: none;
-    }
+  &:first-child {
+    margin-left: 0;
   }
 
-  a {
-    &:hover {
-      text-decoration: none;
+  &[aria-current='page'] {
+    border-bottom: 3px solid $color-black-90;
+    cursor: default;
+    text-decoration: none;
+  }
+
+  &.is-disabled {
+    color: $color-black-60;
+    cursor: not-allowed;
+
+    &.is-alternative {
+      display: none;
     }
   }
 }

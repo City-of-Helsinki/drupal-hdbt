@@ -41,7 +41,7 @@
 // usage:
 // @include pseudo-icon('share', var(--icon-size), $color-black, inline-block);
 ////
-@mixin pseudo-icon($icon, $size: var(--icon-size), $color: $color-black, $display: inline-block) {
+@mixin pseudo-icon($icon, $size: var(--icon-size, calc(var(--line-height) * 1em)), $color: $color-black, $display: inline-block) {
   background-color: $color;
   background-size: contain;
   content: '';
