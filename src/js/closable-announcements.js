@@ -1,7 +1,7 @@
 'use strict';
 
 (function (Drupal) {
-  Drupal.behaviors.table_of_contents = {
+  Drupal.behaviors.closable_announcements = {
     attach: function attach() {
 
       const ANNOUCEMENT = 'js-announcement';
