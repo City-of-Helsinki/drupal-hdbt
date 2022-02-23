@@ -8,3 +8,19 @@ a.link[target="_blank"] {
     @include pseudo-icon('link-external', 1em, currentColor, block);
   }
 }
+
+.link__external {
+  &::after {
+    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
+    @include hover-link-arrow-transition();
+    --external-icon-move: translate(3px, -3px);
+    @media (prefers-reduced-motion) {
+      --external-icon-move: scale(1);
+    }
+
+    a:focus &,
+    a:hover & {
+      transform: var(--external-icon-move);
+    }
+  }
+}

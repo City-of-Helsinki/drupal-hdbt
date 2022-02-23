@@ -1,8 +1,3 @@
-// Default menu configuration.
-.menu .explain-external-icon {
-  @include visually-hidden();
-}
-
 .menu__link {
   @include navigation_link_defaults();
 }

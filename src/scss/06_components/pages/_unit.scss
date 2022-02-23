@@ -206,10 +206,6 @@
     padding-right: 24px; // Width of the external icon plus.
     position: relative;
 
-    .explain-external-icon {
-      @include visually-hidden();
-    }
-
     &:after {
       @include pseudo-icon('link-external', 14px, $color-black, flex);
       height: 20px; //TODO: clean height and width mismatch
