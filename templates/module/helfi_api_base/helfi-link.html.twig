@@ -1,9 +1,18 @@
 {% spaceless %}
 
-  {% if 'data-is-external' in attributes|keys %}
-    {% set external %}<span class="link__external" title="({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})"></span>{%- endset %}
+  {% if 'data-protocol' in attributes|keys %}
+    {% if  attributes['data-protocol'] == 'tel' %}
+      {% set icon %}<span class="link__type link__type--tel" title="({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})"></span>{%- endset %}
+    {% endif %}
+    {% if  attributes['data-protocol'] == 'mailto' %}
+      {% set icon %}<span class="link__type link__type--mailto" title="({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})"></span>{%- endset %}
+    {% endif %}
   {% endif %}
 
-  {{ title }}{{ external }}
+  {% if 'data-is-external' in attributes|keys %}
+    {% set icon %}<span class="link__type link__type--external" title="({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})"></span>{%- endset %}
+  {% endif %}
+
+  {{ title }}{{ icon }}
 
 {% endspaceless %}
