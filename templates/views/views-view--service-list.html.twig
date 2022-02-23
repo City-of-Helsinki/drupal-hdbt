@@ -54,10 +54,12 @@
   {{ exposed }}
   {{ attachment_before }}
 
-  <span class="service-list__count-container">
-    <span class="service-list__count">{{ total_rows }}</span>
-    {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
-  </span>
+  {%  if total_rows > pager_items_per_page %}
+    <span class="service-list__count-container">
+      <span class="service-list__count">{{ total_rows }}</span>
+      {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
+    </span>
+  {% endif %}
 
   {{ rows }}
 
