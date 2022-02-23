@@ -10,6 +10,7 @@
   position: fixed;
   transform: rotate(-90deg) translateX(calc(-50% - 50vh));
   transform-origin: top left;
+  z-index: 2;
 
   @include breakpoint($component-side-padding-breakpoint) {
     content: attr(data-unpublished-long);
