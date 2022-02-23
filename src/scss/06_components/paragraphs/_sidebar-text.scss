@@ -134,6 +134,10 @@
         order: 3;
       }
 
+      &[data-is-external='true']:after {
+        display: none; // external links have their own icon already
+      }
+
       &:hover {
         text-decoration: underline;
       }
