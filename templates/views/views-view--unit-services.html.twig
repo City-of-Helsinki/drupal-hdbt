@@ -48,10 +48,12 @@
 
     <div class="unit__services__header">
       <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
-      <span class="unit__services__count-container">
-        <span class="unit__services__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Unit services count'}%}service{% plural total_rows %}services{% endtrans %}
-      </span>
+      {%  if total_rows > pager_items_per_page %}
+        <span class="unit__services__count-container">
+          <span class="unit__services__count">{{ total_rows }}</span>
+          {% trans with {'context': 'Unit services count'}%}service{% plural total_rows %}services{% endtrans %}
+        </span>
+      {% endif %}
     </div>
     <div{{ attributes.addClass(classes) }}>
       {% if header %}
