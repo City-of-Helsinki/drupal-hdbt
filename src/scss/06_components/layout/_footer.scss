@@ -154,7 +154,7 @@
   }
 }
 
-a.footer__back-to-top {
+.footer__back-to-top {
   --border-width: 2px;
   --outline-gutter: 2px;
   --outline-width: 3px;
@@ -197,6 +197,18 @@ a.footer__back-to-top {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.footer__back-to-top .hel-icon {
+  @include hover-link-arrow-transition();
+}
+
+.footer__back-to-top:focus .hel-icon,
+.footer__back-to-top:hover .hel-icon {
+  transform: translateY(-#{$spacing-quarter});
+  @media (prefers-reduced-motion) {
+    transform: none;
   }
 }
 
@@ -249,7 +261,7 @@ a.footer__back-to-top {
     }
   }
 
-  a.footer__back-to-top {
+  .footer__back-to-top {
     --focus-outline-color: var(--color-white);
   }
 }
