@@ -184,8 +184,13 @@
       }
     }
 
-    &:hover,
     &[aria-current="page"] {
+      font-weight: $font-weight-bold;
+    }
+
+    &:hover,
+    &[aria-current="page"],
+    &.menu__link--active-trail {
       &::before {
         height: 100%;
         width: 4px;
