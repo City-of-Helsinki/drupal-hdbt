@@ -1,8 +1,37 @@
-.remote-video {
+.component--remote-video {
+  @include component-side-padding;
+  background-color: $color-black;
+  color: $color-white;
+  padding-bottom: $spacing-double;
+  padding-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-triple;
+    padding-top: $spacing-triple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.has-sidebar .component--remote-video {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include component-negative-side-margin;
+  }
+}
+
+.component--remote-video + .component--remote-video.component--no-header {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.remote-video__video {
   position: relative;
 
   .responsive-video-container {
-    background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading
+    background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
     height: 0;
     overflow: hidden;
     padding-bottom: 56.5%;
@@ -15,5 +44,22 @@
       top: 0;
       width: 100%;
     }
+  }
+}
+
+.remote-video__video-title {
+  @include font('h4');
+  margin-top: $spacing-half; // Design has the title very close to the video above so that is why this needs adjustment.
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing;
+  }
+}
+
+.remote-video__video-desc {
+  margin-top: $spacing-half;
+
+  > p:first-child {
+    margin-top: 0;
   }
 }
