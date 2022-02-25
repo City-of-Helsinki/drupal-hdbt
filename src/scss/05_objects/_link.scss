@@ -1,14 +1,3 @@
-// Plain text links that open in new tab.
-a.link[target="_blank"] {
-  align-items: center;
-  display: inline-flex;
-
-  // TODO: This is not wanted, we should separate target="_blank" from external links!
-  &::after {
-    @include pseudo-icon('error', 1em, red, block);
-  }
-}
-
 .link__type {
   @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
   @include hover-link-arrow-transition();

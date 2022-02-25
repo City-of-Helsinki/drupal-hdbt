@@ -6,20 +6,6 @@
   text-decoration: inherit; // Fix missing underline
 }
 
-.menu__link--external .menu__link__text::after {
-  @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor);
-  @include hover-link-arrow-transition();
-  --external-icon-move: translate(3px, -3px);
-  @media (prefers-reduced-motion) {
-    --external-icon-move: scale(1);
-  }
-}
-
-.menu__link--external:focus .menu__link__text::after,
-.menu__link--external:hover .menu__link__text::after {
-  transform: var(--external-icon-move);
-}
-
 .menu__link__icon {
   // Hide icons by default so that they aren't displayed accidentally somewhere where they have no styles defined.
   display: none;

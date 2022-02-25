@@ -198,26 +198,6 @@
     }
   }
 
-  // Links on second level that point to external site.
-  .menu--level-1 .menu__link--external .menu__link__text {
-    display: block;
-    padding-right: 52px; // Width of the external icon and padding.
-    position: relative;
-    width: 100%;
-
-    &::after {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .menu--level-1 .menu__link--external:focus .menu__link__text::after,
-  .menu--level-1 .menu__link--external:hover .menu__link__text::after {
-    transform: translateY(-50%) var(--external-icon-move);
-  }
-
   // Active trail items, second level
   .menu--level-1 .menu__item--active-trail::before {
     height: 100%;
