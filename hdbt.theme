@@ -5,6 +5,7 @@
  * Functions to support theming in the hdbt theme.
  */
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
@@ -1111,7 +1112,7 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|strin
   $config = Drupal::config('eu_cookie_compliance.settings');
 
   $popup_link_config = $config->get('popup_link');
-  if (\Drupal\Component\Utility\UrlHelper::isExternal($popup_link_config)) {
+  if (UrlHelper::isExternal($popup_link_config)) {
     return Url::fromUri($popup_link_config)->toString();
   }
   return Url::fromUserInput($popup_link_config === '<front>' ? '/' : $popup_link_config)->toString();
