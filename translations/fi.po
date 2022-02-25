@@ -115,3 +115,11 @@ msgstr "Päivitämme sivustoa tällä hetkellä"
 
 msgid "Close announcement"
 msgstr "Sulje poikkeustiedote"
+
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call."
+msgid "Link starts a phone call"
+msgstr "Linkki aloittaa puhelun"
+
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program."
+msgid "Link opens default mail program"
+msgstr "Linkki avaa oletussähköpostiohjelman"
