@@ -417,11 +417,6 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['url'];
 
-    // Check if the URL is external and add variable accordingly.
-    if ($url->isExternal()) {
-      $item['is_external'] = TRUE;
-    }
-
     // Check if the URL is <nolink> and add variable accordingly.
     if ($url->isRouted() && $url->getRouteName() === '<nolink>') {
       $item['is_nolink'] = TRUE;
