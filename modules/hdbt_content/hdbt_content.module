@@ -5,12 +5,14 @@
  * Contains alterations for content.
  */
 
+declare(strict_types = 1);
+
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\node\NodeInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_theme().
@@ -75,7 +77,7 @@ function hdbt_content_theme() {
  * Implements hook_language_switch_links_alter().
  */
 function hdbt_content_language_switch_links_alter(array &$links) {
-  $route_match = \Drupal::routeMatch();
+  $route_match = Drupal::routeMatch();
   $entity = FALSE;
 
   // Determine if the current route represents an entity.
@@ -125,35 +127,35 @@ function hdbt_content_language_switch_links_alter(array &$links) {
  * Implements hook_form_FORM_ID_alter().
  */
 function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
-
   // Handle only Unit search view form at this point.
-  if ($form['#id'] !== 'views-exposed-form-unit-search-block') {
+  if (!str_starts_with($form['#id'], 'views-exposed-form-unit-search-block')) {
     return;
   }
 
   // Get view from form state.
   $view = $form_state->getStorage()['view'];
-  $current_language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+  [, $paragraph_id] = $view->args + [NULL, NULL];
 
-  // Apply the cached meta fields values to form values.
-  $cached = \Drupal::cache()->get(
-    $view->id() .
-    $view->current_display .
-    $current_language .
-    $view->args[0]
-  );
+  if (!$paragraph = Paragraph::load($paragraph_id)) {
+    return;
+  }
 
-  if ($cached) {
-    $meta_fields = $cached->data;
-    if (!empty($meta_fields['field_unit_search_meta_button'])) {
-      $form['actions']['submit']['#value'] = $meta_fields['field_unit_search_meta_button'];
-    }
-    if (!empty($meta_fields['field_unit_search_meta_label'])) {
-      $form['#info']['filter-combine']['label'] = $meta_fields['field_unit_search_meta_label'];
-    }
-    if (!empty($meta_fields['field_unit_search_meta_placehold'])) {
-      $form['unit_search']['#attributes']['placeholder'] = $meta_fields['field_unit_search_meta_placehold'];
-    }
+  if ($paragraph->hasField('field_unit_search_meta_button')) {
+    $form['actions']['submit']['#value'] = $paragraph
+      ->get('field_unit_search_meta_button')
+      ->value;
+  }
+
+  if ($paragraph->hasField('field_unit_search_meta_label')) {
+    $form['#info']['filter-combine']['label'] = $paragraph
+      ->get('field_unit_search_meta_label')
+      ->value;
+  }
+
+  if ($paragraph->hasField('field_unit_search_meta_placehold')) {
+    $form['unit_search']['#attributes']['placeholder'] = $paragraph
+      ->get('field_unit_search_meta_placehold')
+      ->value;
   }
 }
 
@@ -163,19 +165,14 @@ function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
 function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$variables) {
   $view = $variables['view'];
 
-  if (isset($view)) {
-    // Apply the cached meta fields values to form values.
-    $cached = \Drupal::cache()->get(
-      $view->id() .
-      $view->current_display .
-      $variables['current_langcode'] .
-      $view->args[0]
-    );
+  [, $paragraph_id] = $view->args + [NULL, NULL];
 
-    if ($cached && !empty($cached->data['field_unit_search_meta_load_more'])) {
-      $variables['options']['button_text'] = $cached->data['field_unit_search_meta_load_more'];
-    }
+  if (!$paragraph = Paragraph::load($paragraph_id)) {
+    return;
   }
+  $variables['options']['button_text'] = $paragraph
+    ->get('field_unit_search_meta_load_more')
+    ?->value;
 }
 
 /**
@@ -184,19 +181,14 @@ function hdbt_content_preprocess_views_infinite_scroll_pager__unit_search(&$vari
 function hdbt_content_preprocess_views_infinite_scroll_pager__service_list(&$variables) {
   $view = $variables['view'];
 
-  if (isset($view)) {
-    // Apply the cached meta fields values to form values.
-    $cached = \Drupal::cache()->get(
-      $view->id() .
-      $view->current_display .
-      $variables['current_langcode'] .
-      $view->args[0]
-    );
+  [, $paragraph_id] = $view->args + [NULL, NULL];
 
-    if ($cached && !empty($cached->data['field_service_list_meta_load_mor'])) {
-      $variables['options']['button_text'] = $cached->data['field_service_list_meta_load_mor'];
-    }
+  if (!$paragraph = Paragraph::load($paragraph_id)) {
+    return;
   }
+  $variables['options']['button_text'] = $paragraph
+    ->get('field_service_list_meta_load_mor')
+    ?->value;
 }
 
 /**
@@ -218,8 +210,8 @@ function hdbt_content_get_page_entity() {
   if (!empty($page_entity)) {
     return $page_entity;
   }
-  $types = array_keys(\Drupal::entityTypeManager()->getDefinitions());
-  $route = \Drupal::routeMatch();
+  $types = array_keys(Drupal::entityTypeManager()->getDefinitions());
+  $route = Drupal::routeMatch();
   $page_entity = NULL;
   $params = $route->getParameters()->all();
   foreach ($types as $type) {
@@ -238,7 +230,7 @@ function hdbt_content_block_access(Block $block, $operation, AccountInterface $a
   // Handle only page title block.
   if ($operation === 'view' && $block->getPluginId() === 'page_title_block') {
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = \Drupal::service('hdbt_content.entity_version_matcher')->getType()['entity'];
+    $entity = Drupal::service('hdbt_content.entity_version_matcher')->getType()['entity'];
 
     if (!$entity instanceof ContentEntityInterface || !$entity->hasField('field_has_hero')) {
       return AccessResult::neutral();
@@ -256,7 +248,7 @@ function hdbt_content_block_access(Block $block, $operation, AccountInterface $a
 function hdbt_content_preprocess_page(&$variables) {
   $variables['page_has_sidebar'] = FALSE;
 
-  $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+  $menu_link_manager = Drupal::service('plugin.manager.menu.link');
   $page_entity = hdbt_content_get_page_entity();
 
   // Check if the current page entity is content entity ie. Basic page or
