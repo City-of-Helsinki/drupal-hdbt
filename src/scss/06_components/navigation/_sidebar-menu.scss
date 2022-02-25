@@ -1,0 +1,229 @@
+.sidebar-navigation {
+  display: none;
+
+  @include breakpoint($breakpoint-l) {
+    display: block;
+    width: 100%;
+  }
+
+  .sidebar-navigation__title {
+    @include font('h4');
+    border-bottom: 2px solid $color-black;
+    margin-top: $spacing-half;
+    padding-bottom: $spacing-and-half;
+
+    a {
+      @include navigation_link_defaults();
+      display: flex;
+      padding-left: 20px + $spacing; // Width of the arrow icon.
+      position: relative;
+
+      &:before {
+        @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+        @include hover-link-arrow-transition();
+        //TODO: Clean up this size mess
+        height: 30px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 20px;
+      }
+
+      &:focus::before,
+      &:hover::before {
+        transform: translateX(-$spacing-quarter);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+      &:focus {
+        outline: none;
+
+        &::after {
+          border-radius: 2px;
+          box-shadow: 0 0 0 3px $color-black;
+          content: "";
+          display: block;
+          height: 150%;
+          left: -$spacing-half;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(100% + #{$spacing-half});
+        }
+      }
+    }
+  }
+
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .menu__item {
+      @include font('body');
+      border-top: 1px solid $color-black-20;
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      .menu__link--external .menu__link__text {
+        display: block;
+        padding-right: 52px; // Width of the external icon and padding.
+        position: relative;
+        width: 100%;
+
+        &::after {
+          min-width: 40px;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      .menu__link--external:focus .menu__link__text::after,
+      .menu__link--external:hover .menu__link__text::after {
+        transform: translateY(-50%) var(--external-icon-move);
+      }
+
+      .menu__link-wrapper {
+        align-content: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .menu__item--nolink,
+      .menu__link {
+        display: block;
+        padding: $spacing 0;
+        position: relative;
+        width: 100%;
+
+        &:focus {
+          outline: none;
+
+          &::before {
+            border-radius: 2px;
+            box-shadow: 0 0 0 3px $color-black;
+            content: "";
+            display: block;
+            height: calc(100% - #{$spacing});
+            left: -#{$spacing-half};
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+          }
+        }
+      }
+
+      &.menu__item--children {
+        .menu {
+          display: none;
+        }
+      }
+
+      &.menu__item--active-trail {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &.menu__item--open {
+        .menu {
+          display: block;
+        }
+
+        .menu__toggle-button .hel-icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      // Second level
+      .menu {
+        display: none;
+        width: 100%;
+      }
+
+      .menu__item {
+        @include font('small');
+        border-top: none;
+
+        &:last-child span.menu__item--nolink,
+        &:last-child a {
+          margin-bottom: $spacing-and-half * 0.5;
+        }
+
+        .menu__item--nolink,
+        .menu__link {
+          padding: ($spacing-and-half * 0.5) 0 ($spacing-and-half * 0.5) $spacing;
+          position: relative;
+          width: 100%;
+
+          &[aria-current="page"]::before {
+            background-color: $color-black;
+            content: "";
+            height: 100%; // Line-height
+            left: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+          }
+
+          &:focus {
+            &::before {
+              border-radius: 2px;
+              box-shadow: 0 0 0 3px $color-black;
+              content: "";
+              display: block;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 100%; // Width of the dropdown button.
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menu__toggle-button {
+    background: transparent;
+    border: 0 none;
+    display: block;
+    min-height: 40px;
+    min-width: 40px;
+    padding: 0;
+    position: relative;
+
+    .hel-icon {
+      @include rotating-icon-transition();
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black;
+        content: "";
+        display: block;
+        height: calc(100% - #{$spacing});
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
+    }
+  }
+}

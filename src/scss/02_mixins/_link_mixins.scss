@@ -1,0 +1,12 @@
+@mixin navigation_link_defaults() {
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &[aria-current='page'] {
+    font-weight: $font-weight-bold;
+  }
+}

@@ -1,0 +1,193 @@
+$_content-liftup-aspect-ratio-mobile: 2.3;
+$_content-liftup-aspect-ratio-desktop: 1.5;
+$_info-row__line-height: 26px;
+$_info-row__icon-size: $spacing-and-half;
+
+.content-liftup {
+  --info-row__gap-size: #{$spacing-quarter};
+  border: 1px solid $color-black;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    --info-row__gap-size: #{$spacing-half};
+    display: flex; // image and other content in same row
+    min-height: 400px; // Defined by design specs
+  }
+}
+
+.content-liftup__image {
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  @include breakpoint($breakpoint-m) {
+    align-self: stretch;
+    background-color: $color-black-5;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    .has-sidebar .components--upper & {
+      // We want the image to scale to have same width text content with and without sidebar
+      $_content-liftup__with-sidebar--width: 884.8; // Width of .content-liftup element with sidebar
+      $_content-liftup__without-sidebar__text--width: 631; // Width of .content-liftup__text element without sidebar
+      flex-basis: 100% * (1 - $_content-liftup__without-sidebar__text--width / $_content-liftup__with-sidebar--width);
+    }
+  }
+}
+
+.content-liftup__image picture {
+  display: block;
+  height: 100%;
+}
+
+.content-liftup__image img {
+  aspect-ratio: $_content-liftup-aspect-ratio-mobile;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+
+  @include breakpoint($breakpoint-m) {
+    aspect-ratio: unset;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    .no-sidebar .components--upper &,
+    .components--lower & {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.content-liftup__image .image-placeholder {
+  padding-bottom: aspect-ratio-padding($_content-liftup-aspect-ratio-mobile);
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: aspect-ratio-padding($_content-liftup-aspect-ratio-desktop);
+  }
+
+  @include breakpoint($breakpoint-l) {
+    .no-sidebar .components--upper &,
+    .components--lower & {
+      height: 100%;
+    }
+  }
+}
+
+.content-liftup__text {
+  flex-grow: 1;
+  padding: $spacing;
+
+ @include breakpoint($breakpoint-m) {
+   display: flex; // Allow moving read-more to bottom of card where available
+   flex-direction: column;
+   justify-content: space-between;
+   padding: $spacing-double;
+ }
+}
+
+.content-liftup__title {
+  @include font('special.card_title');
+  margin-bottom: $spacing-half;
+  margin-top: 0;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing;
+  }
+}
+
+.content-liftup__link {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &::before {
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.content-liftup__info-row {
+  @include font('body');
+  --margin-size: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
+  margin-left: var(--margin-size);
+
+  & + & {
+    margin-top: $spacing;
+  }
+}
+
+.content-liftup__info-row__title {
+  @include font('h6');
+
+  &::before {
+    margin-bottom: ($_info-row__line-height - $_info-row__icon-size) / 2; // Center icon on row
+    margin-left: calc( -1 * var(--margin-size));
+    margin-right: var(--info-row__gap-size);
+  }
+
+}
+
+.content-liftup__info-row__content {
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.content-liftup__info-row--address {
+  .content-liftup__info-row__title::before {
+    @include pseudo-icon('location', $spacing-and-half, currentColor);
+  }
+
+  .address-line1::after,
+  .address-line2::after {
+    content: ',';
+  }
+}
+
+.content-liftup__info-row--opening-hours {
+  .content-liftup__info-row__title::before {
+    @include pseudo-icon('clock', $spacing-and-half, currentColor);
+  }
+}
+
+.content-liftup__read-more {
+  @include font('button');
+  display: flex; // force arrow to stay on same line
+  margin-left: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
+  padding-bottom: $spacing-half;
+  padding-top: $spacing;
+
+  &::after {
+    @include pseudo-icon('arrow-right', $spacing-and-half, currentColor);
+    @include hover-link-arrow-transition();
+    flex-shrink: 0;
+
+    .content-liftup:hover &,
+    .content-liftup:focus-within & {
+      transform: translateX($spacing-quarter);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+  }
+
+  @include breakpoint($breakpoint-m) {
+    justify-content: flex-end;
+    padding-bottom: 0;
+  }
+}
+

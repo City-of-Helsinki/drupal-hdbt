@@ -530,6 +530,11 @@ function hdbt_preprocess_block(&$variables) {
       ];
     }
   }
+
+  // Attach "closable_announcements" library to "announcements" block.
+  if ($variables['plugin_id'] == 'announcements') {
+    $variables['#attached']['library'][] = 'hdbt/closable_announcements';
+  }
 }
 
 /**
@@ -1111,6 +1116,8 @@ function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$sugges
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_views_view(&$variables) {
+  // Add pager items per page as a variable.
+  $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows;
 }

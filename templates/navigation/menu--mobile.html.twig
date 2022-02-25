@@ -38,29 +38,49 @@
     <ul{{ attributes.addClass(menu_classes) }}>
     {% for item in items %}
       {% set level = menu_level + 1 %}
+
+      {% set is_external = item.is_external %}
+      {% set is_external = false %}{# TODO: Once menu supports external link detection with whitelists, remove this override, also in menu.html.twig #}
+
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
-        item.is_external ? 'menu__item--external',
+        is_external ? 'menu__item--external',
         item.is_expanded or item.in_active_trail ? 'menu__item--children',
         item.in_active_trail ? 'menu__item--active-trail',
         'menu__item--level-' ~ level,
       ]%}
 
+      {% set explain_external_icon = null %}
+      {% if is_external %}
+        {% set explain_external_icon %}<span class="explain-external-icon"> ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
+      {% endif %}
+
       <li{{ item.attributes.addClass(item_classes) }}>
         {% if not item.is_nolink %}
-          {% set item_title = item.title %}
-          {% set link_attributes = item.is_currentPage ? { 'aria-current': 'page' } : {} %}
+          {% spaceless %}
 
-          {%- set icon_name = (item.url.getOption('attributes')).icon -%}
-          {% if icon_name %}
             {% set item_title %}
-              {% include '@hdbt/misc/icon.twig' with {icon: icon_name} %}
-              {{ item.title }}
+              {% set icon_name = (item.url.getOption('attributes')).icon %}
+              {% if icon_name %}
+                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
+              {% endif %}
+              <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
             {% endset %}
-          {% endif %}
 
-          {{ link(item_title, item.url, link_attributes) }}
+            {% set link_attributes = {
+              'class':
+                [
+                  'menu__link',
+                  item.in_active_trail ? 'menu__link--active-trail',
+                  is_external ? 'menu__link--external',
+                ],
+              'aria-current': item.is_currentPage ? 'page': null,
+            } %}
+
+            {{ link(item_title, item.url, link_attributes) }}
+
+          {% endspaceless %}
         {% else %}
           <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
         {% endif %}

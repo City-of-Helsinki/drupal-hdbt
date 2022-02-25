@@ -1,0 +1,26 @@
+//
+// @file
+// This file includes constraints used in the theme.
+//
+
+// Container width variables from HDS.
+@import '~hds-design-tokens/lib/breakpoint/container-width.scss';
+
+$gutter: 16px;
+
+$spacing: $gutter; // 16px
+$spacing-quarter: $spacing * .25; // 4px
+$spacing-half: $spacing * .5; // 8px
+$spacing-and-half: $spacing * 1.5; // 24px
+$spacing-double: $spacing * 2; // 32px
+$spacing-triple: $spacing * 3; // 48px
+$spacing-quadruple: $spacing * 4; // 64px
+$spacing-sextuple: $spacing * 6; // 96px
+
+$wrapper-width-max: 1920px;
+
+$content-area-wrapper-width-max: $container-width-xl + $spacing-quadruple;
+$image-content-width-max: 996px;
+$content-width-max: 860px;
+
+$footer-koro-height: 50px;

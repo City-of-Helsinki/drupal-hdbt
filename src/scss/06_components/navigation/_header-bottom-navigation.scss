@@ -1,0 +1,221 @@
+.header-bottom {
+  background-color: $color-white;
+
+  @include breakpoint($breakpoint-l) {
+    border-bottom: 1px solid $color-black-20;
+  }
+
+  .menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  .menu__item {
+    @include font('special.navigation.main_nav');
+    list-style: none;
+    position: relative;
+  }
+
+  // First level items only
+  .menu--level-0 > .menu__item {
+    margin: 0 $spacing;
+
+    &:first-child {
+      margin-left: $spacing-double;
+    }
+
+    &:last-child {
+      margin-right: $spacing-double;
+    }
+  }
+
+  // Menu toggle button
+  .menu__toggle-button {
+    background-color: $color-black-5;
+    border: none;
+    margin-left: $spacing-half;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black;
+      outline: none;
+      padding: 6px 0;
+    }
+  }
+
+  .menu__toggle-button-icon {
+    @include rotating-icon-transition();
+  }
+
+  // Icon rotates around
+  [aria-expanded='true'] > .menu__toggle-button-icon {
+    transform: rotate(180deg);
+  }
+
+  .menu__item--nolink {
+    @include font('body'); // TODO: is this whole selector unnecessary?
+    padding: $spacing-and-half 0;
+    text-decoration: none;
+  }
+
+ .menu__link-wrapper {
+    align-items: center;
+    display: block;
+    height: 100%;
+    position: relative;
+  }
+
+ .menu__link {
+    display: inline-block;
+    padding: $spacing-and-half 0;
+
+    &::before {
+      background-color: $color-black;
+      bottom: 0;
+      content: "";
+      height: 0;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      transition: all .5s cubic-bezier(.19,1,.22,1);
+      width: 0;
+    }
+
+    &[aria-current="page"]::before {
+      height: 4px;
+      width: 100%;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black;
+        content: "";
+        display: block;
+        height: 50%;
+        left: -#{$spacing-quarter};
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% + #{$spacing-half});
+      }
+    }
+  }
+
+  // Handle menu link focus style when it has children
+  .menu__item--item-below .menu__link:focus::after {
+      width: calc(100% - #{24px + 4px}) ; // Width of the dropdown button and padding.
+  }
+
+  // Active trail items, first level
+  .menu__link--active-trail {
+    font-weight: $font-weight-bold;
+
+    &::before {
+      height: 4px;
+      width: 100%;
+    }
+  }
+
+  .menu__link__text {
+    display: inline-block;
+  }
+
+  .menu--level-1 {
+    background-color: $color-white;
+    border: 1px solid $color-black-20;
+    bottom: auto;
+    display: none; // By default hide the secondary items
+    left: -$spacing-double;
+    min-width: 310px;
+    position: absolute;
+    width: calc(100% + #{$spacing-quadruple});
+    z-index: 100;
+  }
+
+  // Secondary menu items open
+  .menu__item--hover,
+  .menu__item--open {
+    .menu--level-1 {
+      display: block;
+    }
+  }
+
+  .menu--level-1 .menu__toggle-button {
+    display: none;
+  }
+
+  .menu--level-1 .menu__link,
+  .menu--level-1 .menu__item--nolink {
+    @include font('special.navigation.sub_nav');
+    display: block;
+    padding: $spacing $spacing-double;
+
+    &::before {
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      margin: 0;
+      right: auto;
+      top: 0;
+      transition: width 100ms ease-in;
+    }
+
+    &:focus {
+      margin: 0;
+
+      &::after {
+        height: 100%;
+        left: $spacing-half;
+        width: calc(100% - #{$spacing});
+      }
+    }
+
+    &:hover,
+    &[aria-current="page"] {
+      &::before {
+        height: 100%;
+        width: 4px;
+      }
+    }
+  }
+
+  // Links on second level that point to external site.
+  .menu--level-1 .menu__link--external .menu__link__text {
+    display: block;
+    padding-right: 52px; // Width of the external icon and padding.
+    position: relative;
+    width: 100%;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .menu--level-1 .menu__link--external:focus .menu__link__text::after,
+  .menu--level-1 .menu__link--external:hover .menu__link__text::after {
+    transform: translateY(-50%) var(--external-icon-move);
+  }
+
+  // Active trail items, second level
+  .menu--level-1 .menu__item--active-trail::before {
+    height: 100%;
+    width: 0;
+  }
+}

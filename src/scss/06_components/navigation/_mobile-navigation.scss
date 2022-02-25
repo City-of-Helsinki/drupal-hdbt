@@ -1,0 +1,305 @@
+$spacing-menu-item: 20px;
+
+// Mmenu default variables
+.mm-menu {
+  // Default MM colors.
+  --mm-color-background: var(--color-white);
+  --mm-color-background-emphasis: transparent;
+  --mm-color-background-highlight: transparent;
+  --mm-color-border: var(--color-black-20);
+  --mm-color-button: var(--color-black);
+  --mm-color-text: var(--color--black);
+  --mm-color-text-dimmed: silver;
+  --mm-shadow:0 0 10px rgba($color-black, 0.3);
+
+  // Default MM positioning.
+  --mm-offset-top: 0;
+  --mm-offset-right: 0;
+  --mm-offset-bottom: 0;
+  --mm-offset-left: 0;
+
+  // Default MM sizes.
+  --mm-line-height: 20px;
+  --mm-listitem-size: $spacing-quadruple;
+  --mm-navbar-size: 0;
+}
+
+// Hide the menu until the document is done loading.
+#mobile-navigation:not(.mm-menu) {
+  display: none;
+}
+
+// Styles for the mobile navigation.
+.mobile-navigation {
+  @include font('special.navigation.mobile_nav');
+
+  .mm-listitem {
+    min-height: $spacing-quadruple;
+
+    .mm-listitem__text {
+      padding: $spacing-menu-item 0 $spacing-menu-item $spacing-menu-item;
+
+      &[aria-current="page"]{
+        &::before {
+          background-color: $color-black;
+          bottom: 0;
+          content: "";
+          display: inline-block;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: $spacing-quarter;
+        }
+      }
+
+      .menu__link__text::after {
+        --line-height: 1;
+      }
+    }
+
+    .mm-btn {
+      border-left: 1px solid $color-black-20;
+      height: $spacing-quadruple;
+      padding: 0;
+      width: $spacing-quadruple;
+
+      &::before {
+        @include pseudo-icon('angle-down', 25px, $color-black, flex);
+        @include rotating-icon-transition();
+        border: none;
+        height: $spacing-quadruple;
+        width: $spacing-quadruple;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &.mm-listitem_opened > .mm-btn::before {
+      transform: rotate(180deg);
+    }
+
+    .mm-panel {
+      background-color: $color-black-5;
+      border-top: 1px solid $color-black-20;
+      padding: 0;
+    }
+
+    &.menu__item--active-trail > .mm-listitem__text {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .menu__item--level-2 {
+    align-items: center;
+    border: none;
+    display: flex;
+    min-height: $spacing-double;
+
+    &::after {
+      border: none;
+    }
+
+    .mm-listitem__text {
+      @include font('special.navigation.mobile_subnav');
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-double;
+
+      .menu__link__text::after {
+        --line-height: 1.5;
+      }
+    }
+
+    .mm-btn {
+      border: none;
+      height: $spacing-double;
+      padding: 0;
+      width: $spacing-quadruple;
+
+      &::before {
+        height: $spacing-double;
+        width: $spacing-quadruple;
+      }
+    }
+
+    .mm-panel {
+      background: $color-white;
+      border: none;
+    }
+  }
+
+  .menu__item--level-3 {
+    align-items: center;
+    border: none;
+    display: flex;
+    min-height: $spacing-double;
+
+    &::after {
+      border: none;
+    }
+
+    .mm-listitem__text {
+      @include font('special.navigation.mobile_nav');
+      // 16px padding for both top and bottom was just a bit too much and 8 too little.
+      padding: 14px 0 14px $spacing-triple;
+
+      &[aria-current="page"] {
+        &::before {
+          top: -8px;
+        }
+      }
+    }
+  }
+}
+
+// Mobile navigation footer.
+.mobile-navigation__footer {
+  @include font('small');
+  flex-shrink: 0;
+  min-height: 110px;
+  padding-top: $spacing;
+
+  .hds-koros {
+    color: $color-black;
+    padding: 0;
+  }
+
+  .header-top {
+    background-color: $color-black;
+    color: $color-white;
+    display: block;
+    padding: 0 $spacing-menu-item $spacing-double;
+    text-align: left;
+    width: 100%;
+
+    > * {
+      display: block;
+      padding: $spacing 0;
+    }
+
+    // Mmenu styles overrides.
+    a {
+      color: $color-white;
+      text-decoration: underline !important;
+
+      &::after {
+        background-color: $color-white !important;
+      }
+    }
+  }
+}
+
+// Menu trigger (burger).
+.mobile-navigation__trigger {
+  @include font('special.navigation.icon_label');
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  justify-content: center;
+  margin: 0 0 0 $spacing-half;
+  order: 2;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  z-index: 10;
+
+  @include breakpoint(440px) {
+    height: 60px;
+    padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
+    position: relative;
+    width: 50px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    order: 3;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+
+  .mobile-navigation__trigger__text {
+    display: none;
+
+    @include breakpoint(440px) {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      height: 28px; // Enough space for the text to go to two lines.
+      justify-content: center;
+      left: 0;
+      line-height: 13px; // If the text goes on two lines this still looks good.
+      position: absolute;
+      width: 100%;
+    }
+
+    @include breakpoint($breakpoint-m) {
+      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
+    }
+  }
+
+  .hel-icon {
+    --icon-size: 20px;
+    mask-size: 25px 25px; // This is silly, apparently we want to scale the icon larger than its click area and native style indicate.
+
+    @include breakpoint(440px) {
+      margin-bottom: $spacing-quarter;
+    }
+  }
+
+  &[aria-expanded="true"] .hel-icon {
+    mask-image: icon_url('cross');
+  }
+}
+
+// Override mmenu defaults.
+#mobile-navigation.mm-menu {
+  height: calc(100% - 114px);
+
+  @include breakpoint($breakpoint-m) {
+    height: calc(100% - 135px);
+  }
+
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+
+  // Logged in with admin toolbar.
+  .toolbar-vertical & {
+    height: calc(100% - 153px);
+
+    @include breakpoint($breakpoint-m) {
+      height: calc(100% - 174px);
+    }
+  }
+
+  // Hide "Menu" text.
+  .mm-navbar.mm-navbar_sticky {
+    display: none;
+  }
+
+  .mm-listitem:after {
+    left: 0;
+  }
+
+  // Enable sticky footer for the menu.
+  .mm-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .mm-listview {
+    flex: 1 0 auto;
+  }
+}
+
+// Hide the mobile navigation footer template.
+[data-hdbt-selector="mobile-navigation-footer-template"] {
+  display: none;
+}

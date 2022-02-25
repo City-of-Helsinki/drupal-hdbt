@@ -1,6 +1,20 @@
+const OPEN_CLASS = 'menu__item--open';
+const HOVER_CLASS = 'menu__item--hover';
+
+function updateFirstChildAriaExpanded(item) {
+  let state = 'false';
+  if (item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS)) {
+    state = 'true';
+  }
+  const firstChild = item.querySelector(':first-child .menu__toggle-button');
+  if (firstChild) {
+    firstChild.setAttribute('aria-expanded', state);
+  }
+}
+
 function closeOpenItems(element) {
   let allOpenItems = document.querySelectorAll(
-    '.desktop-menu .menu__item--open'
+    '.desktop-menu .' + OPEN_CLASS
   );
 
   if (allOpenItems) {
@@ -10,7 +24,8 @@ function closeOpenItems(element) {
       if (item === element) {
         return;
       }
-      item.classList.remove('menu__item--open');
+      item.classList.remove(OPEN_CLASS);
+      updateFirstChildAriaExpanded(item);
     }
   }
 }
@@ -21,18 +36,22 @@ function toggleDesktopMenuLevel(item) {
   // Check if there was menu toggle button under the menu item.
   if (toggleButton !== null) {
     toggleButton.addEventListener('click', function () {
-      item.classList.toggle('menu__item--open');
+      item.classList.toggle(OPEN_CLASS);
+      updateFirstChildAriaExpanded(item);
     });
   }
 }
 
 function mouseOver() {
-  this.closest('.menu__item--children').classList.add('menu__item--hover');
   closeOpenItems(this.closest('.menu__item--children'));
+  const item = this.closest('.menu__item--children');
+  item.classList.add(HOVER_CLASS);
+  updateFirstChildAriaExpanded(item);
 }
 
 function mouseLeave() {
-  this.classList.remove('menu__item--hover');
+  this.classList.remove(HOVER_CLASS);
+  updateFirstChildAriaExpanded(this);
 }
 
 // Utility functions
@@ -80,6 +99,10 @@ window.addEventListener('click', function (event) {
   ) {
     let clickedElement = event.target;
 
+    if (clickedElement.classList.contains('menu__toggle-button-icon')) {
+      clickedElement = clickedElement.parentElement;
+    }
+
     if (clickedElement.classList.contains('menu__toggle-button')) {
       let clickedElementParent = clickedElement.parentElement.closest(
         '.menu__item--children'
@@ -88,8 +111,9 @@ window.addEventListener('click', function (event) {
 
       // Loop through all siblings and if there is some open, close them.
       for (let i = 0; i < clickedElementSiblings.length; i++) {
-        if (clickedElementSiblings[i].classList.contains('menu__item--open')) {
-          clickedElementSiblings[i].classList.toggle('menu__item--open');
+        if (clickedElementSiblings[i].classList.contains(OPEN_CLASS)) {
+          clickedElementSiblings[i].classList.remove(OPEN_CLASS);
+          updateFirstChildAriaExpanded(clickedElementSiblings[i]);
         }
       }
     }

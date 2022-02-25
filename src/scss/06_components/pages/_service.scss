@@ -1,0 +1,260 @@
+$teaser-icon-size-mobile: 32px;
+$teaser-icon-size-desktop: 48px;
+
+.service {
+  .service__title {
+    margin-bottom: $spacing-and-half;
+    margin-top: 0;
+  }
+
+  .service__short-desc {
+    @include font('lead');
+    padding-bottom: $spacing-half;
+    position: relative;
+  }
+
+  .service__divider {
+    background-color: $color-black;
+    display: block;
+    height: 2px;
+    margin-bottom: $spacing-triple;
+    margin-top: $spacing-double;
+    width: $spacing-quadruple;
+  }
+
+  .service__long-desc {
+    @include font('body');
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .service-header__container {
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &.has-navigation {
+      .service__header {
+        order: 2;
+        padding-right: 0;
+
+        @include breakpoint($breakpoint-l) {
+          padding-left: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing-triple;
+        }
+      }
+
+      .service__sidebar {
+        margin-top: $spacing-double;
+        order: 1;
+        padding-left: 0;
+
+        @include breakpoint($breakpoint-l) {
+          margin-top: 0;
+          padding-right: $spacing-double;
+        }
+
+        @include breakpoint($breakpoint-xl) {
+          padding-left: $spacing;
+          padding-right: $spacing-triple;
+        }
+      }
+    }
+
+    .service__header {
+      @include breakpoint($breakpoint-l) {
+        padding-right: $spacing-double;
+        width: 68%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-right: $spacing-triple;
+      }
+    }
+    .service__sidebar {
+      margin-top: $spacing-double;
+
+      @include breakpoint($breakpoint-l) {
+        margin-top: 0;
+        padding-left: $spacing-double;
+        width: 32%;
+      }
+
+      @include breakpoint($breakpoint-xl) {
+        padding-left: $spacing-triple;
+        padding-right: $spacing;
+      }
+    }
+  }
+
+  .service__units {
+    @include component-margin-top();
+  }
+}
+
+.main-content:last-child .service.service--full {
+  .component--service-units:last-child {
+    // Make the keywords element go "under" the footer.
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
+    padding-bottom: $spacing-triple + $footer-koro-height;
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-quadruple + $footer-koro-height;
+    }
+  }
+}
+
+.service.service--teaser {
+  @include breakpoint($breakpoint-l) {
+    height: 100%;
+    margin-left: calc(#{$spacing-and-half} / 2);
+    margin-right: calc(#{$spacing-and-half} / 2);
+  }
+
+  .service__link {
+    border: 1px solid $color-black;
+    display: block;
+    height: 100%;
+    margin-top: $spacing-half;
+    padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
+    position: relative;
+    text-decoration: none;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      line-height: 0; // Remove extra space under the arrow icon on larger card
+      margin-top: 0;
+      min-height: 240px; // As in designs
+      padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
+    }
+
+    &:before {
+      background-color: var(--hdbt-color-gold--primary);
+      content: "";
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: $spacing-half;
+
+      @include breakpoint($breakpoint-l) {
+        bottom: 0;
+        height: $spacing-and-half;
+        right: 0;
+        top: auto;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      .hel-icon {
+        margin-left: $spacing;
+        @media (prefers-reduced-motion) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .service__title {
+    @include font('h4');
+    margin: 0;
+  }
+
+  .hel-icon {
+    --icon-size: #{$teaser-icon-size-mobile};
+    bottom: 50%;
+    left: auto;
+    position: absolute;
+    right: $spacing;
+    transform: translateY(50%);
+    transition: all .3s;
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
+
+    @include breakpoint($breakpoint-l) {
+      --icon-size: #{ $teaser-icon-size-desktop};
+      margin-top: $spacing-and-half;
+      position: static;
+      right: auto;
+      transform: none;
+    }
+  }
+}
+
+.service--units__container {
+  margin-bottom: $spacing-quadruple;
+  margin-top: $spacing-quadruple;
+}
+
+.component--service-units {
+  background-color: $color-black-5;
+  padding-bottom: $spacing-sextuple;
+  padding-top: $spacing-sextuple;
+
+  .service__units__header {
+    display: block;
+  }
+
+  .service__units__title {
+    margin-top: 0;
+  }
+
+  .service__units__count-container {
+    @include font('lead');
+    display: block;
+    margin-top: $spacing;
+    white-space: nowrap;
+
+    .service__units__count {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .service__units__list {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-triple;
+    }
+  }
+
+  .unit.unit--teaser {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing;
+    }
+  }
+
+  .service__units__pager {
+    list-style: none;
+    margin: $spacing-quadruple 0 0;
+    padding: 0;
+  }
+
+  .service__units__pager-button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .service__units__pager-button {
+      @extend .emulate-button--primary;
+    }
+  }
+}
+
+// Add extra margin to service long description if table of contents is enabled.
+.table-of-contents + .service__long-desc {
+  @include component-margin-top();
+}

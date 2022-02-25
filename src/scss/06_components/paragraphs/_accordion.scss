@@ -1,0 +1,243 @@
+// TODO: This whole file should be rewritten
+// * Handorgel library CSS codes should be moved here
+// * Overriding default handorgel styles should be cleaned up, so that they are not defined to begin with.
+// * Nesting should be avoided as much as possible
+
+.component--accordion {
+
+  .accordion__wrapper {
+    border-bottom: 1px solid $color-black-20;
+  }
+
+  .accordion-item__header {
+    border-top: 1px solid $color-black-20;
+    margin: 0;
+    padding: 0;
+
+    // Accordion open state.
+    &.handorgel__header--open .accordion-item__button--toggle {
+      background-color: transparent;
+
+      &::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+
+    // Accordion focused state.
+    .accordion-item__button--toggle:focus,
+    &.handorgel__header--focus .accordion-item__button--toggle {
+      position: relative;
+
+      &::before {
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $color-black-90;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .accordion-item__button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .accordion-item__icon {
+    display: inline-flex;
+    margin-right: $spacing-half;
+
+    @include breakpoint($breakpoint-l) {
+      margin-right: $spacing;
+    }
+
+    .hel-icon {
+      --icon-size: 1.5rem;
+
+      @include breakpoint($breakpoint-l) {
+        --icon-size: 3rem;
+      }
+    }
+  }
+
+  .accordion-item__button--toggle {
+    @include font('h4');
+    border: none;
+    padding: $spacing 60px $spacing 0;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {
+      padding: $spacing-and-half 60px $spacing-and-half 0;
+    }
+
+    &::before {
+      content: "";
+      height: 30px;
+      position: absolute;
+      right: 4px; // Move the icon slightly to the left
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+
+      @include breakpoint($breakpoint-l) {
+        height: 32px;
+        width: 32px;
+      }
+    }
+    &::after {
+      @include rotating-icon-transition();
+      background-image: icon_url('angle-down');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      content: "";
+      height: 30px;
+      position: absolute;
+      right: 4px; // Move the icon slightly to the left
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+
+      @include breakpoint($breakpoint-l) {
+        height: 32px;
+        width: 32px;
+      }
+    }
+  }
+
+  .accordion-item__button--close {
+    @include font('button');
+    align-items: center;
+    bottom: $spacing;
+    display: flex;
+    padding: $spacing-half;
+    position: absolute;
+    right: -1px; // To adjust the positioning so that the element lines up nicely.
+
+    &:focus {
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px $color-black-90;
+      outline: none;
+      pointer-events: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .accordion-item__content {
+    border: none;
+  }
+
+  .accordion-item__content__inner {
+    padding: 0 0 $spacing-quadruple;
+    position: relative;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .component--image .component__content {
+    max-width: $content-width-max;
+  }
+}
+
+// Show border-top only on first accordion item header in white accordion.
+.component--accordion-bg-white .accordion__wrapper ~ .accordion__wrapper .accordion-item__header {
+  border-top: none;
+}
+
+
+// Grey accordion styles
+.component--accordion-bg-grey {
+  .accordion-item__header {
+    background-color: $color-black-5;
+    border-color: $color-white;
+
+    .accordion-item__button--toggle {
+      padding: $spacing ($spacing-double + 50px) $spacing $spacing;
+
+      @include breakpoint($breakpoint-l) {
+        padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
+      }
+
+      &::before,
+      &::after {
+        right: $spacing;
+
+        @include breakpoint($breakpoint-l) {
+          right: $spacing-and-half;
+        }
+      }
+    }
+  }
+
+  .accordion__wrapper {
+    border-color: $color-black-5;
+  }
+
+  .accordion-item__content {
+    background-color: $color-black-5;
+    padding-left: $spacing;
+    padding-right: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-left: $spacing-and-half;
+      padding-right: $spacing-and-half;
+    }
+  }
+}
+
+// Accordions following each other with same background color should not have margin between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header,
+.component--accordion-bg-grey + .component--accordion-bg-grey.component--no-header {
+  margin-top: 0;
+}
+// White accordions following each other should have only a single border between them if the later one has no header.
+.component--accordion-bg-white + .component--accordion-bg-white.component--no-header .accordion-item__header {
+  border-top: 0 none;
+}
+
+// Handorgel library style overrides
+.component--accordion .handorgel {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+
+  .handorgel__header--open .handorgel__header__button {
+    background-color: transparent;
+  }
+
+  .handorgel__header--focus .handorgel__header__button {
+    background-color: transparent;
+  }
+
+  .handorgel__header__button {
+    background-color: transparent;
+    border: none;
+  }
+
+  .handorgel__content {
+    border: 0;
+  }
+}
+
+// Remove accordion margin-top when it's after another similar margin and has no header
+.accordion--white + .accordion--white.accordion--no-header,
+.accordion--grey + .accordion--grey.accordion--no-header {
+  margin-top: 0;
+  > .container {
+    padding-top: 0;
+  }
+}
+
+// Remove extra line from white accordion when accordions are touching
+.accordion--white + .accordion--white.accordion--no-header > .container > .accordion__wrapper > .accordion-item__header {
+  border-top: 0 none;
+}
