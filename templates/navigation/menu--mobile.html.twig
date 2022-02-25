@@ -39,13 +39,9 @@
     {% for item in items %}
       {% set level = menu_level + 1 %}
 
-      {% set is_external = item.is_external %}
-      {% set is_external = false %}{# TODO: Once menu supports external link detection with whitelists, remove this override, also in menu.html.twig #}
-
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
-        is_external ? 'menu__item--external',
         item.is_expanded or item.in_active_trail ? 'menu__item--children',
         item.in_active_trail ? 'menu__item--active-trail',
         'menu__item--level-' ~ level,
@@ -68,7 +64,6 @@
                 [
                   'menu__link',
                   item.in_active_trail ? 'menu__link--active-trail',
-                  is_external ? 'menu__link--external',
                 ],
               'aria-current': item.is_currentPage ? 'page': null,
             } %}
