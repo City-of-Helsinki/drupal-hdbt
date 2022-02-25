@@ -84,31 +84,32 @@
   ]
 %}
 
-{%
-  set title_classes = [
-    'content-card__title'
-  ]
-%}
+{% set link_title %}
+  {{ title_prefix }}
+  <h3 class="content-card__title">
+    {{ label }}
+  </h3>
+  {{ title_suffix }}
+{% endset %}
+
+{% set link_attributes = {
+  'class': [
+    'content-card__link',
+  ],
+  'rel': 'bookmark',
+} %}
 
 <article{{ attributes.addClass(classes) }}>
 
-  <a href="{{ url }}" class="content-card__link" rel="bookmark">
-    <div class="content-card__image">
-      {% if image.0 %}
-        {{ image }}
-      {% else %}
-        {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
-      {% endif %}
-    </div>
+  <div class="content-card__image">
+    {% if image.0 %}
+      {{ image }}
+    {% else %}
+      {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
+    {% endif %}
+  </div>
 
-    {{ title_prefix }}
-    <h3{{ title_attributes.addClass(title_classes) }}>
-      {{ label }}
-    </h3>
-    {{ title_suffix }}
-    <span class="content-card__arrow{% if target_new %} is-outbound{% endif %}">
-      {% include '@hdbt/misc/icon.twig' with {icon: (target_new)?'link-external':'arrow-right' } %}
-    </span>
-  </a>
+  {# TODO: The url handling needs better way, we get `url` variable, but it's relative #}
+  {{ link(link_title, 'entity:node/' ~ node.id, link_attributes) }}
 
 </article>
