@@ -5,9 +5,9 @@
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
-    {% if  attributes['data-protocol'] == 'tel:' %}
+    {% if  attributes['data-protocol'] == 'tel' %}
       {% set icon %}<span class="link__type link__type--tel" title="({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})"></span>{%- endset %}
-    {% elseif  attributes['data-protocol'] == 'mailto:' %}
+    {% elseif  attributes['data-protocol'] == 'mailto' %}
       {% set icon %}<span class="link__type link__type--mailto" title="({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})"></span>{%- endset %}
     {% endif %}
   {% endif %}
