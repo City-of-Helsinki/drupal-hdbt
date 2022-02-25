@@ -5,13 +5,12 @@
  * Functions to support theming in the hdbt theme.
  */
 
-use Drupal\Component\Utility\UrlHelper as CoreUrlHelper;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
-use Drupal\hdbt\Url\UrlHelper;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
@@ -421,10 +420,8 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['url'];
 
-    $uriHelper = new UrlHelper($url);
-
     // Check if the URL is external and add variable accordingly.
-    if ($uriHelper->isExternal()) {
+    if ($url->isExternal()) {
       $item['is_external'] = TRUE;
     }
 
@@ -1198,7 +1195,7 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|strin
   $config = Drupal::config('eu_cookie_compliance.settings');
 
   $popup_link_config = $config->get('popup_link');
-  if (CoreUrlHelper::isExternal($popup_link_config)) {
+  if (\Drupal\Component\Utility\UrlHelper::isExternal($popup_link_config)) {
     return Url::fromUri($popup_link_config)->toString();
   }
   return Url::fromUserInput($popup_link_config === '<front>' ? '/' : $popup_link_config)->toString();
