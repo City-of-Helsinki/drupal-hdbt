@@ -8,7 +8,7 @@
   %}
     {% block component_content %}
 
-      {{ drupal_view('service_list', 'block', service_list_arguments) }}
+      {{ drupal_view('service_list', 'block', services_list, search_parent_paragraph) }}
 
     {% endblock component_content %}
   {% endembed %}

@@ -5,8 +5,6 @@
  * Functions to support theming in the hdbt theme.
  */
 
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
@@ -741,52 +739,10 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_type == 'unit_search' &&
     $paragraph->hasField('field_unit_search_units')
   ) {
-    // Get all unit ids what content producer has selected for the unit search
-    // view and set them as variables for the template.
-    $unit_ids = [];
-    $units = $paragraph->field_unit_search_units->getValue();
-    $ids = [];
-    foreach ($units as $unit) {
-      $ids[] = $unit['target_id'];
-      $unit_ids[] = 'tpr_unit:' . $unit['target_id'];
-    }
-
-    // Set the unit ids to a unit_search_arguments variable for the template.
-    $variables['unit_search_arguments'] = implode(',', $ids);
-
-    // Get previously cached meta information field values and set them
-    // if no cached items are found.
-    $cached = Drupal::cache()->get('unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments']);
-
-    if (!$cached) {
-      // Set meta information fields based on how content producer
-      // has defined the fields.
-      $meta = [];
-      $fields = [
-        'field_unit_search_meta_button',
-        'field_unit_search_meta_label',
-        'field_unit_search_meta_placehold',
-        'field_unit_search_meta_load_more',
-      ];
-
-      foreach ($fields as $field) {
-        if ($paragraph->hasField($field)) {
-          $meta[$field] = $paragraph->{$field}->value;
-        }
-      }
-
-      // Cache the meta fields based on view id and units.
-      if (!empty($meta) && !empty($unit_ids)) {
-        $tags = array_merge(['paragraph:' . $paragraph->id()], $unit_ids);
-
-        Drupal::cache()->set(
-          'unit_search' . 'block' . $variables['current_langcode'] . $variables['unit_search_arguments'],
-          $meta,
-          Cache::PERMANENT,
-          $tags
-        );
-      }
-    }
+    $variables['search_parent_paragraph'] = $paragraph->id();
+    $variables['units_list'] = implode(',', array_map(function ($unit) {
+      return $unit['target_id'];
+    }, $paragraph->field_unit_search_units->getValue()));
   }
 
   // Service list paragraph.
@@ -794,50 +750,10 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_type == 'service_list' &&
     $paragraph->hasField('field_service_list_services')
   ) {
-    // Get all service ids what content producer has selected for the service
-    // list view and set them as variables for the template.
-    $service_ids = [];
-    $services = $paragraph->field_service_list_services->getValue();
-    $ids = [];
-    foreach ($services as $service) {
-      $ids[] = $service['target_id'];
-      $service_ids[] = 'tpr_service:' . $service['target_id'];
-    }
-
-    // Set the service ids to a service_list_arguments
-    // variable for the template.
-    $variables['service_list_arguments'] = implode(',', $ids);
-
-    // Get previously cached meta information field values and set them
-    // if no cached items are found.
-    $cached = Drupal::cache()->get('service_list' . 'block' . $variables['current_langcode'] . $variables['service_list_arguments']);
-
-    if (!$cached) {
-      // Set meta information fields based on how content producer
-      // has defined the fields.
-      $meta = [];
-      $fields = [
-        'field_service_list_meta_load_mor',
-      ];
-
-      foreach ($fields as $field) {
-        if ($paragraph->hasField($field)) {
-          $meta[$field] = $paragraph->{$field}->value;
-        }
-      }
-
-      // Cache the meta fields based on view id and services.
-      if (!empty($meta) && !empty($service_ids)) {
-        $tags = array_merge(['paragraph:' . $paragraph->id()], $service_ids);
-
-        Drupal::cache()->set(
-          'service_list' . 'block' . $variables['current_langcode'] . $variables['service_list_arguments'],
-          $meta,
-          Cache::PERMANENT,
-          $tags
-        );
-      }
-    }
+    $variables['search_parent_paragraph'] = $paragraph->id();
+    $variables['services_list'] = implode(',', array_map(function ($service) {
+      return $service['target_id'];
+    }, $paragraph->field_service_list_services->getValue()));
   }
 }
 
