@@ -88,9 +88,27 @@
     margin-top: $spacing;
   }
 
-  a::after {
-    @include pseudo-icon('arrow-right', $spacing-and-half);
-    margin-left: $spacing-quarter;
+  a {
+    &::after {
+      @include pseudo-icon('arrow-right');
+      @include hover-link-arrow-transition();
+      margin-left: $spacing-quarter;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      &::after {
+        transform: translateX($spacing-quarter);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+    }
+
+    &[data-is-external='true']::after {
+      content: none;
+    }
   }
 }
 
