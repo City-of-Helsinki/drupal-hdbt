@@ -1,0 +1,7 @@
+.tab[aria-selected='true'] {
+  font-weight: bold;
+}
+
+.tab__content[aria-hidden='true']{
+  display: none;
+}

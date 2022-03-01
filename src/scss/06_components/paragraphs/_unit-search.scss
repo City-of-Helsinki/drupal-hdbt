@@ -8,7 +8,7 @@
   padding-bottom: 55px; // Leave enough room between the last card and footer.
 }
 
-.component--unit-search .component__container {
+.component--unit-search .component__container {
   padding-bottom: $spacing-double;
   padding-top: $spacing-double;
 
@@ -98,24 +98,6 @@
     }
   }
 
-  .unit-search__count-container {
-    @include font('lead');
-    border-top: 1px solid $color-black-10;
-    display: block;
-    margin-top: $spacing-double;
-    padding-top: $spacing-double;
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-      padding-top: $spacing-quadruple;
-    }
-
-    .unit-search__count {
-      font-weight: $font-weight-bold;
-    }
-  }
-
   .views-infinite-scroll-content-wrapper {
     margin-top: $spacing;
 
@@ -123,16 +105,49 @@
       margin-top: $spacing-double;
     }
   }
+}
 
-  .unit__search__pager {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: $spacing-double 0 0;
-    padding: 0;
+.unit-search__count-container {
+  @include font('lead');
+  border-top: 1px solid $color-black-10;
+  display: block;
+  margin-top: $spacing-double;
+  padding-top: $spacing-double;
+  width: 100%;
 
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-    }
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
   }
+
+  .unit-search__count {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.unit__search__pager {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: $spacing-double 0 0;
+  padding: 0;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+.unit-search__results--map {
+  padding-bottom:52%;
+  position: relative;
+  width:100%;
+}
+
+.unit-search__map {
+  border: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

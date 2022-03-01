@@ -133,3 +133,8 @@ closable_announcements:
   - core/jquery
   - core/drupal
   - core/drupalSettings
+
+tabs:
+  version: 1.x
+  js:
+    dist/js/tabs.min.js: {}
