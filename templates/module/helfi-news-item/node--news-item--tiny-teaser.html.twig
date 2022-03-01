@@ -10,9 +10,14 @@
 <div class="news-listing__content">
   {# Short title or Title #}
   <h3 class="news-listing__title">
-    <a href="{{ url }}" class="news-listing__link" rel="bookmark">
-      {{ drupal_token('node:short-title', {'node': node}) }}
-    </a>
+    {% set link_attributes = {
+      'class': [
+        'news-listing__link',
+      ],
+      'rel': 'bookmark',
+    } %}
+    {# TODO: The url handling needs better way, we get `url` variable, but it's relative #}
+    {{ link(drupal_token('node:short-title', {'node': node}), 'entity:node/' ~ node.id, link_attributes) }}
   </h3>
 
   {# Created date and modified date #}
