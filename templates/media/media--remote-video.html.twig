@@ -50,9 +50,18 @@
         'hdbt-icon--link-external'
       ]
       %}
-      <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
-        <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
-      </a>
+
+      {% set external_link_attributes = {
+        'class': external_link_classes,
+        'target': '_blank',
+      } %}
+
+      {% set external_link_title %}
+         <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+      {% endset %}
+
+      {{ link(external_link_title, media_url, external_link_attributes) }}
+
       {%
         set settings_link_classes = [
         'hds-button',
