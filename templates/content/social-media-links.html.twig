@@ -1,15 +1,13 @@
 <div class="social-media__items">
   {% set classes = ['social-media__item'] %}
   {% for element in elements %}
-    {% if element.forward_dialog == 1 %}
-      {% set classes = classes|merge(['use-ajax']) %}
-      {% set dialogType = "data-dialog-type=dialog" %}
-      {% set dialogOptions = "data-dialog-options=" ~ {'width': '600'}|json_encode %}
-    {% endif %}
-
-    <a {{ dialogType }} {{ dialogOptions }} {{ element.attr.target }} {{ element.attr.class.addClass(classes) }} {{ element.api }} title="{{ element.text }}">
+    {% set link_title %}
       {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
-    </a>
+    {% endset %}
+    {% set link_attributes = {
+      'class': classes|merge(element.classes),
+    } %}
+    {{ link(link_title, element.url, link_attributes) }}
   {% endfor %}
 </div>
 

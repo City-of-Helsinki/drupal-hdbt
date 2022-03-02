@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
@@ -1137,6 +1138,35 @@ function hdbt_preprocess_maintenance_page(&$variables) {
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/en';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
       break;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_social_media_links(&$variables) {
+  // Convert Attributes to strings.
+  if (isset($variables['elements'])) {
+    foreach ($variables['elements'] as &$element) {
+      // Convert href attribute to URL.
+      if (
+        $element['api'] instanceof Attribute &&
+        $element['api']->offsetExists('href')
+      ) {
+        $element['url'] = $element['api']
+          ->offsetGet('href')
+          ->__toString();
+      }
+      // Convert class attribute to classes.
+      if (
+        $element['attr']['class'] instanceof Attribute &&
+        $element['attr']['class']->offsetExists('class')
+      ) {
+        $element['classes'][] = $element['attr']['class']
+          ->offsetGet('class')
+          ->__toString();
+      }
+    }
   }
 }
 
