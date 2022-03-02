@@ -18,6 +18,7 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Site\Settings;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_preprocess().
@@ -1036,6 +1037,21 @@ function hdbt_preprocess_views_view(&$variables) {
   $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows;
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function hdbt_views_pre_render(ViewExecutable $view) {
+  // Add library to all for ajax progress.
+  if (!$view->element["#name"] == 'high_school_search') {
+    return;
+  }
+
+  if($view->ajaxEnabled()) {
+    $view->element['#attached']['library'][] = 'hdbt/tabs';
+    $view->element['#attached']['drupalSettings']['tabsParent'] = $view->element["#name"];
+  }
 }
 
 /**

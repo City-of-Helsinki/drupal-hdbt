@@ -138,3 +138,6 @@ tabs:
   version: 1.x
   js:
     dist/js/tabs.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
