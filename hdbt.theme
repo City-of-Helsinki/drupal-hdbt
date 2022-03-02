@@ -1173,10 +1173,10 @@ function hdbt_preprocess_social_media_links(&$variables) {
 /**
  * Helper function to get the privacy policy link URL.
  */
-function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {
+function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
   $config = Drupal::config('eu_cookie_compliance.settings');
 
   $popup_link = $config->get('popup_link');
   $popup_link = $popup_link === '<front>' ? '/' : $popup_link;
-  return Url::fromUserInput($popup_link, ['absolute' => TRUE])->toString();
+  return Url::fromUserInput($popup_link);
 }
