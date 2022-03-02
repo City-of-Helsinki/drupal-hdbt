@@ -13,6 +13,10 @@
 {% if drupal_entity('block', block_name, check_access=false)|render|striptags|trim is not empty %}
   {% set in_menu =  TRUE %}
 {% endif %}
+{% if drupal_entity('block', 'groupmenu')|render|striptags|trim is not empty %}
+  {% set group_menu = TRUE %}
+  {% set in_menu = TRUE %}
+{% endif %}
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
@@ -80,6 +84,9 @@
       <div class="unit__sidebar">
         {% block sidebar_block %}
           {{ drupal_entity('block', block_name, check_access=false) }}
+          {% if group_menu %}
+            {{ drupal_entity('block', 'groupmenu') }}
+          {% endif %}
         {% endblock sidebar_block %}
 
         {% if
