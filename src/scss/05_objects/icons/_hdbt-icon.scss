@@ -22,6 +22,11 @@
     margin: 0 0 0 var(--spacing-2-xs);
     order: 1;
   }
+  .link__type {
+    margin-left: -16px; // Move external icon a bit to left without effecting transitions
+    margin-right: 16px;
+    order: 2;
+  }
 
   &:focus {
     &::before {
