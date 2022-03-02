@@ -79,6 +79,7 @@ $card_spacing: $spacing-and-half;
     }
   }
 
+  &:focus,
   &:hover {
     .content-card__title {
       text-decoration: underline;
