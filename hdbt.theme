@@ -121,6 +121,14 @@ function hdbt_preprocess_html(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function hdbt_preprocess_region(&$variables) {
+  // Set site information to variables.
+  _hdbt_set_site_information($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function hdbt_preprocess_media(&$variables) {
   if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
     return;
@@ -434,6 +442,10 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_block(&$variables) {
+  // Set site information to variables.
+  _hdbt_set_site_information($variables);
+
+  // Set block_id variable.
   if (isset($variables['elements']['#id'])) {
     $variables['content']['#attributes']['block_id'] = $variables['elements']['#id'];
   }
@@ -749,6 +761,21 @@ function hdbt_preprocess_paragraph(array &$variables) {
       return $service['target_id'];
     }, $paragraph->field_service_list_services->getValue()));
   }
+}
+
+/**
+ * Set site information as variables for templates.
+ *
+ * @param array $variables
+ *   Variables array.
+ */
+function _hdbt_set_site_information(array &$variables) {
+  // Set site_name as variable.
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+
+  // Set site front page absolute url as variable.
+  $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 }
 
 /**
