@@ -15,6 +15,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
@@ -1071,6 +1072,24 @@ function hdbt_views_pre_render(ViewExecutable $view) {
     $view->element['#attached']['library'][] = 'hdbt/tabs';
     $view->element['#attached']['drupalSettings']['tabsParent'] = $view->element["#name"];
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_unit(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Unit) {
+    return;
+  }
+  $entity = $variables['entity'];
+
+  // Convert email link to Url object and set as new variable for the template.
+  if (!$entity->email->isEmpty()) {
+    $variables['unit_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
+  }
+
+  // Add current Unit Url to variable.
+  $variables['url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
 
 /**
