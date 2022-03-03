@@ -16,8 +16,7 @@
       ],
       'rel': 'bookmark',
     } %}
-    {# TODO: The url handling needs better way, we get `url` variable, but it's relative #}
-    {{ link(drupal_token('node:short-title', {'node': node}), 'entity:node/' ~ node.id, link_attributes) }}
+    {{ link(short_title, node_url, link_attributes) }}
   </h3>
 
   {# Created date and modified date #}

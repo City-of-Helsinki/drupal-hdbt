@@ -217,6 +217,9 @@ function hdbt_preprocess_node(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
+  // Add current node Url to variable.
+  $variables['node_url'] = !$node->isNew() ? $node->toUrl('canonical') : NULL;
+
   // If node has hero block, set variable accordingly.
   if ($node->hasField('field_has_hero')) {
     $variables['hide_label'] = boolval($node->field_has_hero->value);
@@ -245,6 +248,16 @@ function hdbt_preprocess_node(&$variables) {
       'field_main_image',
       'field_main_image_caption'
     );
+  }
+
+  // Handle short title for the templates.
+  if ($node->hasField('field_short_title')) {
+    $variables['short_title'] = $node->getTitle();
+
+    // If node has short title set, use it as short-title.
+    if (!$node->field_short_title->isEmpty()) {
+      $variables['short_title'] = $node->field_short_title->value;
+    }
   }
 }
 
