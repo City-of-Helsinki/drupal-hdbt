@@ -1048,7 +1048,7 @@ function hdbt_views_pre_render(ViewExecutable $view) {
     return;
   }
 
-  if($view->ajaxEnabled()) {
+  if ($view->ajaxEnabled()) {
     $view->element['#attached']['library'][] = 'hdbt/tabs';
     $view->element['#attached']['drupalSettings']['tabsParent'] = $view->element["#name"];
   }
