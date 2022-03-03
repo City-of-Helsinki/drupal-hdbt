@@ -8,9 +8,14 @@
 {% if items.next %}
   <ul{{ attributes.addClass('unit__services__pager') }}>
     <li class="pager__item unit__services__pager-button-wrapper">
-      <a class="unit__services__pager-button button" href="{{ items.next.href }}" rel="next">
-        {{ options.button_text }}
-      </a>
+      {% set link_attributes = {
+        'class': [
+          'unit__services__pager-button',
+          'button',
+        ],
+        'rel': 'next',
+      } %}
+      {{ link(options.button_text, items.next.href, link_attributes) }}
     </li>
   </ul>
 {% endif %}
