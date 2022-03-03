@@ -16,7 +16,7 @@
   }
 }
 
-.has-sidebar .component--remote-video {
+.has-sidebar .components--upper .component--remote-video {
   @include breakpoint(max-width $breakpoint-l) {
     @include component-negative-side-margin;
   }
