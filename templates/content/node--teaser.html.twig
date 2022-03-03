@@ -109,7 +109,6 @@
     {% endif %}
   </div>
 
-  {# TODO: The url handling needs better way, we get `url` variable, but it's relative #}
-  {{ link(link_title, 'entity:node/' ~ node.id, link_attributes) }}
+  {{ link(link_title, node_url, link_attributes) }}
 
 </article>
