@@ -17,7 +17,7 @@
   function toggleTabs(tab) {
     let tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     let tabsContentId = tab.getAttribute('aria-controls');
-    let tabsContent = document.getElementById(tabsContentId);
+    let tabsContent = document.querySelector('[data-drupal-selector=' + tabsContentId + ']');
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -54,8 +54,8 @@
       }
 
       // Find the active tab elements.
-      let activeTabElement = document.getElementById(activeTab);
-      let activeContentElement = document.getElementById(activeContent);
+      let activeTabElement = document.querySelector('[data-drupal-selector=' + activeTab + ']');
+      let activeContentElement = document.querySelector('[data-drupal-selector=' + activeContent + ']');
 
       // Set them active with aria-attributes.
       activeTabElement.setAttribute('aria-selected', 'true');
