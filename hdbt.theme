@@ -1090,7 +1090,7 @@ function hdbt_preprocess_tpr_unit(&$variables) {
   }
 
   // Add current Unit Url to variable.
-  $variables['url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
+  $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
 
 /**

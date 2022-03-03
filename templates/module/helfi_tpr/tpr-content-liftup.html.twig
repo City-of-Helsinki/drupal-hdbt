@@ -25,10 +25,8 @@
   <div class="content-liftup__text">
     <div class="content-liftup__text__container">
       <h3 class="content-liftup__title">
-        {# TODO: The url handling needs better way, we get `url` variable, but it's relative #}
-        {% set link_url = 'entity:tpr_unit/' ~ entity.id() %}
         {% set link_attributes = { 'class': [ 'content-liftup__link', ], } %}
-        {{ link(entity.label, link_url, link_attributes) }}
+        {{ link(entity.label, unit_url, link_attributes) }}
       </h3>
       <div class="content-liftup__info">
         {% if content.address|render %}
