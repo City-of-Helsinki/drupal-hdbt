@@ -1,7 +1,53 @@
-.tab[aria-selected='true'] {
-  font-weight: bold;
-}
-
 .tab__content[aria-hidden='true']{
   display: none;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+
+  &[aria-selected='true'] {
+    font-weight: bold;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.tab--map {
+  &::before {
+    @include pseudo-icon('map', 20px);
+    margin-right: $spacing-half;
+  }
+}
+
+.tab--list {
+  &::before {
+    @include pseudo-icon('menu-hamburger', 20px);
+    margin-right: $spacing-half;
+  }
+}
+
+
+.tabs--unit-search {
+  margin-bottom: $spacing-double;
+  margin-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .tab {
+    display: block;
+
+    &[aria-selected='true'] {
+      display: none;
+      font-weight: normal;
+    }
+  }
 }
