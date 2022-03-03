@@ -555,9 +555,10 @@ function hdbt_preprocess_breadcrumb(&$variables) {
       $page_entity->hasField('field_short_title') &&
       !empty($page_entity->field_short_title->value)
     ) {
-      $current = array_pop($variables['breadcrumb']);
-      $current['text'] = $page_entity->field_short_title->value;
-      array_push($variables['breadcrumb'], $current);
+      /** @var \Drupal\Core\Link $current */
+      $current = array_pop($variables['links']);
+      $current->setText($page_entity->field_short_title->value);
+      array_push($variables['links'], $current);
     }
   }
 }
@@ -1210,8 +1211,9 @@ function hdbt_preprocess_social_media_links(&$variables) {
  */
 function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
   $config = Drupal::config('eu_cookie_compliance.settings');
+  $link = $config->get('popup_link');
 
-  $popup_link = $config->get('popup_link');
-  $popup_link = $popup_link === '<front>' ? '/' : $popup_link;
-  return Url::fromUserInput($popup_link);
+  return (UrlHelper::isExternal($link))
+    ? Url::fromUri($link)
+    : Url::fromUserInput($link === '<front>' ? '/' : $link);
 }
