@@ -6,12 +6,12 @@
 #}
 
 {% if items.next %}
-  <ul{{ attributes.addClass('unit__services__pager') }}>
-    <li class="pager__item unit__services__pager-button-wrapper">
+  {# Sadly drupal targets `ul.js-pager__items > li > a` to enable ajax, so we have to have these elements #}
+  <ul{{ attributes.addClass('pager') }}>
+    <li>
       {% set link_attributes = {
         'class': [
-          'unit__services__pager-button',
-          'button',
+          'pager-button',
         ],
         'rel': 'next',
       } %}

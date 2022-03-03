@@ -236,22 +236,6 @@ $teaser-icon-size-desktop: 48px;
       margin-top: $spacing;
     }
   }
-
-  .service__units__pager {
-    list-style: none;
-    margin: $spacing-quadruple 0 0;
-    padding: 0;
-  }
-
-  .service__units__pager-button-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    .service__units__pager-button {
-      @extend .emulate-button--primary;
-    }
-  }
 }
 
 // Add extra margin to service long description if table of contents is enabled.

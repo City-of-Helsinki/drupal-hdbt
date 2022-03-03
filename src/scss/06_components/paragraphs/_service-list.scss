@@ -95,20 +95,4 @@
       }
     }
   }
-
-  .service-list__pager {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: $spacing-double 0 0;
-    padding: 0;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-    }
-
-    .service-list__pager-button {
-      @extend .emulate-button--primary;
-    }
-  }
 }

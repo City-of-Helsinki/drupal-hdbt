@@ -136,18 +136,6 @@
   }
 }
 
-.unit__search__pager {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: $spacing-double 0 0;
-  padding: 0;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-quadruple;
-  }
-}
-
 .unit-search__result--list,
 .unit-search__result--map {
   margin-top: $spacing;
