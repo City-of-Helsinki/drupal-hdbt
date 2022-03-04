@@ -6,11 +6,8 @@
  * - type: primary, secondary or supplementary type of button.
  * - size: small or unset.
  * - open_in_a_new_window: Boolean for opening in a new window and showing explanation.
- * - is_external: Boolean for showing external icon and explanation when is not part of the same domain. This overrides icon_last and icon_last_type
- * - icon_first: Boolean if first icon is enabled
- * - icon_first_type: String for first icon type
- * - icon_last: Boolean if last icon is enabled (will be set to true if is_external is true)
- * - icon_last_type: String for last icon type (will be set to link-external if is_external is true)
+ * - icon: Boolean if first icon is enabled
+ * - icon_type: String for first icon type
  * - class: Optional String to be added to the class list
  *
  * Usage example:
@@ -19,7 +16,6 @@
  *   label: item.content['#title'],
  *   url: item.content['#url'],
  *   class: 'service-channel__link--example',
- *   is_external: true,
  *   open_in_a_new_window: true,
  * } %}
  *
@@ -54,17 +50,15 @@
   {% set link_options = link_options|merge({target: '_blank'}) %}
 {% endif %}
 
+{% if icon == true %}
+  {% set link_options = link_options|merge({'data-selected-icon': icon_type}) %}
+{% endif %}
+
 {% set title %}
-  {% if icon_first == true %}
-    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: icon_first_type} %}
-  {% endif %}
   <span class="hds-button__label">
     {{ label }}
     {{ explain }}
   </span>
-  {% if icon_last == true %}
-    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: icon_last_type} %}
-  {% endif %}
 {% endset %}
 
 {{ link(title, url, link_options) }}
