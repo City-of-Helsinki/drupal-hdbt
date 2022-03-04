@@ -5,7 +5,6 @@ $item_spacing: $spacing-triple;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  overflow: hidden;
   width: 100%;
 
   @include breakpoint($breakpoint-s) {
@@ -17,25 +16,26 @@ $item_spacing: $spacing-triple;
 
 .list-of-links__item {
   margin-bottom: $spacing-double;
+  position: relative;
   width: 100%;
 
   @include breakpoint($breakpoint-s) {
-    padding-left: $item_spacing;
-    width: 50%;
+    margin-left: $item_spacing;
+    width: calc(50% - #{$item_spacing});
   }
 
   @include breakpoint($breakpoint-m) {
-    width: 25%;
+    width: calc(25% - #{$item_spacing});
   }
 
   // If there is 1,2 or 3 items inside the list of links:
   @include content_count(1, 2, 3) {
     @include breakpoint($breakpoint-s) {
-      width: 50%;
+      width: calc(50% - #{$item_spacing});
     }
 
     @include breakpoint($breakpoint-m) {
-      width: 33.3333%;
+      width: calc(33.3333% - #{$item_spacing});
     }
   }
 
@@ -44,17 +44,77 @@ $item_spacing: $spacing-triple;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: center;
     min-height: 90px;
-    overflow: hidden;
-    position: relative;
     text-decoration: none;
     width: 100%;
 
     @include breakpoint($breakpoint-s) {
       display: block;
-      padding-bottom: $spacing-triple;
+    }
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+
+      &::after {
+        transform: translateX($spacing-half);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      inset: 0;
+      position: absolute;
+    }
+
+    &::after {
+      --icon-size: 1.5rem;
+      @include pseudo-icon('arrow-right');
+      @include hover-link-arrow-transition();
+      content: '';
+      display: block;
+      margin-left: -$spacing-quarter;
+      margin-top: $spacing-half;
+
+      @include breakpoint($breakpoint-s) {
+        --icon-size: 3rem;
+        margin-left: -$spacing-half;
+        margin-top: $spacing;
+      }
+    }
+
+    &[data-is-external='true']::after {
+      content: none;
+      display: none;
+    }
+
+    .link__type {
+      --icon-size: 1.5rem;
+      display: block;
+      height: var(--icon-size);
+      margin-left: -$spacing-quarter;
+      margin-top: $spacing-half;
+      mask-size: var(--icon-size) var(--icon-size);
+      width: var(--icon-size);
+
+      @include breakpoint($breakpoint-s) {
+        --icon-size: 3rem;
+        margin-left: -$spacing-half;
+        margin-top: $spacing;
+      }
+    }
+
+    &:focus .link__type--external,
+    &:hover .link__type--external {
+      transform: translate($spacing-quarter, - $spacing-quarter);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
   }
 
@@ -89,46 +149,6 @@ $item_spacing: $spacing-triple;
       margin: 0;
     }
   }
-
-  .list-of-links__item__link:hover .list-of-links__item__title {
-    text-decoration: underline;
-  }
-
-  .list-of-links__item__arrow {
-    @include hover-link-arrow-transition();
-    display: block;
-    line-height: 0;
-    margin-left: -$spacing-quarter;
-    margin-top: $spacing-half;
-
-    @include breakpoint($breakpoint-s) {
-      margin-left: -$spacing-half;
-      margin-top: $spacing;
-    }
-
-    .hel-icon {
-      --icon-size: 1.5rem;
-
-      @include breakpoint($breakpoint-s) {
-        --icon-size: 3rem;
-      }
-    }
-  }
-
-  &:hover {
-    .list-of-links__item__arrow {
-      transform: translateX($spacing-half);
-      @media (prefers-reduced-motion) {
-        transform: none;
-      }
-      &.is-outbound {
-        transform: translate($spacing-quarter, - $spacing-quarter);
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
-    }
-  }
 }
 
 // Without image variants
@@ -136,30 +156,46 @@ $item_spacing: $spacing-triple;
 .component--list-of-links-without-image-desc {
   .list-of-links__item {
     align-self: flex-start;
-    display: flex;
+    min-height: 2rem;// Min-height is the same as the icon height.
+    padding-bottom: 0;
+
 
     @include breakpoint($breakpoint-m) {
-      width: 33.3333%;
+      width: calc(33.3333% - #{$item_spacing});
     }
 
     // If there is 1,2 or 3 items inside the list of links:
     @include content_count(1, 2) {
       @include breakpoint($breakpoint-m) {
-        width: 50%;
+        width: calc(50% - #{$item_spacing});
       }
     }
 
     .list-of-links__item__link {
-      // Min-height is the same as the icon height.
-      min-height: 2rem;
-      padding-bottom: 0;
-      position: static;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      min-height: auto;
+      text-decoration: underline;
+
+      .link__type,
+      &::after {
+        align-self: flex-start;
+        margin-left: $spacing-half;
+        margin-top: -2px; // Pull the arrow a bit higher to match the text line-height.
+        @include breakpoint($breakpoint-s) {
+          margin-top: -8px; // Pull the arrow a bit higher to match the text line-height.
+        }
+      }
+      &:focus,
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     .list-of-links__item__title {
       display: flex;
       margin-left: 0;
-      text-decoration: underline;
     }
 
     .list-of-links__item__arrow {
@@ -177,12 +213,6 @@ $item_spacing: $spacing-triple;
         @include breakpoint($breakpoint-s) {
           --icon-size: 3rem;
         }
-      }
-    }
-
-    .list-of-links__item__link:hover {
-      .list-of-links__item__title {
-        text-decoration: none;
       }
     }
   }
@@ -208,12 +238,10 @@ $item_spacing: $spacing-triple;
 .has-sidebar .main-content {
 
   .list-of-links__item {
-    @include breakpoint($breakpoint-l) {
-      width: 50%;
-    }
+    padding-bottom: $spacing-and-half;
 
-    .list-of-links__item__link {
-      padding-bottom: $spacing-and-half;
+    @include breakpoint($breakpoint-l) {
+      width: calc(50% - #{$item_spacing});
     }
   }
 
@@ -221,7 +249,7 @@ $item_spacing: $spacing-triple;
   .component--list-of-links-without-image {
     .list-of-links__item {
       @include breakpoint($breakpoint-l) {
-        width: 50%;
+        width: calc(50% - #{$item_spacing});
       }
     }
   }

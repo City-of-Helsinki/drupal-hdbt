@@ -156,6 +156,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:hover {
+      text-decoration: underline;
       .hel-icon {
         margin-left: $spacing;
         @media (prefers-reduced-motion) {
