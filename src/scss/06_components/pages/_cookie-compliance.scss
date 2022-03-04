@@ -183,6 +183,55 @@
     margin-bottom: 80px;
   }
 }
+
+// Remote videos have black background and white text so we need different styles for the
+// block when its inside the remote video paragraph.
+.remote-video .embedded-content-cookie-compliance {
+  background-color: $color-black-90;
+
+  .message {
+    background-color: $color-black;
+
+    .hds-button--primary {
+      --background-color: var(--color-white);
+      --background-color-hover: var(--color-black);
+      --background-color-focus: var(--color-white);
+      --background-color-hover-focus: var(--color-black);
+      --background-color-disabled: var(--color-black-50);
+      --border-color: var(--color-white);
+      --border-color-hover: var(--color-white);
+      --border-color-focus: var(--color-white);
+      --border-color-hover-focus: var(--color-white);
+      --border-color-disabled: var(--color-black-50);
+      --color: var(--color-black);
+      --color-hover: var(--color-white);
+      --color-focus: var(--color-black);
+      --color-hover-focus: var(--color-white);
+      --color-disabled: var(--color-black);
+      --focus-outline-color: var(--color-white);
+      --submit-input-focus-gutter-color: var(--color-black);
+    }
+
+    .hds-button--secondary {
+      --background-color: transparent;
+      --background-color-hover: var(--color-white);
+      --background-color-focus: transparent;
+      --background-color-hover-focus: var(--color-white);
+      --background-color-disabled: transparent;
+      --border-color: var(--color-white);
+      --border-color-hover: var(--color-white);
+      --border-color-focus: var(--color-white);
+      --border-color-hover-focus: var(--color-white);
+      --border-color-disabled: var(--color-black-50);
+      --color: var(--color-white);
+      --color-hover: var(--color-black);
+      --color-focus: var(--color-white);
+      --color-hover-focus: var(--color-black);
+      --focus-outline-color: var(--color-white);
+    }
+  }
+}
+
 .react-and-share-cookie-compliance {
   .message {
     background-color: transparent;
