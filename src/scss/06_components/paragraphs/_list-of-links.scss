@@ -78,6 +78,7 @@ $item_spacing: $spacing-triple;
       @include hover-link-arrow-transition();
       content: '';
       display: block;
+      flex-shrink: 0;
       margin-left: -$spacing-quarter;
       margin-top: $spacing-half;
 
