@@ -28,16 +28,5 @@
     position: absolute;
     right: 0;
     text-decoration: underline;
-
-    &:after {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 0.9em;
-      margin: 0 0.1em 0.3em 0.2em;
-      mask-image: icon_url('link-external');
-      width: 0.9em;
-    }
   }
 }
