@@ -51,6 +51,10 @@ $_branding-icon-size-desktop: $spacing-double;
     padding: 0;
   }
 
+  .menu__item + .menu__item {
+    margin-left: $spacing-half;
+  }
+
   .menu__link {
     @include font('special.navigation.icon_label');
     display: block;
