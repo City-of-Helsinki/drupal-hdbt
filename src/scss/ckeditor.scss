@@ -36,3 +36,8 @@ body.cke_editable {
     }
   }
 }
+
+// TODO: This needs a better home and some TLC.
+[data-selected-icon] {
+  @extend .hdbt-icon;
+}
