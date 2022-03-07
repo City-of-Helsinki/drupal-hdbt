@@ -38,6 +38,10 @@ $_hamburger-icon-size-desktop: $spacing-double;
   .mm-listitem {
     min-height: $spacing-quadruple;
 
+    .menu__link {
+      --line-height: 1;
+    }
+
     .mm-listitem__text {
       padding: $spacing-menu-item 0 $spacing-menu-item $spacing-menu-item;
 
@@ -53,10 +57,6 @@ $_hamburger-icon-size-desktop: $spacing-double;
           top: 0;
           width: $spacing-quarter;
         }
-      }
-
-      .menu__link__text::after {
-        --line-height: 1;
       }
     }
 
@@ -104,14 +104,15 @@ $_hamburger-icon-size-desktop: $spacing-double;
       border: none;
     }
 
+    .menu__link {
+      --line-height: 1.5;
+    }
+
     .mm-listitem__text {
       @include font('special.navigation.mobile_subnav');
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-double;
 
-      .menu__link__text::after {
-        --line-height: 1.5;
-      }
     }
 
     .mm-btn {
