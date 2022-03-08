@@ -23,8 +23,8 @@
     order: 1;
   }
   .link__type {
-    margin-left: -16px; // Move external icon a bit to left without effecting transitions
-    margin-right: 16px;
+    margin-left: -$spacing; // Move external icon a bit to left without effecting transitions
+    margin-right: $spacing;
     order: 2;
   }
 
