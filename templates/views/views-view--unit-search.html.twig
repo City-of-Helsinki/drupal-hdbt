@@ -54,16 +54,17 @@
   {{ exposed }}
   {{ attachment_before }}
 
-  <span class="unit-search__count-container">
-    <span class="unit-search__count">{{ total_rows }}</span>
-    {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
-  </span>
+  <div class="unit-search__results">
+    <span class="unit-search__count-container">
+      <span class="unit-search__count">{{ total_rows }}</span>
+      {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+    </span>
 
-  {{ rows }}
-
-  {{ empty }}
-  {{ pager }}
-
+    {{ rows }}
+  
+    {{ empty }}
+    {{ pager }}
+  </div>
   {{ attachment_after }}
   {{ more }}
 
