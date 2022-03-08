@@ -4,22 +4,34 @@
     'component--remote-video',
   ]
 %}
-
+{% set paragraph_title = content.field_remote_video_title %}
+{% set paragraph_desc = content.field_remote_video_description %}
 {% set video = content.field_remote_video %}
+{% set video_title = content.field_remote_video_video_title %}
+{% set video_desc = content.field_remote_video_video_desc %}
 
+{% if not paragraph_title|render and not paragraph_desc|render %}
+  {% set header_class = 'component--no-header' %}
+{% endif %}
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--remote-video' ],
+      component_title: paragraph_title,
+      component_description: paragraph_desc,
+      component_classes: [
+        header_class,
+        'component--remote-video'
+      ],
       component_content_class: 'remote-video',
     }
   %}
     {% block component_content %}
-
-      <div>
+      <div class="remote-video__video">
         {{ video }}
       </div>
-
+      <h3 class="remote-video__video-title">{{ video_title }}</h3>
+      <div class="remote-video__video-desc">{{ video_desc }}</div>
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
+
