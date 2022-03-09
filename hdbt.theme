@@ -157,6 +157,7 @@ function hdbt_preprocess_media(&$variables) {
 function hdbt_get_settings(string $setting, string $group = 'site_settings') {
   return Drupal::config('hdbt_admin_tools.site_settings')?->getOriginal("$group.$setting", FALSE);
 }
+
 /**
  * Implements hook_preprocess_HOOK().
  */
