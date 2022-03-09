@@ -10,12 +10,12 @@
 }
 
 .link__type--tel {
-  @include pseudo-icon-replace('phone');
+  @include pseudo-icon-replace('tel');
   --external-icon-move: rotate(15deg);
 }
 
 .link__type--mailto {
-  @include pseudo-icon-replace('envelope');
+  @include pseudo-icon-replace('mailto');
   --external-icon-move: rotate(15deg);
 }
 
