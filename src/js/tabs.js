@@ -29,7 +29,7 @@
 
   // Save the active tab and its content to session storage.
   function addToActiveTabStorage(activeTab) {
-    const tabId = activeTab.id;
+    const tabId = activeTab.dataset.drupalSelector;
     const contentId = activeTab.getAttribute('aria-controls');
 
     if (tabId && contentId) {
@@ -48,7 +48,7 @@
       const tabInstaceId = instance.dataset.idNumber;
 
       // If the active tab is not set, use first tab as default.
-      if (activeTab == null) {
+      if (!activeTab) {
         activeTab = 'tab-1--' + tabInstaceId;
         activeContent = 'tab-1__content--' + tabInstaceId;
       }
@@ -93,6 +93,9 @@
 
   // Run after page is ready.
   $(document).ready(function () {
+    // Clear the session storage on page reload.
+    window.sessionStorage.removeItem('activeTab');
+    window.sessionStorage.removeItem('activeContent');
     initiateTabs();
   });
 

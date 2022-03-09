@@ -1044,7 +1044,7 @@ function hdbt_preprocess_views_view(&$variables) {
  */
 function hdbt_views_pre_render(ViewExecutable $view) {
   // Add library to all for ajax progress.
-  if (!$view->element["#name"] == 'high_school_search') {
+  if ($view->element["#name"] !== 'high_school_search') {
     return;
   }
 
