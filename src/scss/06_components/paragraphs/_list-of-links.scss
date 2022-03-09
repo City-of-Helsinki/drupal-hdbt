@@ -89,7 +89,7 @@ $item_spacing: $spacing-triple;
       }
     }
 
-    &[data-is-external='true']::after {
+    &[data-is-external]::after {
       content: none;
       display: none;
     }

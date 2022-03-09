@@ -134,7 +134,7 @@
         order: 3;
       }
 
-      &[data-is-external='true']:after {
+      &[data-is-external]:after {
         display: none; // external links have their own icon already
       }
 

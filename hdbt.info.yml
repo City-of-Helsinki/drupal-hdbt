@@ -36,7 +36,7 @@ libraries-extend:
     - hdbt/throbber
 
 ckeditor_stylesheets:
-  - dist/css/ckeditor.min.css
   - dist/css/hds.min.css
   - dist/css/hdbt-icons.css
   - dist/css/ckeditor-icons.css
+  - dist/css/ckeditor.min.css

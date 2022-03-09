@@ -106,7 +106,7 @@
       }
     }
 
-    &[data-is-external='true']::after {
+    &[data-is-external]::after {
       content: none;
     }
   }

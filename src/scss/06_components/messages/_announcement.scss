@@ -83,7 +83,7 @@
       transform: none;
     }
   }
-  a[data-is-external='true']::after {
+  a[data-is-external]::after {
     content: none;
   }
 }

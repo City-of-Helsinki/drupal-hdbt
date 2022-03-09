@@ -35,7 +35,6 @@ a.hds-button {
     .hds-button__label {
       line-height: $spacing-and-half; // To avoid too low link buttons
       margin: 0 0 -#{$spacing-half} 0;
-      order: 1;
       padding: $spacing-half;
 
       &:only-child {
@@ -43,9 +42,10 @@ a.hds-button {
       }
     }
 
-    &:before {
+    &:not([data-selected-icon]):not([data-is-external])::before,
+    &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
-      @include pseudo-icon(null, var(--icon-size), var(--color), inline-block);
+      @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
       order: 3;
       position: static;
     }
@@ -65,7 +65,7 @@ a.hds-button {
   }
 }
 
-.hds-button--supplementary:not(.hdbt-icon) {
+.hds-button--supplementary:not(.hdbt-icon):not([data-selected-icon]) {
   &:before {
     // Add default icon (arrow icon) for the supplementary button.
     @include pseudo-icon-replace('arrow-right');
