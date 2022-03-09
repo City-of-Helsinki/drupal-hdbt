@@ -1,3 +1,4 @@
+.cke_editable, // Fix colors in edit mode too.
 .component--paragraph-text .component__content {
   @include font('body');
   max-width: $content-width-max;
