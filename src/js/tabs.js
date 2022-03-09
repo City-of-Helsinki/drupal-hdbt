@@ -29,7 +29,7 @@
 
   // Save the active tab and its content to session storage.
   function addToActiveTabStorage(activeTab) {
-    const tabId = activeTab.id;
+    const tabId = activeTab.dataset.drupalSelector;
     const contentId = activeTab.getAttribute('aria-controls');
 
     if (tabId && contentId) {
@@ -48,7 +48,7 @@
       const tabInstaceId = instance.dataset.idNumber;
 
       // If the active tab is not set, use first tab as default.
-      if (activeTab == null) {
+      if (!activeTab) {
         activeTab = 'tab-1--' + tabInstaceId;
         activeContent = 'tab-1__content--' + tabInstaceId;
       }
@@ -84,6 +84,8 @@
 
   // Run after each ajax submit on the element that has tabs.
   $(document).ajaxComplete(function(e, xhr, settings) {
+    console.log('view_name:', settings.extraData.view_name);
+    console.log('drupalSettings:', drupalSettings.tabsParent);
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
       let activeTab = window.sessionStorage.getItem('activeTab');
       let activeContent =  window.sessionStorage.getItem('activeContent');
@@ -93,6 +95,9 @@
 
   // Run after page is ready.
   $(document).ready(function () {
+    // Clear the session storage on page reload.
+    window.sessionStorage.removeItem('activeTab');
+    window.sessionStorage.removeItem('activeContent');
     initiateTabs();
   });
 
