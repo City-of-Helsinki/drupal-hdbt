@@ -84,8 +84,6 @@
 
   // Run after each ajax submit on the element that has tabs.
   $(document).ajaxComplete(function(e, xhr, settings) {
-    console.log('view_name:', settings.extraData.view_name);
-    console.log('drupalSettings:', drupalSettings.tabsParent);
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
       let activeTab = window.sessionStorage.getItem('activeTab');
       let activeContent =  window.sessionStorage.getItem('activeContent');
