@@ -42,12 +42,25 @@ a.hds-button {
       }
     }
 
+    // Target before element when there is no selected icon, otherwise target after element
     &:not([data-selected-icon]):not([data-is-external])::before,
     &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
       @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
+      @include hover-link-arrow-transition();
       order: 3;
       position: static;
+    }
+
+    // Handle animation for above on focus and hover
+    &:focus:not([data-selected-icon]):not([data-is-external])::before,
+    &:hover:not([data-selected-icon]):not([data-is-external])::before,
+    &[data-selected-icon]:focus:not([data-is-external])::after,
+    &[data-selected-icon]:hover:not([data-is-external])::after {
+      transform: translateX($spacing-quarter);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
 
     &:hover {
