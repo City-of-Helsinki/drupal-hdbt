@@ -7,7 +7,7 @@ h6 {
   hyphens: auto;
   margin-bottom: 0;
   margin-top: $spacing-triple;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 
@@ -51,4 +51,5 @@ a {
 p {
   margin-bottom: 0;
   margin-top: $spacing;
+  overflow-wrap: break-word;
 }
