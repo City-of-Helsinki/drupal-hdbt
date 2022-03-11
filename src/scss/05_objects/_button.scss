@@ -265,6 +265,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
 // Set colors for all hds-button--link elements that have color defined via primary, secondary or supplementary modifier
 @include hds-button-colors-on-light-bg($class: '.hds-button--link');
 
+// Hide target blank explanation text from others than screen-readers
 .hds-button__target-blank {
   @include visually-hidden();
 }
