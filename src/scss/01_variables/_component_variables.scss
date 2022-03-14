@@ -1,3 +1,4 @@
+$component-side-padding-breakpoint: $breakpoint-m;
 $component-spacing-breakpoint: $breakpoint-l;
 $component-spacing-mobile: $spacing-double; //        32px
 $component-spacing-desktop: $spacing-quadruple; //    64px
@@ -5,5 +6,5 @@ $component-title-spacing-mobile: $spacing; //         16px
 $component-title-spacing-desktop: $spacing; //        16px
 $component-desc-spacing-mobile: $spacing-and-half; // 24px
 $component-desc-spacing-desktop: $spacing-triple; //  48px
-$component-side-padding-mobile: $spacing-double; //   32px
+$component-side-padding-mobile: $spacing; //   16px
 $component-side-padding-desktop: $spacing-double; //  32px
