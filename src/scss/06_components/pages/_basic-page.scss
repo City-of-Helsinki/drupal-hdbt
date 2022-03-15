@@ -1,5 +1,6 @@
 [data-unpublished]::before{
-  @include font('body');
+  @include font('small');
+  --line-height: 1;
   background: $color-error;
   color: $color-white;
   content: attr(data-unpublished);
@@ -10,8 +11,10 @@
   transform: rotate(-90deg) translateX(calc(-50% - 50vh));
   transform-origin: top left;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($component-side-padding-breakpoint) {
     content: attr(data-unpublished-long);
+    @include font('body');
+    --line-height: 1.5;
   }
 }
 

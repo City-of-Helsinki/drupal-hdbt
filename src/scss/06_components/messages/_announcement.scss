@@ -13,8 +13,8 @@
   box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  margin-left: $spacing-half;
-  margin-right: $spacing-half;
+  margin-left: $component-side-padding-mobile;
+  margin-right: $component-side-padding-mobile;
   min-height: var(--announcement-bg-size);
   padding-bottom: $spacing;
   padding-left: calc(var(--announcement-bg-size) + #{$spacing});
@@ -32,8 +32,12 @@
 
   @include breakpoint($breakpoint-m) {
     --announcement-bg-size: #{$spacing-triple};
-    margin-left: $spacing-double;
-    margin-right: $spacing-double;
+  }
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-side-padding-breakpoint) {
+      margin-left: $component-side-padding-desktop;
+      margin-right: $component-side-padding-desktop;
+    }
   }
 }
 
