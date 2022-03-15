@@ -9,13 +9,18 @@
   {# Sadly drupal targets `ul.js-pager__items > li > a` to enable ajax, so we have to have these elements #}
   <ul{{ attributes.addClass('pager') }}>
     <li>
+      {% set link_title %}
+        <span class="hds-button__label">{{ options.button_text }}</span>
+      {% endset %}
       {% set link_attributes = {
         'class': [
+          'hds-button',
+          'hds-button--primary',
           'pager-button',
         ],
         'rel': 'next',
       } %}
-      {{ link(options.button_text, items.next.href, link_attributes) }}
+      {{ link(link_title, items.next.href, link_attributes) }}
     </li>
   </ul>
 {% endif %}
