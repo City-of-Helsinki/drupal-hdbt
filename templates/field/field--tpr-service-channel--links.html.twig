@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override for a TPR service channel links field.
+ *
+ * Available variables in single item:
+ * - link_title: Title for the link.
+ * - link_url: URL object for the link.
+ *
+ * @see hdbt_preprocess_field()
+ */
+#}
+{% for item in items %}
+  {% if item.link_title and item.link_url %}
+    {% set link_attributes = {
+      'class': [
+        'hds-button',
+        'hds-button--primary',
+      ]
+    } %}
+    {% set link_title %}
+      <span class="hds-button__label">{{ item.link_title }}</span>
+    {% endset %}
+    {{ link(link_title, item.link_url, link_attributes) }}
+  {% endif %}
+{% endfor %}

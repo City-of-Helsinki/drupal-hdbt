@@ -989,6 +989,19 @@ function hdbt_preprocess_field(&$variables) {
       // Craft a rendered token variable for Service short description.
       _hdbt_craft_token('service_short_description_rendered_token', $variables);
       break;
+
+    case 'links':
+      // Craft Service channel links url and title for the templates.
+      if (
+        isset($variables['entity_type']) &&
+        $variables['entity_type'] === 'tpr_service_channel'
+      ) {
+        foreach ($variables['items'] as &$item) {
+          $item['link_url'] = $item['content']['#url'];
+          $item['link_title'] = $item['content']['#title'];
+        }
+      }
+      break;
   }
 }
 
