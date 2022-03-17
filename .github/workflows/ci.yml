@@ -12,7 +12,7 @@ jobs:
       matrix:
         php-versions: ['8.0']
     container:
-      image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}
+      image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
 
     services:
       db:
