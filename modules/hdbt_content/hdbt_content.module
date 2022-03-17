@@ -127,6 +127,16 @@ function hdbt_content_language_switch_links_alter(array &$links) {
  * Implements hook_form_FORM_ID_alter().
  */
 function hdbt_content_form_views_exposed_form_alter(&$form, $form_state) {
+  // Setting high school search form autocompletes to off so that when
+  // users returning to the form won't see their previous selections
+  // and think that the results match to those because they don't.
+  if (str_starts_with($form['#id'], 'views-exposed-form-high-school-search-block')) {
+    $form['#attributes']['autocomplete'] = 'off';
+    $form['emphasis']['#attributes']['autocomplete'] = 'off';
+    $form['mission']['#attributes']['autocomplete'] = 'off';
+    $form['type']['#attributes']['autocomplete'] = 'off';
+  }
+
   // Handle only Unit search view form at this point.
   if (!str_starts_with($form['#id'], 'views-exposed-form-unit-search-block')) {
     return;
