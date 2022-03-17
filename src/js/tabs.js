@@ -25,6 +25,13 @@
     // Then show the selected tab.
     tab.setAttribute('aria-selected', 'true');
     tabsContent.setAttribute('aria-hidden', 'false');
+
+    // Submit the search/filter form to refresh the map view.
+    let filterForm = $('[id^=views-exposed-form-high-school-search-block]');
+
+    if (filterForm.length) {
+      $('.form-submit', filterForm).trigger('click');
+    }
   }
 
   // Save the active tab and its content to session storage.
