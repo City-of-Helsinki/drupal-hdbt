@@ -403,8 +403,7 @@ input[type="submit"].hds-button--small {
   }
 }
 
-a.hds-button {
-  text-decoration: none;
+.hds-button {
 
   // The supplementary button just won't work with the focus and default layout in the left aligned layout
   // so these changes are required to make it look even a bit more decent.
