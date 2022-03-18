@@ -149,40 +149,6 @@ input[type="submit"].hds-button {
   padding-right: var(--spacing-3-xs);
 }
 
-/* SMALL */
-
-.hds-button--small {
-  padding: 0;
-}
-
-input[type="submit"].hds-button--small,
-.hds-button--small .hds-button__label {
-  line-height: var(--lineheight-s);
-  padding: var(--spacing-2-xs) var(--spacing-xs);
-}
-
-input[type="submit"].hds-button--small {
-  padding: var(--spacing-2-xs) var(--spacing-m);
-}
-
-/* no icons */
-
-.hds-button--small .hds-button__label:only-child {
-  margin: 0 var(--spacing-xs);
-}
-
-/* both icons */
-
-.hds-button--small .hds-button__label:not(:first-of-type):not(:last-of-type) {
-  padding: var(--spacing-2-xs) var(--spacing-2-xs);
-}
-
-/* FULL WIDTH */
-
-.hds-button--fullwidth {
-  width: 100%;
-}
-
 /* ICONS */
 
 /* left */
@@ -199,18 +165,6 @@ input[type="submit"].hds-button--small {
   margin: 0 var(--spacing-s) 0 0;
 }
 
-/* left - small */
-
-.hds-button--small .hds-icon {
-  margin-left: var(--spacing-2-xs);
-}
-
-/* right - small */
-
-.hds-button .hds-button--small .hds-button__label ~ .hds-icon {
-  margin: 0 var(--spacing-2-xs) 0 0;
-}
-
 /* both icons - left */
 
 .hds-button .hds-icon:first-of-type:not(:last-of-type) {
@@ -220,18 +174,6 @@ input[type="submit"].hds-button--small {
 /* both icons - right */
 
 .hds-button .hds-icon:last-of-type:not(:first-of-type) {
-  margin: 0 var(--spacing-2-xs) 0 0;
-}
-
-/* both icons - left - small */
-
-.hds-button--small .hds-icon:first-child:not(:last-of-type) {
-  margin: 0 0 0 var(--spacing-2-xs);
-}
-
-/* both icons - right - small */
-
-.hds-button--small .hds-icon:last-child:not(:first-of-type) {
   margin: 0 var(--spacing-2-xs) 0 0;
 }
 
