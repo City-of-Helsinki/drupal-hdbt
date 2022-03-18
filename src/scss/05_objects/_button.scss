@@ -19,7 +19,6 @@
   min-height: var(--min-size);
   min-width: var(--min-size);
   padding: 0 var(--spacing-2-xs);
-  position: relative;
   vertical-align: top;
 }
 
@@ -82,25 +81,10 @@
 
 /* FOCUS OUTLINE */
 
-.hds-button::after {
-  --size: 100%;
-
-  border: var(--outline-width) solid transparent;
-  content: '';
-  height: var(--size);
-  position: absolute;
-  width: var(--size);
-}
-
-.hds-button:focus::after {
-  --size: calc(100% + calc(var(--outline-width) * 2 + var(--border-width) * 2 + var(--outline-gutter) * 2));
-  border-color: var(--focus-outline-color);
-}
-
-/* submit input */
-
-input[type="submit"].hds-button:focus {
-  box-shadow: 0 0 0 var(--outline-gutter) var(--submit-input-focus-gutter-color), 0 0 0 calc(var(--outline-gutter) + var(--outline-width)) var(--focus-outline-color);
+.hds-button:focus {
+  outline: var(--outline-width) solid var(--focus-outline-color);
+  outline-offset: var(--outline-gutter);
+  outline-offset: 2px;
 }
 
 /* LABEL */
@@ -252,7 +236,6 @@ input[type="submit"].hds-button--small {
   --color-disabled: var(--color-white);
 
   --focus-outline-color: var(--color-coat-of-arms);
-  --submit-input-focus-gutter-color: var(--color-white);
 }
 
 /* SECONDARY */
@@ -279,7 +262,6 @@ input[type="submit"].hds-button--small {
   --color-disabled: var(--color-black-40);
 
   --focus-outline-color: var(--color-coat-of-arms);
-  --submit-input-focus-gutter-color: var(--color-white);
 }
 
 /* SUPPLEMENTARY */
@@ -304,7 +286,6 @@ input[type="submit"].hds-button--small {
   --color-disabled: var(--color-black-40);
 
   --focus-outline-color: transparent;
-  --submit-input-focus-gutter-color: transparent;
 }
 
 /* LOADING */
