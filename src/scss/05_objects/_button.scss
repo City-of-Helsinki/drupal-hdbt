@@ -1,5 +1,27 @@
+@mixin buttons-on-light-bg(){
+  --theme-fg1: var(--color-white);
+  --theme-fg2: var(--color-black);
+  --theme-bg1: var(--color-black);
+  --theme-bg2: transparent;
+  --theme-focus: var(--color-black);
+}
+
+@mixin buttons-on-dark-bg(){
+  --theme-fg1: var(--color-black);
+  --theme-fg2: var(--color-white);
+  --theme-bg1: var(--color-white);
+  --theme-bg2: transparent;
+  --theme-focus: var(--color-white);
+}
+
+:root {
+  @include buttons-on-light-bg();
+}
+
 // Content from HDS button.css starts
 .hds-button {
+  @include font('button');
+
   --border-width: 2px;
   --color: inherit;
   --min-size: 44px;
@@ -19,6 +41,7 @@
   min-height: var(--min-size);
   min-width: var(--min-size);
   padding: 0 var(--spacing-2-xs);
+  text-decoration: none;
   vertical-align: top;
 }
 
@@ -217,25 +240,25 @@ input[type="submit"].hds-button--small {
 /* default (bus) */
 
 .hds-button--primary {
-  --background-color: var(--color-bus);
-  --background-color-hover: var(--color-bus-dark);
-  --background-color-focus: var(--color-bus);
-  --background-color-hover-focus: var(--color-bus-dark);
+  --background-color: var(--theme-bg1, var(--color-bus));
+  --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
+  --background-color-focus: var(--theme-bg1, var(--color-bus));
+  --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
   --background-color-disabled: var(--color-black-20);
 
-  --border-color: var(--color-bus);
-  --border-color-hover: var(--color-bus-dark);
-  --border-color-focus: var(--color-bus);
-  --border-color-hover-focus: var(--color-bus-dark);
+  --border-color: var(--theme-bg1, var(--color-bus));
+  --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
+  --border-color-focus: var(--theme-bg1, var(--color-bus));
+  --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
   --border-color-disabled: var(--color-black-20);
 
-  --color: var(--color-white);
-  --color-hover: var(--color-white);
-  --color-focus: var(--color-white);
-  --color-hover-focus: var(--color-white);
+  --color: var(--theme-fg1, var(--color-white));
+  --color-hover: var(--theme-fg2, var(--color-white));
+  --color-focus: var(--theme-fg1, var(--color-white));
+  --color-hover-focus: var(--theme-fg2, var(--color-white));
   --color-disabled: var(--color-white);
 
-  --focus-outline-color: var(--color-coat-of-arms);
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
 /* SECONDARY */
@@ -243,49 +266,49 @@ input[type="submit"].hds-button--small {
 /* default (bus) */
 
 .hds-button--secondary {
-  --background-color: transparent;
-  --background-color-hover: var(--color-bus-light);
-  --background-color-focus: transparent;
-  --background-color-hover-focus: var(--color-bus-light);
+  --background-color: var(--theme-bg2, transparent);
+  --background-color-hover: var(--theme-bg1, var(--color-bus-light));
+  --background-color-focus: var(--theme-bg2, transparent);
+  --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
   --background-color-disabled: transparent;
 
-  --border-color: var(--color-bus);
-  --border-color-hover: var(--color-bus-dark);
-  --border-color-focus: var(--color-bus);
-  --border-color-hover-focus: var(--color-bus-dark);
+  --border-color: var(--theme-bg1, var(--color-bus));
+  --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
+  --border-color-focus: var(--theme-bg1, var(--color-bus));
+  --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
   --border-color-disabled: var(--color-black-50);
 
-  --color: var(--color-bus);
-  --color-hover: var(--color-bus-dark);
-  --color-focus: var(--color-bus);
-  --color-hover-focus: var(--color-bus-dark);
+  --color: var(--theme-fg2, var(--color-bus));
+  --color-hover: var(--theme-fg1, var(--color-bus-dark));
+  --color-focus: var(--theme-fg2, var(--color-bus));
+  --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
   --color-disabled: var(--color-black-40);
 
-  --focus-outline-color: var(--color-coat-of-arms);
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
 /* SUPPLEMENTARY */
 
 .hds-button--supplementary {
-  --background-color: transparent;
-  --background-color-hover: var(--color-bus-light);
-  --background-color-focus: transparent;
-  --background-color-hover-focus: var(--color-bus-light);
+  --background-color: var(--theme-bg2, transparent);
+  --background-color-hover: var(--theme-bg2, var(--color-bus-light));
+  --background-color-focus: var(--theme-bg2, transparent);
+  --background-color-hover-focus: var(--theme-bg2, var(--color-bus-light));
   --background-color-disabled: transparent;
 
-  --border-color: transparent;
-  --border-color-hover: transparent;
-  --border-color-focus: var(--color-coat-of-arms);
-  --border-color-hover-focus: var(--color-coat-of-arms);
+  --border-color: var(--theme-bg2, transparent);
+  --border-color-hover: var(--theme-bg2, transparent);
+  --border-color-focus: var(--theme-bg2, var(--color-coat-of-arms));
+  --border-color-hover-focus: var(--theme-bg2, var(--color-coat-of-arms));
   --border-color-disabled: transparent;
 
-  --color: var(--color-bus);
-  --color-hover: var(--color-bus-dark);
-  --color-focus: var(--color-bus);
-  --color-hover-focus: var(--color-bus-dark);
+  --color: var(--theme-fg2, var(--color-bus));
+  --color-hover: var(--theme-fg2, var(--color-bus-dark));
+  --color-focus: var(--theme-fg2, var(--color-bus));
+  --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
   --color-disabled: var(--color-black-40);
 
-  --focus-outline-color: transparent;
+  --focus-outline-color: var(--theme-focus, transparent);
 }
 
 /* LOADING */
@@ -332,7 +355,7 @@ input[type="submit"].hds-button--small {
   --color-focus: var(--color-white);
   --color-hover-focus: var(--color-white);
 
-  --focus-outline-color: var(--color-coat-of-arms);
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
 /* danger */
@@ -353,14 +376,13 @@ input[type="submit"].hds-button--small {
   --color-focus: var(--color-white);
   --color-hover-focus: var(--color-white);
 
-  --focus-outline-color: var(--color-coat-of-arms);
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
 // Content fron HDS button.css ends
 // TODO: Refactor hds-button.
 // Fix for button margins when using hel-icon.
 .hds-button {
-  @include font('button');
 
   // Set icon size for the button icons.
   .hel-icon {
