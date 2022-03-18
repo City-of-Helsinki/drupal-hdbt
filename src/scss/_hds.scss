@@ -11,7 +11,8 @@
 
 // Get content from:
 // Rows below strip only used bits from @import 'xx_external/hds-core/lib/components/all.min.css';
-@import 'xx_external/hds-core/lib/components/button/button.min.css';
+
+// Please note that button.css contents have been moved inside 05_objects/_button.scss
 @import 'xx_external/hds-core/lib/components/checkbox/checkbox.min.css';
 @import 'xx_external/hds-core/lib/components/koros/koros.min.css';
 @import 'xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css';
