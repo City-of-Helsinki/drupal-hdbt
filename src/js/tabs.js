@@ -26,10 +26,9 @@
     tab.setAttribute('aria-selected', 'true');
     tabsContent.setAttribute('aria-hidden', 'false');
 
-    // Submit the search/filter form to refresh the map view.
-    let filterForm = $('[id^=views-exposed-form-high-school-search-block]');
-
-    if (filterForm.length) {
+    // Refresh the map view by submitting the search/filter form.
+    if (tabsContentId.startsWith('tab-2')) {
+      let filterForm = $('[id^=views-exposed-form-high-school-search-block]');
       $('.form-submit', filterForm).trigger('click');
     }
   }
