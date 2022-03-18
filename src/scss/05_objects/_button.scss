@@ -1,4 +1,4 @@
-@mixin buttons-on-light-bg(){
+@mixin hds-button-colors-on-light-bg(){
   --theme-fg1: var(--color-white);
   --theme-fg2: var(--color-black);
   --theme-bg1: var(--color-black);
@@ -6,7 +6,7 @@
   --theme-focus: var(--color-black);
 }
 
-@mixin buttons-on-dark-bg(){
+@mixin hds-button-colors-on-dark-bg(){
   --theme-fg1: var(--color-black);
   --theme-fg2: var(--color-white);
   --theme-bg1: var(--color-white);
@@ -15,7 +15,7 @@
 }
 
 :root {
-  @include buttons-on-light-bg();
+  @include hds-button-colors-on-light-bg();
 }
 
 // Content from HDS button.css starts
