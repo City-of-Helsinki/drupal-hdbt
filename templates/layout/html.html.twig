@@ -23,27 +23,40 @@
  * @see template_preprocess_html()
  */
 #}
+
+{# Available color themes, hardcoded to enable searching and to force thinking when adding these :) #}
+{% if theme_color == 'bus'  %}
+  {% set class = 'hdbt-theme--bus' %}
+{% elseif theme_color == 'coat-of-arms' %}
+  {% set class = 'hdbt-theme--coat-of-arms' %}
+{% elseif theme_color == 'copper' %}
+  {% set class = 'hdbt-theme--copper' %}
+{% elseif theme_color == 'engel' %}
+  {% set class = 'hdbt-theme--engel' %}
+{% elseif theme_color == 'gold' %}
+  {% set class = 'hdbt-theme--gold' %}
+{% elseif theme_color == 'metro' %}
+  {% set class = 'hdbt-theme--metro' %}
+{% elseif theme_color == 'silver' %}
+  {% set class = 'hdbt-theme--silver' %}
+{% elseif theme_color == 'summer' %}
+  {% set class = 'hdbt-theme--summer' %}
+{% elseif theme_color == 'suomenlinna' %}
+  {% set class = 'hdbt-theme--suomenlinna' %}
+{% elseif theme_color == 'tram' %}
+  {% set class = 'hdbt-theme--tram' %}
+{% endif %}
+
+
 <!DOCTYPE html>
-<html{{ html_attributes }}>
+<html{{ html_attributes.addClass(class) }}>
   <head>
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  {%
-    set hdbt_defaults = '--hdbt-color-palette--primary: var(--hdbt-color-' ~ theme_color ~ '--primary);'
-                      ~ '--hdbt-color-palette--secondary: var(--hdbt-color-' ~ theme_color ~ '--secondary);'
-                      ~ '--hdbt-color-palette--accent: var(--hdbt-color-' ~ theme_color ~ '--accent);'
-                      ~ '--hdbt-color-palette-text--primary: var(--hdbt-color-' ~ theme_color ~ '-text--primary);'
-                      ~ '--hdbt-color-palette-text--secondary: var(--hdbt-color-' ~ theme_color ~ '-text--secondary);'
-                      ~ '--hdbt-color-palette-text--accent: var(--hdbt-color-' ~ theme_color ~ '-text--accent);'
-                      ~ '--hdbt-color-palette-button--primary: var(--hdbt-color-' ~ theme_color ~ '-button--primary);'
-                      ~ '--hdbt-color-palette-button-contrast--primary: var(--hdbt-color-' ~ theme_color ~ '-button-contrast--primary);'
-                      ~ '--hdbt-color-palette-button--secondary: var(--hdbt-color-' ~ theme_color ~ '-button--secondary);'
-                      ~ '--hdbt-color-palette-button-contrast--secondary: var(--hdbt-color-' ~ theme_color ~ '-button-contrast--secondary);'
-  %}
-  <body{{ attributes.setAttribute('style', hdbt_defaults) }}>
+  <body>
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.

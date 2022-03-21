@@ -1,0 +1,13 @@
+
+.pager {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-left: 0;
+  margin-top: $spacing-double;
+  padding: 0;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
+}

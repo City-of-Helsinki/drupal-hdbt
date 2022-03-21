@@ -21,8 +21,24 @@
         <p class="maintenance-page__description">
           {{ page.content }}
         </p>
-        <a href="{{ maintenance_page_home_link }}" class="maintenance-page__link">{{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a><br/>
-        <a href="{{ maintenance_page_feedback_link }}" class="maintenance-page__link">{{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a>
+
+        {% set link_title %}
+          {{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }}
+        {% endset %}
+        {% set link_attributes = {
+          'class': [
+            'maintenance-page__link',
+          ],
+        } %}
+        {{ link(link_title, maintenance_page_home_link, link_attributes) }}
+
+        <br>
+
+        {% set feedback_link_title %}
+          {{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }}
+        {% endset %}
+        {{ link(feedback_link_title, maintenance_page_feedback_link, link_attributes) }}
+
       </main>
     </div>
     <div class="maintenance-page__illustration-container">

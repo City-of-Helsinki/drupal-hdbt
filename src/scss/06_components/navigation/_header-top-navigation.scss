@@ -37,8 +37,4 @@
       --external-icon-move: scale(1);
     }
   }
-
-  .explain-external-icon {
-    @include visually-hidden();
-  }
 }

@@ -53,8 +53,6 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-
-    <a href="{{ url }}" {% if target_new %}target="_blank"{% endif %} class="list-of-links__item__link">
       {% if list_of_links_design == 'with-image' %}
         <div class="list-of-links__item__image">
           {% if image.0 %}
@@ -64,17 +62,23 @@
           {% endif %}
         </div>
       {% endif %}
-      <h3 class="list-of-links__item__title">{{ text }}
-        <span class="list-of-links__item__arrow{% if target_new %} is-outbound{% endif %}">
-          {% include '@hdbt/misc/icon.twig' with {icon: (target_new)?'link-external':'arrow-right' } %}
-        </span>
-      </h3>
+
+      {% set link_title %}
+        <span>{{ text }}</span>
+      {% endset %}
+      {% set link_attributes = {
+        'class': [
+          'list-of-links__item__link',
+        ],
+        'target': target_new ? '_blank' : null,
+      } %}
+      <h3 class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</h3>
+
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>
         {% endif %}
       {% endif %}
-    </a>
     {% endblock %}
   </div>
 {% endblock paragraph %}

@@ -59,9 +59,14 @@
     </div>
   {% endif %}
 
-  {% if content.email|render %}
+  {% if service_channel_email_link and content.email|render %}
+    {% set link_attributes = {
+      'class': [
+        'service-channel__email-link',
+      ],
+    } %}
     <div class="service-channel__email">
-      <a href="mailto:{{ content.email.0 }}" class="service-channel__email-link">{{ content.email }}</a>
+      {{ link(content.email, service_channel_email_link, link_attributes) }}
     </div>
   {% endif %}
 

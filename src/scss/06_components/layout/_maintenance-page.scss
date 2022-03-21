@@ -35,12 +35,23 @@
   display: inline-flex;
   margin-top: $spacing-double;
 
-  .hel-icon {
-    margin-left: $spacing-half;
+  &::after {
+    @include pseudo-icon('arrow-right');
+    @include hover-link-arrow-transition();
+  }
+  &[data-is-external]::after {
+    content: none;
   }
 
   &:hover {
     text-decoration: none;
+
+    &::after {
+      transform: translateX($spacing-quarter);
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
   }
 
   + .maintenance-page__link {

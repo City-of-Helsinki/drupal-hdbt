@@ -17,9 +17,19 @@
     {% block container_content %}
       <div{{ attributes.addClass(region|clean_class) }}>
         <div class="footer-bottom__navigation-wrapper">
-          <a href="{{ path('<front>') }}" class="logo logo--footer" title="{{ site_name }}" rel="home">
+          {% set link_title %}
             {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-          </a>
+          {% endset %}
+          {% set link_attributes = {
+            'class': [
+              'logo',
+              'logo--footer',
+            ],
+            'title': site_name,
+            'rel': 'home',
+          } %}
+          {{ link(link_title, site_front_url, link_attributes) }}
+
           {{ content }}
         </div>
         <a href="#skip-to-main" onclick="document.getElementById('skip-to-main').focus();" class="footer__back-to-top">

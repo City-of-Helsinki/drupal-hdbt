@@ -1,4 +1,6 @@
 $spacing-menu-item: 20px;
+$_hamburger-icon-size-mobile: $spacing-and-half;
+$_hamburger-icon-size-desktop: $spacing-double;
 
 // Mmenu default variables
 .mm-menu {
@@ -36,6 +38,10 @@ $spacing-menu-item: 20px;
   .mm-listitem {
     min-height: $spacing-quadruple;
 
+    .menu__link {
+      --line-height: 1;
+    }
+
     .mm-listitem__text {
       padding: $spacing-menu-item 0 $spacing-menu-item $spacing-menu-item;
 
@@ -51,10 +57,6 @@ $spacing-menu-item: 20px;
           top: 0;
           width: $spacing-quarter;
         }
-      }
-
-      .menu__link__text::after {
-        --line-height: 1;
       }
     }
 
@@ -102,14 +104,15 @@ $spacing-menu-item: 20px;
       border: none;
     }
 
+    .menu__link {
+      --line-height: 1.5;
+    }
+
     .mm-listitem__text {
       @include font('special.navigation.mobile_subnav');
       // 16px padding for both top and bottom was just a bit too much and 8 too little.
       padding: 14px 0 14px $spacing-double;
 
-      .menu__link__text::after {
-        --line-height: 1.5;
-      }
     }
 
     .mm-btn {
@@ -194,27 +197,25 @@ $spacing-menu-item: 20px;
 // Menu trigger (burger).
 .mobile-navigation__trigger {
   @include font('special.navigation.icon_label');
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 40px;
-  justify-content: center;
-  margin: 0 0 0 $spacing-half;
+  cursor: pointer;
+  display: block;
+  margin-left: $spacing-half;
+  min-width: $_hamburger-icon-size-mobile;
   order: 2;
+  padding-top: $_hamburger-icon-size-mobile + $spacing-half; // Icon should be a bit below the center axis
+  position: relative;
   text-align: center;
   text-decoration: none;
-  width: 40px;
   z-index: 10;
 
   @include breakpoint(440px) {
-    height: 60px;
-    padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
-    position: relative;
-    width: 50px;
+    min-width: $_branding-icon-size-desktop;
+    padding-top: $_branding-icon-size-desktop + $spacing-half; // Icon should be a bit below the center axis
   }
 
+  &:focus,
   &:hover {
-    cursor: pointer;
+    text-decoration: underline;
   }
 
   @include breakpoint($breakpoint-m) {
@@ -225,32 +226,16 @@ $spacing-menu-item: 20px;
     display: none;
   }
 
-  .mobile-navigation__trigger__text {
-    display: none;
-
-    @include breakpoint(440px) {
-      align-items: center;
-      bottom: 0;
-      display: flex;
-      height: 28px; // Enough space for the text to go to two lines.
-      justify-content: center;
-      left: 0;
-      line-height: 13px; // If the text goes on two lines this still looks good.
-      position: absolute;
-      width: 100%;
-    }
-
-    @include breakpoint($breakpoint-m) {
-      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
-    }
-  }
-
   .hel-icon {
-    --icon-size: 20px;
-    mask-size: 25px 25px; // This is silly, apparently we want to scale the icon larger than its click area and native style indicate.
-
+    --icon-size: #{$_hamburger-icon-size-mobile};
+    display: block;
+    margin-left: 50%;
+    margin-top: - $_hamburger-icon-size-mobile;
+    position: absolute;
+    transform: translateX(-50%);
     @include breakpoint(440px) {
-      margin-bottom: $spacing-quarter;
+      --icon-size: #{$_hamburger-icon-size-desktop};
+      margin-top: - $_hamburger-icon-size-desktop;
     }
   }
 

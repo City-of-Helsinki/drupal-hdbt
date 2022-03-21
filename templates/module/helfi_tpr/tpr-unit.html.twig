@@ -110,13 +110,18 @@
                 {{ content.address }}
               </div>
             {% endif %}
-            {% if content.email|render %}
+            {% if unit_email_link and content.email|render %}
+              {% set link_attributes = {
+                'class': [
+                  'service-channel__email-link',
+                ],
+              } %}
               <div class="unit__contact-row unit__contact-row--email">
                 <label class="unit__contact-row__label">
                   {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'glyph-at'} %}
                   {{ 'E-mail'|t }}:
                 </label>
-                <a href="mailto:{{ content.email|render|striptags|trim|lower }}">{{ content.email }}</a>
+                {{ link(content.email, unit_email_link, link_attributes) }}
               </div>
             {% endif %}
             {% if content.phone|render %}
@@ -248,9 +253,12 @@
     <div class="unit__text">
       <div class="unit__text__content">
         <h3 class="unit__title">
-          <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="unit__link">
-            {{ entity.label }}
-          </a>
+          {% set unit_link_attributes = {
+            'class': [
+              'unit__link',
+            ],
+          } %}
+          {{ link(entity.label, unit_url, unit_link_attributes) }}
         </h3>
         <div class="unit__info">
           {% if content.address|render %}

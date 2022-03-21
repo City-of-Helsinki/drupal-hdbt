@@ -1,4 +1,5 @@
 .announcement{
+  @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
   padding-bottom: $spacing;
 }
@@ -71,8 +72,19 @@
   }
 
   a::after {
-    @include pseudo-icon('arrow-right', $spacing-and-half);
+    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em));
+    @include hover-link-arrow-transition();
     margin-left: $spacing-quarter;
+  }
+  a:focus::after,
+  a:hover::after {
+    transform: translateX($spacing-quarter);
+    @media (prefers-reduced-motion) {
+      transform: none;
+    }
+  }
+  a[data-is-external]::after {
+    content: none;
   }
 }
 
