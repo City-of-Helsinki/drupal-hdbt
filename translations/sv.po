@@ -1,63 +1,21 @@
 msgid ""
 msgstr ""
 
-msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
-msgid "The link opens in a new tab"
-msgstr "Länken öppnas i en ny flik"
-
-msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
-msgid "Link leads to external service"
-msgstr "Länk leder till extern tjänst"
-
-msgctxt "The helper text before the node changed timestamp"
-msgid "Updated"
-msgstr "Uppdaterad"
-
-msgctxt "The helper text before the social media share buttons"
-msgid "Share"
-msgstr "Dela"
-
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption Bild: @photographer"
-
-msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "Bild: @photographer"
-
-msgctxt "The helper text before the node published timestamp"
-msgid "Published"
-msgstr "Publicerad"
-
-msgctxt "The helper text before the node changed timestamp"
-msgid "Updated"
-msgstr "Uppdaterad"
-
-msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
-msgid "Tags"
-msgstr "Taggar"
-
-msgctxt "Page lead-in section explanation for screen readers"
-msgid "Lead-in paragraph"
-msgstr "Inledande paragraf"
-
-msgctxt "Content liftup card hit for seeing more information on content page"
-msgid "See details"
-msgstr "Se detaljer"
-
-msgid "Sorry, the page you were looking for was not found."
-msgstr "Tyvärr hittas inte sidan du sökte."
+msgid "Change cookie settings"
+msgstr "Ändra inställningarna för cookies"
 
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit bort eller flyttat sidan."
 
-msgctxt "Short description for editors about current page being unpublished"
-msgid "Unpublished"
-msgstr "Opublicerad"
+msgid "Close announcement"
+msgstr "Stäng undantagsmeddelandet"
 
-msgctxt "Long description for editors about current page being unpublished"
-msgid "This page is unpublished"
-msgstr "Den här sidan är opublicerad"
+msgid "Content cannot be displayed"
+msgstr "Innehållet kan inte visas"
+
+msgctxt "Content liftup card hit for seeing more information on content page"
+msgid "See details"
+msgstr "Se detaljer"
 
 msgctxt "Errand service detail heading"
 msgid "Processing time"
@@ -83,32 +41,100 @@ msgctxt "Errand service detail heading"
 msgid "How the process works"
 msgstr "Hur behandlingen av ärendet fortskrider"
 
-msgid "You do not have permission to access this page"
-msgstr "Du har inte användarrätt till sidan"
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
 
-msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
-msgstr "Sidan visas endast för inloggade användare. Om du har tillräckliga användarrättigheter kan du se innehållet genom att logga in."
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
+msgid "Link leads to external service"
+msgstr "Länk leder till extern tjänst"
 
-msgid "Sorry, the page you were looking for was not found"
-msgstr "Tyvärr hittas inte sidan du sökte"
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call."
+msgid "Link starts a phone call"
+msgstr "Link startar ett telefonsamtal"
 
-msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
-msgstr "Kontrollera att sidans adress är rätt skriven. Vi kan också ha tagit bort eller flyttat sidan."
-
-msgctxt "Return to homepage link for error pages"
-msgid "Go back to the hel.fi homepage"
-msgstr "Gå till hel.fi:s framsida"
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program."
+msgid "Link opens default mail program"
+msgstr "Länk öppnar standardprogram för e-post"
 
 msgctxt "Feedback link for error pages"
 msgid "Give feedback"
 msgstr "Ge respons"
 
+msgctxt "Footer back to top link"
+msgid "Back to top"
+msgstr "Tillbaka till toppen"
+
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption Bild: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "Bild: @photographer"
+
+msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
+msgid "Tags"
+msgstr "Taggar"
+
 msgctxt "Log in block title on error pages"
 msgid "Log in"
 msgstr "Logga in"
 
+msgctxt "Long description for editors about current page being unpublished"
+msgid "This page is unpublished"
+msgstr "Den här sidan är opublicerad"
+
+msgctxt "Page lead-in section explanation for screen readers"
+msgid "Lead-in paragraph"
+msgstr "Inledande paragraf"
+
+msgid "See content on external site"
+msgstr "Gå till extern webbplats"
+
+msgctxt "Short description for editors about current page being unpublished"
+msgid "Unpublished"
+msgstr "Opublicerad"
+
+msgid "Sorry, the page you were looking for was not found"
+msgstr "Tyvärr hittas inte sidan du sökte"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Uppdaterad"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "Dela"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "Publicerad"
+
+msgctxt "Return to homepage link for error pages"
+msgid "Go back to the hel.fi homepage"
+msgstr "Gå till hel.fi:s framsida"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Uppdaterad"
+
+msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
+msgstr "Sidan visas endast för inloggade användare. Om du har tillräckliga användarrättigheter kan du se innehållet genom att logga in."
+
 msgid "The site is currently under maintenance"
 msgstr "Vi uppdaterar sidan som bäst"
 
-msgid "Close announcement"
-msgstr "Stäng undantagsmeddelandet"
+msgid ""
+"This content is hosted by @video_service_url. To see the content, "
+"switch over to the external site or modify your cookie settings to "
+"allow for preference and statistics cookies."
+msgstr ""
+"Det här innehållet hämtas från @video_service_url. För att visa "
+"innehållet krävs att du godkänner webbplatsens cookies. Du kan se "
+"innehållet antingen genom att gå till en extern webbplats eller "
+"genom att ge ditt samtycke till användningen av cookies för "
+"preferens och statistik."
+
+msgid "You do not have permission to access this page"
+msgstr "Du har inte användarrätt till sidan"
