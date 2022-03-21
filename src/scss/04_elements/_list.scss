@@ -1,0 +1,28 @@
+ul, ol {
+  margin-bottom: $spacing-and-half;
+  margin-left: 0;
+  margin-top: $spacing-and-half;
+  padding-left: $spacing-double;
+
+  ul, ol {
+    margin-bottom: 0;
+    margin-top: $spacing;
+  }
+}
+
+li {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li + li {
+  margin-top: $spacing;
+}
+
+.local-tasks li,
+.toolbar-menu li,
+.pager li,
+.table-of-contents__list li,
+.menu li {
+  margin-top: 0; // Combat default list styles, until we can wrap the styles in this file with user-editable-content class;
+}

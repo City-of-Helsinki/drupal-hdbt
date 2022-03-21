@@ -1,5 +1,5 @@
 .quote {
-  @include font('h3');
+  @include font('special.quote');
   display: block;
   margin: $spacing-triple 0;
   padding: $spacing-half 0 $spacing-half $spacing-and-half;

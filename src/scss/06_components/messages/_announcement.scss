@@ -1,4 +1,5 @@
 .announcement{
+  @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
   padding-bottom: $spacing;
 }
@@ -13,8 +14,8 @@
   box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  margin-left: $spacing-half;
-  margin-right: $spacing-half;
+  margin-left: $component-side-padding-mobile;
+  margin-right: $component-side-padding-mobile;
   min-height: var(--announcement-bg-size);
   padding-bottom: $spacing;
   padding-left: calc(var(--announcement-bg-size) + #{$spacing});
@@ -32,8 +33,12 @@
 
   @include breakpoint($breakpoint-m) {
     --announcement-bg-size: #{$spacing-triple};
-    margin-left: $spacing-double;
-    margin-right: $spacing-double;
+  }
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-side-padding-breakpoint) {
+      margin-left: $component-side-padding-desktop;
+      margin-right: $component-side-padding-desktop;
+    }
   }
 }
 
@@ -67,8 +72,19 @@
   }
 
   a::after {
-    @include pseudo-icon('arrow-right', $spacing-and-half);
+    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em));
+    @include hover-link-arrow-transition();
     margin-left: $spacing-quarter;
+  }
+  a:focus::after,
+  a:hover::after {
+    transform: translateX($spacing-quarter);
+    @media (prefers-reduced-motion) {
+      transform: none;
+    }
+  }
+  a[data-is-external]::after {
+    content: none;
   }
 }
 

@@ -25,9 +25,8 @@
   <div class="content-liftup__text">
     <div class="content-liftup__text__container">
       <h3 class="content-liftup__title">
-        <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="content-liftup__link">
-          {{ entity.label }}
-        </a>
+        {% set link_attributes = { 'class': [ 'content-liftup__link', ], } %}
+        {{ link(entity.label, unit_url, link_attributes) }}
       </h3>
       <div class="content-liftup__info">
         {% if content.address|render %}

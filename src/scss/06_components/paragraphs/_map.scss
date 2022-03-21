@@ -1,3 +1,5 @@
+$_map-aspect-ratio: 16/9;
+
 .component--map .component__container {
   background-color: $color-silver-light;
   padding: 32px 32px 48px;
@@ -6,7 +8,7 @@
 .map {
   height: 0;
   margin: $spacing 0;
-  padding-bottom: 56.5%;
+  padding-bottom: aspect-ratio-padding($_map-aspect-ratio);
   position: relative;
 
   > div,
@@ -28,20 +30,5 @@
     position: absolute;
     right: 0;
     text-decoration: underline;
-
-    .explain-external-icon {
-      @include visually-hidden();
-    }
-
-    &:after {
-      background-color: $color-black;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 0.9em;
-      margin: 0 0.1em 0.3em 0.2em;
-      mask-image: icon_url('link-external');
-      width: 0.9em;
-    }
   }
 }

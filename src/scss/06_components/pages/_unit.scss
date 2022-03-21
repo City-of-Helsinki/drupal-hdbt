@@ -200,31 +200,6 @@
     }
   }
 
-  // TODO: Is this selector still relevant?
-  // Opening hours link (always external)
-  .unit__contact-row--opening-hours a {
-    padding-right: 24px; // Width of the external icon plus.
-    position: relative;
-
-    .explain-external-icon {
-      @include visually-hidden();
-    }
-
-    &:after {
-      @include pseudo-icon('link-external', 14px, $color-black, flex);
-      height: 20px; //TODO: clean height and width mismatch
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 24px;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
   .unit__contact-row--email a {
     word-break: break-all;
   }
@@ -321,22 +296,6 @@
         }
       }
     }
-  }
-
-  .unit__services__pager {
-    list-style: none;
-    margin: $spacing-quadruple 0 0;
-    padding: 0;
-  }
-
-  .unit__services__pager-button-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .unit__services__pager-button {
-    @extend .emulate-button--primary;
   }
 }
 

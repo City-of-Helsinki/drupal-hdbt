@@ -1,4 +1,2 @@
 {{ iframe }}
-{% set explain_external_icon %} <span class="explain-external-icon">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
-{% set link_title %}{{ link['#title'] }}{{ explain_external_icon }}{% endset %}
-{{ link(link_title, link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
+{{ link(link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}

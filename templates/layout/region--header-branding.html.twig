@@ -15,7 +15,7 @@
 {% if content %}
   <div{{ attributes.addClass('header-branding').setAttribute('id', 'header-branding') }}>
     {{ content }}
-    <a data-hdbt-selector="menu-hamburger" class="mobile-navigation__trigger" href="#mobile-navigation" aria-expanded="false" role="button" aria-haspopup="dialog">
+    <a href="#mobile-navigation" data-hdbt-selector="menu-hamburger" class="mobile-navigation__trigger" aria-expanded="false" role="button" aria-haspopup="dialog">
       {% include '@hdbt/misc/icon.twig' with {icon: 'menu-hamburger'} %}
       <span class="mobile-navigation__trigger__text">{{ 'Menu'|t }}</span>
     </a>

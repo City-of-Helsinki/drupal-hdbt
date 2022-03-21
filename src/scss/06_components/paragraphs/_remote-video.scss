@@ -1,7 +1,9 @@
+$_video-aspect-ratio: 16/9;
+
 .component--remote-video {
+  @include hds-button-colors-on-dark-bg();
   @include component-side-padding;
   background-color: $color-black;
-  color: $color-white;
   padding-bottom: $spacing-double;
   padding-top: $spacing-double;
 
@@ -14,6 +16,11 @@
     padding-bottom: $spacing-quadruple;
     padding-top: $spacing-quadruple;
   }
+}
+
+.component--remote-video,
+.component--remote-video a:not(.hds-button) {
+  color: $color-white;
 }
 
 .has-sidebar .components--upper .component--remote-video {
@@ -34,7 +41,7 @@
     background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
     height: 0;
     overflow: hidden;
-    padding-bottom: 56.5%;
+    padding-bottom: aspect-ratio-padding($_video-aspect-ratio);
 
     iframe {
       border: 0;

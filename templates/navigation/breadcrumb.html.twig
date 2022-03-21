@@ -5,17 +5,23 @@
  *
  * Available variables:
  * - breadcrumb: Breadcrumb trail items.
+ * - links: Breadcrumb trail items as links. See Drupal\Core\Link.
  */
 #}
-{% if breadcrumb %}
+{% if links %}
   <nav class="breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    {% for item in breadcrumb %}
+    {% for item in links %}
       {% if not loop.first %}
         {% include '@hdbt/misc/icon.twig' with {icon: 'angle-right'} %}
       {% endif %}
-      {% if item.url %}
-        <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
+      {% if item.url.toString() is not empty %}
+        {% set link_attributes = {
+          'class': [
+            'breadcrumb__link',
+          ],
+        } %}
+        {{ link(item.text, item.url, link_attributes) }}
       {% else %}
         <span {{ loop.last ? 'aria-current="page"' }} class="breadcrumb__current">{{ item.text|striptags }}</span>
       {% endif %}

@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override to present react and share template.
+ *
+ * @see helfi_platform_config_preprocess_react_and_share()
+ * @see helfi_platform_config/templates/react-and-share.html.twig.
+ */
+#}
+<div class="rns" style="display: none;"></div>
+
+<div class="react-and-share-cookie-compliance js-react-and-share-cookie-compliance" style="display: none;">
+  <div class="message">
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+    <h2>{{ 'Feedback buttons cannot be displayed'|t({}, {'context': 'React & Share cookie compliance'}) }}</h2>
+    <p>
+      {% trans with {'context': 'React & Share cookie compliance'} %}
+        To use this feature, you must accept cookies from the site. You can provide feedback on this page by enabling statistics-related cookies.
+      {% endtrans %}
+    </p>
+    <div class="buttons">
+      {% set link_attributes = {
+        'class': [
+          'hds-button',
+          'hds-button--secondary',
+        ],
+      } %}
+      {% set link_title %}
+        <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
+      {% endset %}
+      {{ link(link_title, privacy_policy_url, link_attributes) }}
+    </div>
+  </div>
+</div>
+

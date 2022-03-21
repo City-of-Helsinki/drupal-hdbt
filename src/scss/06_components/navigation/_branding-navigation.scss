@@ -1,3 +1,6 @@
+$_branding-icon-size-mobile: $spacing-and-half;
+$_branding-icon-size-desktop: $spacing-double;
+
 .header-branding {
   align-items: center;
   background-color: $color-white;
@@ -48,69 +51,40 @@
     padding: 0;
   }
 
+  .menu__item + .menu__item {
+    margin-left: $spacing-half;
+  }
+
   .menu__link {
     @include font('special.navigation.icon_label');
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 40px;
-    justify-content: center;
-    margin: 0 $spacing-quarter;
+    display: block;
+    min-width: $_branding-icon-size-mobile;
+    padding-top: $_branding-icon-size-mobile + $spacing-half; // Icon should be a bit below the center axis
+    position: relative;
     text-align: center;
     text-decoration: none;
-    width: 40px;
 
     @include breakpoint(440px) {
-      height: 60px;
-      margin: 0 $spacing-half;
-      padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
-      position: relative;
-      width: 50px;
+      min-width: $_branding-icon-size-desktop;
+      padding-top: $_branding-icon-size-desktop + $spacing-half; // Icon should be a bit below the center axis
     }
+
+    &:focus,
     &:hover {
       text-decoration: underline;
     }
   }
 
   .menu__link__icon {
-    --icon-size: #{$spacing-and-half};
+    --icon-size: #{$_branding-icon-size-mobile};
     display: block;
-
+    margin-left: 50%;
+    margin-top: - $_branding-icon-size-mobile;
+    position: absolute;
+    transform: translateX(-50%);
     @include breakpoint(440px) {
-      margin-bottom: $spacing-quarter;
+      --icon-size: #{$_branding-icon-size-desktop};
+      margin-top: - $_branding-icon-size-desktop;
     }
-  }
-
-
-  .menu__link__text {
-    display: none;
-
-    &::after {
-      --external-icon-move: translate(1px, -1px);
-      @media (prefers-reduced-motion) {
-        --external-icon-move: scale(1);
-      }
-    }
-
-    @include breakpoint(440px) {
-      align-items: center;
-      bottom: 0;
-      display: flex;
-      height: 28px; // Enough space for the text to go to two lines.
-      justify-content: center;
-      left: 0;
-      line-height: 13px; // If the text goes on two lines this still looks good.
-      position: absolute;
-      width: 100%;
-    }
-
-    @include breakpoint($breakpoint-m) {
-      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
-    }
-  }
-
-  .explain-external-icon {
-    display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
-    @include visually-hidden();
   }
 }

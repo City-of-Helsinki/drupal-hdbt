@@ -47,7 +47,7 @@
         {# Check if link is part of alternative menu and set class accordingly. #}
         {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
-        {% if not untranslated and lang != current_langcode %}
+        {% if not untranslated and not alternative_language and lang != current_langcode %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
         {% elseif lang == current_langcode %}

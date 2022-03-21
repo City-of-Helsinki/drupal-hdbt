@@ -1,24 +1,4 @@
 .views--service-list {
-  .hds-button--primary {
-    --background-color: var(--color-black);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-black);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
   .form-actions .hds-button--primary {
     width: 100%;
 
@@ -93,22 +73,6 @@
       &:nth-child(-n+4) {
         margin-top: 0;
       }
-    }
-  }
-
-  .service-list__pager {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: $spacing-double 0 0;
-    padding: 0;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-    }
-
-    .service-list__pager-button {
-      @extend .emulate-button--primary;
     }
   }
 }

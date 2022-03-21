@@ -40,7 +40,7 @@
 {% set link = content.field_banner_link.0['#url'] %}
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
-{% set target_new = content.field_banner_link.0['#options']['target_new'] %}
+{% set open_in_a_new_window = content.field_banner_link.0['#options']['target_new'] %}
 {% set icon = content.field_banner_link.0['#options']['icon'] %}
 
 {% block paragraph %}
@@ -71,37 +71,15 @@
             {% endif %}
           </div>
           {% if has_link %}
-            {%
-              set link_classes = [
-                'banner__button',
-                'hds-button',
-                link_type ? 'hds-button--' ~ link_type|clean_class,
-                icon or target_new ? 'hdbt-icon',
-                icon ? 'hdbt-icon--' ~ icon|clean_class,
-                target_new and not icon ? 'hdbt-icon--link-external'
-              ]
-            %}
-            <a href="{{ link }}" {% if target_new %}target="_blank"{% endif %}{{ create_attribute({'class': link_classes} ) }}>
-              <span class="hds-button__label">{{ text }}</span>
-            </a>
-
-            {# TODO: This button should be refactored to be more like below #}
-            {# TODO: open_in_a_new_window should be explained to the end user (we should hide this feature from admins once external links automation works)  #}
-            {# TODO: We need a better logic for is_external  #}
-            {#
-            {% set open_in_a_new_window = target_new %}
-            {% set is_external = open_in_a_new_window %}
-            {% include '@hdbt/button/link-button.html.twig' with {
+            {% include '@hdbt/navigation/link-button.html.twig' with {
               type: link_type|clean_class,
               label: text,
               url: link,
               class: 'banner__button',
-              is_external: is_external,
               open_in_a_new_window: open_in_a_new_window,
-              icon_last: icon ? true : false,
-              icon_last_type: icon ? icon|clean_class,
+              icon: icon ? true : false,
+              icon_type: icon ? icon|clean_class,
             } %}
-            #}
           {% endif %}
         </div>
 
