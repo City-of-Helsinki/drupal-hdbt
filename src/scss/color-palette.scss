@@ -3,10 +3,11 @@
 
 // HELfi / HDBT Color palettes
 
-.hdbt-theme--bus {
-  --hdbt-color-palette--primary: rgb(0, 0, 191);
-  --hdbt-color-palette--secondary: rgb(255, 240, 247);
-  --hdbt-color-palette--accent: rgb(0, 215, 167);
+:root, // The default color palette is set here, that's why it's out of alphabetical order here.
+.hdbt-theme--coat-of-arms {
+  --hdbt-color-palette--primary: rgb(0, 114, 198);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(245, 163, 199);
 
   --hdbt-color-palette-text--primary: #{$hdbt-color-white};
   --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
@@ -19,11 +20,10 @@
   --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-:root, // The default color palette is set here
-.hdbt-theme--coat-of-arms {
-  --hdbt-color-palette--primary: rgb(0, 114, 198);
-  --hdbt-color-palette--secondary: rgb(232, 243, 252);
-  --hdbt-color-palette--accent: rgb(245, 163, 199);
+.hdbt-theme--bus {
+  --hdbt-color-palette--primary: rgb(0, 0, 191);
+  --hdbt-color-palette--secondary: rgb(255, 240, 247);
+  --hdbt-color-palette--accent: rgb(0, 215, 167);
 
   --hdbt-color-palette-text--primary: #{$hdbt-color-white};
   --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
