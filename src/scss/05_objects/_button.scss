@@ -57,7 +57,8 @@
 /* button transitions */
 
 .hds-button:hover,
-.hds-button:focus {
+.hds-button:focus,
+.hds-button:active {
   transition-duration: 85ms;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-out;
@@ -93,10 +94,12 @@
   border-color: var(--border-color-hover, transparent);
 }
 
+.hds-button:not(:disabled):active,
 .hds-button:not(:disabled):focus {
   border-color: var(--border-color-focus, transparent);
 }
 
+.hds-button:not(:disabled):active:hover,
 .hds-button:not(:disabled):focus:hover {
   border-color: var(--border-color-hover-focus, transparent);
   color: var(--color-hover-focus);
@@ -104,6 +107,7 @@
 
 /* FOCUS OUTLINE */
 
+.hds-button:active,
 .hds-button:focus {
   outline: var(--outline-width) solid var(--focus-outline-color);
   outline-offset: var(--outline-gutter);
