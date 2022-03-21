@@ -7,8 +7,23 @@
             <h1 class="error-page__title">404 - {{ 'Sorry, the page you were looking for was not found'|t }}</h1>
           </div>
           <p class="error-page__description">{{ 'Check that you have typed in the page address correctly. We may have deleted or moved the content.'|t }}</p>
-          <a href="{{ error_page_home_link }}" class="error-page__link">{{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a><br/>
-          <a href="{{ error_page_feedback_link }}" class="error-page__link">{{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }} {% include '@hdbt/misc/icon.twig' with {icon: 'arrow-right'} %}</a>
+
+          {% set link_title %}
+            {{ 'Go back to the hel.fi homepage'|t({}, {'context': 'Return to homepage link for error pages'}) }}
+          {% endset %}
+          {% set link_attributes = {
+            'class': [
+              'error-page__link',
+            ],
+          } %}
+          {{ link(link_title, error_page_home_link, link_attributes) }}
+
+          <br>
+
+          {% set feedback_link_title %}
+            {{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }}
+          {% endset %}
+          {{ link(feedback_link_title, error_page_feedback_link, link_attributes) }}
         </div>
         <div class="error-page__illustration-container">
           <img src="/themes/contrib/hdbt/src/images/illustration_error_page_404.svg" alt="" class="error-page__illustration" width="379" height="566" />

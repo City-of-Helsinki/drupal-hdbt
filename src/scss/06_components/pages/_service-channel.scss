@@ -12,7 +12,8 @@
   }
 
   a:not(.service-channel__link) {
-    @extend .emulate-button--primary;
+    --background-color-hover: transparent;
+    --background-color-hover-focus: transparent;
     --background-color: var(--hdbt-color-palette-button--secondary);
     --background-color-focus: var(--hdbt-color-palette-button--secondary);
     --border-color: var(--hdbt-color-palette-button--secondary);

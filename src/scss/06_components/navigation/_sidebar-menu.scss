@@ -68,26 +68,6 @@
         border-top: 0;
       }
 
-      .menu__link--external .menu__link__text {
-        display: block;
-        padding-right: 52px; // Width of the external icon and padding.
-        position: relative;
-        width: 100%;
-
-        &::after {
-          min-width: 40px;
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
-
-      .menu__link--external:focus .menu__link__text::after,
-      .menu__link--external:hover .menu__link__text::after {
-        transform: translateY(-50%) var(--external-icon-move);
-      }
-
       .menu__link-wrapper {
         align-content: center;
         display: flex;

@@ -13,8 +13,13 @@
  */
 #}
 {% if content %}
-  <div{{ attributes.addClass('header-top').setAttribute('id', 'hdbt-header-top').setAttribute('drupal-hdbt-selector', 'hdbt-header-top') }}>
-    <a href="https://hel.fi" class="link-to-site-frontpage">hel.fi</a>
+  <div{{attributes.addClass('header-top').setAttribute('id','hdbt-header-top').setAttribute('drupal-hdbt-selector','hdbt-header-top')}}>
+    {% set link_attributes = {
+      'class': [
+        'link-to-site-frontpage',
+      ],
+    } %}
+    {{ link('hel.fi', 'https://hel.fi', link_attributes) }}
     {{ content }}
   </div>
 {% endif %}

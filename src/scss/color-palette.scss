@@ -3,329 +3,165 @@
 
 // HELfi / HDBT Color palettes
 
-// Bus
-$hdbt-color-bus--primary: rgb(0, 0, 191);
-$hdbt-color-bus--secondary: rgb(255, 240, 247);
-$hdbt-color-bus--accent: rgb(0, 215, 167);
+.hdbt-theme--bus {
+  --hdbt-color-palette--primary: rgb(0, 0, 191);
+  --hdbt-color-palette--secondary: rgb(255, 240, 247);
+  --hdbt-color-palette--accent: rgb(0, 215, 167);
 
-$hdbt-color-bus-text--primary: $hdbt-color-white;
-$hdbt-color-bus-text--secondary: $hdbt-color-black;
-$hdbt-color-bus-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-bus-button--primary: $hdbt-color-white;
-$hdbt-color-bus-button-contrast--primary: $hdbt-color-black;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-black};
 
-$hdbt-color-bus-button--secondary: $hdbt-color-black;
-$hdbt-color-bus-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-bus--primary: #{$hdbt-color-bus--primary};
-  --hdbt-color-bus--secondary: #{$hdbt-color-bus--secondary};
-  --hdbt-color-bus--accent: #{$hdbt-color-bus--accent};
-
-  --hdbt-color-bus-text--primary: #{$hdbt-color-bus-text--primary};
-  --hdbt-color-bus-text--secondary: #{$hdbt-color-bus-text--secondary};
-  --hdbt-color-bus-text--accent: #{$hdbt-color-bus-text--accent};
-
-  --hdbt-color-bus-button--primary: #{$hdbt-color-bus-button--primary};
-  --hdbt-color-bus-button-contrast--primary: #{$hdbt-color-bus-button-contrast--primary};
-
-  --hdbt-color-bus-button--secondary: #{$hdbt-color-bus-button--secondary};
-  --hdbt-color-bus-button-contrast--secondary: #{$hdbt-color-bus-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Coat of arms
-$hdbt-color-coat-of-arms--primary: rgb(0, 114, 198);
-$hdbt-color-coat-of-arms--secondary: rgb(232, 243, 252);
-$hdbt-color-coat-of-arms--accent: rgb(245, 163, 199);
+:root, // The default color palette is set here
+.hdbt-theme--coat-of-arms {
+  --hdbt-color-palette--primary: rgb(0, 114, 198);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(245, 163, 199);
 
-$hdbt-color-coat-of-arms-text--primary: $hdbt-color-white;
-$hdbt-color-coat-of-arms-text--secondary: $hdbt-color-black;
-$hdbt-color-coat-of-arms-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-coat-of-arms-button--primary: $hdbt-color-white;
-$hdbt-color-coat-of-arms-button-contrast--primary: $hdbt-color-black;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-black};
 
-$hdbt-color-coat-of-arms-button--secondary: $hdbt-color-black;
-$hdbt-color-coat-of-arms-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-coat-of-arms--primary: #{$hdbt-color-coat-of-arms--primary};
-  --hdbt-color-coat-of-arms--secondary: #{$hdbt-color-coat-of-arms--secondary};
-  --hdbt-color-coat-of-arms--accent: #{$hdbt-color-coat-of-arms--accent};
-
-  --hdbt-color-coat-of-arms-text--primary: #{$hdbt-color-coat-of-arms-text--primary};
-  --hdbt-color-coat-of-arms-text--secondary: #{$hdbt-color-coat-of-arms-text--secondary};
-  --hdbt-color-coat-of-arms-text--accent: #{$hdbt-color-coat-of-arms-text--accent};
-
-  --hdbt-color-coat-of-arms-button--primary: #{$hdbt-color-coat-of-arms-button--primary};
-  --hdbt-color-coat-of-arms-button-contrast--primary: #{$hdbt-color-coat-of-arms-button-contrast--primary};
-
-  --hdbt-color-coat-of-arms-button--secondary: #{$hdbt-color-coat-of-arms-button--secondary};
-  --hdbt-color-coat-of-arms-button-contrast--secondary: #{$hdbt-color-coat-of-arms-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Copper
-$hdbt-color-copper--primary: rgb(0, 215, 167);
-$hdbt-color-copper--secondary: rgb(232, 243, 252);
-$hdbt-color-copper--accent: rgb(245, 163, 199);
+.hdbt-theme--copper {
+  --hdbt-color-palette--primary: rgb(0, 215, 167);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(245, 163, 199);
 
-$hdbt-color-copper-text--primary: $hdbt-color-black;
-$hdbt-color-copper-text--secondary: $hdbt-color-black;
-$hdbt-color-copper-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-copper-button--primary: $hdbt-color-black;
-$hdbt-color-copper-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-$hdbt-color-copper-button--secondary: $hdbt-color-black;
-$hdbt-color-copper-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-copper--primary: #{$hdbt-color-copper--primary};
-  --hdbt-color-copper--secondary: #{$hdbt-color-copper--secondary};
-  --hdbt-color-copper--accent: #{$hdbt-color-copper--accent};
-
-  --hdbt-color-copper-text--primary: #{$hdbt-color-copper-text--primary};
-  --hdbt-color-copper-text--secondary: #{$hdbt-color-copper-text--secondary};
-  --hdbt-color-copper-text--accent: #{$hdbt-color-copper-text--accent};
-
-  --hdbt-color-copper-button--primary: #{$hdbt-color-copper-button--primary};
-  --hdbt-color-copper-button-contrast--primary: #{$hdbt-color-copper-button-contrast--primary};
-
-  --hdbt-color-copper-button--secondary: #{$hdbt-color-copper-button--secondary};
-  --hdbt-color-copper-button-contrast--secondary: #{$hdbt-color-copper-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Engel
-$hdbt-color-engel--primary: rgb(255, 233, 119);
-$hdbt-color-engel--secondary: rgb(240, 240, 255);
-$hdbt-color-engel--accent: rgb(0, 215, 167);
+.hdbt-theme--engel {
+  --hdbt-color-palette--primary: rgb(255, 233, 119);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(0, 215, 167);
 
-$hdbt-color-engel-text--primary: $hdbt-color-black;
-$hdbt-color-engel-text--secondary: $hdbt-color-black;
-$hdbt-color-engel-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-engel-button--primary: $hdbt-color-black;
-$hdbt-color-engel-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-$hdbt-color-engel-button--secondary: $hdbt-color-black;
-$hdbt-color-engel-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-engel--primary: #{$hdbt-color-engel--primary};
-  --hdbt-color-engel--secondary: #{$hdbt-color-engel--secondary};
-  --hdbt-color-engel--accent: #{$hdbt-color-engel--accent};
-
-  --hdbt-color-engel-text--primary: #{$hdbt-color-engel-text--primary};
-  --hdbt-color-engel-text--secondary: #{$hdbt-color-engel-text--secondary};
-  --hdbt-color-engel-text--accent: #{$hdbt-color-engel-text--accent};
-
-  --hdbt-color-engel-button--primary: #{$hdbt-color-engel-button--primary};
-  --hdbt-color-engel-button-contrast--primary: #{$hdbt-color-engel-button-contrast--primary};
-
-  --hdbt-color-engel-button--secondary: #{$hdbt-color-engel-button--secondary};
-  --hdbt-color-engel-button-contrast--secondary: #{$hdbt-color-engel-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Gold
-$hdbt-color-gold--primary: rgb(194, 162, 81);
-$hdbt-color-gold--secondary: rgb(232, 243, 252);
-$hdbt-color-gold--accent: rgb(253, 79, 0);
+.hdbt-theme--gold {
+  --hdbt-color-palette--primary: rgb(194, 162, 81);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(253, 79, 0);
 
-$hdbt-color-gold-text--primary: $hdbt-color-black;
-$hdbt-color-gold-text--secondary: $hdbt-color-black;
-$hdbt-color-gold-text--accent: $hdbt-color-white;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-white};
 
-$hdbt-color-gold-button--primary: $hdbt-color-black;
-$hdbt-color-gold-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-$hdbt-color-gold-button--secondary: $hdbt-color-black;
-$hdbt-color-gold-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-gold--primary: #{$hdbt-color-gold--primary};
-  --hdbt-color-gold--secondary: #{$hdbt-color-gold--secondary};
-  --hdbt-color-gold--accent: #{$hdbt-color-gold--accent};
-
-  --hdbt-color-gold-text--primary: #{$hdbt-color-gold-text--primary};
-  --hdbt-color-gold-text--secondary: #{$hdbt-color-gold-text--secondary};
-  --hdbt-color-gold-text--accent: #{$hdbt-color-gold-text--accent};
-
-  --hdbt-color-gold-button--primary: #{$hdbt-color-gold-button--primary};
-  --hdbt-color-gold-button-contrast--primary: #{$hdbt-color-gold-button-contrast--primary};
-
-  --hdbt-color-gold-button--secondary: #{$hdbt-color-gold-button--secondary};
-  --hdbt-color-gold-button-contrast--secondary: #{$hdbt-color-gold-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Metro
-$hdbt-color-metro--primary: rgb(253, 79, 0);
-$hdbt-color-metro--secondary: rgb(255, 240, 247);
-$hdbt-color-metro--accent: rgb(194, 162, 81);
+.hdbt-theme--metro {
+  --hdbt-color-palette--primary: rgb(253, 79, 0);
+  --hdbt-color-palette--secondary: rgb(255, 240, 247);
+  --hdbt-color-palette--accent: rgb(194, 162, 81);
 
-$hdbt-color-metro-text--primary: $hdbt-color-white;
-$hdbt-color-metro-text--secondary: $hdbt-color-black;
-$hdbt-color-metro-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-metro-button--primary: $hdbt-color-white;
-$hdbt-color-metro-button-contrast--primary: $hdbt-color-black;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-black};
 
-$hdbt-color-metro-button--secondary: $hdbt-color-black;
-$hdbt-color-metro-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-metro--primary: #{$hdbt-color-metro--primary};
-  --hdbt-color-metro--secondary: #{$hdbt-color-metro--secondary};
-  --hdbt-color-metro--accent: #{$hdbt-color-metro--accent};
-
-  --hdbt-color-metro-text--primary: #{$hdbt-color-metro-text--primary};
-  --hdbt-color-metro-text--secondary: #{$hdbt-color-metro-text--secondary};
-  --hdbt-color-metro-text--accent: #{$hdbt-color-metro-text--accent};
-
-  --hdbt-color-metro-button--primary: #{$hdbt-color-metro-button--primary};
-  --hdbt-color-metro-button-contrast--primary: #{$hdbt-color-metro-button-contrast--primary};
-
-  --hdbt-color-metro-button--secondary: #{$hdbt-color-metro-button--secondary};
-  --hdbt-color-metro-button-contrast--secondary: #{$hdbt-color-metro-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Silver
-$hdbt-color-silver--primary: rgb(222, 223, 225);
-$hdbt-color-silver--secondary: rgb(240, 240, 255);
-$hdbt-color-silver--accent: rgb(194, 162, 81);
+.hdbt-theme--silver {
+  --hdbt-color-palette--primary: rgb(222, 223, 225);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(194, 162, 81);
 
-$hdbt-color-silver-text--primary: $hdbt-color-black;
-$hdbt-color-silver-text--secondary: $hdbt-color-black;
-$hdbt-color-silver-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-silver-button--primary: $hdbt-color-black;
-$hdbt-color-silver-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-$hdbt-color-silver-button--secondary: $hdbt-color-black;
-$hdbt-color-silver-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-silver--primary: #{$hdbt-color-silver--primary};
-  --hdbt-color-silver--secondary: #{$hdbt-color-silver--secondary};
-  --hdbt-color-silver--accent: #{$hdbt-color-silver--accent};
-
-  --hdbt-color-silver-text--primary: #{$hdbt-color-silver-text--primary};
-  --hdbt-color-silver-text--secondary: #{$hdbt-color-silver-text--secondary};
-  --hdbt-color-silver-text--accent: #{$hdbt-color-silver-text--accent};
-
-  --hdbt-color-silver-button--primary: #{$hdbt-color-silver-button--primary};
-  --hdbt-color-silver-button-contrast--primary: #{$hdbt-color-silver-button-contrast--primary};
-
-  --hdbt-color-silver-button--secondary: #{$hdbt-color-silver-button--secondary};
-  --hdbt-color-silver-button-contrast--secondary: #{$hdbt-color-silver-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Summer
-$hdbt-color-summer--primary: rgb(255, 198, 30);
-$hdbt-color-summer--secondary: rgb(255, 249, 219);
-$hdbt-color-summer--accent: rgb(0, 135, 65);
+.hdbt-theme--summer {
+  --hdbt-color-palette--primary: rgb(255, 198, 30);
+  --hdbt-color-palette--secondary: rgb(255, 249, 219);
+  --hdbt-color-palette--accent: rgb(0, 135, 65);
 
-$hdbt-color-summer-text--primary: $hdbt-color-black;
-$hdbt-color-summer-text--secondary: $hdbt-color-black;
-$hdbt-color-summer-text--accent: $hdbt-color-white;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-white};
 
-$hdbt-color-summer-button--primary: $hdbt-color-black;
-$hdbt-color-summer-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-$hdbt-color-summer-button--secondary: $hdbt-color-black;
-$hdbt-color-summer-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-summer--primary: #{$hdbt-color-summer--primary};
-  --hdbt-color-summer--secondary: #{$hdbt-color-summer--secondary};
-  --hdbt-color-summer--accent: #{$hdbt-color-summer--accent};
-
-  --hdbt-color-summer-text--primary: #{$hdbt-color-summer-text--primary};
-  --hdbt-color-summer-text--secondary: #{$hdbt-color-summer-text--secondary};
-  --hdbt-color-summer-text--accent: #{$hdbt-color-summer-text--accent};
-
-  --hdbt-color-summer-button--primary: #{$hdbt-color-summer-button--primary};
-  --hdbt-color-summer-button-contrast--primary: #{$hdbt-color-summer-button-contrast--primary};
-
-  --hdbt-color-summer-button--secondary: #{$hdbt-color-summer-button--secondary};
-  --hdbt-color-summer-button-contrast--secondary: #{$hdbt-color-summer-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Suomenlinna
-$hdbt-color-suomenlinna--primary: rgb(245, 163, 199);
-$hdbt-color-suomenlinna--secondary: rgb(240, 240, 255);
-$hdbt-color-suomenlinna--accent: rgb(0, 0, 191);
 
-$hdbt-color-suomenlinna-text--primary: $hdbt-color-black;
-$hdbt-color-suomenlinna-text--secondary: $hdbt-color-black;
-$hdbt-color-suomenlinna-text--accent: $hdbt-color-white;
+.hdbt-theme--suomenlinna {
+  --hdbt-color-palette--primary: rgb(245, 163, 199);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(0, 0, 191);
 
-$hdbt-color-suomenlinna-button--primary: $hdbt-color-black;
-$hdbt-color-suomenlinna-button-contrast--primary: $hdbt-color-white;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-white};
 
-$hdbt-color-suomenlinna-button--secondary: $hdbt-color-black;
-$hdbt-color-suomenlinna-button-contrast--secondary: $hdbt-color-white;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
-:root {
-  --hdbt-color-suomenlinna--primary: #{$hdbt-color-suomenlinna--primary};
-  --hdbt-color-suomenlinna--secondary: #{$hdbt-color-suomenlinna--secondary};
-  --hdbt-color-suomenlinna--accent: #{$hdbt-color-suomenlinna--accent};
-
-  --hdbt-color-suomenlinna-text--primary: #{$hdbt-color-suomenlinna-text--primary};
-  --hdbt-color-suomenlinna-text--secondary: #{$hdbt-color-suomenlinna-text--secondary};
-  --hdbt-color-suomenlinna-text--accent: #{$hdbt-color-suomenlinna-text--accent};
-
-  --hdbt-color-suomenlinna-button--primary: #{$hdbt-color-suomenlinna-button--primary};
-  --hdbt-color-suomenlinna-button-contrast--primary: #{$hdbt-color-suomenlinna-button-contrast--primary};
-
-  --hdbt-color-suomenlinna-button--secondary: #{$hdbt-color-suomenlinna-button--secondary};
-  --hdbt-color-suomenlinna-button-contrast--secondary: #{$hdbt-color-suomenlinna-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// Tram
-$hdbt-color-tram--primary: rgb(0, 135, 65);
-$hdbt-color-tram--secondary: rgb(255, 249, 219);
-$hdbt-color-tram--accent: rgb(255, 198, 30);
+.hdbt-theme--tram {
+  --hdbt-color-palette--primary: rgb(0, 135, 65);
+  --hdbt-color-palette--secondary: rgb(255, 249, 219);
+  --hdbt-color-palette--accent: rgb(255, 198, 30);
 
-$hdbt-color-tram-text--primary: $hdbt-color-white;
-$hdbt-color-tram-text--secondary: $hdbt-color-black;
-$hdbt-color-tram-text--accent: $hdbt-color-black;
+  --hdbt-color-palette-text--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-$hdbt-color-tram-button--primary: $hdbt-color-white;
-$hdbt-color-tram-button-contrast--primary: $hdbt-color-black;
+  --hdbt-color-palette-button--primary: #{$hdbt-color-white};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-black};
 
-$hdbt-color-tram-button--secondary: $hdbt-color-black;
-$hdbt-color-tram-button-contrast--secondary: $hdbt-color-white;
-
-:root {
-  --hdbt-color-tram--primary: #{$hdbt-color-tram--primary};
-  --hdbt-color-tram--secondary: #{$hdbt-color-tram--secondary};
-  --hdbt-color-tram--accent: #{$hdbt-color-tram--accent};
-
-  --hdbt-color-tram-text--primary: #{$hdbt-color-tram-text--primary};
-  --hdbt-color-tram-text--secondary: #{$hdbt-color-tram-text--secondary};
-  --hdbt-color-tram-text--accent: #{$hdbt-color-tram-text--accent};
-
-  --hdbt-color-tram-button--primary: #{$hdbt-color-tram-button--primary};
-  --hdbt-color-tram-button-contrast--primary: #{$hdbt-color-tram-button-contrast--primary};
-
-  --hdbt-color-tram-button--secondary: #{$hdbt-color-tram-button--secondary};
-  --hdbt-color-tram-button-contrast--secondary: #{$hdbt-color-tram-button-contrast--secondary};
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
 
-// HELfi / HDBT Default color palette.
-:root {
-  --hdbt-color-palette--primary: #{$hdbt-color-coat-of-arms--primary};
-  --hdbt-color-palette--secondary: #{$hdbt-color-coat-of-arms--secondary};
-  --hdbt-color-palette--accent: #{$hdbt-color-coat-of-arms--accent};
-
-  --hdbt-color-palette-text--primary: #{$hdbt-color-coat-of-arms-text--primary};
-  --hdbt-color-palette-text--secondary: #{$hdbt-color-coat-of-arms-text--secondary};
-  --hdbt-color-palette-text--accent: #{$hdbt-color-coat-of-arms-text--accent};
-
-  --hdbt-color-palette-button--primary: #{$hdbt-color-coat-of-arms-button--primary};
-  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-coat-of-arms-button-contrast--primary};
-
-  --hdbt-color-palette-button--secondary: #{$hdbt-color-coat-of-arms-button--secondary};
-  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-coat-of-arms-button-contrast--secondary};
-}
