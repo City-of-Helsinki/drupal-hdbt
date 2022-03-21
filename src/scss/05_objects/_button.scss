@@ -1,7 +1,334 @@
+@mixin hds-button-colors-on-light-bg(){
+  --theme-fg1: var(--color-white);
+  --theme-fg2: var(--color-black);
+  --theme-bg1: var(--color-black);
+  --theme-bg2: transparent;
+  --theme-focus: var(--color-black);
+}
+
+@mixin hds-button-colors-on-dark-bg(){
+  --theme-fg1: var(--color-black);
+  --theme-fg2: var(--color-white);
+  --theme-bg1: var(--color-white);
+  --theme-bg2: transparent;
+  --theme-focus: var(--color-white);
+}
+
+:root {
+  @include hds-button-colors-on-light-bg();
+}
+
+// Content from HDS button.css starts
+.hds-button {
+  @include font('button');
+
+  --border-width: 2px;
+  --color: inherit;
+  --min-size: 44px;
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+
+  align-content: flex-start;
+  align-items: center;
+  background-color: var(--background-color, transparent);
+  border: var(--border-width) solid var(--border-color, transparent);
+  border-radius: 0;
+  color: var(--color);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  min-height: var(--min-size);
+  min-width: var(--min-size);
+  padding: 0 var(--spacing-2-xs);
+  text-decoration: none;
+  vertical-align: top;
+}
+
+.hds-button,
+.hds-button::before,
+.hds-button::after,
+.hds-button *,
+.hds-button *::before,
+.hds-button *::after {
+  box-sizing: border-box;
+}
+
+/* button transitions */
+
+.hds-button:hover,
+.hds-button:focus,
+.hds-button:active {
+  transition-duration: 85ms;
+  transition-property: background-color, border-color, color;
+  transition-timing-function: ease-out;
+}
+
+.hds-button:hover {
+  background-color: var(--background-color-hover, transparent);
+  color: var(--color-hover);
+}
+
+.hds-button:focus {
+  background-color: var(--background-color-focus, transparent);
+  color: var(--color-focus);
+  outline: none;
+}
+
+.hds-button:focus:hover {
+  background-color: var(--background-color-hover-focus, transparent);
+}
+
+.hds-button:disabled {
+  background-color: var(--background-color-disabled, transparent);
+  border-color: var(--border-color-disabled, transparent);
+  color: var(--color-disabled);
+  cursor: not-allowed;
+}
+
+.hds-button:not(:disabled) {
+  border-color: var(--border-color, transparent);
+}
+
+.hds-button:not(:disabled):hover {
+  border-color: var(--border-color-hover, transparent);
+}
+
+.hds-button:not(:disabled):active,
+.hds-button:not(:disabled):focus {
+  border-color: var(--border-color-focus, transparent);
+}
+
+.hds-button:not(:disabled):active:hover,
+.hds-button:not(:disabled):focus:hover {
+  border-color: var(--border-color-hover-focus, transparent);
+  color: var(--color-hover-focus);
+}
+
+/* FOCUS OUTLINE */
+
+.hds-button:active,
+.hds-button:focus {
+  outline: var(--outline-width) solid var(--focus-outline-color);
+  outline-offset: var(--outline-gutter);
+  outline-offset: 2px;
+}
+
+/* LABEL */
+
+input[type="submit"].hds-button,
+.hds-button__label {
+  font-weight: inherit;
+  line-height: 1.25em;
+  padding: var(--spacing-s);
+}
+
+input[type="submit"].hds-button {
+  cursor: pointer;
+  padding: var(--spacing-s) var(--spacing-l);
+}
+
+/* no icons */
+
+.hds-button__label:only-child {
+  margin: 0 var(--spacing-2-xs);
+}
+
+/* supplementary with right icon */
+
+.hds-button--supplementary .hds-button__label:first-child {
+  padding-right: var(--spacing-3-xs);
+}
+
+/* supplementary with left icon */
+
+.hds-button--supplementary .hds-icon + .hds-button__label:last-child {
+  padding-left: var(--spacing-3-xs);
+}
+
+/* supplementary with both icons */
+
+.hds-button--supplementary .hds-icon + .hds-button__label:not(:last-child) {
+  padding-left: var(--spacing-3-xs);
+  padding-right: var(--spacing-3-xs);
+}
+
+/* ICONS */
+
+/* left */
+
+.hds-button .hds-icon {
+  height: var(--spacing-m);
+  margin-left: var(--spacing-s);
+  width: var(--spacing-m);
+}
+
+/* right */
+
+.hds-button__label ~ .hds-icon {
+  margin: 0 var(--spacing-s) 0 0;
+}
+
+/* both icons - left */
+
+.hds-button .hds-icon:first-of-type:not(:last-of-type) {
+  margin: 0 0 0 var(--spacing-2-xs);
+}
+
+/* both icons - right */
+
+.hds-button .hds-icon:last-of-type:not(:first-of-type) {
+  margin: 0 var(--spacing-2-xs) 0 0;
+}
+
+/* PRIMARY */
+
+/* default (bus) */
+
+.hds-button--primary {
+  --background-color: var(--theme-bg1, var(--color-bus));
+  --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
+  --background-color-focus: var(--theme-bg1, var(--color-bus));
+  --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+  --background-color-disabled: var(--color-black-20);
+
+  --border-color: var(--theme-bg1, var(--color-bus));
+  --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
+  --border-color-focus: var(--theme-bg1, var(--color-bus));
+  --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
+  --border-color-disabled: var(--color-black-20);
+
+  --color: var(--theme-fg1, var(--color-white));
+  --color-hover: var(--theme-fg2, var(--color-white));
+  --color-focus: var(--theme-fg1, var(--color-white));
+  --color-hover-focus: var(--theme-fg2, var(--color-white));
+  --color-disabled: var(--color-white);
+
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+}
+
+/* SECONDARY */
+
+/* default (bus) */
+
+.hds-button--secondary {
+  --background-color: var(--theme-bg2, transparent);
+  --background-color-hover: var(--theme-bg1, var(--color-bus-light));
+  --background-color-focus: var(--theme-bg2, transparent);
+  --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
+  --background-color-disabled: transparent;
+
+  --border-color: var(--theme-bg1, var(--color-bus));
+  --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
+  --border-color-focus: var(--theme-bg1, var(--color-bus));
+  --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+  --border-color-disabled: var(--color-black-50);
+
+  --color: var(--theme-fg2, var(--color-bus));
+  --color-hover: var(--theme-fg1, var(--color-bus-dark));
+  --color-focus: var(--theme-fg2, var(--color-bus));
+  --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
+  --color-disabled: var(--color-black-40);
+
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+}
+
+/* SUPPLEMENTARY */
+
+.hds-button--supplementary {
+  --background-color: var(--theme-bg2, transparent);
+  --background-color-hover: var(--theme-bg2, var(--color-bus-light));
+  --background-color-focus: var(--theme-bg2, transparent);
+  --background-color-hover-focus: var(--theme-bg2, var(--color-bus-light));
+  --background-color-disabled: transparent;
+
+  --border-color: var(--theme-bg2, transparent);
+  --border-color-hover: var(--theme-bg2, transparent);
+  --border-color-focus: var(--theme-bg2, var(--color-coat-of-arms));
+  --border-color-hover-focus: var(--theme-bg2, var(--color-coat-of-arms));
+  --border-color-disabled: transparent;
+
+  --color: var(--theme-fg2, var(--color-bus));
+  --color-hover: var(--theme-fg2, var(--color-bus-dark));
+  --color-focus: var(--theme-fg2, var(--color-bus));
+  --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
+  --color-disabled: var(--color-black-40);
+
+  --focus-outline-color: var(--theme-focus, transparent);
+}
+
+/* LOADING */
+
+.hds-button--loading {
+  --background-color: transparent;
+  --background-color-hover: transparent;
+  --background-color-focus: transparent;
+  --background-color-hover-focus: transparent;
+  --background-color-disabled: transparent;
+
+  --border-color: transparent;
+  --border-color-hover: transparent;
+  --border-color-focus: transparent;
+  --border-color-hover-focus: transparent;
+  --border-color-disabled: transparent;
+
+  --color: var(--color-black-90);
+  --color-hover: var(--color-black-90);
+  --color-focus: var(--color-black-90);
+  --color-hover-focus: var(--color-black-90);
+  --color-disabled: var(--color-black-90);
+
+  cursor: wait;
+}
+
+/* UTILITY */
+
+/* success */
+
+.hds-button--success {
+  --background-color: var(--color-success);
+  --background-color-hover: var(--color-success-dark);
+  --background-color-focus: var(--color-success);
+  --background-color-hover-focus: var(--color-success-dark);
+
+  --border-color: var(--color-success);
+  --border-color-hover: var(--color-success-dark);
+  --border-color-focus: var(--color-success);
+  --border-color-hover-focus: var(--color-success-dark);
+
+  --color: var(--color-white);
+  --color-hover: var(--color-white);
+  --color-focus: var(--color-white);
+  --color-hover-focus: var(--color-white);
+
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+}
+
+/* danger */
+
+.hds-button--danger {
+  --background-color: var(--color-error);
+  --background-color-hover: var(--color-error-dark);
+  --background-color-focus: var(--color-error);
+  --background-color-hover-focus: var(--color-error-dark);
+
+  --border-color: var(--color-error);
+  --border-color-hover: var(--color-error-dark);
+  --border-color-focus: var(--color-error);
+  --border-color-hover-focus: var(--color-error-dark);
+
+  --color: var(--color-white);
+  --color-hover: var(--color-white);
+  --color-focus: var(--color-white);
+  --color-hover-focus: var(--color-white);
+
+  --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+}
+
+// Content fron HDS button.css ends
 // TODO: Refactor hds-button.
 // Fix for button margins when using hel-icon.
 .hds-button {
-  @include font('button');
 
   // Set icon size for the button icons.
   .hel-icon {
@@ -22,8 +349,7 @@
   }
 }
 
-a.hds-button {
-  text-decoration: none;
+.hds-button {
 
   // The supplementary button just won't work with the focus and default layout in the left aligned layout
   // so these changes are required to make it look even a bit more decent.
@@ -98,9 +424,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --outline-gutter: 2px;
   --outline-width: 3px;
 }
-
-// Set colors for all hds-button--link elements that have color defined via primary, secondary or supplementary modifier
-@include hds-button-colors-on-light-bg($class: '.hds-button--link');
 
 // Hide target blank explanation text from others than screen-readers
 .hds-button__target-blank {

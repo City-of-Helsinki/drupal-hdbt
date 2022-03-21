@@ -5,13 +5,9 @@
 
 // TODO: We should clean all these codes and move them to our own codebase
 
-// Get stripped contents from base.min.css:
-@import 'xx_external/normalise.css';
-@import 'xx_external/hds-stripped/base';
-
-// Get content from:
 // Rows below strip only used bits from @import 'xx_external/hds-core/lib/components/all.min.css';
-@import 'xx_external/hds-core/lib/components/button/button.min.css';
+
+// button.css contents have been moved inside 05_objects/_button.scss
 @import 'xx_external/hds-core/lib/components/checkbox/checkbox.min.css';
 @import 'xx_external/hds-core/lib/components/koros/koros.min.css';
 @import 'xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css';

@@ -1,9 +1,9 @@
 $_video-aspect-ratio: 16/9;
 
 .component--remote-video {
+  @include hds-button-colors-on-dark-bg();
   @include component-side-padding;
   background-color: $color-black;
-  color: $color-white;
   padding-bottom: $spacing-double;
   padding-top: $spacing-double;
 
@@ -16,6 +16,11 @@ $_video-aspect-ratio: 16/9;
     padding-bottom: $spacing-quadruple;
     padding-top: $spacing-quadruple;
   }
+}
+
+.component--remote-video,
+.component--remote-video a:not(.hds-button) {
+  color: $color-white;
 }
 
 .has-sidebar .components--upper .component--remote-video {

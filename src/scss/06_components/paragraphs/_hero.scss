@@ -88,64 +88,6 @@ $koro-height: 50px;
     }
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-white);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-white);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-90);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-black-90);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-black-90);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black-80);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-80);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: transparent;
-    --color: var(--color-black-90);
-    --color-hover: var(--color-black-80);
-    --color-focus: var(--color-black);
-    --color-hover-focus: var(--color-black-80);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-  }
-
   .hero__arrow {
     background-color: var(--hdbt-color-palette--accent);
     bottom: -90px;
@@ -190,62 +132,10 @@ $koro-height: 50px;
     color: $color-coat-of-arms;
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
+  .hds-button {
+    @include hds-button-colors-on-dark-bg();
   }
 
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-coat-of-arms-dark);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-coat-of-arms-dark);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: transparent;
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-  }
 }
 
 .hero--bg-color--gold {
@@ -254,11 +144,6 @@ $koro-height: 50px;
   .hero__image-container {
     color: $color-gold;
   }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-gold-medium-light);
-    --background-color-hover-focus: var(--color-gold-medium-light);
-  }
 }
 
 .hero--bg-color--silver {
@@ -266,11 +151,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     color: $color-silver;
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-silver-medium-light);
-    --background-color-hover-focus: var(--color-silver-medium-light);
   }
 }
 
@@ -285,61 +165,8 @@ $koro-height: 50px;
     color: $color-brick;
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-brick-dark);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-brick-dark);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: transparent;
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
+  .hds-button {
+    @include hds-button-colors-on-dark-bg();
   }
 }
 
@@ -354,61 +181,8 @@ $koro-height: 50px;
     color: $color-bus;
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-bus-dark);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-bus-dark);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: transparent;
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
+  .hds-button {
+    @include hds-button-colors-on-dark-bg();
   }
 }
 
@@ -418,11 +192,6 @@ $koro-height: 50px;
   .hero__image-container {
     color: $color-copper;
   }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-copper-medium-light);
-    --background-color-hover-focus: var(--color-copper-medium-light);
-  }
 }
 
 .hero--bg-color--engel {
@@ -430,11 +199,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     color: $color-engel;
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-engel-medium-light);
-    --background-color-hover-focus: var(--color-engel-medium-light);
   }
 }
 
@@ -444,11 +208,6 @@ $koro-height: 50px;
   .hero__image-container {
     color: $color-fog;
   }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-fog-medium-light);
-    --background-color-hover-focus: var(--color-fog-medium-light);
-  }
 }
 
 .hero--bg-color--metro {
@@ -456,11 +215,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     color: $color-metro;
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-metro-medium-light);
-    --background-color-hover-focus: var(--color-metro-medium-light);
   }
 }
 
@@ -470,11 +224,6 @@ $koro-height: 50px;
   .hero__image-container {
     color: $color-summer;
   }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-summer-medium-light);
-    --background-color-hover-focus: var(--color-summer-medium-light);
-  }
 }
 
 .hero--bg-color--suomenlinna {
@@ -482,11 +231,6 @@ $koro-height: 50px;
 
   .hero__image-container {
     color: $color-suomenlinna;
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-suomenlinna-medium-light);
-    --background-color-hover-focus: var(--color-suomenlinna-medium-light);
   }
 }
 
@@ -501,61 +245,8 @@ $koro-height: 50px;
     color: $color-tram;
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-tram-dark);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-tram-dark);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-black-10);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-black-10);
-    --border-color-disabled: transparent;
-    --color: var(--color-white);
-    --color-hover: var(--color-black-10);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-10);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
+  .hds-button {
+    @include hds-button-colors-on-dark-bg();
   }
 }
 
@@ -810,51 +501,8 @@ $koro-height: 50px;
     color: $color-silver-light;
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-white);
-    --background-color-hover: var(--color-black-90);
-    --background-color-focus: var(--color-white);
-    --background-color-hover-focus: var(--color-black-90);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-white);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-white);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-white);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color-hover: var(--color-white);
-    --background-color-hover-focus: var(--color-white);
-    --border-color: var(--color-white);
-    --border-color-hover: var(--color-white);
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-white);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-90);
-    --focus-outline-color: var(--color-white);
-  }
-
-  .hds-button--supplementary {
-    --border-color-focus: var(--color-white);
-    --border-color-hover-focus: var(--color-white);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-black-40);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
+  .hds-button {
+    @include hds-button-colors-on-dark-bg();
   }
 
   .hero__arrow {
