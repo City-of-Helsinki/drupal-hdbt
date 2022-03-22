@@ -86,7 +86,7 @@ function hdbt_content_language_switch_links_alter(array &$links) {
     ($parameters = $route->getOption('parameters'))
   ) {
     foreach ($parameters as $name => $options) {
-      if (isset($options['type']) && strpos($options['type'], 'entity:') === 0) {
+      if (isset($options['type']) && str_starts_with($options['type'], 'entity:')) {
         $parameter = $route_match->getParameter($name);
         if ($parameter instanceof ContentEntityInterface && $parameter->hasLinkTemplate('canonical')) {
           $entity = $parameter;

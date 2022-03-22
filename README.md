@@ -155,7 +155,7 @@ To see these translation changes in an instance, run in container shell:
 ```
 drush locale:check && drush locale:update
 ```
-And then flush all caches from top left drupal admin menu under "DruplIcon".
+And then flush all caches from top left drupal admin menu under "Druplicon".
 
 ## Component documentation
 
