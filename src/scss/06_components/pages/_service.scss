@@ -137,7 +137,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:before {
-      background-color: var(--hdbt-color-gold--primary);
+      background-color: $color-gold;
       content: "";
       display: block;
       height: 100%;
