@@ -3,7 +3,7 @@
   order: 3;
   padding: 12px $spacing;
   position: relative;
-  transition: all .3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
+  transition: margin-top .3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: calc(100% + #{$spacing-double});
   z-index: 0;
 
@@ -21,6 +21,7 @@
 
     @include breakpoint($breakpoint-m) {
       margin-top: 0;
+      transition-duration: 0s;
     }
   }
 }
