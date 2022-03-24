@@ -116,6 +116,12 @@
   }
 }
 
+.unit-search__additional-information {
+  @include font('body');
+  display: block;
+  margin-top: $spacing;
+}
+
 .unit-search__result--list,
 .unit-search__result--map {
   margin-top: $spacing;
@@ -150,3 +156,13 @@
   }
 }
 
+// Unit search with large volume of units listed such as daycare search.
+.views--unit-search--large-volume {
+  .views-row {
+    margin-top: $spacing-quarter;
+
+    &:first-of-type {
+      margin-top: $spacing-and-half;
+    }
+  }
+}

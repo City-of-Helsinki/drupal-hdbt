@@ -548,3 +548,106 @@
     }
   }
 }
+
+.unit--minimal {
+  background-color: $color-white;
+
+  .unit__link {
+    display: block;
+    padding: $spacing-and-half;
+    text-decoration: none;
+  }
+
+  .unit__text {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .unit__text__content {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      // Width of the element - (icon width + icon padding on left)
+      width: calc(100% - (#{$spacing-double} + #{$spacing-and-half}));
+    }
+  }
+
+  .unit__title {
+    @include font('h4');
+    margin-bottom: 0;
+
+    @include breakpoint($breakpoint-m) {
+      font-weight: bold;
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+      padding-right: $spacing-and-half;
+      width: 60%;
+    }
+  }
+
+  .unit__info {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      width: 40%;
+    }
+  }
+
+  .unit__info-row--address {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      @include font('body');
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+    }
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .unit__info-row--distance {
+    @include font('special.helper_text');
+    color: $color-black-60;
+    margin-top: $spacing-half;
+    white-space: nowrap;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing;
+      // Align the distance to center with the arrow and the title.
+      margin-top: 7px;
+    }
+  }
+
+  .unit__read-more {
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      margin-top: 0;
+    }
+
+    .hel-icon {
+      --icon-size: #{$spacing-double};
+      @include hover-link-arrow-transition();
+    }
+  }
+
+  &:hover {
+    .unit__title {
+      text-decoration: underline;
+    }
+
+    .unit__read-more {
+      .hel-icon {
+        transform: translateX($spacing-half);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+    }
+  }
+}
