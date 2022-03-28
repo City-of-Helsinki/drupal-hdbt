@@ -151,14 +151,6 @@ module.exports = (env, argv) => {
             'from': 'node_modules/handorgel/lib/css/handorgel.min.css',
             'to': path.resolve(__dirname, 'dist') + '/css/handorgel/',
             'force': true,
-          }, {
-            'from': 'node_modules/mmenu-js/dist/mmenu.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/mmenu/',
-            'force': true,
-          }, {
-            'from': 'node_modules/mmenu-js/dist/mmenu.css',
-            'to': path.resolve(__dirname, 'dist') + '/css/mmenu/',
-            'force': true,
           }
         ]
       }),

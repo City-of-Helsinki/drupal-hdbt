@@ -104,8 +104,6 @@ function hdbt_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'error-page';
   }
 
-  $variables['#attached']['library'][] = 'hdbt/mmenu-settings';
-
   $matomo_site_id = Settings::get('matomo_site_id');
 
   if ($matomo_site_id) {
