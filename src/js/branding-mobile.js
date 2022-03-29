@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const toggleLanguageSwitcher = function (direction, curScroll) {
-    if (direction === 2 && curScroll > 48) {
+    if (direction === 2 && curScroll > languageSwitcher.clientHeight) {
       languageSwitcher.classList.add('scroll-up');
       prevDirection = direction;
     } else if (direction === 1) {
