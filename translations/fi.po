@@ -141,3 +141,19 @@ msgstr "Päivitämme sivustoa tällä hetkellä"
 
 msgid "You do not have permission to access this page"
 msgstr "Sinulla ei ole käyttöoikeutta tälle sivulle"
+
+msgctxt "Mobile navigation menu open button text for screen readers"
+msgid "Open navigation menu"
+msgstr "Avaa navigaatiovalikko"
+
+msgctxt "Mobile navigation menu close button text for screen readers"
+msgid "Close navigation menu"
+msgstr "Sulje navigaatiovalikko"
+
+msgctxt "Mobile navigation submenu prefix"
+msgid "Toggle submenu:"
+msgstr "Kytke alivalikko:"
+
+msgctxt "Mobile navigation menu description for screen readers"
+msgid "Navigation menu"
+msgstr "Navigaatiovalikko"

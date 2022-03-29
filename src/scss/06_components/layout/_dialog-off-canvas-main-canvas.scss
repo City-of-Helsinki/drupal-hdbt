@@ -1,4 +1,3 @@
-.mm-page,
 .dialog-off-canvas-main-canvas {
   display: flex;
   flex-direction: column;
@@ -8,11 +7,10 @@
 
 .gin--horizontal-toolbar {
   .dialog-off-canvas-main-canvas {
-    // Gin horizontal toolbar adjustments.
-    padding-top: 39px;
-
-    @media (min-width: 976px) {
-      padding-top: 54px !important;
+    --drupal-toolbar-height: 39px;
+    padding-top: var(--drupal-toolbar-height); // Gin horizontal toolbar adjustments.
+    @include breakpoint(976px) {
+      --drupal-toolbar-height: 54px;
     }
   }
 }

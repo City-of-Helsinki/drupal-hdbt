@@ -43,6 +43,9 @@
   %}
 {% endif %}
 
+{# This checkbox handles opening and closing mobile menu #}
+<input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox">
+
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
     <header role="banner" class="header">

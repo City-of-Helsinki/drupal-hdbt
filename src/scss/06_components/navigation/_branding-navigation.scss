@@ -1,33 +1,38 @@
-$_branding-icon-size-mobile: $spacing-and-half;
-$_branding-icon-size-desktop: $spacing-double;
+$-branding-icon-size-desktop: $spacing-double;
 
 .header-branding {
-  align-items: center;
+  --block-branding-height-mobile: 65px;
   background-color: $color-white;
   border-bottom: 1px solid $color-black-20;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 $spacing;
+  display: grid;
+  grid-template-areas:
+    '. logo . brand toggle .'
+    '. lang lang lang lang .'
+    'menu menu menu menu menu menu';
+  grid-template-columns: $spacing auto 1fr auto auto $spacing;
+  grid-template-rows: auto auto auto;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
 
   @include breakpoint($breakpoint-m) {
-    flex-wrap: nowrap;
-    position: static;
-    top: auto;
+    grid-template-areas:
+      '. logo . lang brand toggle .'
+      'menu menu menu menu menu menu menu';
+    grid-template-columns: $spacing auto 1fr auto auto auto $spacing;
+    grid-template-rows: auto auto;
   }
 
-  @include breakpoint($breakpoint-l) {
-    padding: 0 $spacing-double;
+  @include breakpoint($breakpoint-m) {
+    position: static;
+    top: auto;
   }
 
   &::before {
     background-color: $color-white;
     border-bottom: 1px solid $color-black-10;
-    content: "";
+    content: '';
     height: 65px; // Height of the mobile header
     left: 0;
     position: absolute;
@@ -41,7 +46,7 @@ $_branding-icon-size-desktop: $spacing-double;
   }
 
   .toolbar-vertical & {
-    top: 39px; // Height of the toolbar
+    top: var(--drupal-toolbar-height);
   }
 
   .menu {
@@ -55,36 +60,40 @@ $_branding-icon-size-desktop: $spacing-double;
     margin-left: $spacing-half;
   }
 
-  .menu__link {
-    @include font('special.navigation.icon_label');
-    display: block;
-    min-width: $_branding-icon-size-mobile;
-    padding-top: $_branding-icon-size-mobile + $spacing-half; // Icon should be a bit below the center axis
-    position: relative;
-    text-align: center;
-    text-decoration: none;
+  .block--branding-navigation {
+    .menu__link {
+      @include font('special.navigation.icon_label');
+      align-self: center;
+      cursor: pointer;
+      display: grid;
+      grid-template-areas:
+        'icon'
+        'label';
+      padding: 5px; // Handles spacing for "inside" focus ring
+      text-align: center;
+      user-select: none;
 
-    @include breakpoint(440px) {
-      min-width: $_branding-icon-size-desktop;
-      padding-top: $_branding-icon-size-desktop + $spacing-half; // Icon should be a bit below the center axis
+      @include breakpoint($breakpoint-l) {
+        display: none;
+      }
+
+      &:focus,
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus {
+        outline: 3px solid $color-black;
+        outline-offset: -3px;
+      }
     }
 
-    &:focus,
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .menu__link__icon {
-    --icon-size: #{$_branding-icon-size-mobile};
-    display: block;
-    margin-left: 50%;
-    margin-top: - $_branding-icon-size-mobile;
-    position: absolute;
-    transform: translateX(-50%);
-    @include breakpoint(440px) {
-      --icon-size: #{$_branding-icon-size-desktop};
-      margin-top: - $_branding-icon-size-desktop;
+    .menu__link__icon {
+      --icon-size: #{$-branding-icon-size-desktop};
+      align-self: end;
+      display: block;
+      grid-area: icon;
+      justify-self: center;
     }
   }
 }
