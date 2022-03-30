@@ -1,0 +1,50 @@
+{%
+  set classes = [
+    'contact-card',
+    view_mode ? 'contact-card---' ~ view_mode|clean_class,
+    content.field_contact_image|render ? 'contact-card--with-image'
+  ]
+%}
+
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% if content.field_contact_image|render %}
+      <div class="contact-card--image-container">
+        {{ content.field_contact_image }}
+      </div>
+    {% else %}
+      <div class="contact-card--color-line"></div>
+    {% endif %}
+    <div class="contact-card--information-container">
+    {% if content.field_contact_name|render %}
+      <h3 class="contact-card--person-information contact-card--person-name">
+        {{ content.field_contact_name }}
+      </h3>
+    {% endif %}
+    {% if content.field_contact_title|render %}
+      <div class="contact-card--person-information">
+        {{ content.field_contact_title }}
+      </div>
+    {% endif %}
+    {% if content.field_phone_number|render %}
+      <div class="contact-card--person-information contact-card--person-phone-number">
+        {{ content.field_phone_number }}
+      </div>
+    {% endif %}
+    {% if content.field_email|render %}
+      <div class="contact-card--person-information contact-card--person-email">
+        {{ content.field_email }}
+      </div>
+    {% endif %}
+    {% if content.field_contact_social_media|render %}
+      <div class="contact-card--person-information contact-card--person-social-media">
+        {{ content.field_contact_social_media }}
+      </div>
+    {% endif %}
+    <div class="contact-card--person-information contact-card--person-description">
+      {{ content.field_contact_description }}
+    </div>
+    </div>
+  </div>
+{% endblock paragraph %}

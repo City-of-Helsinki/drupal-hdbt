@@ -1,0 +1,25 @@
+.contact-card-listing--container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include breakpoint($breakpoint-s) {
+    flex-direction: row;
+  }
+
+  .contact-card {
+    margin-bottom: $spacing-triple;
+
+    @include breakpoint($breakpoint-s) {
+      min-width: 252px;
+      width: 25%;
+    }
+  }
+
+  .contact-card--with-image {
+    @include breakpoint($breakpoint-s) {
+      min-width: 224px;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.contact-card {
+  display: flex;
+}
+
+.contact-card--with-image {
+  @include breakpoint($breakpoint-s) {
+    flex-direction: column;
+  }
+}
+
+.contact-card--information-container {
+  @include breakpoint($breakpoint-s) {
+    max-width: 200px;
+  }
+}
+
+.contact-card--person-social-media {
+  display: flex;
+
+  .hel-icon {
+    height: 26px;
+    margin-right: $spacing-half;
+    width: 26px;
+  }
+}
+
+.contact-card--image-container {
+  margin-bottom: $spacing;
+  margin-right: $spacing;
+
+  @include breakpoint($breakpoint-s) {
+    margin-right: 0;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+
+    @include breakpoint($breakpoint-s) {
+      height: 200px;
+      width: 200px;
+    }
+  }
+}
+
+.contact-card--person-name {
+  font-size: 20px;
+  font-weight: $font-weight-medium;
+  margin-top: 0;
+}
+
+.contact-card--person-phone-number {
+  a:not(:last-of-type) {
+    &::after {
+      content: ',';
+      margin-right: 2px;
+    }
+  }
+}
+
+.contact-card--person-email {
+  word-break: break-all;
+}
+
+.contact-card--person-information {
+  margin-bottom: $spacing-half;
+}
+
+.contact-card--color-line {
+  background-color: var(--hdbt-color-palette--primary);
+  margin-right: $spacing-and-half;
+  min-width: 4px;
+  width: 4px;
+}
+
+.contact-card--person-description {
+  color: var(--color-black-60);
+}
