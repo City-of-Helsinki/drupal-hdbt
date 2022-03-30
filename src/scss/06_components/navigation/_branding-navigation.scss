@@ -82,6 +82,7 @@ $-branding-icon-size-desktop: $spacing-double;
         text-decoration: underline;
       }
 
+      &:active,
       &:focus {
         outline: 3px solid $color-black;
         outline-offset: -3px;

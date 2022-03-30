@@ -262,6 +262,7 @@ $-cssnav-summary-width: 40px;
   text-decoration: none;
   transition: box-shadow ease-in 0.1s;
 
+  &:active,
   &:focus {
     outline: 3px solid var(--cssnav-fg);
     outline-offset: -3px;
@@ -307,6 +308,7 @@ $-cssnav-summary-width: 40px;
     outline: 0 none;
   }
 
+  &:active .cssnav__toggle,
   &:focus .cssnav__toggle {
     outline: 3px solid var(--cssnav-fg);
     outline-offset: -3px;
@@ -400,11 +402,25 @@ $-cssnav-summary-width: 40px;
   padding-bottom: 80px;
   padding-top: $spacing;
 
+  .menu {
+    display: block;
+  }
+
+  .menu__item + .menu__item {
+    margin-left: 0;
+  }
+
   .menu__link {
     @include font('body');
     color: $color-white;
     display: block;
     padding: $spacing-half $spacing;
+
+    &:focus,
+    &:active {
+      outline: 3px solid $color-white;
+      outline-offset: -5px;
+    }
   }
 
   & > .menu__link {
