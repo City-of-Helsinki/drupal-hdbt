@@ -46,7 +46,6 @@
     }
 
     &:focus {
-      border-radius: 2px;
       box-shadow: 0 0 0 3px $color-black;
       outline: none;
       padding: 6px 0;
@@ -101,7 +100,6 @@
       outline: none;
 
       &::after {
-        border-radius: 2px;
         box-shadow: 0 0 0 3px $color-black;
         content: "";
         display: block;
