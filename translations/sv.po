@@ -154,3 +154,7 @@ msgstr "Växla undermeny:"
 msgctxt "Mobile navigation menu description for screen readers"
 msgid "Navigation menu"
 msgstr "Navigeringsmenyn"
+
+msgctxt "Screenreader name for top navigation menu"
+msgid "Site navigation"
+msgstr "Webbplatsnavigering"

@@ -157,3 +157,7 @@ msgstr "Kytke alivalikko:"
 msgctxt "Mobile navigation menu description for screen readers"
 msgid "Navigation menu"
 msgstr "Navigaatiovalikko"
+
+msgctxt "Screenreader name for top navigation menu"
+msgid "Site navigation"
+msgstr "Sivuston navigaatio"
