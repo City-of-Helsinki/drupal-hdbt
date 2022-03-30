@@ -170,6 +170,10 @@ $-cssnav-summary-width: 40px;
   position: relative;
 }
 
+.cssnav__subnav {
+  border-bottom: 0 none;
+}
+
 // Remove default list styles
 .cssnav,
 .cssnav__subnav,
