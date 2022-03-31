@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const widgetsToHideSelector = [
     '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
     '#smartti-wrapper', // Smartti chatbot in kymp
-    '.aca--button--desktop, .aca--button--mobile', // Asuminen -chat
+    '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
+    '#block-kuurahealthchat' // Kuurahealth in sote
   ];
 
   const toggle = document.querySelector('.js-cssmenu-toggle-button');
