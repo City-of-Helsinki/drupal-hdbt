@@ -784,15 +784,15 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->hasField('field_contact_image_photographer') &&
     $paragraph->hasField('field_contact_image')
   ) {
-    if(
+    if (
       !$paragraph->get('field_contact_image_photographer')->isEmpty() &&
       !$paragraph->get('field_contact_image')->isEmpty()
       ) {
-        //Adds the photographer to the image alt-text.
-        $photographer = $paragraph->get('field_contact_image_photographer')->value;
-        $alt = $paragraph->get('field_contact_image')->alt;
-        $alt_with_photographer = $alt . ' ' . t('Photographer') . ': ' . $photographer;
-        $paragraph->get('field_contact_image')->alt = $alt_with_photographer;
+      // Adds the photographer to the image alt-text.
+      $photographer = $paragraph->get('field_contact_image_photographer')->value;
+      $alt = $paragraph->get('field_contact_image')->alt;
+      $alt_with_photographer = $alt . ' ' . t('Photographer') . ': ' . $photographer;
+      $paragraph->get('field_contact_image')->alt = $alt_with_photographer;
     }
   }
 
@@ -801,8 +801,8 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_type == 'social_media_link' &&
     $paragraph->hasField('field_icon')
     ) {
-    //Icon name for accessibility
-    $variables['icon_name'] =ucfirst($paragraph->get('field_icon')->icon);
+    // Icon name for accessibility.
+    $variables['icon_name'] = ucfirst($paragraph->get('field_icon')->icon);
   }
 }
 
