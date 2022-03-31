@@ -1,14 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-  var toggle = document.querySelector('.js-cssmenu-toggle-button');
-  var checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
+  const widgetsToHideSelector = [
+    '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
+    '#smartti-wrapper', // Smartti chatbot in kymp
+    '.aca--button--desktop, .aca--button--mobile', // Asuminen -chat
+  ];
+
+  const toggle = document.querySelector('.js-cssmenu-toggle-button');
+  const checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
+
+  function toggleWidgets(hide) {
+    var widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
+    for (let i = 0; i < widgets.length; i++) {
+      const widget = widgets[i];
+      if (hide) {
+        widget.dataset.cssmenuHide = true;
+      } else {
+        delete widget.dataset.cssmenuHide;
+      }
+    }
+  }
 
   function checkboxToggle() {
     if (checkbox.checked) {
       toggle.setAttribute('aria-expanded', 'false');
       checkbox.checked = false;
+      toggleWidgets(false);
       toggle.focus();
     } else {
       checkbox.checked = true;
+      toggleWidgets(true);
       toggle.setAttribute('aria-expanded', 'true');
     }
   }

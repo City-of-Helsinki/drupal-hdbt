@@ -178,6 +178,11 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   }
 }
 
+// Hide widgets like chats based on selectors in cssmenu.js
+[data-cssmenu-hide] {
+  display: none !important;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Navigation ul inside cssmenu
