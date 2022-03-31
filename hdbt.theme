@@ -806,7 +806,9 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->hasField('field_icon')
     ) {
     // Icon name for accessibility.
-    $variables['icon_name'] = ucfirst($paragraph->get('field_icon')->icon);
+    if (!$paragraph->get('field_icon')->isEmpty()) {
+      $variables['icon_name'] = ucfirst($paragraph->get('field_icon')->icon);
+    }
   }
 }
 
