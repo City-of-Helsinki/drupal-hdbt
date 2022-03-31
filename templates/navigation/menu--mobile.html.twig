@@ -44,7 +44,7 @@
         item.is_nolink ? 'cssnav__item--nolink',
         item.below|length ? 'cssnav__item--has-children',
         item.in_active_trail ? 'cssnav__item--in-path',
-        'cssnav__item--level-' ~ level,
+        'cssnav__item--level-' ~ (level + 1),
       ]%}
       {# <div{{ item.attributes.addClass(item_classes) }}> #}
       <li{{ item.attributes.addClass(item_classes) }}>
@@ -56,7 +56,7 @@
             {% set icon_name = (item.url.getOption('attributes')).icon %}
             {% if icon_name %}
               {% set item_title %}
-                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
+                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'cssnav__link__icon'} %}
                 <span class="cssnav__link__text">{{ item.title }}</span>
               {% endset %}
             {% endif %}
@@ -65,7 +65,7 @@
               'class':
                 [
                   'cssnav__link',
-                  item.in_active_trail ? 'menu__link--in-path',
+                  item.in_active_trail ? 'cssnav__link--in-path',
                 ],
               'aria-current': item.is_currentPage ? 'page': null,
             } %}

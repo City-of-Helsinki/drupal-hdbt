@@ -2,6 +2,7 @@
 $-header-branding-height-desktop: 87px;
 $-menu-transition-duration: 0.2s;
 $-cssnav-summary-width: 40px;
+$-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-area
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -130,7 +131,7 @@ $-cssnav-summary-width: 40px;
   width: auto;
 
   @include breakpoint($breakpoint-m) {
-    display: none;
+    display: none; // Hidden when the language menu has space in header bar
   }
 }
 
@@ -178,12 +179,14 @@ $-cssnav-summary-width: 40px;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Navigation ul inside cssmenu
 .cssnav {
   border-bottom: 1px solid $color-black-20;
   grid-area: nav;
   position: relative;
 }
 
+// Child ul elements
 .cssnav__subnav {
   border-bottom: 0 none;
 }
@@ -197,78 +200,72 @@ $-cssnav-summary-width: 40px;
   padding: 0;
 }
 
+// The li element
 .cssnav__item {
   background-color: var(--cssnav-bg, $color-white);
 }
 
-.cssnav__item--level-1 {
-  --cssnav-bg: #{$color-white};
-  --cssnav-fg: #{$color-black-90};
-  --cssnav-line: #{$color-black-20};
-}
-
-.cssnav__item--level-2 {
-  --cssnav-bg: #{$color-black-5};
-}
-
-.cssnav__item--level-3 {
-  --cssnav-bg: #{$color-black-10};
-  --cssnav-line: #{$color-black-30};
-}
-
-.cssnav__item--level-4 {
-  --cssnav-bg: #{$color-black-20};
-  --cssnav-line: #{$color-black-40};
-}
-
-.cssnav__item--level-5 {
-  --cssnav-bg: #{$color-black-30};
-  --cssnav-line: #{$color-black-50};
-}
-
-.cssnav__item--level-6 {
-  --cssnav-bg: #{$color-black-40};
-  --cssnav-fg: #{$color-black};
-  --cssnav-line: #{$color-black-60};
-}
-
-.cssnav__item--level-7 {
-  --cssnav-bg: #{$color-black-50};
-  --cssnav-line: #{$color-black-70};
-}
-
-.cssnav__item--level-8 {
-  --cssnav-bg: #{$color-black-60};
-  --cssnav-fg: #{$color-white};
-  --cssnav-line: #{$color-white};
-}
-
-.cssnav__item--level-9 {
-  --cssnav-bg: #{$color-black-70};
-}
-
-.cssnav__item--level-1,
-.cssnav__item--level-2:first-child {
+.cssnav__item--level-2,
+.cssnav__item--level-3:first-child {
   border-top: 1px solid $color-black-20;
 }
 
-// .cssnav__item--level-1,
-// .cssnav__item--level-3,
-// .cssnav__item--level-5,
-// .cssnav__item--level-7,
-// .cssnav__item--level-9 {
-//   --cssnav-bg: #{$color-white};
-//   --cssnav-fg: #{$color-black-90};
-//   --cssnav-line: #{$color-black-20};
-// }
-// .cssnav__item--level-2,
-// .cssnav__item--level-4,
-// .cssnav__item--level-6,
-// .cssnav__item--level-2,
-// .cssnav__item--level-8,
-// .cssnav__item--level-10 {
-//   --cssnav-bg: #{$color-black-5};
-// }
+// Instances like SOTE is level 1, in this menu numbering continues from main navigation level 2 onwards
+.cssnav__item--level-2 {
+  --cssnav-bg: #{$color-white};
+  --cssnav-fg: #{$color-black-90};
+  --cssnav-line: #{$color-black-20};
+  --cssnav-indent: #{$spacing};
+}
+
+.cssnav__item--level-3 {
+  --cssnav-bg: #{$color-black-5};
+  --cssnav-indent: #{$spacing-and-half}; // previous + 8
+}
+
+.cssnav__item--level-4 {
+  --cssnav-bg: #{$color-black-10};
+  --cssnav-line: #{$color-black-30};
+  --cssnav-indent: #{$spacing-double}; // previous + 8
+}
+
+.cssnav__item--level-5 {
+  --cssnav-bg: #{$color-black-20};
+  --cssnav-line: #{$color-black-40};
+  --cssnav-indent: 36px; // previous + 8
+}
+
+.cssnav__item--level-6 {
+  --cssnav-bg: #{$color-black-30};
+  --cssnav-line: #{$color-black-50};
+  --cssnav-indent: 40px; // previous + 4
+}
+
+.cssnav__item--level-7 {
+  --cssnav-bg: #{$color-black-40};
+  --cssnav-fg: #{$color-black};
+  --cssnav-line: #{$color-black-60};
+  --cssnav-indent: 44px; // previous + 4
+}
+
+.cssnav__item--level-8 {
+  --cssnav-bg: #{$color-black-50};
+  --cssnav-line: #{$color-black-70};
+  --cssnav-indent: #{$spacing-triple}; // previous + 4
+}
+
+.cssnav__item--level-9 {
+  --cssnav-bg: #{$color-black-60};
+  --cssnav-fg: #{$color-white};
+  --cssnav-line: #{$color-white};
+  --cssnav-indent: 52px; // previous + 4
+}
+
+// Last level supported by Drupal
+.cssnav__item--level-10 {
+  --cssnav-bg: #{$color-black-70};
+  --cssnav-indent: 56px; // previous + 4
+}
 
 .cssnav__link {
   box-shadow: inset 0 0 0 0 var(--cssnav-fg);
@@ -292,6 +289,7 @@ $-cssnav-summary-width: 40px;
   }
 }
 
+// Pull the following details element below this link
 .cssnav__item--has-children > .cssnav__link {
   left: 0;
   margin-right: $-cssnav-summary-width;
@@ -300,11 +298,27 @@ $-cssnav-summary-width: 40px;
   z-index: 1;
 }
 
+.cssnav__text-mirror {
+  visibility: hidden; // visibility hidden reserves correct amount of space for the link floating above
+}
+
+// Both link and text-mirror styles should be identical
 .cssnav__link,
 .cssnav__text-mirror {
   @include font('special.navigation.mobile_nav');
   display: block;
-  padding: $spacing;
+  padding-bottom: $spacing;
+  padding-left: var(--cssnav-indent);
+  padding-right: $spacing;
+  padding-top: $spacing;
+}
+
+.cssnav__item--level-3 .cssnav__link,
+.cssnav__item--level-3 .cssnav__text-mirror {
+  @include font('special.navigation.mobile_subnav');
+  padding-bottom: $spacing-half;
+  padding-right: $spacing-half;
+  padding-top: $spacing-half;
 }
 
 .cssnav summary {
@@ -312,7 +326,7 @@ $-cssnav-summary-width: 40px;
   grid-template-areas: 'label toggle';
   grid-template-columns: 1fr $-cssnav-summary-width;
   justify-content: space-between;
-  list-style: none;
+  list-style: none; // removes details marker in some browsers
 
   &::-webkit-details-marker {
     display: none;
@@ -329,56 +343,9 @@ $-cssnav-summary-width: 40px;
   }
 }
 
-.cssnav__text-mirror {
-  color: red;
-  visibility: hidden;
-}
-
-.cssnav__item--level-2 .cssnav__link,
-.cssnav__item--level-2 .cssnav__text-mirror {
-  @include font('special.navigation.mobile_subnav');
-  padding: $spacing-half $spacing-half $spacing-half $spacing-and-half;
-}
-
-.cssnav__item--level-3 .cssnav__link,
-.cssnav__item--level-3 .cssnav__text-mirror {
-  padding-left: 32px; // previous + 8
-}
-
-.cssnav__item--level-4 .cssnav__link,
-.cssnav__item--level-4 .cssnav__text-mirror {
-  padding-left: 36px; // previous + 8
-}
-
-.cssnav__item--level-5 .cssnav__link,
-.cssnav__item--level-5 .cssnav__text-mirror {
-  padding-left: 40px; // previous + 4
-}
-
-.cssnav__item--level-6 .cssnav__link,
-.cssnav__item--level-6 .cssnav__text-mirror {
-  padding-left: 44px; // previous + 4
-}
-
-.cssnav__item--level-7 .cssnav__link,
-.cssnav__item--level-7 .cssnav__text-mirror {
-  padding-left: 48px; // previous + 4
-}
-
-.cssnav__item--level-8 .cssnav__link,
-.cssnav__item--level-8 .cssnav__text-mirror {
-  padding-left: 52px; // previous + 4
-}
-
-.cssnav__item--level-9 .cssnav__link,
-.cssnav__item--level-9 .cssnav__text-mirror {
-  padding-left: 56px; // previous + 4
-}
-
-.cssnav__link[aria-current='page'],
-.cssnav__item--in-path > .cssnav__link,
-.cssnav__item--in-path > details > summary > .cssnav__text-mirror,
-.cssnav__link[aria-current='page'] + details > summary > .cssnav__text-mirror {
+// Current page and in-path links
+.cssnav__link--in-path,
+.cssnav__link--in-path + details > summary > .cssnav__text-mirror {
   font-weight: 700;
 }
 
@@ -396,8 +363,8 @@ $-cssnav-summary-width: 40px;
   top: 50%;
 }
 
-.cssnav__item--level-2 .cssnav__toggle {
-  box-shadow: -10px 0 0 -9px var(--cssnav-line);
+.cssnav__item--level-3 .cssnav__toggle {
+  box-shadow: -10px 0 0 -9px var(--cssnav-line); // Create shorter border between different buttons
 }
 
 .cssnav__toggle::before {
@@ -413,7 +380,7 @@ $-cssnav-summary-width: 40px;
   background: $color-black;
   color: $color-white;
   grid-area: footer;
-  padding-bottom: 80px;
+  padding-bottom: $-cssmenu-bottom-padding;
   padding-top: $spacing;
 
   .menu {
@@ -438,6 +405,6 @@ $-cssnav-summary-width: 40px;
   }
 
   & > .menu__link {
-    font-weight: bold;
+    font-weight: bold; // Make the city link bolded like in design specs
   }
 }
