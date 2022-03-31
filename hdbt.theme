@@ -791,11 +791,11 @@ function hdbt_preprocess_paragraph(array &$variables) {
       // Adds the photographer to the image alt-text.
       $photographer = $paragraph->get('field_contact_image_photographer')->value;
       $alt = $paragraph->get('field_contact_image')->alt;
-      $alt_with_photographer = t('@alt @photographer_text: @photographer', array(
+      $alt_with_photographer = t('@alt @photographer_text: @photographer', [
         '@alt' => $alt,
         '@photographer_text' => t('Photographer'),
-        '@photographer' => $photographer
-      ));
+        '@photographer' => $photographer,
+      ]);
       $paragraph->get('field_contact_image')->alt = $alt_with_photographer;
     }
   }
