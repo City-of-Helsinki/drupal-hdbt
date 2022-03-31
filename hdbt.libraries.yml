@@ -62,6 +62,11 @@ sidebar-menu-toggle:
   js:
     dist/js/sidebar-menu-toggle.min.js: {}
 
+cssmenu:
+  version: 1.x
+  js:
+    dist/js/cssmenu.min.js: {}
+
 color-palette:
   version: 1.0
   css:

@@ -5,7 +5,7 @@ $-cssnav-summary-width: 40px;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Hidden checkbox that toggles visibility of menu
+// Hidden checkbox that toggles visibility of menu, for css-only version it's visible to screen readers
 .cssmenu-toggle-checkbox {
   height: 1px;
   margin-left: -100vw; // We want to hide this checkbox, but leave it available, so that it's toggleable with screen readers
@@ -15,8 +15,15 @@ $-cssnav-summary-width: 40px;
   width: 1px;
 }
 
-// Mobile menu toggle button
-.cssmenu-toggle {
+.cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
+.cssmenu-toggle-button, // Hide js version of button if js is not enabled
+[data-js] ~ * .cssmenu-toggle {
+  display: none; // Hide css-only toggle button when js is enabled
+}
+
+// Mobile menu toggle button, both css-only and js versions
+.cssmenu-toggle,
+[data-js] ~ * .cssmenu-toggle-button {
   @include font('special.navigation.icon_label');
   align-self: center;
   cursor: pointer;
@@ -47,8 +54,15 @@ $-cssnav-summary-width: 40px;
   }
 }
 
+// Remove default button styles
+[data-js] ~ * .cssmenu-toggle-button {
+  background: transparent;
+  border: 0 none;
+}
+
 // Show focus ring for mobile menu toggle
-.cssmenu-toggle-checkbox:focus ~ * .cssmenu-toggle {
+.cssmenu-toggle-checkbox:focus ~ * .cssmenu-toggle,
+.cssmenu-toggle-button:focus {
   outline: 3px solid $color-black;
   outline-offset: -3px;
   text-decoration: underline;
@@ -146,7 +160,7 @@ $-cssnav-summary-width: 40px;
     @include pseudo-icon-replace('cross'); // Switch menu toggle icon to cross when menu is open
   }
 
-  & ~ * .cssmenu-toggle .cssmenu-toggle__open {
+  & ~ * .cssmenu-toggle__open {
     visibility: hidden; // Hide 'Menu'-text when menu is open
   }
 
