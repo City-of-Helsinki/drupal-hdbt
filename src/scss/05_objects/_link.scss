@@ -1,26 +1,28 @@
 .link__type {
   @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
-  @include hover-link-arrow-transition();
-  --external-icon-move: translate(3px, -3px);
+  @include hover-link-arrow-transition;
 
-  a:focus &,
-  a:hover & {
-    transform: var(--external-icon-move);
+  --external-icon-move: translate(3px, -3px);
+  overflow: hidden;
+
+  @media (prefers-reduced-motion) {
+    --external-icon-move: scale(1);
   }
+}
+
+a:focus .link__type,
+a:hover .link__type {
+  transform: var(--external-icon-move);
 }
 
 .link__type--tel {
   @include pseudo-icon-replace('tel');
+
   --external-icon-move: rotate(15deg);
 }
 
 .link__type--mailto {
   @include pseudo-icon-replace('mailto');
-  --external-icon-move: rotate(15deg);
-}
 
-.link__type {
-  @media (prefers-reduced-motion) {
-    --external-icon-move: scale(1);
-  }
+  --external-icon-move: rotate(15deg);
 }
