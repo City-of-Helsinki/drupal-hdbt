@@ -104,6 +104,10 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 
   @include breakpoint($breakpoint-m) {
     max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
+    position: absolute; // Position above page content when closing;
+    top: calc(var(--drupal-toolbar-height, 0px) + $-header-branding-height-desktop);
+    width: 100%;
+    z-index: 100; // Needs to be higher than page content
   }
 
   @include breakpoint($breakpoint-l) {
