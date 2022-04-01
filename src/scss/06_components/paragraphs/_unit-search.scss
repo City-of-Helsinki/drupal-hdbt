@@ -119,7 +119,22 @@
 .unit-search__additional-information {
   @include font('body');
   display: block;
+  margin-bottom: $spacing-and-half;
   margin-top: $spacing;
+
+  &.unit-search__address-not-found {
+    font-weight: bold;
+    padding-left: $spacing-double;
+    position: relative;
+
+    &::before {
+      @include pseudo-icon('alert-circle', $spacing-and-half);
+      left: 0;
+      margin-top: -$spacing-and-half * 0.5;
+      position: absolute;
+      top: 50%;
+    }
+  }
 }
 
 .unit-search__result--list,
