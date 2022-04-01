@@ -2,6 +2,7 @@ $-branding-icon-size-desktop: $spacing-double;
 
 .header-branding {
   --block-branding-height-mobile: 65px;
+  --header-branding-padding: #{$spacing};
   background-color: $color-white;
   border-bottom: 1px solid $color-black-20;
   display: grid;
@@ -9,7 +10,7 @@ $-branding-icon-size-desktop: $spacing-double;
     '. logo . brand toggle .'
     '. lang lang lang lang .'
     'menu menu menu menu menu menu';
-  grid-template-columns: $spacing auto 1fr auto auto $spacing;
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto var(--header-branding-padding);
   grid-template-rows: auto auto auto;
   position: fixed;
   top: 0;
@@ -17,16 +18,21 @@ $-branding-icon-size-desktop: $spacing-double;
   z-index: 100;
 
   @include breakpoint($breakpoint-m) {
+    --header-branding-padding: #{$spacing-and-half};
     grid-template-areas:
       '. logo . lang brand toggle .'
       'menu menu menu menu menu menu menu';
-    grid-template-columns: $spacing auto 1fr auto auto auto $spacing;
+    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto var(--header-branding-padding);
     grid-template-rows: auto auto;
   }
 
   @include breakpoint($breakpoint-m) {
     position: static;
     top: auto;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    --header-branding-padding: #{$spacing-double};
   }
 
   &::before {
