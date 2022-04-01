@@ -556,6 +556,22 @@
     display: block;
     padding: $spacing-and-half;
     text-decoration: none;
+
+    &:focus,
+    &:hover {
+      .unit__title {
+        text-decoration: underline;
+      }
+
+      .unit__read-more {
+        .hel-icon {
+          transform: translateX($spacing-half);
+          @media (prefers-reduced-motion) {
+            transform: none;
+          }
+        }
+      }
+    }
   }
 
   .unit__text {
@@ -570,8 +586,8 @@
     @include breakpoint($breakpoint-m) {
       display: flex;
       justify-content: space-between;
-      // Width of the element - (icon width + icon padding on left)
-      width: calc(100% - (#{$spacing-double} + #{$spacing-and-half}));
+      // Width of the element - icon width + icon padding on left
+      width: calc(100% - #{$spacing-double} + #{$spacing-and-half});
     }
   }
 
@@ -633,21 +649,6 @@
     .hel-icon {
       --icon-size: #{$spacing-double};
       @include hover-link-arrow-transition();
-    }
-  }
-
-  &:hover {
-    .unit__title {
-      text-decoration: underline;
-    }
-
-    .unit__read-more {
-      .hel-icon {
-        transform: translateX($spacing-half);
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
     }
   }
 }
