@@ -29,7 +29,6 @@
       position: relative;
 
       &::before {
-        border-radius: 2px;
         box-shadow: 0 0 0 3px $color-black-90;
         pointer-events: none;
       }
@@ -119,7 +118,6 @@
     right: -1px; // To adjust the positioning so that the element lines up nicely.
 
     &:focus {
-      border-radius: 2px;
       box-shadow: 0 0 0 3px $color-black-90;
       outline: none;
       pointer-events: none;

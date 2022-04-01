@@ -2,7 +2,7 @@
   // Hide on mobile
   display: none;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     @include font('special.navigation.header_top');
     align-items: center;
     background-color: $color-black-5;
