@@ -104,7 +104,7 @@ function hdbt_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'error-page';
   }
 
-  $variables['#attached']['library'][] = 'hdbt/mmenu-settings';
+  $variables['#attached']['library'][] = 'hdbt/cssmenu';
 
   $matomo_site_id = Settings::get('matomo_site_id');
 
@@ -1144,12 +1144,12 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
   $details = [];
 
   $detail_fields = [
+    'process_description' => t('How the process works', [], ['context' => 'Errand service detail heading']),
     'processing_time' => t('Processing time', [], ['context' => 'Errand service detail heading']),
     'costs' => t('Fees', [], ['context' => 'Errand service detail heading']),
     'expiration_time' => t('Validity period', [], ['context' => 'Errand service detail heading']),
     'information' => t('Additional information', [], ['context' => 'Errand service detail heading']),
     'links' => t('Additional links', [], ['context' => 'Errand service detail heading']),
-    'process_description' => t('How the process works', [], ['context' => 'Errand service detail heading']),
   ];
 
   foreach ($detail_fields as $detail_key => $heading) {

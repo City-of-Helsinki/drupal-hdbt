@@ -1,0 +1,23 @@
+extends: stylelint-config-standard-scss
+plugins:
+  - stylelint-scss
+  - stylelint-order
+rules:
+  # scss/at-import-no-partial-leading-underscore: null
+  string-quotes: single # We use single quotes in SCSS
+  declaration-block-no-redundant-longhand-properties: null # We prefer lonhand properties for clarity in SCSS
+  selector-class-pattern: null # We're not too stict about selector class pattern
+  max-line-length: null # Lets not limit line length at this point
+  declaration-empty-line-before: never # No need for empty line before declaration
+  order/properties-alphabetical-order: true # We're following alphabetical order in properties
+  custom-property-pattern: "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$" # kebab-case pattern with allowed bem-like double --
+overrides:
+  - files:
+      - '**/__index.scss'
+      - '**/_hds.scss'
+      - '**/ckeditor.scss'
+      - '**/color-palette.scss'
+      - '**/component-library.scss'
+      - '**/styles.scss'
+    rules:
+      scss/at-import-no-partial-leading-underscore: null

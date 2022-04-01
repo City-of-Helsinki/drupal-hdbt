@@ -40,7 +40,6 @@
         outline: none;
 
         &::after {
-          border-radius: 2px;
           box-shadow: 0 0 0 3px $color-black;
           content: "";
           display: block;
@@ -86,7 +85,6 @@
           outline: none;
 
           &::before {
-            border-radius: 2px;
             box-shadow: 0 0 0 3px $color-black;
             content: "";
             display: block;
@@ -155,7 +153,6 @@
 
           &:focus {
             &::before {
-              border-radius: 2px;
               box-shadow: 0 0 0 3px $color-black;
               content: "";
               display: block;
@@ -193,7 +190,6 @@
       outline: none;
 
       &::after {
-        border-radius: 2px;
         box-shadow: 0 0 0 3px $color-black;
         content: "";
         display: block;

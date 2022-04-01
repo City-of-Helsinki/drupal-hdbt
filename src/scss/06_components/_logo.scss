@@ -1,5 +1,5 @@
-$_logo_aspect_ratio: 78/36; // fi and en logo size from svg file
-$_logo_sv_aspect_ratio: 78/28; // sv and ru logo size from svg file
+$-logo-aspect-ratio: 78 / 36; // fi and en logo size from svg file
+$-logo-sv-aspect-ratio: 78 / 28; // sv and ru logo size from svg file
 
 .logo {
   align-items: center;
@@ -9,7 +9,7 @@ $_logo_sv_aspect_ratio: 78/28; // sv and ru logo size from svg file
 
 .logo__icon {
   --height: 32px;
-  --aspect-ratio: #{$_logo_aspect_ratio};
+  --aspect-ratio: #{$-logo-aspect-ratio};
   height: var(--height);
   width: calc(var(--aspect-ratio) * var(--height));
 
@@ -20,12 +20,16 @@ $_logo_sv_aspect_ratio: 78/28; // sv and ru logo size from svg file
 
 .logo__icon--sv,
 .logo__icon--ru {
-  --aspect-ratio: #{$_logo_sv_aspect_ratio};
+  --aspect-ratio: #{$-logo-sv-aspect-ratio};
 }
 
 .logo--header {
   color: $color-black;
-  padding: $spacing 0;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing;
+    padding-top: $spacing;
+  }
 }
 
 .logo--footer {
