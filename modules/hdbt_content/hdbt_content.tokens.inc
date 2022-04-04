@@ -42,9 +42,12 @@ function hdbt_content_tokens(
   foreach ($tokens as $name => $original) {
     $default_image = '';
 
+    /** @var Drupal\Core\Extension\ThemeHandler $theme_handler */
+    $theme_handler = Drupal::service('theme_handler');
+
     // Add default og-image as the shareable image.
-    $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
-    if ($theme) {
+    if ($theme_handler->themeExists('hdbt')) {
+      $theme = $theme_handler->getTheme('hdbt');
       $default_image = "/{$theme->getPath()}/src/images/og-global.png";
     }
 
