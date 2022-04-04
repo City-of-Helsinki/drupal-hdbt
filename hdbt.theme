@@ -798,6 +798,12 @@ function hdbt_preprocess_paragraph(array &$variables) {
       ]);
       $paragraph->get('field_contact_image')->alt = $alt_with_photographer;
     }
+
+    $parent = $paragraph->getParentEntity();
+
+    if($parent->hasField('field_title') && !$parent->get('field_title')->isEmpty()) {
+      $variables['heading_level'] = 'h3';
+    }
   }
 
   // Contact card paragraph.

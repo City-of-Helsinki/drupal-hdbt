@@ -1,3 +1,8 @@
+$contact-card-image-size-desktop: 200px;
+$contact-card-image-size-mobile: 100px;
+$contact-card-information-container-width: $contact-card-image-size-desktop;
+$contact-card-color-line-width: 4px;
+
 .contact-card {
   display: flex;
 }
@@ -10,7 +15,7 @@
 
 .contact-card--information-container {
   @include breakpoint($breakpoint-s) {
-    max-width: 200px;
+    max-width: $contact-card-information-container-width;
   }
 }
 
@@ -18,9 +23,9 @@
   display: flex;
 
   .hel-icon {
-    height: 26px;
+    height: 24px;
     margin-right: $spacing-half;
-    width: 26px;
+    width: 24px;
   }
 }
 
@@ -33,29 +38,24 @@
   }
 
   img {
-    height: 100px;
-    width: 100px;
+    height: $contact-card-image-size-mobile;
+    width: $contact-card-image-size-mobile;
 
     @include breakpoint($breakpoint-s) {
-      height: 200px;
-      width: 200px;
+      height: $contact-card-image-size-desktop;
+      width: $contact-card-image-size-desktop;
     }
   }
 }
 
 .contact-card--person-name {
-  font-size: 20px;
-  font-weight: $font-weight-medium;
   margin-top: 0;
+  @include font('h5');
 }
 
-.contact-card--person-phone-number {
-  a:not(:last-of-type) {
-    &::after {
-      content: ',';
-      margin-right: 2px;
-    }
-  }
+.contact-card--person-phone-number a:not(:last-of-type)::after{
+  content: ',';
+  margin-right: 2px;
 }
 
 .contact-card--person-email {
@@ -69,8 +69,7 @@
 .contact-card--color-line {
   background-color: var(--hdbt-color-palette--primary);
   margin-right: $spacing-and-half;
-  min-width: 4px;
-  width: 4px;
+  min-width: $contact-card-color-line-width;
 }
 
 .contact-card--person-description {

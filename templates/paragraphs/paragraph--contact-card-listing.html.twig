@@ -39,26 +39,16 @@
  */
 #}
 
-{%
-  set classes = [
-    'contact-card-listing',
-    'container',
-    view_mode ? 'contact-card-listing--' ~ view_mode|clean_class,
-  ]
-%}
-
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-   {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [ 'component--contact-card-listing' ],
-      component_content_class: 'contact-card-listing--container',
-      component_title: content.field_title,
-      component_description: content.field_description
-    }%}
+  {% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [ 'component--contact-card-listing' ],
+    component_content_class: 'contact-card-listing--container',
+    component_title: content.field_title,
+    component_description: content.field_description
+  }%}
     {% block component_content %}
-      {{ content|without('field_title', 'field_description') }}
+      {{ content.field_contact_card }}
     {% endblock component_content %}
   {% endembed %}
-  </div>
 {% endblock paragraph %}

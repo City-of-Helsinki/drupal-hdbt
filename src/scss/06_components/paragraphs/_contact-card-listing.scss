@@ -11,15 +11,13 @@
   .contact-card {
     margin-bottom: $spacing-triple;
 
-    @include breakpoint($breakpoint-s) {
-      min-width: 252px;
-      width: 25%;
+    &:not(:last-of-type) {
+      padding-right: $spacing-and-half;
     }
-  }
 
-  .contact-card--with-image {
     @include breakpoint($breakpoint-s) {
-      min-width: 224px;
+      min-width: fit-content;
+      width: 25%;
     }
   }
 }
