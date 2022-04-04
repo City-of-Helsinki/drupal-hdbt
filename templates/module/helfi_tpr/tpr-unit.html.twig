@@ -252,14 +252,14 @@
 
     <div class="unit__text">
       <div class="unit__text__content">
-        <h3 class="unit__title">
+        <{{ unit_title_level|default('h3') }} class="unit__title">
           {% set unit_link_attributes = {
             'class': [
               'unit__link',
             ],
           } %}
           {{ link(entity.label, unit_url, unit_link_attributes) }}
-        </h3>
+        </{{ unit_title_level|default('h3') }}>
         <div class="unit__info">
           {% if content.address|render %}
             <div class="unit__info-row unit__info-row--address">
@@ -279,5 +279,29 @@
 {% elseif view_mode == 'wide_teaser' %}
 
   {% include '@hdbt/module/helfi_tpr/tpr-content-liftup.html.twig' %}
+
+{% elseif view_mode == 'minimal' %}
+
+  <div class="unit unit--minimal">
+    <a href="{{ url('entity.tpr_unit.canonical', { 'tpr_unit': entity.id() }) }}" class="unit__link">
+      <div class="unit__text">
+        <div class="unit__text__content">
+          <{{ unit_title_level|default('h3') }} class="unit__title">
+            {{ entity.label }}
+          </{{ unit_title_level|default('h3') }}>
+          <div class="unit__info">
+            {% if content.address|render %}
+              <div class="unit__info-row unit__info-row--address">
+                {{ content.address }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="unit__read-more">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+        </div>
+      </div>
+    </a>
+  </div>
 
 {% endif %}

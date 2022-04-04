@@ -116,6 +116,27 @@
   }
 }
 
+.unit-search__additional-information {
+  @include font('body');
+  display: block;
+  margin-bottom: $spacing-and-half;
+  margin-top: $spacing;
+
+  &.unit-search__address-not-found {
+    font-weight: bold;
+    padding-left: $spacing-double;
+    position: relative;
+
+    &::before {
+      @include pseudo-icon('alert-circle', $spacing-and-half);
+      left: 0;
+      margin-top: -12px; // Move icon up half of the line-height of the text that follows (line-height is 24px).
+      position: absolute;
+      top: 50%;
+    }
+  }
+}
+
 .unit-search__result--list,
 .unit-search__result--map {
   margin-top: $spacing;
@@ -150,3 +171,20 @@
   }
 }
 
+.unit-search__no-results-title {
+  @include font('h3');
+  margin-top: $spacing-and-half;
+}
+
+.unit-search__no-results-desc {
+  @include font('body');
+}
+
+// Unit search with large volume of units listed such as daycare search.
+.views--unit-search--large-volume .views-row {
+  margin-top: $spacing-quarter;
+
+  &:first-of-type {
+    margin-top: $spacing-and-half;
+  }
+}
