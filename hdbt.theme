@@ -801,7 +801,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
 
     $parent = $paragraph->getParentEntity();
 
-    if($parent->hasField('field_title') && !$parent->get('field_title')->isEmpty()) {
+    if ($parent->hasField('field_title') && !$parent->get('field_title')->isEmpty()) {
       $variables['heading_level'] = 'h3';
     }
   }
