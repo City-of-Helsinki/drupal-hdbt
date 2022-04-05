@@ -23,9 +23,9 @@ $contact-card-color-line-width: 4px;
   display: flex;
 
   .hel-icon {
-    height: 24px;
+    height: $spacing-and-half;
     margin-right: $spacing-half;
-    width: 24px;
+    width: $spacing-and-half;
   }
 }
 

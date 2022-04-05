@@ -42,15 +42,15 @@
 {%
   set classes = [
     'social-media-link',
-    view_mode ? 'social-media-link--' ~ view_mode|clean_class,
   ]
 %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-   <a href="{{ content.field_social_media_link[0]['#url'] }}">
-    {{ content.field_icon }}
-    <span class="visually-hidden">{{ icon_name }}</span>
-   </a>
+   {% set link_title %}
+      {{ content.field_icon }}
+      <span class="visually-hidden">{{ icon_name }}</span>
+    {% endset %}
+   {{ link(link_title, content.field_social_media_link[0]['#url'], link_attributes) }}
   </div>
 {% endblock paragraph %}
