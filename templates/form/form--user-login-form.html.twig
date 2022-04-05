@@ -1,0 +1,20 @@
+<div class="login-form login-form__wrapper">
+    <form{{ attributes }}>
+        <div class="login-form__top">
+            <div id="error_messages"></div>
+            {{ element.messages }}
+            {{ element.name }} {# username element #}
+            {{ element.pass }} {# password element #}
+            <div class="login-form__help_actions">
+                <input id="show_password" class="show_password" type="checkbox" />
+                <label class="password-toggle" for="show_password">Show password</label>
+                <a href="/user/password" class="forgot-password">Forgot Password?</a>
+            </div>
+            {{ element.form_build_id }} {# required #}
+            {{ element.form_id }} {# required #}
+            <div class="login-form__submit">
+                {{ element.actions.submit }}
+            </div>
+        </div>
+    </form>
+</div>
