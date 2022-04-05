@@ -55,7 +55,7 @@
     "postcss-loader": "^6.0.0",
     "postcss-nested": "^5.0.3",
     "postcss-nesting": "^10.0.2",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.4.3",
     "postcss-scss": "^4.0.0",
     "postcss-strip-inline-comments": "^0.1.5",
     "pre-commit": "^1.2.2",
