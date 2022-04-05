@@ -10,9 +10,11 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
+use Drupal\Core\Template\Attribute;
+use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
@@ -102,7 +104,7 @@ function hdbt_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'error-page';
   }
 
-  $variables['#attached']['library'][] = 'hdbt/mmenu-settings';
+  $variables['#attached']['library'][] = 'hdbt/cssmenu';
 
   $matomo_site_id = Settings::get('matomo_site_id');
 
@@ -116,6 +118,14 @@ function hdbt_preprocess_html(&$variables) {
   if ($siteimprove_id) {
     $variables['#attached']['library'][] = 'hdbt/siteimprove';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_region(&$variables) {
+  // Set site information to variables.
+  _hdbt_set_site_information($variables);
 }
 
 /**
@@ -206,6 +216,9 @@ function hdbt_preprocess_node(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
+  // Add current node Url to variable.
+  $variables['node_url'] = !$node->isNew() ? $node->toUrl('canonical') : NULL;
+
   // If node has hero block, set variable accordingly.
   if ($node->hasField('field_has_hero')) {
     $variables['hide_label'] = boolval($node->field_has_hero->value);
@@ -234,6 +247,16 @@ function hdbt_preprocess_node(&$variables) {
       'field_main_image',
       'field_main_image_caption'
     );
+  }
+
+  // Handle short title for the templates.
+  if ($node->hasField('field_short_title')) {
+    $variables['short_title'] = $node->getTitle();
+
+    // If node has short title set, use it as short-title.
+    if (!$node->field_short_title->isEmpty()) {
+      $variables['short_title'] = $node->field_short_title->value;
+    }
   }
 }
 
@@ -417,11 +440,6 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['url'];
 
-    // Check if the URL is external and add variable accordingly.
-    if ($url->isExternal()) {
-      $item['is_external'] = TRUE;
-    }
-
     // Check if the URL is <nolink> and add variable accordingly.
     if ($url->isRouted() && $url->getRouteName() === '<nolink>') {
       $item['is_nolink'] = TRUE;
@@ -439,6 +457,10 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_block(&$variables) {
+  // Set site information to variables.
+  _hdbt_set_site_information($variables);
+
+  // Set block_id variable.
   if (isset($variables['elements']['#id'])) {
     $variables['content']['#attributes']['block_id'] = $variables['elements']['#id'];
   }
@@ -545,9 +567,10 @@ function hdbt_preprocess_breadcrumb(&$variables) {
       $page_entity->hasField('field_short_title') &&
       !empty($page_entity->field_short_title->value)
     ) {
-      $current = array_pop($variables['breadcrumb']);
-      $current['text'] = $page_entity->field_short_title->value;
-      array_push($variables['breadcrumb'], $current);
+      /** @var \Drupal\Core\Link $current */
+      $current = array_pop($variables['links']);
+      $current->setText($page_entity->field_short_title->value);
+      array_push($variables['links'], $current);
     }
   }
 }
@@ -757,6 +780,21 @@ function hdbt_preprocess_paragraph(array &$variables) {
 }
 
 /**
+ * Set site information as variables for templates.
+ *
+ * @param array $variables
+ *   Variables array.
+ */
+function _hdbt_set_site_information(array &$variables) {
+  // Set site_name as variable.
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+
+  // Set site front page absolute url as variable.
+  $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+}
+
+/**
  * Set image style programmatically.
  *
  * @param array $variables
@@ -951,6 +989,19 @@ function hdbt_preprocess_field(&$variables) {
       // Craft a rendered token variable for Service short description.
       _hdbt_craft_token('service_short_description_rendered_token', $variables);
       break;
+
+    case 'links':
+      // Craft Service channel links url and title for the templates.
+      if (
+        isset($variables['entity_type']) &&
+        $variables['entity_type'] === 'tpr_service_channel'
+      ) {
+        foreach ($variables['items'] as &$item) {
+          $item['link_url'] = $item['content']['#url'];
+          $item['link_title'] = $item['content']['#title'];
+        }
+      }
+      break;
   }
 }
 
@@ -1039,13 +1090,46 @@ function hdbt_preprocess_views_view(&$variables) {
  */
 function hdbt_views_pre_render(ViewExecutable $view) {
   // Add library to all for ajax progress.
-  if ($view->element["#name"] !== 'high_school_search') {
+  if (!isset($view->element["#name"]) || $view->element["#name"] !== 'high_school_search') {
     return;
   }
 
   if ($view->ajaxEnabled()) {
     $view->element['#attached']['library'][] = 'hdbt/tabs';
     $view->element['#attached']['drupalSettings']['tabsParent'] = $view->element["#name"];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_unit(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Unit) {
+    return;
+  }
+  $entity = $variables['entity'];
+
+  // Convert email link to Url object and set as new variable for the template.
+  if (!$entity->email->isEmpty()) {
+    $variables['unit_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
+  }
+
+  // Add current Unit Url to variable.
+  $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_service_channel(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Channel) {
+    return;
+  }
+  $entity = $variables['entity'];
+
+  // Convert email link to Url object and set as new variable for the template.
+  if (!$entity->email->isEmpty()) {
+    $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
   }
 }
 
@@ -1060,12 +1144,12 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
   $details = [];
 
   $detail_fields = [
+    'process_description' => t('How the process works', [], ['context' => 'Errand service detail heading']),
     'processing_time' => t('Processing time', [], ['context' => 'Errand service detail heading']),
     'costs' => t('Fees', [], ['context' => 'Errand service detail heading']),
     'expiration_time' => t('Validity period', [], ['context' => 'Errand service detail heading']),
     'information' => t('Additional information', [], ['context' => 'Errand service detail heading']),
     'links' => t('Additional links', [], ['context' => 'Errand service detail heading']),
-    'process_description' => t('How the process works', [], ['context' => 'Errand service detail heading']),
   ];
 
   foreach ($detail_fields as $detail_key => $heading) {
@@ -1119,14 +1203,42 @@ function hdbt_preprocess_maintenance_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_social_media_links(&$variables) {
+  // Convert Attributes to strings.
+  if (isset($variables['elements'])) {
+    foreach ($variables['elements'] as &$element) {
+      // Convert href attribute to URL.
+      if (
+        $element['api'] instanceof Attribute &&
+        $element['api']->offsetExists('href')
+      ) {
+        $element['url'] = $element['api']
+          ->offsetGet('href')
+          ->__toString();
+      }
+      // Convert class attribute to classes.
+      if (
+        $element['attr']['class'] instanceof Attribute &&
+        $element['attr']['class']->offsetExists('class')
+      ) {
+        $element['classes'][] = $element['attr']['class']
+          ->offsetGet('class')
+          ->__toString();
+      }
+    }
+  }
+}
+
+/**
  * Helper function to get the privacy policy link URL.
  */
-function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): GeneratedUrl|string {
+function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
   $config = Drupal::config('eu_cookie_compliance.settings');
+  $link = $config->get('popup_link');
 
-  $popup_link_config = $config->get('popup_link');
-  if (UrlHelper::isExternal($popup_link_config)) {
-    return Url::fromUri($popup_link_config)->toString();
-  }
-  return Url::fromUserInput($popup_link_config === '<front>' ? '/' : $popup_link_config)->toString();
+  return (UrlHelper::isExternal($link))
+    ? Url::fromUri($link)
+    : Url::fromUserInput($link === '<front>' ? '/' : $link);
 }

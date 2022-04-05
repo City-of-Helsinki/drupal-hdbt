@@ -1,26 +1,35 @@
 .block--language-switcher {
-  margin: 0 -#{$spacing};
+  align-self: center;
+  grid-area: lang;
+  margin-left: -#{$spacing};
+  margin-right: -#{$spacing};
   order: 3;
   padding: 12px $spacing;
   position: relative;
-  transition: all .3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
+  transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: calc(100% + #{$spacing-double});
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
     border-top: none;
-    margin: 0 0 0 auto;
+    margin-left: auto;
+    margin-right: 0;
     order: 2;
     padding: 0;
     width: auto;
   }
 
   &.scroll-up {
-    margin-top: -48px;
+    margin-top: -51px;
     transition-delay: 0s; // Transition delay should be 0 when hiding the switcher
 
     @include breakpoint($breakpoint-m) {
       margin-top: 0;
+      transition-duration: 0s;
     }
   }
+}
+
+.language-links {
+  display: flex; // disables wrapping to multiple lines for now
 }

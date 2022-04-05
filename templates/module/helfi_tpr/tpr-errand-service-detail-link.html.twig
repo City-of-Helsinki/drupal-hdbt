@@ -2,7 +2,12 @@
 <ul class="errand-service__detail-links">
   {% for link in links %}
     <li class="errand-service__detail-link-wrapper">
-      <a href="{{ link.url }}" target="_blank" class="errand-service__detail-link">{{ link.title }}</a>
+      {% set link_attributes = {
+        'class': [
+          'errand-service__detail-link',
+        ],
+      } %}
+      {{ link(link.title, link.url, link_attributes) }}
     </li>
   {% endfor %}
 </ul>

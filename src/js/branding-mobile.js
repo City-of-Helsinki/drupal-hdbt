@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const INITIAL = 0;
+  const DOWN = 1;
+  const UP = 2;
   const doc = document.documentElement;
   const w = window;
 
   let prevScroll = w.scrollY || doc.scrollTop;
   let currentScroll;
-  let direction = 0;
-  let prevDirection = 0;
+  let direction = INITIAL;
+  let prevDirection = INITIAL;
 
   const languageSwitcher = document.querySelector(
     '[data-hdbt-selector="language-switcher"]'
@@ -18,11 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     currentScroll = w.scrollY || doc.scrollTop;
     if (currentScroll > prevScroll) {
-      //scrolling up
-      direction = 2;
+      direction = UP;
     } else if (currentScroll < prevScroll) {
-      //scrolling down
-      direction = 1;
+      direction = DOWN;
     }
 
     // Check if scrolling direction is changed and show the language switcher.
@@ -33,10 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const toggleLanguageSwitcher = function (direction, curScroll) {
-    if (direction === 2 && curScroll > 48) {
+    if (direction === UP && curScroll > languageSwitcher.clientHeight) {
       languageSwitcher.classList.add('scroll-up');
       prevDirection = direction;
-    } else if (direction === 1) {
+    } else if (direction === DOWN) {
       languageSwitcher.classList.remove('scroll-up');
       prevDirection = direction;
     }

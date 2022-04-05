@@ -1,66 +1,21 @@
 msgid ""
 msgstr ""
 
-msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
-msgid "The link opens in a new tab"
-msgstr "Linkki avautuu uuteen välilehteen"
-
-msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
-msgid "Link leads to external service"
-msgstr "Linkki johtaa ulkoiseen palveluun"
-
-msgctxt "The helper text before the node changed timestamp"
-msgid "Updated"
-msgstr "Päivitetty"
-
-msgctxt "The helper text before the social media share buttons"
-msgid "Share"
-msgstr "Jaa"
-
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption Kuva: @photographer"
-
-msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "Kuva: @photographer"
-
-msgctxt "The helper text before the node published timestamp"
-msgid "Published"
-msgstr "Julkaistu"
-
-msgctxt "The helper text before the node changed timestamp"
-msgid "Updated"
-msgstr "Päivitetty"
-
-msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
-msgid "Tags"
-msgstr "Tunnisteet"
-
-msgctxt "Page lead-in section explanation for screen readers"
-msgid "Lead-in paragraph"
-msgstr "Johdanto"
-
-msgctxt "Content liftup card hit for seeing more information on content page"
-msgid "See details"
-msgstr "Katso tarkemmat tiedot"
-
-msgid "Sorry, the page you were looking for was not found."
-msgstr "Etsimääsi sivua ei valitettavasti löytynyt."
+msgid "Change cookie settings"
+msgstr "Muokkaa evästeasetuksia"
 
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
 
-msgid "The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content."
-msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
+msgid "Close announcement"
+msgstr "Sulje poikkeustiedote"
 
-msgctxt "Short description for editors about current page being unpublished"
-msgid "Unpublished"
-msgstr "Julkaisematon"
+msgid "Content cannot be displayed"
+msgstr "Sisältöä ei voida näyttää"
 
-msgctxt "Long description for editors about current page being unpublished"
-msgid "This page is unpublished"
-msgstr "Tämä sivu on julkaisematon"
+msgctxt "Content liftup card hit for seeing more information on content page"
+msgid "See details"
+msgstr "Katso tarkemmat tiedot"
 
 msgctxt "Errand service detail heading"
 msgid "Processing time"
@@ -86,32 +41,123 @@ msgctxt "Errand service detail heading"
 msgid "How the process works"
 msgstr "Asian käsittelyn eteneminen"
 
-msgid "You do not have permission to access this page"
-msgstr "Sinulla ei ole käyttöoikeutta tälle sivulle"
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"
 
-msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
-msgstr "Sivu näkyy vain kirjautuneille käyttäjille. Jos sinulla on riittävät käyttöoikeudet, näet sisällön kirjautumalla sisään."
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service."
+msgid "Link leads to external service"
+msgstr "Linkki johtaa ulkoiseen palveluun"
 
-msgid "Sorry, the page you were looking for was not found"
-msgstr "Etsimääsi sivua ei valitettavasti löytynyt"
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call."
+msgid "Link starts a phone call"
+msgstr "Linkki aloittaa puhelun"
 
-msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
-msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
-
-msgctxt "Return to homepage link for error pages"
-msgid "Go back to the hel.fi homepage"
-msgstr "Siirry hel.fin etusivulle"
+msgctxt "Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program."
+msgid "Link opens default mail program"
+msgstr "Linkki avaa oletussähköpostiohjelman"
 
 msgctxt "Feedback link for error pages"
 msgid "Give feedback"
 msgstr "Anna palautetta"
 
+msgctxt "Footer back to top link"
+msgid "Back to top"
+msgstr "Takaisin ylös"
+
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption Kuva: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "Kuva: @photographer"
+
+msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
+msgid "Tags"
+msgstr "Tunnisteet"
+
 msgctxt "Log in block title on error pages"
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
+msgctxt "Long description for editors about current page being unpublished"
+msgid "This page is unpublished"
+msgstr "Tämä sivu on julkaisematon"
+
+msgctxt "Page lead-in section explanation for screen readers"
+msgid "Lead-in paragraph"
+msgstr "Johdanto"
+
+msgctxt "Return to homepage link for error pages"
+msgid "Go back to the hel.fi homepage"
+msgstr "Siirry hel.fin etusivulle"
+
+msgid "See content on external site"
+msgstr "Siirry ulkoiselle sivustolle"
+
+msgctxt "Short description for editors about current page being unpublished"
+msgid "Unpublished"
+msgstr "Julkaisematon"
+
+msgid "Sorry, the page you were looking for was not found."
+msgstr "Etsimääsi sivua ei valitettavasti löytynyt."
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Päivitetty"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "Jaa"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "Päivitetty"
+
+msgid "The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content."
+msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
+
+msgid ""
+"This content is hosted by @video_service_url. To see the content, "
+"switch over to the external site or modify your cookie settings to "
+"allow for preference and statistics cookies."
+msgstr ""
+"Tämä sisältö haetaan osoitteesta @video_service_url. Sen "
+"näyttämiseen vaaditaan, että hyväksyt sivuston evästeet. Pääset "
+"näkemään sisällön joko siirtymällä ulkoiselle sivustolle tai "
+"sallimalla evästeasetuksista personointi- ja tilastointievästeet."
+
+
+msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
+msgstr "Sivu näkyy vain kirjautuneille käyttäjille. Jos sinulla on riittävät käyttöoikeudet, näet sisällön kirjautumalla sisään."
+
 msgid "The site is currently under maintenance"
 msgstr "Päivitämme sivustoa tällä hetkellä"
 
-msgid "Close announcement"
-msgstr "Sulje poikkeustiedote"
+msgid "You do not have permission to access this page"
+msgstr "Sinulla ei ole käyttöoikeutta tälle sivulle"
+
+msgctxt "Mobile navigation menu open button text for screen readers"
+msgid "Open navigation menu"
+msgstr "Avaa navigaatiovalikko"
+
+msgctxt "Mobile navigation menu close button text for screen readers"
+msgid "Close navigation menu"
+msgstr "Sulje navigaatiovalikko"
+
+msgctxt "Mobile navigation submenu prefix"
+msgid "Toggle submenu:"
+msgstr "Kytke alivalikko:"
+
+msgctxt "Mobile navigation menu description for screen readers"
+msgid "Navigation menu"
+msgstr "Navigaatiovalikko"
+
+msgctxt "Screenreader name for top navigation menu"
+msgid "Site navigation"
+msgstr "Sivuston navigaatio"

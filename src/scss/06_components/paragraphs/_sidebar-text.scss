@@ -52,14 +52,6 @@
       padding: $spacing-and-half $spacing;
     }
 
-    .hds-button--primary {
-      @extend .emulate-button--primary;
-    }
-
-    .hds-button--secondary {
-      @extend .emulate-button--secondary;
-    }
-
     .hds-button--primary,
     .hds-button--secondary {
       display: inline-flex;
@@ -74,20 +66,6 @@
     }
 
     .hds-button--supplementary {
-      --background-color: transparent;
-      --background-color-hover: transparent;
-      --background-color-focus: transparent;
-      --background-color-hover-focus: transparent;
-      --border-color: transparent;
-      --border-color-hover: transparent;
-      --border-color-focus: transparent;
-      --border-color-hover-focus: transparent;
-      --color: var(--hdbt-color-black);
-      --color-hover: var(--hdbt-color-black);
-      --color-focus: var(--hdbt-color-black);
-      --color-hover-focus: var(--hdbt-color-black);
-      --focus-outline-color: var(--hdbt-color-black);
-
       &:first-child {
         margin-left: 0;
       }
@@ -132,6 +110,10 @@
         align-self: center;
         justify-self: end;
         order: 3;
+      }
+
+      &[data-is-external]:after {
+        display: none; // external links have their own icon already
       }
 
       &:hover {

@@ -1,30 +1,44 @@
+$-branding-icon-size-desktop: $spacing-double;
+
 .header-branding {
-  align-items: center;
+  --block-branding-height-mobile: 65px;
+  --header-branding-padding: #{$spacing};
   background-color: $color-white;
   border-bottom: 1px solid $color-black-20;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 $spacing;
+  display: grid;
+  grid-template-areas:
+    '. logo . brand toggle .'
+    '. lang lang lang lang .'
+    'menu menu menu menu menu menu';
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto var(--header-branding-padding);
+  grid-template-rows: auto auto auto;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
 
   @include breakpoint($breakpoint-m) {
-    flex-wrap: nowrap;
+    --header-branding-padding: #{$spacing-and-half};
+    grid-template-areas:
+      '. logo . lang brand toggle .'
+      'menu menu menu menu menu menu menu';
+    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto var(--header-branding-padding);
+    grid-template-rows: auto auto;
+  }
+
+  @include breakpoint($breakpoint-m) {
     position: static;
     top: auto;
   }
 
   @include breakpoint($breakpoint-l) {
-    padding: 0 $spacing-double;
+    --header-branding-padding: #{$spacing-double};
   }
 
   &::before {
     background-color: $color-white;
     border-bottom: 1px solid $color-black-10;
-    content: "";
+    content: '';
     height: 65px; // Height of the mobile header
     left: 0;
     position: absolute;
@@ -38,7 +52,7 @@
   }
 
   .toolbar-vertical & {
-    top: 39px; // Height of the toolbar
+    top: var(--drupal-toolbar-height);
   }
 
   .menu {
@@ -48,69 +62,45 @@
     padding: 0;
   }
 
-  .menu__link {
-    @include font('special.navigation.icon_label');
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 40px;
-    justify-content: center;
-    margin: 0 $spacing-quarter;
-    text-align: center;
-    text-decoration: none;
-    width: 40px;
-
-    @include breakpoint(440px) {
-      height: 60px;
-      margin: 0 $spacing-half;
-      padding-bottom: 15px; // To enable space for the icon label to be written under the icon we need this spacing.
-      position: relative;
-      width: 50px;
-    }
-    &:hover {
-      text-decoration: underline;
-    }
+  .menu__item + .menu__item {
+    margin-left: $spacing-half;
   }
 
-  .menu__link__icon {
-    --icon-size: #{$spacing-and-half};
-    display: block;
+  .block--branding-navigation {
+    .menu__link {
+      @include font('special.navigation.icon_label');
+      align-self: center;
+      cursor: pointer;
+      display: grid;
+      grid-template-areas:
+        'icon'
+        'label';
+      padding: 5px; // Handles spacing for "inside" focus ring
+      text-align: center;
+      user-select: none;
 
-    @include breakpoint(440px) {
-      margin-bottom: $spacing-quarter;
-    }
-  }
+      @include breakpoint($breakpoint-l) {
+        display: none;
+      }
 
+      &:focus,
+      &:hover {
+        text-decoration: underline;
+      }
 
-  .menu__link__text {
-    display: none;
-
-    &::after {
-      --external-icon-move: translate(1px, -1px);
-      @media (prefers-reduced-motion) {
-        --external-icon-move: scale(1);
+      &:active,
+      &:focus {
+        outline: 3px solid $color-black;
+        outline-offset: -3px;
       }
     }
 
-    @include breakpoint(440px) {
-      align-items: center;
-      bottom: 0;
-      display: flex;
-      height: 28px; // Enough space for the text to go to two lines.
-      justify-content: center;
-      left: 0;
-      line-height: 13px; // If the text goes on two lines this still looks good.
-      position: absolute;
-      width: 100%;
+    .menu__link__icon {
+      --icon-size: #{$-branding-icon-size-desktop};
+      align-self: end;
+      display: block;
+      grid-area: icon;
+      justify-self: center;
     }
-
-    @include breakpoint($breakpoint-m) {
-      bottom: -5px; // There is now a bit more space for the text so give a bit more space between the text and icon.
-    }
-  }
-
-  .explain-external-icon {
-    display: none; //TODO: Replace this with visually-hidden once footer supports external link icons
-    @include visually-hidden();
   }
 }

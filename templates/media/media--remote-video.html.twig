@@ -42,26 +42,31 @@
       {% endtrans %}
     </p>
     <div class="buttons">
-      {%
-        set external_link_classes = [
-        'hds-button',
-        'hds-button--primary',
-        'hdbt-icon',
-        'hdbt-icon--link-external'
-      ]
-      %}
-      <a href="{{ media_url }}" target="_blank"{{ create_attribute({'class': external_link_classes} ) }}>
-        <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
-      </a>
-      {%
-        set settings_link_classes = [
-        'hds-button',
-        'hds-button--secondary',
-      ]
-      %}
-      <a href="{{ privacy_policy_url }}" {{ create_attribute({'class': settings_link_classes} ) }}>
+
+      {% set external_link_attributes = {
+        'class': [
+          'hds-button',
+          'hds-button--primary',
+        ]
+      } %}
+
+      {% set external_link_title %}
+         <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+      {% endset %}
+
+      {{ link(external_link_title, media_url, external_link_attributes) }}
+
+      {% set link_title %}
         <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
-      </a>
+      {% endset %}
+      {% set link_attributes = {
+        'class': [
+          'hds-button',
+          'hds-button--secondary',
+        ],
+      } %}
+      {{ link(link_title, privacy_policy_url, link_attributes) }}
+
     </div>
   </div>
 </div>

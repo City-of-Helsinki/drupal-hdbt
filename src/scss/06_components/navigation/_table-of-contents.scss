@@ -24,7 +24,7 @@
 .table-of-contents__container {
   @include component-margin-top();
   background-color: $color-silver-light;
-  border-left: 8px solid var(--hdbt-color-gold--primary);
+  border-left: $spacing-half solid $color-gold;
   // Max-width: Content max width (860px) + left and right paddings.
   max-width: $spacing-and-half + $content-width-max + $spacing-and-half;
   padding: $spacing-double $spacing-and-half;
@@ -67,7 +67,6 @@
     outline: none;
 
     &::after {
-      border-radius: 2px;
       box-shadow: 0 0 0 3px $color-black;
       content: "";
       display: block;

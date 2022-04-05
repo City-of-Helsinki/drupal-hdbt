@@ -28,7 +28,7 @@
 
 {% set attributes = attributes.addClass('block--language-switcher') %}
 
-<div{{ attributes.setAttribute('data-hdbt-selector','language-switcher') }}>
+<div{{ attributes.setAttribute('data-hdbt-selector','language-switcher').setAttribute('id', null) }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes }}>{{ label }}</h2>

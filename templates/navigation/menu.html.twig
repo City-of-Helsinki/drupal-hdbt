@@ -29,6 +29,7 @@
 
 {% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
+  {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
 
   {%
     set menu_classes = [
@@ -44,27 +45,25 @@
   {% if items %}
     <ul{{ attributes.addClass(menu_classes) }}>
     {% for item in items %}
+      {% set has_children = false %}
+      {% set expanded_or_active = false %}
+      {% set level = menu_level + 2 %}
+      {% if level <= max_level - 2 %}
+        {% set has_children = item.below %}
+        {% set expanded_or_active = item.is_expanded or item.in_active_trail %} {# Does this variable make any sense? #}
+      {% endif %}
 
       {% set link_id = 'aria-id-' ~ random() %}
       {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded)) ? true : false %}
 
-      {% set is_external = item.is_external %}
-      {% set is_external = false %}{# TODO: Once menu supports external link detection with whitelists, remove this override, also in menu--mobile.html.twig #}
-
       {% set item_classes = [
         'menu__item',
         item.is_nolink ? 'menu__item--nolink',
-        is_external ? 'menu__item--external',
-        item.is_expanded or item.in_active_trail ? 'menu__item--children',
-        item.below ? 'menu__item--item-below',
+        expanded_or_active ? 'menu__item--children',
+        has_children ? 'menu__item--item-below',
         item.in_active_trail ? 'menu__item--active-trail',
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
-
-      {% set explain_external_icon = null %}
-      {% if is_external %}
-        {% set explain_external_icon %}<span class="explain-external-icon"> ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
-      {% endif %}
 
       <li{{ item.attributes.addClass(item_classes) }}>
         <span class="menu__link-wrapper">
@@ -76,14 +75,13 @@
                 {% if icon_name %}
                   {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
                 {% endif %}
-                <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
+                <span class="menu__link__text">{{ item.title }}</span>
               {% endset %}
 
               {% set link_attributes = {
                 'class': [
                   'menu__link',
                   item.in_active_trail ? 'menu__link--active-trail',
-                  is_external ? 'menu__link--external',
                 ],
                 'id': item_is_collabsible ? link_id : null,
                 'aria-current': item.is_currentPage ? 'page' : null,
@@ -93,7 +91,7 @@
 
             {% endspaceless %}
           {% else %}
-            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}{{ explain_external_icon }}</span></span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}</span></span>
           {% endif %}
 
           {% if item_is_collabsible %}
@@ -108,7 +106,7 @@
             </button>
           {% endif %}
         </span>
-        {% if item.below %}
+        {% if has_children %}
           {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, allow_collabsible, auto_open) }}
         {% endif %}
       </li>

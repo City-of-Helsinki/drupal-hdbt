@@ -200,31 +200,6 @@
     }
   }
 
-  // TODO: Is this selector still relevant?
-  // Opening hours link (always external)
-  .unit__contact-row--opening-hours a {
-    padding-right: 24px; // Width of the external icon plus.
-    position: relative;
-
-    .explain-external-icon {
-      @include visually-hidden();
-    }
-
-    &:after {
-      @include pseudo-icon('link-external', 14px, $color-black, flex);
-      height: 20px; //TODO: clean height and width mismatch
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 24px;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
   .unit__contact-row--email a {
     word-break: break-all;
   }
@@ -321,22 +296,6 @@
         }
       }
     }
-  }
-
-  .unit__services__pager {
-    list-style: none;
-    margin: $spacing-quadruple 0 0;
-    padding: 0;
-  }
-
-  .unit__services__pager-button-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .unit__services__pager-button {
-    @extend .emulate-button--primary;
   }
 }
 
@@ -586,6 +545,110 @@
           transform: none;
         }
       }
+    }
+  }
+}
+
+.unit--minimal {
+  background-color: $color-white;
+
+  .unit__link {
+    display: block;
+    padding: $spacing-and-half;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      .unit__title {
+        text-decoration: underline;
+      }
+
+      .unit__read-more {
+        .hel-icon {
+          transform: translateX($spacing-half);
+          @media (prefers-reduced-motion) {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
+  .unit__text {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .unit__text__content {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      // Width of the element - icon width + icon padding on left
+      width: calc(100% - #{$spacing-double} + #{$spacing-and-half});
+    }
+  }
+
+  .unit__title {
+    @include font('h4');
+    margin-bottom: 0;
+
+    @include breakpoint($breakpoint-m) {
+      font-weight: bold;
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+      padding-right: $spacing-and-half;
+      width: 60%;
+    }
+  }
+
+  .unit__info {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      width: 40%;
+    }
+  }
+
+  .unit__info-row--address {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      @include font('body');
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+    }
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .unit__info-row--distance {
+    @include font('special.helper_text');
+    color: $color-black-60;
+    margin-top: $spacing-half;
+    white-space: nowrap;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing;
+      // Align the distance to center with the arrow and the title.
+      margin-top: 7px;
+    }
+  }
+
+  .unit__read-more {
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      margin-top: 0;
+    }
+
+    .hel-icon {
+      --icon-size: #{$spacing-double};
+      @include hover-link-arrow-transition();
     }
   }
 }

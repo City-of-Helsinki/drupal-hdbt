@@ -67,15 +67,6 @@
     }
   }
 
-  .eu-cookie-compliance-more-button.hds-button {
-    background-color: transparent;
-    border: none;
-    color: $color-white;
-    padding: 0;
-    text-decoration: underline;
-    width: auto;
-  }
-
   .eu-cookie-compliance-categories-buttons {
     margin-top: $spacing;
 
@@ -90,43 +81,17 @@
     max-width: 100%;
   }
 
+  .eu-cookie-withdraw-button {
+    display: none; // hide withdraw button from screen readers and tab lists as we're not using it.
+  }
+
   .hds-button {
+    @include hds-button-colors-on-dark-bg();
     max-width: 400px;
     width: 100%;
 
-    &.hds-button--primary {
-      background-color: $color-white;
-      color: $color-bus;
-
-      &:not(:disabled):focus:after {
-        border-color: $color-white;
-      }
-
-      &:active,
-      &:hover {
-        color: $color-bus;
-      }
-    }
-
-    &.hds-button--secondary {
-      border-color: $color-white;
-      color: $color-white;
-
-      &:active {
-        color: $color-white;
-      }
-
-      &:not(:disabled):focus:after {
-        border-color: $color-white;
-      }
-
-      &:hover {
-        color: $color-bus;
-
-        &:active {
-          color: $color-bus;
-        }
-      }
+    @include breakpoint($breakpoint-m) {
+      width: auto;
     }
   }
 }

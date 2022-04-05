@@ -4,3 +4,5 @@ description: 'Performs alterations to content.'
 core: 8.x
 core_version_requirement: ^8 || ^9
 package: 'Theme'
+'interface translation project': hdbt_content
+'interface translation server pattern': themes/contrib/hdbt/modules/hdbt_content/translations/%language.po

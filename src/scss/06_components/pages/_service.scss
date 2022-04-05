@@ -137,7 +137,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:before {
-      background-color: var(--hdbt-color-gold--primary);
+      background-color: $color-gold;
       content: "";
       display: block;
       height: 100%;
@@ -156,6 +156,7 @@ $teaser-icon-size-desktop: 48px;
     }
 
     &:hover {
+      text-decoration: underline;
       .hel-icon {
         margin-left: $spacing;
         @media (prefers-reduced-motion) {
@@ -234,22 +235,6 @@ $teaser-icon-size-desktop: 48px;
 
     @include breakpoint($breakpoint-m) {
       margin-top: $spacing;
-    }
-  }
-
-  .service__units__pager {
-    list-style: none;
-    margin: $spacing-quadruple 0 0;
-    padding: 0;
-  }
-
-  .service__units__pager-button-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    .service__units__pager-button {
-      @extend .emulate-button--primary;
     }
   }
 }

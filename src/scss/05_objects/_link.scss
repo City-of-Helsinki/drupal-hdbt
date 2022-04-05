@@ -1,10 +1,28 @@
-// Plain text links that open in new tab.
-a.link[target="_blank"] {
-  align-items: center;
-  display: inline-flex;
+.link__type {
+  @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
+  @include hover-link-arrow-transition;
 
-  // TODO: This is not wanted, we should separate target="_blank" from external links!
-  &::after {
-    @include pseudo-icon('link-external', 1em, currentColor, block);
+  --external-icon-move: translate(3px, -3px);
+  overflow: hidden;
+
+  @media (prefers-reduced-motion) {
+    --external-icon-move: scale(1);
   }
+}
+
+a:focus .link__type,
+a:hover .link__type {
+  transform: var(--external-icon-move);
+}
+
+.link__type--tel {
+  @include pseudo-icon-replace('tel');
+
+  --external-icon-move: rotate(15deg);
+}
+
+.link__type--mailto {
+  @include pseudo-icon-replace('mailto');
+
+  --external-icon-move: rotate(15deg);
 }

@@ -28,52 +28,50 @@
 
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
+  {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
 
-  {% set menu_classes = [
-    'menu',
-    'menu--mobile',
-  ] %}
+  {% if menu_level == 0 %}
+    {% set ul_class = 'cssnav' %}
+  {% else %}
+    {% set ul_class = 'cssnav__subnav' %}
+  {% endif %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes) }}>
+    <ul{{ attributes.addClass(ul_class) }}>
     {% for item in items %}
       {% set level = menu_level + 1 %}
-
-      {% set is_external = item.is_external %}
-      {% set is_external = false %}{# TODO: Once menu supports external link detection with whitelists, remove this override, also in menu.html.twig #}
-
+      {% set has_children = false %}
+      {% if level <= max_level - 2 %}
+        {% set has_children = item.below %}
+      {% endif %}
       {% set item_classes = [
-        'menu__item',
-        item.is_nolink ? 'menu__item--nolink',
-        is_external ? 'menu__item--external',
-        item.is_expanded or item.in_active_trail ? 'menu__item--children',
-        item.in_active_trail ? 'menu__item--active-trail',
-        'menu__item--level-' ~ level,
+        'cssnav__item',
+        item.is_nolink ? 'cssnav__item--nolink',
+        has_children ? 'cssnav__item--has-children',
+        item.in_active_trail ? 'cssnav__item--in-path',
+        'cssnav__item--level-' ~ (level + 1),
       ]%}
 
-      {% set explain_external_icon = null %}
-      {% if is_external %}
-        {% set explain_external_icon %}<span class="explain-external-icon"> ({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{% endset %}
-      {% endif %}
-
+      {# <div{{ item.attributes.addClass(item_classes) }}> #}
       <li{{ item.attributes.addClass(item_classes) }}>
+
+        {% set item_title = item.title %}
         {% if not item.is_nolink %}
           {% spaceless %}
 
-            {% set item_title %}
-              {% set icon_name = (item.url.getOption('attributes')).icon %}
-              {% if icon_name %}
-                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
-              {% endif %}
-              <span class="menu__link__text">{{ item.title }}{{ explain_external_icon }}</span>
-            {% endset %}
+            {% set icon_name = (item.url.getOption('attributes')).icon %}
+            {% if icon_name %}
+              {% set item_title %}
+                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'cssnav__link__icon'} %}
+                <span class="cssnav__link__text">{{ item.title }}</span>
+              {% endset %}
+            {% endif %}
 
             {% set link_attributes = {
               'class':
                 [
-                  'menu__link',
-                  item.in_active_trail ? 'menu__link--active-trail',
-                  is_external ? 'menu__link--external',
+                  'cssnav__link',
+                  item.in_active_trail ? 'cssnav__link--in-path',
                 ],
               'aria-current': item.is_currentPage ? 'page': null,
             } %}
@@ -82,12 +80,19 @@
 
           {% endspaceless %}
         {% else %}
-          <span{{ create_attribute({'class': item_classes} ) }}>{{ item.title }}</span>
+          <span{{ create_attribute({'class': 'cssnav__item__nolink'} ) }}>{{ item.title }}</span>
         {% endif %}
-        {% if item.below %}
+        {% if has_children %}
+          <details {{item.in_active_trail ? 'open'}}>
+            <summary>
+              <span class="cssnav__text-mirror">{{ item_title }}</span>
+              <span class="cssnav__toggle"><span class="visually-hidden">{{ 'Toggle submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item.title }}</span></span>
+            </summary>
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          </details>
         {% endif %}
       </li>
+      {# </div> #}
     {% endfor %}
     </ul>
   {% endif %}

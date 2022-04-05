@@ -22,26 +22,6 @@
 .views--unit-search {
   margin-top: $spacing-double;
 
-  .hds-button--primary {
-    --background-color: var(--color-black);
-    --background-color-hover: var(--color-black);
-    --background-color-focus: var(--color-black);
-    --background-color-hover-focus: var(--color-black);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black);
-    --border-color-hover-focus: var(--color-black);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-white);
-    --color-disabled: var(--color-black);
-    --focus-outline-color: var(--color-black);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
   .form-actions .hds-button--primary {
     width: 100%;
 
@@ -136,15 +116,24 @@
   }
 }
 
-.unit__search__pager {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: $spacing-double 0 0;
-  padding: 0;
+.unit-search__additional-information {
+  @include font('body');
+  display: block;
+  margin-bottom: $spacing-and-half;
+  margin-top: $spacing;
 
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-quadruple;
+  &.unit-search__address-not-found {
+    font-weight: bold;
+    padding-left: $spacing-double;
+    position: relative;
+
+    &::before {
+      @include pseudo-icon('alert-circle', $spacing-and-half);
+      left: 0;
+      margin-top: -12px; // Move icon up half of the line-height of the text that follows (line-height is 24px).
+      position: absolute;
+      top: 50%;
+    }
   }
 }
 
@@ -182,3 +171,20 @@
   }
 }
 
+.unit-search__no-results-title {
+  @include font('h3');
+  margin-top: $spacing-and-half;
+}
+
+.unit-search__no-results-desc {
+  @include font('body');
+}
+
+// Unit search with large volume of units listed such as daycare search.
+.views--unit-search--large-volume .views-row {
+  margin-top: $spacing-quarter;
+
+  &:first-of-type {
+    margin-top: $spacing-and-half;
+  }
+}

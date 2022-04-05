@@ -1,73 +1,29 @@
 .block--branding {
   align-items: center;
   display: flex;
-  height: 65px; // Height on mobile for the branding area.
+  grid-area: logo;
+  height: var(--block-branding-height-mobile, 65px); // Height on mobile for the branding area.
   order: 1;
-  width: 136px;
   z-index: 1;
-
-  @include breakpoint(440px) {
-    // Width of the logo + margin + width of the site name + margin
-    width: calc(69px + #{$spacing-half} + 136px + #{$spacing-half});
-  }
 
   @include breakpoint($breakpoint-m) {
     height: auto;
-    width: auto;
-  }
-
-  .logo--header {
-    transition: .15s ease-in-out;
   }
 
   .site-name {
     color: $color-black;
-    margin: 0 $spacing-half;
-    width: 136px;
-
-    @include breakpoint(max-width 440px) {
-      margin: 0;
-      opacity: 0;
-      pointer-events: none;
-      position: absolute;
-      transform: translate3d(0, 150%, 0);
-      transition: .15s ease-in-out;
-      transition-property: none;
-    }
+    margin-left: $spacing-half;
+    margin-right: $spacing-half;
 
     @include breakpoint($breakpoint-m) {
       @include font('special.navigation.site_name');
-      margin: 0 $spacing;
-      width: auto;
+      margin-left: $spacing;
+      margin-right: $spacing;
     }
   }
 
   a:focus .site-name,
   a:hover .site-name {
     text-decoration: underline;
-  }
-}
-
-.mm-wrapper_opened {
-  .block--branding {
-    .logo--header .hel-icon {
-      --icon-size: $spacing-and-half;
-      @include breakpoint(max-width 440px) {
-        opacity: 0;
-        pointer-events: none;
-        transform: translate3d(0, -150%, 0);
-      }
-    }
-
-    .site-name {
-      @include breakpoint(max-width 440px) {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateZ(0);
-        transition-duration: 225ms;
-        transition-property: opacity,transform;
-        transition-timing-function: ease-out;
-      }
-    }
   }
 }
