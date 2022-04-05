@@ -157,6 +157,20 @@ drush locale:check && drush locale:update
 ```
 And then flush all caches from top left drupal admin menu under "Druplicon".
 
+### I have some php linter errors
+
+You can lint or fix php in instance root's shell
+
+To lint
+```
+vendor/bin/phpcs public/themes/contrib/hdbt --extensions=php,module,theme,inc --ignore="*.js,*.css" --standard=Drupal
+```
+
+To fix
+```
+vendor/bin/phpcbf public/themes/contrib/hdbt --extensions=php,module,theme,inc --ignore="*.js,*.css" --standard=Drupal
+```
+
 ## Component documentation
 
 ### Accordion paragraph
