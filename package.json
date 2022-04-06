@@ -48,16 +48,14 @@
     "postcss": "^8.3.0",
     "postcss-cli": "^9.0.0",
     "postcss-combine-media-query": "^1.0.1",
-    "postcss-easy-import": "^3.0.0",
-    "postcss-extend": "^1.0.5",
+    "postcss-easy-import": "^4.0.0",
     "postcss-import": "^14.0.0",
     "postcss-import-ext-glob": "^2.0.1",
     "postcss-loader": "^6.0.0",
     "postcss-nested": "^5.0.3",
     "postcss-nesting": "^10.0.2",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.4.3",
     "postcss-scss": "^4.0.0",
-    "postcss-strip-inline-comments": "^0.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "^2.3.2",
     "sass": "^1.43.4",
@@ -69,7 +67,7 @@
     "webpack-cli": "^4.7.2",
     "webpack-merge": "^5.0.0",
     "webpack-notifier": "^1.14.0",
-    "webpack-remove-empty-scripts": "^0.7.1"
+    "webpack-remove-empty-scripts": "^0.8.0"
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
