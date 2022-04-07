@@ -1,0 +1,21 @@
+<div class="news-listing__content">
+  {# Short title or Title #}
+  <h3 class="news-listing__title">
+    {% set link_attributes = {
+      'class': [
+        'news-listing__link',
+      ],
+      'rel': 'bookmark',
+    } %}
+    {{ link(short_title, node_url, link_attributes) }}
+  </h3>
+
+  {# Created date and modified date #}
+  {% if published_at is not empty %}
+    {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+    <time datetime="{{ html_published_at }}" class="news-listing__datetime news-listing__datetime--published">
+      <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+      {{ published_at|format_date('publication_date_format') }}
+    </time>
+  {% endif %}
+</div>
