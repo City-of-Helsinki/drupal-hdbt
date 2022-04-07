@@ -18,7 +18,6 @@
   }
 }
 
-
 .views--unit-search {
   margin-top: $spacing-double;
 
@@ -29,7 +28,6 @@
       margin-left: $spacing-and-half;
     }
   }
-
 
   .views-exposed-form {
     @include breakpoint($breakpoint-m) {
@@ -123,16 +121,20 @@
   margin-top: $spacing;
 
   &.unit-search__address-not-found {
-    font-weight: bold;
-    padding-left: $spacing-double;
+    padding-left: $spacing-triple;
     position: relative;
 
     &::before {
-      @include pseudo-icon('alert-circle', $spacing-and-half);
-      left: 0;
+      @include pseudo-icon('alert-circle-fill', $spacing-and-half);
+      background-color: $color-alert-dark;
+      left: $spacing;
       margin-top: -12px; // Move icon up half of the line-height of the text that follows (line-height is 24px).
       position: absolute;
       top: 50%;
+    }
+
+    p {
+      margin-top: 0;
     }
   }
 }
@@ -181,10 +183,8 @@
 }
 
 // Unit search with large volume of units listed such as daycare search.
-.views--unit-search--large-volume .views-row {
-  margin-top: $spacing-quarter;
-
-  &:first-of-type {
-    margin-top: $spacing-and-half;
-  }
+// TODO: Remove this infinite scroll selector once we remove the infinite scroll pager is switched.
+.views--unit-search--large-volume .unit-search__results > .views-infinite-scroll-content-wrapper > .views-row + .views-row,
+.views--unit-search--large-volume .unit-search__results .views-row + .views-row {
+  margin-top: $spacing-half;
 }
