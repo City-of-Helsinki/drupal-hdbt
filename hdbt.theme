@@ -106,7 +106,8 @@ function hdbt_preprocess_html(&$variables) {
 
   $route_name = \Drupal::routeMatch()->getRouteName();
 
-  // Check if the page is user-login-page and add class user-login-page for the body.
+  // Check if the page is user-login-page and add class
+  // user-login-page for the body.
   if ($route_name === 'user.login') {
     $variables['attributes']['class'][] = 'user-login-page';
   }
