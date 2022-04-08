@@ -1,0 +1,70 @@
+$illustration-max-width-mobile: 450px;
+
+.user-login-page {
+  // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
+  background-color: $color-silver-medium-light;
+
+  // For the error pages the gap on top grows too large if this is left in place.
+  .no-sidebar .main-content {
+    margin-top: 0;
+  }
+}
+
+.user-login-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.user-login-page__title {
+  @include font('h2');
+
+  margin-bottom: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+  }
+}
+
+.user-login__form-container {
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+}
+
+.user-login-page__illustration-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-sextuple;
+    width: 50%;
+  }
+}
+
+.user-login-page__illustration {
+  display: block;
+  height: auto;
+  margin-top: $spacing-triple;
+  max-width: $illustration-max-width-mobile;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: 0;
+    margin-top: 0;
+    max-width: unset;
+  }
+}
+
+
+.login-form {
+  //Hides the help texts from input fields
+  .description {
+    display: none;
+  }
+
+  .form-item--error-message {
+    margin-top: $spacing-double;
+  }
+}
