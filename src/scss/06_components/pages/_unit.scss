@@ -607,6 +607,8 @@
   .unit__info {
     @include breakpoint($breakpoint-m) {
       display: flex;
+      justify-content: space-between;
+      padding-right: $spacing-and-half;
       width: 40%;
     }
   }
