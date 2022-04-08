@@ -432,6 +432,16 @@ function hdbt_preprocess_form_element(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function hdbt_preprocess_input__submit(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'user.login' && $variables['element']['#id'] === 'edit-submit') {
+    $variables['is_login_submit'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function hdbt_preprocess_menu(&$variables) {
   foreach ($variables['items'] as &$item) {
     _hdbt_menu_item_apply_attributes($item);
