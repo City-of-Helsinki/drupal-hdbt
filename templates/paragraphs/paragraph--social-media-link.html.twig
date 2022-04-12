@@ -52,7 +52,7 @@
       <span class="visually-hidden">{{ icon_name }}</span>
     {% endset %}
     {% if content.field_social_media_link[0]['#url']|render %}
-      {{ link(link_title, content.field_social_media_link[0]['#url'], link_attributes) }}
+      {{ link(link_title, content.field_social_media_link[0]['#url']) }}
     {% endif %}
   </div>
 {% endblock paragraph %}
