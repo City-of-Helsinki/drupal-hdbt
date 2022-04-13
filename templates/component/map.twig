@@ -1,0 +1,11 @@
+{% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [ 'component--map' ],
+    component_title: title,
+    component_description: description,
+    component_content_class: 'map',
+  }%}
+  {% block component_content %}
+    {{ map }}
+  {% endblock component_content %}
+{% endembed %}
