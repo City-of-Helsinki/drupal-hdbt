@@ -3,7 +3,11 @@ $_map-aspect-ratio-mobile: 1;
 
 .component--map .component__container {
   background-color: $color-silver-light;
-  padding: $spacing-and-half;
+  padding: $spacing-and-half $spacing-and-half $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+   padding: $spacing-double $spacing-double $spacing-triple;
+  }
 }
 
 .component--map {
@@ -22,7 +26,7 @@ $_map-aspect-ratio-mobile: 1;
   padding-bottom: aspect-ratio-padding($_map-aspect-ratio-mobile);
   position: relative;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-s) {
     padding-bottom: aspect-ratio-padding($_map-aspect-ratio-desktop);
   }
 
