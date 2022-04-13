@@ -1,15 +1,30 @@
-$_map-aspect-ratio: 16/9;
+$_map-aspect-ratio-desktop: 16/9;
+$_map-aspect-ratio-mobile: 1;
 
 .component--map .component__container {
   background-color: $color-silver-light;
-  padding: 32px 32px 48px;
+  padding: $spacing-and-half;
+}
+
+.component--map {
+  margin-left: -$spacing;
+  margin-right: -$spacing;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: unset;
+    margin-right: unset;
+  }
 }
 
 .map {
   height: 0;
   margin: $spacing 0;
-  padding-bottom: aspect-ratio-padding($_map-aspect-ratio);
+  padding-bottom: aspect-ratio-padding($_map-aspect-ratio-mobile);
   position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: aspect-ratio-padding($_map-aspect-ratio-desktop);
+  }
 
   > div,
   iframe {

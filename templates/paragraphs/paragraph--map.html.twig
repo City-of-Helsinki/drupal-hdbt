@@ -1,18 +1,4 @@
 {% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [ 'component--map' ],
-      component_title: content.field_map_title,
-      component_description: content.field_map_description,
-      component_content_class: 'map',
-    }
-  %}
-    {% block component_content %}
-
-      {{ content.field_map_map }}
-
-    {% endblock component_content %}
-  {% endembed %}
   {% include '@hdbt/component/map.twig' with {
     title: content.field_map_title,
     description: content.field_map_description,
