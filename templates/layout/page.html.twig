@@ -2,10 +2,17 @@
 /**
  * @file
  * Theme override to display a single page.
- */
+ *
+ * Variables:
+ * - in_menu: A boolean indicating whether the page is in menu or not
+ * - active_theme: A string indicating the active theme
+ * - has_sidebar: A boolean indicating whether the page has sidebar content
+ *
+ * @see hdbt_content_preprocess_page() and hdbt_preprocess_page()
 #}
 
-{% if page_has_sidebar %}
+{# TODO: Do we need to separate the sidebar first and sidebar second regions? #}
+{% if has_sidebar %}
   {% set sidebar_first_output = TRUE %}
 {% endif %}
 
@@ -13,8 +20,7 @@
   {% set sidebar_second_output = render_var(page.sidebar_second) %}
 {% endif %}
 
-{% set has_sidebar = false %}
-{% if sidebar_first_output or sidebar_second_output %}
+{% if sidebar_second_output %}
   {% set has_sidebar = true %}
 {% endif %}
 
@@ -27,8 +33,8 @@
   ]
 %}
 
-{% if not has_hero and node.getType()|clean_class is same as('page') and sidebar_first_output %}
-  {% set move_before_content = TRUE %}
+{% if not has_hero and node.getType()|clean_class is same as('page') and has_sidebar %}
+  {% set page_title_in_main_content = TRUE %}
 {% endif %}
 
 {# The published variable can be true/false/null and only false should be marked with unpublished indicator #}
@@ -78,17 +84,26 @@
   <main role="main" class="layout-main-wrapper">
     <a id="main-content" tabindex="-1"></a>
 
+    {# Construct page_title_block based on active theme. #}
+    {% set page_title_block = active_theme ~ '_page_title' %}
+
     {% block page_before_content %}
-      {# Move title inside the content area if page has navigation set to true. #}
-      {% if page.before_content and not move_before_content %}
-        {{ page.before_content }}
+      {# Render before content without the page title block. #}
+      {% if page.before_content %}
+        {{ page.before_content|without(page_title_block) }}
+      {% endif %}
+
+      {# Render page title block before main content. #}
+      {% if not page_title_in_main_content %}
+        {{ page.before_content[page_title_block] }}
       {% endif %}
     {% endblock page_before_content %}
 
     <div class="main-content">
-      <div class="layout-content {% if has_navigation %}has-navigation{% endif %} {% if move_before_content %}before-content--in-main{% endif %}">
-        {% if page.before_content and move_before_content %}
-          {{ page.before_content }}
+      <div class="layout-content {% if in_menu %}has-navigation{% endif %} {% if page_title_in_main_content %}before-content--in-main{% endif %}">
+        {# Render page title block in main content if clause matches. #}
+        {% if page_title_in_main_content %}
+          {{ page.before_content[page_title_block] }}
         {% endif %}
         {% block page_content %}
           {{ page.content }}
@@ -96,7 +111,7 @@
       </div>{# /.layout-content #}
 
       {% if sidebar_first_output %}
-        <aside class="layout-sidebar-first {% if has_navigation %}has-navigation{% endif %}" role="complementary">
+        <aside class="layout-sidebar-first {% if in_menu %}has-navigation{% endif %}" role="complementary">
           {{ page.sidebar_first }}
         </aside>
       {% endif %}
