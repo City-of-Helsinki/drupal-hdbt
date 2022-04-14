@@ -30,12 +30,9 @@
     has_sidebar ? 'has-sidebar' : 'no-sidebar',
     sidebar_first_output ? 'has-sidebar--first',
     sidebar_second_output ? 'has-sidebar--second',
+    has_hero ? 'has-hero' : 'no-hero',
   ]
 %}
-
-{% if not has_hero and node.getType()|clean_class is same as('page') and has_sidebar %}
-  {% set page_title_in_main_content = TRUE %}
-{% endif %}
 
 {# The published variable can be true/false/null and only false should be marked with unpublished indicator #}
 {% if published or published is null %}
@@ -92,17 +89,11 @@
       {% if page.before_content %}
         {{ page.before_content|without(page_title_block) }}
       {% endif %}
-
-      {# Render page title block before main content. #}
-      {% if not page_title_in_main_content %}
-        {{ page.before_content[page_title_block] }}
-      {% endif %}
     {% endblock page_before_content %}
 
     <div class="main-content">
-      <div class="layout-content {% if in_menu %}has-navigation{% endif %} {% if page_title_in_main_content %}before-content--in-main{% endif %}">
-        {# Render page title block in main content if clause matches. #}
-        {% if page_title_in_main_content %}
+      <div class="layout-content {% if in_menu %}has-navigation{% endif %}">
+        {% if not has_hero %}
           {{ page.before_content[page_title_block] }}
         {% endif %}
         {% block page_content %}

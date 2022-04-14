@@ -38,16 +38,6 @@
   @include component-side-padding();
 }
 
-.page-type--page.has-sidebar {
-  .before-content--in-main {
-    .page-title {
-      margin-top: 0;
-    }
-    .node--type-page {
-      margin-top: $spacing-and-half;
-    }
-  }
-}
 
 .content-date {
   @include font('small');
