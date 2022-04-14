@@ -3,35 +3,13 @@ $_map-aspect-ratio-mobile: 1;
 
 .component--map {
   background-color: $color-silver-light;
-
-  .address-line1::after {
-    content: ',';
-  }
-}
-
-.unit__header .component--map {
-  margin-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-triple;
-   }
 }
 
 .component--map .component__container {
-  padding: $spacing-triple 0;
+  padding: 0;
 }
 
-.unit__header .component--map .component__container,
-.has-sidebar .component--map .component__container {
-  padding: $spacing-and-half $spacing $spacing-triple;
-
-  @include breakpoint($breakpoint-m) {
-   padding: $spacing-double $spacing-double $spacing-triple;
-  }
-}
-
-.has-sidebar .components--upper .component--map,
-.unit__header .component--map {
+.has-sidebar .components--upper .component--map {
   @include breakpoint(max-width $breakpoint-l) {
     @include component-negative-side-margin;
   }
