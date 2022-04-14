@@ -340,6 +340,16 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     $variables['in_menu'] = TRUE;
   }
 
+  // Hide the sidebar and menu if the current entity has
+  // "hide sidebar navigation" value set.
+  if (
+    $entity->hasField('hide_sidebar_navigation') &&
+    boolval($entity->get('hide_sidebar_navigation')->value)
+  ) {
+    $variables['has_sidebar'] = FALSE;
+    $variables['in_menu'] = FALSE;
+  }
+
   // Check if page entity has sidebar content field available and set
   // "has_sidebar" variable accordingly.
   if (
