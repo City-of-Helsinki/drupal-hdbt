@@ -71,12 +71,12 @@
 
         {% if content.service_map_embed|render %}
           {% set map_title %}
-            {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
             {{ 'Location'|t }}
           {% endset %}
           {% include '@hdbt/component/map.twig' with {
             title: map_title,
             map: content.service_map_embed,
+            description: content.address
           } %}
         {% endif %}
 

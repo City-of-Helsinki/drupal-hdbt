@@ -1,22 +1,17 @@
 $_map-aspect-ratio-desktop: 16/9;
 $_map-aspect-ratio-mobile: 1;
 
-.component--map .component__container {
+.component--map {
   background-color: $color-silver-light;
-  padding: $spacing-and-half $spacing-and-half $spacing-triple;
-
-  @include breakpoint($breakpoint-m) {
-   padding: $spacing-double $spacing-double $spacing-triple;
-  }
 }
 
-.component--map {
-  margin-left: -$spacing;
-  margin-right: -$spacing;
+.component--map .component__container {
+  padding: 0;
+}
 
-  @include breakpoint($breakpoint-m) {
-    margin-left: unset;
-    margin-right: unset;
+.has-sidebar .components--upper .component--map {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include component-negative-side-margin;
   }
 }
 
