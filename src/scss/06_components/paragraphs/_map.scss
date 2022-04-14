@@ -23,7 +23,7 @@ $_map-aspect-ratio-mobile: 1;
 
 .unit__header .component--map .component__container,
 .has-sidebar .component--map .component__container {
-  padding: $spacing-and-half $spacing-and-half $spacing-triple;
+  padding: $spacing-and-half $spacing $spacing-triple;
 
   @include breakpoint($breakpoint-m) {
    padding: $spacing-double $spacing-double $spacing-triple;
