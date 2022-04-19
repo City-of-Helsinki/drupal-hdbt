@@ -1,15 +1,51 @@
-$_map-aspect-ratio: 16/9;
+$_map-aspect-ratio-desktop: 16/9;
+$_map-aspect-ratio-mobile: 1;
+
+.component--map {
+  background-color: $color-silver-light;
+
+  .address-line1::after {
+    content: ',';
+  }
+}
+
+.unit__header .component--map {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-triple;
+   }
+}
 
 .component--map .component__container {
-  background-color: $color-silver-light;
-  padding: 32px 32px 48px;
+  padding: $spacing-triple 0;
+}
+
+.unit__header .component--map .component__container,
+.has-sidebar .component--map .component__container {
+  padding: $spacing-and-half $spacing $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+   padding: $spacing-double $spacing-double $spacing-triple;
+  }
+}
+
+.has-sidebar .components--upper .component--map,
+.unit__header .component--map {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include component-negative-side-margin;
+  }
 }
 
 .map {
   height: 0;
   margin: $spacing 0;
-  padding-bottom: aspect-ratio-padding($_map-aspect-ratio);
+  padding-bottom: aspect-ratio-padding($_map-aspect-ratio-mobile);
   position: relative;
+
+  @include breakpoint($breakpoint-s) {
+    padding-bottom: aspect-ratio-padding($_map-aspect-ratio-desktop);
+  }
 
   > div,
   iframe {
