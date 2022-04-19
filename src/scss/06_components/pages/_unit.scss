@@ -582,6 +582,11 @@
       margin-top: 2px;
     }
 
+    .address-line1::after,
+    .address-line2::after {
+      content: ",";
+    }
+
     p:first-child {
       margin-top: 0;
     }
