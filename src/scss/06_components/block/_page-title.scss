@@ -1,18 +1,17 @@
-.page-title {
-  margin-top: $spacing-triple;
+// When page title (not hero) is visible and lead-in follows it, set margin between them
+.page-title + article > .lead-in {
+  margin-top: $spacing-and-half;
+}
 
-  @include breakpoint($breakpoint-s) {
-    margin-top: $spacing-quadruple;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-sextuple;
-  }
+// When page title (not hero) is visible and toc/components follows it, set margin between them
+.page-title + article > .table-of-contents:first-child,
+.page-title + article > .components:first-child {
+  @include component-margin-top;
 }
 
 .page-title__container {
-  @include components-container-max-width();
-  @include component-side-padding();
+  @include components-container-max-width;
+  @include component-side-padding;
   padding-top: 0;
 
   h1 {

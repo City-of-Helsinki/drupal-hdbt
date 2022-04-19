@@ -199,6 +199,9 @@ function hdbt_preprocess_page(&$variables) {
       break;
   }
 
+  // Required for allowing subtheming for HDBT theme.
+  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
+
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
