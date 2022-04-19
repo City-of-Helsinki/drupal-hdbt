@@ -59,6 +59,10 @@
     object-fit: cover;
   }
 
+  .event__image.image-placeholder {
+    padding: 0;
+  }
+
   .event__content-container {
     @include breakpoint($breakpoint-l) {
       padding-left: $spacing-double;
