@@ -69,15 +69,15 @@
     {{ page.messages }}
   {% endif %}
 
-  {% if page.breadcrumb %}
-    {{ page.breadcrumb }}
-  {% endif %}
-
-  {% if page.tools %}
-    {{ page.tools }}
-  {% endif %}
-
   <main role="main" class="layout-main-wrapper">
+    {% if page.breadcrumb %}
+      {{ page.breadcrumb }}
+    {% endif %}
+
+    {% if page.tools %}
+      {{ page.tools }}
+    {% endif %}
+
     <a id="main-content" tabindex="-1"></a>
 
     {# Construct page_title_block based on active theme. #}
