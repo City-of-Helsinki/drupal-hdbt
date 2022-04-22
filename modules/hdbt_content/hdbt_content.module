@@ -301,13 +301,6 @@ function hdbt_content_preprocess_page(&$variables) {
     if ($entity instanceof NodeInterface && $entity->getType() === 'page') {
       _hdbt_content_handle_sidebar_visibility($variables, $entity);
     }
-
-    // News item needs to have the sidebar set at all times. Also move the
-    // node title to content area with move_berore_content variable.
-    if ($entity instanceof NodeInterface && $entity->getType() === 'news_item') {
-      $variables['has_sidebar'] = TRUE;
-      $variables['move_before_content'] = TRUE;
-    }
   }
 }
 
@@ -333,11 +326,16 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     'main'
   );
 
+  $variables['has_sidebar_first'] = FALSE;
+  $variables['has_sidebar_second'] = FALSE;
+
   // If there are links, apply "has_sidebar" and "in_menu" variables
   // to indicate twig templates how to render the sidebar.
   if (!empty($menu_links)) {
     $variables['has_sidebar'] = TRUE;
     $variables['in_menu'] = TRUE;
+
+    $variables['has_sidebar_first'] = TRUE;
   }
 
   // Hide the sidebar and menu if the current entity has
@@ -348,6 +346,8 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
   ) {
     $variables['has_sidebar'] = FALSE;
     $variables['in_menu'] = FALSE;
+
+    $variables['has_sidebar_first'] = FALSE;
   }
 
   // Check if page entity has sidebar content field available and set
@@ -357,6 +357,8 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     !$entity->get('field_sidebar_content')->isEmpty()
   ) {
     $variables['has_sidebar'] = TRUE;
+
+    $variables['has_sidebar_second'] = TRUE;
   }
 }
 
