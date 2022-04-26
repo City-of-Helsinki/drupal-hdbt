@@ -3,34 +3,11 @@
  * @file
  * Theme for service entity.
  *
- * Variables:
- * - in_menu: A boolean indicating whether the service is in menu or not
- *
  * @see hdbt_content_preprocess_tpr_service()
  */
 #}
 
-{% if not block_name %}
-  {% set block_name = 'main_navigation_level_2' %}
-{% endif %}
-
-{% if content.field_sidebar_content|render|striptags|trim is not empty %}
-  {% set sidebar_content = TRUE %}
-{% endif %}
-
-{% if sidebar_content or in_menu or content.links|render %}
-  {% set has_sidebar = TRUE %}
-{% endif %}
-
-{% embed '@helfi_tpr/tpr-service.html.twig' with {
-  in_menu: in_menu,
-  sidebar_content: sidebar_content,
-  has_sidebar: has_sidebar
-} %}
-  {% block sidebar_block %}
-    {{ drupal_entity('block', block_name, check_access=false) }}
-    {{ content.field_sidebar_content }}
-  {% endblock sidebar_block %}
+{% embed '@helfi_tpr/tpr-service.html.twig' %}
 
   {% if content.toc_enabled|render|striptags|trim is not empty %}
     {% block toc_content %}
@@ -40,7 +17,7 @@
 
   {% block main_content %}
     {% if content.field_content|render|striptags|trim is not empty %}
-      <div class="enriched-content components components--service {{ has_sidebar ? 'has-sidebar' }}">
+      <div class="enriched-content components components--service">
         {{ content.field_content }}
       </div>
     {% endif %}

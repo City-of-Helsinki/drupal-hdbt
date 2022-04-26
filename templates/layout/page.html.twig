@@ -4,33 +4,12 @@
  * Theme override to display a single page.
  *
  * Variables:
- * - in_menu: A boolean indicating whether the page is in menu or not
+ * - has_sidebar_first: A boolean indicating if the first sidebar is available
+ * - has_sidebar_second: A boolean indicating if the second sidebar is available
  * - active_theme: A string indicating the active theme
- * - has_sidebar: A boolean indicating whether the page has sidebar content
  *
  * @see hdbt_content_preprocess_page() and hdbt_preprocess_page()
 #}
-
-{# {% if has_sidebar %}
-  {% set sidebar_first_output = TRUE %}
-{% endif %}
-
-{% if page.sidebar_second|render|striptags|trim is not empty %}
-  {% set sidebar_second_output = render_var(page.sidebar_second) %}
-{% endif %}
-
-{% if sidebar_second_output %}
-  {% set has_sidebar = true %}
-{% endif %}
-
-{% set page_classes = [
-    node.getType() ? 'page-type--' ~ node.getType()|clean_class,
-    'wrapper',
-    has_sidebar ? 'has-sidebar' : 'no-sidebar',
-    sidebar_first_output ? 'has-sidebar--first',
-    sidebar_second_output ? 'has-sidebar--second',
-  ]
-%} #}
 
 {% set page_classes = [
     node.getType() ? 'page-type--' ~ node.getType()|clean_class,
@@ -96,7 +75,7 @@
 
     <div class="main-content">
 
-      {% if in_menu and has_sidebar_first %}
+      {% if has_sidebar_first %}
         <div class="layout-sidebar-first">
           {{ page.sidebar_first }}
         </div>
