@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\hdbt_content\EntityVersionMatcher;
+use Drupal\helfi_tpr\Entity\Unit;
 
 /**
  * Provides a 'SidebarContentBlock' block.
@@ -45,7 +46,10 @@ class SidebarContentBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
+    $build['sidebar_content'] = [
+      '#theme' => 'sidebar_content_block',
+      '#title' => $this->t('Sidebar content block'),
+    ];
 
     // Get current entity and entity version.
     $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
@@ -54,24 +58,28 @@ class SidebarContentBlock extends BlockBase {
     $entity = $entity_matcher['entity'];
     $entity_version = $entity_matcher['entity_version'];
 
-    // Handle only if sidebar content exists.
-    if (
-      !$entity instanceof ContentEntityInterface ||
-      !$entity->hasField('field_sidebar_content')
-    ) {
-      return $build;
+    // Pass Unit entity render array to templates.
+    if ($entity instanceof Unit) {
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('tpr_unit');
+      $build['sidebar_content']['#computed'] = $view_builder->view($entity);
+      $build['sidebar_content']['#computed']['#theme'] = 'tpr_unit_contact_information';
     }
 
-    // Build render array if current entity has sidebar content field.
-    return $build['sidebar_content'] = [
-      '#theme' => 'sidebar_content_block',
-      '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
-      '#title' => $this->t('Sidebar content block'),
-      '#paragraphs' => $entity->field_sidebar_content,
-      '#cache' => [
-        'tags' => $entity->getCacheTags(),
-      ],
-    ];
+    // Add the sidebar content paragraphs to render array.
+    if (
+      $entity instanceof ContentEntityInterface &&
+      $entity->hasField('field_sidebar_content')
+    ) {
+      $build['sidebar_content'] = $build['sidebar_content'] + [
+        '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
+        '#paragraphs' => $entity->field_sidebar_content,
+        '#cache' => [
+          'tags' => $entity->getCacheTags(),
+        ],
+      ];
+    }
+
+    return $build;
   }
 
 }

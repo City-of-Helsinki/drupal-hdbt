@@ -6,6 +6,8 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\hdbt_content\EntityVersionMatcher;
+use Drupal\helfi_tpr\Entity\Service;
+use Drupal\helfi_tpr\Entity\Unit;
 
 /**
  * Provides a 'LowerContentBlock' block.
@@ -43,7 +45,10 @@ class LowerContentBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
+    $build['lower_content'] = [
+      '#theme' => 'lower_content_block',
+      '#title' => $this->t('Lower content block'),
+    ];
 
     // Get current entity and entity version.
     $entity_matcher = \Drupal::service('hdbt_content.entity_version_matcher')->getType();
@@ -52,24 +57,35 @@ class LowerContentBlock extends BlockBase {
     $entity = $entity_matcher['entity'];
     $entity_version = $entity_matcher['entity_version'];
 
-    // Handle only if lower content exists.
-    if (
-      !$entity instanceof ContentEntityInterface ||
-      !$entity->hasField('field_lower_content')
-    ) {
-      return $build;
+    // Pass the Unit entity render array to templates if one exists.
+    if ($entity instanceof Unit) {
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('tpr_unit');
+      $build['lower_content']['#computed'] = $view_builder->view($entity);
+      $build['lower_content']['#computed']['#theme'] = 'tpr_unit_lower_content';
     }
 
-    // Build render array if current entity has lower content field.
-    return $build['lower_content'] = [
-      '#theme' => 'lower_content_block',
-      '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
-      '#title' => $this->t('Lower content block'),
-      '#paragraphs' => $entity->field_lower_content,
-      '#cache' => [
-        'tags' => $entity->getCacheTags(),
-      ],
-    ];
+    // Pass the Service entity render array to templates if one exists.
+    if ($entity instanceof Service) {
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('tpr_service');
+      $build['lower_content']['#computed'] = $view_builder->view($entity);
+      $build['lower_content']['#computed']['#theme'] = 'tpr_service_lower_content';
+    }
+
+    // Add the lower content paragraphs to render array.
+    if (
+      $entity instanceof ContentEntityInterface &&
+      $entity->hasField('field_lower_content')
+    ) {
+      $build['lower_content'] = $build['lower_content'] + [
+        '#is_revision' => $entity_version == EntityVersionMatcher::ENTITY_VERSION_REVISION,
+        '#paragraphs' => $entity->field_lower_content,
+        '#cache' => [
+          'tags' => $entity->getCacheTags(),
+        ],
+      ];
+    }
+
+    return $build;
   }
 
 }
