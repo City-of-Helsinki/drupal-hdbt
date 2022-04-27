@@ -61,7 +61,7 @@
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "svg-inline-loader": "^0.8.0",
-    "svg-sprite": "github:City-of-Helsinki/svg-sprite#UHF-3635-fix-icon-stack-viewbox-on-v1.5.3",
+    "svg-sprite": "github:svg-sprite/svg-sprite.git#ae913149d57ed602bb34bc76f6bfad3569360fbc",
     "tiny-slider": "^2.9.3",
     "webpack": "^5.56.2",
     "webpack-cli": "^4.7.2",
