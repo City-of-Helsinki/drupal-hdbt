@@ -42,7 +42,7 @@ function hdbt_content_update_9004() {
   if ($theme_handler->themeExists('hdbt')) {
 
     // Update HDBT sidebar navigation block.
-    $hdbt_sidebar_navigation = $config_factory->getEditable('block.block.hdbt_main_navigation_level_2');
+    $hdbt_sidebar_navigation = $config_factory->getEditable('block.block.main_navigation_level_2');
     $hdbt_sidebar_navigation_data = $hdbt_sidebar_navigation->getRawData();
     if (!empty($hdbt_sidebar_navigation_data)) {
       $hdbt_sidebar_navigation_data['weight'] = -12;
@@ -60,7 +60,7 @@ function hdbt_content_update_9004() {
     }
 
     // Update HDBT theme sidebar content block.
-    $hdbt_sidebarcontentblock = $config_factory->getEditable('block.block.hdbt_sidebarcontentblock');
+    $hdbt_sidebarcontentblock = $config_factory->getEditable('block.block.sidebarcontentblock');
     $hdbt_sidebarcontentblock_data = $hdbt_sidebarcontentblock->getRawData();
     if (!empty($hdbt_sidebarcontentblock_data)) {
       $hdbt_sidebarcontentblock_data['region'] = 'sidebar_second';
