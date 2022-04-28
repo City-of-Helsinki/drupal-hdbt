@@ -70,6 +70,13 @@
       </section>
     {% endif %}
 
+    {# Radioactivity #}
+    {% if content.field_radioactivity|render %}
+      <section class="content-radioactive">
+        {{ content.field_radioactivity }}
+      </section>
+    {% endif %}
+
   {% endblock main_content %}
 
 {% endembed %}
