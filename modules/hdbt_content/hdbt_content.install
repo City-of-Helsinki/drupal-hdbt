@@ -64,18 +64,37 @@ function hdbt_content_update_9004() {
     $hdbt_sidebarcontentblock_data = $hdbt_sidebarcontentblock->getRawData();
     if (!empty($hdbt_sidebarcontentblock_data)) {
       $hdbt_sidebarcontentblock_data['region'] = 'sidebar_second';
-      $hdbt_sidebarcontentblock_data['weight'] = -12;
+      $hdbt_sidebarcontentblock_data['weight'] = -9;
       $hdbt_sidebarcontentblock_data['visibility'] = [];
       $hdbt_sidebarcontentblock->setData($hdbt_sidebarcontentblock_data)->save(TRUE);
     }
 
-    // Update HDBT theme news list block.
+    // Update latest news block.
     $hdbt_views_block__news_latest_news = $config_factory->getEditable('block.block.views_block__news_latest_news');
     $hdbt_views_block__news_latest_news_data = $hdbt_views_block__news_latest_news->getRawData();
     if (!empty($hdbt_views_block__news_latest_news_data)) {
       $hdbt_views_block__news_latest_news_data['region'] = 'sidebar_second';
+      $hdbt_views_block__news_latest_news_data['weight'] = -10;
       $hdbt_views_block__news_latest_news->setData($hdbt_views_block__news_latest_news_data)->save(TRUE);
     }
+  }
+
+  // Update announcement block.
+  $hdbt_announcementsblock = $config_factory->getEditable('block.block.announcements');
+  $hdbt_announcementsblock_data = $hdbt_announcementsblock->getRawData();
+  if (!empty($hdbt_announcementsblock_data)) {
+    $hdbt_announcementsblock_data['region'] = 'before_content';
+    $hdbt_announcementsblock_data['weight'] = -12;
+    $hdbt_announcementsblock->setData($hdbt_announcementsblock_data)->save(TRUE);
+  }
+
+  // Update hero block.
+  $hdbt_heroblock = $config_factory->getEditable('block.block.heroblock');
+  $hdbt_heroblock_data = $hdbt_heroblock->getRawData();
+  if (!empty($hdbt_heroblock_data)) {
+    $hdbt_heroblock_data['region'] = 'before_content';
+    $hdbt_heroblock_data['weight'] = -11;
+    $hdbt_heroblock->setData($hdbt_heroblock_data)->save(TRUE);
   }
 
   // Handle HDBT Subtheme.
@@ -104,9 +123,27 @@ function hdbt_content_update_9004() {
     $hdbt_subtheme_sidebarcontentblock_data = $hdbt_subtheme_sidebarcontentblock->getRawData();
     if (!empty($hdbt_subtheme_sidebarcontentblock_data)) {
       $hdbt_subtheme_sidebarcontentblock_data['region'] = 'sidebar_second';
-      $hdbt_subtheme_sidebarcontentblock_data['weight'] = -12;
+      $hdbt_subtheme_sidebarcontentblock_data['weight'] = -9;
       $hdbt_subtheme_sidebarcontentblock_data['visibility'] = [];
       $hdbt_subtheme_sidebarcontentblock->setData($hdbt_subtheme_sidebarcontentblock_data)->save(TRUE);
+    }
+
+    // Update HDBT Subtheme announcement block.
+    $hdbt_subtheme_announcementsblock = $config_factory->getEditable('block.block.hdbt_subtheme_announcements');
+    $hdbt_subtheme_announcementsblock_data = $hdbt_subtheme_announcementsblock->getRawData();
+    if (!empty($hdbt_subtheme_announcementsblock_data)) {
+      $hdbt_subtheme_announcementsblock_data['region'] = 'before_content';
+      $hdbt_subtheme_announcementsblock_data['weight'] = -12;
+      $hdbt_subtheme_announcementsblock->setData($hdbt_subtheme_announcementsblock_data)->save(TRUE);
+    }
+
+    // Update HDBT Subtheme hero block.
+    $hdbt_subtheme_heroblock = $config_factory->getEditable('block.block.hdbt_subtheme_heroblock');
+    $hdbt_subtheme_heroblock_data = $hdbt_subtheme_heroblock->getRawData();
+    if (!empty($hdbt_subtheme_heroblock_data)) {
+      $hdbt_subtheme_heroblock_data['region'] = 'before_content';
+      $hdbt_subtheme_heroblock_data['weight'] = -11;
+      $hdbt_subtheme_heroblock->setData($hdbt_subtheme_heroblock_data)->save(TRUE);
     }
   }
 }
