@@ -6,7 +6,9 @@
       return;
     }
 
+    // Load Matomo only if statistics cookies are allowed.
     if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+      // Matomo Tag Manager
       var _mtm = (window._mtm = window._mtm || []);
       _mtm.push({
         'mtm.startTime': new Date().getTime(),

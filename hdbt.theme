@@ -18,7 +18,6 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
-use Drupal\Core\Site\Settings;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
