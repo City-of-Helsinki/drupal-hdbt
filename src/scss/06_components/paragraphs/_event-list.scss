@@ -131,10 +131,6 @@ $tag-vertical-padding: 5px;
   }
 }
 
-.component--event-list {
-  position: relative;
-}
-
 .event__content:before {
   margin-right: $spacing-half;
 ;}
@@ -160,10 +156,6 @@ $tag-vertical-padding: 5px;
 .event-list__count {
   @include font('body');
   margin-bottom: $spacing;
-}
-
-.event-list-spinner {
-  position: absolute;
 }
 
 .events-list__empty-subtext {
