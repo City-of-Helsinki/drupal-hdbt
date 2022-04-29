@@ -63,33 +63,6 @@ function hdbt_get_theme_color_override() {
 }
 
 /**
- * Implements hook_library_info_build().
- */
-function hdbt_library_info_build() {
-  $libraries = [];
-
-  $siteimprove_id = Settings::get('siteimprove_id');
-
-  if ($siteimprove_id) {
-    $siteimprove_js_url = Url::fromUri('https://siteimproveanalytics.com/js/siteanalyze_' . $siteimprove_id . '.js')->toString();
-
-    $libraries['siteimprove'] = [
-      'version' => '1.x',
-      'js' => [
-        $siteimprove_js_url => [
-          'type' => 'external',
-          'attributes' => [
-            'async' => TRUE,
-          ],
-        ],
-      ],
-    ];
-  }
-
-  return $libraries;
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_html(&$variables) {
@@ -114,18 +87,8 @@ function hdbt_preprocess_html(&$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/cssmenu';
 
-  $matomo_site_id = Settings::get('matomo_site_id');
-
-  if ($matomo_site_id) {
-    $variables['#attached']['library'][] = 'hdbt/matomo';
-    $variables['#attached']['drupalSettings']['matomo_site_id'] = $matomo_site_id;
-  }
-
-  $siteimprove_id = Settings::get('siteimprove_id');
-
-  if ($siteimprove_id) {
-    $variables['#attached']['library'][] = 'hdbt/siteimprove';
-  }
+  // Add Matomo analytics.
+  $variables['#attached']['library'][] = 'hdbt/matomo';
 }
 
 /**
