@@ -16,6 +16,12 @@
       <div class="event-list__count"></div>
       <div class="event-list__list-container"></div>
       <div class="event-list__load-more"></div>
+      {# Indicate JS not enabled #}
+      <noscript>
+        <div class="event-list__javascript-disabled">
+          {{ 'You must enable JavaScript in your browser for event list to work'|t }}
+        </div>
+      </noscript>
     {% endblock %}
   {% endembed %}
 {% endblock %}
