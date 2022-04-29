@@ -1,5 +1,13 @@
-.component--event-list .event {
-  border-bottom: 1px solid #e5e5e5;
+// Image width from sketch
+$event-list-image-width: 325px;
+// Image height in mobile
+$event-list-image-mobile-height: 264px;
+// Padding values for tag elements
+$tag-horizontal-padding: 12px;
+$tag-vertical-padding: 5px;
+
+.event-list__event {
+  border-bottom: 1px solid $color-black-10;
   padding-bottom: $spacing-half;
   padding-top: $spacing-and-half;
 
@@ -9,173 +17,163 @@
   }
 
   &:first-child {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid $color-black-10;
+  }
+}
+
+.event-list__events-container {
+  display: block;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: underline;
   }
 
-  > a {
-    display: block;
-    text-decoration: none;
-
-    &:hover {
-      h3 {
-        text-decoration: underline;
-      }
-    }
-
-    @include breakpoint($breakpoint-l) {
-      display: grid;
-      grid-template-columns: 325px 1fr;
-    }
+  @include breakpoint($breakpoint-l) {
+    display: grid;
+    grid-template-columns: $event-list-image-width 1fr;
   }
+}
 
-  h3 {
-    margin-bottom: $spacing-and-half;
-    margin-top: $spacing;
-  }
+.event-list__event-name {
+  @include font('h4');
+  margin-bottom: $spacing-and-half;
+  margin-top: $spacing;
+}
 
-  .event__image-container {
-    background-position: center center;
-    background-size: cover;
-    display: block;
-    height: 253px;
-    position: relative;
-    width: 100%;
+.event-list__image-container {
+  display: block;
+  position: relative;
+}
 
-    @include breakpoint($breakpoint-l) {
-      height: auto;
-    }
-  }
+.event-list__event-image {
+  max-height: $event-list-image-mobile-height;
+  object-fit: cover;
+  width: 100%;
 
-  .event__image {
+  @include breakpoint($breakpoint-l) {
     height: 100%;
-    width: 100%;
-
-    @include breakpoint($breakpoint-l) {
-      position: absolute;
-    }
-  }
-
-  img.event__image {
-    object-fit: cover;
-  }
-
-  .event__image.image-placeholder {
-    padding: 0;
-  }
-
-  .event__content-container {
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-double;
-    }
-  }
-
-  .event__tags {
-    gap: $spacing;
-    width: 100%;
-  }
-
-  .event__tags--mobile {
-    bottom: 0;
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: flex-end;
-    padding: 0 $spacing $spacing;
     position: absolute;
-
-    @include breakpoint($breakpoint-l) {
-      display: none;
-    }
   }
+}
 
-  .event__tags--desktop {
+.event-list__content-container {
+  @include breakpoint($breakpoint-l) {
+    padding-left: $spacing-double;
+  }
+}
+
+.event-list__tags {
+  @include flex-gap($spacing);
+}
+
+.event-list__tags--mobile {
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  padding: $spacing;
+  position: absolute;
+  width: 100%;
+  // Prevent image placeholder from hiding the tags
+  z-index: 1;
+
+  @include breakpoint($breakpoint-l) {
     display: none;
-
-    @include breakpoint($breakpoint-l) {
-      align-items: flex-start;
-      display: flex;
-      flex-wrap: wrap;
-    }
   }
+}
 
-  .event__tags span {
-    background: #dedfe1;
-    border-radius: 24px;
-    display: inline-block;
-    font-size: var(--fontsize-body-s);
-    font-weight: $font-weight-medium;
-    padding: 5px 12.5px;
-    text-transform: capitalize;
-  }
+.event-list__tags--desktop {
+  display: none;
 
-  .event__icon {
-    align-content: flex-start;
+  @include breakpoint($breakpoint-l) {
+    align-items: flex-start;
     display: flex;
-    margin-right: $spacing-half;
+    flex-wrap: wrap;
   }
+}
 
-  .event__content {
-    display: flex;
-    font-size: var(--fontsize-body-l);
-    
-    .hel-icon {
-      height: 20px;
-      width: 20px;
-    }
-  }
+.event-list__tag {
+  @include font('special.helper_text');
+  background: $color-silver;
+  border-radius: $spacing-and-half;
+  display: inline-block;
+  margin-bottom: $spacing;
+  padding: $tag-vertical-padding $tag-horizontal-padding;
+}
 
-  .event__content {
-    margin-bottom: 16px;
-  }
+.event__icon {
+  align-content: flex-start;
+  display: flex;
+  margin-right: $spacing-half;
+}
 
-  .event__lower-container {
-    display: flex;
-    justify-content: space-between;
+.event__content {
+  display: flex;
+}
 
-    .link__type {
-      align-self: flex-end;
-      height: 24px;
-      margin-left: auto;
-      width: 24px;
+.event__content {
+  @include font('body');
+  margin-bottom: $spacing;
+}
 
-      @include breakpoint($breakpoint-l) {
-        height: 48px;
-        width: 48px;
-      }
-    }
+.event__lower-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-list__event-link-indicator {
+  @include pseudo-icon('link-external', $spacing-and-half);
+  align-self: flex-end;
+
+  @include breakpoint($breakpoint-l) {
+    @include pseudo-icon('link-external', $spacing-triple);
   }
 }
 
 .component--event-list {
   position: relative;
+}
 
-  .component__content {
-    margin-top: $spacing-and-half;
-  }
+.event__content:before {
+  margin-right: $spacing-half;
+;}
 
-  .event-list__list-container {
-    margin-bottom: $spacing-double;
-  }
+.event__content--date:before {
+  @include pseudo-icon('calendar-clock', $spacing-and-half);
+}
 
-  .event__lower-container {
-    @include breakpoint($breakpoint-l) {
-      margin-bottom: $spacing-half;
-    }
-  }
+.event__content--location:before {
+  @include pseudo-icon('location', $spacing-and-half);
+}
 
-  .event-list__count {
-    font-size: var(--fontsize-body-xl);
-    margin-bottom: $spacing;
-  }
+.event-list__list-container {
+  margin-bottom: $spacing-double;
+}
 
-  .hds-loading-spinner {
-    position: absolute;
+.event__lower-container {
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: $spacing-half;
   }
+}
 
-  .hds-button {
-    margin-bottom: $spacing;
-  }
+.event-list__count {
+  @include font('body');
+  margin-bottom: $spacing;
+}
 
-  .load-more-button {
-    margin-right: $spacing;
-  }
+.event-list-spinner {
+  position: absolute;
+}
+
+.events-list__empty-subtext {
+  margin-bottom: $spacing-and-half;
+}
+
+.event-list__load-more {
+  @include flex-gap($spacing);
+}
+
+.event-list__load-more-button {
+  margin-bottom: $spacing;
 }
