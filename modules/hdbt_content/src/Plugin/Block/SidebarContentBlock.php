@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\hdbt_content\EntityVersionMatcher;
+use Drupal\helfi_tpr\Entity\Service;
 use Drupal\helfi_tpr\Entity\Unit;
 
 /**
@@ -63,6 +64,13 @@ class SidebarContentBlock extends BlockBase {
       $view_builder = \Drupal::entityTypeManager()->getViewBuilder('tpr_unit');
       $build['sidebar_content']['#computed'] = $view_builder->view($entity);
       $build['sidebar_content']['#computed']['#theme'] = 'tpr_unit_contact_information';
+    }
+
+    // Pass the Service entity render array to templates if one exists.
+    if ($entity instanceof Service) {
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('tpr_service');
+      $build['sidebar_content']['#computed'] = $view_builder->view($entity);
+      $build['sidebar_content']['#computed']['#theme'] = 'tpr_service_important_links';
     }
 
     // Add the sidebar content paragraphs to render array.

@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\helfi_tpr\Entity\Service;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -80,6 +81,9 @@ function hdbt_content_theme() {
     'tpr_unit_lower_content' => [
       'render element' => 'elements',
     ],
+    'tpr_service_important_links' => [
+      'render element' => 'elements',
+    ],
     'tpr_service_lower_content' => [
       'render element' => 'elements',
     ],
@@ -129,6 +133,27 @@ function template_preprocess_tpr_unit_lower_content(array &$variables) : void {
   }
   if (isset($variables['elements']['#tpr_unit'])) {
     $variables['entity'] = $variables['elements']['#tpr_unit'];
+  }
+}
+
+/**
+ * Prepares variables for tpr_service_important_links templates.
+ *
+ * Default template: tpr-service-important-links.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ */
+function template_preprocess_tpr_service_important_links(array &$variables) : void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (isset($variables['elements']['#tpr_service'])) {
+    $variables['entity'] = $variables['elements']['#tpr_service'];
   }
 }
 
@@ -437,6 +462,11 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     ) {
       $variables['has_sidebar_second'] = TRUE;
     }
+  }
+
+  // Enable sidebar second for TPR service if important links exists.
+  if ($entity instanceof Service && !$entity->get('links')->isEmpty()) {
+    $variables['has_sidebar_second'] = TRUE;
   }
 }
 

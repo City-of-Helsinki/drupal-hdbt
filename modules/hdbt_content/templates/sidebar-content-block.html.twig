@@ -13,8 +13,6 @@
 
 {% if paragraphs or computed %}
   <div class="sidebar-content">
-    {{ computed }}
-
     {% for paragraph in paragraphs %}
       {% if is_revision %}
         {{ drupal_entity_revision('paragraph', paragraph.target_revision_id) }}
@@ -22,5 +20,7 @@
         {{ drupal_entity('paragraph', paragraph.target_id) }}
       {% endif %}
     {% endfor %}
+
+    {{ computed }}
   </div>
 {% endif %}
