@@ -1,16 +1,34 @@
-var _paq = (window._paq = window._paq || []);
-/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-(function () {
-  var u = '//webanalytics.digiaiiris.com/js/';
-  _paq.push(['setTrackerUrl', u + 'tracker.php']);
-  _paq.push(['setSiteId', drupalSettings.matomo_site_id]);
-  var d = document,
-    g = d.createElement('script'),
-    s = d.getElementsByTagName('script')[0];
-  g.type = 'text/javascript';
-  g.async = true;
-  g.src = u + 'piwik.min.js';
-  s.parentNode.insertBefore(g, s);
-})();
+(function ($, Drupal) {
+  'use strict';
+
+  var loadMatomoAnalytics = function () {
+    if (typeof Drupal.eu_cookie_compliance === 'undefined') {
+      return;
+    }
+
+    // Load Matomo only if statistics cookies are allowed.
+    if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+      // Matomo Tag Manager
+      var _mtm = (window._mtm = window._mtm || []);
+      _mtm.push({
+        'mtm.startTime': new Date().getTime(),
+        event: 'mtm.Start',
+      });
+      var d = document,
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0];
+      g.type = 'text/javascript';
+      g.async = true;
+      g.src = '//webanalytics.digiaiiris.com/js/container_X3dUNyXY.js';
+      s.parentNode.insertBefore(g, s);
+    }
+  };
+
+  // Load when cookie settings are changed.
+  $(document).on('eu_cookie_compliance.changeStatus', loadMatomoAnalytics());
+
+  // Load on page load.
+  $(document).ready(function () {
+    loadMatomoAnalytics();
+  });
+})(jQuery, Drupal);
