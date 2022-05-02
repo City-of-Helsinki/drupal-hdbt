@@ -161,3 +161,38 @@ msgstr "Webbplatsnavigering"
 
 msgid "You must enable JavaScript in your browser for event list to work"
 msgstr "Du måste aktivera JavaScript i din webbläsare för att evenemangslistan ska fungera"
+
+msgctxt "Pagination aria-label"
+msgid "Pagination"
+msgstr "Paginering"
+
+msgctxt "Pagination previous page link title"
+msgid "Go to previous page"
+msgstr "Gå till föregående sida"
+
+msgctxt "Pagination previous page link text"
+msgid "Previous"
+msgstr "Tidigare"
+
+msgctxt "Pagination page number aria-label"
+msgid "Page"
+msgstr "Sida"
+
+msgctxt "Pagination page number title"
+msgid "Go to page"
+msgstr "Gå till sidan"
+
+msgctxt "Pagination current page title"
+msgid "Current page"
+msgstr "Nuvarande sida"
+
+msgid "Go to page @key"
+msgstr "Gå till sidan @key"
+
+msgctxt "Pagination next page link title"
+msgid "Go to next page"
+msgstr "Gå till nästa sida"
+
+msgctxt "Pagination next page link text"
+msgid "Next"
+msgstr "Nästa"
