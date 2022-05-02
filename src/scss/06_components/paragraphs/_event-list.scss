@@ -1,7 +1,9 @@
 // Image width from sketch
 $event-list-image-width: 325px;
+
 // Image height in mobile
 $event-list-image-mobile-height: 264px;
+
 // Padding values for tag elements
 $tag-horizontal-padding: 12px;
 $tag-vertical-padding: 5px;
@@ -25,7 +27,8 @@ $tag-vertical-padding: 5px;
   display: block;
   text-decoration: none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 
@@ -75,6 +78,7 @@ $tag-vertical-padding: 5px;
   padding: $spacing;
   position: absolute;
   width: 100%;
+
   // Prevent image placeholder from hiding the tags
   z-index: 1;
 
@@ -109,17 +113,9 @@ $tag-vertical-padding: 5px;
 }
 
 .event__content {
-  display: flex;
-}
-
-.event__content {
   @include font('body');
-  margin-bottom: $spacing;
-}
-
-.event__lower-container {
   display: flex;
-  justify-content: space-between;
+  margin-bottom: $spacing;
 }
 
 .event-list__event-link-indicator {
@@ -131,15 +127,15 @@ $tag-vertical-padding: 5px;
   }
 }
 
-.event__content:before {
+.event__content::before {
   margin-right: $spacing-half;
-;}
+}
 
-.event__content--date:before {
+.event__content--date::before {
   @include pseudo-icon('calendar-clock', $spacing-and-half);
 }
 
-.event__content--location:before {
+.event__content--location::before {
   @include pseudo-icon('location', $spacing-and-half);
 }
 
@@ -148,6 +144,9 @@ $tag-vertical-padding: 5px;
 }
 
 .event__lower-container {
+  display: flex;
+  justify-content: space-between;
+
   @include breakpoint($breakpoint-l) {
     margin-bottom: $spacing-half;
   }
@@ -168,4 +167,15 @@ $tag-vertical-padding: 5px;
 
 .event-list__load-more-button {
   margin-bottom: $spacing;
+}
+
+.event-list-spinner {
+  position: relative;
+}
+
+// Use a specific selector here since spinner styles are loaded later than paragraphs
+.event-list-spinner .hds-loading-spinner {
+  margin-bottom: $spacing-triple;
+  margin-top: $spacing-triple;
+  position: relative;
 }
