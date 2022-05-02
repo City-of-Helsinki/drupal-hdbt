@@ -69,7 +69,6 @@
         {% endif %}
 
         {# Construct the element based on variables. #}
-        {# TODO: Find out the best way to indicate inactive languages from accessibility point of view #}
         <{{ element }}
           {{ create_attribute({'class': classes}) }}
           {{ language_link ? create_attribute({'href': language_link}) }}
