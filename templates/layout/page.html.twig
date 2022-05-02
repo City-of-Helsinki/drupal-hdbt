@@ -52,10 +52,6 @@
     </header>
   {% endif %}
 
-  {% if page.messages %}
-    {{ page.messages }}
-  {% endif %}
-
   <main role="main" class="layout-main-wrapper">
     {% if page.breadcrumb %}
       {{ page.breadcrumb }}
@@ -66,6 +62,10 @@
     {% endif %}
 
     <a id="main-content" tabindex="-1"></a>
+
+    {% if page.messages %}
+      {{ page.messages }}
+    {% endif %}
 
     {% block page_before_content %}
       {% if page.before_content %}
