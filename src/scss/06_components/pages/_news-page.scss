@@ -92,8 +92,8 @@
   }
 }
 
-// News listings using teasers.
-.news-listing--latest-teasers {
+// News listings using medium teasers.
+.news-listing--latest-medium-teasers {
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-wrap: wrap;
@@ -138,6 +138,60 @@
   .news-listing__datetime {
     display: block;
     margin-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-and-half;
+    }
+  }
+}
+
+// News listing using teasers.
+.news-listing--teasers {
+  max-width: $content-width-max;
+
+  .news-listing__item {
+    align-items: flex-start;
+    border-bottom: 1px solid $color-silver-light;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: $spacing-and-half;
+    position: relative;
+
+    &:first-child {
+      margin-top: $spacing-and-half;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .news-listing__content {
+    padding-right: $spacing;
+    width: 70%;
+  }
+
+  .news-listing__img {
+    @include loading-image-background();
+    width: 30%;
+
+    img {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .news-listing__title {
+    @include font(h4);
+    margin-top: 0;
+  }
+
+  .news-listing__datetime {
+    @include font(small);
+    display: block;
+    margin-top: $spacing-half;
 
     @include breakpoint($breakpoint-l) {
       margin-top: $spacing-and-half;
