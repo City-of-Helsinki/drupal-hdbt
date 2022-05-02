@@ -161,3 +161,6 @@ msgstr "Navigaatiovalikko"
 msgctxt "Screenreader name for top navigation menu"
 msgid "Site navigation"
 msgstr "Sivuston navigaatio"
+
+msgid "You must enable JavaScript in your browser for event list to work"
+msgstr "Tapahtumalistan toimimiseksi sinun tulee sallia JavaScript selaimessasi"
