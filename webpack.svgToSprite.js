@@ -52,7 +52,7 @@ class svgToSprite {
                 stack: {
                   dest: "dist",
                   sprite: this.svgSpriteFilename,
-                  rootViewBox: false,
+                  rootviewbox: false,
                 }
               }
             });

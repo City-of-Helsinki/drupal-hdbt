@@ -112,7 +112,9 @@ matomo:
   js:
     dist/js/matomo.min.js: {}
   dependencies:
-    - core/drupalSettings
+  - core/drupal
+  - core/jquery
+  - eu_cookie_compliance/eu_cookie_compliance
 
 closable_announcements:
   version: 1.x
