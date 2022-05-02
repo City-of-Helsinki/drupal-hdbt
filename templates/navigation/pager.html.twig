@@ -32,17 +32,19 @@
 #}
 {% if items %}
   <div class="hds-pagination-container">
-    <nav class="hds-pagination pager" role="navigation" aria-label="{{ 'Pagination'|t }}">
+    <nav class="hds-pagination pager" role="navigation" aria-label="{{ 'Pagination'|t }}" data-next="Next">
       {# Print previous item if we are not on the first page. #}
       {% if items.previous %}
         <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes.addClass('hds-button hds-pagination__button-prev')|without('href', 'title', 'rel') }}>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
           <span class="visually-hidden">{{ 'Previous page'|t }}</span>
-          <span aria-hidden="true">{{ items.previous.text|default('‹ Previous'|t) }}</span>
+          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('‹ Previous'|t) }}</span>
         </a>
       {% else %}
         <button type="button" disabled title="{{ 'Go to previous page'|t }}" class='hds-button hds-pagination__button-prev'>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
           <span class="visually-hidden">{{ 'Previous page'|t }}</span>
-          <span aria-hidden="true">{{ items.previous.text|default('Previous'|t) }}</span>
+          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t) }}</span>
         </button>
       {% endif %}
 
@@ -82,12 +84,14 @@
       {% if items.next %}
         <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" role="button" rel="next"{{ items.next.attributes.addClass('hds-button hds-pagination__button-next')|without('href', 'title', 'rel') }}>
           <span class="visually-hidden">{{ 'Next page'|t }}</span>
-          <span aria-hidden="true">{{ items.next.text|default('Next'|t) }}</span>
+          <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t) }}</span>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
         </a>
       {% else %}
         <button type="button" disabled title="{{ 'Go to next page'|t }}" class='hds-button hds-pagination__button-next'>
           <span class="visually-hidden">{{ 'Next page'|t }}</span>
-          <span aria-hidden="true">{{ items.next.text|default('Next'|t) }}</span>
+          <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t) }}</span>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
         </button>
       {% endif %}
     </nav>
