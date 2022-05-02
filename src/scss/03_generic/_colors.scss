@@ -47,4 +47,13 @@
   --hdbt-button-highlight-color--fog: var(--color-white);
   --hdbt-button-highlight-color--summer: var(--color-white);
   --hdbt-button-highlight-color--suomenlinna: var(--color-white);
+
+  // Disabled button colors. These are not available for some reason in hds-core.
+  --background-color-disabled: transparent;
+  --border-color-disabled: transparent;
+  --color-disabled: var(--color-black-40);
+
+  // Focused button colors. These are not available for some reason in hds-core.
+  --border-color-focus: var(--color-coat-of-arms);
+  --border-color-hover-focus: var(--color-coat-of-arms-dark);
 }

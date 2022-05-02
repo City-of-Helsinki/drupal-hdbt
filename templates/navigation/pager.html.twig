@@ -35,10 +35,15 @@
     <nav class="hds-pagination pager" role="navigation" aria-label="{{ 'Pagination'|t }}" data-next="Next">
       {# Print previous item if we are not on the first page. #}
       {% if items.previous %}
-        <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes.addClass('hds-button hds-pagination__button-prev')|without('href', 'title', 'rel') }}>
+        {% set prev_button_classes = [
+          'hds-button',
+          'hds-pagination__button-prev'
+          ]
+        %}
+        <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes.addClass(pref_button_classes)|without('href', 'title', 'rel') }}>
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
           <span class="visually-hidden">{{ 'Previous page'|t }}</span>
-          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('‹ Previous'|t) }}</span>
+          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t) }}</span>
         </a>
       {% else %}
         <button type="button" disabled title="{{ 'Go to previous page'|t }}" class='hds-button hds-pagination__button-prev'>
@@ -51,6 +56,9 @@
       <ul class="pager__items js-pager__items hds-pagination__pages">
         {# Add an ellipsis if there are further previous pages. #}
         {% if ellipses.previous %}
+          <li class="pager__item">
+            <a href="{{ items.first.href }}" aria-label="{{ 'Page'|t ~ ' 1' }}" title="{{ 'Go to page'|t ~ ' 1' }}"{{ items.first.attributes.addClass('hds-pagination__item-link')|without('href', 'title') }}>1</a>
+          </li>
           <li class="pager__item pager__item--ellipsis" role="presentation"><span class="hds-pagination__item-ellipsis">&hellip;</span></li>
         {% endif %}
         {# Now generate the actual pager piece. #}
@@ -77,12 +85,22 @@
         {# Add an ellipsis if there are further next pages. #}
         {% if ellipses.next %}
           <li class="pager__item pager__item--ellipsis" role="presentation"><span class="hds-pagination__item-ellipsis">&hellip;</span></li>
+          <li class="pager__item">
+            <a href="{{ items.last.href }}" aria-label="{{ 'Page'|t ~ ' ' ~ total_pages }}" title="{{ 'Go to page'|t ~ ' ' ~ total_pages }}"{{ items.last.attributes.addClass('hds-pagination__item-link')|without('href', 'title') }}>
+              {{ total_pages }}
+            </a>
+          </li>
         {% endif %}
       </ul>
 
       {# Print next item if we are not on the last page. #}
       {% if items.next %}
-        <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" role="button" rel="next"{{ items.next.attributes.addClass('hds-button hds-pagination__button-next')|without('href', 'title', 'rel') }}>
+        {% set next_button_classes = [
+          'hds-button',
+          'hds-pagination__button-next'
+          ]
+        %}
+        <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" role="button" rel="next"{{ items.next.attributes.addClass(next_button_classes)|without('href', 'title', 'rel') }}>
           <span class="visually-hidden">{{ 'Next page'|t }}</span>
           <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t) }}</span>
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}

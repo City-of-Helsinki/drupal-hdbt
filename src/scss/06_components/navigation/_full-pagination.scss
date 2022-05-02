@@ -1,5 +1,10 @@
 .hds-pagination-container {
+  margin-top: $spacing-double;
   text-align: center;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
 }
 
 .hds-pagination {
