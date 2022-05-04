@@ -128,18 +128,6 @@ function hdbt_preprocess_html(&$variables) {
   }
 }
 
-function hdbt_preprocess_toolbar(&$variables) {
-  $environment = getenv('APP_ENV');
-
-  $environments = array('local', 'test', 'stage', 'prod');
-
-  foreach ($environments as $value) {
-    if ($environment === $value) {
-      $variables['attributes']['class'][] = 'env-' . $value;
-    }
-  }
-}
-
 /**
  * Implements hook_preprocess_HOOK().
  */

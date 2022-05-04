@@ -359,3 +359,20 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     $variables['has_sidebar'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_content_preprocess_toolbar(&$variables) {
+  if ($variables['element']['#attributes']['id'] === 'toolbar-administration') {
+    $variables['#attached']['library'][] = 'hdbt/environment-indicator';
+    $environment = getenv('APP_ENV');
+    $environments = array('local', 'testing', 'staging', 'production', 'development');
+  
+    foreach ($environments as $value) {
+      if ($environment === $value) {
+        $variables['attributes']['class'][] = 'env-' . $value;
+      }
+    }
+  }
+}

@@ -130,3 +130,9 @@ tabs:
   dependencies:
     - core/jquery
     - core/drupalSettings
+
+environment-indicator:
+  version: 1.x
+  css:
+    theme:
+      dist/css/environment-indicator.min.css: {}

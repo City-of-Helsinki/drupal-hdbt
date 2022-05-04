@@ -20,6 +20,9 @@ const Entries = () => {
     'color-palette': [
       './src/scss/color-palette.scss'
     ],
+    'environment-indicator': [
+      './src/scss/environment-indicator.scss'
+    ],
   };
 
   const pattern = './src/js/**/*.js';
