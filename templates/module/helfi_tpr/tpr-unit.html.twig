@@ -25,52 +25,47 @@
   %}
 
   <article{{ attributes.addClass(classes) }}>
-    <div class="unit-header__container container">
-      <div{{ content_attributes.addClass('unit__header') }}>
-        <h1{{ title_attributes.addClass('unit__title') }}>
-          {{ entity.label }}
-        </h1>
-        {% if content.description_summary|render %}
-          <div class="unit__short-desc">
-            {{ content.description_summary }}
-          </div>
-        {% endif %}
-        <span class="unit__divider"></span>
-        {{ supports_swedish }}
-        {% if content.picture_url_override|render %}
-          <div class="unit__image">
-            {{ content.picture_url_override }}
-          </div>
-        {% elseif content.picture_url|render %}
-          <div class="unit__image">
-            {{ content.picture_url }}
-          </div>
-        {% endif %}
-        {% if content.description|render and hide_description == false %}
-          <div class="unit__long-desc">
-            {{ content.description }}
-          </div>
-        {% endif %}
-
-        {% block main_content %}
-          <div class="enriched-content components components--unit">
-            {{ content.field_content }}
-          </div>
-        {% endblock main_content %}
-
-        {% if content.service_map_embed|render %}
-          {% set map_title %}
-            {{ 'Location'|t }}
-          {% endset %}
-          {% include '@hdbt/component/map.twig' with {
-            title: map_title,
-            map: content.service_map_embed,
-            description: content.address,
-          } %}
-        {% endif %}
-
+    <h1{{ title_attributes.addClass('unit__title') }}>
+      {{ entity.label }}
+    </h1>
+    {% if content.description_summary|render %}
+      <div class="unit__short-desc">
+        {{ content.description_summary }}
       </div>
-    </div>
+    {% endif %}
+    <span class="unit__divider"></span>
+    {{ supports_swedish }}
+    {% if content.picture_url_override|render %}
+      <div class="unit__image">
+        {{ content.picture_url_override }}
+      </div>
+    {% elseif content.picture_url|render %}
+      <div class="unit__image">
+        {{ content.picture_url }}
+      </div>
+    {% endif %}
+    {% if content.description|render and hide_description == false %}
+      <div class="unit__long-desc">
+        {{ content.description }}
+      </div>
+    {% endif %}
+
+    {% block main_content %}
+      <div class="enriched-content components components--unit">
+        {{ content.field_content }}
+      </div>
+    {% endblock main_content %}
+
+    {% if content.service_map_embed|render %}
+      {% set map_title %}
+        {{ 'Location'|t }}
+      {% endset %}
+      {% include '@hdbt/component/map.twig' with {
+        title: map_title,
+        map: content.service_map_embed,
+        description: content.address,
+      } %}
+    {% endif %}
   </article>
 
   {# TODO: We should simplify these to have only one style instead of two identical ones #}
