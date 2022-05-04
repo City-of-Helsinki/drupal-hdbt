@@ -817,12 +817,13 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->hasField('field_iframe_title')
   ) {
     $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if ($iframe_title) {
-      $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = $iframe_title;
-
-    }
-    else {
-      $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = t('Location on map');
+    if (!$paragraph->get('field_map_map')->isEmpty()) {
+      if ($iframe_title) {
+        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = $iframe_title;
+      }
+      else {
+        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = t('Location on map');
+      }
     }
   }
 
@@ -833,11 +834,13 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->hasField('field_iframe_title')
   ) {
     $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if ($iframe_title) {
-      $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = $iframe_title;
-    }
-    else {
-      $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = t('Embedded video');
+    if (!$paragraph->get('field_remote_video')->isEmpty()) {
+      if ($iframe_title) {
+        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = $iframe_title;
+      }
+      else {
+        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = t('Embedded video');
+      }
     }
   }
 
@@ -848,11 +851,13 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->hasField('field_iframe_title')
   ) {
     $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if ($iframe_title) {
-      $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = $iframe_title;
-    }
-    else {
-      $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = t('Data chart');
+    if (!$paragraph->get('field_chart_chart')->isEmpty()) {
+      if ($iframe_title) {
+        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = $iframe_title;
+      }
+      else {
+        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = t('Data chart');
+      }
     }
   }
 }
