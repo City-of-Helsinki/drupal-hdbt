@@ -4,3 +4,9 @@
   // that would include moving the branding bar with javascript.
   position: fixed;
 }
+
+.gin--horizontal-toolbar .node-preview-container {
+  padding: 0 30px;
+  // Fix the position of Node preview container.
+  top: 60px;
+}
