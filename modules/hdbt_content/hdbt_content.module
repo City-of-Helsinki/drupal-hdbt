@@ -11,6 +11,8 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\helfi_tpr\Entity\Service;
+use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
@@ -222,12 +224,11 @@ function hdbt_content_get_page_entity() {
   }
   $types = array_keys(Drupal::entityTypeManager()->getDefinitions());
   $route = Drupal::routeMatch();
-  $page_entity = NULL;
   $params = $route->getParameters()->all();
+
   foreach ($types as $type) {
     if (!empty($params[$type])) {
-      $page_entity = $params[$type];
-      return $page_entity;
+      return $params[$type];
     }
   }
   return NULL;
@@ -255,66 +256,106 @@ function hdbt_content_block_access(Block $block, $operation, AccountInterface $a
 /**
  * Implements hook_preprocess_HOOK().
  */
+function hdbt_content_preprocess_tpr_unit(&$variables) {
+  if (!isset($variables['view_mode']) || $variables['view_mode'] !== 'full') {
+    return;
+  }
+
+  // Handle sidebar visibility.
+  if (isset($variables['entity']) && $variables['entity'] instanceof Unit) {
+    _hdbt_content_handle_sidebar_visibility($variables, $variables['entity']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_content_preprocess_tpr_service(&$variables) {
+  if (!isset($variables['view_mode']) || $variables['view_mode'] !== 'full') {
+    return;
+  }
+
+  // Handle sidebar visibility.
+  if (isset($variables['entity']) && $variables['entity'] instanceof Service) {
+    _hdbt_content_handle_sidebar_visibility($variables, $variables['entity']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function hdbt_content_preprocess_page(&$variables) {
-  $variables['page_has_sidebar'] = FALSE;
+  $variables['has_sidebar'] = FALSE;
 
-  $menu_link_manager = Drupal::service('plugin.manager.menu.link');
-  $page_entity = hdbt_content_get_page_entity();
-
-  // Check if the current page entity is content entity ie. Basic page or
-  // TRP Service.
-  if (!empty($page_entity) && $page_entity instanceof ContentEntityInterface) {
+  // Handle sidebar visibility.
+  $entity = hdbt_content_get_page_entity();
+  if ($entity instanceof ContentEntityInterface) {
 
     // Set has_hero variable according to field_has_hero.
-    if ($page_entity->hasField('field_has_hero')) {
-      $variables['has_hero'] = $page_entity->field_has_hero->value;
+    if ($entity->hasField('field_has_hero')) {
+      $variables['has_hero'] = $entity->field_has_hero->value;
     }
 
-    // Handle only Basic page as the TPR Service and TPR Unit has
-    // artificial sidebar, not region based as f.e. Basic page.
-    if (
-      $page_entity instanceof NodeInterface &&
-      $page_entity->getType() === 'page'
-    ) {
-
-      // Load menu links for the current page entity.
-      $menu_links = $menu_link_manager->loadLinksByRoute(
-        "entity.{$page_entity->getEntityTypeId()}.canonical",
-        [$page_entity->getEntityTypeId() => $page_entity->id()]
-      );
-
-      // Add "page_has_sidebar" variable
-      // if current node has menu link items set.
-      if (!empty($menu_links) && is_array($menu_links)) {
-        $menu_Link = reset($menu_links);
-
-        // Set page_has_sidebar value true,
-        // if menu link is enabled.
-        if ($menu_Link->isEnabled()) {
-          $variables['page_has_sidebar'] = TRUE;
-          $variables['has_navigation'] = TRUE;
-          return;
-        }
-      }
-
-      // Set page_has_sidebar value true,
-      // if page entity has sidebar content field and it is not empty.
-      if (
-        $page_entity->hasField('field_sidebar_content') &&
-        !$page_entity->get('field_sidebar_content')->isEmpty()
-      ) {
-        $variables['page_has_sidebar'] = TRUE;
-      }
+    // Handle sidebar visibility for the "Standard page" (page)
+    // content type.
+    if ($entity instanceof NodeInterface && $entity->getType() === 'page') {
+      _hdbt_content_handle_sidebar_visibility($variables, $entity);
     }
 
     // News item needs to have the sidebar set at all times. Also move the
     // node title to content area with move_berore_content variable.
-    if (
-      $page_entity instanceof NodeInterface &&
-      $page_entity->getType() === 'news_item'
-    ) {
-      $variables['page_has_sidebar'] = TRUE;
+    if ($entity instanceof NodeInterface && $entity->getType() === 'news_item') {
+      $variables['has_sidebar'] = TRUE;
       $variables['move_before_content'] = TRUE;
     }
+  }
+}
+
+/**
+ * Handle sidebar visibility based on current entity menu links.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   Content entity, like tpr_service, tpr_unit or node.
+ */
+function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntityInterface $entity) {
+  if (empty($entity)) {
+    return;
+  }
+
+  $menu_link_manager = Drupal::service('plugin.manager.menu.link');
+
+  // Load menu links for the current page entity.
+  $menu_links = $menu_link_manager->loadLinksByRoute(
+    "entity.{$entity->getEntityTypeId()}.canonical",
+    [$entity->getEntityTypeId() => $entity->id()],
+    'main'
+  );
+
+  // If there are links, apply "has_sidebar" and "in_menu" variables
+  // to indicate twig templates how to render the sidebar.
+  if (!empty($menu_links)) {
+    $variables['has_sidebar'] = TRUE;
+    $variables['in_menu'] = TRUE;
+  }
+
+  // Hide the sidebar and menu if the current entity has
+  // "hide sidebar navigation" value set.
+  if (
+    $entity->hasField('hide_sidebar_navigation') &&
+    boolval($entity->get('hide_sidebar_navigation')->value)
+  ) {
+    $variables['has_sidebar'] = FALSE;
+    $variables['in_menu'] = FALSE;
+  }
+
+  // Check if page entity has sidebar content field available and set
+  // "has_sidebar" variable accordingly.
+  if (
+    $entity->hasField('field_sidebar_content') &&
+    !$entity->get('field_sidebar_content')->isEmpty()
+  ) {
+    $variables['has_sidebar'] = TRUE;
   }
 }

@@ -18,7 +18,6 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\node\Entity\Node;
-use Drupal\Core\Site\Settings;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
@@ -63,33 +62,6 @@ function hdbt_get_theme_color_override() {
 }
 
 /**
- * Implements hook_library_info_build().
- */
-function hdbt_library_info_build() {
-  $libraries = [];
-
-  $siteimprove_id = Settings::get('siteimprove_id');
-
-  if ($siteimprove_id) {
-    $siteimprove_js_url = Url::fromUri('https://siteimproveanalytics.com/js/siteanalyze_' . $siteimprove_id . '.js')->toString();
-
-    $libraries['siteimprove'] = [
-      'version' => '1.x',
-      'js' => [
-        $siteimprove_js_url => [
-          'type' => 'external',
-          'attributes' => [
-            'async' => TRUE,
-          ],
-        ],
-      ],
-    ];
-  }
-
-  return $libraries;
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_html(&$variables) {
@@ -114,18 +86,8 @@ function hdbt_preprocess_html(&$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/cssmenu';
 
-  $matomo_site_id = Settings::get('matomo_site_id');
-
-  if ($matomo_site_id) {
-    $variables['#attached']['library'][] = 'hdbt/matomo';
-    $variables['#attached']['drupalSettings']['matomo_site_id'] = $matomo_site_id;
-  }
-
-  $siteimprove_id = Settings::get('siteimprove_id');
-
-  if ($siteimprove_id) {
-    $variables['#attached']['library'][] = 'hdbt/siteimprove';
-  }
+  // Add Matomo analytics.
+  $variables['#attached']['library'][] = 'hdbt/matomo';
 }
 
 /**
@@ -157,6 +119,7 @@ function hdbt_preprocess_media(&$variables) {
       $video_url = $variables['media']->field_media_oembed_video->value;
       $provider = $url_resolver->getProviderByUrl($video_url);
       $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
+      $variables['iframe_title'] = $variables['media']->field_media_oembed_video->iframe_title;
     }
   }
 }
@@ -198,6 +161,9 @@ function hdbt_preprocess_page(&$variables) {
       $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
       break;
   }
+
+  // Required for allowing subtheming for HDBT theme.
+  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
 
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
@@ -841,6 +807,52 @@ function hdbt_preprocess_paragraph(array &$variables) {
     // Icon name for accessibility.
     if (!$paragraph->get('field_icon')->isEmpty()) {
       $variables['icon_name'] = ucfirst($paragraph->get('field_icon')->icon);
+    }
+  }
+
+  // Map paragraph.
+  if (
+    $paragraph_type == 'map' &&
+    $paragraph->hasField('field_map_map') &&
+    $paragraph->hasField('field_iframe_title')
+  ) {
+    $iframe_title = $paragraph->get('field_iframe_title')->value;
+    if ($iframe_title) {
+      $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = $iframe_title;
+
+    }
+    else {
+      $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = t('Location on map');
+    }
+  }
+
+  // Remote video paragraph.
+  if (
+    $paragraph_type == 'remote_video' &&
+    $paragraph->hasField('field_remote_video') &&
+    $paragraph->hasField('field_iframe_title')
+  ) {
+    $iframe_title = $paragraph->get('field_iframe_title')->value;
+    if ($iframe_title) {
+      $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = $iframe_title;
+    }
+    else {
+      $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = t('Embedded video');
+    }
+  }
+
+  // Chart paragraph.
+  if (
+    $paragraph_type == 'chart' &&
+    $paragraph->hasField('field_chart_chart') &&
+    $paragraph->hasField('field_iframe_title')
+  ) {
+    $iframe_title = $paragraph->get('field_iframe_title')->value;
+    if ($iframe_title) {
+      $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = $iframe_title;
+    }
+    else {
+      $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = t('Data chart');
     }
   }
 }

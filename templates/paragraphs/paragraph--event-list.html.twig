@@ -1,0 +1,27 @@
+
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--event-list'
+      ],
+      component_title_level: 'h2',
+      component_title: content.field_event_list_title,
+      component_description: content.field_event_list_description,
+      component_content_class: 'event-list',
+    }
+  %}
+    {% block component_content %}
+      {# These divs get populated via JS #}
+      <div class="event-list__count"></div>
+      <div class="event-list__list-container"></div>
+      <div class="event-list__load-more"></div>
+      {# Indicate JS not enabled #}
+      <noscript>
+        <div class="event-list__javascript-disabled">
+          {{ 'You must enable JavaScript in your browser for event list to work'|t }}
+        </div>
+      </noscript>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

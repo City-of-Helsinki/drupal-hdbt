@@ -1,6 +1,6 @@
 <div class="news-listing__content">
   {# Short title or Title #}
-  <h2 class="news-listing__title">
+  <h3 class="news-listing__title">
     {% set link_attributes = {
       'class': [
         'news-listing__link',
@@ -8,7 +8,7 @@
       'rel': 'bookmark',
     } %}
     {{ link(short_title, node_url, link_attributes) }}
-  </h2>
+  </h3>
 
   {# Created date and modified date #}
   {% if published_at is not empty %}
@@ -19,10 +19,3 @@
     </time>
   {% endif %}
 </div>
-
-{# Main image #}
-{% if content.field_main_image|render %}
-  <div class="news-listing__img">
-    {{ content.field_main_image }}
-  </div>
-{% endif %}

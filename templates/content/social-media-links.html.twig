@@ -1,13 +1,14 @@
 <div class="social-media__items">
   {% set classes = ['social-media__item'] %}
   {% for element in elements %}
-    {% set link_title %}
-      {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
-    {% endset %}
-    {% set link_attributes = {
-      'class': classes|merge(element.classes),
-    } %}
-    {{ link(link_title, element.url, link_attributes) }}
+    {% if element.url and element.img and element.text %}
+      {% set link_title %}
+        {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
+      {% endset %}
+      {% set link_attributes = {
+        'class': classes|merge(element.classes),
+      } %}
+      {{ link(link_title, element.url, link_attributes) }}
+    {% endif %}
   {% endfor %}
 </div>
-

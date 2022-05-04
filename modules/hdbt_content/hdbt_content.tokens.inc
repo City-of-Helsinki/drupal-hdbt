@@ -10,7 +10,7 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 
 /**
- * Implements hook_token_info()
+ * Implements hook_token_info().
  */
 function hdbt_content_token_info() {
 
@@ -28,7 +28,7 @@ function hdbt_content_token_info() {
 }
 
 /**
- * Implements hook_tokens()
+ * Implements hook_tokens().
  */
 function hdbt_content_tokens(
   $type,

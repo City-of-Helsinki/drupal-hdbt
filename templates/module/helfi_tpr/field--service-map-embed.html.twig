@@ -1,0 +1,10 @@
+{{ element[0]['iframe'] }}
+{% set link_url = element[0]['link']['#attributes']['href'] %}
+{% set link_attributes = {
+  'class': [
+    'map__external-link',
+    'link'
+  ],
+  'target': '_blank',
+} %}
+{{ link(element[0]['link']['#value'], link_url, link_attributes) }}

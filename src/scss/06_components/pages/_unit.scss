@@ -36,46 +36,6 @@
     }
   }
 
-  .unit__map {
-    background-color: $color-silver-light;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    margin: $spacing-double -#{$spacing-and-half} 0;
-    padding: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin: $spacing-triple 0 0;
-    }
-
-    .unit__map__label {
-      @include font('h6');
-      display: flex;
-      width: 100%;
-
-      .hel-icon {
-        margin-right: $spacing-half;
-      }
-    }
-
-    iframe {
-      height: 312px; // Height from design
-      margin-top: $spacing-and-half;
-      width: 100%;
-    }
-
-    .link {
-      font-weight: $font-weight-medium;
-      justify-content: flex-end;
-      margin-top: $spacing;
-
-      @include breakpoint($breakpoint-m) {
-        margin-top: $spacing-and-half;
-      }
-    }
-  }
-
   .unit-header__container {
     @include components-container-max-width();
     @include component-side-padding();
@@ -620,6 +580,11 @@
       @include font('body');
       // Align the address to center with the arrow and the title.
       margin-top: 2px;
+    }
+
+    .address-line1::after,
+    .address-line2::after {
+      content: ",";
     }
 
     p:first-child {

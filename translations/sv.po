@@ -158,3 +158,6 @@ msgstr "Navigeringsmenyn"
 msgctxt "Screenreader name for top navigation menu"
 msgid "Site navigation"
 msgstr "Webbplatsnavigering"
+
+msgid "You must enable JavaScript in your browser for event list to work"
+msgstr "Du måste aktivera JavaScript i din webbläsare för att evenemangslistan ska fungera"

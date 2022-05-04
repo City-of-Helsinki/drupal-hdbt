@@ -1,5 +1,4 @@
-.has-sidebar .layout-main-wrapper,
-.no-sidebar .main-content {
+.main-content {
   margin-top: $spacing-quadruple;
 
   @include breakpoint($breakpoint-l) {
