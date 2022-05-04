@@ -138,7 +138,7 @@ $tag-gap: $spacing-half;
 .sidebar_block_heading {
   @include font('h3');
   border-bottom: 2px solid $color-black;
-  margin-top: $spacing-sextuple;
+  margin-top: 0;
   padding-bottom: $spacing-and-half;
   width: 100%;
 }
