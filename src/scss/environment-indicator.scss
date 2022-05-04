@@ -62,13 +62,14 @@
   content: var(--name);
   display: block;
   font-size: var(--fontsize-body-s);
-  padding: 8px 16px;
+  line-height: var(--lineheight-l);
+  padding: var(--spacing-3-xs) var(--spacing-s);
   z-index: 3;
 }
 
 .toolbar-tray-horizontal .toolbar-lining::after {
   position: absolute;
   right: 0;
-  top: 23px;
+  top: var(--spacing-m);
   z-index: 3;
 }
