@@ -1,0 +1,113 @@
+{#
+/**
+ * @file
+ * Theme override to display a pager.
+ *
+ * Available variables:
+ * - heading_id: Pagination heading ID.
+ * - items: List of pager items.
+ *   The list is keyed by the following elements:
+ *   - first: Item for the first page; not present on the first page of results.
+ *   - previous: Item for the previous page; not present on the first page
+ *     of results.
+ *   - next: Item for the next page; not present on the last page of results.
+ *   - last: Item for the last page; not present on the last page of results.
+ *   - pages: List of pages, keyed by page number.
+ *   Sub-sub elements:
+ *   items.first, items.previous, items.next, items.last, and each item inside
+ *   items.pages contain the following elements:
+ *   - href: URL with appropriate query parameters for the item.
+ *   - attributes: A keyed list of HTML attributes for the item.
+ *   - text: The visible text used for the item link, such as "‹ Previous"
+ *     or "Next ›".
+ * - current: The page number of the current page.
+ * - ellipses: If there are more pages than the quantity allows, then an
+ *   ellipsis before or after the listed pages may be present.
+ *   - previous: Present if the currently visible list of pages does not start
+ *     at the first page.
+ *   - next: Present if the visible list of pages ends before the last page.
+ *
+ * @see template_preprocess_pager()
+ */
+#}
+{% if items %}
+  <div class="hds-pagination-container">
+    <nav class="hds-pagination pager" role="navigation" aria-label="{{ 'Pagination'|t({}, {'context': 'Pagination aria-label'}) }}" data-next="{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}">
+      {# Print previous item if we are not on the first page. #}
+      {% if items.previous %}
+        {% set prev_button_classes = [
+          'hds-button',
+          'hds-pagination__button-prev'
+          ]
+        %}
+        <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }}" rel="prev"{{ items.previous.attributes.addClass(prev_button_classes)|without('href', 'title', 'rel') }}>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
+          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t({}, {'context': 'Pagination previous page link text'})) }}</span>
+        </a>
+      {% else %}
+        <button type="button" disabled title="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }}" class='hds-button hds-pagination__button-prev'>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
+          <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t({}, {'context': 'Pagination previous page link text'})) }}</span>
+        </button>
+      {% endif %}
+
+      <ul class="pager__items js-pager__items hds-pagination__pages">
+        {# Add an ellipsis if there are further previous pages. #}
+        {% if ellipses.previous %}
+          <li class="pager__item">
+            <a href="{{ items.first.href }}" aria-label="{{ 'Page'|t({}, {'context': 'Pagination page number aria-label'}) ~ ' 1' }}" title="{{ 'Go to page'|t({}, {'context': 'Pagination page number title'}) ~ ' 1' }}"{{ items.first.attributes.addClass('hds-pagination__item-link')|without('href', 'title') }}>1</a>
+          </li>
+          <li class="pager__item pager__item--ellipsis" role="presentation"><span class="hds-pagination__item-ellipsis">&hellip;</span></li>
+        {% endif %}
+        {# Now generate the actual pager piece. #}
+        {% for key, item in items.pages %}
+          <li class="pager__item{{ current == key ? ' is-active' : '' }}">
+            {% if current == key %}
+              {% set title = 'Current page'|t({}, {'context': 'Pagination current page title'}) %}
+              {% set classes = [
+                'hds-pagination__item-link',
+                'hds-pagination__item-link--active',
+                ]
+              %}
+              {% set aria_current = true %}
+            {% else %}
+              {% set title = 'Go to page @key'|t({'@key': key}) %}
+              {% set classes = 'hds-pagination__item-link' %}
+              {% set aria_current = false %}
+            {% endif %}
+            <a href="{{ item.href }}" aria-label="{{ 'Page'|t({}, {'context': 'Pagination page number aria-label'}) ~ ' ' ~ key }}" title="{{ title }}"{{ item.attributes.addClass(classes)|without('href', 'title') }} {% if aria_current %}aria-current="page"{% endif %}>
+              {{- key -}}
+            </a>
+          </li>
+        {% endfor %}
+        {# Add an ellipsis if there are further next pages. #}
+        {% if ellipses.next %}
+          <li class="pager__item pager__item--ellipsis" role="presentation"><span class="hds-pagination__item-ellipsis">&hellip;</span></li>
+          <li class="pager__item">
+            <a href="{{ items.last.href }}" aria-label="{{ 'Page'|t({}, {'context': 'Pagination page number aria-label'}) ~ ' ' ~ total_pages }}" title="{{ 'Go to page'|t({}, {'context': 'Pagination page number title'}) ~ ' ' ~ total_pages }}"{{ items.last.attributes.addClass('hds-pagination__item-link')|without('href', 'title') }}>
+              {{ total_pages }}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+      {# Print next item if we are not on the last page. #}
+      {% if items.next %}
+        {% set next_button_classes = [
+          'hds-button',
+          'hds-pagination__button-next'
+          ]
+        %}
+        <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }}" role="button" rel="next"{{ items.next.attributes.addClass(next_button_classes)|without('href', 'title', 'rel') }}>
+          <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}</span>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
+        </a>
+      {% else %}
+        <button type="button" disabled title="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }}" class='hds-button hds-pagination__button-next'>
+          <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}</span>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
+        </button>
+      {% endif %}
+    </nav>
+  </div>
+{% endif %}

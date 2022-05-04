@@ -1315,6 +1315,21 @@ function hdbt_preprocess_social_media_links(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_pager(&$variables) {
+  $element = $variables['pager']['#element'];
+
+  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+  $pager_manager = \Drupal::service('pager.manager');
+  $pager = $pager_manager->getPager($element);
+  // Get the total pages in the pager.
+  $total_pages = $pager->getTotalPages();
+
+  $variables['total_pages'] = $total_pages;
+}
+
+/**
  * Helper function to get the privacy policy link URL.
  */
 function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
