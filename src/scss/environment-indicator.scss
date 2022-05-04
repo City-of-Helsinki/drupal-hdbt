@@ -20,7 +20,7 @@
   .toolbar .toolbar-menu,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
-    --bg: #0093ff;
+    --bg: var(--color-info);
     --name: 'Test ';
   }
 }
@@ -32,6 +32,7 @@
   .toolbar-lining {
     --bg: var(--color-alert);
     --name: 'Stage';
+    color: var(--color-black);
   }
 }
 
@@ -40,7 +41,7 @@
   .toolbar .toolbar-menu,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
-    --bg: var(--color-error);
+    --bg: var(--color-metro);
     --name: 'Prod ';
   }
 }
@@ -50,8 +51,8 @@
   .toolbar .toolbar-menu,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
-    --bg: #a3a3a3;
-    --name: 'dev';
+    --bg: var(--color-black-50);
+    --name: 'Dev';
   }
 }
 
