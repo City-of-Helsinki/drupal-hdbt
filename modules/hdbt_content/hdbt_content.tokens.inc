@@ -60,7 +60,14 @@ function hdbt_content_tokens(
     if ($name === 'picture' && $type === 'tpr_unit' && !empty($data[$type])) {
       /** @var \Drupal\helfi_tpr\Entity\Unit $entity */
       $entity = $data[$type];
-      $replacements[$original] = $entity->getPictureUrl() ?? $default_image;
+      $image = NULL;
+
+      try {
+        $image = $entity->getPictureUrl();
+      }
+      catch (\Exception) {
+      }
+      $replacements[$original] = $image ?? $default_image;
     }
 
     // Custom token for shareable-image.
