@@ -27,11 +27,6 @@ $tag-vertical-padding: 5px;
   display: block;
   text-decoration: none;
 
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
-
   @include breakpoint($breakpoint-l) {
     display: grid;
     grid-template-columns: $event-list-image-width 1fr;
@@ -42,6 +37,14 @@ $tag-vertical-padding: 5px;
   @include font('h4');
   margin-bottom: $spacing-and-half;
   margin-top: $spacing;
+}
+
+// Underline event heading on hover and focus
+.event-list__events-container:hover,
+.event-list__events-container:focus {
+  .event-list__event-name {
+    text-decoration: underline;
+  }
 }
 
 .event-list__image-container {
