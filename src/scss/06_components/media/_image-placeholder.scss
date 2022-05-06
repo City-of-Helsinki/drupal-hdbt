@@ -1,7 +1,9 @@
+$-placeholder-aspect-ratio: 16 / 9;
+
 // TODO: Move under correct component when correct component is done.
 .image-placeholder {
   background-color: var(--hdbt-color-palette--primary);
-  padding-bottom: 67%;
+  padding-bottom: aspect-ratio-padding($-placeholder-aspect-ratio);
   position: relative;
   width: 100%;
 
