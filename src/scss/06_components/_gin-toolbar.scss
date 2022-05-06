@@ -4,3 +4,10 @@
   // that would include moving the branding bar with javascript.
   position: fixed;
 }
+
+// Fix the position of Node preview container.
+// The specific 54 pixels correlates to Gin toolbar height.
+.gin--horizontal-toolbar .node-preview-container {
+  padding: 0 $spacing-double;
+  top: 54px;
+}
