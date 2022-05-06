@@ -1,0 +1,81 @@
+$-content-width: 69.93670886%; // 1264px * 70% = 884.8px, rounded to closest even 884px / 1264px = 0,6993670886%
+
+.layout-main-wrapper * {
+  scroll-margin-top: 113px; // Mobile header + language switcher.
+
+  @include breakpoint($breakpoint-m) {
+    scroll-margin-top: 0; // No fixed elements on desktop.
+
+    .toolbar-horizontal & {
+      scroll-margin-top: $spacing-quadruple;
+    }
+  }
+}
+
+.main-content {
+  display: grid;
+  grid-template-areas:
+    'subnav'
+    'content'
+    'sidebar';
+  grid-template-rows: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    .has-sidebar & {
+      column-gap: $spacing-double;
+      grid-template-areas: 'content sidebar';
+      grid-template-columns: $-content-width auto;
+    }
+
+    .has-sidebar--first & {
+      grid-template-areas:
+        'subnav content'
+        'sidebar content';
+      grid-template-columns: auto $-content-width;
+      grid-template-rows: auto 1fr;
+    }
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    column-gap: $spacing-triple;
+  }
+}
+
+.has-sidebar .main-content {
+  @include components-container-max-width;
+  @include component-side-padding;
+}
+
+.layout-sidebar-first {
+  grid-area: subnav;
+  margin-bottom: $spacing-triple;
+
+  @include breakpoint($breakpoint-l) {
+    .no-sidebar-second & {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.layout-content {
+  grid-area: content;
+
+  &:not(:last-child) {
+    margin-bottom: $spacing-triple;
+
+    @include breakpoint($breakpoint-l) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.layout-sidebar-second {
+  grid-area: sidebar;
+}
