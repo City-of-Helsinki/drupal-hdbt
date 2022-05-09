@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_tpr\Entity\Service;
@@ -421,10 +422,22 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
   $variables['has_sidebar_first'] = FALSE;
   $variables['has_sidebar_second'] = FALSE;
 
-  // If there are links, apply "has_sidebar_first" variable
+  // If there are links in current language, apply "has_sidebar_first" variable
   // to indicate twig templates how to render the sidebar.
   if (!empty($menu_links)) {
-    $variables['has_sidebar_first'] = TRUE;
+    $langcode = \Drupal::languageManager()
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    foreach ($menu_links as $menu_link) {
+      /** @var \Drupal\menu_link_content\Plugin\Menu\MenuLinkContent $menu_link */
+      if ($menu_link) {
+        /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $entity */
+        $entity = \Drupal::service('entity.repository')
+          ->loadEntityByUuid('menu_link_content', $menu_link->getDerivativeId());
+        if ($entity->hasTranslation($langcode)) {
+          $variables['has_sidebar_first'] = TRUE;
+        }
+      }
+    }
   }
 
   // Hide the sidebar and menu if the current entity has
