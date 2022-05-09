@@ -164,3 +164,38 @@ msgstr "Sivuston navigaatio"
 
 msgid "You must enable JavaScript in your browser for event list to work"
 msgstr "Tapahtumalistan toimimiseksi sinun tulee sallia JavaScript selaimessasi"
+
+msgctxt "Pagination aria-label"
+msgid "Pagination"
+msgstr "Sivutus"
+
+msgctxt "Pagination previous page link title"
+msgid "Go to previous page"
+msgstr "Palaa edelliselle sivulle"
+
+msgctxt "Pagination previous page link text"
+msgid "Previous"
+msgstr "Edellinen"
+
+msgctxt "Pagination page number aria-label"
+msgid "Page"
+msgstr "Sivu"
+
+msgctxt "Pagination page number title"
+msgid "Go to page"
+msgstr "Siirry sivulle"
+
+msgctxt "Pagination current page title"
+msgid "Current page"
+msgstr "Tämänhetkinen sivu"
+
+msgid "Go to page @key"
+msgstr "Siirry sivulle @key"
+
+msgctxt "Pagination next page link title"
+msgid "Go to next page"
+msgstr "Mene seuraavalle sivulle"
+
+msgctxt "Pagination next page link text"
+msgid "Next"
+msgstr "Seuraava"

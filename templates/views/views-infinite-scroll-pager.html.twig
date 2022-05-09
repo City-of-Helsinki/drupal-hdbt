@@ -7,7 +7,7 @@
 
 {% if items.next %}
   {# Sadly drupal targets `ul.js-pager__items > li > a` to enable ajax, so we have to have these elements #}
-  <ul{{ attributes.addClass('pager') }}>
+  <ul{{ attributes.addClass('infinite-scroll-pager') }}>
     <li>
       {% set link_title %}
         <span class="hds-button__label">{{ options.button_text }}</span>

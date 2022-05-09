@@ -24,6 +24,15 @@
   &:hover {
     text-decoration: underline;
   }
+
+  &::after {
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 .news-listing__datetime {
