@@ -56,6 +56,7 @@ function hdbt_content_update_9004() {
     if (!empty($hdbt_page_title_data)) {
       $hdbt_page_title_data['region'] = 'content';
       $hdbt_page_title_data['weight'] = -12;
+      $hdbt_page_title_data['visibility'] = [];
       $hdbt_page_title->setData($hdbt_page_title_data)->save(TRUE);
     }
 
@@ -115,6 +116,7 @@ function hdbt_content_update_9004() {
     if (!empty($hdbt_subtheme_page_title_data)) {
       $hdbt_subtheme_page_title_data['region'] = 'content';
       $hdbt_subtheme_page_title_data['weight'] = -12;
+      $hdbt_subtheme_page_title_data['visibility'] = [];
       $hdbt_subtheme_page_title->setData($hdbt_subtheme_page_title_data)->save(TRUE);
     }
 
