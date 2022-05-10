@@ -430,10 +430,10 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     foreach ($menu_links as $menu_link) {
       /** @var \Drupal\menu_link_content\Plugin\Menu\MenuLinkContent $menu_link */
       if ($menu_link) {
-        /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $entity */
-        $entity = \Drupal::service('entity.repository')
+        /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $menu_link_content */
+        $menu_link_content = \Drupal::service('entity.repository')
           ->loadEntityByUuid('menu_link_content', $menu_link->getDerivativeId());
-        if ($entity->hasTranslation($langcode)) {
+        if ($menu_link_content->hasTranslation($langcode)) {
           $variables['has_sidebar_first'] = TRUE;
         }
       }
@@ -499,3 +499,6 @@ function hdbt_content_preprocess_toolbar(&$variables) {
     }
   }
 }
+
+//drush dcer menu_link_content 10 --folder=/app/public/modules/contrib/helfi_platform_config/helfi_features/helfi_example_content/content
+//drush dcer node --folder=modules/contrib/helfi_platform_config/features/helfi_example_content/content
