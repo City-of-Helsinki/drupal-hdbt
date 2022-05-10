@@ -331,11 +331,10 @@ function hdbt_content_get_page_entity() {
   $params = $route->getParameters()->all();
 
   foreach ($types as $type) {
-    if (
-      !empty($params[$type]) &&
-      $route->getRouteName() === "entity.$type.canonical"
-    ) {
-      return $params[$type];
+    foreach (['revision' => $type . '_revision', 'canonical' => $type] as $route_name => $version) {
+      if (!empty($params[$version]) && $route->getRouteName() === "entity.$type.$route_name") {
+        return $params[$version];
+      }
     }
   }
   return NULL;
