@@ -701,54 +701,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
-  // Check if the paragraph is a type of gallery and prepare the slides
-  // and generate the thumbnails.
-  if ($paragraph_type == 'gallery') {
-    $variables['#attached']['library'][] = 'hdbt/gallery';
-
-    $slide_paragraphs = $paragraph->get('field_gallery_slides')->getValue();
-    $slide_ids = [];
-
-    foreach ($slide_paragraphs as $slide_paragraph) {
-      $slide_ids[] = $slide_paragraph['target_id'];
-    }
-
-    // Get a paragraph storage object.
-    $paragraph_storage = Drupal::entityTypeManager()->getStorage('paragraph');
-    // Load all slide paragraphs.
-    $slides = $paragraph_storage->loadMultiple($slide_ids);
-    $slide_thumbnails = [];
-
-    // Construct an array of slides and handle the image caption + alt texts.
-    foreach ($slides as $id => $slide) {
-      $slides[$id] = ['gallery_slide' => $slide];
-      _hdbt_preprocess_image_caption(
-        $slides[$id],
-        'gallery_slide',
-        'field_gallery_slide_media',
-        'field_gallery_slide_caption'
-      );
-      $slides[$id]['gallery_slide'] = $slides[$id]['gallery_slide']->field_gallery_slide_media->entity->field_media_image->entity;
-      $slide_thumbnails[] = $slides[$id];
-    }
-    $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
-  }
-
-  // Check if the paragraph is a type of gallery_slide and handle the slide
-  // image width and height attributes.
-  if (
-    $paragraph_type == 'gallery_slide' &&
-    $paragraph->hasField('field_gallery_slide_media')
-  ) {
-    // Handle image caption preprocessing.
-    _hdbt_preprocess_image_caption(
-      $variables,
-      'paragraph',
-      'field_gallery_slide_media',
-      'field_gallery_slide_caption'
-    );
-  }
-
   // Unit search paragraph.
   if (
     $paragraph_type == 'unit_search' &&
