@@ -1,5 +1,6 @@
-[data-unpublished]::before{
+[data-unpublished]::before {
   @include font('small');
+
   --line-height: 1;
   background: $color-error;
   color: $color-white;
@@ -14,7 +15,9 @@
 
   @include breakpoint($component-side-padding-breakpoint) {
     content: attr(data-unpublished-long);
+
     @include font('body');
+
     --line-height: 1.5;
   }
 }
@@ -35,9 +38,8 @@
 }
 
 .no-sidebar .component--lead-in {
-  @include component-side-padding();
+  @include component-side-padding;
 }
-
 
 .content-date {
   @include font('small');
@@ -46,7 +48,7 @@
 }
 
 .content-date__datetime--updated::before {
-  background-color: currentColor;
+  background-color: currentcolor;
   content: '';
   display: inline-block;
   height: 1em;
@@ -57,7 +59,7 @@
 }
 
 .content-links {
-  @include component-margin-top();
+  @include component-margin-top;
 }
 
 .content-links__title {
@@ -81,7 +83,7 @@
   a {
     &::after {
       @include pseudo-icon('arrow-right');
-      @include hover-link-arrow-transition();
+      @include hover-link-arrow-transition;
       margin-left: $spacing-quarter;
     }
 
@@ -90,6 +92,7 @@
 
       &::after {
         transform: translateX($spacing-quarter);
+
         @media (prefers-reduced-motion) {
           transform: none;
         }
@@ -108,6 +111,7 @@
 }
 
 $tag-gap: $spacing-half;
+
 .content-tags__tags {
   @include flex-gap($tag-gap);
   display: flex;
@@ -123,14 +127,17 @@ $tag-gap: $spacing-half;
 .content-tags__tags__tag {
   list-style: none;
   margin-bottom: $tag-gap;
+
+  /* stylelint-disable-next-line no-descending-specificity */
   a {
     background-color: $color-silver;
     border-radius: 500px;
     display: inline-block;
     padding: 12px 20px;
     text-decoration: none;
+
     &:hover {
-      background-color: $color-silver-dark
+      background-color: $color-silver-dark;
     }
   }
 }
