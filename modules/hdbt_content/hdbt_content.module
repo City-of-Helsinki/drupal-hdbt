@@ -498,6 +498,3 @@ function hdbt_content_preprocess_toolbar(&$variables) {
     }
   }
 }
-
-//drush dcer menu_link_content 10 --folder=/app/public/modules/contrib/helfi_platform_config/helfi_features/helfi_example_content/content
-//drush dcer node --folder=modules/contrib/helfi_platform_config/features/helfi_example_content/content
