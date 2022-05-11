@@ -7,6 +7,7 @@
       {% endset %}
       {% set link_attributes = {
         'class': classes|merge(element.classes),
+        'title': element.text
       } %}
       {{ link(link_title, element.url, link_attributes) }}
     {% endif %}
