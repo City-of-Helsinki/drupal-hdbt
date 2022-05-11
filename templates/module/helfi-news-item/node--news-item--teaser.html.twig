@@ -1,4 +1,4 @@
-<div class="news-listing__content">
+<div class="news-listing__content{% if content.field_main_image|render %} news-listing__content--with-image{% endif %}">
   {# Short title or Title #}
   <h2 class="news-listing__title">
     {% set link_attributes = {
