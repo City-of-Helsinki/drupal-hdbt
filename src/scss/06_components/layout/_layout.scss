@@ -1,4 +1,4 @@
-$-content-width: 69.93670886%; // 1264px * 70% = 884.8px, rounded to closest even 884px / 1264px = 0,6993670886%
+$-sidebar-width: 340px;
 
 .layout-main-wrapper * {
   scroll-margin-top: 113px; // Mobile header + language switcher.
@@ -29,16 +29,16 @@ $-content-width: 69.93670886%; // 1264px * 70% = 884.8px, rounded to closest eve
 
   @include breakpoint($breakpoint-l) {
     .has-sidebar & {
-      column-gap: $spacing-double;
+      column-gap: $spacing-quadruple;
       grid-template-areas: 'content sidebar';
-      grid-template-columns: $-content-width auto;
+      grid-template-columns: auto $-sidebar-width;
     }
 
     .has-sidebar--first & {
       grid-template-areas:
         'subnav content'
         'sidebar content';
-      grid-template-columns: auto $-content-width;
+      grid-template-columns: $-sidebar-width auto;
       grid-template-rows: auto 1fr;
     }
   }
