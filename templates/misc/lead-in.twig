@@ -1,0 +1,18 @@
+{% if content|render %}
+  <section class="lead-in" aria-label="{{ 'Lead-in paragraph'|t({}, {'context': 'Page lead-in section explanation for screen readers'}) }}">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--lead-in',
+          'component--hardcoded'
+        ],
+      }
+    %}
+      {% block component_content %}
+
+        {{ content }}
+
+      {% endblock component_content %}
+    {% endembed %}
+  </section>
+{% endif %}

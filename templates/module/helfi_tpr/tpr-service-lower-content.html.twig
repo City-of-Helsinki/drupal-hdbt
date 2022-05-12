@@ -10,9 +10,7 @@
 {% set service_units_view = drupal_view_result('service_units', 'service_units')|length %}
 
 {% if service_units_view > 0 %}
-  <div class="service__content">
-    <div class="service__units">
-      {{ drupal_view('service_units', 'service_units') }}
-    </div>
+  <div class="service__units">
+    {{ drupal_view('service_units', 'service_units') }}
   </div>
 {% endif %}

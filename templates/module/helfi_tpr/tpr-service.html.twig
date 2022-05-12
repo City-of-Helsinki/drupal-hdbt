@@ -7,19 +7,43 @@
  */
 #}
 
-{% embed '@helfi_tpr/tpr-service.html.twig' %}
+{% if view_mode != 'teaser' %}
 
-  {% if content.toc_enabled|render|striptags|trim is not empty %}
-    {% block toc_content %}
-      {{ content.toc_enabled }}
-    {% endblock toc_content %}
-  {% endif %}
+  <article class="service service--full">
 
-  {% block main_content %}
+    {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
+
+    {{ content.toc_enabled }}
+
+    {% if content.description|render %}
+      <div class="long-desc">
+        {{ content.description }}
+      </div>
+    {% endif %}
+
+    {% if content.errand_services|render %}
+      <div class="service__errand-services">
+        {{ content.errand_services }}
+      </div>
+    {% endif %}
+
     {% if content.field_content|render|striptags|trim is not empty %}
       <div class="enriched-content components components--service">
         {{ content.field_content }}
       </div>
     {% endif %}
-  {% endblock main_content %}
-{% endembed %}
+
+  </article>
+
+{% elseif view_mode == 'teaser' %}
+
+  <div class="service service--teaser">
+    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
+      <h3 class="service__title">
+        {{ entity.label }}
+      </h3>
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+    </a>
+  </div>
+
+{% endif %}

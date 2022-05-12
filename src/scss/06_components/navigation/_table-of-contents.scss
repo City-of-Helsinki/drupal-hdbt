@@ -14,15 +14,11 @@
   .has-sidebar & {
     @include component-negative-side-margin;
   }
+}
 
-  // In rare cases TPR Service page can be rendered without sidebar.
-  // In these cases remove the left and right paddings from table of contents.
-  .service-header__container:not(.has-sidebar) & {
-    @include breakpoint($breakpoint-m) {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
+// Add extra margin to long description if table of contents is enabled.
+.table-of-contents + .long-desc {
+  @include component-margin-top;
 }
 
 .table-of-contents__container {
@@ -64,7 +60,7 @@
   position: relative;
   text-decoration: underline;
 
-  // TODO Unify focuses/hovers and other link styles once UHF-643 is being
+  // TODO: Unify focuses/hovers and other link styles once UHF-643 is being
   // developed. https://helsinkisolutionoffice.atlassian.net/browse/UHF-643
   &:focus {
     outline: none;

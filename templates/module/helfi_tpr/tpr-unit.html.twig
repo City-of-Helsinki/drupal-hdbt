@@ -25,27 +25,31 @@
   %}
 
   <article{{ attributes.addClass(classes) }}>
-    <h1{{ title_attributes.addClass('unit__title') }}>
-      {{ entity.label }}
-    </h1>
-    {% if content.description_summary|render %}
-      <div class="unit__short-desc">
-        {{ content.description_summary }}
-      </div>
-    {% endif %}
-    <span class="unit__divider"></span>
+
+    {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
+
+    {# Page divider, normally it comes from table of contents, but unit does not have that #}
+    <div class="page-divider"></div>
+
     {{ supports_swedish }}
+
+    {# Main image #}
     {% if content.picture_url_override|render %}
-      <div class="unit__image">
-        {{ content.picture_url_override }}
-      </div>
+      {% set main_image = content.picture_url_override %}
     {% elseif content.picture_url|render %}
-      <div class="unit__image">
-        {{ content.picture_url }}
-      </div>
+      {% set main_image = content.picture_url %}
     {% endif %}
+
+    {% if main_image %}
+      {% include '@hdbt/misc/image-with-caption.twig' with {
+        figure_class: 'main-image',
+        image: main_image
+      } %}
+    {% endif %}
+    {# End of Main image #}
+
     {% if content.description|render and hide_description == false %}
-      <div class="unit__long-desc">
+      <div class="long-desc">
         {{ content.description }}
       </div>
     {% endif %}

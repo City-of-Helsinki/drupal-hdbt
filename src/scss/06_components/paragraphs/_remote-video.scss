@@ -23,12 +23,6 @@ $_video-aspect-ratio: 16/9;
   color: $color-white;
 }
 
-.has-sidebar .components--upper .component--remote-video {
-  @include breakpoint(max-width $breakpoint-l) {
-    @include component-negative-side-margin;
-  }
-}
-
 .component--remote-video + .component--remote-video.component--no-header {
   margin-top: 0;
   padding-top: 0;

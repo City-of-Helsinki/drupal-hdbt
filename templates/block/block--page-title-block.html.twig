@@ -5,18 +5,8 @@
  */
 #}
 
-{%
-  set classes = [
-    'page-title',
-  ]
-%}
-
 {% if hide_block != true %}
-  <div{{ attributes.addClass(classes) }}>
-    {% embed "@hdbt/misc/container.twig" with {container_element: 'page-title'} %}
-      {% block container_content %}
-        {{ content }}
-      {% endblock %}
-    {% endembed %}
+  <div class="page-title">
+    {{ content }}
   </div>
 {% endif %}

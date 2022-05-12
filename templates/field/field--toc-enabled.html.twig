@@ -1,4 +1,4 @@
-{% if toc_enabled %}
+{% if toc_enabled|render|striptags|trim is not empty %}
   <div class="table-of-contents">
     <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
       {% if toc_title|render %}
@@ -11,4 +11,6 @@
       </nav>
     </div>
   </div>
+{% else %}
+  <div class="page-divider"></div>
 {% endif %}
