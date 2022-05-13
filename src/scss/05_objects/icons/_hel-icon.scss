@@ -3,7 +3,7 @@
   background-color: currentColor;
   display: inline-block;
   height: var(--icon-size, var(--fallback));
-  mask-image: var(--url);//TODO: add fallback icon when webpack allows it
+  mask-image: var(--url); // TODO: add fallback icon when webpack allows it
   mask-position: center center;
   mask-repeat: no-repeat;
   vertical-align: text-bottom;

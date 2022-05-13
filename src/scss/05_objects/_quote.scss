@@ -12,7 +12,7 @@
 
   &::before {
     background-color: var(--hdbt-color-palette--primary);
-    content: "";
+    content: '';
     height: 100%;
     left: 0;
     position: absolute;
@@ -26,16 +26,16 @@
   margin-top: 0;
 
   &::before {
-    content: "”"; // Defaults to finnish quotation syntax https://jkorpela.fi/suomi/lain.html
+    content: '”'; // Defaults to finnish quotation syntax https://jkorpela.fi/suomi/lain.html
   }
 
   &[lang='en']::before,
   [lang='en'] &::before {
-    content: "“"; // Uses english format when appropriate
+    content: '“'; // Uses english format when appropriate
   }
 
   &::after {
-    content: "”";
+    content: '”';
   }
 }
 
@@ -44,9 +44,10 @@
   margin-top: $spacing-and-half;
 
   &::before {
-    content: "-";
+    content: '-';
     margin-right: 3px;
   }
+
   cite {
     font-style: normal;
   }

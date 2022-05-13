@@ -1,4 +1,4 @@
-$card_spacing: $spacing-and-half;
+$-card-spacing: $spacing-and-half;
 
 .component-content-cards .component__container {
   overflow: hidden;
@@ -13,8 +13,8 @@ $card_spacing: $spacing-and-half;
   @include breakpoint($breakpoint-s) {
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left: -$card_spacing;
-    width: calc(100% + #{$card_spacing});
+    margin-left: -$-card-spacing;
+    width: calc(100% + #{$-card-spacing});
   }
 }
 
@@ -23,12 +23,12 @@ $card_spacing: $spacing-and-half;
   position: relative;
 
   @include breakpoint($breakpoint-s) {
-    margin-left: $card_spacing;
-    width: calc(50% - #{$card_spacing});
+    margin-left: $-card-spacing;
+    width: calc(50% - #{$-card-spacing});
   }
 
   @include breakpoint($breakpoint-l) {
-    width: calc(25% - #{$card_spacing});
+    width: calc(25% - #{$-card-spacing});
   }
 
   &:first-child {
@@ -41,7 +41,7 @@ $card_spacing: $spacing-and-half;
 
   img {
     @include image-defaults($width: 100%, $max-width: null);
-    @include loading-image-background();
+    @include loading-image-background;
   }
 }
 
@@ -66,7 +66,8 @@ $card_spacing: $spacing-and-half;
   }
 
   &::after {
-    @include hover-link-arrow-transition();
+    @include hover-link-arrow-transition;
+
     --icon-size: 2rem;
     margin-left: -2px; // Pull the arrow a bit to the left to align with text.
     margin-top: $spacing;
@@ -87,6 +88,7 @@ $card_spacing: $spacing-and-half;
 
     &::after {
       transform: translateX($spacing);
+
       @media (prefers-reduced-motion) {
         transform: none;
       }
@@ -97,12 +99,12 @@ $card_spacing: $spacing-and-half;
 .component--content-cards-large {
   .content-card {
     @include breakpoint($breakpoint-s) {
-      margin-left: $card_spacing;
-      width: calc(50% - #{$card_spacing});
+      margin-left: $-card-spacing;
+      width: calc(50% - #{$-card-spacing});
     }
 
     @include breakpoint($breakpoint-l) {
-      width: calc(33.3333% - #{$card_spacing});
+      width: calc(33.3333% - #{$-card-spacing});
     }
   }
 }
@@ -127,7 +129,7 @@ $card_spacing: $spacing-and-half;
       padding-top: $spacing-quadruple;
     }
 
-     // Since the component is not "full width" next to a sidebar, we should uniform padding around
+    // Since the component is not "full width" next to a sidebar, we should uniform padding around
     .has-sidebar .components--upper & {
       padding-bottom: $spacing-double;
       padding-left: $spacing-double;

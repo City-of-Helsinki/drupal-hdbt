@@ -1,6 +1,6 @@
 .hds-checkbox {
   > label {
-    @extend .hds-checkbox__label !optional;
+    @extend .hds-checkbox__label !optional; // TODO: we should refactor to get rid of this extend
   }
 
   .hds-checkbox__input,
@@ -10,4 +10,3 @@
     }
   }
 }
-

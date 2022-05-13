@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  // stylelint-disable order/properties-alphabetical-order
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: $body-bg-color;
@@ -21,6 +22,7 @@ body {
   flex-direction: column;
   font-family: $base-font-family;
   line-height: $base-line-height;
+  // stylelint-enable order/properties-alphabetical-order
 
   &.gin--horizontal-toolbar {
     // Move toolbar paddings to dialog-off-canvas.

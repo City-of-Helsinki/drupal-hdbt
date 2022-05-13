@@ -11,7 +11,7 @@ $breakpoint-design-image-on-left-right: 830px;
 
   img {
     @include image-defaults($width: 100%, $max-width: null);
-    @include loading-image-background();
+    @include loading-image-background;
   }
 }
 
@@ -49,7 +49,6 @@ $breakpoint-design-image-on-left-right: 830px;
   .liftup-with-image__container {
     display: flex;
   }
-
 
   .liftup-with-image__container {
     @include breakpoint($breakpoint-design-image-on-left-right) {
@@ -317,7 +316,6 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
-
 // Designs with image as background.
 .no-sidebar .components--upper > .component--liftup-with-image-bg {
   padding-left: 0;
@@ -331,10 +329,11 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 
   .liftup-with-image__container {
-    @include components-container-max-width();
-    @include component-side-padding();
+    @include components-container-max-width;
+    @include component-side-padding;
     margin-left: auto;
     margin-right: auto;
+
     @include breakpoint($breakpoint-l) {
       align-items: center;
       display: flex;
@@ -440,7 +439,7 @@ $breakpoint-design-image-on-left-right: 830px;
     --color-hover: var(--color-black-90);
     --color-focus: var(--color-black-90);
     --color-hover-focus: var(--color-black-90);
-    --color-disabled:  var(--color-black-20);
+    --color-disabled: var(--color-black-20);
     --focus-outline-color: transparent;
     --submit-input-focus-gutter-color: transparent;
 

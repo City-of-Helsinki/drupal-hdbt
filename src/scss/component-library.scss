@@ -104,7 +104,8 @@
   transition: 0.4s;
   width: 100%;
 
-  &.active, &:hover {
+  &.active,
+  &:hover {
     background-color: $color-black-20;
   }
 }

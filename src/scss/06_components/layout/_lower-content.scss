@@ -1,5 +1,5 @@
 .lower-content {
-  @include component-margin-top();
+  @include component-margin-top;
   width: 100%;
 
   .layout-content {

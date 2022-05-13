@@ -24,7 +24,7 @@
 }
 
 .errand-service__accordion {
-  @include component-margin-top();
+  @include component-margin-top;
 
   .accordion__container {
     padding-left: 0;
