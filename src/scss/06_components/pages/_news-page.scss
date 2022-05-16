@@ -168,7 +168,16 @@
   }
 
   .news-listing__content {
-    padding-right: $spacing;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      padding-right: $spacing-and-half;
+      width: 70%;
+    }
+  }
+
+  .news-listing__content--with-image {
+    padding-right: $spacing-and-half;
     width: 70%;
   }
 
