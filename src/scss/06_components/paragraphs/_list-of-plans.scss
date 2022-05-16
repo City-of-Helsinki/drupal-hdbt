@@ -1,0 +1,49 @@
+.component--list-of-plans {
+  background-color: $color-silver-light;
+}
+
+// If the unit-search is just before footer.
+.layout-main-wrapper > *:last-child .component--list-of-plans:last-child {
+  margin-bottom: -115px; // Enough to get the block under the footer.
+  padding-bottom: 55px; // Leave enough room between the last card and footer.
+}
+
+.component--list-of-plans .component__container {
+  padding-bottom: $spacing-double;
+  padding-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.list-of-plans__count-container {
+  @include font('lead');
+
+  .list-of-plans__count {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.list-of-plans__plan {
+  align-items: flex-start;
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  .plan__title {
+    @include font('special.card_title');
+    margin-bottom: $spacing-quarter;
+    margin-top: 0;
+    padding-right: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+}
