@@ -423,6 +423,8 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
 
   // If there are links in current language, apply "has_sidebar_first" variable
   // to indicate twig templates how to render the sidebar.
+  // However, if the menu link is set to first level, do not render the
+  // sidebar.
   if (!empty($menu_links)) {
     $langcode = \Drupal::languageManager()
       ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
@@ -432,7 +434,10 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
         /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $menu_link_content */
         $menu_link_content = \Drupal::service('entity.repository')
           ->loadEntityByUuid('menu_link_content', $menu_link->getDerivativeId());
-        if ($menu_link_content->hasTranslation($langcode)) {
+        if (
+          $menu_link_content->hasTranslation($langcode) &&
+          !empty($menu_link_content->getParentId())
+        ) {
           $variables['has_sidebar_first'] = TRUE;
         }
       }
