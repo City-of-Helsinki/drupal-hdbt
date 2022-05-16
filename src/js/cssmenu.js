@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  toggle.addEventListener('click', checkboxToggle);
+  if (toggle) {
+    toggle.addEventListener('click', checkboxToggle);
+  }
 
   document.addEventListener('keydown', function (e) {
     if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && checkbox.checked) {
@@ -43,5 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  checkbox.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+  if (checkbox) {
+    checkbox.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+  }
 });
