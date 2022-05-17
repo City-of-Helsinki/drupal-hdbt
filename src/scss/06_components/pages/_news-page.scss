@@ -55,7 +55,7 @@
     display: flex;
     margin-top: $spacing;
     padding-bottom: $spacing-half;
-  }  
+  }
 }
 
 .news-listing__tiny-teaser .news-listing__title {
@@ -165,19 +165,5 @@
     @include breakpoint($breakpoint-l) {
       margin-top: $spacing-and-half;
     }
-  }
-}
-
-.block--news-of-interest {
-  @include component-side-padding();
-  @include components-container-max-width();
-  @include component-margin-top();
-  margin: auto;
-
-  width: 100%;
-
-  h2 {
-    margin-bottom: $spacing-triple;
-    margin-top: 0;
   }
 }
