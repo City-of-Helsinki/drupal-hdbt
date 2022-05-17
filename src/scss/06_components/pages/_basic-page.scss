@@ -102,11 +102,6 @@
   }
 }
 
-.content-tags {
-  border-bottom: 1px solid $color-black-10;
-  border-top: 1px solid $color-black-10;
-}
-
 $tag-gap: $spacing-half;
 .content-tags__tags {
   @include flex-gap($tag-gap);
@@ -123,6 +118,8 @@ $tag-gap: $spacing-half;
 .content-tags__tags__tag {
   list-style: none;
   margin-bottom: $tag-gap;
+  margin-top: 0;
+
   a {
     background-color: $color-silver;
     border-radius: 500px;
