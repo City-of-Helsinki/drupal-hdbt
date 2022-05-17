@@ -1,10 +1,13 @@
-.sidebar-navigation {
+.layout-sidebar-first {
   display: none;
 
   @include breakpoint($breakpoint-l) {
     display: block;
-    width: 100%;
   }
+}
+
+.sidebar-navigation {
+  width: 100%;
 
   .sidebar-navigation__title {
     @include font('h4');

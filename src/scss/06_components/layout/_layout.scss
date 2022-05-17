@@ -55,10 +55,13 @@ $-sidebar-width: 340px;
 }
 
 .layout-sidebar-first {
+  display: none;
   grid-area: subnav;
   margin-bottom: $spacing-triple;
 
   @include breakpoint($breakpoint-l) {
+    display: block;
+
     .no-sidebar-second & {
       margin-bottom: 0;
     }
