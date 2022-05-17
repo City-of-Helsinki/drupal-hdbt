@@ -35,6 +35,10 @@
   }
 }
 
+.news-listing__title {
+  margin-top: 0;
+}
+
 .news-listing__datetime {
   @include font('small');
   color: $color-black-60;
@@ -47,49 +51,16 @@
 // News listings using tiny-teasers.
 .news-listing--latest-tiny-teasers {
   .news-listing__item {
+    border-bottom: 1px solid var(--color-black-10);
     display: flex;
+    margin-top: $spacing;
+    padding-bottom: $spacing-half;
   }
+}
 
-  .news-listing__img {
-    flex-shrink: 0;
-    height: 78px;
-    width: 78px;
-  }
-
-  .news-listing__img img {
-    @include image-defaults($width: 100%, $max-width: null);
-  }
-
-  .news-listing__img .image-placeholder {
-    align-items: center;
-    background-color: $color-black-10;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    padding-bottom: 0;
-    width: 100%;
-    &::before {
-      @include pseudo-icon('camera', $spacing, $color-black-90, block);
-    }
-  }
-
-  .news-listing__img .image-placeholder svg {
-    display: none; //TODO: clean this up after we know what we do with icons.
-  }
-
-  .news-listing__img {
-    @include loading-image-background();
-  }
-
-  .news-listing__content {
-    margin-left: $spacing-and-half;
-  }
-
-  .news-listing__title {
-    @include font('body');
-    margin-bottom: $spacing-half;
-    margin-top: 0;
-  }
+.news-listing__tiny-teaser .news-listing__title {
+  @include font('body');
+  margin-bottom: $spacing-half;
 }
 
 // News listings using medium teasers.
@@ -116,19 +87,18 @@
       width: 50%;
     }
   }
+}
 
-  .news-listing__content {
-    border-left: 4px solid var(--hdbt-color-palette--accent);
-    padding-left: $spacing;
+.news-listing__medium-teaser {
+  border-left: 4px solid var(--hdbt-color-palette--accent);
+  padding-left: $spacing;
 
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-and-half;
-    }
+  @include breakpoint($breakpoint-l) {
+    padding-left: $spacing-and-half;
   }
 
   .news-listing__title {
     @include font(h5);
-    margin-top: 0;
 
     @include breakpoint($breakpoint-l) {
       @include font(h4);
@@ -168,7 +138,16 @@
   }
 
   .news-listing__content {
-    padding-right: $spacing;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      padding-right: $spacing-and-half;
+      width: 70%;
+    }
+  }
+
+  .news-listing__content--with-image {
+    padding-right: $spacing-and-half;
     width: 70%;
   }
 
@@ -185,7 +164,6 @@
 
   .news-listing__title {
     @include font(h4);
-    margin-top: 0;
   }
 
   .news-listing__datetime {

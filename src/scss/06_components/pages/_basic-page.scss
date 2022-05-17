@@ -162,11 +162,6 @@
   }
 }
 
-.content-tags {
-  border-bottom: 1px solid $color-black-10;
-  border-top: 1px solid $color-black-10;
-}
-
 $tag-gap: $spacing-half;
 
 .content-tags__tags {
@@ -184,6 +179,7 @@ $tag-gap: $spacing-half;
 .content-tags__tags__tag {
   list-style: none;
   margin-bottom: $tag-gap;
+  margin-top: 0;
 
   // stylelint-disable-next-line no-descending-specificity
   a {
