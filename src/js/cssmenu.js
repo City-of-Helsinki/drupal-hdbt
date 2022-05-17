@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     '#ed11y-panel' // Editoria11y accessibility tool
   ];
 
-  const toggle = document.querySelector('.js-cssmenu-toggle-button');
-  const checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
+  let toggle = document.querySelector('.js-cssmenu-toggle-button');
+  let checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
 
   function toggleWidgets(hide) {
-    var widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
+    const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
     for (let i = 0; i < widgets.length; i++) {
       const widget = widgets[i];
       if (hide) {
@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  toggle.addEventListener('click', checkboxToggle);
+  if (toggle) {
+    toggle.addEventListener('click', checkboxToggle);
+  }
 
   document.addEventListener('keydown', function (e) {
     if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && checkbox.checked) {
@@ -43,5 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  checkbox.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+  if (checkbox) {
+    checkbox.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+  }
 });
