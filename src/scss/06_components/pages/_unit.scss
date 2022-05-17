@@ -255,6 +255,7 @@
     }
 
     img {
+      @include image-defaults($width: 100%, $max-width: null);
       @include breakpoint($breakpoint-m) {
         @include image-defaults($height: 100%, $width: 100%, $max-width: null);
         object-fit: cover;
