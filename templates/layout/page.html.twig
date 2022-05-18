@@ -86,11 +86,11 @@
         {# Construct page_title_block based on active theme. #}
         {% set page_title_block = active_theme ~ '_page_title' %}
 
-        {# We want page_title always to be before other page.content #}
-        {% if not has_hero %}
-          {{ page.content[page_title_block] }}
-        {% endif %}
         {% block page_content %}
+          {# We want page_title always to be before other page.content #}
+          {% if not has_hero %}
+            {{ page.content[page_title_block] }}
+          {% endif %}
           {{ page.content|without(page_title_block) }}
         {% endblock page_content %}
 

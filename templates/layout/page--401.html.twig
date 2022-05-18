@@ -3,9 +3,7 @@
     {% embed '@hdbt/misc/container.twig' with {container_element: 'error-page-content'} %}
       {% block container_content %}
         <div class="error-page__text-container">
-          <div class="page-title">
-            <h1 class="error-page__title">{{ error_number|default('401') }} - {{ 'You do not have permission to access this page'|t }}</h1>
-          </div>
+          <h1 class="error-page__title">{{ error_number|default('401') }} - {{ 'You do not have permission to access this page'|t }}</h1>
           <p class="error-page__description">{{ 'This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content.'|t }}</p>
 
           {% set link_title %}
