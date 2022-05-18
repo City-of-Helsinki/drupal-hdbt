@@ -51,7 +51,7 @@
     "postcss-easy-import": "^4.0.0",
     "postcss-import": "^14.0.0",
     "postcss-import-ext-glob": "^2.0.1",
-    "postcss-loader": "^6.0.0",
+    "postcss-loader": "^7.0.0",
     "postcss-nested": "^5.0.3",
     "postcss-nesting": "^10.0.2",
     "postcss-preset-env": "^7.4.3",
