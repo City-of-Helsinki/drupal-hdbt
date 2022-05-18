@@ -59,7 +59,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.3.2",
     "sass": "^1.43.4",
-    "sass-loader": "^12.3.0",
+    "sass-loader": "^13.0.0",
     "svg-inline-loader": "^0.8.0",
     "svg-sprite": "github:svg-sprite/svg-sprite.git#ae913149d57ed602bb34bc76f6bfad3569360fbc",
     "tiny-slider": "^2.9.3",
