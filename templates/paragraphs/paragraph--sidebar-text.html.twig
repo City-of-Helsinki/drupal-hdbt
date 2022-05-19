@@ -49,9 +49,9 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% if content.field_sidebar_text_title|render %}
-      <div class="sidebar-text__title">
+      <h2 class="sidebar-text__title">
         {{ content.field_sidebar_text_title }}
-      </div>
+      </h2>
     {% endif %}
     {% if content.field_sidebar_text_text|render %}
       <div class="sidebar-text__text-content">

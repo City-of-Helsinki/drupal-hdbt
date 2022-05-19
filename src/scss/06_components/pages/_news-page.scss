@@ -1,5 +1,5 @@
 // Fix sidebar width when there are only short news titles
-// TODO: Clean this up with other region things
+// TODO: REGIONS Clean this up with other region things
 .page-type--news-item .sidebar-first {
   display: block;
 }
@@ -44,8 +44,8 @@
   color: $color-black-60;
 }
 
-.components--news figure picture img {
-  width: 100%;
+.components--news {
+  margin-top: 0;
 }
 
 // News listings using tiny-teasers.

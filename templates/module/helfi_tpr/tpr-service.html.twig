@@ -3,46 +3,47 @@
  * @file
  * Theme for service entity.
  *
- * Variables:
- * - in_menu: A boolean indicating whether the service is in menu or not
- *
  * @see hdbt_content_preprocess_tpr_service()
  */
 #}
 
-{% if not block_name %}
-  {% set block_name = 'main_navigation_level_2' %}
-{% endif %}
+{% if view_mode != 'teaser' %}
 
-{% if content.field_sidebar_content|render|striptags|trim is not empty %}
-  {% set sidebar_content = TRUE %}
-{% endif %}
+  <article class="service service--full">
 
-{% if sidebar_content or in_menu or content.links|render %}
-  {% set has_sidebar = TRUE %}
-{% endif %}
+    {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
 
-{% embed '@helfi_tpr/tpr-service.html.twig' with {
-  in_menu: in_menu,
-  sidebar_content: sidebar_content,
-  has_sidebar: has_sidebar
-} %}
-  {% block sidebar_block %}
-    {{ drupal_entity('block', block_name, check_access=false) }}
-    {{ content.field_sidebar_content }}
-  {% endblock sidebar_block %}
+    {{ content.toc_enabled }}
 
-  {% if content.toc_enabled|render|striptags|trim is not empty %}
-    {% block toc_content %}
-      {{ content.toc_enabled }}
-    {% endblock toc_content %}
-  {% endif %}
+    {% if content.description|render %}
+      <div class="long-desc">
+        {{ content.description }}
+      </div>
+    {% endif %}
 
-  {% block main_content %}
+    {% if content.errand_services|render %}
+      <div class="enriched-content service__errand-services">
+        {{ content.errand_services }}
+      </div>
+    {% endif %}
+
     {% if content.field_content|render|striptags|trim is not empty %}
-      <div class="enriched-content components components--service {{ has_sidebar ? 'has-sidebar' }}">
+      <div class="enriched-content components components--service">
         {{ content.field_content }}
       </div>
     {% endif %}
-  {% endblock main_content %}
-{% endembed %}
+
+  </article>
+
+{% elseif view_mode == 'teaser' %}
+
+  <div class="service service--teaser">
+    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
+      <h3 class="service__title">
+        {{ entity.label }}
+      </h3>
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+    </a>
+  </div>
+
+{% endif %}

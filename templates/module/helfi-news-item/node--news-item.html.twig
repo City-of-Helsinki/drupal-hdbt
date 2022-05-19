@@ -2,12 +2,11 @@
 
   {% block main_content %}
 
-    {# Lead text #}
-    {% if content.field_lead_in|render %}
-      <section class="preamble">
-        {{ content.field_lead_in }}
-      </section>
-    {% endif %}
+    {# Lead-in text, if any #}
+    {{ content.field_lead_in }}
+
+    {# Page divider, normally it comes from table of contents, but news does not have that #}
+    <div class="page-divider"></div>
 
     {# Created date and modified date #}
     {% if published_at is not empty %}
@@ -34,6 +33,7 @@
     {# Main image #}
     {% if content.field_main_image|render %}
       {% include '@hdbt/misc/image-with-caption.twig' with {
+        figure_class: 'main-image',
         image: content.field_main_image,
         image_caption: main_image_caption
       } %}

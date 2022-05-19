@@ -1,110 +1,3 @@
-.unit {
-  .unit__title {
-    margin-bottom: $spacing-and-half;
-    margin-top: 0;
-  }
-
-  .unit__short-desc {
-    @include font('lead');
-    padding-bottom: $spacing-half;
-    position: relative;
-  }
-
-  .unit__divider {
-    background-color: $color-black;
-    display: block;
-    height: 2px;
-    margin-bottom: $spacing-and-half;
-    margin-top: $spacing-double;
-    width: $spacing-quadruple;
-  }
-
-  .unit__long-desc {
-    @include font('body');
-    margin-top: $spacing-quadruple;
-
-    p:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .unit__image {
-    @include component-negative-side-margin();
-
-    img {
-      @include image-defaults($width: 100%, $max-width: null);
-    }
-  }
-
-  .unit-header__container {
-    @include components-container-max-width();
-    @include component-side-padding();
-    margin-left: auto;
-    margin-right: auto;
-
-    @include breakpoint($breakpoint-l) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    &.has-navigation {
-      .unit__header {
-        order: 2;
-        padding-right: 0;
-
-        @include breakpoint($breakpoint-l) {
-          padding-left: $spacing-double;
-        }
-
-        @include breakpoint($breakpoint-xl) {
-          padding-left: $spacing-triple;
-        }
-      }
-
-      .unit__sidebar {
-        margin-top: $spacing-double;
-        order: 1;
-        padding-left: 0;
-
-        @include breakpoint($breakpoint-l) {
-          margin-top: 0;
-          padding-right: $spacing-double;
-        }
-
-        @include breakpoint($breakpoint-xl) {
-          padding-left: $spacing;
-          padding-right: $spacing-triple;
-        }
-      }
-    }
-
-    .unit__header {
-      @include breakpoint($breakpoint-l) {
-        padding-right: $spacing-double;
-        width: 68%;
-      }
-
-      @include breakpoint($breakpoint-xl) {
-        padding-right: $spacing-triple;
-      }
-    }
-    .unit__sidebar {
-      margin-top: $spacing-double;
-
-      @include breakpoint($breakpoint-l) {
-        margin-top: 0;
-        padding-left: $spacing-double;
-        width: 32%;
-      }
-
-      @include breakpoint($breakpoint-xl) {
-        padding-left: $spacing-triple;
-        padding-right: $spacing;
-      }
-    }
-  }
-}
-
 .unit__contact {
   &:first-child .unit__contact__title {
     @include breakpoint($breakpoint-l) {
@@ -362,6 +255,7 @@
     }
 
     img {
+      @include image-defaults($width: 100%, $max-width: null);
       @include breakpoint($breakpoint-m) {
         @include image-defaults($height: 100%, $width: 100%, $max-width: null);
         object-fit: cover;

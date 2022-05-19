@@ -13,14 +13,13 @@ regions:
   header_branding: Header - Branding
   header_bottom: Header - Bottom
   messages: Messages
-  tools: Tools
   breadcrumb: Breadcrumb
-  sidebar_first: First sidebar
-  sidebar_second: Second sidebar
+  tools: Tools
   before_content: Before content
+  sidebar_first: First sidebar
   content: Content
+  sidebar_second: Second sidebar
   after_content: After content
-  before_footer: Before footer
   footer_top: Footer - Top
   footer_bottom: Footer - Bottom
   attachments: Attachments

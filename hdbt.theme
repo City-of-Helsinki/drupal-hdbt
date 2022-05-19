@@ -14,10 +14,11 @@ use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
@@ -192,11 +193,6 @@ function hdbt_preprocess_node(&$variables) {
 
   // Add current node Url to variable.
   $variables['node_url'] = !$node->isNew() ? $node->toUrl('canonical') : NULL;
-
-  // If node has hero block, set variable accordingly.
-  if ($node->hasField('field_has_hero')) {
-    $variables['hide_label'] = boolval($node->field_has_hero->value);
-  }
 
   // If node has "published_at" field, set it as variable for the node template.
   if ($node->hasField('published_at') && $node->isPublished()) {
@@ -460,19 +456,22 @@ function hdbt_preprocess_block(&$variables) {
 
   // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
-    if ($node = Drupal::routeMatch()->getParameter('node')) {
-      // Retrieve the node object for revisions.
-      $node = (is_numeric($node) && !$node instanceof Node)
-        ? Node::load($node) : $node;
+    $page_entity = hdbt_content_get_page_entity();
 
-      // Hide block if current node is front page.
+    if ($page_entity instanceof ContentEntityInterface) {
+      // Retrieve possible overridden value for page title block.
+      if ($page_entity instanceof TprEntityBase) {
+        $variables['content']['#title'] = $page_entity->label();
+      }
+
+      // Hide page title block if current node has hero set.
       if (
-        $node->hasField('field_hero') &&
-        $node->hasField('field_has_hero')
+        $page_entity instanceof NodeInterface &&
+        $page_entity->hasField('field_hero') &&
+        $page_entity->hasField('field_has_hero') &&
+        boolval($page_entity->get('field_has_hero')->getString())
       ) {
-        if (boolval($node->get('field_has_hero')->getString())) {
-          $variables['hide_block'] = TRUE;
-        }
+        $variables['hide_block'] = TRUE;
       }
     }
   }
@@ -699,54 +698,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
         $image_style
       );
     }
-  }
-
-  // Check if the paragraph is a type of gallery and prepare the slides
-  // and generate the thumbnails.
-  if ($paragraph_type == 'gallery') {
-    $variables['#attached']['library'][] = 'hdbt/gallery';
-
-    $slide_paragraphs = $paragraph->get('field_gallery_slides')->getValue();
-    $slide_ids = [];
-
-    foreach ($slide_paragraphs as $slide_paragraph) {
-      $slide_ids[] = $slide_paragraph['target_id'];
-    }
-
-    // Get a paragraph storage object.
-    $paragraph_storage = Drupal::entityTypeManager()->getStorage('paragraph');
-    // Load all slide paragraphs.
-    $slides = $paragraph_storage->loadMultiple($slide_ids);
-    $slide_thumbnails = [];
-
-    // Construct an array of slides and handle the image caption + alt texts.
-    foreach ($slides as $id => $slide) {
-      $slides[$id] = ['gallery_slide' => $slide];
-      _hdbt_preprocess_image_caption(
-        $slides[$id],
-        'gallery_slide',
-        'field_gallery_slide_media',
-        'field_gallery_slide_caption'
-      );
-      $slides[$id]['gallery_slide'] = $slides[$id]['gallery_slide']->field_gallery_slide_media->entity->field_media_image->entity;
-      $slide_thumbnails[] = $slides[$id];
-    }
-    $variables['gallery_slide_thumbnails'] = $slide_thumbnails;
-  }
-
-  // Check if the paragraph is a type of gallery_slide and handle the slide
-  // image width and height attributes.
-  if (
-    $paragraph_type == 'gallery_slide' &&
-    $paragraph->hasField('field_gallery_slide_media')
-  ) {
-    // Handle image caption preprocessing.
-    _hdbt_preprocess_image_caption(
-      $variables,
-      'paragraph',
-      'field_gallery_slide_media',
-      'field_gallery_slide_caption'
-    );
   }
 
   // Unit search paragraph.

@@ -11,6 +11,10 @@ rules:
   declaration-empty-line-before: never # No need for empty line before declaration
   order/properties-alphabetical-order: true # We're following alphabetical order in properties
   custom-property-pattern: "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$" # kebab-case pattern with allowed bem-like double --
+  number-max-precision:
+    - 4
+    - ignoreUnits:
+        - '%' # Sometimes we need more specific values to be able to round to even pixels with percentages
 overrides:
   - files:
       - '**/__index.scss'

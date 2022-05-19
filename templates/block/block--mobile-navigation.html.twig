@@ -33,7 +33,7 @@
 #}
 {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
-<label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button">
+<label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button" id="cssmenu-toggle">
   <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
   <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
 </label>

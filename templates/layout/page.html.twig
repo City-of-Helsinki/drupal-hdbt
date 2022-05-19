@@ -4,32 +4,19 @@
  * Theme override to display a single page.
  *
  * Variables:
- * - in_menu: A boolean indicating whether the page is in menu or not
+ * - has_sidebar_first: A boolean indicating if the first sidebar is available
+ * - has_sidebar_second: A boolean indicating if the second sidebar is available
  * - active_theme: A string indicating the active theme
- * - has_sidebar: A boolean indicating whether the page has sidebar content
  *
  * @see hdbt_content_preprocess_page() and hdbt_preprocess_page()
 #}
 
-{# TODO: Do we need to separate the sidebar first and sidebar second regions? #}
-{% if has_sidebar %}
-  {% set sidebar_first_output = TRUE %}
-{% endif %}
-
-{% if page.sidebar_second|render|striptags|trim is not empty %}
-  {% set sidebar_second_output = render_var(page.sidebar_second) %}
-{% endif %}
-
-{% if sidebar_second_output %}
-  {% set has_sidebar = true %}
-{% endif %}
-
 {% set page_classes = [
     node.getType() ? 'page-type--' ~ node.getType()|clean_class,
     'wrapper',
-    has_sidebar ? 'has-sidebar' : 'no-sidebar',
-    sidebar_first_output ? 'has-sidebar--first',
-    sidebar_second_output ? 'has-sidebar--second',
+    has_sidebar_first or has_sidebar_second ? 'has-sidebar' : 'no-sidebar',
+    has_sidebar_first ? 'has-sidebar--first' : 'no-sidebar-first',
+    has_sidebar_second ? 'has-sidebar--second' : 'no-sidebar-second',
   ]
 %}
 
@@ -46,7 +33,7 @@
 {% endif %}
 
 {# This checkbox handles opening and closing mobile menu #}
-<input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button">
+<input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
 
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
@@ -65,49 +52,52 @@
     </header>
   {% endif %}
 
-  {% if page.messages %}
-    {{ page.messages }}
-  {% endif %}
-
-  {% if page.breadcrumb %}
-    {{ page.breadcrumb }}
-  {% endif %}
-
-  {% if page.tools %}
-    {{ page.tools }}
-  {% endif %}
-
   <main role="main" class="layout-main-wrapper">
+    {% if page.breadcrumb %}
+      {{ page.breadcrumb }}
+    {% endif %}
+
+    {% if page.tools %}
+      {{ page.tools }}
+    {% endif %}
+
     <a id="main-content" tabindex="-1"></a>
 
-    {# Construct page_title_block based on active theme. #}
-    {% set page_title_block = active_theme ~ '_page_title' %}
+    {% if page.messages %}
+      {{ page.messages }}
+    {% endif %}
 
     {% block page_before_content %}
-      {# Render before content without the page title block. #}
       {% if page.before_content %}
-        {{ page.before_content|without(page_title_block) }}
+        {{ page.before_content }}
       {% endif %}
     {% endblock page_before_content %}
 
     <div class="main-content">
-      <div class="layout-content {% if in_menu %}has-navigation{% endif %}">
-        {% if not has_hero %}
-          {{ page.before_content[page_title_block] }}
-        {% endif %}
-        {% block page_content %}
-          {{ page.content }}
-        {% endblock page_content %}
-      </div>{# /.layout-content #}
 
-      {% if sidebar_first_output %}
-        <aside class="layout-sidebar-first {% if in_menu %}has-navigation{% endif %}" role="complementary">
+      {% if has_sidebar_first %}
+        <div class="layout-sidebar-first">
           {{ page.sidebar_first }}
-        </aside>
+        </div>
       {% endif %}
 
-      {% if sidebar_second_output %}
-        <aside class="layout-sidebar-second" role="complementary">
+      <div class="layout-content">
+
+        {# Construct page_title_block based on active theme. #}
+        {% set page_title_block = active_theme ~ '_page_title' %}
+
+        {% block page_content %}
+          {# We want page_title always to be before other page.content #}
+          {% if not has_hero %}
+            {{ page.content[page_title_block] }}
+          {% endif %}
+          {{ page.content|without(page_title_block) }}
+        {% endblock page_content %}
+
+      </div>
+
+      {% if has_sidebar_second %}
+        <aside class="layout-sidebar-second">
           {{ page.sidebar_second }}
         </aside>
       {% endif %}
@@ -123,8 +113,10 @@
 
 {% if page.footer_top or page.footer_bottom %}
   {% set footer_variant = '' %}
-  {% if page.footer_color %}
-    {% set footer_variant = 'footer--' ~ page.footer_color|clean_class %}
+  {% if page.footer_color == 'dark'  %}
+    {% set footer_variant = 'footer--dark' %}
+  {% elseif page.footer_color == 'light' %}
+    {% set footer_variant = 'footer--light' %}
   {% endif %}
 
   <footer role="contentinfo" class="footer {{ footer_variant }}">

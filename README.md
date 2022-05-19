@@ -129,26 +129,26 @@ site caches and you should be able to continue with your work.
 
 ### How can I add custom translations?
 Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8 documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
-These translations consists of:         
+These translations consists of:
 
-PHP  
+PHP
 ```
 $this->t('Example', [], ['context' => 'My custom context'])
 ```
 Twig
 ```
 {{ 'Example'|t({}, {'context': 'My custom context'}) }}
-``` 
+```
 JS
 ```
 const variable = Drupal.t('Example', {}, {context: 'My custom context'});
 ```
 
-And the way to add the actual translation in to f.e. `fi.po` is done like so:   
+And the way to add the actual translation in to f.e. `fi.po` is done like so:
 ```
 msgctxt "My custom context"
 msgid "Example"
-msgstr "Esimerkki"  
+msgstr "Esimerkki"
 ```
 
 To see these translation changes in an instance, run in container shell:
@@ -181,19 +181,6 @@ to the handorgel-library.
 
 Each accordion paragraph consists of accordion items and each of these items is also a paragraph, so it is a paragraph-
 inception like we like to call it.
-
-### Gallery paragraph
-The Gallery paragraph is done using two separate javascript libraries: Splide (https://github.com/Splidejs/splide) and
-Tiny Slider (https://github.com/ganlanyuan/tiny-slider). The Splide library is used to provide the actual gallery
-functionality so it handles displaying the big images with arrows on both sides to move the slides back and forward.
-The Splide library had all the tools to create thumbnails under the main gallery and link them, but the thumbnail-list
-was not scrollable. To make it scrollable we brought in Tiny Slider and fused the two libraries to work together so
-that thumbnails can be scrolled using the Tiny Slider. Both Splide and Tiny Slider are set up as a separate, stand-alone
-libraries in the theme and they are brought together using gallery library that has dependency to both. The library
-configuration and fusing is done in gallery-settings.js under the theme.
-
-Much like the accordion the gallery also consist of gallery paragraph that in turn consists of gallery slide paragraphs.
-This means that also the gallery paragraph is so-called paragraph-inception.
 
 ### Kuura Health Chat
 Kuura Health chat is attached to a block id `block-kuurahealthchat` when adding the external library. This causes the
