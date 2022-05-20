@@ -1,5 +1,5 @@
 .menu__link {
-  @include navigation_link_defaults();
+  @include navigation_link_defaults;
 }
 
 .menu__link__text {
@@ -10,4 +10,3 @@
   // Hide icons by default so that they aren't displayed accidentally somewhere where they have no styles defined.
   display: none;
 }
-

@@ -1,4 +1,4 @@
-.announcement{
+.announcement {
   @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
   padding-bottom: $spacing;
@@ -34,6 +34,7 @@
   @include breakpoint($breakpoint-m) {
     --announcement-bg-size: #{$spacing-triple};
   }
+
   @if $component-side-padding-mobile != $component-side-padding-desktop {
     @include breakpoint($component-side-padding-breakpoint) {
       margin-left: $component-side-padding-desktop;
@@ -42,9 +43,10 @@
   }
 }
 
-.announcement--alert .announcement__container{
+.announcement--alert .announcement__container {
   --announcement-bg-color: #{$color-error-light};
   --announcement-color: #{$color-error};
+
   &::before {
     @include pseudo-icon-replace('error-fill');
   }
@@ -52,6 +54,7 @@
 
 .announcement--attention .announcement__container {
   --announcement-color: #{$color-alert};
+
   &::before {
     @include pseudo-icon-replace('alert-circle-fill');
     background-color: $color-black;
@@ -73,16 +76,19 @@
 
   a::after {
     @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em));
-    @include hover-link-arrow-transition();
+    @include hover-link-arrow-transition;
     margin-left: $spacing-quarter;
   }
+
   a:focus::after,
   a:hover::after {
     transform: translateX($spacing-quarter);
+
     @media (prefers-reduced-motion) {
       transform: none;
     }
   }
+
   a[data-is-external]::after {
     content: none;
   }
@@ -99,8 +105,10 @@
   margin-top: -$spacing-half;
   padding: 0;
   width: $spacing-double;
-  &::after{
+
+  &::after {
     --icon-size: #{$spacing-double};
+
     @include pseudo-icon('cross');
   }
 }
@@ -122,6 +130,7 @@
     padding-bottom linear $transition-b $transition-a,
     visibility linear 0s #{$transition-a + $transition-b};
   visibility: hidden;
+
   @media (prefers-reduced-motion) {
     transition: none;
   }

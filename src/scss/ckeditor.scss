@@ -1,7 +1,5 @@
-//
-// @file
+// stylelint-disable at-rule-empty-line-before
 // This file includes styling for WYSIWYG editor.
-//
 
 @import 'hds';
 
@@ -16,7 +14,6 @@
 @import '04_elements/_index';
 @import '05_objects/_index';
 @import '06_components/paragraphs/text';
-
 
 [data-selected-icon]::before,
 [data-is-external]::after,
@@ -46,7 +43,7 @@ p > a.hds-button.hds-button--supplementary[data-selected-icon]:first-child {
   margin-left: 0;
 }
 
-a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-external=true]):before {
+a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-external='true']):before {
   content: none;
 }
 
@@ -68,7 +65,6 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-ex
   mask-image: var(--hel-icon--tel);
 }
 
-
 [data-selected-icon].hds-button--primary::before,
 [data-selected-icon].hds-button--secondary::before {
   margin-left: $spacing-half;
@@ -88,5 +84,3 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-ex
 [data-is-external].hds-button--secondary .hds-button__label:only-child {
   margin-right: 0;
 }
-
-

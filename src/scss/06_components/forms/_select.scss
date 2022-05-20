@@ -1,5 +1,6 @@
 .hdbt--select-wrapper {
   @include font('body');
+
   --border-width: 2px;
   --input-height: 52px;
   --menu-item-height: 52px;
@@ -29,7 +30,7 @@
   color: var(--input-color-default);
   cursor: pointer;
   display: block;
-  grid-template-areas: "select";
+  grid-template-areas: 'select';
   min-width: 15ch;
   padding: 0;
   position: relative;
@@ -76,7 +77,7 @@
   &:not(.select--multiple)::after {
     background-color: var(--helper-color-default);
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-    content: "";
+    content: '';
     height: 0.5em;
     justify-self: end;
     width: 0.8em;

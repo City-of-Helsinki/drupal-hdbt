@@ -1,7 +1,7 @@
-$_video-aspect-ratio: 16/9;
+$-video-aspect-ratio: 16 / 9;
 
 .component--remote-video {
-  @include hds-button-colors-on-dark-bg();
+  @include hds-button-colors-on-dark-bg;
   @include component-side-padding;
   background-color: $color-black;
   padding-bottom: $spacing-double;
@@ -35,7 +35,7 @@ $_video-aspect-ratio: 16/9;
     background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
     height: 0;
     overflow: hidden;
-    padding-bottom: aspect-ratio-padding($_video-aspect-ratio);
+    padding-bottom: aspect-ratio-padding($-video-aspect-ratio);
 
     iframe {
       border: 0;

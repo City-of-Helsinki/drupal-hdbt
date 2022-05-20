@@ -11,6 +11,13 @@ rules:
   declaration-empty-line-before: never # No need for empty line before declaration
   order/properties-alphabetical-order: true # We're following alphabetical order in properties
   custom-property-pattern: "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$" # kebab-case pattern with allowed bem-like double --
+  color-hex-length: 'long'
+  font-family-name-quotes: 'always-unless-keyword'
+  value-keyword-case: null # This was causing too much hassle and making thing like currentColor hard to read
+  max-nesting-depth:
+    - 3 # we should finetune this to be lower
+    - ignore:
+        - pseudo-classes
   number-max-precision:
     - 4
     - ignoreUnits:

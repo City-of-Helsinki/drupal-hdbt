@@ -1,5 +1,5 @@
 .language-link {
-  @include navigation_link_defaults();
+  @include navigation_link_defaults;
   @include font('small');
   color: $color-black-90;
   margin-left: $spacing-half;

@@ -1,26 +1,6 @@
 .sidebar-text {
   @include font('body');
-  // margin-top: $spacing;
 
-  // &.has-title:first-of-type,
-  // &:first-of-type {
-  //   // Node (basic page).
-  //   margin-top: $spacing-and-half;
-
-  //   // Service.
-  //   .service__sidebar & {
-  //     margin-top: $spacing;
-  //   }
-
-  //   // If sidebar navigation exists.
-  //   .has-navigation & {
-  //     margin-top: $spacing-triple;
-  //   }
-  // }
-
-  // &.has-title {
-  //   margin-top: $spacing-double;
-  // }
   & + .sidebar-text {
     margin-top: $spacing-double;
   }
