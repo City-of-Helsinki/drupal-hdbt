@@ -142,19 +142,19 @@
 
     @include breakpoint($breakpoint-m) {
       padding-right: $spacing-and-half;
-      width: 70%;
+      width: 75%;
     }
   }
 
   .news-listing__content--with-image {
     padding-right: $spacing-and-half;
-    width: 70%;
+    width: 75%;
   }
 
   .news-listing__img {
     @include loading-image-background;
-    width: 30%;
-
+    width: 25%;
+    
     img {
       display: block;
       height: auto;

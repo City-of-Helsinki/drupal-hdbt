@@ -1,4 +1,10 @@
+{% set has_image = false %}
+{% if content.field_main_image|render %}
+  {% set has_image = true %}
+{% endif %}
+
 {% include '@hdbt/module/helfi-news-item/news-teaser-generic.twig' with {
+  class: has_image ? 'news-listing__content--with-image',
   heading_level: 'h2',
   show_image: true
 }%}
