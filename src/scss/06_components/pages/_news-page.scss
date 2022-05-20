@@ -152,9 +152,9 @@
   }
 
   .news-listing__img {
-    @include loading-image-background();
+    @include loading-image-background;
     width: 25%;
-
+    
     img {
       display: block;
       height: auto;

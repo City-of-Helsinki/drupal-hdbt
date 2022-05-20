@@ -104,7 +104,7 @@ $koro-height: 50px;
 }
 
 .hero-wrapper.has-first-gray-bg-block {
-  background-color: $color-silver-light;;
+  background-color: $color-silver-light;
   margin-bottom: -$spacing-quadruple;
   padding-bottom: $spacing-triple;
 
@@ -126,9 +126,8 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
-
 }
 
 .hero--bg-color--gold {
@@ -159,7 +158,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
@@ -175,7 +174,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
@@ -239,7 +238,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
@@ -273,7 +272,6 @@ $koro-height: 50px;
 .hero--with-image-right,
 .hero--with-image-left,
 .hero--with-image-bottom {
-
   .hero__container {
     padding-bottom: $spacing;
 
@@ -328,6 +326,7 @@ $koro-height: 50px;
       max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) * 0.5;
       width: 50%;
     }
+
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
         max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
@@ -348,13 +347,14 @@ $koro-height: 50px;
   }
 
   .hero__image-container {
-    @include breakpoint($breakpoint-m)  {
+    @include breakpoint($breakpoint-m) {
       height: auto;
       margin-top: $spacing-quadruple;
       max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) * 0.5;
       padding: 0 $spacing-double $spacing-quadruple;
       width: 50%;
     }
+
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
         max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
@@ -442,7 +442,7 @@ $koro-height: 50px;
   &::after {
     background-color: rgba($color-black, 0.15);
     bottom: 0;
-    content: "";
+    content: '';
     display: block;
     left: 0;
     position: absolute;
@@ -495,7 +495,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 
   .hero__arrow {
@@ -530,6 +530,7 @@ $koro-height: 50px;
     @include breakpoint($breakpoint-l) {
       max-width: 400px;
     }
+
     @include breakpoint($breakpoint-xl) {
       max-width: 500px;
     }
@@ -582,13 +583,12 @@ $koro-height: 50px;
       &::after {
         @include breakpoint($breakpoint-l) {
           background-color: currentColor;
-          content: "";
+          content: '';
           display: block;
           height: 1000px;
           left: 15%;
           position: absolute;
-          // Koro-element height - 2px
-          top: $koro-height - 2px;
+          top: $koro-height - 2px; // Koro-element height - 2px
           width: 1500px;
         }
 

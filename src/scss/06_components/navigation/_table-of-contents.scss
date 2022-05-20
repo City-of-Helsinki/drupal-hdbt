@@ -1,12 +1,12 @@
 .table-of-contents {
-  @include components-container-max-width();
+  @include components-container-max-width;
 
   &:not(:first-child) {
     @include component-margin-top;
   }
 
   @include breakpoint($breakpoint-m) {
-    @include component-side-padding();
+    @include component-side-padding;
     margin-left: auto;
     margin-right: auto;
   }
@@ -24,8 +24,7 @@
 .table-of-contents__container {
   background-color: $color-silver-light;
   border-left: $spacing-half solid $color-gold;
-  // Max-width: Content max width (860px) + left and right paddings.
-  max-width: $spacing-and-half + $content-width-max + $spacing-and-half;
+  max-width: $spacing-and-half + $content-width-max + $spacing-and-half; // Max-width: Content max width (860px) + left and right paddings.
   padding: $spacing-double $spacing-and-half;
 }
 
@@ -67,7 +66,7 @@
 
     &::after {
       box-shadow: 0 0 0 3px $color-black;
-      content: "";
+      content: '';
       display: block;
       height: 100%;
       left: -#{$spacing-quarter};

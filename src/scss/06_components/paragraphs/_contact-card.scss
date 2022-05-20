@@ -50,10 +50,11 @@ $contact-card-color-line-width: 4px;
 
 .contact-card--person-name {
   margin-top: 0;
+
   @include font('h5');
 }
 
-.contact-card--person-phone-number a:not(:last-of-type)::after{
+.contact-card--person-phone-number a:not(:last-of-type)::after {
   content: ',';
   margin-right: 2px;
 }
