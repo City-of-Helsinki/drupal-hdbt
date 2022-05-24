@@ -1,5 +1,9 @@
 // Fix sidebar width when there are only short news titles
 // TODO: REGIONS Clean this up with other region things
+$-card-teaser-img-aspect-ratio: 3 / 2;
+$-card-teaser-min-width: 280px;
+$-card-teaser-img-mobile-width: 180px;
+
 .page-type--news-item .sidebar-first {
   display: block;
 }
@@ -173,6 +177,99 @@
 
     @include breakpoint($breakpoint-l) {
       margin-top: $spacing-and-half;
+    }
+  }
+}
+
+.news-listing--card-teasers {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: calc(-1 * $spacing-and-half);
+  }
+
+  .news-listing__item {
+    @include breakpoint($breakpoint-m) {
+      min-width: $-card-teaser-min-width;
+      width: 25%;
+    }
+  }
+
+  .news-listing__card-teaser {
+    height: 100%;
+  }
+}
+
+.news-listing__card-teaser {
+  border-bottom: 1px solid var(--color-black-5);
+  display: flex;
+  margin-bottom: $spacing;
+  padding-bottom: $spacing;
+  position: relative;
+  
+
+  @include breakpoint($breakpoint-m) {
+    border: 1px solid var(--color-black);
+    flex-direction: column;
+    margin-right: $spacing-and-half;
+    padding-bottom: 0;
+  }
+
+  h2 {
+    @include font('h5');
+  }
+
+  .news-listing__img {
+    height: 0;
+    min-width: $-card-teaser-img-mobile-width;
+    overflow: hidden;
+    padding-bottom: aspect-ratio-padding($-card-teaser-img-aspect-ratio);
+    position: relative;
+
+    img {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: auto;
+    }
+  }
+
+  .image-placeholder {
+    padding-bottom: aspect-ratio-padding($-card-teaser-img-aspect-ratio);
+  }
+
+  .news-listing__text-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing;
+    }
+  }
+
+  .news-listing__title,
+  .news-listing__datetime {
+    margin-bottom: $spacing;
+  }
+
+  .news-listing__datetime {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .hel-icon--arrow-right {
+    display: none;
+    height: $spacing-double;
+    margin-bottom: $spacing;
+    margin-left: $spacing;
+    width: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      display: inline-block;
     }
   }
 }
