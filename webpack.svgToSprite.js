@@ -100,7 +100,7 @@ class svgToSprite {
         let fullFilename = this.cssVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssVariables.push(`--${this.iconClass}-icon--${name[0]}:url(../${this.spriteHashFilename}#${name[0]})`);
+        cssVariables.push(`--${this.iconClass}-icon--${name[0]}:url(../../../../contrib/hdbt/dist/${this.spriteHashFilename}#${name[0]})`);
       }
       cssVariables = `:root{${ cssVariables.join(';') }}`;
 
