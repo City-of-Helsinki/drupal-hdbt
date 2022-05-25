@@ -190,7 +190,10 @@ $-card-teaser-min-width: 280px;
 
   .news-listing__item {
     @include breakpoint($breakpoint-m) {
-      min-width: $-card-teaser-min-width;
+      width: 50%;
+    }
+
+    @include breakpoint($breakpoint-l) {
       width: 25%;
     }
   }
@@ -206,6 +209,14 @@ $-card-teaser-min-width: 280px;
   margin-bottom: $spacing;
   padding-bottom: $spacing;
   position: relative;
+
+  &:hover .hel-icon--arrow-right {
+    transform: translateX($spacing-quarter);
+
+    @media (prefers-reduced-motion) {
+      transform: none;
+    }
+  }
   
 
   @include breakpoint($breakpoint-m) {
@@ -215,13 +226,17 @@ $-card-teaser-min-width: 280px;
     padding-bottom: 0;
   }
 
-  h2 {
+   .news-listing__title {
     @include font('h5');
+
+    @include breakpoint($breakpoint-l) {
+      font-weight: $font-weight-medium;
+    }
   }
 
   .news-listing__img {
     position: relative;
-    width: 50%;
+    width: 40%;
 
     @include breakpoint($breakpoint-m) {
       width: unset;
@@ -242,7 +257,7 @@ $-card-teaser-min-width: 280px;
     flex-direction: column;
     height: 100%;
     padding-left: $spacing;
-    width: 50%;
+    width: 60%;
 
     @include breakpoint($breakpoint-m) {
       padding: $spacing;
@@ -261,10 +276,11 @@ $-card-teaser-min-width: 280px;
   }
 
   .hel-icon--arrow-right {
+    @include hover-link-arrow-transition;
+
     display: none;
     height: $spacing-double;
     margin-bottom: $spacing;
-    margin-left: $spacing;
     width: $spacing-double;
 
     @include breakpoint($breakpoint-m) {
