@@ -1,4 +1,4 @@
-<div class="news-listing__content {{ class }}">
+<div{{ attributes.addClass('news-listing__content', class) }}">
   {# Short title or Title #}
   <{{ heading_level }} class="news-listing__title">
     {% set link_attributes = {
