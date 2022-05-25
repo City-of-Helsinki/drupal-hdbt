@@ -2,7 +2,6 @@
 // TODO: REGIONS Clean this up with other region things
 $-card-teaser-img-aspect-ratio: 3 / 2;
 $-card-teaser-min-width: 280px;
-$-card-teaser-img-mobile-width: 180px;
 
 .page-type--news-item .sidebar-first {
   display: block;
@@ -221,18 +220,16 @@ $-card-teaser-img-mobile-width: 180px;
   }
 
   .news-listing__img {
-    height: 0;
-    min-width: $-card-teaser-img-mobile-width;
-    overflow: hidden;
-    padding-bottom: aspect-ratio-padding($-card-teaser-img-aspect-ratio);
     position: relative;
+    width: 50%;
+
+    @include breakpoint($breakpoint-m) {
+      width: unset;
+    }
 
     img {
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: auto;
+      height: auto;
+      width: 100%;
     }
   }
 
@@ -245,9 +242,11 @@ $-card-teaser-img-mobile-width: 180px;
     flex-direction: column;
     height: 100%;
     padding-left: $spacing;
+    width: 50%;
 
     @include breakpoint($breakpoint-m) {
       padding: $spacing;
+      width: unset;
     }
   }
 
