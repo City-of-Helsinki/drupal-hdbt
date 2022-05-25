@@ -185,7 +185,7 @@ $-card-teaser-min-width: 280px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-right: calc(-1 * $spacing-and-half);
+    margin-right: -#{$spacing-and-half};
   }
 
   .news-listing__item {
