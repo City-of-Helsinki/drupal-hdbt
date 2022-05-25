@@ -1,0 +1,8 @@
+.popular-services {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include flex-gap($spacing-and-half);
+  }
+}
