@@ -206,3 +206,7 @@ msgstr "Seuraava"
 
 msgid "Chat is not in use."
 msgstr "Chat ei ole käytössä."
+
+msgctxt "Popular services paragraph title"
+msgid "Popular services"
+msgstr "Suositut palvelut"

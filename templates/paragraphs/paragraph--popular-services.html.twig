@@ -2,7 +2,7 @@
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--popular-services' ],
-      component_title: 'Popular services'|t,
+      component_title: 'Popular services'|t({}, {'context': 'Popular services paragraph title'}),
       component_content_class: 'popular-services',
     }
   %}
