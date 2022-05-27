@@ -1042,12 +1042,12 @@ function hdbt_preprocess_field(&$variables) {
       break;
 
     case 'field_service_links':
-      foreach($variables['items'] as &$item) {
+      foreach ($variables['items'] as &$item) {
         $existing = $item['content']['#url']->getOption('attributes');
         $attributes = array_merge($existing ?? [], [
           'class' => [
-            'popular-service-item__link'
-          ]
+            'popular-service-item__link',
+          ],
         ]);
 
         $item['content']['#url']->setOption('attributes', $attributes);
