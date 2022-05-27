@@ -83,7 +83,7 @@
   ],
   "devDependencies": {
     "stylelint": "^14.6.1",
-    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-config-standard-scss": "^4.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0"
   }
