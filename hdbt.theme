@@ -654,6 +654,10 @@ function hdbt_preprocess_paragraph(array &$variables) {
           $image_style = 'hero__diagonal';
           break;
 
+        case 'with-search':
+          $image_style = 'hero__diagonal';
+          break;
+
         default:
           $image_style = 'hero__background';
           break;

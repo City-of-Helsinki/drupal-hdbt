@@ -61,6 +61,12 @@
           <h1 class="hero__title">
             {{ content.field_hero_title }}
           </h1>
+
+          {% if design == "with-search"%}
+            {# TO-DO replace with actual search #}
+            <input type="text" class="hds-text-input__input" placeholder="Haku tulee tähän">
+          {% endif %}
+
           {% if description[0]['#text'] is not empty %}
             {% if
               design == "without-image-left" or
@@ -68,7 +74,8 @@
               design == "with-image-right" or
               design == "with-image-left" or
               design == "with-image-bottom" or
-              design == "diagonal"
+              design == "diagonal" or
+              desgin == "with-search"
             %}
               <div class="hero__description">
                 {{ description }}
@@ -106,7 +113,8 @@
       design == "with-image-left" or
       design == "with-image-bottom" or
       design == "background-image" or
-      design == "diagonal"
+      design == "diagonal" or 
+      design == "with-search"
     %}
       {% if content.field_hero_image|render %}
         <div class="hero__image-container">

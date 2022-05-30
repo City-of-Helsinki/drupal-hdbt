@@ -507,7 +507,8 @@ $koro-height: 50px;
   }
 }
 
-.hero--diagonal {
+.hero--diagonal,
+.hero--with-search {
   @include breakpoint($breakpoint-l) {
     position: relative;
   }
