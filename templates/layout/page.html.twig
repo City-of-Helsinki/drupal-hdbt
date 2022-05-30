@@ -77,7 +77,9 @@
 
       {% if has_sidebar_first %}
         <div class="layout-sidebar-first">
-          {{ page.sidebar_first }}
+          {% block page_sidebar_first %}
+            {{ page.sidebar_first }}
+          {% endblock page_sidebar_first %}
         </div>
       {% endif %}
 
@@ -98,7 +100,9 @@
 
       {% if has_sidebar_second %}
         <aside class="layout-sidebar-second">
-          {{ page.sidebar_second }}
+          {% block page_sidebar_second %}
+            {{ page.sidebar_second }}
+          {% endblock page_sidebar_second %}
         </aside>
       {% endif %}
     </div>
