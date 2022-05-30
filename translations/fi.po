@@ -209,4 +209,4 @@ msgstr "Chat ei ole käytössä."
 
 msgctxt "Popular services paragraph title"
 msgid "Popular services"
-msgstr "Suositut palvelut"
+msgstr "Suosittuja palveluja"
