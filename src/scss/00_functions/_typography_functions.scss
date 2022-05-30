@@ -1,0 +1,5 @@
+@function get-line-height($style) {
+  $-path: 'font.#{$style}';
+
+  @return get('#{$-path}.line-height') * get('#{$-path}.font-size');
+}
