@@ -89,6 +89,9 @@ function hdbt_preprocess_html(&$variables) {
 
   // Add Matomo analytics.
   $variables['#attached']['library'][] = 'hdbt/matomo';
+
+  // Disable Genesys button if the chat element does not exist.
+  $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 }
 
 /**
