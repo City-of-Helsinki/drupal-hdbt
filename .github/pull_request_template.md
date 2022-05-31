@@ -15,5 +15,12 @@ A longer description of the task
 ## How to test
 * Describe how to test the feature
 
+## Designers review
+
+One of the checkboxes below needs to be checked (`[x]`)
+
+* [ ] This PR does not need designers review
+* [ ] This PR has been visually reviewed by a designer (Name of the designer)
+
 ## Other PRs
-* 
+*

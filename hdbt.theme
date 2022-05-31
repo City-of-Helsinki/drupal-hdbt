@@ -89,6 +89,9 @@ function hdbt_preprocess_html(&$variables) {
 
   // Add Matomo analytics.
   $variables['#attached']['library'][] = 'hdbt/matomo';
+
+  // Disable Genesys button if the chat element does not exist.
+  $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 }
 
 /**
@@ -815,6 +818,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
       }
     }
   }
+
 }
 
 /**
@@ -1038,6 +1042,19 @@ function hdbt_preprocess_field(&$variables) {
           $item['link_url'] = $item['content']['#url'];
           $item['link_title'] = $item['content']['#title'];
         }
+      }
+      break;
+
+    case 'field_service_links':
+      foreach ($variables['items'] as &$item) {
+        $existing = $item['content']['#url']->getOption('attributes');
+        $attributes = array_merge($existing ?? [], [
+          'class' => [
+            'popular-service-item__link',
+          ],
+        ]);
+
+        $item['content']['#url']->setOption('attributes', $attributes);
       }
       break;
   }

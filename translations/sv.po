@@ -200,3 +200,10 @@ msgstr "Gå till nästa sida"
 msgctxt "Pagination next page link text"
 msgid "Next"
 msgstr "Nästa"
+
+msgid "Chat is not in use."
+msgstr "Chatten används inte."
+
+msgctxt "Popular services paragraph title"
+msgid "Popular services"
+msgstr "Populära tjänster"

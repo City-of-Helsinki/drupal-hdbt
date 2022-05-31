@@ -1,3 +1,7 @@
+.link__type-wrapper {
+  white-space: nowrap; // Helps keep the icon on the same row as the last word.
+}
+
 .link__type {
   @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
   @include hover-link-arrow-transition;

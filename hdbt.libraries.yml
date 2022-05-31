@@ -114,3 +114,12 @@ environment-indicator:
   css:
     theme:
       dist/css/environment-indicator.min.css: {}
+
+disable_genesys_button:
+  version: 1.x
+  js:
+    src/js/disable-genesys-button.js: {}
+  dependencies:
+  - core/jquery
+  - core/drupal
+  - core/drupalSettings

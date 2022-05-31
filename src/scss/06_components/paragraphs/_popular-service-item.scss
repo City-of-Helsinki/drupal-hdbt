@@ -1,0 +1,35 @@
+.popular-service-item {
+  background-color: $color-silver-light;
+  margin-bottom: $spacing-and-half;
+  padding-bottom: $spacing-double;
+  padding-left: $spacing-and-half;
+  padding-right: $spacing-and-half;
+  padding-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    // Allow 2 items per row
+    width: calc(50% - $spacing-and-half);
+  }
+}
+
+.popular-service-item__title {
+  @include font('h4');
+  margin-top: unset;
+}
+
+.popular-service-item__links {
+  @include font('special.large_link');
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-service-item__link {
+  display: flex;
+  margin-top: $spacing;
+
+  &::before {
+    @include pseudo-icon('arrow-right');
+    margin-right: $spacing-half;
+    min-width: $spacing-and-half;
+  }
+}

@@ -203,3 +203,10 @@ msgstr "Mene seuraavalle sivulle"
 msgctxt "Pagination next page link text"
 msgid "Next"
 msgstr "Seuraava"
+
+msgid "Chat is not in use."
+msgstr "Chat ei ole käytössä."
+
+msgctxt "Popular services paragraph title"
+msgid "Popular services"
+msgstr "Suosittuja palveluja"

@@ -5,16 +5,17 @@
   {% endif %}
 
   {% if 'data-is-external' in attributes|keys %}
-    {% set attribute_icon %} <span class="link__type link__type--external" aria-label="({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})"></span>{%- endset %}
+    {% set attribute_icon %}<span class="link__type-wrapper">&nbsp;<span class="link__type link__type--external" aria-label="({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})"></span></span>{%- endset %}
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
     {% if attributes['data-protocol'] == 'tel' %}
-      {% set attribute_icon %} <span class="link__type link__type--tel" aria-label="({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})"></span>{%- endset %}
+      {% set attribute_icon %}<span class="link__type-wrapper">&nbsp;<span class="link__type link__type--tel" aria-label="({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})"></span></span>{%- endset %}
     {% elseif attributes['data-protocol'] == 'mailto' %}
-      {% set attribute_icon %} <span class="link__type link__type--mailto" aria-label="({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})"></span>{%- endset %}
+      {% set attribute_icon %}<span class="link__type-wrapper">&nbsp;<span class="link__type link__type--mailto" aria-label="({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})"></span></span>{%- endset %}
     {% endif %}
   {% endif %}
+
   {{ selected_icon }}{{ title }}{{ attribute_icon }}
 
 {% endspaceless %}
