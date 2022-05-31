@@ -118,7 +118,7 @@ environment-indicator:
 disable_genesys_button:
   version: 1.x
   js:
-    dist/js/disable-genesys-button.min.js: {}
+    src/js/disable-genesys-button.js: {}
   dependencies:
   - core/jquery
   - core/drupal
