@@ -157,7 +157,7 @@ $-card-teaser-min-width: 280px;
   .news-listing__img {
     @include loading-image-background;
     width: 25%;
-    
+
     img {
       display: block;
       height: auto;
@@ -217,7 +217,7 @@ $-card-teaser-min-width: 280px;
       transform: none;
     }
   }
-  
+
 
   @include breakpoint($breakpoint-m) {
     border: 1px solid var(--color-black);
@@ -226,12 +226,8 @@ $-card-teaser-min-width: 280px;
     padding-bottom: 0;
   }
 
-   .news-listing__title {
+  .news-listing__title {
     @include font('h5');
-
-    @include breakpoint($breakpoint-l) {
-      font-weight: $font-weight-medium;
-    }
   }
 
   .news-listing__img {
