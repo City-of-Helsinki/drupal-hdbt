@@ -61,7 +61,7 @@ $config: deep-map-merge(
         line-height: 22 / 18,
         breakpoint_l: (
           font-size: remify(20px), // was 20px
-          font-weight: $font-weight-bold, // was regular
+          font-weight: $font-weight-medium, // was regular
           line-height: 30 / 20,
         )
       ),
