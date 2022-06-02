@@ -21,15 +21,9 @@
   @include font('special.large_link');
   display: flex;
   flex-direction: column;
-}
-
-.popular-service-item__link {
-  display: flex;
   margin-top: $spacing;
 
-  &::before {
-    @include pseudo-icon('arrow-right');
-    margin-right: $spacing-half;
-    min-width: $spacing-and-half;
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-and-half;
   }
 }
