@@ -1161,11 +1161,6 @@ function hdbt_preprocess_tpr_unit(&$variables) {
   }
   $entity = $variables['entity'];
 
-  // Convert email link to Url object and set as new variable for the template.
-  if (!$entity->email->isEmpty()) {
-    $variables['unit_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
-  }
-
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
