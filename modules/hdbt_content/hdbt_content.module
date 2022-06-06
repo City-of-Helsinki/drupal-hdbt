@@ -115,7 +115,7 @@ function template_preprocess_tpr_unit_contact_information(array &$variables) : v
     $show_www = $variables['entity']->get('show_www')->value;
     $variables['show_www'] = boolval($show_www);
 
-    // Convert email link to Url object and set as new variable for the template.
+    // Convert email link to Url object and set as variable for the template.
     if (!$entity->email->isEmpty()) {
       $variables['unit_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
     }
