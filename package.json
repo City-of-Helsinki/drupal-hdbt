@@ -9,7 +9,7 @@
     "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
     "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
-    "lint": "lint-staged",
+    "lint": "lint-staged --allow-empty",
     "lint:js": "eslint --fix src/"
   },
   "dependencies": {
