@@ -1047,7 +1047,7 @@ function hdbt_preprocess_field(&$variables) {
         $existing = $item['content']['#url']->getOption('attributes');
         $attributes = array_merge($existing ?? [], [
           'class' => [
-            'popular-service-item__link',
+            'link__style--highlight',
           ],
         ]);
 

@@ -26,3 +26,15 @@ a:hover .link__type {
 
   --external-icon-move: rotate(15deg);
 }
+
+.link__style--highlight {
+  @include font('special.large_link');
+  margin-bottom: $spacing;
+  padding-left: calc(var(--line-height) * 1em + $spacing-half);
+
+  &::before {
+    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
+    margin-left: calc(var(--line-height) * -1em - $spacing-half);
+    margin-right: $spacing-half;
+  }
+}
