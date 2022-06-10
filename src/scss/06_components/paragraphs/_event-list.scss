@@ -53,6 +53,8 @@ $tag-vertical-padding: 5px;
   display: block;
   inset: 0;
   position: absolute;
+
+  // Set z-index to make arrow icon clickable as well.
   z-index: 1;
 }
 
