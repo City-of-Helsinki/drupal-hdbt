@@ -284,3 +284,11 @@ $-card-teaser-min-width: 280px;
     }
   }
 }
+
+.news-archive__heading {
+  @include font('h3');
+  border-bottom: 2px solid $color-black;
+  margin-top: 0;
+  padding-bottom: $spacing-and-half;
+  width: 100%;
+}

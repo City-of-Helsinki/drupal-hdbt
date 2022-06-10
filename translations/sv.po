@@ -207,3 +207,7 @@ msgstr "Chatten används inte."
 msgctxt "Popular services paragraph title"
 msgid "Popular services"
 msgstr "Populära tjänster"
+
+msgctxt "News archive heading"
+msgid "All news items"
+msgstr "All nyheter"
