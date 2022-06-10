@@ -12,6 +12,7 @@ $tag-vertical-padding: 5px;
   border-bottom: 1px solid $color-black-10;
   padding-bottom: $spacing-half;
   padding-top: $spacing-and-half;
+  position: relative;
 
   @include breakpoint($breakpoint-l) {
     padding-bottom: $spacing;
@@ -39,12 +40,20 @@ $tag-vertical-padding: 5px;
   margin-top: $spacing;
 }
 
-// Underline event heading on hover and focus
-.event-list__events-container:hover,
-.event-list__events-container:focus {
-  .event-list__event-name {
+.event-list__event-link {
+  text-decoration: none;
+
+  &:hover {
     text-decoration: underline;
   }
+}
+
+.event-list__event-link::before {
+  content: '';
+  display: block;
+  inset: 0;
+  position: absolute;
+  z-index: 1;
 }
 
 .event-list__image-container {
