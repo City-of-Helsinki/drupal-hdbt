@@ -15,22 +15,14 @@ $tag-vertical-padding: 5px;
   position: relative;
 
   @include breakpoint($breakpoint-l) {
+    display: grid;
+    grid-template-columns: $event-list-image-width 1fr;
     padding-bottom: $spacing;
     padding-top: $spacing;
   }
 
   &:first-child {
     border-top: 1px solid $color-black-10;
-  }
-}
-
-.event-list__events-container {
-  display: block;
-  text-decoration: none;
-
-  @include breakpoint($breakpoint-l) {
-    display: grid;
-    grid-template-columns: $event-list-image-width 1fr;
   }
 }
 
