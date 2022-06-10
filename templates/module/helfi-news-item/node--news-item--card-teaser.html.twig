@@ -9,15 +9,15 @@
     </div>
   {# Short title or Title #}
   <div class="news-listing__text-container">
-     <h2 class="news-listing__title">
-    {% set link_attributes = {
-      'class': [
-        'news-listing__link',
-      ],
-      'rel': 'bookmark',
-    } %}
-    {{ link(short_title, node_url, link_attributes) }}
-    </h2>
+    <h3 class="news-listing__title">
+      {% set link_attributes = {
+        'class': [
+          'news-listing__link',
+        ],
+        'rel': 'bookmark',
+      } %}
+      {{ link(short_title, node_url, link_attributes) }}
+    </h3>
 
     {# Created date and modified date #}
     {% if published_at is not empty %}
@@ -28,6 +28,6 @@
       </time>
     {% endif %}
 
-    {% include "@hdbt/misc/icon.twig" with {icon: 'arrow-right'} %}
+    {% include "@hdbt/misc/icon.twig" with {icon: 'arrow-right'} only %}
   </div>
 </div>
