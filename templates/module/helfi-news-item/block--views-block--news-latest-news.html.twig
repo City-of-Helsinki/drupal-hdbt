@@ -29,6 +29,7 @@
   <h2{{ title_attributes.addClass('sidebar_block_heading') }}>{{ label }}</h2>
 {% endif %}
 {% block content %}
-  {{ content }}
+  <div class="news-listing--sidebar">
+    {{ content }}
+  </div>
 {% endblock %}
-

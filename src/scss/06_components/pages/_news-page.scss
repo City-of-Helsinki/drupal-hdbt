@@ -285,6 +285,10 @@ $-card-teaser-min-width: 280px;
   }
 }
 
+.news-listing--sidebar {
+  margin-bottom: $spacing-quadruple;
+}
+
 .news-archive__heading {
   @include font('h3');
   border-bottom: 2px solid $color-black;
