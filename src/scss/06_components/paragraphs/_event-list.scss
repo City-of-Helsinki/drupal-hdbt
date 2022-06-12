@@ -52,6 +52,7 @@ $tag-vertical-padding: 5px;
 
 .event-list__image-container {
   display: block;
+  overflow: hidden;
   position: relative;
 }
 
@@ -124,9 +125,13 @@ $tag-vertical-padding: 5px;
   margin-bottom: $spacing;
 }
 
+.event-list__indicator-container {
+  align-items: flex-end;
+  display: flex;
+}
+
 .event-list__event-link-indicator {
   @include pseudo-icon('link-external', $spacing-and-half);
-  align-self: flex-end;
 
   @include breakpoint($breakpoint-l) {
     @include pseudo-icon('link-external', $spacing-triple);
