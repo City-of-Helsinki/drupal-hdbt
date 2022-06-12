@@ -63,6 +63,7 @@ $tag-vertical-padding: 5px;
 
   @include breakpoint($breakpoint-l) {
     height: 100%;
+    max-height: unset;
     position: absolute;
   }
 }
