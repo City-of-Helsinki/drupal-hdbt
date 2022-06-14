@@ -73,21 +73,24 @@
           {% if content.field_news_item_tags|render %}
             {% for key in content.field_news_item_tags['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_item_tags[key]
+                tag: content.field_news_item_tags[key],
+                size: 'large'
               }%}
             {% endfor %}
           {% endif %}
           {% if content.field_news_neighbourhoods|render %}
             {% for key in content.field_news_neighbourhoods['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_neighbourhoods[key]
+                tag: content.field_news_neighbourhoods[key],
+                size: 'large'
               }%}
             {% endfor %}
           {% endif %}
           {% if content.field_news_groups|render %}
             {% for key in content.field_news_groups['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_groups[key]
+                tag: content.field_news_groups[key],
+                size: 'large'
               }%}
             {% endfor %}
           {% endif %}

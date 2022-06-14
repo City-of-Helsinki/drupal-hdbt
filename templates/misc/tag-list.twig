@@ -3,7 +3,8 @@
     {% block content %}
       {% for tag in tags %}
         {% include '@hdbt/misc/tag.twig' with {
-          tag: tag
+          tag: tag,
+          size: tag_size
         }%}
       {% endfor %}
     {% endblock %}
