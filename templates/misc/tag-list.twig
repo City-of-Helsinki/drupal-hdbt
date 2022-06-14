@@ -1,0 +1,11 @@
+ <section class="content-tags"  aria-label="{{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}">
+  <ul class="content-tags__tags">
+    {% block content %}
+      {% for tag in tags %}
+        {% include '@hdbt/misc/tag.twig' with {
+          tag: tag
+        }%}
+      {% endfor %}
+    {% endblock %}
+  </ul>
+</section>

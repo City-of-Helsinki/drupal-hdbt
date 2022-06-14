@@ -184,13 +184,55 @@ $tag-gap: $spacing-half;
   // stylelint-disable-next-line no-descending-specificity
   a {
     background-color: $color-silver;
-    border-radius: 500px;
+    border: 2px solid transparent;
+    border-radius: 17px;
     display: inline-block;
-    padding: 12px 20px;
+    font-size: var(--fontsize-body-s);
+    line-height: var(--lineheight-s);
+    padding: $spacing-half $spacing;
+    position: relative;
     text-decoration: none;
+    transition: 0.2s ease-in-out all;
+
+    @include breakpoint($breakpoint-m) {
+      border-radius: 25px;
+      padding: $spacing 20px;
+    }
 
     &:hover {
-      background-color: $color-silver-dark;
+      background-color: $color-white;
+      border-color: $color-black;
+    }
+
+    &:focus {
+      border-color: $color-black;
+      outline: none;
+
+      &::after {
+        border: 2px solid black;
+        border-radius: $spacing-and-half;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: calc(100% + 14px);
+        left: -7px;
+        padding: 2px;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        // Half of the added pixels
+        top: -7px;
+        width: calc(100% + 14px);
+
+        @include breakpoint($breakpoint-m) {
+          border-radius: 28px;
+          height: calc(100% + 12px);
+          left: -6px;
+          // Half of the added pixels
+          top: -6px;
+          width: calc(100% + 12px);
+        }
+      }
     }
   }
 }
