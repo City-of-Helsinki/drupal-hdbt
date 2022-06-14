@@ -9,9 +9,13 @@
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
-    <div class="unit__supports_language_sv">
-      {{ 'Service in Swedish'|t({}, {'context': 'TPR unit also offers service in Swedish'}) }}
-    </div>
+    {% set tag_content %}
+        <span>{{ 'Service in Swedish'|t({}, {'context': 'TPR unit also offers service in Swedish'}) }}</span>
+      {% endset %}
+    {% include '@hdbt/misc/tag.twig' with {
+      tag: tag_content,
+      size: 'small'
+    }%}
   {% endif %}
 {% endset %}
 
