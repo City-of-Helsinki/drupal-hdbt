@@ -182,7 +182,8 @@ $tag-gap: $spacing-half;
   margin-top: 0;
 
   // stylelint-disable-next-line no-descending-specificity
-  a {
+  a,
+  span {
     background-color: $color-silver;
     border: 2px solid transparent;
     display: inline-block;
@@ -191,56 +192,58 @@ $tag-gap: $spacing-half;
     position: relative;
     text-decoration: none;
     transition: 0.2s ease-in-out all;
+  }
 
-    &:hover {
-      background-color: transparent;
-      border-color: $color-black;
-    }
+  a:hover {
+    background-color: transparent;
+    border-color: $color-black;
+  }
 
-    &:focus {
-      border-color: $color-black;
-      outline: none;
+  a:focus {
+    border-color: $color-black;
+    outline: none;
 
-      &::after {
-        border: 2px solid $color-black;
-        bottom: 0;
-        content: '';
-        display: block;
-        padding: 2px;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-      }
+    &::after {
+      border: 2px solid $color-black;
+      bottom: 0;
+      content: '';
+      display: block;
+      padding: 2px;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
     }
   }
 }
 
-.content-tags__tags__tag--large a {
+.content-tags__tags__tag--large a,
+.content-tags__tags__tag--large span {
   border-radius: $spacing-and-half;
   padding: $spacing 20px;
-
-  &:focus::after {
-    border-radius: 28px;
-    height: calc(100% + 12px);
-    // Half of the added pixels
-    left: -6px;
-    top: -6px;
-    width: calc(100% + 12px);
-  }
 }
 
-.content-tags__tags__tag--small a {
+.content-tags__tags__tag--large a:focus::after {
+  border-radius: 28px;
+  height: calc(100% + 12px);
+  // Half of the added pixels
+  left: -6px;
+  top: -6px;
+  width: calc(100% + 12px);
+}
+
+.content-tags__tags__tag--small a,
+.content-tags__tags__tag--small span {
   border-radius: $spacing;
   padding: $spacing-half $spacing;
+}
 
-  &:focus::after {
-    border-radius: $spacing-and-half;
-    height: calc(100% + 14px);
-    left: -7px;
-    // Half of the added pixels
-    top: -7px;
-    width: calc(100% + 14px);
-  }
+.content-tags__tags__tag--small a:focus::after {
+  border-radius: $spacing-and-half;
+  height: calc(100% + 14px);
+  left: -7px;
+  // Half of the added pixels
+  top: -7px;
+  width: calc(100% + 14px);
 }
 
 .sidebar_block_heading {
