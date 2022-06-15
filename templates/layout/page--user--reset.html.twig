@@ -1,0 +1,12 @@
+{% embed 'page.html.twig' %}
+  {% block page_content %}
+    {% embed '@hdbt/misc/container.twig' with {container_element: 'user-login-page-content'} %}
+      {% block container_content %}
+        {{ page.content|without(page_title_block) }}
+      {% endblock container_content %}
+    {% endembed %}
+  {% endblock page_content %}
+
+  {% block page_after_content %}
+  {% endblock page_after_content %}
+{% endembed %}
