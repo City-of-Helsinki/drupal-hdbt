@@ -1,0 +1,132 @@
+$-item-spacing-top-and-bottom: $spacing-double;
+$-item-spacing-left-and-right: $spacing-quadruple;
+$-item-spacing-left--with-numbers: $spacing-sextuple;
+$-item-spacing-left--with-numbers-mobile: $spacing-quadruple;
+
+$-circle-border-width: 3px;
+$-circle-width-height: $spacing;
+$-circle-width-height--with-numbers: $spacing-triple;
+$-circle-width-height--with-numbers-mobile: 40px;
+$-item-heading-lineheight: get-line-height('h4');
+
+$-circle-heading-difference: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height * 0.5 ));
+$-circle-heading-difference--with-numbers: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height--with-numbers * 0.5 ));
+$-circle-heading-difference--with-numbers-mobile: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height--with-numbers-mobile * 0.5 ));
+
+
+$-line-position-left: $-item-spacing-left-and-right * 0.5;
+$-line-position-left--with-numbers: $-item-spacing-left--with-numbers * 0.5;
+$-line-position-left--with-numbers-mobile: $-item-spacing-left--with-numbers-mobile * 0.5;
+$-line-position-top--first-item: $-item-spacing-top-and-bottom + ($-circle-width-height * 0.5);
+$-line-height--last-item: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
+$-line-height--first-item: 100%;
+$-line-height--other-item: calc(100% + $-item-spacing-top-and-bottom);
+
+$-circle-position-left: $-item-spacing-left-and-right * 0.5 - $-circle-width-height * 0.5 + $-circle-border-width * 0.5;
+$-circle-position-top: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
+
+$-circle-position-left--with-numbers: $-item-spacing-left--with-numbers * 0.5 - $-circle-width-height--with-numbers * 0.5 + $-circle-border-width * 0.5;
+$-circle-position-top--with-numbers: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers);
+
+$-circle-position-left--with-numbers-mobile: $-item-spacing-left--with-numbers-mobile * 0.5 - $-circle-width-height--with-numbers-mobile * 0.5 + $-circle-border-width * 0.5;
+$-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers-mobile);
+
+.component--phasing {
+  counter-reset: item;
+}
+
+.phasing__item {
+  background-color: var(--hdbt-color-palette--secondary);
+  padding: $-item-spacing-top-and-bottom $spacing-quadruple;
+  position: relative;
+  
+  &:not(:last-of-type) {
+    margin-bottom: $spacing;
+  }
+
+  &::before {
+    background-color: $color-black;
+    content: '';
+    height: $-line-height--other-item;
+    left: $-line-position-left;
+    position: absolute;
+    right: $-item-heading-lineheight;
+    top: 0;
+    width: 2px;
+  }
+
+  &:first-of-type::before {
+    height: $-line-height--first-item;
+    top: $-line-position-top--first-item;
+  }
+
+  &:last-of-type::before {
+    height: $-line-height--last-item;
+  }
+
+  &:only-child::before {
+    display: none;
+  }
+
+  &::after {
+    background-color: $color-white;
+    border: $-circle-border-width solid $color-black;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: $-circle-width-height;
+    left: $-circle-position-left;
+    position: absolute;
+    top: $-circle-position-top;
+    width: $-circle-width-height;
+  }
+}
+
+.phasing__item-with-numbers {
+  padding-left: $-item-spacing-left--with-numbers-mobile;
+
+  @include breakpoint($breakpoint-m) {
+    padding-left: $-item-spacing-left--with-numbers;;
+  }
+
+  &::after {
+    align-items: center;
+    content: counter(item);
+    counter-increment: item;
+    display: flex;
+    height: $-circle-width-height--with-numbers-mobile;
+    justify-content: center;
+    left: $-circle-position-left--with-numbers-mobile;
+    top: $-circle-position-top--with-numbers-mobile;
+    width: $-circle-width-height--with-numbers-mobile;
+    @include font('h4');
+
+    @include breakpoint($breakpoint-m) {
+      height: $-circle-width-height--with-numbers;
+      left: $-circle-position-left--with-numbers;
+      top: $-circle-position-top--with-numbers;
+      width: $-circle-width-height--with-numbers;
+    }
+  }
+
+  &::before {
+    left: $-line-position-left--with-numbers-mobile;
+
+    @include breakpoint($breakpoint-m) {
+      left: $-line-position-left--with-numbers;
+    }
+  }
+}
+
+.phasing__item-title {
+  @include font('h4');
+  margin-bottom: $spacing;
+  margin-top: 0;
+}
+
+//If phasing element is inside of an accordion
+.component--accordion .component--phasing {
+  .component__title {
+    @include font('h5');
+  }
+}
