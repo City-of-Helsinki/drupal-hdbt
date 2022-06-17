@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js',
+      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
       pathinfo: true,
       filename: 'js/[name].min.js',
       publicPath: '../',

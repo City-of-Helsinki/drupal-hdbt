@@ -16,11 +16,11 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   width: 1px;
 }
 
-.cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
-.cssmenu-toggle-button, // Hide js version of button if js is not enabled
-[data-js] ~ * .cssmenu-toggle {
-  display: none; // Hide css-only toggle button when js is enabled
-}
+// .cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
+// .cssmenu-toggle-button, // Hide js version of button if js is not enabled
+// [data-js] ~ * .cssmenu-toggle {
+//   display: none; // Hide css-only toggle button when js is enabled
+// }
 
 // Mobile menu toggle button, both css-only and js versions
 .cssmenu-toggle,
@@ -39,9 +39,9 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   user-select: none;
   z-index: 2;
 
-  @include breakpoint($breakpoint-l) {
-    display: none;
-  }
+  // @include breakpoint($breakpoint-l) {
+  //   display: none;
+  // }
 
   &:focus,
   &:hover {
@@ -417,4 +417,102 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   & > .menu__link {
     font-weight: bold; // Make the city link bolded like in design specs
   }
+}
+
+
+/*
+* JS menu styles (reuse CSS menu classes where possible, remove unused when done
+*/
+
+.jsmenu {
+  display: flex;
+  height:80vh;
+  overflow-x:hidden;
+  position:relative;
+  width:1000rem
+}
+
+.jsmenu__panel {
+  background-color: white;
+  min-height:100vh;
+  position:absolute;
+  transition-property: all;
+  width:100vw;
+
+}
+
+.jsmenu__panel.jsmenu__panel--visible-fast {
+  transition-duration: 0.4s;
+  z-index: 50;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-slow {
+  transition-duration: 0.6s;
+  z-index: 4;
+
+}
+
+.jsmenu__panel.jsmenu__panel--visible {
+  opacity:1;
+  transform:translateX(0);
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+
+
+.jsmenu__panel.jsmenu__panel--visible-up {
+  opacity:0.3;
+  transform:translateX(100vw);
+  transition-property: all;
+  transition-timing-function: ease-in;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-down {
+  opacity:0.3;
+  transform:translateX(-100vw);
+  transition-property: all;
+  transition-timing-function: ease-in;
+}
+
+.jsmenu__language  {
+  background-color: #ddd;
+  height:4rem;
+}
+
+.jsmenu__items {
+  background-color: white;
+  margin:0;
+  padding:0;
+}
+
+
+.jsmenu__item {
+  align-items: center;
+  background:white;
+  border-top:1px solid #aaa;
+  display:flex;
+  font-size:125%;
+  gap:12px;
+  height: 3rem;
+  margin:0;
+  padding-left:1rem;
+}
+
+.jsmenu__itemlink {
+  flex-grow: 1;
+
+}
+
+.jsmenu__button--forward {
+  background:none;
+  border:0;
+  border-left:1px solid #aaa;
+  flex-grow:0;
+  flex-shrink: 0;
+  height:3rem;
+  width: 4rem;
+}
+
+.jsmenu__panel-footer {
+  background:#ddd;
 }
