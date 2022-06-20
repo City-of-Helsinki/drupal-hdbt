@@ -24,7 +24,80 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0) }}
+{% set attributesClone = create_attribute(attributes.storage()) %}
+
+{{ menus.megamenu(items, attributes, 0) }}
+{{ menus.menu_links(items, attributesClone, 0) }}
+
+
+{% macro megamenu(items, attributes, menu_level) %}
+
+  {% import _self as menus %}
+  {% set max_level = 3 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
+
+  {% if menu_level == 0 %}
+    {% set ul_class = 'megamenu' %}
+  {% else %}
+    {% set ul_class = 'megamenu__subnav' %}
+  {% endif %}
+
+  {% if items %}
+    <ul{{ attributes.addClass(ul_class) }}>
+    {% for item in items %}
+      {% set level = menu_level + 1 %}
+      {% set has_children = false %}
+      {% if level <= max_level - 2 %}
+        {% set has_children = item.below %}
+      {% endif %}
+      {% set item_classes = [
+        'megamenu__item',
+        item.is_nolink ? 'megamenu__item--nolink',
+        has_children ? 'megamenu__item--has-children',
+        item.in_active_trail ? 'megamenu__item--in-path',
+        'megamenu__item--level-' ~ (level + 1),
+      ]%}
+
+      {# <div{{ item.attributes.addClass(item_classes) }}> #}
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
+
+        {% set item_title = item.title %}
+        {% if not item.is_nolink %}
+          {% spaceless %}
+
+            {% set icon_name = (item.url.getOption('attributes')).icon %}
+            {% if icon_name %}
+              {% set item_title %}
+                {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'megamenu__link__icon'} %}
+                <span class="megamenu__link__text">{{ item.title }}</span>
+              {% endset %}
+            {% endif %}
+
+            {% set link_attributes = {
+              'class':
+                [
+                  'megamenu__link',
+                  item.in_active_trail ? 'megamenu__link--in-path',
+                ],
+              'aria-current': item.is_currentPage ? 'page': null,
+            } %}
+
+            {{ link(item_title, item.url, link_attributes) }}
+
+          {% endspaceless %}
+        {% else %}
+          <span{{ create_attribute({'class': 'megamenu__item__nolink'} ) }}>{{ item.title }}</span>
+        {% endif %}
+        {% if has_children %}
+
+          {{ menus.megamenu(item.below, attributes, menu_level + 1) }}
+
+        {% endif %}
+      </li>
+      {# </div> #}
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
 
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
@@ -53,7 +126,7 @@
       ]%}
 
       {# <div{{ item.attributes.addClass(item_classes) }}> #}
-      <li{{ item.attributes.addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
 
         {% set item_title = item.title %}
         {% if not item.is_nolink %}

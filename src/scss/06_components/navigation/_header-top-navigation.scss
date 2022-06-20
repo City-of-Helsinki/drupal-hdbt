@@ -1,3 +1,15 @@
+$-header-top-line-height: unremify(get-line-height('special.navigation.header_top'));
+$-header-top-padding-block: 14px;
+$-block-header-top-height-l: $-header-top-padding-block + $-header-top-line-height + $-header-top-padding-block;
+
+.header {
+  --block-header-top-height: 0;
+
+  @include breakpoint($breakpoint-l) {
+    --block-header-top-height: #{$-block-header-top-height-l};
+  }
+}
+
 .header-top {
   // Hide on mobile
   display: none;
@@ -8,11 +20,7 @@
     background-color: $color-black-5;
     display: flex;
     justify-content: space-between;
-    padding: 14px $spacing-and-half; // Specific pixel size for top and bottom padding from layout.
-  }
-
-  @include breakpoint($breakpoint-l) {
-    padding: 14px $spacing-double; // Specific pixel size for top and bottom padding from layout.
+    padding: $-header-top-padding-block $spacing-double; // Specific pixel size for top and bottom padding from layout.
   }
 
   .menu {

@@ -39,10 +39,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   user-select: none;
   z-index: 2;
 
-  @include breakpoint($breakpoint-l) {
-    display: none;
-  }
-
   &:focus,
   &:hover {
     text-decoration: underline;
@@ -87,7 +83,7 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 .cssmenu-menu {
   --menu-transition-duration: #{$-menu-transition-duration};
   background: $color-white;
-  box-shadow: 0 $spacing 0 0 $color-black; // Hide rounding errors from bottom.
+  box-shadow: 0 1px 0 0 $color-black; // Hide rounding errors from bottom.
   display: grid;
   grid-area: menu;
   grid-template-areas:
@@ -111,7 +107,10 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   }
 
   @include breakpoint($breakpoint-l) {
-    display: none;
+    height: auto;
+    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--block-header-top-height, 48px) - $-header-branding-height-desktop - 1px);
+    max-width: min(1920px, 100vw);
+    top: calc(var(--drupal-toolbar-height, 0px) + var(--block-header-top-height, 48px) + $-header-branding-height-desktop);
   }
 
   @media (prefers-reduced-motion) {
@@ -194,6 +193,10 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   border-bottom: 1px solid $color-black-20;
   grid-area: nav;
   position: relative;
+
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
 }
 
 // Child ul elements
@@ -393,6 +396,10 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   padding-bottom: $-cssmenu-bottom-padding;
   padding-top: $spacing;
 
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+
   .menu {
     display: block;
   }
@@ -417,4 +424,90 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   & > .menu__link {
     font-weight: bold; // Make the city link bolded like in design specs
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.megamenu {
+  margin-top: 0;
+  padding-left: $spacing-double;
+}
+
+.megamenu__subnav {
+  padding-left: 0;
+}
+
+.megamenu,
+.megamenu__item--level-3 {
+  margin-top: $spacing;
+}
+
+.megamenu__link {
+  text-decoration: none;
+
+  &:focus,
+  &:active,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.megamenu__item--level-2 > .megamenu__link {
+  @include font('h5');
+}
+
+.megamenu__item--level-3 .megamenu__link {
+  @include font('body');
+  display: inline-block;
+  padding-left: calc(#{$spacing-half} + 1em * var(--line-height));
+
+  &::before {
+    @include pseudo-icon('arrow-right');
+    @include hover-link-arrow-transition;
+    margin-left: calc(-#{$spacing-half} - 1em * var(--line-height));
+    margin-right: $spacing-half;
+  }
+}
+
+.megamenu__item--level-3 .megamenu__link:focus::before,
+.megamenu__item--level-3 .megamenu__link:active::before,
+.megamenu__item--level-3 .megamenu__link:hover::before {
+  transform: translateX($spacing-quarter);
+
+  @media (prefers-reduced-motion) {
+    transform: none;
+  }
+}
+
+.megamenu__item {
+  list-style: none;
+  margin-left: 0;
+}
+
+.megamenu__item--level-2 {
+  margin-top: 0;
+}
+
+.cssmenu-menu > .megamenu {
+  display: none;
+
+  @include breakpoint($breakpoint-l) {
+    @include flex-gap($spacing);
+    display: flex;
+    flex-wrap: wrap;
+    max-width: min(1920px, 100vw);
+  }
+}
+
+.megamenu__item.megamenu__item--level-2 {
+  // --items-per-row: 3;
+  // width: calc((100% / var(--items-per-row)) - (20px * var(--items-per-row)) / (var(--items-per-row) - 1));
+
+  // @include breakpoint(1440px) {
+  //   --items-per-row: 4;
+  // }
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: calc(50% - 16px);
+  min-width: 15%;
 }
