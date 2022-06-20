@@ -1,35 +1,30 @@
 $-item-spacing-top-and-bottom: $spacing-double;
 $-item-spacing-left-and-right: $spacing-quadruple;
-$-item-spacing-left--with-numbers: $spacing-sextuple;
-$-item-spacing-left--with-numbers-mobile: $spacing-quadruple;
-
+$-item-spacing-left--with-numbers-desktop: $spacing-sextuple;
+$-item-spacing-left--with-numbers: 80px;
 $-circle-border-width: 3px;
-$-circle-width-height: $spacing;
-$-circle-width-height--with-numbers: $spacing-triple;
-$-circle-width-height--with-numbers-mobile: 40px;
+$-circle-size: $spacing;
+$-circle-size--with-numbers-desktop: $spacing-triple;
+$-circle-size--with-numbers: 40px;
 $-item-heading-lineheight: get-line-height('h4');
 
-$-circle-heading-difference: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height * 0.5 ));
-$-circle-heading-difference--with-numbers: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height--with-numbers * 0.5 ));
-$-circle-heading-difference--with-numbers-mobile: calc(($-item-heading-lineheight * 0.5) - ($-circle-width-height--with-numbers-mobile * 0.5 ));
-
-
+// Calculated values from static values above
+$-circle-heading-difference: calc(($-item-heading-lineheight - $-circle-size) * 0.5);
+$-circle-heading-difference--with-numbers-desktop: calc(($-item-heading-lineheight - $-circle-size--with-numbers-desktop) * 0.5);
+$-circle-heading-difference--with-numbers: calc(($-item-heading-lineheight - $-circle-size--with-numbers) * 0.5);
 $-line-position-left: $-item-spacing-left-and-right * 0.5;
+$-line-position-left--with-numbers-desktop: $-item-spacing-left--with-numbers-desktop * 0.5;
 $-line-position-left--with-numbers: $-item-spacing-left--with-numbers * 0.5;
-$-line-position-left--with-numbers-mobile: $-item-spacing-left--with-numbers-mobile * 0.5;
-$-line-position-top--first-item: $-item-spacing-top-and-bottom + ($-circle-width-height * 0.5);
+$-line-position-top--first-item: $-item-spacing-top-and-bottom + ($-circle-size * 0.5);
 $-line-height--last-item: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
 $-line-height--first-item: 100%;
 $-line-height--other-item: calc(100% + $-item-spacing-top-and-bottom);
-
-$-circle-position-left: $-item-spacing-left-and-right * 0.5 - $-circle-width-height * 0.5 + $-circle-border-width * 0.5;
+$-circle-position-left: ($-item-spacing-left-and-right - $-circle-size + $-circle-border-width) * 0.5;
 $-circle-position-top: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
-
-$-circle-position-left--with-numbers: $-item-spacing-left--with-numbers * 0.5 - $-circle-width-height--with-numbers * 0.5 + $-circle-border-width * 0.5;
+$-circle-position-left--with-numbers-desktop: ($-item-spacing-left--with-numbers-desktop - $-circle-size--with-numbers-desktop + $-circle-border-width) * 0.5;
+$-circle-position-top--with-numbers-desktop: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers-desktop);
+$-circle-position-left--with-numbers: ($-item-spacing-left--with-numbers - $-circle-size--with-numbers + $-circle-border-width ) * 0.5;
 $-circle-position-top--with-numbers: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers);
-
-$-circle-position-left--with-numbers-mobile: $-item-spacing-left--with-numbers-mobile * 0.5 - $-circle-width-height--with-numbers-mobile * 0.5 + $-circle-border-width * 0.5;
-$-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers-mobile);
 
 .component--phasing {
   counter-reset: item;
@@ -39,7 +34,7 @@ $-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom +
   background-color: var(--hdbt-color-palette--secondary);
   padding: $-item-spacing-top-and-bottom $spacing-quadruple;
   position: relative;
-  
+
   &:not(:last-of-type) {
     margin-bottom: $spacing;
   }
@@ -74,19 +69,19 @@ $-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom +
     border-radius: 50%;
     content: '';
     display: block;
-    height: $-circle-width-height;
+    height: $-circle-size;
     left: $-circle-position-left;
     position: absolute;
     top: $-circle-position-top;
-    width: $-circle-width-height;
+    width: $-circle-size;
   }
 }
 
 .phasing__item-with-numbers {
-  padding-left: $-item-spacing-left--with-numbers-mobile;
+  padding-left: $-item-spacing-left--with-numbers;
 
   @include breakpoint($breakpoint-m) {
-    padding-left: $-item-spacing-left--with-numbers;;
+    padding-left: $-item-spacing-left--with-numbers-desktop;
   }
 
   &::after {
@@ -94,26 +89,27 @@ $-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom +
     content: counter(item);
     counter-increment: item;
     display: flex;
-    height: $-circle-width-height--with-numbers-mobile;
+    height: $-circle-size--with-numbers;
     justify-content: center;
-    left: $-circle-position-left--with-numbers-mobile;
-    top: $-circle-position-top--with-numbers-mobile;
-    width: $-circle-width-height--with-numbers-mobile;
+    left: $-circle-position-left--with-numbers;
+    top: $-circle-position-top--with-numbers;
+    width: $-circle-size--with-numbers;
+
     @include font('h4');
 
     @include breakpoint($breakpoint-m) {
-      height: $-circle-width-height--with-numbers;
-      left: $-circle-position-left--with-numbers;
-      top: $-circle-position-top--with-numbers;
-      width: $-circle-width-height--with-numbers;
+      height: $-circle-size--with-numbers-desktop;
+      left: $-circle-position-left--with-numbers-desktop;
+      top: $-circle-position-top--with-numbers-desktop;
+      width: $-circle-size--with-numbers-desktop;
     }
   }
 
   &::before {
-    left: $-line-position-left--with-numbers-mobile;
+    left: $-line-position-left--with-numbers;
 
     @include breakpoint($breakpoint-m) {
-      left: $-line-position-left--with-numbers;
+      left: $-line-position-left--with-numbers-desktop;
     }
   }
 }
@@ -124,9 +120,14 @@ $-circle-position-top--with-numbers-mobile: calc($-item-spacing-top-and-bottom +
   margin-top: 0;
 }
 
-//If phasing element is inside of an accordion
+// If phasing element is inside of an accordion
 .component--accordion .component--phasing {
   .component__title {
+    @include font('h5');
+  }
+
+  .phasing__item-with-numbers::after,
+  .phasing__item-title {
     @include font('h5');
   }
 }
