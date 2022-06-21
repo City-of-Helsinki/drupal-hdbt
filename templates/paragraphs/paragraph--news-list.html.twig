@@ -10,18 +10,18 @@
 
 			{{ content.news_list }}
 
-      {% set link_title %}
-        <span class="hds-button__label">{{ 'See all the news'|t }}</span>
-      {% endset %}
+			{% set link_title %}
+			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
+			{% endset %}
 
-      {% set link_attributes = {
+			{% set link_attributes = {
         'class': [
           'hds-button',
           'hds-button--primary',
         ]
       } %}
 
-      {{ link(link_title, news_archive_url, link_attributes) }}
+			{{ link(link_title, news_archive_url, link_attributes) }}
 
 		{% endblock component_content %}
 	{% endembed %}
