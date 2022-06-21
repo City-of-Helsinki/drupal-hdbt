@@ -1,10 +1,16 @@
+{% if size == 'large' %}
+  {% set size_class = 'content-tags__tags--large' %}
+{% else %}
+  {% set size_class = 'content-tags__tags--small' %}
+{% endif %}
+
+ 
  <section class="content-tags"  aria-label="{{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}">
-  <ul class="content-tags__tags">
+  <ul class="content-tags__tags {{ size_class }}">
     {% block content %}
       {% for tag in tags %}
         {% include '@hdbt/misc/tag.twig' with {
-          tag: tag,
-          size: tag_size
+          tag: tag
         }%}
       {% endfor %}
     {% endblock %}

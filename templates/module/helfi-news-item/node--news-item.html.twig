@@ -68,13 +68,12 @@
 
     {# Tags #}
     {% if content.field_news_item_tags|render or content.field_news_neighbourhoods|render or content.field_news_groups|render %}
-      {% embed '@hdbt/misc/tag-list.twig' %}
+      {% embed '@hdbt/misc/tag-list.twig' with { size: 'large' }%}
         {% block content %}
           {% if content.field_news_item_tags|render %}
             {% for key in content.field_news_item_tags['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_item_tags[key],
-                size: 'large'
               }%}
             {% endfor %}
           {% endif %}
@@ -82,7 +81,6 @@
             {% for key in content.field_news_neighbourhoods['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_neighbourhoods[key],
-                size: 'large'
               }%}
             {% endfor %}
           {% endif %}
@@ -90,7 +88,6 @@
             {% for key in content.field_news_groups['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_groups[key],
-                size: 'large'
               }%}
             {% endfor %}
           {% endif %}

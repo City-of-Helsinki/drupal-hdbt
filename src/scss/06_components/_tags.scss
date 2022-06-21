@@ -1,0 +1,54 @@
+$tag-gap: $spacing-half;
+
+.content-tags__tags {
+  @include flex-gap($tag-gap);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: ($spacing-and-half - $tag-gap);
+  padding-left: 0;
+  padding-top: $spacing-and-half;
+}
+
+.content-tags__tags--large a,
+.content-tags__tags--large span {
+  border-radius: $spacing-and-half;
+  padding: $spacing 20px;
+}
+
+.content-tags__tags--small a,
+.content-tags__tags--small span {
+  border-radius: $spacing;
+  padding: $spacing-half $spacing;
+}
+
+.content-tags__tags__tag {
+  list-style: none;
+  margin-bottom: $tag-gap;
+  margin-top: 0;
+
+  a,
+  span {
+    @include font('small');
+    background-color: $color-silver;
+    border: 2px solid transparent;
+    display: inline-block;
+    line-height: 12px;
+    position: relative;
+    text-decoration: none;
+    transition: 0.2s ease-in-out all;
+  }
+
+  a:hover {
+    background-color: transparent;
+    border-color: $color-black;
+  }
+
+  a:focus {
+    border-color: $color-black;
+    outline: 2px solid $color-black;
+    outline-offset: 2px;
+  }
+}
