@@ -211,3 +211,7 @@ msgstr "Populära tjänster"
 msgctxt "News list paragraph see all news link"
 msgid "See all the news"
 msgstr "Se alla nyheter"
+
+msgctxt "News archive heading"
+msgid "All news items"
+msgstr "All nyheter"
