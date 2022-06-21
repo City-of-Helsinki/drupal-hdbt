@@ -108,8 +108,9 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 
   @include breakpoint($breakpoint-l) {
     height: auto;
-    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--block-header-top-height, 48px) - $-header-branding-height-desktop - 1px);
+    max-height: none;
     max-width: min(1920px, 100vw);
+    overflow: visible;
     top: calc(var(--drupal-toolbar-height, 0px) + var(--block-header-top-height, 48px) + $-header-branding-height-desktop);
   }
 
@@ -460,12 +461,26 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   @include font('body');
   display: inline-block;
   padding-left: calc(#{$spacing-half} + 1em * var(--line-height));
+}
 
-  &::before {
-    @include pseudo-icon('arrow-right');
-    @include hover-link-arrow-transition;
+.megamenu__link.is-active {
+  font-weight: bold;
+}
+
+.megamenu__item--level-3 .megamenu__link:not([data-is-external])::before {
+  @include pseudo-icon('arrow-right');
+  @include hover-link-arrow-transition;
+  margin-left: calc(-#{$spacing-half} - 1em * var(--line-height));
+  margin-right: $spacing-half;
+}
+
+.megamenu__item--level-3 .megamenu__link[data-is-external] {
+  display: flex;
+
+  .link__type {
     margin-left: calc(-#{$spacing-half} - 1em * var(--line-height));
     margin-right: $spacing-half;
+    order: -1;
   }
 }
 
@@ -485,6 +500,7 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 }
 
 .megamenu__item--level-2 {
+  margin-bottom: $spacing-triple;
   margin-top: 0;
 }
 
@@ -500,14 +516,10 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 }
 
 .megamenu__item.megamenu__item--level-2 {
-  // --items-per-row: 3;
-  // width: calc((100% / var(--items-per-row)) - (20px * var(--items-per-row)) / (var(--items-per-row) - 1));
+  --items-per-row: 3;
+  width: calc((100% / var(--items-per-row)) - (20px * var(--items-per-row)) / (var(--items-per-row) - 1));
 
-  // @include breakpoint(1440px) {
-  //   --items-per-row: 4;
-  // }
-  flex-grow: 1;
-  flex-shrink: 1;
-  max-width: calc(50% - 16px);
-  min-width: 15%;
+  @include breakpoint(1440px) {
+    --items-per-row: 4;
+  }
 }
