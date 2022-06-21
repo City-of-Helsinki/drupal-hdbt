@@ -46,6 +46,7 @@
   background-size: contain;
   content: '';
   display: $display;
+  flex-shrink: 0;
   height: $size;
   mask-image: icon_url($icon);
   mask-position: center;
