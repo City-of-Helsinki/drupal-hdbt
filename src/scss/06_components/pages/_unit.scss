@@ -201,14 +201,6 @@
   }
 }
 
-.unit--full .content-tags__tags__tag {
-  margin-bottom: $spacing-and-half;
-
-  @include breakpoint($breakpoint-m) {
-    margin-bottom: $spacing-double;
-  }
-}
-
 .unit.unit--teaser {
   align-items: flex-start;
   background-color: $color-white;
@@ -356,7 +348,7 @@
     }
   }
 
-  .unit__supports_language_sv {
+  .content-tags {
     margin-top: $spacing;
   }
 
