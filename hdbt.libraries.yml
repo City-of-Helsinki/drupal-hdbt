@@ -79,6 +79,7 @@ global-scripting:
   version: 1.x
   js:
     dist/js/branding-mobile.min.js: {}
+    dist/js/mobilemenu.min.js: {}
   dependencies:
     - core/drupal
 

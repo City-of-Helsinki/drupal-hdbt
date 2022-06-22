@@ -210,3 +210,8 @@ msgstr "Chat ei ole käytössä."
 msgctxt "Popular services paragraph title"
 msgid "Popular services"
 msgstr "Suosittuja palveluja"
+
+
+msgctxt "Mobile Menu
+msgid "Front Page"
+msgstr "Etusivu"
