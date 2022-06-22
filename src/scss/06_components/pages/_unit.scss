@@ -201,6 +201,15 @@
   }
 }
 
+.unit.unit--full .content-tags__tags--static {
+  margin-bottom: $spacing-and-half;
+  padding: 0;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-double;
+  }
+}
+
 .unit.unit--teaser {
   align-items: flex-start;
   background-color: $color-white;
@@ -348,8 +357,9 @@
     }
   }
 
-  .content-tags {
+  .content-tags__tags--static {
     margin-top: $spacing;
+    padding: 0;
   }
 
   .unit__read-more {

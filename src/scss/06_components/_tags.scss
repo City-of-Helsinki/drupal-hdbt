@@ -5,15 +5,11 @@ $tag-gap: $spacing-half;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: $spacing-and-half;
+  margin-bottom: 0;
   margin-top: 0;
   padding-bottom: ($spacing-and-half - $tag-gap);
   padding-left: 0;
   padding-top: $spacing-and-half;
-
-  @include breakpoint($breakpoint-m) {
-    margin-bottom: $spacing-double;
-  }
 }
 
 .content-tags__tags__tag {
