@@ -211,6 +211,10 @@ msgctxt "Popular services paragraph title"
 msgid "Popular services"
 msgstr "Suosittuja palveluja"
 
+msgctxt "News list paragraph see all news link"
+msgid "See all the news"
+msgstr "Katso kaikki uutiset"
+
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "Kaikki uutiset"
