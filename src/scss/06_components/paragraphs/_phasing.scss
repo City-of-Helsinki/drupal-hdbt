@@ -1,62 +1,55 @@
-$-item-spacing-top-and-bottom: $spacing-double;
-$-item-spacing-left-and-right: $spacing-quadruple;
-$-item-spacing-left--with-numbers-desktop: $spacing-sextuple;
-$-item-spacing-left--with-numbers: 80px;
-$-circle-border-width: 3px;
+$-item-gap: $spacing;
+$-item-padding: $spacing-double;
+$-item-padding-left: 72px;
+$-item-padding-left--ol: 80px;
+$-item-padding-left--ol-l: $spacing-sextuple;
 $-circle-size: $spacing;
-$-circle-size--with-numbers-desktop: $spacing-triple;
-$-circle-size--with-numbers: 40px;
-$-item-heading-lineheight: get-line-height('h4');
-
-// Calculated values from static values above
-$-circle-heading-difference: calc(($-item-heading-lineheight - $-circle-size) * 0.5);
-$-circle-heading-difference--with-numbers-desktop: calc(($-item-heading-lineheight - $-circle-size--with-numbers-desktop) * 0.5);
-$-circle-heading-difference--with-numbers: calc(($-item-heading-lineheight - $-circle-size--with-numbers) * 0.5);
-$-line-position-left: $-item-spacing-left-and-right * 0.5;
-$-line-position-left--with-numbers-desktop: $-item-spacing-left--with-numbers-desktop * 0.5;
-$-line-position-left--with-numbers: $-item-spacing-left--with-numbers * 0.5;
-$-line-position-top--first-item: $-item-spacing-top-and-bottom + ($-circle-size * 0.5);
-$-line-height--last-item: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
-$-line-height--first-item: 100%;
-$-line-height--other-item: calc(100% + $-item-spacing-top-and-bottom);
-$-circle-position-left: ($-item-spacing-left-and-right - $-circle-size + $-circle-border-width) * 0.5;
-$-circle-position-top: calc($-item-spacing-top-and-bottom + $-circle-heading-difference);
-$-circle-position-left--with-numbers-desktop: ($-item-spacing-left--with-numbers-desktop - $-circle-size--with-numbers-desktop + $-circle-border-width) * 0.5;
-$-circle-position-top--with-numbers-desktop: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers-desktop);
-$-circle-position-left--with-numbers: ($-item-spacing-left--with-numbers - $-circle-size--with-numbers + $-circle-border-width ) * 0.5;
-$-circle-position-top--with-numbers: calc($-item-spacing-top-and-bottom + $-circle-heading-difference--with-numbers);
+$-circle-size--ol: 40px;
+$-circle-size--ol-l: $spacing-triple;
 
 .component--phasing {
+  --item-title-lineheight: #{get-line-height('h4')};
   counter-reset: item;
+
+  @include breakpoint($breakpoint-l) {
+    --item-title-lineheight: #{get-line-height('h4.breakpoint_l')};
+  }
 }
 
 .phasing__item {
+  --circle-size: #{$-circle-size};
+  --p-left: #{$-item-padding-left};
   background-color: var(--hdbt-color-palette--secondary);
-  padding: $-item-spacing-top-and-bottom $spacing-quadruple;
+  padding: $-item-padding $-item-padding $-item-padding var(--p-left);
   position: relative;
 
   &:not(:last-of-type) {
-    margin-bottom: $spacing;
+    margin-bottom: $-item-gap;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    left: calc(var(--p-left) * 0.5);
+    position: absolute;
   }
 
   &::before {
     background-color: $color-black;
-    content: '';
-    height: $-line-height--other-item;
-    left: $-line-position-left;
-    position: absolute;
-    right: $-item-heading-lineheight;
+    height: calc(100% + $-item-gap + $spacing-half); // Height of the line should overlap 16px with the one below it.
     top: 0;
+    transform: translateX(-50%);
     width: 2px;
   }
 
   &:first-of-type::before {
-    height: $-line-height--first-item;
-    top: $-line-position-top--first-item;
+    height: 100%;
+    top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
   }
 
   &:last-of-type::before {
-    height: $-line-height--last-item;
+    height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
   }
 
   &:only-child::before {
@@ -65,23 +58,22 @@ $-circle-position-top--with-numbers: calc($-item-spacing-top-and-bottom + $-circ
 
   &::after {
     background-color: $color-white;
-    border: $-circle-border-width solid $color-black;
+    border: 3px solid $color-black;
     border-radius: 50%;
-    content: '';
-    display: block;
-    height: $-circle-size;
-    left: $-circle-position-left;
-    position: absolute;
-    top: $-circle-position-top;
-    width: $-circle-size;
+    height: var(--circle-size);
+    top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+    transform: translate(-50%, -50%);
+    width: var(--circle-size);
   }
 }
 
-.phasing__item-with-numbers {
-  padding-left: $-item-spacing-left--with-numbers;
+.phasing__item--with-numbers {
+  --circle-size: #{$-circle-size--ol};
+  --p-left: #{$-item-padding-left--ol};
 
-  @include breakpoint($breakpoint-m) {
-    padding-left: $-item-spacing-left--with-numbers-desktop;
+  @include breakpoint($breakpoint-l) {
+    --circle-size: #{$-circle-size--ol-l};
+    --p-left: #{$-item-padding-left--ol-l};
   }
 
   &::after {
@@ -89,45 +81,32 @@ $-circle-position-top--with-numbers: calc($-item-spacing-top-and-bottom + $-circ
     content: counter(item);
     counter-increment: item;
     display: flex;
-    height: $-circle-size--with-numbers;
     justify-content: center;
-    left: $-circle-position-left--with-numbers;
-    top: $-circle-position-top--with-numbers;
-    width: $-circle-size--with-numbers;
 
     @include font('h4');
-
-    @include breakpoint($breakpoint-m) {
-      height: $-circle-size--with-numbers-desktop;
-      left: $-circle-position-left--with-numbers-desktop;
-      top: $-circle-position-top--with-numbers-desktop;
-      width: $-circle-size--with-numbers-desktop;
-    }
-  }
-
-  &::before {
-    left: $-line-position-left--with-numbers;
-
-    @include breakpoint($breakpoint-m) {
-      left: $-line-position-left--with-numbers-desktop;
-    }
   }
 }
 
 .phasing__item-title {
   @include font('h4');
-  margin-bottom: $spacing;
   margin-top: 0;
+}
+
+.phasing__item-title + .phasing__item-description {
+  margin-top: $spacing;
 }
 
 // If phasing element is inside of an accordion
 .component--accordion .component--phasing {
-  .component__title {
-    @include font('h5');
+  --item-title-lineheight: #{get-line-height('h5')};
+
+  @include breakpoint($breakpoint-l) {
+    --item-title-lineheight: #{get-line-height('h5.breakpoint_l')};
   }
 
-  .phasing__item-with-numbers::after,
-  .phasing__item-title {
+  .phasing__item--with-numbers::after,
+  .phasing__item-title,
+  .component__title {
     @include font('h5');
   }
 }
