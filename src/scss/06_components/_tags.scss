@@ -1,0 +1,54 @@
+$-tag-gap: $spacing-half;
+$-tag-static-padding: $spacing-quarter $spacing;
+$-tag-interactive-padding: 10px 20px;
+
+.content-tags__tags {
+  @include flex-gap($-tag-gap);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.content-tags__tags__tag {
+  list-style: none;
+  margin-bottom: $-tag-gap;
+  margin-top: 0;
+
+  a,
+  span {
+    @include font('small');
+    display: inline-block;
+    text-decoration: none;
+    transition: 0.2s ease-in-out background-color, 0.2s ease-in-out border-color;
+  }
+}
+
+.content-tags__tags--interactive a {
+  background-color: transparent;
+  border: 2px solid $color-black;
+  border-radius: $spacing-and-half;
+  padding: $-tag-interactive-padding;
+
+  &:hover,
+  &:active {
+    background-color: $color-black;
+    border-color: $color-black;
+    color: $color-white;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $color-black;
+    outline: 2px solid $color-black;
+    outline-offset: 2px;
+  }
+}
+
+.content-tags__tags--static span {
+  background-color: $color-silver;
+  border-radius: $spacing;
+  padding: $-tag-static-padding;
+}

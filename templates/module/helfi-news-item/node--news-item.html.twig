@@ -68,25 +68,31 @@
 
     {# Tags #}
     {% if content.field_news_item_tags|render or content.field_news_neighbourhoods|render or content.field_news_groups|render %}
-      <section class="content-tags"  aria-label="{{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}">
-        <ul class="content-tags__tags">
+      {% embed '@hdbt/misc/tag-list.twig' with { type: 'interactive' }%}
+        {% block content %}
           {% if content.field_news_item_tags|render %}
             {% for key in content.field_news_item_tags['#items']|keys %}
-              <li class="content-tags__tags__tag">{{ content.field_news_item_tags[key] }}</li>
+              {% include '@hdbt/misc/tag.twig' with {
+                tag: content.field_news_item_tags[key],
+              }%}
             {% endfor %}
           {% endif %}
           {% if content.field_news_neighbourhoods|render %}
             {% for key in content.field_news_neighbourhoods['#items']|keys %}
-              <li class="content-tags__tags__tag">{{ content.field_news_neighbourhoods[key] }}</li>
+              {% include '@hdbt/misc/tag.twig' with {
+                tag: content.field_news_neighbourhoods[key],
+              }%}
             {% endfor %}
           {% endif %}
           {% if content.field_news_groups|render %}
             {% for key in content.field_news_groups['#items']|keys %}
-              <li class="content-tags__tags__tag">{{ content.field_news_groups[key] }}</li>
+              {% include '@hdbt/misc/tag.twig' with {
+                tag: content.field_news_groups[key],
+              }%}
             {% endfor %}
           {% endif %}
-        </ul>
-      </section>
+        {% endblock content %}
+      {% endembed %}
     {% endif %}
 
     {# Radioactivity #}
