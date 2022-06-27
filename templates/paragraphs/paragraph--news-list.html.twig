@@ -8,7 +8,9 @@
   %}
 		{% block component_content %}
 
-			{{ content.news_list }}
+      <ul class="news-listing news-listing--latest-medium-teasers">
+			  {{ content.news_list }}
+      </ul>
 
 			{% set link_title %}
 			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
