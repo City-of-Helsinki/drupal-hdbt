@@ -1,29 +1,28 @@
-$tag-gap: $spacing-half;
+$-tag-gap: $spacing-half;
 
 .content-tags__tags {
-  @include flex-gap($tag-gap);
+  @include flex-gap($-tag-gap);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 0;
   margin-top: 0;
-  padding-bottom: ($spacing-and-half - $tag-gap);
+  padding-bottom: ($spacing-and-half - $-tag-gap);
   padding-left: 0;
   padding-top: $spacing-and-half;
 }
 
 .content-tags__tags__tag {
   list-style: none;
-  margin-bottom: $tag-gap;
+  margin-bottom: $-tag-gap;
   margin-top: 0;
 
   a,
   span {
     @include font('small');
     display: inline-block;
-    line-height: 12px;
     text-decoration: none;
-    transition: 0.2s ease-in-out all;
+    transition: 0.2s ease-in-out background-color, 0.2s ease-in-out border-color;
   }
 }
 
@@ -31,15 +30,17 @@ $tag-gap: $spacing-half;
   background-color: transparent;
   border: 2px solid $color-black;
   border-radius: $spacing-and-half;
-  padding: $spacing 20px;
+  padding: 14px 20px;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: $color-black;
     border-color: $color-black;
     color: $color-white;
   }
 
-  &:focus {
+  &:focus,
+  &:active {
     border-color: $color-black;
     outline: 2px solid $color-black;
     outline-offset: 2px;
@@ -49,5 +50,5 @@ $tag-gap: $spacing-half;
 .content-tags__tags--static span {
   background-color: $color-silver;
   border-radius: $spacing;
-  padding: $spacing-half $spacing;
+  padding: $spacing-quarter $spacing;
 }
