@@ -201,9 +201,8 @@
   }
 }
 
-.unit.unit--full .content-tags__tags--static {
+.unit.unit--full .content-tags {
   margin-bottom: $spacing-and-half;
-  padding: 0;
 
   @include breakpoint($breakpoint-m) {
     margin-bottom: $spacing-double;
@@ -357,9 +356,8 @@
     }
   }
 
-  .content-tags__tags--static {
+  .content-tags {
     margin-top: $spacing;
-    padding: 0;
   }
 
   .unit__read-more {

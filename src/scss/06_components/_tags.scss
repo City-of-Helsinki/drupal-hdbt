@@ -1,4 +1,6 @@
 $-tag-gap: $spacing-half;
+$-tag-static-padding: $spacing-quarter $spacing;
+$-tag-interactive-padding: 10px 20px;
 
 .content-tags__tags {
   @include flex-gap($-tag-gap);
@@ -7,9 +9,7 @@ $-tag-gap: $spacing-half;
   flex-wrap: wrap;
   margin-bottom: 0;
   margin-top: 0;
-  padding-bottom: ($spacing-and-half - $-tag-gap);
   padding-left: 0;
-  padding-top: $spacing-and-half;
 }
 
 .content-tags__tags__tag {
@@ -30,7 +30,7 @@ $-tag-gap: $spacing-half;
   background-color: transparent;
   border: 2px solid $color-black;
   border-radius: $spacing-and-half;
-  padding: 10px 20px;
+  padding: $-tag-interactive-padding;
 
   &:hover,
   &:active {
@@ -50,5 +50,5 @@ $-tag-gap: $spacing-half;
 .content-tags__tags--static span {
   background-color: $color-silver;
   border-radius: $spacing;
-  padding: $spacing-quarter $spacing;
+  padding: $-tag-static-padding;
 }
