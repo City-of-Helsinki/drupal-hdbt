@@ -2,8 +2,8 @@
 	{% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--news-list' ],
-      component_title: content.field_news_list_title.value,
-      component_description: content.field_news_list_description.0,
+      component_title: content.field_news_list_title,
+      component_description: content.field_news_list_description,
     }
   %}
 		{% block component_content %}
