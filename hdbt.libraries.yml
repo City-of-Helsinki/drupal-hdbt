@@ -38,11 +38,6 @@ sidebar-menu-toggle:
   js:
     dist/js/sidebar-menu-toggle.min.js: {}
 
-cssmenu:
-  version: 1.x
-  js:
-    dist/js/cssmenu.min.js: {}
-
 color-palette:
   version: 1.0
   css:
@@ -79,6 +74,8 @@ nav-local:
   css:
     theme:
       dist/css/nav_local.min.css: {}
+  js:
+    dist/js/nav-local.min.js: {}
   dependencies:
     - hdbt/global-styling
 
