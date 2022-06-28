@@ -1,13 +1,20 @@
-// const Events = require('minivents');
 const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 const once = require('lodash/once');
-// view helper for showing button if current menu item has submenu items
-const button = function(){return this.items?.length>0; };
 /**
  * CSS classes for moving the panel. TODO: production naming
  * */
+
+const button = function(){
+  //this shoul be a json-menu object in panel/items template
+  return this.items?.length>0;
+};
+
+const active = function() {
+  return new RegExp(`${this.url}$`).test(window.location.pathname);
+};
+
 const Panel = {
   templates:{
     panelTemplate: `
@@ -17,11 +24,13 @@ const Panel = {
         <div class="jsmenu__language">
         <a href="#fi">Suomeksi</a>
         </div>
-          <button class="jsmenu__button--back">
-           {{title}}
-          {{^title}}{{frontpage}}{{/title}}
-          </button>
-        {{>items}}
+          {{#back}}
+            <button class="jsmenu__button--back">
+            <span>{{back}}</span>
+            </button>
+          {{/back}}
+          <a class="jsmenu__title-link" href="{{url}}">{{title}}</a>
+          {{>items}}
         </div>
         <div class="jsmenu__panel-footer">
         <a href="#">Anna palautetta</a>
@@ -31,11 +40,11 @@ const Panel = {
     {{/panels}}
     {{^panels}}
     <div class="jsmenu__loading">
-    <div class="hds-loading-spinner">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+      <div class="hds-loading-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     {{/panels}}
     `,
@@ -43,7 +52,7 @@ const Panel = {
     <ul class="jsmenu__items">
       {{#items}}
         <li class="jsmenu__item">
-          <a href={{url}} class="flex-grow jsmenu__itemlink">{{title}}</a>
+          <a href={{url}} class="flex-grow jsmenu__itemlink {{#active}}jsmenu__itemlink--active{{/active}}">{{title}}</a>
           {{#button}}
             <button class="jsmenu__button--forward " value={{id}} />
           {{/button}}
@@ -53,8 +62,8 @@ const Panel = {
    `
   },
   size: 5,
+  current: 0,
   selectors:{
-    states:[...Array(5)].map((a,i)=>`jsmenu--state-${i}`),
     container:'#jsmenu',
     rootId:'jsmenu__panels',
     forward:'jsmenu__button--forward',
@@ -65,19 +74,26 @@ const Panel = {
   },
   content:[],
   getPanels : function(state){
-
+    // prepare props for each panel
+    // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
+    // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
       ...item,
+      title:item?.title ||  Drupal.t('Front Page','Mobile Menu'),
+      // If current item has subitems, show button for next panel.
       button,
+      active,
+      // Show title of previously clicked item in Back-button (or Frontpage if)
+      back: (this.current > 0 && i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Front Page','Mobile Menu') : false ,
+      /***
+       * Define correct starting positions for each panel, depeding on traversal direction
+       * At start, first item is on stage and anything else must be on right.
+       * When going forward in the menu, current -1  item must be on stage and current item starts from right
+       * When going backward in the menu, current +1 item must be on stage and current item starts from left
+       *
+       * At render, -up and -down classes are added and removed accordingly to achieve wanted animation and final state.
+       */
       panel_class: cls({
-        /***
-         * Define correct starting positions for each panel, depeding on traversal direction
-         * At start, first item is on stage and anything else must be on right.
-         * When going forward in the menu, current -1  item must be on stage and current item starts from right
-         * When going backward in the menu, current +1 item must be on stage and current item starts from left
-         *
-         * At render, -up and -down classes are added and removed accordingly to achieve wanted animation and final state.
-         */
         'jsmenu__panel':true,
         'jsmenu__panel--visible':true,
         'jsmenu__panel--current':i === this.current,
@@ -86,7 +102,6 @@ const Panel = {
       })
     }));
   },
-  current: 0,
   up: function (parentId) {
 
     if(this.current===this.size) {return;}
@@ -114,12 +129,8 @@ const Panel = {
   },
   render:function(state) {
     const root = this.getRoot();
-    // root.parentElement.scrollTo(0,0);
     root.innerHTML = Mustache.render(this.templates.panelTemplate, {
       panels: this.getPanels(state),
-      frontpage:Drupal.t('Front Page','Mobile Menu'),
-      // current:()=> this.current+1,
-      back: ()=> ['back to',this.current +1].join(' ') ,
     }, {
       items: this.templates.listTemplate,
     });
@@ -128,6 +139,11 @@ const Panel = {
 
     //Scroll to back-button height if back-button is not visible any more
     // Todo: bind treshold to back-button position when all menu blocks have been added and styled
+
+    if(state === 'load') {
+      return;
+    }
+
     const TRESHOLD = 100;
     if(root.parentElement.scrollTop > TRESHOLD) {
       current.querySelectorAll('.jsmenu__button--back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
@@ -143,7 +159,6 @@ const Panel = {
       //     return;
       //   }
       // };
-
 
       current.classList.add('jsmenu__panel--visible-fast');
       current.classList.remove('jsmenu__panel--visible-right','jsmenu__panel--visible-left');
@@ -223,6 +238,7 @@ const Panel = {
 document.addEventListener('DOMContentLoaded', () => {
   // TODO integrate with megamenu button
   const toggleButton = '.cssmenu-toggle';
+  //TODO maybe not use once, just use a  boolean in Panel.
   const start = once(()=>Panel.start());
   document.querySelectorAll(toggleButton)[0].addEventListener('click',start);
 

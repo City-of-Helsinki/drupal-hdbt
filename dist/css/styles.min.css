@@ -5767,6 +5767,11 @@ a:hover .link__type {
 /*
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
+:root {
+  --jsmenu-font-size: 105%;
+  --jsmenu-active-border:6px;
+}
+
 .jsmenu__drawer {
   background: #ddd;
   overflow-x: hidden;
@@ -5774,22 +5779,22 @@ a:hover .link__type {
 }
 
 .jsmenu__loading {
-  text-align: center;
-  height: 80vh;
-  width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
+  width: 100vw;
 }
 .jsmenu__loading .hds-loading-spinner {
-  position: relative;
   left: auto;
+  position: relative;
   top: auto;
 }
 
@@ -5861,8 +5866,71 @@ a:hover .link__type {
           transition-timing-function: ease-in;
 }
 
+.jsmenu__button--back {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0;
+  margin: 16px 0 24px 16px;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white;
+  position: relative;
+}
+.jsmenu__button--back span {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: inline-block;
+  background: white;
+  height: 100%;
+  margin-left: 12px;
+}
+
+.jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
+  background-color: black;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 24px;
+  -webkit-mask-image: var(--hel-icon--angle-left);
+          mask-image: var(--hel-icon--angle-left);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 24px 24px;
+          mask-size: 24px 24px;
+  vertical-align: bottom;
+  width: 24px;
+  z-index: 3;
+  -webkit-transform: translateX(2px);
+          transform: translateX(2px);
+}
+
+.jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
+  background: #ddd;
+  display: block;
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  left: 0;
+  z-index: 2;
+}
+
 .jsmenu__panel-body {
   min-height: 60vh;
+}
+
+.jsmenu__title-link {
+  display: block;
+  margin: 16px;
+  font-size: 105%;
+  font-size: var(--jsmenu-font-size);
+  font-weight: bold;
 }
 
 .jsmenu__panel-footer {
@@ -5881,7 +5949,7 @@ a:hover .link__type {
 
 .jsmenu__language {
   background-color: #ddd;
-  height: 4rem;
+  height: 2rem;
   position: relative;
 }
 
@@ -5889,37 +5957,50 @@ a:hover .link__type {
   background-color: white;
   margin: 0;
   padding: 0;
+  margin-top: 16px;
 }
 
 .jsmenu__item {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: white;
-  border-top: 1px solid #aaa;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  font-size: 125%;
+  background: white;
+  border-top: 1px solid #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 105%;
+  font-size: var(--jsmenu-font-size);
   gap: 12px;
   margin: 0;
   min-height: 48px;
-  padding-left: 16px;
 }
 
 .jsmenu__itemlink {
+  padding-left: calc(16px - 6px);
+  padding-left: calc(16px - var(--jsmenu-active-border));
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  text-decoration: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-left: 6px solid white;
+  border-left: var(--jsmenu-active-border) solid white;
+}
+.jsmenu__itemlink.jsmenu__itemlink--active {
+  border-color: black;
+  font-weight: bold;
 }
 
 .jsmenu__button--forward {
   background: none;
   border: 0;
-  border-left: 1px solid #aaa;
+  border-left: 1px solid #ccc;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
@@ -5936,30 +6017,6 @@ a:hover .link__type {
   height: 24px;
   -webkit-mask-image: var(--hel-icon--angle-right);
           mask-image: var(--hel-icon--angle-right);
-  -webkit-mask-position: center;
-          mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-size: 24px 24px;
-          mask-size: 24px 24px;
-  vertical-align: bottom;
-  width: 24px;
-}
-
-.jsmenu__button--back {
-  background: none;
-  border: 0;
-  height: 3rem;
-}
-
-.jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
-  background-color: black;
-  background-size: contain;
-  content: "";
-  display: inline-block;
-  height: 24px;
-  -webkit-mask-image: var(--hel-icon--angle-left);
-          mask-image: var(--hel-icon--angle-left);
   -webkit-mask-position: center;
           mask-position: center;
   -webkit-mask-repeat: no-repeat;
