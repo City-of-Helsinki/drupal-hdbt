@@ -1,0 +1,8 @@
+name: 'HDBT Global Navigation'
+type: module
+description: 'Provides theming to global navigation feature'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'Theme'
+'interface translation project': hdbt_global_navigation
+'interface translation server pattern': themes/contrib/hdbt/modules/hdbt_global_navigation/translations/%language.po
