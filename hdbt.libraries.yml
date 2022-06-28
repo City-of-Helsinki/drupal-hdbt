@@ -74,6 +74,22 @@ global-styling:
     - hdbt/color-palette
     - hdbt/hdbt-icons
 
+nav-local:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_local.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+
+nav-global:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_global.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+
 # TODO Convert branding mobile to its own library.
 global-scripting:
   version: 1.x
