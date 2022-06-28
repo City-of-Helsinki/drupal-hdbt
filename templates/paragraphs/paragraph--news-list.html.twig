@@ -2,13 +2,15 @@
 	{% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--news-list' ],
-      component_title: content.field_news_list_title.value,
-      component_description: content.field_news_list_description.0,
+      component_title: content.field_news_list_title,
+      component_description: content.field_news_list_description,
     }
   %}
 		{% block component_content %}
 
-			{{ content.news_list }}
+      <ul class="news-listing news-listing--latest-medium-teasers">
+			  {{ content.news_list }}
+      </ul>
 
 			{% set link_title %}
 			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
