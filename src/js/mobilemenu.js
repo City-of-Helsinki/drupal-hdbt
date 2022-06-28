@@ -1,13 +1,9 @@
 const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
-const once = require('lodash/once');
-/**
- * CSS classes for moving the panel. TODO: production naming
- * */
 
 const button = function(){
-  //this shoul be a json-menu object in panel/items template
+  // "this" should be a json-menu object in panel/items template
   return this.items?.length>0;
 };
 
@@ -38,6 +34,7 @@ const Panel = {
         </div>
       </section>
     {{/panels}}
+
     {{^panels}}
     <div class="jsmenu__loading">
       <div class="hds-loading-spinner">
@@ -73,8 +70,8 @@ const Panel = {
     return document.getElementById(this.selectors.rootId);
   },
   content:[],
-  getPanels : function(state){
-    // prepare props for each panel
+  getView: function(state){
+    // Prepare props for each panel
     // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
@@ -130,19 +127,20 @@ const Panel = {
   render:function(state) {
     const root = this.getRoot();
     root.innerHTML = Mustache.render(this.templates.panelTemplate, {
-      panels: this.getPanels(state),
+      panels: this.getView(state),
     }, {
       items: this.templates.listTemplate,
     });
-    const panels = [...root.querySelectorAll('.jsmenu__panel')];
-    const current =  panels.at(this.current);
-
-    //Scroll to back-button height if back-button is not visible any more
-    // Todo: bind treshold to back-button position when all menu blocks have been added and styled
 
     if(state === 'load') {
       return;
     }
+
+    const panels = [...root.querySelectorAll('.jsmenu__panel')];
+    const current =  panels.at(this.current);
+    //Scroll to back-button height if back-button is not visible any more
+    // Todo: bind treshold to back-button position when all menu blocks have been added and styled
+
 
     const TRESHOLD = 100;
     if(root.parentElement.scrollTop > TRESHOLD) {
@@ -189,20 +187,16 @@ const Panel = {
     this.content = [MENU];
   },
   start: async function(){
-    console.log('start');
     if(!this.getRoot()) {
       console.error('menu data not loaded');
       throw new Error('Panel root not found');
-
     }
     this.render('load');
     try {
       await this.load();
     } catch(e) {
       console.error(e);
-      // throw e;
       this.content = [mockmenu, ...Array(4)];
-
     }
 
     this.render('start');
@@ -227,21 +221,19 @@ const Panel = {
       }
     });
 
-
-
-
-
   }
 };
 
-
 document.addEventListener('DOMContentLoaded', () => {
   // TODO integrate with megamenu button
-  const toggleButton = '.cssmenu-toggle';
-  //TODO maybe not use once, just use a  boolean in Panel.
-  const start = once(()=>Panel.start());
-  document.querySelectorAll(toggleButton)[0].addEventListener('click',start);
+  const toggleButton = document.querySelectorAll('.cssmenu-toggle')[0];
+
+  //start only once.
+  const start = function() {
+    toggleButton.removeEventListener('click',start);
+    Panel.start();
+  };
+
+  toggleButton.addEventListener('click',start);
 
 });
-
-

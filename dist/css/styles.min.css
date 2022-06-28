@@ -5848,8 +5848,8 @@ a:hover .link__type {
 
 .jsmenu__panel.jsmenu__panel--visible-right {
   opacity: 0.1;
-  -webkit-transform: translateX(100vw) scale(102%) translateY(0.2rem);
-          transform: translateX(100vw) scale(102%) translateY(0.2rem);
+  -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
   -webkit-transition-property: all;
   transition-property: all;
   -webkit-transition-timing-function: ease-in;
@@ -5858,8 +5858,8 @@ a:hover .link__type {
 
 .jsmenu__panel.jsmenu__panel--visible-left {
   opacity: 0.1;
-  -webkit-transform: translateX(-100vw) scale(102%) translateY(0.2rem);
-          transform: translateX(-100vw) scale(102%) translateY(0.2rem);
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
   -webkit-transition-property: all;
   transition-property: all;
   -webkit-transition-timing-function: ease-in;
@@ -5870,21 +5870,21 @@ a:hover .link__type {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: white;
   border: 0;
-  margin: 16px 0 24px 16px;
-  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: white;
+  margin: 16px 0 24px 16px;
+  padding: 0;
   position: relative;
 }
 .jsmenu__button--back span {
+  background: white;
+  display: inline-block;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  display: inline-block;
-  background: white;
   height: 100%;
   margin-left: 12px;
 }
@@ -5905,19 +5905,19 @@ a:hover .link__type {
           mask-size: 24px 24px;
   vertical-align: bottom;
   width: 24px;
-  z-index: 3;
   -webkit-transform: translateX(2px);
           transform: translateX(2px);
+  z-index: 3;
 }
 
 .jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
   background: #ddd;
-  display: block;
   content: "";
-  position: absolute;
+  display: block;
   height: 28px;
-  width: 28px;
   left: 0;
+  position: absolute;
+  width: 28px;
   z-index: 2;
 }
 
@@ -5927,10 +5927,10 @@ a:hover .link__type {
 
 .jsmenu__title-link {
   display: block;
-  margin: 16px;
   font-size: 105%;
   font-size: var(--jsmenu-font-size);
   font-weight: bold;
+  margin: 16px;
 }
 
 .jsmenu__panel-footer {
@@ -5956,8 +5956,8 @@ a:hover .link__type {
 .jsmenu__items {
   background-color: white;
   margin: 0;
-  padding: 0;
   margin-top: 16px;
+  padding: 0;
 }
 
 .jsmenu__item {
@@ -5977,20 +5977,20 @@ a:hover .link__type {
 }
 
 .jsmenu__itemlink {
-  padding-left: calc(16px - 6px);
-  padding-left: calc(16px - var(--jsmenu-active-border));
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  text-decoration: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   border-left: 6px solid white;
   border-left: var(--jsmenu-active-border) solid white;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding-left: calc(16px - 6px);
+  padding-left: calc(16px - var(--jsmenu-active-border));
+  text-decoration: none;
 }
 .jsmenu__itemlink.jsmenu__itemlink--active {
   border-color: black;

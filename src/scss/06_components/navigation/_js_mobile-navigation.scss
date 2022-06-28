@@ -70,7 +70,7 @@
 .jsmenu__panel.jsmenu__panel--visible-right {
 
   opacity:0.1;
-  transform:translateX(100vw) scale(102%) translateY(0.2rem);
+  transform:translateX(100vw);
   transition-property: all;
   transition-timing-function: ease-in;
 }
@@ -79,7 +79,7 @@
 
 .jsmenu__panel.jsmenu__panel--visible-left {
   opacity:0.1;
-  transform:translateX(-100vw) scale(102%) translateY(0.2rem);
+  transform:translateX(-100vw);
   transition-property: all;
   transition-timing-function: ease-in;
 }
