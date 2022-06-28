@@ -1,3 +1,6 @@
+$-main-nav-spacing: 20px;
+$-main-nav-dropdown-padding: $-main-nav-spacing;
+
 .header-bottom {
   background-color: $color-white;
 
@@ -15,30 +18,22 @@
     }
   }
 
+  .menu--level-0 {
+    @include flex-gap($-main-nav-spacing, $spacing-double);
+    flex-wrap: wrap;
+  }
+
   .menu__item {
     @include font('special.navigation.main_nav');
     list-style: none;
     position: relative;
   }
 
-  // First level items only
-  .menu--level-0 > .menu__item {
-    margin: 0 $spacing;
-
-    &:first-child {
-      margin-left: $spacing-double;
-    }
-
-    &:last-child {
-      margin-right: $spacing-double;
-    }
-  }
-
   // Menu toggle button
   .menu__toggle-button {
     background-color: $color-black-5;
     border: none;
-    margin-left: $spacing-half;
+    margin-left: $spacing-quarter;
     padding: 0;
 
     &:hover {
@@ -69,7 +64,7 @@
 
   .menu__link-wrapper {
     align-items: center;
-    display: block;
+    display: flex;
     height: 100%;
     position: relative;
   }
@@ -137,7 +132,7 @@
     border: 1px solid $color-black-20;
     bottom: auto;
     display: none; // By default hide the secondary items
-    left: -$spacing-double;
+    left: - $-main-nav-dropdown-padding;
     min-width: 310px;
     position: absolute;
     width: calc(100% + #{$spacing-quadruple});
@@ -160,7 +155,7 @@
   .menu--level-1 .menu__item--nolink {
     @include font('special.navigation.sub_nav');
     display: block;
-    padding: $spacing $spacing-double;
+    padding: $spacing $-main-nav-dropdown-padding;
 
     &::before {
       bottom: 0;
