@@ -5988,6 +5988,7 @@ a:hover .link__type {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  padding: 8px 0;
   padding-left: calc(16px - 6px);
   padding-left: calc(16px - var(--jsmenu-active-border));
   text-decoration: none;

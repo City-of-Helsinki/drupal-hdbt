@@ -188,6 +188,7 @@
   border-left:var(--jsmenu-active-border) solid white;
   display: inline-flex;
   flex-grow: 1;
+  padding: $spacing-half 0;
   padding-left:calc($spacing - var(--jsmenu-active-border));
   text-decoration: none;
   &.jsmenu__itemlink--active {
