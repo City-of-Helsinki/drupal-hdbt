@@ -32,8 +32,13 @@
   %}
 {% endif %}
 
-{# This checkbox handles opening and closing mobile menu #}
-<input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
+{# Do we want to render navigation with content from another instance "globally" #}
+{% if use_global_navigation %}
+  GLOBAL NAV MENU TOGGLE
+{% else %}
+  {# This checkbox handles opening and closing mobile menu #}
+  <input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
+{% endif %}
 
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
