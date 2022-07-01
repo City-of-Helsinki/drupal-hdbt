@@ -217,3 +217,17 @@ $-menu-transition-duration: 0.3s;
     } // Footer
   }
 }
+
+.megamenu {
+  display: none;
+
+  @include breakpoint($breakpoint-l) {
+    display: block;
+  }
+}
+
+.mobile-menu {
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+}

@@ -32,6 +32,12 @@
  */
 #}
 
+{% set block_content %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+{% endset %}
+
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
 
@@ -56,37 +62,22 @@
       <div class="menu-dropdown__content" aria-labelledby="menu-description">
         <h2 class="visually-hidden" id="menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
 
-        <div class="megamenu">
-          Megamenu
-          <ul>
-            <li>Lorem, ipsum dolor.</li>
-            <li>Officiis, debitis voluptatem!</li>
-            <li>Nulla, debitis cumque!</li>
-            <li>Blanditiis, optio sint.</li>
-            <li>Nihil, pariatur perferendis!</li>
-            <li>Vel, deleniti earum.</li>
-            <li>Minima, earum sit?</li>
-            <li>Porro, reprehenderit error.</li>
-            <li>Quasi, officiis architecto.</li>
-            <li>Enim, quasi minima?</li>
-          </ul>
-        </div>
+        {# {{ drupal_entity('block', 'language_switcher')}} #}
 
-        <div class="mobile-menu">
-          Mobile menu
-          <ul>
-            <li>Lorem, ipsum dolor.</li>
-            <li>Officiis, debitis voluptatem!</li>
-            <li>Nulla, debitis cumque!</li>
-            <li>Blanditiis, optio sint.</li>
-            <li>Nihil, pariatur perferendis!</li>
-            <li>Vel, deleniti earum.</li>
-            <li>Minima, earum sit?</li>
-            <li>Porro, reprehenderit error.</li>
-            <li>Quasi, officiis architecto.</li>
-            <li>Enim, quasi minima?</li>
-          </ul>
-        </div>
+        {{ block_content }}
+
+        {# <div class="mobile-menu__footer">
+          {% set link_attributes = {
+            'class': [
+              'menu__link',
+            ],
+          } %}
+          {{ link('City of Helsinki'|t, 'https://hel.fi', link_attributes) }}
+          {% set inside_cssmenu = true %}
+          {{ drupal_entity('block', 'headertopnavigation')}}
+        </div> #}
+
+        <div class="mobile-menu">Mobile menu fallback</div>
 
       </div>
     </div>
@@ -108,9 +99,7 @@
 
     {{ drupal_entity('block', 'language_switcher')}}
 
-    {% block content %}
-      {{ content }}
-    {% endblock %}
+    {{ block_content }}
 
     <div class="cssmenu-menu__footer">
       {% set link_attributes = {
