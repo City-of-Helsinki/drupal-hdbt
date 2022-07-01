@@ -81,6 +81,7 @@ const Panel = {
     </ul>
    `
   },
+  //Maximum assumed depth of tree. Used for checking if going up is allowed
   size: 5,
   data:null,
   current: 0,
@@ -96,7 +97,7 @@ const Panel = {
   sortPanelsByPath:function() {
     const allItems = this.data.items;
     const currentItem = allItems.findRecursive( item => active.call(item),'items' );
-    let parentId = currentItem.parent;
+    let parentId = currentItem?.parent;
     const panels = [];
     while(parentId) {
       allItems.findRecursive(({id,url,title,items,parent}) => {
@@ -148,7 +149,9 @@ const Panel = {
   },
   up: function (parentId) {
 
-    if(this.current===this.size) {return;}
+    if(this.current===this.size) {
+      return;
+    }
     if(!parentId) {
       throw new Error('missing id for menu item ' + parentId);
     }
