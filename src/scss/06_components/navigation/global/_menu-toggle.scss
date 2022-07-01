@@ -11,6 +11,7 @@ $-menu-transition-duration: 0.3s;
   display: grid;
 }
 
+.jsmenu__open,
 .menu-toggle-button {
   background: transparent; // Reset button styles
   border: 0 none; // Reset button styles
@@ -22,6 +23,7 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+.jsmenu__open,
 .menu-toggle-anchor,
 .menu-toggle-button {
   grid-area: toggle;
@@ -35,11 +37,25 @@ $-menu-transition-duration: 0.3s;
     display: none;
   }
 
-  .menu-toggle-button {
+  // On mobile sizes with js, button should open jsmenu with js
+  .jsmenu__open {
     display: grid;
+
+    @include breakpoint($breakpoint-l) {
+      display: none;
+    }
+  }
+
+  // On desktop sizes with js, button should open megamenu with js
+  .menu-toggle-button {
+    @include breakpoint($breakpoint-l) {
+      display: grid;
+    }
   }
 }
 
+.jsmenu-toggle__open,
+.jsmenu-toggle__close,
 .menu-toggle__open,
 .menu-toggle__close {
   @include font('special.navigation.icon_label');
@@ -79,12 +95,13 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+.jsmenu-toggle__close,
 .menu-toggle__close {
   visibility: hidden;
-}
 
-.menu-toggle__close::before {
-  @include pseudo-icon-replace('cross');
+  &::before {
+    @include pseudo-icon-replace('cross');
+  }
 }
 
 // Outermost dropdown container, always open.

@@ -211,11 +211,3 @@ $-jsmenu-border: #ccc;
   @include pseudo-icon('angle-right', $spacing-and-half, black);
   // @include rotating-icon-transition;
 }
-
-
-.jsmenu__open {
-  height: 3rem;
-  position: absolute;
-  width:5rem;
-  z-index:2;
-}
