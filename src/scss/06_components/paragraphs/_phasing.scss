@@ -1,0 +1,112 @@
+$-item-gap: $spacing;
+$-item-padding: $spacing-double;
+$-item-padding-left: 72px;
+$-item-padding-left--ol: 80px;
+$-item-padding-left--ol-l: $spacing-sextuple;
+$-circle-size: $spacing;
+$-circle-size--ol: 40px;
+$-circle-size--ol-l: $spacing-triple;
+
+.component--phasing {
+  --item-title-lineheight: #{get-line-height('h4')};
+  counter-reset: item;
+
+  @include breakpoint($breakpoint-l) {
+    --item-title-lineheight: #{get-line-height('h4.breakpoint_l')};
+  }
+}
+
+.phasing__item {
+  --circle-size: #{$-circle-size};
+  --p-left: #{$-item-padding-left};
+  background-color: var(--hdbt-color-palette--secondary);
+  padding: $-item-padding $-item-padding $-item-padding var(--p-left);
+  position: relative;
+
+  &:not(:last-of-type) {
+    margin-bottom: $-item-gap;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    left: calc(var(--p-left) * 0.5);
+    position: absolute;
+  }
+
+  &::before {
+    background-color: $color-black;
+    height: calc(100% + $-item-gap + $spacing-half); // Height of the line should overlap 16px with the one below it.
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+  }
+
+  &:first-of-type::before {
+    height: 100%;
+    top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+  }
+
+  &:last-of-type::before {
+    height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+  }
+
+  &:only-child::before {
+    display: none;
+  }
+
+  &::after {
+    background-color: $color-white;
+    border: 3px solid $color-black;
+    border-radius: 50%;
+    height: var(--circle-size);
+    top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+    transform: translate(-50%, -50%);
+    width: var(--circle-size);
+  }
+}
+
+.phasing__item--with-numbers {
+  --circle-size: #{$-circle-size--ol};
+  --p-left: #{$-item-padding-left--ol};
+
+  @include breakpoint($breakpoint-l) {
+    --circle-size: #{$-circle-size--ol-l};
+    --p-left: #{$-item-padding-left--ol-l};
+  }
+
+  &::after {
+    align-items: center;
+    content: counter(item);
+    counter-increment: item;
+    display: flex;
+    justify-content: center;
+
+    @include font('h4');
+  }
+}
+
+.phasing__item-title {
+  @include font('h4');
+  margin-top: 0;
+}
+
+.phasing__item-title + .phasing__item-description {
+  margin-top: $spacing;
+}
+
+// If phasing element is inside of an accordion
+.component--accordion .component--phasing {
+  --item-title-lineheight: #{get-line-height('h5')};
+
+  @include breakpoint($breakpoint-l) {
+    --item-title-lineheight: #{get-line-height('h5.breakpoint_l')};
+  }
+
+  .phasing__item--with-numbers::after,
+  .phasing__item-title,
+  .component__title {
+    @include font('h5');
+  }
+}

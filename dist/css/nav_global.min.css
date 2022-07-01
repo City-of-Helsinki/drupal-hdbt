@@ -41,16 +41,13 @@
 .jsmenu__panels {
   background: #f7f7f8;
   height: 100vh;
-  position: relative;
-  width: 1000rem;
   -ms-scroll-chaining: none;
       overscroll-behavior: none;
+  position: relative;
+  width: 1000rem;
 }
 
 .jsmenu__panel {
-  position: absolute;
-  -ms-scroll-chaining: none;
-      overscroll-behavior: none;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,11 +57,14 @@
       -ms-flex-direction: column;
           flex-direction: column;
   min-height: 100vh;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+  overscroll-behavior: none;
+  position: absolute;
   position: absolute;
   -webkit-transition-property: all;
   transition-property: all;
   width: 100vw;
-  overscroll-behavior: none;
 }
 
 .jsmenu__panel.jsmenu__panel--visible-fast {
@@ -269,10 +269,10 @@
 }
 
 .jsmenu__open {
-  z-index: 2;
+  height: 3rem;
   position: absolute;
   width: 5rem;
-  height: 3rem;
+  z-index: 2;
 }
 
 /*# sourceMappingURL=nav_global.min.css.map*/
