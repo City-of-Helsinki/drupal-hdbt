@@ -247,7 +247,7 @@ const Panel = {
       /**
        * Event listeners:
        *
-       *  Bind one click event listener to main panel. One for all click events.
+       *  Bind one click event listener to main panel. One for all click events.!
        *  Add more if one handler becomes too cumbersome.
        *  */
 
