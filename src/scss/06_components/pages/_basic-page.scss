@@ -162,39 +162,6 @@
   }
 }
 
-$tag-gap: $spacing-half;
-
-.content-tags__tags {
-  @include flex-gap($tag-gap);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding-bottom: ($spacing-and-half - $tag-gap);
-  padding-left: 0;
-  padding-top: $spacing-and-half;
-}
-
-.content-tags__tags__tag {
-  list-style: none;
-  margin-bottom: $tag-gap;
-  margin-top: 0;
-
-  // stylelint-disable-next-line no-descending-specificity
-  a {
-    background-color: $color-silver;
-    border-radius: 500px;
-    display: inline-block;
-    padding: 12px 20px;
-    text-decoration: none;
-
-    &:hover {
-      background-color: $color-silver-dark;
-    }
-  }
-}
-
 .sidebar_block_heading {
   @include font('h3');
   border-bottom: 2px solid $color-black;

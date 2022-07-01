@@ -70,9 +70,9 @@
 }
 
 // TODO: replace with native flex gap once enough users have moved to > ios 14.4
-@mixin flex-gap($gap) {
-  margin-left: -$gap * 0.5;
-  margin-right: -$gap * 0.5;
+@mixin flex-gap($gap, $parent-base-margin: 0) {
+  margin-left: $parent-base-margin - $gap * 0.5;
+  margin-right: $parent-base-margin - $gap * 0.5;
 
   & > * {
     margin-left: $gap * 0.5;

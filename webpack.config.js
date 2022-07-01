@@ -12,6 +12,8 @@ const { merge } = require('webpack-merge');
 const Entries = () => {
   let entries = {
     styles: ['./src/scss/styles.scss'],
+    nav_local: ['./src/scss/nav-local.scss'],
+    nav_global: ['./src/scss/nav-global.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
     'component-library': [
       './src/scss/component-library.scss',

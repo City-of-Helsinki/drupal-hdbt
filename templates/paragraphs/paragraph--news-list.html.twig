@@ -1,0 +1,30 @@
+{% block paragraph %}
+	{% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--news-list' ],
+      component_title: content.field_news_list_title,
+      component_description: content.field_news_list_description,
+    }
+  %}
+		{% block component_content %}
+
+      <ul class="news-listing news-listing--latest-medium-teasers">
+			  {{ content.news_list }}
+      </ul>
+
+			{% set link_title %}
+			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
+			{% endset %}
+
+			{% set link_attributes = {
+        'class': [
+          'hds-button',
+          'hds-button--primary',
+        ]
+      } %}
+
+			{{ link(link_title, news_archive_url, link_attributes) }}
+
+		{% endblock component_content %}
+	{% endembed %}
+{% endblock paragraph %}

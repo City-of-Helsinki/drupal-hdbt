@@ -33,6 +33,10 @@ function hdbt_preprocess(&$variables, $hook) {
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
 
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('hdbt_global_navigation');
+
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
@@ -92,6 +96,14 @@ function hdbt_preprocess_html(&$variables) {
 
   // Disable Genesys button if the chat element does not exist.
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
+
+  // Toggle between global and local navigation libraries for CSS and JS.
+  if (\Drupal::moduleHandler()->moduleExists('hdbt_global_navigation')) {
+    $variables['#attached']['library'][] = 'hdbt/nav-global';
+  }
+  else {
+    $variables['#attached']['library'][] = 'hdbt/nav-local';
+  }
 }
 
 /**

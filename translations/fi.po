@@ -215,3 +215,11 @@ msgstr "Suosittuja palveluja"
 msgctxt "Mobile Menu
 msgid "Front Page"
 msgstr "Etusivu"
+
+msgctxt "News list paragraph see all news link"
+msgid "See all the news"
+msgstr "Katso kaikki uutiset"
+
+msgctxt "News archive heading"
+msgid "All news items"
+msgstr "Kaikki uutiset"

@@ -1,0 +1,278 @@
+/* Content is created after this point */
+/*
+* JS menu styles (reuse CSS menu classes where possible, remove unused when done
+*/
+.jsmenu__drawer {
+  background: #f7f7f8;
+  overflow-x: hidden;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+  position: absolute;
+  --DEBUG-FONT-TOKEN: "body";
+  --line-height: 1.5555555556;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: var(--line-height);
+  display: none;
+  height: 100vh;
+  z-index: 2;
+}
+
+.jsmenu__loading {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 100vw;
+}
+.jsmenu__loading .hds-loading-spinner {
+  left: auto;
+  position: relative;
+  top: auto;
+}
+
+.jsmenu__panels {
+  background: #f7f7f8;
+  height: 100vh;
+  position: relative;
+  width: 1000rem;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+}
+
+.jsmenu__panel {
+  position: absolute;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  position: absolute;
+  -webkit-transition-property: all;
+  transition-property: all;
+  width: 100vw;
+  overscroll-behavior: none;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-fast {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  z-index: 50;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-slow {
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+  z-index: 4;
+}
+
+.jsmenu__panel.jsmenu__panel--visible {
+  opacity: 1;
+  -webkit-transform: translateX(0) scale(100%) translateY(0);
+          transform: translateX(0) scale(100%) translateY(0);
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-right {
+  opacity: 0.1;
+  -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+}
+
+.jsmenu__panel.jsmenu__panel--visible-left {
+  opacity: 0.1;
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+}
+
+.jsmenu__button--back {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 16px 0 24px 16px;
+  padding: 0;
+  position: relative;
+}
+.jsmenu__button--back span {
+  background: white;
+  display: inline-block;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 100%;
+  margin-left: 12px;
+}
+
+.jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
+  background-color: black;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 24px;
+  -webkit-mask-image: var(--hel-icon--angle-left);
+          mask-image: var(--hel-icon--angle-left);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 24px 24px;
+          mask-size: 24px 24px;
+  vertical-align: bottom;
+  width: 24px;
+  -webkit-transform: translateX(2px);
+          transform: translateX(2px);
+  z-index: 3;
+}
+
+.jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
+  background: #f7f7f8;
+  content: "";
+  display: block;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  width: 28px;
+  z-index: 2;
+}
+
+.jsmenu__panel-body {
+  min-height: 60vh;
+}
+
+.jsmenu__title-link {
+  display: block;
+  font-weight: bold;
+  margin: 16px;
+}
+
+.jsmenu__panel-footer {
+  background: #f7f7f8;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-height: 10rem;
+  padding-left: 16px;
+  padding-top: 24px;
+}
+
+.jsmenu__panel--current .jsmenu__panel-footer {
+  min-height: 100vh;
+}
+
+.jsmenu__language {
+  background-color: #f7f7f8;
+  height: 2rem;
+  position: relative;
+}
+
+.jsmenu__items {
+  background-color: white;
+  margin: 0;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.jsmenu__item {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  background: white;
+  border-top: 1px solid #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: var(--jsmenu-font-size);
+  gap: 12px;
+  margin: 0;
+  min-height: 48px;
+}
+
+.jsmenu__itemlink {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-left: 6px solid white;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 8px 0;
+  padding-left: 10px;
+  text-decoration: none;
+}
+.jsmenu__itemlink.jsmenu__itemlink--active {
+  border-color: black;
+  font-weight: bold;
+}
+
+.jsmenu__button--forward {
+  background: none;
+  border: 0;
+  border-left: 1px solid #ccc;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 3rem;
+}
+
+.jsmenu__button--forward::before {
+  background-color: black;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 24px;
+  -webkit-mask-image: var(--hel-icon--angle-right);
+          mask-image: var(--hel-icon--angle-right);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 24px 24px;
+          mask-size: 24px 24px;
+  vertical-align: bottom;
+  width: 24px;
+}
+
+.jsmenu__open {
+  z-index: 2;
+  position: absolute;
+  width: 5rem;
+  height: 3rem;
+}
+
+/*# sourceMappingURL=nav_global.min.css.map*/

@@ -2,8 +2,31 @@ const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 
+// TODO JSDoc?
+
+Array.prototype.findRecursive = function(predicate, childrenPropertyName){
+
+  if(!childrenPropertyName){
+    throw 'findRecursive requires parameter `childrenPropertyName`';
+  }
+  let array = [];
+  array = this;
+  let initialFind =  array.find(predicate);
+  let elementsWithChildren  = array.filter(x=>x[childrenPropertyName]);
+  if(initialFind){
+    return initialFind;
+  } else if(elementsWithChildren.length){
+    let childElements = [];
+    elementsWithChildren.forEach(x=>{
+      childElements.push(...x[childrenPropertyName]);
+    });
+    return childElements.findRecursive(predicate, childrenPropertyName);
+  } else {
+    return undefined;
+  }
+};
+
 const button = function(){
-  // "this" should be a json-menu object in panel/items template
   return this.items?.length>0;
 };
 
@@ -59,6 +82,7 @@ const Panel = {
    `
   },
   size: 5,
+  data:null,
   current: 0,
   selectors:{
     container:'#jsmenu',
@@ -69,9 +93,32 @@ const Panel = {
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
   },
+  sortPanelsByPath:function() {
+    const allItems = this.data.items;
+    const currentItem = allItems.findRecursive( item => active.call(item),'items' );
+    let parentId = currentItem.parent;
+    const panels = [];
+    while(parentId) {
+      allItems.findRecursive(({id,url,title,items,parent}) => {
+        if(id === parentId) {
+          panels.push({items,title, url,parent});
+          //set new parent id. If this is empty, it will stop the while-loop.
+          parentId = parent;
+          return true;
+        }
+        return false;
+      }, 'items');
+
+    }
+    panels.push({items:allItems});
+    panels.reverse();
+    this.current = panels.length-1;
+    this.content = [...panels];
+
+
+  },
   content:[],
   getView: function(state){
-    // Prepare props for each panel
     // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
@@ -81,7 +128,7 @@ const Panel = {
       button,
       active,
       // Show title of previously clicked item in Back-button (or Frontpage if)
-      back: (this.current > 0 && i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Front Page','Mobile Menu') : false ,
+      back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Front Page','Mobile Menu') : false ,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
        * At start, first item is on stage and anything else must be on right.
@@ -103,7 +150,7 @@ const Panel = {
 
     if(this.current===this.size) {return;}
     if(!parentId) {
-      throw new Error('missing id for menu item ' +parentId);
+      throw new Error('missing id for menu item ' + parentId);
     }
 
     const next = this.content.at(this.current).items.find(({
@@ -112,7 +159,7 @@ const Panel = {
 
     if(!next) {
       console.error({next,parentId});
-      throw new Error('ID mismatch in menu items'+parentId);
+      throw new Error('ID mismatch in menu items'+ parentId);
     }
 
     this.current = this.current + 1 < this.size ? this.current + 1 : this.current;
@@ -138,25 +185,14 @@ const Panel = {
 
     const panels = [...root.querySelectorAll('.jsmenu__panel')];
     const current =  panels.at(this.current);
-    //Scroll to back-button height if back-button is not visible any more
-    // Todo: bind treshold to back-button position when all menu blocks have been added and styled
-
-
+    // Scroll to back-button height if back-button is not visible any more.
+    // Todo: bind treshold to suitable element position when all menu blocks have been added and styled.
     const TRESHOLD = 100;
-    if(root.parentElement.scrollTop > TRESHOLD) {
+    if(root.parentElement.scrollTop > TRESHOLD && this.current > 0) {
       current.querySelectorAll('.jsmenu__button--back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
     setTimeout(()=>{
-
-      //element has multiple transitions so we dont want this to run on all of them.
-      // const afterTransitions =({propertyName})=> {
-      //   //run only on transform transition, should be only one. If this
-      //   // becomes too tricky with CSS, use once() and just dont care about it.
-      //   if(propertyName !== 'opacity') {
-      //     return;
-      //   }
-      // };
 
       current.classList.add('jsmenu__panel--visible-fast');
       current.classList.remove('jsmenu__panel--visible-right','jsmenu__panel--visible-left');
@@ -168,12 +204,10 @@ const Panel = {
 
       case 'up':
         panels.at(this.current-1).classList.add('jsmenu__panel--visible-left','jsmenu__panel--visible-slow');
-        // panels.at(this.current-1).addEventListener('transitionend',afterTransitions);
         break;
 
       case 'down':
         panels.at(this.current+1).classList.add('jsmenu__panel--visible-right', 'jsmenu__panel--visible-slow');
-        // panels.at(this.current+1).addEventListener('transitionend',afterTransitions);
         break;
 
       default:
@@ -184,21 +218,24 @@ const Panel = {
   },
   load: async function(){
     const MENU = await( await fetch('./megamenu.json')).json();
-    this.content = [MENU];
+    this.data = MENU;
   },
   start: async function(){
-    if(!this.getRoot()) {
-      console.error('menu data not loaded');
+    const container = document.querySelector(this.selectors.container);
+    if(!this.getRoot() || !container) {
       throw new Error('Panel root not found');
     }
+    //TODO toggle click event for just hiding and showing panel
+    //Show container on start
+    container.style.display = 'block';
     this.render('load');
     try {
       await this.load();
     } catch(e) {
       console.error(e);
-      this.content = [mockmenu, ...Array(4)];
+      this.data = mockmenu;
     }
-
+    this.sortPanelsByPath();
     this.render('start');
     this.getRoot().addEventListener('click', ({
       target: {
@@ -226,14 +263,18 @@ const Panel = {
 
 document.addEventListener('DOMContentLoaded', () => {
   // TODO integrate with megamenu button
-  const toggleButton = document.querySelectorAll('.cssmenu-toggle')[0];
+  const toggleButton = document.querySelectorAll('.jsmenu__open')[0];
+  if(!toggleButton){
+    throw new Error('no toggle button');
+  }
 
   //start only once.
   const start = function() {
     toggleButton.removeEventListener('click',start);
-    Panel.start();
+    Panel.start(window.location.pathname);
   };
 
   toggleButton.addEventListener('click',start);
 
 });
+

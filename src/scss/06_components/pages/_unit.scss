@@ -201,22 +201,11 @@
   }
 }
 
-.unit__supports_language_sv {
-  @include font('special.helper_text');
-  background-color: $color-summer;
-  border-radius: $spacing;
-  display: inline-block;
-  padding-bottom: $spacing-quarter;
-  padding-left: $spacing;
-  padding-right: $spacing;
-  padding-top: $spacing-quarter;
+.unit.unit--full .content-tags {
+  margin-bottom: $spacing-and-half;
 
-  .unit--full & {
-    margin-bottom: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: $spacing-double;
-    }
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-double;
   }
 }
 
@@ -367,7 +356,7 @@
     }
   }
 
-  .unit__supports_language_sv {
+  .content-tags {
     margin-top: $spacing;
   }
 

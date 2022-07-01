@@ -2,17 +2,19 @@
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
 
-:root {
-  --jsmenu-font-size : 105%;
-  --jsmenu-active-border:6px;
-  // --jsmenu--left-spacing: calc($spacing - var(--jsmenu-active-border));
-}
-
+$-jsmenu-active-border: 6px;
+$-jsmenu-border: #ccc;
 .jsmenu__drawer {
-  background:#ddd;
+  background: $color-silver-light;
   overflow-x:hidden;
+  overscroll-behavior: none;
   position:absolute;
-
+  @include font('body');
+  display:none;
+  height:100vh;
+  //this causes panel flex to break. Either fix
+  // width: 100vw;
+  z-index: 2;
 }
 
 .jsmenu__loading {
@@ -31,10 +33,10 @@
 }
 
 .jsmenu__panels  {
-  background:#ddd;
+  background: $color-silver-light;
   height:100vh;
+  overscroll-behavior: none;
   position:relative;
-  width:100vw;
   width:1000rem;
 }
 
@@ -43,10 +45,12 @@
   display:flex;
   flex-direction: column;
   min-height:100vh;
+  overscroll-behavior: none;
+  overscroll-behavior: none;
+  position: absolute;
   position:absolute;
   transition-property: all;
   width:100vw;
-
 }
 
 .jsmenu__panel.jsmenu__panel--visible-fast {
@@ -68,7 +72,6 @@
 }
 
 .jsmenu__panel.jsmenu__panel--visible-right {
-
   opacity:0.1;
   transform:translateX(100vw);
   transition-property: all;
@@ -112,7 +115,7 @@
 
 
 .jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
-  background: #ddd;
+  background: $color-silver-light;
   content:'';
   display: block;
   height:28px;
@@ -132,13 +135,12 @@
 
 .jsmenu__title-link {
   display:block;
-  font-size:var(--jsmenu-font-size);
   font-weight: bold;
   margin: $spacing;
 }
 
 .jsmenu__panel-footer {
-  background:#ddd;
+  background:$color-silver-light;
   flex-grow: 1;
   min-height:10rem;
   padding-left:$spacing;
@@ -152,7 +154,7 @@
 }
 
 .jsmenu__language  {
-  background-color: #ddd;
+  background-color: $color-silver-light;
   height:2rem;
   position: relative;
 }
@@ -174,22 +176,21 @@
 .jsmenu__item {
   align-items: stretch;
   background:white;
-  border-top:1px solid #ccc;
+  border-top:1px solid $-jsmenu-border;
   display:flex;
   font-size:var(--jsmenu-font-size);
   gap:12px;
   margin:0;
   min-height: $spacing-triple;
-
 }
 
 .jsmenu__itemlink {
   align-items: center;
-  border-left:var(--jsmenu-active-border) solid white;
+  border-left:$-jsmenu-active-border solid white;
   display: inline-flex;
   flex-grow: 1;
   padding: $spacing-half 0;
-  padding-left:calc($spacing - var(--jsmenu-active-border));
+  padding-left:calc($spacing - $-jsmenu-active-border);
   text-decoration: none;
   &.jsmenu__itemlink--active {
     border-color: black;
@@ -200,7 +201,7 @@
 .jsmenu__button--forward {
   background:none;
   border:0;
-  border-left:1px solid #ccc;
+  border-left:1px solid $-jsmenu-border;
   flex-grow:0;
   flex-shrink: 0;
   width: 3rem;
@@ -211,3 +212,10 @@
   // @include rotating-icon-transition;
 }
 
+
+.jsmenu__open {
+  height: 3rem;
+  position: absolute;
+  width:5rem;
+  z-index:2;
+}
