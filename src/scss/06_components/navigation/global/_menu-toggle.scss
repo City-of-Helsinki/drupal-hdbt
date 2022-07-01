@@ -1,0 +1,202 @@
+// stylelint-disable no-descending-specificity
+$-header-branding-height-desktop: 87px;
+$-menu-transition-duration: 0.3s;
+
+// When menu is opened with anchor instead of JS, this forces the page to scroll to top
+#menu:not([data-js]) {
+  scroll-margin-top: 100vh;
+}
+
+.menu-toggle-anchor {
+  display: grid;
+}
+
+.menu-toggle-button {
+  background: transparent; // Reset button styles
+  border: 0 none; // Reset button styles
+  cursor: pointer;
+  display: none;
+
+  &:focus {
+    outline: 0 none;
+  }
+}
+
+.menu-toggle-anchor,
+.menu-toggle-button {
+  grid-area: toggle;
+  grid-template-areas: 'link';
+  z-index: 2;
+}
+
+// When JS is enabled, switch to use button instead of anchor
+#menu[data-js] ~ * {
+  .menu-toggle-anchor {
+    display: none;
+  }
+
+  .menu-toggle-button {
+    display: grid;
+  }
+}
+
+.menu-toggle__open,
+.menu-toggle__close {
+  @include font('special.navigation.icon_label');
+  align-self: center;
+  color: $color-black-90;
+  cursor: pointer;
+  display: grid;
+  grid-area: link;
+  grid-template-areas:
+    'icon'
+    'label';
+  padding: 5px; // Handles spacing for 'inside' focus ring
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+
+  &:hover,
+  &:active,
+  .menu-toggle-button:hover &,
+  .menu-toggle-button:active & {
+    text-decoration: underline;
+  }
+
+  &:focus,
+  &:active,
+  .menu-toggle-button:focus &,
+  .menu-toggle-button:active & {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
+
+  &::before {
+    @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+    align-self: end;
+    grid-area: icon;
+    justify-self: center;
+  }
+}
+
+.menu-toggle__close {
+  visibility: hidden;
+}
+
+.menu-toggle__close::before {
+  @include pseudo-icon-replace('cross');
+}
+
+// Outermost dropdown container, always open.
+.menu-dropdown {
+  grid-area: menu;
+  max-width: 100vw;
+  overflow: hidden;
+  pointer-events: none; // As it's always open, we should disable interacting with it directly
+  position: absolute;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    position: absolute; // Position above page content when closing;
+    top: calc(var(--drupal-toolbar-height, 0px) + $-header-branding-height-desktop);
+    width: 100%;
+    z-index: 100; // Needs to be higher than page content
+  }
+
+  @include breakpoint($breakpoint-l) {
+    max-width: min(1920px, 100vw);
+    top: calc(var(--drupal-toolbar-height, 0px) + var(--block-header-top-height, 48px) + $-header-branding-height-desktop);
+  }
+
+  @media (prefers-reduced-motion) {
+    transition: none !important;
+  }
+}
+
+// This wrapper helps to animate reveal open from top-down instead of sliding open as seen in https://nemzes.net/posts/animating-height-auto/
+.menu-dropdown__wrapper {
+  border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition: transform $-menu-transition-duration ease-in, visibility 0s linear $-menu-transition-duration;
+  visibility: hidden;
+
+  @media (prefers-reduced-motion) {
+    transition: none !important;
+  }
+}
+
+// Innermost container of dropdown content
+.menu-dropdown__content {
+  background: $color-white;
+  height: 100vh;
+  max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--block-branding-height-mobile, 65px) - 1px); // Full page height - header-branding height - 1px for rounding errors
+  overflow: auto;
+  pointer-events: all; // This enables interaction with this element that .menu-dropdown disables
+  transform: translateY(100%);
+  transition: transform $-menu-transition-duration ease-in;
+
+  @media (prefers-reduced-motion) {
+    transition: none !important;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
+  }
+
+  @include breakpoint($breakpoint-l) {
+    height: auto;
+    max-height: none;
+  }
+}
+
+// Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
+// For this reason I had to remove the closing animation when there is no js available :(
+#menu:not([data-js]) ~ * .menu-dropdown__wrapper,
+#menu:not([data-js]) ~ * .menu-dropdown__content {
+  transition: none;
+}
+
+// What should happen when menu is opened
+#menu:target,
+#menu[data-target='true'] {
+  & ~ * .header-branding {
+    @include breakpoint(max-width $breakpoint-l) {
+      border-bottom: 0 none; // Hide header branding bottom border when menu is open and visible
+    }
+  }
+
+  & ~ * .header-branding > .block--language-switcher {
+    display: none; // Should be hidden on small sizes when menu is open // First language switcher
+
+    @include breakpoint($breakpoint-m) {
+      display: block; // Should be visible when second language switcher is not visible inside menu
+    }
+  }
+
+  & ~ * .menu-toggle__open {
+    visibility: hidden; // Menu text and hamburger icon are hidden
+  }
+
+  & ~ * .menu-toggle__close {
+    visibility: visible; // Close text and cross icon are visible
+  }
+
+  & ~ * .menu-dropdown__wrapper {
+    transform: translateY(0); // Animate wrapper into view from top
+    transition: transform $-menu-transition-duration ease-out, visibility 0s linear 0s;
+    visibility: visible;
+  }
+
+  & ~ * .menu-dropdown__content {
+    transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
+    transition: transform $-menu-transition-duration ease-out;
+  }
+
+  & ~ .wrapper > *:not(.header), // All wrapper content except .header
+  & ~ .footer {
+    @include breakpoint(max-width $breakpoint-l) {
+      display: none; // Hide when menu is open and visible
+    } // Footer
+  }
+}

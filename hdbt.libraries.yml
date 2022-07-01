@@ -86,6 +86,7 @@ nav-global:
       dist/css/nav_global.min.css: {}
   js:
     dist/js/nav-global.min.js: {}
+    dist/js/nav-global-toggle.min.js: {}
   dependencies:
     - hdbt/global-styling
 
