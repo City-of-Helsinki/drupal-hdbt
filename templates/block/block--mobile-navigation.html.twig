@@ -39,9 +39,7 @@
     <span class="jsmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
     <span class="jsmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
   </button>
-  <nav id="jsmenu" class="jsmenu__drawer">
-    <div id="jsmenu__panels" class="jsmenu__panels"/>
-  </nav>
+
 
   <div class="menu-toggle-anchor">
     <a href="#" class="menu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</a>
@@ -72,7 +70,7 @@
           </ul>
         </div>
 
-        <div class="mobile-menu">
+        <div class="mobile-menu" id="js-menu-fallback">
           Mobile menu
           <ul>
             <li>Lorem, ipsum dolor.</li>
@@ -87,7 +85,9 @@
             <li>Enim, quasi minima?</li>
           </ul>
         </div>
-
+        <div id="jsmenu" class="jsmenu__drawer">
+          <div id="jsmenu__panels" class="jsmenu__panels"/>
+        </div>
       </div>
     </div>
   </nav>

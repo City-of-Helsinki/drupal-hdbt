@@ -2,7 +2,19 @@ const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 
-// TODO JSDoc?
+
+/**
+ * Related twig templates:
+ * - block--mobile-navigation.html.twig
+ * - menu--mobile.html.twig
+ *
+ * Related styles:
+ * components/navigation/global
+ * - _js-mobile-navigation.scss
+ * - _megamenu.scss
+ * - _menu-toggle.scss
+ */
+
 
 Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 
@@ -161,7 +173,6 @@ const Panel = {
     }) => id === parentId);
 
     if(!next) {
-      console.error({next,parentId});
       throw new Error('ID mismatch in menu items'+ parentId);
     }
 
@@ -228,16 +239,19 @@ const Panel = {
     if(!this.getRoot() || !container) {
       throw new Error('Panel root not found');
     }
-    //TODO toggle click event for just hiding and showing panel
     //Show container on start
     container.style.display = 'block';
+    // show loader
     this.render('load');
+
+    // load data from whatever
     try {
       await this.load();
     } catch(e) {
-      console.error(e);
+      console.error('Unable to load menu data, using mock menu for development purposes',e);
       this.data = mockmenu;
     }
+    //Set the panels according to current path.
     this.sortPanelsByPath();
     this.render('start');
     this.getRoot().addEventListener('click', ({
@@ -265,11 +279,13 @@ const Panel = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // TODO integrate with megamenu button
-  const toggleButton = document.querySelectorAll('.jsmenu__open')[0];
+  // See  block--mobile-navigation.html.twig
+  const toggleButton = document.querySelectorAll('.js-menu-toggle-button')[0];
   if(!toggleButton){
     throw new Error('no toggle button');
   }
+
+  document.getElementById('js-menu-fallback').style.display = 'none';
 
   //start only once.
   const start = function() {

@@ -37,20 +37,20 @@ $-menu-transition-duration: 0.3s;
     display: none;
   }
 
-  // On mobile sizes with js, button should open jsmenu with js
-  .jsmenu__open {
-    display: grid;
+  // // On mobile sizes with js, button should open jsmenu with js
+  // .jsmenu__open {
+  //   display: grid;
 
-    @include breakpoint($breakpoint-l) {
-      display: none;
-    }
-  }
+  //   @include breakpoint($breakpoint-l) {
+  //     display: none;
+  //   }
+  // }
 
   // On desktop sizes with js, button should open megamenu with js
   .menu-toggle-button {
-    @include breakpoint($breakpoint-l) {
+    // @include breakpoint($breakpoint-l) {
       display: grid;
-    }
+    // }
   }
 }
 

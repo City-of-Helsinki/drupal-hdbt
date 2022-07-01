@@ -1,7 +1,9 @@
 /*
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
+// TODO make this available from variables. needs to be accessed from manu scopes
 
+$-header-height: 66px;
 $-jsmenu-active-border: 6px;
 $-jsmenu-border: #ccc;
 .jsmenu__drawer {
@@ -11,9 +13,9 @@ $-jsmenu-border: #ccc;
   position:absolute;
   @include font('body');
   display:none;
-  height:100vh;
+  height:calc(100vh - $-header-height);
   //this causes panel flex to break. Either fix
-  // width: 100vw;
+  width: 100vw;
   z-index: 2;
 }
 
@@ -34,20 +36,19 @@ $-jsmenu-border: #ccc;
 
 .jsmenu__panels  {
   background: $color-silver-light;
-  height:100vh;
+  height:calc(100vh - $-header-height);
   overscroll-behavior: none;
   position:relative;
-  width:1000rem;
 }
 
 .jsmenu__panel {
   background-color: white;
   display:flex;
   flex-direction: column;
-  min-height:100vh;
+  flex-wrap: nowrap;
+  min-height:calc(100vh - $-header-height);
+  overflow:visible;
   overscroll-behavior: none;
-  overscroll-behavior: none;
-  position: absolute;
   position:absolute;
   transition-property: all;
   width:100vw;
@@ -66,7 +67,7 @@ $-jsmenu-border: #ccc;
 
 .jsmenu__panel.jsmenu__panel--visible {
   opacity:1;
-  transform:translateX(0) scale(100%) translateY(0);
+  transform:translateX(0);
   transition-property: transform;
   transition-timing-function: ease-out;
 }
@@ -129,7 +130,7 @@ $-jsmenu-border: #ccc;
 
 
 .jsmenu__panel-body {
-  min-height: 60vh;
+   min-height: 30vh;
 }
 
 
@@ -150,7 +151,7 @@ $-jsmenu-border: #ccc;
 
 .jsmenu__panel--current .jsmenu__panel-footer {
   // for transition purposes
-  min-height:100vh;
+  min-height:50vh;
 }
 
 .jsmenu__language  {
