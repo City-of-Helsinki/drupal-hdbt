@@ -24,26 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Helper function to check if menu is open or not
   function isMenuOpen() {
-    console.log(
-      window.location.hash,
-      window.location.hash === '#menu',
-      toggle.getAttribute('aria-expanded'),
-      toggle.getAttribute('aria-expanded') === 'true',
-      window.location.hash === '#menu' || toggle.getAttribute('aria-expanded') === 'true'
-    );
     return window.location.hash === '#menu' || toggle.getAttribute('aria-expanded') === 'true';
   }
 
   function menuToggle() {
-    console.log('menuToggle');
     if (isMenuOpen()) {
-      console.log('enabling');
       toggle.setAttribute('aria-expanded', 'false');
       menu.dataset.target = 'false';
       window.location.hash = '';
       toggleWidgets(false);
     } else {
-      console.log('enabling');
       toggleWidgets(true);
       menu.dataset.target = 'true';
       toggle.setAttribute('aria-expanded', 'true');
