@@ -1,11 +1,6 @@
 /* eslint-disable no-unreachable */
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('TODO clean up css menu stuff and move widget hider to mobilemenu');
-  return;
-
   const widgetsToHideSelector = [
     '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
     '#smartti-wrapper', // Smartti chatbot in kymp
