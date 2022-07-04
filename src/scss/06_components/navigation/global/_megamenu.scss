@@ -1,5 +1,6 @@
 .megamenu {
   display: none;
+
   @include breakpoint($breakpoint-l) {
     display: block;
   }

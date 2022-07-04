@@ -5,16 +5,18 @@
 
 $-header-height: 66px;
 $-jsmenu-active-border: 6px;
-$-jsmenu-border: #ccc;
+$-jsmenu-border: #cccccc;
+
 .jsmenu__drawer {
-  background: $color-silver-light;
-  overflow-x:hidden;
-  overscroll-behavior: none;
-  position:absolute;
   @include font('body');
-  display:none;
-  height:calc(100vh - $-header-height);
-  //this causes panel flex to break. Either fix
+  background: $color-silver-light;
+  display: none;
+  height: calc(100vh - $-header-height);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  position: absolute;
+
+  // this causes panel flex to break. Either fix
   width: 100vw;
   z-index: 2;
 }
@@ -26,32 +28,32 @@ $-jsmenu-border: #ccc;
   justify-content: center;
   text-align: center;
   width: 100vw;
-  .hds-loading-spinner {
-    left:auto;
-    position: relative;
-    top:auto;
-  }
 
+  .hds-loading-spinner {
+    left: auto;
+    position: relative;
+    top: auto;
+  }
 }
 
-.jsmenu__panels  {
+.jsmenu__panels {
   background: $color-silver-light;
-  height:calc(100vh - $-header-height);
+  height: calc(100vh - $-header-height);
   overscroll-behavior: none;
-  position:relative;
+  position: relative;
 }
 
 .jsmenu__panel {
   background-color: white;
-  display:flex;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  min-height:calc(100vh - $-header-height);
-  overflow:visible;
+  min-height: calc(100vh - $-header-height);
+  overflow: visible;
   overscroll-behavior: none;
-  position:absolute;
+  position: absolute;
   transition-property: all;
-  width:100vw;
+  width: 100vw;
 }
 
 .jsmenu__panel.jsmenu__panel--visible-fast {
@@ -62,137 +64,130 @@ $-jsmenu-border: #ccc;
 .jsmenu__panel.jsmenu__panel--visible-slow {
   transition-duration: 0.4s;
   z-index: 4;
-
 }
 
 .jsmenu__panel.jsmenu__panel--visible {
-  opacity:1;
-  transform:translateX(0);
+  opacity: 1;
+  transform: translateX(0);
   transition-property: transform;
   transition-timing-function: ease-out;
 }
 
 .jsmenu__panel.jsmenu__panel--visible-right {
-  opacity:0.1;
-  transform:translateX(100vw);
+  opacity: 0.1;
+  transform: translateX(100vw);
   transition-property: all;
   transition-timing-function: ease-in;
 }
-
-
 
 .jsmenu__panel.jsmenu__panel--visible-left {
-  opacity:0.1;
-  transform:translateX(-100vw);
+  opacity: 0.1;
+  transform: translateX(-100vw);
   transition-property: all;
   transition-timing-function: ease-in;
 }
 
-
 .jsmenu__button--back {
-
   align-items: center;
   background-color: white;
-  border:0;
+  border: 0;
   display: flex;
   margin: $spacing 0 $spacing-and-half $spacing;
-  padding:0;
+  padding: 0;
   position: relative;
+
   & span {
     background: white;
     display: inline-block;
     flex-grow: 1;
     height: 100%;
-    margin-left:12px;
+    margin-left: 12px;
   }
 }
 
 .jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
   @include pseudo-icon('angle-left', $spacing-and-half, black);
   transform: translateX(2px);
-  // @include rotating-icon-transition;
-  z-index:3;
-}
 
+  // @include rotating-icon-transition;
+  z-index: 3;
+}
 
 .jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
   background: $color-silver-light;
-  content:'';
+  content: '';
   display: block;
-  height:28px;
-  left:0;
-  position:absolute;
-  width:28px;
-  z-index:2;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  width: 28px;
+  z-index: 2;
+
   // @include rotating-icon-transition;
 }
 
-
-
 .jsmenu__panel-body {
-   min-height: 30vh;
+  min-height: 30vh;
 }
 
-
 .jsmenu__title-link {
-  display:block;
+  display: block;
   font-weight: bold;
   margin: $spacing;
 }
 
 .jsmenu__panel-footer {
-  background:$color-silver-light;
+  background: $color-silver-light;
   flex-grow: 1;
-  min-height:10rem;
-  padding-left:$spacing;
-  padding-top:$spacing-and-half;
+  min-height: 10rem;
+  padding-left: $spacing;
+  padding-top: $spacing-and-half;
 }
-
 
 .jsmenu__panel--current .jsmenu__panel-footer {
   // for transition purposes
-  min-height:50vh;
+  min-height: 50vh;
 }
 
-.jsmenu__language  {
+.jsmenu__language {
   background-color: $color-silver-light;
-  height:2rem;
+  height: 2rem;
   position: relative;
 }
 
 // .jsmenu__language::after {
 //   position: absolute;
-//   right:-2rem;
+//   right: -2rem;
 //   @include pseudo-icon('angle-down', $spacing-and-half, black);
 // }
 
 .jsmenu__items {
   background-color: white;
-  margin:0;
+  margin: 0;
   margin-top: $spacing;
-  padding:0;
+  padding: 0;
 }
-
 
 .jsmenu__item {
   align-items: stretch;
-  background:white;
-  border-top:1px solid $-jsmenu-border;
-  display:flex;
-  font-size:var(--jsmenu-font-size);
-  gap:12px;
-  margin:0;
+  background: white;
+  border-top: 1px solid $-jsmenu-border;
+  display: flex;
+  font-size: var(--jsmenu-font-size);
+  gap: 12px;
+  margin: 0;
   min-height: $spacing-triple;
 }
 
 .jsmenu__itemlink {
   align-items: center;
-  border-left:$-jsmenu-active-border solid white;
+  border-left: $-jsmenu-active-border solid white;
   display: inline-flex;
   flex-grow: 1;
   padding: $spacing-half 0;
-  padding-left:calc($spacing - $-jsmenu-active-border);
+  padding-left: calc($spacing - $-jsmenu-active-border);
   text-decoration: none;
+
   &.jsmenu__itemlink--active {
     border-color: black;
     font-weight: bold;
@@ -200,15 +195,16 @@ $-jsmenu-border: #ccc;
 }
 
 .jsmenu__button--forward {
-  background:none;
-  border:0;
-  border-left:1px solid $-jsmenu-border;
-  flex-grow:0;
+  background: none;
+  border: 0;
+  border-left: 1px solid $-jsmenu-border;
+  flex-grow: 0;
   flex-shrink: 0;
   width: 3rem;
 }
 
 .jsmenu__button--forward::before {
   @include pseudo-icon('angle-right', $spacing-and-half, black);
+
   // @include rotating-icon-transition;
 }
