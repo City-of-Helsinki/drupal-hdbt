@@ -95,7 +95,6 @@ global-scripting:
   version: 1.x
   js:
     dist/js/branding-mobile.min.js: {}
-
   dependencies:
     - core/drupal
 
