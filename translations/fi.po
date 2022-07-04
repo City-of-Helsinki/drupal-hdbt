@@ -211,9 +211,8 @@ msgctxt "Popular services paragraph title"
 msgid "Popular services"
 msgstr "Suosittuja palveluja"
 
-
-msgctxt "Mobile Menu
-msgid "Front Page"
+msgctxt "Global navigation mobile menu top level"
+msgid "Frontpage"
 msgstr "Etusivu"
 
 msgctxt "News list paragraph see all news link"

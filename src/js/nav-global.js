@@ -136,12 +136,12 @@ const Panel = {
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
       ...item,
-      title:item?.title ||  Drupal.t('Front Page','Mobile Menu'),
+      title:item?.title ||  Drupal.t('Frontpage','Global navigation mobile menu top level'),
       // If current item has subitems, show button for next panel.
       button,
       active,
       // Show title of previously clicked item in Back-button (or Frontpage if)
-      back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Front Page','Mobile Menu') : false ,
+      back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
        * At start, first item is on stage and anything else must be on right.
