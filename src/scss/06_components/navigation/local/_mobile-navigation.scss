@@ -16,11 +16,11 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   width: 1px;
 }
 
-// .cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
-// .cssmenu-toggle-button, // Hide js version of button if js is not enabled
-// [data-js] ~ * .cssmenu-toggle {
-//   display: none; // Hide css-only toggle button when js is enabled
-// }
+.cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
+.cssmenu-toggle-button, // Hide js version of button if js is not enabled
+[data-js] ~ * .cssmenu-toggle {
+  display: none; // Hide css-only toggle button when js is enabled
+}
 
 // Mobile menu toggle button, both css-only and js versions
 .cssmenu-toggle,
@@ -39,9 +39,9 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   user-select: none;
   z-index: 2;
 
-  // @include breakpoint($breakpoint-l) {
-  //   display: none;
-  // }
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
 
   &:focus,
   &:hover {
