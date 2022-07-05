@@ -2,8 +2,9 @@
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
 
-$-jsmenu-active-border: 6px;
-$-jsmenu-border: #cccccc;
+$-jsmenu-active-border: $spacing-quarter;
+$-jsmenu-border: $color-black-20;
+$-transition-duration: 0.2s;
 
 .jsmenu__drawer {
   @include font('body');
@@ -38,6 +39,7 @@ $-jsmenu-border: #cccccc;
 }
 
 .jsmenu__panel {
+  --transition-opacity-delay: #{$-transition-duration}; // Delay hiding the offscreen panels until animation is done
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -48,37 +50,35 @@ $-jsmenu-border: #cccccc;
   overflow-x: none;
   overflow-y: auto;
   overscroll-behavior: contain;
+  transition-delay: 0s, var(--transition-opacity-delay);
+  transition-property: transform, opacity;
   width: 100vw;
 }
 
-.jsmenu__panel.jsmenu__panel--visible-fast {
-  transition-duration: 0.3s;
-  z-index: 50;
+.jsmenu__panel--current {
+  --transition-opacity-delay: 0s; // Current panels should be visible instantly
 }
 
+.jsmenu__panel.jsmenu__panel--visible-fast,
 .jsmenu__panel.jsmenu__panel--visible-slow {
-  transition-duration: 0.4s;
-  z-index: 4;
+  transition-duration: $-transition-duration, 0s;
 }
 
 .jsmenu__panel.jsmenu__panel--visible {
   opacity: 1;
   transform: translateX(0);
-  transition-property: transform;
   transition-timing-function: ease-out;
 }
 
 .jsmenu__panel.jsmenu__panel--visible-right {
-  opacity: 0.1;
+  opacity: 0;
   transform: translateX(100vw);
-  transition-property: all;
   transition-timing-function: ease-in;
 }
 
 .jsmenu__panel.jsmenu__panel--visible-left {
-  opacity: 0.1;
-  transform: translateX(-100vw);
-  transition-property: all;
+  opacity: 0;
+  transform: translateX(-50vw);
   transition-timing-function: ease-in;
 }
 
@@ -103,8 +103,6 @@ $-jsmenu-border: #cccccc;
 .jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
   @include pseudo-icon('angle-left', $spacing-and-half, black);
   transform: translateX(2px);
-
-  // @include rotating-icon-transition;
   z-index: 3;
 }
 
@@ -138,12 +136,6 @@ $-jsmenu-border: #cccccc;
   position: relative;
 }
 
-// .jsmenu__language::after {
-//   position: absolute;
-//   right: -2rem;
-//   @include pseudo-icon('angle-down', $spacing-and-half, black);
-// }
-
 .jsmenu__items {
   background-color: white;
   margin: 0;
@@ -169,11 +161,11 @@ $-jsmenu-border: #cccccc;
   padding: $spacing-half 0;
   padding-left: calc($spacing - $-jsmenu-active-border);
   text-decoration: none;
+}
 
-  &.jsmenu__itemlink--active {
-    border-color: black;
-    font-weight: bold;
-  }
+.jsmenu__itemlink--active {
+  border-color: black;
+  font-weight: bold;
 }
 
 .jsmenu__button--forward {
@@ -187,6 +179,4 @@ $-jsmenu-border: #cccccc;
 
 .jsmenu__button--forward::before {
   @include pseudo-icon('angle-right', $spacing-and-half, black);
-
-  // @include rotating-icon-transition;
 }
