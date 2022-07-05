@@ -17,6 +17,7 @@ $-menu-transition-duration: 0.3s;
   border: 0 none; // Reset button styles
   cursor: pointer;
   display: none;
+  padding: 0;
 
   &:focus {
     outline: 0 none;
@@ -134,10 +135,27 @@ $-menu-transition-duration: 0.3s;
 
 // Innermost container of dropdown content
 .menu-dropdown__content {
+  --menu-height: 100vh;
+  --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--block-branding-height-mobile, 65px) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
+
+  @include breakpoint($breakpoint-m) {
+    --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
+  }
+
+  @include breakpoint($breakpoint-l) {
+    --menu-height: auto;
+    --menu-max-height: none;
+  }
+
+  @supports (height: 1dvh) {
+    --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
+  }
   background: $color-white;
-  height: 100vh;
-  max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--block-branding-height-mobile, 65px) - 1px); // Full page height - header-branding height - 1px for rounding errors
-  overflow: auto;
+  height: var(--menu-height);
+  max-height: var(--menu-max-height);
+  overflow-x: none;
+  overflow-y: auto;
+  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
   pointer-events: all; // This enables interaction with this element that .menu-dropdown disables
   transform: translateY(100%);
   transition: transform $-menu-transition-duration ease-in;
@@ -145,15 +163,10 @@ $-menu-transition-duration: 0.3s;
   @media (prefers-reduced-motion) {
     transition: none !important;
   }
+}
 
-  @include breakpoint($breakpoint-m) {
-    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
-  }
-
-  @include breakpoint($breakpoint-l) {
-    height: auto;
-    max-height: none;
-  }
+#menu[data-js] ~ * .menu-dropdown__content {
+  overflow-y: none;
 }
 
 // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
@@ -202,7 +215,9 @@ $-menu-transition-duration: 0.3s;
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
-      display: none; // Hide when menu is open and visible
+      @supports not (overscroll-behavior-y: contain) {
+        display: none; // Hide other content when menu is visible and overscroll-behaviour is not supported
+      }
     } // Footer
   }
 }

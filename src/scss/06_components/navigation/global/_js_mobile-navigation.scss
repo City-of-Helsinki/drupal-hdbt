@@ -1,9 +1,7 @@
 /*
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
-// TODO make this available from variables. needs to be accessed from manu scopes
 
-$-header-height: 66px;
 $-jsmenu-active-border: 6px;
 $-jsmenu-border: #cccccc;
 
@@ -11,20 +9,13 @@ $-jsmenu-border: #cccccc;
   @include font('body');
   background: $color-silver-light;
   display: none;
-  height: calc(100vh - $-header-height);
-  overflow-x: hidden;
-  overscroll-behavior: none;
-  position: absolute;
-
-  // this causes panel flex to break. Either fix
-  width: 100vw;
+  width: 100vw; // this causes panel flex to break.
   z-index: 2;
 }
 
 .jsmenu__loading {
   align-items: center;
   display: flex;
-  height: 80vh;
   justify-content: center;
   text-align: center;
   width: 100vw;
@@ -38,9 +29,12 @@ $-jsmenu-border: #cccccc;
 
 .jsmenu__panels {
   background: $color-silver-light;
-  height: calc(100vh - $-header-height);
+  display: grid;
+  grid-template-areas: 'panels';
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
   overscroll-behavior: none;
-  position: relative;
 }
 
 .jsmenu__panel {
@@ -48,11 +42,12 @@ $-jsmenu-border: #cccccc;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  min-height: calc(100vh - $-header-height);
-  overflow: visible;
-  overscroll-behavior: none;
-  position: absolute;
-  transition-property: all;
+  grid-area: panels;
+  height: var(--menu-height);
+  max-height: var(--menu-max-height);
+  overflow-x: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   width: 100vw;
 }
 
@@ -122,12 +117,6 @@ $-jsmenu-border: #cccccc;
   position: absolute;
   width: 28px;
   z-index: 2;
-
-  // @include rotating-icon-transition;
-}
-
-.jsmenu__panel-body {
-  min-height: 30vh;
 }
 
 .jsmenu__title-link {
@@ -139,14 +128,8 @@ $-jsmenu-border: #cccccc;
 .jsmenu__panel-footer {
   background: $color-silver-light;
   flex-grow: 1;
-  min-height: 10rem;
   padding-left: $spacing;
   padding-top: $spacing-and-half;
-}
-
-.jsmenu__panel--current .jsmenu__panel-footer {
-  // for transition purposes
-  min-height: 50vh;
 }
 
 .jsmenu__language {
@@ -176,7 +159,6 @@ $-jsmenu-border: #cccccc;
   font-size: var(--jsmenu-font-size);
   gap: 12px;
   margin: 0;
-  min-height: $spacing-triple;
 }
 
 .jsmenu__itemlink {
