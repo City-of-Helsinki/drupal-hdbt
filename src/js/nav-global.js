@@ -53,7 +53,7 @@ const Panel = {
       <section class="{{panel_class}}">
       <div class="jsmenu__panel-body">
         <div class="jsmenu__language">
-        <a href="#fi">Suomeksi</a>
+          ${document.querySelector('.language-switcher')?.innerHTML}
         </div>
           {{#back}}
             <button class="jsmenu__button--back">
