@@ -240,7 +240,7 @@ const Panel = {
       throw new Error('Panel root not found');
     }
     //Show container on start
-    container.style.display = 'block';
+    container.classList.add('jsmenu--visible');
     // show loader
     this.render('load');
 
