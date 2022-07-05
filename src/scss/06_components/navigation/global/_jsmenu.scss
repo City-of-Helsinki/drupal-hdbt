@@ -6,7 +6,7 @@ $-jsmenu-active-border: $spacing-quarter;
 $-jsmenu-border: $color-black-20;
 $-transition-duration: 0.2s;
 
-.jsmenu__drawer {
+.jsmenu {
   @include font('body');
   background: $color-silver-light;
   display: none;
