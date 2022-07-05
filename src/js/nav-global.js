@@ -51,21 +51,21 @@ const Panel = {
     panelTemplate: `
     {{#panels}}
       <section class="{{panel_class}}">
-      <div class="jsmenu__panel-body">
-        <div class="jsmenu__language">
-          ${document.querySelector('.language-switcher')?.innerHTML}
-        </div>
+        <div class="jsmenu__panel-body">
+          <div class="jsmenu__language">
+            ${document.querySelector('.language-switcher')?.innerHTML}
+          </div>
           {{#back}}
             <button class="jsmenu__button--back">
-            <span>{{back}}</span>
+              <span>{{back}}</span>
             </button>
           {{/back}}
           <a class="jsmenu__title-link" href="{{url}}">{{title}}</a>
           {{>items}}
         </div>
         <div class="jsmenu__panel-footer">
-        <a href="#">Anna palautetta</a>
-        <div class="logo"/>
+          <a href="#">Anna palautetta</a>
+          <div class="logo"/>
         </div>
       </section>
     {{/panels}}
