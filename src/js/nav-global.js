@@ -84,7 +84,7 @@ const Panel = {
     <ul class="jsmenu__items">
       {{#items}}
         <li class="jsmenu__item">
-          <a href={{url}} class="flex-grow jsmenu__itemlink {{#active}}jsmenu__itemlink--active{{/active}}">{{title}}</a>
+          <a href={{url}} class="jsmenu__itemlink"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
           {{#button}}
             <button class="jsmenu__button--forward " value={{id}} />
           {{/button}}

@@ -171,7 +171,7 @@ $-transition-duration: 0.2s;
   text-decoration: none;
 }
 
-.jsmenu__itemlink--active {
+.jsmenu__itemlink[aria-current='page'] {
   border-color: $color-black;
   font-weight: bold;
 }
