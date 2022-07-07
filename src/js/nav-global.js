@@ -262,7 +262,8 @@ const Panel = {
     this.getRoot().addEventListener('click', ({
       target: {
         classList,
-        value:id
+        value: id,
+        parentElement
       }
     }) => {
 
@@ -275,7 +276,7 @@ const Panel = {
 
       if (classList && classList.contains(this.selectors.forward)) {
         this.up(id);
-      } else if (classList && classList.contains(this.selectors.back)) {
+      } else if (classList && classList.contains(this.selectors.back) || parentElement?.classList && parentElement?.classList.contains(this.selectors.back)) {
         this.down();
       }
     });
