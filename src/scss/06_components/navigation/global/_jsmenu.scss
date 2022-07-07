@@ -8,6 +8,7 @@ $-transition-duration: 0.2s;
 $-back-icon-bg-size: 40px;
 $-back-icon-size: $spacing-double;
 $-itemlink-target-size: $spacing-quadruple;
+$-footerlink-target-size: 44px;
 
 .jsmenu {
   @include font('body');
@@ -192,6 +193,7 @@ $-itemlink-target-size: $spacing-quadruple;
 
 .jsmenu__items {
   background-color: $color-white;
+  border-bottom: 1px solid $-jsmenu-border-color;
   margin: 0;
   margin-top: $spacing;
   padding: 0;
@@ -296,7 +298,41 @@ $-itemlink-target-size: $spacing-quadruple;
 .jsmenu__panel-footer {
   background: $color-silver-light;
   flex-grow: 1;
-  padding-bottom: $spacing-quadruple;
+  padding-bottom: $spacing;
+  padding-top: $spacing;
+}
+
+.jsmenu__footer-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jsmenu__footer-item {
+  margin: 0;
+  padding: 0;
+}
+
+.jsmenu__footer-link {
+  $-footer-link-font: 'body';
+  $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
+
+  @include font($-footer-link-font);
+  display: block;
+  padding-bottom: $-footer-link-vertical-padding;
   padding-left: $spacing;
-  padding-top: $spacing-and-half;
+  padding-right: $spacing;
+  padding-top: $-footer-link-vertical-padding;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:focus,
+  &:active {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
 }

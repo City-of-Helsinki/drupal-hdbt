@@ -68,7 +68,13 @@ const Panel = {
           {{>items}}
         </div>
         <div class="jsmenu__panel-footer">
-          <a href="#">Anna palautetta</a>
+          <ul class="jsmenu__footer-items">
+            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Koronavirus</a></li>
+            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Anna palautetta</a></li>
+            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link" aria-current="page">Uutiset</a></li>
+            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Avoimet työpaikat</a></li>
+            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Osallistu ja vaikuta</a></li>
+          </ul>
           <div class="logo"/>
         </div>
       </section>
