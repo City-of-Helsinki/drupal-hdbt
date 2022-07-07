@@ -3,7 +3,7 @@
 */
 
 $-jsmenu-active-border: $spacing-quarter;
-$-jsmenu-border: $color-black-20;
+$-jsmenu-border-color: $color-black-20;
 $-transition-duration: 0.2s;
 $-back-icon-bg-size: 40px;
 $-back-icon-size: $spacing-double;
@@ -94,7 +94,7 @@ $-back-icon-size: $spacing-double;
 
 .jsmenu__language {
   background-color: $color-silver-light;
-  border-bottom: 1px solid $color-black-20;
+  border-bottom: 1px solid $-jsmenu-border-color;
   padding: 12px $spacing;
   position: relative;
 
@@ -199,21 +199,60 @@ $-back-icon-size: $spacing-double;
 .jsmenu__item {
   align-items: stretch;
   background: $color-white;
-  border-top: 1px solid $-jsmenu-border;
+  border-top: 1px solid $-jsmenu-border-color;
   display: flex;
-  font-size: var(--jsmenu-font-size);
-  gap: 12px;
   margin: 0;
 }
 
 .jsmenu__itemlink {
+  $-itemlink-target-height: $spacing-quadruple;
+  $-itemlink-font: 'special.navigation.mobile_nav';
+  $-itemlink-line-height: get-line-height($-itemlink-font, true);
+  $-itemlink-vertical-padding: 0.5 * ($-itemlink-target-height - $-itemlink-line-height);
+
+  @include font($-itemlink-font);
   align-items: center;
-  border-left: $-jsmenu-active-border solid $color-white;
   display: inline-flex;
   flex-grow: 1;
-  padding: $spacing-half 0;
-  padding-left: calc($spacing - $-jsmenu-active-border);
+  padding-bottom: $-itemlink-vertical-padding;
+  padding-left: $spacing;
+  padding-right: $spacing;
+  padding-top: $-itemlink-vertical-padding;
+  position: relative;
   text-decoration: none;
+
+  &::before {
+    background: $color-black;
+    bottom: 0;
+    content: '';
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: center left;
+    transition: transform 0.1s ease-in;
+    width: $-jsmenu-active-border;
+  }
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  // .jsmenu__title-link[aria-current='page'],
+  &[aria-current='page'],
+  &:focus,
+  &:active {
+    outline: 0 none;
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
 }
 
 .jsmenu__title-link--in-path,
@@ -221,15 +260,10 @@ $-back-icon-size: $spacing-double;
   font-weight: bold;
 }
 
-.jsmenu__title-link[aria-current='page'],
-.jsmenu__itemlink[aria-current='page'] {
-  border-color: $color-black;
-}
-
 .jsmenu__button--forward {
   background: none;
   border: 0;
-  border-left: 1px solid $-jsmenu-border;
+  border-left: 1px solid $-jsmenu-border-color;
   flex-grow: 0;
   flex-shrink: 0;
   width: 3rem;
