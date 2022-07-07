@@ -7,6 +7,7 @@ $-jsmenu-border-color: $color-black-20;
 $-transition-duration: 0.2s;
 $-back-icon-bg-size: 40px;
 $-back-icon-size: $spacing-double;
+$-itemlink-target-size: $spacing-quadruple;
 
 .jsmenu {
   @include font('body');
@@ -115,7 +116,7 @@ $-back-icon-size: $spacing-double;
   grid-template-rows: auto;
   justify-items: center;
   margin-top: $spacing;
-  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 2px width + 3px offset
+  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
   position: relative;
   width: 100%;
 
@@ -130,8 +131,8 @@ $-back-icon-size: $spacing-double;
 
   &:focus,
   &:active {
-    outline: 2px solid $color-black;
-    outline-offset: -2px;
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
 
     &::before {
       transform: translateX(-4px);
@@ -175,7 +176,7 @@ $-back-icon-size: $spacing-double;
   margin-bottom: 10px;
   margin-top: 2px;
   min-height: 50px; // 40px like above, but add 2*5px to handle focus ring and stay same size as above element
-  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 2px width + 3px offset
+  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
 
   &:hover,
   &:active {
@@ -184,8 +185,8 @@ $-back-icon-size: $spacing-double;
 
   &:focus,
   &:active {
-    outline: 2px solid $color-black;
-    outline-offset: -2px;
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
   }
 }
 
@@ -205,10 +206,9 @@ $-back-icon-size: $spacing-double;
 }
 
 .jsmenu__itemlink {
-  $-itemlink-target-height: $spacing-quadruple;
   $-itemlink-font: 'special.navigation.mobile_nav';
   $-itemlink-line-height: get-line-height($-itemlink-font, true);
-  $-itemlink-vertical-padding: 0.5 * ($-itemlink-target-height - $-itemlink-line-height);
+  $-itemlink-vertical-padding: 0.5 * ($-itemlink-target-size - $-itemlink-line-height);
 
   @include font($-itemlink-font);
   align-items: center;
@@ -253,6 +253,10 @@ $-back-icon-size: $spacing-double;
       transform: scaleX(1);
     }
   }
+
+  &[aria-current='page']:focus {
+    text-decoration: underline;
+  }
 }
 
 .jsmenu__title-link--in-path,
@@ -264,13 +268,29 @@ $-back-icon-size: $spacing-double;
   background: none;
   border: 0;
   border-left: 1px solid $-jsmenu-border-color;
+  cursor: pointer;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 3rem;
-}
+  width: $-itemlink-target-size;
 
-.jsmenu__button--forward::before {
-  @include pseudo-icon('angle-right', $spacing-and-half, black);
+  &::before {
+    @include pseudo-icon('angle-right', $spacing-and-half, black);
+    @include hover-link-arrow-transition;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    &::before {
+      transform: translateX(4px);
+    }
+  }
+
+  &:focus,
+  &:active {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
 }
 
 .jsmenu__panel-footer {
