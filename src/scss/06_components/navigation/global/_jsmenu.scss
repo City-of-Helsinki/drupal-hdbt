@@ -121,6 +121,10 @@ $-back-icon-size: $spacing-double;
   &:active {
     outline: 2px solid $color-black;
     outline-offset: -2px;
+
+    &::before {
+      transform: translateX(-4px);
+    }
   }
 }
 
@@ -155,8 +159,23 @@ $-back-icon-size: $spacing-double;
 
 .jsmenu__title-link {
   @include font('special.large_link');
-  display: block;
-  margin: $spacing;
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 2px;
+  min-height: 50px; // 40px like above, but add 2*5px to handle focus ring and stay same size as above element
+  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 2px width + 3px offset
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &:active {
+    outline: 2px solid $color-black;
+    outline-offset: -2px;
+  }
 }
 
 .jsmenu__panel-footer {
