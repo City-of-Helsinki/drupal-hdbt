@@ -2,13 +2,8 @@
   align-items: center;
   display: flex;
   grid-area: logo;
-  height: var(--block-branding-height-mobile, 65px); // Height on mobile for the branding area.
-  order: 1;
+  height: var(--branding-height);
   z-index: 1;
-
-  @include breakpoint($breakpoint-m) {
-    height: auto;
-  }
 
   .site-name {
     color: $color-black;

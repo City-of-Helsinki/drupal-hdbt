@@ -102,14 +102,14 @@ $-menu-transition-duration: 0.3s;
 
   @include breakpoint($breakpoint-m) {
     position: absolute; // Position above page content when closing;
-    top: calc(var(--drupal-toolbar-height, 0px) + $-header-branding-height-desktop);
+    top: calc(var(--drupal-toolbar-height, 0px) + var(--branding-height));
     width: 100%;
     z-index: 100; // Needs to be higher than page content
   }
 
   @include breakpoint($breakpoint-l) {
     max-width: min(1920px, 100vw);
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--block-header-top-height, 48px) + $-header-branding-height-desktop);
+    top: calc(var(--drupal-toolbar-height, 0px) + var(--header-top-height) + var(--branding-height));
   }
 
   @media (prefers-reduced-motion) {
@@ -133,10 +133,9 @@ $-menu-transition-duration: 0.3s;
 // Innermost container of dropdown content
 .menu-dropdown__content {
   --menu-height: 100vh;
-  --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--block-branding-height-mobile, 65px) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
+  --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
 
   @include breakpoint($breakpoint-m) {
-    --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
     --menu-height: auto;
   }
 
