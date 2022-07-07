@@ -92,6 +92,17 @@ $-back-icon-size: $spacing-double;
   transition-timing-function: ease-in;
 }
 
+.jsmenu__language {
+  background-color: $color-silver-light;
+  border-bottom: 1px solid $color-black-20;
+  padding: 12px $spacing;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    display: none;
+  }
+}
+
 .jsmenu__button--back {
   align-items: start;
   background-color: $color-white;
@@ -178,25 +189,6 @@ $-back-icon-size: $spacing-double;
   }
 }
 
-.jsmenu__panel-footer {
-  background: $color-silver-light;
-  flex-grow: 1;
-  padding-bottom: $spacing-quadruple;
-  padding-left: $spacing;
-  padding-top: $spacing-and-half;
-}
-
-.jsmenu__language {
-  background-color: $color-silver-light;
-  border-bottom: 1px solid $color-black-20;
-  padding: 12px $spacing;
-  position: relative;
-
-  @include breakpoint($breakpoint-m) {
-    display: none;
-  }
-}
-
 .jsmenu__items {
   background-color: $color-white;
   margin: 0;
@@ -245,4 +237,12 @@ $-back-icon-size: $spacing-double;
 
 .jsmenu__button--forward::before {
   @include pseudo-icon('angle-right', $spacing-and-half, black);
+}
+
+.jsmenu__panel-footer {
+  background: $color-silver-light;
+  flex-grow: 1;
+  padding-bottom: $spacing-quadruple;
+  padding-left: $spacing;
+  padding-top: $spacing-and-half;
 }
