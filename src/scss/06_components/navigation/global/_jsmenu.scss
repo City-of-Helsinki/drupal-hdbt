@@ -127,21 +127,26 @@ $-transition-duration: 0.2s;
 
 .jsmenu__title-link {
   display: block;
-  font-weight: bold;
   margin: $spacing;
 }
 
 .jsmenu__panel-footer {
   background: $color-silver-light;
   flex-grow: 1;
+  padding-bottom: $spacing-quadruple;
   padding-left: $spacing;
   padding-top: $spacing-and-half;
 }
 
 .jsmenu__language {
   background-color: $color-silver-light;
-  height: 2rem;
+  border-bottom: 1px solid $color-black-20;
+  padding: 12px $spacing;
   position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    display: none;
+  }
 }
 
 .jsmenu__items {
@@ -171,9 +176,14 @@ $-transition-duration: 0.2s;
   text-decoration: none;
 }
 
+.jsmenu__title-link--in-path,
+.jsmenu__itemlink--in-path {
+  font-weight: bold;
+}
+
+.jsmenu__title-link[aria-current='page'],
 .jsmenu__itemlink[aria-current='page'] {
   border-color: $color-black;
-  font-weight: bold;
 }
 
 .jsmenu__button--forward {

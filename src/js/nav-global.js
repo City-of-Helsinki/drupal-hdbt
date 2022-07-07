@@ -42,8 +42,12 @@ const button = function(){
   return this.items?.length>0;
 };
 
-const active = function() {
-  return new RegExp(`${this.url}$`).test(window.location.pathname);
+const active = function () {
+  return new RegExp(`^${this.url}$`).test(window.location.pathname);
+};
+
+const inPath = function () {
+  return new RegExp(`^${this.url}`).test(window.location.pathname);
 };
 
 const Panel = {
@@ -60,7 +64,7 @@ const Panel = {
               <span>{{back}}</span>
             </button>
           {{/back}}
-          <a class="jsmenu__title-link" href="{{url}}">{{title}}</a>
+          <a class="jsmenu__title-link{{#inPath}} jsmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
           {{>items}}
         </div>
         <div class="jsmenu__panel-footer">
@@ -84,7 +88,7 @@ const Panel = {
     <ul class="jsmenu__items">
       {{#items}}
         <li class="jsmenu__item">
-          <a href={{url}} class="jsmenu__itemlink"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+          <a href={{url}} class="jsmenu__itemlink{{#inPath}} jsmenu__itemlink--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
           {{#button}}
             <button class="jsmenu__button--forward " value={{id}} />
           {{/button}}
@@ -140,6 +144,7 @@ const Panel = {
       // If current item has subitems, show button for next panel.
       button,
       active,
+      inPath,
       // Show title of previously clicked item in Back-button (or Frontpage if)
       back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
       /***
@@ -231,7 +236,7 @@ const Panel = {
     },10);
   },
   load: async function(){
-    const MENU = await( await fetch('./megamenu.json')).json();
+    const MENU = await( await fetch('/megamenu.json')).json();
     this.data = MENU;
   },
   start: async function(){
