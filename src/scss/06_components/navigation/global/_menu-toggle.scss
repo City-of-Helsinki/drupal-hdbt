@@ -1,4 +1,3 @@
-$-header-branding-height-desktop: 87px;
 $-menu-transition-duration: 0.3s;
 
 // When menu is opened with anchor instead of JS, this forces the page to scroll to top
@@ -173,6 +172,10 @@ $-menu-transition-duration: 0.3s;
   transition: none;
 }
 
+.jsmenu__language {
+  display: none; // Hides jsmenu language bar during navigation
+}
+
 // What should happen when menu is opened
 #menu:target,
 #menu[data-target='true'] {
@@ -187,6 +190,12 @@ $-menu-transition-duration: 0.3s;
 
     @include breakpoint($breakpoint-m) {
       display: block; // Should be visible when second language switcher is not visible inside menu
+    }
+  }
+
+  & ~ * .jsmenu__language {
+    @include breakpoint(max-width $breakpoint-m) {
+      display: block;
     }
   }
 

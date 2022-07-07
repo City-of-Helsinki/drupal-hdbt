@@ -4,11 +4,10 @@ $-branding-icon-size-desktop: $spacing-double;
   --branding-height: 65px;
   --header-branding-padding: #{$spacing};
   background-color: $color-white;
-  border-bottom: 1px solid $color-black-20;
   display: grid;
   grid-template-areas:
     '. logo . brand toggle .'
-    '. lang lang lang lang .'
+    'lang lang lang lang lang lang'
     'menu menu menu menu menu menu';
   grid-template-columns: var(--header-branding-padding) auto 1fr auto auto var(--header-branding-padding);
   grid-template-rows: var(--branding-height) auto auto;
@@ -37,18 +36,17 @@ $-branding-icon-size-desktop: $spacing-double;
   }
 
   &::before {
+    align-self: end;
     background-color: $color-white;
-    border-bottom: 1px solid $color-black-10;
+    border-bottom: 1px solid $color-black-20;
     content: '';
-    height: 65px; // Height of the mobile header
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
+    grid-column: 1 / -1; // Full width
+    grid-row: 1 / span 1; // First row
+    height: 100%;
     z-index: 1;
 
     @include breakpoint($breakpoint-m) {
-      display: none;
+      height: 0;
     }
   }
 
@@ -80,6 +78,7 @@ $-branding-icon-size-desktop: $spacing-double;
       text-align: center;
       user-select: none;
 
+      // stylelint-disable-next-line max-nesting-depth
       @include breakpoint($breakpoint-l) {
         display: none;
       }

@@ -1,8 +1,8 @@
 .block--language-switcher {
   align-self: center;
+  background-color: $color-silver-light;
+  border-bottom: 1px solid $color-black-20;
   grid-area: lang;
-  margin-left: -#{$spacing};
-  margin-right: -#{$spacing};
   order: 3;
   padding: 12px $spacing;
   position: relative;
@@ -11,16 +11,17 @@
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
+    background-color: transparent;
+    border-bottom: 0 none;
     border-top: none;
     margin-left: auto;
-    margin-right: 0;
     order: 2;
     padding: 0;
     width: auto;
   }
 
   &.scroll-up {
-    margin-top: -51px;
+    margin-top: -52px;
     transition-delay: 0s; // Transition delay should be 0 when hiding the switcher
 
     @include breakpoint($breakpoint-m) {
