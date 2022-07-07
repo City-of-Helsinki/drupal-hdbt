@@ -61,7 +61,7 @@ const Panel = {
           </div>
           {{#back}}
             <button class="jsmenu__button--back">
-              <span>{{back}}</span>
+              <span class="jsmenu__button--back-wrapper">{{back}}</span>
             </button>
           {{/back}}
           <a class="jsmenu__title-link{{#inPath}} jsmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>

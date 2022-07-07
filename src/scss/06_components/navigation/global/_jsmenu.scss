@@ -5,6 +5,8 @@
 $-jsmenu-active-border: $spacing-quarter;
 $-jsmenu-border: $color-black-20;
 $-transition-duration: 0.2s;
+$-back-icon-bg-size: 40px;
+$-back-icon-size: $spacing-double;
 
 .jsmenu {
   @include font('body');
@@ -91,41 +93,68 @@ $-transition-duration: 0.2s;
 }
 
 .jsmenu__button--back {
-  align-items: center;
+  align-items: start;
   background-color: $color-white;
   border: 0;
-  display: flex;
-  margin: $spacing 0 $spacing-and-half $spacing;
-  padding: 0;
+  cursor: pointer;
+  display: grid;
+  gap: $spacing-half;
+  grid-template-areas: 'icon label';
+  grid-template-columns: $-back-icon-bg-size auto;
+  grid-template-rows: auto;
+  justify-items: center;
+  margin-top: $spacing;
+  padding: 5px 12px; // Top and bottom paddings are for handling focus ring 2px width + 3px offset
   position: relative;
+  width: 100%;
 
-  & span {
-    background: $color-white;
-    display: inline-block;
-    flex-grow: 1;
-    height: 100%;
-    margin-left: 12px;
+  &:hover,
+  &:active {
+    text-decoration: underline;
+
+    &::before {
+      transform: translateX(-4px);
+    }
+  }
+
+  &:focus,
+  &:active {
+    outline: 2px solid $color-black;
+    outline-offset: -2px;
   }
 }
 
-.jsmenu__panel:not(:first-child) .jsmenu__button--back::before {
-  @include pseudo-icon('angle-left', $spacing-and-half, black);
-  transform: translateX(2px);
-  z-index: 3;
+.jsmenu__panel:not(:first-child) .jsmenu__button--back {
+  &::before {
+    @include pseudo-icon('angle-left', $spacing-double, black);
+    @include hover-link-arrow-transition;
+    grid-area: icon;
+    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+  }
+
+  &::after {
+    background: $color-silver-light;
+    content: '';
+    display: block;
+    grid-area: icon;
+    height: $-back-icon-bg-size;
+    width: $-back-icon-bg-size;
+  }
 }
 
-.jsmenu__panel:not(:first-child) .jsmenu__button--back::after {
-  background: $color-silver-light;
-  content: '';
-  display: block;
-  height: 28px;
-  left: 0;
-  position: absolute;
-  width: 28px;
-  z-index: 2;
+.jsmenu__button--back-wrapper {
+  $-back-font: 'button';
+  $-back-line-height: get-line-height($-back-font, true);
+
+  @include font($-back-font);
+  color: $color-black;
+  grid-area: label;
+  justify-self: start;
+  margin-top: 0.5 * ($-back-icon-bg-size - $-back-line-height);
 }
 
 .jsmenu__title-link {
+  @include font('special.large_link');
   display: block;
   margin: $spacing;
 }
