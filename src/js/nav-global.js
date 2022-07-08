@@ -57,7 +57,7 @@ const Panel = {
       <section class="{{panel_class}}">
         <div class="jsmenu__panel-body">
           <div class="jsmenu__language">
-            ${document.querySelector('.language-switcher')?.outerHTML}
+            ${document.querySelector('.js-language-switcher')?.outerHTML}
           </div>
           {{#back}}
             <button class="jsmenu__button--back">
@@ -67,6 +67,9 @@ const Panel = {
           <a class="jsmenu__title-link{{#inPath}} jsmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
           {{>items}}
         </div>
+        ${document.querySelector('.js-jsmenu__panel-footer')?.outerHTML}
+        ${ ''
+  /*
         <div class="jsmenu__panel-footer">
           <ul class="jsmenu__footer-items">
             <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Koronavirus</a></li>
@@ -81,6 +84,8 @@ const Panel = {
             </a>
           </div>
         </div>
+      */
+}
       </section>
     {{/panels}}
 

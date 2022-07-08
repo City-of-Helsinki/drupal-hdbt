@@ -21,11 +21,55 @@
 
 {% import _self as menus %}
 
-{#
-  We call a macro which calls itself to render the full tree.
-  @see https://twig.symfony.com/doc/1.x/tags/macro.html
-#}
-{{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
+{% if attributes.block_id and attributes.block_id == 'headertopnavigation' %}
+
+  {%
+    set menu_classes = [
+      'jsmenu__footer-items',
+    ]
+  %}
+
+  {% if items %}
+    <ul{{ attributes.removeAttribute('class').addClass(menu_classes) }}>
+    {% for item in items %}
+
+      {% set item_classes = [
+        'jsmenu__footer-item',
+        item.is_nolink ? 'jsmenu__footer-item--nolink',
+      ]%}
+
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
+
+        {% if not item.is_nolink %}
+          {% spaceless %}
+
+            {% set link_attributes = {
+              'class': [
+                'jsmenu__footer-link',
+              ],
+              'aria-current': item.is_currentPage ? 'page' : null,
+            } %}
+
+            {{ link(item.title, item.url, link_attributes) }}
+
+          {% endspaceless %}
+        {% else %}
+          <span{{ create_attribute({'class': item_classes}) }}>{{ item.title }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+
+{% else %}
+  {#
+    We call a macro which calls itself to render the full tree.
+    @see https://twig.symfony.com/doc/1.x/tags/macro.html
+  #}
+  {{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
+{% endif %}
+
 
 {% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
@@ -43,7 +87,7 @@
   {% set auto_open = auto_open|default(false) %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes) }}>
+    <ul{{ attributes.removeAttribute('class').addClass(menu_classes) }}>
     {% for item in items %}
       {% set has_children = false %}
       {% set expanded_or_active = false %}
@@ -65,7 +109,7 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
-      <li{{ item.attributes.addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}

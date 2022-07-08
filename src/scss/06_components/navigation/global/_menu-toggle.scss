@@ -28,6 +28,13 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+.mega-and-mobilemenu .block--language-switcher,
+.mega-and-mobilemenu .jsmenu__panel-footer {
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+}
+
 // When JS is enabled, switch to use button instead of anchor
 #menu[data-js] ~ * {
   .menu-toggle-anchor {
@@ -37,6 +44,11 @@ $-menu-transition-duration: 0.3s;
   // On desktop sizes with js, button should open megamenu with js
   .menu-toggle-button {
     display: grid;
+  }
+
+  .mega-and-mobilemenu .block--language-switcher,
+  .mega-and-mobilemenu .jsmenu__panel-footer {
+    display: none;
   }
 }
 
