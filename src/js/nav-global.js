@@ -60,17 +60,17 @@ const Panel = {
             ${document.querySelector('.js-language-switcher')?.outerHTML}
           </div>
           {{#back}}
-            <button class="mmenu__button--back">
-              <span class="mmenu__button--back-wrapper">{{back}}</span>
+            <button class="mmenu__back">
+              <span class="mmenu__back-wrapper">{{back}}</span>
             </button>
           {{/back}}
           <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
           {{>items}}
         </div>
-        ${document.querySelector('.js-mmenu__panel-footer')?.outerHTML}
+        ${document.querySelector('.js-mmenu__footer')?.outerHTML}
         ${ ''
   /*
-        <div class="mmenu__panel-footer">
+        <div class="mmenu__footer">
           <ul class="mmenu__footer-items">
             <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Koronavirus</a></li>
             <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Anna palautetta</a></li>
@@ -103,9 +103,9 @@ const Panel = {
     <ul class="mmenu__items">
       {{#items}}
         <li class="mmenu__item">
-          <a href={{url}} class="mmenu__itemlink{{#inPath}} mmenu__itemlink--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+          <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
           {{#button}}
-            <button class="mmenu__button--forward " value={{id}} />
+            <button class="mmenu__forward " value={{id}} />
           {{/button}}
         </li>
       {{/items}}
@@ -119,8 +119,8 @@ const Panel = {
   selectors:{
     container:'#mmenu',
     rootId:'mmenu__panels',
-    forward:'mmenu__button--forward',
-    back:'mmenu__button--back'
+    forward:'mmenu__forward',
+    back:'mmenu__back'
   },
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
@@ -223,7 +223,7 @@ const Panel = {
     // Todo: bind treshold to suitable element position when all menu blocks have been added and styled.
     const TRESHOLD = 100;
     if(root.parentElement.scrollTop > TRESHOLD && this.current > 0) {
-      current.querySelectorAll('.mmenu__button--back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
+      current.querySelectorAll('.mmenu__back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
     setTimeout(()=>{

@@ -101,7 +101,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.mmenu__button--back {
+.mmenu__back {
   align-items: start;
   background-color: $color-white;
   border: 0;
@@ -137,7 +137,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.mmenu__panel:not(:first-child) .mmenu__button--back {
+.mmenu__panel:not(:first-child) .mmenu__back {
   &::before {
     @include pseudo-icon('angle-left', $spacing-double, black);
     @include hover-link-arrow-transition;
@@ -155,7 +155,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.mmenu__button--back-wrapper {
+.mmenu__back-wrapper {
   $-back-font: 'button';
   $-back-line-height: get-line-height($-back-font, true);
 
@@ -203,7 +203,7 @@ $-footerlink-target-size: 44px;
   margin: 0;
 }
 
-.mmenu__itemlink {
+.mmenu__item-link {
   $-itemlink-font: 'special.navigation.mobile_nav';
   $-itemlink-line-height: get-line-height($-itemlink-font, true);
   $-itemlink-vertical-padding: 0.5 * ($-itemlink-target-size - $-itemlink-line-height);
@@ -258,11 +258,11 @@ $-footerlink-target-size: 44px;
 }
 
 .mmenu__title-link--in-path,
-.mmenu__itemlink--in-path {
+.mmenu__item-link--in-path {
   font-weight: bold;
 }
 
-.mmenu__button--forward {
+.mmenu__forward {
   background: none;
   border: 0;
   border-left: 1px solid $-mmenu-border-color;
@@ -291,7 +291,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.mmenu__panel-footer {
+.mmenu__footer {
   background: $color-silver-light;
   flex-grow: 1;
   padding-bottom: $spacing;
