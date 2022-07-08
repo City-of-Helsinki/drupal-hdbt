@@ -57,7 +57,7 @@ const Panel = {
       <section class="{{panel_class}}">
         <div class="jsmenu__panel-body">
           <div class="jsmenu__language">
-            ${document.querySelector('.language-switcher')?.innerHTML}
+            ${document.querySelector('.language-switcher')?.outerHTML}
           </div>
           {{#back}}
             <button class="jsmenu__button--back">
@@ -75,7 +75,11 @@ const Panel = {
             <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Avoimet työpaikat</a></li>
             <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Osallistu ja vaikuta</a></li>
           </ul>
-          <div class="logo"/>
+          <div class="jsmenu__logo">
+            <a href="https://www.hel.fi/${drupalSettings?.path?.currentLanguage || ''}" class="jsmenu__logo-link">
+              ${document.querySelector('.logo__icon')?.outerHTML}
+            </a>
+          </div>
         </div>
       </section>
     {{/panels}}

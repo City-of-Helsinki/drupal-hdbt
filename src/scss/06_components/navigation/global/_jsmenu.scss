@@ -336,3 +336,20 @@ $-footerlink-target-size: 44px;
     outline-offset: -3px;
   }
 }
+
+.jsmenu__logo {
+  display: flex;
+  justify-items: center;
+  margin-bottom: $spacing-quadruple;
+  margin-top: $spacing-triple;
+}
+
+.jsmenu__logo-link {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.jsmenu__logo .logo__icon {
+  --height: #{$spacing-triple};
+}
