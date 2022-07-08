@@ -63,6 +63,7 @@ $-footerlink-target-size: 44px;
   overflow-y: auto;
   overscroll-behavior: contain;
   transition-delay: 0s, var(--transition-opacity-delay);
+  transition-duration: $-transition-duration, 0s;
   transition-property: transform, opacity;
   width: 100vw;
 }
@@ -71,24 +72,19 @@ $-footerlink-target-size: 44px;
   --transition-opacity-delay: 0s; // Current panels should be visible instantly
 }
 
-.mmenu__panel.mmenu__panel--visible-fast,
-.mmenu__panel.mmenu__panel--visible-slow {
-  transition-duration: $-transition-duration, 0s;
-}
-
-.mmenu__panel.mmenu__panel--visible {
+.mmenu__panel--visible {
   opacity: 1;
   transform: translateX(0);
   transition-timing-function: ease-out;
 }
 
-.mmenu__panel.mmenu__panel--visible-right {
+.mmenu__panel--visible-right {
   opacity: 0;
   transform: translateX(100vw);
   transition-timing-function: ease-in;
 }
 
-.mmenu__panel.mmenu__panel--visible-left {
+.mmenu__panel--visible-left {
   opacity: 0;
   transform: translateX(-50vw);
   transition-timing-function: ease-in;

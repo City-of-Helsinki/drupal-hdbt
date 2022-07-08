@@ -228,20 +228,15 @@ const Panel = {
 
     setTimeout(()=>{
 
-      current.classList.add('mmenu__panel--visible-fast');
       current.classList.remove('mmenu__panel--visible-right','mmenu__panel--visible-left');
       switch (state) {
-      /***
-       *  Exiting panel moves slow and fades away from given direction
-       *  Entering panel moves fast and enters stage from given direction
-       */
 
       case 'up':
-        panels.at(this.current-1).classList.add('mmenu__panel--visible-left','mmenu__panel--visible-slow');
+        panels.at(this.current-1).classList.add('mmenu__panel--visible-left');
         break;
 
       case 'down':
-        panels.at(this.current+1).classList.add('mmenu__panel--visible-right', 'mmenu__panel--visible-slow');
+        panels.at(this.current+1).classList.add('mmenu__panel--visible-right');
         break;
 
       default:
