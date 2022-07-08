@@ -55,31 +55,31 @@ const Panel = {
     panelTemplate: `
     {{#panels}}
       <section class="{{panel_class}}">
-        <div class="jsmenu__panel-body">
-          <div class="jsmenu__language">
+        <div class="mmenu__panel-body">
+          <div class="mmenu__language">
             ${document.querySelector('.js-language-switcher')?.outerHTML}
           </div>
           {{#back}}
-            <button class="jsmenu__button--back">
-              <span class="jsmenu__button--back-wrapper">{{back}}</span>
+            <button class="mmenu__button--back">
+              <span class="mmenu__button--back-wrapper">{{back}}</span>
             </button>
           {{/back}}
-          <a class="jsmenu__title-link{{#inPath}} jsmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
+          <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
           {{>items}}
         </div>
-        ${document.querySelector('.js-jsmenu__panel-footer')?.outerHTML}
+        ${document.querySelector('.js-mmenu__panel-footer')?.outerHTML}
         ${ ''
   /*
-        <div class="jsmenu__panel-footer">
-          <ul class="jsmenu__footer-items">
-            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Koronavirus</a></li>
-            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Anna palautetta</a></li>
-            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link" aria-current="page">Uutiset</a></li>
-            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Avoimet työpaikat</a></li>
-            <li class="jsmenu__footer-item"><a href="#" class="jsmenu__footer-link">Osallistu ja vaikuta</a></li>
+        <div class="mmenu__panel-footer">
+          <ul class="mmenu__footer-items">
+            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Koronavirus</a></li>
+            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Anna palautetta</a></li>
+            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link" aria-current="page">Uutiset</a></li>
+            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Avoimet työpaikat</a></li>
+            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Osallistu ja vaikuta</a></li>
           </ul>
-          <div class="jsmenu__logo">
-            <a href="https://www.hel.fi/${drupalSettings?.path?.currentLanguage || ''}" class="jsmenu__logo-link">
+          <div class="mmenu__logo">
+            <a href="https://www.hel.fi/${drupalSettings?.path?.currentLanguage || ''}" class="mmenu__logo-link">
               ${document.querySelector('.logo__icon')?.outerHTML}
             </a>
           </div>
@@ -90,7 +90,7 @@ const Panel = {
     {{/panels}}
 
     {{^panels}}
-    <div class="jsmenu__loading">
+    <div class="mmenu__loading">
       <div class="hds-loading-spinner">
         <div></div>
         <div></div>
@@ -100,12 +100,12 @@ const Panel = {
     {{/panels}}
     `,
     listTemplate:`
-    <ul class="jsmenu__items">
+    <ul class="mmenu__items">
       {{#items}}
-        <li class="jsmenu__item">
-          <a href={{url}} class="jsmenu__itemlink{{#inPath}} jsmenu__itemlink--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+        <li class="mmenu__item">
+          <a href={{url}} class="mmenu__itemlink{{#inPath}} mmenu__itemlink--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
           {{#button}}
-            <button class="jsmenu__button--forward " value={{id}} />
+            <button class="mmenu__button--forward " value={{id}} />
           {{/button}}
         </li>
       {{/items}}
@@ -117,10 +117,10 @@ const Panel = {
   data:null,
   current: 0,
   selectors:{
-    container:'#jsmenu',
-    rootId:'jsmenu__panels',
-    forward:'jsmenu__button--forward',
-    back:'jsmenu__button--back'
+    container:'#mmenu',
+    rootId:'mmenu__panels',
+    forward:'mmenu__button--forward',
+    back:'mmenu__button--back'
   },
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
@@ -171,11 +171,11 @@ const Panel = {
        * At render, -up and -down classes are added and removed accordingly to achieve wanted animation and final state.
        */
       panel_class: cls({
-        'jsmenu__panel':true,
-        'jsmenu__panel--visible':true,
-        'jsmenu__panel--current':i === this.current,
-        'jsmenu__panel--visible-right':  (state === 'start' && i > this.current ) || (state === 'up' && i >= this.current ) ||( state === 'down' && i > this.current+1 ),
-        'jsmenu__panel--visible-left': (state  === 'up' && i<this.current-1)  || (state === 'down' && i <= this.current)
+        'mmenu__panel':true,
+        'mmenu__panel--visible':true,
+        'mmenu__panel--current':i === this.current,
+        'mmenu__panel--visible-right':  (state === 'start' && i > this.current ) || (state === 'up' && i >= this.current ) ||( state === 'down' && i > this.current+1 ),
+        'mmenu__panel--visible-left': (state  === 'up' && i<this.current-1)  || (state === 'down' && i <= this.current)
       })
     }));
   },
@@ -217,19 +217,19 @@ const Panel = {
       return;
     }
 
-    const panels = [...root.querySelectorAll('.jsmenu__panel')];
+    const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current =  panels.at(this.current);
     // Scroll to back-button height if back-button is not visible any more.
     // Todo: bind treshold to suitable element position when all menu blocks have been added and styled.
     const TRESHOLD = 100;
     if(root.parentElement.scrollTop > TRESHOLD && this.current > 0) {
-      current.querySelectorAll('.jsmenu__button--back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
+      current.querySelectorAll('.mmenu__button--back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
     setTimeout(()=>{
 
-      current.classList.add('jsmenu__panel--visible-fast');
-      current.classList.remove('jsmenu__panel--visible-right','jsmenu__panel--visible-left');
+      current.classList.add('mmenu__panel--visible-fast');
+      current.classList.remove('mmenu__panel--visible-right','mmenu__panel--visible-left');
       switch (state) {
       /***
        *  Exiting panel moves slow and fades away from given direction
@@ -237,11 +237,11 @@ const Panel = {
        */
 
       case 'up':
-        panels.at(this.current-1).classList.add('jsmenu__panel--visible-left','jsmenu__panel--visible-slow');
+        panels.at(this.current-1).classList.add('mmenu__panel--visible-left','mmenu__panel--visible-slow');
         break;
 
       case 'down':
-        panels.at(this.current+1).classList.add('jsmenu__panel--visible-right', 'jsmenu__panel--visible-slow');
+        panels.at(this.current+1).classList.add('mmenu__panel--visible-right', 'mmenu__panel--visible-slow');
         break;
 
       default:
@@ -260,7 +260,7 @@ const Panel = {
       throw new Error('Panel root not found');
     }
     //Show container on start
-    container.classList.add('jsmenu--visible');
+    container.classList.add('mmenu--visible');
     // show loader
     this.render('load');
 

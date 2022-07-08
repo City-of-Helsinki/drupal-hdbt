@@ -58,18 +58,18 @@
 
           {{ block_content }}
 
-          <div class="jsmenu__panel-footer js-jsmenu__panel-footer">
+          <div class="mmenu__panel-footer js-mmenu__panel-footer">
 
             {% set inside_cssmenu = true %}
             {{ drupal_entity('block', 'headertopnavigation')}}
 
-            <div class="jsmenu__logo">
+            <div class="mmenu__logo">
               {% set link_label %}
                 {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
               {% endset %}
               {% set link_attributes = {
                 'class': [
-                  'jsmenu__logo-link',
+                  'mmenu__logo-link',
                 ],
               } %}
               {{ link(link_label, site_front_url, link_attributes) }}
@@ -77,8 +77,8 @@
           </div>
         </div>
 
-        <div id="jsmenu" class="jsmenu">
-          <div id="jsmenu__panels" class="jsmenu__panels"/>
+        <div id="mmenu" class="mmenu">
+          <div id="mmenu__panels" class="mmenu__panels"/>
         </div>
       </div>
     </div>

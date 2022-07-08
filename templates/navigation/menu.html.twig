@@ -25,7 +25,7 @@
 
   {%
     set menu_classes = [
-      'jsmenu__footer-items',
+      'mmenu__footer-items',
     ]
   %}
 
@@ -34,8 +34,8 @@
     {% for item in items %}
 
       {% set item_classes = [
-        'jsmenu__footer-item',
-        item.is_nolink ? 'jsmenu__footer-item--nolink',
+        'mmenu__footer-item',
+        item.is_nolink ? 'mmenu__footer-item--nolink',
       ]%}
 
       <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
@@ -45,7 +45,7 @@
 
             {% set link_attributes = {
               'class': [
-                'jsmenu__footer-link',
+                'mmenu__footer-link',
               ],
               'aria-current': item.is_currentPage ? 'page' : null,
             } %}

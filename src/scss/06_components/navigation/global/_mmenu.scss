@@ -2,15 +2,15 @@
 * JS menu styles (reuse CSS menu classes where possible, remove unused when done
 */
 
-$-jsmenu-active-border: $spacing-quarter;
-$-jsmenu-border-color: $color-black-20;
+$-mmenu-active-border: $spacing-quarter;
+$-mmenu-border-color: $color-black-20;
 $-transition-duration: 0.2s;
 $-back-icon-bg-size: 40px;
 $-back-icon-size: $spacing-double;
 $-itemlink-target-size: $spacing-quadruple;
 $-footerlink-target-size: 44px;
 
-.jsmenu {
+.mmenu {
   @include font('body');
   background: $color-silver-light;
   display: none;
@@ -18,7 +18,7 @@ $-footerlink-target-size: 44px;
   z-index: 2;
 }
 
-.jsmenu--visible {
+.mmenu--visible {
   display: block;
 
   @include breakpoint($breakpoint-l) {
@@ -26,7 +26,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__loading {
+.mmenu__loading {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__panels {
+.mmenu__panels {
   background: $color-silver-light;
   display: grid;
   grid-template-areas: 'panels';
@@ -50,7 +50,7 @@ $-footerlink-target-size: 44px;
   overscroll-behavior: none;
 }
 
-.jsmenu__panel {
+.mmenu__panel {
   --transition-opacity-delay: #{$-transition-duration}; // Delay hiding the offscreen panels until animation is done
   background-color: $color-white;
   display: flex;
@@ -67,36 +67,36 @@ $-footerlink-target-size: 44px;
   width: 100vw;
 }
 
-.jsmenu__panel--current {
+.mmenu__panel--current {
   --transition-opacity-delay: 0s; // Current panels should be visible instantly
 }
 
-.jsmenu__panel.jsmenu__panel--visible-fast,
-.jsmenu__panel.jsmenu__panel--visible-slow {
+.mmenu__panel.mmenu__panel--visible-fast,
+.mmenu__panel.mmenu__panel--visible-slow {
   transition-duration: $-transition-duration, 0s;
 }
 
-.jsmenu__panel.jsmenu__panel--visible {
+.mmenu__panel.mmenu__panel--visible {
   opacity: 1;
   transform: translateX(0);
   transition-timing-function: ease-out;
 }
 
-.jsmenu__panel.jsmenu__panel--visible-right {
+.mmenu__panel.mmenu__panel--visible-right {
   opacity: 0;
   transform: translateX(100vw);
   transition-timing-function: ease-in;
 }
 
-.jsmenu__panel.jsmenu__panel--visible-left {
+.mmenu__panel.mmenu__panel--visible-left {
   opacity: 0;
   transform: translateX(-50vw);
   transition-timing-function: ease-in;
 }
 
-.jsmenu__language {
+.mmenu__language {
   background-color: $color-silver-light;
-  border-bottom: 1px solid $-jsmenu-border-color;
+  border-bottom: 1px solid $-mmenu-border-color;
   padding: 12px $spacing;
   position: relative;
 
@@ -105,7 +105,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__button--back {
+.mmenu__button--back {
   align-items: start;
   background-color: $color-white;
   border: 0;
@@ -141,7 +141,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__panel:not(:first-child) .jsmenu__button--back {
+.mmenu__panel:not(:first-child) .mmenu__button--back {
   &::before {
     @include pseudo-icon('angle-left', $spacing-double, black);
     @include hover-link-arrow-transition;
@@ -159,7 +159,7 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__button--back-wrapper {
+.mmenu__button--back-wrapper {
   $-back-font: 'button';
   $-back-line-height: get-line-height($-back-font, true);
 
@@ -170,7 +170,7 @@ $-footerlink-target-size: 44px;
   margin-top: 0.5 * ($-back-icon-bg-size - $-back-line-height);
 }
 
-.jsmenu__title-link {
+.mmenu__title-link {
   @include font('special.large_link');
   align-items: center;
   display: flex;
@@ -191,23 +191,23 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__items {
+.mmenu__items {
   background-color: $color-white;
-  border-bottom: 1px solid $-jsmenu-border-color;
+  border-bottom: 1px solid $-mmenu-border-color;
   margin: 0;
   margin-top: $spacing;
   padding: 0;
 }
 
-.jsmenu__item {
+.mmenu__item {
   align-items: stretch;
   background: $color-white;
-  border-top: 1px solid $-jsmenu-border-color;
+  border-top: 1px solid $-mmenu-border-color;
   display: flex;
   margin: 0;
 }
 
-.jsmenu__itemlink {
+.mmenu__itemlink {
   $-itemlink-font: 'special.navigation.mobile_nav';
   $-itemlink-line-height: get-line-height($-itemlink-font, true);
   $-itemlink-vertical-padding: 0.5 * ($-itemlink-target-size - $-itemlink-line-height);
@@ -237,7 +237,7 @@ $-footerlink-target-size: 44px;
     transform: scaleX(0);
     transform-origin: center left;
     transition: transform 0.1s ease-in;
-    width: $-jsmenu-active-border;
+    width: $-mmenu-active-border;
   }
 
   &:hover,
@@ -245,7 +245,7 @@ $-footerlink-target-size: 44px;
     text-decoration: underline;
   }
 
-  // .jsmenu__title-link[aria-current='page'],
+  // .mmenu__title-link[aria-current='page'],
   &[aria-current='page'],
   &:focus,
   &:active {
@@ -261,15 +261,15 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__title-link--in-path,
-.jsmenu__itemlink--in-path {
+.mmenu__title-link--in-path,
+.mmenu__itemlink--in-path {
   font-weight: bold;
 }
 
-.jsmenu__button--forward {
+.mmenu__button--forward {
   background: none;
   border: 0;
-  border-left: 1px solid $-jsmenu-border-color;
+  border-left: 1px solid $-mmenu-border-color;
   cursor: pointer;
   flex-grow: 0;
   flex-shrink: 0;
@@ -295,25 +295,25 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__panel-footer {
+.mmenu__panel-footer {
   background: $color-silver-light;
   flex-grow: 1;
   padding-bottom: $spacing;
   padding-top: $spacing;
 }
 
-.jsmenu__footer-items {
+.mmenu__footer-items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.jsmenu__footer-item {
+.mmenu__footer-item {
   margin: 0;
   padding: 0;
 }
 
-.jsmenu__footer-link {
+.mmenu__footer-link {
   $-footer-link-font: 'body';
   $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
 
@@ -337,19 +337,19 @@ $-footerlink-target-size: 44px;
   }
 }
 
-.jsmenu__logo {
+.mmenu__logo {
   display: flex;
   justify-items: center;
   margin-bottom: $spacing-quadruple;
   margin-top: $spacing-triple;
 }
 
-.jsmenu__logo-link {
+.mmenu__logo-link {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.jsmenu__logo .logo__icon {
+.mmenu__logo .logo__icon {
   --height: #{$spacing-triple};
 }
