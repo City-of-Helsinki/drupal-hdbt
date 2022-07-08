@@ -228,3 +228,9 @@ $-menu-transition-duration: 0.3s;
     }
   }
 }
+
+.mobile-menu {
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+}
