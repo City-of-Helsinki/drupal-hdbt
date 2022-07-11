@@ -2,12 +2,19 @@ extends: stylelint-config-standard-scss
 plugins:
   - stylelint-scss
   - stylelint-order
+  - stylelint-declaration-block-no-ignored-properties
+  - stylelint-high-performance-animation
 rules:
   # scss/at-import-no-partial-leading-underscore: null
+  plugin/declaration-block-no-ignored-properties: true # Helps weed out unecessary code
+  plugin/no-low-performance-animation-properties: true # Guides to better, more performant animation properties
   declaration-property-value-disallowed-list:
     - /(color$|background|border|box-shadow|column-rule|filter|opacity|outline|text-decoration|text-shadow)/:
       - /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/i # we should always use color tokens
     - message: "HELFI: Instead of color values, please use tokens like $color-black instead"
+    - /^overflow/:
+      - /(none)/i # `none` is not a valid value for overflow, use `hidden` instead
+    - message: "HELFI: `none` is not a valid value for overflow, use `hidden` instead"
   color-named:
     - never
     - message: "HELFI: Instead of color values, please use tokens like $color-black instead"
