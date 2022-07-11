@@ -59,7 +59,7 @@ $-footerlink-target-size: 44px;
   grid-area: panels;
   height: var(--menu-height);
   max-height: var(--menu-max-height);
-  overflow-x: none;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   transition-delay: 0s, var(--transition-opacity-delay);

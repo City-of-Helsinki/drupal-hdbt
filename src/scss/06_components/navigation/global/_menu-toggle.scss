@@ -161,7 +161,7 @@ $-menu-transition-duration: 0.3s;
   background: $color-white;
   height: var(--menu-height);
   max-height: var(--menu-max-height);
-  overflow-x: none;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
   pointer-events: all; // This enables interaction with this element that .menu-dropdown disables
@@ -174,7 +174,7 @@ $-menu-transition-duration: 0.3s;
 }
 
 #menu[data-js] ~ * .menu-dropdown__content {
-  overflow-y: none;
+  overflow-y: hidden;
 }
 
 // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
