@@ -101,20 +101,135 @@
     {% endif %}
   {% endmacro %}
 
-  <div class="mobile-menu-fallback" id="js-menu-fallback">
-    Mobile menu
-    <ul>
-      <li>Lorem, ipsum dolor.</li>
-      <li>Officiis, debitis voluptatem!</li>
-      <li>Nulla, debitis cumque!</li>
-      <li>Blanditiis, optio sint.</li>
-      <li>Nihil, pariatur perferendis!</li>
-      <li>Vel, deleniti earum.</li>
-      <li>Minima, earum sit?</li>
-      <li>Porro, reprehenderit error.</li>
-      <li>Quasi, officiis architecto.</li>
-      <li>Enim, quasi minima?</li>
-    </ul>
+  <div class="mobile-menu-fallback mobile-menu-fallback__index-1" id="js-menu-fallback">
+
+    Mobile menu fallback
+
+    {% set page_and_all_ancestors_in_menu = true %} {# Are the current page and all of its ancestors enabled and in menu? #}
+    {% set page_has_children = true %} {# Does the current page have children? #}
+
+    {# TEMPORARY MOCK #}
+    {# 1:  When current page is in menu and it has children #}
+    {# 2:  When current page is in menu and does not have children #}
+    {# 3:  When current page is not in menu #}
+    {% set MOCK_CASE = 1 %}
+
+    {% if MOCK_CASE == 1 %}
+      {% set page_and_all_ancestors_in_menu = true %}
+      {% set page_has_children = true %}
+    {% elseif MOCK_CASE == 2 %}
+      {% set page_and_all_ancestors_in_menu = true %}
+      {% set page_has_children = false %}
+    {% elseif MOCK_CASE == 3 %}
+      {% set page_and_all_ancestors_in_menu = false %}
+    {% endif %}
+    {# /TEMPORARY MOCK #}
+
+    {% set page_is_root = false %} {# Is the current page root, aka frontpage of the frontpage-instance? #}
+    {% set parent_is_root = false %} {# Is the parent page root, aka frontpage of the frontpage-instance? #}
+
+
+
+    {% if page_and_all_ancestors_in_menu %}
+      {% if page_has_children %} {# When current page is in menu and it has children #}
+
+        example:<br> Page is in menu and has children, showing current page level and children<br>
+        {# Parent page link #}
+        {% if not page_is_root %}
+          <a href="/fi#menu" class="mmenu__back mmenu__back--in-path">
+            <span class="mmenu__back-wrapper">Etusivu</span>
+          </a>
+        {% endif %}
+
+        {# Current page link #}
+        <a class="mmenu__title-link mmenu__title-link--in-path" href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut" aria-current="page">Sosiaali- ja terveyspalvelut</a>
+
+        {# Children of current page #}
+        <ul class="mmenu__items">
+          {# Page child link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito" class="mmenu__item-link">Terveydenhoito</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Terveydenhoito</span></a>
+          </li>
+          {# Page child link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet" class="mmenu__item-link">Asiakkaan tiedot ja oikeudet</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asiakkaan tiedot ja oikeudet</span></a>
+          </li>
+          {# Page child link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille" class="mmenu__item-link">Töihin meille</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Töihin meille</span></a>
+          </li>
+          {# Page child link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/no-children-example" class="mmenu__item-link">No children example</a>
+          </li>
+        </ul>
+
+      {% else %} {# When current page is in menu and does not have children #}
+
+        example:<br> Page is in menu and has no children, showing parent level and siblings<br>
+        {# Grandparent page link #}
+        {% if not parent_is_root %}
+          <a href="/fi" class="mmenu__back mmenu__back--in-path">
+            <span class="mmenu__back-wrapper">Etusivu</span>
+          </a>
+        {% endif %}
+
+        {# Page parent link #}
+        <a class="mmenu__title-link mmenu__title-link--in-path" href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut">Sosiaali- ja terveyspalvelut</a>
+
+        {# Children of current page #}
+        <ul class="mmenu__items">
+          {# Page sibling link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito" class="mmenu__item-link">Terveydenhoito</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Terveydenhoito</span></a>
+          </li>
+          {# Page sibling link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet" class="mmenu__item-link">Asiakkaan tiedot ja oikeudet</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asiakkaan tiedot ja oikeudet</span></a>
+          </li>
+          {# Page sibling link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille" class="mmenu__item-link">Töihin meille</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Töihin meille</span></a>
+          </li>
+          {# Current page link #}
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/no-children-example" class="mmenu__item-link mmenu__item-link--in-path" aria-current="page">No children example</a>
+          </li>
+        </ul>
+
+      {% endif %}
+    {% else %} {# When current page is not in menu #}
+
+        example:<br> Page is not in menu, showing global menu from root<br>
+        {# Frontpage link #}
+        <a class="mmenu__title-link" href="/fi">Etusivu</a>
+
+        {# Children of frontpage (instances) #}
+        <ul class="mmenu__items">
+          <li class="mmenu__item">
+            <a href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut" class="mmenu__item-link">Sosiaali- ja terveyspalvelut</a>
+            <a href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Sosiaali- ja terveyspalvelut</span></a>
+          </li>
+          <li class="mmenu__item">
+            <a href="/fi/kasvatus-ja-koulutus/kasvatus-ja-koulutus" class="mmenu__item-link">Kasvatus ja koulutus</a>
+            <a href="/fi/kasvatus-ja-koulutus/kasvatus-ja-koulutus#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Kasvatus ja koulutus</span></a>
+          </li>
+          <li class="mmenu__item">
+            <a href="/fi/asuminen/asuminen" class="mmenu__item-link">Asuminen</a>
+            <a href="/fi/asuminen/asuminen#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asuminen</span></a>
+          </li>
+          <li class="mmenu__item">
+            <a href="/fi/no-children-example" class="mmenu__item-link">No children example</a>
+          </li>
+        </ul>
+
+    {% endif %}
   </div>
 
 {% else %}
