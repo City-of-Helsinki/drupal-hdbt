@@ -117,6 +117,22 @@ $-footerlink-target-size: 44px;
   position: relative;
   width: 100%;
 
+  &::before {
+    @include pseudo-icon('angle-left', $spacing-double, black);
+    @include hover-link-arrow-transition;
+    grid-area: icon;
+    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+  }
+
+  &::after {
+    background: $color-silver-light;
+    content: '';
+    display: block;
+    grid-area: icon;
+    height: $-back-icon-bg-size;
+    width: $-back-icon-bg-size;
+  }
+
   &:hover,
   &:active {
     text-decoration: underline;
@@ -134,24 +150,6 @@ $-footerlink-target-size: 44px;
     &::before {
       transform: translateX(-4px);
     }
-  }
-}
-
-.mmenu__panel:not(:first-child) .mmenu__back {
-  &::before {
-    @include pseudo-icon('angle-left', $spacing-double, black);
-    @include hover-link-arrow-transition;
-    grid-area: icon;
-    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
-  }
-
-  &::after {
-    background: $color-silver-light;
-    content: '';
-    display: block;
-    grid-area: icon;
-    height: $-back-icon-bg-size;
-    width: $-back-icon-bg-size;
   }
 }
 
@@ -263,12 +261,15 @@ $-footerlink-target-size: 44px;
 }
 
 .mmenu__forward {
+  align-items: center;
   background: none;
   border: 0;
   border-left: 1px solid $-mmenu-border-color;
   cursor: pointer;
+  display: flex;
   flex-grow: 0;
   flex-shrink: 0;
+  justify-content: center;
   width: $-itemlink-target-size;
 
   &::before {
