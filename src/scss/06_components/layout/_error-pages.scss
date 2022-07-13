@@ -1,4 +1,4 @@
-.error-page {
+@mixin -error-page-body() {
   // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
   background-color: $color-silver-medium-light;
 
@@ -6,6 +6,14 @@
   .no-sidebar .main-content {
     margin-top: 0;
   }
+}
+
+.error-page {
+  @include -error-page-body;
+}
+
+body:has(.error-page__title) {
+  @include -error-page-body; // This enables above on supported browsers for pages where we can not inject the .error-page class
 }
 
 .error-page-content__container {
