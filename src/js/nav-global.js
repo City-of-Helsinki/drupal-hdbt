@@ -246,7 +246,7 @@ const Panel = {
     },10);
   },
   load: async function(){
-    const MENU = await( await fetch('/megamenu.json')).json();
+    const MENU = await( await fetch('/global-mobile-menu.json')).json();
     this.data = MENU;
   },
   start: async function(){
