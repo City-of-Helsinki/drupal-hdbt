@@ -401,7 +401,7 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     'news_item' => 'node',
     'tpr_unit' => 'tpr_unit',
     'tpr_service' => 'tpr_service',
-    'district' => 'node'
+    'district' => 'node',
   ];
 
   // Get possible (node) content type.
