@@ -20,219 +20,9 @@
 #}
 {% import _self as menus %}
 
-{#
-  We call a macro which calls itself to render the full tree.
-  @see https://twig.symfony.com/doc/1.x/tags/macro.html
-#}
-
 {# Do we want to render navigation with content from another instance "globally" #}
 
-
-{% if use_global_navigation %}
-
-  {% set attributesClone = create_attribute(attributes.storage()) %}
-
-  {{ menus.megamenu(items, attributes, 0) }}
-
-  {% macro megamenu(items, attributes, menu_level) %}
-
-    {% import _self as menus %}
-    {% set max_level = 3 %} {# Megamenu is limited to 3rd level on purpose (Instance -> Instance main nav -> Instance sub nav) #}
-
-    {% if menu_level == 0 %}
-      {% set ul_class = 'megamenu' %}
-    {% else %}
-      {% set ul_class = 'megamenu__subnav' %}
-    {% endif %}
-
-    {% if items %}
-      <ul{{ attributes.addClass(ul_class) }}>
-      {% for item in items %}
-        {% set level = menu_level + 1 %}
-        {% set has_children = false %}
-        {% if level <= max_level - 2 %}
-          {% set has_children = item.below %}
-        {% endif %}
-        {% set item_classes = [
-          'megamenu__item',
-          item.is_nolink ? 'megamenu__item--nolink',
-          has_children ? 'megamenu__item--has-children',
-          item.in_active_trail ? 'megamenu__item--in-path',
-          'megamenu__item--level-' ~ (level + 1),
-        ]%}
-
-        <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
-
-          {% set item_title = item.title %}
-          {% if not item.is_nolink %}
-            {% spaceless %}
-
-              {% set icon_name = (item.url.getOption('attributes')).icon %}
-              {% if icon_name %}
-                {% set item_title %}
-                  {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'megamenu__link__icon'} %}
-                  <span class="megamenu__link__text">{{ item.title }}</span>
-                {% endset %}
-              {% endif %}
-
-              {% set link_attributes = {
-                'class':
-                  [
-                    'megamenu__link',
-                    item.in_active_trail ? 'megamenu__link--in-path',
-                  ],
-                'aria-current': item.is_currentPage ? 'page': null,
-              } %}
-
-              {{ link(item_title, item.url, link_attributes) }}
-
-            {% endspaceless %}
-          {% else %}
-            <span{{ create_attribute({'class': 'megamenu__item__nolink'} ) }}>{{ item.title }}</span>
-          {% endif %}
-          {% if has_children %}
-
-            {{ menus.megamenu(item.below, attributes, menu_level + 1) }}
-
-          {% endif %}
-        </li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endmacro %}
-
-  <div class="mobile-menu-fallback mobile-menu-fallback__index-1" id="js-menu-fallback">
-
-    Mobile menu fallback
-
-    {% set page_and_all_ancestors_in_menu = true %} {# Are the current page and all of its ancestors enabled and in menu? #}
-    {% set page_has_children = true %} {# Does the current page have children? #}
-
-    {# TEMPORARY MOCK #}
-    {# 1:  When current page is in menu and it has children #}
-    {# 2:  When current page is in menu and does not have children #}
-    {# 3:  When current page is not in menu #}
-    {% set MOCK_CASE = 1 %}
-
-    {% if MOCK_CASE == 1 %}
-      {% set page_and_all_ancestors_in_menu = true %}
-      {% set page_has_children = true %}
-    {% elseif MOCK_CASE == 2 %}
-      {% set page_and_all_ancestors_in_menu = true %}
-      {% set page_has_children = false %}
-    {% elseif MOCK_CASE == 3 %}
-      {% set page_and_all_ancestors_in_menu = false %}
-    {% endif %}
-    {# /TEMPORARY MOCK #}
-
-    {% set page_is_root = false %} {# Is the current page root, aka frontpage of the frontpage-instance? #}
-    {% set parent_is_root = false %} {# Is the parent page root, aka frontpage of the frontpage-instance? #}
-
-
-
-    {% if page_and_all_ancestors_in_menu %}
-      {% if page_has_children %} {# When current page is in menu and it has children #}
-
-        example:<br> Page is in menu and has children, showing current page level and children<br>
-        {# Parent page link #}
-        {% if not page_is_root %}
-          <a href="/fi#menu" class="mmenu__back mmenu__back--in-path">
-            <span class="mmenu__back-wrapper">Etusivu</span>
-          </a>
-        {% endif %}
-
-        {# Current page link #}
-        <a class="mmenu__title-link mmenu__title-link--in-path" href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut" aria-current="page">Sosiaali- ja terveyspalvelut</a>
-
-        {# Children of current page #}
-        <ul class="mmenu__items">
-          {# Page child link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito" class="mmenu__item-link">Terveydenhoito</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Terveydenhoito</span></a>
-          </li>
-          {# Page child link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet" class="mmenu__item-link">Asiakkaan tiedot ja oikeudet</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asiakkaan tiedot ja oikeudet</span></a>
-          </li>
-          {# Page child link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille" class="mmenu__item-link">Töihin meille</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Töihin meille</span></a>
-          </li>
-          {# Page child link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/no-children-example" class="mmenu__item-link">No children example</a>
-          </li>
-        </ul>
-
-      {% else %} {# When current page is in menu and does not have children #}
-
-        example:<br> Page is in menu and has no children, showing parent level and siblings<br>
-        {# Grandparent page link #}
-        {% if not parent_is_root %}
-          <a href="/fi" class="mmenu__back mmenu__back--in-path">
-            <span class="mmenu__back-wrapper">Etusivu</span>
-          </a>
-        {% endif %}
-
-        {# Page parent link #}
-        <a class="mmenu__title-link mmenu__title-link--in-path" href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut">Sosiaali- ja terveyspalvelut</a>
-
-        {# Children of current page #}
-        <ul class="mmenu__items">
-          {# Page sibling link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito" class="mmenu__item-link">Terveydenhoito</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/terveydenhoito#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Terveydenhoito</span></a>
-          </li>
-          {# Page sibling link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet" class="mmenu__item-link">Asiakkaan tiedot ja oikeudet</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/asiakkaan-tiedot-ja-oikeudet#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asiakkaan tiedot ja oikeudet</span></a>
-          </li>
-          {# Page sibling link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille" class="mmenu__item-link">Töihin meille</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/toihin-meille#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Töihin meille</span></a>
-          </li>
-          {# Current page link #}
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/no-children-example" class="mmenu__item-link mmenu__item-link--in-path" aria-current="page">No children example</a>
-          </li>
-        </ul>
-
-      {% endif %}
-    {% else %} {# When current page is not in menu #}
-
-        example:<br> Page is not in menu, showing global menu from root<br>
-        {# Frontpage link #}
-        <a class="mmenu__title-link" href="/fi">Etusivu</a>
-
-        {# Children of frontpage (instances) #}
-        <ul class="mmenu__items">
-          <li class="mmenu__item">
-            <a href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut" class="mmenu__item-link">Sosiaali- ja terveyspalvelut</a>
-            <a href="/fi/sosiaali-ja-terveyspalvelut/sosiaali-ja-terveyspalvelut#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Sosiaali- ja terveyspalvelut</span></a>
-          </li>
-          <li class="mmenu__item">
-            <a href="/fi/kasvatus-ja-koulutus/kasvatus-ja-koulutus" class="mmenu__item-link">Kasvatus ja koulutus</a>
-            <a href="/fi/kasvatus-ja-koulutus/kasvatus-ja-koulutus#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Kasvatus ja koulutus</span></a>
-          </li>
-          <li class="mmenu__item">
-            <a href="/fi/asuminen/asuminen" class="mmenu__item-link">Asuminen</a>
-            <a href="/fi/asuminen/asuminen#menu" class="mmenu__forward"><span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} Asuminen</span></a>
-          </li>
-          <li class="mmenu__item">
-            <a href="/fi/no-children-example" class="mmenu__item-link">No children example</a>
-          </li>
-        </ul>
-
-    {% endif %}
-  </div>
-
-{% else %}
+{% if not use_global_navigation %}
   {#
     We call a macro which calls itself to render the full tree.
     @see https://twig.symfony.com/doc/1.x/tags/macro.html
@@ -251,60 +41,60 @@
 
     {% if items %}
       <ul{{ attributes.addClass(ul_class) }}>
-      {% for item in items %}
-        {% set level = menu_level + 1 %}
-        {% set has_children = false %}
-        {% if level <= max_level - 2 %}
-          {% set has_children = item.below %}
-        {% endif %}
-        {% set item_classes = [
-          'cssnav__item',
-          item.is_nolink ? 'cssnav__item--nolink',
-          has_children ? 'cssnav__item--has-children',
-          item.in_active_trail ? 'cssnav__item--in-path',
-          'cssnav__item--level-' ~ (level + 1),
-        ]%}
+        {% for item in items %}
+          {% set level = menu_level + 1 %}
+          {% set has_children = false %}
+          {% if level <= max_level - 2 %}
+            {% set has_children = item.below %}
+          {% endif %}
+          {% set item_classes = [
+            'cssnav__item',
+            item.is_nolink ? 'cssnav__item--nolink',
+            has_children ? 'cssnav__item--has-children',
+            item.in_active_trail ? 'cssnav__item--in-path',
+            'cssnav__item--level-' ~ (level + 1),
+          ]%}
 
-        <li{{ item.attributes.addClass(item_classes) }}>
+          <li{{ item.attributes.addClass(item_classes) }}>
 
-          {% set item_title = item.title %}
-          {% if not item.is_nolink %}
-            {% spaceless %}
+            {% set item_title = item.title %}
+            {% if not item.is_nolink %}
+              {% spaceless %}
 
-              {% set icon_name = (item.url.getOption('attributes')).icon %}
-              {% if icon_name %}
-                {% set item_title %}
-                  {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'cssnav__link__icon'} %}
-                  <span class="cssnav__link__text">{{ item.title }}</span>
-                {% endset %}
-              {% endif %}
+                {% set icon_name = (item.url.getOption('attributes')).icon %}
+                {% if icon_name %}
+                  {% set item_title %}
+                    {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'cssnav__link__icon'} %}
+                    <span class="cssnav__link__text">{{ item.title }}</span>
+                  {% endset %}
+                {% endif %}
 
-              {% set link_attributes = {
-                'class':
+                {% set link_attributes = {
+                  'class':
                   [
                     'cssnav__link',
                     item.in_active_trail ? 'cssnav__link--in-path',
                   ],
-                'aria-current': item.is_currentPage ? 'page': null,
-              } %}
+                  'aria-current': item.is_currentPage ? 'page': null,
+                } %}
 
-              {{ link(item_title, item.url, link_attributes) }}
+                {{ link(item_title, item.url, link_attributes) }}
 
-            {% endspaceless %}
-          {% else %}
-            <span{{ create_attribute({'class': 'cssnav__item__nolink'} ) }}>{{ item.title }}</span>
-          {% endif %}
-          {% if has_children %}
-            <details {{item.in_active_trail ? 'open'}}>
-              <summary>
-                <span class="cssnav__text-mirror">{{ item_title }}</span>
-                <span class="cssnav__toggle"><span class="visually-hidden">{{ 'Toggle submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item.title }}</span></span>
-              </summary>
-            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-            </details>
-          {% endif %}
-        </li>
-      {% endfor %}
+              {% endspaceless %}
+            {% else %}
+              <span{{ create_attribute({'class': 'cssnav__item__nolink'} ) }}>{{ item.title }}</span>
+            {% endif %}
+            {% if has_children %}
+              <details {{item.in_active_trail ? 'open'}}>
+                <summary>
+                  <span class="cssnav__text-mirror">{{ item_title }}</span>
+                  <span class="cssnav__toggle"><span class="visually-hidden">{{ 'Toggle submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item.title }}</span></span>
+                </summary>
+                {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+              </details>
+            {% endif %}
+          </li>
+        {% endfor %}
       </ul>
     {% endif %}
   {% endmacro %}

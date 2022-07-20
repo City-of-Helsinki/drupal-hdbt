@@ -41,6 +41,10 @@ function hdbt_preprocess(&$variables, $hook) {
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
   }
+
+  // Required for allowing subtheming for HDBT theme.
+  $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
+  $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
 }
 
 /**
@@ -177,9 +181,6 @@ function hdbt_preprocess_page(&$variables) {
       $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
       break;
   }
-
-  // Required for allowing subtheming for HDBT theme.
-  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
 
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
