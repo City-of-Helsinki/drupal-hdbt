@@ -16,14 +16,15 @@ $-tag-interactive-padding: 10px 20px;
   list-style: none;
   margin-bottom: $-tag-gap;
   margin-top: 0;
+}
 
-  a,
-  span {
-    @include font('small');
-    display: inline-block;
-    text-decoration: none;
-    transition: 0.2s ease-in-out background-color, 0.2s ease-in-out border-color;
-  }
+.content-tags__tags__tag a,
+.content-tags__tags__tag span,
+.content-tags__tags--static li {
+  @include font('small');
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.2s ease-in-out background-color, 0.2s ease-in-out border-color;
 }
 
 .content-tags__tags--interactive a {
@@ -47,7 +48,8 @@ $-tag-interactive-padding: 10px 20px;
   }
 }
 
-.content-tags__tags--static span {
+.content-tags__tags--static span,
+.content-tags__tags--static li {
   background-color: $color-silver;
   border-radius: $spacing;
   padding: $-tag-static-padding;
