@@ -25,74 +25,78 @@
   {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
   {% set ul_class = 'mmenu__items' %}
 
-  {# Render "back" menu link. #}
-  {% if menu_link_back %}
-    {% spaceless %}
-      {% set menu_link_back_title %}
-        <span class="mmenu__back-wrapper">{{ menu_link_back.title }}</span>
-      {% endset %}
-      {% set link_attributes = {'class': [ 'mmenu__back mmenu__back--in-path' ]} %}
-      {{ link(menu_link_back_title, menu_link_back.url, link_attributes) }}
-    {% endspaceless %}
-  {% endif %}
+  <div class="mobile-menu-fallback mobile-menu-fallback__index-1" id="js-menu-fallback">
 
-  {# Current page link #}
-  {% if menu_link_current_or_parent %}
-    {% spaceless %}
-      {% set menu_link_current_or_parent_title %}
-        {{ menu_link_current_or_parent.title }}
-      {% endset %}
-      {% set link_attributes = {
-        'class': [
-          'mmenu__title-link',
-          menu_link_current_or_parent.is_currentPage ? 'mmenu__title-link--in-path',
-        ],
-        'aria-current': menu_link_current_or_parent.is_currentPage ? 'page': null,
-      } %}
-      {{ link(menu_link_current_or_parent_title, menu_link_current_or_parent.url, link_attributes) }}
-    {% endspaceless %}
-  {% endif %}
+    {# Render "back" menu link. #}
+    {% if menu_link_back %}
+      {% spaceless %}
+        {% set menu_link_back_title %}
+          <span class="mmenu__back-wrapper">{{ menu_link_back.title }}</span>
+        {% endset %}
+        {% set link_attributes = {'class': [ 'mmenu__back mmenu__back--in-path' ]} %}
+        {{ link(menu_link_back_title, menu_link_back.url, link_attributes) }}
+      {% endspaceless %}
+    {% endif %}
 
-  {% if items %}
-    <ul{{ attributes.addClass(ul_class) }}>
-      {% for item in items %}
-        {% set level = menu_level + 1 %}
-        {% set has_children = false %}
-        {% if level <= max_level - 2 %}
-          {% set has_children = item.below %}
-        {% endif %}
-        {% set item_classes = [
-          'mmenu__item',
-        ]%}
-        <li{{ item.attributes.addClass(item_classes) }}>
-          {% set item_title = item.title %}
+    {# Current page link #}
+    {% if menu_link_current_or_parent %}
+      {% spaceless %}
+        {% set menu_link_current_or_parent_title %}
+          {{ menu_link_current_or_parent.title }}
+        {% endset %}
+        {% set link_attributes = {
+          'class': [
+            'mmenu__title-link',
+            menu_link_current_or_parent.is_currentPage ? 'mmenu__title-link--in-path',
+          ],
+          'aria-current': menu_link_current_or_parent.is_currentPage ? 'page': null,
+        } %}
+        {{ link(menu_link_current_or_parent_title, menu_link_current_or_parent.url, link_attributes) }}
+      {% endspaceless %}
+    {% endif %}
 
-          {% if not item.is_nolink %}
-            {% spaceless %}
-              {% set link_attributes = {
-                'class': [
-                  'mmenu__item-link',
-                  item.is_currentPage ? 'mmenu__item-link--in-path',
-                ],
-                'aria-current': item.is_currentPage ? 'page': null,
-              } %}
-              {{ link(item_title, item.url, link_attributes) }}
-            {% endspaceless %}
-          {% else %}
-            <span{{ create_attribute({'class': 'mmenu__item__nolink'} ) }}>{{ item.title }}</span>
+    {% if items %}
+      <ul{{ attributes.addClass(ul_class) }}>
+        {% for item in items %}
+          {% set level = menu_level + 1 %}
+          {% set has_children = false %}
+          {% if level <= max_level - 2 %}
+            {% set has_children = item.below %}
           {% endif %}
+          {% set item_classes = [
+            'mmenu__item',
+          ]%}
+          <li{{ item.attributes.addClass(item_classes) }}>
+            {% set item_title = item.title %}
 
-          {% if not item.is_currentPage %}
-            {% set next_item_title %}
-              <span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item_title }}</span>
-            {% endset %}
-            {% spaceless %}
-              {% set link_attributes = { 'class': [ 'mmenu__forward' ] } %}
-              {{ link(next_item_title, item.next_url, link_attributes) }}
-            {% endspaceless %}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+            {% if not item.is_nolink %}
+              {% spaceless %}
+                {% set link_attributes = {
+                  'class': [
+                    'mmenu__item-link',
+                    item.is_currentPage ? 'mmenu__item-link--in-path',
+                  ],
+                  'aria-current': item.is_currentPage ? 'page': null,
+                } %}
+                {{ link(item_title, item.url, link_attributes) }}
+              {% endspaceless %}
+            {% else %}
+              <span{{ create_attribute({'class': 'mmenu__item__nolink'} ) }}>{{ item.title }}</span>
+            {% endif %}
+
+            {% if not item.is_currentPage %}
+              {% set next_item_title %}
+                <span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item_title }}</span>
+              {% endset %}
+              {% spaceless %}
+                {% set link_attributes = { 'class': [ 'mmenu__forward' ] } %}
+                {{ link(next_item_title, item.next_url, link_attributes) }}
+              {% endspaceless %}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  </div>
 {% endif %}

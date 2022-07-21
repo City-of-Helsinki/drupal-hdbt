@@ -31,6 +31,13 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
+
+{% set block_content %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+{% endset %}
+
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
   <div class="menu-toggle-anchor">
@@ -49,16 +56,12 @@
         <div class="mega-and-mobilemenu">
           {{ drupal_entity('block', 'language_switcher')}}
 
-          {# The content will render menu--external-menu--fallback.html.twig #}
-          {% block content %}
-            {{ content }}
-            ---- huooaaaaah
-            {# Construct external mega menu block based on active theme. #}
-            {% set external_mega_menu_block = theme_prefix ~ '_external_menu_mega_menu' %}
-            {{ dd(external_mega_menu_block) }}
-            {{ drupal_entity('block', external_mega_menu_block, check_access=false) }}
-            ----
-          {% endblock %}
+          {# Construct external mega menu block based on active theme. #}
+          {% set external_mega_menu_block = theme_prefix ~ '_external_menu_mega_menu' %}
+          {{ drupal_entity('block', external_mega_menu_block, check_access=false) }}
+
+          {# The block content will render menu--external-menu--fallback.html.twig #}
+          {{ block_content }}
 
           <div class="mmenu__footer js-mmenu__footer">
 
