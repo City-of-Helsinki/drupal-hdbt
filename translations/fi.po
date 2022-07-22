@@ -100,8 +100,8 @@ msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Julkaisematon"
 
-msgid "Sorry, the page you were looking for was not found."
-msgstr "Etsimääsi sivua ei valitettavasti löytynyt."
+msgid "Sorry, the page you were looking for was not found"
+msgstr "Etsimääsi sivua ei valitettavasti löytynyt"
 
 msgctxt "The helper text before the node changed timestamp"
 msgid "Updated"

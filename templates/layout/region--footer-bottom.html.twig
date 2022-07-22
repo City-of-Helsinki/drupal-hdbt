@@ -12,6 +12,7 @@
  * @see template_preprocess_region()
  */
 #}
+
 {% embed "@hdbt/misc/container.twig" with {container_element: 'footer-bottom'} %}
   {% block container_content %}
     <div{{ attributes.addClass(region|clean_class) }}>
