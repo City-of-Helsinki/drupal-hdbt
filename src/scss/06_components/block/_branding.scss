@@ -10,20 +10,22 @@
     height: auto;
   }
 
-  .site-name {
+  .city-name {
     color: $color-black;
+    display: none;
     margin-left: $spacing-half;
     margin-right: $spacing-half;
 
-    @include breakpoint($breakpoint-m) {
-      @include font('special.navigation.site_name');
+    @include breakpoint($breakpoint-l) {
+      @include font('special.navigation.city_name');
+      display: flex;
       margin-left: $spacing;
       margin-right: $spacing;
     }
   }
 
-  a:focus .site-name,
-  a:hover .site-name {
+  a:focus .city-name,
+  a:hover .city-name {
     text-decoration: underline;
   }
 }

@@ -131,6 +131,11 @@ $config: deep-map-merge(
             line-height: 48 / 32,
           )
         ),
+        site_name: (
+          font-size: remify(24px),
+          font-weight: $font-weight-regular,
+          line-height: 28 / 24,
+        ),
         breadcrumb: (
           parent: (
             font-size: remify(18px),
@@ -149,7 +154,7 @@ $config: deep-map-merge(
           )
         ),
         navigation: (
-          site_name: (
+          city_name: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
             line-height: 24 / 16,
