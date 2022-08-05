@@ -868,7 +868,7 @@ function _hdbt_set_site_information(array &$variables) {
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 
   // Set Etusivu absolute url as variable.
-  $variables['frontpage_url'] = $environment_url;
+  $variables['frontpage_instance_url'] = $environment_url;
 }
 
 /**
