@@ -861,7 +861,7 @@ function _hdbt_set_site_information(array &$variables) {
   // Set site_name as variable.
   $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
- 
+
   $variables['city_name'] = t('City of Helsinki');
 
   // Set site front page absolute url as variable.
