@@ -117,6 +117,7 @@ const Panel = {
   data:null,
   current: 0,
   cacheKey: 'hdbt-mobile-menu',
+  enableCache: true,
   selectors:{
     container:'#mmenu',
     rootId:'mmenu__panels',
@@ -251,7 +252,7 @@ const Panel = {
     const now = new Date().getTime();
 
     // Return cached menu if timestamp is less than hour old. 
-    if(cache && cache.timestamp > now - 60 * 60 * 1000) {
+    if(this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
       this.data = cache.value;
       return;
     }
