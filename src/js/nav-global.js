@@ -251,10 +251,12 @@ const Panel = {
     const cache = JSON.parse(localStorage.getItem(this.cacheKey));
     const now = new Date().getTime();
 
-    // Return cached menu if timestamp is less than hour old. 
-    if(this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
+    // Return cached menu if timestamp is less than hour old.
+    if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
       this.data = cache.value;
       return;
+    } else {
+      console.log('Mobile menu cache is disabled');
     }
 
     const MENU = await( await fetch('/global-mobile-menu.json')).json();
