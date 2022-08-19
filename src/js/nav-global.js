@@ -116,6 +116,8 @@ const Panel = {
   size: 5,
   data:null,
   current: 0,
+  cacheKey: 'hdbt-mobile-menu',
+  enableCache: true,
   selectors:{
     container:'#mmenu',
     rootId:'mmenu__panels',
@@ -246,7 +248,23 @@ const Panel = {
     },10);
   },
   load: async function(){
+    const cache = JSON.parse(localStorage.getItem(this.cacheKey));
+    const now = new Date().getTime();
+
+    // Return cached menu if timestamp is less than hour old.
+    if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
+      this.data = cache.value;
+      return;
+    } else {
+      console.log('Mobile menu cache is disabled');
+    }
+
     const MENU = await( await fetch('/global-mobile-menu.json')).json();
+    localStorage.setItem(this.cacheKey, JSON.stringify({
+      value: MENU,
+      timestamp: new Date().getTime()
+    }));
+
     this.data = MENU;
   },
   start: async function(){
