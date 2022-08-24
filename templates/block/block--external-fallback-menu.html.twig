@@ -57,7 +57,7 @@
           {{ drupal_entity('block', 'language_switcher')}}
 
           {# Construct external mega menu block based on active theme. #}
-          {% set external_mega_menu_block = theme_prefix ~ '_external_menu_mega_menu' %}
+          {% set external_mega_menu_block = 'external_menu_mega_menu_' ~ theme_prefix %}
           {{ drupal_entity('block', external_mega_menu_block, check_access=false) }}
 
           {# The block content will render menu--external-menu--fallback.html.twig #}
