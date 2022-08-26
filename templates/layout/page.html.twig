@@ -53,8 +53,7 @@
           External mega menu block will be rendered manually in external fallback menu.
           See. block--external-fallback-menu.html.twig:61.
         #}
-        {% set external_mega_menu_block = 'external_menu_mega_menu_' ~ theme_prefix %}
-        {{ page.header_branding|without(external_mega_menu_block) }}
+        {{ page.header_branding|without('external_menu_mega_menu') }}
       {% endif %}
 
       {% if page.header_bottom %}
