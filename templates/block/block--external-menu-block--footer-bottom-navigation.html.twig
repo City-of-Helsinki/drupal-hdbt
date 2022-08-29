@@ -31,10 +31,14 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
-{% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" {{ attributes|without('role', 'aria-labelledby').addClass('footer-bottom__navigation') }}>
-  {# Menu. #}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</nav>
+
+{# Render navigation with content from another instance "globally" #}
+{% if use_global_navigation %}
+  {% set heading_id = attributes.id ~ '-menu'|clean_id %}
+  <nav role="navigation" {{ attributes|without('role', 'aria-labelledby').addClass('footer-bottom__navigation') }}>
+    {# Menu. #}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </nav>
+{% endif %}
