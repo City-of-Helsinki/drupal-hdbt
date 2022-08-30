@@ -35,7 +35,7 @@ function hdbt_preprocess(&$variables, $hook) {
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('hdbt_global_navigation');
+    ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
