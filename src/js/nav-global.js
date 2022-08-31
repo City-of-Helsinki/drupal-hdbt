@@ -10,7 +10,7 @@ const cls = require('classnames');
  *
  * Related styles:
  * components/navigation/global
- * - _js-mobile-navigation.scss
+ * - _mmenu.scss
  * - _megamenu.scss
  * - _menu-toggle.scss
  */
@@ -245,7 +245,23 @@ const Panel = {
 
       }
 
-    },10);
+      setTimeout(()=>{
+        /**
+         * Hide prev & next panels from screen readers by adding visibility:hidden.
+         * DO NOT USE display:none. Display needs to be set to 'flex' or panels will collapse.
+        */
+        panels.forEach( panel => {
+          if(!panel.classList.contains('mmenu__panel--current')) {
+            panel.style.visibility = 'hidden';
+          }
+        });
+      /**
+       * See $-transition-duration in _mmenu.scss.
+       * Timeout must not be shorter than animation duration.
+       */
+      },200);
+
+    },10); // Transition classes need to be added after initial render.
   },
   load: async function(){
     const cache = JSON.parse(localStorage.getItem(this.cacheKey));
@@ -281,7 +297,7 @@ const Panel = {
     try {
       await this.load();
     } catch(e) {
-      console.error('Unable to load menu data, using mock menu for development purposes',e);
+      console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
       this.data = mockmenu;
     }
     //Set the panels according to current path.
