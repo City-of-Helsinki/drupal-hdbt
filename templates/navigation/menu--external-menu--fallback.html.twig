@@ -84,7 +84,7 @@
               <span{{ create_attribute({'class': 'mmenu__item__nolink'} ) }}>{{ item.title }}</span>
             {% endif %}
 
-            {% if not item.is_currentPage %}
+            {% if has_children %}
               {% set next_item_title %}
                 <span class="visually-hidden">{{ 'Open submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item_title }}</span>
               {% endset %}
