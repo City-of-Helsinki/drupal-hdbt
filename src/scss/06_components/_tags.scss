@@ -1,6 +1,6 @@
 $-tag-gap: $spacing-half;
 $-tag-static-padding: $spacing-half $spacing;
-$-tag-interactive-padding: 10px 20px;
+$-tag-interactive-padding: $spacing 20px 18px;
 
 .content-tags__tags {
   @include flex-gap($-tag-gap);
@@ -31,7 +31,7 @@ $-tag-interactive-padding: 10px 20px;
 .content-tags__tags--interactive a {
   background-color: transparent;
   border: 2px solid $color-black;
-  border-radius: $spacing-and-half;
+  border-radius: $spacing-triple;
   padding: $-tag-interactive-padding;
 
   &:hover,
