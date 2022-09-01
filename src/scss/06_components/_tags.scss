@@ -48,9 +48,20 @@ $-tag-interactive-padding: 10px 20px;
   }
 }
 
-.content-tags__tags--static span,
-.content-tags__tags--static li {
+.content-tags__tags--static span {
   background-color: $color-silver;
   border-radius: $spacing;
   padding: $-tag-static-padding;
+}
+
+.content-tags__tags--static .content-tags__tags__tag--blue span {
+  background-color: $color-coat-of-arms-medium-light;
+}
+
+.content-tags__tags--static .content-tags__tags__tag--gold span {
+  background-color: $color-gold-medium-light;
+}
+
+.content-tags__tags--static .content-tags__tags__tag--purple span {
+  background-color: $color-bus-medium-light;
 }
