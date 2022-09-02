@@ -29,6 +29,7 @@ $-menu-transition-duration: 0.3s;
 }
 
 .mega-and-mobilemenu .block--language-switcher,
+.mega-and-mobilemenu .mobile-menu-fallback,
 .mega-and-mobilemenu .mmenu__footer {
   @include breakpoint($breakpoint-l) {
     display: none;
