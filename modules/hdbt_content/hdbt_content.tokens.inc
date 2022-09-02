@@ -67,10 +67,9 @@ function hdbt_content_tokens(
     if ($name === 'shareable-image' && !empty($data['node'])) {
       /** @var \Drupal\node\Entity\Node $node */
       $node = $data['node'];
+      $image_url = $default_image;
 
       $image_style = ImageStyle::load('og_image');
-
-      $use_default = FALSE;
 
       if (
         $node->hasField('field_liftup_image') &&
@@ -82,6 +81,13 @@ function hdbt_content_tokens(
         $image_entity = $node->field_liftup_image->entity->field_media_image;
         $image_path = $image_entity->entity->getFileUri();
         $image_uri = $image_style->buildUri($image_path);
+
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
+
+        $image_url = $image_style->buildUrl($image_path);
       }
       elseif (
         $node->hasField('field_image') &&
@@ -93,6 +99,13 @@ function hdbt_content_tokens(
         $image_entity = $node->field_image->entity->field_media_image;
         $image_path = $image_entity->entity->getFileUri();
         $image_uri = $image_style->buildUri($image_path);
+
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
+
+        $image_url = $image_style->buildUrl($image_path);
       }
       elseif (
         $node->hasField('field_organization') &&
@@ -105,17 +118,12 @@ function hdbt_content_tokens(
         $image_entity = $taxonomy_term->field_default_image;
         $image_path = $image_entity->entity->getFileUri();
         $image_uri = $image_style->buildUri($image_path);
-      }
-      else {
-        // Use the default image.
-        $use_default = TRUE;
 
-        $image_url = $default_image;
-      }
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
 
-      // Create derivative if necessary.
-      if (!$use_default && !file_exists($image_uri)) {
-        $image_style->createDerivative($image_path, $image_uri);
         $image_url = $image_style->buildUrl($image_path);
       }
 
