@@ -116,9 +116,8 @@ function hdbt_content_tokens(
       // Create derivative if necessary.
       if (!$use_default && !file_exists($image_uri)) {
         $image_style->createDerivative($image_path, $image_uri);
+        $image_url = $image_style->buildUrl($image_path);
       }
-
-      $image_url = $image_style->buildUrl($image_path);
 
       $replacements[$original] = $image_url;
     }
