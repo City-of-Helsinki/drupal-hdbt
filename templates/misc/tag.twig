@@ -2,8 +2,6 @@
 
 {% if color %}
   {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
-{% else %}
-  {% set tag_color_class = 'content-tags__tags__tag--gray' %}
 {% endif %}
 
 <li class="content-tags__tags__tag {{ tag_color_class }}">{{ tag }}</li>
