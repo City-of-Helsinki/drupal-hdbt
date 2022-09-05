@@ -60,7 +60,7 @@
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "svg-inline-loader": "^0.8.0",
-    "svg-sprite": "github:svg-sprite/svg-sprite.git#476760c1d9293142f8d10f4fa17d97a736697287",
+    "svg-sprite": "github:svg-sprite/svg-sprite.git#396d56e053a82045f1c14760acf726b7b6512c07",
     "webpack": "^5.56.2",
     "webpack-cli": "^4.7.2",
     "webpack-merge": "^5.0.0",
