@@ -293,17 +293,8 @@ const Panel = {
     for (let i = 0; i < allInstances.length; i++) {
       const instanceName = allInstances[i];
       const instance = data[instanceName].menu_tree[0];
+      instance.parentId = ''; // Intance level should have empty parentId string.
       allItems.push(instance);
-    }
-
-    // TODO: Remove this loop when first level has proper references to parents with proper ids
-    // Fix data first level id's, parentId's and second level parentId's
-    for (let i = 0; i < allItems.length; i++) {
-      allItems[i].id = allItems[i].url;
-      allItems[i].parentId = '';
-      for (let j = 0; j < allItems[i].sub_tree.length; j++) {
-        allItems[i].sub_tree[j].parentId = allItems[i].id;
-      }
     }
 
     this.data = allItems;
