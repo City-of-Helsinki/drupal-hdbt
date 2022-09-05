@@ -51,6 +51,40 @@ const inPath = function () {
   return new RegExp(`^${this.url}`).test(url);
 };
 
+const externalLinkAttributes = function () {
+  if (!this.external) {
+    return '';
+  }
+
+  let emailOrMailtoAttributes = '';
+  if (this.url.indexOf('mailto:') == 0) {
+    emailOrMailtoAttributes = ' data-protocol="mailto"';
+  } else if (this.url.indexOf('tel:') == 0) {
+    emailOrMailtoAttributes = ' data-protocol="tel"';
+  }
+  return ` data-is-external="true"${emailOrMailtoAttributes}`;
+};
+
+const externalLinkIcon = function () {
+  if (!this.external) {
+    return false;
+  }
+
+  const icon = {};
+  if (this.url.indexOf('mailto:') == 0) {
+    icon.externalLinkType = ' link__type--mailto';
+    icon.externalLinkText = Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' });
+  } else if (this.url.indexOf('tel:') == 0) {
+    icon.externalLinkType = ' link__type--tel';
+    icon.externalLinkText = Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' });
+  } else {
+    icon.externalLinkType = ' link__type--external';
+    icon.externalLinkText = Drupal.t('Link leads to external service', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' });
+  }
+
+  return icon;
+};
+
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 
 const Panel = {
@@ -67,7 +101,7 @@ const Panel = {
               <span class="mmenu__back-wrapper">{{back}}</span>
             </button>
           {{/back}}
-          <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{name}}</a>
+          <a href="{{url}}" class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}{{{externalLinkAttributes}}}>{{name}}{{#externalLinkIcon}} <span class="link__type{{externalLinkType}}" aria-label="({{externalLinkText}})"></span>{{/externalLinkIcon}}</a>
           {{>sub_tree}}
         </div>
         ${document.querySelector('.js-mmenu__footer')?.outerHTML}
@@ -88,7 +122,7 @@ const Panel = {
     <ul class="mmenu__items">
       {{#sub_tree}}
         <li class="mmenu__item">
-          <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{name}}</a>
+          <a href="{{url}}" class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}{{{externalLinkAttributes}}}>{{name}}{{#externalLinkIcon}} <span class="link__type{{externalLinkType}}" aria-label="({{externalLinkText}})"></span>{{/externalLinkIcon}}</a>
           {{#button}}
             <button class="mmenu__forward " value={{id}} />
           {{/button}}
@@ -154,6 +188,8 @@ const Panel = {
       button,
       active,
       inPath,
+      externalLinkAttributes,
+      externalLinkIcon,
       url: item?.url || this.frontpageInstanceUrl,
       // Show name of previously clicked item in Back-button (or Frontpage if)
       back: (i > 0) ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
