@@ -1,5 +1,4 @@
 const Mustache = require('mustache');
-const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 
 
@@ -39,16 +38,20 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 };
 
 const button = function(){
-  return this.items?.length>0;
+  return this.sub_tree?.length>0;
 };
 
 const active = function () {
-  return new RegExp(`^${this.url}$`).test(window.location.pathname);
+  const url = window.location.href.replace(/#.*$/, '');
+  return new RegExp(`^${this.url}$`).test(url);
 };
 
 const inPath = function () {
-  return new RegExp(`^${this.url}`).test(window.location.pathname);
+  const url = window.location.href.replace(/#.*$/, '');
+  return new RegExp(`^${this.url}`).test(url);
 };
+
+const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 
 const Panel = {
   templates:{
@@ -64,28 +67,10 @@ const Panel = {
               <span class="mmenu__back-wrapper">{{back}}</span>
             </button>
           {{/back}}
-          <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
-          {{>items}}
+          <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{name}}</a>
+          {{>sub_tree}}
         </div>
         ${document.querySelector('.js-mmenu__footer')?.outerHTML}
-        ${ ''
-  /*
-        <div class="mmenu__footer">
-          <ul class="mmenu__footer-items">
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Koronavirus</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Anna palautetta</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link" aria-current="page">Uutiset</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Avoimet työpaikat</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Osallistu ja vaikuta</a></li>
-          </ul>
-          <div class="mmenu__logo">
-            <a href="https://www.hel.fi/${drupalSettings?.path?.currentLanguage || ''}" class="mmenu__logo-link">
-              ${document.querySelector('.logo__icon')?.outerHTML}
-            </a>
-          </div>
-        </div>
-      */
-}
       </section>
     {{/panels}}
 
@@ -101,23 +86,24 @@ const Panel = {
     `,
     listTemplate:`
     <ul class="mmenu__items">
-      {{#items}}
+      {{#sub_tree}}
         <li class="mmenu__item">
-          <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+          <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{name}}</a>
           {{#button}}
             <button class="mmenu__forward " value={{id}} />
           {{/button}}
         </li>
-      {{/items}}
+      {{/sub_tree}}
     </ul>
    `
   },
   //Maximum assumed depth of tree. Used for checking if going up is allowed
   size: 5,
   data:null,
+  frontpageInstanceUrl: null,
   current: 0,
   cacheKey: 'hdbt-mobile-menu',
-  enableCache: true,
+  enableCache: false,
   selectors:{
     container:'#mmenu',
     rootId:'mmenu__panels',
@@ -128,23 +114,29 @@ const Panel = {
     return document.getElementById(this.selectors.rootId);
   },
   sortPanelsByPath:function() {
-    const allItems = this.data.items;
-    const currentItem = allItems.findRecursive( item => active.call(item),'items' );
-    let parentId = currentItem?.parent;
+    const allItems = this.data;
+    const currentItem = allItems.findRecursive( item => active.call(item),'sub_tree' );
+    let parentIdIndex = currentItem?.parentId;
     const panels = [];
-    while(parentId) {
-      allItems.findRecursive(({id,url,title,items,parent}) => {
-        if(id === parentId) {
-          panels.push({items,title, url,parent});
+
+    while (parentIdIndex) {
+      const found = allItems.findRecursive(({ id, url, name, sub_tree, parentId }) => {
+
+        if (id === parentIdIndex) {
+          panels.push({ sub_tree, name, url, parentId });
           //set new parent id. If this is empty, it will stop the while-loop.
-          parentId = parent;
+          parentIdIndex = parentId;
           return true;
         }
         return false;
-      }, 'items');
+      }, 'sub_tree');
 
+      if (!found) {
+        console.warn('No parent found with', parentIdIndex, 'stopping while-loop');
+        parentIdIndex = undefined;
+      }
     }
-    panels.push({items:allItems});
+    panels.push({sub_tree:allItems});
     panels.reverse();
     this.current = panels.length-1;
     this.content = [...panels];
@@ -157,13 +149,14 @@ const Panel = {
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
       ...item,
-      title:item?.title ||  Drupal.t('Frontpage','Global navigation mobile menu top level'),
+      name: item?.name || frontpageTranslation,
       // If current item has subitems, show button for next panel.
       button,
       active,
       inPath,
-      // Show title of previously clicked item in Back-button (or Frontpage if)
-      back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
+      url: item?.url || this.frontpageInstanceUrl,
+      // Show name of previously clicked item in Back-button (or Frontpage if)
+      back: (i > 0) ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
        * At start, first item is on stage and anything else must be on right.
@@ -190,12 +183,12 @@ const Panel = {
       throw new Error('missing id for menu item ' + parentId);
     }
 
-    const next = this.content.at(this.current).items.find(({
+    const next = this.content.at(this.current).sub_tree.find(({
       id
     }) => id === parentId);
 
     if(!next) {
-      throw new Error('ID mismatch in menu items'+ parentId);
+      throw new Error('ID mismatch in menu items ' + parentId);
     }
 
     this.current = this.current + 1 < this.size ? this.current + 1 : this.current;
@@ -212,7 +205,7 @@ const Panel = {
     root.innerHTML = Mustache.render(this.templates.panelTemplate, {
       panels: this.getView(state),
     }, {
-      items: this.templates.listTemplate,
+      sub_tree: this.templates.listTemplate,
     });
 
     if(state === 'load') {
@@ -263,25 +256,65 @@ const Panel = {
 
     },10); // Transition classes need to be added after initial render.
   },
-  load: async function(){
+  load: async function () {
     const cache = JSON.parse(localStorage.getItem(this.cacheKey));
     const now = new Date().getTime();
 
     // Return cached menu if timestamp is less than hour old.
-    if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
-      this.data = cache.value;
-      return;
+    if (this.enableCache) {
+      if (cache && cache.timestamp > now - 60 * 60 * 1000) {
+        this.data = cache.value;
+        return;
+      }
     } else {
       console.log('Mobile menu cache is disabled');
     }
 
-    const MENU = await( await fetch('/global-mobile-menu.json')).json();
-    localStorage.setItem(this.cacheKey, JSON.stringify({
-      value: MENU,
-      timestamp: new Date().getTime()
-    }));
+    // Is the frontpage instance in another domain or at relative path?
+    const frontpageInstanceDomain = window.location.hostname.indexOf('docker.so') != -1 ? '//helfi-etusivu.docker.so' : '';
 
-    this.data = MENU;
+    // Lets get menu in same language as the current page is in.
+    const currentLangCode = drupalSettings?.path?.currentLanguage || 'fi';
+
+    // We use this same url for pointing to frontpage instance at the root level
+    this.frontpageInstanceUrl = `${frontpageInstanceDomain}/${currentLangCode}`;
+
+    const MENU = await fetch(`${this.frontpageInstanceUrl}/api/v1/global-menu?_format=json`);
+    const data = await MENU.json();
+    const allItems = [];
+
+    var allInstances = Object.getOwnPropertyNames(data);
+
+    if (!allInstances.length) {
+      throw new Error('No instances found in data', data);
+    }
+
+    // Put all instances in same array
+    for (let i = 0; i < allInstances.length; i++) {
+      const instanceName = allInstances[i];
+      const instance = data[instanceName].menu_tree[0];
+      allItems.push(instance);
+    }
+
+    // TODO: Remove this loop when first level has proper references to parents with proper ids
+    // Fix data first level id's, parentId's and second level parentId's
+    for (let i = 0; i < allItems.length; i++) {
+      allItems[i].id = allItems[i].url;
+      allItems[i].parentId = '';
+      for (let j = 0; j < allItems[i].sub_tree.length; j++) {
+        allItems[i].sub_tree[j].parentId = allItems[i].id;
+      }
+    }
+
+    this.data = allItems;
+
+    if (this.enableCache) {
+      localStorage.setItem(this.cacheKey, JSON.stringify({
+        value: this.data,
+        timestamp: new Date().getTime()
+      }));
+    }
+
   },
   start: async function(){
     const container = document.querySelector(this.selectors.container);
@@ -296,9 +329,9 @@ const Panel = {
     // load data from whatever
     try {
       await this.load();
-    } catch(e) {
-      console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
-      this.data = mockmenu;
+    } catch (e) {
+      // TODO Enable nojs here
+      console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API', e);
     }
     //Set the panels according to current path.
     this.sortPanelsByPath();
@@ -339,11 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //start only once.
   const start = function() {
-    toggleButton.removeEventListener('click',start);
-    Panel.start(window.location.pathname);
+    toggleButton.removeEventListener('click', start);
+    Panel.start();
   };
 
   toggleButton.addEventListener('click',start);
 
 });
-
