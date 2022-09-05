@@ -48,7 +48,12 @@
       {% endif %}
 
       {% if page.header_branding %}
-        {{ page.header_branding }}
+        {#
+          Render the header branding region without the external menu block.
+          External mega menu block will be rendered manually in external fallback menu.
+          See. block--external-menu-block-fallback.html.twig:61.
+        #}
+        {{ page.header_branding|without('external_menu_mega_menu') }}
       {% endif %}
 
       {% if page.header_bottom %}

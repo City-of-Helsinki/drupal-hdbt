@@ -32,75 +32,27 @@
  */
 #}
 
-{% set block_content %}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-{% endset %}
-
 {# Do we want to render navigation with content from another instance "globally" #}
-{% if use_global_navigation %}
-  <div class="menu-toggle-anchor">
-    <a href="#" class="menu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</a>
-    <a href="#menu" class="menu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</a>
-  </div>
-  <button class="menu-toggle-button js-menu-toggle-button" aria-expanded="false" aria-controls="menu-dropdown">
-    <span class="menu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-    <span class="menu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
-  </button>
-  <nav id="menu-dropdown" class="menu-dropdown" aria-labelledby="menu-description">
-    <div class="menu-dropdown__wrapper" aria-labelledby="menu-description">
-      <div class="menu-dropdown__content" aria-labelledby="menu-description">
-        <h2 class="visually-hidden" id="menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
-
-        <div class="mega-and-mobilemenu">
-          {{ drupal_entity('block', 'language_switcher')}}
-
-          {{ block_content }}
-
-          <div class="mmenu__footer js-mmenu__footer">
-
-            {% set inside_cssmenu = true %}
-            {{ drupal_entity('block', 'headertopnavigation')}}
-
-            <div class="mmenu__logo">
-              {% set link_label %}
-                {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-              {% endset %}
-              {% set link_attributes = {
-                'class': [
-                  'mmenu__logo-link',
-                ],
-              } %}
-              {{ link(link_label, site_front_url, link_attributes) }}
-            </div>
-          </div>
-        </div>
-
-        <div id="mmenu" class="mmenu">
-          <div id="mmenu__panels" class="mmenu__panels"/>
-        </div>
-      </div>
-    </div>
-  </nav>
-{% else %}
+{% if not use_global_navigation %}
   {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
   <label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button" id="cssmenu-toggle">
     <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
     <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
   </label>
-  <button class="cssmenu-toggle-button js-cssmenu-toggle-button" aria-expanded="false" aria-controls="cssmenu-menu">
+  <button class="cssmenu-toggle-button js-cssmenu-toggle-button" aria-expanded="false">
     <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
     <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
   </button>
 
-  <nav id="cssmenu-menu" class="cssmenu-menu" aria-labelledby="cssmenu-menu-description">
+  <nav class="cssmenu-menu" aria-labelledby="cssmenu-menu-description">
     <h2 class="visually-hidden" id="cssmenu-menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
 
     {{ drupal_entity('block', 'language_switcher')}}
 
-    {{ block_content }}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
 
     <div class="cssmenu-menu__footer">
       {% set link_attributes = {
@@ -113,6 +65,4 @@
       {{ drupal_entity('block', 'headertopnavigation')}}
     </div>
   </nav>
-
 {% endif %}
-
