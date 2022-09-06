@@ -2,6 +2,28 @@ const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 
+const widgetsToHideSelector = [
+  '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
+  '#smartti-wrapper', // Smartti chatbot in kymp
+  '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
+  '#block-kuurahealthchat', // Kuurahealth in sote
+  '#ed11y-panel' // Editoria11y accessibility tool
+];
+
+// let toggle = document.querySelector('.js-menu-toggle-button');
+let fallbackMenu = document.querySelector('#menu');
+
+function toggleWidgets(hide) {
+  const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
+  for (let i = 0; i < widgets.length; i++) {
+    const widget = widgets[i];
+    if (hide) {
+      widget.dataset.cssmenuHide = true;
+    } else {
+      delete widget.dataset.cssmenuHide;
+    }
+  }
+}
 
 /**
  * Related twig templates:
@@ -50,70 +72,15 @@ const inPath = function () {
   return new RegExp(`^${this.url}`).test(window.location.pathname);
 };
 
-const Panel = {
-  templates:{
-    panelTemplate: `
-    {{#panels}}
-      <section class="{{panel_class}}">
-        <div class="mmenu__panel-body">
-          <div class="mmenu__language">
-            ${document.querySelector('.js-language-switcher')?.outerHTML}
-          </div>
-          {{#back}}
-            <button class="mmenu__back">
-              <span class="mmenu__back-wrapper">{{back}}</span>
-            </button>
-          {{/back}}
-          <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
-          {{>items}}
-        </div>
-        ${document.querySelector('.js-mmenu__footer')?.outerHTML}
-        ${ ''
-  /*
-        <div class="mmenu__footer">
-          <ul class="mmenu__footer-items">
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Koronavirus</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Anna palautetta</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link" aria-current="page">Uutiset</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Avoimet työpaikat</a></li>
-            <li class="mmenu__footer-item"><a href="#" class="mmenu__footer-link">Osallistu ja vaikuta</a></li>
-          </ul>
-          <div class="mmenu__logo">
-            <a href="https://www.hel.fi/${drupalSettings?.path?.currentLanguage || ''}" class="mmenu__logo-link">
-              ${document.querySelector('.logo__icon')?.outerHTML}
-            </a>
-          </div>
-        </div>
-      */
-}
-      </section>
-    {{/panels}}
 
-    {{^panels}}
-    <div class="mmenu__loading">
-      <div class="hds-loading-spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-    {{/panels}}
-    `,
-    listTemplate:`
-    <ul class="mmenu__items">
-      {{#items}}
-        <li class="mmenu__item">
-          <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
-          {{#button}}
-            <button class="mmenu__forward " value={{id}} />
-          {{/button}}
-        </li>
-      {{/items}}
-    </ul>
-   `
-  },
+/**
+ * Panel main object.
+ */
+const Panel = {
+  templates:null,
   //Maximum assumed depth of tree. Used for checking if going up is allowed
   size: 5,
+  treshold:100,
   data:null,
   current: 0,
   cacheKey: 'hdbt-mobile-menu',
@@ -124,6 +91,52 @@ const Panel = {
     forward:'mmenu__forward',
     back:'mmenu__back'
   },
+  compileTemplates : function(){
+    this.templates = { panel: `
+{{#panels}}
+  <section class="{{panel_class}}">
+    <div class="mmenu__panel-body">
+      <div class="mmenu__language">
+        ${document.querySelector('.js-language-switcher')?.outerHTML}
+      </div>
+      {{#back}}
+        <button class="mmenu__back">
+          <span class="mmenu__back-wrapper">{{back}}</span>
+        </button>
+      {{/back}}
+      <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
+      {{>items}}
+    </div>
+    ${document.querySelector('.js-mmenu__footer')?.outerHTML}
+  </section>
+{{/panels}}
+
+{{^panels}}
+<div class="mmenu__loading">
+  <div class="hds-loading-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+{{/panels}}
+`,
+    list:
+  `
+  <ul class="mmenu__items">
+    {{#items}}
+      <li class="mmenu__item">
+        <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+        {{#button}}
+          <button class="mmenu__forward " value={{id}} />
+        {{/button}}
+      </li>
+    {{/items}}
+  </ul>
+ `
+
+    };},
+
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
   },
@@ -136,7 +149,7 @@ const Panel = {
       allItems.findRecursive(({id,url,title,items,parent}) => {
         if(id === parentId) {
           panels.push({items,title, url,parent});
-          //set new parent id. If this is empty, it will stop the while-loop.
+          //set new parent id. When this is empty, it will stop the while-loop.
           parentId = parent;
           return true;
         }
@@ -146,15 +159,16 @@ const Panel = {
     }
     panels.push({items:allItems});
     panels.reverse();
-    this.current = panels.length-1;
+    this.currentIndex = panels.length-1;
     this.content = [...panels];
-
-
   },
   content:[],
   getView: function(state){
-    // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
-    // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
+    /**
+     * Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
+     * Use arrow to access Panel object, non-lexical function for accessing current iterable object in template: button, active, inPath...
+     */
+    const current = this.currentIndex;
     return this.content.map( (item,i) => ({
       ...item,
       title:item?.title ||  Drupal.t('Frontpage','Global navigation mobile menu top level'),
@@ -162,7 +176,7 @@ const Panel = {
       button,
       active,
       inPath,
-      // Show title of previously clicked item in Back-button (or Frontpage if)
+      // Show title of previously clicked item in Back-button or Frontpage if not found.
       back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
@@ -170,27 +184,30 @@ const Panel = {
        * When going forward in the menu, current -1  item must be on stage and current item starts from right
        * When going backward in the menu, current +1 item must be on stage and current item starts from left
        *
-       * At render, -up and -down classes are added and removed accordingly to achieve wanted animation and final state.
+       * At render, -left and -right classes are added and removed accordingly to achieve wanted animation and final state.
        */
       panel_class: cls({
         'mmenu__panel':true,
         'mmenu__panel--visible':true,
-        'mmenu__panel--current':i === this.current,
-        'mmenu__panel--visible-right':  (state === 'start' && i > this.current ) || (state === 'up' && i >= this.current ) ||( state === 'down' && i > this.current+1 ),
-        'mmenu__panel--visible-left': (state  === 'up' && i<this.current-1)  || (state === 'down' && i <= this.current)
+        'mmenu__panel--current':i === current,
+        'mmenu__panel--visible-right':  (state === 'start' && i > current ) || (state === 'up' && i >= current ) ||( state === 'down' && i > current+1 ),
+        'mmenu__panel--visible-left': (state  === 'up' && i<current-1)  || (state === 'down' && i <= current)
       })
     }));
   },
   up: function (parentId) {
-
-    if(this.current===this.size) {
+    /**
+     *
+     * TODO: get rid of this config number. Max depth should be defined by menu data.
+     */
+    if(this.currentIndex===this.size) {
       return;
     }
     if(!parentId) {
       throw new Error('missing id for menu item ' + parentId);
     }
 
-    const next = this.content.at(this.current).items.find(({
+    const next = this.content.at(this.currentIndex).items.find(({
       id
     }) => id === parentId);
 
@@ -198,21 +215,21 @@ const Panel = {
       throw new Error('ID mismatch in menu items'+ parentId);
     }
 
-    this.current = this.current + 1 < this.size ? this.current + 1 : this.current;
-    this.content[this.current] = next;
+    this.currentIndex = this.currentIndex + 1 < this.size ? this.currentIndex + 1 : this.currentIndex;
+    this.content[this.currentIndex] = next;
     this.render('up');
   },
   down: function () {
-    if(this.current === 0) {return;}
-    this.current = this.current - 1 >= 0 ? this.current - 1 : this.current;
+    if(this.currentIndex === 0) {return;}
+    this.currentIndex = this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
     this.render('down');
   },
   render:function(state) {
     const root = this.getRoot();
-    root.innerHTML = Mustache.render(this.templates.panelTemplate, {
+    root.innerHTML = Mustache.render(this.templates.panel, {
       panels: this.getView(state),
     }, {
-      items: this.templates.listTemplate,
+      items: this.templates.list,
     });
 
     if(state === 'load') {
@@ -220,11 +237,11 @@ const Panel = {
     }
 
     const panels = [...root.querySelectorAll('.mmenu__panel')];
-    const current =  panels.at(this.current);
+    const current =  panels.at(this.currentIndex);
     // Scroll to back-button height if back-button is not visible any more.
     // Todo: bind treshold to suitable element position when all menu blocks have been added and styled.
-    const TRESHOLD = 100;
-    if(root.parentElement.scrollTop > TRESHOLD && this.current > 0) {
+
+    if(root.parentElement.scrollTop > this.treshold && this.currentIndex > 0) {
       current.querySelectorAll('.mmenu__back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
@@ -234,11 +251,11 @@ const Panel = {
       switch (state) {
 
       case 'up':
-        panels.at(this.current-1).classList.add('mmenu__panel--visible-left');
+        panels.at(this.currentIndex-1).classList.add('mmenu__panel--visible-left');
         break;
 
       case 'down':
-        panels.at(this.current+1).classList.add('mmenu__panel--visible-right');
+        panels.at(this.currentIndex+1).classList.add('mmenu__panel--visible-right');
         break;
 
       default:
@@ -297,18 +314,20 @@ const Panel = {
     try {
       await this.load();
     } catch(e) {
+      this.enableFallbackMenu();
       console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
       this.data = mockmenu;
     }
     //Set the panels according to current path.
     this.sortPanelsByPath();
     this.render('start');
+    alert('click');
     this.getRoot().addEventListener('click', ({
       target: {
         classList,
         value: id,
         parentElement
-      }
+      },preventDefault,
     }) => {
 
       /**
@@ -319,31 +338,94 @@ const Panel = {
        *  */
 
       if (classList && classList.contains(this.selectors.forward)) {
+        alert('up');
+        preventDefault();
         this.up(id);
       } else if (classList && classList.contains(this.selectors.back) || parentElement?.classList && parentElement?.classList.contains(this.selectors.back)) {
+        alert('down');
+        preventDefault();
         this.down();
       }
+
     });
 
+  },
+  disableFallbackMenu() {
+    document.getElementById('js-menu-fallback').style.display = 'none';
+    fallbackMenu.dataset.js = true;
+
+    //Maybe also do the widget toggles and other stuff from nav-global-toggle here
+
+  },
+  enableFallbackMenu() {
+    // alert('NOJS menu should be enabled here');
+    console.error('TODO NOJS menu should be enabled here');
+    document.getElementById('js-menu-fallback').style.display = 'block';
+    //Maybe also do the widget toggles and other stuff from nav-global-toggle here
+
+
+  },
+  menuIsOpen : function() {
+    return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
+  },
+  menuToggle: function () {
+    if (Panel.menuIsOpen()) {
+      this.toggleButton.toggle.setAttribute('aria-expanded', 'false');
+
+      //TODO where does this belong?
+      fallbackMenu.dataset.target = 'false';
+
+      //TODO where does this belong?
+      window.location.hash = '';
+      toggleWidgets(false);
+    } else {
+      toggleWidgets(true);
+
+      //TODO where does this belong?
+      fallbackMenu.dataset.target = 'true';
+
+      this.toggleButton.setAttribute('aria-expanded', 'true');
+    }
+    this.toggleButton.focus(); // We should always focus the menu button after toggling the menu
   }
 };
-
+/**
+ *
+ * Start the panel after DOM has loaded.
+ * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
+ *
+ */
 document.addEventListener('DOMContentLoaded', () => {
   // See  block--mobile-navigation.html.twig
-  const toggleButton = document.querySelectorAll('.js-menu-toggle-button')[0];
-  if(!toggleButton){
+  Panel.toggleButton = document.querySelector('.js-menu-toggle-button');
+  if(!Panel.toggleButton){
     throw new Error('no toggle button');
   }
 
-  document.getElementById('js-menu-fallback').style.display = 'none';
+  Panel.compileTemplates();
+  /**
+   * Hide fallback menu when JS is available.
+   * This needs to be reversed if menu loading fails
+   */
+  Panel.disableFallbackMenu();
 
-  //start only once.
+
   const start = function() {
-    toggleButton.removeEventListener('click',start);
+    //start only once.
+    Panel.toggleButton.removeEventListener('click',start);
     Panel.start(window.location.pathname);
   };
+  Panel.toggleButton.addEventListener('click',start);
 
-  toggleButton.addEventListener('click',start);
+  if (Panel.menuIsOpen) {
+    Panel.toggleButton.click();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && Panel.menuIsOpen()) {
+      Panel.menuToggle();
+    }
+  });
 
 });
 
