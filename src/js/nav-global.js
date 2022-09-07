@@ -1,8 +1,6 @@
 const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
-
-
 /**
  * Related twig templates:
  * - block--mobile-navigation.html.twig
@@ -15,7 +13,6 @@ const cls = require('classnames');
  * - _menu-toggle.scss
  *
  */
-
 
 const widgetsToHideSelector = [
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
@@ -69,6 +66,7 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
  * Generic object helpers for template contexts
  *
  */
+
 const button = function(){
   return this.items?.length>0;
 };
@@ -133,7 +131,6 @@ const Panel = {
     {{/items}}
   </ul>
  `
-
     };},
   templates:null,
   SCROLL_TRESHOLD:100,
@@ -207,9 +204,6 @@ const Panel = {
     }));
   },
   up: function (parentId) {
-
-
-
     if(this.currentIndex===this.size) {
       return;
     }
@@ -316,23 +310,20 @@ const Panel = {
     if(!this.getRoot() || !container) {
       throw new Error('Panel root not found');
     }
-    //Show container on start
+    // Show container and loader on start
     container.classList.add('mmenu--visible');
-    // show loader
     this.render('load');
-
-    // load data from whatever
     try {
       await this.load();
     } catch(e) {
       console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
       this.data = mockmenu;
     }
-    //Set the panels according to current path.
+    /**
+     * Set the panels according to current path.
+     *  */
     this.sortPanelsByPath();
     this.render('start');
-
-
     /**
      * Panel event listener:
      *
@@ -352,14 +343,11 @@ const Panel = {
         this.down();
       }
     });
-
   },
   menuIsOpen : function() {
-
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
   menuToggle:  function() {
-
     if (this.menuIsOpen()) {
       this.toggleButton.setAttribute('aria-expanded', 'false');
       menu.dataset.target = 'false';
@@ -381,16 +369,15 @@ const Panel = {
  *
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // See  block--mobile-navigation.html.twig
+  // See  block--mobile-navigation.html.twig for the button
   Panel.toggleButton = document.querySelector('.js-menu-toggle-button');
   if(!Panel.toggleButton){
     throw new Error('no toggle button');
   }
-
   // TODO: organize fallback-menu-code to sensible functions.
   // Now it is just splattered here from nav-global-toggle in a random order that works.
-
   document.getElementById('js-menu-fallback').style.display = 'none';
+
   /**
    * Close menu on Escape button click if it is open.
    */
@@ -400,8 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  //start only once.
   const start = function() {
     /**
      * Delay template compilation to menu start to ensure
@@ -409,12 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
      *
      * Start removes itself in order to only run once.
      */
-
     Panel.compileTemplates();
     Panel.toggleButton.removeEventListener('click',start);
     Panel.start(window.location.pathname);
   };
-
 
   /**
    *
@@ -425,7 +408,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
    *
    */
-
   Panel.toggleButton.addEventListener('click',start);
   Panel.toggleButton.addEventListener('click',()=>Panel.menuToggle());
 
@@ -438,7 +420,5 @@ document.addEventListener('DOMContentLoaded', () => {
     start();
     Panel.menuToggle();
   }
-
-
 });
 
