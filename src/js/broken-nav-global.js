@@ -2,21 +2,6 @@ const Mustache = require('mustache');
 const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
 
-
-/**
- * Related twig templates:
- * - block--mobile-navigation.html.twig
- * - menu--mobile.html.twig
- *
- * Related styles:
- * components/navigation/global
- * - _mmenu.scss
- * - _megamenu.scss
- * - _menu-toggle.scss
- *
- */
-
-
 const widgetsToHideSelector = [
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
@@ -24,6 +9,9 @@ const widgetsToHideSelector = [
   '#block-kuurahealthchat', // Kuurahealth in sote
   '#ed11y-panel' // Editoria11y accessibility tool
 ];
+
+// let toggle = document.querySelector('.js-menu-toggle-button');
+let fallbackMenu = document.querySelector('#menu');
 
 function toggleWidgets(hide) {
   const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
@@ -36,11 +24,19 @@ function toggleWidgets(hide) {
     }
   }
 }
-const menu = document.querySelector('#menu');
 
-if (menu) {
-  menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-}
+/**
+ * Related twig templates:
+ * - block--mobile-navigation.html.twig
+ * - menu--mobile.html.twig
+ *
+ * Related styles:
+ * components/navigation/global
+ * - _mmenu.scss
+ * - _megamenu.scss
+ * - _menu-toggle.scss
+ */
+
 
 Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 
@@ -64,11 +60,6 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
   }
 };
 
-/**
- *
- * Generic object helpers for template contexts
- *
- */
 const button = function(){
   return this.items?.length>0;
 };
@@ -81,15 +72,25 @@ const inPath = function () {
   return new RegExp(`^${this.url}`).test(window.location.pathname);
 };
 
+
 /**
  * Panel main object.
- *
  */
-
 const Panel = {
-  /**
-   * Compile templates at request to ensure direct DOM queries are made to completed DOM.
-   */
+  templates:null,
+  //Maximum assumed depth of tree. Used for checking if going up is allowed
+  size: 5,
+  treshold:100,
+  data:null,
+  current: 0,
+  cacheKey: 'hdbt-mobile-menu',
+  enableCache: true,
+  selectors:{
+    container:'#mmenu',
+    rootId:'mmenu__panels',
+    forward:'mmenu__forward',
+    back:'mmenu__back'
+  },
   compileTemplates : function(){
     this.templates = { panel: `
 {{#panels}}
@@ -135,20 +136,7 @@ const Panel = {
  `
 
     };},
-  templates:null,
-  SCROLL_TRESHOLD:100,
-  //Maximum assumed depth of tree. Used for checking if going up is allowed
-  size: 5,
-  data:null,
-  currentIndex: 0,
-  cacheKey: 'hdbt-mobile-menu',
-  enableCache: false,
-  selectors:{
-    container:'#mmenu',
-    rootId:'mmenu__panels',
-    forward:'mmenu__forward',
-    back:'mmenu__back'
-  },
+
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
   },
@@ -161,7 +149,7 @@ const Panel = {
       allItems.findRecursive(({id,url,title,items,parent}) => {
         if(id === parentId) {
           panels.push({items,title, url,parent});
-          //set new parent id. If this is empty, it will stop the while-loop.
+          //set new parent id. When this is empty, it will stop the while-loop.
           parentId = parent;
           return true;
         }
@@ -173,13 +161,14 @@ const Panel = {
     panels.reverse();
     this.currentIndex = panels.length-1;
     this.content = [...panels];
-
-
   },
   content:[],
   getView: function(state){
-    // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
-    // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
+    /**
+     * Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
+     * Use arrow to access Panel object, non-lexical function for accessing current iterable object in template: button, active, inPath...
+     */
+    const current = this.currentIndex;
     return this.content.map( (item,i) => ({
       ...item,
       title:item?.title ||  Drupal.t('Frontpage','Global navigation mobile menu top level'),
@@ -187,7 +176,7 @@ const Panel = {
       button,
       active,
       inPath,
-      // Show title of previously clicked item in Back-button (or Frontpage)
+      // Show title of previously clicked item in Back-button or Frontpage if not found.
       back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
@@ -195,31 +184,29 @@ const Panel = {
        * When going forward in the menu, current -1  item must be on stage and current item starts from right
        * When going backward in the menu, current +1 item must be on stage and current item starts from left
        *
-       * At render, -left  (down to root) and -right (up the tree) classes are added and removed accordingly to achieve wanted animation and final state.
+       * At render, -left and -right classes are added and removed accordingly to achieve wanted animation and final state.
        */
       panel_class: cls({
         'mmenu__panel':true,
         'mmenu__panel--visible':true,
-        'mmenu__panel--current':i === this.currentIndex,
-        'mmenu__panel--visible-right':  (state === 'start' && i > this.currentIndex ) || (state === 'up' && i >= this.currentIndex ) ||( state === 'down' && i > this.currentIndex+1 ),
-        'mmenu__panel--visible-left': (state  === 'up' && i<this.currentIndex-1)  || (state === 'down' && i <= this.currentIndex)
+        'mmenu__panel--current':i === current,
+        'mmenu__panel--visible-right':  (state === 'start' && i > current ) || (state === 'up' && i >= current ) ||( state === 'down' && i > current+1 ),
+        'mmenu__panel--visible-left': (state  === 'up' && i<current-1)  || (state === 'down' && i <= current)
       })
     }));
   },
   up: function (parentId) {
-
-
-
+    /**
+     *
+     * TODO: get rid of this config number. Max depth should be defined by menu data.
+     */
     if(this.currentIndex===this.size) {
       return;
     }
     if(!parentId) {
       throw new Error('missing id for menu item ' + parentId);
     }
-    /**
-     * Find the item corresponding to given id in item arrow click event.
-     * It's items will be the new current panel. Old panel swipes left.
-     */
+
     const next = this.content.at(this.currentIndex).items.find(({
       id
     }) => id === parentId);
@@ -228,13 +215,13 @@ const Panel = {
       throw new Error('ID mismatch in menu items'+ parentId);
     }
 
-    this.currentIndex= this.currentIndex+ 1 < this.size ? this.currentIndex+ 1 : this.currentIndex;
+    this.currentIndex = this.currentIndex + 1 < this.size ? this.currentIndex + 1 : this.currentIndex;
     this.content[this.currentIndex] = next;
     this.render('up');
   },
   down: function () {
-    if(this.currentIndex=== 0) {return;}
-    this.currentIndex= this.currentIndex- 1 >= 0 ? this.currentIndex- 1 : this.currentIndex;
+    if(this.currentIndex === 0) {return;}
+    this.currentIndex = this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
     this.render('down');
   },
   render:function(state) {
@@ -251,8 +238,10 @@ const Panel = {
 
     const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current =  panels.at(this.currentIndex);
+    // Scroll to back-button height if back-button is not visible any more.
+    // Todo: bind treshold to suitable element position when all menu blocks have been added and styled.
 
-    if(root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex> 0) {
+    if(root.parentElement.scrollTop > this.treshold && this.currentIndex > 0) {
       current.querySelectorAll('.mmenu__back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
@@ -325,55 +314,81 @@ const Panel = {
     try {
       await this.load();
     } catch(e) {
+      this.enableFallbackMenu();
       console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
       this.data = mockmenu;
     }
     //Set the panels according to current path.
     this.sortPanelsByPath();
     this.render('start');
-
-
-    /**
-     * Panel event listener:
-     *
-     *  Bind one click event listener to main panel. One for all click events.!
-     *  Add more if one handler becomes too cumbersome.
-     *  */
+    alert('click');
     this.getRoot().addEventListener('click', ({
       target: {
         classList,
         value: id,
         parentElement
-      }
+      },preventDefault,
     }) => {
+
+      /**
+       * Event listeners:
+       *
+       *  Bind one click event listener to main panel. One for all click events.!
+       *  Add more if one handler becomes too cumbersome.
+       *  */
+
       if (classList && classList.contains(this.selectors.forward)) {
+        alert('up');
+        preventDefault();
         this.up(id);
       } else if (classList && classList.contains(this.selectors.back) || parentElement?.classList && parentElement?.classList.contains(this.selectors.back)) {
+        alert('down');
+        preventDefault();
         this.down();
       }
+
     });
 
   },
-  menuIsOpen : function() {
+  disableFallbackMenu() {
+    document.getElementById('js-menu-fallback').style.display = 'none';
+    fallbackMenu.dataset.js = true;
 
+    //Maybe also do the widget toggles and other stuff from nav-global-toggle here
+
+  },
+  enableFallbackMenu() {
+    // alert('NOJS menu should be enabled here');
+    console.error('TODO NOJS menu should be enabled here');
+    document.getElementById('js-menu-fallback').style.display = 'block';
+    //Maybe also do the widget toggles and other stuff from nav-global-toggle here
+
+
+  },
+  menuIsOpen : function() {
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
-  menuToggle:  function() {
+  menuToggle: function () {
+    if (Panel.menuIsOpen()) {
+      this.toggleButton.toggle.setAttribute('aria-expanded', 'false');
 
-    if (this.menuIsOpen()) {
-      this.toggleButton.setAttribute('aria-expanded', 'false');
-      menu.dataset.target = 'false';
+      //TODO where does this belong?
+      fallbackMenu.dataset.target = 'false';
+
+      //TODO where does this belong?
+      window.location.hash = '';
       toggleWidgets(false);
     } else {
       toggleWidgets(true);
-      menu.dataset.target = 'true';
-      Panel.toggleButton.setAttribute('aria-expanded', 'true');
+
+      //TODO where does this belong?
+      fallbackMenu.dataset.target = 'true';
+
+      this.toggleButton.setAttribute('aria-expanded', 'true');
     }
-    // We should always focus the menu button after toggling the menu
-    Panel.toggleButton.focus();
+    this.toggleButton.focus(); // We should always focus the menu button after toggling the menu
   }
 };
-
 /**
  *
  * Start the panel after DOM has loaded.
@@ -387,58 +402,30 @@ document.addEventListener('DOMContentLoaded', () => {
     throw new Error('no toggle button');
   }
 
-  // TODO: organize fallback-menu-code to sensible functions.
-  // Now it is just splattered here from nav-global-toggle in a random order that works.
-
-  document.getElementById('js-menu-fallback').style.display = 'none';
+  Panel.compileTemplates();
   /**
-   * Close menu on Escape button click if it is open.
+   * Hide fallback menu when JS is available.
+   * This needs to be reversed if menu loading fails
    */
-  document.addEventListener('keydown', function (e) {
-    if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && Panel.menuIsOpen()) {
-      Panel.menuToggle();
-    }
-  });
+  Panel.disableFallbackMenu();
 
 
-  //start only once.
   const start = function() {
-    /**
-     * Delay template compilation to menu start to ensure
-     * footer & top menu blocks are rendered in main DOM before cloning them.
-     *
-     * Start removes itself in order to only run once.
-     */
-
-    Panel.compileTemplates();
+    //start only once.
     Panel.toggleButton.removeEventListener('click',start);
     Panel.start(window.location.pathname);
   };
-
-
-  /**
-   *
-   * Add start-event to menu toggle button.
-   *
-   * Add Menu toggle function to menu button.
-   * Side effects:
-   * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
-   *
-   */
-
   Panel.toggleButton.addEventListener('click',start);
-  Panel.toggleButton.addEventListener('click',()=>Panel.menuToggle());
 
-  /**
-   *
-   * Open menu if it is required in the hash, then clear hash.
-   */
-  if (Panel.menuIsOpen()) {
-    window.location.hash = '';
-    start();
-    Panel.menuToggle();
+  if (Panel.menuIsOpen) {
+    Panel.toggleButton.click();
   }
 
+  // document.addEventListener('keydown', function (e) {
+  //   if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && Panel.menuIsOpen()) {
+  //     Panel.menuToggle();
+  //   }
+  // });
 
 });
 
