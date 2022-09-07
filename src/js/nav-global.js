@@ -33,11 +33,7 @@ function toggleWidgets(hide) {
     }
   }
 }
-const menu = document.querySelector('#menu');
 
-if (menu) {
-  menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-}
 
 Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 
@@ -132,6 +128,8 @@ const Panel = {
   </ul>
  `
     };},
+  // rename to fallback menu?
+  menu:null,
   templates:null,
   SCROLL_TRESHOLD:100,
   //Maximum assumed depth of tree. Used for checking if going up is allowed
@@ -150,10 +148,11 @@ const Panel = {
     return document.getElementById(this.selectors.rootId);
   },
   sortPanelsByPath:function() {
+    const panels = [];
     const allItems = this.data.items;
     const currentItem = allItems.findRecursive( item => active.call(item),'items' );
-    let parentId = currentItem?.parent;
-    const panels = [];
+    let parentId = currentItem?.hasItems ? currentItem.id : currentItem?.parent;
+
     while(parentId) {
       allItems.findRecursive(({id,url,title,items,parent}) => {
         if(id === parentId) {
@@ -286,22 +285,22 @@ const Panel = {
     },10); // Transition classes need to be added after initial render.
   },
   load: async function(){
-    const cache = JSON.parse(localStorage.getItem(this.cacheKey));
-    const now = new Date().getTime();
+    // const cache = JSON.parse(localStorage.getItem(this.cacheKey));
+    // const now = new Date().getTime();
 
-    // Return cached menu if timestamp is less than hour old.
-    if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
-      this.data = cache.value;
-      return;
-    } else {
-      console.log('Mobile menu cache is disabled');
-    }
+    // // Return cached menu if timestamp is less than hour old.
+    // if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
+    //   this.data = cache.value;
+    //   return;
+    // } else {
+    //   console.log('Mobile menu cache is disabled');
+    // }
 
     const MENU = await( await fetch('/global-mobile-menu.json')).json();
-    localStorage.setItem(this.cacheKey, JSON.stringify({
-      value: MENU,
-      timestamp: new Date().getTime()
-    }));
+    // localStorage.setItem(this.cacheKey, JSON.stringify({
+    //   value: MENU,
+    //   timestamp: new Date().getTime()
+    // }));
 
     this.data = MENU;
   },
@@ -318,6 +317,9 @@ const Panel = {
     } catch(e) {
       console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
       this.data = mockmenu;
+      // this.enableFallback();
+      // return;
+      // this.data = mockmenu;
     }
     /**
      * Set the panels according to current path.
@@ -337,6 +339,7 @@ const Panel = {
         parentElement
       }
     }) => {
+      // Arrow function keeps us in Panel context for "this". Take what you need from event
       if (classList && classList.contains(this.selectors.forward)) {
         this.up(id);
       } else if (classList && classList.contains(this.selectors.back) || parentElement?.classList && parentElement?.classList.contains(this.selectors.back)) {
@@ -347,14 +350,26 @@ const Panel = {
   menuIsOpen : function() {
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
+  disableFallback :function() {
+    Panel.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+    //TODO toggle class instead?
+    document.getElementById('js-menu-fallback').style.display = 'none';
+
+  },
+  enableFallback:function() {
+    delete Panel.menu.dataset.js; // Switch to use js-enhanced version instead of pure css version
+    //TODO toggle class instead?
+    document.getElementById('js-menu-fallback').style.display = 'block';
+
+  },
   menuToggle:  function() {
     if (this.menuIsOpen()) {
       this.toggleButton.setAttribute('aria-expanded', 'false');
-      menu.dataset.target = 'false';
+      Panel.menu.dataset.target = 'false';
       toggleWidgets(false);
     } else {
       toggleWidgets(true);
-      menu.dataset.target = 'true';
+      Panel.menu.dataset.target = 'true';
       Panel.toggleButton.setAttribute('aria-expanded', 'true');
     }
     // We should always focus the menu button after toggling the menu
@@ -376,8 +391,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // TODO: organize fallback-menu-code to sensible functions.
   // Now it is just splattered here from nav-global-toggle in a random order that works.
-  document.getElementById('js-menu-fallback').style.display = 'none';
 
+
+  Panel.menu = document.querySelector('#menu');
+  if (!Panel.menu) {
+    console.error('Panel not present in DOM. Cannot start JS mobile menu');
+    return;
+  }
+
+  //Disable fallback-menu
+  // Panel.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
+  // document.getElementById('js-menu-fallback').style.display = 'none';
+
+  Panel.disableFallback();
   /**
    * Close menu on Escape button click if it is open.
    */
@@ -415,6 +441,9 @@ document.addEventListener('DOMContentLoaded', () => {
    *
    * Open menu if it is required in the hash, then clear hash.
    */
+
+
+
   if (Panel.menuIsOpen()) {
     window.location.hash = '';
     start();
