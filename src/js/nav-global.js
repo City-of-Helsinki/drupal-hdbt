@@ -244,9 +244,11 @@ const Panel = {
 
     const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current =  panels.at(this.currentIndex);
-
+    console.log('before scroll');
     if(root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex> 0) {
-      current.querySelectorAll('.mmenu__back')[0].scrollIntoView({block:'start',behaviour:'smooth'});
+      [...current.querySelectorAll('.mmenu__item-link--in-path')].at(-1).scrollIntoView({block:'start',behaviour:'smooth'});
+      console.log('scroll');
+      // current.querySelector('.mmenu__back').scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
     setTimeout(()=>{
@@ -389,8 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if(!Panel.toggleButton){
     throw new Error('no toggle button');
   }
-  // TODO: organize fallback-menu-code to sensible functions.
-  // Now it is just splattered here from nav-global-toggle in a random order that works.
 
 
   Panel.menu = document.querySelector('#menu');
@@ -398,10 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Panel not present in DOM. Cannot start JS mobile menu');
     return;
   }
-
-  //Disable fallback-menu
-  // Panel.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-  // document.getElementById('js-menu-fallback').style.display = 'none';
 
   Panel.disableFallback();
   /**
