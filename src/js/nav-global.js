@@ -36,7 +36,6 @@ function toggleWidgets(hide) {
 
 
 Array.prototype.findRecursive = function(predicate, childrenPropertyName){
-
   if(!childrenPropertyName){
     throw 'findRecursive requires parameter `childrenPropertyName`';
   }
@@ -58,18 +57,31 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 };
 
 /**
- *
  * Generic object helpers for template contexts
- *
+ */
+
+/**
+ * Check if current given menu item has items
+ * @returns boolean
  */
 
 const button = function(){
+// return this.hasItems
   return this.items?.length>0;
 };
+
+
+/**
+ * Check if  given menu item url matches current browser pathname
+ */
 
 const active = function () {
   return new RegExp(`^${this.url}$`).test(window.location.pathname);
 };
+
+/**
+ * Check if current given menu item path is part of current full pathname
+ */
 
 const inPath = function () {
   return new RegExp(`^${this.url}`).test(window.location.pathname);
@@ -77,13 +89,9 @@ const inPath = function () {
 
 /**
  * Panel main object.
- *
  */
 
 const Panel = {
-  /**
-   * Compile templates at request to ensure direct DOM queries are made to completed DOM.
-   */
   compileTemplates : function(){
     this.templates = { panel: `
 {{#panels}}
@@ -128,7 +136,6 @@ const Panel = {
   </ul>
  `
     };},
-  // rename to fallback menu?
   menu:null,
   templates:null,
   SCROLL_TRESHOLD:100,
@@ -151,8 +158,7 @@ const Panel = {
     const panels = [];
     const allItems = this.data.items;
     const currentItem = allItems.findRecursive( item => active.call(item),'items' );
-    let parentId = currentItem?.hasItems ? currentItem.id : currentItem?.parent;
-
+    let parentId = currentItem?.items?.length ? currentItem.id : currentItem?.parent;
     while(parentId) {
       allItems.findRecursive(({id,url,title,items,parent}) => {
         if(id === parentId) {
@@ -169,8 +175,6 @@ const Panel = {
     panels.reverse();
     this.currentIndex = panels.length-1;
     this.content = [...panels];
-
-
   },
   content:[],
   getView: function(state){
@@ -204,6 +208,7 @@ const Panel = {
   },
   up: function (parentId) {
     if(this.currentIndex===this.size) {
+      console.warn('Panel max size reached', this.size);
       return;
     }
     if(!parentId) {
@@ -321,11 +326,10 @@ const Panel = {
       this.data = mockmenu;
       // this.enableFallback();
       // return;
-      // this.data = mockmenu;
     }
     /**
      * Set the panels according to current path.
-     *  */
+     */
     this.sortPanelsByPath();
     this.render('start');
     /**
@@ -380,10 +384,8 @@ const Panel = {
 };
 
 /**
- *
  * Start the panel after DOM has loaded.
  * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
- *
  */
 document.addEventListener('DOMContentLoaded', () => {
   // See  block--mobile-navigation.html.twig for the button
@@ -391,7 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if(!Panel.toggleButton){
     throw new Error('no toggle button');
   }
-
 
   Panel.menu = document.querySelector('#menu');
   if (!Panel.menu) {
@@ -422,24 +423,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   *
    * Add start-event to menu toggle button.
    *
    * Add Menu toggle function to menu button.
    * Side effects:
    * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
-   *
    */
   Panel.toggleButton.addEventListener('click',start);
   Panel.toggleButton.addEventListener('click',()=>Panel.menuToggle());
 
   /**
-   *
    * Open menu if it is required in the hash, then clear hash.
    */
-
-
-
   if (Panel.menuIsOpen()) {
     window.location.hash = '';
     start();
