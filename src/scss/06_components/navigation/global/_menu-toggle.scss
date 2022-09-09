@@ -48,6 +48,7 @@ $-menu-transition-duration: 0.3s;
   }
 
   .mega-and-mobilemenu .block--language-switcher,
+  .mega-and-mobilemenu .mobile-menu-fallback,
   .mega-and-mobilemenu .mmenu__footer {
     display: none;
   }
@@ -246,4 +247,8 @@ $-menu-transition-duration: 0.3s;
   @include breakpoint($breakpoint-l) {
     display: none;
   }
+}
+
+[data-cssmenu-hide] {
+  display: none !important;
 }

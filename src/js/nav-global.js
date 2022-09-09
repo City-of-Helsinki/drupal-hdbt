@@ -1,6 +1,13 @@
 const Mustache = require('mustache');
-const mockmenu = require('./MOCK_MENU');
 const cls = require('classnames');
+const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
+const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
+
+
+
+
+
+
 /**
  * Related twig templates:
  * - block--mobile-navigation.html.twig
@@ -15,6 +22,7 @@ const cls = require('classnames');
  */
 
 const widgetsToHideSelector = [
+  '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
@@ -67,25 +75,81 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 
 const button = function(){
 // return this.hasItems
-  return this.items?.length>0;
+  return this.sub_tree?.length>0;
 };
 
 
 /**
- * Check if  given menu item url matches current browser pathname
+ * Check if  given menu item url pathname matches current browser pathname
  */
 
 const active = function () {
-  return new RegExp(`^${this.url}$`).test(window.location.pathname);
+  try {
+    return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
+  }
+  catch(e) {
+    console.warn('Invalid url given to "active"-helper', this.url);
+  }
+  return false;
 };
 
 /**
- * Check if current given menu item path is part of current full pathname
+ * Check if current given menu item url pathname is part of current full pathname
  */
 
 const inPath = function () {
-  return new RegExp(`^${this.url}`).test(window.location.pathname);
+  try {
+    const url = new URL(this.url);
+    return !this.external && url && IN_PATH_WHITELIST.test(url.hostname) && window.location.pathname.includes(url.pathname);
+  }
+  catch(e) {
+    console.warn('Invalid url given to "inPath"-helper'
+    // , {'context':this,e}
+    );
+  }
+  return false;
 };
+
+
+/***
+ * Convert attributes to to template-friendly object
+ */
+
+const externalLinkAttributes = function () {
+
+  return {
+    external:this.attributes['data-external'] || this.external || false,
+    protocol:this.attributes['data-protocol']|| false,
+  };
+
+};
+
+
+/**
+ * Determinine icon type and text for external link
+ */
+
+const externalLinkIcon = function () {
+  if (!this.external) {
+    return false;
+  }
+
+  const icon = {   };
+
+  if (this.attributes['data-protocol'] === 'mailto') {
+    icon.class = 'link__type link__type--mailto';
+    icon.text = Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' });
+  } else if (this.attributes['data-protocol'] == 'tel') {
+    icon.class = 'link__type link__type--tel';
+    icon.text = Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' });
+  } else {
+    icon.class = 'link__type link__type--external';
+    icon.text = Drupal.t('Link leads to external service', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' });
+  }
+
+  return icon;
+};
+
 
 /**
  * Panel main object.
@@ -105,8 +169,18 @@ const Panel = {
           <span class="mmenu__back-wrapper">{{back}}</span>
         </button>
       {{/back}}
-      <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{title}}</a>
-      {{>items}}
+      <a href="{{url}}" class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+
+      {{#externalLinkAttributes.external}}
+        data-external="true"
+      {{/externalLinkAttributes.external}}
+
+      {{#externalLinkAttributes.protocol}}
+        data-protocol="{{externalLinkAttributes.protocol}}"
+      {{/externalLinkAttributes.protocol}}
+
+      >{{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
+      {{>sub_tree}}
     </div>
     ${document.querySelector('.js-mmenu__footer')?.outerHTML}
   </section>
@@ -125,14 +199,27 @@ const Panel = {
     list:
   `
   <ul class="mmenu__items">
-    {{#items}}
+    {{#sub_tree}}
       <li class="mmenu__item">
-        <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{title}}</a>
+
+        <a href="{{url}}" class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+
+        {{#externalLinkAttributes.external}}
+          data-external="true"
+        {{/externalLinkAttributes.external}}
+
+        {{#externalLinkAttributes.protocol}}
+          data-protocol={{externalLinkAttributes.protocol}}
+        {{/externalLinkAttributes.protocol}}
+
+        >
+          {{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
+        </a>
         {{#button}}
           <button class="mmenu__forward " value={{id}} />
         {{/button}}
       </li>
-    {{/items}}
+    {{/sub_tree}}
   </ul>
  `
     };},
@@ -151,27 +238,40 @@ const Panel = {
     forward:'mmenu__forward',
     back:'mmenu__back'
   },
+  // We use this same url for pointing to frontpage instance at the root level
+  getAPIUrl:function(){
+    const frontpageInstanceDomain =  window.location.hostname.indexOf('docker.so') != -1 ? '//helfi-etusivu.docker.so' : '';
+    const currentLangCode = drupalSettings?.path?.currentLanguage || 'fi';
+    return `${frontpageInstanceDomain}/${currentLangCode}/api/v1/global-menu?_format=json`;
+  },
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
   },
   sortPanelsByPath:function() {
     const panels = [];
-    const allItems = this.data.items;
-    const currentItem = allItems.findRecursive( item => active.call(item),'items' );
-    let parentId = currentItem?.items?.length ? currentItem.id : currentItem?.parent;
-    while(parentId) {
-      allItems.findRecursive(({id,url,title,items,parent}) => {
-        if(id === parentId) {
-          panels.push({items,title, url,parent});
+    const allItems = this.data;
+    const currentItem = allItems.findRecursive( item => active.call(item) ,'sub_tree');
+    let parentIndex = currentItem?.sub_tree?.length ? currentItem.id : currentItem?.parentId;
+
+    while(parentIndex) {
+      const found = allItems.findRecursive(({id,url,name,sub_tree,parentId}) => {
+        if(id === parentIndex) {
+          panels.push({sub_tree,name, url,parentId});
           //set new parent id. If this is empty, it will stop the while-loop.
-          parentId = parent;
+          parentIndex = parentId;
           return true;
         }
         return false;
-      }, 'items');
+      }, 'sub_tree');
+
+      if (!found) {
+        // Stop while-loop.
+        parentIndex = undefined;
+      }
 
     }
-    panels.push({items:allItems});
+
+    panels.push({sub_tree:allItems});
     panels.reverse();
     this.currentIndex = panels.length-1;
     this.content = [...panels];
@@ -182,13 +282,16 @@ const Panel = {
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
     return this.content.map( (item,i) => ({
       ...item,
-      title:item?.title ||  Drupal.t('Frontpage','Global navigation mobile menu top level'),
+      name:item?.name || frontpageTranslation,
+
       // If current item has subitems, show button for next panel.
       button,
       active,
       inPath,
+      externalLinkAttributes,
+      externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back: ( i >0) ? this.content.at(i-1)?.title ?? Drupal.t('Frontpage','Global navigation mobile menu top level') : false ,
+      back: ( i >0) ? this.content.at(i-1)?.name ?? frontpageTranslation : false ,
       /***
        * Define correct starting positions for each panel, depeding on traversal direction
        * At start, first item is on stage and anything else must be on right.
@@ -218,7 +321,7 @@ const Panel = {
      * Find the item corresponding to given id in item arrow click event.
      * It's items will be the new current panel. Old panel swipes left.
      */
-    const next = this.content.at(this.currentIndex).items.find(({
+    const next = this.content.at(this.currentIndex).sub_tree.find(({
       id
     }) => id === parentId);
 
@@ -240,7 +343,7 @@ const Panel = {
     root.innerHTML = Mustache.render(this.templates.panel, {
       panels: this.getView(state),
     }, {
-      items: this.templates.list,
+      sub_tree: this.templates.list,
     });
 
     if(state === 'load') {
@@ -249,11 +352,9 @@ const Panel = {
 
     const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current =  panels.at(this.currentIndex);
-    console.log('before scroll');
+
     if(root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex> 0) {
-      [...current.querySelectorAll('.mmenu__item-link--in-path')].at(-1).scrollIntoView({block:'start',behaviour:'smooth'});
-      console.log('scroll');
-      // current.querySelector('.mmenu__back').scrollIntoView({block:'start',behaviour:'smooth'});
+      current.querySelector('.mmenu__back').scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
     setTimeout(()=>{
@@ -292,24 +393,23 @@ const Panel = {
     },10); // Transition classes need to be added after initial render.
   },
   load: async function(){
-    // const cache = JSON.parse(localStorage.getItem(this.cacheKey));
-    // const now = new Date().getTime();
 
-    // // Return cached menu if timestamp is less than hour old.
-    // if (this.enableCache && cache && cache.timestamp > now - 60 * 60 * 1000) {
-    //   this.data = cache.value;
-    //   return;
-    // } else {
-    //   console.log('Mobile menu cache is disabled');
-    // }
+    const MENU = await fetch(this.getAPIUrl());
+    const data = await MENU.json();
 
-    const MENU = await( await fetch('/global-mobile-menu.json')).json();
-    // localStorage.setItem(this.cacheKey, JSON.stringify({
-    //   value: MENU,
-    //   timestamp: new Date().getTime()
-    // }));
 
-    this.data = MENU;
+    var allInstances = Object.getOwnPropertyNames(data);
+
+    if (!allInstances.length) {
+      throw new Error('No instances found in data', data);
+    }
+    const allItems = allInstances.map(instanceName => {
+      const item = data[instanceName].menu_tree[0];
+      item.parentId = '';
+      return item;
+    });
+
+    this.data = allItems;
   },
   start: async function(){
     const container = document.querySelector(this.selectors.container);
@@ -323,9 +423,8 @@ const Panel = {
       await this.load();
     } catch(e) {
       console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
-      this.data = mockmenu;
-      // this.enableFallback();
-      // return;
+      this.enableFallback();
+      return;
     }
     /**
      * Set the panels according to current path.
@@ -358,15 +457,12 @@ const Panel = {
   },
   disableFallback :function() {
     Panel.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-    //TODO toggle class instead?
-    document.getElementById('js-menu-fallback').style.display = 'none';
-
   },
   enableFallback:function() {
-    delete Panel.menu.dataset.js; // Switch to use js-enhanced version instead of pure css version
-    //TODO toggle class instead?
-    document.getElementById('js-menu-fallback').style.display = 'block';
-
+    Panel.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
+    this.getRoot().innerHTML = ''; // Remove rotator
+    delete Panel.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
+    window.location.hash='#menu'; // Open menu with the css way
   },
   menuToggle:  function() {
     if (this.menuIsOpen()) {
@@ -391,9 +487,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // See  block--mobile-navigation.html.twig for the button
   Panel.toggleButton = document.querySelector('.js-menu-toggle-button');
   if(!Panel.toggleButton){
-    throw new Error('no toggle button');
+    throw 'No toggle button for JS menu.';
   }
-
+  // TODO Where is this #menu coming from Maybe name it better?
   Panel.menu = document.querySelector('#menu');
   if (!Panel.menu) {
     console.error('Panel not present in DOM. Cannot start JS mobile menu');
@@ -401,6 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   Panel.disableFallback();
+
   /**
    * Close menu on Escape button click if it is open.
    */
@@ -419,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     Panel.compileTemplates();
     Panel.toggleButton.removeEventListener('click',start);
-    Panel.start(window.location.pathname);
+    Panel.start();
   };
 
   /**
@@ -441,4 +538,3 @@ document.addEventListener('DOMContentLoaded', () => {
     Panel.menuToggle();
   }
 });
-

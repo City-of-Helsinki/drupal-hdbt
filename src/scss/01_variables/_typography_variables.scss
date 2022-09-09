@@ -164,6 +164,11 @@ $config: deep-map-merge(
             font-weight: $font-weight-regular,
             line-height: 14 / 14,
           ),
+          mobile_header: (
+            font-size: remify(24px),
+            font-weight: $font-weight-regular,
+            line-height: 32 / 24,
+          ),
           main_nav: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
