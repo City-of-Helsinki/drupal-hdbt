@@ -31,6 +31,10 @@
   }
 }
 
+#menu:not([data-js]) ~ * .mega-and-mobilemenu .block--language-switcher + * {
+  margin-top: $spacing;
+}
+
 .language-links {
   display: flex; // disables wrapping to multiple lines for now
 }
