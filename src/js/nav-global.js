@@ -3,9 +3,6 @@ const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
 
-
-
-
 /**
  * Related twig templates:
  * - block--mobile-navigation.html.twig
@@ -20,6 +17,7 @@ const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
  */
 
 const widgetsToHideSelector = [
+  '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
@@ -85,7 +83,7 @@ const active = function () {
     return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
   }
   catch(e) {
-    console.warn('Invalid url', this.url);
+    console.warn('Invalid url given to "active"-helper', this.url);
   }
   return false;
 };
@@ -100,7 +98,9 @@ const inPath = function () {
     return !this.external && url && IN_PATH_WHITELIST.test(url.hostname) && window.location.pathname.includes(url.pathname);
   }
   catch(e) {
-    console.warn('Invalid url', this.url);
+    console.warn('Invalid url given to "inPath"-helper'
+    // , {'context':this,e}
+    );
   }
   return false;
 };
@@ -392,8 +392,9 @@ const Panel = {
   },
   enableFallback:function() {
     delete Panel.menu.dataset.js; // Switch to use js-enhanced version instead of pure css version
-    //TODO toggle class instead?
     document.getElementById('js-menu-fallback').style.display = 'block';
+    alert('fix nojs menu toggle');
+    this.getRoot().innerHTML = '';
 
   },
   menuToggle:  function() {

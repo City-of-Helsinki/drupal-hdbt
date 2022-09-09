@@ -247,3 +247,7 @@ $-menu-transition-duration: 0.3s;
     display: none;
   }
 }
+
+[data-cssmenu-hide] {
+  display: none !important;
+}
