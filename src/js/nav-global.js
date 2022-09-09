@@ -460,16 +460,12 @@ const Panel = {
   },
   disableFallback :function() {
     Panel.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-    //TODO toggle class instead?
-    document.getElementById('js-menu-fallback').style.display = 'none';
-
   },
   enableFallback:function() {
-    Panel.menu.dataset.target = 'false';
-    this.getRoot().innerHTML = '';
-    delete Panel.menu.dataset.js; // Switch to use js-enhanced version instead of pure css version
-    document.getElementById('js-menu-fallback').style.display = 'block';
-    window.location.hash='#menu';
+    Panel.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
+    this.getRoot().innerHTML = ''; // Remove rotator
+    delete Panel.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
+    window.location.hash='#menu'; // Open menu with the css way
   },
   menuToggle:  function() {
     if (this.menuIsOpen()) {
