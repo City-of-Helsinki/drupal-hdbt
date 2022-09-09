@@ -116,9 +116,6 @@ const inPath = function () {
  */
 
 const externalLinkAttributes = function () {
-  if (!this.external) {
-    return false;
-  }
 
   return {
     external:this.attributes['data-external'] || this.external || false,
@@ -182,7 +179,7 @@ const Panel = {
         data-protocol="{{externalLinkAttributes.protocol}}"
       {{/externalLinkAttributes.protocol}}
 
-      >{{name}}{{#externalLinkIcon}} <span class="{{externalLinkClass}}" aria-label="({{externalLinkText}})"></span>{{/externalLinkIcon}}</a>
+      >{{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
       {{>sub_tree}}
     </div>
     ${document.querySelector('.js-mmenu__footer')?.outerHTML}
