@@ -333,18 +333,9 @@ const Panel = {
       throw new Error('No instances found in data', data);
     }
     const allItems = allInstances.map(instanceName => {
-      return data[instanceName].menu_tree[0];
-    });
-
-    // TODO: Remove this loop when first level has proper references to parents with proper ids
-    // Fix data first level id's, parentId's and second level parentId's
-
-    allItems.forEach( item => {
-      // item.id = item.url;
+      const item = data[instanceName].menu_tree[0];
       item.parentId = '';
-      // item.subtree?.forEach(sub=>{
-      //   sub.parentId = item.url;
-      // });
+      return item;
     });
 
     this.data = allItems;
