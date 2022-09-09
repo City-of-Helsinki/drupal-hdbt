@@ -391,11 +391,11 @@ const Panel = {
 
   },
   enableFallback:function() {
+    Panel.menu.dataset.target = 'false';
+    this.getRoot().innerHTML = '';
     delete Panel.menu.dataset.js; // Switch to use js-enhanced version instead of pure css version
     document.getElementById('js-menu-fallback').style.display = 'block';
-    alert('fix nojs menu toggle');
-    this.getRoot().innerHTML = '';
-
+    window.location.hash='#menu';
   },
   menuToggle:  function() {
     if (this.menuIsOpen()) {
