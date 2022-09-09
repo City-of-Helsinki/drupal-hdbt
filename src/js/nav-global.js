@@ -1,6 +1,10 @@
 const Mustache = require('mustache');
 const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
+const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
+
+
+
 
 /**
  * Related twig templates:
@@ -77,9 +81,8 @@ const button = function(){
  */
 
 const active = function () {
-
   try {
-    return this.url && new URL(this.url).pathname === window.location.pathname;
+    return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
   }
   catch(e) {
     console.warn('Invalid url', this.url);
@@ -93,7 +96,8 @@ const active = function () {
 
 const inPath = function () {
   try {
-    return this.url && window.location.pathname.includes(new URL(this.url).pathname);
+    const url = new URL(this.url);
+    return !this.external && url && IN_PATH_WHITELIST.test(url.hostname) && window.location.pathname.includes(url.pathname);
   }
   catch(e) {
     console.warn('Invalid url', this.url);
@@ -279,7 +283,6 @@ const Panel = {
     const current =  panels.at(this.currentIndex);
 
     if(root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex> 0) {
-      // [...current.querySelectorAll('.mmenu__item-link--in-path')].at(-1).scrollIntoView({block:'start',behaviour:'smooth'});
       current.querySelector('.mmenu__back').scrollIntoView({block:'start',behaviour:'smooth'});
     }
 
@@ -332,30 +335,17 @@ const Panel = {
     const allItems = allInstances.map(instanceName => {
       return data[instanceName].menu_tree[0];
     });
-    // Put all instances in same array
-    // for (let i = 0; i < allInstances.length; i++) {
-    //   const instanceName = allInstances[i];
-    //   const instance = data[instanceName].menu_tree[0];
-    //   allItems.push(instance);
-    // }
 
     // TODO: Remove this loop when first level has proper references to parents with proper ids
     // Fix data first level id's, parentId's and second level parentId's
 
     allItems.forEach( item => {
-      item.id = item.url;
+      // item.id = item.url;
       item.parentId = '';
-      item.subtree?.forEach(sub=>{
-        sub.parentId = item.url;
-      });
+      // item.subtree?.forEach(sub=>{
+      //   sub.parentId = item.url;
+      // });
     });
-    // for (let i = 0; i < allItems.length; i++) {
-    //   allItems[i].id = allItems[i].url;
-    //   allItems[i].parentId = '';
-    //   for (let j = 0; j < allItems[i].sub_tree.length; j++) {
-    //     allItems[i].sub_tree[j].parentId = allItems[i].id;
-    //   }
-    // }
 
     this.data = allItems;
   },
@@ -438,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // See  block--mobile-navigation.html.twig for the button
   Panel.toggleButton = document.querySelector('.js-menu-toggle-button');
   if(!Panel.toggleButton){
-    throw new Error('no toggle button');
+    throw 'No toggle button for JS menu.';
   }
   // TODO Where is this #menu coming from Maybe name it better?
   Panel.menu = document.querySelector('#menu');
@@ -489,4 +479,3 @@ document.addEventListener('DOMContentLoaded', () => {
     Panel.menuToggle();
   }
 });
-
