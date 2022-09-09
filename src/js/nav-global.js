@@ -3,6 +3,11 @@ const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
 
+
+
+
+
+
 /**
  * Related twig templates:
  * - block--mobile-navigation.html.twig
@@ -105,6 +110,50 @@ const inPath = function () {
   return false;
 };
 
+
+/***
+ * Convert attributes to to template-friendly object
+ */
+
+const externalLinkAttributes = function () {
+  if (!this.external) {
+    return false;
+  }
+
+  return {
+    external:this.attributes['data-external'] || this.external || false,
+    protocol:this.attributes['data-protocol']|| false,
+  };
+
+};
+
+
+/**
+ * Determinine icon type and text for external link
+ */
+
+const externalLinkIcon = function () {
+  if (!this.external) {
+    return false;
+  }
+
+  const icon = {   };
+
+  if (this.attributes['data-protocol'] === 'mailto') {
+    icon.class = 'link__type link__type--mailto';
+    icon.text = Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' });
+  } else if (this.attributes['data-protocol'] == 'tel') {
+    icon.class = 'link__type link__type--tel';
+    icon.text = Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' });
+  } else {
+    icon.class = 'link__type link__type--external';
+    icon.text = Drupal.t('Link leads to external service', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' });
+  }
+
+  return icon;
+};
+
+
 /**
  * Panel main object.
  */
@@ -123,7 +172,17 @@ const Panel = {
           <span class="mmenu__back-wrapper">{{back}}</span>
         </button>
       {{/back}}
-      <a class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}} href="{{url}}">{{name}}</a>
+      <a href="{{url}}" class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+
+      {{#externalLinkAttributes.external}}
+        data-external="true"
+      {{/externalLinkAttributes.external}}
+
+      {{#externalLinkAttributes.protocol}}
+        data-protocol="{{externalLinkAttributes.protocol}}"
+      {{/externalLinkAttributes.protocol}}
+
+      >{{name}}{{#externalLinkIcon}} <span class="{{externalLinkClass}}" aria-label="({{externalLinkText}})"></span>{{/externalLinkIcon}}</a>
       {{>sub_tree}}
     </div>
     ${document.querySelector('.js-mmenu__footer')?.outerHTML}
@@ -145,7 +204,20 @@ const Panel = {
   <ul class="mmenu__items">
     {{#sub_tree}}
       <li class="mmenu__item">
-        <a href={{url}} class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}>{{name}}</a>
+
+        <a href="{{url}}" class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+
+        {{#externalLinkAttributes.external}}
+          data-external="true"
+        {{/externalLinkAttributes.external}}
+
+        {{#externalLinkAttributes.protocol}}
+          data-protocol={{externalLinkAttributes.protocol}}
+        {{/externalLinkAttributes.protocol}}
+
+        >
+          {{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
+        </a>
         {{#button}}
           <button class="mmenu__forward " value={{id}} />
         {{/button}}
@@ -219,6 +291,8 @@ const Panel = {
       button,
       active,
       inPath,
+      externalLinkAttributes,
+      externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
       back: ( i >0) ? this.content.at(i-1)?.name ?? frontpageTranslation : false ,
       /***
