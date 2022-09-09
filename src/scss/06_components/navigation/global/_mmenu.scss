@@ -93,6 +93,7 @@ $-footerlink-target-size: 44px;
 .mmenu__language {
   background-color: $color-silver-light;
   border-bottom: 1px solid $-mmenu-border-color;
+  margin-bottom: $spacing;
   padding: 12px $spacing;
   position: relative;
 
@@ -112,7 +113,6 @@ $-footerlink-target-size: 44px;
   grid-template-columns: $-back-icon-bg-size auto;
   grid-template-rows: auto;
   justify-items: center;
-  margin-top: $spacing;
   padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
   position: relative;
   width: 100%;
@@ -165,7 +165,7 @@ $-footerlink-target-size: 44px;
 }
 
 .mmenu__title-link {
-  @include font('special.large_link');
+  @include font('special.navigation.mobile_header');
   align-items: center;
   display: flex;
   margin-bottom: 10px;
