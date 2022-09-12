@@ -1,0 +1,13 @@
+<div class="metadata__item">
+  {% include "@hdbt/misc/icon.twig" with {icon: item_icon} only %}
+  <div>
+    <span class="metadata__item-label">{{ item_label }}</span>
+    <span class="metadata__item-content">
+      {% if item_content|render %}
+        {{ item_content }}
+      {% else %}
+        -
+      {% endif %}
+    </span>
+  </div>
+</div>
