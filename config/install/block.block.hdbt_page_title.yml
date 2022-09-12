@@ -1,8 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - ctools
   theme:
     - hdbt
 id: hdbt_page_title
