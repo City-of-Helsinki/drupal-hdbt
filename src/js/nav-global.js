@@ -64,9 +64,8 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
 
 /**
  * Check if current given menu item has items
- * @returns boolean
+ * @return {boolean} current object has sub_tree with items in it.
  */
-
 const button = function(){
 // return this.hasItems
   return this.sub_tree?.length>0;
@@ -75,8 +74,8 @@ const button = function(){
 
 /**
  * Check if  given menu item url pathname matches current browser pathname
+ * @return {boolean} current object has url and url pathname matches current location pathname
  */
-
 const active = function () {
   try {
     return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
@@ -89,6 +88,7 @@ const active = function () {
 
 /**
  * Convert null `active` values to boolean for mustache templates to avoid using parent values
+ * @return {boolean} does current object have active set and trueish
  */
 const isActive = function () {
   return !!this.active;
@@ -96,6 +96,7 @@ const isActive = function () {
 
 /**
  * Convert null `inPath` values to boolean for mustache templates to avoid using parent values
+ * @return {boolean} does current object have inPath set and trueish
  */
 const isInPath = function () {
   return !!this.inPath;
@@ -104,8 +105,8 @@ const isInPath = function () {
 
 /***
  * Convert attributes to to template-friendly object
+ * @return {object}  {external:bool, protocol:bool}
  */
-
 const externalLinkAttributes = function () {
 
   return {
@@ -118,29 +119,31 @@ const externalLinkAttributes = function () {
 
 /**
  * Determinine icon type and text for external link
+ * @return {object} {class: list of related CSS classes, text: translated description text }
  */
-
 const externalLinkIcon = function () {
   if (!this.external) {
     return false;
   }
 
-  const icon = {   };
-
-  if (this.attributes['data-protocol'] === 'mailto') {
-    icon.class = 'link__type link__type--mailto';
-    icon.text = Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' });
-  } else if (this.attributes['data-protocol'] == 'tel') {
-    icon.class = 'link__type link__type--tel';
-    icon.text = Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' });
-  } else {
-    icon.class = 'link__type link__type--external';
-    icon.text = Drupal.t('Link leads to external service', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' });
-  }
-
-  return icon;
+  return externalLinkIcon.ICONS[ this.attributes['data-protocol']] || externalLinkIcon.ICONS.external;
 };
 
+externalLinkIcon.ICONS =  {
+  mailto: {
+    class: 'link__type link__type--mailto',
+    text: Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' })
+  },
+  tel:{
+    class: 'link__type link__type--tel',
+    text: Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' })
+  },
+  external: {
+    class: 'link__type link__type--external',
+    text: Drupal.t('Link leads to external service', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' })
+  }
+
+};
 
 /**
  * Panel main object.
@@ -213,7 +216,8 @@ const Panel = {
     {{/sub_tree}}
   </ul>
  `
-    };},
+    };
+  },
   menu:null,
   templates:null,
   SCROLL_TRESHOLD:100,
@@ -247,7 +251,7 @@ const Panel = {
       const found = allItems.findRecursive(({ id, url, name, sub_tree, parentId, inPath, active }) => {
         if(id === parentIndex){
           panels.push({ sub_tree, name, url, parentId, inPath, active });
-          //set new parent id. If this is empty, it will stop the while-loop.
+          // Set new parent id. If this is empty, it will stop the while-loop.
           parentIndex = parentId;
           return true;
         }
@@ -273,7 +277,7 @@ const Panel = {
     return this.content.map( (item,i) => ({
       ...item,
       name:item?.name || frontpageTranslation,
-
+      url:item.url || drupalSettings.helfi_navigation.links.canonical,
       // If current item has subitems, show button for next panel.
       button,
       isActive,
@@ -311,6 +315,7 @@ const Panel = {
      * Find the item corresponding to given id in item arrow click event.
      * It's items will be the new current panel. Old panel swipes left.
      */
+
     const next = this.content.at(this.currentIndex).sub_tree.find(({
       id
     }) => id === parentId);
