@@ -227,7 +227,7 @@ const Panel = {
   menu:null,
   templates:null,
   SCROLL_TRESHOLD:100,
-  //Maximum assumed depth of tree. Used for checking if going up is allowed
+  // Maximum assumed depth of tree. Used for checking if going up is allowed
   size: 5,
   data:null,
   currentIndex: 0,
@@ -239,11 +239,10 @@ const Panel = {
     forward:'mmenu__forward',
     back:'mmenu__back'
   },
-  // We use this same url for pointing to frontpage instance at the root level
   getAPIUrl:function(){
-    const frontpageInstanceDomain =  window.location.hostname.indexOf('docker.so') != -1 ? '//helfi-etusivu.docker.so' : '';
-    const currentLangCode = drupalSettings?.path?.currentLanguage || 'fi';
-    return `${frontpageInstanceDomain}/${currentLangCode}/api/v1/global-menu?_format=json`;
+    const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
+    url.searchParams.set('_format','json');
+    return url.toString();
   },
   getRoot:function(){
     return document.getElementById(this.selectors.rootId);
