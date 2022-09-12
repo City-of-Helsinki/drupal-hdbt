@@ -104,6 +104,7 @@ const inPath = function () {
   }
   catch(e) {
     console.warn('Invalid url given to "inPath"-helper'
+      , this.url
     // , {'context':this,e}
     );
   }
