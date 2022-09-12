@@ -1,12 +1,6 @@
 const Mustache = require('mustache');
 const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
-const IN_PATH_WHITELIST = new RegExp(/(hel.fi|docker.so)$/);
-
-
-
-
-
 
 /**
  * Related twig templates:
@@ -94,21 +88,17 @@ const active = function () {
 };
 
 /**
- * Check if current given menu item url pathname is part of current full pathname
+ * Convert null `active` values to boolean for mustache templates to avoid using parent values
  */
+const isActive = function () {
+  return !!this.active;
+};
 
-const inPath = function () {
-  try {
-    const url = new URL(this.url);
-    return !this.external && url && IN_PATH_WHITELIST.test(url.hostname) && window.location.pathname.includes(url.pathname);
-  }
-  catch(e) {
-    console.warn('Invalid url given to "inPath"-helper'
-      , this.url
-    // , {'context':this,e}
-    );
-  }
-  return false;
+/**
+ * Convert null `inPath` values to boolean for mustache templates to avoid using parent values
+ */
+const isInPath = function () {
+  return !!this.inPath;
 };
 
 
@@ -170,7 +160,7 @@ const Panel = {
           <span class="mmenu__back-wrapper">{{back}}</span>
         </button>
       {{/back}}
-      <a href="{{url}}" class="mmenu__title-link{{#inPath}} mmenu__title-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+      <a href="{{url}}" class="mmenu__title-link{{#isInPath}} mmenu__title-link--in-path{{/isInPath}}"{{#isActive}} aria-current="page"{{/isActive}}
 
       {{#externalLinkAttributes.external}}
         data-external="true"
@@ -203,7 +193,7 @@ const Panel = {
     {{#sub_tree}}
       <li class="mmenu__item">
 
-        <a href="{{url}}" class="mmenu__item-link{{#inPath}} mmenu__item-link--in-path{{/inPath}}"{{#active}} aria-current="page"{{/active}}
+        <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}"{{#isActive}} aria-current="page"{{/isActive}}
 
         {{#externalLinkAttributes.external}}
           data-external="true"
@@ -255,9 +245,9 @@ const Panel = {
     let parentIndex = currentItem?.sub_tree?.length ? currentItem.id : currentItem?.parentId;
 
     while(parentIndex) {
-      const found = allItems.findRecursive(({id,url,name,sub_tree,parentId}) => {
-        if(id === parentIndex) {
-          panels.push({sub_tree,name, url,parentId});
+      const found = allItems.findRecursive(({ id, url, name, sub_tree, parentId, inPath, active }) => {
+        if(id === parentIndex){
+          panels.push({ sub_tree, name, url, parentId, inPath, active });
           //set new parent id. If this is empty, it will stop the while-loop.
           parentIndex = parentId;
           return true;
@@ -287,8 +277,8 @@ const Panel = {
 
       // If current item has subitems, show button for next panel.
       button,
-      active,
-      inPath,
+      isActive,
+      isInPath,
       externalLinkAttributes,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
@@ -341,11 +331,15 @@ const Panel = {
   },
   render:function(state) {
     const root = this.getRoot();
-    root.innerHTML = Mustache.render(this.templates.panel, {
-      panels: this.getView(state),
-    }, {
-      sub_tree: this.templates.list,
-    });
+    root.innerHTML = Mustache.render(
+      this.templates.panel,
+      {
+        panels: this.getView(state),
+      },
+      {
+        sub_tree: this.templates.list,
+      }
+    );
 
     if(state === 'load') {
       return;
@@ -410,6 +404,31 @@ const Panel = {
       return item;
     });
 
+    const currentItem = allItems.findRecursive( item => active.call(item) ,'sub_tree');
+
+    if(currentItem) {
+      currentItem.active = true;
+      currentItem.inPath = true;
+    }
+
+    let parentIndex = currentItem?.parentId;
+
+    while(parentIndex) {
+      const found = allItems.findRecursive((item) => {
+        if(item.id === parentIndex) {
+          //set new parent id. If this is empty, it will stop the while-loop.
+          parentIndex = item.parentId;
+          item.inPath= true;
+          return true;
+        }
+        return false;
+      }, 'sub_tree');
+
+      if (!found) {
+        // Stop while-loop.
+        parentIndex = undefined;
+      }
+    }
     this.data = allItems;
   },
   start: async function(){
