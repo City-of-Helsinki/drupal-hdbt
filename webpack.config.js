@@ -108,7 +108,7 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: isDev,
-                additionalData: "$debug_mode: " + isDev + ";",
+                additionalData: '$debug_mode: ' + isDev + ';',
               },
             },
           ],
@@ -149,6 +149,7 @@ module.exports = (env, argv) => {
     ],
     watchOptions: {
       aggregateTimeout: 300,
+      ignored: ['**/node_modules','**/templates','**/translations/','**/modules', '**/dist/','**/config'],
     },
     // Tell us only about the errors.
     stats: 'errors-only',
