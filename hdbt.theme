@@ -1159,6 +1159,12 @@ function hdbt_preprocess_views_view(&$variables) {
   $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows;
+
+  $pager = $variables['pager'];
+  
+  if($pager) {
+    $variables['aria-live'] = 'jotain tekstiä';
+  }
 }
 
 /**
