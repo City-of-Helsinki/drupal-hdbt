@@ -54,18 +54,18 @@ $-branding-icon-size-desktop: $spacing-double;
     top: var(--drupal-toolbar-height);
   }
 
-  .menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .menu__item + .menu__item {
-    margin-left: $spacing-half;
-  }
-
   .block--branding-navigation {
+    .menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu__item + .menu__item {
+      margin-left: $spacing-half;
+    }
+
     .menu__link {
       @include font('special.navigation.icon_label');
       align-self: center;

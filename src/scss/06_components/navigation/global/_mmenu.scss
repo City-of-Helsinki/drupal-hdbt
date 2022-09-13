@@ -301,38 +301,41 @@ $-footerlink-target-size: 44px;
   padding-top: $spacing;
 }
 
-.mmenu__footer-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+.mmenu__footer {
 
-.mmenu__footer-item {
-  margin: 0;
-  padding: 0;
-}
-
-.mmenu__footer-link {
-  $-footer-link-font: 'body';
-  $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
-
-  @include font($-footer-link-font);
-  display: block;
-  padding-bottom: $-footer-link-vertical-padding;
-  padding-left: $spacing;
-  padding-right: $spacing;
-  padding-top: $-footer-link-vertical-padding;
-  text-decoration: none;
-
-  &:hover,
-  &:active {
-    text-decoration: underline;
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  &:focus,
-  &:active {
-    outline: 3px solid $color-black;
-    outline-offset: -3px;
+  .menu__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__link {
+    $-footer-link-font: 'body';
+    $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
+
+    @include font($-footer-link-font);
+    display: block;
+    padding-bottom: $-footer-link-vertical-padding;
+    padding-left: $spacing;
+    padding-right: $spacing;
+    padding-top: $-footer-link-vertical-padding;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    &:focus,
+    &:active {
+      outline: 3px solid $color-black;
+      outline-offset: -3px;
+    }
   }
 }
 
