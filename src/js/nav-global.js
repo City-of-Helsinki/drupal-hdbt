@@ -304,12 +304,9 @@ const Panel = {
     }));
   },
   up: function (parentId) {
-    if(this.currentIndex===this.size) {
-      console.warn('Panel max size reached', this.size);
-      return;
-    }
+
     if(!parentId) {
-      throw new Error('missing id for menu item ' + parentId);
+      throw `Id missing for next menu item  ${parentId}`;
     }
     /**
      * Find the item corresponding to given id in item arrow click event.
