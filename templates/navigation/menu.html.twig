@@ -21,7 +21,7 @@
 
 {% import _self as menus %}
 
-{% if attributes.block_id and attributes.block_id == 'headertopnavigation' %}
+{% if use_global_navigation and attributes.block_id and attributes.block_id == 'external_header_top_navigation' %}
 
   {%
     set menu_classes = [
