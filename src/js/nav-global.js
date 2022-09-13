@@ -222,7 +222,7 @@ const Panel = {
   templates:null,
   SCROLL_TRESHOLD:100,
   // Maximum assumed depth of tree. Used for checking if going up is allowed
-  size: 5,
+  size: 10,
   data:null,
   currentIndex: 0,
   cacheKey: 'hdbt-mobile-menu',
