@@ -265,7 +265,7 @@ const Panel = {
 
     }
 
-    panels.push({sub_tree:allItems});
+    panels.push({sub_tree:allItems, inPath: true});
     panels.reverse();
     this.currentIndex = panels.length-1;
     this.content = [...panels];
