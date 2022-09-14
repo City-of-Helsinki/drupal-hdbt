@@ -46,6 +46,7 @@
   padding-left: $spacing - $spacing-quarter;
 }
 
+.megamenu__link.megamenu__link--in-path,
 .megamenu__link.is-active {
   font-weight: bold;
 }
