@@ -16,6 +16,7 @@ const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global naviga
  */
 
 const widgetsToHideSelector = [
+  'chat-leijuke-wrapper',
   '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
@@ -25,15 +26,16 @@ const widgetsToHideSelector = [
 ];
 
 function toggleWidgets(hide) {
-  const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
-  for (let i = 0; i < widgets.length; i++) {
-    const widget = widgets[i];
+  document.querySelectorAll(widgetsToHideSelector.join(',')).forEach(widget => {
+    /***
+     * Widgets are hidden using [data-] selectors
+     */
     if (hide) {
       widget.dataset.cssmenuHide = true;
     } else {
       delete widget.dataset.cssmenuHide;
     }
-  }
+  });
 }
 
 
@@ -155,9 +157,6 @@ const Panel = {
 {{#panels}}
   <section class="{{panel_class}}">
     <div class="mmenu__panel-body">
-      <div class="mmenu__language">
-        ${document.querySelector('.js-language-switcher')?.outerHTML}
-      </div>
       {{#back}}
         <button class="mmenu__back">
           <span class="mmenu__back-wrapper">{{back}}</span>

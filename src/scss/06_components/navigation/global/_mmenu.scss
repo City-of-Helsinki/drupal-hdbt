@@ -90,20 +90,24 @@ $-footerlink-target-size: 44px;
   transition-timing-function: ease-in;
 }
 
-.mmenu__language {
-  background-color: $color-silver-light;
-  border-bottom: 1px solid $-mmenu-border-color;
-  padding: 12px $spacing;
-  position: relative;
-
-  @include breakpoint($breakpoint-m) {
-    display: none;
-  }
-
-  & + * {
-    margin-top: $spacing;
-  }
+.mmenu__panel-body {
+  padding-top:10px;
 }
+
+// .mmenu__language {
+//   background-color: $color-silver-light;
+//   border-bottom: 1px solid $-mmenu-border-color;
+//   padding: 12px $spacing;
+//   position: relative;
+
+//   @include breakpoint($breakpoint-m) {
+//     display: none;
+//   }
+
+//   & + * {
+//     margin-top: $spacing;
+//   }
+// }
 
 .mmenu__back {
   align-items: start;
