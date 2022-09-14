@@ -38,11 +38,7 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
-{% if pager %}
-  <section{{attributes.addClass(classes)}} aria-live="assertive">
-{% else %}
-  <div{{attributes.addClass(classes)}}>
-{% endif %}
+<div{{attributes.addClass(classes)}}>
   {{ title_prefix }}
   {{ title }}
   {{ title_suffix }}
@@ -71,8 +67,4 @@
   {% endif %}
 
   {{ feed_icons }}
-{% if pager %}
-</section>
-{% else %}
 </div>
-{% endif %}

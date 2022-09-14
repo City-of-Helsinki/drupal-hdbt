@@ -41,7 +41,7 @@
         %}
         <ul class="js-pager__items hds-pagination__button-prev">
           <li>
-            <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }}" aria-label="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }}" rel="prev"{{ items.previous.attributes.addClass(prev_button_classes)|without('href', 'title', 'rel') }}>
+            <a href="{{ items.previous.href }}" role="button" title="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }} {{ current - 1 }}" aria-label="{{ 'Go to previous page'|t({}, {'context': 'Pagination previous page link title'}) }} {{ current - 1 }}" rel="prev"{{ items.previous.attributes.addClass(prev_button_classes)|without('href', 'title', 'rel') }}>
               {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
               <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t({}, {'context': 'Pagination previous page link text'})) }}</span>
             </a>
@@ -102,7 +102,7 @@
         %}
         <ul class="js-pager__items hds-pagination__button-next">
           <li>
-            <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }}" aria-label="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }}" role="button" rel="next"{{ items.next.attributes.addClass(next_button_classes)|without('href', 'title', 'rel') }}>
+            <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }} {{ current + 1 }}" aria-label="{{ 'Go to next page'|t({}, {'context': 'Pagination next page link title'}) }} {{ current + 1 }}" role="button" rel="next"{{ items.next.attributes.addClass(next_button_classes)|without('href', 'title', 'rel') }}>
               <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}</span>
               {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
             </a>
