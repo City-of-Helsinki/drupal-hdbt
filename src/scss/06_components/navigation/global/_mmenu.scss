@@ -62,6 +62,7 @@ $-footerlink-target-size: 44px;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+  padding-top: $spacing;
   transition-delay: 0s, var(--transition-opacity-delay);
   transition-duration: $-transition-duration, 0s;
   transition-property: transform, opacity;
@@ -88,21 +89,6 @@ $-footerlink-target-size: 44px;
   opacity: 0;
   transform: translateX(-50vw);
   transition-timing-function: ease-in;
-}
-
-.mmenu__language {
-  background-color: $color-silver-light;
-  border-bottom: 1px solid $-mmenu-border-color;
-  padding: 12px $spacing;
-  position: relative;
-
-  @include breakpoint($breakpoint-m) {
-    display: none;
-  }
-
-  & + * {
-    margin-top: $spacing;
-  }
 }
 
 .mmenu__back {

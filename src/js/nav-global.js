@@ -155,9 +155,6 @@ const Panel = {
 {{#panels}}
   <section class="{{panel_class}}">
     <div class="mmenu__panel-body">
-      <div class="mmenu__language">
-        ${document.querySelector('.js-language-switcher')?.outerHTML}
-      </div>
       {{#back}}
         <button class="mmenu__back">
           <span class="mmenu__back-wrapper">{{back}}</span>
