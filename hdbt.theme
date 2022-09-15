@@ -850,12 +850,19 @@ function hdbt_preprocess_paragraph(array &$variables) {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
+  $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
   // Set site_name as variable.
   $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
 
+  $variables['city_name'] = t('City of Helsinki');
+
   // Set site front page absolute url as variable.
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+
+  // Set Etusivu absolute url as variable.
+  $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
 }
 
 /**
