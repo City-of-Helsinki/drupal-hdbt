@@ -850,13 +850,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
-  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
   $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $environment = \Drupal::configFactory()
-    ->get('helfi_news_feed.settings')
-    ->get('source_environment') ?: 'prod';
-  $environment = $resolver->getEnvironment(Project::ETUSIVU, $environment);
-  $environment_url = $environment->getUrl($language_id);
 
   // Set site_name as variable.
   $site_config = \Drupal::config('system.site');
@@ -868,7 +862,7 @@ function _hdbt_set_site_information(array &$variables) {
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 
   // Set Etusivu absolute url as variable.
-  $variables['frontpage_instance_url'] = $environment_url;
+  $variables['frontpage_instance_url'] = Url::fromUserInput("https://www.hel.fi/$language_id/");
 }
 
 /**
