@@ -26,15 +26,21 @@
  */
 #}
 
-{% set attributes = attributes.addClass('block--headerlanguagelinks') %}
+{% set attributes = attributes.addClass('block__headerlanguagelinks') %}
 
-<div{{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
- <a href="#otherlangs">AVAA</a>
- <button>DUMMYNappi</button>
- <div class="">
- {# override link list block to inject our own wrapper class #}
+<div id="morelangs" {{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
+ <a href="#morelangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open">
+ <span>
+placeholder
+</span>
+ </a>
+ <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close">
+ <span>
+placeholder
+</span>
+ </a>
+{# override link list block to inject our own wrapper class #}
   {% block content %}
     {{ content }}
   {% endblock %}
-  </div>
 </div>
