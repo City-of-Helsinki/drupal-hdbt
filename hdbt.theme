@@ -862,7 +862,7 @@ function _hdbt_set_site_information(array &$variables) {
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 
   // Set Etusivu absolute url as variable.
-  $variables['frontpage_instance_url'] = Url::fromUserInput("https://www.hel.fi/$language_id/");
+  $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
 }
 
 /**
