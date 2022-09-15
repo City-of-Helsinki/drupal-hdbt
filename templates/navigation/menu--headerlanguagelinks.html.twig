@@ -19,8 +19,9 @@
  */
 #}
 
-<div class="header-wrapper">
+<div class="headerlanguagelinks__wrapper">
     {% for item in items %}
-    <a>FOOFOO DEMO </a>
+    {# TODO if item is nolink, use span instead #}
+    <a {{ create_attribute({'class': "headerlanguagelinks__link"}) }}>{{item.title}}</a>
     {% endfor %}
 </div>

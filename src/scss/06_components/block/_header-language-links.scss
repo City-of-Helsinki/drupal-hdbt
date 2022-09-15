@@ -1,11 +1,21 @@
-.block--headerlanguagelinks {
+
+/*copypasta*/
+
+$-mmenu-active-border: $spacing-quarter;
+$-mmenu-border-color: $color-black-20;
+$-transition-duration: 0.2s;
+$-back-icon-bg-size: 40px;
+$-back-icon-size: $spacing-double;
+$-itemlink-target-size: $spacing-quadruple;
+$-footerlink-target-size: 44px;
+
+.block__headerlanguagelinks {
   align-self: center;
   // background-color: $color-silver-light;
   // border-bottom: 1px solid $color-black-20;
   grid-area: otherlangs;
   // order: 3;
   // padding: 12px $spacing;
-  position: relative;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: calc(100% + #{$spacing-double});
   z-index: 0;
@@ -29,4 +39,56 @@
   //     transition-duration: 0s;
   //   }
   // }
+}
+.headerlanguagelinks__item {}
+
+.headerlanguagelinks__toggle {
+/*hide placeholder*/
+  span {display:none;}
+
+  &::before {
+    @include pseudo-icon('globe', $spacing-double, black);
+    @include hover-link-arrow-transition;
+    content:'';
+    grid-area: icon;
+    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+  }
+
+
+}
+.headerlanguagelinks__wrapper {
+  background:white;
+  border: 2px solid red;
+  grid-area:menu;
+  left:0;
+  max-width:100vw;
+  overflow:hidden;
+  position:absolute;
+  top:7.9rem;
+  /*todo just a random number*/
+  width:100%;
+}
+
+
+.headerlanguagelinks__wrapper, .headerlanguagelinks__toggle--close {
+  display:none;
+}
+
+
+#morelangs:target {
+  .headerlanguagelinks__toggle--close {
+    display:block;
+  }
+
+  .headerlanguagelinks__wrapper {
+    display:grid;
+  }
+
+ .headerlanguagelinks__toggle--open {
+    display:none;
+  }
+}
+
+.headerlanguagelinks__link {
+  display:block;
 }
