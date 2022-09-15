@@ -27,6 +27,7 @@
 #}
 {{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
 
+
 {% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
   {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
@@ -43,7 +44,7 @@
   {% set auto_open = auto_open|default(false) %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes) }}>
+    <ul{{ attributes.removeAttribute('class').addClass(menu_classes) }}>
     {% for item in items %}
       {% set has_children = false %}
       {% set expanded_or_active = false %}
@@ -65,7 +66,7 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
-      <li{{ item.attributes.addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}

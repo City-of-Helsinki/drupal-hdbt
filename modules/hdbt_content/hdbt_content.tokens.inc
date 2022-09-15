@@ -69,15 +69,53 @@ function hdbt_content_tokens(
       $node = $data['node'];
       $image_url = $default_image;
 
-      // If liftup image has an image set, use it as the shareable image.
+      $image_style = ImageStyle::load('og_image');
+
       if (
         $node->hasField('field_liftup_image') &&
         isset($node->field_liftup_image->entity) &&
         $node->field_liftup_image->entity instanceof MediaInterface &&
         $node->field_liftup_image->entity->hasField('field_media_image')
       ) {
-        $image_style = ImageStyle::load('og_image');
+        // If liftup image has an image set, use it as the shareable image.
         $image_entity = $node->field_liftup_image->entity->field_media_image;
+        $image_path = $image_entity->entity->getFileUri();
+        $image_uri = $image_style->buildUri($image_path);
+
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
+
+        $image_url = $image_style->buildUrl($image_path);
+      }
+      elseif (
+        $node->hasField('field_image') &&
+        isset($node->field_image->entity) &&
+        $node->field_image->entity instanceof MediaInterface &&
+        $node->field_image->entity->hasField('field_media_image')
+      ) {
+        // If the node has an image, use that.
+        $image_entity = $node->field_image->entity->field_media_image;
+        $image_path = $image_entity->entity->getFileUri();
+        $image_uri = $image_style->buildUri($image_path);
+
+        // Create derivative if necessary.
+        if (!file_exists($image_uri)) {
+          $image_style->createDerivative($image_path, $image_uri);
+        }
+
+        $image_url = $image_style->buildUrl($image_path);
+      }
+      elseif (
+        $node->hasField('field_organization') &&
+        isset($node->field_organization) &&
+        $node->field_organization->entity->hasField('field_default_image') &&
+        !$node->field_organization->entity->field_default_image->isEmpty()
+      ) {
+        // Use the image from the taxonomy term.
+        $taxonomy_term = $node->field_organization->entity;
+        $image_entity = $taxonomy_term->field_default_image;
         $image_path = $image_entity->entity->getFileUri();
         $image_uri = $image_style->buildUri($image_path);
 

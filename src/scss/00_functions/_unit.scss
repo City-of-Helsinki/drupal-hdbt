@@ -16,3 +16,14 @@
   // stylelint-disable-next-line length-zero-no-unit
   @return $value / $base-size + 0rem;
 }
+
+/// Unremify
+/// Convert rem to px units
+///
+/// @param {Number} value - value in rem to be converted to px units.
+/// @param {Number} base-size - font-size of html element in pixels; defaults to $rem-base-size.
+@function unremify($value, $base-size: $base-font-size) {
+  // stylelint-disable-next-line length-zero-no-unit
+  @return nounit($value) * $base-size + 0px;
+}
+

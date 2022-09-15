@@ -1,0 +1,78 @@
+$-title-spacing: calc(0.5 * (var(--icon-size) - var(--title-line-height))); // Title should be centered to icon vertically
+
+.target-group-links {
+  --gap: #{$spacing-half};
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, #{$spacing-half});
+
+  @include breakpoint($breakpoint-m) {
+    --gap: #{$spacing-and-half};
+  }
+}
+
+.target-group-link {
+  --icon-size: #{$spacing-double};
+  --title-line-height: #{get-line-height('h4')};
+  grid-column-gap: $spacing-and-half;
+  background-color: $color-silver-light;
+  display: grid;
+  grid-template-areas:
+    'icon title'
+    'icon subtitle';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  padding: $spacing-and-half;
+  position: relative;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    --icon-size: #{$spacing-triple};
+    width: calc(50% - 0.5 * var(--gap));
+  }
+
+  @include breakpoint($breakpoint-l) {
+    --title-line-height: #{get-line-height('h4.breakpoint_l')};
+  }
+}
+
+.target-group-link__icon {
+  grid-area: icon;
+}
+
+.target-group-link__icon .hel-icon {
+  display: block;
+}
+
+.target-group-link__title {
+  @include font('h4');
+  grid-area: title;
+  margin: 0;
+  padding-top: $-title-spacing;
+}
+
+.target-group-link__link {
+  text-decoration: none;
+
+  &::before {
+    content: '';
+    height: 100%;
+    inset: 0;
+    position: absolute;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.target-group-link__subtitle {
+  @include font('small');
+  grid-area: subtitle;
+  margin-bottom: $-title-spacing;
+  margin-top: $spacing-half;
+
+  p {
+    margin-top: 0;
+  }
+}

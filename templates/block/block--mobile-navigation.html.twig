@@ -33,9 +33,7 @@
 #}
 
 {# Do we want to render navigation with content from another instance "globally" #}
-{% if use_global_navigation %}
-  GLOBAL NAV BLOCK
-{% else %}
+{% if not use_global_navigation %}
   {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
   <label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button" id="cssmenu-toggle">
@@ -67,6 +65,4 @@
       {{ drupal_entity('block', 'headertopnavigation')}}
     </div>
   </nav>
-
 {% endif %}
-

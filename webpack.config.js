@@ -33,7 +33,7 @@ const Entries = () => {
   ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {
-    entries[path.parse(item).name] = item }
+    entries[path.parse(item).name] = item; }
   );
   return entries;
 };
@@ -50,7 +50,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js',
+      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
       pathinfo: true,
       filename: 'js/[name].min.js',
       publicPath: '../',
@@ -108,7 +108,7 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: isDev,
-                additionalData: "$debug_mode: " + isDev + ";",
+                additionalData: '$debug_mode: ' + isDev + ';',
               },
             },
           ],
@@ -149,6 +149,7 @@ module.exports = (env, argv) => {
     ],
     watchOptions: {
       aggregateTimeout: 300,
+      ignored: ['**/node_modules','**/templates','**/translations/','**/modules', '**/dist/','**/config'],
     },
     // Tell us only about the errors.
     stats: 'errors-only',
@@ -171,7 +172,7 @@ module.exports = (env, argv) => {
         minimizer: [
           new TerserPlugin({
             terserOptions: {
-              ecma: 2015,
+              ecma: 2020,
               format: {
                 comments: false,
               },

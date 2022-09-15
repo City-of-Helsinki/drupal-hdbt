@@ -33,7 +33,7 @@
 #}
 
 {% if links %}
-  <div {{ attributes.addClass('language-switcher') }}>
+  <div {{ attributes.addClass('language-switcher', 'js-language-switcher') }}>
     <div class="language-links">
       {% for item in links %}
         {% set language_link = '' %}

@@ -35,12 +35,16 @@ function hdbt_preprocess(&$variables, $hook) {
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('hdbt_global_navigation');
+    ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
   }
+
+  // Required for allowing subtheming for HDBT theme.
+  $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
+  $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
 }
 
 /**
@@ -98,7 +102,7 @@ function hdbt_preprocess_html(&$variables) {
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  if (\Drupal::moduleHandler()->moduleExists('hdbt_global_navigation')) {
+  if (\Drupal::moduleHandler()->moduleExists('helfi_navigation')) {
     $variables['#attached']['library'][] = 'hdbt/nav-global';
   }
   else {
@@ -177,9 +181,6 @@ function hdbt_preprocess_page(&$variables) {
       $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
       break;
   }
-
-  // Required for allowing subtheming for HDBT theme.
-  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
 
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
