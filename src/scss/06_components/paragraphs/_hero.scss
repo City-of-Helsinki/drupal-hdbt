@@ -246,22 +246,6 @@ $koro-height: 50px;
  * DESIGNS
  */
 
-// Without images design.
-.hero--without-image-center {
-  .hero__container {
-    text-align: center;
-  }
-
-  .hero__text-content {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
-  }
-}
-
 .hero--without-image-left {
   .has-first-gray-bg-block & .hds-koros {
     color: $color-silver-light;
@@ -415,94 +399,6 @@ $koro-height: 50px;
 
     @include breakpoint($breakpoint-l) {
       bottom: -470px;
-    }
-  }
-}
-
-// Background image design.
-.hero--background-image {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 380px;
-  padding-bottom: 85px;
-  position: relative;
-
-  @include breakpoint($breakpoint-s) {
-    min-height: 400px;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    min-height: 440px;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    min-height: 480px;
-  }
-
-  &::after {
-    background-color: rgba($color-black, 0.15);
-    bottom: 0;
-    content: '';
-    display: block;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-  }
-
-  .hero__container {
-    align-items: center;
-    color: $color-white;
-    display: flex;
-    padding-top: $spacing-quadruple;
-    width: 100%;
-    z-index: 3;
-  }
-
-  .hero__title {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-
-    .hds-koros {
-      display: none;
-    }
-
-    img {
-      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
-      object-fit: cover;
-    }
-  }
-
-  .hds-koros {
-    bottom: -1px;
-    color: $color-white;
-    position: absolute;
-    z-index: 2;
-  }
-
-  .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
-  }
-
-  .hds-button {
-    @include hds-button-colors-on-dark-bg;
-  }
-
-  .hero__arrow {
-    bottom: -130px;
-
-    @include breakpoint($breakpoint-l) {
-      bottom: -140px;
     }
   }
 }
