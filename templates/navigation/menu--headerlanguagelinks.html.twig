@@ -18,10 +18,24 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
+{% macro link_render(item) %}
+    <a {{ create_attribute({'class': "headerlanguagelinks__link"}) }}>{{item.title}}</a>
+{% endmacro %}
 
 <div class="headerlanguagelinks__wrapper">
     {% for item in items %}
-    {# TODO if item is nolink, use span instead #}
-    <a {{ create_attribute({'class': "headerlanguagelinks__link"}) }}>{{item.title}}</a>
+    {% if item.below %}
+    <div>
+        <span>{{item.title}}</span>
+        <div>
+        {% for below in item.below %}
+            {{ _self.link_render(below) }}
+        {% endfor %}
+        </div>
+    </div>
+
+    {% else %}
+        {{ _self.link_render(item) }}
+    {% endif %}
     {% endfor %}
 </div>
