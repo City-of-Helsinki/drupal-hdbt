@@ -225,10 +225,7 @@ $-menu-transition-duration: 0.3s;
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
-      // stylelint-disable-next-line max-nesting-depth
-      @supports not (overscroll-behavior-y: contain) {
-        display: none; // Hide other content when menu is visible and overscroll-behaviour is not supported
-      }
+      display: none; // Hide other content when menu is visible, to block tabbing behind menu
     }
   }
 }
