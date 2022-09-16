@@ -1,7 +1,7 @@
 $-tag-gap: $spacing-half;
 $-tag-static-padding: $spacing-half $spacing 10px;
 $-tag-interactive-padding: $spacing 20px 18px;
-$-tag-interactive--search-padding: 10px 20px 12px;
+$-tag-interactive--deletable-padding: 12px 20px 12px;
 
 // Renders styles for tags container
 @mixin tag-container() {
@@ -39,7 +39,7 @@ $-tag-interactive--search-padding: 10px 20px 12px;
 
   @if $style == 'interactive' {
     background-color: transparent;
-    border: 2px solid $color-black;
+    border: 1px solid $color-black;
     border-radius: $spacing-triple;
     padding: $-tag-interactive-padding;
 
@@ -58,11 +58,11 @@ $-tag-interactive--search-padding: 10px 20px 12px;
     }
   }
 
-  @if $style == 'interactive--search' {
+  @if $style == 'interactive--deletable' {
     background-color: transparent;
     border: 1px solid $color-black;
     border-radius: $spacing-triple;
-    padding: $-tag-interactive--search-padding;
+    padding: $-tag-interactive--deletable-padding;
 
     &:hover,
     &:active {
