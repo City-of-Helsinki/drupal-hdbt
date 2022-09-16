@@ -10,12 +10,16 @@ $-itemlink-target-size: $spacing-quadruple;
 $-footerlink-target-size: 44px;
 
 .block__headerlanguagelinks {
-  align-self: center;
+  align-self: stretch;
+  background-color: $color-silver-light;
+  border-bottom: 1px solid $color-black-20;
+  border-left: 1px solid $color-black-20;
+  display:flex;
   // background-color: $color-silver-light;
   // border-bottom: 1px solid $color-black-20;
   grid-area: otherlangs;
   order: 3;
-  // padding: 12px $spacing;
+  padding-left: $spacing;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: calc(100% + #{$spacing-double});
   z-index: 0;
@@ -47,17 +51,44 @@ $-footerlink-target-size: 44px;
 }
 
 .headerlanguagelinks__toggle {
+  align-items: center;
+  display: flex;
+  height:100%;
+  
   text-decoration: none;
   &::before {
-    @include pseudo-icon('globe', $spacing-double, black);
+    @include pseudo-icon('globe', 24px, black);
     @include hover-link-arrow-transition;
     content:'';
     grid-area: icon;
-    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+    // margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
   }
 
+}
+
+.headerlanguagelinks__toggle span {
+  padding-left:4px;
+  &::before {
+    @include hover-link-arrow-transition;
+    content:'';
+    grid-area: icon;
+  }
+}
+
+.headerlanguagelinks__toggle--open span {
+  &::before {
+    @include pseudo-icon('angle-down', 24px, black);
+  }
+}
+
+.headerlanguagelinks__toggle--close span {
+  &::before {
+    @include pseudo-icon('angle-up', 24px, black);
+  }
 
 }
+
+
 .headerlanguagelinks__wrapper {
   background:white;
   border: 2px solid red;
@@ -71,32 +102,6 @@ $-footerlink-target-size: 44px;
   /*todo just a random number*/
   width:100%;
 }
-.headerlanguagelinks__toggle--open span {
-
-  &::before {
-    @include pseudo-icon('angle-down', $spacing-double, black);
-    @include hover-link-arrow-transition;
-    content:'';
-    grid-area: icon;
-    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
-  }
-
-}
-.headerlanguagelinks__toggle--close span {
-
-  &::before {
-    @include pseudo-icon('angle-up', $spacing-double, black);
-    @include hover-link-arrow-transition;
-    content:'';
-    grid-area: icon;
-    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
-  }
-
-}
-
-
-
-
 .headerlanguagelinks__wrapper,
 .headerlanguagelinks__toggle--close {
   display:none;
@@ -114,7 +119,7 @@ $-footerlink-target-size: 44px;
   }
 
   & ~ * .headerlanguagelinks__toggle--close {
-    display:block;
+    display:flex;
   }
 
   & ~ * .headerlanguagelinks__toggle--open {

@@ -18,20 +18,35 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
+
+
+
 {% macro link_render(item) %}
+
 {% if item.is_nolink %}   
-    <span {{ item.attributes.removeAttribute('class').addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
+
+    <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
         {{item.title}}
     </span>  
     {% else %}  
-    <a {{ item.attributes.removeAttribute('class').addClass( "headerlanguagelinks__link ") }}>
-        {{item.title}}
-    </a>
+        {% set link_attributes = {
+        'class': [
+            'headerlanguagelinks__link',
+            item.in_active_trail ? 'menu__link--active-trail',
+        ],
+        'id': item_is_collabsible ? link_id : null,
+        'aria-current': item.is_currentPage ? 'page' : null,
+        } %}
+
+        {{ link(item.title, item.url, link_attributes) }}
+
 {% endif %}
 {% endmacro %}
 
 <div class="headerlanguagelinks__wrapper">
     {% for item in items %}
+
+
      {{ _self.link_render(item) }}
     {% if item.below %}
         <div>
