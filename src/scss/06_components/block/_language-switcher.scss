@@ -7,7 +7,7 @@
   padding: 12px $spacing;
   position: relative;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
-  width: calc(100% + #{$spacing-double});
+  // width: calc(100% + #{$spacing-double});
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
