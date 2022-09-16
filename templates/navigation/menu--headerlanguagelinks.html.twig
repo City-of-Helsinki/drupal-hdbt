@@ -19,23 +19,26 @@
  */
 #}
 {% macro link_render(item) %}
-    <a {{ create_attribute({'class': "headerlanguagelinks__link"}) }}>{{item.title}}</a>
+{% if item.is_nolink %}   
+    <span {{ item.attributes.removeAttribute('class').addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
+        {{item.title}}
+    </span>  
+    {% else %}  
+    <a {{ item.attributes.removeAttribute('class').addClass( "headerlanguagelinks__link ") }}>
+        {{item.title}}
+    </a>
+{% endif %}
 {% endmacro %}
 
 <div class="headerlanguagelinks__wrapper">
     {% for item in items %}
+     {{ _self.link_render(item) }}
     {% if item.below %}
-    <div>
-        <span>{{item.title}}</span>
         <div>
         {% for below in item.below %}
             {{ _self.link_render(below) }}
         {% endfor %}
         </div>
-    </div>
-
-    {% else %}
-        {{ _self.link_render(item) }}
     {% endif %}
     {% endfor %}
 </div>

@@ -28,15 +28,14 @@
 
 {% set attributes = attributes.addClass('block__headerlanguagelinks') %}
 
-<div id="morelangs" {{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
+<div {{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
  <a href="#morelangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open">
  <span>
-placeholder
+
 </span>
  </a>
  <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close">
  <span>
-placeholder
 </span>
  </a>
 {# override link list block to inject our own wrapper class #}

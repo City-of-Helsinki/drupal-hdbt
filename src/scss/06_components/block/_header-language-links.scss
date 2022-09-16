@@ -13,22 +13,24 @@ $-footerlink-target-size: 44px;
   align-self: center;
   // background-color: $color-silver-light;
   // border-bottom: 1px solid $color-black-20;
-  grid-area: otherlangs;
-  // order: 3;
+  grid-area: lang;
+  order: 3;
   // padding: 12px $spacing;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: calc(100% + #{$spacing-double});
   z-index: 0;
 
-  // @include breakpoint($breakpoint-m) {
-  //   background-color: transparent;
-  //   border-bottom: 0 none;
-  //   border-top: none;
-  //   margin-left: auto;
-  //   order: 2;
-  //   padding: 0;
-  //   width: auto;
-  // }
+  @include breakpoint($breakpoint-m) {
+
+    background-color: transparent;
+    border-bottom: 0 none;
+    border-top: none;
+    grid-area: otherlangs;
+    margin-left: auto;
+    order: 2;
+    padding: 0;
+    width: auto;
+  }
 
   // &.scroll-up {
   //   margin-top: -52px;
@@ -44,8 +46,6 @@ $-footerlink-target-size: 44px;
 
 .headerlanguagelinks__toggle {
 /*hide placeholder*/
-  span {display:none;}
-
   &::before {
     @include pseudo-icon('globe', $spacing-double, black);
     @include hover-link-arrow-transition;
@@ -62,29 +62,60 @@ $-footerlink-target-size: 44px;
   grid-area:menu;
   left:0;
   max-width:100vw;
+  max-width: min(1920px, 100vw);
   overflow:hidden;
   position:absolute;
-  top:7.9rem;
+  top: calc(var(--drupal-toolbar-height, 0px) + var(--header-top-height) + var(--branding-height));
   /*todo just a random number*/
   width:100%;
 }
+.headerlanguagelinks__toggle--open span {
 
+  &::before {
+    @include pseudo-icon('angle-down', $spacing-double, black);
+    @include hover-link-arrow-transition;
+    content:'';
+    grid-area: icon;
+    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+  }
 
-.headerlanguagelinks__wrapper, .headerlanguagelinks__toggle--close {
-  display:none;
+}
+.headerlanguagelinks__toggle--close span {
+
+  &::before {
+    @include pseudo-icon('angle-up', $spacing-double, black);
+    @include hover-link-arrow-transition;
+    content:'';
+    grid-area: icon;
+    margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+  }
+
 }
 
 
-#morelangs:target {
-  .headerlanguagelinks__toggle--close {
-    display:block;
-  }
 
-  .headerlanguagelinks__wrapper {
+
+.headerlanguagelinks__wrapper,
+.headerlanguagelinks__toggle--close {
+  display:none;
+}
+
+#morelangs { background:red;
+  height:2rem;
+  scroll-margin-top: 100vh;
+}
+
+#morelangs:target  {
+
+  & ~ * .headerlanguagelinks__wrapper {
     display:grid;
   }
 
- .headerlanguagelinks__toggle--open {
+  & ~ * .headerlanguagelinks__toggle--close {
+    display:block;
+  }
+
+  & ~ * .headerlanguagelinks__toggle--open {
     display:none;
   }
 }
