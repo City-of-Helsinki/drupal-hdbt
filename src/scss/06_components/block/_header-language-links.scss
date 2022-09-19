@@ -9,6 +9,10 @@ $-back-icon-size: $spacing-double;
 $-itemlink-target-size: $spacing-quadruple;
 $-footerlink-target-size: 44px;
 
+
+/* new stuff*/
+$-panel-height:100vh;
+
 .block__headerlanguagelinks {
   align-self: stretch;
   background-color: $color-silver-light;
@@ -85,23 +89,22 @@ $-footerlink-target-size: 44px;
   &::before {
     @include pseudo-icon('angle-up', 24px, black);
   }
-
 }
-
 
 .headerlanguagelinks__wrapper {
-  background:white;
-  border: 2px solid red;
+  background-color: $color-silver;
   grid-area:menu;
+  height:$-panel-height;
   left:0;
+  max-height:$-panel-height;
   max-width:100vw;
-  max-width: min(1920px, 100vw);
+  min-width:100vw;
   overflow:hidden;
-  position:absolute;
-  top: calc(var(--drupal-toolbar-height, 0px) + var(--header-top-height) + var(--branding-height));
-  /*todo just a random number*/
-  width:100%;
+  padding: $spacing-double $spacing;
+  position: absolute;
+
 }
+
 .headerlanguagelinks__wrapper,
 .headerlanguagelinks__toggle--close {
   display:none;
@@ -115,7 +118,7 @@ $-footerlink-target-size: 44px;
 #morelangs:target  {
 
   & ~ * .headerlanguagelinks__wrapper {
-    display:grid;
+    display:block;
   }
 
   & ~ * .headerlanguagelinks__toggle--close {
@@ -129,4 +132,17 @@ $-footerlink-target-size: 44px;
 
 .headerlanguagelinks__link {
   display:block;
+  margin-bottom: $spacing-half;
+  text-decoration: none;
+}
+
+.headerlanguagelinks__link--nolink {
+  display:block;
+  font-weight:bold;
+}
+
+.headerlanguagelinks__link[data-is-external="true"] {
+ &::after {
+    @include pseudo-icon('link-external', 24px, black);
+  }
 }
