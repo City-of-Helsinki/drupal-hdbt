@@ -54,7 +54,6 @@
         <h2 class="visually-hidden" id="menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
 
         <div class="mega-and-mobilemenu">
-          {{ drupal_entity('block', 'language_switcher')}}
 
           {# Render external mega menu block. #}
           {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
