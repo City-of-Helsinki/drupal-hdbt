@@ -47,9 +47,6 @@ $-panel-desktop-width: 243px;
   // }
 }
 
-.headerlanguagelinks__item {
-  
-}
 
 .headerlanguagelinks__toggle {
   align-items: center;
@@ -102,6 +99,7 @@ $-panel-desktop-width: 243px;
   overflow:hidden;
   padding: $spacing-double $spacing;
   position: absolute;
+  z-index:2;
 
   @include breakpoint($breakpoint-m) {
     border: 1px solid $color-black-20;
@@ -135,7 +133,7 @@ $-panel-desktop-width: 243px;
 
 #morelangs:target  {
   // TODO ensure this does not break anything else. 
-  & + .wrapper {
+  & + .wrapper > header {
     position:relative;
   }
 

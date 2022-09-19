@@ -12,7 +12,10 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     display: none;
     margin: 0;
     padding: 0;
-
+    // Focus ring uses extra elements instead of native outline css.
+    // This element needs to be put into z-index context or 
+    // other menus will just make a mess.
+    z-index:0;  
     @include breakpoint($breakpoint-l) {
       display: flex;
     }
@@ -136,7 +139,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     min-width: 310px;
     position: absolute;
     width: calc(100% + #{$spacing-quadruple});
-    z-index: 100;
+    z-index: 2; // does it REALLY need more than this?
   }
 
   // Secondary menu items open
