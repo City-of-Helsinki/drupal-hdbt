@@ -3,7 +3,7 @@
 {% set description = content.field_hero_desc %}
 
 {% if design == "background-image" %}
-  {% set design_class = "hero--background-image" %}
+  {% set design_class = "hero--with-image-bottom" %}
 {% elseif design == "diagonal" %}
   {% set design_class = "hero--diagonal" %}
 {% elseif design == "with-image-bottom" %}
@@ -13,7 +13,7 @@
 {% elseif design == "with-image-right" %}
   {% set design_class = "hero--with-image-right" %}
 {% elseif design == "without-image-center" %}
-  {% set design_class = "hero--without-image-center" %}
+  {% set design_class = "hero--without-image-left" %}
 {% elseif design == "without-image-left" %}
   {% set design_class = "hero--without-image-left" %}
 {% elseif design == "with-search" %}
