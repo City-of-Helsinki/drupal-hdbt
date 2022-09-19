@@ -179,6 +179,7 @@ $-menu-transition-duration: 0.3s;
   overflow-y: hidden;
 }
 
+
 // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
 // For this reason I had to remove the closing animation when there is no js available :(
 #menu:not([data-js]) ~ * .menu-dropdown__wrapper,
@@ -195,6 +196,14 @@ $-menu-transition-duration: 0.3s;
     }
   }
 
+
+  & ~ * .block__headerlanguagelinks,
+  
+  & ~ * .headerlanguagelinks__wrapper
+  {
+    display:none;
+  }
+
   & ~ * .menu-toggle__open {
     visibility: hidden; // Menu text and hamburger icon are hidden
   }
@@ -208,6 +217,7 @@ $-menu-transition-duration: 0.3s;
     transition: transform $-menu-transition-duration ease-out, visibility 0s linear 0s;
     visibility: visible;
   }
+
 
   & ~ * .menu-dropdown__content {
     transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
