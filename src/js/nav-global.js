@@ -120,6 +120,14 @@ const externalLinkAttributes = function () {
 
 
 /**
+ * Convert null `attributes.lang` values to boolean for mustache templates to avoid using parent values
+ * @return {boolean} does current object have attributes.lang set and trueish
+ */
+const hasLang = function () {
+  return !!this.attributes?.lang;
+};
+
+/**
  * Determinine icon type and text for external link
  * @return {object} {class: list of related CSS classes, text: translated description text }
  */
@@ -172,6 +180,10 @@ const Panel = {
         data-protocol="{{externalLinkAttributes.protocol}}"
       {{/externalLinkAttributes.protocol}}
 
+      {{#hasLang}}
+        lang="{{attributes.lang}}"
+      {{/hasLang}}
+
       >{{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
       {{>sub_tree}}
     </div>
@@ -204,6 +216,10 @@ const Panel = {
         {{#externalLinkAttributes.protocol}}
           data-protocol={{externalLinkAttributes.protocol}}
         {{/externalLinkAttributes.protocol}}
+
+        {{#hasLang}}
+          lang="{{attributes.lang}}"
+        {{/hasLang}}
 
         >
           {{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
@@ -282,6 +298,7 @@ const Panel = {
       isActive,
       isInPath,
       externalLinkAttributes,
+      hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
       back: ( i >0) ? this.content.at(i-1)?.name ?? frontpageTranslation : false ,
