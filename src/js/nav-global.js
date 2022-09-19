@@ -16,6 +16,7 @@ const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global naviga
  */
 
 const widgetsToHideSelector = [
+  '#chat-leijuke-wrapper',
   '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
@@ -25,15 +26,16 @@ const widgetsToHideSelector = [
 ];
 
 function toggleWidgets(hide) {
-  const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
-  for (let i = 0; i < widgets.length; i++) {
-    const widget = widgets[i];
+  document.querySelectorAll(widgetsToHideSelector.join(',')).forEach(widget => {
+    /***
+     * Widgets are hidden using [data-] selectors
+     */
     if (hide) {
       widget.dataset.cssmenuHide = true;
     } else {
       delete widget.dataset.cssmenuHide;
     }
-  }
+  });
 }
 
 
@@ -485,15 +487,15 @@ const Panel = {
   menuToggle:  function() {
     if (this.menuIsOpen()) {
       this.toggleButton.setAttribute('aria-expanded', 'false');
-      Panel.menu.dataset.target = 'false';
+      this.menu.dataset.target = 'false';
       toggleWidgets(false);
     } else {
       toggleWidgets(true);
-      Panel.menu.dataset.target = 'true';
-      Panel.toggleButton.setAttribute('aria-expanded', 'true');
+      this.menu.dataset.target = 'true';
+      this.toggleButton.setAttribute('aria-expanded', 'true');
     }
     // We should always focus the menu button after toggling the menu
-    Panel.toggleButton.focus();
+    this.toggleButton.focus();
   }
 };
 
