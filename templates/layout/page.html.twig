@@ -48,32 +48,40 @@
       {% endif %}
 
       {% if page.header_branding %}
-        {#
-          Render the header branding region blocks in a specific order.
-          Exclude the external menu mega menu block as it will be rendered
-          manually in external fallback menu.
-          See. block--external-menu-block-fallback.html.twig:61.
-        #}
-        {% set header_branding_blocks = [
-          'external_menu_mobile_menu',
-          active_theme ~ '_sitebranding',
-          active_theme ~ '_language_switcher',
-          active_theme ~ '_brandingnavigation',
-          active_theme ~ '_mobile_navigation',
-        ] %}
+        <div id="header-branding" class="header-branding">
+          {# Manually select which blocks to render in header branding region. #}
+          {% set block__site_branding = active_theme ~ '_sitebranding' %}
+          {% set block__external_fallback_menu = 'external_fallback_menu' %}
+          {% set block__external_menu_mega_menu = 'external_menu_mega_menu' %}
+          {% set block__language_switcher = active_theme ~ '_language_switcher' %}
+          {% set block__external_header_language_links = 'external_header_language_links' %}
+          {% set block__branding_navigation = active_theme ~ '_brandingnavigation' %}
 
-        {% set exclude_header_branding_blocks = [
-          'external_menu_mega_menu'
-        ] %}
+          {#
+            Render the header branding region blocks in a specific order.
+            Exclude the external menu mega menu block as it will be rendered
+            manually in external fallback menu.
+            See. block--external-menu-block-fallback.html.twig:61.
+          #}
+          {{ drupal_entity('block', block__external_fallback_menu) }}
+          {{ drupal_entity('block', block__site_branding) }}
 
-        <div{{ attributes.addClass('header-branding').setAttribute('id', 'header-branding') }}>
-          {% for block in header_branding_blocks %}
-            {{ drupal_entity('block', block) }}
-          {% endfor %}
+          <div class="language-wrapper">
+            {{ drupal_entity('block', block__language_switcher) }}
+            {{ drupal_entity('block', block__external_header_language_links) }}
+          </div>
 
-          {{ page.header_branding|without(
-            header_branding_blocks|merge(exclude_header_branding_blocks)|join(',')
-          ) }}
+          {{ drupal_entity('block', block__branding_navigation) }}
+
+          {# Render the header branding region without manually rendered blocks #}
+          {{ page.header_branding|without([
+            block__site_branding,
+            block__external_fallback_menu,
+            block__external_menu_mega_menu,
+            block__language_switcher,
+            block__external_header_language_links,
+            block__branding_navigation
+          ]) }}
         </div>
       {% endif %}
 
