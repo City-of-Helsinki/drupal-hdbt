@@ -45,9 +45,7 @@
 
 <div class="headerlanguagelinks__wrapper">
     {% for item in items %}
-
-
-     {{ _self.link_render(item) }}
+    {{ _self.link_render(item) }}
     {% if item.below %}
         <div class="headerlanguagelinks__group">
         {% for below in item.below %}

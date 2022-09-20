@@ -198,10 +198,16 @@ $-menu-transition-duration: 0.3s;
 
 
   & ~ * .block__headerlanguagelinks,
-  
   & ~ * .headerlanguagelinks__wrapper
   {
     display:none;
+  }
+
+  
+  @include breakpoint($breakpoint-m) {
+    & ~ * .block__headerlanguagelinks {
+      display:flex;
+    }
   }
 
   & ~ * .menu-toggle__open {
@@ -237,7 +243,10 @@ $-menu-transition-duration: 0.3s;
     display: none;
   }
 }
-
+/**
+ * toggleWidgets.js could maybe inject this 
+ * instead of this hanging around in random file corner
+ */
 [data-cssmenu-hide] {
   display: none !important;
 }
