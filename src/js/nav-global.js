@@ -180,11 +180,13 @@ const Panel = {
         data-protocol="{{externalLinkAttributes.protocol}}"
       {{/externalLinkAttributes.protocol}}
 
+      ><span class="mmenu__link__text"
+
       {{#hasLang}}
         lang="{{attributes.lang}}"
       {{/hasLang}}
 
-      >{{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
+      >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
       {{>sub_tree}}
     </div>
     ${document.querySelector('.js-mmenu__footer')?.outerHTML}
@@ -217,12 +219,13 @@ const Panel = {
           data-protocol={{externalLinkAttributes.protocol}}
         {{/externalLinkAttributes.protocol}}
 
-        {{#hasLang}}
-          lang="{{attributes.lang}}"
-        {{/hasLang}}
+        ><span class="mmenu__link__text"
 
-        >
-          {{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
+      {{#hasLang}}
+        lang="{{attributes.lang}}"
+      {{/hasLang}}
+
+      >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
         </a>
         {{#button}}
           <button class="mmenu__forward " value={{id}} />
