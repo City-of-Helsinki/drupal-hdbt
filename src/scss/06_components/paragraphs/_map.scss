@@ -30,8 +30,8 @@ $-map-aspect-ratio-mobile: 1;
   }
 }
 
-.components--upper .component--map,
-.unit .component--map {
+.has-sidebar .components--upper .component--map,
+.has-sidebar .unit .component--map {
   @include breakpoint(max-width $breakpoint-l) {
     @include component-negative-side-margin;
   }
