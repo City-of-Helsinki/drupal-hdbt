@@ -28,9 +28,10 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-.mega-and-mobilemenu .block--language-switcher,
 .mega-and-mobilemenu .mobile-menu-fallback,
 .mega-and-mobilemenu .mmenu__footer {
+  padding-top: $spacing;
+
   @include breakpoint($breakpoint-l) {
     display: none;
   }
@@ -47,7 +48,6 @@ $-menu-transition-duration: 0.3s;
     display: grid;
   }
 
-  .mega-and-mobilemenu .block--language-switcher,
   .mega-and-mobilemenu .mobile-menu-fallback,
   .mega-and-mobilemenu .mmenu__footer {
     display: none;
@@ -192,14 +192,6 @@ $-menu-transition-duration: 0.3s;
   & ~ * .header-branding {
     @include breakpoint(max-width $breakpoint-l) {
       border-bottom: 0 none; // Hide header branding bottom border when menu is open and visible
-    }
-  }
-
-  & ~ * .header-branding > .block--language-switcher {
-    display: none; // Should be hidden on small sizes when menu is open // First language switcher
-
-    @include breakpoint($breakpoint-m) {
-      display: block; // Should be visible when second language switcher is not visible inside menu
     }
   }
 
