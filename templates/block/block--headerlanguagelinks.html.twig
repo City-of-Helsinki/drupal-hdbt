@@ -29,8 +29,11 @@
 {% set attributes = attributes.addClass('block__headerlanguagelinks') %}
 
 <div {{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
- <a href="#morelangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open"><span></span></a>
- <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close"><span></span></a>
+ <a href="#otherlangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open headerlanguagelinks__toggle--link"><span></span></a>
+ <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close headerlanguagelinks__toggle--link"><span></span></a>
+ <button id="js-otherlangs-button" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--js headerlanguagelinks__toggle--open ">
+  <span></span>
+ </button>
 </div>
 {% block content %}
   {{ content }}

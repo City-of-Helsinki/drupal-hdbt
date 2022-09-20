@@ -75,6 +75,14 @@ $-panel-desktop-width: 243px;
     grid-area: icon;
   }
 }
+.headerlanguagelinks__toggle--js {
+  background-color: transparent ;
+  border:0;
+
+
+
+}
+
 
 .headerlanguagelinks__toggle--open span {
   &::before {
@@ -114,9 +122,7 @@ $-panel-desktop-width: 243px;
     top:auto;
     top:133px; // todo see if this can be calculated
     width: $-panel-desktop-width;
-}
-
-
+  }
 }
 
 
@@ -126,12 +132,24 @@ $-panel-desktop-width: 243px;
   display:none;
 }
 
-#morelangs { background:red;
-  height:2rem;
+#otherlangs { 
   scroll-margin-top: 100vh;
 }
 
-#morelangs:target  {
+
+
+/*hide button when JS is not available, hide links when it is*/
+#otherlangs[data-js] ~ * .headerlanguagelinks__toggle--js {
+  display: flex;
+}
+
+#otherlangs[data-js] ~ * .headerlanguagelinks__toggle--link,
+#otherlangs:not([data-js]) ~ * .headerlanguagelinks__toggle--js   {
+  display: none !important;
+}
+
+#otherlangs:target,
+#otherlangs[data-target='true']  {
   // TODO ensure this does not break anything else. 
   & + .wrapper > header {
     position:relative;
@@ -141,6 +159,17 @@ $-panel-desktop-width: 243px;
     display:block;
   }
 
+  // & ~ * .headerlanguagelinks__toggle--close {
+  //   display:flex;
+  // }
+
+  // & ~ * .headerlanguagelinks__toggle--open {
+  //   display:none;
+  // }
+}
+
+
+#otherlangs:target {
   & ~ * .headerlanguagelinks__toggle--close {
     display:flex;
   }
