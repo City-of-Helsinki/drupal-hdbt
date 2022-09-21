@@ -101,13 +101,15 @@ $-panel-desktop-width: 243px;
   grid-area:menu;
   height:$-panel-height;
   left:0;
+  list-style: none;
+  margin:0;
   max-height:$-panel-height;
   max-width:100vw;
   min-width:100vw;
   overflow:hidden;
   padding: $spacing-double $spacing;
   position: absolute;
-  z-index:2;
+  z-index:3;
 
   @include breakpoint($breakpoint-m) {
     border: 1px solid $color-black-20;
@@ -119,13 +121,10 @@ $-panel-desktop-width: 243px;
     min-width:auto;
     position: absolute;
     right:80px;
-    top:auto;
     top:133px; // todo see if this can be calculated
     width: $-panel-desktop-width;
   }
 }
-
-
 
 .headerlanguagelinks__wrapper,
 .headerlanguagelinks__toggle--close {
@@ -151,7 +150,7 @@ $-panel-desktop-width: 243px;
 #otherlangs:target,
 #otherlangs[data-target='true']  {
   // TODO ensure this does not break anything else. 
-  & + .wrapper > header {
+  & + .wrapper > .header {
     position:relative;
   }
 
@@ -188,6 +187,11 @@ margin-bottom: $spacing;
   display:block;
   margin-bottom: $spacing-half;
   text-decoration: none;
+
+  &:hover,  &:active {
+    text-decoration: underline;
+  }
+
 }
 
 .headerlanguagelinks__link--nolink {

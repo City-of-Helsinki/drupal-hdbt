@@ -158,17 +158,13 @@ const Panel = {
     <ul class="mmenu__items">
       {{#sub_tree}}
         <li class="mmenu__item">
-  
           <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}"{{#isActive}} aria-current="page"{{/isActive}}
-  
           {{#externalLinkAttributes.external}}
             data-external="true"
           {{/externalLinkAttributes.external}}
-  
           {{#externalLinkAttributes.protocol}}
             data-protocol={{externalLinkAttributes.protocol}}
           {{/externalLinkAttributes.protocol}}
-  
           >
             {{name}}{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
           </a>
@@ -227,7 +223,6 @@ const Panel = {
       }
   
     }
-  
     panels.push({sub_tree:allItems, inPath: true});
     panels.reverse();
     this.currentIndex = panels.length-1;
@@ -266,8 +261,7 @@ const Panel = {
       })
     }));
   },
-  up: function (parentId) {
-  
+  up: function (parentId) { 
     if(!parentId) {
       throw `Id missing for next menu item  ${parentId}`;
     }
@@ -275,7 +269,6 @@ const Panel = {
        * Find the item corresponding to given id in item arrow click event.
        * It's items will be the new current panel. Old panel swipes left.
        */
-  
     const next = this.content.at(this.currentIndex).sub_tree.find(({
       id
     }) => id === parentId);
@@ -355,9 +348,7 @@ const Panel = {
   
     const MENU = await fetch(this.getAPIUrl());
     const data = await MENU.json();
-  
-  
-    var allInstances = Object.getOwnPropertyNames(data);
+    const allInstances = Object.getOwnPropertyNames(data);
   
     if (!allInstances.length) {
       throw new Error('No instances found in data', data);
@@ -421,14 +412,20 @@ const Panel = {
        *  Bind one click event listener to main panel. One for all click events.!
        *  Add more if one handler becomes too cumbersome.
        *  */
-    this.getRoot().addEventListener('click', ({
-      target: {
-        classList,
-        value: id,
-        parentElement
-      }
-    }) => {
+    this.getRoot().addEventListener('click', (e) => {
       // Arrow function keeps us in Panel context for "this". Take what you need from event
+      const { 
+        target: {
+          classList,
+          value: id,
+          parentElement,
+        }
+      } = e;
+     
+      e.stopImmediatePropagation();
+      // Or outside-of-menu-click listener will be triggered incorrectly due to rerender before parent lookup.
+      // See nav-global.js
+
       if (classList && classList.contains(this.selectors.forward)) {
         this.up(id);
       } else if (classList && classList.contains(this.selectors.back) || parentElement?.classList && parentElement?.classList.contains(this.selectors.back)) {
@@ -457,16 +454,19 @@ const Panel = {
       ToggleWidgets.toggle(true);
       this.menu.dataset.target = 'true';
       this.toggleButton.setAttribute('aria-expanded', 'true');
+      if(this.onOpen) {
+        this.onOpen();
+      }
     }
     // We should always focus the menu button after toggling the menu
     this.toggleButton.focus();
   },
-  init:function(){
+  init:function({onOpen}){
     /**
      * Start the panel after DOM has loaded.
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
      */
-
+    this.onOpen = onOpen;
     document.addEventListener('DOMContentLoaded', () => {
     // See  block--mobile-navigation.html.twig for the button
       this.toggleButton = document.querySelector('.js-menu-toggle-button');
@@ -502,7 +502,6 @@ const Panel = {
         this.toggleButton.removeEventListener('click',start);
         this.start();
       };
-  
       /**
      * Add start-event to menu toggle button.
      *
@@ -522,7 +521,6 @@ const Panel = {
         this.menuToggle();
       }
     });
-  
   }
 };
 
