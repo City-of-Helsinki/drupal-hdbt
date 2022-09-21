@@ -95,11 +95,13 @@
             <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}</span></span>
           {% endif %}
 
+          {% set menu_aria_controls = "menu--level-" ~ (menu_level + 1) ~ "-" ~ menu_id ~ random() %}
+
           {% if item_is_collabsible %}
             <button
               type="button"
               aria-expanded="false"
-              aria-controls="menu--level-{{ menu_level + 1 }}"
+              aria-controls="{{ menu_aria_controls }}"
               aria-labelledby="{{ link_id }}"
               aria-haspopup="true"
               class="menu__toggle-button">
@@ -108,7 +110,7 @@
           {% endif %}
         </span>
         {% if has_children %}
-          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, allow_collabsible, auto_open) }}
+          {{ menus.menu_links(item.below, attributes|without('class').setAttribute('id', menu_aria_controls), menu_level + 1, allow_collabsible, auto_open) }}
         {% endif %}
       </li>
     {% endfor %}

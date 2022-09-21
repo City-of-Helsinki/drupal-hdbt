@@ -130,7 +130,8 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
   // Handle menu link focus style when it has children
   .menu__item--item-below .menu__link:focus::after {
-    width: calc(100% - #{24px + 4px}); // Width of the dropdown button and padding.
+    left: -2px;
+    width: calc(100% - #{$spacing-and-half}); // Width of the dropdown button and padding.
   }
 
   // Active trail items, first level
