@@ -72,7 +72,10 @@
 
           <div class="language-wrapper">
             {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
-            {{ drupal_entity('block', block__external_header_language_links) }}
+
+            {% block header_language_links %}
+              {{ drupal_entity('block', block__external_header_language_links) }}
+            {% endblock header_language_links %}
           </div>
 
           {# Render the header branding region without manually rendered blocks #}
