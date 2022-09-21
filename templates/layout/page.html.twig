@@ -48,12 +48,43 @@
       {% endif %}
 
       {% if page.header_branding %}
-        {#
-          Render the header branding region without the external menu block.
-          External mega menu block will be rendered manually in external fallback menu.
-          See. block--external-menu-block-fallback.html.twig:61.
-        #}
-        {{ page.header_branding|without('external_menu_mega_menu') }}
+        <div id="header-branding" class="header-branding">
+          {# Manually select which blocks to render in header branding region. #}
+          {% set block__site_branding = active_theme ~ '_sitebranding' %}
+          {% set block__external_fallback_menu = 'external_fallback_menu' %}
+          {% set block__external_menu_mega_menu = 'external_menu_mega_menu' %}
+          {% set block__language_switcher = active_theme ~ '_language_switcher' %}
+          {% set block__external_header_language_links = 'external_header_language_links' %}
+          {% set block__branding_navigation = active_theme ~ '_brandingnavigation' %}
+
+          {#
+            Render the header branding region blocks in a specific order: mobile tabbing order
+            Exclude the external menu mega menu block as it will be rendered
+            manually in external fallback menu.
+            See. block--external-menu-block-fallback.html.twig:61.
+          #}
+
+          {{ drupal_entity('block', block__site_branding) }} {# Logo #}
+
+          {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
+
+          {{ drupal_entity('block', block__external_fallback_menu) }} {# Mobile menu #}
+
+          <div class="language-wrapper">
+            {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
+            {{ drupal_entity('block', block__external_header_language_links) }}
+          </div>
+
+          {# Render the header branding region without manually rendered blocks #}
+          {{ page.header_branding|without([
+            block__site_branding,
+            block__branding_navigation,
+            block__external_fallback_menu,
+            block__language_switcher,
+            block__external_header_language_links,
+            block__external_menu_mega_menu
+          ]) }}
+        </div>
       {% endif %}
 
       {% if page.header_bottom %}
