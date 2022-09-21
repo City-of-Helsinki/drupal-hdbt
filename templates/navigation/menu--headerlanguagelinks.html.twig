@@ -24,7 +24,6 @@
 {% macro link_render(item) %}
 
 {% if item.is_nolink %}   
-
     <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
         {{item.title}}
     </span>  
@@ -43,8 +42,9 @@
 {% endif %}
 {% endmacro %}
 
-<div class="headerlanguagelinks__wrapper">
+<ul class="headerlanguagelinks__wrapper">
     {% for item in items %}
+    <li>
     {{ _self.link_render(item) }}
     {% if item.below %}
         <div class="headerlanguagelinks__group">
@@ -53,5 +53,6 @@
         {% endfor %}
         </div>
     {% endif %}
+    </li>
     {% endfor %}
-</div>
+</ul>

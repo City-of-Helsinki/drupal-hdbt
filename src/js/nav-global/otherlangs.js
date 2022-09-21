@@ -10,20 +10,15 @@ const ToggleButton = {
     let oldState;
     let newState;
     if(isOpen){
-  
       oldState = this.selectors.closeClassName;
       newState = this.selectors.openClassName;
       delete this.instance.dataset.target;
       this.instance.setAttribute('aria-expanded', 'false');
-
     } else {
       oldState = this.selectors.openClassName;
       newState = this.selectors.closeClassName;
-
       this.instance.setAttribute('aria-expanded', 'true');
-
     }
-    console.log({oldState,newState});
     this.instance.classList.remove(oldState);
     this.instance.classList.add(newState);
   },
@@ -31,7 +26,6 @@ const ToggleButton = {
     this.instance = document.querySelector(this.selectors.id);
   }
 };
-
 
 const OtherLangsDropdown = {
   HASH_ID: '#otherlangs',
@@ -41,18 +35,21 @@ const OtherLangsDropdown = {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true'; 
   },
   toggle:function(){
-    const isOpen = this.isOpen();
-    console.log({isOpen},this.targetNode.dataset);
-    if(isOpen) {
+    const isOpen = this.isOpen(); //when toggle is called. next state will be opposite
+    if(isOpen) { //close it.
       window.location.hash = '';
       this.targetNode.dataset.target = 'false';
+     
     }
-    else {
+    else { //menu is closed, open it and call onOpen
       this.targetNode.dataset.target = 'true';
+      if(this.onOpen) {
+        this.onOpen();
+      }
     }
-    console.log('toggled');
     this.toggleButton.toggle(isOpen);
   },
+  onOpen:null,
   addListeners: function(){
     /**   
      * Close menu on ESC
@@ -62,35 +59,30 @@ const OtherLangsDropdown = {
         this.toggle();
       }
     });
-
     /**
      * toggle menu from button
      * 
      */
-    this.toggleButton.instance.addEventListener('click',(e)=>{
-      console.log(e,this);
-      
+    this.toggleButton.instance.addEventListener('click',()=> {      
       this.toggle();
     });
-
   },
-
-  init:function(){
-    console.log('init otherlangs menu');
+  init:function({onOpen}){
+    this.onOpen = onOpen;
     document.addEventListener('DOMContentLoaded', () => {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);
+      if(!this.targetNode) {
+        throw `OtherLangsDropdown target node  ${this.HASH_ID} missing.`;
+      }
       /**
        * hide nojs menu links, show button instead.
        */
       this.targetNode.dataset.js = true;
       this.toggleButton.init();
       this.addListeners();
-
     });
-        
   }
-
 };
 
 

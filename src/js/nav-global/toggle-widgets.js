@@ -4,7 +4,7 @@
   */
 
 const HIDE_SELECTORS = [
-  'chat-leijuke-wrapper',
+  '#chat-leijuke-wrapper', // Chat Leijuke for loading specific chats
   '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
   '#smartti-wrapper', // Smartti chatbot in kymp
@@ -14,9 +14,7 @@ const HIDE_SELECTORS = [
 ];
   
 function toggle(hide) {
-  const SELECTORS = HIDE_SELECTORS.join(',');
-  console.log(SELECTORS);
-  document.querySelectorAll(SELECTORS).forEach(widget => {
+  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
     if(hide) {
       widget.dataset.cssmenuHide = true;
     } else {
@@ -25,7 +23,6 @@ function toggle(hide) {
   });
 }
   
-
 module.exports =  {
   toggle,
   HIDE_SELECTORS
