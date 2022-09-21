@@ -21,9 +21,29 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     }
   }
 
-  .menu--level-0 {
+  .menu--level-0,
+  .site-name__container {
     @include flex-gap($-main-nav-spacing, $spacing-double);
     flex-wrap: wrap;
+  }
+
+  .site-name__container {
+    display: none;
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  .site-name__link {
+    @include font('special.site_name');
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   .menu__item {

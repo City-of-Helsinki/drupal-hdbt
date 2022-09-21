@@ -91,10 +91,6 @@ $-footerlink-target-size: 44px;
   transition-timing-function: ease-in;
 }
 
-.mmenu__panel-body {
-  padding-top:10px;
-}
-
 .mmenu__back {
   align-items: start;
   background-color: $color-white;
@@ -289,9 +285,6 @@ $-footerlink-target-size: 44px;
   flex-grow: 1;
   padding-bottom: $spacing;
   padding-top: $spacing;
-}
-
-.mmenu__footer {
 
   .menu {
     list-style: none;

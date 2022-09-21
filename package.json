@@ -67,7 +67,7 @@
     "webpack-cli": "^4.7.2",
     "webpack-merge": "^5.0.0",
     "webpack-notifier": "^1.14.0",
-    "webpack-remove-empty-scripts": "^0.8.0"
+    "webpack-remove-empty-scripts": "^1.0.0"
   },
   "lint-staged": {
     "src/scss/**/*.scss": [

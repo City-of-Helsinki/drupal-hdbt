@@ -174,8 +174,8 @@ msgid "Pagination"
 msgstr "Sivutus"
 
 msgctxt "Pagination previous page link title"
-msgid "Go to previous page"
-msgstr "Palaa edelliselle sivulle"
+msgid "Go to previous page number"
+msgstr "Palaa edelliselle sivulle numero"
 
 msgctxt "Pagination previous page link text"
 msgid "Previous"
@@ -197,8 +197,8 @@ msgid "Go to page @key"
 msgstr "Siirry sivulle @key"
 
 msgctxt "Pagination next page link title"
-msgid "Go to next page"
-msgstr "Mene seuraavalle sivulle"
+msgid "Go to next page number"
+msgstr "Mene seuraavalle sivulle numero"
 
 msgctxt "Pagination next page link text"
 msgid "Next"
