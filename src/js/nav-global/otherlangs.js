@@ -6,7 +6,6 @@ const ToggleButton = {
   },
   instance:null,
   toggle:function(isOpen){
-    console.log('otherlang menu buttontoggle');
     let oldState;
     let newState;
     if(isOpen){
@@ -24,22 +23,27 @@ const ToggleButton = {
   },
   init: function() {
     this.instance = document.querySelector(this.selectors.id);
+    if(!this.instance) {
+      throw `OtherLangsDropdown button missing. Looking for ${this.selectors.id}`;
+    }
   }
 };
 
 const OtherLangsDropdown = {
   HASH_ID: '#otherlangs',
   toggleButton:ToggleButton,
+  running:false,
   targetNode:null,
+  onOpen:null,
   isOpen:function(){
-    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true'; 
+    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
   },
   toggle:function(){
     const isOpen = this.isOpen(); //when toggle is called. next state will be opposite
     if(isOpen) { //close it.
       window.location.hash = '';
       this.targetNode.dataset.target = 'false';
-     
+
     }
     else { //menu is closed, open it and call onOpen
       this.targetNode.dataset.target = 'true';
@@ -49,9 +53,8 @@ const OtherLangsDropdown = {
     }
     this.toggleButton.toggle(isOpen);
   },
-  onOpen:null,
   addListeners: function(){
-    /**   
+    /**
      * Close menu on ESC
      */
     document.addEventListener('keydown', (e) => {
@@ -61,19 +64,23 @@ const OtherLangsDropdown = {
     });
     /**
      * toggle menu from button
-     * 
+     *
      */
-    this.toggleButton.instance.addEventListener('click',()=> {      
+    this.toggleButton.instance.addEventListener('click',()=> {
       this.toggle();
     });
   },
   init:function({onOpen}){
+    if(this.running) {
+      console.warn('Lang menu already initiated. Is it included more than once?');
+      return;
+    }
     this.onOpen = onOpen;
     document.addEventListener('DOMContentLoaded', () => {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);
       if(!this.targetNode) {
-        throw `OtherLangsDropdown target node  ${this.HASH_ID} missing.`;
+        throw `OtherLangsDropdown target node missing. Looking for ${this.HASH_ID}`;
       }
       /**
        * hide nojs menu links, show button instead.
@@ -82,6 +89,7 @@ const OtherLangsDropdown = {
       this.toggleButton.init();
       this.addListeners();
     });
+    this.running=true;
   }
 };
 
