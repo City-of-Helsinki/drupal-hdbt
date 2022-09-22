@@ -34,10 +34,14 @@
 
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  <nav role="navigation" {{ attributes|without('role', 'aria-labelledby').addClass('header-language-links') }}>
-    {# Menu. #}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </nav>
+{% set attributes = attributes.addClass('block__headerlanguagelinks') %}
+
+<div {{ attributes.setAttribute('data-hdbt-selector','headerlanguagelinks').setAttribute('id', null) }}>
+  <a href="#otherlangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open headerlanguagelinks__toggle--link"><span></span></a>
+  <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close headerlanguagelinks__toggle--link"><span></span></a>
+  <button id="js-otherlangs-button" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--js headerlanguagelinks__toggle--open "><span></span></button>
+</div>
+{% block content %}
+  {{ content }}
+{% endblock %}
 {% endif %}
