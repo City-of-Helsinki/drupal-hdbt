@@ -401,8 +401,12 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     'news_item' => 'node',
     'tpr_unit' => 'tpr_unit',
     'tpr_service' => 'tpr_service',
-    'project' => 'node',
   ];
+
+  // Trigger hook_sidebar_visibility_allowed_entities_alter().
+  // Allow modules to alter the list of allowed entities.
+  \Drupal::service('module_handler')
+    ->alter('sidebar_visibility_allowed_entities', $allowed_entities);
 
   // Get possible (node) content type.
   $content_type = $entity instanceof NodeInterface ? $entity->getType() : FALSE;
