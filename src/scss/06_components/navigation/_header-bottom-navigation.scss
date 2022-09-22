@@ -26,7 +26,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
   .site-name__container {
     display: none;
-    margin-top: $spacing-and-half;
+    padding-top: $spacing-and-half;
 
     @include breakpoint($breakpoint-l) {
       display: flex;
