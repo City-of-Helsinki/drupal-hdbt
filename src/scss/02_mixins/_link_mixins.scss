@@ -6,7 +6,8 @@
     text-decoration: underline;
   }
 
-  &[aria-current='page'] {
+  &[aria-current='page'],
+  &[aria-current='true'] {
     font-weight: $font-weight-bold;
   }
 }
