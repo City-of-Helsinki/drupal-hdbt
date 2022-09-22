@@ -238,6 +238,7 @@ $-card-teaser-min-width: 280px;
     }
 
     img {
+      display: block;
       height: auto;
       width: 100%;
     }
@@ -274,9 +275,9 @@ $-card-teaser-min-width: 280px;
     @include hover-link-arrow-transition;
 
     display: none;
-    height: $spacing-double;
+    height: $spacing-triple;
     margin-bottom: $spacing;
-    width: $spacing-double;
+    width: $spacing-triple;
 
     @include breakpoint($breakpoint-m) {
       display: inline-block;
