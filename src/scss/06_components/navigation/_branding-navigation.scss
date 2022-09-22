@@ -9,7 +9,7 @@ $-branding-icon-size-desktop: $spacing-double;
   '. logo . brand toggle .'
   'lang lang lang lang lang lang'
   'menu menu menu menu menu menu';
-  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto var(--header-branding-padding);
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto  var(--header-branding-padding);
   grid-template-rows: var(--branding-height) auto auto;
   position: fixed;
   top: 0;
