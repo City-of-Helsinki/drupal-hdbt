@@ -15,16 +15,15 @@ $-panel-desktop-width: 243px;
 .block__headerlanguagelinks {
   align-self: stretch;
   background-color: $color-silver-light;
-  border-bottom: 1px solid $color-black-20;
   border-left: 1px solid $color-black-20;
   display:flex;
   // background-color: $color-silver-light;
   // border-bottom: 1px solid $color-black-20;
-  grid-area: otherlangs;
-  order: 3;
+  // order: 3;
+  flex-grow:0;
   padding-left: $spacing;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
-  width: calc(100% + #{$spacing-double});
+  // width: calc(100% + #{$spacing-double});
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
@@ -52,7 +51,7 @@ $-panel-desktop-width: 243px;
   align-items: center;
   display: flex;
   height:100%;
-  
+
   text-decoration: none;
   &::before {
     @include pseudo-icon('globe', 24px, black);
@@ -60,10 +59,10 @@ $-panel-desktop-width: 243px;
     content:'';
     grid-area: icon;
 
-    
+
     // margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
   }
-  
+
 
 }
 
@@ -113,15 +112,16 @@ $-panel-desktop-width: 243px;
 
   @include breakpoint($breakpoint-m) {
     border: 1px solid $color-black-20;
+    border-top:0;
     bottom:auto;
-    grid-area:otherlangs;
+    // grid-area:otherlangs;
     height:auto;
     left:auto;
     max-width: $-panel-desktop-width;
     min-width:auto;
     position: absolute;
-    right:80px;
-    top:133px; // todo see if this can be calculated
+    right:0;
+    top: 69px;
     width: $-panel-desktop-width;
   }
 }
@@ -131,7 +131,7 @@ $-panel-desktop-width: 243px;
   display:none;
 }
 
-#otherlangs { 
+#otherlangs {
   scroll-margin-top: 100vh;
 }
 
@@ -149,7 +149,7 @@ $-panel-desktop-width: 243px;
 
 #otherlangs:target,
 #otherlangs[data-target='true']  {
-  // TODO ensure this does not break anything else. 
+  // TODO ensure this does not break anything else.
   & + .wrapper > .header {
     position:relative;
   }
