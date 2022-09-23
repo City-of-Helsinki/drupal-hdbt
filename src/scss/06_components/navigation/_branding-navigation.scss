@@ -122,7 +122,6 @@ $-panel-height:calc(100vh - 52px);
   border:0;
   display: flex;
   height: 100%;
-
 }
 
 
@@ -144,9 +143,15 @@ $-panel-height:calc(100vh - 52px);
   border:1px solid red;
   display: none;
   grid-area: menu;
-  height:50vh; //just a mockup height
+  height:100vh; // just a demo value. Make sure scrollable content is visible, either by margin or by making this smaller
   position:absolute;
   width:100%;
+
+
+  @include breakpoint($breakpoint-l) {
+    height:50vh; //just a mockup height
+  }
+
 }
 
 
