@@ -439,7 +439,7 @@
     margin-bottom: 0;
 
     @include breakpoint($breakpoint-m) {
-      font-weight: bold;
+      font-weight: $font-weight-bold;
       // Align the address to center with the arrow and the title.
       margin-top: 2px;
       padding-right: $spacing-and-half;

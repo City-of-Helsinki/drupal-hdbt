@@ -9,7 +9,7 @@
   text-decoration: underline;
 
   &[aria-selected='true'] {
-    font-weight: bold;
+    font-weight: $font-weight-bold;
   }
 
   &:hover {
@@ -46,7 +46,7 @@
 
     &[aria-selected='true'] {
       display: none;
-      font-weight: normal;
+      font-weight: $font-weight-regular;
     }
   }
 }
