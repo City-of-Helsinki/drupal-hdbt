@@ -1,26 +1,35 @@
 const MobilePanel = require('./nav-global/mobilepanel.js');
 const OtherLangsDropdown = require('./nav-global/otherlangs');
-
-
+const SearchDropdown = require('./nav-global/search');
 /**
- * Init otherlangs menu and Mobile panel menu.
- * Bind them together so that only one menu is open at a time.
+ * Init Menus and bind them together so that only one menu is open at a time.
  */
 
+const closeFromLang = ()=> {
+  MobilePanel.close();
+  SearchDropdown.close();
+};
+
+const closeFromMenu = ()=> {
+  OtherLangsDropdown.close();
+  SearchDropdown.close();
+};
+
+const closeFromSearch = ()=> {
+  OtherLangsDropdown.close();
+  MobilePanel.close();
+};
+
 OtherLangsDropdown.init({
-  onOpen:()=>{
-    if( MobilePanel.menuIsOpen()) {
-      MobilePanel.menuToggle();
-    }
-  }
+  onOpen:closeFromLang
 });
 
 MobilePanel.init({
-  onOpen:()=>{
-    if( OtherLangsDropdown.isOpen()) {
-      OtherLangsDropdown.toggle(false);
-    }
-  }
+  onOpen:closeFromMenu
+});
+
+SearchDropdown.init({
+  onOpen:closeFromSearch
 });
 
 /**
@@ -31,14 +40,18 @@ MobilePanel.init({
 document.addEventListener('click',function({target}){
 
   if(target.closest('.header') === null) {
-    // Funky little shortcut here: Panel.menuIsOpen will respond to
+    // Funky little shortcut here: MobilePanel will respond to
     // megamenu as well as mobilemenu so this works.
-    if(MobilePanel.menuIsOpen()) {
-      MobilePanel.menuToggle();
+    if(MobilePanel.isOpen()) {
+      MobilePanel.toggle();
     }
 
     if(OtherLangsDropdown.isOpen()) {
-      OtherLangsDropdown.toggle(true);
+      OtherLangsDropdown.toggle();
+    }
+
+    if(SearchDropdown.isOpen()) {
+      OtherLangsDropdown.toggle();
     }
   }
 

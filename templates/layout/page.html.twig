@@ -34,12 +34,21 @@
 
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
+{#
+  Anchor targets for global navi and other-langs nojs fallbacks.
+  Also works as a CSS data-attr selector reference point for JS version.
+  These must be on top and at root.
+#}
   <div id="menu"></div>
+  <div id="otherlangs"></div>
+  <div id="search"></div>
+
 {% else %}
+
   {# This checkbox handles opening and closing mobile menu #}
   <input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
 {% endif %}
- <div id="otherlangs"></div>
+
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
     <header role="banner" class="header">
@@ -67,6 +76,11 @@
           #}
 
           {{ drupal_entity('block', block__site_branding) }} {# Logo #}
+          <div class="header-search__button-block">
+            <a href="#search" class="header-search__button header-search__button--open header-search__button--link"></a>
+            <a href="#" class="header-search__button header-search__button--close header-search__button--link"></a>
+            <button  id="js-header-search__button" class="header-search__button header-search__button--open header-search__button--js"></button>
+          </div>
 
           {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
 
@@ -74,8 +88,18 @@
 
           <div class="language-wrapper">
             {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
-            {{ drupal_entity('block', block__external_header_language_links) }}
+            <div class="block__headerlanguagelinks">
+              <a href="#otherlangs" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--open headerlanguagelinks__toggle--link"><span></span></a>
+              <a href="#" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--close headerlanguagelinks__toggle--link"><span></span></a>
+              <button id="js-otherlangs-button" class="headerlanguagelinks__toggle headerlanguagelinks__toggle--js headerlanguagelinks__toggle--open "><span></span></button>
+            </div>
+
           </div>
+
+          {{ drupal_entity('block', block__external_header_language_links) }}
+
+          {# Placeholder for  search menu. desktop and moobile#}
+          <div class="header-search__menu-dropdown">.search menu</div>
 
           {# Render the header branding region without manually rendered blocks #}
           {{ page.header_branding|without([

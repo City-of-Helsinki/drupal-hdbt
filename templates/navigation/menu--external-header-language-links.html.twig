@@ -23,11 +23,11 @@
 
 {% macro link_render(item) %}
 
-{% if item.is_nolink %}   
+{% if item.is_nolink %}
     <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
         {{item.title}}
-    </span>  
-    {% else %}  
+    </span>
+    {% else %}
         {% set link_attributes = {
         'class': [
             'headerlanguagelinks__link',
@@ -42,7 +42,7 @@
 {% endif %}
 {% endmacro %}
 
-<ul class="headerlanguagelinks__wrapper">
+<ul class="headerlanguagelinks__menu-dropdown">
     {% for item in items %}
     <li>
     {{ _self.link_render(item) }}

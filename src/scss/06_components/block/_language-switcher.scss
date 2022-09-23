@@ -8,13 +8,13 @@ $-language-block-height: 52px;
   border-bottom: 1px solid $color-black-20;
   display: flex;
   grid-area: lang;
+  height:100%;
   justify-content: space-between;
   min-height:$-language-block-height;
   padding: 0 $spacing;
   position: relative;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width:100vw;
-  // width: calc(100% + #{$spacing-double});
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
@@ -38,13 +38,6 @@ $-language-block-height: 52px;
     }
   }
 }
-
-
-
-.block--language-switcher {
-
-}
-
 
 #menu:not([data-js]) ~ * .mega-and-mobilemenu .block--language-switcher + * {
   margin-top: $spacing;

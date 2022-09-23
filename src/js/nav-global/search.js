@@ -1,8 +1,8 @@
 const ToggleButton = {
   selectors:{
-    id:'#js-otherlangs-button',
-    openClassName :'headerlanguagelinks__toggle--open',
-    closeClassName:'headerlanguagelinks__toggle--close'
+    id:'#js-header-search__button',
+    openClassName :'header-search__button--open',
+    closeClassName:'header-search__button--close'
   },
   instance:null,
   toggle:function(isOpen){
@@ -29,8 +29,8 @@ const ToggleButton = {
   }
 };
 
-const OtherLangsDropdown = {
-  HASH_ID: '#otherlangs',
+const SearchDropdown = {
+  HASH_ID: '#search',
   toggleButton:ToggleButton,
   running:false,
   targetNode:null,
@@ -47,7 +47,6 @@ const OtherLangsDropdown = {
     if(isOpen) { //close it.
       window.location.hash = '';
       this.targetNode.dataset.target = 'false';
-
     }
     else { //menu is closed, open it and call onOpen
       this.targetNode.dataset.target = 'true';
@@ -76,7 +75,7 @@ const OtherLangsDropdown = {
   },
   init:function({onOpen}){
     if(this.running) {
-      console.warn('Lang menu already initiated. Is it included more than once?');
+      console.warn('Search menu already initiated. Is it included more than once?');
       return;
     }
     this.onOpen = onOpen;
@@ -84,7 +83,7 @@ const OtherLangsDropdown = {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);
       if(!this.targetNode) {
-        throw `OtherLangsDropdown target node missing. Looking for ${this.HASH_ID}`;
+        throw `Search target node missing. Looking for ${this.HASH_ID}`;
       }
       /**
        * hide nojs menu links, show button instead.
@@ -97,5 +96,4 @@ const OtherLangsDropdown = {
   }
 };
 
-
-module.exports = OtherLangsDropdown;
+module.exports = SearchDropdown;

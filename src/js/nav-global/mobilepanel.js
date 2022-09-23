@@ -434,7 +434,7 @@ const MobilePanel = {
       }
     });
   },
-  menuIsOpen : function() {
+  isOpen : function() {
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
   disableFallback :function() {
@@ -446,8 +446,13 @@ const MobilePanel = {
     delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
     window.location.hash='#menu'; // Open menu with the css way
   },
-  menuToggle:  function() {
-    if (this.menuIsOpen()) {
+  close:function(){
+    this.toggleButton.setAttribute('aria-expanded', 'false');
+    this.menu.dataset.target = 'false';
+    ToggleWidgets.toggle(false);
+  },
+  toggle:  function() {
+    if (this.isOpen()) {
       this.toggleButton.setAttribute('aria-expanded', 'false');
       this.menu.dataset.target = 'false';
       ToggleWidgets.toggle(false);
@@ -492,8 +497,8 @@ const MobilePanel = {
      * Close menu on Escape button click if it is open.
      */
       document.addEventListener('keydown',  (e) =>{
-        if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.menuIsOpen()) {
-          this.menuToggle();
+        if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
+          this.toggle();
         }
       });
 
@@ -516,15 +521,15 @@ const MobilePanel = {
      * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
      */
       this.toggleButton.addEventListener('click',start);
-      this.toggleButton.addEventListener('click',()=>this.menuToggle());
+      this.toggleButton.addEventListener('click',()=>this.toggle());
 
       /**
      * Open menu if it is required in the hash, then clear hash.
      */
-      if (this.menuIsOpen()) {
+      if (this.isOpen()) {
         window.location.hash = '';
         start();
-        this.menuToggle();
+        this.toggle();
       }
     });
     this.running=true;

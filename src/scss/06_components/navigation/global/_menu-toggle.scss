@@ -114,15 +114,12 @@ $-menu-transition-duration: 0.3s;
   width: 100%;
 
   @include breakpoint($breakpoint-m) {
-    position: absolute; // Position above page content when closing;
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--branding-height));
     width: 100%;
     z-index: 100; // Needs to be higher than page content
   }
 
   @include breakpoint($breakpoint-l) {
     max-width: min(1920px, 100vw);
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--header-top-height) + var(--branding-height));
   }
 
   @media (prefers-reduced-motion) {
@@ -197,19 +194,19 @@ $-menu-transition-duration: 0.3s;
   }
 
 
-  & ~ * .block__headerlanguagelinks,
-  & ~ * .headerlanguagelinks__wrapper
+  & ~ * .language-wrapper
   {
     display:none;
   }
 
-  
   @include breakpoint($breakpoint-m) {
-    & ~ * .block__headerlanguagelinks {
+
+    & ~ * .language-wrapper
+    {
       display:flex;
     }
-  }
 
+  }
 
   & ~ * .menu-toggle__open {
     visibility: hidden; // Menu text and hamburger icon are hidden
@@ -245,7 +242,7 @@ $-menu-transition-duration: 0.3s;
   }
 }
 /**
- * toggleWidgets.js could maybe inject this 
+ * toggleWidgets.js could maybe inject this
  * instead of this hanging around in random file corner
  */
 [data-cssmenu-hide] {
