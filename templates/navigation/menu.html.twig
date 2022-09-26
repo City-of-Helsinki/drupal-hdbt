@@ -66,6 +66,11 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
+      {% set item_lang = '' %}
+      {% if item.attributes.lang %}
+        {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
+      {% endif %}
+
       <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
@@ -76,7 +81,7 @@
                 {% if icon_name %}
                   {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
                 {% endif %}
-                <span class="menu__link__text">{{ item.title }}</span>
+                <span class="menu__link__text"{{ item_lang }}>{{ item.title }}</span>
               {% endset %}
 
               {% set link_attributes = {
@@ -92,7 +97,7 @@
 
             {% endspaceless %}
           {% else %}
-            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}</span></span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}"{{ item_lang }}>{{ item.title }}</span></span>
           {% endif %}
 
           {% set menu_aria_controls = "menu--level-" ~ (menu_level + 1) ~ "-" ~ menu_id ~ random() %}

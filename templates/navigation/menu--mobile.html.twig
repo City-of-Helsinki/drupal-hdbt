@@ -57,6 +57,10 @@
 
           <li{{ item.attributes.addClass(item_classes) }}>
 
+            {% set item_title %}
+              <span class="mmenu__link__text"{{ (item.attributes.lang) ? ' lang="' ~ item.attributes.lang ~ '"' : '' }}>{{ item.title }}</span>
+            {% endset %}
+
             {% set item_title = item.title %}
             {% if not item.is_nolink %}
               {% spaceless %}
