@@ -36,7 +36,7 @@
   color: var(--color);
   cursor: pointer;
   display: inline-flex;
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   justify-content: center;
   min-height: var(--min-size);
   min-width: var(--min-size);

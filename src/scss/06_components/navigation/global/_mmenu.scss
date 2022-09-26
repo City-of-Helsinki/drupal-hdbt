@@ -253,7 +253,7 @@ $-footerlink-target-size: 44px;
 
 .mmenu__title-link--in-path,
 .mmenu__item-link--in-path {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .mmenu__forward {
