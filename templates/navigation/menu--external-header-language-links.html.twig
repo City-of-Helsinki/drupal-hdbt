@@ -22,37 +22,35 @@
 
 
 {% macro link_render(item) %}
-
-{% if item.is_nolink %}
+  {% if item.is_nolink %}
     <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
-        {{item.title}}
+      {{item.title}}
     </span>
-    {% else %}
-        {% set link_attributes = {
-        'class': [
-            'headerlanguagelinks__link',
-            item.in_active_trail ? 'menu__link--active-trail',
-        ],
-        'id': item_is_collabsible ? link_id : null,
-        'aria-current': item.is_currentPage ? 'page' : null,
-        } %}
+  {% else %}
+    {% set link_attributes = {
+      'class': [
+        'headerlanguagelinks__link',
+        item.in_active_trail ? 'menu__link--active-trail',
+      ],
+      'id': item_is_collabsible ? link_id : null,
+      'aria-current': item.is_currentPage ? 'page' : null,
+    } %}
 
-        {{ link(item.title, item.url, link_attributes) }}
-
-{% endif %}
+    {{ link(item.title, item.url, link_attributes) }}
+  {% endif %}
 {% endmacro %}
 
 <ul class="headerlanguagelinks__menu-dropdown">
-    {% for item in items %}
+  {% for item in items %}
     <li>
-    {{ _self.link_render(item) }}
-    {% if item.below %}
+      {{ _self.link_render(item) }}
+      {% if item.below %}
         <div class="headerlanguagelinks__group">
-        {% for below in item.below %}
+          {% for below in item.below %}
             {{ _self.link_render(below) }}
-        {% endfor %}
+          {% endfor %}
         </div>
-    {% endif %}
+      {% endif %}
     </li>
-    {% endfor %}
+  {% endfor %}
 </ul>

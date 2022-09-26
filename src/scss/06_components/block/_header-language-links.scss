@@ -1,19 +1,19 @@
-$-panel-height:calc(100vh - 52px); // TODO this should be shared from the top of the stack
+$-panel-height: calc(100vh - 52px); // TODO this should be shared from the top of the stack
 $-panel-desktop-width: 243px; // from abstarct as a baseline
 
 .block__headerlanguagelinks {
   align-self: stretch;
   background-color: $color-silver-light;
   border-left: 1px solid $color-black-20;
-  display:flex;
-  flex-grow:0;
+  display: flex;
+  flex-grow: 0;
   padding-left: $spacing;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
     background-color: transparent;
-    border:0;
+    border: 0;
     margin-left: auto;
     order: 2;
     padding: 0 $spacing-half;
@@ -24,28 +24,30 @@ $-panel-desktop-width: 243px; // from abstarct as a baseline
 .headerlanguagelinks__toggle {
   align-items: center;
   display: flex;
-  height:100%;
+  height: 100%;
   text-decoration: none;
+
   &::before {
     @include pseudo-icon('globe', 24px, black);
     @include hover-link-arrow-transition;
-    content:'';
+    content: '';
     grid-area: icon;
   }
 }
 
 .headerlanguagelinks__toggle span {
-  padding-left:4px;
+  padding-left: 4px;
+
   &::before {
     @include hover-link-arrow-transition;
-    content:'';
+    content: '';
     grid-area: icon;
   }
 }
 
 .headerlanguagelinks__toggle--js {
-  background-color: transparent ;
-  border:0;
+  background-color: transparent;
+  border: 0;
 }
 
 .headerlanguagelinks__toggle--open span {
@@ -62,28 +64,28 @@ $-panel-desktop-width: 243px; // from abstarct as a baseline
 
 .headerlanguagelinks__menu-dropdown {
   background-color: $color-silver-medium-light;
-  grid-area:menu;
-  height:$-panel-height;
+  grid-area: menu;
+  height: $-panel-height;
   list-style: none;
-  margin:0;
-  max-height:$-panel-height;
-  max-width:100vw;
-  min-width:100vw;
-  overflow-x:hidden;
+  margin: 0;
+  max-height: $-panel-height;
+  max-width: 100vw;
+  min-width: 100vw;
+  overflow-x: hidden;
   padding-block: $spacing;
   position: absolute;
-  z-index:3;
+  z-index: 3;
 
   @include breakpoint($breakpoint-m) {
     border: 1px solid $color-black-20;
-    border-top:0;
-    bottom:auto;
-    grid-area:langmenu;
-    height:auto;
+    border-top: 0;
+    bottom: auto;
+    grid-area: langmenu;
+    height: auto;
     justify-self: end;
-    left:auto;
+    left: auto;
     max-width: $-panel-desktop-width;
-    min-width:auto;
+    min-width: auto;
     position: absolute;
     width: $-panel-desktop-width;
   }
@@ -91,43 +93,41 @@ $-panel-desktop-width: 243px; // from abstarct as a baseline
 
 .headerlanguagelinks__menu-dropdown,
 .headerlanguagelinks__toggle--close {
-  display:none;
+  display: none;
 }
 
 #otherlangs {
   scroll-margin-top: 100vh;
 }
 
-/*hide button when JS is not available, hide links when it is*/
+// hide button when JS is not available, hide links when it is
 #otherlangs[data-js] ~ * .headerlanguagelinks__toggle--js {
   display: flex;
 }
 
 #otherlangs[data-js] ~ * .headerlanguagelinks__toggle--link,
-#otherlangs:not([data-js]) ~ * .headerlanguagelinks__toggle--js   {
+#otherlangs:not([data-js]) ~ * .headerlanguagelinks__toggle--js {
   display: none !important;
 }
 
 #otherlangs:target,
-#otherlangs[data-target='true']  {
-
+#otherlangs[data-target='true'] {
   & + .wrapper > .header {
-    position:relative;
+    position: relative;
   }
 
   & ~ * .headerlanguagelinks__menu-dropdown {
-    display:block;
+    display: block;
   }
-
 }
 
 #otherlangs:target {
   & ~ * .headerlanguagelinks__toggle--close {
-    display:flex;
+    display: flex;
   }
 
   & ~ * .headerlanguagelinks__toggle--open {
-    display:none;
+    display: none;
   }
 }
 
@@ -136,21 +136,21 @@ $-panel-desktop-width: 243px; // from abstarct as a baseline
 }
 
 .headerlanguagelinks__link {
-  display:block;
+  display: block;
   margin-bottom: $spacing-half;
   text-decoration: none;
-  &:hover,  &:active {
+
+  &:hover,
+  &:active {
     text-decoration: underline;
   }
 }
 
 .headerlanguagelinks__link--nolink {
-  display:block;
-  font-weight:500;
+  display: block;
+  font-weight: 500;
 }
 
-.headerlanguagelinks__link[data-is-external="true"] {
- &::after {
-    @include pseudo-icon('link-external', 24px, black);
-  }
+.headerlanguagelinks__link[data-is-external='true']::after {
+  @include pseudo-icon('link-external', 24px, black);
 }
