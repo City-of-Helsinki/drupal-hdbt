@@ -34,7 +34,7 @@
 
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-{% block content %}
-  {{ content }}
-{% endblock %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 {% endif %}
