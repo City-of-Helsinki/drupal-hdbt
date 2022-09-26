@@ -40,13 +40,26 @@
 
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
+
+  {% set menu_open %}
+    <span aria-hidden="true">{{ 'Menu'|t }}</span>
+    <span class="visually-hidden">{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}</span>
+  {% endset %}
+
+  {% set menu_close %}
+    <span aria-hidden="true">{{ 'Close'|t }}</span>
+    <span class="visually-hidden">{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}</span>
+  {% endset %}
+
+  {# Fallback menu button #}
   <div class="menu-toggle-anchor">
-    <a href="#" class="menu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</a>
-    <a href="#menu" class="menu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</a>
+    <a href="#" class="menu-toggle__close">{{ menu_close }}</a>
+    <a href="#menu" class="menu-toggle__open">{{ menu_open }}</a>
   </div>
+  {# Slightly more accessible js enhanced menu button #}
   <button class="menu-toggle-button js-menu-toggle-button" aria-expanded="false" aria-controls="menu-dropdown">
-    <span class="menu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-    <span class="menu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
+    <span class="menu-toggle__open">{{ menu_open }}</span>
+    <span class="menu-toggle__close">{{ menu_close }}</span>
   </button>
   <nav id="menu-dropdown" role="navigation" class="menu-dropdown" aria-labelledby="menu-description">
     <div class="menu-dropdown__wrapper" aria-labelledby="menu-description">
