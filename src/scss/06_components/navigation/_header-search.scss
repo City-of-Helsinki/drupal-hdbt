@@ -1,0 +1,116 @@
+.search-toggle__open,
+.search-toggle__close {
+  @include font('special.navigation.icon_label');
+  align-self: center;
+  color: $color-black-90;
+  cursor: pointer;
+  display: grid;
+  grid-area: link;
+  grid-template-areas:
+    'icon'
+    'label';
+  padding: 5px; // Handles spacing for 'inside' focus ring
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+
+  &:hover,
+  &:active,
+  .search-toggle-button:hover &,
+  .search-toggle-button:active & {
+    text-decoration: underline;
+  }
+
+  // stylelint-disable no-descending-specificity
+  &:focus,
+  &:active,
+  .search-toggle-button:focus &,
+  .search-toggle-button:active & {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
+  // stylelint-enable no-descending-specificity
+
+  &::before {
+    @include pseudo-icon('search', 32px, currentColor, block);
+    align-self: end;
+    grid-area: icon;
+    justify-self: center;
+  }
+}
+
+// stylelint-disable-next-line no-descending-specificity
+.search-toggle__close {
+  visibility: hidden;
+
+  &::before {
+    @include pseudo-icon-replace('cross');
+  }
+}
+
+.search-toggle-button {
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header-search__container {
+  background-color: $color-black-10;
+  padding: $spacing-triple 0;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+
+  .helfi-search__form {
+    margin-bottom: $spacing-and-half;
+  }
+
+  .helfi-search__form .hds-text-input {
+    width: 100%;
+  }
+}
+
+.header-search__container-inner {
+  max-width: $content-width-max;
+
+  @include component-side-padding;
+
+  h3 {
+    margin-bottom: $spacing;
+    margin-top: 0;
+  }
+}
+
+.search-container__links-container {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-m) {
+    flex-direction: row;
+  }
+}
+
+.search-container__link {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+
+  &:first-of-type {
+    margin-bottom: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: 0;
+      padding-right: $spacing-and-half;
+    }
+  }
+}
+
+.search__link-external {
+  margin-bottom: $spacing-half;
+
+  @include font('special.large_link');
+}

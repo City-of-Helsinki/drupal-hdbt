@@ -1,0 +1,37 @@
+<div class="header-search__button-block">
+  <a href="#search" class="header-search__button header-search__button--open header-search__button--link"></a>
+  <a href="#" class="header-search__button header-search__button--close header-search__button--link"></a>
+  <button  id="js-header-search__button" class="header-search__button header-search__button--open header-search__button--js"></button>
+</div>
+
+<div class="header-search__menu-dropdown">
+  <div class="header-search__container">
+    <div class="header-search__container-inner">
+        <h3>{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</h3>
+      {% include "@hdbt/component/helfi-search-form.twig" %}
+      <div class="search-container__links-container">
+        <div class="search-container__link">
+          {% set link_title_events %}
+          {{ 'Search for events'|t({}, {'context': 'Header search, search for events'}) }}
+          {% endset %}
+          {% set link_url_events = 'https://www.events.hel.fi' %}
+          {% set link_attributes = {
+            'class': [
+              'search__link-external',
+            ],
+          } %}
+          {{ link(link_title_events, link_url_events, link_attributes) }}
+          <span>{{'Find upcoming events at the Events.hel.fi website.'|t}}</span>
+        </div>
+        <div class="search-container__link">
+          {% set link_title_decisions %}
+          {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
+          {% endset %}
+          {% set link_url_decisions = 'https://www.events.hel.fi' %}
+          {{ link(link_title_decisions, link_url_decisions, link_attributes) }}
+          <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

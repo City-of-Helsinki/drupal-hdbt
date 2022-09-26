@@ -76,11 +76,6 @@
           #}
 
           {{ drupal_entity('block', block__site_branding) }} {# Logo #}
-          <div class="header-search__button-block">
-            <a href="#search" class="header-search__button header-search__button--open header-search__button--link"></a>
-            <a href="#" class="header-search__button header-search__button--close header-search__button--link"></a>
-            <button  id="js-header-search__button" class="header-search__button header-search__button--open header-search__button--js"></button>
-          </div>
 
           {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
 
@@ -99,7 +94,7 @@
           {{ drupal_entity('block', block__external_header_language_links) }}
 
           {# Placeholder for  search menu. desktop and moobile#}
-          <div class="header-search__menu-dropdown">.search menu</div>
+          {% include "@hdbt/component/header-search.twig" %}
 
           {# Render the header branding region without manually rendered blocks #}
           {{ page.header_branding|without([
