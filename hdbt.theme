@@ -18,6 +18,7 @@ use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
@@ -455,6 +456,17 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     if ($item['url']->toString() == $current_path) {
       $item['is_currentPage'] = TRUE;
     }
+  }
+
+  // Handle lang attribute if it's missing from menu item.
+  if (
+    !$item['attributes']->hasAttribute('lang') &&
+    array_key_exists('original_link', $item) &&
+    $item['original_link'] instanceof MenuLinkContent &&
+    !empty($item['original_link']->getOptions()['lang'])
+  ) {
+    $item['attributes']
+      ->setAttribute('lang', $item['original_link']->getOptions()['lang']);
   }
 }
 

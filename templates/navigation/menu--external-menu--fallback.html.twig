@@ -67,7 +67,10 @@
             'mmenu__item',
           ]%}
           <li{{ item.attributes.addClass(item_classes) }}>
-            {% set item_title = item.title %}
+
+            {% set item_title %}
+              <span class="mmenu__link__text"{{ (item.attributes.lang) ? ' lang=' ~ item.attributes.lang : '' }}>{{ item.title }}</span>
+            {% endset %}
 
             {% if not item.is_nolink %}
               {% spaceless %}
@@ -81,7 +84,7 @@
                 {{ link(item_title, item.url, link_attributes) }}
               {% endspaceless %}
             {% else %}
-              <span{{ create_attribute({'class': 'mmenu__item__nolink'} ) }}>{{ item.title }}</span>
+              <span{{ create_attribute({'class': 'mmenu__item__nolink'} ) }}>{{ item_title }}</span>
             {% endif %}
 
             {% if has_children %}
