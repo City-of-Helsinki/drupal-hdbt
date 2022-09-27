@@ -1,0 +1,34 @@
+{#
+{% set controls = 'menu-dropdown' %}
+{% set anchor_target = '#menu' %}
+{% set js_target = 'js-menu-toggle-button' %}
+
+{% set open_label = 'Menu'|t %}
+{% set open_screenreader = 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) %}
+{% set close_label = 'Close'|t %}
+{% set close_screenreader = 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) %} #}
+
+
+{% set menu_open %}
+  <span aria-hidden="true">{{ open_label }}</span>
+  <span class="visually-hidden">{{ open_screenreader }}</span>
+{% endset %}
+
+{% set menu_close %}
+  <span aria-hidden="true">{{ close_label }}</span>
+  <span class="visually-hidden">{{ close_screenreader }}</span>
+{% endset %}
+
+<div class="toggle {{modifier_class}}">
+  {# Fallback menu button #}
+  <div class="menu-toggle-anchor">
+    <a href="#" class="menu-toggle__close">{{ menu_close }}</a>
+    <a href={{ anchor_target }} class="menu-toggle__open">{{ menu_open }}</a>
+  </div>
+
+  {# Slightly more accessible js enhanced menu button #}
+  <button class="menu-toggle-button {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
+    <span class="menu-toggle__open">{{ menu_open }}</span>
+    <span class="menu-toggle__close">{{ menu_close }}</span>
+  </button>
+</div>

@@ -9,9 +9,14 @@ $-menu-transition-duration: 0.3s;
   display: grid;
 }
 
+.toggle--menu {
+  align-items: center;
+  display: flex;
+  grid-area: toggle;
+}
+
 .menu-toggle-anchor,
 .menu-toggle-button {
-  grid-area: toggle;
   grid-template-areas: 'link';
   z-index: 2;
 }

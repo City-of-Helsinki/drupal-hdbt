@@ -41,26 +41,20 @@
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
 
-  {% set menu_open %}
-    <span aria-hidden="true">{{ 'Menu'|t }}</span>
-    <span class="visually-hidden">{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}</span>
-  {% endset %}
+  {% embed "@hdbt/misc/menu-toggle-button.twig" with {
+    modifier_class: 'toggle--menu',
+    controls: 'menu-dropdown',
+    anchor_target: '#menu',
+    js_target: 'js-menu-toggle-button',
 
-  {% set menu_close %}
-    <span aria-hidden="true">{{ 'Close'|t }}</span>
-    <span class="visually-hidden">{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}</span>
-  {% endset %}
+    open_label: 'Menu'|t,
+    open_screenreader: 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}),
 
-  {# Fallback menu button #}
-  <div class="menu-toggle-anchor">
-    <a href="#" class="menu-toggle__close">{{ menu_close }}</a>
-    <a href="#menu" class="menu-toggle__open">{{ menu_open }}</a>
-  </div>
-  {# Slightly more accessible js enhanced menu button #}
-  <button class="menu-toggle-button js-menu-toggle-button" aria-expanded="false" aria-controls="menu-dropdown">
-    <span class="menu-toggle__open">{{ menu_open }}</span>
-    <span class="menu-toggle__close">{{ menu_close }}</span>
-  </button>
+    close_label: 'Close'|t,
+    close_screenreader: 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'})
+  } %}
+  {% endembed %}
+
   <nav id="menu-dropdown" role="navigation" class="menu-dropdown" aria-labelledby="menu-description">
     <div class="menu-dropdown__wrapper" aria-labelledby="menu-description">
       <div class="menu-dropdown__content" aria-labelledby="menu-description">
