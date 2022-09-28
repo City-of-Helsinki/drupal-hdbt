@@ -12,10 +12,8 @@
     }
   %}
     {% block component_content %}
-      {# These divs get populated via JS #}
-      <div class="event-list__count"></div>
-      <div class="event-list__list-container"></div>
-      <div class="event-list__load-more"></div>
+      {# Hook React app to this div #}
+      <div id="helfi-events-search"></div>
       {# Indicate JS not enabled #}
       <noscript>
         <div class="event-list__javascript-disabled">
