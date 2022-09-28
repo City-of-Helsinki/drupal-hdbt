@@ -56,8 +56,7 @@
     <span class="cssmenu-toggle__close">{{ menu_close }}</span>
   </button>
 
-  <nav class="cssmenu-menu" aria-labelledby="cssmenu-menu-description">
-    <h2 class="visually-hidden" id="cssmenu-menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
+  <nav class="cssmenu-menu" aria-label="{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}">
 
     {{ drupal_entity('block', 'language_switcher')}}
 

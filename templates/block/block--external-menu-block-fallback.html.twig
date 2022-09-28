@@ -55,10 +55,9 @@
   } %}
   {% endembed %}
 
-  <nav id="menu-dropdown" role="navigation" class="menu-dropdown nav-toggle-dropdown--menu" aria-labelledby="menu-description">
-    <div class="menu-dropdown__wrapper" aria-labelledby="menu-description">
-      <div class="menu-dropdown__content" aria-labelledby="menu-description">
-        <h2 class="visually-hidden" id="menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
+  <nav id="menu-dropdown" role="navigation" class="menu-dropdown nav-toggle-dropdown--menu" aria-label="{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}">
+    <div class="menu-dropdown__wrapper">
+      <div class="menu-dropdown__content">
 
         <div class="mega-and-mobilemenu">
 
