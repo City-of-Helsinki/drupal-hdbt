@@ -1,5 +1,4 @@
 // stylelint-disable no-descending-specificity
-$-header-branding-height-desktop: 87px;
 $-menu-transition-duration: 0.2s;
 $-cssnav-summary-width: 40px;
 $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-area
@@ -96,16 +95,16 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
     'footer';
   grid-template-rows: auto auto 1fr;
   height: 100vh;
-  max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--block-branding-height-mobile, 65px) - 1px); // Full page height - header-branding height - 1px for rounding errors
+  max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full page height - header-branding height - 1px for rounding errors
   max-width: 100vw;
   overflow: auto;
   transition: max-height var(--menu-transition-duration) linear, visibility 0s linear 0s, margin-left 0s linear 0s, box-shadow 0s linear var(--menu-transition-duration);
   visibility: visible;
 
   @include breakpoint($breakpoint-m) {
-    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - $-header-branding-height-desktop - 1px);
+    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px);
     position: absolute; // Position above page content when closing;
-    top: calc(var(--drupal-toolbar-height, 0px) + $-header-branding-height-desktop);
+    top: calc(var(--drupal-toolbar-height, 0px) + var(--branding-height));
     width: 100%;
     z-index: 100; // Needs to be higher than page content
   }
@@ -356,7 +355,7 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 // Current page and in-path links
 .cssnav__link.cssnav__link--in-path, // higher specificity to combat level specific font styles
 .cssnav__link--in-path + details > summary > .cssnav__text-mirror {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .cssnav__toggle {
@@ -415,6 +414,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   }
 
   & > .menu__link {
-    font-weight: bold; // Make the city link bolded like in design specs
+    font-weight: $font-weight-bold; // Make the city link bolded like in design specs
   }
 }

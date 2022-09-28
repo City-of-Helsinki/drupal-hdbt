@@ -1,18 +1,26 @@
-.header-top {
-  // Hide on mobile
-  display: none;
+$-header-top-font: 'special.navigation.header_top';
+$-header-top-padding: 14px; // Specific pixel size for top and bottom padding from layout.
+$-header-top-line-height: get-line-height($-header-top-font);
+$-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-height});
+
+.header {
+  --header-top-height: 0;
 
   @include breakpoint($breakpoint-l) {
-    @include font('special.navigation.header_top');
+    --header-top-height: #{$-header-top-height};
+  }
+}
+
+.header-top {
+  display: none; // Hide on mobile
+
+  @include breakpoint($breakpoint-l) {
+    @include font($-header-top-font);
     align-items: center;
     background-color: $color-black-5;
     display: flex;
-    justify-content: space-between;
-    padding: 14px $spacing-and-half; // Specific pixel size for top and bottom padding from layout.
-  }
-
-  @include breakpoint($breakpoint-l) {
-    padding: 14px $spacing-double; // Specific pixel size for top and bottom padding from layout.
+    justify-content: flex-end;
+    padding: $-header-top-padding $spacing-double;
   }
 
   .menu {
@@ -23,7 +31,7 @@
   }
 
   .menu__item + .menu__item {
-    margin-left: $spacing;
+    margin-inline-start: $spacing;
   }
 
   .link-to-site-frontpage {

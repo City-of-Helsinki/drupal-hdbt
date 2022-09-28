@@ -31,22 +31,14 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
-{% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
-  {# Menu. #}
-  {% block content %}
-    {% set link_title %}
-      <span class="site-name">{{ site_name }}</span>
-    {% endset %}
-    {% set link_attributes = {
-      'class': [
-        'site-name__link',
-      ],
-      'rel': 'home',
-    } %}
-    <div class="site-name__container">
-    {{ link(link_title, site_front_url, link_attributes) }}
-    </div>
-    {{ content }}
-  {% endblock %}
-</nav>
+
+{# Render navigation with content from another instance "globally" #}
+{% if use_global_navigation %}
+  {# Todo: Hide until the UHF-6046 is in progress #}
+  <!-- Header language links - menu block -->
+  {#  {% set block_content %}#}
+  {#    {% block content %}#}
+  {#      {{ content }}#}
+  {#    {% endblock %}#}
+  {#  {% endset %}#}
+{% endif %}

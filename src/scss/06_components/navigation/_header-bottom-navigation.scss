@@ -18,9 +18,29 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     }
   }
 
-  .menu--level-0 {
+  .menu--level-0,
+  .site-name__container {
     @include flex-gap($-main-nav-spacing, $spacing-double);
     flex-wrap: wrap;
+  }
+
+  .site-name__container {
+    display: none;
+    padding-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  .site-name__link {
+    @include font('special.site_name');
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   .menu__item {
@@ -110,7 +130,8 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
   // Handle menu link focus style when it has children
   .menu__item--item-below .menu__link:focus::after {
-    width: calc(100% - #{24px + 4px}); // Width of the dropdown button and padding.
+    left: -2px;
+    width: calc(100% - #{$spacing-and-half}); // Width of the dropdown button and padding.
   }
 
   // Active trail items, first level

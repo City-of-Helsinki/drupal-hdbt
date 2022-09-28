@@ -18,6 +18,7 @@ use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
@@ -35,12 +36,16 @@ function hdbt_preprocess(&$variables, $hook) {
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('hdbt_global_navigation');
+    ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
   }
+
+  // Required for allowing subtheming for HDBT theme.
+  $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
+  $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
 }
 
 /**
@@ -98,7 +103,7 @@ function hdbt_preprocess_html(&$variables) {
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  if (\Drupal::moduleHandler()->moduleExists('hdbt_global_navigation')) {
+  if (\Drupal::moduleHandler()->moduleExists('helfi_navigation')) {
     $variables['#attached']['library'][] = 'hdbt/nav-global';
   }
   else {
@@ -177,9 +182,6 @@ function hdbt_preprocess_page(&$variables) {
       $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
       break;
   }
-
-  // Required for allowing subtheming for HDBT theme.
-  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
 
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
@@ -454,6 +456,17 @@ function _hdbt_menu_item_apply_attributes(array &$item) {
     if ($item['url']->toString() == $current_path) {
       $item['is_currentPage'] = TRUE;
     }
+  }
+
+  // Handle lang attribute if it's missing from menu item.
+  if (
+    !$item['attributes']->hasAttribute('lang') &&
+    array_key_exists('original_link', $item) &&
+    $item['original_link'] instanceof MenuLinkContent &&
+    !empty($item['original_link']->getOptions()['lang'])
+  ) {
+    $item['attributes']
+      ->setAttribute('lang', $item['original_link']->getOptions()['lang']);
   }
 }
 
@@ -849,12 +862,19 @@ function hdbt_preprocess_paragraph(array &$variables) {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
+  $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
   // Set site_name as variable.
   $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
 
+  $variables['city_name'] = t('City of Helsinki');
+
   // Set site front page absolute url as variable.
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+
+  // Set Etusivu absolute url as variable.
+  $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
 }
 
 /**

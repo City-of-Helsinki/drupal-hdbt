@@ -33,18 +33,27 @@
 #}
 
 {# Do we want to render navigation with content from another instance "globally" #}
-{% if use_global_navigation %}
-  GLOBAL NAV BLOCK
-{% else %}
+{% if not use_global_navigation %}
   {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
+
+  {% set menu_open %}
+    <span aria-hidden="true">{{ 'Menu'|t }}</span>
+    <span class="visually-hidden">{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}</span>
+  {% endset %}
+
+  {% set menu_close %}
+    <span aria-hidden="true">{{ 'Close'|t }}</span>
+    <span class="visually-hidden">{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}</span>
+  {% endset %}
+
   <label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button" id="cssmenu-toggle">
-    <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-    <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
+    <span class="cssmenu-toggle__close">{{ menu_close }}</span>
+    <span class="cssmenu-toggle__open">{{ menu_open }}</span></span>
   </label>
   <button class="cssmenu-toggle-button js-cssmenu-toggle-button" aria-expanded="false">
-    <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-    <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
+    <span class="cssmenu-toggle__open">{{ menu_open }}</span>
+    <span class="cssmenu-toggle__close">{{ menu_close }}</span>
   </button>
 
   <nav class="cssmenu-menu" aria-labelledby="cssmenu-menu-description">
@@ -67,6 +76,4 @@
       {{ drupal_entity('block', 'headertopnavigation')}}
     </div>
   </nav>
-
 {% endif %}
-

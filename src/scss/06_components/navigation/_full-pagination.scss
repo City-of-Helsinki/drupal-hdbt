@@ -13,7 +13,7 @@
 
   @include font('body');
   display: inline-block; // Allows centering.
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   position: relative; // Enables position absolute for btn--next.
   transform: scaleY(-1); // Trick for flipping the list float direction from bottom to up.
 

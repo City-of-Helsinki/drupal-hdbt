@@ -27,6 +27,7 @@
 #}
 {{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
 
+
 {% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
   {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
@@ -43,7 +44,7 @@
   {% set auto_open = auto_open|default(false) %}
 
   {% if items %}
-    <ul{{ attributes.addClass(menu_classes) }}>
+    <ul{{ attributes.removeAttribute('class').addClass(menu_classes) }}>
     {% for item in items %}
       {% set has_children = false %}
       {% set expanded_or_active = false %}
@@ -65,7 +66,12 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
-      <li{{ item.attributes.addClass(item_classes) }}>
+      {% set item_lang = '' %}
+      {% if item.attributes.lang %}
+        {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
+      {% endif %}
+
+      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}
@@ -75,7 +81,7 @@
                 {% if icon_name %}
                   {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'menu__link__icon'} %}
                 {% endif %}
-                <span class="menu__link__text">{{ item.title }}</span>
+                <span class="menu__link__text"{{ item_lang }}>{{ item.title }}</span>
               {% endset %}
 
               {% set link_attributes = {
@@ -91,14 +97,16 @@
 
             {% endspaceless %}
           {% else %}
-            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}">{{ item.title }}</span></span>
+            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}"{{ item_lang }}>{{ item.title }}</span></span>
           {% endif %}
+
+          {% set menu_aria_controls = "menu--level-" ~ (menu_level + 1) ~ "-" ~ menu_id ~ random() %}
 
           {% if item_is_collabsible %}
             <button
               type="button"
               aria-expanded="false"
-              aria-controls="menu--level-{{ menu_level + 1 }}"
+              aria-controls="{{ menu_aria_controls }}"
               aria-labelledby="{{ link_id }}"
               aria-haspopup="true"
               class="menu__toggle-button">
@@ -107,7 +115,7 @@
           {% endif %}
         </span>
         {% if has_children %}
-          {{ menus.menu_links(item.below, attributes|without('class'), menu_level + 1, allow_collabsible, auto_open) }}
+          {{ menus.menu_links(item.below, attributes|without('class').setAttribute('id', menu_aria_controls), menu_level + 1, allow_collabsible, auto_open) }}
         {% endif %}
       </li>
     {% endfor %}

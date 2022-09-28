@@ -25,11 +25,7 @@ $-logo-sv-aspect-ratio: 78 / 28; // sv and ru logo size from svg file
 
 .logo--header {
   color: $color-black;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing;
-    padding-top: $spacing;
-  }
+  height: var(--branding-height);
 }
 
 .logo--footer {

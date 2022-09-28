@@ -208,6 +208,10 @@ msgctxt "Popular services paragraph title"
 msgid "Popular services"
 msgstr "Populära tjänster"
 
+msgctxt "Global navigation mobile menu top level"
+msgid "Frontpage"
+msgstr "Framsida"
+
 msgctxt "News list paragraph see all news link"
 msgid "See all the news"
 msgstr "Se alla nyheter"

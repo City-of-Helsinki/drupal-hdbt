@@ -1,3 +1,5 @@
+/* eslint-disable no-unreachable */
+
 document.addEventListener('DOMContentLoaded', () => {
   const widgetsToHideSelector = [
     '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
