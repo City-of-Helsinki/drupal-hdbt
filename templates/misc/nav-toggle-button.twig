@@ -1,5 +1,5 @@
 {#
-{% set controls = 'menu-dropdown' %}
+{% set controls = 'nav-toggle--dropdown' %}
 {% set anchor_target = '#menu' %}
 {% set js_target = 'js-menu-toggle-button' %}
 
@@ -19,16 +19,16 @@
   <span class="visually-hidden">{{ close_screenreader }}</span>
 {% endset %}
 
-<div class="toggle {{modifier_class}}">
+<div class="nav-toggle {{modifier_class}}">
   {# Fallback menu button #}
-  <div class="menu-toggle-anchor">
-    <a href="#" class="menu-toggle__close">{{ menu_close }}</a>
-    <a href={{ anchor_target }} class="menu-toggle__open">{{ menu_open }}</a>
+  <div class="nav-toggle__anchor">
+    <a href="#" class="nav-toggle__label nav-toggle__label--close">{{ menu_close }}</a>
+    <a href={{ anchor_target }} class="nav-toggle__label nav-toggle__label--open">{{ menu_open }}</a>
   </div>
 
   {# Slightly more accessible js enhanced menu button #}
-  <button class="menu-toggle-button {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
-    <span class="menu-toggle__open">{{ menu_open }}</span>
-    <span class="menu-toggle__close">{{ menu_close }}</span>
+  <button class="nav-toggle__button {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
+    <span class="nav-toggle__label nav-toggle__label--open">{{ menu_open }}</span>
+    <span class="nav-toggle__label nav-toggle__label--close">{{ menu_close }}</span>
   </button>
 </div>

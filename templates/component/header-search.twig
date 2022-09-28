@@ -1,9 +1,26 @@
-<div class="header-search__button-block">
+{# <div class="header-search__button-block">
   <a href="#search" class="header-search__button header-search__button--open header-search__button--link"></a>
   <a href="#" class="header-search__button header-search__button--close header-search__button--link"></a>
   <button  id="js-header-search__button" class="header-search__button header-search__button--open header-search__button--js"></button>
-</div>
+</div> #}
 
+{% set search_dropdown_id = 'search-dropdown' %}
+
+{% embed "@hdbt/misc/nav-toggle-button.twig" with {
+  modifier_class: 'nav-toggle--search',
+  controls: search_dropdown_id,
+  anchor_target: '#search',
+  js_target: 'js-search-toggle-button',
+
+  open_label: 'Search'|t,
+  open_screenreader: 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}),
+
+  close_label: 'Close'|t,
+  close_screenreader: 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'})
+} %}
+{% endembed %}
+
+{#  id="{{ search_dropdown_id }}" #}
 <div class="header-search__menu-dropdown">
   <div class="header-search__container">
     <div class="header-search__container-inner">

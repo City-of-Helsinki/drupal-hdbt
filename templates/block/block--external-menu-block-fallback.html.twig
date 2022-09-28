@@ -41,8 +41,8 @@
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
 
-  {% embed "@hdbt/misc/menu-toggle-button.twig" with {
-    modifier_class: 'toggle--menu',
+  {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+    modifier_class: 'nav-toggle--menu',
     controls: 'menu-dropdown',
     anchor_target: '#menu',
     js_target: 'js-menu-toggle-button',
@@ -55,7 +55,7 @@
   } %}
   {% endembed %}
 
-  <nav id="menu-dropdown" role="navigation" class="menu-dropdown" aria-labelledby="menu-description">
+  <nav id="menu-dropdown" role="navigation" class="menu-dropdown nav-toggle-dropdown--menu" aria-labelledby="menu-description">
     <div class="menu-dropdown__wrapper" aria-labelledby="menu-description">
       <div class="menu-dropdown__content" aria-labelledby="menu-description">
         <h2 class="visually-hidden" id="menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
