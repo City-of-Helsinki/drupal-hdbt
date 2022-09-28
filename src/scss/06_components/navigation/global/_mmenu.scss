@@ -200,7 +200,6 @@ $-footerlink-target-size: 44px;
 
   @include font($-itemlink-font);
   align-items: center;
-  display: inline-flex;
   flex-grow: 1;
   padding-bottom: $-itemlink-vertical-padding;
   padding-left: $spacing;
