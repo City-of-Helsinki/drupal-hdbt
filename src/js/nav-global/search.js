@@ -1,30 +1,21 @@
 const ToggleButton = {
   selectors:{
-    id:'#js-header-search__button',
-    openClassName :'header-search__button--open',
-    closeClassName:'header-search__button--close'
+    className:'.js-header-search__button',
   },
   instance:null,
   toggle:function(isOpen){
-    let oldState;
-    let newState;
     if(isOpen){
-      oldState = this.selectors.closeClassName;
-      newState = this.selectors.openClassName;
-      delete this.instance.dataset.target;
+      delete this.instance?.dataset?.target;
       this.instance.setAttribute('aria-expanded', 'false');
     } else {
-      oldState = this.selectors.openClassName;
-      newState = this.selectors.closeClassName;
+      this.instance.dataset.target = 'true';
       this.instance.setAttribute('aria-expanded', 'true');
     }
-    this.instance.classList.remove(oldState);
-    this.instance.classList.add(newState);
   },
   init: function() {
-    this.instance = document.querySelector(this.selectors.id);
+    this.instance = document.querySelector(this.selectors.className);
     if(!this.instance) {
-      throw `OtherLangsDropdown button missing. Looking for ${this.selectors.id}`;
+      throw `Search button missing. Looking for ${this.selectors.className}`;
     }
   }
 };

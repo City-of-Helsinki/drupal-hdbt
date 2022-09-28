@@ -1,0 +1,9 @@
+<nav id="{{ id }}" role="navigation" class="nav-toggle-dropdown {{ modifier_class }}" aria-label="{{ description }}">
+  <div class="nav-toggle-dropdown__wrapper">
+    <div class="nav-toggle-dropdown__content">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+  </div>
+</nav>

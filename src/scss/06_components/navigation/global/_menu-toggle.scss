@@ -49,23 +49,6 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-// When JS is enabled, switch to use button instead of anchor
-.nav-toggle-target[data-js] ~ * {
-  .nav-toggle__anchor {
-    display: none;
-  }
-
-  // On desktop sizes with js, button should open megamenu with js
-  .nav-toggle__button {
-    display: grid;
-  }
-
-  .mega-and-mobilemenu .mobile-menu-fallback,
-  .mega-and-mobilemenu .mmenu__footer {
-    display: none;
-  }
-}
-
 .nav-toggle__label {
   @include font('special.navigation.icon_label');
   align-self: center;
@@ -106,7 +89,7 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-.nav-toggle--search .nav-toggle__label::before {
+.nav-toggle--search .nav-toggle__label--open::before {
   @include pseudo-icon-replace('search');
 }
 
@@ -120,8 +103,7 @@ $-menu-transition-duration: 0.3s;
 }
 
 // Outermost dropdown container, always open.
-.menu-dropdown {
-  grid-area: menu;
+.nav-toggle-dropdown {
   max-width: 100vw;
   overflow: hidden;
   pointer-events: none; // As it's always open, we should disable interacting with it directly
@@ -142,8 +124,13 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+.nav-toggle-dropdown--menu,
+.nav-toggle-dropdown--search {
+  grid-area: menu;
+}
+
 // This wrapper helps to animate reveal open from top-down instead of sliding open as seen in https://nemzes.net/posts/animating-height-auto/
-.menu-dropdown__wrapper {
+.nav-toggle-dropdown__wrapper {
   border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
   overflow: hidden;
   transform: translateY(-100%);
@@ -157,7 +144,7 @@ $-menu-transition-duration: 0.3s;
 }
 
 // Innermost container of dropdown content
-.menu-dropdown__content {
+.nav-toggle-dropdown__content {
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
 
@@ -179,7 +166,7 @@ $-menu-transition-duration: 0.3s;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
-  pointer-events: all; // This enables interaction with this element that .menu-dropdown disables
+  pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
   transform: translateY(100%);
   transition: transform $-menu-transition-duration ease-in;
 
@@ -188,15 +175,40 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-#menu[data-js] ~ * .menu-dropdown__content {
-  overflow-y: hidden;
+// When JS is enabled, switch to use button instead of anchor
+.nav-toggle-target[data-js] ~ * {
+  .nav-toggle__anchor {
+    display: none;
+  }
+
+  // On desktop sizes with js, button should open megamenu with js
+  .nav-toggle__button {
+    display: grid;
+  }
+
+  .nav-toggle-dropdown__content {
+    overflow-y: hidden;
+  }
+
+  .nav-toggle-dropdown__wrapper,
+  .nav-toggle-dropdown__content {
+    transition: none;
+  }
+
+  // When js is enabled, hide fallback menu and mobile menu footer
+  .mega-and-mobilemenu .mobile-menu-fallback,
+  .mega-and-mobilemenu .mmenu__footer {
+    display: none;
+  }
 }
 
-// Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
-// For this reason I had to remove the closing animation when there is no js available :(
-#menu:not([data-js]) ~ * .menu-dropdown__wrapper,
-#menu:not([data-js]) ~ * .menu-dropdown__content {
-  transition: none;
+.nav-toggle-target:not([data-js]) ~ * {
+  // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
+  // For this reason I had to remove the closing animation when there is no js available :(
+  .nav-toggle-dropdown__wrapper,
+  .nav-toggle-dropdown__content {
+    transition: none;
+  }
 }
 
 // When any nav-toggle is active in mobile size, lets hide page content to avoid tabbing behind the dropdown
@@ -224,14 +236,14 @@ $-menu-transition-duration: 0.3s;
     }
 
     & ~ * #{$nav-toggle-dropdown-modifier} {
-      .menu-dropdown__wrapper {
+      .nav-toggle-dropdown__wrapper {
         transform: translateY(0); // Animate wrapper into view from top
         // stylelint-disable-next-line plugin/no-low-performance-animation-properties
         transition: transform $-menu-transition-duration ease-out, visibility 0s linear 0s;
         visibility: visible;
       }
 
-      .menu-dropdown__content {
+      .nav-toggle-dropdown__content {
         transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
         transition: transform $-menu-transition-duration ease-out;
       }

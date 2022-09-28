@@ -41,9 +41,11 @@
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
 
+  {% set dropdown_id = 'nav-toggle-dropdown--menu' %}
+
   {% embed "@hdbt/misc/nav-toggle-button.twig" with {
     modifier_class: 'nav-toggle--menu',
-    controls: 'menu-dropdown',
+    controls: dropdown_id,
     anchor_target: '#menu',
     js_target: 'js-menu-toggle-button',
 
@@ -55,43 +57,45 @@
   } %}
   {% endembed %}
 
-  <nav id="menu-dropdown" role="navigation" class="menu-dropdown nav-toggle-dropdown--menu" aria-label="{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}">
-    <div class="menu-dropdown__wrapper">
-      <div class="menu-dropdown__content">
 
-        <div class="mega-and-mobilemenu">
+  {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+    id: dropdown_id,
+    modifier_class: 'nav-toggle-dropdown--menu',
+    description: 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'})
+  } %}
+    {% block content%}
+      <div class="mega-and-mobilemenu">
 
-          {# Render external mega menu block. #}
-          {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
+        {# Render external mega menu block. #}
+        {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
 
-          {# The block content will render menu--external-menu--fallback.html.twig #}
-          {{ block_content }}
+        {# The block content will render menu--external-menu--fallback.html.twig #}
+        {{ block_content }}
 
-          <div class="mmenu__footer js-mmenu__footer">
+        <div class="mmenu__footer js-mmenu__footer">
 
-            {% set inside_cssmenu = true %}
-            {% block header_top_navigation %}
-              {{ drupal_entity('block', 'external_header_top_navigation')}}
-            {% endblock header_top_navigation %}
+          {% set inside_cssmenu = true %}
+          {% block header_top_navigation %}
+            {{ drupal_entity('block', 'external_header_top_navigation')}}
+          {% endblock header_top_navigation %}
 
-            <div class="mmenu__logo">
-              {% set link_label %}
-                {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-              {% endset %}
-              {% set link_attributes = {
-                'class': [
-                  'mmenu__logo-link',
-                ],
-              } %}
-              {{ link(link_label, site_front_url, link_attributes) }}
-            </div>
+          <div class="mmenu__logo">
+            {% set link_label %}
+              {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
+            {% endset %}
+            {% set link_attributes = {
+              'class': [
+                'mmenu__logo-link',
+              ],
+            } %}
+            {{ link(link_label, site_front_url, link_attributes) }}
           </div>
         </div>
-
-        <div id="mmenu" class="mmenu">
-          <div id="mmenu__panels" class="mmenu__panels" />
-        </div>
       </div>
-    </div>
-  </nav>
+
+      <div id="mmenu" class="mmenu">
+        <div id="mmenu__panels" class="mmenu__panels" />
+      </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

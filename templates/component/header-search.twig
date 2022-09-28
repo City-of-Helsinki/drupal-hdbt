@@ -4,13 +4,13 @@
   <button  id="js-header-search__button" class="header-search__button header-search__button--open header-search__button--js"></button>
 </div> #}
 
-{% set search_dropdown_id = 'search-dropdown' %}
+{% set dropdown_id = 'search-dropdown' %}
 
 {% embed "@hdbt/misc/nav-toggle-button.twig" with {
   modifier_class: 'nav-toggle--search',
-  controls: search_dropdown_id,
+  controls: dropdown_id,
   anchor_target: '#search',
-  js_target: 'js-search-toggle-button',
+  js_target: 'js-header-search__button',
 
   open_label: 'Search'|t,
   open_screenreader: 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}),
@@ -20,10 +20,13 @@
 } %}
 {% endembed %}
 
-{#  id="{{ search_dropdown_id }}" #}
-<div class="header-search__menu-dropdown">
-  <div class="header-search__container">
-    <div class="header-search__container-inner">
+{% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+  id: dropdown_id,
+  modifier_class: 'nav-toggle-dropdown--search',
+  description: ''
+} %}
+  {% block content%}
+
         <h3>{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</h3>
       {% include "@hdbt/component/helfi-search-form.twig" %}
       <div class="search-container__links-container">
@@ -49,6 +52,7 @@
           <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+  {% endblock %}
+{% endembed %}
+
