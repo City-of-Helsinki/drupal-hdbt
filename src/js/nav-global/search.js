@@ -32,18 +32,25 @@ const SearchDropdown = {
   close:function(){
     this.toggleButton.toggle(true);
     this.targetNode.dataset.target = 'false';
+    if(this.onClose) {
+      this.onClose();
+    }
+  },
+  open:function(){
+    this.toggleButton.toggle(false);
+    this.targetNode.dataset.target = 'true';
+    if(this.onOpen) {
+      this.onOpen();
+    }
+
   },
   toggle:function(){
     const isOpen = this.isOpen(); //when toggle is called. next state will be opposite
     if(isOpen) { //close it.
-      window.location.hash = '';
-      this.targetNode.dataset.target = 'false';
+      this.close();
     }
     else { //menu is closed, open it and call onOpen
-      this.targetNode.dataset.target = 'true';
-      if(this.onOpen) {
-        this.onOpen();
-      }
+      this.open();
     }
     this.toggleButton.toggle(isOpen);
   },
@@ -53,7 +60,7 @@ const SearchDropdown = {
      */
     document.addEventListener('keydown', (e) => {
       if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
-        this.toggle();
+        this.close();
       }
     });
     /**
@@ -64,12 +71,13 @@ const SearchDropdown = {
       this.toggle();
     });
   },
-  init:function({onOpen}){
+  init:function({onOpen,onClose}){
     if(this.running) {
       console.warn('Search menu already initiated. Is it included more than once?');
       return;
     }
     this.onOpen = onOpen;
+    this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);

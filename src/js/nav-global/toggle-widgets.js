@@ -14,17 +14,25 @@ const HIDE_SELECTORS = [
   '#sliding-popup', // Cookie banner
 ];
 
-function toggle(hide) {
+const setHide = (hide) => {
+  (hide === true ? close : open)();
+};
+
+const close = ()=> { 
   document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
-    if(hide) {
-      widget.dataset.cssmenuHide = true;
-    } else {
-      delete widget.dataset.cssmenuHide;
-    }
+    widget.dataset.cssmenuHide = true; 
   });
-}
+};
+
+const open = () => {
+  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
+    delete widget.dataset.cssmenuHide; 
+  });
+};
 
 module.exports =  {
-  toggle,
+  setHide,
+  close,
+  open,
   HIDE_SELECTORS
 };

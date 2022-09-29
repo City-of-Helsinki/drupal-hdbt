@@ -1,7 +1,6 @@
 const Mustache = require('mustache');
 const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
-const ToggleWidgets = require('./toggle-widgets');
 
 Array.prototype.findRecursive = function(predicate, childrenPropertyName){
   if(!childrenPropertyName){
@@ -449,25 +448,27 @@ const MobilePanel = {
   close:function(){
     this.toggleButton.setAttribute('aria-expanded', 'false');
     this.menu.dataset.target = 'false';
-    ToggleWidgets.toggle(false);
+    if(this.onClose) {
+      this.onClose();
+    }
+  },
+  open:function(){
+    this.menu.dataset.target = 'true';
+    this.toggleButton.setAttribute('aria-expanded', 'true');
+    if(this.onOpen) {
+      this.onOpen();
+    }
   },
   toggle:  function() {
     if (this.isOpen()) {
-      this.toggleButton.setAttribute('aria-expanded', 'false');
-      this.menu.dataset.target = 'false';
-      ToggleWidgets.toggle(false);
+      this.close();
     } else {
-      ToggleWidgets.toggle(true);
-      this.menu.dataset.target = 'true';
-      this.toggleButton.setAttribute('aria-expanded', 'true');
-      if(this.onOpen) {
-        this.onOpen();
-      }
+      this.open();
     }
     // We should always focus the menu button after toggling the menu
     this.toggleButton.focus();
   },
-  init:function({onOpen}){
+  init:function({onOpen,onClose}){
     /**
      * Start the panel after DOM has loaded.
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
@@ -478,6 +479,7 @@ const MobilePanel = {
     }
 
     this.onOpen = onOpen;
+    this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {
     // See  block--mobile-navigation.html.twig for the button
       this.toggleButton = document.querySelector('.js-menu-toggle-button');
@@ -498,7 +500,7 @@ const MobilePanel = {
      */
       document.addEventListener('keydown',  (e) =>{
         if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
-          this.toggle();
+          this.close();
         }
       });
 
@@ -529,7 +531,7 @@ const MobilePanel = {
       if (this.isOpen()) {
         window.location.hash = '';
         start();
-        this.toggle();
+        this.open();
       }
     });
     this.running=true;
