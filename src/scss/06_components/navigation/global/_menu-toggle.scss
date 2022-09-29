@@ -190,11 +190,6 @@ $-menu-transition-duration: 0.3s;
     overflow-y: hidden;
   }
 
-  .nav-toggle-dropdown__wrapper,
-  .nav-toggle-dropdown__content {
-    transition: none;
-  }
-
   // When js is enabled, hide fallback menu and mobile menu footer
   .mega-and-mobilemenu .mobile-menu-fallback,
   .mega-and-mobilemenu .mmenu__footer {
