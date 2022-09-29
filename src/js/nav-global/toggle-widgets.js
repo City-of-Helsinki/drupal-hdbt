@@ -10,9 +10,10 @@ const HIDE_SELECTORS = [
   '#smartti-wrapper', // Smartti chatbot in kymp
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop, #aca--widget-button-close', // Watson chatbot in asuminen
   '#block-kuurahealthchat', // Kuurahealth in sote
-  '#ed11y-panel' // Editoria11y accessibility tool
+  '#ed11y-panel', // Editoria11y accessibility tool
+  '#sliding-popup', // Cookie banner
 ];
-  
+
 function toggle(hide) {
   document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
     if(hide) {
@@ -22,7 +23,7 @@ function toggle(hide) {
     }
   });
 }
-  
+
 module.exports =  {
   toggle,
   HIDE_SELECTORS
