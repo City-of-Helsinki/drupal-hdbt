@@ -29,7 +29,7 @@ $-menu-transition-duration: 0.3s;
 }
 
 .nav-toggle__button {
-  background: transparent; // Reset button styles
+  background-color: transparent; // Reset button styles
   border: 0 none; // Reset button styles
   cursor: pointer;
   display: none;
@@ -160,7 +160,7 @@ $-menu-transition-duration: 0.3s;
   @supports (height: 1dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
   }
-  background: $color-white;
+  background-color: $color-white;
   height: var(--menu-height);
   max-height: var(--menu-max-height);
   overflow-x: hidden;

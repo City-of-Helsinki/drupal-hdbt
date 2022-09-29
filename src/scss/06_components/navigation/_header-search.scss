@@ -1,13 +1,11 @@
-.nav-toggle-dropdown--search .nav-toggle-dropdown__wrapper {
-  background-color: $color-black-10;
-  padding: $spacing-triple 0;
+.nav-toggle-dropdown--search .nav-toggle-dropdown__content {
+  background-color: $color-silver-light;
 }
 
-.nav-toggle-dropdown--search .nav-toggle-dropdown__content {
-  background-color: $color-black-10;
-  max-width: $content-width-max;
-
+.header-search-wrapper {
   @include component-side-padding;
+  max-width: $content-width-max;
+  padding-block: $spacing-triple;
 
   .helfi-search__form {
     flex-direction: column;
