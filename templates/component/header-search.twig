@@ -22,7 +22,9 @@
   {% block content%}
     <div class="header-search-wrapper">
       <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
-      {% include "@hdbt/component/helfi-search-form.twig" %}
+      {% include "@hdbt/component/helfi-search-form.twig" with {
+        label: 'Keyword'|t({}, {'context': 'Header search label'})
+      } %}
       <noscript class="header-search__javascript-disabled">
         <p>
           {{ "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': 'Header search, no javascript'}) }}
@@ -33,21 +35,19 @@
           {% set link_title_events %}
           {{ 'Search for events'|t({}, {'context': 'Header search, search for events'}) }}
           {% endset %}
-          {% set link_url_events = 'https://www.tapahtumat.hel.fi' %}
           {% set link_attributes = {
             'class': [
               'search__link-external',
             ],
           } %}
-          {{ link(link_title_events, link_url_events, link_attributes) }}
+          {{ link(link_title_events, events_link_url, link_attributes) }}
           <span>{{'Find upcoming events at the Events.hel.fi website.'|t}}</span>
         </div>
         <div class="search-container__link">
           {% set link_title_decisions %}
           {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
           {% endset %}
-          {% set link_url_decisions = 'https://paatokset.hel.fi' %}
-          {{ link(link_title_decisions, link_url_decisions, link_attributes) }}
+          {{ link(link_title_decisions, decisions_link_url, link_attributes) }}
           <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
         </div>
       </div>

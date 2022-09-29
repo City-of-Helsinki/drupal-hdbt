@@ -1,7 +1,10 @@
-<form class="helfi-search__form" action="https://helsinki-search-results.metatavu.io/?locale=fi">
-  <div class="js-form-item form-item js-form-type-textfield hds-text-input">
+<form class="helfi-search__form" action="{{ helfi_search_form_url }}">
+  <div class="form-item hds-text-input">
+    {% if label %}
+      <label class="hds-text-input__label" for="search-form">{{ label }}</label>
+    {% endif %}
     <div class="hds-text-input__input-wrapper">
-      <input type="search" name="q" value="" size="30" maxlength="128" class="form-text hds-text-input__input" placeholder="{{'Enter a search word'|t({}, {'context': 'Helfi search input placeholder'}) }}">
+      <input type="search" id="search-form" name="q" value="" size="30" maxlength="128" class="form-text hds-text-input__input" {% if placeholder %}placeholder="{{ placeholder }}" {% endif %}>
     </div>
   </div>
   <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">{{ 'Search'|t({}, {'context': 'Helfi search button'}) }}</button>

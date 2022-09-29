@@ -199,6 +199,27 @@ function hdbt_preprocess_page(&$variables) {
   ) {
     $variables['published'] = $page_entity->isPublished();
   }
+
+  // Urls for event search and decision search
+  switch ($variables['current_langcode']) {
+    case 'fi':
+      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
+      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/';
+      $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
+      break;
+
+    case 'sv':
+      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/sv';
+      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/sv';
+      $variables['helfi_search_form_url'] = 'https://www.hel.fi/sok';
+      break;
+
+    default:
+      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/en';
+      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/en';
+      $variables['helfi_search_form_url'] = 'https://www.hel.fi/search';
+      break;
+  }
 }
 
 /**

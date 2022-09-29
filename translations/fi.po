@@ -263,3 +263,7 @@ msgstr "Hae"
 msgctxt "Header search, no javascript"
 msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
 msgstr "Hel.fi-verkkopalvelun haku käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
+
+msgctxt "Header search label"
+msgid "Keyword"
+msgstr "Hakusana"
