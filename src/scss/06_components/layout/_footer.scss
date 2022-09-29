@@ -64,7 +64,7 @@
 
   .menu {
     @include font('body');
-    margin: $spacing 0 0;
+    margin: $spacing 0 $spacing-double 0;
 
     @include breakpoint($breakpoint-m) {
       margin-top: $spacing-and-half;
