@@ -20,7 +20,8 @@
   description: ''
 } %}
   {% block content%}
-    <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
+    <div class="header-search-wrapper">
+      <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
       {% include "@hdbt/component/helfi-search-form.twig" %}
       <noscript class="header-search__javascript-disabled">
         <p>
@@ -50,6 +51,7 @@
           <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
         </div>
       </div>
+    </div>
   {% endblock %}
 {% endembed %}
 

@@ -110,7 +110,7 @@ $-menu-transition-duration: 0.3s;
   position: absolute;
   width: 100%;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     width: 100%;
     z-index: 100; // Needs to be higher than page content
   }
@@ -148,7 +148,7 @@ $-menu-transition-duration: 0.3s;
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     --menu-height: auto;
   }
 
