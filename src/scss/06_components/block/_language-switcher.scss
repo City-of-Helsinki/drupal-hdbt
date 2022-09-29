@@ -1,6 +1,7 @@
 $-language-block-height: 52px;
 
 .language-wrapper {
+  --language-block-height: #{$-language-block-height};
   align-content: stretch;
   align-items: center;
   align-self: center;
@@ -10,7 +11,7 @@ $-language-block-height: 52px;
   grid-area: lang;
   height: 100%;
   justify-content: space-between;
-  min-height: $-language-block-height;
+  min-height: var(--language-block-height);
   padding: 0 $spacing;
   position: relative;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling

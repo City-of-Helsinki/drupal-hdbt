@@ -1,5 +1,4 @@
 $-branding-icon-size-desktop: $spacing-double;
-$-panel-height: calc(100vh - 52px);
 
 .header-branding {
   --branding-height: 65px;
@@ -11,7 +10,7 @@ $-panel-height: calc(100vh - 52px);
     'lang lang lang lang lang lang lang'
     'menu menu menu menu menu menu menu';
   grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto  var(--header-branding-padding);
-  grid-template-rows: var(--branding-height) auto auto;
+  grid-template-rows: var(--branding-height) min-content min-content;
   position: fixed;
   top: 0;
   width: 100%;
