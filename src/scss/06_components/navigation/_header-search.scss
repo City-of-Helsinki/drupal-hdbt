@@ -1,69 +1,21 @@
-.search-toggle__open,
-.search-toggle__close {
-  @include font('special.navigation.icon_label');
-  align-self: center;
-  color: $color-black-90;
-  cursor: pointer;
-  display: grid;
-  grid-area: link;
-  grid-template-areas:
-    'icon'
-    'label';
-  padding: 5px; // Handles spacing for 'inside' focus ring
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-
-  &:hover,
-  &:active,
-  .search-toggle-button:hover &,
-  .search-toggle-button:active & {
-    text-decoration: underline;
-  }
-
-  // stylelint-disable no-descending-specificity
-  &:focus,
-  &:active,
-  .search-toggle-button:focus &,
-  .search-toggle-button:active & {
-    outline: 3px solid $color-black;
-    outline-offset: -3px;
-  }
-  // stylelint-enable no-descending-specificity
-
-  &::before {
-    @include pseudo-icon('search', 32px, currentColor, block);
-    align-self: end;
-    grid-area: icon;
-    justify-self: center;
-  }
-}
-
-// stylelint-disable-next-line no-descending-specificity
-.search-toggle__close {
-  visibility: hidden;
-
-  &::before {
-    @include pseudo-icon-replace('cross');
-  }
-}
-
-.search-toggle-button {
-  background: transparent;
-  border: 0 none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.header-search__container {
+.nav-toggle-dropdown--search .nav-toggle-dropdown__wrapper {
   background-color: $color-black-10;
   padding: $spacing-triple 0;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
+}
+
+.nav-toggle-dropdown--search .nav-toggle-dropdown__content {
+  background-color: $color-black-10;
+  max-width: $content-width-max;
+
+  @include component-side-padding;
 
   .helfi-search__form {
+    flex-direction: column;
     margin-bottom: $spacing-and-half;
+
+    @include breakpoint($breakpoint-s) {
+      flex-direction: row;
+    }
   }
 
   .helfi-search__form .hds-text-input {
@@ -71,20 +23,26 @@
   }
 }
 
-.header-search__container-inner {
-  max-width: $content-width-max;
+// Hide search form if js is disabled
+#search:not([data-js]) ~ * .helfi-search__form {
+  display: none;
+}
 
-  @include component-side-padding;
+.header-search__javascript-disabled {
+  display: block;
+  margin-bottom: $spacing-and-half;
+}
 
-  h3 {
-    margin-bottom: $spacing;
-    margin-top: 0;
-  }
+.header-search__title {
+  @include font('h3');
+  margin-bottom: $spacing;
+  margin-top: 0;
 }
 
 .search-container__links-container {
   display: flex;
   flex-direction: column;
+  gap: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     flex-direction: row;
@@ -97,15 +55,6 @@
 
   @include breakpoint($breakpoint-m) {
     width: 50%;
-  }
-
-  &:first-of-type {
-    margin-bottom: $spacing;
-
-    @include breakpoint($breakpoint-m) {
-      margin-bottom: 0;
-      padding-right: $spacing-and-half;
-    }
   }
 }
 

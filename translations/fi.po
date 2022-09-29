@@ -225,3 +225,41 @@ msgstr "Katso kaikki uutiset"
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "Kaikki uutiset"
+
+msgctxt "Header search, search for events"
+msgid "Search for events"
+msgstr "Etsi tapahtumia"
+
+msgid "Find upcoming events at the Events.hel.fi website."
+msgstr "Kaupungin ajankohtaisia tapahtumia voit hakea Tapahtumat.hel.fi-sivustolla."
+
+msgctxt "Header search, search for decisions"
+msgid "Search for decisions"
+msgstr "Etsi päätöksiä"
+
+msgid "Find municipal decisions in the Decision-making section."
+msgstr "Kaupungin tekemiä päätöksiä voit hakea Päätökset-sivustolla."
+
+msgctxt "Header search title"
+msgid "Search Hel.fi"
+msgstr "Hae Hel.fi:stä"
+
+msgctxt "Mobile navigation search open button text for screen readers"
+msgid "Open search"
+msgstr "Avaa haku"
+
+msgctxt "Mobile navigation search close button text for screen readers"
+msgid "Close search"
+msgstr "Sulje haku"
+
+msgctxt "Helfi search input placeholder"
+msgid "Enter a search word"
+msgstr "Kirjoita hakusana"
+
+msgctxt "Helfi search button"
+msgid "Search"
+msgstr "Hae"
+
+msgctxt "Header search, no javascript"
+msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Hel.fi-verkkopalvelun haku käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."

@@ -1,9 +1,9 @@
 .helfi-search__form {
   display: flex;
+  gap: $spacing-half;
 
   .form-item {
     margin-bottom: 0;
-    margin-right: $spacing-half;
   }
 }
 
