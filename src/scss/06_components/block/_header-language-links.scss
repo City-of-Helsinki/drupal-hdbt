@@ -1,148 +1,59 @@
-$-panel-height: calc(100vh - 52px); // TODO this should be shared from the top of the stack
-$-panel-desktop-width: 243px; // from abstarct as a baseline
+$-otherlangs-min-width: 240px; // From design specs
 
-.block__headerlanguagelinks {
-  align-self: stretch;
-  background-color: $color-silver-light;
-  border-left: 1px solid $color-black-20;
-  display: flex;
-  flex-grow: 0;
-  padding-left: $spacing;
-  transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
-  z-index: 0;
+.nav-toggle-dropdown--otherlangs {
+  grid-area: menu;
 
-  @include breakpoint($breakpoint-m) {
-    background-color: transparent;
-    border: 0;
-    margin-left: auto;
-    order: 2;
-    padding: 0 $spacing-half;
-    width: auto;
+  @include breakpoint($breakpoint-l) {
+    grid-area: langmenu;
   }
 }
 
-.headerlanguagelinks__toggle {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  text-decoration: none;
-
-  &::before {
-    @include pseudo-icon('globe', 24px, black);
-    @include hover-link-arrow-transition;
-    content: '';
-    grid-area: icon;
-  }
-}
-
-.headerlanguagelinks__toggle span {
-  padding-left: 4px;
-
-  &::before {
-    @include hover-link-arrow-transition;
-    content: '';
-    grid-area: icon;
-  }
-}
-
-.headerlanguagelinks__toggle--js {
-  background-color: transparent;
-  border: 0;
-}
-
-.headerlanguagelinks__toggle--open span {
-  &::before {
-    @include pseudo-icon('angle-down', 24px, black);
-  }
-}
-
-.headerlanguagelinks__toggle--close span {
-  &::before {
-    @include pseudo-icon('angle-up', 24px, black);
+.nav-toggle-dropdown--otherlangs .nav-toggle-dropdown__content {
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
   }
 }
 
 .headerlanguagelinks__menu-dropdown {
   background-color: $color-silver-medium-light;
-  grid-area: menu;
-  height: $-panel-height;
+  height: 100%;
   list-style: none;
   margin: 0;
-  max-height: $-panel-height;
-  max-width: 100vw;
-  min-width: 100vw;
-  overflow-x: hidden;
-  padding-block: $spacing;
-  position: absolute;
-  z-index: 3;
+  min-width: $-otherlangs-min-width;
+  padding: $spacing;
+  width: auto;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     border: 1px solid $color-black-20;
     border-top: 0;
-    bottom: auto;
-    grid-area: langmenu;
     height: auto;
-    justify-self: end;
-    left: auto;
-    max-width: $-panel-desktop-width;
-    min-width: auto;
-    position: absolute;
-    width: $-panel-desktop-width;
+    max-width: 200px;
+    pointer-events: all;
   }
 }
 
-.headerlanguagelinks__menu-dropdown,
-.headerlanguagelinks__toggle--close {
-  display: none;
-}
-
-#otherlangs {
-  scroll-margin-top: 100vh;
-}
-
-// hide button when JS is not available, hide links when it is
-#otherlangs[data-js] ~ * .headerlanguagelinks__toggle--js {
-  display: flex;
-}
-
-#otherlangs[data-js] ~ * .headerlanguagelinks__toggle--link,
-#otherlangs:not([data-js]) ~ * .headerlanguagelinks__toggle--js {
-  display: none !important;
-}
-
-#otherlangs:target,
-#otherlangs[data-target='true'] {
-  & + .wrapper > .header {
-    position: relative;
-  }
-
-  & ~ * .headerlanguagelinks__menu-dropdown {
-    display: block;
-  }
-}
-
-#otherlangs:target {
-  & ~ * .headerlanguagelinks__toggle--close {
-    display: flex;
-  }
-
-  & ~ * .headerlanguagelinks__toggle--open {
-    display: none;
-  }
-}
-
-.headerlanguagelinks__group {
-  margin-bottom: $spacing;
+.headerlanguagelinks__group + .headerlanguagelinks__group {
+  margin-top: $spacing-and-half;
 }
 
 .headerlanguagelinks__link {
   display: block;
-  margin-bottom: $spacing-half;
-  text-decoration: none;
 
-  &:hover,
-  &:active {
-    text-decoration: underline;
+  & + .headerlanguagelinks__group,
+  & + .headerlanguagelinks__link {
+    margin-top: $spacing-half;
+  }
+
+  &:not(.headerlanguagelinks__link--nolink) {
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }
 

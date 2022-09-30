@@ -34,7 +34,12 @@
 
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  {% embed "@hdbt/component/otherlanguages.twig" with {
+    renderButton: false,
+  } %}
+
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  {% endembed %}
 {% endif %}

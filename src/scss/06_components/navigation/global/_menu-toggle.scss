@@ -1,4 +1,6 @@
 $-menu-transition-duration: 0.3s;
+$-default-label-icon-size: 32px;
+$label-font: 'special.navigation.icon_label';
 
 // When menu is opened with anchor instead of JS, this forces the page to scroll to top
 .nav-toggle-target:not([data-js]) {
@@ -16,6 +18,15 @@ $-menu-transition-duration: 0.3s;
 
 .nav-toggle--menu {
   grid-area: toggle;
+}
+
+.nav-toggle--otherlangs {
+  align-items: stretch;
+  align-self: stretch;
+
+  @include breakpoint($breakpoint-l) {
+    align-items: center;
+  }
 }
 
 .nav-toggle__anchor {
@@ -50,12 +61,13 @@ $-menu-transition-duration: 0.3s;
 }
 
 .nav-toggle__label {
-  @include font('special.navigation.icon_label');
+  @include font($label-font);
   align-self: center;
   color: $color-black-90;
   cursor: pointer;
   display: grid;
   grid-area: link;
+  grid-column: auto;
   grid-template-areas:
     'icon'
     'label';
@@ -63,6 +75,10 @@ $-menu-transition-duration: 0.3s;
   text-align: center;
   text-decoration: none;
   user-select: none;
+
+  span {
+    grid-area: label;
+  }
 
   &:hover,
   &:active,
@@ -82,21 +98,55 @@ $-menu-transition-duration: 0.3s;
   // stylelint-enable no-descending-specificity
 
   &::before {
-    @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+    // @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
     align-self: end;
     grid-area: icon;
     justify-self: center;
   }
 }
 
-.nav-toggle--search .nav-toggle__label--open::before {
-  @include pseudo-icon-replace('search');
+.nav-toggle__label.nav-toggle__label {
+  grid-area: link;
+}
+
+.nav-toggle--menu .nav-toggle__label::before {
+  @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+}
+
+.nav-toggle--search .nav-toggle__label::before {
+  @include pseudo-icon('search', 32px, currentColor, block);
 }
 
 // stylelint-disable-next-line no-descending-specificity
-.nav-toggle__label--close {
-  visibility: hidden;
+.nav-toggle--otherlangs .nav-toggle__label {
+  align-self: stretch;
+  grid-area: link;
+  grid-column: auto min-content;
+  grid-template-areas:
+    'icon arrow'
+    'label .';
+  min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
 
+  &::before {
+    @include pseudo-icon('globe', 24px, currentColor, block);
+  }
+
+  &::after {
+    @include rotating-icon-transition;
+    @include pseudo-icon('angle-down', 24px, $color-black);
+    align-self: end;
+    content: '';
+    grid-area: arrow;
+  }
+}
+
+// stylelint-disable-next-line no-descending-specificity
+.nav-toggle .nav-toggle__label--close {
+  visibility: hidden;
+}
+
+.nav-toggle--menu .nav-toggle__label--close,
+.nav-toggle--search .nav-toggle__label--close {
   &::before {
     @include pseudo-icon-replace('cross');
   }
@@ -131,7 +181,6 @@ $-menu-transition-duration: 0.3s;
 
 // This wrapper helps to animate reveal open from top-down instead of sliding open as seen in https://nemzes.net/posts/animating-height-auto/
 .nav-toggle-dropdown__wrapper {
-  border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
   overflow: hidden;
   transform: translateY(-100%);
   // stylelint-disable-next-line plugin/no-low-performance-animation-properties
@@ -140,6 +189,11 @@ $-menu-transition-duration: 0.3s;
 
   @media (prefers-reduced-motion) {
     transition: none !important;
+  }
+
+  .nav-toggle-dropdown--menu &,
+  .nav-toggle-dropdown--search & {
+    border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
   }
 }
 
@@ -160,7 +214,6 @@ $-menu-transition-duration: 0.3s;
   @supports (height: 1dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
   }
-  background-color: $color-white;
   height: var(--menu-height);
   max-height: var(--menu-max-height);
   overflow-x: hidden;
@@ -173,6 +226,10 @@ $-menu-transition-duration: 0.3s;
   @media (prefers-reduced-motion) {
     transition: none !important;
   }
+}
+
+.nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
+  background-color: $color-white;
 }
 
 // When JS is enabled, switch to use button instead of anchor
@@ -213,7 +270,8 @@ $-menu-transition-duration: 0.3s;
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
       display: none; // Hide other content when menu is visible, to block tabbing behind menu
-      transition: display 0s linear 10s;
+      // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+      transition: display 0s linear 10s; // low performance property is ok here as it's just a toggle
     }
   }
 }
@@ -250,13 +308,16 @@ $-menu-transition-duration: 0.3s;
 // What should happen when nav-toggle dropdown is opened
 @include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
+@include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 
 .language-wrapper {
   max-height: 100vh;
+  /* stylelint-disable plugin/no-low-performance-animation-properties */
   transition:
-    max-height 0s linear $-menu-transition-duration,
-    visibility 0s linear $-menu-transition-duration,
-    min-height 0s linear $-menu-transition-duration;
+    max-height 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
+    visibility 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
+    min-height 0s linear $-menu-transition-duration; // low performance property is ok here as it's just a toggle
+  /* stylelint-enable plugin/no-low-performance-animation-properties */
 }
 
 // What should happen when menu is opened
@@ -282,6 +343,13 @@ $-menu-transition-duration: 0.3s;
       min-height: var(--language-block-height);
       visibility: visible;
     }
+  }
+}
+
+#otherlangs:target,
+#otherlangs[data-target='true'] {
+  & ~ * .nav-toggle--otherlangs .nav-toggle__label::after {
+    transform: rotate(180deg);
   }
 }
 

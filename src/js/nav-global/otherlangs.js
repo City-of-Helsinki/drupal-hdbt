@@ -1,25 +1,17 @@
 const ToggleButton = {
   selectors:{
-    id:'#js-otherlangs-button',
-    openClassName :'headerlanguagelinks__toggle--open',
-    closeClassName:'headerlanguagelinks__toggle--close'
+    id:'.js-otherlangs-button',
   },
   instance:null,
   toggle:function(isOpen){
     let oldState;
     let newState;
     if(isOpen){
-      oldState = this.selectors.closeClassName;
-      newState = this.selectors.openClassName;
       delete this.instance.dataset.target;
       this.instance.setAttribute('aria-expanded', 'false');
     } else {
-      oldState = this.selectors.openClassName;
-      newState = this.selectors.closeClassName;
       this.instance.setAttribute('aria-expanded', 'true');
     }
-    this.instance.classList.remove(oldState);
-    this.instance.classList.add(newState);
   },
   init: function() {
     this.instance = document.querySelector(this.selectors.id);
@@ -102,6 +94,5 @@ const OtherLangsDropdown = {
     this.running=true;
   }
 };
-
 
 module.exports = OtherLangsDropdown;
