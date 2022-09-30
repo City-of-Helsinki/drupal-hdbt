@@ -163,7 +163,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     min-width: 310px;
     position: absolute;
     width: calc(100% + #{$spacing-quadruple});
-    z-index: 2; // does it REALLY need more than this?
+    z-index: 100;
   }
 
   // Secondary menu items open
