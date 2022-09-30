@@ -39,6 +39,7 @@ $-otherlangs-min-width: 240px; // From design specs
 }
 
 .headerlanguagelinks__link {
+  @include font('small');
   display: block;
 
   & + .headerlanguagelinks__group,
@@ -59,9 +60,5 @@ $-otherlangs-min-width: 240px; // From design specs
 
 .headerlanguagelinks__link--nolink {
   display: block;
-  font-weight: 500;
-}
-
-.headerlanguagelinks__link[data-is-external='true']::after {
-  @include pseudo-icon('link-external', 24px, black);
+  font-weight: $font-weight-bold;
 }
