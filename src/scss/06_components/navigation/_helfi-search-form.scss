@@ -1,5 +1,3 @@
-$-search-button-min-width: 112px;
-
 // HDS input height from search-input.css
 $-search-button-min-height: 56px;
 
@@ -20,5 +18,4 @@ html:not(.js) .helfi-search__form {
 
 .helfi-search__submit-button {
   height: $-search-button-min-height;
-  min-width: $-search-button-min-width;
 }
