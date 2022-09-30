@@ -1,4 +1,4 @@
-const MobilePanel = require('./nav-global/mobilepanel.js');
+const MobilePanel = require('./nav-global/menu.js');
 const OtherLangsDropdown = require('./nav-global/otherlangs');
 const SearchDropdown = require('./nav-global/search');
 const ToggleWidgets = require('./nav-global/toggle-widgets');
