@@ -1,29 +1,7 @@
-const ToggleButton = {
-  selectors:{
-    id:'.js-otherlangs-button',
-  },
-  instance:null,
-  toggle:function(isOpen){
-    let oldState;
-    let newState;
-    if(isOpen){
-      delete this.instance.dataset.target;
-      this.instance.setAttribute('aria-expanded', 'false');
-    } else {
-      this.instance.setAttribute('aria-expanded', 'true');
-    }
-  },
-  init: function() {
-    this.instance = document.querySelector(this.selectors.id);
-    if(!this.instance) {
-      throw `OtherLangsDropdown button missing. Looking for ${this.selectors.id}`;
-    }
-  }
-};
-
 const OtherLangsDropdown = {
   HASH_ID: '#otherlangs',
-  toggleButton:ToggleButton,
+  buttonSelector: '.js-otherlangs-button',
+  buttonInstance: null,
   running:false,
   targetNode:null,
   onOpen:null,
@@ -31,43 +9,37 @@ const OtherLangsDropdown = {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
   },
   close:function(){
-    this.toggleButton.toggle(true);
+    this.buttonInstance.setAttribute('aria-expanded', 'false');
     this.targetNode.dataset.target = 'false';
     if(this.onClose) {
       this.onClose();
     }
   },
   open:function(){
-    this.toggleButton.toggle(false);
+    this.buttonInstance.setAttribute('aria-expanded', 'true');
     this.targetNode.dataset.target = 'true';
     if(this.onOpen) {
       this.onOpen();
     }
   },
   toggle:function(){
-    const isOpen = this.isOpen(); //when toggle is called. next state will be opposite
-    if(isOpen) { //close it.
+    if(this.isOpen()) { 
       this.close();
-    }
-    else { //menu is closed, open it and call onOpen
+    } else { 
       this.open();
     }
-    this.toggleButton.toggle(isOpen);
+    this.buttonInstance.focus();
   },
   addListeners: function(){
-    /**
-     * Close menu on ESC
-     */
+    // Close menu on ESC
     document.addEventListener('keydown', (e) => {
       if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
         this.close();
       }
     });
-    /**
-     * toggle menu from button
-     *
-     */
-    this.toggleButton.instance.addEventListener('click',()=> {
+    
+    // Toggle menu from button
+    this.buttonInstance.addEventListener('click',()=> {
       this.toggle();
     });
   },
@@ -84,14 +56,17 @@ const OtherLangsDropdown = {
       if(!this.targetNode) {
         throw `OtherLangsDropdown target node missing. Looking for ${this.HASH_ID}`;
       }
-      /**
-       * hide nojs menu links, show button instead.
-       */
+      // Hide nojs menu links, show button instead.
       this.targetNode.dataset.js = true;
-      this.toggleButton.init();
       this.addListeners();
     });
+
     this.running=true;
+
+    this.buttonInstance = document.querySelector(this.buttonSelector);
+    if(!this.buttonInstance) {
+      throw `OtherLangsDropdown button missing. Looking for ${this.buttonSelector}`;
+    }
   }
 };
 

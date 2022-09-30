@@ -267,3 +267,15 @@ msgstr "Hel.fi-verkkopalvelun haku käyttää JavaScriptiä. Selaimesi ei tue Ja
 msgctxt "Header search label"
 msgid "Keyword"
 msgstr "Hakusana"
+
+msgctxt "Other languages-menu open button text for screen readers"
+msgid "Open Information in other languages menu"
+msgstr "Avaa tietoa muilla kielillä valikko"
+
+msgctxt "Other languages-menu close button text for screen readers"
+msgid "Close Information in other languages menu"
+msgstr "Sulje tietoa muilla kielillä valikko"
+
+msgctxt "Other languages-navigation"
+msgid "Information in other languages"
+msgstr "Tietoa muilla kielillä"

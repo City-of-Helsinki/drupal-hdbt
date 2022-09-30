@@ -264,3 +264,15 @@ msgstr "Hel.fi-webbtjänstens sök använder JavaScript. Din webbläsare stöder
 msgctxt "Header search label"
 msgid "Keyword"
 msgstr "Uppslagsord"
+
+msgctxt "Other languages-menu open button text for screen readers"
+msgid "Open Information in other languages menu"
+msgstr "Öppna Information på andra språk meny"
+
+msgctxt "Other languages-menu close button text for screen readers"
+msgid "Close Information in other languages menu"
+msgstr "Stäng Information på andra språk meny"
+
+msgctxt "Other languages-navigation"
+msgid "Information in other languages"
+msgstr "Information på andra språk"
