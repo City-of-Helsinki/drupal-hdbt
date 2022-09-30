@@ -1,53 +1,56 @@
-const MobilePanel = require('./nav-global/menu.js');
-const OtherLangsDropdown = require('./nav-global/otherlangs');
-const SearchDropdown = require('./nav-global/search');
+const MenuDropdown = require('./nav-global/menu.js');
 const ToggleWidgets = require('./nav-global/toggle-widgets');
+const NavToggleDropdown = require('./nav-global/nav-toggle-dropdown');
+
 
 /**
  * Init Menus and bind them together so that only one menu is open at a time.
  */
 
-const closeFromLang = ()=> {
-  MobilePanel.close();
-  SearchDropdown.close();
-  ToggleWidgets.close();
-};
-
-const closeFromMenu = ()=> {
-  OtherLangsDropdown.close();
-  SearchDropdown.close();
-  ToggleWidgets.close();
-};
-
-const closeFromSearch = ()=> {
-  OtherLangsDropdown.close();
-  MobilePanel.close();
-  ToggleWidgets.close();
-};
-
-const closeFromOutside = ({target})=> {
-  if(target.closest('.header') === null) {
-    MobilePanel.close();
-    SearchDropdown.close();
+MenuDropdown.init({
+  onOpen: () => {
     OtherLangsDropdown.close();
+    SearchDropdown.close();
+    ToggleWidgets.close();
+  },
+  onClose: ToggleWidgets.open
+});
+
+const OtherLangsDropdown = NavToggleDropdown();
+OtherLangsDropdown.init({
+  name: 'Other languages dropdown',
+  buttonSelector: '.js-otherlangs-button',
+  targetSelector: '#otherlangs',
+  onOpen: () => {
+    MenuDropdown.close();
+    SearchDropdown.close();
+    ToggleWidgets.close();
+  },
+  onClose: ToggleWidgets.open
+});
+
+const SearchDropdown = NavToggleDropdown();
+SearchDropdown.init({
+  name: 'Search dropdown',
+  buttonSelector: '.js-header-search__button',
+  targetSelector: '#search',
+  onOpen: () => {
+    MenuDropdown.close();
+    OtherLangsDropdown.close();
+    ToggleWidgets.close();
+  },
+  onClose: ToggleWidgets.open
+});
+
+
+const closeFromOutside = ({ target }) => {
+  if (target.closest('.header') === null) {
+    MenuDropdown.close();
+    OtherLangsDropdown.close();
+    SearchDropdown.close();
     ToggleWidgets.open();
   }
 };
-
-OtherLangsDropdown.init({
-  onOpen:closeFromLang,
-  onClose:ToggleWidgets.open
-});
-
-MobilePanel.init({
-  onOpen:closeFromMenu,
-  onClose:ToggleWidgets.open
-});
-
-SearchDropdown.init({
-  onOpen:closeFromSearch,
-  onClose:ToggleWidgets.open
-});
 
 /**
  * Attach outside click listener to the whole branding navigation area
@@ -55,6 +58,6 @@ SearchDropdown.init({
  * can be closed when clicking outside of branding navi block
  */
 document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('click',closeFromOutside);
+  document.addEventListener('click', closeFromOutside);
 });
 
