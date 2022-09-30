@@ -7,6 +7,9 @@ msgstr "Muokkaa evästeasetuksia"
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
 
+msgid "City of Helsinki"
+msgstr "Helsingin kaupunki"
+
 msgid "Close announcement"
 msgstr "Sulje poikkeustiedote"
 
