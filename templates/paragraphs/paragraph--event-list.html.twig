@@ -13,7 +13,7 @@
   %}
     {% block component_content %}
       {# Hook React app to this div #}
-      <div id="helfi-events-search"></div>
+      <div id="helfi-events-search" data-events-url="{{ events_url }}"></div>
       {# Indicate JS not enabled #}
       <noscript>
         <div class="event-list__javascript-disabled">
