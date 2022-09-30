@@ -36,7 +36,16 @@
       'aria-current': item.is_currentPage ? 'page' : null,
     } %}
 
-    {{ link(item.title, item.url, link_attributes) }}
+    {% set item_lang = '' %}
+    {% if item.attributes.lang %}
+      {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
+    {% endif %}
+
+    {% set item_title %}
+      <span class="link__text"{{ item_lang }}>{{ item.title }}</span>
+    {% endset %}
+
+    {{ link(item_title, item.url, link_attributes) }}
   {% endif %}
 {% endmacro %}
 
