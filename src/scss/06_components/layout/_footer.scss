@@ -67,6 +67,7 @@
     margin: $spacing 0 $spacing-double 0;
 
     @include breakpoint($breakpoint-m) {
+      margin-bottom:0;
       margin-top: $spacing-and-half;
     }
   }
