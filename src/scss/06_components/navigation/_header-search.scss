@@ -21,11 +21,6 @@
   }
 }
 
-// Hide search form if js is disabled
-#search:not([data-js]) ~ * .helfi-search__form {
-  display: none;
-}
-
 .header-search__javascript-disabled {
   display: block;
   margin-bottom: $spacing-and-half;

@@ -13,6 +13,11 @@ $-search-button-min-height: 56px;
   }
 }
 
+// Hide search form if js is disabled
+html:not(.js) .helfi-search__form {
+  display: none;
+}
+
 .helfi-search__submit-button {
   height: $-search-button-min-height;
   min-width: $-search-button-min-width;
