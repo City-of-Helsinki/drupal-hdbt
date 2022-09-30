@@ -8,10 +8,12 @@
   padding-block: $spacing-triple;
 
   .helfi-search__form {
+    align-items: initial;
     flex-direction: column;
     margin-bottom: $spacing-and-half;
 
     @include breakpoint($breakpoint-s) {
+      align-items: flex-end;
       flex-direction: row;
     }
   }
