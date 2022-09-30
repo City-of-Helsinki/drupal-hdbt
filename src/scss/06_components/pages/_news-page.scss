@@ -62,7 +62,7 @@ $-card-teaser-min-width: 280px;
 }
 
 .news-listing__tiny-teaser .news-listing__title {
-  @include font('body');
+  @include font('special.large_link');
   margin-bottom: $spacing-half;
 }
 
@@ -166,7 +166,7 @@ $-card-teaser-min-width: 280px;
   }
 
   .news-listing__title {
-    @include font(h4);
+    @include font('h4');
   }
 
   .news-listing__datetime {
@@ -175,7 +175,7 @@ $-card-teaser-min-width: 280px;
     margin-top: $spacing-half;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-and-half;
+      margin-top: $spacing;
     }
   }
 }
@@ -206,7 +206,6 @@ $-card-teaser-min-width: 280px;
 .news-listing__card-teaser {
   border-bottom: 1px solid var(--color-black-5);
   display: flex;
-  margin-bottom: $spacing;
   padding-bottom: $spacing;
   position: relative;
 
@@ -227,6 +226,13 @@ $-card-teaser-min-width: 280px;
 
   .news-listing__title {
     @include font('h5');
+
+    // The card style changes already on breakpoint-m so we need to switch to larger
+    // h5-style earlier.
+    @include breakpoint($breakpoint-m) {
+      font-size: remify(20px);
+      line-height: 30 / 20;
+    }
   }
 
   .news-listing__img {
@@ -238,6 +244,7 @@ $-card-teaser-min-width: 280px;
     }
 
     img {
+      display: block;
       height: auto;
       width: 100%;
     }
@@ -262,7 +269,7 @@ $-card-teaser-min-width: 280px;
 
   .news-listing__title,
   .news-listing__datetime {
-    margin-bottom: $spacing;
+    margin-bottom: $spacing-half;
   }
 
   .news-listing__datetime {
@@ -274,9 +281,8 @@ $-card-teaser-min-width: 280px;
     @include hover-link-arrow-transition;
 
     display: none;
-    height: $spacing-double;
-    margin-bottom: $spacing;
-    width: $spacing-double;
+    height: $spacing-triple;
+    width: $spacing-triple;
 
     @include breakpoint($breakpoint-m) {
       display: inline-block;
