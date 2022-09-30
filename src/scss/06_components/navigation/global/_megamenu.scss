@@ -24,7 +24,7 @@
 }
 
 .megamenu__item--level-2 > .megamenu__link {
-  @include font('h5');
+  @include font('lead');
 }
 
 .megamenu__item--level-3 {
@@ -38,7 +38,7 @@
 }
 
 .megamenu__link[aria-current='page'] {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .megamenu__item--level-3 .megamenu__link[aria-current='page'] {
@@ -48,7 +48,7 @@
 
 .megamenu__link.megamenu__link--in-path,
 .megamenu__link.is-active {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .megamenu__item {

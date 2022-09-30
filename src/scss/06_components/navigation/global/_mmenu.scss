@@ -67,6 +67,10 @@ $-footerlink-target-size: 44px;
   transition-duration: $-transition-duration, 0s;
   transition-property: transform, opacity;
   width: 100vw;
+
+  @media (prefers-reduced-motion) {
+    transition-duration: 0s, 0s;
+  }
 }
 
 .mmenu__panel--current {
@@ -220,6 +224,10 @@ $-footerlink-target-size: 44px;
     transform-origin: center left;
     transition: transform 0.1s ease-in;
     width: $-mmenu-active-border;
+
+    @media (prefers-reduced-motion) {
+      transition-duration: 0s;
+    }
   }
 
   &:hover,
@@ -245,7 +253,7 @@ $-footerlink-target-size: 44px;
 
 .mmenu__title-link--in-path,
 .mmenu__item-link--in-path {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .mmenu__forward {
