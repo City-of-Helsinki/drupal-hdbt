@@ -200,7 +200,7 @@ function hdbt_preprocess_page(&$variables) {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  // Urls for event search and decision search
+  // Urls for event search and decision search.
   switch ($variables['current_langcode']) {
     case 'fi':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
