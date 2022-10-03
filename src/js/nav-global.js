@@ -44,7 +44,7 @@ SearchDropdown.init({
 
 
 const closeFromOutside = ({ target }) => {
-  if (target.closest('.header') === null) {
+  if (target.closest('.desktop-menu, .header-top') || target.closest('.header') === null) {
     MenuDropdown.close();
     OtherLangsDropdown.close();
     SearchDropdown.close();
