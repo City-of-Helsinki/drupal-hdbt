@@ -201,7 +201,7 @@ function hdbt_preprocess_page(&$variables) {
   }
 
   // Urls for event search and decision search.
-  // TODO: UHF-6927 move links to configuration on next update.
+  // @todo UHF-6927 move links to configuration on next.
   switch ($variables['current_langcode']) {
     case 'fi':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
