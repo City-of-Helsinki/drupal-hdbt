@@ -18,19 +18,19 @@ const setHide = (hide) => {
   (hide === true ? close : open)();
 };
 
-const close = ()=> { 
+const close = () => {
   document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
-    widget.dataset.cssmenuHide = true; 
+    widget.dataset.cssmenuHide = true;
   });
 };
 
 const open = () => {
   document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
-    delete widget.dataset.cssmenuHide; 
+    delete widget.dataset.cssmenuHide;
   });
 };
 
-module.exports =  {
+module.exports = {
   setHide,
   close,
   open,

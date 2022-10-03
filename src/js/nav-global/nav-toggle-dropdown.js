@@ -11,19 +11,19 @@ class NavToggleDropdown {
   close() {
     this.buttonInstance.setAttribute('aria-expanded', 'false');
     this.targetNode.dataset.target = 'false';
-    if(this.onClose) {
+    if (this.onClose) {
       this.onClose();
     }
   };
-  open(){
+  open() {
     this.buttonInstance.setAttribute('aria-expanded', 'true');
     this.targetNode.dataset.target = 'true';
-    if(this.onOpen) {
+    if (this.onOpen) {
       this.onOpen();
     }
   };
-  toggle(){
-    if(this.isOpen()) {
+  toggle() {
+    if (this.isOpen()) {
       this.close();
     } else {
       this.open();
@@ -43,8 +43,8 @@ class NavToggleDropdown {
       this.toggle();
     });
   };
-  init= function ({ name, buttonSelector, targetSelector, onOpen, onClose }) {
-    if(this.running) {
+  init = function ({ name, buttonSelector, targetSelector, onOpen, onClose }) {
+    if (this.running) {
       console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }
@@ -55,7 +55,7 @@ class NavToggleDropdown {
     document.addEventListener('DOMContentLoaded', () => {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);
-      if(!this.targetNode) {
+      if (!this.targetNode) {
         throw `${name} target node missing. Looking for ${this.HASH_ID}`;
       }
       // Hide nojs menu links, show button instead.
@@ -63,10 +63,10 @@ class NavToggleDropdown {
       this.addListeners();
     });
 
-    this.running=true;
+    this.running = true;
 
     this.buttonInstance = document.querySelector(this.buttonSelector);
-    if(!this.buttonInstance) {
+    if (!this.buttonInstance) {
       throw `${name} button missing. Looking for ${this.buttonSelector}`;
     }
   }

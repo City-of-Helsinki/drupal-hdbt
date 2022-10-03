@@ -2,19 +2,19 @@ const Mustache = require('mustache');
 const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 
-Array.prototype.findRecursive = function(predicate, childrenPropertyName){
-  if(!childrenPropertyName){
+Array.prototype.findRecursive = function (predicate, childrenPropertyName) {
+  if (!childrenPropertyName) {
     throw 'findRecursive requires parameter `childrenPropertyName`';
   }
   let array = [];
   array = this;
-  let initialFind =  array.find(predicate);
-  let elementsWithChildren  = array.filter(x=>x[childrenPropertyName]);
-  if(initialFind){
+  let initialFind = array.find(predicate);
+  let elementsWithChildren = array.filter(x => x[childrenPropertyName]);
+  if (initialFind) {
     return initialFind;
-  } else if(elementsWithChildren.length){
+  } else if (elementsWithChildren.length) {
     let childElements = [];
-    elementsWithChildren.forEach(x=>{
+    elementsWithChildren.forEach(x => {
       childElements.push(...x[childrenPropertyName]);
     });
     return childElements.findRecursive(predicate, childrenPropertyName);
@@ -31,9 +31,9 @@ Array.prototype.findRecursive = function(predicate, childrenPropertyName){
    * Check if current given menu item has items
    * @return {boolean} current object has sub_tree with items in it.
    */
-const button = function(){
+const button = function () {
   // return this.hasItems
-  return this.sub_tree?.length>0;
+  return this.sub_tree?.length > 0;
 };
 
 
@@ -45,7 +45,7 @@ const active = function () {
   try {
     return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
   }
-  catch(e) {
+  catch (e) {
     console.warn('Invalid url given to "active"-helper', this.url);
   }
   return false;
@@ -75,8 +75,8 @@ const isInPath = function () {
 const externalLinkAttributes = function () {
 
   return {
-    external:this.attributes['data-external'] || this.external || false,
-    protocol:this.attributes['data-protocol']|| false,
+    external: this.attributes['data-external'] || this.external || false,
+    protocol: this.attributes['data-protocol'] || false,
   };
 
 };
@@ -98,15 +98,15 @@ const externalLinkIcon = function () {
     return false;
   }
 
-  return externalLinkIcon.ICONS[ this.attributes['data-protocol']] || externalLinkIcon.ICONS.external;
+  return externalLinkIcon.ICONS[this.attributes['data-protocol']] || externalLinkIcon.ICONS.external;
 };
 
-externalLinkIcon.ICONS =  {
+externalLinkIcon.ICONS = {
   mailto: {
     class: 'link__type link__type--mailto',
     text: Drupal.t('Link opens default mail program', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.' })
   },
-  tel:{
+  tel: {
     class: 'link__type link__type--tel',
     text: Drupal.t('Link starts a phone call', {}, { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.' })
   },
@@ -122,8 +122,9 @@ externalLinkIcon.ICONS =  {
    */
 
 const MobilePanel = {
-  compileTemplates : function(){
-    this.templates = { panel: `
+  compileTemplates: function () {
+    this.templates = {
+      panel: `
   {{#panels}}
     <section class="{{panel_class}}">
       <div class="mmenu__panel-body">
@@ -165,8 +166,8 @@ const MobilePanel = {
   </div>
   {{/panels}}
   `,
-    list:
-    `
+      list:
+        `
     <ul class="mmenu__items">
       {{#sub_tree}}
         <li class="mmenu__item">
@@ -195,39 +196,39 @@ const MobilePanel = {
    `
     };
   },
-  menu:null,
-  templates:null,
-  SCROLL_TRESHOLD:100,
+  menu: null,
+  templates: null,
+  SCROLL_TRESHOLD: 100,
   // Maximum assumed depth of tree. Used for checking if going up is allowed
   size: 10,
-  running:false,
-  data:null,
+  running: false,
+  data: null,
   currentIndex: 0,
   cacheKey: 'hdbt-mobile-menu',
   enableCache: false,
-  selectors:{
-    container:'#mmenu',
-    rootId:'mmenu__panels',
-    forward:'mmenu__forward',
-    back:'mmenu__back'
+  selectors: {
+    container: '#mmenu',
+    rootId: 'mmenu__panels',
+    forward: 'mmenu__forward',
+    back: 'mmenu__back'
   },
-  getAPIUrl:function(){
+  getAPIUrl: function () {
     const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
-    url.searchParams.set('_format','json');
+    url.searchParams.set('_format', 'json');
     return url.toString();
   },
-  getRoot:function(){
+  getRoot: function () {
     return document.getElementById(this.selectors.rootId);
   },
-  sortPanelsByPath:function() {
+  sortPanelsByPath: function () {
     const panels = [];
     const allItems = this.data;
-    const currentItem = allItems.findRecursive( item => active.call(item) ,'sub_tree');
+    const currentItem = allItems.findRecursive(item => active.call(item), 'sub_tree');
     let parentIndex = currentItem?.sub_tree?.length ? currentItem.id : currentItem?.parentId;
 
-    while(parentIndex) {
+    while (parentIndex) {
       const found = allItems.findRecursive(({ id, url, name, sub_tree, parentId, inPath, active }) => {
-        if(id === parentIndex){
+        if (id === parentIndex) {
           panels.push({ sub_tree, name, url, parentId, inPath, active });
           // Set new parent id. If this is empty, it will stop the while-loop.
           parentIndex = parentId;
@@ -242,19 +243,19 @@ const MobilePanel = {
       }
 
     }
-    panels.push({sub_tree:allItems, inPath: true});
+    panels.push({ sub_tree: allItems, inPath: true });
     panels.reverse();
-    this.currentIndex = panels.length-1;
+    this.currentIndex = panels.length - 1;
     this.content = [...panels];
   },
-  content:[],
-  getView: function(state){
+  content: [],
+  getView: function (state) {
     // Note the use of arrow functions and non-arrow functions for scope of "this" in panel rendering.
     // Use arrow to access Panel object, non-lexical function for accessing current iterable object in template.
-    return this.content.map( (item,i) => ({
+    return this.content.map((item, i) => ({
       ...item,
-      name:item?.name || frontpageTranslation,
-      url:item.url || drupalSettings.helfi_navigation.links.canonical,
+      name: item?.name || frontpageTranslation,
+      url: item.url || drupalSettings.helfi_navigation.links.canonical,
       // If current item has subitems, show button for next panel.
       button,
       isActive,
@@ -263,7 +264,7 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back: ( i >0) ? this.content.at(i-1)?.name ?? frontpageTranslation : false ,
+      back: (i > 0) ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
       /***
          * Define correct starting positions for each panel, depeding on traversal direction
          * At start, first item is on stage and anything else must be on right.
@@ -273,16 +274,16 @@ const MobilePanel = {
          * At render, -left  (down to root) and -right (up the tree) classes are added and removed accordingly to achieve wanted animation and final state.
          */
       panel_class: cls({
-        'mmenu__panel':true,
-        'mmenu__panel--visible':true,
-        'mmenu__panel--current':i === this.currentIndex,
-        'mmenu__panel--visible-right':  (state === 'start' && i > this.currentIndex ) || (state === 'up' && i >= this.currentIndex ) ||( state === 'down' && i > this.currentIndex+1 ),
-        'mmenu__panel--visible-left': (state  === 'up' && i<this.currentIndex-1)  || (state === 'down' && i <= this.currentIndex)
+        'mmenu__panel': true,
+        'mmenu__panel--visible': true,
+        'mmenu__panel--current': i === this.currentIndex,
+        'mmenu__panel--visible-right': (state === 'start' && i > this.currentIndex) || (state === 'up' && i >= this.currentIndex) || (state === 'down' && i > this.currentIndex + 1),
+        'mmenu__panel--visible-left': (state === 'up' && i < this.currentIndex - 1) || (state === 'down' && i <= this.currentIndex)
       })
     }));
   },
   up: function (parentId) {
-    if(!parentId) {
+    if (!parentId) {
       throw `Id missing for next menu item  ${parentId}`;
     }
     /**
@@ -293,20 +294,20 @@ const MobilePanel = {
       id
     }) => id === parentId);
 
-    if(!next) {
-      throw new Error('ID mismatch in menu items'+ parentId);
+    if (!next) {
+      throw new Error('ID mismatch in menu items' + parentId);
     }
 
-    this.currentIndex= this.currentIndex+ 1 < this.size ? this.currentIndex+ 1 : this.currentIndex;
+    this.currentIndex = this.currentIndex + 1 < this.size ? this.currentIndex + 1 : this.currentIndex;
     this.content[this.currentIndex] = next;
     this.render('up');
   },
   down: function () {
-    if(this.currentIndex=== 0) {return;}
-    this.currentIndex= this.currentIndex- 1 >= 0 ? this.currentIndex- 1 : this.currentIndex;
+    if (this.currentIndex === 0) { return; }
+    this.currentIndex = this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
     this.render('down');
   },
-  render:function(state) {
+  render: function (state) {
     const root = this.getRoot();
     root.innerHTML = Mustache.render(
       this.templates.panel,
@@ -318,41 +319,41 @@ const MobilePanel = {
       }
     );
 
-    if(state === 'load') {
+    if (state === 'load') {
       return;
     }
 
     const panels = [...root.querySelectorAll('.mmenu__panel')];
-    const current =  panels.at(this.currentIndex);
+    const current = panels.at(this.currentIndex);
 
-    if(root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex> 0) {
-      current.querySelector('.mmenu__back').scrollIntoView({block:'start',behaviour:'smooth'});
+    if (root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex > 0) {
+      current.querySelector('.mmenu__back').scrollIntoView({ block: 'start', behaviour: 'smooth' });
     }
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
-      current.classList.remove('mmenu__panel--visible-right','mmenu__panel--visible-left');
+      current.classList.remove('mmenu__panel--visible-right', 'mmenu__panel--visible-left');
       switch (state) {
 
-      case 'up':
-        panels.at(this.currentIndex-1).classList.add('mmenu__panel--visible-left');
-        break;
+        case 'up':
+          panels.at(this.currentIndex - 1).classList.add('mmenu__panel--visible-left');
+          break;
 
-      case 'down':
-        panels.at(this.currentIndex+1).classList.add('mmenu__panel--visible-right');
-        break;
+        case 'down':
+          panels.at(this.currentIndex + 1).classList.add('mmenu__panel--visible-right');
+          break;
 
-      default:
+        default:
 
       }
 
-      setTimeout(()=>{
+      setTimeout(() => {
         /**
            * Hide prev & next panels from screen readers by adding visibility:hidden.
            * DO NOT USE display:none. Display needs to be set to 'flex' or panels will collapse.
           */
-        panels.forEach( panel => {
-          if(!panel.classList.contains('mmenu__panel--current')) {
+        panels.forEach(panel => {
+          if (!panel.classList.contains('mmenu__panel--current')) {
             panel.style.visibility = 'hidden';
           }
         });
@@ -360,11 +361,11 @@ const MobilePanel = {
          * See $-transition-duration in _mmenu.scss.
          * Timeout must not be shorter than animation duration.
          */
-      },200);
+      }, 200);
 
-    },10); // Transition classes need to be added after initial render.
+    }, 10); // Transition classes need to be added after initial render.
   },
-  load: async function(){
+  load: async function () {
 
     const MENU = await fetch(this.getAPIUrl());
     const data = await MENU.json();
@@ -379,21 +380,21 @@ const MobilePanel = {
       return item;
     });
 
-    const currentItem = allItems.findRecursive( item => active.call(item) ,'sub_tree');
+    const currentItem = allItems.findRecursive(item => active.call(item), 'sub_tree');
 
-    if(currentItem) {
+    if (currentItem) {
       currentItem.active = true;
       currentItem.inPath = true;
     }
 
     let parentIndex = currentItem?.parentId;
 
-    while(parentIndex) {
+    while (parentIndex) {
       const found = allItems.findRecursive((item) => {
-        if(item.id === parentIndex) {
+        if (item.id === parentIndex) {
           //set new parent id. If this is empty, it will stop the while-loop.
           parentIndex = item.parentId;
-          item.inPath= true;
+          item.inPath = true;
           return true;
         }
         return false;
@@ -406,9 +407,9 @@ const MobilePanel = {
     }
     this.data = allItems;
   },
-  start: async function(){
+  start: async function () {
     const container = document.querySelector(this.selectors.container);
-    if(!this.getRoot() || !container) {
+    if (!this.getRoot() || !container) {
       throw new Error('Panel root not found');
     }
     // Show container and loader on start
@@ -416,8 +417,8 @@ const MobilePanel = {
     this.render('load');
     try {
       await this.load();
-    } catch(e) {
-      console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',e);
+    } catch (e) {
+      console.error('Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API', e);
       this.enableFallback();
       return;
     }
@@ -453,33 +454,33 @@ const MobilePanel = {
       }
     });
   },
-  isOpen : function() {
+  isOpen: function () {
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
-  disableFallback :function() {
+  disableFallback: function () {
     this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
   },
-  enableFallback:function() {
+  enableFallback: function () {
     this.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
     this.getRoot().innerHTML = ''; // Remove rotator
     delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
-    window.location.hash='#menu'; // Open menu with the css way
+    window.location.hash = '#menu'; // Open menu with the css way
   },
-  close:function(){
+  close: function () {
     this.toggleButton.setAttribute('aria-expanded', 'false');
     this.menu.dataset.target = 'false';
-    if(this.onClose) {
+    if (this.onClose) {
       this.onClose();
     }
   },
-  open:function(){
+  open: function () {
     this.menu.dataset.target = 'true';
     this.toggleButton.setAttribute('aria-expanded', 'true');
-    if(this.onOpen) {
+    if (this.onOpen) {
       this.onOpen();
     }
   },
-  toggle:  function() {
+  toggle: function () {
     if (this.isOpen()) {
       this.close();
     } else {
@@ -488,12 +489,12 @@ const MobilePanel = {
     // We should always focus the menu button after toggling the menu
     this.toggleButton.focus();
   },
-  init:function({onOpen,onClose}){
+  init: function ({ onOpen, onClose }) {
     /**
      * Start the panel after DOM has loaded.
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
      */
-    if(this.running) {
+    if (this.running) {
       console.warn('MobilePanel already initiated. Is it include more than once?');
       return;
     }
@@ -501,9 +502,9 @@ const MobilePanel = {
     this.onOpen = onOpen;
     this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {
-    // See  block--mobile-navigation.html.twig for the button
+      // See  block--mobile-navigation.html.twig for the button
       this.toggleButton = document.querySelector('.js-menu-toggle-button');
-      if(!this.toggleButton){
+      if (!this.toggleButton) {
         throw 'No toggle button for JS menu.';
       }
       // TODO Where is this #menu coming from Maybe name it better?
@@ -518,21 +519,21 @@ const MobilePanel = {
       /**
      * Close menu on Escape button click if it is open.
      */
-      document.addEventListener('keydown',  (e) =>{
+      document.addEventListener('keydown', (e) => {
         if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
           this.close();
         }
       });
 
-      const start = ()=> {
-      /**
-       * Delay template compilation to menu start to ensure
-       * footer & top menu blocks are rendered in main DOM before cloning them.
-       *
-       * Start removes itself in order to only run once.
-       */
+      const start = () => {
+        /**
+         * Delay template compilation to menu start to ensure
+         * footer & top menu blocks are rendered in main DOM before cloning them.
+         *
+         * Start removes itself in order to only run once.
+         */
         this.compileTemplates();
-        this.toggleButton.removeEventListener('click',start);
+        this.toggleButton.removeEventListener('click', start);
         this.start();
       };
       /**
@@ -542,8 +543,8 @@ const MobilePanel = {
      * Side effects:
      * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
      */
-      this.toggleButton.addEventListener('click',start);
-      this.toggleButton.addEventListener('click',()=>this.toggle());
+      this.toggleButton.addEventListener('click', start);
+      this.toggleButton.addEventListener('click', () => this.toggle());
 
       /**
      * Open menu if it is required in the hash, then clear hash.
@@ -554,7 +555,7 @@ const MobilePanel = {
         this.open();
       }
     });
-    this.running=true;
+    this.running = true;
   }
 };
 
