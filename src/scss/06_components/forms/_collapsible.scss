@@ -1,4 +1,4 @@
-$collapsible_height: 56px;
+$collapsible-height: 56px;
 
 .collapsible-wrapper {
   position: relative;
@@ -6,30 +6,29 @@ $collapsible_height: 56px;
 
 .collapsible__element {
   border: 2px solid #808080;
-  border-radius: 2px;
 }
 
 .collapsible-container {
   align-items: center;
-  background: #fff;
-  display:flex;
-  font-size: 18px;
-  height: $collapsible_height;
-  margin-bottom: 16px;
-  padding: 12px;
+  background: $color-white;
+  display: flex;
+  height: $collapsible-height;
+  margin-bottom: $spacing;
+  padding: $spacing;
 }
 
 .collapsible__title {
-  width: calc(100% - 24px);
+  width: calc(100% - $spacing-and-half);
 }
 
 .collapsible__control {
   align-items: center;
-  background: #fff;
+  background: $color-white;
   display: flex;
   font-size: 18px;
   height: 56px;
   padding: 12px 16px;
+  text-align: start;
   width: 100%;
 
   &:hover {
@@ -37,17 +36,47 @@ $collapsible_height: 56px;
   }
 
   &:active,
-  &:hover, {
-    border: 2px solid $color-black;
+  &:hover,
+  &:focus {
+    border-color: $color-black;
+  }
+
+  &:focus {
+    outline: 3px solid $color-black;
   }
 }
 
+.collapsible__control[aria-expanded="true"] {
+  border-bottom: 1px solid $color-black-20;
+}
+
+// Match the HDS style of outlining handle when control is focused
+.collapsible__control:focus .collapsible__handle {
+  outline: 3px solid $color-black;
+}
+
+// ... and hide the outline when dropdown is opened
+.collapsible__control[aria-expanded="true"] .collapsible__handle {
+  outline: none;
+}
+
+
+.collapsible__handle {
+  pointer-events: none;
+}
+
 .collapsible__children {
-  background-color: #fff;
+  background-color: $color-white;
+  border-top: none;
+  padding: $spacing;
   position: absolute;
-  top: $collapsible_height;
   width: 100%;
 
   // Show above other components when opened
   z-index: 2;
+}
+
+.collapsible__helper {
+  color: $color-black-60;
+  margin-top: $spacing-half;
 }
