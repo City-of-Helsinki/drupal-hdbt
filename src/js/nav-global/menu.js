@@ -522,6 +522,7 @@ const MobilePanel = {
       document.addEventListener('keydown', (e) => {
         if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
           this.close();
+          this.toggleButton.focus();
         }
       });
 
