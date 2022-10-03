@@ -1,6 +1,3 @@
-// Min-width for filter components in desktop. Helps preventing weird behavior with hds-dropdowns.
-$filter-component-min-width-xl: 328px;
-
 // Checkbox styles need specific selectors to override HDS styles
 .hdbt-search__filter.hdbt-search__checkbox {
   --background-unselected: transparent;
@@ -24,10 +21,6 @@ $filter-component-min-width-xl: 328px;
 
 .hdbt-search__filter {
   margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-xl) {
-    min-width: $filter-component-min-width-xl;
-  }
 }
 
 // Override HDBTs li+li style {

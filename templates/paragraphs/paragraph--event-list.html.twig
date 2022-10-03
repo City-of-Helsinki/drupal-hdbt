@@ -1,4 +1,3 @@
-
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
@@ -13,7 +12,15 @@
   %}
     {% block component_content %}
       {# Hook React app to this div #}
-      <div id="helfi-events-search" data-events-url="{{ events_url }}"></div>
+      <div
+        id="helfi-events-search"
+        data-events-url="{{ events_url }}"
+        data-show-location-filter="{{ field_event_location }}"
+        data-show-time-filter="{{ field_event_time }}"
+        data-show-free-events-filter="{{ field_free_events }}"
+        data-show-remote-events-filter="{{ field_remote_events }}"
+      >
+      </div>
       {# Indicate JS not enabled #}
       <noscript>
         <div class="event-list__javascript-disabled">
