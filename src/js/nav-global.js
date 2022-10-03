@@ -38,6 +38,7 @@ SearchDropdown.init({
     MenuDropdown.close();
     OtherLangsDropdown.close();
     ToggleWidgets.close();
+    window.setTimeout(() => document.querySelector('#search-form')?.focus(), 10); // Delay focus until element is focusable
   },
   onClose: ToggleWidgets.open
 });
