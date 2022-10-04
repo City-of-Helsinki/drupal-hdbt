@@ -80,13 +80,17 @@
           <div class="language-wrapper">
             {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
 
-            {# Other languages button #}
-            {% include "@hdbt/component/otherlanguages.twig" with {
-              renderButton: true,
-            } %}
+            {% if show_header_language_links_button %}
+              {# Other languages button #}
+              {% include "@hdbt/component/otherlanguages.twig" with {
+                renderButton: true,
+              } %}
+            {% endif %}
           </div>
-
-          {{ drupal_entity('block', block__external_header_language_links) }} {# Other languages menu content #}
+          
+          {% if show_header_language_links_button %}
+            {{ drupal_entity('block', block__external_header_language_links) }} {# Other languages menu content #}
+          {% endif %}
 
           {# Header search button and menu #}
           {# TO-DO remove comment from search include once it is functional #}
