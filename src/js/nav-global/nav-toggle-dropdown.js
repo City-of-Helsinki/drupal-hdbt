@@ -9,17 +9,21 @@ class NavToggleDropdown {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
   };
   close() {
-    this.buttonInstance.setAttribute('aria-expanded', 'false');
-    this.targetNode.dataset.target = 'false';
-    if (this.onClose) {
-      this.onClose();
+    if(this.running) {
+      this.buttonInstance.setAttribute('aria-expanded', 'false');
+      this.targetNode.dataset.target = 'false';
+      if (this.onClose) {
+        this.onClose();
+      }
     }
   };
   open() {
-    this.buttonInstance.setAttribute('aria-expanded', 'true');
-    this.targetNode.dataset.target = 'true';
-    if (this.onOpen) {
-      this.onOpen();
+    if(this.running) {
+      this.buttonInstance.setAttribute('aria-expanded', 'true');
+      this.targetNode.dataset.target = 'true';
+      if (this.onOpen) {
+        this.onOpen();
+      }
     }
   };
   toggle() {
@@ -45,11 +49,19 @@ class NavToggleDropdown {
     });
   };
   init = function ({ name, buttonSelector, targetSelector, onOpen, onClose }) {
+    this.name = name;
+    this.buttonSelector = buttonSelector;
+    this.buttonInstance = document.querySelector(this.buttonSelector);
+    if (!this.buttonInstance) {
+      this.running = false;
+      console.warn(`${name} button missing. Looking for ${this.buttonSelector}`);
+      return;
+    }
     if (this.running) {
       console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }
-    this.buttonSelector = buttonSelector;
+    
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;
@@ -65,11 +77,6 @@ class NavToggleDropdown {
     });
 
     this.running = true;
-
-    this.buttonInstance = document.querySelector(this.buttonSelector);
-    if (!this.buttonInstance) {
-      throw `${name} button missing. Looking for ${this.buttonSelector}`;
-    }
   }
 };
 

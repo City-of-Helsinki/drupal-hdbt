@@ -1,14 +1,3 @@
-{#
-{% set controls = 'nav-toggle--dropdown' %}
-{% set anchor_target = '#menu' %}
-{% set js_target = 'js-menu-toggle-button' %}
-
-{% set open_label = 'Menu'|t %}
-{% set open_screenreader = 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) %}
-{% set close_label = 'Close'|t %}
-{% set close_screenreader = 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) %} #}
-
-
 {% set menu_open %}
   <span aria-hidden="true">{{ open_label }}</span>
   <span class="visually-hidden">{{ open_screenreader }}</span>
