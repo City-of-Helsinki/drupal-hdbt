@@ -3,7 +3,10 @@ const HOVER_CLASS = 'menu__item--hover';
 
 function updateFirstChildAriaExpanded(item) {
   let state = 'false';
-  if (item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS)) {
+  if (
+    item.classList.contains(OPEN_CLASS) ||
+    item.classList.contains(HOVER_CLASS)
+  ) {
     state = 'true';
   }
   const firstChild = item.querySelector(':first-child .menu__toggle-button');
@@ -13,9 +16,7 @@ function updateFirstChildAriaExpanded(item) {
 }
 
 function closeOpenItems(element) {
-  let allOpenItems = document.querySelectorAll(
-    '.desktop-menu .' + OPEN_CLASS
-  );
+  let allOpenItems = document.querySelectorAll('.desktop-menu .' + OPEN_CLASS);
 
   if (allOpenItems) {
     for (let item of allOpenItems) {

@@ -17,7 +17,9 @@
   function toggleTabs(tab) {
     let tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     let tabsContentId = tab.getAttribute('aria-controls');
-    let tabsContent = document.querySelector('[data-drupal-selector=' + tabsContentId + ']');
+    let tabsContent = document.querySelector(
+      '[data-drupal-selector=' + tabsContentId + ']'
+    );
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -45,7 +47,9 @@
   }
 
   function initiateTabs(activeTab, activeContent) {
-    const containers = document.querySelectorAll('[data-drupal-selector="tabbed-content"]');
+    const containers = document.querySelectorAll(
+      '[data-drupal-selector="tabbed-content"]'
+    );
 
     // Loop through tabbed content containers.
     for (let i = 0; i < containers.length; i++) {
@@ -60,8 +64,12 @@
       }
 
       // Find the active tab elements.
-      let activeTabElement = document.querySelector('[data-drupal-selector=' + activeTab + ']');
-      let activeContentElement = document.querySelector('[data-drupal-selector=' + activeContent + ']');
+      let activeTabElement = document.querySelector(
+        '[data-drupal-selector=' + activeTab + ']'
+      );
+      let activeContentElement = document.querySelector(
+        '[data-drupal-selector=' + activeContent + ']'
+      );
 
       // Set them active with aria-attributes.
       activeTabElement.setAttribute('aria-selected', 'true');
@@ -89,10 +97,10 @@
   }
 
   // Run after each ajax submit on the element that has tabs.
-  $(document).ajaxComplete(function(e, xhr, settings) {
+  $(document).ajaxComplete(function (e, xhr, settings) {
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
       let activeTab = window.sessionStorage.getItem('activeTab');
-      let activeContent =  window.sessionStorage.getItem('activeContent');
+      let activeContent = window.sessionStorage.getItem('activeContent');
       initiateTabs(activeTab, activeContent);
     }
   });
@@ -104,5 +112,4 @@
     window.sessionStorage.removeItem('activeContent');
     initiateTabs();
   });
-
 })(jQuery, drupalSettings);

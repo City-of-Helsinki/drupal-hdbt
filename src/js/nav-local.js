@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '#smartti-wrapper', // Smartti chatbot in kymp
     '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
     '#block-kuurahealthchat', // Kuurahealth in sote
-    '#ed11y-panel' // Editoria11y accessibility tool
+    '#ed11y-panel', // Editoria11y accessibility tool
   ];
 
   let toggle = document.querySelector('.js-cssmenu-toggle-button');
@@ -42,7 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('keydown', function (e) {
-    if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && checkbox.checked) {
+    if (
+      (e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) &&
+      checkbox.checked
+    ) {
       checkboxToggle();
     }
   });

@@ -1,7 +1,7 @@
 /**
-  * 3rd party Widgets are hidden using [data-] selectors
-  * See _menu_toggle.scss, _mobile_navigation.scss
-  */
+ * 3rd party Widgets are hidden using [data-] selectors
+ * See _menu_toggle.scss, _mobile_navigation.scss
+ */
 
 const HIDE_SELECTORS = [
   '#chat-leijuke-wrapper', // Chat Leijuke for loading specific chats
@@ -19,13 +19,13 @@ const setHide = (hide) => {
 };
 
 const close = () => {
-  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
+  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach((widget) => {
     widget.dataset.cssmenuHide = true;
   });
 };
 
 const open = () => {
-  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach(widget => {
+  document.querySelectorAll(HIDE_SELECTORS.join(',')).forEach((widget) => {
     delete widget.dataset.cssmenuHide;
   });
 };
@@ -34,5 +34,5 @@ module.exports = {
   setHide,
   close,
   open,
-  HIDE_SELECTORS
+  HIDE_SELECTORS,
 };

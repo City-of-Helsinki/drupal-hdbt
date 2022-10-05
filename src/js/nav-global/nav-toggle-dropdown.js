@@ -1,31 +1,37 @@
 class NavToggleDropdown {
-  HASH_ID = null;
-  buttonSelector = null;
-  buttonInstance = null;
-  running = false;
-  targetNode = null;
-  onOpen = null;
+  constructor() {
+    this.HASH_ID = null;
+    this.buttonSelector = null;
+    this.buttonInstance = null;
+    this.running = false;
+    this.targetNode = null;
+    this.onOpen = null;
+  }
+
   isOpen() {
-    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
-  };
+    return (
+      window.location.hash === this.HASH_ID ||
+      this.targetNode.dataset.target === 'true'
+    );
+  }
   close() {
-    if(this.running) {
+    if (this.running) {
       this.buttonInstance.setAttribute('aria-expanded', 'false');
       this.targetNode.dataset.target = 'false';
       if (this.onClose) {
         this.onClose();
       }
     }
-  };
+  }
   open() {
-    if(this.running) {
+    if (this.running) {
       this.buttonInstance.setAttribute('aria-expanded', 'true');
       this.targetNode.dataset.target = 'true';
       if (this.onOpen) {
         this.onOpen();
       }
     }
-  };
+  }
   toggle() {
     if (this.isOpen()) {
       this.close();
@@ -33,11 +39,14 @@ class NavToggleDropdown {
       this.open();
     }
     this.buttonInstance.focus();
-  };
+  }
   addListeners() {
     // Close menu on ESC
     document.addEventListener('keydown', (e) => {
-      if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && this.isOpen()) {
+      if (
+        (e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) &&
+        this.isOpen()
+      ) {
         this.close();
         this.buttonInstance.focus();
       }
@@ -47,21 +56,23 @@ class NavToggleDropdown {
     this.buttonInstance.addEventListener('click', () => {
       this.toggle();
     });
-  };
-  init = function ({ name, buttonSelector, targetSelector, onOpen, onClose }) {
+  }
+  init({ name, buttonSelector, targetSelector, onOpen, onClose }) {
     this.name = name;
     this.buttonSelector = buttonSelector;
     this.buttonInstance = document.querySelector(this.buttonSelector);
     if (!this.buttonInstance) {
       this.running = false;
-      console.warn(`${name} button missing. Looking for ${this.buttonSelector}`);
+      console.warn(
+        `${name} button missing. Looking for ${this.buttonSelector}`
+      );
       return;
     }
     if (this.running) {
       console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }
-    
+
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;
@@ -78,6 +89,6 @@ class NavToggleDropdown {
 
     this.running = true;
   }
-};
+}
 
 module.exports = () => new NavToggleDropdown();

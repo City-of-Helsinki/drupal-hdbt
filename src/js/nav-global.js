@@ -2,7 +2,6 @@ const MenuDropdown = require('./nav-global/menu.js');
 const ToggleWidgets = require('./nav-global/toggle-widgets');
 const NavToggleDropdown = require('./nav-global/nav-toggle-dropdown');
 
-
 /**
  * Init Menus and bind them together so that only one menu is open at a time.
  */
@@ -13,7 +12,7 @@ MenuDropdown.init({
     SearchDropdown.close();
     ToggleWidgets.close();
   },
-  onClose: ToggleWidgets.open
+  onClose: ToggleWidgets.open,
 });
 
 const OtherLangsDropdown = NavToggleDropdown();
@@ -26,7 +25,7 @@ OtherLangsDropdown.init({
     SearchDropdown.close();
     ToggleWidgets.close();
   },
-  onClose: ToggleWidgets.open
+  onClose: ToggleWidgets.open,
 });
 
 const SearchDropdown = NavToggleDropdown();
@@ -38,14 +37,19 @@ SearchDropdown.init({
     MenuDropdown.close();
     OtherLangsDropdown.close();
     ToggleWidgets.close();
-    window.setTimeout(() => document.querySelector('#search-form')?.focus(), 10); // Delay focus until element is focusable
+    window.setTimeout(
+      () => document.querySelector('#search-form')?.focus(),
+      10
+    ); // Delay focus until element is focusable
   },
-  onClose: ToggleWidgets.open
+  onClose: ToggleWidgets.open,
 });
 
-
 const closeFromOutside = ({ target }) => {
-  if (target.closest('.desktop-menu, .header-top') || target.closest('.header') === null) {
+  if (
+    target.closest('.desktop-menu, .header-top') ||
+    target.closest('.header') === null
+  ) {
     MenuDropdown.close();
     OtherLangsDropdown.close();
     SearchDropdown.close();
@@ -61,4 +65,3 @@ const closeFromOutside = ({ target }) => {
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
 });
-

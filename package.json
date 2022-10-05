@@ -9,8 +9,10 @@
     "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
     "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
-    "lint": "lint-staged --allow-empty",
-    "lint:js": "eslint --fix src/"
+    "lint": "lint-staged --allow-empty && npm run prettier:check",
+    "lint:js": "eslint --fix src/",
+    "prettier:check":"prettier --check 'src/**/*.js'",
+    "format":"prettier --write 'src/**/*.js'"
   },
   "dependencies": {
     "@babel/core": "^7.14.3",
