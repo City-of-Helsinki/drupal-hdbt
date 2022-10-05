@@ -34,8 +34,17 @@
 
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  <div id="menu"></div>
+  {#
+    Anchor targets for global navi and other-langs nojs fallbacks.
+    Also works as a CSS data-attr selector reference point for JS version.
+    These must be on top and at root.
+  #}
+  <div id="menu" class="nav-toggle-target"></div>
+  <div id="otherlangs" class="nav-toggle-target"></div>
+  <div id="search" class="nav-toggle-target"></div>
+
 {% else %}
+
   {# This checkbox handles opening and closing mobile menu #}
   <input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
 {% endif %}
@@ -68,14 +77,28 @@
 
           {{ drupal_entity('block', block__site_branding) }} {# Logo #}
 
+          <div class="language-wrapper">
+            {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
+
+            {% if show_header_language_links_button %}
+              {# Other languages button #}
+              {% include "@hdbt/component/otherlanguages.twig" with {
+                renderButton: true,
+              } %}
+            {% endif %}
+          </div>
+          
+          {% if show_header_language_links_button %}
+            {{ drupal_entity('block', block__external_header_language_links) }} {# Other languages menu content #}
+          {% endif %}
+
+          {# Header search button and menu #}
+          {# TO-DO remove comment from search include once it is functional #}
+          {# {% include "@hdbt/component/header-search.twig" %} #}
+
           {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
 
           {{ drupal_entity('block', block__external_fallback_menu) }} {# Mobile menu #}
-
-          <div class="language-wrapper">
-            {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
-            {{ drupal_entity('block', block__external_header_language_links) }}
-          </div>
 
           {# Render the header branding region without manually rendered blocks #}
           {{ page.header_branding|without([

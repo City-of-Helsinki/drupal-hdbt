@@ -6,11 +6,11 @@ $-branding-icon-size-desktop: $spacing-double;
   background-color: $color-white;
   display: grid;
   grid-template-areas:
-    '. logo . brand toggle .'
-    'lang lang lang lang lang lang'
-    'menu menu menu menu menu menu';
-  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto var(--header-branding-padding);
-  grid-template-rows: var(--branding-height) auto auto;
+    '. logo . brand search toggle .'
+    'lang lang lang lang lang lang lang'
+    'menu menu menu menu menu menu menu';
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto  var(--header-branding-padding);
+  grid-template-rows: var(--branding-height) min-content min-content;
   position: fixed;
   top: 0;
   width: 100%;
@@ -20,14 +20,15 @@ $-branding-icon-size-desktop: $spacing-double;
     --branding-height: 86px;
     --header-branding-padding: #{$spacing-and-half};
     grid-template-areas:
-      '. logo . lang brand toggle .'
-      'menu menu menu menu menu menu menu';
-    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto var(--header-branding-padding);
+      '. logo . lang brand search toggle .'
+      'langmenu langmenu langmenu langmenu . . . .'
+      'menu menu menu menu menu menu menu menu';
+    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto auto var(--header-branding-padding);
     grid-template-rows: var(--branding-height) auto;
   }
 
   @include breakpoint($breakpoint-m) {
-    position: static;
+    position: relative;
     top: auto;
   }
 

@@ -27,7 +27,6 @@
 #}
 {{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
 
-
 {% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
   {% import _self as menus %}
   {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}

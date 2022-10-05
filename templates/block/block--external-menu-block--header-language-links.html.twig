@@ -34,11 +34,12 @@
 
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  {# Todo: Hide until the UHF-6046 is in progress #}
-  <!-- Header language links - menu block -->
-  {#  {% set block_content %}#}
-  {#    {% block content %}#}
-  {#      {{ content }}#}
-  {#    {% endblock %}#}
-  {#  {% endset %}#}
+  {% embed "@hdbt/component/otherlanguages.twig" with {
+    renderButton: false,
+  } %}
+
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  {% endembed %}
 {% endif %}

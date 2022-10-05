@@ -106,6 +106,7 @@ $-footerlink-target-size: 44px;
   grid-template-columns: $-back-icon-bg-size auto;
   grid-template-rows: auto;
   justify-items: center;
+  margin-top: -5px; // Counter the focus ring padding below
   padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
   position: relative;
   width: 100%;
@@ -200,7 +201,6 @@ $-footerlink-target-size: 44px;
 
   @include font($-itemlink-font);
   align-items: center;
-  display: inline-flex;
   flex-grow: 1;
   padding-bottom: $-itemlink-vertical-padding;
   padding-left: $spacing;

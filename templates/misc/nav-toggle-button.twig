@@ -1,0 +1,23 @@
+{% set menu_open %}
+  <span aria-hidden="true">{{ open_label }}</span>
+  <span class="visually-hidden">{{ open_screenreader }}</span>
+{% endset %}
+
+{% set menu_close %}
+  <span aria-hidden="true">{{ close_label }}</span>
+  <span class="visually-hidden">{{ close_screenreader }}</span>
+{% endset %}
+
+<div class="nav-toggle {{modifier_class}}">
+  {# Fallback menu button #}
+  <div class="nav-toggle__anchor">
+    <a href="#" class="nav-toggle__label nav-toggle__label--close">{{ menu_close }}</a>
+    <a href={{ anchor_target }} class="nav-toggle__label nav-toggle__label--open">{{ menu_open }}</a>
+  </div>
+
+  {# Slightly more accessible js enhanced menu button #}
+  <button class="nav-toggle__button {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
+    <span class="nav-toggle__label nav-toggle__label--open">{{ menu_open }}</span>
+    <span class="nav-toggle__label nav-toggle__label--close">{{ menu_close }}</span>
+  </button>
+</div>

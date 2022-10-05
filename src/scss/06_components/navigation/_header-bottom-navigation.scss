@@ -13,6 +13,11 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     margin: 0;
     padding: 0;
 
+    // Focus ring uses extra elements instead of native outline css.
+    // This element needs to be put into z-index context or
+    // other menus will just make a mess.
+    z-index: 0;
+
     @include breakpoint($breakpoint-l) {
       display: flex;
     }
@@ -47,6 +52,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     @include font('special.navigation.main_nav');
     list-style: none;
     position: relative;
+    z-index: 2;
   }
 
   // Menu toggle button

@@ -222,3 +222,57 @@ msgstr "Se alla nyheter"
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "All nyheter"
+
+msgctxt "Header search, search for events"
+msgid "Search for events"
+msgstr "Sök evenemang"
+
+msgid "Find upcoming events at the Events.hel.fi website."
+msgstr "Du hittar stadens aktuella evenemang på sidan Tapahtumat.hel.fi"
+
+msgctxt "Header search, search for decisions"
+msgid "Search for decisions"
+msgstr "Sök beslut"
+
+msgid "Find municipal decisions in the Decision-making section."
+msgstr "Du hittar beslut fattade av staden på sidan för beslut: Päätökset."
+
+msgctxt "Header search title"
+msgid "Search Hel.fi"
+msgstr "Sök på Hel.fi"
+
+msgctxt "Mobile navigation search open button text for screen readers"
+msgid "Open search"
+msgstr "Öppna sök"
+
+msgctxt "Mobile navigation search close button text for screen readers"
+msgid "Close search"
+msgstr "Stäng sök"
+
+msgctxt "Helfi search input placeholder"
+msgid "Enter a search word"
+msgstr "Skriv sökord"
+
+msgctxt "Helfi search button"
+msgid "Search"
+msgstr "Sök"
+
+msgctxt "Header search, no javascript"
+msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Hel.fi-webbtjänstens sök använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
+
+msgctxt "Header search label"
+msgid "Keyword"
+msgstr "Uppslagsord"
+
+msgctxt "Other languages-menu open button text for screen readers"
+msgid "Open Information in other languages menu"
+msgstr "Öppna Information på andra språk meny"
+
+msgctxt "Other languages-menu close button text for screen readers"
+msgid "Close Information in other languages menu"
+msgstr "Stäng Information på andra språk meny"
+
+msgctxt "Other languages-navigation"
+msgid "Information in other languages"
+msgstr "Information på andra språk"

@@ -1,23 +1,46 @@
 $-menu-transition-duration: 0.3s;
+$-default-label-icon-size: 32px;
+$label-font: 'special.navigation.icon_label';
 
 // When menu is opened with anchor instead of JS, this forces the page to scroll to top
-#menu:not([data-js]) {
+.nav-toggle-target:not([data-js]) {
   scroll-margin-top: 100vh;
 }
 
-.menu-toggle-anchor {
+.nav-toggle {
+  align-items: center;
+  display: flex;
+}
+
+.nav-toggle--search {
+  grid-area: search;
+}
+
+.nav-toggle--menu {
+  grid-area: toggle;
+}
+
+.nav-toggle--otherlangs {
+  align-items: stretch;
+  align-self: stretch;
+
+  @include breakpoint($breakpoint-l) {
+    align-items: center;
+  }
+}
+
+.nav-toggle__anchor {
   display: grid;
 }
 
-.menu-toggle-anchor,
-.menu-toggle-button {
-  grid-area: toggle;
+.nav-toggle__anchor,
+.nav-toggle__button {
   grid-template-areas: 'link';
   z-index: 2;
 }
 
-.menu-toggle-button {
-  background: transparent; // Reset button styles
+.nav-toggle__button {
+  background-color: transparent; // Reset button styles
   border: 0 none; // Reset button styles
   cursor: pointer;
   display: none;
@@ -37,31 +60,14 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-// When JS is enabled, switch to use button instead of anchor
-#menu[data-js] ~ * {
-  .menu-toggle-anchor {
-    display: none;
-  }
-
-  // On desktop sizes with js, button should open megamenu with js
-  .menu-toggle-button {
-    display: grid;
-  }
-
-  .mega-and-mobilemenu .mobile-menu-fallback,
-  .mega-and-mobilemenu .mmenu__footer {
-    display: none;
-  }
-}
-
-.menu-toggle__open,
-.menu-toggle__close {
-  @include font('special.navigation.icon_label');
+.nav-toggle__label {
+  @include font($label-font);
   align-self: center;
   color: $color-black-90;
   cursor: pointer;
   display: grid;
   grid-area: link;
+  grid-column: auto;
   grid-template-areas:
     'icon'
     'label';
@@ -70,59 +76,97 @@ $-menu-transition-duration: 0.3s;
   text-decoration: none;
   user-select: none;
 
+  span {
+    grid-area: label;
+  }
+
   &:hover,
   &:active,
-  .menu-toggle-button:hover &,
-  .menu-toggle-button:active & {
+  .nav-toggle__button:hover &,
+  .nav-toggle__button:active & {
     text-decoration: underline;
   }
 
   // stylelint-disable no-descending-specificity
   &:focus,
   &:active,
-  .menu-toggle-button:focus &,
-  .menu-toggle-button:active & {
+  .nav-toggle__button:focus &,
+  .nav-toggle__button:active & {
     outline: 3px solid $color-black;
     outline-offset: -3px;
   }
   // stylelint-enable no-descending-specificity
 
   &::before {
-    @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+    // @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
     align-self: end;
     grid-area: icon;
     justify-self: center;
   }
 }
 
-// stylelint-disable-next-line no-descending-specificity
-.menu-toggle__close {
-  visibility: hidden;
+.nav-toggle__label.nav-toggle__label {
+  grid-area: link;
+}
 
+.nav-toggle--menu .nav-toggle__label::before {
+  @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+}
+
+.nav-toggle--search .nav-toggle__label::before {
+  @include pseudo-icon('search', 32px, currentColor, block);
+}
+
+// stylelint-disable-next-line no-descending-specificity
+.nav-toggle--otherlangs .nav-toggle__label {
+  align-self: stretch;
+  grid-area: link;
+  grid-column: auto min-content;
+  grid-template-areas:
+    'icon arrow'
+    'label .';
+  min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
+
+  &::before {
+    @include pseudo-icon('globe', 24px, currentColor, block);
+  }
+
+  &::after {
+    @include rotating-icon-transition;
+    @include pseudo-icon('angle-down', 24px, $color-black);
+    align-self: end;
+    content: '';
+    grid-area: arrow;
+  }
+}
+
+// stylelint-disable-next-line no-descending-specificity
+.nav-toggle .nav-toggle__label--close {
+  visibility: hidden;
+}
+
+.nav-toggle--menu .nav-toggle__label--close,
+.nav-toggle--search .nav-toggle__label--close {
   &::before {
     @include pseudo-icon-replace('cross');
   }
 }
 
 // Outermost dropdown container, always open.
-.menu-dropdown {
-  grid-area: menu;
+.nav-toggle-dropdown {
   max-width: 100vw;
   overflow: hidden;
   pointer-events: none; // As it's always open, we should disable interacting with it directly
   position: absolute;
   width: 100%;
 
-  @include breakpoint($breakpoint-m) {
-    position: absolute; // Position above page content when closing;
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--branding-height));
+  @include breakpoint($breakpoint-l) {
     width: 100%;
     z-index: 100; // Needs to be higher than page content
   }
 
   @include breakpoint($breakpoint-l) {
     max-width: min(1920px, 100vw);
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--header-top-height) + var(--branding-height));
   }
 
   @media (prefers-reduced-motion) {
@@ -130,25 +174,35 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+.nav-toggle-dropdown--menu,
+.nav-toggle-dropdown--search {
+  grid-area: menu;
+}
+
 // This wrapper helps to animate reveal open from top-down instead of sliding open as seen in https://nemzes.net/posts/animating-height-auto/
-.menu-dropdown__wrapper {
-  border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
+.nav-toggle-dropdown__wrapper {
   overflow: hidden;
   transform: translateY(-100%);
+  // stylelint-disable-next-line plugin/no-low-performance-animation-properties
   transition: transform $-menu-transition-duration ease-in, visibility 0s linear $-menu-transition-duration;
   visibility: hidden;
 
   @media (prefers-reduced-motion) {
     transition: none !important;
   }
+
+  .nav-toggle-dropdown--menu &,
+  .nav-toggle-dropdown--search & {
+    border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
+  }
 }
 
 // Innermost container of dropdown content
-.menu-dropdown__content {
+.nav-toggle-dropdown__content {
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     --menu-height: auto;
   }
 
@@ -160,13 +214,12 @@ $-menu-transition-duration: 0.3s;
   @supports (height: 1dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
   }
-  background: $color-white;
   height: var(--menu-height);
   max-height: var(--menu-max-height);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
-  pointer-events: all; // This enables interaction with this element that .menu-dropdown disables
+  pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
   transform: translateY(100%);
   transition: transform $-menu-transition-duration ease-in;
 
@@ -175,15 +228,96 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
-#menu[data-js] ~ * .menu-dropdown__content {
-  overflow-y: hidden;
+.nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
+  background-color: $color-white;
 }
 
-// Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
-// For this reason I had to remove the closing animation when there is no js available :(
-#menu:not([data-js]) ~ * .menu-dropdown__wrapper,
-#menu:not([data-js]) ~ * .menu-dropdown__content {
-  transition: none;
+// When JS is enabled, switch to use button instead of anchor
+.nav-toggle-target[data-js] ~ * {
+  .nav-toggle__anchor {
+    display: none;
+  }
+
+  // On desktop sizes with js, button should open megamenu with js
+  .nav-toggle__button {
+    display: grid;
+  }
+
+  .nav-toggle-dropdown__content {
+    overflow-y: hidden;
+  }
+
+  // When js is enabled, hide fallback menu and mobile menu footer
+  .mega-and-mobilemenu .mobile-menu-fallback,
+  .mega-and-mobilemenu .mmenu__footer {
+    display: none;
+  }
+}
+
+.nav-toggle-target:not([data-js]) ~ * {
+  // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
+  // For this reason I had to remove the closing animation when there is no js available :(
+  .nav-toggle-dropdown__wrapper,
+  .nav-toggle-dropdown__content {
+    transition: none;
+  }
+}
+
+// When any nav-toggle is active in mobile size, lets hide page content to avoid tabbing behind the dropdown
+.nav-toggle-target:target,
+.nav-toggle-target[data-target='true'] {
+  & ~ .wrapper > *:not(.header), // All wrapper content except .header
+  & ~ .footer {
+    @include breakpoint(max-width $breakpoint-l) {
+      display: none; // Hide other content when menu is visible, to block tabbing behind menu
+      // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+      transition: display 0s linear 10s; // low performance property is ok here as it's just a toggle
+    }
+  }
+}
+
+@mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
+  #{$id}:target,
+  #{$id}[data-target='true'] {
+    & ~ * #{$nav-toggle-modifier} {
+      .nav-toggle__label--open {
+        visibility: hidden; // Menu text and hamburger icon are hidden
+      }
+
+      .nav-toggle__label--close {
+        visibility: visible; // Close text and cross icon are visible
+      }
+    }
+
+    & ~ * #{$nav-toggle-dropdown-modifier} {
+      .nav-toggle-dropdown__wrapper {
+        transform: translateY(0); // Animate wrapper into view from top
+        // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+        transition: transform $-menu-transition-duration ease-out, visibility 0s linear 0s;
+        visibility: visible;
+      }
+
+      .nav-toggle-dropdown__content {
+        transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
+        transition: transform $-menu-transition-duration ease-out;
+      }
+    }
+  }
+}
+
+// What should happen when nav-toggle dropdown is opened
+@include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
+@include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
+@include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
+
+.language-wrapper {
+  max-height: 100vh;
+  /* stylelint-disable plugin/no-low-performance-animation-properties */
+  transition:
+    max-height 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
+    visibility 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
+    min-height 0s linear $-menu-transition-duration; // low performance property is ok here as it's just a toggle
+  /* stylelint-enable plugin/no-low-performance-animation-properties */
 }
 
 // What should happen when menu is opened
@@ -195,30 +329,27 @@ $-menu-transition-duration: 0.3s;
     }
   }
 
-  & ~ * .menu-toggle__open {
-    visibility: hidden; // Menu text and hamburger icon are hidden
+  & ~ * .language-wrapper {
+    max-height: 0;
+    min-height: 0;
+    transition-delay: 0s;
+    visibility: hidden;
   }
 
-  & ~ * .menu-toggle__close {
-    visibility: visible; // Close text and cross icon are visible
-  }
-
-  & ~ * .menu-dropdown__wrapper {
-    transform: translateY(0); // Animate wrapper into view from top
-    transition: transform $-menu-transition-duration ease-out, visibility 0s linear 0s;
-    visibility: visible;
-  }
-
-  & ~ * .menu-dropdown__content {
-    transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
-    transition: transform $-menu-transition-duration ease-out;
-  }
-
-  & ~ .wrapper > *:not(.header), // All wrapper content except .header
-  & ~ .footer {
-    @include breakpoint(max-width $breakpoint-l) {
-      display: none; // Hide other content when menu is visible, to block tabbing behind menu
+  @include breakpoint($breakpoint-l) {
+    & ~ * .language-wrapper {
+      display: flex;
+      max-height: 100vh;
+      min-height: var(--language-block-height);
+      visibility: visible;
     }
+  }
+}
+
+#otherlangs:target,
+#otherlangs[data-target='true'] {
+  & ~ * .nav-toggle--otherlangs .nav-toggle__label::after {
+    transform: rotate(180deg);
   }
 }
 
@@ -228,6 +359,8 @@ $-menu-transition-duration: 0.3s;
   }
 }
 
+// toggleWidgets.js could maybe inject this
+// instead of this hanging around in random file corner
 [data-cssmenu-hide] {
   display: none !important;
 }
