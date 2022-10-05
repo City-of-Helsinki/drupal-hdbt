@@ -30,7 +30,7 @@ $-language-block-height: 52px;
   }
 
   &.scroll-up {
-    margin-top: -52px;
+    margin-top: calc(-1 * var(--language-block-height));
     transition-delay: 0s; // Transition delay should be 0 when hiding the switcher
 
     @include breakpoint($breakpoint-m) {
