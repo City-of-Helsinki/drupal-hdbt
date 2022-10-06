@@ -70,7 +70,7 @@
         {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
       {% endif %}
 
-      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class', 'lang').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}
