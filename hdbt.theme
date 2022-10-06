@@ -109,6 +109,11 @@ function hdbt_preprocess_html(&$variables) {
   else {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
   }
+
+  // Add theme path to as variable.
+  $variables['theme_path'] = '/' . \Drupal::service('theme_handler')
+    ->getTheme('hdbt')
+    ->getPath();
 }
 
 /**
