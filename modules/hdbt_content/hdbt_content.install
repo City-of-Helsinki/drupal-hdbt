@@ -179,7 +179,15 @@ function hdbt_content_update_9005() {
     if (!empty($hdbt_subtheme_data)) {
       $hdbt_subtheme_data['favicon']['path'] = '';
       $hdbt_subtheme_data['favicon']['use_default'] = 0;
-      $hdbt_subtheme->setData($hdbt_subtheme_data)->save(TRUE);
     }
+    else {
+      $hdbt_subtheme_data = [
+        'favicon' => [
+          'use_default' => 0,
+          'path' => '',
+        ],
+      ];
+    }
+    $hdbt_subtheme->setData($hdbt_subtheme_data)->save(TRUE);
   }
 }
