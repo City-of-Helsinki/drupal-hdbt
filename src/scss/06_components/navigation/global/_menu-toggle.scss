@@ -125,7 +125,11 @@ $label-font: 'special.navigation.icon_label';
   grid-template-areas:
     'icon arrow'
     'label .';
-  min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
+  min-height: remify(5px + $-default-label-icon-size + 5px);
+
+  @include breakpoint($breakpoint-l) {
+    min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
+  }
 
   &::before {
     @include pseudo-icon('globe', 24px, currentColor, block);
@@ -310,16 +314,6 @@ $label-font: 'special.navigation.icon_label';
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 
-.language-wrapper {
-  max-height: 100vh;
-  /* stylelint-disable plugin/no-low-performance-animation-properties */
-  transition:
-    max-height 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
-    visibility 0s linear $-menu-transition-duration, // low performance property is ok here as it's just a toggle
-    min-height 0s linear $-menu-transition-duration; // low performance property is ok here as it's just a toggle
-  /* stylelint-enable plugin/no-low-performance-animation-properties */
-}
-
 // What should happen when menu is opened
 #menu:target,
 #menu[data-target='true'] {
@@ -330,18 +324,12 @@ $label-font: 'special.navigation.icon_label';
   }
 
   & ~ * .language-wrapper {
-    max-height: 0;
-    min-height: 0;
-    transition-delay: 0s;
-    visibility: hidden;
+    display: none;
   }
 
   @include breakpoint($breakpoint-l) {
     & ~ * .language-wrapper {
       display: flex;
-      max-height: 100vh;
-      min-height: var(--language-block-height);
-      visibility: visible;
     }
   }
 }
