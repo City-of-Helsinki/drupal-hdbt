@@ -68,7 +68,7 @@
 
     {# Tags #}
     {% if content.field_news_item_tags|render or content.field_news_neighbourhoods|render or content.field_news_groups|render %}
-      {% embed '@hdbt/misc/tag-list.twig' with { type: 'interactive' }%}
+      {% embed '@hdbt/misc/tag-list.twig' with { type: 'static' }%}
         {% block content %}
           {% if content.field_news_item_tags|render %}
             {% for key in content.field_news_item_tags['#items']|keys %}
