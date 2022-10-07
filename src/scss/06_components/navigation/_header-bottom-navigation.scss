@@ -52,7 +52,6 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     @include font('special.navigation.main_nav');
     list-style: none;
     position: relative;
-    z-index: 3;
   }
 
   // Menu toggle button
