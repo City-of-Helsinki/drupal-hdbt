@@ -1,4 +1,6 @@
-$-placeholder-aspect-ratio: 16 / 9;
+@use "sass:math";
+
+$-placeholder-aspect-ratio: math.div(16, 9);
 
 // TODO: Move under correct component when correct component is done.
 .image-placeholder {

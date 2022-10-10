@@ -1,5 +1,7 @@
-$-logo-aspect-ratio: 78 / 36; // fi and en logo size from svg file
-$-logo-sv-aspect-ratio: 78 / 28; // sv and ru logo size from svg file
+@use "sass:math";
+
+$-logo-aspect-ratio: math.div(78, 36); // fi and en logo size from svg file
+$-logo-sv-aspect-ratio: math.div(78, 28); // sv and ru logo size from svg file
 
 .logo {
   align-items: center;

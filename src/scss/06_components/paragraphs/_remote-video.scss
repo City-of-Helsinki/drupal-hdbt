@@ -1,4 +1,6 @@
-$-video-aspect-ratio: 16 / 9;
+@use "sass:math";
+
+$-video-aspect-ratio: math.div(16, 9);
 
 .component--remote-video {
   @include hds-button-colors-on-dark-bg;

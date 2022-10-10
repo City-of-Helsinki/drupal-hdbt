@@ -1,6 +1,6 @@
 // Fix sidebar width when there are only short news titles
 // TODO: REGIONS Clean this up with other region things
-$-card-teaser-img-aspect-ratio: 3 / 2;
+$-card-teaser-img-aspect-ratio: 3 * 0.5;
 $-card-teaser-min-width: 280px;
 
 .page-type--news-item .sidebar-first {
