@@ -1,22 +1,24 @@
 // Margins between components
 * ~ .components,
-.unit__services + .component, // unit page accessibility sentences accordion needs this
+.service__units + .component, // TODO: .service__units should be stripped from extra wrapping divs, so that .component element would be sibling to other components. service page margins were broken otherwise
+.unit__services + .component, // TODO: same as above for unit page where accessibility sentences accordion needs this
 .component ~ .component {
-  @include component-margin-top();
+  @include component-margin-top;
 }
 
 // When components are full width and do not contain liftup-with-img-bg,
 // they should have padding that keeps them from touching side.
-.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg),
-.components--lower > .component:not(.component--liftup-with-image-bg) {
-  @include component-side-padding();
+.components--lower > .component:not(.component--liftup-with-image-bg),
+.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg) {
+  @include component-side-padding;
 }
 
 // Koro should touch the sides
-.component--has-koro > .hds-koros  {
+.component--has-koro > .hds-koros {
   margin-left: -$component-side-padding-mobile;
   margin-right: -$component-side-padding-mobile;
   width: calc(#{$component-side-padding-mobile} + 100% + #{$component-side-padding-mobile});
+
   @if $component-side-padding-mobile != $component-side-padding-desktop {
     @include breakpoint($component-side-padding-breakpoint) {
       margin-left: -$component-side-padding-desktop;
@@ -39,9 +41,23 @@
   margin-top: 0;
 }
 
+.component__description {
+  @include font('body');
+  max-width: $content-width-max;
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
 // If component description exists with title, it should have margin top like this
 .component__title + .component__description {
   margin-top: $component-title-spacing-mobile;
+
   @if $component-title-spacing-mobile != $component-title-spacing-desktop {
     @include breakpoint($component-spacing-breakpoint) {
       margin-top: $component-title-spacing-desktop;
@@ -53,6 +69,7 @@
 .component__title + .component__content,
 .component__description + .component__content {
   margin-top: $component-desc-spacing-mobile;
+
   @if $component-desc-spacing-mobile != $component-desc-spacing-desktop {
     @include breakpoint($component-spacing-breakpoint) {
       margin-top: $component-desc-spacing-desktop;
@@ -60,20 +77,8 @@
   }
 }
 
-.component__description {
-  @include font('body');
-  max-width: $content-width-max;
-
-  & > :first-child {
-    margin-top: 0;
-  }
-  & > :last-child {
-    margin-bottom: 0;
-  }
-}
-
 .component--tpr-unit,
 .component--unit-services,
 .component--service-units {
-  @include component-side-padding();
+  @include component-side-padding;
 }

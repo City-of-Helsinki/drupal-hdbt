@@ -35,6 +35,18 @@
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
   {# Menu. #}
   {% block content %}
+    {% set link_title %}
+      <span class="site-name">{{ site_name }}</span>
+    {% endset %}
+    {% set link_attributes = {
+      'class': [
+        'site-name__link',
+      ],
+      'rel': 'home',
+    } %}
+    <div class="site-name__container">
+    {{ link(link_title, site_front_url, link_attributes) }}
+    </div>
     {{ content }}
   {% endblock %}
 </nav>

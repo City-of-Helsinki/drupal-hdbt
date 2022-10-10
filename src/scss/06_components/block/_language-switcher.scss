@@ -1,26 +1,36 @@
-.block--language-switcher {
+$-language-block-height: 52px;
+
+.language-wrapper {
+  --language-block-height: #{$-language-block-height};
+  align-content: stretch;
+  align-items: center;
   align-self: center;
+  background-color: $color-silver-light;
+  border-bottom: 1px solid $color-black-20;
+  display: flex;
   grid-area: lang;
-  margin-left: -#{$spacing};
-  margin-right: -#{$spacing};
-  order: 3;
-  padding: 12px $spacing;
+  height: 100%;
+  justify-content: space-between;
+  min-height: var(--language-block-height);
+  padding: 0 $spacing;
   position: relative;
   transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
-  width: calc(100% + #{$spacing-double});
+  width: 100vw;
   z-index: 0;
 
   @include breakpoint($breakpoint-m) {
+    background-color: transparent;
+    border-bottom: 0 none;
     border-top: none;
     margin-left: auto;
-    margin-right: 0;
     order: 2;
     padding: 0;
     width: auto;
+    z-index: 10; // floats over main menu dropdowns.
   }
 
   &.scroll-up {
-    margin-top: -51px;
+    margin-top: calc(-1 * var(--language-block-height));
     transition-delay: 0s; // Transition delay should be 0 when hiding the switcher
 
     @include breakpoint($breakpoint-m) {
@@ -28,6 +38,10 @@
       transition-duration: 0s;
     }
   }
+}
+
+#menu:not([data-js]) ~ * .mega-and-mobilemenu .block--language-switcher + * {
+  margin-top: $spacing;
 }
 
 .language-links {

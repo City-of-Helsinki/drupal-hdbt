@@ -10,7 +10,10 @@ declare(strict_types = 1);
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\helfi_tpr\Entity\Service;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\node\NodeInterface;
@@ -45,6 +48,7 @@ function hdbt_content_theme() {
         'title' => NULL,
         'is_revision' => NULL,
         'paragraphs' => NULL,
+        'computed' => NULL,
       ],
     ],
     'sidebar_content_block' => [
@@ -52,6 +56,7 @@ function hdbt_content_theme() {
         'title' => NULL,
         'is_revision' => NULL,
         'paragraphs' => NULL,
+        'computed' => NULL,
       ],
     ],
     'cookie_consent_intro' => [
@@ -72,7 +77,112 @@ function hdbt_content_theme() {
         'links' => NULL,
       ],
     ],
+    'tpr_unit_contact_information' => [
+      'render element' => 'elements',
+    ],
+    'tpr_unit_lower_content' => [
+      'render element' => 'elements',
+    ],
+    'tpr_service_important_links' => [
+      'render element' => 'elements',
+    ],
+    'tpr_service_lower_content' => [
+      'render element' => 'elements',
+    ],
   ];
+}
+
+/**
+ * Prepares variables for tpr_unit_contact_information templates.
+ *
+ * Default template: tpr-unit-contact-information.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ */
+function template_preprocess_tpr_unit_contact_information(array &$variables) : void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (isset($variables['elements']['#tpr_unit'])) {
+    $entity = $variables['entity'] = $variables['elements']['#tpr_unit'];
+
+    // Get 'show_www' field value and pass it to the template.
+    $show_www = $variables['entity']->get('show_www')->value;
+    $variables['show_www'] = boolval($show_www);
+
+    // Convert email link to Url object and set as variable for the template.
+    if (!$entity->email->isEmpty()) {
+      $variables['unit_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
+    }
+  }
+}
+
+/**
+ * Prepares variables for tpr_unit_lower_content templates.
+ *
+ * Default template: tpr-unit-lower-content.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ */
+function template_preprocess_tpr_unit_lower_content(array &$variables) : void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (isset($variables['elements']['#tpr_unit'])) {
+    $variables['entity'] = $variables['elements']['#tpr_unit'];
+  }
+}
+
+/**
+ * Prepares variables for tpr_service_important_links templates.
+ *
+ * Default template: tpr-service-important-links.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ */
+function template_preprocess_tpr_service_important_links(array &$variables) : void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (isset($variables['elements']['#tpr_service'])) {
+    $variables['entity'] = $variables['elements']['#tpr_service'];
+  }
+}
+
+/**
+ * Prepares variables for tpr_service_lower_content templates.
+ *
+ * Default template: tpr-service-lower-content.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ */
+function template_preprocess_tpr_service_lower_content(array &$variables) : void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (isset($variables['elements']['#tpr_service'])) {
+    $variables['entity'] = $variables['elements']['#tpr_service'];
+  }
 }
 
 /**
@@ -227,8 +337,10 @@ function hdbt_content_get_page_entity() {
   $params = $route->getParameters()->all();
 
   foreach ($types as $type) {
-    if (!empty($params[$type])) {
-      return $params[$type];
+    foreach (['revision' => $type . '_revision', 'canonical' => $type] as $route_name => $version) {
+      if (!empty($params[$version]) && $route->getRouteName() === "entity.$type.$route_name") {
+        return $params[$version];
+      }
     }
   }
   return NULL;
@@ -256,34 +368,6 @@ function hdbt_content_block_access(Block $block, $operation, AccountInterface $a
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_content_preprocess_tpr_unit(&$variables) {
-  if (!isset($variables['view_mode']) || $variables['view_mode'] !== 'full') {
-    return;
-  }
-
-  // Handle sidebar visibility.
-  if (isset($variables['entity']) && $variables['entity'] instanceof Unit) {
-    _hdbt_content_handle_sidebar_visibility($variables, $variables['entity']);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_content_preprocess_tpr_service(&$variables) {
-  if (!isset($variables['view_mode']) || $variables['view_mode'] !== 'full') {
-    return;
-  }
-
-  // Handle sidebar visibility.
-  if (isset($variables['entity']) && $variables['entity'] instanceof Service) {
-    _hdbt_content_handle_sidebar_visibility($variables, $variables['entity']);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_content_preprocess_page(&$variables) {
   $variables['has_sidebar'] = FALSE;
 
@@ -296,18 +380,8 @@ function hdbt_content_preprocess_page(&$variables) {
       $variables['has_hero'] = $entity->field_has_hero->value;
     }
 
-    // Handle sidebar visibility for the "Standard page" (page)
-    // content type.
-    if ($entity instanceof NodeInterface && $entity->getType() === 'page') {
-      _hdbt_content_handle_sidebar_visibility($variables, $entity);
-    }
-
-    // News item needs to have the sidebar set at all times. Also move the
-    // node title to content area with move_berore_content variable.
-    if ($entity instanceof NodeInterface && $entity->getType() === 'news_item') {
-      $variables['has_sidebar'] = TRUE;
-      $variables['move_before_content'] = TRUE;
-    }
+    // Handle sidebar visibility.
+    _hdbt_content_handle_sidebar_visibility($variables, $entity);
   }
 }
 
@@ -320,24 +394,65 @@ function hdbt_content_preprocess_page(&$variables) {
  *   Content entity, like tpr_service, tpr_unit or node.
  */
 function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntityInterface $entity) {
-  if (empty($entity)) {
+
+  // The entities that need to be handled listed as content type => entity type.
+  $allowed_entities = [
+    'page' => 'node',
+    'news_item' => 'node',
+    'tpr_unit' => 'tpr_unit',
+    'tpr_service' => 'tpr_service',
+  ];
+
+  // Trigger hook_sidebar_visibility_allowed_entities_alter().
+  // Allow modules to alter the list of allowed entities.
+  \Drupal::service('module_handler')
+    ->alter('sidebar_visibility_allowed_entities', $allowed_entities);
+
+  // Get possible (node) content type.
+  $content_type = $entity instanceof NodeInterface ? $entity->getType() : FALSE;
+
+  // Check if (node) content type is in allowed content types.
+  if ($content_type && !array_key_exists($content_type, $allowed_entities)) {
     return;
   }
 
-  $menu_link_manager = Drupal::service('plugin.manager.menu.link');
+  // Check if entity type is in allowed entity types.
+  if (!in_array($entity->getEntityTypeId(), $allowed_entities)) {
+    return;
+  }
 
   // Load menu links for the current page entity.
+  $menu_link_manager = Drupal::service('plugin.manager.menu.link');
   $menu_links = $menu_link_manager->loadLinksByRoute(
     "entity.{$entity->getEntityTypeId()}.canonical",
     [$entity->getEntityTypeId() => $entity->id()],
     'main'
   );
 
-  // If there are links, apply "has_sidebar" and "in_menu" variables
+  $variables['has_sidebar_first'] = FALSE;
+  $variables['has_sidebar_second'] = FALSE;
+
+  // If there are links in current language, apply "has_sidebar_first" variable
   // to indicate twig templates how to render the sidebar.
+  // However, if the menu link is set to first level, do not render the
+  // sidebar.
   if (!empty($menu_links)) {
-    $variables['has_sidebar'] = TRUE;
-    $variables['in_menu'] = TRUE;
+    $langcode = \Drupal::languageManager()
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    foreach ($menu_links as $menu_link) {
+      /** @var \Drupal\menu_link_content\Plugin\Menu\MenuLinkContent $menu_link */
+      if ($menu_link) {
+        /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $menu_link_content */
+        $menu_link_content = \Drupal::service('entity.repository')
+          ->loadEntityByUuid('menu_link_content', $menu_link->getDerivativeId());
+        if (
+          $menu_link_content->hasTranslation($langcode) &&
+          !empty($menu_link_content->getParentId())
+        ) {
+          $variables['has_sidebar_first'] = TRUE;
+        }
+      }
+    }
   }
 
   // Hide the sidebar and menu if the current entity has
@@ -346,17 +461,40 @@ function _hdbt_content_handle_sidebar_visibility(array &$variables, ContentEntit
     $entity->hasField('hide_sidebar_navigation') &&
     boolval($entity->get('hide_sidebar_navigation')->value)
   ) {
-    $variables['has_sidebar'] = FALSE;
-    $variables['in_menu'] = FALSE;
+    $variables['has_sidebar_first'] = FALSE;
   }
 
   // Check if page entity has sidebar content field available and set
-  // "has_sidebar" variable accordingly.
+  // "has_sidebar_second" variable accordingly.
   if (
     $entity->hasField('field_sidebar_content') &&
     !$entity->get('field_sidebar_content')->isEmpty()
   ) {
-    $variables['has_sidebar'] = TRUE;
+    $variables['has_sidebar_second'] = TRUE;
+  }
+
+  // Enable sidebar second for News item.
+  if (isset($content_type) && $content_type === 'news_item') {
+    $variables['has_sidebar_second'] = TRUE;
+  }
+
+  // Enable sidebar second for TPR unit if contact information exists.
+  if ($entity instanceof Unit) {
+    if (
+      !$entity->get('address')->isEmpty() ||
+      !$entity->get('email')->isEmpty() ||
+      !$entity->get('phone')->isEmpty() ||
+      !$entity->get('address_postal')->isEmpty() ||
+      !$entity->get('opening_hours')->isEmpty() ||
+      !$entity->get('www')->isEmpty()
+    ) {
+      $variables['has_sidebar_second'] = TRUE;
+    }
+  }
+
+  // Enable sidebar second for TPR service if important links exists.
+  if ($entity instanceof Service && !$entity->get('links')->isEmpty()) {
+    $variables['has_sidebar_second'] = TRUE;
   }
 }
 

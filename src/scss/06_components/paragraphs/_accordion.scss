@@ -14,8 +14,8 @@
     margin: 0;
     padding: 0;
 
-    // Accordion open state.
-    &.handorgel__header--open .accordion-item__button--toggle {
+    // Accordion open and opened state.
+    &.handorgel__header--opened .accordion-item__button--toggle {
       background-color: transparent;
 
       &::after {

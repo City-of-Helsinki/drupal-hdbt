@@ -1,0 +1,43 @@
+.metadata-container {
+  background-color: var(--hdbt-color-palette--secondary);
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $spacing;
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-double;
+  }
+}
+
+.metadata__item {
+  display: flex;
+  margin-top: $spacing;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:nth-child(2) {
+    @include breakpoint($breakpoint-m) {
+      margin-top: 0;
+    }
+  }
+
+  .hel-icon {
+    height: $spacing-and-half;
+    margin-right: $spacing-half;
+    min-width: $spacing-and-half;
+    width: $spacing-and-half;
+  }
+}
+
+.metadata__item-label {
+  @include font('button');
+  display: block;
+}

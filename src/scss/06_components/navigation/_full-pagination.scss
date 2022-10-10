@@ -13,7 +13,7 @@
 
   @include font('body');
   display: inline-block; // Allows centering.
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   position: relative; // Enables position absolute for btn--next.
   transform: scaleY(-1); // Trick for flipping the list float direction from bottom to up.
 
@@ -29,6 +29,14 @@
     padding-left: 80px;
     visibility: hidden;
   }
+}
+
+.hds-pagination__button-prev,
+.hds-pagination__button-next {
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
 }
 
 .hds-pagination__button-prev {
@@ -49,6 +57,7 @@
 .hds-pagination__button-prev-label {
   padding: $spacing $spacing $spacing 4px;
 }
+
 .hds-pagination__button-next-label {
   padding: $spacing 4px $spacing $spacing;
 }

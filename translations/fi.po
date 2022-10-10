@@ -7,6 +7,9 @@ msgstr "Muokkaa evästeasetuksia"
 msgid "Check that you have typed in the page address correctly. We may have deleted or moved the content."
 msgstr "Tarkista, että sivun osoite on kirjoitettu oikein. Olemme myös saattaneet poistaa tai siirtää sivun."
 
+msgid "City of Helsinki"
+msgstr "Helsingin kaupunki"
+
 msgid "Close announcement"
 msgstr "Sulje poikkeustiedote"
 
@@ -100,8 +103,8 @@ msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Julkaisematon"
 
-msgid "Sorry, the page you were looking for was not found."
-msgstr "Etsimääsi sivua ei valitettavasti löytynyt."
+msgid "Sorry, the page you were looking for was not found"
+msgstr "Etsimääsi sivua ei valitettavasti löytynyt"
 
 msgctxt "The helper text before the node changed timestamp"
 msgid "Updated"
@@ -158,6 +161,14 @@ msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Kytke alivalikko:"
 
+msgctxt "Mobile navigation menu prefix"
+msgid "Open submenu:"
+msgstr "Avaa alivalikko:"
+
+msgctxt "Mobile navigation menu prefix"
+msgid "Open parent menu:"
+msgstr "Avaa ylävalikko:"
+
 msgctxt "Mobile navigation menu description for screen readers"
 msgid "Navigation menu"
 msgstr "Navigaatiovalikko"
@@ -174,8 +185,8 @@ msgid "Pagination"
 msgstr "Sivutus"
 
 msgctxt "Pagination previous page link title"
-msgid "Go to previous page"
-msgstr "Palaa edelliselle sivulle"
+msgid "Go to previous page number"
+msgstr "Palaa edelliselle sivulle numero"
 
 msgctxt "Pagination previous page link text"
 msgid "Previous"
@@ -197,9 +208,82 @@ msgid "Go to page @key"
 msgstr "Siirry sivulle @key"
 
 msgctxt "Pagination next page link title"
-msgid "Go to next page"
-msgstr "Mene seuraavalle sivulle"
+msgid "Go to next page number"
+msgstr "Mene seuraavalle sivulle numero"
 
 msgctxt "Pagination next page link text"
 msgid "Next"
 msgstr "Seuraava"
+
+msgid "Chat is not in use."
+msgstr "Chat ei ole käytössä."
+
+msgctxt "Popular services paragraph title"
+msgid "Popular services"
+msgstr "Suosittuja palveluja"
+
+msgctxt "Global navigation mobile menu top level"
+msgid "Frontpage"
+msgstr "Etusivu"
+
+msgctxt "News list paragraph see all news link"
+msgid "See all the news"
+msgstr "Katso kaikki uutiset"
+
+msgctxt "News archive heading"
+msgid "All news items"
+msgstr "Kaikki uutiset"
+
+msgctxt "Header search, search for events"
+msgid "Search for events"
+msgstr "Etsi tapahtumia"
+
+msgid "Find upcoming events at the Events.hel.fi website."
+msgstr "Kaupungin ajankohtaisia tapahtumia voit hakea Tapahtumat.hel.fi-sivustolla."
+
+msgctxt "Header search, search for decisions"
+msgid "Search for decisions"
+msgstr "Etsi päätöksiä"
+
+msgid "Find municipal decisions in the Decision-making section."
+msgstr "Kaupungin tekemiä päätöksiä voit hakea Päätökset-sivustolla."
+
+msgctxt "Header search title"
+msgid "Search Hel.fi"
+msgstr "Hae Hel.fi:stä"
+
+msgctxt "Mobile navigation search open button text for screen readers"
+msgid "Open search"
+msgstr "Avaa haku"
+
+msgctxt "Mobile navigation search close button text for screen readers"
+msgid "Close search"
+msgstr "Sulje haku"
+
+msgctxt "Helfi search input placeholder"
+msgid "Enter a search word"
+msgstr "Kirjoita hakusana"
+
+msgctxt "Helfi search button"
+msgid "Search"
+msgstr "Hae"
+
+msgctxt "Header search, no javascript"
+msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Hel.fi-verkkopalvelun haku käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
+
+msgctxt "Header search label"
+msgid "Keyword"
+msgstr "Hakusana"
+
+msgctxt "Other languages-menu open button text for screen readers"
+msgid "Open Information in other languages menu"
+msgstr "Avaa tietoa muilla kielillä valikko"
+
+msgctxt "Other languages-menu close button text for screen readers"
+msgid "Close Information in other languages menu"
+msgstr "Sulje tietoa muilla kielillä valikko"
+
+msgctxt "Other languages-navigation"
+msgid "Information in other languages"
+msgstr "Tietoa muilla kielillä"

@@ -9,6 +9,7 @@
   .dialog-off-canvas-main-canvas {
     --drupal-toolbar-height: 39px;
     padding-top: var(--drupal-toolbar-height); // Gin horizontal toolbar adjustments.
+
     @include breakpoint(976px) {
       --drupal-toolbar-height: 54px;
     }

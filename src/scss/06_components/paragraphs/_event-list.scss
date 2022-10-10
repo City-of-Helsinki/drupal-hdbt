@@ -12,8 +12,11 @@ $tag-vertical-padding: 5px;
   border-bottom: 1px solid $color-black-10;
   padding-bottom: $spacing-half;
   padding-top: $spacing-and-half;
+  position: relative;
 
   @include breakpoint($breakpoint-l) {
+    display: grid;
+    grid-template-columns: $event-list-image-width 1fr;
     padding-bottom: $spacing;
     padding-top: $spacing;
   }
@@ -23,32 +26,33 @@ $tag-vertical-padding: 5px;
   }
 }
 
-.event-list__events-container {
-  display: block;
-  text-decoration: none;
-
-  @include breakpoint($breakpoint-l) {
-    display: grid;
-    grid-template-columns: $event-list-image-width 1fr;
-  }
-}
-
 .event-list__event-name {
   @include font('h4');
   margin-bottom: $spacing-and-half;
   margin-top: $spacing;
 }
 
-// Underline event heading on hover and focus
-.event-list__events-container:hover,
-.event-list__events-container:focus {
-  .event-list__event-name {
+.event-list__event-link {
+  text-decoration: none;
+
+  &:hover {
     text-decoration: underline;
   }
 }
 
+.event-list__event-link::before {
+  content: '';
+  display: block;
+  inset: 0;
+  position: absolute;
+
+  // Set z-index to make arrow icon clickable as well.
+  z-index: 1;
+}
+
 .event-list__image-container {
   display: block;
+  overflow: hidden;
   position: relative;
 }
 
@@ -59,6 +63,7 @@ $tag-vertical-padding: 5px;
 
   @include breakpoint($breakpoint-l) {
     height: 100%;
+    max-height: unset;
     position: absolute;
   }
 }
@@ -121,9 +126,13 @@ $tag-vertical-padding: 5px;
   margin-bottom: $spacing;
 }
 
+.event-list__indicator-container {
+  align-items: flex-end;
+  display: flex;
+}
+
 .event-list__event-link-indicator {
   @include pseudo-icon('link-external', $spacing-and-half);
-  align-self: flex-end;
 
   @include breakpoint($breakpoint-l) {
     @include pseudo-icon('link-external', $spacing-triple);

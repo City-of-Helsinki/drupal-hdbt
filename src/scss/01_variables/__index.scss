@@ -4,5 +4,4 @@ $config: ();
 @import 'constraint_variables';
 @import 'media-query_variables';
 @import 'typography_variables';
-
 @import 'component_variables'; // This uses the variables from _constraints.scss, so it should be imported after it

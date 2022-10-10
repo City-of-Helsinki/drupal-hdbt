@@ -2,15 +2,56 @@ extends: stylelint-config-standard-scss
 plugins:
   - stylelint-scss
   - stylelint-order
+  - stylelint-declaration-block-no-ignored-properties
+  - stylelint-high-performance-animation
 rules:
   # scss/at-import-no-partial-leading-underscore: null
-  string-quotes: single # We use single quotes in SCSS
-  declaration-block-no-redundant-longhand-properties: null # We prefer lonhand properties for clarity in SCSS
+  plugin/declaration-block-no-ignored-properties: true # Helps weed out unecessary code
+  plugin/no-low-performance-animation-properties: true # Guides to better, more performant animation properties
+  declaration-property-value-disallowed-list:
+    - /^overflow/:
+      - /(none)/i # `none` is not a valid value for overflow, use `hidden` instead
+    - message: "HELFI: `none` is not a valid value for overflow, use `hidden` instead"
+    - /(color$|background|border|box-shadow|column-rule|filter|opacity|outline|text-decoration|text-shadow)/:
+      - /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/i # we should always use color tokens
+    - message: "HELFI: Instead of color values, please use tokens like $color-black instead"
+  color-named:
+    - never
+    - message: "HELFI: Instead of color values, please use tokens like $color-black instead"
+  string-quotes:
+    - single
+    - message: "HELFI: We use single quotes in SCSS"
+  declaration-block-no-redundant-longhand-properties: null # We prefer longhand properties for clarity in SCSS
   selector-class-pattern: null # We're not too stict about selector class pattern
   max-line-length: null # Lets not limit line length at this point
-  declaration-empty-line-before: never # No need for empty line before declaration
-  order/properties-alphabetical-order: true # We're following alphabetical order in properties
-  custom-property-pattern: "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$" # kebab-case pattern with allowed bem-like double --
+  declaration-empty-line-before:
+    - never
+    - message: "HELFI: No need for empty line before declaration"
+  order/properties-alphabetical-order: true # We're following alphabetical order in properties"
+  custom-property-pattern:
+    - "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$"
+    - message: "HELFI: We format css custom properties in kebab-case with optional BEM modifiers like: --button-size--large"
+  scss/dollar-variable-pattern:
+    - "^-?[a-z][a-z0-9]*(--?[a-z0-9]+)*$"
+    - message: "HELFI: We format SCSS variables in kebab-case with optional private identifier like: $global-variable or $-private-variable"
+  color-hex-length: 'long' # When defining color tokens, we use long hex format"
+  font-family-name-quotes: 'always-unless-keyword' # We have quotes around font-family unless it's a keyword"
+  value-keyword-case: null # This was causing too much hassle and making thing like currentColor hard to read
+  max-nesting-depth:
+    - 2 # we should finetune this to be lower
+    # - message: "HELFI: We will not nest css too deeply (currently 2 levels). Try to avoid it as much as possible."
+    - ignore:
+      - pseudo-classes
+      # - blockless-at-rules
+    - ignoreAtRules:
+      - /@?supports/
+      - /@?include/
+      - media
+  number-max-precision:
+    - 4
+    - ignoreUnits:
+        - '%' # Sometimes we need more specific values to be able to round to even pixels with percentages
+    #- message: "HELFI: Lets avoid overly specific precision unless really needed."
 overrides:
   - files:
       - '**/__index.scss'

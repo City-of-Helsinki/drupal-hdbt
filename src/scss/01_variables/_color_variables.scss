@@ -1,7 +1,6 @@
 // Color variables from HDS.
-@import '~hds-design-tokens/lib/color/all.scss';
+@import '~hds-design-tokens/lib/color/all'; // Notice, SCSS format
 
 $hdbt-color-black: var(--hdbt-color-black);
 $hdbt-color-white: #ffffff;
-
 $body-bg-color: $color-white;

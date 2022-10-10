@@ -10,30 +10,6 @@ desktop-menu-toggle:
   js:
     dist/js/desktop-menu-toggle.min.js: {}
 
-splide:
-  version: 2.4.21
-  js:
-    dist/js/splide/splide.min.js: {}
-  css:
-    theme:
-      dist/css/splide/splide-core.min.css: {}
-
-tiny-slider:
-  version: 2.9.3
-  js:
-    dist/js/tiny-slider/tiny-slider.js: {}
-  css:
-    theme:
-      dist/css/tiny-slider/tiny-slider.css: {}
-
-gallery:
-  version: 1.x
-  js:
-    dist/js/gallery-settings.min.js: {}
-  dependencies:
-    - hdbt/splide
-    - hdbt/tiny-slider
-
 handorgel:
   version: 0.5.0
   js:
@@ -61,11 +37,6 @@ sidebar-menu-toggle:
   version: 1.x
   js:
     dist/js/sidebar-menu-toggle.min.js: {}
-
-cssmenu:
-  version: 1.x
-  js:
-    dist/js/cssmenu.min.js: {}
 
 color-palette:
   version: 1.0
@@ -97,6 +68,26 @@ global-styling:
   dependencies:
     - hdbt/color-palette
     - hdbt/hdbt-icons
+
+nav-local:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_local.min.css: {}
+  js:
+    dist/js/nav-local.min.js: {}
+  dependencies:
+    - hdbt/global-styling
+
+nav-global:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_global.min.css: {}
+  js:
+    dist/js/nav-global.min.js: {}
+  dependencies:
+    - hdbt/global-styling
 
 # TODO Convert branding mobile to its own library.
 global-scripting:
@@ -138,3 +129,12 @@ environment-indicator:
   css:
     theme:
       dist/css/environment-indicator.min.css: {}
+
+disable_genesys_button:
+  version: 1.x
+  js:
+    src/js/disable-genesys-button.js: {}
+  dependencies:
+  - core/jquery
+  - core/drupal
+  - core/drupalSettings

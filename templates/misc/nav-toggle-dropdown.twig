@@ -1,0 +1,19 @@
+{% if description %}
+  <nav id="{{ id }}" role="navigation" class="nav-toggle-dropdown {{ modifier_class }}" aria-label="{{ description }}">
+{% else %}
+  <div id="{{ id }}" class="nav-toggle-dropdown {{ modifier_class }}">
+{% endif %}
+
+  <div class="nav-toggle-dropdown__wrapper">
+    <div class="nav-toggle-dropdown__content">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+  </div>
+
+{% if description %}
+  </nav>
+{% else %}
+  </div>
+{% endif %}

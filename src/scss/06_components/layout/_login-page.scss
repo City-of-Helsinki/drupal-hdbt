@@ -18,7 +18,6 @@ $illustration-max-width-mobile: 450px;
 
 .user-login-page__title {
   @include font('h2');
-
   margin-bottom: $spacing-double;
 
   @include breakpoint($breakpoint-m) {
@@ -57,9 +56,8 @@ $illustration-max-width-mobile: 450px;
   }
 }
 
-
 .login-form {
-  //Hides the help texts from input fields
+  // Hides the help texts from input fields
   .description {
     display: none;
   }

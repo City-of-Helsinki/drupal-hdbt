@@ -1,5 +1,8 @@
 // Fix sidebar width when there are only short news titles
-// TODO: Clean this up with other region things
+// TODO: REGIONS Clean this up with other region things
+$-card-teaser-img-aspect-ratio: 3 / 2;
+$-card-teaser-min-width: 280px;
+
 .page-type--news-item .sidebar-first {
   display: block;
 }
@@ -44,8 +47,8 @@
   color: $color-black-60;
 }
 
-.components--news figure picture img {
-  width: 100%;
+.components--news {
+  margin-top: 0;
 }
 
 // News listings using tiny-teasers.
@@ -59,7 +62,7 @@
 }
 
 .news-listing__tiny-teaser .news-listing__title {
-  @include font('body');
+  @include font('special.large_link');
   margin-bottom: $spacing-half;
 }
 
@@ -142,18 +145,18 @@
 
     @include breakpoint($breakpoint-m) {
       padding-right: $spacing-and-half;
-      width: 70%;
+      width: 75%;
     }
   }
 
   .news-listing__content--with-image {
     padding-right: $spacing-and-half;
-    width: 70%;
+    width: 75%;
   }
 
   .news-listing__img {
-    @include loading-image-background();
-    width: 30%;
+    @include loading-image-background;
+    width: 25%;
 
     img {
       display: block;
@@ -163,7 +166,7 @@
   }
 
   .news-listing__title {
-    @include font(h4);
+    @include font('h4');
   }
 
   .news-listing__datetime {
@@ -172,7 +175,155 @@
     margin-top: $spacing-half;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-and-half;
+      margin-top: $spacing;
     }
   }
+}
+
+.news-listing--card-teasers {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -#{$spacing-and-half};
+  }
+
+  .news-listing__item {
+    @include breakpoint($breakpoint-m) {
+      width: 50%;
+    }
+
+    @include breakpoint($breakpoint-l) {
+      width: 25%;
+    }
+  }
+
+  .news-listing__card-teaser {
+    height: 100%;
+  }
+}
+
+.news-listing__card-teaser {
+  border-bottom: 1px solid var(--color-black-5);
+  display: flex;
+  padding-bottom: $spacing;
+  position: relative;
+
+  &:hover .hel-icon--arrow-right {
+    transform: translateX($spacing-quarter);
+
+    @media (prefers-reduced-motion) {
+      transform: none;
+    }
+  }
+
+  @include breakpoint($breakpoint-m) {
+    border: 1px solid var(--color-black);
+    flex-direction: column;
+    margin-right: $spacing-and-half;
+    padding-bottom: 0;
+  }
+
+  .news-listing__title {
+    @include font('h5');
+
+    // The card style changes already on breakpoint-m so we need to switch to larger
+    // h5-style earlier.
+    @include breakpoint($breakpoint-m) {
+      font-size: remify(20px);
+      line-height: 30 / 20;
+    }
+  }
+
+  .news-listing__img {
+    position: relative;
+    width: 40%;
+
+    @include breakpoint($breakpoint-m) {
+      width: unset;
+    }
+
+    img {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .image-placeholder {
+    padding-bottom: aspect-ratio-padding($-card-teaser-img-aspect-ratio);
+  }
+
+  .news-listing__text-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: $spacing;
+    width: 60%;
+
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing;
+      width: unset;
+    }
+  }
+
+  .news-listing__title,
+  .news-listing__datetime {
+    margin-bottom: $spacing-half;
+  }
+
+  .news-listing__datetime {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .hel-icon--arrow-right {
+    @include hover-link-arrow-transition;
+
+    display: none;
+    height: $spacing-triple;
+    width: $spacing-triple;
+
+    @include breakpoint($breakpoint-m) {
+      display: inline-block;
+    }
+  }
+}
+
+.news-listing--sidebar {
+  margin-bottom: $spacing-quadruple;
+
+  .link__read-more-news {
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+
+    .hel-icon--arrow-right {
+      @include hover-link-arrow-transition;
+      height: $spacing-and-half;
+      margin-left: $spacing-quarter;
+      width: $spacing-and-half;
+    }
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+
+      .hel-icon {
+        transform: translateX($spacing-quarter);
+
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+.news-archive__heading {
+  @include font('h3');
+  border-bottom: 2px solid $color-black;
+  margin-top: 0;
+  padding-bottom: $spacing-and-half;
+  width: 100%;
 }

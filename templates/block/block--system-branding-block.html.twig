@@ -19,16 +19,15 @@
 {% block content %}
   {% set link_title %}
     {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-    <span class="site-name">{{ site_name }}</span>
+    <span class="city-name">{{ city_name }}</span>
   {% endset %}
   {% set link_attributes = {
     'class': [
       'logo',
       'logo--header',
     ],
-    'title': site_name,
     'id': 'logo--header',
     'rel': 'home',
   } %}
-  {{ link(link_title, site_front_url, link_attributes) }}
+  {{ link(link_title, frontpage_instance_url, link_attributes) }}
 {% endblock %}

@@ -2,8 +2,8 @@
 .toolbar .toolbar-menu,
 .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
 .toolbar-lining {
-  //TODO: Get spacing variable to work in hdbt_admin as well
-  box-shadow: inset 0 -8px 0 var(--bg); 
+  // TODO: Get spacing variable to work in hdbt_admin as well
+  box-shadow: inset 0 -8px 0 var(--bg);
 }
 
 .toolbar-vertical .toolbar .toolbar-bar {
@@ -18,27 +18,22 @@
   }
 }
 
-
-.toolbar-tray-horizontal .toolbar-lining::after, 
+.toolbar-tray-horizontal .toolbar-lining::after,
 .toolbar-tray-vertical .toolbar-lining::before {
   background: var(--bg);
   color: var(--color);
   content: var(--name);
   display: block;
-  //TODO: Get fontsize varaible to work in hdbt_admin as well
-  font-size: 14px;
-  //TODO: Get lineheight variable to work in hdbt_admin as well
-  line-height: 1.5;
-  //TODO: Get spacing variable to work in hdbt_admin as well
-  padding: 4px 16px;
+  font-size: 14px; // TODO: Get fontsize variable to work in hdbt_admin as well
+  line-height: 1.5; // TODO: Get lineheight variable to work in hdbt_admin as well
+  padding: 4px 16px; // TODO: Get spacing variable to work in hdbt_admin as well
   z-index: 3;
 }
 
 .toolbar-tray-horizontal .toolbar-lining::after {
   position: absolute;
   right: 0;
-  //TODO: Get spacing variable to work in hdbt_admin as well
-  top: 24px;
+  top: 24px; // TODO: Get spacing variable to work in hdbt_admin as well
 }
 
 .env-local {

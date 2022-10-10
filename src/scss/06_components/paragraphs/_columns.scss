@@ -48,11 +48,13 @@
       width: 50%;
     }
   }
+
   &.column--30 {
     @include breakpoint($breakpoint-m) {
-      width: 30%
+      width: 30%;
     }
   }
+
   &.column--70 {
     @include breakpoint($breakpoint-m) {
       width: 70%;
@@ -69,9 +71,7 @@
 }
 
 // Sidebar layout.
-.has-sidebar.enriched-content, // TODO: Clean up when unit sidebar block has been created.
 .has-sidebar .main-content {
-
   // Columns in content area and inside accordion.
   .columns {
     @include breakpoint($breakpoint-l) {
@@ -82,6 +82,7 @@
       flex-direction: row;
     }
   }
+
   .columns__column {
     @include breakpoint($breakpoint-l) {
       width: auto;
@@ -90,6 +91,7 @@
         margin-top: $spacing-double;
       }
     }
+
     @include breakpoint($breakpoint-xl) {
       margin-top: 0;
 
@@ -104,11 +106,13 @@
       width: 50%;
     }
   }
+
   .columns__column.column--30 {
     @include breakpoint($breakpoint-xl) {
       width: 30%;
     }
   }
+
   .columns__column.column--70 {
     @include breakpoint($breakpoint-xl) {
       width: 70%;

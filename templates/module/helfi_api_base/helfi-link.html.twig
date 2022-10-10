@@ -15,6 +15,7 @@
       {% set attribute_icon %} <span class="link__type link__type--mailto" aria-label="({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})"></span>{%- endset %}
     {% endif %}
   {% endif %}
+
   {{ selected_icon }}{{ title }}{{ attribute_icon }}
 
 {% endspaceless %}

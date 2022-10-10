@@ -1,3 +1,6 @@
+$-main-nav-spacing: 20px;
+$-main-nav-dropdown-padding: $-main-nav-spacing;
+
 .header-bottom {
   background-color: $color-white;
 
@@ -10,8 +13,38 @@
     margin: 0;
     padding: 0;
 
+    // Focus ring uses extra elements instead of native outline css.
+    // This element needs to be put into z-index context or
+    // other menus will just make a mess.
+    z-index: 0;
+
     @include breakpoint($breakpoint-l) {
       display: flex;
+    }
+  }
+
+  .menu--level-0,
+  .site-name__container {
+    @include flex-gap($-main-nav-spacing, $spacing-double);
+    flex-wrap: wrap;
+  }
+
+  .site-name__container {
+    display: none;
+    padding-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  .site-name__link {
+    @include font('special.site_name');
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
   }
 
@@ -21,24 +54,11 @@
     position: relative;
   }
 
-  // First level items only
-  .menu--level-0 > .menu__item {
-    margin: 0 $spacing;
-
-    &:first-child {
-      margin-left: $spacing-double;
-    }
-
-    &:last-child {
-      margin-right: $spacing-double;
-    }
-  }
-
   // Menu toggle button
   .menu__toggle-button {
     background-color: $color-black-5;
     border: none;
-    margin-left: $spacing-half;
+    margin-left: $spacing-quarter;
     padding: 0;
 
     &:hover {
@@ -53,7 +73,7 @@
   }
 
   .menu__toggle-button-icon {
-    @include rotating-icon-transition();
+    @include rotating-icon-transition;
   }
 
   // Icon rotates around
@@ -67,31 +87,31 @@
     text-decoration: none;
   }
 
- .menu__link-wrapper {
+  .menu__link-wrapper {
     align-items: center;
-    display: block;
+    display: flex;
     height: 100%;
     position: relative;
   }
 
- .menu__link {
+  .menu__link {
     display: inline-block;
     padding: $spacing-and-half 0;
 
     &::before {
       background-color: $color-black;
       bottom: 0;
-      content: "";
+      content: '';
       height: 0;
       left: 0;
       margin: 0 auto;
       position: absolute;
       right: 0;
-      transition: all .5s cubic-bezier(.19,1,.22,1);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       width: 0;
     }
 
-    &[aria-current="page"]::before {
+    &[aria-current='page']::before {
       height: 4px;
       width: 100%;
     }
@@ -101,7 +121,7 @@
 
       &::after {
         box-shadow: 0 0 0 3px $color-black;
-        content: "";
+        content: '';
         display: block;
         height: 50%;
         left: -#{$spacing-quarter};
@@ -115,7 +135,8 @@
 
   // Handle menu link focus style when it has children
   .menu__item--item-below .menu__link:focus::after {
-      width: calc(100% - #{24px + 4px}) ; // Width of the dropdown button and padding.
+    left: -2px;
+    width: calc(100% - #{$spacing-and-half}); // Width of the dropdown button and padding.
   }
 
   // Active trail items, first level
@@ -137,7 +158,7 @@
     border: 1px solid $color-black-20;
     bottom: auto;
     display: none; // By default hide the secondary items
-    left: -$spacing-double;
+    left: - $-main-nav-dropdown-padding;
     min-width: 310px;
     position: absolute;
     width: calc(100% + #{$spacing-quadruple});
@@ -160,7 +181,7 @@
   .menu--level-1 .menu__item--nolink {
     @include font('special.navigation.sub_nav');
     display: block;
-    padding: $spacing $spacing-double;
+    padding: $spacing $-main-nav-dropdown-padding;
 
     &::before {
       bottom: 0;
@@ -182,12 +203,12 @@
       }
     }
 
-    &[aria-current="page"] {
+    &[aria-current='page'] {
       font-weight: $font-weight-bold;
     }
 
     &:hover,
-    &[aria-current="page"],
+    &[aria-current='page'],
     &.menu__link--active-trail {
       &::before {
         height: 100%;

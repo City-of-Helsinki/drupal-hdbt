@@ -1,3 +1,13 @@
+.page-title {
+  padding-top: 0;
+
+  h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    max-width: $content-width-max;
+  }
+}
+
 // When page title (not hero) is visible and lead-in follows it, set margin between them
 .page-title + article > .lead-in {
   margin-top: $spacing-and-half;
@@ -7,29 +17,4 @@
 .page-title + article > .table-of-contents:first-child,
 .page-title + article > .components:first-child {
   @include component-margin-top;
-}
-
-.page-title__container {
-  @include components-container-max-width;
-  @include component-side-padding;
-  padding-top: 0;
-
-  h1 {
-    margin-bottom: 0;
-    margin-top: 0;
-    max-width: $content-width-max;
-  }
-
-  .has-sidebar & {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.has-sidebar--first {
-  .page-title__container h1 {
-    @include breakpoint($breakpoint-l) {
-      padding-left: 0;
-    }
-  }
 }

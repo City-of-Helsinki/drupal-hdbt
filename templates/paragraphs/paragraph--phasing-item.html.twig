@@ -1,0 +1,20 @@
+{%
+  set classes = [
+    'phasing__item',
+    show_numbers ? 'phasing__item--with-numbers'
+  ]
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    <{{ phasing_item_heading_level }} class="phasing__item-title">
+      {{ content.field_title}}
+    </{{ phasing_item_heading_level }}>
+    {% if content.field_description|render %}
+      <div class="phasing__item-description">
+        {{ content.field_description}}
+      </div>
+    {% endif %}
+  </div>
+{% endblock paragraph %}
+

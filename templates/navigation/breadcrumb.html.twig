@@ -9,8 +9,7 @@
  */
 #}
 {% if links %}
-  <nav class="breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
-    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+  <nav class="breadcrumb" role="navigation" aria-label="{{ 'Breadcrumb'|t }}">
     {% for item in links %}
       {% if not loop.first %}
         {% include '@hdbt/misc/icon.twig' with {icon: 'angle-right'} %}

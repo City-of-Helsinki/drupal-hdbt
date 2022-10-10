@@ -4,11 +4,9 @@
       {% block container_content %}
         <div class="user-login__form-container">
           <div class="user-login__text-container">
-            <div class="page-title">
-              <h1 class="user-login-page__title">{{ 'Log in'|t }}</h1>
-            </div>
+            <h1 class="user-login-page__title">{{ 'Log in'|t }}</h1>
           </div>
-        {{ page.content }}
+          {{ page.content|without(page_title_block) }}
         </div>
         <div class="user-login-page__illustration-container">
           <img src="/themes/contrib/hdbt/src/images/illustration_user_login_page.svg" alt="" class="user-login-page__illustration"/>
