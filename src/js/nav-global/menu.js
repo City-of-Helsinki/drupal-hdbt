@@ -1,6 +1,8 @@
 const Mustache = require('mustache');
 const cls = require('classnames');
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
+const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
+const openParentMenuTranslation = Drupal.t('Open parent menu:', {}, { context: 'Mobile navigation menu prefix' });
 
 Array.prototype.findRecursive = function (predicate, childrenPropertyName) {
   if (!childrenPropertyName) {
@@ -130,6 +132,7 @@ const MobilePanel = {
       <div class="mmenu__panel-body">
         {{#back}}
           <button class="mmenu__back">
+            <span class="visually-hidden">{{openParentMenuTranslation}}</span>
             <span class="mmenu__back-wrapper">{{back}}</span>
           </button>
         {{/back}}
@@ -188,7 +191,7 @@ const MobilePanel = {
           >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
           </a>
           {{#button}}
-            <button class="mmenu__forward " value={{id}} />
+            <button class="mmenu__forward " value={{id}}><span class="visually-hidden">{{openSubMenuTranslation}} {{name}}</span></button>
           {{/button}}
         </li>
       {{/sub_tree}}
@@ -265,6 +268,8 @@ const MobilePanel = {
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
       back: (i > 0) ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
+      openSubMenuTranslation: openSubMenuTranslation,
+      openParentMenuTranslation: openParentMenuTranslation,
       /***
          * Define correct starting positions for each panel, depeding on traversal direction
          * At start, first item is on stage and anything else must be on right.
@@ -335,15 +340,15 @@ const MobilePanel = {
       current.classList.remove('mmenu__panel--visible-right', 'mmenu__panel--visible-left');
       switch (state) {
 
-        case 'up':
-          panels.at(this.currentIndex - 1).classList.add('mmenu__panel--visible-left');
-          break;
+      case 'up':
+        panels.at(this.currentIndex - 1).classList.add('mmenu__panel--visible-left');
+        break;
 
-        case 'down':
-          panels.at(this.currentIndex + 1).classList.add('mmenu__panel--visible-right');
-          break;
+      case 'down':
+        panels.at(this.currentIndex + 1).classList.add('mmenu__panel--visible-right');
+        break;
 
-        default:
+      default:
 
       }
 

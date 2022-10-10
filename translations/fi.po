@@ -161,6 +161,14 @@ msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Kytke alivalikko:"
 
+msgctxt "Mobile navigation menu prefix"
+msgid "Open submenu:"
+msgstr "Avaa alivalikko:"
+
+msgctxt "Mobile navigation menu prefix"
+msgid "Open parent menu:"
+msgstr "Avaa ylävalikko:"
+
 msgctxt "Mobile navigation menu description for screen readers"
 msgid "Navigation menu"
 msgstr "Navigaatiovalikko"
