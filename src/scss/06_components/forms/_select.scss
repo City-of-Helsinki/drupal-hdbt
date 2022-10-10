@@ -83,7 +83,8 @@
     width: 0.8em;
   }
 
-  select:focus + .hdbt--select-focus {
+  select:focus + .hdbt--select-focus,
+  select:focus + .visually-hidden + .hdbt--select-focus {
     border: 2px solid var(--focus-outline-color);
     border-radius: inherit;
     bottom: -1px;
