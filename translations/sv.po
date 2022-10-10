@@ -276,3 +276,7 @@ msgstr "Stäng Information på andra språk meny"
 msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Information på andra språk"
+
+msctxt "Search: remove item aria label"
+msgid "Remove @item from search results"
+msgstr "Ta bort @item från sökresultaten"

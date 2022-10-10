@@ -279,3 +279,7 @@ msgstr "Sulje tietoa muilla kielillä valikko"
 msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Tietoa muilla kielillä"
+
+msctxt "Search: remove item aria label"
+msgid "Remove @item from search results"
+msgstr "Poista @item hakutuloksista"
