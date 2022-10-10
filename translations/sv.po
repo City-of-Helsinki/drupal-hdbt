@@ -158,6 +158,14 @@ msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Växla undermeny:"
 
+msgctxt "Mobile navigation menu prefix"
+msgid "Open submenu:"
+msgstr "Öppna undermeny:"
+
+msgctxt "Mobile navigation menu prefix"
+msgid "Open parent menu:"
+msgstr "Öppna toppmeny:"
+
 msgctxt "Mobile navigation menu description for screen readers"
 msgid "Navigation menu"
 msgstr "Navigeringsmenyn"
