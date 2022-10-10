@@ -20,9 +20,9 @@
 } %}
   {% block content%}
     <div class="header-search-wrapper">
-      <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
+      <div class="header-search__title">{{'Search in City of Helsinki websites'|t({}, {'context': 'Header search title'})}}</div>
       {% include "@hdbt/component/helfi-search-form.twig" with {
-        label: 'Keyword'|t({}, {'context': 'Header search label'})
+        label: 'What are you looking for?'|t({}, {'context': 'Header search label'})
       } %}
       <noscript class="header-search__javascript-disabled">
         <p>
