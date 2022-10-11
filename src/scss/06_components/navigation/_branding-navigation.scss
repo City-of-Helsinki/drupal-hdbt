@@ -11,7 +11,7 @@ $-branding-icon-size-desktop: $spacing-double;
     'lang lang lang lang lang lang lang'
     'langmenu langmenu langmenu langmenu langmenu langmenu langmenu';
   grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto  var(--header-branding-padding);
-  grid-template-rows: var(--branding-height) min-content min-content;
+  grid-template-rows: var(--branding-height) min-content min-content min-content;
   position: fixed;
   top: 0;
   width: 100%;
