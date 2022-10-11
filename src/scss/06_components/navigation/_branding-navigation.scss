@@ -8,7 +8,8 @@ $-branding-icon-size-desktop: $spacing-double;
   grid-template-areas:
     '. logo . brand search toggle .'
     'menu menu menu menu menu menu menu'
-    'lang lang lang lang lang lang lang';
+    'lang lang lang lang lang lang lang'
+    'langmenu langmenu langmenu langmenu langmenu langmenu langmenu';
   grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto  var(--header-branding-padding);
   grid-template-rows: var(--branding-height) min-content min-content;
   position: fixed;
