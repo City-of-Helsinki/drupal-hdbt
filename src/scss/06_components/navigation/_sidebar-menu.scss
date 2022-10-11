@@ -1,5 +1,7 @@
 .layout-sidebar-first {
-  display: none;
+  //display: none;
+  // TODO: Remove this line and use the commented line.
+  display: block;
 
   @include breakpoint($breakpoint-l) {
     display: block;
@@ -7,7 +9,12 @@
 }
 
 .sidebar-navigation {
+  display: none;
   width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    display: block;
+  }
 
   .sidebar-navigation__title {
     @include font('h4');
@@ -206,6 +213,34 @@
         transform: translateY(-50%);
         width: 100%;
       }
+    }
+  }
+}
+
+.sidebar-navigation + .sidebar-navigation {
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+.sidebar-navigation--section-navigation {
+  @include breakpoint(max-width $breakpoint-l) {
+    background-color: $color-silver-light;
+    display: block;
+  }
+
+  .sidebar-navigation__title {
+    @include breakpoint(max-width $breakpoint-l) {
+      background-color: $color-silver;
+      border-bottom: 0 none;
+      padding: $spacing;
+    }
+  }
+
+  .menu {
+    @include breakpoint(max-width $breakpoint-l) {
+      padding-left: $spacing;
+      padding-right: $spacing;
     }
   }
 }
