@@ -20,7 +20,7 @@ $config: deep-map-merge(
       h1: (
         font-size: remify(40px),
         font-weight: $font-weight-regular,
-        line-height: 40 / 40,
+        line-height: math.div(40, 40),
         breakpoint_l: (
           font-size: remify(64px),
           font-weight: $font-weight-regular,
