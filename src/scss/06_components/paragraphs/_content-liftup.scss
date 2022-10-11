@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $-content-liftup-aspect-ratio-mobile: 2.3;
 $-content-liftup-aspect-ratio-desktop: 1.5;
 $-info-row-line-height: 26px;
@@ -31,7 +33,7 @@ $-info-row-icon-size: $spacing-and-half;
       // We want the image to scale to have same width text content with and without sidebar
       $-content-liftup-with-sidebar-width: 884.8; // Width of .content-liftup element with sidebar
       $-content-liftup-without-sidebar-text-width: 631; // Width of .content-liftup__text element without sidebar
-      flex-basis: 100% * (1 - $-content-liftup-without-sidebar-text-width / $-content-liftup-with-sidebar-width);
+      flex-basis: 100% * (1 - math.div($-content-liftup-without-sidebar-text-width, $-content-liftup-with-sidebar-width));
     }
   }
 }
@@ -133,7 +135,7 @@ $-info-row-icon-size: $spacing-and-half;
   @include font('h6');
 
   &::before {
-    margin-bottom: ($-info-row-line-height - $-info-row-icon-size) / 2; // Center icon on row
+    margin-bottom: ($-info-row-line-height - $-info-row-icon-size) * 0.5; // Center icon on row
     margin-left: calc( -1 * var(--margin-size));
     margin-right: var(--info-row__gap-size);
   }
