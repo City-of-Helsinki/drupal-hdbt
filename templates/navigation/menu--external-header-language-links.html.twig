@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+
+
+
+{% macro link_render(item) %}
+  {% if item.is_nolink %}
+    <div {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
+      {{item.title}}
+    </div>
+  {% else %}
+    {% set link_attributes = {
+      'class': [
+        'headerlanguagelinks__link',
+        item.in_active_trail ? 'menu__link--active-trail',
+      ],
+      'id': item_is_collabsible ? link_id : null,
+      'aria-current': item.is_currentPage ? 'page' : null,
+    } %}
+
+    {% set item_lang = '' %}
+    {% if item.attributes.lang %}
+      {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
+    {% endif %}
+
+    {% set item_title %}
+      <span class="link__text"{{ item_lang }}>{{ item.title }}</span>
+    {% endset %}
+
+    {{ link(item_title, item.url, link_attributes) }}
+  {% endif %}
+{% endmacro %}
+
+<ul class="headerlanguagelinks__menu-dropdown">
+  {% for item in items %}
+    <li>
+      {{ _self.link_render(item) }}
+      {% if item.below %}
+        <div class="headerlanguagelinks__group">
+          {% for below in item.below %}
+            {{ _self.link_render(below) }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

@@ -31,34 +31,48 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
-{% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
-<label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button">
-  <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-  <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
-</label>
-<button class="cssmenu-toggle-button js-cssmenu-toggle-button" aria-expanded="false">
-  <span class="cssmenu-toggle__open"><span aria-label="{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}">{{ 'Menu'|t }}</span></span>
-  <span class="cssmenu-toggle__close"><span aria-label="{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}">{{ 'Close'|t }}</span></span>
-</button>
+{# Do we want to render navigation with content from another instance "globally" #}
+{% if not use_global_navigation %}
+  {% set attributes = attributes.addClass('block--mobile-navigation').addClass('mobile-navigation') %}
 
-<nav class="cssmenu-menu" aria-labelledby="cssmenu-menu-description">
-  <h2 class="visually-hidden" id="cssmenu-menu-description">{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}</h2>
 
-  {{ drupal_entity('block', 'language_switcher')}}
+  {% set menu_open %}
+    <span aria-hidden="true">{{ 'Menu'|t }}</span>
+    <span class="visually-hidden">{{ 'Open navigation menu'|t({}, {'context': 'Mobile navigation menu open button text for screen readers'}) }}</span>
+  {% endset %}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  {% set menu_close %}
+    <span aria-hidden="true">{{ 'Close'|t }}</span>
+    <span class="visually-hidden">{{ 'Close navigation menu'|t({}, {'context': 'Mobile navigation menu close button text for screen readers'}) }}</span>
+  {% endset %}
 
-  <div class="cssmenu-menu__footer">
-    {% set link_attributes = {
-      'class': [
-        'menu__link',
-      ],
-    } %}
-    {{ link('City of Helsinki'|t, 'https://hel.fi', link_attributes) }}
-    {% set inside_cssmenu = true %}
-    {{ drupal_entity('block', 'headertopnavigation')}}
-  </div>
-</nav>
+  <label for="cssmenu-toggle-checkbox" class="cssmenu-toggle" role="button" id="cssmenu-toggle">
+    <span class="cssmenu-toggle__close">{{ menu_close }}</span>
+    <span class="cssmenu-toggle__open">{{ menu_open }}</span></span>
+  </label>
+  <button class="cssmenu-toggle-button js-cssmenu-toggle-button" aria-expanded="false">
+    <span class="cssmenu-toggle__open">{{ menu_open }}</span>
+    <span class="cssmenu-toggle__close">{{ menu_close }}</span>
+  </button>
+
+  <nav class="cssmenu-menu" aria-label="{{ 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}) }}">
+
+    {{ drupal_entity('block', 'language_switcher')}}
+
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+
+    <div class="cssmenu-menu__footer">
+      {% set link_attributes = {
+        'class': [
+          'menu__link',
+        ],
+      } %}
+      {{ link('City of Helsinki'|t, 'https://hel.fi', link_attributes) }}
+      {% set inside_cssmenu = true %}
+      {{ drupal_entity('block', 'headertopnavigation')}}
+    </div>
+  </nav>
+{% endif %}

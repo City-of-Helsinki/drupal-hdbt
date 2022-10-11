@@ -28,8 +28,8 @@
 }
 
 .footer-top {
-  @include components-container-max-width();
-  @include component-side-padding();
+  @include components-container-max-width;
+  @include component-side-padding;
   margin-left: auto;
   margin-right: auto;
   padding-top: $spacing-quadruple;
@@ -64,9 +64,10 @@
 
   .menu {
     @include font('body');
-    margin: $spacing 0 0;
+    margin: $spacing 0 $spacing-double 0;
 
     @include breakpoint($breakpoint-m) {
+      margin-bottom:0;
       margin-top: $spacing-and-half;
     }
   }
@@ -133,7 +134,7 @@
     display: flex;
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       height: 15px;
       margin: 0 $spacing-half;
@@ -178,7 +179,7 @@
   &:after {
     --size: 100%;
     border: var(--outline-width) solid transparent;
-    content: "";
+    content: '';
     height: var(--size);
     position: absolute;
     right: calc(50% + var(--outline-width)); // Move the outline left to nullify the space around the icon.
@@ -201,12 +202,13 @@
 }
 
 .footer__back-to-top .hel-icon {
-  @include hover-link-arrow-transition();
+  @include hover-link-arrow-transition;
 }
 
 .footer__back-to-top:focus .hel-icon,
 .footer__back-to-top:hover .hel-icon {
   transform: translateY(-#{$spacing-quarter});
+
   @media (prefers-reduced-motion) {
     transform: none;
   }

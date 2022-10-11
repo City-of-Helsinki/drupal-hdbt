@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme for the TPR service entity lower content block.
+ *
+ * @see template_preprocess_tpr_service_lower_content()
+ */
+#}
+
+{% set service_units_view = drupal_view_result('service_units', 'service_units')|length %}
+
+{% if service_units_view > 0 %}
+  <div class="service__units">
+    {{ drupal_view('service_units', 'service_units') }}
+  </div>
+{% endif %}

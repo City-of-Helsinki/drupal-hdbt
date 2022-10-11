@@ -1,0 +1,56 @@
+{% set dropdown_id = 'search-dropdown' %}
+
+{% embed "@hdbt/misc/nav-toggle-button.twig" with {
+  modifier_class: 'nav-toggle--search',
+  controls: dropdown_id,
+  anchor_target: '#search',
+  js_target: 'js-header-search__button',
+
+  open_label: 'Search'|t({}, {'context': 'Helfi search button'}),
+  open_screenreader: 'Open search'|t({}, {'context': 'Mobile navigation search open button text for screen readers'}),
+
+  close_label: 'Close'|t,
+  close_screenreader: 'Close search'|t({}, {'context': 'Mobile navigation search close button text for screen readers'}),
+} %}
+{% endembed %}
+
+{% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+  id: dropdown_id,
+  modifier_class: 'nav-toggle-dropdown--search',
+} %}
+  {% block content%}
+    <div class="header-search-wrapper">
+      <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
+      {% include "@hdbt/component/helfi-search-form.twig" with {
+        label: 'Keyword'|t({}, {'context': 'Header search label'})
+      } %}
+      <noscript class="header-search__javascript-disabled">
+        <p>
+          {{ "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': 'Header search, no javascript'}) }}
+        </p>
+      </noscript>
+      <div class="search-container__links-container">
+        <div class="search-container__link">
+          {% set link_title_events %}
+          {{ 'Search for events'|t({}, {'context': 'Header search, search for events'}) }}
+          {% endset %}
+          {% set link_attributes = {
+            'class': [
+              'search__link-external',
+            ],
+          } %}
+          {{ link(link_title_events, events_link_url, link_attributes) }}
+          <span>{{'Find upcoming events at the Events.hel.fi website.'|t}}</span>
+        </div>
+        <div class="search-container__link">
+          {% set link_title_decisions %}
+          {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
+          {% endset %}
+          {{ link(link_title_decisions, decisions_link_url, link_attributes) }}
+          <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+

@@ -1,5 +1,6 @@
-[data-unpublished]::before{
+[data-unpublished]::before {
   @include font('small');
+
   --line-height: 1;
   background: $color-error;
   color: $color-white;
@@ -14,30 +15,88 @@
 
   @include breakpoint($component-side-padding-breakpoint) {
     content: attr(data-unpublished-long);
+
     @include font('body');
+
     --line-height: 1.5;
   }
 }
 
-.preamble,
-.lead-in {
+.lead-in .component__content {
   @include font('lead');
+  max-width: $content-width-max;
 }
 
-.preamble::after {
-  background: black;
-  content: '';
-  display: block;
-  height: 2px;
-  margin-bottom: $spacing-double;
-  margin-top: $spacing-double;
-  width: $spacing-quadruple;
+.page-divider {
+  & + * {
+    margin-top: $spacing-triple;
+  }
+
+  // Hidden, when there is no title above, for example if there is hero
+  &:first-child {
+    display: none;
+
+    // When page-divider is hidden, following element should not have margin-top
+    & + * {
+      margin-top: 0;
+    }
+  }
+
+  .page-title ~ article & {
+    display: block;
+
+    // When page-divider is hidden, following element should not have margin-top
+    & + * {
+      margin-top: $spacing-triple;
+    }
+  }
+
+  &::after {
+    background-color: $color-black;
+    content: '';
+    display: block;
+    height: 2px;
+    margin-top: $spacing-double;
+    width: $spacing-quadruple;
+  }
 }
 
-.no-sidebar .component--lead-in {
-  @include component-side-padding();
+.main-image img {
+  @include image-defaults($width: 100%, $max-width: null);
 }
 
+.long-desc {
+  @include font('body');
+
+  > p {
+    max-width: $content-width-max;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  .main-image + & {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+// stylelint-disable no-descending-specificity
+// Set proper width for all generic page components
+.no-sidebar {
+  .page-title,
+  .lead-in,
+  .page-divider,
+  .main-image,
+  .long-desc,
+  .enriched-content {
+    @include components-container-max-width;
+    @include component-side-padding;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+// stylelint-enable no-descending-specificity
 
 .content-date {
   @include font('small');
@@ -46,7 +105,7 @@
 }
 
 .content-date__datetime--updated::before {
-  background-color: currentColor;
+  background-color: currentcolor;
   content: '';
   display: inline-block;
   height: 1em;
@@ -57,7 +116,7 @@
 }
 
 .content-links {
-  @include component-margin-top();
+  @include component-margin-top;
 }
 
 .content-links__title {
@@ -81,7 +140,7 @@
   a {
     &::after {
       @include pseudo-icon('arrow-right');
-      @include hover-link-arrow-transition();
+      @include hover-link-arrow-transition;
       margin-left: $spacing-quarter;
     }
 
@@ -90,6 +149,7 @@
 
       &::after {
         transform: translateX($spacing-quarter);
+
         @media (prefers-reduced-motion) {
           transform: none;
         }
@@ -102,40 +162,10 @@
   }
 }
 
-$tag-gap: $spacing-half;
-.content-tags__tags {
-  @include flex-gap($tag-gap);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding-bottom: ($spacing-and-half - $tag-gap);
-  padding-left: 0;
-  padding-top: $spacing-and-half;
-}
-
-.content-tags__tags__tag {
-  list-style: none;
-  margin-bottom: $tag-gap;
-  margin-top: 0;
-
-  a {
-    background-color: $color-silver;
-    border-radius: 500px;
-    display: inline-block;
-    padding: 12px 20px;
-    text-decoration: none;
-    &:hover {
-      background-color: $color-silver-dark
-    }
-  }
-}
-
 .sidebar_block_heading {
   @include font('h3');
   border-bottom: 2px solid $color-black;
-  margin-top: $spacing-sextuple;
+  margin-top: 0;
   padding-bottom: $spacing-and-half;
   width: 100%;
 }

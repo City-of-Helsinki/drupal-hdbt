@@ -1,7 +1,7 @@
-$_content-liftup-aspect-ratio-mobile: 2.3;
-$_content-liftup-aspect-ratio-desktop: 1.5;
-$_info-row__line-height: 26px;
-$_info-row__icon-size: $spacing-and-half;
+$-content-liftup-aspect-ratio-mobile: 2.3;
+$-content-liftup-aspect-ratio-desktop: 1.5;
+$-info-row-line-height: 26px;
+$-info-row-icon-size: $spacing-and-half;
 
 .content-liftup {
   --info-row__gap-size: #{$spacing-quarter};
@@ -23,14 +23,15 @@ $_info-row__icon-size: $spacing-and-half;
   @include breakpoint($breakpoint-m) {
     align-self: stretch;
     background-color: $color-black-5;
+    max-width: 50%;
   }
 
   @include breakpoint($breakpoint-l) {
     .has-sidebar .components--upper & {
       // We want the image to scale to have same width text content with and without sidebar
-      $_content-liftup__with-sidebar--width: 884.8; // Width of .content-liftup element with sidebar
-      $_content-liftup__without-sidebar__text--width: 631; // Width of .content-liftup__text element without sidebar
-      flex-basis: 100% * (1 - $_content-liftup__without-sidebar__text--width / $_content-liftup__with-sidebar--width);
+      $-content-liftup-with-sidebar-width: 884.8; // Width of .content-liftup element with sidebar
+      $-content-liftup-without-sidebar-text-width: 631; // Width of .content-liftup__text element without sidebar
+      flex-basis: 100% * (1 - $-content-liftup-without-sidebar-text-width / $-content-liftup-with-sidebar-width);
     }
   }
 }
@@ -41,7 +42,7 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__image img {
-  aspect-ratio: $_content-liftup-aspect-ratio-mobile;
+  aspect-ratio: $-content-liftup-aspect-ratio-mobile;
   display: block;
   height: auto;
   max-width: 100%;
@@ -62,10 +63,10 @@ $_info-row__icon-size: $spacing-and-half;
 }
 
 .content-liftup__image .image-placeholder {
-  padding-bottom: aspect-ratio-padding($_content-liftup-aspect-ratio-mobile);
+  padding-bottom: aspect-ratio-padding($-content-liftup-aspect-ratio-mobile);
 
   @include breakpoint($breakpoint-m) {
-    padding-bottom: aspect-ratio-padding($_content-liftup-aspect-ratio-desktop);
+    padding-bottom: aspect-ratio-padding($-content-liftup-aspect-ratio-desktop);
   }
 
   @include breakpoint($breakpoint-l) {
@@ -80,12 +81,12 @@ $_info-row__icon-size: $spacing-and-half;
   flex-grow: 1;
   padding: $spacing;
 
- @include breakpoint($breakpoint-m) {
-   display: flex; // Allow moving read-more to bottom of card where available
-   flex-direction: column;
-   justify-content: space-between;
-   padding: $spacing-double;
- }
+  @include breakpoint($breakpoint-m) {
+    display: flex; // Allow moving read-more to bottom of card where available
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-double;
+  }
 }
 
 .content-liftup__title {
@@ -119,7 +120,8 @@ $_info-row__icon-size: $spacing-and-half;
 
 .content-liftup__info-row {
   @include font('body');
-  --margin-size: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
+
+  --margin-size: calc(#{$-info-row-icon-size} + var(--info-row__gap-size));
   margin-left: var(--margin-size);
 
   & + & {
@@ -131,17 +133,17 @@ $_info-row__icon-size: $spacing-and-half;
   @include font('h6');
 
   &::before {
-    margin-bottom: ($_info-row__line-height - $_info-row__icon-size) / 2; // Center icon on row
+    margin-bottom: ($-info-row-line-height - $-info-row-icon-size) / 2; // Center icon on row
     margin-left: calc( -1 * var(--margin-size));
     margin-right: var(--info-row__gap-size);
   }
-
 }
 
 .content-liftup__info-row__content {
   > :first-child {
     margin-top: 0;
   }
+
   > :last-child {
     margin-bottom: 0;
   }
@@ -167,18 +169,19 @@ $_info-row__icon-size: $spacing-and-half;
 .content-liftup__read-more {
   @include font('button');
   display: flex; // force arrow to stay on same line
-  margin-left: calc(#{$_info-row__icon-size} + var(--info-row__gap-size));
+  margin-left: calc(#{$-info-row-icon-size} + var(--info-row__gap-size));
   padding-bottom: $spacing-half;
   padding-top: $spacing;
 
   &::after {
     @include pseudo-icon('arrow-right', $spacing-and-half, currentColor);
-    @include hover-link-arrow-transition();
+    @include hover-link-arrow-transition;
     flex-shrink: 0;
 
     .content-liftup:hover &,
     .content-liftup:focus-within & {
       transform: translateX($spacing-quarter);
+
       @media (prefers-reduced-motion) {
         transform: none;
       }
@@ -190,4 +193,3 @@ $_info-row__icon-size: $spacing-and-half;
     padding-bottom: 0;
   }
 }
-

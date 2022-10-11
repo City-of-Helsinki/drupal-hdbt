@@ -3,27 +3,22 @@
  * @file
  * Theme for unit entity.
  *
- * Variables:
- * - in_menu: A boolean indicating whether the unit is in menu or not
- *
  * @see hdbt_content_preprocess_tpr_unit()
  */
 #}
 
-{% if not block_name %}
-  {% set block_name = 'main_navigation_level_2' %}
-{% endif %}
-
-{% if drupal_entity('block', 'groupmenu')|render|striptags|trim is not empty %}
-  {% set group_menu = TRUE %}
-  {% set in_menu = TRUE %}
-{% endif %}
-
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
-    <div class="unit__supports_language_sv">
-      {{ 'Service in Swedish'|t({}, {'context': 'TPR unit also offers service in Swedish'}) }}
-    </div>
+    {% set tag_content %}
+      <span>{{ 'Service in Swedish'|t({}, {'context': 'TPR unit also offers service in Swedish'}) }}</span>
+    {% endset %}
+    {% embed '@hdbt/misc/tag-list.twig'%}
+      {% block content %}
+        {% include '@hdbt/misc/tag.twig' with {
+          tag: tag_content
+        }%}
+        {% endblock content %}
+      {% endembed %}
   {% endif %}
 {% endset %}
 
@@ -31,198 +26,57 @@
 
   {%
     set classes = [
-    'unit',
-    'unit--full'
-  ]
+      'unit',
+      'unit--full'
+    ]
   %}
 
   <article{{ attributes.addClass(classes) }}>
-    <div class="unit-header__container container {{ in_menu ? 'has-navigation' }}">
-      <div{{ content_attributes.addClass('unit__header') }}>
-        <h1{{ title_attributes.addClass('unit__title') }}>
-          {{ entity.label }}
-        </h1>
-        {% if content.description_summary|render %}
-          <div class="unit__short-desc">
-            {{ content.description_summary }}
-          </div>
-        {% endif %}
-        <span class="unit__divider"></span>
-        {{ supports_swedish }}
-        {% if content.picture_url_override|render %}
-          <div class="unit__image">
-            {{ content.picture_url_override }}
-          </div>
-        {% elseif content.picture_url|render %}
-          <div class="unit__image">
-            {{ content.picture_url }}
-          </div>
-        {% endif %}
-        {% if content.description|render and hide_description == false %}
-          <div class="unit__long-desc">
-            {{ content.description }}
-          </div>
-        {% endif %}
 
-        {% block main_content %}
-          <div class="enriched-content components components--unit {{ has_sidebar ? 'has-sidebar' }}">
-            {{ content.field_content }}
-          </div>
-        {% endblock main_content %}
+    {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
 
-        {% if content.service_map_embed|render %}
-          {% set map_title %}
-            {{ 'Location'|t }}
-          {% endset %}
-          {% include '@hdbt/component/map.twig' with {
-            title: map_title,
-            map: content.service_map_embed,
-            description: content.address,
-          } %}
-        {% endif %}
+    {# Page divider, normally it comes from table of contents, but unit does not have that #}
+    <div class="page-divider"></div>
 
-      </div>
+    {{ supports_swedish }}
 
-      <div class="unit__sidebar">
-        {% block sidebar_block %}
-          {{ drupal_entity('block', block_name, check_access=false) }}
-          {% if group_menu %}
-            {{ drupal_entity('block', 'groupmenu') }}
-          {% endif %}
-        {% endblock sidebar_block %}
-
-        {% if
-          content.address|render or
-          content.email|render or
-          content.phone|render or
-          content.address_postal|render or
-          content.opening_hours|render or
-          content.www|render
-        %}
-          <div class="unit__contact">
-            <h2 class="unit__contact__title">
-              {% trans with {'context': 'Contact card title'} %}Contact information{% endtrans %}
-            </h2>
-            {% if content.address|render %}
-              <div class="unit__contact-row unit__contact-row--address">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
-                  {{ 'Visiting address'|t }}:
-                </label>
-                {{ content.address }}
-              </div>
-            {% endif %}
-            {% if unit_email_link and content.email|render %}
-              {% set link_attributes = {
-                'class': [
-                  'service-channel__email-link',
-                ],
-              } %}
-              <div class="unit__contact-row unit__contact-row--email">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'glyph-at'} %}
-                  {{ 'E-mail'|t }}:
-                </label>
-                {{ link(content.email, unit_email_link, link_attributes) }}
-              </div>
-            {% endif %}
-            {% if content.phone|render %}
-              <div class="unit__contact-row unit__contact-row--phone">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'phone'} %}
-                  {{ 'Telephone number'|t }}:
-                </label>
-                {{ content.phone }}
-              </div>
-            {% endif %}
-            {% if content.opening_hours|render %}
-              <div class="unit__contact-row unit__contact-row--opening-hours">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'clock'} %}
-                  {{ 'Opening hours'|t }}:
-                </label>
-                {{ content.opening_hours }}
-              </div>
-            {% endif %}
-            {% if content.address_postal|render %}
-              <div class="unit__contact-row unit__contact-row--postal-address">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
-                  {{ 'Postal address'|t }}:
-                </label>
-                {{ content.address_postal }}
-              </div>
-            {% endif %}
-            {% if content.www|render and show_www == true %}
-              <div class="unit__contact-row unit__contact-row--www">
-                <label class="unit__contact-row__label">
-                  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
-                  {{ 'Website link'|t }}:
-                </label>
-                {{ content.www }}
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-
-      </div>
-
-    </div>
-    {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
-
-    {% if services_view > 0 or content.accessibility_sentences|render %}
-    <div class="unit__content">
-      {% endif %}
-
-      {% if services_view > 0 %}
-        <div class="unit__services">
-          {{ drupal_view('unit_services', 'unit_services') }}
-        </div>
-      {% endif %}
-
-      {% block accessibility_sentences_block %}
-        {% if content.accessibility_sentences|render %}
-
-          {% embed "@hdbt/misc/component.twig" with
-            {
-              component_classes: [
-              'component--accordion',
-              'component--accordion-bg-grey',
-              'component--hardcoded',
-              'component--tpr-unit',
-            ],
-              component_content_class: 'accordion',
-            }
-          %}
-            {% block component_content %}
-
-              {% set accordion_content %}
-
-                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
-                  {% block component_content %}
-                    {{ content.accessibility_sentences }}
-                  {% endblock component_content %}
-                {% endembed %}
-
-              {% endset %}
-
-              {% include '@hdbt/component/accordion.twig' ignore missing with {
-                heading_level: 'h2',
-                heading_icon: 'person-wheelchair',
-                heading: 'Accessibility information'|t,
-                content: accordion_content,
-              } %}
-
-            {% endblock component_content %}
-          {% endembed %}
-
-        {% endif %}
-      {% endblock accessibility_sentences_block %}
-
-      {% if services_view > 0 or content.accessibility_sentences|render %}
-    </div>
+    {# Main image #}
+    {% if content.picture_url_override|render %}
+      {% set main_image = content.picture_url_override %}
+    {% elseif content.picture_url|render %}
+      {% set main_image = content.picture_url %}
     {% endif %}
 
+    {% if main_image %}
+      {% include '@hdbt/misc/image-with-caption.twig' with {
+        figure_class: 'main-image',
+        image: main_image
+      } %}
+    {% endif %}
+    {# End of Main image #}
+
+    {% if content.description|render and hide_description == false %}
+      <div class="long-desc">
+        {{ content.description }}
+      </div>
+    {% endif %}
+
+    {% block main_content %}
+      <div class="enriched-content components components--unit">
+        {{ content.field_content }}
+      </div>
+    {% endblock main_content %}
+
+    {% if content.service_map_embed|render %}
+      {% set map_title %}
+        {{ 'Location'|t }}
+      {% endset %}
+      {% include '@hdbt/component/map.twig' with {
+        title: map_title,
+        map: content.service_map_embed,
+        description: content.address,
+      } %}
+    {% endif %}
   </article>
 
   {# TODO: We should simplify these to have only one style instead of two identical ones #}
@@ -236,9 +90,9 @@
 
   {%
     set picture_classes = [
-    'unit__image',
-    has_image ? 'unit__image--image' : 'unit__image--placeholder'
-  ]
+      'unit__image',
+      has_image ? 'unit__image--image' : 'unit__image--placeholder'
+    ]
   %}
 
   <div class="unit unit--teaser unit--teaser_with_image">

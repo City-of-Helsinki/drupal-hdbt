@@ -22,7 +22,7 @@
   z-index: 2;
 
   &:not(:focus) {
-    @include visually-hidden();
+    @include visually-hidden;
   }
 
   @include breakpoint($breakpoint-m) {
@@ -32,7 +32,7 @@
   &:after {
     --size: 100%;
     border: var(--outline-width) solid transparent;
-    content: "";
+    content: '';
     height: var(--size);
     left: -5px;
     position: absolute;

@@ -1,4 +1,4 @@
-.tab__content[aria-hidden='true']{
+.tab__content[aria-hidden='true'] {
   display: none;
 }
 
@@ -9,7 +9,7 @@
   text-decoration: underline;
 
   &[aria-selected='true'] {
-    font-weight: bold;
+    font-weight: $font-weight-bold;
   }
 
   &:hover {
@@ -32,7 +32,6 @@
   }
 }
 
-
 .tabs--unit-search {
   margin-bottom: $spacing-double;
   margin-top: $spacing-and-half;
@@ -47,7 +46,7 @@
 
     &[aria-selected='true'] {
       display: none;
-      font-weight: normal;
+      font-weight: $font-weight-regular;
     }
   }
 }

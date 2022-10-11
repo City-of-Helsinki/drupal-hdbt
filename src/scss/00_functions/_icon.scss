@@ -1,6 +1,7 @@
-@function icon_url($icon){
-  @if ($icon == null) {
+@function icon_url($icon) {
+  @if not $icon {
     @return null;
   }
+
   @return var(--hel-icon--#{$icon});
 }

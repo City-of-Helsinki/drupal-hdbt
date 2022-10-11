@@ -73,20 +73,19 @@
 
 {%
   set classes = [
-  'node--type-' ~ node.bundle|clean_class,
-  node.isPromoted() ? 'node--promoted',
-  node.isSticky() ? 'node--sticky',
-  not node.isPublished() ? 'node--unpublished',
-  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  first_paragraph_grey ? 'has-first-gray-bg-block',
-  node_class,
-]
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    first_paragraph_grey ? 'has-first-gray-bg-block',
+    node_class,
+  ]
 %}
 
 <article{{ attributes.addClass(classes) }}>
-
   {{ title_prefix }}
-  {% if label and not page and not hide_label %}
+  {% if label and not page and view_mode is not same as('full') %}
     <h2{{ title_attributes }}>
       {% set link_attributes = {
         'rel': 'bookmark',

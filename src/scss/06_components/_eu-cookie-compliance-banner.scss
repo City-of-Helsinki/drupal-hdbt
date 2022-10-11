@@ -1,10 +1,10 @@
 .dialog-off-canvas-main-canvas {
   &::after {
     background-color: rgba($color-black, 0.4);
-    content: "";
+    content: '';
     height: 0;
     opacity: 0;
-    pointer-events:none;
+    pointer-events: none;
     visibility: hidden;
     width: 0;
   }
@@ -86,7 +86,7 @@
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
     max-width: 400px;
     width: 100%;
 

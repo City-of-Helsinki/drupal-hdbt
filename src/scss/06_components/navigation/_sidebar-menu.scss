@@ -1,10 +1,13 @@
-.sidebar-navigation {
+.layout-sidebar-first {
   display: none;
 
   @include breakpoint($breakpoint-l) {
     display: block;
-    width: 100%;
   }
+}
+
+.sidebar-navigation {
+  width: 100%;
 
   .sidebar-navigation__title {
     @include font('h4');
@@ -13,15 +16,16 @@
     padding-bottom: $spacing-and-half;
 
     a {
-      @include navigation_link_defaults();
+      @include navigation_link_defaults;
       display: flex;
       padding-left: 20px + $spacing; // Width of the arrow icon.
       position: relative;
 
       &:before {
         @include pseudo-icon('arrow-left', 25px, $color-black, flex);
-        @include hover-link-arrow-transition();
-        //TODO: Clean up this size mess
+        @include hover-link-arrow-transition;
+
+        // TODO: Clean up this size mess
         height: 30px;
         left: 0;
         position: absolute;
@@ -32,16 +36,18 @@
       &:focus::before,
       &:hover::before {
         transform: translateX(-$spacing-quarter);
+
         @media (prefers-reduced-motion) {
           transform: none;
         }
       }
+
       &:focus {
         outline: none;
 
         &::after {
           box-shadow: 0 0 0 3px $color-black;
-          content: "";
+          content: '';
           display: block;
           height: 150%;
           left: -$spacing-half;
@@ -86,7 +92,7 @@
 
           &::before {
             box-shadow: 0 0 0 3px $color-black;
-            content: "";
+            content: '';
             display: block;
             height: calc(100% - #{$spacing});
             left: -#{$spacing-half};
@@ -140,9 +146,9 @@
           position: relative;
           width: 100%;
 
-          &[aria-current="page"]::before {
+          &[aria-current='page']::before {
             background-color: $color-black;
-            content: "";
+            content: '';
             height: 100%; // Line-height
             left: 0;
             position: absolute;
@@ -154,7 +160,7 @@
           &:focus {
             &::before {
               box-shadow: 0 0 0 3px $color-black;
-              content: "";
+              content: '';
               display: block;
               height: 100%;
               left: 0;
@@ -179,7 +185,7 @@
     position: relative;
 
     .hel-icon {
-      @include rotating-icon-transition();
+      @include rotating-icon-transition;
     }
 
     &:hover {
@@ -191,7 +197,7 @@
 
       &::after {
         box-shadow: 0 0 0 3px $color-black;
-        content: "";
+        content: '';
         display: block;
         height: calc(100% - #{$spacing});
         left: 0;

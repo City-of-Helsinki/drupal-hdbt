@@ -1,0 +1,10 @@
+@function get-line-height($style, $unremify: false) {
+  $-path: 'font.#{$style}';
+  $-line-height: get('#{$-path}.line-height') * get('#{$-path}.font-size');
+
+  @if $unremify {
+    @return unremify($-line-height);
+  }
+
+  @return $-line-height;
+}

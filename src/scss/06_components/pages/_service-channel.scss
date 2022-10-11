@@ -35,6 +35,7 @@
 .service-channel:not(.service-channel--eservice) {
   margin: $spacing-and-half 0 0;
   padding-bottom: 0;
+
   // Padding-left: Icon width + spacing between icon and text
   padding-left: calc(#{$spacing-and-half} + #{$spacing-half});
   padding-right: $spacing;
@@ -44,10 +45,11 @@
     border: 1px solid $color-black;
     margin: $spacing-double 0 0;
     padding-bottom: $spacing-double;
+
     // Padding-left: spacing to element edge + Icon width + spacing between icon and text
     padding-left: calc(#{$spacing-and-half} + #{$spacing-and-half} + #{$spacing-half});
     padding-right: $spacing-and-half;
-    padding-top:  $spacing-double;
+    padding-top: $spacing-double;
   }
 
   .service-channel__header {
@@ -197,13 +199,13 @@
       margin-top: 0;
 
       &:after {
-        content: "|";
+        content: '|';
         margin: 0 $spacing;
       }
 
       &:last-child {
         &:after {
-          content: "";
+          content: '';
         }
       }
     }

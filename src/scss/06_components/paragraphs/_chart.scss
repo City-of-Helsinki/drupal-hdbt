@@ -1,8 +1,8 @@
-$_chart-aspect-ratio: 16/9;
+$-chart-aspect-ratio: 16 / 9;
 
 .chart__container {
   height: 0;
-  padding-bottom: aspect-ratio-padding($_chart-aspect-ratio);
+  padding-bottom: aspect-ratio-padding($-chart-aspect-ratio);
   position: relative;
   width: 100%;
 

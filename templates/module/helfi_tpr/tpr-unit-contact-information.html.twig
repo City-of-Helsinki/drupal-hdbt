@@ -1,0 +1,82 @@
+{#
+/**
+ * @file
+ * Theme for the TPR unit entity contact information block.
+ *
+ * @see template_preprocess_tpr_unit_contact_information()
+ */
+#}
+
+{% if
+  content.address|render or
+  content.email|render or
+  content.phone|render or
+  content.address_postal|render or
+  content.opening_hours|render or
+  content.www|render
+%}
+  <div class="unit__contact">
+    <h2 class="unit__contact__title">
+      {% trans with {'context': 'Contact card title'} %}Contact information{% endtrans %}
+    </h2>
+    {% if content.address|render %}
+      <div class="unit__contact-row unit__contact-row--address">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
+          {{ 'Visiting address'|t }}:
+        </label>
+        {{ content.address }}
+      </div>
+    {% endif %}
+    {% if unit_email_link and content.email|render %}
+      {% set link_attributes = {
+        'class': [
+          'service-channel__email-link',
+        ],
+      } %}
+      <div class="unit__contact-row unit__contact-row--email">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'glyph-at'} %}
+          {{ 'E-mail'|t }}:
+        </label>
+        {{ link(content.email, unit_email_link, link_attributes) }}
+      </div>
+    {% endif %}
+    {% if content.phone|render %}
+      <div class="unit__contact-row unit__contact-row--phone">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'phone'} %}
+          {{ 'Telephone number'|t }}:
+        </label>
+        {{ content.phone }}
+      </div>
+    {% endif %}
+    {% if content.opening_hours|render %}
+      <div class="unit__contact-row unit__contact-row--opening-hours">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'clock'} %}
+          {{ 'Opening hours'|t }}:
+        </label>
+        {{ content.opening_hours }}
+      </div>
+    {% endif %}
+    {% if content.address_postal|render %}
+      <div class="unit__contact-row unit__contact-row--postal-address">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'location'} %}
+          {{ 'Postal address'|t }}:
+        </label>
+        {{ content.address_postal }}
+      </div>
+    {% endif %}
+    {% if content.www|render and show_www == true %}
+      <div class="unit__contact-row unit__contact-row--www">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+          {{ 'Website link'|t }}:
+        </label>
+        {{ content.www }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

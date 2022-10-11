@@ -14,17 +14,9 @@
 #}
 {% if content %}
   <div{{attributes.addClass('header-top').setAttribute('id','hdbt-header-top').setAttribute('drupal-hdbt-selector','hdbt-header-top')}}>
-    {% set link_attributes = {
-      'class': [
-        'link-to-site-frontpage',
-      ],
-    } %}
-    {{ link('hel.fi', 'https://hel.fi', link_attributes) }}
-
     {% set attributes_id = 'block-hdbt-subtheme-headertopnavigation'|clean_id %}
     {% set heading_id = attributes_id ~ '-menu'|clean_id %}
-    <nav role="navigation" aria-labelledby="{{ heading_id }}" id="{{ attributes_id }}">
-      <h2{{ title_attributes.setAttribute('id', heading_id).addClass('visually-hidden') }}>{{ 'Site navigation'|t({}, {'context': 'Screenreader name for top navigation menu'}) }}</h2>
+    <nav role="navigation" aria-label="{{ 'Site navigation'|t({}, {'context': 'Screenreader name for top navigation menu'}) }}" id="{{ attributes_id }}">
       {{ content }}
     </nav>
   </div>

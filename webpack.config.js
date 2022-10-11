@@ -12,6 +12,8 @@ const { merge } = require('webpack-merge');
 const Entries = () => {
   let entries = {
     styles: ['./src/scss/styles.scss'],
+    nav_local: ['./src/scss/nav-local.scss'],
+    nav_global: ['./src/scss/nav-global.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
     'component-library': [
       './src/scss/component-library.scss',
@@ -31,7 +33,7 @@ const Entries = () => {
   ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {
-    entries[path.parse(item).name] = item }
+    entries[path.parse(item).name] = item; }
   );
   return entries;
 };
@@ -48,8 +50,8 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js',
-      pathinfo: true,
+      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
+      pathinfo: isDev,
       filename: 'js/[name].min.js',
       publicPath: '../',
       clean: true,
@@ -106,7 +108,7 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: isDev,
-                additionalData: "$debug_mode: " + isDev + ";",
+                additionalData: '$debug_mode: ' + isDev + ';',
               },
             },
           ],
@@ -131,22 +133,6 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         'patterns': [
           {
-            'from': 'node_modules/@splidejs/splide/dist/js/splide.min.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/splide/',
-            'force': true,
-          }, {
-            'from': 'node_modules/@splidejs/splide/dist/css/splide-core.min.css',
-            'to': path.resolve(__dirname, 'dist') + '/css/splide/',
-            'force': true,
-          }, {
-            'from': 'node_modules/tiny-slider/dist/min/tiny-slider.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/tiny-slider/',
-            'force': true,
-          }, {
-            'from': 'node_modules/tiny-slider/dist/tiny-slider.css',
-            'to': path.resolve(__dirname, 'dist') + '/css/tiny-slider/',
-            'force': true,
-          }, {
             'from': 'node_modules/handorgel/lib/js/umd/handorgel.min.js',
             'to': path.resolve(__dirname, 'dist') + '/js/handorgel/',
             'force': true,
@@ -163,6 +149,7 @@ module.exports = (env, argv) => {
     ],
     watchOptions: {
       aggregateTimeout: 300,
+      ignored: ['**/node_modules','**/templates','**/translations/','**/modules', '**/dist/','**/config'],
     },
     // Tell us only about the errors.
     stats: 'errors-only',
@@ -185,7 +172,7 @@ module.exports = (env, argv) => {
         minimizer: [
           new TerserPlugin({
             terserOptions: {
-              ecma: 2015,
+              ecma: 2020,
               format: {
                 comments: false,
               },

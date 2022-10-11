@@ -1,5 +1,5 @@
-$_map-aspect-ratio-desktop: 16/9;
-$_map-aspect-ratio-mobile: 1;
+$-map-aspect-ratio-desktop: 16 / 9;
+$-map-aspect-ratio-mobile: 1;
 
 .component--map {
   background-color: $color-silver-light;
@@ -9,29 +9,29 @@ $_map-aspect-ratio-mobile: 1;
   }
 }
 
-.unit__header .component--map {
+.unit .component--map {
   margin-top: $spacing-double;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-triple;
-   }
+  }
 }
 
 .component--map .component__container {
   padding: $spacing-triple 0;
 }
 
-.unit__header .component--map .component__container,
+.unit .component--map .component__container,
 .has-sidebar .component--map .component__container {
   padding: $spacing-and-half $spacing $spacing-triple;
 
   @include breakpoint($breakpoint-m) {
-   padding: $spacing-double $spacing-double $spacing-triple;
+    padding: $spacing-double $spacing-double $spacing-triple;
   }
 }
 
 .has-sidebar .components--upper .component--map,
-.unit__header .component--map {
+.has-sidebar .unit .component--map {
   @include breakpoint(max-width $breakpoint-l) {
     @include component-negative-side-margin;
   }
@@ -40,11 +40,11 @@ $_map-aspect-ratio-mobile: 1;
 .map {
   height: 0;
   margin: $spacing 0;
-  padding-bottom: aspect-ratio-padding($_map-aspect-ratio-mobile);
+  padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
   position: relative;
 
   @include breakpoint($breakpoint-s) {
-    padding-bottom: aspect-ratio-padding($_map-aspect-ratio-desktop);
+    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-desktop);
   }
 
   > div,

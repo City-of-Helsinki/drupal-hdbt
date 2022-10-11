@@ -104,7 +104,7 @@ $koro-height: 50px;
 }
 
 .hero-wrapper.has-first-gray-bg-block {
-  background-color: $color-silver-light;;
+  background-color: $color-silver-light;
   margin-bottom: -$spacing-quadruple;
   padding-bottom: $spacing-triple;
 
@@ -126,9 +126,8 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
-
 }
 
 .hero--bg-color--gold {
@@ -159,7 +158,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
@@ -175,7 +174,7 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
@@ -239,29 +238,13 @@ $koro-height: 50px;
   }
 
   .hds-button {
-    @include hds-button-colors-on-dark-bg();
+    @include hds-button-colors-on-dark-bg;
   }
 }
 
 /**
  * DESIGNS
  */
-
-// Without images design.
-.hero--without-image-center {
-  .hero__container {
-    text-align: center;
-  }
-
-  .hero__text-content {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
-  }
-}
 
 .hero--without-image-left {
   .has-first-gray-bg-block & .hds-koros {
@@ -273,7 +256,6 @@ $koro-height: 50px;
 .hero--with-image-right,
 .hero--with-image-left,
 .hero--with-image-bottom {
-
   .hero__container {
     padding-bottom: $spacing;
 
@@ -328,6 +310,7 @@ $koro-height: 50px;
       max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) * 0.5;
       width: 50%;
     }
+
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
         max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
@@ -348,13 +331,14 @@ $koro-height: 50px;
   }
 
   .hero__image-container {
-    @include breakpoint($breakpoint-m)  {
+    @include breakpoint($breakpoint-m) {
       height: auto;
       margin-top: $spacing-quadruple;
       max-width: ($component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile) * 0.5;
       padding: 0 $spacing-double $spacing-quadruple;
       width: 50%;
     }
+
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
         max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
@@ -419,95 +403,8 @@ $koro-height: 50px;
   }
 }
 
-// Background image design.
-.hero--background-image {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 380px;
-  padding-bottom: 85px;
-  position: relative;
-
-  @include breakpoint($breakpoint-s) {
-    min-height: 400px;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    min-height: 440px;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    min-height: 480px;
-  }
-
-  &::after {
-    background-color: rgba($color-black, 0.15);
-    bottom: 0;
-    content: "";
-    display: block;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-  }
-
-  .hero__container {
-    align-items: center;
-    color: $color-white;
-    display: flex;
-    padding-top: $spacing-quadruple;
-    width: 100%;
-    z-index: 3;
-  }
-
-  .hero__title {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-
-    .hds-koros {
-      display: none;
-    }
-
-    img {
-      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
-      object-fit: cover;
-    }
-  }
-
-  .hds-koros {
-    bottom: -1px;
-    color: $color-white;
-    position: absolute;
-    z-index: 2;
-  }
-
-  .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
-  }
-
-  .hds-button {
-    @include hds-button-colors-on-dark-bg();
-  }
-
-  .hero__arrow {
-    bottom: -130px;
-
-    @include breakpoint($breakpoint-l) {
-      bottom: -140px;
-    }
-  }
-}
-
-.hero--diagonal {
+.hero--diagonal,
+.hero--with-search {
   @include breakpoint($breakpoint-l) {
     position: relative;
   }
@@ -530,6 +427,7 @@ $koro-height: 50px;
     @include breakpoint($breakpoint-l) {
       max-width: 400px;
     }
+
     @include breakpoint($breakpoint-xl) {
       max-width: 500px;
     }
@@ -582,13 +480,12 @@ $koro-height: 50px;
       &::after {
         @include breakpoint($breakpoint-l) {
           background-color: currentColor;
-          content: "";
+          content: '';
           display: block;
           height: 1000px;
           left: 15%;
           position: absolute;
-          // Koro-element height - 2px
-          top: $koro-height - 2px;
+          top: $koro-height - 2px; // Koro-element height - 2px
           width: 1500px;
         }
 
