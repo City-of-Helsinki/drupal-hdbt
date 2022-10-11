@@ -1,4 +1,19 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+DIR=$(pwd)
+echo $(php --version)
+
+# Switch to MAKEFILE.
+
+if [[ "$DIR" == *"/public/themes/contrib/"* ]]; then
+  DIFF=$(git diff --name-only --diff-filter=ACM "*.theme" "*.php" "*.module" "*.inc" "*.install" | sed 's| |\\ |g')
+  if [[ -n ${DIFF} ]]; then
+    BIN=$(cd ../../../../; ls vendor/bin)
+    if [[ "$BIN" == *"phpcs"* ]]; then
+      ../../../../vendor/bin/phpcs "$DIR" --extensions=php,theme,module,inc,install --ignore="*/node_modules/*" --standard=Drupal
+    fi
+  fi
+fi
+
 npm run lint
