@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
+use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\helfi_tpr\Entity\TprEntityBase;
@@ -948,8 +949,23 @@ function _hdbt_set_site_information(array &$variables) {
   // Set site front page absolute url as variable.
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 
+  /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
+  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+  $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
+  $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+
+  // Revert to English path, if current language path is not found.
+  try {
+    $url = $environment->getUrl($language_id);
+  }
+  catch (\Exception $e) {
+    $url = $environment->getUrl('en');
+  }
+  // @todo We need a better way to deal with local docker.so urls.
+  $url = str_replace(['http://', ':8080'], ['https://', ''], $url);
+
   // Set Etusivu absolute url as variable.
-  $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/helsinki/$language_id/");
+  $variables['frontpage_instance_url'] = Url::fromUri($url);
 }
 
 /**
