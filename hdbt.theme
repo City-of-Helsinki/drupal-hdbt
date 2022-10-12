@@ -205,24 +205,27 @@ function hdbt_preprocess_page(&$variables) {
   switch ($variables['current_langcode']) {
     case 'fi':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
-      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, 
-      //then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect
+      // until we have a permanent url, then we need to change this 
+      // redirect to permanent one to get the external link icon.
       $variables['decisions_link_url'] = 'https://www.hel.fi/fi/hae-paatoksia';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
       break;
 
     case 'sv':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/sv';
-      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url,
-      // then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect
+      // until we have a permanent url, then we need to change this 
+      // redirect to permanent one to get the external link icon.
       $variables['decisions_link_url'] = 'https://www.hel.fi/sv/sok-beslut';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/sok';
       break;
 
     default:
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/en';
-      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url,
-      // then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect
+      // until we have a permanent url, then we need to change this
+      // redirect to permanent one to get the external link icon.
       $variables['decisions_link_url'] = 'https://www.hel.fi/en/search-decisions';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/search';
       break;
