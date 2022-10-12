@@ -246,8 +246,8 @@ msgid "Find municipal decisions in the Decision-making section."
 msgstr "Du hittar beslut fattade av staden på sidan för beslut: Päätökset."
 
 msgctxt "Header search title"
-msgid "Search Hel.fi"
-msgstr "Sök på Hel.fi"
+msgid "Search in City of Helsinki websites"
+msgstr "Sök på Helsingfors stads sidor"
 
 msgctxt "Mobile navigation search open button text for screen readers"
 msgid "Open search"
@@ -266,12 +266,16 @@ msgid "Search"
 msgstr "Sök"
 
 msgctxt "Header search, no javascript"
-msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
-msgstr "Hel.fi-webbtjänstens sök använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
+msgid "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
 
-msgctxt "Header search label"
-msgid "Keyword"
-msgstr "Uppslagsord"
+msgctxt "Header search, no javascript link"
+msgid "Hel.fi search"
+msgstr "Hel.fi-webbtjänstens sök"
+
+msgctxt "Header and hero search label"
+msgid "What are you looking for?"
+msgstr "Vad söker du?"
 
 msgctxt "Other languages-menu open button text for screen readers"
 msgid "Open Information in other languages menu"
