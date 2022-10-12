@@ -287,3 +287,7 @@ msgstr "Sulje tietoa muilla kielillä valikko"
 msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Tietoa muilla kielillä"
+
+msgctxt "Header top navigation screen reader name"
+msgid "Quick links"
+msgstr "Pikalinkit"
