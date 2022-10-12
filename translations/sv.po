@@ -284,3 +284,7 @@ msgstr "Stäng Information på andra språk meny"
 msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Information på andra språk"
+
+msgctxt "Header top navigation screen reader name"
+msgid "Quick links"
+msgstr "Snabblänkar"
