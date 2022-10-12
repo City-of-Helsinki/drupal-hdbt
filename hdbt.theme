@@ -742,6 +742,28 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
+  // Check if the paragraph is a type of hero and it has with search as design
+  if (
+    $paragraph_type == 'hero' &&
+    $paragraph->get('field_hero_design')->value == 'with-search'
+  ) {
+    // @todo UHF-6927 move links to configuration on next.
+    switch ($variables['current_langcode']) {
+      case 'fi':
+      $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
+        break;
+
+      case 'sv':
+        $variables['helfi_search_form_url'] = 'https://www.hel.fi/sok';
+        break;
+
+      default:
+        $variables['helfi_search_form_url'] = 'https://www.hel.fi/search';
+        break;
+    }
+  }
+
+
   // Check if the paragraph is a type of liftup with image.
   if (
     $paragraph_type == 'liftup_with_image' &&
