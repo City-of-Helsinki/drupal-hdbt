@@ -38,8 +38,12 @@
           </h1>
 
           {% if design == "with-search"%}
-            {# TO-DO replace with actual search #}
-            <input type="text" class="hds-text-input__input" placeholder="Haku tulee tähän">
+            {% include "@hdbt/component/helfi-search-form.twig" with {
+              label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
+              search_id: 'hero',
+            } %}
+            testi
+            {{helfi_search_form_url}}
           {% endif %}
 
           {% if description[0]['#text'] is not empty %}
