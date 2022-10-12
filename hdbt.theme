@@ -205,19 +205,22 @@ function hdbt_preprocess_page(&$variables) {
   switch ($variables['current_langcode']) {
     case 'fi':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
-      $variables['decisions_link_url'] = 'https://www.hel.fi/fi/hae-paatoksia'; // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      $variables['decisions_link_url'] = 'https://www.hel.fi/fi/hae-paatoksia';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
       break;
 
     case 'sv':
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/sv';
-      $variables['decisions_link_url'] = 'https://www.hel.fi/sv/sok-beslut'; // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      $variables['decisions_link_url'] = 'https://www.hel.fi/sv/sok-beslut';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/sok';
       break;
 
     default:
       $variables['events_link_url'] = 'https://tapahtumat.hel.fi/en';
-      $variables['decisions_link_url'] = 'https://www.hel.fi/en/search-decisions'; // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      // Edit this in https://www.hel.fi/fi/admin/config/search/redirect until we have a permanent url, then we need to change this redirect to permanent one to get the external link icon.
+      $variables['decisions_link_url'] = 'https://www.hel.fi/en/search-decisions';
       $variables['helfi_search_form_url'] = 'https://www.hel.fi/search';
       break;
   }
@@ -742,7 +745,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
-  // Check if the paragraph is a type of hero and it has with search as design
+  // Check if the paragraph is a type of hero and it has with search as design.
   if (
     $paragraph_type == 'hero' &&
     $paragraph->get('field_hero_design')->value == 'with-search'
@@ -750,7 +753,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     // @todo UHF-6927 move links to configuration on next.
     switch ($variables['current_langcode']) {
       case 'fi':
-      $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
+        $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
         break;
 
       case 'sv':
@@ -762,7 +765,6 @@ function hdbt_preprocess_paragraph(array &$variables) {
         break;
     }
   }
-
 
   // Check if the paragraph is a type of liftup with image.
   if (
