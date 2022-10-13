@@ -74,6 +74,7 @@
             {% for key in content.field_news_item_tags['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_item_tags[key],
+                addSpan: true,
               }%}
             {% endfor %}
           {% endif %}
@@ -81,6 +82,7 @@
             {% for key in content.field_news_neighbourhoods['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_neighbourhoods[key],
+                addSpan: true,
               }%}
             {% endfor %}
           {% endif %}
@@ -88,6 +90,7 @@
             {% for key in content.field_news_groups['#items']|keys %}
               {% include '@hdbt/misc/tag.twig' with {
                 tag: content.field_news_groups[key],
+                addSpan: true,
               }%}
             {% endfor %}
           {% endif %}
