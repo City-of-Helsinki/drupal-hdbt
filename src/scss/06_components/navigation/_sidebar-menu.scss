@@ -6,183 +6,72 @@
   }
 }
 
+.sidebar-navigation__title {
+  @include font('h4');
+  border-bottom: 2px solid $color-black;
+  margin-top: $spacing-half;
+  padding-bottom: $spacing-and-half;
+
+  a {
+    @include navigation_link_defaults;
+    align-items: center;
+    display: flex;
+    position: relative;
+
+    &::before {
+      @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+      @include hover-link-arrow-transition;
+      margin-left: $spacing-quarter;
+      margin-right: $spacing;
+    }
+
+    &:focus::before,
+    &:hover::before {
+      transform: translateX(-$spacing-quarter);
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        box-shadow: 0 0 0 3px $color-black;
+        content: '';
+        display: block;
+        height: 150%;
+        left: -$spacing-half;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% + #{$spacing-half});
+      }
+    }
+  }
+}
+
 .sidebar-navigation {
   width: 100%;
 
-  .sidebar-navigation__title {
-    @include font('h4');
-    border-bottom: 2px solid $color-black;
-    margin-top: $spacing-half;
-    padding-bottom: $spacing-and-half;
-
-    a {
-      @include navigation_link_defaults;
-      display: flex;
-      padding-left: 20px + $spacing; // Width of the arrow icon.
-      position: relative;
-
-      &:before {
-        @include pseudo-icon('arrow-left', 25px, $color-black, flex);
-        @include hover-link-arrow-transition;
-
-        // TODO: Clean up this size mess
-        height: 30px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 20px;
-      }
-
-      &:focus::before,
-      &:hover::before {
-        transform: translateX(-$spacing-quarter);
-
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
-
-      &:focus {
-        outline: none;
-
-        &::after {
-          box-shadow: 0 0 0 3px $color-black;
-          content: '';
-          display: block;
-          height: 150%;
-          left: -$spacing-half;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: calc(100% + #{$spacing-half});
-        }
-      }
-    }
-  }
-
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .menu__item {
-      @include font('body');
-      border-top: 1px solid $color-black-20;
-
-      &:first-child {
-        border-top: 0;
-      }
-
-      .menu__link-wrapper {
-        align-content: center;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .menu__item--nolink,
-      .menu__link {
-        display: block;
-        padding: $spacing 0;
-        position: relative;
-        width: 100%;
-
-        &:focus {
-          outline: none;
-
-          &::before {
-            box-shadow: 0 0 0 3px $color-black;
-            content: '';
-            display: block;
-            height: calc(100% - #{$spacing});
-            left: -#{$spacing-half};
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-          }
-        }
-      }
-
-      &.menu__item--children {
-        .menu {
-          display: none;
-        }
-      }
-
-      &.menu__item--active-trail {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      &.menu__item--open {
-        .menu {
-          display: block;
-        }
-
-        .menu__toggle-button .hel-icon {
-          transform: rotate(180deg);
-        }
-      }
-
-      // Second level
-      .menu {
-        display: none;
-        width: 100%;
-      }
-
-      .menu__item {
-        @include font('small');
-        border-top: none;
-
-        &:last-child span.menu__item--nolink,
-        &:last-child a {
-          margin-bottom: $spacing-and-half * 0.5;
-        }
-
-        .menu__item--nolink,
-        .menu__link {
-          padding: ($spacing-and-half * 0.5) 0 ($spacing-and-half * 0.5) $spacing;
-          position: relative;
-          width: 100%;
-
-          &[aria-current='page']::before {
-            background-color: $color-black;
-            content: '';
-            height: 100%; // Line-height
-            left: 0;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-          }
-
-          &:focus {
-            &::before {
-              box-shadow: 0 0 0 3px $color-black;
-              content: '';
-              display: block;
-              height: 100%;
-              left: 0;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 100%; // Width of the dropdown button.
-            }
-          }
-        }
-      }
-    }
-  }
-
   .menu__toggle-button {
     background: transparent;
-    border: 0 none;
-    display: block;
+    border: none;
     min-height: 40px;
     min-width: 40px;
     padding: 0;
     position: relative;
+
+    &::before {
+      background-color: $color-black-5;
+      content: '';
+      height: $spacing-and-half;
+      inset: 0;
+      margin: auto;
+      position: absolute;
+      width: 24px;
+    }
 
     .hel-icon {
       @include rotating-icon-transition;
@@ -190,6 +79,10 @@
 
     &:hover {
       cursor: pointer;
+    }
+
+    &:hover::before {
+      background-color: $color-black-20;
     }
 
     &:focus {
@@ -201,6 +94,101 @@
         display: block;
         height: calc(100% - #{$spacing});
         left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
+    }
+  }
+
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .menu__item {
+    @include font('body');
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &.menu__item--active-trail {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &.menu__item--active-trail > .menu__link-wrapper {
+      font-weight: bold;
+    }
+  }
+
+  .menu__item .menu__item .menu__item--nolink,
+  .menu__item .menu__item .menu__link {
+    &[aria-current='page']::before {
+      background-color: black;
+      content: '';
+      height: 100%;
+      inset: 0;
+      left: calc(-1 * #{$spacing} - 1px);
+      position: absolute;
+      width: 3px;
+    }
+  }
+
+  .menu__item--children .menu {
+    display: none;
+  }
+
+  .menu__item--open {
+    & > .menu {
+      display: block;
+    }
+
+    & > .menu__link-wrapper .hel-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  .menu--level-1,
+  .menu--level-1 .menu {
+    border-left: 1px solid $color-black-10;
+    padding-left: $spacing;
+  }
+
+  .menu--level-1 {
+    margin-bottom: $spacing;
+  }
+
+  .menu--level-0 > .menu__item {
+    border-bottom: 1px solid $color-black-20;
+  }
+
+  .menu__link-wrapper {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .menu__item--nolink,
+  .menu__link {
+    padding: 10px $spacing-quarter;
+    position: relative;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+
+      &::before {
+        box-shadow: 0 0 0 3px $color-black;
+        content: '';
+        display: block;
+        height: calc(100% - #{$spacing});
+        left: -#{$spacing-half};
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
