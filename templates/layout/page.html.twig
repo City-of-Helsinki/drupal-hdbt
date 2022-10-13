@@ -89,11 +89,12 @@
           </div>
 
           {% if use_global_navigation %}
-            {{ drupal_entity('block', block__external_header_language_links) }} {# Other languages menu content #}
-          {% endif %}
+            {# Other languages menu content #}
+            {{ drupal_entity('block', block__external_header_language_links) }}
 
-          {# Header search button and menu #}
-          {% include "@hdbt/component/header-search.twig" %}
+            {# Header search button and menu #}
+            {% include "@hdbt/component/header-search.twig" %}
+          {% endif %}
 
           {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
 
