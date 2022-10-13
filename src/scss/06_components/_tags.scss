@@ -16,7 +16,8 @@
   @include tag('interactive');
 }
 
-.content-tags__tags--static span {
+.content-tags__tags--static span,
+.content-tags__tags--static li {
   @include tag('static');
 }
 

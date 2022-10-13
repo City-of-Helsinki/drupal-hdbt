@@ -13,11 +13,7 @@
  */
 #}
 {% if content %}
-  <div{{attributes.addClass('header-top').setAttribute('id','hdbt-header-top').setAttribute('drupal-hdbt-selector','hdbt-header-top')}}>
-    {% set attributes_id = 'block-hdbt-subtheme-headertopnavigation'|clean_id %}
-    {% set heading_id = attributes_id ~ '-menu'|clean_id %}
-    <nav role="navigation" aria-label="{{ 'Site navigation'|t({}, {'context': 'Screenreader name for top navigation menu'}) }}" id="{{ attributes_id }}">
-      {{ content }}
-    </nav>
+  <div class="header-top">
+    {{ content }}
   </div>
 {% endif %}

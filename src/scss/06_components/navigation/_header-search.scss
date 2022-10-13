@@ -45,15 +45,17 @@
 }
 
 .search-container__link {
-  display: flex;
-  flex-direction: column;
-
   @include breakpoint($breakpoint-m) {
     width: 50%;
+  }
+
+  p {
+    margin-top: 0;
   }
 }
 
 .search__link-external {
+  display: inline-block;
   margin-bottom: $spacing-half;
 
   @include font('special.large_link');

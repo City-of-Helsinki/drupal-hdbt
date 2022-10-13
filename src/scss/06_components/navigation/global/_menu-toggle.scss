@@ -206,6 +206,10 @@ $label-font: 'special.navigation.icon_label';
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
 
+  @supports (height: 100dvh) {
+    --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
+  }
+
   @include breakpoint($breakpoint-l) {
     --menu-height: auto;
   }
@@ -213,10 +217,6 @@ $label-font: 'special.navigation.icon_label';
   @include breakpoint($breakpoint-l) {
     --menu-height: auto;
     --menu-max-height: none;
-  }
-
-  @supports (height: 1dvh) {
-    --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
   }
   height: var(--menu-height);
   max-height: var(--menu-max-height);

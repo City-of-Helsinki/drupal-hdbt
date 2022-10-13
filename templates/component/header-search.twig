@@ -20,13 +20,18 @@
 } %}
   {% block content%}
     <div class="header-search-wrapper">
-      <div class="header-search__title">{{'Search Hel.fi'|t({}, {'context': 'Header search title'})}}</div>
+      <div class="header-search__title">{{'Search in City of Helsinki websites'|t({}, {'context': 'Header search title'})}}</div>
       {% include "@hdbt/component/helfi-search-form.twig" with {
-        label: 'Keyword'|t({}, {'context': 'Header search label'})
+        label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
+        search_id: 'header'
       } %}
       <noscript class="header-search__javascript-disabled">
+        {% set search_link_text %}
+          {{ "Hel.fi search"|t({}, {'context': 'Header search, no javascript link'}) }} 
+        {% endset %}
         <p>
-          {{ "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': 'Header search, no javascript'}) }}
+          {{ link(search_link_text, helfi_search_form_url) }}
+          {{ "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': 'Header search, no javascript'}) }}
         </p>
       </noscript>
       <div class="search-container__links-container">
@@ -40,14 +45,14 @@
             ],
           } %}
           {{ link(link_title_events, events_link_url, link_attributes) }}
-          <span>{{'Find upcoming events at the Events.hel.fi website.'|t}}</span>
+          <p>{{'Find upcoming events at the Events.hel.fi website.'|t}}</p>
         </div>
         <div class="search-container__link">
           {% set link_title_decisions %}
           {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
           {% endset %}
           {{ link(link_title_decisions, decisions_link_url, link_attributes) }}
-          <span>{{'Find municipal decisions in the Decision-making section.'|t}}</span>
+          <p>{{'Find municipal decisions in the Decision-making section.'|t}}</p>
         </div>
       </div>
     </div>
