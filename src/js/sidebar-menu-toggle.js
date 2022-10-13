@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-  function toggleSidebarMenuLevel(item) {
+  function toggleSidebarMenuVisibility(item,cssClass) {
     let toggleButton = item.querySelector('.menu__toggle-button');
 
     // Check if there was menu toggle button under the menu item.
     if (toggleButton !== null) {
       toggleButton.addEventListener('click', function (event) {
-        item.classList.toggle('menu__item--open');
+        item.classList.toggle(cssClass);
         event.stopPropagation();
       });
     }
@@ -21,8 +21,17 @@ document.addEventListener('DOMContentLoaded', function () {
       );
 
       for (let item of itemsWithChildren) {
-        toggleSidebarMenuLevel(item);
+        toggleSidebarMenuVisibility(item, 'menu__item--open');
       }
+    }
+  }
+
+  // In case of section navigation find the section navigation.
+  const sectionNavigation =
+    document.getElementsByClassName('sidebar-navigation--section-navigation');
+  if (typeof sectionNavigation !== 'undefined') {
+    for (let item of sectionNavigation) {
+      toggleSidebarMenuVisibility(item, 'sidebar-navigation--section-navigation--open');
     }
   }
 });
