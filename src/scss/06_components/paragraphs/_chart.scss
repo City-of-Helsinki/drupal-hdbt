@@ -1,4 +1,6 @@
-$-chart-aspect-ratio: 16 / 9;
+@use "sass:math";
+
+$-chart-aspect-ratio: math.div(16, 9);
 
 .chart__container {
   height: 0;
