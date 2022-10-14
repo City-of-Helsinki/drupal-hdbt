@@ -132,11 +132,18 @@ $-outline-width: 3px;
     margin-block: $inner-item-spacing;
     padding: $inner-item-spacing $spacing-quarter;
     position: relative;
-    width: calc(100% - 44px);
+    width: 100%;
 
     &:focus {
       outline: $-outline-width solid $color-black;
       outline-offset: -3px;
+    }
+  }
+
+  .menu__item--children > .menu__link-wrapper {
+    .menu__item--nolink,
+    .menu__link {
+      width: calc(100% - 44px);
     }
   }
 
