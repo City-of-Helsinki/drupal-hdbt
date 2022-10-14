@@ -4,4 +4,10 @@
   {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
 {% endif %}
 
-<li class="content-tags__tags__tag {{ tag_color_class }}">{{ tag }}</li>
+<li class="content-tags__tags__tag {{ tag_color_class }}">
+  {% if addSpan %}
+    <span>{{ tag }}</span>
+  {% else %}
+    {{ tag }}
+  {% endif %}
+</li>
