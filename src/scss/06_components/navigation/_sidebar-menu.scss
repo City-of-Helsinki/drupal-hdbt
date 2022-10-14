@@ -2,7 +2,7 @@ $inner-item-spacing: 5px;
 $-outline-width: 3px;
 
 .layout-sidebar-first {
-  display: none;
+  display: block;
 
   @include breakpoint($breakpoint-l) {
     display: block;
@@ -154,7 +154,7 @@ $-outline-width: 3px;
     .menu__link[aria-current='page']::before {
       background-color: $color-black;
       content: '';
-      height: calc(100% + (2 * $inner-item-spacing));
+      height: calc(100% + (2 * #{$inner-item-spacing}));
       inset: 0;
       left: calc(-1 * #{$spacing} - 1px);
       position: absolute;
@@ -192,12 +192,14 @@ $-outline-width: 3px;
       background-color: $color-silver-light;
       border-bottom: 0 none;
       margin-top: 0;
-      padding: $spacing;
+      padding: 0 $spacing;
       width: calc(100% - 54px);
     }
 
     a {
       @include breakpoint(max-width $breakpoint-l) {
+        margin-bottom: 0;
+        margin-top: 0;
         padding-left: 0;
       }
 
@@ -216,10 +218,22 @@ $-outline-width: 3px;
     }
   }
 
-  .section-navigation-header {
+  .menu--level-0 > .menu__item:last-child {
+    border-bottom: 0;
+  }
+
+  .section-navigation__header {
     @include breakpoint(max-width $breakpoint-l) {
-      display: flex;
       @include font('body');
+      display: flex;
+    }
+
+    .section-navigation__toggle-wrapper {
+      @include breakpoint(max-width $breakpoint-l) {
+        align-items: center;
+        background-color: $color-silver;
+        display: flex;
+      }
     }
 
     .menu__toggle-button {
@@ -228,15 +242,25 @@ $-outline-width: 3px;
       @include breakpoint(max-width $breakpoint-l) {
         background-color: $color-silver;
         display: block;
-        min-height: 54px;
-        min-width: 54px;
+        height: 54px;
+        width: 54px;
+      }
+
+      &:before {
+        display: none;
       }
     }
   }
 
-  .section-navigation-menu-wrapper {
+  .section-navigation__menu-wrapper {
     @include breakpoint(max-width $breakpoint-l) {
       display: none;
+    }
+
+    .menu__toggle-button:before {
+      @include breakpoint(max-width $breakpoint-l) {
+        background-color: $color-silver;
+      }
     }
   }
 }
@@ -248,13 +272,13 @@ $-outline-width: 3px;
     }
   }
 
-  .section-navigation-header .menu__toggle-button .hel-icon {
+  .section-navigation__header .menu__toggle-button .hel-icon {
     @include breakpoint(max-width $breakpoint-l) {
       transform: rotate(180deg);
     }
   }
 
-  .section-navigation-menu-wrapper {
+  .section-navigation__menu-wrapper {
     @include breakpoint(max-width $breakpoint-l) {
       display: block;
     }
