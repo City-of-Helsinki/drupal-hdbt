@@ -9,6 +9,12 @@ $-outline-width: 3px;
   }
 }
 
+.has-section-nav {
+  .layout-sidebar-first {
+    display: block;
+  }
+}
+
 .sidebar-navigation__title {
   @include font('h4');
   border-bottom: 2px solid $color-black;
