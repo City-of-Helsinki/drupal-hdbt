@@ -1,3 +1,6 @@
+$inner-item-spacing: 5px;
+$-outline-width: 3px;
+
 .layout-sidebar-first {
   display: none;
 
@@ -9,19 +12,20 @@
 .sidebar-navigation__title {
   @include font('h4');
   border-bottom: 2px solid $color-black;
-  margin-top: $spacing-half;
-  padding-bottom: $spacing-and-half;
+  margin-top: 0;
 
   a {
     @include navigation_link_defaults;
     align-items: center;
     display: flex;
+    margin-block: $spacing-half;
+    padding-block: $spacing;
     position: relative;
 
     &::before {
       @include pseudo-icon('arrow-left', 25px, $color-black, flex);
       @include hover-link-arrow-transition;
-      margin-left: $spacing-quarter;
+      margin-left: $spacing-half;
       margin-right: $spacing;
     }
 
@@ -35,19 +39,8 @@
     }
 
     &:focus {
-      outline: none;
-
-      &::after {
-        box-shadow: 0 0 0 3px $color-black;
-        content: '';
-        display: block;
-        height: 150%;
-        left: -$spacing-half;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(100% + #{$spacing-half});
-      }
+      outline: $-outline-width solid $color-black;
+      outline-offset: -5px;
     }
   }
 }
@@ -63,6 +56,7 @@
     padding: 0;
     position: relative;
 
+    // Decorative gray box around icon
     &::before {
       background-color: $color-black-5;
       content: '';
@@ -70,36 +64,32 @@
       inset: 0;
       margin: auto;
       position: absolute;
-      width: 24px;
+      width: $spacing-and-half;
     }
 
     .hel-icon {
       @include rotating-icon-transition;
     }
 
+    &:focus {
+      outline: $-outline-width solid $color-black;
+      outline-offset: -5px;
+    }
+
     &:hover {
       cursor: pointer;
-    }
 
-    &:hover::before {
-      background-color: $color-black-20;
-    }
-
-    &:focus {
-      outline: none;
-
-      &::after {
-        box-shadow: 0 0 0 3px $color-black;
-        content: '';
-        display: block;
-        height: calc(100% - #{$spacing});
-        left: 0;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
+      &::before {
+        background-color: $color-black-20;
       }
     }
+  }
+
+  .menu__link-wrapper {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .menu {
@@ -112,10 +102,6 @@
   .menu__item {
     @include font('body');
 
-    &:first-child {
-      border-top: 0;
-    }
-
     &.menu__item--active-trail {
       display: flex;
       flex-wrap: wrap;
@@ -126,19 +112,7 @@
     }
   }
 
-  .menu__item .menu__item .menu__item--nolink,
-  .menu__item .menu__item .menu__link {
-    &[aria-current='page']::before {
-      background-color: black;
-      content: '';
-      height: 100%;
-      inset: 0;
-      left: calc(-1 * #{$spacing} - 1px);
-      position: absolute;
-      width: 3px;
-    }
-  }
-
+  // Hides closed menus
   .menu__item--children .menu {
     display: none;
   }
@@ -153,47 +127,48 @@
     }
   }
 
-  .menu--level-1,
-  .menu--level-1 .menu {
-    border-left: 1px solid $color-black-10;
-    padding-left: $spacing;
-  }
-
-  .menu--level-1 {
-    margin-bottom: $spacing;
-  }
-
-  .menu--level-0 > .menu__item {
-    border-bottom: 1px solid $color-black-20;
-  }
-
-  .menu__link-wrapper {
-    align-content: center;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
   .menu__item--nolink,
   .menu__link {
-    padding: 10px $spacing-quarter;
+    margin-block: $inner-item-spacing;
+    padding: $inner-item-spacing $spacing-quarter;
     position: relative;
     width: 100%;
 
     &:focus {
-      outline: none;
+      outline: $-outline-width solid $color-black;
+      outline-offset: -3px;
+    }
+  }
 
-      &::before {
-        box-shadow: 0 0 0 3px $color-black;
-        content: '';
-        display: block;
-        height: calc(100% - #{$spacing});
-        left: -#{$spacing-half};
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-      }
+  .menu--level-1 {
+    border-left: 1px solid $color-black-10;
+    margin-bottom: $spacing;
+    padding-left: $spacing;
+
+    .menu {
+      border-left: 1px solid $color-black-10;
+      padding-left: $spacing;
+    }
+
+    .menu__item--nolink[aria-current='page']::before,
+    .menu__link[aria-current='page']::before {
+      background-color: $color-black;
+      content: '';
+      height: calc(100% + (2 * $inner-item-spacing));
+      inset: 0;
+      left: calc(-1 * #{$spacing} - 1px);
+      position: absolute;
+      top: -$inner-item-spacing;
+      width: $-outline-width;
+    }
+  }
+
+  .menu--level-0 > .menu__item {
+    border-bottom: 1px solid $color-black-20;
+
+    & > .menu__link-wrapper .menu__link {
+      margin-block: $spacing-half;
+      padding: $spacing-half $spacing-quarter;
     }
   }
 }
