@@ -2,7 +2,7 @@ $inner-item-spacing: 5px;
 $-outline-width: 3px;
 
 .layout-sidebar-first {
-  display: block;
+  display: none;
 
   @include breakpoint($breakpoint-l) {
     display: block;
@@ -221,12 +221,19 @@ $-outline-width: 3px;
   .menu {
     @include breakpoint(max-width $breakpoint-l) {
       padding-left: $spacing;
-      padding-right: $spacing;
     }
   }
 
   .menu--level-0 > .menu__item:last-child {
     border-bottom: 0;
+  }
+
+  .menu__link-wrapper {
+    padding-right: $spacing; // Spacing to right when there is no toggle there.
+  }
+
+  .menu__item--children > .menu__link-wrapper {
+    padding-right: 5px; // Align the bit smaller menu-item toggle nicely with the menu toggle.
   }
 
   .section-navigation__header {
