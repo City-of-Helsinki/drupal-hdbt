@@ -161,15 +161,16 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings') {
 }
 
 /**
- * Retrieve search form url and search related urls.
+ * Retrieves urls by langcode.
  */
-function hdbt_get_search_urls(string $langcode) : array {
-  $urls = [];
+function hdbt_get_global_url(string $langcode) : array {
   if ($langcode == 'fi') {
     $urls = [
       'events_link_url' => 'https://tapahtumat.hel.fi/fi/',
       'decisions_link_url' => 'https://www.hel.fi/fi/hae-paatoksia',
       'helfi_search_form_url' => 'https://www.hel.fi/haku',
+      'error_page_home_link' => 'https://www.hel.fi/fi',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute',
     ];
   }
   elseif ($langcode == 'sv') {
@@ -177,6 +178,8 @@ function hdbt_get_search_urls(string $langcode) : array {
       'events_link_url' => 'https://tapahtumat.hel.fi/sv',
       'decisions_link_url' => 'https://www.hel.fi/sv/sok-beslut',
       'helfi_search_form_url' => 'https://www.hel.fi/sok',
+      'error_page_home_link' => 'https://www.hel.fi/sv',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback',
     ];
   }
   else {
@@ -184,6 +187,8 @@ function hdbt_get_search_urls(string $langcode) : array {
       'events_link_url' => 'https://tapahtumat.hel.fi/en',
       'decisions_link_url' => 'https://www.hel.fi/en/search-decisions',
       'helfi_search_form_url' => 'https://www.hel.fi/search',
+      'error_page_home_link' => 'https://www.hel.fi/en',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/en/administration/participate/feedback',
     ];
   }
   return $urls;
@@ -193,25 +198,6 @@ function hdbt_get_search_urls(string $langcode) : array {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_page(&$variables) {
-  // Check what language is set and provide links to homepage and feedback
-  // accordingly.
-  switch ($variables['current_langcode']) {
-    case 'fi':
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
-      break;
-
-    case 'sv':
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/sv';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback';
-      break;
-
-    default:
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/en';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
-      break;
-  }
-
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
@@ -229,7 +215,7 @@ function hdbt_preprocess_page(&$variables) {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  foreach (hdbt_get_search_urls($variables['current_langcode']) as $key => $value) {
+  foreach (hdbt_get_global_url($variables['current_langcode']) as $key => $value) {
     $variables[$key] = $value;
   }
 }
@@ -760,7 +746,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
 
-    $search_urls = hdbt_get_search_urls($variables['current_langcode']);
+    $search_urls = hdbt_get_global_url($variables['current_langcode']);
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
   }
 
