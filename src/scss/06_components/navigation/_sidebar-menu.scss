@@ -51,10 +51,10 @@ $-outline-width: 3px;
   .menu__toggle-button {
     background: transparent;
     border: none;
-    min-height: 40px;
-    min-width: 40px;
+    height: 44px;
     padding: 0;
     position: relative;
+    width: 44px;
 
     // Decorative gray box around icon
     &::before {
@@ -86,7 +86,7 @@ $-outline-width: 3px;
   }
 
   .menu__link-wrapper {
-    align-content: center;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
