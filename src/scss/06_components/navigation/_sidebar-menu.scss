@@ -161,7 +161,7 @@ $-outline-width: 3px;
     .menu__link[aria-current='page']::before {
       background-color: $color-black;
       content: '';
-      height: calc(100% + (2 * $inner-item-spacing));
+      height: calc(100% + (2 * #{$inner-item-spacing}));
       inset: 0;
       left: calc(-1 * #{$spacing} - 1px);
       position: absolute;
