@@ -961,8 +961,6 @@ function _hdbt_set_site_information(array &$variables) {
   catch (\Exception $e) {
     $url = $environment->getUrl('en');
   }
-  // @todo We need a better way to deal with local docker.so urls.
-  $url = str_replace(['http://', ':8080'], ['https://', ''], $url);
 
   // Set Etusivu absolute url as variable.
   $variables['frontpage_instance_url'] = Url::fromUri($url);
