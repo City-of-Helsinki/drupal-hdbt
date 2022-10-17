@@ -292,6 +292,10 @@ msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Tietoa muilla kielillä"
 
+msgctxt "Search: remove item aria label"
+msgid "Remove @item from search results"
+msgstr "Poista @item hakutuloksista"
+
 msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
