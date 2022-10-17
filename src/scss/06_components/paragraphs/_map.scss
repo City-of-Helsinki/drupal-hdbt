@@ -1,4 +1,6 @@
-$-map-aspect-ratio-desktop: 16 / 9;
+@use "sass:math";
+
+$-map-aspect-ratio-desktop: math.div(16, 9);
 $-map-aspect-ratio-mobile: 1;
 
 .component--map {

@@ -21,7 +21,8 @@
   --label-color-default: var(--color-black-90);
   --label-color-invalid: var(--color-black-90);
   --placeholder-color: var(--color-black-60);
-  --focus-outline-color: var(--color-coat-of-arms);
+  --focus-outline-color: #{$color-black};
+  --outline-width: 3px;
   align-items: center;
   appearance: none;
   background-color: var(--input-background-default);
@@ -35,6 +36,11 @@
   padding: 0;
   position: relative;
   width: 100%;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
 
   select {
     @include font('body');
@@ -57,6 +63,11 @@
     &::-ms-expand {
       display: none;
     }
+
+    &:focus {
+      outline: var(--outline-width) solid var(--focus-outline-color);
+      outline-offset: 4px;
+    }
   }
 
   .hel-icon {
@@ -68,11 +79,6 @@
     transform: translateY(-50%);
   }
 
-  select,
-  &::after {
-    grid-area: select;
-  }
-
   // Custom arrow
   &:not(.select--multiple)::after {
     background-color: var(--helper-color-default);
@@ -81,16 +87,6 @@
     height: 0.5em;
     justify-self: end;
     width: 0.8em;
-  }
-
-  select:focus + .hdbt--select-focus {
-    border: 2px solid var(--focus-outline-color);
-    border-radius: inherit;
-    bottom: -1px;
-    left: -1px;
-    position: absolute;
-    right: -1px;
-    top: -1px;
   }
 }
 
