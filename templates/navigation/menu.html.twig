@@ -54,7 +54,7 @@
       {% endif %}
 
       {% set link_id = 'aria-id-' ~ random() %}
-      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded)) ? true : false %}
+      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded) and has_children) ? true : false %}
 
       {% set item_classes = [
         'menu__item',
@@ -70,7 +70,7 @@
         {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
       {% endif %}
 
-      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class', 'lang').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}

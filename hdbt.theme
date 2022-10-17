@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
+use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\helfi_tpr\Entity\TprEntityBase;
@@ -161,28 +162,43 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings') {
 }
 
 /**
+ * Retrieves urls by langcode.
+ */
+function hdbt_get_global_url(string $langcode) : array {
+  if ($langcode == 'fi') {
+    $urls = [
+      'events_link_url' => 'https://tapahtumat.hel.fi/fi/',
+      'decisions_link_url' => 'https://www.hel.fi/fi/hae-paatoksia',
+      'helfi_search_form_url' => 'https://www.hel.fi/haku',
+      'error_page_home_link' => 'https://www.hel.fi/fi',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute',
+    ];
+  }
+  elseif ($langcode == 'sv') {
+    $urls = [
+      'events_link_url' => 'https://tapahtumat.hel.fi/sv',
+      'decisions_link_url' => 'https://www.hel.fi/sv/sok-beslut',
+      'helfi_search_form_url' => 'https://www.hel.fi/sok',
+      'error_page_home_link' => 'https://www.hel.fi/sv',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback',
+    ];
+  }
+  else {
+    $urls = [
+      'events_link_url' => 'https://tapahtumat.hel.fi/en',
+      'decisions_link_url' => 'https://www.hel.fi/en/search-decisions',
+      'helfi_search_form_url' => 'https://www.hel.fi/search',
+      'error_page_home_link' => 'https://www.hel.fi/en',
+      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/en/administration/participate/feedback',
+    ];
+  }
+  return $urls;
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_page(&$variables) {
-  // Check what language is set and provide links to homepage and feedback
-  // accordingly.
-  switch ($variables['current_langcode']) {
-    case 'fi':
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
-      break;
-
-    case 'sv':
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/sv';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback';
-      break;
-
-    default:
-      $variables['error_page_home_link'] = 'https://www.hel.fi/helsinki/en';
-      $variables['error_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
-      break;
-  }
-
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
@@ -200,26 +216,8 @@ function hdbt_preprocess_page(&$variables) {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  // Urls for event search and decision search.
-  // @todo UHF-6927 move links to configuration on next.
-  switch ($variables['current_langcode']) {
-    case 'fi':
-      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/fi/';
-      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/';
-      $variables['helfi_search_form_url'] = 'https://www.hel.fi/haku';
-      break;
-
-    case 'sv':
-      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/sv';
-      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/sv';
-      $variables['helfi_search_form_url'] = 'https://www.hel.fi/sok';
-      break;
-
-    default:
-      $variables['events_link_url'] = 'https://tapahtumat.hel.fi/en';
-      $variables['decisions_link_url'] = 'https://paatokset.hel.fi/en';
-      $variables['helfi_search_form_url'] = 'https://www.hel.fi/search';
-      break;
+  foreach (hdbt_get_global_url($variables['current_langcode']) as $key => $value) {
+    $variables[$key] = $value;
   }
 }
 
@@ -742,6 +740,17 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
+  // Check if the paragraph is a type of hero and it has with search as design.
+  if (
+    $paragraph_type == 'hero' &&
+    $paragraph->hasField('field_hero_design') &&
+    $paragraph->get('field_hero_design')->value == 'with-search'
+  ) {
+
+    $search_urls = hdbt_get_global_url($variables['current_langcode']);
+    $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
+  }
+
   // Check if the paragraph is a type of liftup with image.
   if (
     $paragraph_type == 'liftup_with_image' &&
@@ -918,8 +927,21 @@ function _hdbt_set_site_information(array &$variables) {
   // Set site front page absolute url as variable.
   $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
 
+  /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
+  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+  $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
+  $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+
+  // Revert to English path, if current language path is not found.
+  try {
+    $url = $environment->getUrl($language_id);
+  }
+  catch (\Exception $e) {
+    $url = $environment->getUrl('en');
+  }
+
   // Set Etusivu absolute url as variable.
-  $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/helsinki/$language_id/");
+  $variables['frontpage_instance_url'] = Url::fromUri($url);
 }
 
 /**

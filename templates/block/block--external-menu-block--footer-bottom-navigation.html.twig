@@ -35,10 +35,10 @@
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
   {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-  <nav role="navigation" {{ attributes|without('role', 'aria-labelledby').addClass('footer-bottom__navigation') }}>
+  <div {{ attributes|without('role', 'aria-labelledby').addClass('footer-bottom__navigation') }}>
     {# Menu. #}
     {% block content %}
       {{ content }}
     {% endblock %}
-  </nav>
+  </div>
 {% endif %}

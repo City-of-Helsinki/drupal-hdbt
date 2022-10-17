@@ -242,6 +242,10 @@ $koro-height: 50px;
   }
 }
 
+.hero__container .helfi-search__form .hds-text-input__label {
+  color: inherit;
+}
+
 /**
  * DESIGNS
  */
@@ -313,7 +317,7 @@ $koro-height: 50px;
 
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
-        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
+        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) * 0.5;
       }
     }
   }
@@ -341,7 +345,7 @@ $koro-height: 50px;
 
     @if $component-side-padding-mobile != $component-side-padding-desktop {
       @include breakpoint($component-spacing-breakpoint) {
-        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) / 2;
+        max-width: ($component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop) * 0.5;
       }
     }
 

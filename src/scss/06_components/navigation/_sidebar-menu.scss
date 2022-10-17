@@ -1,3 +1,6 @@
+$inner-item-spacing: 5px;
+$-outline-width: 3px;
+
 .layout-sidebar-first {
   display: none;
 
@@ -6,206 +9,173 @@
   }
 }
 
+.sidebar-navigation__title {
+  @include font('h4');
+  border-bottom: 2px solid $color-black;
+  margin-top: 0;
+
+  a {
+    @include navigation_link_defaults;
+    align-items: center;
+    display: flex;
+    margin-block: $spacing-half;
+    padding-block: $spacing;
+    position: relative;
+
+    &::before {
+      @include pseudo-icon('arrow-left', 25px, $color-black, flex);
+      @include hover-link-arrow-transition;
+      margin-left: $spacing-half;
+      margin-right: $spacing;
+    }
+
+    &:focus::before,
+    &:hover::before {
+      transform: translateX(-$spacing-quarter);
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+
+    &:focus {
+      outline: $-outline-width solid $color-black;
+      outline-offset: -5px;
+    }
+  }
+}
+
 .sidebar-navigation {
   width: 100%;
 
-  .sidebar-navigation__title {
-    @include font('h4');
-    border-bottom: 2px solid $color-black;
-    margin-top: $spacing-half;
-    padding-bottom: $spacing-and-half;
+  .menu__toggle-button {
+    background: transparent;
+    border: none;
+    height: 44px;
+    padding: 0;
+    position: relative;
+    width: 44px;
 
-    a {
-      @include navigation_link_defaults;
-      display: flex;
-      padding-left: 20px + $spacing; // Width of the arrow icon.
-      position: relative;
+    // Decorative gray box around icon
+    &::before {
+      background-color: $color-black-5;
+      content: '';
+      height: $spacing-and-half;
+      inset: 0;
+      margin: auto;
+      position: absolute;
+      width: $spacing-and-half;
+    }
 
-      &:before {
-        @include pseudo-icon('arrow-left', 25px, $color-black, flex);
-        @include hover-link-arrow-transition;
+    .hel-icon {
+      @include rotating-icon-transition;
+    }
 
-        // TODO: Clean up this size mess
-        height: 30px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 20px;
-      }
+    &:focus {
+      outline: $-outline-width solid $color-black;
+      outline-offset: -5px;
+    }
 
-      &:focus::before,
-      &:hover::before {
-        transform: translateX(-$spacing-quarter);
+    &:hover {
+      cursor: pointer;
 
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
-
-      &:focus {
-        outline: none;
-
-        &::after {
-          box-shadow: 0 0 0 3px $color-black;
-          content: '';
-          display: block;
-          height: 150%;
-          left: -$spacing-half;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: calc(100% + #{$spacing-half});
-        }
+      &::before {
+        background-color: $color-black-20;
       }
     }
+  }
+
+  .menu__link-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .menu {
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
+  }
 
-    .menu__item {
-      @include font('body');
-      border-top: 1px solid $color-black-20;
+  .menu__item {
+    @include font('body');
 
-      &:first-child {
-        border-top: 0;
-      }
+    &.menu__item--active-trail {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-      .menu__link-wrapper {
-        align-content: center;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .menu__item--nolink,
-      .menu__link {
-        display: block;
-        padding: $spacing 0;
-        position: relative;
-        width: 100%;
-
-        &:focus {
-          outline: none;
-
-          &::before {
-            box-shadow: 0 0 0 3px $color-black;
-            content: '';
-            display: block;
-            height: calc(100% - #{$spacing});
-            left: -#{$spacing-half};
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-          }
-        }
-      }
-
-      &.menu__item--children {
-        .menu {
-          display: none;
-        }
-      }
-
-      &.menu__item--active-trail {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      &.menu__item--open {
-        .menu {
-          display: block;
-        }
-
-        .menu__toggle-button .hel-icon {
-          transform: rotate(180deg);
-        }
-      }
-
-      // Second level
-      .menu {
-        display: none;
-        width: 100%;
-      }
-
-      .menu__item {
-        @include font('small');
-        border-top: none;
-
-        &:last-child span.menu__item--nolink,
-        &:last-child a {
-          margin-bottom: $spacing-and-half * 0.5;
-        }
-
-        .menu__item--nolink,
-        .menu__link {
-          padding: ($spacing-and-half * 0.5) 0 ($spacing-and-half * 0.5) $spacing;
-          position: relative;
-          width: 100%;
-
-          &[aria-current='page']::before {
-            background-color: $color-black;
-            content: '';
-            height: 100%; // Line-height
-            left: 0;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-          }
-
-          &:focus {
-            &::before {
-              box-shadow: 0 0 0 3px $color-black;
-              content: '';
-              display: block;
-              height: 100%;
-              left: 0;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 100%; // Width of the dropdown button.
-            }
-          }
-        }
-      }
+    &.menu__item--active-trail > .menu__link-wrapper {
+      font-weight: bold;
     }
   }
 
-  .menu__toggle-button {
-    background: transparent;
-    border: 0 none;
-    display: block;
-    min-height: 40px;
-    min-width: 40px;
-    padding: 0;
+  // Hides closed menus
+  .menu__item--children .menu {
+    display: none;
+  }
+
+  .menu__item--open {
+    & > .menu {
+      display: block;
+    }
+
+    & > .menu__link-wrapper .hel-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  .menu__item--nolink,
+  .menu__link {
+    margin-block: $inner-item-spacing;
+    padding: $inner-item-spacing $spacing-quarter;
     position: relative;
-
-    .hel-icon {
-      @include rotating-icon-transition;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
+    width: 100%;
 
     &:focus {
-      outline: none;
+      outline: $-outline-width solid $color-black;
+      outline-offset: -3px;
+    }
+  }
 
-      &::after {
-        box-shadow: 0 0 0 3px $color-black;
-        content: '';
-        display: block;
-        height: calc(100% - #{$spacing});
-        left: 0;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-      }
+  .menu__item--children > .menu__link-wrapper {
+    .menu__item--nolink,
+    .menu__link {
+      width: calc(100% - 44px);
+    }
+  }
+
+  .menu--level-1 {
+    border-left: 1px solid $color-black-20;
+    margin-bottom: $spacing;
+    padding-left: $spacing;
+
+    .menu {
+      border-left: 1px solid $color-black-20;
+      padding-left: $spacing;
+    }
+
+    .menu__item--nolink[aria-current='page']::before,
+    .menu__link[aria-current='page']::before {
+      background-color: $color-black;
+      content: '';
+      height: calc(100% + (2 * #{$inner-item-spacing}));
+      inset: 0;
+      left: calc(-1 * #{$spacing} - 1px);
+      position: absolute;
+      top: -$inner-item-spacing;
+      width: $-outline-width;
+    }
+  }
+
+  .menu--level-0 > .menu__item {
+    border-bottom: 1px solid $color-black-20;
+
+    & > .menu__link-wrapper .menu__link {
+      margin-block: $spacing-half;
+      padding: $spacing-half $spacing-quarter;
     }
   }
 }
