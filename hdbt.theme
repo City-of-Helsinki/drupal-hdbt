@@ -1243,9 +1243,13 @@ function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$sugges
  */
 function hdbt_preprocess_views_view(&$variables) {
   // Add pager items per page as a variable.
-  $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
+  if ($variables['view']->pager != NULL) {
+    $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
+  }
   // Add total rows as a variable.
-  $variables['total_rows'] = $variables['view']->total_rows;
+  if ($variables['view']->total_rows != NULL) {
+    $variables['total_rows'] = $variables['view']->total_rows;
+  }
 }
 
 /**
