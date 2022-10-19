@@ -57,10 +57,15 @@ $-outline-width: 3px;
   .menu__toggle-button {
     background: transparent;
     border: none;
+    display: none;
     height: 44px;
     padding: 0;
     position: relative;
     width: 44px;
+
+    :where(html.js) & {
+      display: block;
+    }
 
     // Decorative gray box around icon
     &::before {
@@ -120,7 +125,11 @@ $-outline-width: 3px;
 
   // Hides closed menus
   .menu__item--children .menu {
-    display: none;
+    display: block;
+
+    :where(html.js) & {
+      display: none; // By default hide closed menus when js is enabled
+    }
   }
 
   .menu__item--open {
@@ -266,9 +275,12 @@ $-outline-width: 3px;
 
     @include breakpoint(max-width $breakpoint-l) {
       background-color: $color-silver;
-      display: block;
       height: 54px;
       width: 54px;
+
+      :where(html.js) & {
+        display: block;
+      }
     }
 
     &:before {
@@ -279,7 +291,11 @@ $-outline-width: 3px;
 
 .section-navigation__menu-wrapper {
   @include breakpoint(max-width $breakpoint-l) {
-    display: none;
+    display: block;
+
+    :where(html.js) & {
+      display: none;
+    }
   }
 
   .menu__toggle-button:before {
