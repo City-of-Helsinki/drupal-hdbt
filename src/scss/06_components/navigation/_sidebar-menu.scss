@@ -155,7 +155,7 @@ $-outline-width: 3px;
     }
   }
 
-  .menu__item--children > .menu__link-wrapper {
+  .menu__item--item-below > .menu__link-wrapper {
     .menu__item--nolink,
     .menu__link {
       width: calc(100% - 44px);
@@ -208,7 +208,9 @@ $-outline-width: 3px;
     display: block;
   }
   .menu__toggle-button {
-    margin-right: -10px; // Align the button with the first menu toggle button.
+    @include breakpoint(max-width $breakpoint-l) {
+      margin-right: -10px; // Align the button with the first menu toggle button.
+    }
   }
 
   .menu--level-0 {
@@ -219,15 +221,15 @@ $-outline-width: 3px;
   }
 
   .menu--level-0 > .menu__item:last-child {
-    border-bottom: 0;
+    @include breakpoint(max-width $breakpoint-l) {
+      border-bottom: 0;
+    }
   }
 
-  .menu__link-wrapper {
-    padding-right: $spacing; // Spacing to right when there is no toggle there.
-  }
-
-  .menu__item--children > .menu__link-wrapper {
-    padding-right: 0;
+  .menu__item--item-below > .menu__link-wrapper {
+    @include breakpoint(max-width $breakpoint-l) {
+      padding-right: 0;
+    }
   }
 }
 
