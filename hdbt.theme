@@ -929,8 +929,17 @@ function _hdbt_set_site_information(array &$variables) {
 
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
   $resolver = \Drupal::service('helfi_api_base.environment_resolver');
-  $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
-  $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+
+  // Return if the current project is not in environments list.
+  try {
+    $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
+    $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+  }
+  catch (\Exception $e) {
+    // Set Etusivu absolute url as variable.
+    $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
+    return;
+  }
 
   // Revert to English path, if current language path is not found.
   try {
