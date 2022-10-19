@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (typeof sectionNavigation !== 'undefined') {
     for (let item of sectionNavigation) {
       toggleSidebarMenuVisibility(item, 'sidebar-navigation--section-navigation--open');
-
-      // Set the toggle aria-expanded value correctly now that javascript is used.
-      let firstToggleButton = item.getElementsByClassName('menu__toggle-button')[0];
-      firstToggleButton.setAttribute('aria-expanded', 'false');
     }
   }
 });
