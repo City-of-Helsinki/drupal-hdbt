@@ -236,21 +236,21 @@ msgstr "Kaikki uutiset"
 
 msgctxt "Header search, search for events"
 msgid "Search for events"
-msgstr "Etsi tapahtumia"
+msgstr "Hae tapahtumia"
 
 msgid "Find upcoming events at the Events.hel.fi website."
 msgstr "Kaupungin ajankohtaisia tapahtumia voit hakea Tapahtumat.hel.fi-sivustolla."
 
 msgctxt "Header search, search for decisions"
 msgid "Search for decisions"
-msgstr "Etsi päätöksiä"
+msgstr "Hae päätöksiä"
 
 msgid "Find municipal decisions in the Decision-making section."
 msgstr "Kaupungin tekemiä päätöksiä voit hakea Päätökset-sivustolla."
 
 msgctxt "Header search title"
-msgid "Search Hel.fi"
-msgstr "Hae Hel.fi:stä"
+msgid "Search in City of Helsinki websites"
+msgstr "Hae Helsingin kaupungin sivuilta"
 
 msgctxt "Mobile navigation search open button text for screen readers"
 msgid "Open search"
@@ -269,12 +269,16 @@ msgid "Search"
 msgstr "Hae"
 
 msgctxt "Header search, no javascript"
-msgid "Hel.fi search requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
-msgstr "Hel.fi-verkkopalvelun haku käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
+msgid "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
 
-msgctxt "Header search label"
-msgid "Keyword"
-msgstr "Hakusana"
+msgctxt "Header search, no javascript link"
+msgid "Hel.fi search"
+msgstr "Hel.fi-verkkopalvelun haku"
+
+msgctxt "Header and hero search label"
+msgid "What are you looking for?"
+msgstr "Mitä haet?"
 
 msgctxt "Other languages-menu open button text for screen readers"
 msgid "Open Information in other languages menu"
@@ -287,3 +291,11 @@ msgstr "Sulje tietoa muilla kielillä valikko"
 msgctxt "Other languages-navigation"
 msgid "Information in other languages"
 msgstr "Tietoa muilla kielillä"
+
+msgctxt "Search: remove item aria label"
+msgid "Remove @item from search results"
+msgstr "Poista @item hakutuloksista"
+
+msgctxt "Header top navigation screen reader name"
+msgid "Quick links"
+msgstr "Pikalinkit"
