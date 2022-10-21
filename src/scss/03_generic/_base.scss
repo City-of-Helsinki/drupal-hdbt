@@ -21,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: $base-font-family;
+  font-size: 1rem; // this should fix UHF-2696
   line-height: $base-line-height;
   // stylelint-enable order/properties-alphabetical-order
 
