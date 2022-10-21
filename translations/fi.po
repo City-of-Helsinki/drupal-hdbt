@@ -114,6 +114,10 @@ msgctxt "The helper text before the node changed timestamp"
 msgid "Updated over a year ago"
 msgstr "Päivitetty yli vuosi sitten"
 
+msgctxt "The helper text before the node published timestamp"
+msgid "Published over a year ago"
+msgstr "Julkaistu yli vuosi sitten"
+
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Jaa"
