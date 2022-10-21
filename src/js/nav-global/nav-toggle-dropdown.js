@@ -6,6 +6,7 @@ class NavToggleDropdown {
     this.running = false;
     this.targetNode = null;
     this.onOpen = null;
+    this.beforeOpen = null;
   }
   isOpen() {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
@@ -20,7 +21,10 @@ class NavToggleDropdown {
     }
   }
   open() {
-    if(this.running) {
+    if (this.running) {
+      if (this.beforeOpen) {
+        this.beforeOpen();
+      }
       this.buttonInstance.setAttribute('aria-expanded', 'true');
       this.targetNode.dataset.target = 'true';
       if (this.onOpen) {
@@ -50,7 +54,7 @@ class NavToggleDropdown {
       this.toggle();
     });
   }
-  init({ name, buttonSelector, targetSelector, onOpen, onClose }) {
+  init({ name, buttonSelector, targetSelector, beforeOpen, onOpen, onClose }) {
     this.name = name;
     this.buttonSelector = buttonSelector;
     this.buttonInstance = document.querySelector(this.buttonSelector);
@@ -63,8 +67,9 @@ class NavToggleDropdown {
       console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }
-    
+
     this.HASH_ID = targetSelector;
+    this.beforeOpen = beforeOpen;
     this.onOpen = onOpen;
     this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {

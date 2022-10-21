@@ -479,6 +479,9 @@ const MobilePanel = {
     }
   },
   open: function () {
+    if (this.beforeOpen) {
+      this.beforeOpen();
+    }
     this.menu.dataset.target = 'true';
     this.toggleButton.setAttribute('aria-expanded', 'true');
     if (this.onOpen) {
@@ -494,7 +497,7 @@ const MobilePanel = {
     // We should always focus the menu button after toggling the menu
     this.toggleButton.focus();
   },
-  init: function ({ onOpen, onClose }) {
+  init: function ({ beforeOpen, onOpen, onClose }) {
     /**
      * Start the panel after DOM has loaded.
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
@@ -504,6 +507,7 @@ const MobilePanel = {
       return;
     }
 
+    this.beforeOpen = beforeOpen;
     this.onOpen = onOpen;
     this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {
