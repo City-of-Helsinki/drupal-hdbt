@@ -10,18 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1']
+        php-versions: ['8.0']
     container:
       image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
 
     services:
       db:
-        image: mariadb:10.7
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
+        image: druidfi/db:mysql5.7-drupal
         ports:
           - 3306:3306
 
@@ -38,10 +33,7 @@ jobs:
           composer create-project city-of-helsinki/drupal-helfi-platform:dev-main $DRUPAL_ROOT --no-interaction --repository https://repository.drupal.hel.ninja/
           cd $DRUPAL_ROOT
           echo "$(jq --indent 4 '.repositories |= [{"type": "path", "url": "'$GITHUB_WORKSPACE'"}] + .' composer.json)" > composer.json
-          composer require drupal/$THEME_NAME -W
-
-      - name: Check that theme is not built with dev mode
-        run: if grep -q 'sourceMappingURL=' -R public/themes/contrib/$THEME_NAME/dist/css; then exit 1; fi
+          composer require drupal/$THEME_NAME
 
       - name: Run PHPCS
         run: |
