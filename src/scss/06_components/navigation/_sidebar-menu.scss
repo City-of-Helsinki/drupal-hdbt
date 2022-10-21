@@ -9,6 +9,10 @@ $-outline-width: 3px;
   }
 }
 
+.has-section-nav .layout-sidebar-first {
+  display: block;
+}
+
 .sidebar-navigation__title {
   @include font('h4');
   border-bottom: 2px solid $color-black;
@@ -51,10 +55,15 @@ $-outline-width: 3px;
   .menu__toggle-button {
     background: transparent;
     border: none;
+    display: none;
     height: 44px;
     padding: 0;
     position: relative;
     width: 44px;
+
+    :where(html.js) & {
+      display: block;
+    }
 
     // Decorative gray box around icon
     &::before {
@@ -114,7 +123,11 @@ $-outline-width: 3px;
 
   // Hides closed menus
   .menu__item--children .menu {
-    display: none;
+    display: block;
+
+    :where(html.js) & {
+      display: none; // By default hide closed menus when js is enabled
+    }
   }
 
   .menu__item--open {
@@ -140,7 +153,7 @@ $-outline-width: 3px;
     }
   }
 
-  .menu__item--children > .menu__link-wrapper {
+  .menu__item--item-below > .menu__link-wrapper {
     .menu__item--nolink,
     .menu__link {
       width: calc(100% - 44px);
@@ -176,6 +189,147 @@ $-outline-width: 3px;
     & > .menu__link-wrapper .menu__link {
       margin-block: $spacing-half;
       padding: $spacing-half $spacing-quarter;
+    }
+  }
+}
+
+.sidebar-navigation + .sidebar-navigation {
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+// Section navigation special-case
+
+$section-navigation-toggle-button-size: 54px;
+
+.sidebar-navigation--section-navigation {
+  @include breakpoint(max-width $breakpoint-l) {
+    background-color: $color-silver-light;
+    display: block;
+  }
+
+  .menu__toggle-button {
+    @include breakpoint(max-width $breakpoint-l) {
+      margin-right: -10px; // Align the button with the first menu toggle button.
+    }
+  }
+
+  .menu--level-0 {
+    @include breakpoint(max-width $breakpoint-l) {
+      padding-left: $spacing;
+      padding-right: $spacing;
+    }
+  }
+
+  .menu--level-0 > .menu__item:last-child {
+    @include breakpoint(max-width $breakpoint-l) {
+      border-bottom: 0;
+    }
+  }
+
+  .menu__item--item-below > .menu__link-wrapper {
+    @include breakpoint(max-width $breakpoint-l) {
+      padding-right: 0;
+    }
+  }
+}
+
+.section-navigation__title {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include font('h5');
+    background-color: $color-silver-light;
+    border-bottom: 0 none;
+    flex-grow: 1;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  a {
+    @include breakpoint(max-width $breakpoint-l) {
+      margin-bottom: 0;
+      margin-top: 0;
+      padding-left: $spacing;
+      padding-right: $spacing;
+    }
+  }
+
+  a::before {
+    @include breakpoint(max-width $breakpoint-l) {
+      display: none;
+    }
+  }
+}
+
+.section-navigation__header {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include font('body');
+    align-items: stretch;
+    display: flex;
+  }
+
+  .section-navigation__toggle-wrapper {
+    @include breakpoint(max-width $breakpoint-l) {
+      align-items: center;
+      background-color: $color-silver;
+      display: flex;
+    }
+  }
+
+  .menu__toggle-button {
+    display: none;
+
+    @include breakpoint(max-width $breakpoint-l) {
+      background-color: $color-silver;
+      height: $section-navigation-toggle-button-size;
+      margin-right: 0;
+      width: $section-navigation-toggle-button-size;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+:where(html.js) .section-navigation__header .menu__toggle-button {
+  @include breakpoint(max-width $breakpoint-l) {
+    display: block;
+  }
+}
+
+.section-navigation__menu-wrapper {
+  @include breakpoint(max-width $breakpoint-l) {
+    display: block;
+
+    :where(html.js) & {
+      display: none;
+    }
+  }
+
+  .menu__toggle-button::before {
+    @include breakpoint(max-width $breakpoint-l) {
+      background-color: $color-silver;
+    }
+  }
+}
+
+.sidebar-navigation--section-navigation--open {
+  .sidebar-navigation__title {
+    @include breakpoint(max-width $breakpoint-l) {
+      background-color: $color-silver;
+    }
+  }
+
+  .section-navigation__header .menu__toggle-button .hel-icon {
+    @include breakpoint(max-width $breakpoint-l) {
+      transform: rotate(180deg);
+    }
+  }
+
+  .section-navigation__menu-wrapper {
+    @include breakpoint(max-width $breakpoint-l) {
+      display: block;
     }
   }
 }

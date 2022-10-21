@@ -41,9 +41,9 @@
 
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }} class="sidebar-navigation">
-  <h2{{ title_attributes.setAttribute('id', heading_id) }} class="sidebar-navigation__title">
+  <div{{ title_attributes.setAttribute('id', heading_id) }} class="sidebar-navigation__title">
     {{ link(link_title, link_url) }}
-  </h2>
+  </div>
 
   {# Menu. #}
   {% block content %}

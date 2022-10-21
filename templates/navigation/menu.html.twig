@@ -65,6 +65,8 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
+      {% set aria_expanded = (auto_open and item.in_active_trail) ? 'true' : 'false' %}
+
       {% set item_lang = '' %}
       {% if item.attributes.lang %}
         {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
@@ -104,7 +106,7 @@
           {% if item_is_collabsible %}
             <button
               type="button"
-              aria-expanded="false"
+              aria-expanded="{{ aria_expanded }}"
               aria-controls="{{ menu_aria_controls }}"
               aria-labelledby="{{ link_id }}"
               aria-haspopup="true"
