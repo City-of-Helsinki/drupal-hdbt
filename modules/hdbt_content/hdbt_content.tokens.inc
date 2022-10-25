@@ -109,9 +109,8 @@ function hdbt_content_tokens(
       }
       elseif (
         $node->hasField('field_organization') &&
-        isset($node->field_organization) &&
-        $node->field_organization->entity->hasField('field_default_image') &&
-        !$node->field_organization->entity->field_default_image->isEmpty()
+        $node->get('field_organization')?->entity?->hasField('field_default_image') &&
+        !$node->get('field_organization')->entity->get('field_default_image')->isEmpty()
       ) {
         // Use the image from the taxonomy term.
         $taxonomy_term = $node->field_organization->entity;
