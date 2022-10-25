@@ -110,6 +110,10 @@ msgctxt "The helper text before the node changed timestamp"
 msgid "Updated over a year ago"
 msgstr "Uppdaterad för över ett år sedan"
 
+msgctxt "The helper text before the node published timestamp"
+msgid "Published over a year ago"
+msgstr "Publicerad för över ett år sedan"
+
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Dela"
