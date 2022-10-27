@@ -40,12 +40,9 @@
     }
 
     .hds-checkbox__input,
-    .hds-checkbox__label {
-      // Fix checkbox alignment.
-      &::after,
-      &::before {
-        top: 7px;
-      }
+    .hds-checkbox__label::after,
+    .hds-checkbox__label::before {
+      top: 7px; // Fix checkbox alignment.
     }
   }
 
