@@ -202,7 +202,7 @@ const MobilePanel = {
   menu: null,
   templates: null,
   SCROLL_TRESHOLD: 100,
-  size: drupalSettings.menu_depth, // Maximum assumed depth of tree. Used for checking if going up is allowed
+  size: 10, // Maximum assumed depth of tree. Used for checking if going up is allowed
   running: false,
   data: null,
   currentIndex: 0,
