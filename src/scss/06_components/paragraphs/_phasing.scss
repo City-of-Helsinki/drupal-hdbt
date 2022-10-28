@@ -14,12 +14,17 @@ $-circle-size--ol-l: $spacing-triple;
   @include breakpoint($breakpoint-l) {
     --item-title-lineheight: #{get-line-height('h4.breakpoint_l')};
   }
+
+  .component__content {
+    padding-left: 0;
+  }
 }
 
 .phasing__item {
   --circle-size: #{$-circle-size};
   --p-left: #{$-item-padding-left};
   background-color: var(--hdbt-color-palette--secondary);
+  list-style: none;
   padding: $-item-padding $-item-padding $-item-padding var(--p-left);
   position: relative;
 
