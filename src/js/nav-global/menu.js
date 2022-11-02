@@ -217,6 +217,7 @@ const MobilePanel = {
   getAPIUrl: function () {
     const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
     url.searchParams.set('_format', 'json');
+    url.searchParams.set('max-depth', drupalSettings.menu_depth);
     return url.toString();
   },
   getRoot: function () {
