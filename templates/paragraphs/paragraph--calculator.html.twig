@@ -1,0 +1,26 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--chart' ],
+      component_title: content.field_calculator_title,
+      component_description: content.field_calculator_description,
+      component_content_class: 'calculator',
+    }
+  %}
+    {% block component_content %}
+
+    {% if content.field_calculator[0]['#markup'] == 'test-1' %}
+      <div>Test 1 valittu</div>
+    {% endif %}
+
+    {% if content.field_calculator[0]['#markup'] == 'test-2' %}
+      <div>jTest 2 valittu</div>
+    {% endif %}
+
+    {% if content.field_calculator[0]['#markup'] == 'test-3' %}
+      <div>Test 3 valittu</div>
+    {% endif %}
+
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}
