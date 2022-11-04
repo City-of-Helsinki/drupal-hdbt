@@ -7,8 +7,31 @@
  */
 #}
 
-{% if view_mode != 'teaser' %}
+{% if view_mode == 'teaser' %}
 
+  <div class="service service--teaser">
+    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
+      <h3 class="service__title">
+        {{ entity.label }}
+      </h3>
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+    </a>
+  </div>
+
+{% elseif view_mode == 'teaser_search_result' %}
+  <div class="service service--teaser-search-result">
+    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
+      <h3 class="service__title">
+        {{ entity.label }}
+      </h3>
+      <div class="short-desc">
+        {{ content.description }}
+      </div>
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+    </a>
+  </div>
+
+{% else %}
   <article class="service service--full">
 
     {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
@@ -34,16 +57,4 @@
     {% endif %}
 
   </article>
-
-{% elseif view_mode == 'teaser' %}
-
-  <div class="service service--teaser">
-    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
-      <h3 class="service__title">
-        {{ entity.label }}
-      </h3>
-      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
-    </a>
-  </div>
-
 {% endif %}
