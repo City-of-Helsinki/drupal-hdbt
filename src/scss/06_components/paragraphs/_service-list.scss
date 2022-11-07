@@ -76,3 +76,17 @@
     }
   }
 }
+
+.component--service-list-search {
+  background-color: $color-silver-light;
+
+  .component__container {
+    padding-bottom: $spacing-double;
+    padding-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      padding-bottom: $spacing-quadruple;
+      padding-top: $spacing-quadruple;
+    }
+  }
+}

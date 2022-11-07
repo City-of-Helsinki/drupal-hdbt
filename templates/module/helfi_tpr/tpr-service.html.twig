@@ -24,10 +24,18 @@
       <h3 class="service__title">
         {{ entity.label }}
       </h3>
-      <div class="short-desc">
-        {{ content.description }}
+      <div class="service__content">
+        <div class="short-desc">
+          {{ content.description }}
+        </div>
+        <div class="channels">
+          {{ content.errand_services }}
+        </div>
       </div>
-      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+
+      <div class="service__read-more">
+        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+      </div>
     </a>
   </div>
 

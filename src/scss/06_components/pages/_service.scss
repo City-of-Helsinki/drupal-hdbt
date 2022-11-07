@@ -105,6 +105,44 @@ $teaser-icon-size-desktop: 48px;
 
 .service.service--teaser-search-result {
   .service__link {
+    background-color: $color-white;
+    margin-top: $spacing-double;
+    padding: 0 $spacing-and-half $spacing-double;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 0;
+      padding: $spacing-double;
+    }
+
+    .service__content {
+      align-content: flex-start;
+
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        flex-wrap: wrap;
+        //max-width: 530px;
+      }
+    }
+    .service__read-more {
+      display: flex;
+      //margin-top: $spacing-double;
+
+      @include breakpoint($breakpoint-m) {
+        justify-content: flex-end;
+        //margin-top: $spacing;
+      }
+
+      //.hel-icon {
+      //  @include hover-link-arrow-transition();
+      //  margin-left: $spacing-half;
+      //}
+    }
+
     &:hover {
       text-decoration: underline;
 
