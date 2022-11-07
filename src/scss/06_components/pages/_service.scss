@@ -103,6 +103,44 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
+.service.service--teaser-search-result {
+  .service__link {
+    &:hover {
+      text-decoration: underline;
+
+      .hel-icon {
+        margin-left: $spacing;
+
+        @media (prefers-reduced-motion) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  .hel-icon {
+    --icon-size: #{$teaser-icon-size-mobile};
+    bottom: 50%;
+    left: auto;
+    position: absolute;
+    right: $spacing;
+    transform: translateY(50%);
+    transition: all 0.3s;
+
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
+
+    @include breakpoint($breakpoint-l) {
+      --icon-size: #{ $teaser-icon-size-desktop};
+      margin-top: $spacing-and-half;
+      position: static;
+      right: auto;
+      transform: none;
+    }
+  }
+
+}
+
 .service--units__container {
   margin-bottom: $spacing-quadruple;
   margin-top: $spacing-quadruple;
