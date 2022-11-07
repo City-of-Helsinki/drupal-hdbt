@@ -29,9 +29,7 @@
           {{ content.description }}
         </div>
         <div class="channels">
-          {% for channel in content.errand_services.unique_channels %}
-          {{ channel['#name'] }}
-          {% endfor %}
+          {{ content.errand_services }}
         </div>
       </div>
 
