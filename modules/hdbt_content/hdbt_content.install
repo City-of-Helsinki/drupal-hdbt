@@ -225,7 +225,7 @@ function hdbt_content_update_9005() {
         'weight' => 2,
       ];
 
-      if (!empty($config_factory->getEditable($block_configuration['id'])->getRawData())) {
+      if (empty($config_factory->getEditable($block_configuration['id'])->getRawData())) {
         hdbt_content_install_block_translations($block_translations, 'block.block.hdbt_subtheme_footertopnavigationsecond');
 
         $block = Block::create($block_configuration);
