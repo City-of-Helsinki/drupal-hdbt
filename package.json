@@ -83,11 +83,11 @@
     "iOS > 9"
   ],
   "devDependencies": {
-    "eslint-config-drupal": "^5.0.2",
-    "eslint-import-resolver-webpack": "0.13.2",
-    "eslint-plugin-import": "^2.25.3",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-webpack": "0.13.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.2.1",
     "stylelint": "^14.6.1",
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
