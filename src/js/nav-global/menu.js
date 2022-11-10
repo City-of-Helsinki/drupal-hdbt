@@ -1,29 +1,14 @@
-const Mustache = require("mustache");
-const cls = require("classnames");
+const Mustache = require('mustache');
+const cls = require('classnames');
 
-const frontpageTranslation = Drupal.t(
-  "Frontpage",
-  {},
-  { context: "Global navigation mobile menu top level" }
-);
-const openSubMenuTranslation = Drupal.t(
-  "Open submenu:",
-  {},
-  { context: "Mobile navigation menu prefix" }
-);
-const openParentMenuTranslation = Drupal.t(
-  "Open parent menu:",
-  {},
-  { context: "Mobile navigation menu prefix" }
-);
+const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
+const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
+const openParentMenuTranslation = Drupal.t('Open parent menu:', {}, { context: 'Mobile navigation menu prefix' });
 
 // eslint-disable-next-line no-extend-native
-Array.prototype.findRecursive = function findRecursivelyFromArray(
-  predicate,
-  childrenPropertyName
-) {
+Array.prototype.findRecursive = function findRecursivelyFromArray(predicate, childrenPropertyName) {
   if (!childrenPropertyName) {
-    throw new Error("findRecursive requires parameter `childrenPropertyName`");
+    throw new Error('findRecursive requires parameter `childrenPropertyName`');
   }
   let array = [];
   array = this;
@@ -61,11 +46,7 @@ function button() {
  */
 function isCurrentPath() {
   try {
-    return (
-      !this.external &&
-      this.url &&
-      new URL(this.url).pathname === window.location.pathname
-    );
+    return !this.external && this.url && new URL(this.url).pathname === window.location.pathname;
   } catch (e) {
     // eslint-disable-next-line no-console
     console.warn('Invalid url given to "isCurrentPath"-helper', this.url);
@@ -95,8 +76,8 @@ function isInPath() {
  */
 function externalLinkAttributes() {
   return {
-    external: this.attributes["data-external"] || this.external || false,
-    protocol: this.attributes["data-protocol"] || false,
+    external: this.attributes['data-external'] || this.external || false,
+    protocol: this.attributes['data-protocol'] || false,
   };
 }
 
@@ -117,43 +98,40 @@ function externalLinkIcon() {
     return false;
   }
 
-  return (
-    externalLinkIcon.ICONS[this.attributes["data-protocol"]] ||
-    externalLinkIcon.ICONS.external
-  );
+  return externalLinkIcon.ICONS[this.attributes['data-protocol']] || externalLinkIcon.ICONS.external;
 }
 
 externalLinkIcon.ICONS = {
   mailto: {
-    class: "link__type link__type--mailto",
+    class: 'link__type link__type--mailto',
     text: Drupal.t(
-      "Link opens default mail program",
+      'Link opens default mail program',
       {},
       {
         context:
-          "Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.",
+          'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.',
       }
     ),
   },
   tel: {
-    class: "link__type link__type--tel",
+    class: 'link__type link__type--tel',
     text: Drupal.t(
-      "Link starts a phone call",
+      'Link starts a phone call',
       {},
       {
         context:
-          "Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.",
+          'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.',
       }
     ),
   },
   external: {
-    class: "link__type link__type--external",
+    class: 'link__type link__type--external',
     text: Drupal.t(
-      "Link leads to external service",
+      'Link leads to external service',
       {},
       {
         context:
-          "Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.",
+          'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.',
       }
     ),
   },
@@ -195,7 +173,7 @@ const MobilePanel = {
         >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
         {{>sub_tree}}
       </div>
-      ${document.querySelector(".js-mmenu__footer")?.outerHTML}
+      ${document.querySelector('.js-mmenu__footer')?.outerHTML}
     </section>
   {{/panels}}
 
@@ -246,17 +224,17 @@ const MobilePanel = {
   running: false,
   data: null,
   currentIndex: 0,
-  cacheKey: "hdbt-mobile-menu",
+  cacheKey: 'hdbt-mobile-menu',
   enableCache: false,
   selectors: {
-    container: "#mmenu",
-    rootId: "mmenu__panels",
-    forward: "mmenu__forward",
-    back: "mmenu__back",
+    container: '#mmenu',
+    rootId: 'mmenu__panels',
+    forward: 'mmenu__forward',
+    back: 'mmenu__back',
   },
   getAPIUrl() {
     const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
-    url.searchParams.set("_format", "json");
+    url.searchParams.set('_format', 'json');
     return url.toString();
   },
   getRoot() {
@@ -265,13 +243,8 @@ const MobilePanel = {
   sortPanelsByPath() {
     const panels = [];
     const allItems = this.data;
-    const currentItem = allItems.findRecursive(
-      (item) => isCurrentPath.call(item),
-      "sub_tree"
-    );
-    let parentIndex = currentItem?.sub_tree?.length
-      ? currentItem.id
-      : currentItem?.parentId;
+    const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
+    let parentIndex = currentItem?.sub_tree?.length ? currentItem.id : currentItem?.parentId;
 
     while (parentIndex) {
       const found = allItems.findRecursive(
@@ -287,7 +260,7 @@ const MobilePanel = {
           }
           return false;
         },
-        "sub_tree"
+        'sub_tree'
       );
 
       if (!found) {
@@ -316,8 +289,7 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back:
-        i > 0 ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
+      back: i > 0 ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
       openSubMenuTranslation,
       openParentMenuTranslation,
       /** *
@@ -330,15 +302,14 @@ const MobilePanel = {
        */
       panel_class: cls({
         mmenu__panel: true,
-        "mmenu__panel--visible": true,
-        "mmenu__panel--current": i === this.currentIndex,
-        "mmenu__panel--visible-right":
-          (state === "start" && i > this.currentIndex) ||
-          (state === "up" && i >= this.currentIndex) ||
-          (state === "down" && i > this.currentIndex + 1),
-        "mmenu__panel--visible-left":
-          (state === "up" && i < this.currentIndex - 1) ||
-          (state === "down" && i <= this.currentIndex),
+        'mmenu__panel--visible': true,
+        'mmenu__panel--current': i === this.currentIndex,
+        'mmenu__panel--visible-right':
+          (state === 'start' && i > this.currentIndex) ||
+          (state === 'up' && i >= this.currentIndex) ||
+          (state === 'down' && i > this.currentIndex + 1),
+        'mmenu__panel--visible-left':
+          (state === 'up' && i < this.currentIndex - 1) || (state === 'down' && i <= this.currentIndex),
       }),
     }));
   },
@@ -350,28 +321,22 @@ const MobilePanel = {
      * Find the item corresponding to given id in item arrow click event.
      * It's items will be the new current panel. Old panel swipes left.
      */
-    const next = this.content
-      .at(this.currentIndex)
-      .sub_tree.find(({ id }) => id === parentId);
+    const next = this.content.at(this.currentIndex).sub_tree.find(({ id }) => id === parentId);
 
     if (!next) {
       throw new Error(`ID mismatch in menu items${parentId}`);
     }
 
-    this.currentIndex =
-      this.currentIndex + 1 < this.size
-        ? this.currentIndex + 1
-        : this.currentIndex;
+    this.currentIndex = this.currentIndex + 1 < this.size ? this.currentIndex + 1 : this.currentIndex;
     this.content[this.currentIndex] = next;
-    this.render("up");
+    this.render('up');
   },
   down() {
     if (this.currentIndex === 0) {
       return;
     }
-    this.currentIndex =
-      this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
-    this.render("down");
+    this.currentIndex = this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
+    this.render('down');
   },
   render(state) {
     const root = this.getRoot();
@@ -385,38 +350,26 @@ const MobilePanel = {
       }
     );
 
-    if (state === "load") {
+    if (state === 'load') {
       return;
     }
 
-    const panels = [...root.querySelectorAll(".mmenu__panel")];
+    const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current = panels.at(this.currentIndex);
 
-    if (
-      root.parentElement.scrollTop > this.SCROLL_TRESHOLD &&
-      this.currentIndex > 0
-    ) {
-      current
-        .querySelector(".mmenu__back")
-        .scrollIntoView({ block: "start", behaviour: "smooth" });
+    if (root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex > 0) {
+      current.querySelector('.mmenu__back').scrollIntoView({ block: 'start', behaviour: 'smooth' });
     }
 
     setTimeout(() => {
-      current.classList.remove(
-        "mmenu__panel--visible-right",
-        "mmenu__panel--visible-left"
-      );
+      current.classList.remove('mmenu__panel--visible-right', 'mmenu__panel--visible-left');
       switch (state) {
-        case "up":
-          panels
-            .at(this.currentIndex - 1)
-            .classList.add("mmenu__panel--visible-left");
+        case 'up':
+          panels.at(this.currentIndex - 1).classList.add('mmenu__panel--visible-left');
           break;
 
-        case "down":
-          panels
-            .at(this.currentIndex + 1)
-            .classList.add("mmenu__panel--visible-right");
+        case 'down':
+          panels.at(this.currentIndex + 1).classList.add('mmenu__panel--visible-right');
           break;
 
         default:
@@ -428,8 +381,8 @@ const MobilePanel = {
          * DO NOT USE display:none. Display needs to be set to 'flex' or panels will collapse.
          */
         panels.forEach((panel) => {
-          if (!panel.classList.contains("mmenu__panel--current")) {
-            panel.style.visibility = "hidden";
+          if (!panel.classList.contains('mmenu__panel--current')) {
+            panel.style.visibility = 'hidden';
           }
         });
         /**
@@ -445,18 +398,15 @@ const MobilePanel = {
     const allInstances = Object.getOwnPropertyNames(data);
 
     if (!allInstances.length) {
-      throw new Error("No instances found in data", data);
+      throw new Error('No instances found in data', data);
     }
     const allItems = allInstances.map((instanceName) => {
       const item = data[instanceName].menu_tree[0];
-      item.parentId = "";
+      item.parentId = '';
       return item;
     });
 
-    const currentItem = allItems.findRecursive(
-      (item) => isCurrentPath.call(item),
-      "sub_tree"
-    );
+    const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
 
     if (currentItem) {
       currentItem.active = true;
@@ -475,7 +425,7 @@ const MobilePanel = {
           return true;
         }
         return false;
-      }, "sub_tree");
+      }, 'sub_tree');
 
       if (!found) {
         // Stop while-loop.
@@ -487,17 +437,17 @@ const MobilePanel = {
   async start() {
     const container = document.querySelector(this.selectors.container);
     if (!this.getRoot() || !container) {
-      throw new Error("Panel root not found");
+      throw new Error('Panel root not found');
     }
     // Show container and loader on start
-    container.classList.add("mmenu--visible");
-    this.render("load");
+    container.classList.add('mmenu--visible');
+    this.render('load');
     try {
       await this.load();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(
-        "Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API",
+        'Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',
         e
       );
       this.enableFallback();
@@ -507,14 +457,14 @@ const MobilePanel = {
      * Set the panels according to current path.
      */
     this.sortPanelsByPath();
-    this.render("start");
+    this.render('start');
     /**
      * Panel event listener:
      *
      *  Bind one click event listener to main panel. One for all click events.!
      *  Add more if one handler becomes too cumbersome.
      *  */
-    this.getRoot().addEventListener("click", (e) => {
+    this.getRoot().addEventListener('click', (e) => {
       // Arrow function keeps us in Panel context for "this". Take what you need from event
       const {
         target: { classList, value: id, parentElement },
@@ -528,38 +478,34 @@ const MobilePanel = {
         this.up(id);
       } else if (
         (classList && classList.contains(this.selectors.back)) ||
-        (parentElement?.classList &&
-          parentElement?.classList.contains(this.selectors.back))
+        (parentElement?.classList && parentElement?.classList.contains(this.selectors.back))
       ) {
         this.down();
       }
     });
   },
   isOpen() {
-    return (
-      window.location.hash === "#menu" ||
-      this.toggleButton.getAttribute("aria-expanded") === "true"
-    );
+    return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
   disableFallback() {
     this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
   },
   enableFallback() {
-    this.menu.dataset.target = "false"; // Close the menu with js so that we can use css version instead
-    this.getRoot().innerHTML = ""; // Remove rotator
+    this.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
+    this.getRoot().innerHTML = ''; // Remove rotator
     delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
-    window.location.hash = "#menu"; // Open menu with the css way
+    window.location.hash = '#menu'; // Open menu with the css way
   },
   close() {
-    this.toggleButton.setAttribute("aria-expanded", "false");
-    this.menu.dataset.target = "false";
+    this.toggleButton.setAttribute('aria-expanded', 'false');
+    this.menu.dataset.target = 'false';
     if (this.onClose) {
       this.onClose();
     }
   },
   open() {
-    this.menu.dataset.target = "true";
-    this.toggleButton.setAttribute("aria-expanded", "true");
+    this.menu.dataset.target = 'true';
+    this.toggleButton.setAttribute('aria-expanded', 'true');
     if (this.onOpen) {
       this.onOpen();
     }
@@ -580,25 +526,23 @@ const MobilePanel = {
      */
     if (this.running) {
       // eslint-disable-next-line no-console
-      console.warn(
-        "MobilePanel already initiated. Is it include more than once?"
-      );
+      console.warn('MobilePanel already initiated. Is it include more than once?');
       return;
     }
 
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('DOMContentLoaded', () => {
       // See  block--mobile-navigation.html.twig for the button
-      this.toggleButton = document.querySelector(".js-menu-toggle-button");
+      this.toggleButton = document.querySelector('.js-menu-toggle-button');
       if (!this.toggleButton) {
-        throw new Error("No toggle button for JS menu.");
+        throw new Error('No toggle button for JS menu.');
       }
       // TODO Where is this #menu coming from Maybe name it better?
-      this.menu = document.querySelector("#menu");
+      this.menu = document.querySelector('#menu');
       if (!this.menu) {
         // eslint-disable-next-line no-console
-        console.error("Panel not present in DOM. Cannot start JS mobile menu");
+        console.error('Panel not present in DOM. Cannot start JS mobile menu');
         return;
       }
 
@@ -607,11 +551,8 @@ const MobilePanel = {
       /**
        * Close menu on Escape button click if it is open.
        */
-      document.addEventListener("keydown", (e) => {
-        if (
-          (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) &&
-          this.isOpen()
-        ) {
+      document.addEventListener('keydown', (e) => {
+        if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
           this.close();
           this.toggleButton.focus();
         }
@@ -625,7 +566,7 @@ const MobilePanel = {
          * Start removes itself in order to only run once.
          */
         this.compileTemplates();
-        this.toggleButton.removeEventListener("click", start);
+        this.toggleButton.removeEventListener('click', start);
         this.start();
       };
       /**
@@ -635,14 +576,14 @@ const MobilePanel = {
        * Side effects:
        * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
        */
-      this.toggleButton.addEventListener("click", start);
-      this.toggleButton.addEventListener("click", () => this.toggle());
+      this.toggleButton.addEventListener('click', start);
+      this.toggleButton.addEventListener('click', () => this.toggle());
 
       /**
        * Open menu if it is required in the hash, then clear hash.
        */
       if (this.isOpen()) {
-        window.location.hash = "";
+        window.location.hash = '';
         start();
         this.open();
       }

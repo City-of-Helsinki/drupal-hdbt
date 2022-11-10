@@ -29,6 +29,8 @@
   },
   "rules": {
     "prettier/prettier": "error",
+
+    "quotes": ["warn", "single"],
     "semi": ["error", "always"],
     "consistent-return": ["off"],
     "no-underscore-dangle": ["off"],
@@ -58,5 +60,10 @@
       "after",
       { "overrides": { "?": "ignore", ":": "ignore" } }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "17.x"
+    }
   }
 }

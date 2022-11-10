@@ -9,16 +9,13 @@ class NavToggleDropdown {
   }
 
   isOpen() {
-    return (
-      window.location.hash === this.HASH_ID ||
-      this.targetNode.dataset.target === "true"
-    );
+    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
   }
 
   close() {
     if (this.running) {
-      this.buttonInstance.setAttribute("aria-expanded", "false");
-      this.targetNode.dataset.target = "false";
+      this.buttonInstance.setAttribute('aria-expanded', 'false');
+      this.targetNode.dataset.target = 'false';
       if (this.onClose) {
         this.onClose();
       }
@@ -27,8 +24,8 @@ class NavToggleDropdown {
 
   open() {
     if (this.running) {
-      this.buttonInstance.setAttribute("aria-expanded", "true");
-      this.targetNode.dataset.target = "true";
+      this.buttonInstance.setAttribute('aria-expanded', 'true');
+      this.targetNode.dataset.target = 'true';
       if (this.onOpen) {
         this.onOpen();
       }
@@ -46,18 +43,15 @@ class NavToggleDropdown {
 
   addListeners() {
     // Close menu on ESC
-    document.addEventListener("keydown", (e) => {
-      if (
-        (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) &&
-        this.isOpen()
-      ) {
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
         this.close();
         this.buttonInstance.focus();
       }
     });
 
     // Toggle menu from button
-    this.buttonInstance.addEventListener("click", () => {
+    this.buttonInstance.addEventListener('click', () => {
       this.toggle();
     });
   }
@@ -69,9 +63,7 @@ class NavToggleDropdown {
     if (!this.buttonInstance) {
       this.running = false;
       // eslint-disable-next-line no-console
-      console.warn(
-        `${name} button missing. Looking for ${this.buttonSelector}`
-      );
+      console.warn(`${name} button missing. Looking for ${this.buttonSelector}`);
       return;
     }
     if (this.running) {
@@ -83,13 +75,11 @@ class NavToggleDropdown {
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('DOMContentLoaded', () => {
       // Enhance nojs version with JavaScript
       this.targetNode = document.querySelector(this.HASH_ID);
       if (!this.targetNode) {
-        throw new Error(
-          `${name} target node missing. Looking for ${this.HASH_ID}`
-        );
+        throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
       }
       // Hide nojs menu links, show button instead.
       this.targetNode.dataset.js = true;

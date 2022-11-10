@@ -1,24 +1,19 @@
-const OPEN_CLASS = "menu__item--open";
-const HOVER_CLASS = "menu__item--hover";
+const OPEN_CLASS = 'menu__item--open';
+const HOVER_CLASS = 'menu__item--hover';
 
 function updateFirstChildAriaExpanded(item) {
-  let state = "false";
-  if (
-    item.classList.contains(OPEN_CLASS) ||
-    item.classList.contains(HOVER_CLASS)
-  ) {
-    state = "true";
+  let state = 'false';
+  if (item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS)) {
+    state = 'true';
   }
-  const firstChild = item.querySelector(":first-child .menu__toggle-button");
+  const firstChild = item.querySelector(':first-child .menu__toggle-button');
   if (firstChild) {
-    firstChild.setAttribute("aria-expanded", state);
+    firstChild.setAttribute('aria-expanded', state);
   }
 }
 
 function closeOpenItems(element) {
-  const allOpenItems = document.querySelectorAll(
-    `.desktop-menu .${OPEN_CLASS}`
-  );
+  const allOpenItems = document.querySelectorAll(`.desktop-menu .${OPEN_CLASS}`);
 
   if (allOpenItems) {
     // eslint-disable-next-line no-restricted-syntax
@@ -35,11 +30,11 @@ function closeOpenItems(element) {
 }
 
 function toggleDesktopMenuLevel(item) {
-  const toggleButton = item.querySelector(".menu__toggle-button");
+  const toggleButton = item.querySelector('.menu__toggle-button');
 
   // Check if there was menu toggle button under the menu item.
   if (toggleButton !== null) {
-    toggleButton.addEventListener("click", function toggleOpen() {
+    toggleButton.addEventListener('click', function toggleOpen() {
       item.classList.toggle(OPEN_CLASS);
       updateFirstChildAriaExpanded(item);
     });
@@ -47,8 +42,8 @@ function toggleDesktopMenuLevel(item) {
 }
 
 function mouseOver() {
-  closeOpenItems(this.closest(".menu__item--children"));
-  const item = this.closest(".menu__item--children");
+  closeOpenItems(this.closest('.menu__item--children'));
+  const item = this.closest('.menu__item--children');
   item.classList.add(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
 }
@@ -72,46 +67,36 @@ function getSiblings(n) {
   return getChildren(n.parentNode.firstChild, n);
 }
 
-document.addEventListener("DOMContentLoaded", function startDesktopMenu() {
+document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
   // Find all menu items with children menus.
-  const itemsWithChildren = document.querySelectorAll(
-    ".desktop-menu .menu--level-0 > .menu__item--children"
-  );
+  const itemsWithChildren = document.querySelectorAll('.desktop-menu .menu--level-0 > .menu__item--children');
 
   // eslint-disable-next-line no-restricted-syntax
   for (const item of itemsWithChildren) {
     if (item) {
-      const firstLevelItem = item.querySelector(
-        ".menu--level-0 > .menu__item--children > .menu__link-wrapper > a"
-      );
+      const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--children > .menu__link-wrapper > a');
 
       toggleDesktopMenuLevel(item);
-      firstLevelItem.addEventListener("mouseover", mouseOver, false);
-      item.addEventListener("mouseleave", mouseLeave, false);
+      firstLevelItem.addEventListener('mouseover', mouseOver, false);
+      item.addEventListener('mouseleave', mouseLeave, false);
     }
   }
 });
 
 // Functionality when other menu item is clicked while one is open or
 // when the user clicks outside of the menu.
-window.addEventListener("click", function onMainNavigationClick(event) {
+window.addEventListener('click', function onMainNavigationClick(event) {
   // First make sure that clicks inside the menu are ignored unless the
   // click is to a menu-link that needs to open another sub menu.
-  if (
-    document
-      .querySelector('[data-hdbt-selector="main-navigation"]')
-      .contains(event.target)
-  ) {
+  if (document.querySelector('[data-hdbt-selector="main-navigation"]').contains(event.target)) {
     let clickedElement = event.target;
 
-    if (clickedElement.classList.contains("menu__toggle-button-icon")) {
+    if (clickedElement.classList.contains('menu__toggle-button-icon')) {
       clickedElement = clickedElement.parentElement;
     }
 
-    if (clickedElement.classList.contains("menu__toggle-button")) {
-      const clickedElementParent = clickedElement.parentElement.closest(
-        ".menu__item--children"
-      );
+    if (clickedElement.classList.contains('menu__toggle-button')) {
+      const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
       const clickedElementSiblings = getSiblings(clickedElementParent);
 
       // Loop through all siblings and if there is some open, close them.
