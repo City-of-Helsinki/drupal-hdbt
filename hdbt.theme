@@ -811,6 +811,22 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }, $paragraph->field_service_list_services->getValue()));
   }
 
+  if ($paragraph_type == 'service_list_search') {
+    $ids = '';
+    $service_ids = '';
+    if ($paragraph->hasField('field_service_list_services')) {
+      $ids = implode(',', array_map(function ($service) {
+        return $service['target_id'];
+      }, $paragraph->field_service_list_services->getValue()));
+    }
+    if ($paragraph->hasField('field_service_list_service_ids')) {
+      $service_ids = implode(',', array_map(function ($service) {
+        return $service['value'];
+      }, $paragraph->field_service_list_service_ids->getValue()));
+    }
+    $variables['services_list_views_argument'] = $ids . '|' . $service_ids;
+  }
+
   // Contact card paragraph.
   if (
     $paragraph_type == 'contact_card' &&

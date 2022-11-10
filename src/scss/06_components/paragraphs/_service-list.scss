@@ -76,3 +76,34 @@
     }
   }
 }
+
+.component--service-list-search {
+  background-color: $color-silver-light;
+
+  .component__container {
+    padding-bottom: $spacing-double;
+    padding-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      padding-bottom: $spacing-quadruple;
+      padding-top: $spacing-quadruple;
+    }
+  }
+
+  .services-search__results {
+    border-top: 1px solid $color-black-10;
+    display: block;
+    margin-top: $spacing-double;
+    padding-top: $spacing-double;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-quadruple;
+      padding-top: $spacing-quadruple;
+    }
+
+    > .views-row + .views-row {
+      margin-top: $spacing;
+    }
+  }
+}
