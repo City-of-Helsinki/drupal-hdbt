@@ -1,18 +1,13 @@
-document.addEventListener("DOMContentLoaded", function accordionListeners() {
+document.addEventListener('DOMContentLoaded', function accordionListeners() {
   // Bind closing function to the additional close button at the bottom of
   // the content. For reasons unknown to man the close button cannot be
   // actual button. If you change it from span to button the click event
   // is no longer registered and the functionality doesn't work.
   function closeFold(folds) {
-    const closeButton = folds.content.querySelector(
-      ".accordion-item__button--close"
-    );
+    const closeButton = folds.content.querySelector('.accordion-item__button--close');
 
     function moveFocus(element) {
-      element
-        .closest(".accordion__wrapper")
-        .querySelector(".accordion-item__button--toggle")
-        .focus();
+      element.closest('.accordion__wrapper').querySelector('.accordion-item__button--toggle').focus();
     }
 
     function closeFolds(e) {
@@ -20,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function accordionListeners() {
       e.preventDefault();
       moveFocus(this);
     }
-    closeButton.addEventListener("mousedown", closeFolds);
+    closeButton.addEventListener('mousedown', closeFolds);
 
-    closeButton.addEventListener("keypress", function closeFoldsOnKey(e) {
+    closeButton.addEventListener('keypress', function closeFoldsOnKey(e) {
       if (e.which === 13 || e.which === 32) {
         closeFolds(e);
       }
@@ -30,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function accordionListeners() {
   }
 
   // Find all accordions.
-  const accordions = document.getElementsByClassName("handorgel");
+  const accordions = document.getElementsByClassName('handorgel');
   window.handorgel_accordions = [];
 
   // eslint-disable-next-line no-restricted-syntax
@@ -51,27 +46,27 @@ document.addEventListener("DOMContentLoaded", function accordionListeners() {
       carouselFocus: true,
 
       // attribute for the header or content to open folds at initialization
-      initialOpenAttribute: "data-open",
+      initialOpenAttribute: 'data-open',
       // whether to use transition at initial open
       initialOpenTransition: true,
       // delay used to show initial transition
       initialOpenTransitionDelay: 200,
 
       // header/content class if fold is open
-      headerOpenClass: "handorgel__header--open",
-      contentOpenClass: "handorgel__content--open",
+      headerOpenClass: 'handorgel__header--open',
+      contentOpenClass: 'handorgel__content--open',
 
       // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: "handorgel__header--opened",
-      contentOpenedClass: "handorgel__content--opened",
+      headerOpenedClass: 'handorgel__header--opened',
+      contentOpenedClass: 'handorgel__content--opened',
 
       // header/content class if fold has been focused
-      headerFocusClass: "handorgel__header--focus",
-      contentFocusClass: "handorgel__content--focus",
+      headerFocusClass: 'handorgel__header--focus',
+      contentFocusClass: 'handorgel__content--focus',
 
       // header/content class if fold is disabled
-      headerDisabledClass: "handorgel__header--disabled",
-      contentDisabledClass: "handorgel__content--disabled",
+      headerDisabledClass: 'handorgel__header--disabled',
+      contentDisabledClass: 'handorgel__content--disabled',
     });
 
     // Add a global variable so that we can open accordions with anchor links where needed

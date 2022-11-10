@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function startMobileBranding() {
+document.addEventListener('DOMContentLoaded', function startMobileBranding() {
   const INITIAL = 0;
   const DOWN = 1;
   const UP = 2;
@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function startMobileBranding() {
   let direction = INITIAL;
   let prevDirection = INITIAL;
 
-  const languageSwitcher = document.querySelector(".language-wrapper");
+  const languageSwitcher = document.querySelector('.language-wrapper');
 
   function toggleLanguageSwitcher(newDirection, curScroll) {
     if (newDirection === UP && curScroll > languageSwitcher.clientHeight) {
-      languageSwitcher.classList.add("scroll-up");
+      languageSwitcher.classList.add('scroll-up');
       prevDirection = newDirection;
     } else if (newDirection === DOWN) {
-      languageSwitcher.classList.remove("scroll-up");
+      languageSwitcher.classList.remove('scroll-up');
       prevDirection = newDirection;
     }
   }
@@ -42,6 +42,6 @@ document.addEventListener("DOMContentLoaded", function startMobileBranding() {
   }
 
   if (languageSwitcher) {
-    window.addEventListener("scroll", checkScroll);
+    window.addEventListener('scroll', checkScroll);
   }
 });

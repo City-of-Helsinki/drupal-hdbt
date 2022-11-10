@@ -1,19 +1,19 @@
 /* eslint-disable no-unreachable */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const widgetsToHideSelector = [
-    ".cx-theme-helsinki-blue", // Genesys chat in kymp and sote
-    "#smartti-wrapper", // Smartti chatbot in kymp
-    ".aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop", // Watson chatbot in asuminen
-    "#block-kuurahealthchat", // Kuurahealth in sote
-    "#ed11y-panel", // Editoria11y accessibility tool
+    '.cx-theme-helsinki-blue', // Genesys chat in kymp and sote
+    '#smartti-wrapper', // Smartti chatbot in kymp
+    '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
+    '#block-kuurahealthchat', // Kuurahealth in sote
+    '#ed11y-panel', // Editoria11y accessibility tool
   ];
 
-  const toggle = document.querySelector(".js-cssmenu-toggle-button");
-  const checkbox = document.querySelector(".js-cssmenu-toggle-checkbox");
+  const toggle = document.querySelector('.js-cssmenu-toggle-button');
+  const checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
 
   function toggleWidgets(hide) {
-    const widgets = document.querySelectorAll(widgetsToHideSelector.join(","));
+    const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
     for (let i = 0; i < widgets.length; i++) {
       const widget = widgets[i];
       if (hide) {
@@ -26,26 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkboxToggle() {
     if (checkbox.checked) {
-      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute('aria-expanded', 'false');
       checkbox.checked = false;
       toggleWidgets(false);
       toggle.focus();
     } else {
       checkbox.checked = true;
       toggleWidgets(true);
-      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute('aria-expanded', 'true');
     }
   }
 
   if (toggle) {
-    toggle.addEventListener("click", checkboxToggle);
+    toggle.addEventListener('click', checkboxToggle);
   }
 
-  document.addEventListener("keydown", function toggleOnEnter(e) {
-    if (
-      (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) &&
-      checkbox.checked
-    ) {
+  document.addEventListener('keydown', function toggleOnEnter(e) {
+    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && checkbox.checked) {
       checkboxToggle();
     }
   });

@@ -10,7 +10,8 @@
     "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
     "lint": "lint-staged --allow-empty",
-    "lint:js": "eslint --fix src/"
+    "lint:js": "eslint src/",
+    "format:js": "eslint --fix src/"
   },
   "dependencies": {
     "@babel/core": "^7.14.3",

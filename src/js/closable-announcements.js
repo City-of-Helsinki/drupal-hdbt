@@ -2,10 +2,10 @@
 (function (Drupal) {
   Drupal.behaviors.closable_announcements = {
     attach: function attach() {
-      const ANNOUCEMENT = "js-announcement";
-      const ANNOUCEMENT_HIDE = "js-announcement--hide";
-      const DISABLED = "js-announcement__close--disabled";
-      const KEYNAME = "hidden-helfi-announcements";
+      const ANNOUCEMENT = 'js-announcement';
+      const ANNOUCEMENT_HIDE = 'js-announcement--hide';
+      const DISABLED = 'js-announcement__close--disabled';
+      const KEYNAME = 'hidden-helfi-announcements';
 
       function addToAnnouncementStorage(announcement) {
         const { uuid } = announcement.dataset;
@@ -44,7 +44,7 @@
         const disabledAnnouncements = document.querySelectorAll(`.${DISABLED}`);
         for (let i = 0; i < disabledAnnouncements.length; i++) {
           const announcement = disabledAnnouncements[i];
-          announcement.addEventListener("click", triggerAnnouncementClose);
+          announcement.addEventListener('click', triggerAnnouncementClose);
           announcement.classList.remove(DISABLED);
         }
       }
