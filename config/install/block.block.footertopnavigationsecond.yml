@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-top-navigation-2
+  module:
+    - menu_block_current_language
+  theme:
+    - hdbt
+id: footertopnavigationsecond
+theme: hdbt
+region: footer_top
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:footer-top-navigation-2'
+settings:
+  id: 'menu_block_current_language:footer-top-navigation-2'
+  label: Connect
+  label_display: visible
+  provider: menu_block_current_language
+  level: 1
+  expand_all_items: false
+  depth: 1
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
+visibility: {  }

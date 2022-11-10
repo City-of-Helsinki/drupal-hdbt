@@ -1,7 +1,7 @@
 langcode: und
 status: true
 dependencies: {  }
-id: footer-top-navigation
-label: 'Footer - Top navigation - First'
+id: footer-top-navigation-2
+label: 'Footer - Top navigation - Second'
 description: 'Top navigation for footer block.'
 locked: false
