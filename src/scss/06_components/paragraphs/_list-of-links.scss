@@ -99,6 +99,7 @@ $-item-spacing: $spacing-triple;
     .link__type {
       --icon-size: 1.5rem;
       display: block;
+      flex-shrink: 0;
       height: var(--icon-size);
       margin-left: -$spacing-quarter;
       margin-top: $spacing-half;
