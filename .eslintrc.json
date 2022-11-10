@@ -5,7 +5,14 @@
     "node": true,
     "es6": true
   },
-  "extends": ["airbnb", "drupal", "prettier"],
+
+  
+  "extends": [ 
+  "airbnb-base",
+  "plugin:prettier/recommended",
+  "drupal"
+  // "plugin:yml/recommended"
+],
 
   "parserOptions": {
     "ecmaVersion": 2020
