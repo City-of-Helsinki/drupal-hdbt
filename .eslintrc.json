@@ -9,15 +9,16 @@
   
   "extends": [ 
   "airbnb-base",
-  "plugin:prettier/recommended",
-  "drupal"
+  // "plugin:prettier/recommended",
+  "prettier"
+  // "drupal"
   // "plugin:yml/recommended"
 ],
 
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "plugins": ["prettier"],
+  // "plugins": ["prettier"],
   "globals": {
     "Drupal": true,
     "drupalSettings": true,
@@ -35,7 +36,8 @@
     "tabbable": true
   },
   "rules": {
-    "prettier/prettier": "error",
+    // "prettier/prettier": "error",
+    "prefer-arrow-callback":["off"],
 
     "quotes": ["warn", "single"],
     "semi": ["error", "always"],
