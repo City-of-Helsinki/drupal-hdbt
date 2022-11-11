@@ -15,6 +15,11 @@ accordion:
   js:
     dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
 
+helfi_calculator:
+  version: 1.x
+  js:
+    dist/js/helfi_calculator.min.js: {}
+
 throbber:
   version: 1.x
   js:
