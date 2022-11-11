@@ -1,0 +1,47 @@
+.helfi-calculator {
+  .hds-text-input__input {
+    @include breakpoint($breakpoint-m) {
+      width: auto;
+    }
+  }
+
+  .helfi-calculator__item,
+  .helfi-calculator__buttons {
+    margin-top: $spacing-and-half;
+  }
+
+  .helfi-calculator__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .helfi-calculator-result {
+    margin-top: $spacing-double;
+  }
+
+  .helfi-calculator-result .hds-notification__body > ul {
+    margin-block: 0;
+  }
+
+  .helfi-calculator-result .hds-notification__body li {
+    margin-top: $spacing-half;
+  }
+
+  .required {
+    color: $color-error;
+  }
+
+  .helfi-calculator__group[data-hide-group='true'] {
+    display: none;
+  }
+
+  [data-hide-group='true'] {
+    display: none;
+  }
+}
