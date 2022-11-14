@@ -9,9 +9,9 @@
 
   .views-exposed-form {
 
-    padding-bottom: $spacing-triple;
-
     border-bottom: 1px solid $color-black-10;
+
+    padding-bottom: $spacing-triple;
     @include breakpoint($breakpoint-l) {
       padding-bottom: $spacing-quadruple;
     }
@@ -52,19 +52,11 @@
   }
 
   .service-list__count-container {
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-triple;
-      margin-bottom: $gutter;
-    }
-
-    margin-bottom: $spacing-half;
-    margin-top: $spacing-triple;
-
-    @include font('lead');
     display: block;
+    margin-bottom: $spacing-double;
+    margin-top: $spacing-triple;
+    @include font('lead');
     width: 100%;
-
     .service-list__count {
       font-weight: $font-weight-bold;
     }
@@ -104,23 +96,6 @@
     @include breakpoint($breakpoint-m) {
       padding-bottom: $spacing-quadruple;
       padding-top: $spacing-quadruple;
-    }
-  }
-
-  .services-search__results {
-    .views-row {
-      background-color: $color-white;
-      padding: 0 $gutter 0 $gutter;
-      @include breakpoint($breakpoint-m) {
-        background-color: $color-white;
-        padding: 0;
-      }
-    }
-    display: block;
-    width: 100%;
-
-    > .views-row + .views-row {
-      margin-top: $spacing;
     }
   }
 }
