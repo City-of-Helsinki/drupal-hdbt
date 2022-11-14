@@ -548,7 +548,7 @@ class HomeCareClientPayment {
         this.calculator.renderResult(result);
       },
       keydown: () => {
-        this,update();
+        update();
         this.calculator.clearResult();
       },
       change: () => {
