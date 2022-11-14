@@ -8,6 +8,14 @@
   }
 
   .views-exposed-form {
+
+    border-bottom: 1px solid $color-black-10;
+
+    padding-bottom: $spacing-triple;
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: $spacing-quadruple;
+    }
+
     @include breakpoint($breakpoint-m) {
       align-items: flex-end;
       display: flex;
@@ -44,10 +52,11 @@
   }
 
   .service-list__count-container {
-    @include font('lead');
     display: block;
+    margin-bottom: $spacing-double;
+    margin-top: $spacing-triple;
+    @include font('lead');
     width: 100%;
-
     .service-list__count {
       font-weight: $font-weight-bold;
     }
@@ -87,23 +96,6 @@
     @include breakpoint($breakpoint-m) {
       padding-bottom: $spacing-quadruple;
       padding-top: $spacing-quadruple;
-    }
-  }
-
-  .services-search__results {
-    border-top: 1px solid $color-black-10;
-    display: block;
-    margin-top: $spacing-double;
-    padding-top: $spacing-double;
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-      padding-top: $spacing-quadruple;
-    }
-
-    > .views-row + .views-row {
-      margin-top: $spacing;
     }
   }
 }

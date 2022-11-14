@@ -102,96 +102,97 @@ $teaser-icon-size-desktop: 48px;
 }
 
 .service.service--teaser-search-result {
+  background-color: $color-white;
+  margin-bottom: $spacing;
   .service__link {
-    background-color: $color-white;
-    margin-top: $spacing-double;
-    padding: 0 $spacing-and-half $spacing-double;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-and-half;
     position: relative;
     text-decoration: none;
     width: 100%;
 
     @include breakpoint($breakpoint-m) {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-top: 0;
       padding: $spacing-double;
     }
     .service__title {
-      @include font('special.card_title');
-      margin-bottom: $spacing-quarter;
+      @include font('h4');
+      margin-bottom: $spacing;
       margin-top: 0;
-      padding-right: $spacing-and-half;
 
       @include breakpoint($breakpoint-m) {
-        margin-bottom: 0;
-        padding-right: 0;
+        font-size: $base-font-size + 10;
+        margin-bottom: $spacing-half;
         width: 100%;
+      }
+      @include breakpoint($breakpoint-l) {
+        margin-bottom: $spacing;
       }
     }
     .service__content {
-      align-content: flex-start;
+      position: relative;
+
+      .short-desc {
+        font-size: $base-font-size;
+        font-style: normal;
+        font-weight: $font-weight-regular;
+        margin-bottom: $spacing;
+        padding-right: calc(#{$spacing} + #{$teaser-icon-size-mobile});
+        @include breakpoint($breakpoint-m) {
+          padding-right: calc(#{$spacing} + #{$teaser-icon-size-desktop} + #{$spacing});
+        }
+        p {
+          margin: 0;
+          padding: 0;
+        }
+      }
 
       @include breakpoint($breakpoint-m) {
         display: flex;
         flex-wrap: wrap;
-        //max-width: 530px;
       }
       .channels {
+        padding-right: calc(#{$spacing} + #{$teaser-icon-size-mobile});
+        @include breakpoint($breakpoint-m) {
+          padding-right: calc(#{$spacing} + #{$teaser-icon-size-desktop} + #{$spacing});
+        }
         ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: $spacing-half;
           list-style: none;
           margin: 0;
           padding: 0;
         }
         li {
+          @include font('special.helper_text');
           background-color: rgb(222, 223, 225);
-          border-radius: 16px;
+          border-radius: $spacing;
           display: inline-block;
-          padding: 8px 6px;
-          //height: 32px;
-          //width: 67px;
-          & + li {
-            margin-left: 8px;
-          }
+          font-weight: $font-weight-medium;
+          margin: 0;
+          padding: $spacing-half $gutter;
         }
       }
     }
     .service__read-more {
-      display: flex;
-      //margin-top: $spacing-double;
-
-      @include breakpoint($breakpoint-m) {
-        justify-content: flex-end;
-        //margin-top: $spacing;
-      }
-
+      bottom: 0;
+      position: absolute;
+      right: 0;
       .hel-icon {
         --icon-size: #{$teaser-icon-size-mobile};
-        //bottom: 50%;
-        //left: auto;
-        //position: absolute;
-        margin-right: $spacing;
-        transition: all 0.3s;
+        @include breakpoint($breakpoint-m) {
+          --icon-size: #{$teaser-icon-size-desktop};
+          margin-right: $spacing;
+          margin-top: $spacing-and-half;
+          transition: all 0.3s;
+        }
         @media (prefers-reduced-motion) {
           transition: none;
         }
-
-        @include breakpoint($breakpoint-l) {
-          --icon-size: #{ $teaser-icon-size-desktop};
-          //margin-top: $spacing-and-half;
-          //position: static;
-          //right: auto;
-          //transform: none;
-        }
       }
-
-      //.hel-icon {
-      //  @include hover-link-arrow-transition();
-      //  margin-left: $spacing-half;
-      //}
     }
-
-
 
     &:hover {
       text-decoration: none;
@@ -201,20 +202,16 @@ $teaser-icon-size-desktop: 48px;
 
       .service__read-more {
         .hel-icon {
-          transform: translateX($spacing);
+          @include breakpoint($breakpoint-m) {
+            transform: translateX($spacing);
+          }
           @media (prefers-reduced-motion) {
             transform: none;
           }
-          //margin-left: $spacing;
-          //
-          //@media (prefers-reduced-motion) {
-          //  margin-left: 0;
-          //}
         }
       }
     }
   }
-
 }
 
 .service--units__container {
