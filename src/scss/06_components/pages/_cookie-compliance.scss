@@ -17,7 +17,7 @@
     margin-top: $spacing-double;
     padding-bottom: $spacing-double;
 
-    &:before {
+    &::before {
       @include pseudo-icon('info-circle', $spacing-double, $color-black, flex);
       margin-right: $spacing-half;
     }
@@ -122,9 +122,6 @@
 
     .hds-button {
       @include hds-button-colors-on-light-bg;
-    }
-
-    .hds-button {
       margin-top: $spacing;
       max-width: 400px; // To avoid too long buttons.
 
