@@ -136,10 +136,10 @@
       }
     }
   }
+}
 
-  .layout-main-wrapper &:last-child .message {
-    margin-bottom: 80px;
-  }
+.layout-main-wrapper > .block--react-and-share:last-child .message {
+  margin-bottom: 80px;
 }
 
 // Remote videos have black background and white text so we need different styles for the
