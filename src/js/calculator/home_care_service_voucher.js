@@ -1,7 +1,6 @@
 class HomeCareServiceVoucher {
   constructor(id, settings) {
     this.id = id;
-    const that = this;
 
     // Expecting settings to follow this JSON format:
     /*
@@ -118,51 +117,51 @@ class HomeCareServiceVoucher {
     };
 
     const eventHandlers = {
-      submit: function (event) {
+      submit: (event) => {
         event.preventDefault();
         const result = validate(this.id);
-        that.calculator.renderResult(result);
+        this.calculator.renderResult(result);
       },
       keydown: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
       change: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
       reset: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
     };
 
-    function validate(id) {
+    const validate =(id) => {
       const errorMessages = [];
 
-      errorMessages.push(...that.calculator.validateBasics('household_size'));
-      errorMessages.push(...that.calculator.validateBasics('monthly_usage'));
-      errorMessages.push(...that.calculator.validateBasics('gross_income_per_month'));
-      errorMessages.push(...that.calculator.validateBasics('service_providers_hourly_price'));
+      errorMessages.push(...this.calculator.validateBasics('household_size'));
+      errorMessages.push(...this.calculator.validateBasics('monthly_usage'));
+      errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
+      errorMessages.push(...this.calculator.validateBasics('service_providers_hourly_price'));
 
       // Check if any missing input errors were found
       if (errorMessages.length) {
-        return { error: true, title: that.t('missing_input'), message: errorMessages };
+        return { error: true, title: this.t('missing_input'), message: errorMessages };
       }
-      const size = that.calculator.getFieldValue('household_size');
-      const usage = that.calculator.getFieldValue('monthly_usage');
-      const income = that.calculator.getFieldValue('gross_income_per_month');
-      const price = that.calculator.getFieldValue('service_providers_hourly_price');
+      const size = this.calculator.getFieldValue('household_size');
+      const usage = this.calculator.getFieldValue('monthly_usage');
+      const income = this.calculator.getFieldValue('gross_income_per_month');
+      const price = this.calculator.getFieldValue('service_providers_hourly_price');
 
       // TODO: Add the algorithm
 
       // // Otherwise not applicable for voucher
-      // return { alert: true, title: that.t('result'), message: that.t('alert_voucher_not_applicable') };
-      return { alert: true, title: that.t('result'), message: 'Algorithm is missing!' };
-    }
+      // return { alert: true, title: this.t('result'), message: this.t('alert_voucher_not_applicable') };
+      return { alert: true, title: this.t('result'), message: 'Algorithm is missing!' };
+    };
 
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'home_care_service_voucher', translations });
 
     // Create shortcut for translations
-    this.t = (key, value) => that.calculator.translate(key, value);
+    this.t = (key, value) => this.calculator.translate(key, value);
 
     // Parse settings to js
     this.settings = this.calculator.parseSettings(settings);

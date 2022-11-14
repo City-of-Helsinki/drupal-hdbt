@@ -1,7 +1,6 @@
 class HouseCleaningServiceVoucher {
   constructor(id, settings) {
     this.id = id;
-    const that = this;
 
     // Expecting settings to follow this JSON format:
     /*
@@ -114,61 +113,61 @@ class HouseCleaningServiceVoucher {
     };
 
     const eventHandlers = {
-      submit: function (event) {
+      submit:  (event) => {
         event.preventDefault();
         const result = validate(this.id);
-        that.calculator.renderResult(result);
+        this.calculator.renderResult(result);
       },
       keydown: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
       change: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
       reset: () => {
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
     };
 
-    function validate(id) {
+    const validate = (id) => {
       const errorMessages = [];
 
-      errorMessages.push(...that.calculator.validateBasics('gross_income_per_month'));
-      errorMessages.push(...that.calculator.validateBasics('household_size'));
+      errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
+      errorMessages.push(...this.calculator.validateBasics('household_size'));
 
       // Check if any missing input errors were found
       if (errorMessages.length) {
-        return { error: true, title: that.t('missing_input'), message: errorMessages };
+        return { error: true, title: this.t('missing_input'), message: errorMessages };
       }
 
-      const household_size = that.calculator.getFieldValue('household_size');
-      const gross_income_per_month = that.calculator.getFieldValue('gross_income_per_month');
+      const household_size = this.calculator.getFieldValue('household_size');
+      const gross_income_per_month = this.calculator.getFieldValue('gross_income_per_month');
 
       // Get correct data values based on family size
-      const family_data = that.settings['household_size_' + household_size];
+      const family_data = this.settings['household_size_' + household_size];
       if (!family_data) {
         throw 'household_size_' + household_size + ' missing from settings';
       }
 
       // Check if first level is applicable
       if (gross_income_per_month <= family_data.first_level.max_allowed_income) {
-        return { info: true, title: that.t('result'), message: that.t('info_voucher_value', { voucher_value: family_data.first_level.value }) };
+        return { info: true, title: this.t('result'), message: this.t('info_voucher_value', { voucher_value: family_data.first_level.value }) };
 
         // Check if second level is applicable
       } else if (gross_income_per_month <= family_data.second_level.max_allowed_income) {
-        return { info: true, title: that.t('result'), message: that.t('info_voucher_value', { voucher_value: family_data.second_level.value }) };
+        return { info: true, title: this.t('result'), message: this.t('info_voucher_value', { voucher_value: family_data.second_level.value }) };
       }
 
       // Otherwise not applicable for voucher
-      return { alert: true, title: that.t('result'), message: that.t('alert_voucher_not_applicable') };
-    }
+      return { alert: true, title: this.t('result'), message: this.t('alert_voucher_not_applicable') };
+    };
 
 
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'house_cleaning_service_voucher', translations });
 
     // Create shortcut for translations
-    this.t = (key, value) => that.calculator.translate(key, value);
+    this.t = (key, value) => this.calculator.translate(key, value);
 
     // Parse settings to js
     this.settings = this.calculator.parseSettings(settings);
