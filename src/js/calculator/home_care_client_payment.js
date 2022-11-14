@@ -1,7 +1,6 @@
 class HomeCareClientPayment {
   constructor(id, settings) {
     this.id = id;
-    const that = this;
 
     // Expecting settings to follow this JSON format:
     /*
@@ -543,82 +542,82 @@ class HomeCareClientPayment {
     };
 
     const eventHandlers = {
-      submit: function (event) {
+      submit:(event) => {
         event.preventDefault();
         const result = validate(this.id);
-        that.calculator.renderResult(result);
+        this.calculator.renderResult(result);
       },
       keydown: () => {
-        update();
-        that.calculator.clearResult();
+        this,update();
+        this.calculator.clearResult();
       },
       change: () => {
         update();
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
       reset: () => {
         update();
-        that.calculator.clearResult();
+        this.calculator.clearResult();
       },
     };
 
 
-    function update() {
-      const foodservice = that.calculator.getFieldValue('foodservice');
+    const update = () => {
+      const foodservice = this.calculator.getFieldValue('foodservice');
 
       switch (foodservice) {
       case '1':
-        that.calculator.showGroup('foodservice_group_1');
-        that.calculator.hideGroup('foodservice_group_2');
-        that.calculator.hideGroup('foodservice_group_3');
+        this.calculator.showGroup('foodservice_group_1');
+        this.calculator.hideGroup('foodservice_group_2');
+        this.calculator.hideGroup('foodservice_group_3');
         break;
       case '2':
-        that.calculator.hideGroup('foodservice_group_1');
-        that.calculator.showGroup('foodservice_group_2');
-        that.calculator.hideGroup('foodservice_group_3');
+        this.calculator.hideGroup('foodservice_group_1');
+        this.calculator.showGroup('foodservice_group_2');
+        this.calculator.hideGroup('foodservice_group_3');
         break;
       case '3':
-        that.calculator.hideGroup('foodservice_group_1');
-        that.calculator.hideGroup('foodservice_group_2');
-        that.calculator.showGroup('foodservice_group_3');
+        this.calculator.hideGroup('foodservice_group_1');
+        this.calculator.hideGroup('foodservice_group_2');
+        this.calculator.showGroup('foodservice_group_3');
         break;
 
       default:
-        that.calculator.hideGroup('foodservice_group_1');
-        that.calculator.hideGroup('foodservice_group_2');
-        that.calculator.hideGroup('foodservice_group_3');
+        this.calculator.hideGroup('foodservice_group_1');
+        this.calculator.hideGroup('foodservice_group_2');
+        this.calculator.hideGroup('foodservice_group_3');
         break;
       }
-    }
+    };
 
-    function validate(id) {
+    const validate =(id) => {
       const errorMessages = [];
 
-      errorMessages.push(...that.calculator.validateBasics('household_size'));
-      errorMessages.push(...that.calculator.validateBasics('monthly_usage'));
-      errorMessages.push(...that.calculator.validateBasics('gross_income_per_month'));
-      errorMessages.push(...that.calculator.validateBasics('phone'));
-      errorMessages.push(...that.calculator.validateBasics('sauna_no_travel'));
-      errorMessages.push(...that.calculator.validateBasics('sauna_with_travel'));
-      errorMessages.push(...that.calculator.validateBasics('shopping'));
-      errorMessages.push(...that.calculator.validateBasics('foodservice'));
+      errorMessages.push(...this.calculator.validateBasics('household_size'));
+      errorMessages.push(...this.calculator.validateBasics('monthly_usage'));
+      errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
+      errorMessages.push(...this.calculator.validateBasics('phone'));
+      errorMessages.push(...this.calculator.validateBasics('sauna_no_travel'));
+      errorMessages.push(...this.calculator.validateBasics('sauna_with_travel'));
+      errorMessages.push(...this.calculator.validateBasics('shopping'));
+      errorMessages.push(...this.calculator.validateBasics('foodservice'));
 
-      const foodservice = that.calculator.getFieldValue('foodservice');
+      const foodservice = this.calculator.getFieldValue('foodservice');
 
       switch (foodservice) {
       case '1':
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_1_delivery_fee'));
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_1_meal_price'));
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_1_meals'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_1_delivery_fee'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_1_meal_price'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_1_meals'));
         break;
       case '2':
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_2_delivery_fee'));
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_2_meals'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_2_delivery_fee'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_2_meals'));
         break;
       case '3':
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_3_meal_price'));
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_3_usage'));
-        errorMessages.push(...that.calculator.validateBasics('foodservice_group_3_meals'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_3_meal_price'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_3_usage'));
+        errorMessages.push(...this.calculator.validateBasics('foodservice_group_3_meals'));
         break;
 
       default:
@@ -627,15 +626,15 @@ class HomeCareClientPayment {
 
       // Check if any missing input errors were found
       if (errorMessages.length) {
-        return { error: true, title: that.t('missing_input'), message: errorMessages };
+        return { error: true, title: this.t('missing_input'), message: errorMessages };
       }
-      const household_size = that.calculator.getFieldValue('household_size');
-      const monthly_usage = that.calculator.getFieldValue('monthly_usage');
-      const gross_income_per_month = that.calculator.getFieldValue('gross_income_per_month');
-      const phone = that.calculator.getFieldValue('phone');
-      const sauna_no_travel = that.calculator.getFieldValue('sauna_no_travel');
-      const sauna_with_travel = that.calculator.getFieldValue('sauna_with_travel');
-      const shopping = that.calculator.getFieldValue('shopping');
+      const household_size = this.calculator.getFieldValue('household_size');
+      const monthly_usage = this.calculator.getFieldValue('monthly_usage');
+      const gross_income_per_month = this.calculator.getFieldValue('gross_income_per_month');
+      const phone = this.calculator.getFieldValue('phone');
+      const sauna_no_travel = this.calculator.getFieldValue('sauna_no_travel');
+      const sauna_with_travel = this.calculator.getFieldValue('sauna_with_travel');
+      const shopping = this.calculator.getFieldValue('shopping');
 
       const foodservice_group_1 = {};
       const foodservice_group_2 = {};
@@ -644,18 +643,18 @@ class HomeCareClientPayment {
       // TODO: Add the algorithm
       switch (foodservice) {
       case '1':
-        foodservice_group_1.delivery_fee = that.calculator.getFieldValue('foodservice_group_1_delivery_fee');
-        foodservice_group_1.meal_price = that.calculator.getFieldValue('foodservice_group_1_meal_price');
-        foodservice_group_1.meals = that.calculator.getFieldValue('foodservice_group_1_meals');
+        foodservice_group_1.delivery_fee = this.calculator.getFieldValue('foodservice_group_1_delivery_fee');
+        foodservice_group_1.meal_price = this.calculator.getFieldValue('foodservice_group_1_meal_price');
+        foodservice_group_1.meals = this.calculator.getFieldValue('foodservice_group_1_meals');
         break;
       case '2':
-        foodservice_group_2.delivery_fee = that.calculator.getFieldValue('foodservice_group_2_delivery_fee');
-        foodservice_group_2.meals = that.calculator.getFieldValue('foodservice_group_2_meals');
+        foodservice_group_2.delivery_fee = this.calculator.getFieldValue('foodservice_group_2_delivery_fee');
+        foodservice_group_2.meals = this.calculator.getFieldValue('foodservice_group_2_meals');
         break;
       case '3':
-        foodservice_group_3.meal_price = that.calculator.getFieldValue('foodservice_group_3_meal_price');
-        foodservice_group_3.usage = that.calculator.getFieldValue('foodservice_group_3_usage');
-        foodservice_group_3.meals = that.calculator.getFieldValue('foodservice_group_3_meals');
+        foodservice_group_3.meal_price = this.calculator.getFieldValue('foodservice_group_3_meal_price');
+        foodservice_group_3.usage = this.calculator.getFieldValue('foodservice_group_3_usage');
+        foodservice_group_3.meals = this.calculator.getFieldValue('foodservice_group_3_meals');
         break;
 
       default:
@@ -663,14 +662,14 @@ class HomeCareClientPayment {
       }
 
       // // Otherwise not applicable for voucher
-      // return { alert: true, title: that.t('result'), message: that.t('alert_voucher_not_applicable') };
-      return { alert: true, title: that.t('result'), message: 'Algorithm is missing!' };
-    }
+      // return { alert: true, title: this.t('result'), message: this.t('alert_voucher_not_applicable') };
+      return { alert: true, title: this.t('result'), message: 'Algorithm is missing!' };
+    };
 
     this.calculator = window.HelfiCalculator({ name: 'home_care_client_payment', translations });
 
     // Create shortcut for translations
-    this.t = (key, value) => that.calculator.translate(key, value);
+    this.t = (key, value) => this.calculator.translate(key, value);
 
     // Parse settings to js
     this.settings = this.calculator.parseSettings(settings);
