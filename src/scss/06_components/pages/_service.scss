@@ -152,7 +152,6 @@ $teaser-icon-size-desktop: 48px;
           width: 80%;
         }
         @include breakpoint($breakpoint-l) {
-          //width: $container-width-xl - $spacing-quadruple;
           width: 90%;
         }
       }
@@ -160,7 +159,6 @@ $teaser-icon-size-desktop: 48px;
       @include breakpoint($breakpoint-m) {
         display: flex;
         flex-wrap: wrap;
-        //max-width: 530px;
       }
       .channels {
         display: inline-flex;
@@ -168,7 +166,6 @@ $teaser-icon-size-desktop: 48px;
           width: 80%;
         }
         @include breakpoint($breakpoint-l) {
-          //width: $container-width-xl - $spacing-quadruple;
           width: 90%;
         }
         //width: 90%;
@@ -198,15 +195,7 @@ $teaser-icon-size-desktop: 48px;
     }
     .service__read-more {
       display: inline-flex;
-      //position: absolute;
-      //bottom: 15%;
-      //width: 100%;
-      //text-align: end;
-      //@include breakpoint($breakpoint-l) {
-      //  margin-top: 32px;
-      //}
       @include breakpoint($breakpoint-m) {
-        //margin-top: 32px;
         justify-content: flex-end;
         width: 100%;
       }
