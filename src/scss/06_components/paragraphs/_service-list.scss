@@ -9,17 +9,16 @@
 
   .views-exposed-form {
 
-    padding-bottom: 30px;
-    
+    padding-bottom: $spacing-triple;
+
     border-bottom: 1px solid $color-black-10;
     @include breakpoint($breakpoint-l) {
-      padding-bottom: 72px;
+      padding-bottom: $spacing-quadruple;
     }
 
     @include breakpoint($breakpoint-m) {
       align-items: flex-end;
       display: flex;
-      padding-bottom: 40px;
     }
 
     .form-item {
@@ -55,12 +54,12 @@
   .service-list__count-container {
 
     @include breakpoint($breakpoint-m) {
-      margin-top: 45px;
-      margin-bottom: 30px;
+      margin-top: $spacing-triple;
+      margin-bottom: $gutter;
     }
 
-    margin-bottom: 0;
-    margin-top: 45px;
+    margin-bottom: $spacing-half;
+    margin-top: $spacing-triple;
 
     @include font('lead');
     display: block;
@@ -111,7 +110,11 @@
   .services-search__results {
     .views-row {
       background-color: $color-white;
-      margin-bottom: 40px;
+      padding: 0 $gutter 0 $gutter;
+      @include breakpoint($breakpoint-m) {
+        background-color: $color-white;
+        padding: 0;
+      }
     }
     display: block;
     width: 100%;

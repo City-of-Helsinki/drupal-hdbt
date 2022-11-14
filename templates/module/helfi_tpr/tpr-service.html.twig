@@ -25,19 +25,21 @@
         {{ entity.label }}
       </h3>
       <div class="service__content">
-        <div>
+{#        <div>#}
           <div class="short-desc">
             {{ content.description }}
           </div>
-          <div class="channels">
-            {{ content.errand_services }}
+          {% if content.errand_services[0]['#items'] | length > 0 %}
+            <div class="channels">
+              {{ content.errand_services }}
+            </div>
+          {% endif %}
+          <div class="service__read-more">
+            {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
           </div>
-        </div>
+{#        </div>#}
       </div>
 
-      <div class="service__read-more">
-        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
-      </div>
     </a>
   </div>
 

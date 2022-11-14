@@ -102,9 +102,11 @@ $teaser-icon-size-desktop: 48px;
 }
 
 .service.service--teaser-search-result {
+  padding-bottom: $gutter;
   .service__link {
     margin-top: $spacing-double;
     padding: 0 $spacing-and-half $spacing-double;
+    padding-bottom: $spacing-half;
     position: relative;
     text-decoration: none;
     width: 100%;
@@ -115,6 +117,7 @@ $teaser-icon-size-desktop: 48px;
       justify-content: space-between;
       margin-top: 0;
       padding: $spacing-double;
+      padding-bottom: $spacing-half;
     }
     .service__title {
 
@@ -130,19 +133,28 @@ $teaser-icon-size-desktop: 48px;
         margin-bottom: 0;
         padding-right: 0;
         width: 100%;
-        font-size: 26px;
+        font-size: $base-font-size + 10;
       }
       @include breakpoint($breakpoint-l) {
-        font-size: 34px;
+        font-size: $base-font-size * 2;
       }
     }
     .service__content {
       align-content: flex-start;
 
       .short-desc {
-        font-size:16px;
+        font-size: $base-font-size;
         font-style: normal;
         font-weight: $font-weight-regular;
+        display: inline-flex;
+        width: 90%;
+        @include breakpoint($breakpoint-xs) {
+          width: 80%;
+        }
+        @include breakpoint($breakpoint-l) {
+          //width: $container-width-xl - $spacing-quadruple;
+          width: 90%;
+        }
       }
 
       @include breakpoint($breakpoint-m) {
@@ -151,35 +163,57 @@ $teaser-icon-size-desktop: 48px;
         //max-width: 530px;
       }
       .channels {
+        display: inline-flex;
+        @include breakpoint($breakpoint-xs) {
+          width: 80%;
+        }
+        @include breakpoint($breakpoint-l) {
+          //width: $container-width-xl - $spacing-quadruple;
+          width: 90%;
+        }
+        //width: 90%;
         ul {
           list-style: none;
           margin: 0;
           padding: 0;
-          margin-bottom: 10px;
-          margin-top: 10px;
+          :nth-child(even) {
+            margin-left: $spacing-half;
+          }
         }
         li {
           background-color: rgb(222, 223, 225);
           border-radius: 25px;
           display: inline-block;
-          padding: 8px 16px;
+          padding: $spacing-half $gutter;
           font-style: normal;
-          font-weight: 500;
-          font-size: 14px;
-          & + li {
-            margin-left: 8px;
+          font-weight: $font-weight-medium;
+          font-size: $base-font-size;
+          @include breakpoint(540px) {
+              & + li {
+                margin-left: $spacing-half;
+              }
           }
         }
       }
     }
     .service__read-more {
-      display: flex;
-
+      display: inline-flex;
+      //position: absolute;
+      //bottom: 15%;
+      //width: 100%;
+      //text-align: end;
+      //@include breakpoint($breakpoint-l) {
+      //  margin-top: 32px;
+      //}
       @include breakpoint($breakpoint-m) {
+        //margin-top: 32px;
         justify-content: flex-end;
+        width: 100%;
       }
 
       .hel-icon {
+        position: absolute;
+        bottom: 10%;
         --icon-size: #{$teaser-icon-size-mobile};
         margin-right: $spacing;
         transition: all 0.3s;
