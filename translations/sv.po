@@ -273,6 +273,10 @@ msgctxt "Header search, no javascript"
 msgid "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
 msgstr "använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
 
+msgctxt "Generic javascript required message"
+msgid "This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Detta innehåll använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
+
 msgctxt "Header search, no javascript link"
 msgid "Hel.fi search"
 msgstr "Hel.fi-webbtjänstens sök"
