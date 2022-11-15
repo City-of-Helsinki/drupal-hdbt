@@ -6,6 +6,10 @@ const NavToggleDropdown = require('./nav-global/nav-toggle-dropdown');
  * Init Menus and bind them together so that only one menu is open at a time.
  */
 
+
+const isAnyMenuOpen = ()=> MenuDropdown.isOpen() || SearchDropdown.isOpen() || OtherLangsDropdown.isOpen() ;
+
+
 MenuDropdown.init({
   onOpen: () => {
     OtherLangsDropdown.close();
@@ -58,12 +62,27 @@ const closeFromOutside = ({ target }) => {
   }
 };
 
+
+const blockBrandingScroll = (e)=>{
+  if( isAnyMenuOpen() && e.target.closest('#nav-toggle-dropdown--menu') === null)  {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+};
+
+
 /**
  * Attach outside click listener to the whole branding navigation area
  * so that OtherLangs Menu and Mega menu
  * can be closed when clicking outside of branding navi block
+ *
+ * Attach scroll blocker to fixed branding-header element visually shared between menu and body
  */
+
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
+  // prevent body scroll from fixed branding header
+  document.querySelector('#header-branding').addEventListener('wheel',  blockBrandingScroll , {passive: false});
 });
 
