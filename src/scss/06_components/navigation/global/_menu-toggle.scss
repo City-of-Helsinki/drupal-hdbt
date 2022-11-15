@@ -273,9 +273,10 @@ $label-font: 'special.navigation.icon_label';
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
-      display: none; // Hide other content when menu is visible, to block tabbing behind menu
+      // display: none; // Hide other content when menu is visible, to block tabbing behind menu
       // stylelint-disable-next-line plugin/no-low-performance-animation-properties
       transition: display 0s linear 10s; // low performance property is ok here as it's just a toggle
+      visibility: hidden;
     }
   }
 }

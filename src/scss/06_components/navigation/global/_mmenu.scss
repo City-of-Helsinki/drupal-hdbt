@@ -47,7 +47,7 @@ $-footerlink-target-size: 44px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   overflow: hidden;
-  overscroll-behavior: none;
+  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
 }
 
 .mmenu__panel {
