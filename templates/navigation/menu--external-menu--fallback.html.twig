@@ -22,7 +22,7 @@
 
 {% if use_global_navigation %}
 
-  {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
+  {% set max_level = menu_depth %}
   {% set ul_class = 'mmenu__items' %}
 
   <div class="mobile-menu-fallback mobile-menu-fallback__index-1" id="js-menu-fallback">

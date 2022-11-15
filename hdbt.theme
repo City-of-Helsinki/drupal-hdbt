@@ -454,6 +454,12 @@ function hdbt_preprocess_menu(&$variables) {
   foreach ($variables['items'] as &$item) {
     _hdbt_menu_item_apply_attributes($item, $apply_lang_attribute);
   }
+
+  // Menu, mobile menu, fallback menu and sidebar menu tree depth.
+  // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
+  $menu_depth = 5;
+  $variables['menu_depth'] = $menu_depth;
+  $variables['#attached']['drupalSettings']['menu_depth'] = $menu_depth;
 }
 
 /**
