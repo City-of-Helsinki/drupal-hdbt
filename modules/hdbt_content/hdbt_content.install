@@ -263,3 +263,45 @@ function hdbt_content_install_block_translations(array $translations, string $bl
       ->save();
   }
 }
+
+/**
+ * Manually update HDBT and HDBT Subtheme favicon settings.
+ */
+function hdbt_content_update_9006() {
+  $theme_handler = Drupal::service('theme_handler');
+  $config_factory = \Drupal::configFactory();
+
+  // Handle HDBT theme.
+  if ($theme_handler->themeExists('hdbt')) {
+
+    // Update HDBT favicon settings.
+    $hdbt = $config_factory->getEditable('hdbt.settings');
+    $hdbt_data = $hdbt->getRawData();
+    if (!empty($hdbt_data)) {
+      $hdbt_data['favicon']['path'] = '';
+      $hdbt_data['favicon']['use_default'] = 0;
+      $hdbt->setData($hdbt_data)->save(TRUE);
+    }
+  }
+
+  // Handle HDBT Subtheme.
+  if ($theme_handler->themeExists('hdbt_subtheme')) {
+
+    // Update HDBT favicon settings.
+    $hdbt_subtheme = $config_factory->getEditable('hdbt_subtheme.settings');
+    $hdbt_subtheme_data = $hdbt_subtheme->getRawData();
+    if (!empty($hdbt_subtheme_data)) {
+      $hdbt_subtheme_data['favicon']['path'] = '';
+      $hdbt_subtheme_data['favicon']['use_default'] = 0;
+    }
+    else {
+      $hdbt_subtheme_data = [
+        'favicon' => [
+          'use_default' => 0,
+          'path' => '',
+        ],
+      ];
+    }
+    $hdbt_subtheme->setData($hdbt_subtheme_data)->save(TRUE);
+  }
+}
