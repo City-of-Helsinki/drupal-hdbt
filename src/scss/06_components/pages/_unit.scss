@@ -377,6 +377,7 @@
     .hel-icon {
       @include hover-link-arrow-transition();
       margin-left: $spacing-half;
+      pointer-events: none;
     }
   }
 
