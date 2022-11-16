@@ -25,12 +25,11 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open) }}
+{{ menus.menu_links(items, attributes, 0, allow_collabsible, auto_open, menu_depth) }}
 
-{% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open) %}
+{% macro menu_links(items, attributes, menu_level, allow_collabsible, auto_open, menu_depth) %}
   {% import _self as menus %}
-  {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
-
+  {% set max_level = menu_depth %}
   {%
     set menu_classes = [
       'menu',
@@ -54,7 +53,7 @@
       {% endif %}
 
       {% set link_id = 'aria-id-' ~ random() %}
-      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded)) ? true : false %}
+      {% set item_is_collabsible = (allow_collabsible and (item.is_collapsed or item.is_expanded) and has_children) ? true : false %}
 
       {% set item_classes = [
         'menu__item',
@@ -65,12 +64,14 @@
         (auto_open and item.in_active_trail) ? 'menu__item--open',
       ]%}
 
+      {% set aria_expanded = (auto_open and item.in_active_trail) ? 'true' : 'false' %}
+
       {% set item_lang = '' %}
       {% if item.attributes.lang %}
         {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
       {% endif %}
 
-      <li{{ item.attributes.removeAttribute('class').addClass(item_classes) }}>
+      <li{{ item.attributes.removeAttribute('class', 'lang').addClass(item_classes) }}>
         <span class="menu__link-wrapper">
           {% if not item.is_nolink %}
             {% spaceless %}
@@ -104,7 +105,7 @@
           {% if item_is_collabsible %}
             <button
               type="button"
-              aria-expanded="false"
+              aria-expanded="{{ aria_expanded }}"
               aria-controls="{{ menu_aria_controls }}"
               aria-labelledby="{{ link_id }}"
               aria-haspopup="true"
@@ -114,7 +115,7 @@
           {% endif %}
         </span>
         {% if has_children %}
-          {{ menus.menu_links(item.below, attributes|without('class').setAttribute('id', menu_aria_controls), menu_level + 1, allow_collabsible, auto_open) }}
+          {{ menus.menu_links(item.below, attributes|without('class').setAttribute('id', menu_aria_controls), menu_level + 1, allow_collabsible, auto_open, menu_depth) }}
         {% endif %}
       </li>
     {% endfor %}

@@ -1,7 +1,6 @@
 .skip-to-main {
   --border-width: 2px;
   --border-color: var(--color-white);
-  --outline-gutter: 2px;
   --outline-width: 3px;
   --background-color: var(--hdbt-color-black);
   --color: var(--color-white);
@@ -16,8 +15,8 @@
   scroll-margin-top: 105px; // Amount of air that should be left when scrolled to top.
   text-decoration: none;
   top: 0;
-  transform: translateX(-50%);
-  transition: top ease-out 0.2s;
+  transform: translate(-50%, 0);
+  transition: transform ease-out 0.2s;
   width: fit-content; // This avoids pushing the content to two rows until absolutely necessary
   z-index: 2;
 
@@ -29,33 +28,15 @@
     scroll-margin-top: 24px; // Amount of air that should be left when scrolled to top.
   }
 
-  &:after {
-    --size: 100%;
-    border: var(--outline-width) solid transparent;
-    content: '';
-    height: var(--size);
-    left: -5px;
-    position: absolute;
-    top: -5px;
-    width: var(--size);
-  }
-
-  &:focus {
-    outline: none;
+  &:focus,
+  &:active {
+    outline: var(--outline-width) solid var(--focus-outline-color);
+    outline-offset: 0; // Chrome has a bug that shows a small offset when focused with keyboard instead of developer tools. This combats that problem.
     padding: $spacing-half $spacing-and-half;
-    top: 102px; // A little overlap with language switcher header on mobile.
+    transform: translate(-50%, 102px); // A little overlap with language switcher header on mobile.
 
     @include breakpoint($breakpoint-m) {
-      top: 24px; // Half of the top navigation bar.
-    }
-
-    &:after {
-      --size: calc(100% + calc(var(--outline-width) * 2 + var(--outline-gutter) * 2));
-      border-color: var(--focus-outline-color);
-    }
-
-    &:hover {
-      text-decoration: underline;
+      transform: translate(-50%, 24px); // Half of the top navigation bar.
     }
   }
 

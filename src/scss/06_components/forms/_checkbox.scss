@@ -1,6 +1,17 @@
 .hds-checkbox {
+  --focus-outline-color: #{$color-black}; // We should use hdbt color theme instead of hds
+
   > label {
     @extend .hds-checkbox__label !optional; // TODO: we should refactor to get rid of this extend
+  }
+
+  .hds-checkbox__input:focus {
+    outline: var(--outline-width) solid var(--focus-outline-color); // add a regular outline around checkbox
+    outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast
+
+    & + .hds-checkbox__label::before {
+      box-shadow: none; // remove hds outline as it causes false positives in accessibility tools
+    }
   }
 
   .hds-checkbox__input,

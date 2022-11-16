@@ -27,11 +27,11 @@
     We call a macro which calls itself to render the full tree.
     @see https://twig.symfony.com/doc/1.x/tags/macro.html
   #}
-  {{ menus.menu_links(items, attributes, 0) }}
+  {{ menus.menu_links(items, attributes, 0, menu_depth) }}
 
-  {% macro menu_links(items, attributes, menu_level) %}
+  {% macro menu_links(items, attributes, menu_level, menu_depth) %}
     {% import _self as menus %}
-    {% set max_level = 5 %} {# How deep do we allow the navigation menu to traverse? Counting from "instance", "main level", "level 3", "level 4", "level 5"... #}
+    {% set max_level = menu_depth %}
 
     {% if menu_level == 0 %}
       {% set ul_class = 'cssnav' %}
@@ -94,7 +94,7 @@
                   <span class="cssnav__text-mirror">{{ item_title }}</span>
                   <span class="cssnav__toggle"><span class="visually-hidden">{{ 'Toggle submenu:'|t({}, {'context': 'Mobile navigation submenu prefix'}) }} {{ item.title }}</span></span>
                 </summary>
-                {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_depth) }}
               </details>
             {% endif %}
           </li>

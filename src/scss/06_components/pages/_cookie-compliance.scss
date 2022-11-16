@@ -17,7 +17,7 @@
     margin-top: $spacing-double;
     padding-bottom: $spacing-double;
 
-    &:before {
+    &::before {
       @include pseudo-icon('info-circle', $spacing-double, $color-black, flex);
       margin-right: $spacing-half;
     }
@@ -40,12 +40,9 @@
     }
 
     .hds-checkbox__input,
-    .hds-checkbox__label {
-      // Fix checkbox alignment.
-      &::after,
-      &::before {
-        top: 7px;
-      }
+    .hds-checkbox__label::after,
+    .hds-checkbox__label::before {
+      top: 7px; // Fix checkbox alignment.
     }
   }
 
@@ -125,9 +122,6 @@
 
     .hds-button {
       @include hds-button-colors-on-light-bg;
-    }
-
-    .hds-button {
       margin-top: $spacing;
       max-width: 400px; // To avoid too long buttons.
 
@@ -142,10 +136,10 @@
       }
     }
   }
+}
 
-  .layout-main-wrapper &:last-child .message {
-    margin-bottom: 80px;
-  }
+.layout-main-wrapper > .block--react-and-share:last-child .message {
+  margin-bottom: 80px;
 }
 
 // Remote videos have black background and white text so we need different styles for the

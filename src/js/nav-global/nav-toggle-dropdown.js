@@ -1,13 +1,15 @@
 class NavToggleDropdown {
-  HASH_ID = null;
-  buttonSelector = null;
-  buttonInstance = null;
-  running = false;
-  targetNode = null;
-  onOpen = null;
+  constructor() {
+    this.HASH_ID = null;
+    this.buttonSelector = null;
+    this.buttonInstance = null;
+    this.running = false;
+    this.targetNode = null;
+    this.onOpen = null;
+  }
   isOpen() {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
-  };
+  }
   close() {
     if(this.running) {
       this.buttonInstance.setAttribute('aria-expanded', 'false');
@@ -16,7 +18,7 @@ class NavToggleDropdown {
         this.onClose();
       }
     }
-  };
+  }
   open() {
     if(this.running) {
       this.buttonInstance.setAttribute('aria-expanded', 'true');
@@ -25,7 +27,7 @@ class NavToggleDropdown {
         this.onOpen();
       }
     }
-  };
+  }
   toggle() {
     if (this.isOpen()) {
       this.close();
@@ -33,7 +35,7 @@ class NavToggleDropdown {
       this.open();
     }
     this.buttonInstance.focus();
-  };
+  }
   addListeners() {
     // Close menu on ESC
     document.addEventListener('keydown', (e) => {
@@ -47,8 +49,8 @@ class NavToggleDropdown {
     this.buttonInstance.addEventListener('click', () => {
       this.toggle();
     });
-  };
-  init = function ({ name, buttonSelector, targetSelector, onOpen, onClose }) {
+  }
+  init({ name, buttonSelector, targetSelector, onOpen, onClose }) {
     this.name = name;
     this.buttonSelector = buttonSelector;
     this.buttonInstance = document.querySelector(this.buttonSelector);
@@ -78,6 +80,6 @@ class NavToggleDropdown {
 
     this.running = true;
   }
-};
+}
 
 module.exports = () => new NavToggleDropdown();

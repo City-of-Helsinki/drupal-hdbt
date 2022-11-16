@@ -1,19 +1,16 @@
-$-chart-aspect-ratio: 16 / 9;
-
-.chart__container {
-  height: 0;
-  padding-bottom: aspect-ratio-padding($-chart-aspect-ratio);
-  position: relative;
+.helfi-charts-content iframe {
+  aspect-ratio: 16 / 9;
+  border: 0;
+  height: auto;
   width: 100%;
+}
 
-  .helfi-charts-cookie-compliance,
-  iframe {
-    border: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
+.helfi-charts-noscript {
+  background: $color-silver;
+  padding: $spacing;
+
+  p:first-child {
+    margin-top: 0;
   }
 }
 

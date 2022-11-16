@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let prevDirection = INITIAL;
 
   const languageSwitcher = document.querySelector(
-    '[data-hdbt-selector="language-switcher"]'
+    '.language-wrapper'
   );
 
   const checkScroll = function () {

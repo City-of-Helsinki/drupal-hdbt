@@ -38,6 +38,12 @@ Example usage:
 {% set component_attr = create_attribute() %}
 {% set container_attr = create_attribute() %}
 
+{% if component_content_tag %}
+  {% set tag = component_content_tag %}
+{% else %}
+  {% set tag = 'div' %}
+{% endif %}
+
 <div{{ component_attr.addClass('component', component_classes) }}>
 
   {% if component_koro %}
@@ -58,11 +64,11 @@ Example usage:
       </div>
     {% endif %}
 
-    <div{{ container_attr.addClass('component__content', component_content_class) }}>
+    <{{ tag }}{{ container_attr.addClass('component__content', component_content_class) }}>
       {% block component_content %}
         {{ content }}
       {% endblock %}
-    </div>
+    </{{ tag }}>
 
   </div>
 </div>

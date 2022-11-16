@@ -156,7 +156,6 @@
 }
 
 .footer__back-to-top {
-  --border-width: 2px;
   --outline-gutter: 2px;
   --outline-width: 3px;
   --focus-outline-color: var(--hdbt-color-black);
@@ -168,7 +167,6 @@
   height: 40px; // Match footer logo height
   margin-left: auto; // Keeps link on the right side
   margin-right: $spacing-half;
-  position: relative;
   text-decoration: none;
 
   @include breakpoint($breakpoint-m) {
@@ -176,24 +174,10 @@
     margin-top: 0;
   }
 
-  &:after {
-    --size: 100%;
-    border: var(--outline-width) solid transparent;
-    content: '';
-    height: var(--size);
-    position: absolute;
-    right: calc(50% + var(--outline-width)); // Move the outline left to nullify the space around the icon.
-    transform: translateX(50%);
-    width: var(--size);
-  }
-
-  &:focus {
-    outline: none;
-
-    &:after {
-      --size: calc(100% + calc(var(--outline-width) * 2 + var(--border-width) * 2 + var(--outline-gutter) * 2));
-      border-color: var(--focus-outline-color);
-    }
+  &:focus,
+  &:active {
+    outline: var(--outline-width) solid var(--focus-outline-color);
+    outline-offset: var(--outline-gutter);
   }
 
   &:hover {

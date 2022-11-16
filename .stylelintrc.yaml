@@ -52,6 +52,7 @@ rules:
     - ignoreUnits:
         - '%' # Sometimes we need more specific values to be able to round to even pixels with percentages
     #- message: "HELFI: Lets avoid overly specific precision unless really needed."
+  no-descending-specificity: null # this should be looked at if there is a way to make this work for us. Now there is too many false positives.
 overrides:
   - files:
       - '**/__index.scss'

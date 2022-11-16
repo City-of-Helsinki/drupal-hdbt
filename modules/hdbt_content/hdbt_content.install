@@ -5,6 +5,9 @@
  * Update hooks for HDBT content and HDBT base theme.
  */
 
+use Drupal\block\Entity\Block;
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * Re-import the default config for the theme.
  */
@@ -151,9 +154,120 @@ function hdbt_content_update_9004() {
 }
 
 /**
- * Manually update HDBT and HDBT Subtheme favicon settings.
+ * Add footer top navigation secondary menu.
  */
 function hdbt_content_update_9005() {
+  $theme_handler = Drupal::service('theme_handler');
+  $module_handler = Drupal::service('module_handler');
+  $config_factory = \Drupal::configFactory();
+  $config_location = dirname(__FILE__, 3) . '/config/install/';
+
+  // Handle configuration updates only if the helfi_navigation module is
+  // not enabled.
+  if (!$module_handler->moduleExists('helfi_navigation')) {
+    $config_name = 'system.menu.footer-top-navigation-2';
+
+    $filepath = "{$config_location}{$config_name}.yml";
+    if (file_exists($filepath)) {
+      $data = Yaml::parse(file_get_contents($filepath));
+      if (is_array($data)) {
+        $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
+      }
+    }
+
+    // Footer top navigation second block title translations.
+    $block_translations = [
+      'fi' => 'Ota yhteyttä',
+      'sv' => 'Ta kontakt',
+    ];
+
+    // Handle HDBT theme.
+    if ($theme_handler->themeExists('hdbt')) {
+      $config_name = 'block.block.footertopnavigationsecond';
+
+      $filepath = "{$config_location}{$config_name}.yml";
+      if (file_exists($filepath)) {
+        $data = Yaml::parse(file_get_contents($filepath));
+        if (is_array($data) && empty($config_factory->getEditable($config_name)->getRawData())) {
+          $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
+
+          hdbt_content_install_block_translations($block_translations, 'block.block.footertopnavigationsecond');
+
+          $hdbt_footertopblock = $config_factory->getEditable('block.block.footertopblock');
+          $hdbt_footertopblock_data = $hdbt_footertopblock->getRawData();
+          if (!empty($hdbt_footertopblock_data)) {
+            $hdbt_footertopblock->delete();
+          }
+        }
+      }
+    }
+
+    // Handle HDBT_subtheme theme.
+    if ($theme_handler->themeExists('hdbt_subtheme')) {
+      $block_configuration = [
+        'id' => 'hdbt_subtheme_footertopnavigationsecond',
+        'plugin' => 'menu_block_current_language:footer-top-navigation-2',
+        'region' => 'footer_top',
+        'settings' => [
+          'id' => 'menu_block_current_language:footer-top-navigation-2',
+          'label' => 'Connect',
+          'label_display' => 'visible',
+          'provider' => 'helfi_navigation',
+          'level' => 1,
+          'depth' => 1,
+          'expand_all_items' => FALSE,
+        ],
+        'langcode' => 'en',
+        'status' => TRUE,
+        'provider' => NULL,
+        'theme' => 'hdbt_subtheme',
+        'visibility' => [],
+        'weight' => 2,
+      ];
+
+      if (empty($config_factory->getEditable('block.block.' . $block_configuration['id'])->getRawData())) {
+        hdbt_content_install_block_translations($block_translations, 'block.block.hdbt_subtheme_footertopnavigationsecond');
+
+        $block = Block::create($block_configuration);
+        $block->save();
+
+        $hdbt_subtheme_footertopblock = $config_factory->getEditable('block.block.hdbt_subtheme_footertopblock');
+        $hdbt_subtheme_footertopblock_data = $hdbt_subtheme_footertopblock->getRawData();
+        if (!empty($hdbt_subtheme_footertopblock_data)) {
+          $hdbt_subtheme_footertopblock->delete();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Install block translations.
+ *
+ * @param array $translations
+ *   Array containing translation strings for Finnish and Swedish.
+ * @param string $block_name
+ *   Block name as a string.
+ */
+function hdbt_content_install_block_translations(array $translations, string $block_name) : void {
+  foreach (['fi', 'sv'] as $lang_code) {
+    /** @var \Drupal\language\Config\LanguageConfigOverride $config_translation */
+    $config_translation = \Drupal::languageManager()
+      ->getLanguageConfigOverride($lang_code, $block_name);
+    $config_translation
+      ->setData([
+        'settings' => [
+          'label' => $translations[$lang_code],
+        ],
+      ])
+      ->save();
+  }
+}
+
+/**
+ * Manually update HDBT and HDBT Subtheme favicon settings.
+ */
+function hdbt_content_update_9006() {
   $theme_handler = Drupal::service('theme_handler');
   $config_factory = \Drupal::configFactory();
 

@@ -48,7 +48,11 @@ function hdbt_content_tokens(
     // Add default og-image as the shareable image.
     if ($theme_handler->themeExists('hdbt')) {
       $theme = $theme_handler->getTheme('hdbt');
-      $default_image = "/{$theme->getPath()}/src/images/og-global.png";
+      /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+      $service = \Drupal::service('file_url_generator');
+      $default_image = $service->generate("{$theme->getPath()}/src/images/og-global.png")
+        ->toString(TRUE)
+        ->getGeneratedUrl();
     }
 
     // Custom token for default-og-image.
@@ -109,9 +113,8 @@ function hdbt_content_tokens(
       }
       elseif (
         $node->hasField('field_organization') &&
-        isset($node->field_organization) &&
-        $node->field_organization->entity->hasField('field_default_image') &&
-        !$node->field_organization->entity->field_default_image->isEmpty()
+        $node->get('field_organization')?->entity?->hasField('field_default_image') &&
+        !$node->get('field_organization')->entity->get('field_default_image')->isEmpty()
       ) {
         // Use the image from the taxonomy term.
         $taxonomy_term = $node->field_organization->entity;

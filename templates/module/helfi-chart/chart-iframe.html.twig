@@ -8,7 +8,14 @@
  */
 #}
 {% if url and title %}
-  <iframe class="helfi-charts-content" style="display: none;" allow="fullscreen" src="{{ url }}" title="{{ title }}"></iframe>
+
+  <noscript>
+    <div class="helfi-charts-noscript">
+      <p>{{ "This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': "Generic javascript required message"}) }}</p>
+    </div>
+  </noscript>
+
+  <div class="helfi-charts-content" data-src="{{ url }}" data-title="{{ title }}"></div>
 
   <div class="helfi-charts-cookie-compliance js-helfi-charts-cookie-compliance" style="display: none;">
     <div class="message">

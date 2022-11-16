@@ -14,7 +14,7 @@
 /// @param {Number} base-size - font-size of html element in pixels; defaults to $rem-base-size.
 @function remify($value, $base-size: $base-font-size) {
   // stylelint-disable-next-line length-zero-no-unit
-  @return $value / $base-size + 0rem;
+  @return math.div($value, $base-size) + 0rem;
 }
 
 /// Unremify
