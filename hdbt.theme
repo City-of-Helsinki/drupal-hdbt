@@ -1227,11 +1227,14 @@ function _hdbt_craft_token(string $name, array &$variables) {
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
-  if (
-    isset($variables['view']) &&
-    !empty($variables['view']->id())
-  ) {
-    $suggestions[] = 'views_view__' . $variables['view']->id();
+  if (isset($variables['view'])) {
+    $view = $variables['view'];
+    if (!empty($variables['view']->id())) {
+      $suggestions[] = 'views_view__' . $variables['view']->id();
+    }
+    if (!empty($view->getDisplay()->display['id'])) {
+      $suggestions[] = 'views_view__' . $variables['view']->id() . '__' . $variables['view']->current_display;
+    }
   }
 }
 
@@ -1281,6 +1284,10 @@ function hdbt_preprocess_views_view(&$variables) {
   if ($variables['view']->total_rows != NULL) {
     $variables['total_rows'] = $variables['view']->total_rows;
   }
+  if ($variables['view']->id() == 'service_list') {
+    $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
+  }
+//
 }
 
 /**

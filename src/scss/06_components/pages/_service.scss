@@ -148,10 +148,6 @@ $teaser-icon-size-desktop: 48px;
         }
       }
 
-      @include breakpoint($breakpoint-m) {
-        display: flex;
-        flex-wrap: wrap;
-      }
       .channels {
         padding-right: calc(#{$spacing} + #{$teaser-icon-size-mobile});
         @include breakpoint($breakpoint-m) {
