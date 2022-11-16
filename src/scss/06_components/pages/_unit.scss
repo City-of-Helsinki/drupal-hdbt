@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth */
 .unit__contact {
   &:first-child .unit__contact__title {
     @include breakpoint($breakpoint-l) {
@@ -153,7 +154,6 @@
 }
 
 .unit__accessibility_sentences {
-
   &.component--accordion {
     .accordion-item__content {
       h3 {
@@ -245,6 +245,7 @@
 
     img {
       @include image-defaults($width: 100%, $max-width: null);
+
       @include breakpoint($breakpoint-m) {
         @include image-defaults($height: 100%, $width: 100%, $max-width: null);
         object-fit: cover;
@@ -291,7 +292,7 @@
 
     &::after {
       bottom: 0;
-      content: "";
+      content: '';
       height: 100%;
       left: 0;
       position: absolute;
@@ -347,11 +348,10 @@
 
     .address {
       display: inline;
-      margin-top: 0;
 
       .address-line1::after,
       .address-line2::after {
-        content: ",";
+        content: ',';
       }
     }
   }
@@ -375,7 +375,7 @@
     }
 
     .hel-icon {
-      @include hover-link-arrow-transition();
+      @include hover-link-arrow-transition;
       margin-left: $spacing-half;
       pointer-events: none;
     }
@@ -385,6 +385,7 @@
     .unit__read-more {
       .hel-icon {
         transform: translateX($spacing-quarter);
+
         @media (prefers-reduced-motion) {
           transform: none;
         }
@@ -410,6 +411,7 @@
       .unit__read-more {
         .hel-icon {
           transform: translateX($spacing-half);
+
           @media (prefers-reduced-motion) {
             transform: none;
           }
@@ -430,6 +432,7 @@
     @include breakpoint($breakpoint-m) {
       display: flex;
       justify-content: space-between;
+
       // Width of the element - icon width + icon padding on left
       width: calc(100% - #{$spacing-double} + #{$spacing-and-half});
     }
@@ -441,6 +444,7 @@
 
     @include breakpoint($breakpoint-m) {
       font-weight: $font-weight-bold;
+
       // Align the address to center with the arrow and the title.
       margin-top: 2px;
       padding-right: $spacing-and-half;
@@ -462,13 +466,14 @@
 
     @include breakpoint($breakpoint-m) {
       @include font('body');
+
       // Align the address to center with the arrow and the title.
       margin-top: 2px;
     }
 
     .address-line1::after,
     .address-line2::after {
-      content: ",";
+      content: ',';
     }
 
     p:first-child {
@@ -484,6 +489,7 @@
 
     @include breakpoint($breakpoint-m) {
       margin-left: $spacing;
+
       // Align the distance to center with the arrow and the title.
       margin-top: 7px;
     }
@@ -499,7 +505,8 @@
 
     .hel-icon {
       --icon-size: #{$spacing-double};
-      @include hover-link-arrow-transition();
+
+      @include hover-link-arrow-transition;
     }
   }
 }
