@@ -1,9 +1,11 @@
 <div class="metadata-container">
   {% for item in items %}
-    {% include '@hdbt/misc/metadata-item.twig' with {
-      item_icon: item.icon,
-      item_label: item.label,
-      item_content: item.content
-    }%}
+    {% if item %}
+      {% include '@hdbt/misc/metadata-item.twig' with {
+        item_icon: item.icon,
+        item_label: item.label,
+        item_content: item.content
+      }%}
+    {% endif %}
   {% endfor %}
 </div>
