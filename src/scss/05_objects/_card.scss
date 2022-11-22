@@ -1,0 +1,160 @@
+$section-gap: $spacing;
+$item-gap: $spacing-half;
+
+.card {
+  background: $color-white;
+  overflow-wrap: anywhere;
+  padding: $spacing;
+  position: relative;
+
+  & + & {
+    margin-top: 16px;
+  }
+
+  @include breakpoint($breakpoint-s) {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: $spacing;
+    grid-template-areas: 'content img';
+    grid-template-columns: 1fr 30%;
+    padding: $spacing;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    gap: $spacing-and-half;
+    padding: $spacing-and-half;
+  }
+}
+
+.card__image {
+  flex-basis: 30%;
+  flex-shrink: 0;
+  margin-bottom: $section-gap;
+
+  picture,
+  img {
+    background-color: $color-black-5;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  @include breakpoint($breakpoint-s) {
+    margin-bottom: 0;
+  }
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  &::after {
+    @include pseudo-icon('arrow-right');
+    @include hover-link-arrow-transition;
+
+    --icon-size: #{$spacing-double};
+    flex-grow: 1;
+    margin-top: $spacing;
+    mask-position: bottom center;
+
+    @include breakpoint($breakpoint-m) {
+      --icon-size: #{$spacing-triple};
+    }
+  }
+
+  .card:focus-within &::after,
+  .card:hover &::after {
+    transform: translateX($spacing-quarter);
+
+    @media (prefers-reduced-motion) {
+      transform: none;
+    }
+  }
+}
+
+.card .content-tags {
+  margin-bottom: - $spacing-half;
+}
+
+.card__category {
+  margin-top: $item-gap;
+}
+
+.card__title {
+  @include font('h3');
+  margin: 0;
+}
+
+.card__link {
+  overflow-wrap: anywhere;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+
+  &:active,
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: 2px;
+  }
+
+  &:active,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.card_description {
+  @include font('body');
+}
+
+.card_helptext {
+  @include font('small');
+  color: $color-black-60;
+}
+
+.card_description,
+.card_helptext {
+  margin-top: $item-gap;
+}
+
+.card_description > :first-child,
+.card_helptext > :first-child {
+  margin-top: 0;
+}
+
+.card_infos {
+  margin-top: $section-gap;
+}
+
+.card_info {
+  @include font('body');
+  padding-left: $spacing-double; // icon-size + gap
+
+  & + & {
+    margin-top: $item-gap;
+  }
+}
+
+.card_info__icon {
+  --icon-size: #{$spacing-and-half};
+  display: inline-block;
+  margin-left: - $spacing-double;
+  margin-right: $spacing-half;
+}
+
+.card_info__label {
+  font-weight: $font-weight-medium;
+}
+
+.card p.address {
+  display: inline;
+}
+
+.card__tags {
+  margin-top: $section-gap;
+}
