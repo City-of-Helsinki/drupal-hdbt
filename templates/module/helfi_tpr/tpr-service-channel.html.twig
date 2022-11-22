@@ -44,16 +44,16 @@
     </div>
   {% endif %}
 
-  {% if entity.requires_authentication.value == 1 or content.availabilities|render %}
+  {% if entity.requires_authentication.value == 1 or content.availability_summary|render %}
     <div class="service-channel__info">
       {% if entity.requires_authentication.value == 1 %}
         <div class="service-channel__requires_authentication">
           {{ 'Requires authentication'|t }}
         </div>
       {% endif %}
-      {% if content.availabilities|render %}
+      {% if content.availability_summary|render %}
         <div class="service-channel__availabilities">
-          {{ content.availabilities }}
+          {{ content.availability_summary}}
         </div>
       {% endif %}
     </div>
