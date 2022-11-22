@@ -1,0 +1,98 @@
+{#
+{% embed '@hdbt/component/card.twig' with {
+    card_image: card_image,
+    card_title_level: 'h3',
+    card_title: 'Otsikko',
+    card_url: 'https://www.hel.fi/fi/',
+    card_category: 'Kategoria',
+    card_description: 'Lyhyt kuvaus',
+    card_description_html: false,
+    card_helptext: 'Ohjeteksti',
+    card_helptext_html: false,
+    card_infos: [
+      {
+        icon: 'clock',
+        label: 'Aika',
+        content: 'Lorem'
+      },
+      {
+        icon: 'calendar',
+        label: 'Ajanjakso',
+        content: 'Ipsum'
+      },
+    ],
+    card_tags: [
+      'test',
+      'test2',
+    ],
+  } %}
+{% endembed %}
+#}
+
+<div class="card card--unit">
+  {% if card_image %}
+    <div class="card__image">
+      {{ card_image }}
+    </div>
+  {% endif %}
+
+  <div class="card__text">
+    <{{ card_title_level|default('h3') }} class="card__title">
+        {{ link(card_title, card_url, { 'class':['card__link'] }) }}
+    </{{ card_title_level|default('h3') }}>
+
+    {% if card_category %}
+      <div class="card__category">
+        {% embed '@hdbt/misc/tag-list.twig'%}
+          {% block content %}
+            {% include '@hdbt/misc/tag.twig' with {
+              tag: card_category,
+              addSpan: true,
+            }%}
+          {% endblock content %}
+        {% endembed %}
+      </div>
+    {% endif %}
+
+    {% if card_description %}
+      <div class="card_description">
+        {% if card_description_html %}
+          {{ card_description }}
+        {% else %}
+          <p>{{ card_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if card_helptext %}
+      <div class="card_helptext">
+        {% if card_helptext_html %}
+          {{ card_helptext }}
+        {% else %}
+          <p>{{ card_helptext }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if card_infos %}
+      <div class="card_infos">
+        {% for card_info in card_infos %}
+          {% apply spaceless %}
+            <div class="card_info">
+              <span class="card_info__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_info.icon} %}</span>
+              <span class="card_info__label">{{ card_info.label }}: </span>
+              <span class="card_info__content">{{ card_info.content }}</span>
+            </div>
+          {% endapply %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if card_tags %}
+      <div class="card__tags">
+        {% embed '@hdbt/misc/tag-list.twig' with { tags: card_tags, addSpan: true } %}
+        {% endembed %}
+      </div>
+    {% endif %}
+  </div>
+</div>
