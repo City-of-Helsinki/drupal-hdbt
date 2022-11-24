@@ -1,15 +1,18 @@
 {#
 {% embed '@hdbt/component/card.twig' with {
+    card_modifier_class: 'card--cardtype',
     card_image: card_image,
     card_title_level: 'h3',
     card_title: 'Otsikko',
     card_url: 'https://www.hel.fi/fi/',
+    card_url_external: external,
     card_category: 'Kategoria',
+    card_category_color: 'gold',
     card_description: 'Lyhyt kuvaus',
     card_description_html: false,
     card_helptext: 'Ohjeteksti',
     card_helptext_html: false,
-    card_infos: [
+    card_metas: [
       {
         icon: 'clock',
         label: 'Aika',
@@ -29,7 +32,9 @@
 {% endembed %}
 #}
 
-<div class="card card--unit">
+{% set card_external_class = card_url_external ? 'card--external' : '' %}
+
+<div class="card {{ card_modifier_class }} {{ card_external_class }}">
   {% if card_image %}
     <div class="card__image">
       {{ card_image }}
@@ -46,6 +51,7 @@
         {% embed '@hdbt/misc/tag-list.twig'%}
           {% block content %}
             {% include '@hdbt/misc/tag.twig' with {
+              color: card_category_color,
               tag: card_category,
               addSpan: true,
             }%}
@@ -55,7 +61,7 @@
     {% endif %}
 
     {% if card_description %}
-      <div class="card_description">
+      <div class="card__description">
         {% if card_description_html %}
           {{ card_description }}
         {% else %}
@@ -65,7 +71,7 @@
     {% endif %}
 
     {% if card_helptext %}
-      <div class="card_helptext">
+      <div class="card__helptext">
         {% if card_helptext_html %}
           {{ card_helptext }}
         {% else %}
@@ -74,16 +80,11 @@
       </div>
     {% endif %}
 
-    {% if card_infos %}
-      <div class="card_infos">
-        {% for card_info in card_infos %}
-          {% apply spaceless %}
-            <div class="card_info">
-              <span class="card_info__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_info.icon} %}</span>
-              <span class="card_info__label">{{ card_info.label }}: </span>
-              <span class="card_info__content">{{ card_info.content }}</span>
+    {% if card_metas %}
+      <div class="card__metas">
+        {% for card_meta in card_metas %}
+            <div class="card__meta {{ card_meta.class_modifier }}"><span class="card__meta__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_meta.icon} %}</span><span class="card__meta__label">{{ card_meta.label }}: </span><span class="card__meta__content">{{ card_meta.content }}</span>
             </div>
-          {% endapply %}
         {% endfor %}
       </div>
     {% endif %}
