@@ -78,7 +78,7 @@ $item-gap: $spacing-half;
 }
 
 .card__category {
-  margin-top: $item-gap;
+  margin-top: 12px; // Comes from specs
 }
 
 .card__title {
@@ -108,30 +108,30 @@ $item-gap: $spacing-half;
   }
 }
 
-.card_description {
+.card__description {
   @include font('body');
 }
 
-.card_helptext {
+.card__helptext {
   @include font('small');
   color: $color-black-60;
 }
 
-.card_description,
-.card_helptext {
+.card__description,
+.card__helptext {
   margin-top: $item-gap;
 }
 
-.card_description > :first-child,
-.card_helptext > :first-child {
+.card__description > :first-child,
+.card__helptext > :first-child {
   margin-top: 0;
 }
 
-.card_infos {
+.card__metas {
   margin-top: $section-gap;
 }
 
-.card_info {
+.card__meta {
   @include font('body');
   padding-left: $spacing-double; // icon-size + gap
 
@@ -140,14 +140,14 @@ $item-gap: $spacing-half;
   }
 }
 
-.card_info__icon {
+.card__meta__icon {
   --icon-size: #{$spacing-and-half};
   display: inline-block;
   margin-left: - $spacing-double;
   margin-right: $spacing-half;
 }
 
-.card_info__label {
+.card__meta__label {
   font-weight: $font-weight-medium;
 }
 
