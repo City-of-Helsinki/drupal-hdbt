@@ -130,19 +130,6 @@ module.exports = (env, argv) => {
       ),
       new FriendlyErrorsWebpackPlugin(),
       new RemoveEmptyScriptsPlugin(),
-      new CopyPlugin({
-        'patterns': [
-          {
-            'from': 'node_modules/handorgel/lib/js/umd/handorgel.min.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/handorgel/',
-            'force': true,
-          }, {
-            'from': 'node_modules/handorgel/lib/css/handorgel.min.css',
-            'to': path.resolve(__dirname, 'dist') + '/css/handorgel/',
-            'force': true,
-          }
-        ]
-      }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].min.css',
       })

@@ -174,11 +174,6 @@ vendor/bin/phpcbf public/themes/contrib/hdbt --extensions=php,module,theme,inc -
 ## Component documentation
 
 ### Accordion paragraph
-The accordion paragraph uses handorgel-javascript for the accordion functionality (https://github.com/oncode/handorgel)
-and it is configured in the accordion-settings.js file under the theme. The handorger library is set up as a separate,
-stand-alone library in the theme and an accordion library is set up to provide the settings file with dependency
-to the handorgel-library.
-
 Each accordion paragraph consists of accordion items and each of these items is also a paragraph, so it is a paragraph-
 inception like we like to call it.
 

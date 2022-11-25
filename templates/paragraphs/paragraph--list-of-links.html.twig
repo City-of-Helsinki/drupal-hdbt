@@ -3,10 +3,8 @@
 
 {# By default list-of-links has only image visible, editor can choose to hide image (and show description) or hide both #}
 {% set design_class = null %}
-{% if design == 'without-image' %}
+{% if design == 'without-image' or design == 'without-image-desc'%}
   {% set design_class = 'component--list-of-links-without-image' %}
-{% elseif design == 'without-image-desc' %}
-  {% set design_class = 'component--list-of-links-without-image-desc' %}
 {% endif %}
 
 {% block paragraph %}
