@@ -162,6 +162,8 @@ function hdbt_content_update_9005() {
   $config_factory = \Drupal::configFactory();
   $config_location = dirname(__FILE__, 3) . '/config/install/';
 
+  // Handle configuration updates only if the helfi_navigation module is
+  // not enabled.
   if (!$module_handler->moduleExists('helfi_navigation')) {
     $config_name = 'system.menu.footer-top-navigation-2';
 
@@ -172,72 +174,69 @@ function hdbt_content_update_9005() {
         $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
       }
     }
-  }
 
+    // Footer top navigation second block title translations.
+    $block_translations = [
+      'fi' => 'Ota yhteyttä',
+      'sv' => 'Ta kontakt',
+    ];
 
-  // Handle HDBT theme.
-  if ($theme_handler->themeExists('hdbt') && !$module_handler->moduleExists('helfi_navigation')) {
-    $config_name = 'block.block.footertopnavigationsecond';
+    // Handle HDBT theme.
+    if ($theme_handler->themeExists('hdbt')) {
+      $config_name = 'block.block.footertopnavigationsecond';
 
-    $filepath = "{$config_location}{$config_name}.yml";
-    if (file_exists($filepath)) {
-      $data = Yaml::parse(file_get_contents($filepath));
-      if (is_array($data)) {
-        $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
+      $filepath = "{$config_location}{$config_name}.yml";
+      if (file_exists($filepath)) {
+        $data = Yaml::parse(file_get_contents($filepath));
+        if (is_array($data) && empty($config_factory->getEditable($config_name)->getRawData())) {
+          $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
+
+          hdbt_content_install_block_translations($block_translations, 'block.block.footertopnavigationsecond');
+
+          $hdbt_footertopblock = $config_factory->getEditable('block.block.footertopblock');
+          $hdbt_footertopblock_data = $hdbt_footertopblock->getRawData();
+          if (!empty($hdbt_footertopblock_data)) {
+            $hdbt_footertopblock->delete();
+          }
+        }
       }
     }
 
-    $translations = [
-      'fi' => 'Ota yhteyttä',
-      'sv' => 'Ta kontakt',
-    ];
+    // Handle HDBT_subtheme theme.
+    if ($theme_handler->themeExists('hdbt_subtheme')) {
+      $block_configuration = [
+        'id' => 'hdbt_subtheme_footertopnavigationsecond',
+        'plugin' => 'menu_block_current_language:footer-top-navigation-2',
+        'region' => 'footer_top',
+        'settings' => [
+          'id' => 'menu_block_current_language:footer-top-navigation-2',
+          'label' => 'Connect',
+          'label_display' => 'visible',
+          'provider' => 'helfi_navigation',
+          'level' => 1,
+          'depth' => 1,
+          'expand_all_items' => FALSE,
+        ],
+        'langcode' => 'en',
+        'status' => TRUE,
+        'provider' => NULL,
+        'theme' => 'hdbt_subtheme',
+        'visibility' => [],
+        'weight' => 2,
+      ];
 
-    hdbt_content_install_block_translations($translations, 'block.block.footertopnavigationsecond');
+      if (empty($config_factory->getEditable('block.block.' . $block_configuration['id'])->getRawData())) {
+        hdbt_content_install_block_translations($block_translations, 'block.block.hdbt_subtheme_footertopnavigationsecond');
 
-    $hdbt_footertopblock = $config_factory->getEditable('block.block.footertopblock');
-    $hdbt_footertopblock_data = $hdbt_footertopblock->getRawData();
-    if (!empty($hdbt_footertopblock_data)) {
-      $hdbt_footertopblock->delete();
-    }
-  }
+        $block = Block::create($block_configuration);
+        $block->save();
 
-  // Handle HDBT_subtheme theme.
-  if ($theme_handler->themeExists('hdbt_subtheme') && !$module_handler->moduleExists('helfi_navigation')) {
-    $block_configuration = [
-      'id' => 'hdbt_subtheme_footertopnavigationsecond',
-      'plugin' => 'menu_block_current_language:footer-top-navigation-2',
-      'region' => 'footer_top',
-      'settings' => [
-        'id' => 'menu_block_current_language:footer-top-navigation-2',
-        'label' => 'Connect',
-        'label_display' => 'visible',
-        'provider' => 'helfi_navigation',
-        'level' => 1,
-        'depth' => 1,
-        'expand_all_items' => FALSE,
-      ],
-      'langcode' => 'en',
-      'status' => TRUE,
-      'provider' => NULL,
-      'theme' => 'hdbt_subtheme',
-      'visibility' => [],
-      'weight' => 2,
-    ];
-
-    $translations = [
-      'fi' => 'Ota yhteyttä',
-      'sv' => 'Ta kontakt',
-    ];
-
-    hdbt_content_install_block_translations($translations, 'block.block.hdbt_subtheme_footertopnavigationsecond');
-
-    $block = Block::create($block_configuration);
-    $block->save();
-
-    $hdbt_subtheme_footertopblock = $config_factory->getEditable('block.block.hdbt_subtheme_footertopblock');
-    $hdbt_subtheme_footertopblock_data = $hdbt_subtheme_footertopblock->getRawData();
-    if (!empty($hdbt_subtheme_footertopblock_data)) {
-      $hdbt_subtheme_footertopblock->delete();
+        $hdbt_subtheme_footertopblock = $config_factory->getEditable('block.block.hdbt_subtheme_footertopblock');
+        $hdbt_subtheme_footertopblock_data = $hdbt_subtheme_footertopblock->getRawData();
+        if (!empty($hdbt_subtheme_footertopblock_data)) {
+          $hdbt_subtheme_footertopblock->delete();
+        }
+      }
     }
   }
 }
@@ -262,5 +261,47 @@ function hdbt_content_install_block_translations(array $translations, string $bl
         ],
       ])
       ->save();
+  }
+}
+
+/**
+ * Manually update HDBT and HDBT Subtheme favicon settings.
+ */
+function hdbt_content_update_9006() {
+  $theme_handler = Drupal::service('theme_handler');
+  $config_factory = \Drupal::configFactory();
+
+  // Handle HDBT theme.
+  if ($theme_handler->themeExists('hdbt')) {
+
+    // Update HDBT favicon settings.
+    $hdbt = $config_factory->getEditable('hdbt.settings');
+    $hdbt_data = $hdbt->getRawData();
+    if (!empty($hdbt_data)) {
+      $hdbt_data['favicon']['path'] = '';
+      $hdbt_data['favicon']['use_default'] = 0;
+      $hdbt->setData($hdbt_data)->save(TRUE);
+    }
+  }
+
+  // Handle HDBT Subtheme.
+  if ($theme_handler->themeExists('hdbt_subtheme')) {
+
+    // Update HDBT favicon settings.
+    $hdbt_subtheme = $config_factory->getEditable('hdbt_subtheme.settings');
+    $hdbt_subtheme_data = $hdbt_subtheme->getRawData();
+    if (!empty($hdbt_subtheme_data)) {
+      $hdbt_subtheme_data['favicon']['path'] = '';
+      $hdbt_subtheme_data['favicon']['use_default'] = 0;
+    }
+    else {
+      $hdbt_subtheme_data = [
+        'favicon' => [
+          'use_default' => 0,
+          'path' => '',
+        ],
+      ];
+    }
+    $hdbt_subtheme->setData($hdbt_subtheme_data)->save(TRUE);
   }
 }

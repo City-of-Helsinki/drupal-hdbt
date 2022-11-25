@@ -202,8 +202,7 @@ const MobilePanel = {
   menu: null,
   templates: null,
   SCROLL_TRESHOLD: 100,
-  // Maximum assumed depth of tree. Used for checking if going up is allowed
-  size: 10,
+  size: 10, // Maximum assumed depth of tree. Used for checking if going up is allowed
   running: false,
   data: null,
   currentIndex: 0,
@@ -218,6 +217,7 @@ const MobilePanel = {
   getAPIUrl: function () {
     const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
     url.searchParams.set('_format', 'json');
+    url.searchParams.set('max-depth', drupalSettings?.menu_depth);
     return url.toString();
   },
   getRoot: function () {
@@ -503,7 +503,6 @@ const MobilePanel = {
       console.warn('MobilePanel already initiated. Is it include more than once?');
       return;
     }
-
     this.onOpen = onOpen;
     this.onClose = onClose;
     document.addEventListener('DOMContentLoaded', () => {
