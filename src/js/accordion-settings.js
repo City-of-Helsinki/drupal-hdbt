@@ -1,85 +1,73 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Bind closing function to the additional close button at the bottom of
-  // the content. For reasons unknown to man the close button cannot be
-  // actual button. If you change it from span to button the click event
-  // is no longer registered and the functionality doesn't work.
-  function closeFold(folds) {
-    let closeButton = folds.content.querySelector(
+  const accordions = document.getElementsByClassName('accordion-item');
+
+  // Function used to save the accordion open state to localStorage.
+  function saveToLocalStorage(accordion) {
+    let accordionId = accordion.getAttribute('id');
+    if (accordion.hasAttribute('open')) {
+      localStorage.setItem(accordionId, 'false');
+    } else {
+      localStorage.setItem(accordionId, 'true');
+    }
+  }
+
+  // Moving the focus to accordion summary when clicking the close button.
+  function moveFocus(element) {
+    element
+      .closest('.accordion-item')
+      .querySelector('.accordion-item__summary')
+      .focus();
+  }
+
+  for (let singleAccordion of accordions) {
+    // Get accordion id so we can assign open value on it in localStorage.
+    let singleAccordionId = singleAccordion.getAttribute('id');
+
+    // Find the summary element of the accordion.
+    let summary = singleAccordion.querySelector(
+      '.accordion-item__summary'
+    );
+
+    // Find also the associated close button of the accordion.
+    let closeButton = singleAccordion.querySelector(
       '.accordion-item__button--close'
     );
 
-    function moveFocus(element) {
-      element
-        .closest('.accordion__wrapper')
-        .querySelector('.accordion-item__button--toggle')
-        .focus();
+    // Open accordions that have been open previously.
+    if (localStorage.getItem(singleAccordionId) === 'true') {
+      singleAccordion.open = true;
     }
 
+    // Opening the accordion from the summary text should trigger saving of the open state of the accordion.
+    summary.addEventListener('mousedown', function (e) {
+      saveToLocalStorage(this.parentElement);
+    });
+
+    summary.addEventListener('keypress', function (e) {
+      if (e.which === 13 || e.which === 32) {
+        saveToLocalStorage(this.parentElement);
+      }
+    });
+
+    // Close button should close the accordion and save the state of that accordion to localStorage.
     closeButton.addEventListener('mousedown', function (e) {
-      folds.close();
+      let parentAccordion = this.closest('.accordion-item');
+
       e.preventDefault();
+      saveToLocalStorage(parentAccordion);
+      parentAccordion.open = false;
       moveFocus(this);
     });
 
     closeButton.addEventListener('keypress', function (e) {
       if (e.which === 13 || e.which === 32) {
-        folds.close();
+        let parentAccordion = this.closest('.accordion-item');
+
         e.preventDefault();
+        saveToLocalStorage(parentAccordion);
+        parentAccordion.open = false;
         moveFocus(this);
       }
     });
-  }
-
-  // Find all accordions.
-  const accordions = document.getElementsByClassName('handorgel');
-  window.handorgel_accordions = [];
-
-  for (let singleAccordion of accordions) {
-    /* global handorgel */
-    const accordion = new handorgel(singleAccordion, {
-      // whether multiple folds can be opened at once
-      multiSelectable: false,
-      // whether the folds are collapsible
-      collapsible: true,
-
-      // whether ARIA attributes are enabled
-      ariaEnabled: true,
-      // whether W3C keyboard shortcuts are enabled
-      keyboardInteraction: true,
-      // whether to loop header focus (sets focus back to first/last header when end/start reached)
-      carouselFocus: true,
-
-      // attribute for the header or content to open folds at initialization
-      initialOpenAttribute: 'data-open',
-      // whether to use transition at initial open
-      initialOpenTransition: true,
-      // delay used to show initial transition
-      initialOpenTransitionDelay: 200,
-
-      // header/content class if fold is open
-      headerOpenClass: 'handorgel__header--open',
-      contentOpenClass: 'handorgel__content--open',
-
-      // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: 'handorgel__header--opened',
-      contentOpenedClass: 'handorgel__content--opened',
-
-      // header/content class if fold has been focused
-      headerFocusClass: 'handorgel__header--focus',
-      contentFocusClass: 'handorgel__content--focus',
-
-      // header/content class if fold is disabled
-      headerDisabledClass: 'handorgel__header--disabled',
-      contentDisabledClass: 'handorgel__content--disabled',
-    });
-
-    // Add a global variable so that we can open accordions with anchor links where needed
-    window.handorgel_accordions.push(accordion);
-
-    // Get all the folds associated to the accordion.
-    let folds = accordion.folds;
-
-    // Go through each fold.
-    folds.forEach(closeFold);
   }
 });

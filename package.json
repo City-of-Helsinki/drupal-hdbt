@@ -35,7 +35,6 @@
     "eslint-plugin-import": "^2.25.3",
     "expose-loader": "^4.0.0",
     "glob": "^8.0.0",
-    "handorgel": "^0.5.0",
     "hds-design-tokens": "^1.2.0",
     "html-loader": "^4.0.0",
     "html-webpack-plugin": "^5.3.2",
