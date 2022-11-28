@@ -1,13 +1,15 @@
 {# See available colors from _tags.scss #}
 
-{% if color %}
-  {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
-{% endif %}
-
-<li class="content-tags__tags__tag {{ tag_color_class }}">
-  {% if addSpan %}
-    <span>{{ tag }}</span>
-  {% else %}
-    {{ tag }}
+{% if tag %}
+  {% if color %}
+    {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
   {% endif %}
-</li>
+
+  <li class="content-tags__tags__tag {{ tag_color_class }}">
+    {% if addSpan %}
+      <span>{{ tag }}</span>
+    {% else %}
+      {{ tag }}
+    {% endif %}
+  </li>
+{% endif %}

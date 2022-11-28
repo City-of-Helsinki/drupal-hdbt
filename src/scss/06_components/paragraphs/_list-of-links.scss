@@ -159,8 +159,7 @@ $-item-spacing: $spacing-triple;
 }
 
 // Without image variants
-.component--list-of-links-without-image,
-.component--list-of-links-without-image-desc {
+.component--list-of-links-without-image {
   .list-of-links__item {
     align-self: flex-start;
     min-height: 2rem;// Min-height is the same as the icon height.
