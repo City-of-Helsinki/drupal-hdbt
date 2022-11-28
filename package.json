@@ -78,10 +78,8 @@
     ]
   },
   "browserslist": [
-    "last 2 versions",
-    "> 1%",
-    "ie > 10",
-    "iOS > 9"
+    "last 3 major versions",
+    "not dead"
   ],
   "devDependencies": {
     "stylelint": "^14.6.1",
