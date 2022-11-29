@@ -43,7 +43,7 @@
 
   <div class="card__text">
     <{{ card_title_level|default('h3') }} class="card__title">
-        {{ link(card_title, card_url, { 'class':['card__link'] }) }}
+      {{ link(card_title, card_url, { 'class':['card__link'],  'rel':'bookmark' }) }}
     </{{ card_title_level|default('h3') }}>
 
     {% if card_category %}
@@ -83,7 +83,7 @@
     {% if card_metas %}
       <div class="card__metas">
         {% for card_meta in card_metas %}
-            <div class="card__meta {{ card_meta.class_modifier }}"><span class="card__meta__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_meta.icon} %}</span><span class="card__meta__label">{{ card_meta.label }}: </span><span class="card__meta__content">{{ card_meta.content }}</span>
+            <div class="card__meta"><span class="card__meta__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_meta.icon} %}</span><span class="card__meta__label">{{ card_meta.label }}: </span><span class="card__meta__content">{{ card_meta.content }}</span>
             </div>
         {% endfor %}
       </div>
