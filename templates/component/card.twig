@@ -6,6 +6,10 @@
     card_title: 'Otsikko',
     card_url: 'https://www.hel.fi/fi/',
     card_url_external: external,
+    card_category_tag: {
+      tag: 'Kategoria',
+      color: 'gold',
+    },
     card_category: 'Kategoria',
     card_category_color: 'gold',
     card_description: 'Lyhyt kuvaus',
@@ -25,8 +29,13 @@
       },
     ],
     card_tags: [
-      'test',
-      'test2',
+      {
+        tag:'test',
+        color: 'gold',
+      },
+      {
+        tag: 'test2',
+      }
     ],
   } %}
 {% endembed %}
@@ -46,13 +55,13 @@
       {{ link(card_title, card_url, { 'class':['card__link'],  'rel':'bookmark' }) }}
     </{{ card_title_level|default('h3') }}>
 
-    {% if card_category %}
+    {% if card_category_tag %}
       <div class="card__category">
         {% embed '@hdbt/misc/tag-list.twig'%}
           {% block content %}
             {% include '@hdbt/misc/tag.twig' with {
-              color: card_category_color,
-              tag: card_category,
+              tag: card_category_tag.tag,
+              color: card_category_tag.color,
               addSpan: true,
             }%}
           {% endblock content %}
