@@ -25,18 +25,13 @@
 {% embed '@hdbt/component/card.twig' with {
     card_modifier_class: 'card--tpr-teaser',
     card_image: card_image,
-    card_title_level: 'h3',
     card_title: entity.label,
     card_url: unit_url,
-    card_url_external: external,
-    card_category_color: 'gold',
-    card_description_html: false,
-    card_helptext_html: false,
     card_tags: card_tags,
     card_metas: [
       {
         icon: 'location',
-        label: 'Osoite',
+        label: 'Address'|t,
         content: content.address,
       },
     ],
