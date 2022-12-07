@@ -8,3 +8,14 @@
 
   @return $-line-height;
 }
+
+@function get-font-size($style, $unremify: false) {
+  $-path: 'font.#{$style}';
+  $-font-size: get('#{$-path}.font-size');
+
+  @if $unremify {
+    @return unremify($-font-size);
+  }
+
+  @return $-font-size;
+}
