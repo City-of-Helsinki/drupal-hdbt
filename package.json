@@ -10,7 +10,8 @@
     "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
     "lint": "lint-staged --allow-empty",
-    "lint:js": "eslint --fix src/"
+    "lint:js": "eslint src/",
+    "format:js": "eslint --fix src/"
   },
   "dependencies": {
     "@babel/core": "^7.14.3",
@@ -30,9 +31,7 @@
     "css-declaration-sorter": "^6.0.3",
     "css-loader": "^6.5.0",
     "es6-promise": "^4.1.1",
-    "eslint": "^8.0.0",
-    "eslint-import-resolver-webpack": "0.13.2",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint": "^8.2.0",
     "expose-loader": "^4.0.0",
     "glob": "^8.0.0",
     "handorgel": "^0.5.0",
@@ -58,7 +57,7 @@
     "postcss-preset-env": "^7.4.3",
     "postcss-scss": "^4.0.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.3.2",
+    "prettier": "^2.7.1",
     "sass": "^1.43.4",
     "sass-loader": "^13.0.0",
     "svg-inline-loader": "^0.8.0",
@@ -82,6 +81,11 @@
     "not dead"
   ],
   "devDependencies": {
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-webpack": "0.13.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.2.1",
     "stylelint": "^14.6.1",
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
