@@ -8,7 +8,7 @@ $item-gap: $spacing-half;
   position: relative;
 
   & + & {
-    margin-top: 16px;
+    margin-top: $spacing;
   }
 
   @include breakpoint($breakpoint-s) {
