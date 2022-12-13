@@ -9,8 +9,8 @@
     {% block content %}
       {% for tag in tags %}
         {% include '@hdbt/misc/tag.twig' with {
-          color: color,
-          tag: tag
+          color: tag.color ? tag.color : color,
+          tag: tag.tag ? tag.tag : tag
         }%}
       {% endfor %}
     {% endblock %}
