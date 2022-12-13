@@ -187,3 +187,24 @@ Kuura Health chat is attached to a block id `block-kuurahealthchat` when adding 
 chat to appear in inline-mode which adds class `kuura-widget-container-inline` for the widget. These styles are
 overridden in the `_kuura-health-chat.scss` file. If in some cases the chat doesn't appear on the site even if adding
 it on the block layout, make sure that there is a block with the correct id on the html-dom.
+
+## ESLint
+
+We are using the airbnb-base which will be changed to full airbnb when there is react stuff.
+The current eslint config is the bare minimum that should pass always everywhere. Extend as necessary.
+
+### Why is it so hard?
+ - the eslint rules might be used from root (or beyond root) due to husky being funny
+ - prettier overrides airbnb if setup incorrectly
+ - root eslint rules (inside instance) might be very old
+ - instance gitignore excludes subsequent eslints
+ - when developing modules/themes under instance, the rules might chain in an unpredicatble way
+
+
+### How to use the eslint rules
+- please use formatting and lint rules included in this repository
+- make sure that your IDE applies these rules and not others when using this repo in an instance
+- always use eslint formatting with prettier, never only prettier
+- always verify, never override lint-staged
+- fix your code before commit
+- only override eslint rules inline for readability
