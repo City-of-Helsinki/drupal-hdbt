@@ -8,7 +8,7 @@
 
 {% set link = content.field_announcement_link[0] %}
 
-<div class="announcement js-announcement {{ block_modifier }}" data-uuid="{{ node.uuid.value }}">
+<div class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div class="announcement__container">
     <div class="announcement__content">
       {% if content.body|render != null %}
