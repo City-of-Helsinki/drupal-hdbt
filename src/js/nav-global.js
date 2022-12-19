@@ -43,6 +43,19 @@ const closeFromOutside = ({ target }) => {
   }
 };
 
+
+const isAnyMenuOpen = ()=> MenuDropdown.isOpen() || SearchDropdown.isOpen() || OtherLangsDropdown.isOpen() ;
+
+
+const blockBrandingScroll = (e)=>{
+  if( isAnyMenuOpen() && e.target.closest('#nav-toggle-dropdown--menu') === null)  {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+};
+
+
 /**
  * Attach outside click listener to the whole branding navigation area
  * so that OtherLangs Menu and Mega menu
@@ -60,4 +73,6 @@ MenuDropdown.init({
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
+  // prevent body scroll from fixed branding header
+  document.querySelector('#header-branding').addEventListener('wheel',  blockBrandingScroll , {passive: false});
 });
