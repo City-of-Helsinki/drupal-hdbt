@@ -63,6 +63,7 @@ const isAnyMenuOpen = () => MenuDropdown.isOpen() || SearchDropdown.isOpen() || 
  */
 
 const blockBrandingScroll = (e) => {
+  console.log('SCROLLAA');
   const scrolledPanel = e.target.closest('.mmenu__panel--current');
   const preventBodyScrolling =
     isMobile() &&
@@ -97,5 +98,13 @@ MenuDropdown.init({
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
   // prevent body scroll through shared header element when full screen  menu is open.
-  document.querySelector('body').addEventListener('wheel', blockBrandingScroll, { passive: false });
+  document.querySelector('body').addEventListener('scroll', blockBrandingScroll, { passive: false });
+
+  // iOS does not handle scroll with regular scroll event, so we need to check touchmove
+  document.querySelector('body').addEventListener('touchmove', (e) => {
+    // We still want to allow two finger zoom and scroll, but prevent single finger scroll
+    if (e.touches.length <= 1) {
+      blockBrandingScroll(e);
+    }
+  }, { passive: false });
 });
