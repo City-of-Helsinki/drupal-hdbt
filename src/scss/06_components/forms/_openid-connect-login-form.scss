@@ -7,4 +7,12 @@
   input {
     width: 100%;
   }
+
+  > div {
+    margin-top: $spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
