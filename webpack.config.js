@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const webpack = require('webpack');
 
 const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
@@ -8,17 +9,17 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SvgToSprite = require('./webpack.svgToSprite');
 const { merge } = require('webpack-merge');
 
+
 // Handle entry points.
 const Entries = () => {
   let entries = {
+    linkedevents:['./src/js/hs-react-search/linkedevents/index.tsx'],
+    hello:['./src/js/hello.tsx'],
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
-    'component-library': [
-      './src/scss/component-library.scss',
-      './src/js/component-library.js',
-    ],
+   
     'color-palette': [
       './src/scss/color-palette.scss'
     ],
@@ -50,7 +51,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
+      chunkFilename: 'js/async/[name].chunk.js', 
       pathinfo: isDev,
       filename: 'js/[name].min.js',
       publicPath: '../',
@@ -80,6 +81,11 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: ['babel-loader'],
           type: 'javascript/auto',
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: ['ts-loader'],
         },
         {
           test: /\.(css|sass|scss)$/,
@@ -117,12 +123,24 @@ module.exports = (env, argv) => {
       ],
     },
     resolve: {
+      
+      fallback:{
+        // Random copypasta trying to fix hds-react import bugs
+        "buffer": require.resolve("buffer/") ,
+        path: require.resolve('path-browserify')
+      },
+
+
       modules: [
         path.join(__dirname, 'node_modules'),
       ],
-      extensions: ['.js', '.json'],
+      extensions: ['.js', '.json','.ts','.tsx'],
     },
     plugins: [
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        Buffer: ['buffer', 'Buffer'],
+      }),
       new SvgToSprite(
         path.resolve(__dirname, 'src/icons/**/*.svg'),
         'icons/sprite.svg',
