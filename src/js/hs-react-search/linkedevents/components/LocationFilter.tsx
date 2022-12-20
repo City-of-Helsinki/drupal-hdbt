@@ -1,4 +1,4 @@
-// import { Select } from 'hds-react';
+import { Select } from 'hds-react';
 
 import type Location from '../types/Location';
 import { QueryBuilder } from '../utils/QueryBuilder';
@@ -19,7 +19,7 @@ const LocationFilter = ({ loading, options, queryBuilder }: LocationFilterProps)
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
-      {/* <Select
+      <Select
         className='hdbt-search__dropdown'
         clearButtonAriaLabel={Drupal.t('Clear selections', {}, { context: 'Event search: clear button aria label' })}
         disabled={loading}
@@ -35,7 +35,7 @@ const LocationFilter = ({ loading, options, queryBuilder }: LocationFilterProps)
           '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
-      /> */}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Collapsible from '../components/Collapsible';
-// import { DateInput } from 'hds-react';
+import { DateInput } from 'hds-react';
 import { QueryBuilder } from '../utils/QueryBuilder'
 import CheckboxFilter from '../components/CheckboxFilter';
 import type DateSelectDateTimes from '../types/DateSelectDateTimes';
@@ -56,7 +56,7 @@ const DateSelect = ({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
         title={title}
       >
         <div className='event-form__date-container'>
-          {/* <DateInput
+          <DateInput
             className='hdbt-search__filter hdbt-search__date-input'
             helperText={dateHelperText}
             id='start-date'
@@ -66,14 +66,14 @@ const DateSelect = ({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             errorText={startDateErrorText}
             value={startDate?.toFormat(HDS_DATE_FORMAT)}
             onChange={(value: string) => changeDate(value, 'start')}
-          /> */}
+          />
           <CheckboxFilter
             checked={endDisabled}
             id='end-disabled'
             label={Drupal.t('The last day of the time period is the same as the first day')}
             onChange={disableEnd}
           />
-          {/* <DateInput
+          <DateInput
             minDate={endDisabled ? undefined : startDate?.plus({ 'days': 1 }).toJSDate()}
             className='hdbt-search__filter hdbt-search__date-input'
             disabled={endDisabled}
@@ -85,7 +85,7 @@ const DateSelect = ({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             errorText={endDateErrorText}
             value={endDisabled ? startDate?.toFormat(HDS_DATE_FORMAT) : endDate?.toFormat(HDS_DATE_FORMAT)}
             onChange={(value: string) => changeDate(value, 'end')}
-          /> */}
+          /> 
         </div>
       </Collapsible>
     </div>

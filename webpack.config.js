@@ -1,7 +1,6 @@
 const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
-
 const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -9,12 +8,17 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SvgToSprite = require('./webpack.svgToSprite');
 const { merge } = require('webpack-merge');
 
+// Entries for React search drupal blocks.
+const HS_REACT_SEARCH = {
+  linkedevents:['./src/js/hs-react-search/linkedevents/index.tsx'],
+}
+
 
 // Handle entry points.
 const Entries = () => {
   let entries = {
-    linkedevents:['./src/js/hs-react-search/linkedevents/index.tsx'],
-    hello:['./src/js/hello.tsx'],
+    ...HS_REACT_SEARCH,
+    hello:['./src/js/hello.jsx'],
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],

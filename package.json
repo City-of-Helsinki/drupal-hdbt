@@ -61,6 +61,11 @@
     "last 3 major versions",
     "not dead"
   ],
+  "peerDependencies": {
+    "react-virtual":"2.10.4",
+    "react-popper":"2.3.0",
+    "@react-aria/visually-hidden":"3.6.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.16.3",
