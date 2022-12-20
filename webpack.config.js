@@ -19,7 +19,6 @@ const Entries = () => {
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
-   
     'color-palette': [
       './src/scss/color-palette.scss'
     ],
