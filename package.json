@@ -113,5 +113,16 @@
     "webpack-merge": "^5.0.0",
     "webpack-notifier": "^1.14.0",
     "webpack-remove-empty-scripts": "^1.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/src/index.tsx",
+      "<rootDir>/src/enum/*",
+      "<rootDir>/src/types/*"
+    ]
   }
 }
