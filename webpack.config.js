@@ -26,7 +26,7 @@ const Entries = () => {
       './src/scss/environment-indicator.scss'
     ],
   };
-
+  //take all root level js files and create entries with matching names
   const pattern = './src/js/**/*.js';
   const ignore = [
     './src/js/component-library.js'
@@ -80,6 +80,11 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: ['babel-loader'],
           type: 'javascript/auto',
+        },
+        {
+          test:/\.jsx$/,
+          exclude: /node_modules/,
+          use:[ 'babel-loader',]
         },
         {
           test: /\.tsx?$/,
