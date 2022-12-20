@@ -63,7 +63,6 @@ const isAnyMenuOpen = () => MenuDropdown.isOpen() || SearchDropdown.isOpen() || 
  */
 
 const blockBrandingScroll = (e) => {
-  console.log('SCROLLAA');
   const scrolledPanel = e.target.closest('.mmenu__panel--current');
   const preventBodyScrolling =
     isMobile() &&
