@@ -63,13 +63,19 @@ const isAnyMenuOpen = () => MenuDropdown.isOpen() || SearchDropdown.isOpen() || 
  */
 
 const blockBrandingScroll = (e) => {
+   // gesture actions are excluded
+   if (e.touches && e.touches.length >1) {
+    return true;
+   }
+
   const scrolledPanel = e.target.closest('.mmenu__panel--current');
   const preventBodyScrolling =
     isMobile() &&
     isAnyMenuOpen() &&
-    // dont scroll body from shared header
+    // Don't scroll body from shared header
     (e.target.closest('#nav-toggle-dropdown--menu') === null ||
-      // if element has no overflow, it has no overscroll containment.
+      // If element has no overflow, it has no overscroll containment. 
+      // See overscroll-behavour CSS specs
       (scrolledPanel !== null && !isScrollable(scrolledPanel)));
 
   if (preventBodyScrolling) {
@@ -96,14 +102,11 @@ MenuDropdown.init({
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
-  // prevent body scroll through shared header element when full screen  menu is open.
-  document.querySelector('body').addEventListener('scroll', blockBrandingScroll, { passive: false });
+  
+  // Prevent body scroll through shared header element when full screen  menu is open.
+  const body =   document.querySelector('body');
+  body.addEventListener('wheel', blockBrandingScroll, { passive: false });
+  body.addEventListener('scroll', blockBrandingScroll, { passive: false });
+  body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
 
-  // iOS does not handle scroll with regular scroll event, so we need to check touchmove
-  document.querySelector('body').addEventListener('touchmove', (e) => {
-    // We still want to allow two finger zoom and scroll, but prevent single finger scroll
-    if (e.touches.length <= 1) {
-      blockBrandingScroll(e);
-    }
-  }, { passive: false });
 });
