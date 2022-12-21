@@ -23,6 +23,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Drupal\helfi_events\LinkedEvents;
 
 /**
  * Implements hook_preprocess().
@@ -1444,4 +1445,64 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
   return (UrlHelper::isExternal($link))
     ? Url::fromUri($link)
     : Url::fromUserInput($link === '<front>' ? '/' : $link);
+}
+
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function helfi_events_preprocess_paragraph__event_list(&$variables) {
+  // Expose event list variables to frontend.
+  if (isset($variables['paragraph'])) {
+    $paragraph = $variables['paragraph'];
+    $linkedEvents = Drupal::service('helfi_events_linked_events');
+
+    if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
+      $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $params = $linkedEvents->parseParams($initialUrl);
+      $variables['events_url'] = $linkedEvents->getEventsRequest($params);
+    }
+
+    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
+      $variables['#attached']['drupalSettings']['helfi_events']['eventCount'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+    }
+
+    $booleanFields = [
+      'field_event_location',
+      'field_event_time',
+      'field_free_events',
+      'field_remote_events'
+    ];
+
+    foreach ($booleanFields as $field) {
+      if ($paragraph->hasField($field) && !$paragraph->get($field)->isEmpty()) {
+        $variables[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
+      }
+    }
+  }
+
+  // Render image placeholder for use in frontend.
+  $variables['#attached']['drupalSettings']['helfi_events']['imagePlaceholder'] = twig_render_template(
+    drupal_get_path('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
+    [
+      'image_placeholder' => 'calendar-clock',
+      'theme_hook_original' => ''
+    ]
+  );
+
+  $variables['#attached']['library'][] = 'hdbt/event_list';
+  $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
+}
+
+/**
+ * Event count dropdown selectable values.
+ *
+ * @return int[]
+ *   Values to select.
+ */
+function helfi_events_event_list_allowed_values_function() {
+  return [
+    3 => 3,
+    5 => 5,
+  ];
 }
