@@ -7,6 +7,7 @@ import QueryBuilder from './utils/QueryBuilder';
 const ROOT_ID = 'helfi-events-search';
 
 const start = () => {
+  console.log('from dev')
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
   const eventsUrl = rootElement?.dataset?.eventsUrl;
 

@@ -3,7 +3,7 @@ import Icon from './Icon';
 import type  MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 
-type CardItemProps = {
+export type CardItemProps = {
   cardModifierClass: string;
   cardImage?: object;
   cardTitle: string;
@@ -19,22 +19,21 @@ type CardItemProps = {
   cardTags?: Array<TagType>;
 };
 
-export function CardItem(props: CardItemProps): JSX.Element {
-  const {
-    cardModifierClass,
-    cardImage,
-    cardTitle,
-    cardTitleLevel,
-    cardUrl,
-    cardUrlExternal,
-    cardCategoryTag,
-    cardDescription,
-    cardDescriptionHtml,
-    cardHelptext,
-    cardHelptextHtml,
-    cardMetas,
-    cardTags,
-  } = props;
+export function CardItem( {
+  cardModifierClass,
+  cardImage,
+  cardTitle,
+  cardTitleLevel,
+  cardUrl,
+  cardUrlExternal,
+  cardCategoryTag,
+  cardDescription,
+  cardDescriptionHtml,
+  cardHelptext,
+  cardHelptextHtml,
+  cardMetas,
+  cardTags,
+}: CardItemProps): JSX.Element {
 
   const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
 
