@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "",
+    "paths": {
+      "@/js/*": ["./src/js/*"],
+      "@/react-search/*": ["./src/js/react-search/*"],
+      "@/types/*": ["./src/js/types/*"]
+    },
     "target": "es6",
     "lib": [
       "dom",

@@ -10,7 +10,7 @@ const { merge } = require('webpack-merge');
 
 // Entries for React search drupal blocks.
 const HS_REACT_SEARCH = {
-  linkedevents:['./src/js/hs-react-search/linkedevents/index.tsx'],
+  linkedevents:['./src/js/react-search/linkedevents/index.tsx'],
 }
 
 

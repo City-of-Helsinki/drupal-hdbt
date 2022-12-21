@@ -110,7 +110,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.',
-      }
+      },
     ),
   },
   tel: {
@@ -121,7 +121,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.',
-      }
+      },
     ),
   },
   external: {
@@ -132,7 +132,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.',
-      }
+      },
     ),
   },
 };
@@ -260,7 +260,7 @@ const MobilePanel = {
           }
           return false;
         },
-        'sub_tree'
+        'sub_tree',
       );
 
       if (!found) {
@@ -347,7 +347,7 @@ const MobilePanel = {
       },
       {
         sub_tree: this.templates.list,
-      }
+      },
     );
 
     if (state === 'load') {
@@ -448,7 +448,7 @@ const MobilePanel = {
       // eslint-disable-next-line no-console
       console.error(
         'Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',
-        e
+        e,
       );
       this.enableFallback();
       return;

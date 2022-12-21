@@ -11,11 +11,9 @@
     "airbnb",
     "prettier"
   ],
-
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  // "plugins": ["prettier"],
   "globals": {
     "Drupal": true,
     "drupalSettings": true,
