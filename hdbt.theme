@@ -1451,7 +1451,7 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
 /**
  * Implements hook_preprocess_paragraph().
  */
-function helfi_events_preprocess_paragraph__event_list(&$variables) {
+function hdbt_preprocess_paragraph__event_list(&$variables) {
   // Expose event list variables to frontend.
   if (isset($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
@@ -1492,17 +1492,4 @@ function helfi_events_preprocess_paragraph__event_list(&$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/event_list';
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
-}
-
-/**
- * Event count dropdown selectable values.
- *
- * @return int[]
- *   Values to select.
- */
-function helfi_events_event_list_allowed_values_function() {
-  return [
-    3 => 3,
-    5 => 5,
-  ];
 }
