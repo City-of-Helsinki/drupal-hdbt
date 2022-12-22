@@ -21,6 +21,11 @@ const formatStartDate = (start: Date, end: Date) => {
 
 
 
+
+interface KeywordsForLanguage {keywords:EventKeyword[],currentLanguage:string}
+
+const   getCardTags = ({keywords,currentLanguage}:KeywordsForLanguage)=> keywords?.map((item : any)=>({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
+
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
@@ -31,7 +36,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
   }
 
 
-const   getCardTags = ({keywords,currentLanguage}:{keywords:EventKeyword[],currentLanguage:string})=> keywords?.map((item : any)=>({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
+  
 
 
   const getKeywords = () => keywords?.map((keyword: EventKeyword) => {
@@ -107,8 +112,22 @@ const   getCardTags = ({keywords,currentLanguage}:{keywords:EventKeyword[],curre
   const image = images?.find(image => image.url);
   const isRemote = location && location.id === INTERNET_EXCEPTION;
   const title = name[currentLanguage]||''
-  const cardTags =getCardTags({keywords,currentLanguage});
+  const cardTags = getCardTags({keywords,currentLanguage});
+  const cardMetas =[
+    //Date
+    {
+      icon:'calendar',
+      label:Drupal.t('Time', { context: 'Time of event' }),
+      content:getDate()
+    },
+    //Location
+    {
+      icon:'pointer',
+      label:Drupal.t('Location', { context: 'Location of event' }),
+      content:getLocation()
+    }
 
+]
   return (<>
     <CardItem 
       cardUrl={url}
@@ -116,11 +135,13 @@ const   getCardTags = ({keywords,currentLanguage}:{keywords:EventKeyword[],curre
       cardModifierClass=""
       cardImage={image && imageToElement(image)}
       cardTags={cardTags}
+      cardMetas={cardMetas}
     />
-
+{/* 
     <div className='event-list__event'>
       <div className='event-list__image-container'>
         <div className='event-list__tags event-list__tags--mobile' role='region' aria-label={Drupal.t('Event keywords')}>
+          keywiords
           {getKeywords()}
         </div>
         {image ? imageToElement(image) : <div className='event-list__event-image-placeholder' dangerouslySetInnerHTML={{ __html: imagePlaceholder.trim() }} />}
@@ -144,7 +165,9 @@ const   getCardTags = ({keywords,currentLanguage}:{keywords:EventKeyword[],curre
           <div className='event-list__indicator-container'><span className='event-list__event-link-indicator' /></div>
         </div>
       </div>
-    </div></>
+    </div> */}
+    
+    </>
   );
 }
 

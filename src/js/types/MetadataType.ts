@@ -1,5 +1,5 @@
 type MetadataType = {
-  icon: string;
+  icon: string; //pf what?
   label: string;
   content: JSX.Element | string | Array<string>;
 };

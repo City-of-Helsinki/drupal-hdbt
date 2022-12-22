@@ -25,7 +25,7 @@ export function CardItem( {
   cardTitle,
   cardTitleLevel,
   cardUrl,
-  cardUrlExternal,
+  cardUrlExternal=false,
   cardCategoryTag,
   cardDescription,
   cardDescriptionHtml,
@@ -68,6 +68,7 @@ export function CardItem( {
 
         {cardDescription &&
           <div className="card__description">
+            {/* What is this? this cannot produce html */}
             { cardDescriptionHtml ?
               { cardDescription }
               :
@@ -77,7 +78,8 @@ export function CardItem( {
         }
 
         {cardHelptext &&
-          <div className="card__description">
+          <div className="card__helptext">
+          {/* What is this? this cannot produce html */}
             { cardHelptextHtml ?
               { cardHelptext }
               :
@@ -89,7 +91,7 @@ export function CardItem( {
         {cardMetas &&
           <div className="card__metas">
             {cardMetas.map((cardMeta, key) =>
-              <div key={key} className="card__meta">
+              <div key={`card-meta-${key}`} className="card__meta">
                 <span className="card__meta__icon"><Icon icon={cardMeta.icon} /></span>
                 <span className="card__meta__label">{cardMeta.label}: </span>
                 <span className="card__meta__content">{cardMeta.content}</span>
