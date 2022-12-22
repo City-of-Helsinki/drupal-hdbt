@@ -1,14 +1,4 @@
 # HDBT-theme
-
-
-¤¤¤¤¤¤¤¤¤¤¤
-todo
-
-WEBPACK CONF
-TYPESCRIPT
-REACT
-
-
 ## Introduction
 
 HDBT theme is a base theme for the City of Helsinki. It is based on the core theme stable9. The abbrevation comes from
@@ -217,3 +207,12 @@ The current eslint config is the bare minimum that should pass always everywhere
 - always verify, never override lint-staged
 - fix your code before commit
 - only override eslint rules inline for readability
+
+
+## Webpack entries
+
+Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder
+Typescript entrypoints must be added separately. See webpack.config.js
+
+
+### TODO how to use entries in drupal modules

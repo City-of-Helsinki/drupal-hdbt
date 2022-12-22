@@ -18,7 +18,6 @@ const HS_REACT_SEARCH = {
 const Entries = () => {
   let entries = {
     ...HS_REACT_SEARCH,
-    hello:['./src/js/hello.jsx'],
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
