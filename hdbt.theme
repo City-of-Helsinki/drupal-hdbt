@@ -23,7 +23,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
-use Drupal\helfi_events\LinkedEvents;
+use Drupal\helfi_react_search\LinkedEvents;
 
 /**
  * Implements hook_preprocess().
@@ -1455,7 +1455,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
   // Expose event list variables to frontend.
   if (isset($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
-    $linkedEvents = Drupal::service('helfi_events_linked_events');
+    $linkedEvents = Drupal::service('helfi_react_search_linked_events');
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
@@ -1490,6 +1490,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     ]
   );
 
-  $variables['#attached']['library'][] = 'hdbt/event_list';
+  $variables['#attached']['library'][] = 'hdbt/event-list';
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
 }

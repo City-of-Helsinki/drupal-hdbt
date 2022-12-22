@@ -173,14 +173,6 @@ $tag-vertical-padding: 5px;
   margin-bottom: $spacing-and-half;
 }
 
-.event-list__load-more {
-  @include flex-gap($spacing);
-}
-
-.event-list__load-more-button {
-  margin-bottom: $spacing;
-}
-
 .event-list-spinner {
   position: relative;
 }
@@ -190,4 +182,49 @@ $tag-vertical-padding: 5px;
   margin-bottom: $spacing-triple;
   margin-top: $spacing-triple;
   position: relative;
+}
+
+.event-form-container {
+  border-bottom: 1px solid $color-black-20;
+  margin-bottom: $spacing-double;
+}
+
+.event-form__filters-container {
+  margin-top: $spacing;
+}
+
+.event-form__filter-section-container {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-l) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @include flex-gap($spacing-and-half);
+  }
+}
+
+// Override HDS style for multiple checkboxes
+.event-form__filter-section-container .hdbt-search__checkbox:not(:first-of-type) {
+  @include breakpoint($breakpoint-l) {
+    margin-top: 0;
+  }
+}
+
+.event-form__filter--date,
+.event-form__filter--location {
+  @include breakpoint($breakpoint-l) {
+    flex: 1;
+  }
+}
+
+.event-form__checkboxes-label {
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing;
+}
+
+.event-list__submit-button {
+  margin-bottom: $spacing-triple;
+  margin-top: $spacing;
 }
