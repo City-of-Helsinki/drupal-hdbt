@@ -3,6 +3,14 @@ import Icon from './Icon';
 import type  MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 
+const Metarow = ({icon,label,content} : MetadataType)=> (
+  <div className="card__meta">
+    <span className="card__meta__icon"><Icon icon={icon} /></span>
+    <span className="card__meta__label">{label}: </span>
+    <span className="card__meta__content">{content}</span>
+  </div>
+);
+
 export type CardItemProps = {
   cardModifierClass: string;
   cardImage?: object;
@@ -17,6 +25,13 @@ export type CardItemProps = {
   cardHelptextHtml?: boolean;
   cardMetas?: Array<MetadataType>;
   cardTags?: Array<TagType>;
+  location?: string | JSX.Element;
+  date?: string;
+  daterange?: string;
+  theme?: string;
+  language?: string;
+  
+
 };
 
 export function CardItem( {
@@ -33,6 +48,11 @@ export function CardItem( {
   cardHelptextHtml,
   cardMetas,
   cardTags,
+  location,
+  date,
+  theme,
+  daterange,
+  language
 }: CardItemProps): JSX.Element {
 
   const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
@@ -88,17 +108,36 @@ export function CardItem( {
           </div>
         }
 
-        {cardMetas &&
-          <div className="card__metas">
-            {cardMetas.map((cardMeta, key) =>
-              <div key={`card-meta-${key}`} className="card__meta">
-                <span className="card__meta__icon"><Icon icon={cardMeta.icon} /></span>
-                <span className="card__meta__label">{cardMeta.label}: </span>
-                <span className="card__meta__content">{cardMeta.content}</span>
-              </div>,
-            )}
-          </div>
+
+        <div className="card__metas">
+        {/* All icons from desing.  */}
+        { location && 
+          <Metarow icon="location" label={Drupal.t('Paikka')} content={location}/>
         }
+
+        { date && 
+          <Metarow icon="clock" label={Drupal.t('Paikka')} content={date}/>
+        }
+
+        { daterange && 
+          <Metarow icon="calendar" label={Drupal.t('Paikka')} content={daterange}/>
+        }
+
+        { theme && 
+          <Metarow icon="locate" label={Drupal.t('Paikka')} content={theme}/>
+        }
+
+        {language && 
+          <Metarow icon="globe" label={Drupal.t('Paikka')} content={language}/>
+        }
+
+        {/* If you need something else, use cardMetas  */}
+
+        {cardMetas &&  cardMetas.map((cardMeta, key) =>
+              <Metarow  {...cardMeta} key={`card-meta-${key}`}/>
+            )
+        }
+        </div>
 
         {cardTags &&
           <div className="card__tags">

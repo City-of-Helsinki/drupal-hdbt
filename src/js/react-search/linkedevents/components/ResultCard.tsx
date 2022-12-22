@@ -66,6 +66,8 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       throw new Error('DATE ERROR');
     }
 
+
+
     if (isMultiDate) {
       return `${formatStartDate(startDate, endDate)} - ${endDate.toLocaleDateString('fi-FI')}`;
     }
@@ -120,12 +122,12 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       label:Drupal.t('Time', { context: 'Time of event' }),
       content:getDate()
     },
-    //Location
-    {
-      icon:'pointer',
-      label:Drupal.t('Location', { context: 'Location of event' }),
-      content:getLocation()
-    }
+    // //Location
+    // {
+    //   icon:'pointer',
+    //   label:Drupal.t('Location', { context: 'Location of event' }),
+    //   content:getLocation()
+    // }
 
 ]
   return (<>
@@ -136,6 +138,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       cardImage={image && imageToElement(image)}
       cardTags={cardTags}
       cardMetas={cardMetas}
+      location={getLocation()}
     />
 {/* 
     <div className='event-list__event'>

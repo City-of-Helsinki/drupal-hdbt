@@ -1,5 +1,14 @@
 # HDBT-theme
 
+
+¤¤¤¤¤¤¤¤¤¤¤
+todo
+
+WEBPACK CONF
+TYPESCRIPT
+REACT
+
+
 ## Introduction
 
 HDBT theme is a base theme for the City of Helsinki. It is based on the core theme stable9. The abbrevation comes from
