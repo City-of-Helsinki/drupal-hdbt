@@ -1,7 +1,9 @@
-import type { Event, EventImage, EventKeyword } from '../types/Event';
+import type { Event, EventImage, EventKeyword, MultilingualString } from '../types/Event';
+import CardItem, { type CardItemProps} from '../../common/Card';
+import type TagType from '@/js/types/TagType';
+
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
-
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
 
 // Return start day string with increasing specificity the further apart it is from end date
@@ -17,14 +19,20 @@ const formatStartDate = (start: Date, end: Date) => {
   return start.toLocaleDateString('fi-FI');
 };
 
-function ResultCard({ end_time, id, location, name, keywords, start_time, images }: Event) {
+
+
+function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-
+  const url = `${baseUrl}/events/${id}`
   // Bail if no current language
   if (!name[currentLanguage]) {
     return null;
   }
+
+
+const   getCardTags = ({keywords,currentLanguage}:{keywords:EventKeyword[],currentLanguage:string})=> keywords?.map((item : any)=>({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
+
 
   const getKeywords = () => keywords?.map((keyword: EventKeyword) => {
 
@@ -98,8 +106,18 @@ function ResultCard({ end_time, id, location, name, keywords, start_time, images
 
   const image = images?.find(image => image.url);
   const isRemote = location && location.id === INTERNET_EXCEPTION;
+  const title = name[currentLanguage]||''
+  const cardTags =getCardTags({keywords,currentLanguage});
 
-  return (
+  return (<>
+    <CardItem 
+      cardUrl={url}
+      cardTitle={title}
+      cardModifierClass=""
+      cardImage={image && imageToElement(image)}
+      cardTags={cardTags}
+    />
+
     <div className='event-list__event'>
       <div className='event-list__image-container'>
         <div className='event-list__tags event-list__tags--mobile' role='region' aria-label={Drupal.t('Event keywords')}>
@@ -126,7 +144,7 @@ function ResultCard({ end_time, id, location, name, keywords, start_time, images
           <div className='event-list__indicator-container'><span className='event-list__event-link-indicator' /></div>
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
 
