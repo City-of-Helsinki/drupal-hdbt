@@ -307,3 +307,7 @@ msgstr "Poista @item hakutuloksista"
 msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
+
+msgctxt "TPR unit daycare distance"
+msgid "Distance"
+msgstr "Etäisyys"
