@@ -13,3 +13,7 @@
   @include font('small');
   padding-top: $spacing;
 }
+
+img {
+  overflow-wrap: break-word; // allow reading long alt-text on broken images
+}
