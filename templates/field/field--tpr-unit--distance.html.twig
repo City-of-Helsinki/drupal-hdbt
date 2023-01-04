@@ -45,9 +45,9 @@
 
 {% if label_hidden %}
   {% for item in items %}
-    <div class="unit__info-row unit__info-row--distance">
+    <span class="unit__info-row unit__info-row--distance">
       {{ item.content }}
-    </div>
+    </span>
   {% endfor %}
 {% else %}
   <div{{ title_attributes.addClass(title_classes) }}>{{ label }}: </div>

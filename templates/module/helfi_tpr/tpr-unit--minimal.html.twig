@@ -1,0 +1,24 @@
+{% set card_metas = [] %}
+{% if content.address|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'location',
+      label: 'Address'|t,
+      content: content.address,
+    }]) %}
+{% endif %}
+{% if content.distance|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'locate',
+      label: 'Distance'|t({}, {'context': 'TPR unit daycare distance'}),
+      content: content.distance,
+    }]) %}
+{% endif %}
+
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: 'card--tpr-minimal',
+  card_title: entity.label,
+  card_url: unit_url,
+  card_tags: card_tags,
+  card_metas: card_metas,
+  } %}
+{% endembed %}

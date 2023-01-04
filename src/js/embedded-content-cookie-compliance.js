@@ -4,48 +4,41 @@
  *
  * Depends on EU Cookie Compliance module.
  */
+// eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
-  'use strict';
-
-  var loadEmbeddedContent = function () {
+  function loadEmbeddedContent() {
     if (typeof Drupal.eu_cookie_compliance === 'undefined') {
       return;
     }
 
-    if (
-      Drupal.eu_cookie_compliance.hasAgreed('preference') &&
-      Drupal.eu_cookie_compliance.hasAgreed('statistics')
-    ) {
-      for (const [id, attributes] of Object.entries(
-        drupalSettings.embedded_media_attributes
-      )) {
-        var iframeElement = document.createElement('iframe');
+    if (Drupal.eu_cookie_compliance.hasAgreed('preference') && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
+        const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
         iframeElement.height = attributes.height;
         iframeElement.width = attributes.width;
         iframeElement.title = attributes.title;
 
-        var containerElement = document.createElement('div');
+        const containerElement = document.createElement('div');
         containerElement.classList.add('responsive-video-container');
         containerElement.appendChild(iframeElement);
 
-        $('.embedded-content-cookie-compliance.media-' + id)
+        $(`.embedded-content-cookie-compliance.media-${id}`)
           .empty()
           .append(containerElement)
-          .removeClass('media-' + id);
+          .removeClass(`media-${id}`);
       }
 
       // Only load the embedded content once.
-      loadEmbeddedContent = function () {};
+      $(document).off('eu_cookie_compliance.changeStatus', loadEmbeddedContent);
     }
-  };
+  }
 
   // Run after choosing cookie settings.
   $(document).on('eu_cookie_compliance.changeStatus', loadEmbeddedContent);
 
   // Run after page is ready.
-  $(document).ready(function () {
-    loadEmbeddedContent();
-  });
+  $(document).ready(loadEmbeddedContent);
 })(jQuery, Drupal, drupalSettings);

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function startMobileBranding() {
   const INITIAL = 0;
   const DOWN = 1;
   const UP = 2;
@@ -10,11 +10,19 @@ document.addEventListener('DOMContentLoaded', function () {
   let direction = INITIAL;
   let prevDirection = INITIAL;
 
-  const languageSwitcher = document.querySelector(
-    '.language-wrapper'
-  );
+  const languageSwitcher = document.querySelector('.language-wrapper');
 
-  const checkScroll = function () {
+  function toggleLanguageSwitcher(newDirection, curScroll) {
+    if (newDirection === UP && curScroll > languageSwitcher.clientHeight) {
+      languageSwitcher.classList.add('scroll-up');
+      prevDirection = newDirection;
+    } else if (newDirection === DOWN) {
+      languageSwitcher.classList.remove('scroll-up');
+      prevDirection = newDirection;
+    }
+  }
+
+  function checkScroll() {
     /*
      ** Find the direction of scroll
      ** 0 - initial, 1 - up, 2 - down
@@ -31,17 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleLanguageSwitcher(direction, currentScroll);
     }
     prevScroll = currentScroll;
-  };
-
-  const toggleLanguageSwitcher = function (direction, curScroll) {
-    if (direction === UP && curScroll > languageSwitcher.clientHeight) {
-      languageSwitcher.classList.add('scroll-up');
-      prevDirection = direction;
-    } else if (direction === DOWN) {
-      languageSwitcher.classList.remove('scroll-up');
-      prevDirection = direction;
-    }
-  };
+  }
 
   if (languageSwitcher) {
     window.addEventListener('scroll', checkScroll);

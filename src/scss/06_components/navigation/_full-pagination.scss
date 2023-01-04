@@ -20,14 +20,17 @@
   // Invisible, floated pseudo-element for reserving space for the hds-pagination__button-next,
   // we can not use this position for the actual button as it's in incorrect source order for tabbing.
   &::before {
+    @include font('button');
     speak: never; // Removes this pseudo-element from screen readers where supported.
     content: attr(data-next); // Trick to keep floating element same size as btn--next.
     content: attr(data-next) / ''; // Removes this pseudo-element from screen readers where supported.
     display: block;
     float: right; // Floated pseudo-element wraps the inline ul around it.
     line-height: 60px;
-    padding-left: 80px;
-    visibility: hidden;
+    padding-left: 26px; // 16px button padding + 2px button border + 8px margin to paging
+    padding-right: 30px; // 24px icon + 4px icon padding + 2px button border
+    transform: scaleY(-1); // Helps debugging text position
+    visibility: hidden; // Remove this for debugging
   }
 }
 

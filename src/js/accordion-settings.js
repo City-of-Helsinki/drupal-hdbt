@@ -1,31 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function accordionListeners() {
   // Bind closing function to the additional close button at the bottom of
   // the content. For reasons unknown to man the close button cannot be
   // actual button. If you change it from span to button the click event
   // is no longer registered and the functionality doesn't work.
   function closeFold(folds) {
-    let closeButton = folds.content.querySelector(
-      '.accordion-item__button--close'
-    );
+    const closeButton = folds.content.querySelector('.accordion-item__button--close');
 
     function moveFocus(element) {
-      element
-        .closest('.accordion__wrapper')
-        .querySelector('.accordion-item__button--toggle')
-        .focus();
+      element.closest('.accordion__wrapper').querySelector('.accordion-item__button--toggle').focus();
     }
 
-    closeButton.addEventListener('mousedown', function (e) {
+    function closeFolds(e) {
       folds.close();
       e.preventDefault();
       moveFocus(this);
-    });
+    }
+    closeButton.addEventListener('mousedown', closeFolds);
 
-    closeButton.addEventListener('keypress', function (e) {
+    closeButton.addEventListener('keypress', function closeFoldsOnKey(e) {
       if (e.which === 13 || e.which === 32) {
-        folds.close();
-        e.preventDefault();
-        moveFocus(this);
+        closeFolds(e);
       }
     });
   }
@@ -34,8 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const accordions = document.getElementsByClassName('handorgel');
   window.handorgel_accordions = [];
 
-  for (let singleAccordion of accordions) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const singleAccordion of accordions) {
     /* global handorgel */
+    // eslint-disable-next-line new-cap
     const accordion = new handorgel(singleAccordion, {
       // whether multiple folds can be opened at once
       multiSelectable: false,
@@ -77,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.handorgel_accordions.push(accordion);
 
     // Get all the folds associated to the accordion.
-    let folds = accordion.folds;
+    const { folds } = accordion;
 
     // Go through each fold.
     folds.forEach(closeFold);

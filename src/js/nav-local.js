@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     '#smartti-wrapper', // Smartti chatbot in kymp
     '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop', // Watson chatbot in asuminen
     '#block-kuurahealthchat', // Kuurahealth in sote
-    '#ed11y-panel' // Editoria11y accessibility tool
+    '#ed11y-panel', // Editoria11y accessibility tool
   ];
 
-  let toggle = document.querySelector('.js-cssmenu-toggle-button');
-  let checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
+  const toggle = document.querySelector('.js-cssmenu-toggle-button');
+  const checkbox = document.querySelector('.js-cssmenu-toggle-checkbox');
 
   function toggleWidgets(hide) {
     const widgets = document.querySelectorAll(widgetsToHideSelector.join(','));
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', checkboxToggle);
   }
 
-  document.addEventListener('keydown', function (e) {
-    if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27) && checkbox.checked) {
+  document.addEventListener('keydown', function toggleOnEnter(e) {
+    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && checkbox.checked) {
       checkboxToggle();
     }
   });

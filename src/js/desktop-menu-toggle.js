@@ -13,12 +13,11 @@ function updateFirstChildAriaExpanded(item) {
 }
 
 function closeOpenItems(element) {
-  let allOpenItems = document.querySelectorAll(
-    '.desktop-menu .' + OPEN_CLASS
-  );
+  const allOpenItems = document.querySelectorAll(`.desktop-menu .${OPEN_CLASS}`);
 
   if (allOpenItems) {
-    for (let item of allOpenItems) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of allOpenItems) {
       // Check that the item we are about to close is not the
       // element-variable given to the function.
       if (item === element) {
@@ -31,11 +30,11 @@ function closeOpenItems(element) {
 }
 
 function toggleDesktopMenuLevel(item) {
-  let toggleButton = item.querySelector('.menu__toggle-button');
+  const toggleButton = item.querySelector('.menu__toggle-button');
 
   // Check if there was menu toggle button under the menu item.
   if (toggleButton !== null) {
-    toggleButton.addEventListener('click', function () {
+    toggleButton.addEventListener('click', function toggleOpen() {
       item.classList.toggle(OPEN_CLASS);
       updateFirstChildAriaExpanded(item);
     });
@@ -58,8 +57,8 @@ function mouseLeave() {
 // Gets the children of the given element and skips the one that is given
 // to it as an option for skipMe.
 function getChildren(n, skipMe) {
-  var r = [];
-  for (; n; n = n.nextSibling) if (n.nodeType == 1 && n != skipMe) r.push(n);
+  const r = [];
+  for (; n; n = n.nextSibling) if (n.nodeType === 1 && n !== skipMe) r.push(n);
   return r;
 }
 
@@ -68,17 +67,14 @@ function getSiblings(n) {
   return getChildren(n.parentNode.firstChild, n);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
   // Find all menu items with children menus.
-  const itemsWithChildren = document.querySelectorAll(
-    '.desktop-menu .menu--level-0 > .menu__item--children'
-  );
+  const itemsWithChildren = document.querySelectorAll('.desktop-menu .menu--level-0 > .menu__item--children');
 
-  for (let item of itemsWithChildren) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of itemsWithChildren) {
     if (item) {
-      let firstLevelItem = item.querySelector(
-        '.menu--level-0 > .menu__item--children > .menu__link-wrapper > a'
-      );
+      const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--children > .menu__link-wrapper > a');
 
       toggleDesktopMenuLevel(item);
       firstLevelItem.addEventListener('mouseover', mouseOver, false);
@@ -89,14 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Functionality when other menu item is clicked while one is open or
 // when the user clicks outside of the menu.
-window.addEventListener('click', function (event) {
+window.addEventListener('click', function onMainNavigationClick(event) {
   // First make sure that clicks inside the menu are ignored unless the
   // click is to a menu-link that needs to open another sub menu.
-  if (
-    document
-      .querySelector('[data-hdbt-selector="main-navigation"]')
-      .contains(event.target)
-  ) {
+  if (document.querySelector('[data-hdbt-selector="main-navigation"]').contains(event.target)) {
     let clickedElement = event.target;
 
     if (clickedElement.classList.contains('menu__toggle-button-icon')) {
@@ -104,10 +96,8 @@ window.addEventListener('click', function (event) {
     }
 
     if (clickedElement.classList.contains('menu__toggle-button')) {
-      let clickedElementParent = clickedElement.parentElement.closest(
-        '.menu__item--children'
-      );
-      let clickedElementSiblings = getSiblings(clickedElementParent);
+      const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
+      const clickedElementSiblings = getSiblings(clickedElementParent);
 
       // Loop through all siblings and if there is some open, close them.
       for (let i = 0; i < clickedElementSiblings.length; i++) {
