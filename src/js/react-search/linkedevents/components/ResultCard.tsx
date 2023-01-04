@@ -1,7 +1,8 @@
-import type { Event, EventImage, EventKeyword, MultilingualString } from '../types/Event';
-import CardItem, { type CardItemProps} from '../../common/Card';
-import type TagType from '@/js/types/TagType';
+import parse from 'html-react-parser'
 
+import type { Event, EventImage, EventKeyword } from '../types/Event';
+import CardItem from '../../common/Card';
+import type TagType from '@/js/types/TagType';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
@@ -19,12 +20,8 @@ const formatStartDate = (start: Date, end: Date) => {
   return start.toLocaleDateString('fi-FI');
 };
 
-
-
-
-interface KeywordsForLanguage {keywords:EventKeyword[],currentLanguage:string}
-
-const   getCardTags = ({keywords,currentLanguage}:KeywordsForLanguage)=> keywords?.map((item : any)=>({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
+interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
+const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
 
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
@@ -34,25 +31,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
   if (!name[currentLanguage]) {
     return null;
   }
-
-
-  
-
-
-  const getKeywords = () => keywords?.map((keyword: EventKeyword) => {
-
-    // Bail if no current language.
-    if (!keyword.name[currentLanguage]) {
-      return null;
-    }
-
-    const keywordName = keyword.name[currentLanguage];
-    return keywordName ? (
-        <span key={keyword.id} className='event-list__tag'>
-          {keywordName?.charAt(0).toUpperCase() + keywordName?.slice(1)}
-        </span>
-    ) : null;
-  });
 
   const getDate = () => {
     let  startDate;
@@ -65,8 +43,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     } catch (e) {
       throw new Error('DATE ERROR');
     }
-
-
 
     if (isMultiDate) {
       return `${formatStartDate(startDate, endDate)} - ${endDate.toLocaleDateString('fi-FI')}`;
@@ -91,8 +67,8 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return locationString;
   };
 
-  const imageToElement = (image: EventImage) => {
-    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
+  const imageToElement = (image: EventImage): JSX.Element => {
+    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};
 
     if (image.url) {
       imageProps.src = image.url;
@@ -108,68 +84,26 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       imageProps['data-photographer'] = image.photographer_name;
     }
 
-    return <img className='event-list__event-image' alt='' {...imageProps} />;
+    return <img alt='' {...imageProps} />;
   };
 
   const image = images?.find(image => image.url);
   const isRemote = location && location.id === INTERNET_EXCEPTION;
-  const title = name[currentLanguage]||''
-  const cardTags = getCardTags({keywords,currentLanguage});
-  const cardMetas =[
-    //Date
-    {
-      icon:'calendar',
-      label:Drupal.t('Time', { context: 'Time of event' }),
-      content:getDate()
-    },
-    // //Location
-    // {
-    //   icon:'pointer',
-    //   label:Drupal.t('Location', { context: 'Location of event' }),
-    //   content:getLocation()
-    // }
+  const title = name[currentLanguage] || ''
+  const cardTags = getCardTags({keywords, currentLanguage});
 
-]
-  return (<>
-    <CardItem 
-      cardUrl={url}
-      cardTitle={title}
-      cardModifierClass=""
-      cardImage={image && imageToElement(image)}
-      cardTags={cardTags}
-      cardMetas={cardMetas}
-      location={getLocation()}
-    />
-{/* 
-    <div className='event-list__event'>
-      <div className='event-list__image-container'>
-        <div className='event-list__tags event-list__tags--mobile' role='region' aria-label={Drupal.t('Event keywords')}>
-          keywiords
-          {getKeywords()}
-        </div>
-        {image ? imageToElement(image) : <div className='event-list__event-image-placeholder' dangerouslySetInnerHTML={{ __html: imagePlaceholder.trim() }} />}
-      </div>
-      <div className='event-list__content-container'>
-        <h3 className='event-list__event-name'>
-          <a className='event-list__event-link' href={`${baseUrl}/events/${id}`} aria-label={Drupal.t('Link leads to external service', [], { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' })}>
-            {name[currentLanguage]}
-          </a>
-        </h3>
-        <div className='event__content event__content--date'>
-          {getDate()}
-        </div>
-        {location &&
-          <div className='event__content event__content--location'>
-            {isRemote ? 'Internet' : getLocation()}
-          </div>
-        }
-        <div className='event__lower-container'>
-          <div className='event-list__tags event-list__tags--desktop' role='region' aria-label={Drupal.t('Event keywords')}>{getKeywords()}</div>
-          <div className='event-list__indicator-container'><span className='event-list__event-link-indicator' /></div>
-        </div>
-      </div>
-    </div> */}
-    
+  return (
+    <>
+      <CardItem
+        cardUrl={url}
+        cardTitle={title}
+        cardModifierClass=""
+        cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
+        cardTags={cardTags}
+        cardUrlExternal={true}
+        location={isRemote ? 'Internet' : getLocation()}
+        time={getDate()}
+      />
     </>
   );
 }

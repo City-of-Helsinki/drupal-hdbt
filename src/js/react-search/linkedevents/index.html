@@ -13,8 +13,8 @@
     <link rel="preload" href="../../../../dist/fonts/HelsinkiGrotesk-Bold.woff"/>
     <link rel="preload" href="../../../../dist/fonts/HelsinkiGrotesk-Medium.woff"/>
     <link rel="stylesheet" href="../../../../dist/css/styles.min.css" />
-    <link rel="stylesheet" href="../../../../dist/css/styles.min.css" />
-    <link rel="stylesheet" href="https://helfi-etusivu.docker.so/etusivu-assets/core/themes/stable9/css/system/components/hidden.module.css" />
+    <link rel="stylesheet" href="../../../../dist/css/hdbt-icons.css" />
+    <link rel="stylesheet" href="../../../../dist/css/color-palette.min.css" />
     <script>
       // Mock Drupal.t & drupalSettings in development to prevent errors.
       window.Drupal = {
@@ -40,15 +40,23 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="development-container main-content">
-      <div
-        id="helfi-events-search"
-        data-events-url="https://api.hel.fi/linkedevents/v1/event?event_type=General&format=json&include=keywords%2Clocation&page=1&page_size=5&sort=end_time&start=now&super_event_type=umbrella%2Cnone&language=fi&all_ongoing_AND=rock"
-        data-show-location-filter="1"
-        data-show-time-filter="1"
-        data-show-free-events-filter="1"
-        data-show-remote-events-filter="1"
-        >
+    <div class="no-sidebar">
+      <div class="main-content components components--upper">
+        <div class="component component--district-and-project-search">
+          <div class="component__container">
+            <div class="component__content district-and-project-search development-container">
+              <div
+                id="helfi-events-search"
+                data-events-url="https://api.hel.fi/linkedevents/v1/event?event_type=General&format=json&include=keywords%2Clocation&page=1&page_size=5&sort=end_time&start=now&super_event_type=umbrella%2Cnone&language=fi&all_ongoing_AND=rock"
+                data-show-location-filter="1"
+                data-show-time-filter="1"
+                data-show-free-events-filter="1"
+                data-show-remote-events-filter="1"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
