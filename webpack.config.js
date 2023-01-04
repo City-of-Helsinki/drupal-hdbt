@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js', 
+      chunkFilename: 'js/async/[name].chunk.js',
       pathinfo: isDev,
       filename: 'js/[name].min.js',
       publicPath: '../',
@@ -130,7 +130,7 @@ module.exports = (env, argv) => {
       ],
     },
     resolve: {
-      
+
       fallback:{
         // Random copypasta trying to fix hds-react import bugs
         "buffer": require.resolve("buffer/") ,

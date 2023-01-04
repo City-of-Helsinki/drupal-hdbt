@@ -5,9 +5,7 @@
     "node": true,
     "es6": true
   },
-
-  
-  "extends": [ 
+  "extends": [
     "airbnb",
     "prettier"
   ],
@@ -33,7 +31,6 @@
   "rules": {
     // "prettier/prettier": "error",
     "prefer-arrow-callback":["off"],
-
     "quotes": ["warn", "single"],
     "semi": ["error", "always"],
     "consistent-return": ["off"],
