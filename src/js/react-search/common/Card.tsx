@@ -1,3 +1,5 @@
+import parse from 'html-react-parser'
+
 import Tags from './Tags';
 import Icon from './Icon';
 import type  MetadataType from '@/types/MetadataType';
@@ -84,9 +86,8 @@ export function CardItem({
 
         {cardDescription &&
           <div className="card__description">
-            {/* What is this? this cannot produce html */}
             { cardDescriptionHtml ?
-              { cardDescription }
+              parse(cardDescription)
               :
               <p>{ cardDescription }</p>
             }
@@ -95,9 +96,8 @@ export function CardItem({
 
         {cardHelptext &&
           <div className="card__helptext">
-          {/* What is this? this cannot produce html */}
             { cardHelptextHtml ?
-              { cardHelptext }
+              parse(cardHelptext)
               :
               <p>{ cardHelptext }</p>
             }

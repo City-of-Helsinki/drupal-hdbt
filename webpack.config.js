@@ -8,15 +8,15 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SvgToSprite = require('./webpack.svgToSprite');
 const { merge } = require('webpack-merge');
 
-// Entries for React search drupal blocks.
-const HS_REACT_SEARCH = {
+// Entries for React searches.
+const REACT_SEARCHES = {
   linkedevents:['./src/js/react-search/linkedevents/index.tsx'],
 }
 
 // Handle entry points.
 const Entries = () => {
   let entries = {
-    ...HS_REACT_SEARCH,
+    ...REACT_SEARCHES,
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
