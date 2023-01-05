@@ -47,7 +47,7 @@ $-footerlink-target-size: 44px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   overflow: hidden;
-  overscroll-behavior: none;
+  overscroll-behavior: contain;
 }
 
 .mmenu__panel {

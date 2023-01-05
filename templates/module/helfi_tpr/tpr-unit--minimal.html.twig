@@ -9,7 +9,7 @@
 {% if content.distance|render %}
   {% set card_metas = card_metas|merge([{
       icon: 'locate',
-      label: 'Distance'|t,
+      label: 'Distance'|t({}, {'context': 'TPR unit daycare distance'}),
       content: content.distance,
     }]) %}
 {% endif %}

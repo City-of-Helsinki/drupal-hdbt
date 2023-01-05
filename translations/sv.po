@@ -304,3 +304,7 @@ msgstr "Ta bort @item från sökresultaten"
 msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
+
+msgctxt "TPR unit daycare distance"
+msgid "Distance"
+msgstr "Distans"
