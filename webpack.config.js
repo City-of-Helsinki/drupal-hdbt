@@ -47,7 +47,6 @@ const Entries = () => {
 
 
 module.exports = (env, argv) => {
-
   const isDev = (argv.mode === 'development');
 
   // Set the base config.
@@ -89,9 +88,9 @@ module.exports = (env, argv) => {
           type: 'javascript/auto',
         },
         {
-          test:/\.jsx$/,
+          test: /\.jsx$/,
           exclude: /node_modules/,
-          use:[ 'babel-loader',]
+          use: ['babel-loader'],
         },
         {
           test: /\.tsx?$/,
@@ -134,20 +133,18 @@ module.exports = (env, argv) => {
       ],
     },
     resolve: {
-
-      fallback:{
-        // Random copypasta trying to fix hds-react import bugs
-        "buffer": require.resolve("buffer/") ,
+      fallback: {
+        // Fix hds-react import bugs.
+        //"buffer": require.resolve("buffer/") ,
         path: require.resolve('path-browserify')
       },
-
-
       modules: [
         path.join(__dirname, 'node_modules'),
       ],
-      extensions: ['.js', '.json','.ts','.tsx'],
+      extensions: ['.js', '.json', '.ts', '.tsx'],
     },
     plugins: [
+      // Fix hds-react import bugs.
       new webpack.ProvidePlugin({
         process: 'process/browser',
         Buffer: ['buffer', 'Buffer'],
