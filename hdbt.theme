@@ -1447,7 +1447,6 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
     : Url::fromUserInput($link === '<front>' ? '/' : $link);
 }
 
-
 /**
  * Implements hook_preprocess_paragraph().
  */
@@ -1471,7 +1470,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
       'field_event_location',
       'field_event_time',
       'field_free_events',
-      'field_remote_events'
+      'field_remote_events',
     ];
 
     foreach ($booleanFields as $field) {
@@ -1486,7 +1485,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     drupal_get_path('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
     [
       'image_placeholder' => 'calendar-clock',
-      'theme_hook_original' => ''
+      'theme_hook_original' => '',
     ]
   );
 
