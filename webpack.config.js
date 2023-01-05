@@ -13,7 +13,6 @@ const HS_REACT_SEARCH = {
   linkedevents:['./src/js/react-search/linkedevents/index.tsx'],
 }
 
-
 // Handle entry points.
 const Entries = () => {
   let entries = {
@@ -22,6 +21,10 @@ const Entries = () => {
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
+    'component-library': [
+      './src/scss/component-library.scss',
+      './src/js/component-library.js',
+    ],
     'color-palette': [
       './src/scss/color-palette.scss'
     ],
@@ -29,7 +32,8 @@ const Entries = () => {
       './src/scss/environment-indicator.scss'
     ],
   };
-  //take all root level js files and create entries with matching names
+
+  // Take all root level js files and create entries with matching names.
   const pattern = './src/js/**/*.js';
   const ignore = [
     './src/js/component-library.js'
@@ -46,7 +50,7 @@ module.exports = (env, argv) => {
 
   const isDev = (argv.mode === 'development');
 
-  // Set the base config
+  // Set the base config.
   const config = {
     entry() {
       return Entries();
