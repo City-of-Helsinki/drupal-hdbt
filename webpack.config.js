@@ -10,7 +10,7 @@ const { merge } = require('webpack-merge');
 
 // Entries for React searches.
 const REACT_SEARCHES = {
-  linkedevents:['./src/js/react-search/linkedevents/index.tsx'],
+  linkedevents:['./src/js/react/apps/linkedevents/index.tsx'],
 }
 
 // Handle entry points.
@@ -141,7 +141,7 @@ module.exports = (env, argv) => {
       modules: [
         path.join(__dirname, 'node_modules'),
       ],
-      extensions: ['.js', '.json', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     },
     plugins: [
       // Fix hds-react import bugs.

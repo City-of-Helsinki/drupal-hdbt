@@ -3,7 +3,7 @@
     "baseUrl": "",
     "paths": {
       "@/js/*": ["./src/js/*"],
-      "@/react-search/*": ["./src/js/react-search/*"],
+      "@/react/*": ["./src/js/react/*"],
       "@/types/*": ["./src/js/types/*"]
     },
     "target": "es6",

@@ -1,7 +1,7 @@
 import parse from 'html-react-parser'
 
 import type { Event, EventImage, EventKeyword } from '../types/Event';
-import CardItem from '../../common/Card';
+import CardItem from '../../../common/Card';
 import type TagType from '@/js/types/TagType';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
@@ -33,7 +33,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
   }
 
   const getDate = () => {
-    let  startDate;
+    let startDate;
     let endDate;
     let isMultiDate;
     try {
