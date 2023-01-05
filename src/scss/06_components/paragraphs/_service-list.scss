@@ -84,6 +84,12 @@
       }
     }
   }
+
+  .services-search__results {
+    > .views-row + .views-row {
+      margin-top: $spacing;
+    }
+  }
 }
 
 .component--service-list-search {

@@ -23,6 +23,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Drupal\helfi_tpr\Entity\Service;
 
 /**
  * Implements hook_preprocess().
@@ -1298,7 +1299,6 @@ function hdbt_preprocess_views_view(&$variables) {
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
-//
 }
 
 /**
@@ -1342,6 +1342,18 @@ function hdbt_preprocess_tpr_service_channel(&$variables) {
   if (!$entity->email->isEmpty()) {
     $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_service(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Service) {
+    return;
+  }
+  $entity = $variables['entity'];
+
+  $variables['service_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
 
 /**
