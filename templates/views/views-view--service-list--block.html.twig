@@ -32,11 +32,9 @@
 #}
 {%
   set classes = [
-  'views',
-  'views--' ~ id|clean_class,
-  'views--' ~ display_id|clean_class,
+  'views--service-list',
+  'views--service-list--block',
   dom_id ? 'js-view-dom-id-' ~ dom_id,
-  'unit-search__content'
 ]
 %}
 

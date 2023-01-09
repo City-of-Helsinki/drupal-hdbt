@@ -24,81 +24,76 @@ $teaser-icon-size-desktop: 48px;
     margin-right: calc(#{$spacing-and-half} / 2);
   }
 
-  .service__link {
-    border: 1px solid $color-black;
-    display: block;
-    height: 100%;
-    margin-top: $spacing-half;
-    padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
-    position: relative;
-    text-decoration: none;
-
-    @include breakpoint($breakpoint-l) {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      line-height: 0; // Remove extra space under the arrow icon on larger card
-      margin-top: 0;
-      min-height: 240px; // As in designs
-      padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
-    }
-
-    &::before {
-      background-color: $color-gold;
-      content: '';
-      display: block;
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: $spacing-half;
-
-      @include breakpoint($breakpoint-l) {
-        bottom: 0;
-        height: $spacing-and-half;
-        right: 0;
-        top: auto;
-        width: 100%;
-      }
-    }
-
-    &:hover {
-      text-decoration: underline;
-
-      .hel-icon {
-        margin-left: $spacing;
-
-        @media (prefers-reduced-motion) {
-          margin-left: 0;
-        }
-      }
-    }
-  }
-
   .service__title {
     @include font('h4');
     margin: 0;
   }
 
   .hel-icon {
-    --icon-size: #{$teaser-icon-size-mobile};
     bottom: 50%;
     left: auto;
     position: absolute;
     right: $spacing;
-    transform: translateY(50%);
-    transition: all 0.3s;
 
-    @media (prefers-reduced-motion) {
-      transition: none;
-    }
+    @include pseudo-icon('arrow-right');
+    @include hover-link-arrow-transition;
 
     @include breakpoint($breakpoint-l) {
       --icon-size: #{ $teaser-icon-size-desktop};
       margin-top: $spacing-and-half;
       position: static;
-      right: auto;
       transform: none;
+    }
+  }
+}
+
+.service__link {
+  border: 1px solid $color-black;
+  display: block;
+  height: 100%;
+  margin-top: $spacing-half;
+  padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
+  position: relative;
+  text-decoration: none;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 0; // Remove extra space under the arrow icon on larger card
+    margin-top: 0;
+    min-height: 240px; // As in designs
+    padding: $spacing-double $spacing-and-half calc(#{$spacing-and-half} + #{$spacing-and-half});
+  }
+
+  &::before {
+    background-color: $color-gold;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $spacing-half;
+
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      height: $spacing-and-half;
+      right: 0;
+      top: auto;
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+
+    .hel-icon {
+      transform: translateX($spacing-quarter);
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
   }
 }
