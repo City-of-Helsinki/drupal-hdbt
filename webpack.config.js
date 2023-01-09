@@ -135,13 +135,16 @@ module.exports = (env, argv) => {
     resolve: {
       fallback: {
         // Fix hds-react import bugs.
-        //"buffer": require.resolve("buffer/") ,
         path: require.resolve('path-browserify')
       },
       modules: [
         path.join(__dirname, 'node_modules'),
       ],
-      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      alias: {
+        '@/react/common': path.resolve(__dirname, 'src/js/react/common/'),
+        '@/types/': path.resolve(__dirname, 'src/js/types/'),
+      },
     },
     plugins: [
       // Fix hds-react import bugs.

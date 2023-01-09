@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
+    "baseUrl": ".",
+    // Paths need to be added also into webpack.config.js resolve.alias.
     "paths": {
-      "@/js/*": ["./src/js/*"],
-      "@/react/*": ["./src/js/react/*"],
-      "@/types/*": ["./src/js/types/*"]
+      "@/react/common/*": ["src/js/react/common/*"],
+      "@/types/*": ["src/js/types/*"]
     },
     "target": "es6",
     "lib": [
