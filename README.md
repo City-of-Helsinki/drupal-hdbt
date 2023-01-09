@@ -221,8 +221,8 @@ it on the block layout, make sure that there is a block with the correct id on t
 
 ## ESLint
 
-We are using the airbnb-base which will be changed to full airbnb when there is react stuff.
-The current eslint config is the bare minimum that should pass always everywhere. Extend as necessary.
+We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
+Extend as necessary.
 
 ### Why is it so hard?
  - the eslint rules might be used from root (or beyond root) due to husky being funny
