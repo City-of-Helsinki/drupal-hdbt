@@ -2,7 +2,7 @@ import parse from 'html-react-parser'
 
 import Tags from './Tags';
 import Icon from './Icon';
-import type  MetadataType from '@/types/MetadataType';
+import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 
 const Metarow = ({ icon, label, content} : MetadataType)=> (
@@ -34,7 +34,7 @@ export type CardItemProps = {
   time?: string;
 };
 
-export function CardItem({
+function CardItem({
   cardModifierClass,
   cardImage,
   cardTitle,

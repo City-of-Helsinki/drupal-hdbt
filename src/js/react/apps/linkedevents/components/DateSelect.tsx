@@ -3,7 +3,7 @@ import { DateInput } from 'hds-react';
 import Collapsible from './Collapsible';
 import { QueryBuilder } from '../utils/QueryBuilder';
 import CheckboxFilter from './CheckboxFilter';
-import type DateSelectDateTimes from '../types/DateSelectDateTimes';
+import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 
 interface DateSelectActions {
@@ -61,7 +61,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             className='hdbt-search__filter hdbt-search__date-input'
             helperText={dateHelperText}
             id='start-date'
-            label={Drupal.t('First day of the time period')} 
+            label={Drupal.t('First day of the time period')}
             lang={currentLanguage}
             invalid={invalidStartDate}
             errorText={startDateErrorText}
@@ -86,7 +86,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             errorText={endDateErrorText}
             value={endDisabled ? startDate?.toFormat(HDS_DATE_FORMAT) : endDate?.toFormat(HDS_DATE_FORMAT)}
             onChange={(value: string) => changeDate(value, 'end')}
-          /> 
+          />
         </div>
       </Collapsible>
     </div>

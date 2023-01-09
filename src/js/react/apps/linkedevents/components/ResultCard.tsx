@@ -1,8 +1,8 @@
 import parse from 'html-react-parser'
 
-import type { Event, EventImage, EventKeyword } from '../types/Event';
-import CardItem from '../../../common/Card';
-import type TagType from '@/js/types/TagType';
+import type { Event, EventImage, EventKeyword } from '@/types/Event';
+import CardItem from '@/react/common/Card';
+import type TagType from '@/types/TagType';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();

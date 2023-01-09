@@ -1,4 +1,4 @@
-export type MultilingualString = {
+type MultilingualString = {
   fi?: string,
   en?: string,
   sv?: string
@@ -17,7 +17,7 @@ export type EventKeyword = {
   name: MultilingualString
 };
 
-export type EventLocation = {
+type EventLocation = {
   id: string,
   name?: MultilingualString
   street_address?: MultilingualString

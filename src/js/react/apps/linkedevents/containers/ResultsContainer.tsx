@@ -1,6 +1,6 @@
 import EmptyMessage from '../components/EmptyMessage';
 import ResultCard from '../components/ResultCard';
-import type Event from '../types/Event';
+import type Event from '@/types/Event';
 
 type ResultsContainerProps = {
   count: Number | null,

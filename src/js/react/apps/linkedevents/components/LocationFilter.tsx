@@ -1,6 +1,6 @@
 import { Select } from 'hds-react';
 
-import type Location from '../types/Location';
+import type Location from '@/types/Location';
 import { QueryBuilder } from '../utils/QueryBuilder';
 import ApiKeys from '../enum/ApiKeys';
 
