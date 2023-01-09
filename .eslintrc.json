@@ -132,10 +132,8 @@
         "react/jsx-props-no-spreading": "off",
         "react/no-array-index-key": "off",
         "react/function-component-definition": [1, { "namedComponents": ["arrow-function", "function-declaration"] }],
-
         "import/extensions": 0,
         "import/no-unresolved": 0,
-
         // not needed with react 17 JSX transform.
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
