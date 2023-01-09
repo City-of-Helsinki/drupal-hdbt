@@ -1,4 +1,4 @@
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
 
 import type { Event, EventImage, EventKeyword } from '@/types/Event';
 import CardItem from '@/react/common/Card';
@@ -21,12 +21,12 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
-const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({tag: item.name[currentLanguage],color:'silver'})) as TagType[]
+const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })) as TagType[];
 
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const url = `${baseUrl}/events/${id}`
+  const url = `${baseUrl}/events/${id}`;
   // Bail if no current language
   if (!name[currentLanguage]) {
     return null;
@@ -57,11 +57,11 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     const hasAddress = location?.street_address && location?.street_address[currentLanguage];
 
     if (hasName) {
-      locationString += location.name?.[currentLanguage];
+      locationString += hasName;
     }
 
     if (hasAddress) {
-      hasName ? locationString += `, ${location.street_address?.[currentLanguage]}` : locationString += location.street_address?.[currentLanguage];
+      hasName ? locationString += `, ${hasAddress}` : locationString += hasAddress;
     }
 
     return locationString;
@@ -87,24 +87,22 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return <img alt='' {...imageProps} />;
   };
 
-  const image = images?.find(image => image.url);
+  const image = images?.find(img => img.url);
   const isRemote = location && location.id === INTERNET_EXCEPTION;
-  const title = name[currentLanguage] || ''
+  const title = name[currentLanguage] || '';
   const cardTags = getCardTags({keywords, currentLanguage});
 
   return (
-    <>
-      <CardItem
-        cardUrl={url}
-        cardTitle={title}
-        cardModifierClass=""
-        cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
-        cardTags={cardTags}
-        cardUrlExternal={true}
-        location={isRemote ? 'Internet' : getLocation()}
-        time={getDate()}
-      />
-    </>
+    <CardItem
+      cardUrl={url}
+      cardTitle={title}
+      cardModifierClass=""
+      cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
+      cardTags={cardTags}
+      cardUrlExternal
+      location={isRemote ? 'Internet' : getLocation()}
+      time={getDate()}
+    />
   );
 }
 

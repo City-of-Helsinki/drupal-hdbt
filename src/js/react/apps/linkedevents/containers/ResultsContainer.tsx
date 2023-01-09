@@ -1,3 +1,5 @@
+import parse from 'html-react-parser';
+
 import EmptyMessage from '../components/EmptyMessage';
 import ResultCard from '../components/ResultCard';
 import type Event from '@/types/Event';
@@ -25,7 +27,9 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
       {!loading && events?.length > 0 && events.map(event => <ResultCard key={event.id} {...event} />)}
       {!loading && events?.length === 0 && <EmptyMessage />}
       {loading &&
-        <div className='event-list-spinner' dangerouslySetInnerHTML={{ __html: Drupal.theme('ajaxProgressThrobber') }} />
+        <div className='event-list-spinner'>
+          {parse(Drupal.theme('ajaxProgressThrobber'))}
+        </div>
       }
     </div>
   );

@@ -20,7 +20,7 @@ function Collapsible({ active, ariaControls, helper, id, label, title, children,
 
   const getHandle = () => {
     if (showHandle !== false) {
-      return isActive ? 
+      return isActive ?
         <IconAngleUp className='collapsible__handle' onClick={() => setActive(!isActive)} /> :
         <IconAngleDown className='collapsible__handle' onClick={() => setActive(!isActive)} />;
     }
@@ -35,6 +35,7 @@ function Collapsible({ active, ariaControls, helper, id, label, title, children,
       <label className='collapsible__label' htmlFor={id}>{label}</label>
       <button
         id={id}
+        type="button"
         className='collapsible__element collapsible__control'
         aria-controls={ariaControls}
         aria-expanded={isActive}
@@ -53,6 +54,6 @@ function Collapsible({ active, ariaControls, helper, id, label, title, children,
       }
     </div>
   );
-} 
+}
 
 export default Collapsible;
