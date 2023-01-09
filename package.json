@@ -54,7 +54,7 @@
     "src/scss/**/*.scss": [
       "postcss *.scss --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
     ],
-    "src/js/**/*.js": [
+    "src/js/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
   },
