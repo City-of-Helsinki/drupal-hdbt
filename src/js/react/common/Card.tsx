@@ -1,11 +1,11 @@
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
 
 import Tags from './Tags';
 import Icon from './Icon';
 import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 
-const Metarow = ({ icon, label, content} : MetadataType)=> (
+const Metarow = ({ icon, label, content} : MetadataType) => (
   <div className="card__meta">
     <span className="card__meta__icon"><Icon icon={icon} /></span>
     <span className="card__meta__label">{label}: </span>
