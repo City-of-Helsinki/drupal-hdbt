@@ -70,9 +70,12 @@ function SearchContainer({ filterSettings, queryBuilder }:{
       setLocationsLoaded(true);
     }
   }, [data, locationsLoaded, currentLanguage]);
+
   return (
     <div className='component--event-list'>
-      <FormContainer filterSettings={filterSettings} queryBuilder={queryBuilder} onSubmit={submit} loading={loading} locationOptions={locationOptions} />
+      {Object.values(filterSettings).includes(true) &&
+        <FormContainer filterSettings={filterSettings} queryBuilder={queryBuilder} onSubmit={submit} loading={loading} locationOptions={locationOptions} />
+      }
       <ResultsContainer error={error} count={data?.meta.count || null} loading={loading} events={data?.data || []} />
     </div>
   );
