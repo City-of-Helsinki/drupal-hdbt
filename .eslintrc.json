@@ -67,6 +67,8 @@
       "version": "17.x"
     }
   },
+  // Using ts overrides rules from eslint-config-react-app.
+  // Finetune these if needed.
   "overrides": [
     {
       "files": ["*.ts?(x)"],
@@ -81,7 +83,6 @@
       "warnOnUnsupportedTypeScriptVersion": true
       },
       "plugins": ["@typescript-eslint"],
-      // Using ts rules from eslint-config-react-app.
       // If adding a typescript-eslint version of an existing ESLint rule,
       // make sure to disable the ESLint rule here.
       "rules": {
@@ -135,7 +136,7 @@
         "react/function-component-definition": [1, { "namedComponents": ["arrow-function", "function-declaration"] }],
         "import/extensions": 0,
         "import/no-unresolved": 0,
-        // not needed with react 17 JSX transform.
+        // These rules are not needed with react 17 JSX transform.
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
       }
