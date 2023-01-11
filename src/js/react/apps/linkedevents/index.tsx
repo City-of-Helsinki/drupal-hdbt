@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import type FilterSettings from '@/types/FilterSettings';
 import SearchContainer from './containers/SearchContainer';
 import QueryBuilder from './utils/QueryBuilder';
-
-const ROOT_ID = 'helfi-events-search';
+import ROOT_ID from './enum/RootId';
 
 const start = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);

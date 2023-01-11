@@ -26,11 +26,13 @@ export class QueryBuilder {
 
   allEventsQuery() {
     const params = this.originalParams;
-    params.set('page_size', '-1');
+    const { eventCount } = drupalSettings.helfi_events;
+
+    params.set('page_size', eventCount );
 
     return `${this.baseUrl}?${params.toString()}`;
   }
-  
+
   getUrl() {
     return `${this.baseUrl}?${this.params.toString()}`;
   }

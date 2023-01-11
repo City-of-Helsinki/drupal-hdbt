@@ -3,8 +3,9 @@ declare namespace drupalSettings {
     currentLanguage: 'fi' | 'en' | 'sv';
   };
   const helfi_events: {
-    baseUrl: string,
-    eventsUrl: string,
-    imagePlaceholder: string
+    baseUrl: string;
+    eventsUrl: string;
+    eventCount: string;
+    imagePlaceholder: string;
   };
 }

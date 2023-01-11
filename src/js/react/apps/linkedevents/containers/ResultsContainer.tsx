@@ -5,16 +5,21 @@ import ResultCard from '../components/ResultCard';
 import type Event from '@/types/Event';
 
 type ResultsContainerProps = {
-  count: Number | null,
-  events: Event[],
-  loading: boolean,
-  error?: Error,
+  count: Number | null;
+  events: Event[];
+  loading: boolean;
+  error?: Error;
 };
 
 function ResultsContainer({ count, events, loading, error }: ResultsContainerProps) {
+  const { eventCount } = drupalSettings.helfi_events;
 
   if (error) {
     return <p>{Drupal.t('Could not retrieve events')}</p>;
+  }
+
+  if (count && eventCount !== '-1' && count > Number(eventCount)) {
+    count = Number(eventCount);
   }
 
   return (

@@ -8,11 +8,11 @@ import type FilterSettings from '@/types/FilterSettings';
 import type Location from '@/types/Location';
 
 type ResponseType = {
-  data: Event[],
+  data: Event[];
   meta: {
-    count: number,
-    next?: string,
-    previous?: string
+    count: number;
+    next?: string;
+    previous?: string;
   }
 };
 
@@ -43,14 +43,13 @@ const transformLocations = (data: any, currentLanguage: string): Location[] => {
 };
 
 const SWR_REFRESH_OPTIONS = {
-  errorRetryCount:3,
-  revalidateOnMount:true,
+  errorRetryCount: 3,
+  revalidateOnMount: true,
   revalidateIfStale: false,
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   refreshInterval: 6000000, // 10 minutes,in millis
 };
-
 
 function SearchContainer({ filterSettings, queryBuilder }:{
   filterSettings: FilterSettings,

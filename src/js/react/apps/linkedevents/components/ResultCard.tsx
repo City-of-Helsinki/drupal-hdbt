@@ -26,7 +26,8 @@ const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => key
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const url = `${baseUrl}/events/${id}`;
+  const url = `${baseUrl}/${currentLanguage}/events/${id}`;
+
   // Bail if no current language
   if (!name[currentLanguage]) {
     return null;

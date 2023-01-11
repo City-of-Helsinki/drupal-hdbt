@@ -1462,6 +1462,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
       $variables['events_url'] = $linkedEvents->getEventsRequest($params);
     }
 
+    $variables['#attached']['drupalSettings']['helfi_events']['eventCount'] = '-1';
     if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
       $variables['#attached']['drupalSettings']['helfi_events']['eventCount'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
     }

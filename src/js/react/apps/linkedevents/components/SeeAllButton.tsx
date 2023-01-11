@@ -1,12 +1,15 @@
+import ROOT_ID from '../enum/RootId';
+
 function SeeAllButton() {
-  const { baseUrl } = drupalSettings.helfi_events;
+  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+  const eventsUrl = rootElement?.dataset?.eventsUrl;
 
   return (
     <a
       className='event-list__see-all-button'
-      href={baseUrl}
+      href={eventsUrl}
     >
-      {Drupal.t('See all events')}
+      {Drupal.t('Tarkenna hakua tapahtumat.hel.fi:ssä')}
     </a>
   );
 }
