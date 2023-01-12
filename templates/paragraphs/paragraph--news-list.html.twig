@@ -8,9 +8,13 @@
   %}
 		{% block component_content %}
 
-      <ul class="news-listing news-listing--latest-medium-teasers">
-			  {{ content.news_list }}
-      </ul>
+      {% if content.news_list %}
+        <ul class="news-listing news-listing--latest-medium-teasers">
+          {{ content.news_list }}
+        </ul>
+      {% else %}
+        <p class="news-listing news-listing--no-news">{{ 'No related news.'|t({}, {'context': 'When newslist component does not have any news to list'}) }}</p>
+      {% endif %}
 
 			{% set link_title %}
 			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
