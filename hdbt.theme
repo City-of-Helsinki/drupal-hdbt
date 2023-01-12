@@ -111,10 +111,13 @@ function hdbt_preprocess_html(&$variables) {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
   }
 
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+
   // Add theme path to as variable.
-  $variables['theme_path'] = '/' . \Drupal::service('theme_handler')
-    ->getTheme('hdbt')
-    ->getPath();
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
+  $variables['theme_path'] = $service->generate($theme->getPath())
+    ->toString(TRUE)->getGeneratedUrl();
 }
 
 /**
