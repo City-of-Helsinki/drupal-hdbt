@@ -70,6 +70,14 @@ function isInPath() {
   return !!this.inPath;
 }
 
+/**
+ * Convert null `is_injected` values to boolean for mustache templates to avoid using parent values
+ * @return {boolean} does current object have is_injected set and trueish
+ */
+function isInjected() {
+  return !!this.is_injected;
+}
+
 /** *
  * Convert attributes to to template-friendly object
  * @return {object}  {external:bool, protocol:bool}
@@ -191,7 +199,7 @@ const MobilePanel = {
     <ul class="mmenu__items">
       {{#sub_tree}}
         <li class="mmenu__item">
-          <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}"{{#isActive}} aria-current="page"{{/isActive}}
+          <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}{{#isInjected}} mmenu__item-link--injected{{/isInjected}}"{{#isActive}} aria-current="page"{{/isActive}}
           {{#externalLinkAttributes.external}}
             data-external="true"
           {{/externalLinkAttributes.external}}
@@ -285,6 +293,7 @@ const MobilePanel = {
       button,
       isActive,
       isInPath,
+      isInjected,
       externalLinkAttributes,
       hasLang,
       externalLinkIcon,
