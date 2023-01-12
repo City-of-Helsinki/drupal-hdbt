@@ -1458,14 +1458,14 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $variables['events_url'] = $initialUrl;
       $params = $linkedEvents->parseParams($initialUrl);
-      $variables['events_url'] = $linkedEvents->getEventsRequest($params);
+      $variables['events_api_url'] = $linkedEvents->getEventsRequest($params);
     }
 
-    // TODO: eventCount data attribuutiksi? että toimii useamman haun kanssa sivulla....
-    $variables['#attached']['drupalSettings']['helfi_events']['eventCount'] = '-1';
+    // $variables['field_event_count'] = '-1';
     if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
-      $variables['#attached']['drupalSettings']['helfi_events']['eventCount'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+      $variables['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
     }
 
     $booleanFields = [

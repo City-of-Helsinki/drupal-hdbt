@@ -1,4 +1,5 @@
 import ApiKeys from '../enum/ApiKeys';
+import ROOT_ID from '../enum/RootId';
 
 interface Options {
   [key: string]: string
@@ -11,14 +12,14 @@ export class QueryBuilder {
 
   params: URLSearchParams;
 
-  constructor(eventsUrl: string) {
-    if (eventsUrl.indexOf('?') !== -1) {
-      const [baseUrl, queryString] = eventsUrl.split('?');
+  constructor(eventsApiUrl: string) {
+    if (eventsApiUrl.indexOf('?') !== -1) {
+      const [baseUrl, queryString] = eventsApiUrl.split('?');
       this.baseUrl = baseUrl;
       this.originalParams = new URLSearchParams(queryString);
       this.params = new URLSearchParams(queryString);
     } else {
-      this.baseUrl = eventsUrl;
+      this.baseUrl = eventsApiUrl;
       this.originalParams = new URLSearchParams();
       this.params = new URLSearchParams();
     }
@@ -26,7 +27,8 @@ export class QueryBuilder {
 
   allEventsQuery() {
     const params = this.originalParams;
-    const { eventCount } = drupalSettings.helfi_events;
+    const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+    const eventCount = rootElement?.dataset?.eventCount || '-1';
 
     params.set('page_size', eventCount );
 
@@ -57,6 +59,6 @@ export class QueryBuilder {
   }
 }
 
-const init = (eventsUrl: string) => new QueryBuilder(eventsUrl);
+const init = (eventsApiUrl: string) => new QueryBuilder(eventsApiUrl);
 
 export default init;

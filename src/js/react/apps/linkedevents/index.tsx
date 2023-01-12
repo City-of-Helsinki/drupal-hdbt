@@ -7,19 +7,19 @@ import ROOT_ID from './enum/RootId';
 
 const start = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-  const eventsUrl = rootElement?.dataset?.eventsUrl;
+  const eventsApiUrl = rootElement?.dataset?.eventsApiUrl;
 
   if (!rootElement) {
     console.warn('Root id missing for Events filter', { ROOT_ID });
     return;
   }
 
-  if (!eventsUrl) {
+  if (!eventsApiUrl) {
     console.warn('Events API url missing for Events filter.');
     return;
   }
 
-  const queryBuilder = QueryBuilder(eventsUrl);
+  const queryBuilder = QueryBuilder(eventsApiUrl);
   const filterSettings: FilterSettings = {
     showLocation: rootElement?.dataset?.showLocationFilter === '1',
     showTimeFilter: rootElement?.dataset?.showTimeFilter === '1',

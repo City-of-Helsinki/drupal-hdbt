@@ -14,7 +14,9 @@
       {# Hook React app to this div #}
       <div
         id="helfi-events-search"
+        data-events-api-url="{{ events_api_url }}"
         data-events-url="{{ events_url }}"
+        data-event-count="{{ field_event_count }}"
         data-show-location-filter="{{ field_event_location }}"
         data-show-time-filter="{{ field_event_time }}"
         data-show-free-events-filter="{{ field_free_events }}"

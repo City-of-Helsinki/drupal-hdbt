@@ -4,8 +4,6 @@ declare namespace drupalSettings {
   };
   const helfi_events: {
     baseUrl: string;
-    eventsUrl: string;
-    eventCount: string;
     imagePlaceholder: string;
   };
 }

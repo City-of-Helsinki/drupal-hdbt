@@ -1,8 +1,10 @@
 import parse from 'html-react-parser';
 
+import type Event from '@/types/Event';
 import EmptyMessage from '../components/EmptyMessage';
 import ResultCard from '../components/ResultCard';
-import type Event from '@/types/Event';
+import SeeAllButton from '../components/SeeAllButton';
+import ROOT_ID from '../enum/RootId';
 
 type ResultsContainerProps = {
   count: Number | null;
@@ -12,7 +14,8 @@ type ResultsContainerProps = {
 };
 
 function ResultsContainer({ count, events, loading, error }: ResultsContainerProps) {
-  const { eventCount } = drupalSettings.helfi_events;
+  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+  const eventCount = rootElement?.dataset?.eventCount || '-1';
 
   if (error) {
     return <p>{Drupal.t('Could not retrieve events')}</p>;
@@ -31,6 +34,7 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
       }
       {!loading && events?.length > 0 && events.map(event => <ResultCard key={event.id} {...event} />)}
       {!loading && events?.length === 0 && <EmptyMessage />}
+      {!loading && <SeeAllButton />}
       {loading &&
         <div className='event-list-spinner'>
           {parse(Drupal.theme('ajaxProgressThrobber'))}
