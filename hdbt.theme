@@ -677,6 +677,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
   if ($paragraph_type == 'list_of_links_item') {
     $paragraph_parent = $paragraph->getParentEntity();
     $design = $paragraph_parent->get('field_list_of_links_design')->getString();
+    $variables['list_of_links_paragraph_has_title'] = $paragraph_parent->get('field_list_of_links_title')->getString() ? true : false;
     $variables['list_of_links_design'] = $design;
   }
 
