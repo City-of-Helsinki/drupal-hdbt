@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { LoadingSpinner} from 'hds-react';
 
 import type Event from '@/types/Event';
 import EmptyMessage from '../components/EmptyMessage';
@@ -36,8 +36,8 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
       {!loading && events?.length === 0 && <EmptyMessage />}
       {!loading && <SeeAllButton />}
       {loading &&
-        <div className='event-list-spinner'>
-          {parse(Drupal.theme('ajaxProgressThrobber'))}
+        <div className='event-list__loading-spinner'>
+          <LoadingSpinner />
         </div>
       }
     </div>

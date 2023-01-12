@@ -174,22 +174,22 @@ function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locati
         <div className='event-form__filter-section-container'>
           {
             filterSettings.showLocation &&
-            <LocationFilter loading={loading} options={locationOptions} queryBuilder={queryBuilder} />
+              <LocationFilter loading={loading} options={locationOptions} queryBuilder={queryBuilder} />
           }
           {
             filterSettings.showTimeFilter &&
-            <DateSelect
-              endDate={endDate}
-              invalidEndDate={errors.invalidEndDate}
-              invalidStartDate={errors.invalidStartDate}
-              endDisabled={endDisabled}
-              disableEnd={handleDisableEnd}
-              queryBuilder={queryBuilder}
-              setEndDate={setEnd}
-              setStartDate={setStart}
-              startDate={startDate}
-              // outOfRangeError={errors.outOfRange}
-            />
+              <DateSelect
+                endDate={endDate}
+                invalidEndDate={errors.invalidEndDate}
+                invalidStartDate={errors.invalidStartDate}
+                endDisabled={endDisabled}
+                disableEnd={handleDisableEnd}
+                queryBuilder={queryBuilder}
+                setEndDate={setEnd}
+                setStartDate={setStart}
+                startDate={startDate}
+                // outOfRangeError={errors.outOfRange}
+              />
           }
         </div>
         {
@@ -198,22 +198,22 @@ function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locati
         }
         <div className='event-form__filter-checkbox-container'>
           {
-            filterSettings.showFreeFilter &&
-            <CheckboxFilter
-              checked={freeFilter}
-              id='free-toggle'
-              label={freeLabel}
-              onChange={toggleFreeEvents}
-            />
+            filterSettings.showRemoteFilter &&
+              <CheckboxFilter
+                checked={remoteFilter}
+                id='remote-toggle'
+                label={remoteLabel}
+                onChange={toggleRemoteEvents}
+              />
           }
           {
-            filterSettings.showRemoteFilter &&
-            <CheckboxFilter
-              checked={remoteFilter}
-              id='remote-toggle'
-              label={remoteLabel}
-              onChange={toggleRemoteEvents}
-            />
+            filterSettings.showFreeFilter &&
+              <CheckboxFilter
+                checked={freeFilter}
+                id='free-toggle'
+                label={freeLabel}
+                onChange={toggleFreeEvents}
+              />
           }
         </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />

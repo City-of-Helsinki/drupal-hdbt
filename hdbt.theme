@@ -1463,7 +1463,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
       $variables['events_api_url'] = $linkedEvents->getEventsRequest($params);
     }
 
-    // $variables['field_event_count'] = '-1';
     if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
       $variables['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
     }

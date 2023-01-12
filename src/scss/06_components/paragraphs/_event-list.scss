@@ -123,3 +123,7 @@ $tag-vertical-padding: 5px;
   margin: 32px auto 0;
   text-align: center;
 }
+
+.event-list__loading-spinner > div {
+  margin: 0 auto;
+}

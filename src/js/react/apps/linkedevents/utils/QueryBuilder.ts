@@ -30,7 +30,7 @@ export class QueryBuilder {
     const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
     const eventCount = rootElement?.dataset?.eventCount || '-1';
 
-    params.set('page_size', eventCount );
+    params.set('page_size', eventCount);
 
     return `${this.baseUrl}?${params.toString()}`;
   }
