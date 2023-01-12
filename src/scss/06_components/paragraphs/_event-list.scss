@@ -67,17 +67,38 @@ $tag-vertical-padding: 5px;
 
 .event-form__filters-container {
   margin-top: $spacing;
-}
 
-.event-form__filter-section-container {
-  display: flex;
-  flex-direction: column;
-
-  @include breakpoint($breakpoint-l) {
-    flex-direction: row;
+  .event-form__filter-section-container {
+    display: flex;
     flex-wrap: wrap;
+    gap: $spacing-and-half;
+    justify-content: space-between;
 
-    @include flex-gap($spacing-and-half);
+    > div {
+      flex-basis: 100%;
+    }
+
+    @include breakpoint($breakpoint-m) {
+      > div {
+        flex-basis: 48%;
+      }
+    }
+  }
+
+  .event-form__filter-checkbox-container {
+    display: flex;
+    flex-direction: column;
+
+    .hdbt-search__checkbox {
+      margin-top: var(--spacing-2-xs);
+    }
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      @include flex-gap($spacing-and-half);
+    }
   }
 }
 
@@ -85,13 +106,6 @@ $tag-vertical-padding: 5px;
 .event-form__filter-section-container .hdbt-search__checkbox:not(:first-of-type) {
   @include breakpoint($breakpoint-l) {
     margin-top: 0;
-  }
-}
-
-.event-form__filter--date,
-.event-form__filter--location {
-  @include breakpoint($breakpoint-l) {
-    flex: 1;
   }
 }
 

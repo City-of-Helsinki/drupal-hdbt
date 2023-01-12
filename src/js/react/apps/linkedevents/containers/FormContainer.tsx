@@ -196,7 +196,7 @@ function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locati
           bothCheckboxes &&
           <div className='event-form__checkboxes-label'>{showOnlyLabel}</div>
         }
-        <div className='event-form__filter-section-container'>
+        <div className='event-form__filter-checkbox-container'>
           {
             filterSettings.showFreeFilter &&
             <CheckboxFilter
