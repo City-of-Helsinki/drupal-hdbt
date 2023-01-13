@@ -138,3 +138,11 @@ disable_genesys_button:
   - core/jquery
   - core/drupal
   - core/drupalSettings
+
+nav-toggle:
+  version: 1.x
+  js:
+    dist/js/nav-toggle-dropdown.min.js: {}
+  css:
+    theme:
+      dist/css/nav_global.min.css: {}

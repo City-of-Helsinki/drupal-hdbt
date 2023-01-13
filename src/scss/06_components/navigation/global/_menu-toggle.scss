@@ -316,6 +316,7 @@ $label-font: 'special.navigation.icon_label';
 @include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
+@include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
 
 // What should happen when menu is opened
 #menu:target,

@@ -6,11 +6,11 @@ $-branding-icon-size-desktop: $spacing-double;
   background-color: $color-white;
   display: grid;
   grid-template-areas:
-    '. logo . brand search toggle .'
-    'menu menu menu menu menu menu menu'
-    'lang lang lang lang lang lang lang'
-    'langmenu langmenu langmenu langmenu langmenu langmenu langmenu';
-  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto  var(--header-branding-padding);
+    '. logo . brand search toggle profile .'
+    'menu menu menu menu menu menu menu menu'
+    'lang lang lang lang lang lang lang lang'
+    'langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu';
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto auto var(--header-branding-padding);
   grid-template-rows: var(--branding-height) min-content min-content min-content;
   position: fixed;
   top: 0;
@@ -21,18 +21,18 @@ $-branding-icon-size-desktop: $spacing-double;
     --branding-height: 86px;
     --header-branding-padding: #{$spacing-and-half};
     grid-template-areas:
-      '. logo . lang brand search toggle .'
-      'langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu'
-      'menu menu menu menu menu menu menu menu';
-    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto auto var(--header-branding-padding);
+      '. logo . lang brand search toggle profile .'
+      'langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu'
+      'menu menu menu menu menu menu menu menu menu';
+    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto auto auto var(--header-branding-padding);
     grid-template-rows: var(--branding-height) auto;
   }
 
   @include breakpoint($breakpoint-l) {
     grid-template-areas:
-      '. logo . lang brand search toggle .'
-      'langmenu langmenu langmenu langmenu . . . .'
-      'menu menu menu menu menu menu menu menu';
+      '. logo . lang brand search toggle profile .'
+      'langmenu langmenu langmenu langmenu langmenu . . . .'
+      'menu menu menu menu menu menu menu menu menu';
   }
 
   @include breakpoint($breakpoint-m) {
