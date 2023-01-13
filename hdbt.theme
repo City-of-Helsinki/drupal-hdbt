@@ -1456,15 +1456,16 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     $paragraph = $variables['paragraph'];
     $linkedEvents = Drupal::service('helfi_react_search_linked_events');
 
+    $variables['field_event_count'] = '-1';
+    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
+      $variables['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+    }
+
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
       $variables['events_url'] = $initialUrl;
       $params = $linkedEvents->parseParams($initialUrl);
-      $variables['events_api_url'] = $linkedEvents->getEventsRequest($params);
-    }
-
-    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
-      $variables['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+      $variables['events_api_url'] = $linkedEvents->getEventsRequest($params, $variables['field_event_count']);
     }
 
     $booleanFields = [

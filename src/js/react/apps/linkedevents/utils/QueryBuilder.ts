@@ -1,5 +1,4 @@
 import ApiKeys from '../enum/ApiKeys';
-import ROOT_ID from '../enum/RootId';
 
 interface Options {
   [key: string]: string
@@ -26,13 +25,7 @@ export class QueryBuilder {
   }
 
   allEventsQuery() {
-    const params = this.originalParams;
-    const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-    const eventCount = rootElement?.dataset?.eventCount || '-1';
-
-    params.set('page_size', eventCount);
-
-    return `${this.baseUrl}?${params.toString()}`;
+    return `${this.baseUrl}?${this.originalParams.toString()}`;
   }
 
   getUrl() {
