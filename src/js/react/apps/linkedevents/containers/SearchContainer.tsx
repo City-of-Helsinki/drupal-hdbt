@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-import type Event from '@/types/Event';
+import type Event from '../types/Event';
 import { QueryBuilder } from '../utils/QueryBuilder';
-import type FilterSettings from '@/types/FilterSettings';
-import type Location from '@/types/Location';
+import type FilterSettings from '../types/FilterSettings';
+import type Location from '../types/Location';
 
 type ResponseType = {
   data: Event[];

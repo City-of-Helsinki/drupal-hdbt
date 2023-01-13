@@ -1,6 +1,6 @@
 import parse from 'html-react-parser';
 
-import type { Event, EventImage, EventKeyword } from '@/types/Event';
+import type { Event, EventImage, EventKeyword } from '../types/Event';
 import CardItem from '@/react/common/Card';
 import type TagType from '@/types/TagType';
 

@@ -1,6 +1,6 @@
 import { LoadingSpinner} from 'hds-react';
 
-import type Event from '@/types/Event';
+import type Event from '../types/Event';
 import EmptyMessage from '../components/EmptyMessage';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';

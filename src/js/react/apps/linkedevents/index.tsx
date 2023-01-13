@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import type FilterSettings from '@/types/FilterSettings';
+import type FilterSettings from './types/FilterSettings';
 import SearchContainer from './containers/SearchContainer';
 import QueryBuilder from './utils/QueryBuilder';
 import ROOT_ID from './enum/RootId';

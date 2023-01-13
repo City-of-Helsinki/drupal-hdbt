@@ -1,13 +1,13 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 import LocationFilter from '../components/LocationFilter';
-import type Location from '@/types/Location';
+import type Location from '../types/Location';
 import { QueryBuilder } from '../utils/QueryBuilder';
 import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
 import DateSelect from '../components/DateSelect';
 import CheckboxFilter from '../components/CheckboxFilter';
-import type FilterSettings from '@/types/FilterSettings';
+import type FilterSettings from '../types/FilterSettings';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 
