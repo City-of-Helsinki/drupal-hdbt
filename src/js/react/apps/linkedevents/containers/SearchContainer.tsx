@@ -75,7 +75,7 @@ function SearchContainer({ filterSettings, queryBuilder }:{
       {Object.values(filterSettings).includes(true) &&
         <FormContainer filterSettings={filterSettings} queryBuilder={queryBuilder} onSubmit={submit} loading={loading} locationOptions={locationOptions} />
       }
-      <ResultsContainer error={error} count={data?.meta.count || null} loading={loading} events={data?.data || []} />
+      <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
     </div>
   );
 }
