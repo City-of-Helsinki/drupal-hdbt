@@ -24,10 +24,10 @@
 
   <div class="content-liftup__text">
     <div class="content-liftup__text__container">
-      <h3 class="content-liftup__title">
+      <h2 class="content-liftup__title">
         {% set link_attributes = { 'class': [ 'content-liftup__link', ], } %}
         {{ link(entity.label, unit_url, link_attributes) }}
-      </h3>
+      </h2>
       <div class="content-liftup__info">
         {% if content.address|render %}
           <div class="content-liftup__info-row content-liftup__info-row--address">
