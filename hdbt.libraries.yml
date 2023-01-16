@@ -143,6 +143,7 @@ nav-toggle:
   version: 1.x
   js:
     dist/js/nav-toggle-dropdown.min.js: {}
+    dist/js/nav-toggle.min.js: {}
   css:
     theme:
       dist/css/nav_global.min.css: {}
