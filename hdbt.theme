@@ -703,16 +703,18 @@ function hdbt_preprocess_paragraph(array &$variables) {
     if ($accordion_has_title) {
       // Remove inaccessible skipping between title level and item level.
       // For example:
-      //   title h3, item h6 --> fixed item h4
-      //   title h2, item h3 --> item h3
-      //   title h3, item h3 --> item h3
-      //   title h5, item h3 --> item h3
+      // title h3, item h6 --> fixed item h4,
+      // title h2, item h3 --> item h3,
+      // title h3, item h3 --> item h3,
+      // title h5, item h3 --> item h3.
       if ($accordion_title_level + 1 < $accordion_item_heading_level) {
         $variables['accordion_item_heading_level'] = $accordion_title_level + 1;
-      } else {
+      }
+      else {
         $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
       }
-    } else {
+    }
+    else {
       $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
     }
   }
