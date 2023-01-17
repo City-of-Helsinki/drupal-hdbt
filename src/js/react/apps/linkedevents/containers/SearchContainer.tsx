@@ -70,6 +70,8 @@ function SearchContainer({ filterSettings, queryBuilder }:{
     }
   }, [data, locationsLoaded, currentLanguage]);
 
+  console.log(data);
+
   return (
     <div className='component--event-list'>
       {Object.values(filterSettings).includes(true) &&

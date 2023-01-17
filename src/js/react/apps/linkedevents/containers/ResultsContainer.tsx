@@ -24,10 +24,6 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
     return <p>{Drupal.t('Could not retrieve events')}</p>;
   }
 
-  if (count && eventCount !== '-1' && count > Number(eventCount)) {
-    count = Number(eventCount);
-  }
-
   const pages = Math.floor(count / size);
   const addLastPage = count > size && count % size;
 
