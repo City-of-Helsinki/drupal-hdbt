@@ -634,6 +634,11 @@ function hdbt_preprocess_block(&$variables) {
   if ($variables['plugin_id'] == 'announcements') {
     $variables['#attached']['library'][] = 'hdbt/closable_announcements';
   }
+  // Attach "nav_toggle" library to "profile" block.
+  if ($variables['plugin_id'] == 'profile_block') {
+    $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = true;
+    $variables['#attached']['library'][] = 'hdbt/nav-toggle';
+  }
 }
 
 /**

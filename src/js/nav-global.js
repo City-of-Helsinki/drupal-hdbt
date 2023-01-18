@@ -74,7 +74,7 @@ const blockBrandingScroll = (e) => {
     isAnyMenuOpen() &&
     // Don't scroll body from shared header
     (e.target.closest('#nav-toggle-dropdown--menu') === null ||
-      // If element has no overflow, it has no overscroll containment. 
+      // If element has no overflow, it has no overscroll containment.
       // See overscroll-behavour CSS specs
       (scrolledPanel !== null && !isScrollable(scrolledPanel)));
 
@@ -102,7 +102,7 @@ MenuDropdown.init({
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', closeFromOutside);
-  
+
   // Prevent body scroll through shared header element when full screen  menu is open.
   const body =   document.querySelector('body');
   body.addEventListener('wheel', blockBrandingScroll, { passive: false });

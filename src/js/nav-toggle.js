@@ -1,6 +1,6 @@
 const ToggleWidgets = require('./nav-global/toggle-widgets');
+const BrandingElements = require('./branding-elements');
 const NavToggleDropdown = require('./nav-global/nav-toggle-dropdown');
-const MenuDropdown = require('./nav-global/menu');
 
 function isScrollable(element) {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
@@ -8,16 +8,30 @@ function isScrollable(element) {
 
 const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
-const ProfileDropdown = NavToggleDropdown();
+const AllElements = BrandingElements.BRANDING_ELEMENTS;
 
-ProfileDropdown.init({
-  name: 'Profile dropdown',
-  buttonSelector: '.js-profile-button',
-  targetSelector: '#profile',
-  onOpen: () => {
-    ToggleWidgets.close();
-  },
-  onClose: ToggleWidgets.open
+const keys = Object.keys(AllElements);
+keys.forEach((key) => {
+  const name = AllElements[key];
+  AllElements[key] = NavToggleDropdown();
+  AllElements[key].init({
+    name: `${name} dropdown`,
+    buttonSelector: `.js-${name}-button`,
+    targetSelector: `#${name}`,
+    onOpen: () => {
+      for (let i = 0; i < AllElements.length; i += 1) {
+        const OtherElements = AllElements;
+        // Delete the current index from the AllElements array.
+        OtherElements.splice(i,1);
+        // Close all but the current index element.
+        if (OtherElements.length !== 0) {
+          OtherElements[i][1].close();
+        }
+      }
+      ToggleWidgets.close();
+    },
+    onClose: ToggleWidgets.open
+  });
 });
 
 /**
@@ -26,19 +40,31 @@ ProfileDropdown.init({
  * @return boolean
  */
 
-const isAnyMenuOpen = () => ProfileDropdown.isOpen();
+const isAnyMenuOpen = () => {
+  let isOpen = false;
+
+  keys.forEach((key) => {
+    if (AllElements[key].isOpen()) {
+      isOpen = true;
+    }
+  });
+
+  return isOpen;
+};
 
 const closeFromOutside = ({ target }) => {
   if (target.closest('.desktop-menu, .header-top') || target.closest('.header') === null) {
-    ProfileDropdown.close();
+    keys.forEach((key) => {
+      AllElements[key].close();
+    });
     ToggleWidgets.open();
   }
 };
 
 /**
  * Blocks body scroll events when full screen menus are open.
- * @param Event
- * @return void
+ * @param e
+ * @return boolean
  */
 
 const blockBrandingScroll = (e) => {

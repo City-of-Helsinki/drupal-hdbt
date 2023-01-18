@@ -147,3 +147,5 @@ nav-toggle:
   css:
     theme:
       dist/css/nav_global.min.css: {}
+  dependencies:
+    - core/drupalSettings
