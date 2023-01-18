@@ -1,6 +1,8 @@
-const ToggleWidgets = require('./nav-global/toggle-widgets');
-const BrandingElements = require('./branding-elements');
-const NavToggleDropdown = require('./nav-global/nav-toggle-dropdown');
+const BrandingElements = require('./nav-toggle/branding-elements');
+const ToggleWidgets = require('./nav-toggle/toggle-widgets');
+const NavToggleDropdown = require('./nav-toggle/nav-toggle-dropdown');
+
+const MenuDropdown = BrandingElements.MENU;
 
 function isScrollable(element) {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
@@ -28,11 +30,26 @@ keys.forEach((key) => {
           OtherElements[i][1].close();
         }
       }
+      if (Object.keys(MenuDropdown).length !== 0) {
+        MenuDropdown.close();
+      }
       ToggleWidgets.close();
     },
     onClose: ToggleWidgets.open
   });
 });
+
+if (Object.keys(MenuDropdown).length !== 0) {
+  MenuDropdown.init({
+    onOpen: () => {
+      keys.forEach((key) => {
+        AllElements[key].close();
+      });
+      ToggleWidgets.close();
+    },
+    onClose: ToggleWidgets.open
+  });
+}
 
 /**
  * See if menu instance is open
@@ -49,6 +66,10 @@ const isAnyMenuOpen = () => {
     }
   });
 
+  if (Object.keys(MenuDropdown).length !== 0 && MenuDropdown.isOpen()) {
+    isOpen = true;
+  }
+
   return isOpen;
 };
 
@@ -57,6 +78,9 @@ const closeFromOutside = ({ target }) => {
     keys.forEach((key) => {
       AllElements[key].close();
     });
+    if (Object.keys(MenuDropdown).length !== 0) {
+      MenuDropdown.close();
+    }
     ToggleWidgets.open();
   }
 };

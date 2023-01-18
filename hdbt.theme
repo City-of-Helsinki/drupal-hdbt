@@ -38,6 +38,12 @@ function hdbt_preprocess(&$variables, $hook) {
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
+  // TODO: This needs to be independent block as well.
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
@@ -634,6 +640,12 @@ function hdbt_preprocess_block(&$variables) {
   if ($variables['plugin_id'] == 'announcements') {
     $variables['#attached']['library'][] = 'hdbt/closable_announcements';
   }
+
+  if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
+    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = true;
+    $variables['#attached']['library'][] = 'hdbt/nav-toggle';
+  }
+
   // Attach "nav_toggle" library to "profile" block.
   if ($variables['plugin_id'] == 'profile_block') {
     $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = true;

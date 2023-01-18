@@ -4,7 +4,7 @@
   modifier_class: 'nav-toggle--search',
   controls: dropdown_id,
   anchor_target: '#search',
-  js_target: 'js-header-search__button',
+  js_target: 'js-search-button',
 
   open_label: 'Search'|t({}, {'context': 'Helfi search button'}),
   open_screenreader: 'Open search'|t({}, {'context': 'Mobile navigation search open button text for screen readers'}),
@@ -27,7 +27,7 @@
       } %}
       <noscript class="header-search__javascript-disabled">
         {% set search_link_text %}
-          {{ "Hel.fi search"|t({}, {'context': 'Header search, no javascript link'}) }} 
+          {{ "Hel.fi search"|t({}, {'context': 'Header search, no javascript link'}) }}
         {% endset %}
         <p>
           {{ link(search_link_text, helfi_search_form_url) }}
