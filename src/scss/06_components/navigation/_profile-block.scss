@@ -1,0 +1,181 @@
+.profile {
+  @include font('special.navigation.icon_label');
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+
+  .hel-icon {
+    --icon-size: 24px;
+    margin-bottom: $spacing-half;
+
+    @include breakpoint($breakpoint-l) {
+      --icon-size: 28px;
+    }
+  }
+}
+
+.profile__login-link {
+  @include font('special.navigation.icon_label');
+  align-items: center;
+  border-left: 1px solid $color-black-20;
+  display: flex;
+  flex-direction: column;
+  grid-area: profile;
+  grid-column-end: -1;
+  justify-content: center;
+  margin-left: 16px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  width: 65px; // Same as the height of the branding header.
+  z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    width: 86px; // Same as the height of the branding header.
+  }
+
+  &::before {
+    @include pseudo-icon('user', 22px, currentColor, block);
+    margin-bottom: $spacing-quarter;
+
+    @include breakpoint($breakpoint-m) {
+      @include pseudo-icon('user', 28px, currentColor, block);
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
+}
+
+.profile__logout-link {
+  @include font('body');
+  border-bottom: 1px solid $color-black-20;
+  border-top: 1px solid $color-black-20;
+  display: block;
+  font-weight: bold;
+  padding: $spacing;
+  text-decoration: none;
+  width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    border-bottom: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
+
+  &::after {
+    @include pseudo-icon('signout');
+    margin-left: $spacing-half;
+  }
+}
+
+.profile--full {
+  background-color: $color-white;
+  border-bottom: 1px solid $color-black-20;
+  color: $color-black;
+  width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    border-left: 1px solid $color-black-20;
+    border-right: 1px solid $color-black-20;
+    max-width: 300px; // As designed.
+  }
+}
+
+.profile__information {
+  padding: $spacing;
+}
+
+.profile__full-name {
+  @include font('body');
+  display: block;
+  font-weight: bold;
+}
+
+.profile__email {
+  @include font('small');
+  display: block;
+}
+
+.nav-toggle--profile {
+  background-color: $color-black;
+  color: $color-white;
+  grid-area: profile;
+  grid-column-end: -1;
+  justify-content: center;
+  margin-left: $spacing;
+  max-width: 88px; // As designed.
+  min-width: 72px; // As designed.
+  z-index: 1;
+
+  .nav-toggle__anchor,
+  .nav-toggle__button {
+    height: 100%;
+  }
+
+  .nav-toggle__label {
+    color: $color-white;
+    height: 100%;
+    padding-left: $spacing-half;
+    padding-right: $spacing-half;
+
+    &:focus {
+      outline: 2px solid $color-white;
+      outline-offset: -5px;
+    }
+
+    span {
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .nav-toggle__label::before {
+    @include pseudo-icon('user', 22px, currentColor, block);
+    margin-bottom: $spacing-quarter;
+
+    @include breakpoint($breakpoint-m) {
+      @include pseudo-icon('user', 28px, currentColor, block);
+    }
+  }
+
+  .nav-toggle__button:focus {
+    outline: 2px solid $color-white;
+    outline-offset: -5px;
+  }
+
+  .nav-toggle__label--close {
+    &::before {
+      @include pseudo-icon-replace('cross');
+      margin-bottom: 0;
+    }
+  }
+}
+
+.nav-toggle-dropdown--profile {
+  grid-area: menu;
+
+  .nav-toggle-dropdown__content {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
