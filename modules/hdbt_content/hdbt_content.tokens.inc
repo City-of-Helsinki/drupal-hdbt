@@ -55,7 +55,7 @@ function hdbt_content_tokens(
 
       /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
       $service = \Drupal::service('file_url_generator');
-      $default_image = $service->generate("{$theme->getPath()}/src/images/" . $image_file_name)
+      $default_image = $service->generate("{$theme->getPath()}/src/images/{$image_file_name}")
         ->toString(TRUE)
         ->getGeneratedUrl();
     }
