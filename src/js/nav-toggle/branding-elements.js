@@ -1,4 +1,7 @@
 const BRANDING_ELEMENTS = {};
+// TODO: This should be required only when the global menu is enabled.
+const MenuDropdown = require('../nav-global/menu');
+
 let MENU = {};
 
 if (drupalSettings.hdbt.profile_dropdown === true) {
@@ -14,9 +17,7 @@ if (drupalSettings.hdbt.otherlangs_dropdown === true) {
 }
 
 if (drupalSettings.hdbt.global_menu === true) {
-  import('../nav-global/menu').then((MenuDropdown)=>{
-    MENU = MenuDropdown;
-  });
+  MENU = MenuDropdown;
 }
 
 module.exports = {
