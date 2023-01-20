@@ -142,8 +142,7 @@ disable_genesys_button:
 nav-toggle:
   version: 1.x
   js:
-    dist/js/nav-toggle-dropdown.min.js: {}
-    dist/js/nav-toggle.min.js: {}
+    dist/js/nav-toggle.min.js: { attributes: { defer: true } }
   css:
     theme:
       dist/css/nav_global.min.css: {}

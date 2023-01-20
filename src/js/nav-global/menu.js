@@ -1,5 +1,5 @@
-const Mustache = require('mustache');
-const cls = require('classnames');
+import Mustache from 'mustache';
+import cls from 'classnames';
 
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
@@ -531,8 +531,9 @@ const MobilePanel = {
     }
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener('DOMContentLoaded', () => {
-      // See  block--mobile-navigation.html.twig for the button
+    // document.addEventListener('DOMContentLoaded', () => {
+
+    // See  block--mobile-navigation.html.twig for the button
       this.toggleButton = document.querySelector('.js-menu-toggle-button');
       if (!this.toggleButton) {
         throw new Error('No toggle button for JS menu.');
@@ -585,10 +586,10 @@ const MobilePanel = {
         window.location.hash = '';
         start();
         this.open();
-      }
-    });
+      };
+     // });
     this.running = true;
   },
 };
 
-module.exports = MobilePanel;
+export default MobilePanel;
