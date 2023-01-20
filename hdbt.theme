@@ -41,7 +41,7 @@ function hdbt_preprocess(&$variables, $hook) {
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
-  // TODO: This needs to be independent block as well.
+  // @todo Fix this to be independent block as well.
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
@@ -642,13 +642,13 @@ function hdbt_preprocess_block(&$variables) {
   }
 
   if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
-    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = true;
+    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
     $variables['#attached']['library'][] = 'hdbt/nav-toggle';
   }
 
   // Attach "nav_toggle" library to "profile" block.
   if ($variables['plugin_id'] == 'profile_block') {
-    $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = true;
+    $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = TRUE;
     $variables['#attached']['library'][] = 'hdbt/nav-toggle';
   }
 }
