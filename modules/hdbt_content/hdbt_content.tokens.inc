@@ -8,6 +8,7 @@
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implements hook_token_info().
@@ -48,9 +49,13 @@ function hdbt_content_tokens(
     // Add default og-image as the shareable image.
     if ($theme_handler->themeExists('hdbt')) {
       $theme = $theme_handler->getTheme('hdbt');
+      $current_language = \Drupal::languageManager()
+        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+      $image_file_name = $current_language === 'sv' ? 'og-global-sv.png' : 'og-global.png';
+
       /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
       $service = \Drupal::service('file_url_generator');
-      $default_image = $service->generate("{$theme->getPath()}/src/images/og-global.png")
+      $default_image = $service->generate("{$theme->getPath()}/src/images/{$image_file_name}")
         ->toString(TRUE)
         ->getGeneratedUrl();
     }
