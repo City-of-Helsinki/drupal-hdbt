@@ -111,7 +111,7 @@ function hdbt_preprocess_html(&$variables) {
 
   // Toggle between global and local navigation libraries for CSS and JS.
   if (\Drupal::moduleHandler()->moduleExists('helfi_navigation')) {
-    $variables['#attached']['library'][] = 'hdbt/nav-global';
+    $variables['#attached']['library'][] = 'hdbt/nav-toggle';
   }
   else {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
