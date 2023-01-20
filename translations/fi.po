@@ -311,3 +311,7 @@ msgstr "Pikalinkit"
 msgctxt "TPR unit daycare distance"
 msgid "Distance"
 msgstr "Etäisyys"
+
+msgctxt "When newslist component does not have any news to list"
+msgid "No related news."
+msgstr "Ei uutisia tästä aiheesta."
