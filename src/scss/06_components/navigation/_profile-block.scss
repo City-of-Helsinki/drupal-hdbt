@@ -120,10 +120,15 @@
   grid-area: profile;
   grid-column-end: -1;
   justify-content: center;
-  margin-left: $spacing;
-  max-width: 88px; // As designed.
-  min-width: 72px; // As designed.
+  margin-left: $spacing-half;
+  width: 65px; // As designed
   z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    max-width: 88px; // As designed.
+    min-width: 72px; // As designed.
+    width: auto;
+  }
 
   .nav-toggle__anchor,
   .nav-toggle__button {
