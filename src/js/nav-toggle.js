@@ -23,6 +23,8 @@
   if (drupalSettings.hdbt.global_menu === true) {
     MENU = await import(/* webpackChunkName: "globalMenu" */ './nav-global/menu');
     MenuDropdown = MENU.default;
+  } else {
+    BRANDING_ELEMENTS.CssMenuDropdownDropdown = 'cssmenu';
   }
 
   function isScrollable(element) {

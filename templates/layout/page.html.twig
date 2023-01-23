@@ -43,7 +43,7 @@
   <div id="menu" class="nav-toggle-target"></div>
 {% else %}
   {# This checkbox handles opening and closing mobile menu #}
-  <input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
+  <div id="cssmenu" class="nav-toggle-target"></div>
 {% endif %}
 
 {% if use_search_block %}
@@ -138,9 +138,9 @@
 
     <a id="main-content" tabindex="-1"></a>
 
-    {% if page.messages %}
-      {{ page.messages }}
-    {% endif %}
+{#    {% if page.messages %}#}
+{#      {{ page.messages }}#}
+{#    {% endif %}#}
 
     {% block page_before_content %}
       {% if page.before_content %}

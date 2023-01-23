@@ -235,6 +235,7 @@ $label-font: 'special.navigation.icon_label';
 
 // What should happen when nav-toggle dropdown is opened
 @include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
+@include button-toggle-rules('#cssmenu', '.nav-toggle--cssmenu', '.nav-toggle-dropdown--cssmenu');
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 @include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
