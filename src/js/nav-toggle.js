@@ -43,15 +43,12 @@
       buttonSelector: `.js-${name}-button`,
       targetSelector: `#${name}`,
       onOpen: () => {
-        for (let i = 0; i < AllElements.length; i += 1) {
-          const OtherElements = AllElements;
-          // Delete the current index from the AllElements array.
-          OtherElements.splice(i,1);
-          // Close all but the current index element.
-          if (OtherElements.length !== 0) {
-            OtherElements[i][1].close();
+        // Close all open menus before opening a new one.
+        keys.forEach((menuName) => {
+          if (menuName !== key) {
+            AllElements[menuName].close();
           }
-        }
+        });
         if (Object.keys(MenuDropdown).length !== 0) {
           MenuDropdown.close();
         }
