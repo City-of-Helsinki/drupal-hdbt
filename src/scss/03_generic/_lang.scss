@@ -1,0 +1,10 @@
+// Since some properties do not support transform values, we set this custom property to flip direction of icons and animation https://github.com/w3c/csswg-drafts/issues/1544#issuecomment-1355245914
+:root,
+[dir='ltr'] {
+  --lang-direction: 1;
+}
+
+// Reverse lang direction for RTL languages. Should be used in a transform where needed.
+[dir='rtl'] {
+  --lang-direction: -1;
+}
