@@ -235,7 +235,8 @@ function hdbt_preprocess_page(&$variables) {
   }
 
   // Check if the search block is added to header branding.
-  // This is currently tied to global navigation since you can't have search without global navigation being enabled.
+  // This is currently tied to global navigation since you can't have search
+  // without global navigation being enabled.
   if ($variables['use_global_navigation'] == TRUE) {
     $variables['use_search_block'] = TRUE;
   }
