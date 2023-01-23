@@ -1,8 +1,3 @@
-// When menu is opened with anchor instead of JS, this forces the page to scroll to top
-#menu:not([data-js]) {
-  scroll-margin-top: 100vh;
-}
-
 .nav-toggle--search {
   grid-area: search;
 }

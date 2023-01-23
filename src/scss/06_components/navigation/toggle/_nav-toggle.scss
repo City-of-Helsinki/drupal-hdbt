@@ -175,6 +175,11 @@ $label-font: 'special.navigation.icon_label';
 }
 
 @mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
+  // When menu is opened with anchor instead of JS, this forces the page to scroll to top
+  #{$id}:not([data-js]) {
+    scroll-margin-top: 100vh;
+  }
+
   #{$id}:not([data-js]) ~ * {
     // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
     // For this reason I had to remove the closing animation when there is no js available :(

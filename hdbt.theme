@@ -233,6 +233,24 @@ function hdbt_preprocess_page(&$variables) {
   foreach (hdbt_get_global_url($variables['current_langcode']) as $key => $value) {
     $variables[$key] = $value;
   }
+
+  // Check if the search block is added to header branding.
+  // This is currently tied to global navigation since you can't have search without global navigation being enabled.
+  if ($variables['use_global_navigation'] == TRUE) {
+    $variables['use_search_block'] = TRUE;
+  }
+
+  // Check if the otherlangs block is added to header branding.
+  // Notice that the block machine name needs to be exactly same as here.
+  if (isset($variables['page']['header_branding']['external_header_language_links'])) {
+    $variables['use_otherlangs_block'] = TRUE;
+  }
+
+  // Check if the profile block is added to header branding.
+  // Notice that the block machine name needs to be exactly same as here.
+  if (isset($variables['page']['header_branding']['profileblock'])) {
+    $variables['use_profile_block'] = TRUE;
+  }
 }
 
 /**
