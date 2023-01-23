@@ -1,18 +1,19 @@
 import { Select } from 'hds-react';
 
-import type Location from '../types/Location';
-import { QueryBuilder } from '../utils/QueryBuilder';
+import { useAtomValue } from 'jotai';
 import ApiKeys from '../enum/ApiKeys';
+import { locationsAtom, queryBuilderAtom } from '../store';
 
-type LocationFilterProps = {
-  loading: boolean,
-  options: Location[],
-  queryBuilder: QueryBuilder
-};
+function LocationFilter() {
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const locationOptions = useAtomValue(locationsAtom);
 
-function LocationFilter({ loading, options, queryBuilder }: LocationFilterProps) {
+  if (!queryBuilder || !locationOptions) {
+    return null;
+  }
+
   const onChange = (value: any) => {
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: Location) => location.value).join(',') });
+    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
   };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
@@ -22,12 +23,11 @@ function LocationFilter({ loading, options, queryBuilder }: LocationFilterProps)
       <Select
         className='hdbt-search__dropdown'
         clearButtonAriaLabel={Drupal.t('Clear selections', {}, { context: 'Event search: clear button aria label' })}
-        disabled={loading}
         helper={locationHelper}
         label={Drupal.t('Select a venue')}
         multiselect
         onChange={onChange}
-        options={options}
+        options={locationOptions || []}
         placeholder={Drupal.t('All', {}, { context: 'Event search: all available options' })}
         selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'Event search: remove item aria label' })}
         theme={{

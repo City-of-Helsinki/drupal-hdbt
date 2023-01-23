@@ -5,11 +5,13 @@ interface Options {
 }
 
 export class QueryBuilder {
-  baseUrl: string;
+  private baseUrl: string;
 
-  originalParams: URLSearchParams;
+  private originalParams: URLSearchParams;
 
-  params: URLSearchParams;
+  private params: URLSearchParams;
+
+  private currentUrl: string;
 
   constructor(eventsApiUrl: string) {
     if (eventsApiUrl.indexOf('?') !== -1) {
@@ -22,28 +24,48 @@ export class QueryBuilder {
       this.originalParams = new URLSearchParams();
       this.params = new URLSearchParams();
     }
+
+    this.currentUrl = eventsApiUrl;
   }
 
-  allEventsQuery() {
+  public allEventsQuery() {
     return `${this.baseUrl}?${this.originalParams.toString()}`;
   }
 
-  getUrl() {
-    return `${this.baseUrl}?${this.params.toString()}`;
+  public updateUrl() {
+    this.params.set('page', '1');
+    this.currentUrl = `${this.baseUrl}?${this.params.toString()}`;
+    return this.currentUrl;
   }
 
-  reset() {
+  public updatePageParam(page: number) {
+    const currentUrl = new URL(this.currentUrl);
+    currentUrl.searchParams.set('page', page.toString());
+    this.currentUrl = currentUrl.toString();
+
+    return this.currentUrl;
+  }
+
+  public getPage() {
+    return this.params.get('page') || 1;
+  }
+
+  public getUrl() {
+    return this.currentUrl;
+  }
+
+  public reset() {
     this.params = this.originalParams;
   }
 
-  resetParam(option: string) {
+  public resetParam(option: string) {
     if (Object.values(ApiKeys).indexOf(option) !== -1) {
       const original = this.originalParams.get(option);
       original ? this.params.set(option, original) : this.params.delete(option);
     }
   }
 
-  setParams(options: Options) {
+  public setParams(options: Options) {
     Object.keys(options).forEach((option: string) => {
       if (Object.values(ApiKeys).indexOf(option) !== -1) {
         this.params.set(option, options[option]);

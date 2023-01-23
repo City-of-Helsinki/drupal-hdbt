@@ -1,15 +1,14 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
+import { useAtomValue, useSetAtom } from 'jotai';
 import LocationFilter from '../components/LocationFilter';
-import type Location from '../types/Location';
-import { QueryBuilder } from '../utils/QueryBuilder';
 import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
 import DateSelect from '../components/DateSelect';
 import CheckboxFilter from '../components/CheckboxFilter';
-import type FilterSettings from '../types/FilterSettings';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
+import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom } from '../store';
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -36,12 +35,8 @@ type FormErrors = {
   invalidStartDate: boolean,
 };
 
-function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locationOptions }: {
-  filterSettings: FilterSettings,
-  queryBuilder: QueryBuilder,
-  onSubmit: Function,
-  loading: boolean,
-  locationOptions: Location[],
+function FormContainer({ loading }: {
+  loading: boolean
 }) {
   const [endDisabled, disableEnd] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<DateTime>();
@@ -52,6 +47,19 @@ function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locati
     invalidEndDate: false,
     invalidStartDate: false,
   });
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const filterSettings = useAtomValue(settingsAtom);
+  const setUrl = useSetAtom(urlAtom);
+  const setPage = useSetAtom(pageAtom);
+
+  if (!queryBuilder || !filterSettings) {
+    return null;
+  }
+
+  const onSubmit = () => {
+    setPage(1);
+    setUrl(queryBuilder.updateUrl());
+  };
 
   const setStart = (d: string) => {
 
@@ -174,7 +182,7 @@ function FormContainer({ filterSettings, queryBuilder, onSubmit, loading, locati
         <div className='event-form__filter-section-container'>
           {
             filterSettings.showLocation &&
-              <LocationFilter loading={loading} options={locationOptions} queryBuilder={queryBuilder} />
+              <LocationFilter />
           }
           {
             filterSettings.showTimeFilter &&

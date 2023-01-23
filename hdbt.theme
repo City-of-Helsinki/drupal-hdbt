@@ -1455,17 +1455,22 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
   if (isset($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
     $linkedEvents = Drupal::service('helfi_react_search_linked_events');
+    $settings = [];
 
-    $variables['field_event_count'] = '-1';
     if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
-      $variables['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+      $settings['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+    }
+    else {
+      $settings['field_event_count'] = '3';
     }
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
-      $variables['events_url'] = $initialUrl;
       $params = $linkedEvents->parseParams($initialUrl);
-      $variables['events_api_url'] = $linkedEvents->getEventsRequest($params, $variables['field_event_count']);
+      $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
+      $settings['events_api_url'] = $eventUrl;
+      $settings['request_url'] = $eventUrl;
+      $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
     }
 
     $booleanFields = [
@@ -1477,9 +1482,11 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
 
     foreach ($booleanFields as $field) {
       if ($paragraph->hasField($field) && !$paragraph->get($field)->isEmpty()) {
-        $variables[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
+        $settings[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
       }
     }
+
+    $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
   }
 
   // Render image placeholder for use in frontend.

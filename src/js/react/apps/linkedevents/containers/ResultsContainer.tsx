@@ -1,12 +1,12 @@
 import { LoadingSpinner} from 'hds-react';
 
+import { useAtomValue } from 'jotai';
 import type Event from '../types/Event';
 import Pagination from '../components/Pagination';
 import EmptyMessage from '../components/EmptyMessage';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import ROOT_ID from '../enum/RootId';
-import Global from '../enum/Global';
+import { settingsAtom } from '../store';
 
 type ResultsContainerProps = {
   count: number;
@@ -16,14 +16,13 @@ type ResultsContainerProps = {
 };
 
 function ResultsContainer({ count, events, loading, error }: ResultsContainerProps) {
-  const { size } = Global;
-  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-  const eventCount = rootElement?.dataset?.eventCount || '-1';
+  const settings = useAtomValue(settingsAtom);
 
-  if (error) {
+  if (error || !settings) {
     return <p>{Drupal.t('Could not retrieve events')}</p>;
   }
 
+  const size = settings.eventCount;
   const pages = Math.floor(count / size);
   const addLastPage = count > size && count % size;
 

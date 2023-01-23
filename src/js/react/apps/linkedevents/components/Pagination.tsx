@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconAngleLeft, IconAngleRight } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import SearchComponents from '../enum/SearchComponents';
-import { pageAtom, setPageAtom } from '../store';
+import { pageAtom, queryBuilderAtom, urlAtom } from '../store';
 
 type PaginationProps = {
   pages: number;
@@ -36,12 +36,20 @@ const getPagination = (current: number, pages: number, totalPages: number) => {
 };
 
 export const Pagination = ({ pages, totalPages }: PaginationProps) => {
-  const currentPage = useAtomValue(pageAtom);
-  const setPage = useSetAtom(setPageAtom);
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const [page, setPage] = useAtom(pageAtom);
+  const setUrl = useSetAtom(urlAtom);
+
+  if (!queryBuilder || !totalPages) {
+    return null;
+  }
+
+  const currentPage = Number(page);
 
   const updatePage = (e: React.MouseEvent<HTMLElement>, index: number) => {
     e.preventDefault();
-    setPage(index.toString());
+    setUrl(queryBuilder.updatePageParam(index));
+    setPage(index);
   };
 
   const { prevPages, nextPages } = getPagination(currentPage, pages, totalPages);

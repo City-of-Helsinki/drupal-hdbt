@@ -1,66 +1,78 @@
 import { atom } from 'jotai';
+import QueryBuilder from './utils/QueryBuilder';
+import ROOT_ID from './enum/RootId';
+import FilterSettings from './types/FilterSettings';
+import Location from './types/Location';
 
-import type URLParams from './types/URLParams';
-
-const getParams = (searchParams: URLSearchParams) => {
-  const params: { [k: string]: any } = {};
-  const entries = searchParams.entries();
-  let result = entries.next();
-
-  while (!result.done) {
-    const [key, value] = result.value;
-
-    if (!value) {
-      result = entries.next();
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-
-    const existing = params[key];
-    if (existing) {
-      const updatedValue = Array.isArray(existing) ? [...existing, value] : [existing, value];
-      params[key] = updatedValue;
-    } else {
-      params[key] = [value];
-    }
-
-    result = entries.next();
+// Transform locations from API response to options
+const transformLocations = (locations: any = null) => {
+  if (!locations) {
+    return [];
   }
 
-  return params;
+  const { currentLanguage } = drupalSettings.path;
+  const locationOptions: Location[] = [];
+
+  const keys = Object.keys(locations);
+  keys.forEach((id: string) => {
+    const location = locations[id];
+    if (location.id && location.name && location.name[currentLanguage]) {
+      locationOptions.push({
+        value: location.id,
+        label: location.name[currentLanguage]
+      });
+    }
+  });
+
+  return locationOptions;
 };
 
-export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
+const createBaseAtom = () => {
+  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+  const paragraphId = rootElement?.dataset?.paragraphId;
 
-export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
-  // set atom value
-  values.page = values.page || '1';
-  set(urlAtom, values);
-
-  // Set new params to window.location
-  const newUrl = new URL(window.location.toString());
-  const newParams = new URLSearchParams();
-
-  // eslint-disable-next-line array-callback-return, guard-for-in, no-restricted-syntax
-  for (const key in values) {
-    const value = values[key as keyof URLParams];
-
-    if (Array.isArray(value)) {
-      value.forEach((option: string) => newParams.append(key, option));
-    } else if (value) {
-      newParams.set(key, value.toString());
-    } else {
-      newParams.delete(key);
-    }
+  if (!rootElement || !paragraphId) {
+    console.warn('Paragraph id not found in source HTML');
+    return;
   }
 
-  newUrl.search = newParams.toString();
-  window.history.pushState({}, '', newUrl);
-});
+  const settings = drupalSettings.helfi_events?.data?.[paragraphId];
+  const eventsApiUrl = settings?.events_api_url;
 
-export const setPageAtom = atom(null, (get, set, page: string) => {
-  const url = get(urlAtom);
-  set(urlUpdateAtom, { ...url, page });
-});
+  const filterSettings: FilterSettings = {
+    showLocation: settings?.field_event_location,
+    showTimeFilter: settings?.field_event_time,
+    showFreeFilter: settings?.field_free_events,
+    showRemoteFilter: settings?.field_remote_events,
+    eventCount: Number(settings?.field_event_count)
+  };
+  const locations = transformLocations(settings?.places);
 
-export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
+  const queryBuilder = QueryBuilder(eventsApiUrl);
+
+  return {
+    queryBuilder,
+    settings: filterSettings,
+    locations
+  };
+};
+
+// Store all needed data to 'master' atom
+const baseAtom = atom(createBaseAtom());
+
+// Create derivates for set/get parts of data
+export const queryBuilderAtom = atom(
+  (get) => get(baseAtom)?.queryBuilder
+);
+
+export const locationsAtom = atom(
+  (get) => get(baseAtom)?.locations
+);
+
+export const settingsAtom = atom(
+  (get) => get(baseAtom)?.settings
+);
+
+export const pageAtom = atom(1);
+
+export const urlAtom = atom<string|null>(null);
