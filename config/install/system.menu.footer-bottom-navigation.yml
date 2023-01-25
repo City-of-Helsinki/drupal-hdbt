@@ -1,7 +1,0 @@
-langcode: und
-status: true
-dependencies: {  }
-id: footer-bottom-navigation
-label: 'Footer - Bottom navigation'
-description: 'Bottom navigation for footer block.'
-locked: false

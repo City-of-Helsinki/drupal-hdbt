@@ -1,7 +1,0 @@
-langcode: und
-status: true
-dependencies: {  }
-id: footer-top-navigation
-label: 'Footer - Top navigation - First'
-description: 'Top navigation for footer block.'
-locked: false
