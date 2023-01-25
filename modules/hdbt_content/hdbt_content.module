@@ -24,47 +24,6 @@ use Drupal\paragraphs\Entity\Paragraph;
  */
 function hdbt_content_theme() {
   return [
-    'header_top_button' => [
-      'variables' => [
-        'button_title' => NULL,
-      ],
-    ],
-    'footer_top_content' => [
-      'variables' => [
-        'title' => NULL,
-        'content' => NULL,
-      ],
-    ],
-    'hero_block' => [
-      'variables' => [
-        'title' => NULL,
-        'paragraphs' => NULL,
-        'is_revision' => NULL,
-        'first_paragraph_grey' => NULL,
-      ],
-    ],
-    'lower_content_block' => [
-      'variables' => [
-        'title' => NULL,
-        'is_revision' => NULL,
-        'paragraphs' => NULL,
-        'computed' => NULL,
-      ],
-    ],
-    'sidebar_content_block' => [
-      'variables' => [
-        'title' => NULL,
-        'is_revision' => NULL,
-        'paragraphs' => NULL,
-        'computed' => NULL,
-      ],
-    ],
-    'cookie_consent_intro' => [
-      'variables' => [
-        'title' => NULL,
-        'content' => NULL,
-      ],
-    ],
     'tpr_errand_service_detail' => [
       'variables' => [
         'title' => NULL,
@@ -346,24 +305,6 @@ function hdbt_content_get_page_entity() {
   return NULL;
 }
 
-/**
- * Implements hook_block_access().
- */
-function hdbt_content_block_access(Block $block, $operation, AccountInterface $account) {
-  // Handle only page title block.
-  if ($operation === 'view' && $block->getPluginId() === 'page_title_block') {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = Drupal::service('hdbt_content.entity_version_matcher')->getType()['entity'];
-
-    if (!$entity instanceof ContentEntityInterface || !$entity->hasField('field_has_hero')) {
-      return AccessResult::neutral();
-    }
-
-    return AccessResult::allowedIf(!boolval($entity->field_has_hero->value))->addCacheableDependency($block);
-  }
-
-  return AccessResult::neutral();
-}
 
 /**
  * Implements hook_preprocess_HOOK().
