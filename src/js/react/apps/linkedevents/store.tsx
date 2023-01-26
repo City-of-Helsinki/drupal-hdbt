@@ -70,7 +70,13 @@ export const locationsAtom = atom(
 );
 
 export const settingsAtom = atom(
-  (get) => get(baseAtom)?.settings
+  (get) => get(baseAtom)?.settings || {
+    showFreeFilter: false,
+    showLocation: false,
+    showRemoteFilter: false,
+    showTimeFilter: false,
+    eventCount: 3
+  }
 );
 
 export const pageAtom = atom(1);

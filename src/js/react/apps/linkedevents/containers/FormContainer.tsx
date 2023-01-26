@@ -49,6 +49,7 @@ function FormContainer({ loading }: {
   });
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
+  const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
   const setUrl = useSetAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
 
@@ -168,12 +169,14 @@ function FormContainer({ loading }: {
     onSubmit(); return false;
   };
 
-  const bothCheckboxes = filterSettings.showFreeFilter && filterSettings.showRemoteFilter;
+  const bothCheckboxes = showFreeFilter && showRemoteFilter;
   const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Event search: event type prefix' });
   const freeTranslation = Drupal.t('Free-of-charge events');
   const remoteTranslation = Drupal.t('Remote events');
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
+
+  const showSubmitButton = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
 
   return (
     <form className='event-form-container' onSubmit={handleSubmit}>
@@ -181,11 +184,11 @@ function FormContainer({ loading }: {
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>
           {
-            filterSettings.showLocation &&
+            showLocation &&
               <LocationFilter />
           }
           {
-            filterSettings.showTimeFilter &&
+            showTimeFilter &&
               <DateSelect
                 endDate={endDate}
                 invalidEndDate={errors.invalidEndDate}
@@ -206,7 +209,7 @@ function FormContainer({ loading }: {
         }
         <div className='event-form__filter-checkbox-container'>
           {
-            filterSettings.showRemoteFilter &&
+            showRemoteFilter &&
               <CheckboxFilter
                 checked={remoteFilter}
                 id='remote-toggle'
@@ -215,7 +218,7 @@ function FormContainer({ loading }: {
               />
           }
           {
-            filterSettings.showFreeFilter &&
+            showFreeFilter &&
               <CheckboxFilter
                 checked={freeFilter}
                 id='free-toggle'
@@ -224,7 +227,10 @@ function FormContainer({ loading }: {
               />
           }
         </div>
-        <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
+        {
+          showSubmitButton &&
+          <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
+        }
       </div>
     </form>
   );
