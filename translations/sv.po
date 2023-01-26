@@ -308,3 +308,7 @@ msgstr "Snabblänkar"
 msgctxt "TPR unit daycare distance"
 msgid "Distance"
 msgstr "Distans"
+
+msgctxt "When newslist component does not have any news to list"
+msgid "No related news."
+msgstr "Inga nyheter i ämnet."

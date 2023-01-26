@@ -111,10 +111,13 @@ function hdbt_preprocess_html(&$variables) {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
   }
 
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+
   // Add theme path to as variable.
-  $variables['theme_path'] = '/' . \Drupal::service('theme_handler')
-    ->getTheme('hdbt')
-    ->getPath();
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
+  $variables['theme_path'] = $service->generate($theme->getPath())
+    ->toString(TRUE)->getGeneratedUrl();
 }
 
 /**
@@ -673,8 +676,10 @@ function hdbt_preprocess_paragraph(array &$variables) {
   // and tell it its parents design.
   if ($paragraph_type == 'list_of_links_item') {
     $paragraph_parent = $paragraph->getParentEntity();
-    $design = $paragraph_parent->get('field_list_of_links_design')->getString();
-    $variables['list_of_links_design'] = $design;
+    $variables['list_of_links_design'] = $paragraph_parent
+      ->get('field_list_of_links_design')->getString();
+    $variables['list_of_links_paragraph_has_title'] = (bool) !$paragraph_parent
+      ->get('field_list_of_links_title')->isEmpty();
   }
 
   // Check if the paragraph is a type of accordion
@@ -688,8 +693,32 @@ function hdbt_preprocess_paragraph(array &$variables) {
   // and tell its children the heading level.
   if ($paragraph_type == 'accordion_item') {
     $paragraph_parent = $paragraph->getParentEntity();
-    $accordion_item_heading_level = $paragraph_parent->get('field_accordion_heading_level')->getString();
-    $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
+    $accordion_has_title = (bool) !$paragraph_parent
+      ->get('field_accordion_title')->isEmpty();
+    $accordion_title_level = $paragraph_parent
+      ->get('field_accordion_title_level')->getString();
+    $accordion_item_heading_level = $paragraph_parent
+      ->get('field_accordion_heading_level')->getString();
+
+    // Check if accordion paragraph has a title and set item heading level
+    // based on that. If not, use level given by editor.
+    if ($accordion_has_title) {
+      // Remove inaccessible skipping between title level and item level.
+      // For example:
+      // title h3, item h6 --> fixed item h4,
+      // title h2, item h3 --> item h3,
+      // title h3, item h3 --> item h3,
+      // title h5, item h3 --> item h3.
+      if ($accordion_title_level + 1 < $accordion_item_heading_level) {
+        $variables['accordion_item_heading_level'] = $accordion_title_level + 1;
+      }
+      else {
+        $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
+      }
+    }
+    else {
+      $variables['accordion_item_heading_level'] = $accordion_item_heading_level;
+    }
   }
 
   // Check if the paragraph is a type of image.
