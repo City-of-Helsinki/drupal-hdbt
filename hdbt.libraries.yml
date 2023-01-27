@@ -134,8 +134,6 @@ nav-local:
   css:
     theme:
       dist/css/nav_local.min.css: {}
-  js:
-    dist/js/nav-local.min.js: { attributes: { defer: true } }
   dependencies:
     - hdbt/global-styling
     - hdbt/nav-toggle
