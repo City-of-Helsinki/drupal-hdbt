@@ -24,11 +24,13 @@
   display: flex;
   flex-direction: column;
   grid-area: profile;
+  // This moves the profile-block element so that it is attached to the right side of the page.
+  // Without it, there will be gap the width of gutter.
   grid-column-end: -1;
   justify-content: center;
-  margin-left: 16px;
-  padding-left: 4px;
-  padding-right: 4px;
+  margin-left: $spacing;
+  padding-left: $spacing-quarter;
+  padding-right: $spacing-quarter;
   text-decoration: none;
   text-overflow: ellipsis;
   width: 65px; // Same as the height of the branding header.
@@ -59,8 +61,7 @@
 
 .profile__logout-link {
   @include font('body');
-  border-bottom: 1px solid $color-black-20;
-  border-top: 1px solid $color-black-20;
+  border-block: 1px solid $color-black-20;
   display: block;
   font-weight: bold;
   padding: $spacing;
@@ -93,8 +94,7 @@
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
-    border-left: 1px solid $color-black-20;
-    border-right: 1px solid $color-black-20;
+    border-inline: 1px solid $color-black-20;
     max-width: 300px; // As designed.
   }
 }

@@ -31,7 +31,7 @@ $-branding-icon-size-desktop: $spacing-double;
   @include breakpoint($breakpoint-l) {
     grid-template-areas:
       '. logo . lang brand search toggle profile .'
-      'langmenu langmenu langmenu langmenu langmenu . . . .'
+      'langmenu langmenu langmenu langmenu . . . . .'
       'menu menu menu menu menu menu menu menu menu';
   }
 
