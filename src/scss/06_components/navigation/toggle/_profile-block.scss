@@ -33,12 +33,8 @@
   padding-right: $spacing-quarter;
   text-decoration: none;
   text-overflow: ellipsis;
-  width: 65px; // Same as the height of the branding header.
+  width: var(--branding-height); // Same as the height of the branding header.
   z-index: 1;
-
-  @include breakpoint($breakpoint-m) {
-    width: 86px; // Same as the height of the branding header.
-  }
 
   &::before {
     @include pseudo-icon('user', 22px, currentColor, block);
