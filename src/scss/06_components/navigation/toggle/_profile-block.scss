@@ -114,6 +114,8 @@
   background-color: $color-black;
   color: $color-white;
   grid-area: profile;
+  // This moves the profile-block element so that it is attached to the right side of the page.
+  // Without it, there will be gap the width of gutter.
   grid-column-end: -1;
   justify-content: center;
   margin-left: $spacing-half;
