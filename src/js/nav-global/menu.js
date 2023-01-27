@@ -540,63 +540,62 @@ const MobilePanel = {
     }
     this.onOpen = onOpen;
     this.onClose = onClose;
-    // document.addEventListener('DOMContentLoaded', () => {
 
+    // This used to load after DOM was loaded, but we added defer for the javascript.
     // See  block--mobile-navigation.html.twig for the button
-      this.toggleButton = document.querySelector('.js-menu-toggle-button');
-      if (!this.toggleButton) {
-        throw new Error('No toggle button for JS menu.');
+    this.toggleButton = document.querySelector('.js-menu-toggle-button');
+    if (!this.toggleButton) {
+      throw new Error('No toggle button for JS menu.');
+    }
+    // TODO Where is this #menu coming from Maybe name it better?
+    this.menu = document.querySelector('#menu');
+    if (!this.menu) {
+      // eslint-disable-next-line no-console
+      console.error('Panel not present in DOM. Cannot start JS mobile menu');
+      return;
+    }
+
+    this.disableFallback();
+
+    /**
+     * Close menu on Escape button click if it is open.
+     */
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
+        this.close();
+        this.toggleButton.focus();
       }
-      // TODO Where is this #menu coming from Maybe name it better?
-      this.menu = document.querySelector('#menu');
-      if (!this.menu) {
-        // eslint-disable-next-line no-console
-        console.error('Panel not present in DOM. Cannot start JS mobile menu');
-        return;
-      }
+    });
 
-      this.disableFallback();
-
+    const start = () => {
       /**
-       * Close menu on Escape button click if it is open.
-       */
-      document.addEventListener('keydown', (e) => {
-        if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
-          this.close();
-          this.toggleButton.focus();
-        }
-      });
-
-      const start = () => {
-        /**
-         * Delay template compilation to menu start to ensure
-         * footer & top menu blocks are rendered in main DOM before cloning them.
-         *
-         * Start removes itself in order to only run once.
-         */
-        this.compileTemplates();
-        this.toggleButton.removeEventListener('click', start);
-        this.start();
-      };
-      /**
-       * Add start-event to menu toggle button.
+       * Delay template compilation to menu start to ensure
+       * footer & top menu blocks are rendered in main DOM before cloning them.
        *
-       * Add Menu toggle function to menu button.
-       * Side effects:
-       * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
+       * Start removes itself in order to only run once.
        */
-      this.toggleButton.addEventListener('click', start);
-      this.toggleButton.addEventListener('click', () => this.toggle());
+      this.compileTemplates();
+      this.toggleButton.removeEventListener('click', start);
+      this.start();
+    };
+    /**
+     * Add start-event to menu toggle button.
+     *
+     * Add Menu toggle function to menu button.
+     * Side effects:
+     * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
+     */
+    this.toggleButton.addEventListener('click', start);
+    this.toggleButton.addEventListener('click', () => this.toggle());
 
-      /**
-       * Open menu if it is required in the hash, then clear hash.
-       */
-      if (this.isOpen()) {
-        window.location.hash = '';
-        start();
-        this.open();
-      };
-     // });
+    /**
+     * Open menu if it is required in the hash, then clear hash.
+     */
+    if (this.isOpen()) {
+      window.location.hash = '';
+      start();
+      this.open();
+    }
     this.running = true;
   },
 };

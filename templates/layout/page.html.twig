@@ -138,9 +138,9 @@
 
     <a id="main-content" tabindex="-1"></a>
 
-{#    {% if page.messages %}#}
-{#      {{ page.messages }}#}
-{#    {% endif %}#}
+    {% if page.messages %}
+      {{ page.messages }}
+    {% endif %}
 
     {% block page_before_content %}
       {% if page.before_content %}
