@@ -37,11 +37,12 @@
   z-index: 1;
 
   &::before {
-    @include pseudo-icon('user', 22px, currentColor, block);
+    --icon-size: 22px;
+    @include pseudo-icon('user', var(--icon-size), currentColor, block);
     margin-bottom: $spacing-quarter;
 
     @include breakpoint($breakpoint-m) {
-      @include pseudo-icon('user', 28px, currentColor, block);
+      --icon-size: 28px;
     }
   }
 
@@ -102,7 +103,6 @@
 .profile__full-name {
   @include font('body');
   display: block;
-  font-weight: bold;
 }
 
 .profile__email {
@@ -125,51 +125,47 @@
     min-width: 72px; // As designed.
     width: auto;
   }
+}
 
-  .nav-toggle__anchor,
-  .nav-toggle__button {
-    height: 100%;
+.nav-toggle__anchor--profile,
+.nav-toggle__button--profile {
+  height: 100%;
+  min-width: 100%;
+}
+
+.nav-toggle__label--profile {
+  color: $color-white;
+  height: 100%;
+  padding-left: $spacing-half;
+  padding-right: $spacing-half;
+
+  span {
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .nav-toggle__label {
-    color: $color-white;
-    height: 100%;
-    padding-left: $spacing-half;
-    padding-right: $spacing-half;
-
-    &:focus {
-      outline: 2px solid $color-white;
-      outline-offset: -5px;
-    }
-
-    span {
-      overflow: hidden;
-      text-align: center;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
-  .nav-toggle__label::before {
-    @include pseudo-icon('user', 22px, currentColor, block);
+  &::before {
+    --icon-size: 22px;
+    @include pseudo-icon('user', var(--icon-size), currentColor, block);
     margin-bottom: $spacing-quarter;
 
     @include breakpoint($breakpoint-m) {
-      @include pseudo-icon('user', 28px, currentColor, block);
+      --icon-size: 28px;
     }
   }
 
-  .nav-toggle__button:focus {
-    outline: 2px solid $color-white;
-    outline-offset: -5px;
+  &.nav-toggle__label--close::before {
+    @include pseudo-icon-replace('cross');
+    margin-bottom: 0;
   }
+}
 
-  .nav-toggle__label--close {
-    &::before {
-      @include pseudo-icon-replace('cross');
-      margin-bottom: 0;
-    }
-  }
+.nav-toggle__label--profile:focus,
+.nav-toggle__button--profile:focus {
+  outline: 2px solid $color-white;
+  outline-offset: -5px;
 }
 
 .nav-toggle-dropdown--profile {
