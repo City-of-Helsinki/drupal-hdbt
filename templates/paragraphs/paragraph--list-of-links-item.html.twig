@@ -72,8 +72,8 @@
         ],
         'target': target_new ? '_blank' : null,
       } %}
-      <h3 class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</h3>
-
+      {% set titleHeading = list_of_links_paragraph_has_title ? 'h3' : 'h2' %}
+      <{{titleHeading}} class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</{{titleHeading}}>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>

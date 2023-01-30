@@ -55,3 +55,14 @@
     }
   }
 }
+
+// Max width for component containers and elements emulating them
+@mixin components-container-max-width-property() {
+  --max-width: #{$component-side-padding-mobile + $content-area-wrapper-width-max + $component-side-padding-mobile};
+
+  @if $component-side-padding-mobile != $component-side-padding-desktop {
+    @include breakpoint($component-side-padding-breakpoint) {
+      --max-width: #{$component-side-padding-desktop + $content-area-wrapper-width-max + $component-side-padding-desktop};
+    }
+  }
+}

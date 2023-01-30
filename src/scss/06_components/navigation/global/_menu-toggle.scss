@@ -3,7 +3,7 @@ $-default-label-icon-size: 32px;
 $label-font: 'special.navigation.icon_label';
 
 // When menu is opened with anchor instead of JS, this forces the page to scroll to top
-.nav-toggle-target:not([data-js]) {
+#menu:not([data-js]) {
   scroll-margin-top: 100vh;
 }
 
@@ -237,7 +237,7 @@ $label-font: 'special.navigation.icon_label';
 }
 
 // When JS is enabled, switch to use button instead of anchor
-.nav-toggle-target[data-js] ~ * {
+#menu[data-js] ~ * {
   .nav-toggle__anchor {
     display: none;
   }
@@ -258,7 +258,7 @@ $label-font: 'special.navigation.icon_label';
   }
 }
 
-.nav-toggle-target:not([data-js]) ~ * {
+#menu:not([data-js]) ~ * {
   // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
   // For this reason I had to remove the closing animation when there is no js available :(
   .nav-toggle-dropdown__wrapper,
