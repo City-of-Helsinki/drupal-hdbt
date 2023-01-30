@@ -33,7 +33,7 @@ const SearchContainer = () => {
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
     const response = await fetch(reqUrl);
-  
+
     if (response.status === 200) {
       const result = await response.json();
 
@@ -41,7 +41,7 @@ const SearchContainer = () => {
         return result;
       }
     }
-  
+
     throw new Error('Failed to get data from the API');
   };
   const { data, error } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);

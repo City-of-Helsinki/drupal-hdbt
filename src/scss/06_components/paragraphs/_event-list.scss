@@ -14,10 +14,7 @@ $tag-vertical-padding: 5px;
 
 // Since the component is not "full width" next to a sidebar, we should uniform padding around
 .has-sidebar .components--upper .component--event-list .component__container {
-  padding-bottom: $spacing-double;
-  padding-left: $spacing-double;
-  padding-right: $spacing-double;
-  padding-top: $spacing-double;
+  padding: $spacing-double;
 }
 
 // If the event search search is just before footer it needs to function the same way as unit search.
@@ -120,10 +117,10 @@ $tag-vertical-padding: 5px;
 }
 
 .event-list__see-all-button {
-  margin: 32px auto 0;
+  margin: $spacing-double auto 0;
   text-align: center;
 }
 
 .event-list__loading-spinner > div {
-  margin: 0 auto;
+  margin-inline: auto;
 }
