@@ -22,30 +22,34 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
     return <p>{Drupal.t('Could not retrieve events')}</p>;
   }
 
+  if (loading) {
+    return (
+      <div className='event-list__loading-spinner'>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   const size = settings.eventCount;
   const pages = Math.floor(count / size);
   const addLastPage = count > size && count % size;
 
   return (
     <div className='event-list__list-container'>
-      {!loading && count && !Number.isNaN(count) &&
+      {count > 0 &&
         <div className='event-list__count'>
-          <strong>{!loading && count}{loading && Drupal.t('loading')}</strong> {Drupal.t('events')}
+          <strong>{count}</strong> {Drupal.t('events')}
         </div>
       }
-      {!loading && events?.length > 0 &&
+      {events?.length > 0 ?
         <>
           {events.map(event => <ResultCard key={event.id} {...event} />)}
           <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
         </>
+        :
+        <EmptyMessage />
       }
-      {!loading && events?.length === 0 && <EmptyMessage />}
-      {!loading && <SeeAllButton />}
-      {loading &&
-        <div className='event-list__loading-spinner'>
-          <LoadingSpinner />
-        </div>
-      }
+      <SeeAllButton />
     </div>
   );
 
