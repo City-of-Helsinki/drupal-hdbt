@@ -50,13 +50,6 @@ $tag-vertical-padding: 5px;
   position: relative;
 }
 
-// Use a specific selector here since spinner styles are loaded later than paragraphs
-.event-list-spinner .hds-loading-spinner {
-  margin-bottom: $spacing-triple;
-  margin-top: $spacing-triple;
-  position: relative;
-}
-
 .event-form-container {
   border-bottom: 1px solid $color-black-20;
   margin-bottom: $spacing-double;
@@ -70,15 +63,14 @@ $tag-vertical-padding: 5px;
     flex-wrap: wrap;
     gap: $spacing-and-half;
     justify-content: space-between;
+  }
 
-    > div {
-      flex-basis: 100%;
-    }
+  .event-form__filter--location,
+  .event-form__filter--date {
+    flex-basis: 100%;
 
     @include breakpoint($breakpoint-m) {
-      > div {
-        flex-basis: 48%;
-      }
+      flex-basis: 48%;
     }
   }
 
@@ -117,7 +109,8 @@ $tag-vertical-padding: 5px;
 }
 
 .event-list__see-all-button {
-  margin: $spacing-double auto 0;
+  margin-inline: auto;
+  margin-top: $spacing-double;
   text-align: center;
 }
 
