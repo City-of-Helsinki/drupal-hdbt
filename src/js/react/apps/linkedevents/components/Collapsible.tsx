@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { IconAngleDown, IconAngleUp } from 'hds-react';
 
+import Icon from '@/react/common/Icon';
 import useOutsideClick from '../hooks/useOutsideClick';
 
 type Props = {
@@ -21,8 +21,8 @@ function Collapsible({ active, ariaControls, helper, id, label, title, children,
   const getHandle = () => {
     if (showHandle !== false) {
       return isActive ?
-        <IconAngleUp className='collapsible__handle' onClick={() => setActive(!isActive)} /> :
-        <IconAngleDown className='collapsible__handle' onClick={() => setActive(!isActive)} />;
+        <Icon icon="angle-up" className='collapsible__handle' onClick={() => setActive(!isActive)} /> :
+        <Icon icon="angle-down" className='collapsible__handle' onClick={() => setActive(!isActive)} />;
     }
   };
 

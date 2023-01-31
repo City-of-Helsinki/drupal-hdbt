@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconAngleLeft, IconAngleRight } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
+import Icon from '@/react/common/Icon';
 import SearchComponents from '../enum/SearchComponents';
 import { pageAtom, queryBuilderAtom, urlAtom } from '../store';
 
@@ -85,7 +85,7 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
             rel='prev'
             role='button'
           >
-            <IconAngleLeft />
+            <Icon icon="angle-left" />
             <span aria-hidden='true' className='hds-pagination__button-prev-label'>
               {Drupal.t('Previous', {}, { context: 'Pagination previous page link text' })}
             </span>
@@ -97,7 +97,7 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
             title={Drupal.t('Go to previous page', {}, { context: 'Pagination previous page link title' })}
             type='button'
           >
-            <IconAngleLeft />
+            <Icon icon="angle-left" />
             <span aria-hidden='true' className='hds-pagination__button-prev-label'>
               {Drupal.t('Previous', {}, { context: 'Pagination previous page link text' })}
             </span>
@@ -197,7 +197,7 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
             <span aria-hidden='true' className='hds-pagination__button-next-label'>
               {Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
             </span>
-            <IconAngleRight />
+            <Icon icon="angle-right" />
           </a>
         ) : (
           <button
@@ -209,7 +209,7 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
             <span aria-hidden='true' className='hds-pagination__button-next-label'>
               {Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
             </span>
-            <IconAngleRight />
+            <Icon icon="angle-right" />
           </button>
         )}
       </nav>
