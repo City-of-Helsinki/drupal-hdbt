@@ -38,6 +38,7 @@ const createBaseAtom = () => {
 
   const settings = drupalSettings.helfi_events?.data?.[paragraphId];
   const eventsApiUrl = settings?.events_api_url;
+  const eventListTitle = settings?.field_event_list_title;
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
@@ -53,7 +54,8 @@ const createBaseAtom = () => {
   return {
     queryBuilder,
     settings: filterSettings,
-    locations
+    locations,
+    eventListTitle,
   };
 };
 
@@ -67,6 +69,10 @@ export const queryBuilderAtom = atom(
 
 export const locationsAtom = atom(
   (get) => get(baseAtom)?.locations
+);
+
+export const titleAtom = atom(
+  (get) => get(baseAtom)?.eventListTitle
 );
 
 export const settingsAtom = atom(

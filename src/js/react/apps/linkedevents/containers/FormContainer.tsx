@@ -8,7 +8,7 @@ import DateSelect from '../components/DateSelect';
 import CheckboxFilter from '../components/CheckboxFilter';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom } from '../store';
+import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom } from '../store';
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -49,6 +49,7 @@ function FormContainer({ loading }: {
   });
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
+  const eventListTitle = useAtomValue(titleAtom);
   const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
   const setUrl = useSetAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
@@ -177,10 +178,11 @@ function FormContainer({ loading }: {
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
   const showSubmitButton = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
+  const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
   return (
     <form className='event-form-container' onSubmit={handleSubmit}>
-      <h3>{Drupal.t('Filter events', {}, { context: 'Event search: search form title' })}</h3>
+      <HeadingTag>{Drupal.t('Filter events', {}, { context: 'Event search: search form title' })}</HeadingTag>
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>
           {

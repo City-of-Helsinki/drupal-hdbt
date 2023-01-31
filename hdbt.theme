@@ -1486,6 +1486,10 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     $linkedEvents = Drupal::service('helfi_react_search_linked_events');
     $settings = [];
 
+    if ($paragraph->hasField('field_event_list_title') && !$paragraph->get('field_event_list_title')->isEmpty()) {
+      $settings['field_event_list_title'] = $paragraph->get('field_event_list_title')->first()->getValue()['value'];
+    }
+
     if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
       $settings['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
     }
