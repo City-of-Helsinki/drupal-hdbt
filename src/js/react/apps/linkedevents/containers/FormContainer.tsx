@@ -177,8 +177,12 @@ function FormContainer({ loading }: {
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
-  const showSubmitButton = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
+  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
+
+  if (!showForm) {
+    return null;
+  }
 
   return (
     <form className='event-form-container' onSubmit={handleSubmit}>
@@ -229,10 +233,7 @@ function FormContainer({ loading }: {
               />
           }
         </div>
-        {
-          showSubmitButton &&
-          <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
-        }
+        <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
       </div>
     </form>
   );

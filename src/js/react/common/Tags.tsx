@@ -6,7 +6,6 @@ interface TagsProps {
 }
 
 export function Tags({ tags, isInteractive, }: TagsProps): JSX.Element {
-
   const typeClass = isInteractive ? 'content-tags__tags--interactive' : 'content-tags__tags--static';
 
   return (
@@ -17,9 +16,9 @@ export function Tags({ tags, isInteractive, }: TagsProps): JSX.Element {
       }>
       <ul className={`content-tags__tags ${typeClass}`}>
         {tags.map((item: TagType, key: number) => (
-            <li key={ `{item.tag}-${key}` } className={`content-tags__tags__tag ${ item.color ? `content-tags__tags__tag--${item.color}` : '' }`}>
-              <span>{ item.tag }</span>
-            </li>
+          <li key={`{item.tag}-${key}`} className={`content-tags__tags__tag ${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}>
+            <span>{item.tag}</span>
+          </li>
         ),
         )}
       </ul>
