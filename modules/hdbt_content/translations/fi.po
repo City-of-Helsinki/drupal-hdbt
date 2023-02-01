@@ -1,5 +1,0 @@
-msgid ""
-msgstr ""
-
-msgid "Consent management"
-msgstr "Suostumusten hallinnointi"
