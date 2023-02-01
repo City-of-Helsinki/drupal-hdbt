@@ -46,10 +46,6 @@ $tag-vertical-padding: 5px;
   margin-bottom: $spacing-and-half;
 }
 
-.event-list-spinner {
-  position: relative;
-}
-
 .event-form-container {
   border-bottom: 1px solid $color-black-20;
   margin-bottom: $spacing-double;
@@ -116,4 +112,8 @@ $tag-vertical-padding: 5px;
 
 .event-list__loading-spinner > div {
   margin-inline: auto;
+}
+
+.event-list__filter-title {
+  @include font('h3');
 }

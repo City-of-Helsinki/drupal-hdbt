@@ -57,15 +57,12 @@
   --focus-outline-color: var(--hdbt-color-black);
 }
 
+// Check this table when work with https://helsinkisolutionoffice.atlassian.net/browse/UHF-3044
 // Override HDBT table styles to fix date picker
 .hdbt-search__date-input table {
   border: none;
   display: table;
   margin-top: 0;
-}
-
-.hdbt-search__date-input table tbody tr td {
-  min-width: unset;
 }
 
 .hdbt-search__date-input table thead th {

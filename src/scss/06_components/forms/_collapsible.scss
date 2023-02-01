@@ -26,6 +26,7 @@ $collapsible-height: 56px;
   align-items: center;
   background: $color-white;
   display: flex;
+
   // 12px is for keeping padding in line with HDS select component
   padding: 12px $spacing;
   text-align: start;
@@ -46,7 +47,7 @@ $collapsible-height: 56px;
   }
 }
 
-.collapsible__control[aria-expanded="true"] {
+.collapsible__control[aria-expanded='true'] {
   border-bottom: 1px solid $color-black-20;
 }
 
@@ -56,10 +57,9 @@ $collapsible-height: 56px;
 }
 
 // ... and hide the outline when dropdown is opened
-.collapsible__control[aria-expanded="true"] .collapsible__handle {
+.collapsible__control[aria-expanded='true'] .collapsible__handle {
   outline: none;
 }
-
 
 .collapsible__handle {
   pointer-events: none;
