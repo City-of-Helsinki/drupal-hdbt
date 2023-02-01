@@ -8,16 +8,23 @@
   <span class="visually-hidden">{{ close_screenreader }}</span>
 {% endset %}
 
+{% if modifier_suffix == 'profile' %}
+  {% set anchor_modified = 'nav-toggle__anchor--profile' %}
+  {% set label_modified = 'nav-toggle__label--profile' %}
+  {% set button_modified = 'nav-toggle__button--profile' %}
+{% endif %}
+
+
 <div class="nav-toggle {{modifier_class}}">
   {# Fallback menu button #}
-  <div class="nav-toggle__anchor{% if modifier_suffix %} nav-toggle__anchor--{{ modifier_suffix }}{% endif %}">
-    <a href="#" class="nav-toggle__label{% if modifier_suffix %} nav-toggle__label--{{ modifier_suffix }}{% endif %} nav-toggle__label--close">{{ menu_close }}</a>
-    <a href="{{ anchor_target }}" class="nav-toggle__label{% if modifier_suffix %} nav-toggle__label--{{ modifier_suffix }}{% endif %} nav-toggle__label--open">{{ menu_open }}</a>
+  <div class="nav-toggle__anchor {{ anchor_modified }}">
+    <a href="#" class="nav-toggle__label {{ label_modified }} nav-toggle__label--close">{{ menu_close }}</a>
+    <a href="{{ anchor_target }}" class="nav-toggle__label {{ label_modified }} nav-toggle__label--open">{{ menu_open }}</a>
   </div>
 
   {# Slightly more accessible js enhanced menu button #}
-  <button class="nav-toggle__button{% if modifier_suffix %} nav-toggle__button--{{ modifier_suffix }}{% endif %} {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
-    <span class="nav-toggle__label{% if modifier_suffix %} nav-toggle__label--{{ modifier_suffix }}{% endif %} nav-toggle__label--open">{{ menu_open }}</span>
-    <span class="nav-toggle__label{% if modifier_suffix %} nav-toggle__label--{{ modifier_suffix }}{% endif %} nav-toggle__label--close">{{ menu_close }}</span>
+  <button class="nav-toggle__button {{ button_modified }} {{ js_target }}" aria-expanded="false" aria-controls={{ controls }}>
+    <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--open">{{ menu_open }}</span>
+    <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--close">{{ menu_close }}</span>
   </button>
 </div>
