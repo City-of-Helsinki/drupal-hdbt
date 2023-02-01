@@ -1,10 +1,3 @@
-component-library:
-  css:
-    theme:
-      dist/css/component-library.min.css: {}
-  js:
-    dist/js/component-library.min.js: {}
-
 desktop-menu-toggle:
   version: 1.x
   js:

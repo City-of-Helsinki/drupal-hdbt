@@ -53,16 +53,6 @@ hdbt
     └───icons
 ```
 
-## Component library
-
-Ready to use components can be explored from component library.
-Component library is not installed by default, but it can be installed in same fashion as any other module.
-Once installed it can be accessed in `/admin/appearance/hdbt/component-library`.
-
-### Development
-
-Add new components to the library manually via the twig template. `./templates/component_library/component-library--hdbt.html.twig`
-
 ### Usage as a base-theme
 
 When building new projects using the drupal-helfi-platform you are provided with this theme. To maintain upgradeability

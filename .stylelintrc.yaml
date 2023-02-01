@@ -59,7 +59,6 @@ overrides:
       - '**/_hds.scss'
       - '**/ckeditor.scss'
       - '**/color-palette.scss'
-      - '**/component-library.scss'
       - '**/environment-indicator.scss'
       - '**/styles.scss'
     rules:
