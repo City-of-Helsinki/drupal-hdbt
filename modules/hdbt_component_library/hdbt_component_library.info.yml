@@ -1,6 +1,0 @@
-name: 'HDBT Component library'
-type: module
-description: 'Provides routes for the HDBT component library.'
-core: 8.x
-core_version_requirement: ^8 || ^9
-package: 'Theme'

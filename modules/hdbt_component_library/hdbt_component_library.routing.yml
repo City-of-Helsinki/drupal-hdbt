@@ -1,9 +1,0 @@
-hdbt_component_library.component_library:
-  path: '/admin/appearance/hdbt/component-library'
-  defaults:
-    _controller: '\Drupal\hdbt_component_library\ComponentLibraryController::componentLibrary'
-    _title: 'HDBT Component library'
-  requirements:
-    _permission: 'access administration pages'
-  options:
-    _admin_route: FALSE
