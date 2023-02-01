@@ -14,6 +14,7 @@ const Entries = () => {
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
+    nav_toggle: ['./src/scss/nav-toggle.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
     'component-library': [
       './src/scss/component-library.scss',
@@ -50,10 +51,10 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
+      chunkFilename: 'js/async/[name].chunk.js',
       pathinfo: isDev,
       filename: 'js/[name].min.js',
-      publicPath: '../',
+      publicPath: 'auto',
       clean: true,
     },
     module: {

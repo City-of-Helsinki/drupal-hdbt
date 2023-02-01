@@ -312,3 +312,19 @@ msgstr "Distans"
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
 msgstr "Inga nyheter i ämnet."
+
+msgctxt "Profile information-menu close button text for screen readers"
+msgid "Close profile information menu"
+msgstr "Stäng profilinformationsmenyn"
+
+msgctxt "Log out link on profile dropdown"
+msgid "Log out"
+msgstr "Logga ut"
+
+msgctxt "Log in link text on header"
+msgid "Log in"
+msgstr "Logga in"
+
+msgctxt "Profile information-menu open button text for screen readers"
+msgid "You are logged in as @display_name. Open profile information menu."
+msgstr "Du är inloggad som @display_name. Stäng profilinformationsmenyn."
