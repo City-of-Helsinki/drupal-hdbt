@@ -39,6 +39,12 @@ function hdbt_preprocess(&$variables, $hook) {
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
+  // @todo Fix this to be independent block as well.
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
@@ -227,6 +233,25 @@ function hdbt_preprocess_page(&$variables) {
 
   foreach (hdbt_get_global_url($variables['current_langcode']) as $key => $value) {
     $variables[$key] = $value;
+  }
+
+  // Check if the search block is added to header branding.
+  // This is currently tied to global navigation since you can't have search
+  // without global navigation being enabled.
+  if ($variables['use_global_navigation'] == TRUE) {
+    $variables['use_search_block'] = TRUE;
+  }
+
+  // Check if the otherlangs block is added to header branding.
+  // Notice that the block machine name needs to be exactly same as here.
+  if (isset($variables['page']['header_branding']['external_header_language_links'])) {
+    $variables['use_otherlangs_block'] = TRUE;
+  }
+
+  // Check if the profile block is added to header branding.
+  // Notice that the block machine name needs to be exactly same as here.
+  if (isset($variables['page']['header_branding']['profileblock'])) {
+    $variables['use_profile_block'] = TRUE;
   }
 }
 
@@ -634,6 +659,15 @@ function hdbt_preprocess_block(&$variables) {
   // Attach "closable_announcements" library to "announcements" block.
   if ($variables['plugin_id'] == 'announcements') {
     $variables['#attached']['library'][] = 'hdbt/closable_announcements';
+  }
+
+  if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
+    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
+  }
+
+  // Attach "nav_toggle" library to "profile" block.
+  if ($variables['plugin_id'] == 'profile_block') {
+    $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = TRUE;
   }
 }
 

@@ -1,5 +1,5 @@
-const Mustache = require('mustache');
-const cls = require('classnames');
+import Mustache from 'mustache';
+import cls from 'classnames';
 
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
@@ -540,64 +540,64 @@ const MobilePanel = {
     }
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener('DOMContentLoaded', () => {
-      // See  block--mobile-navigation.html.twig for the button
-      this.toggleButton = document.querySelector('.js-menu-toggle-button');
-      if (!this.toggleButton) {
-        throw new Error('No toggle button for JS menu.');
-      }
-      // TODO Where is this #menu coming from Maybe name it better?
-      this.menu = document.querySelector('#menu');
-      if (!this.menu) {
-        // eslint-disable-next-line no-console
-        console.error('Panel not present in DOM. Cannot start JS mobile menu');
-        return;
-      }
 
-      this.disableFallback();
+    // This used to load after DOM was loaded, but we added defer for the javascript.
+    // See  block--mobile-navigation.html.twig for the button
+    this.toggleButton = document.querySelector('.js-menu-toggle-button');
+    if (!this.toggleButton) {
+      throw new Error('No toggle button for JS menu.');
+    }
+    // TODO Where is this #menu coming from Maybe name it better?
+    this.menu = document.querySelector('#menu');
+    if (!this.menu) {
+      // eslint-disable-next-line no-console
+      console.error('Panel not present in DOM. Cannot start JS mobile menu');
+      return;
+    }
 
-      /**
-       * Close menu on Escape button click if it is open.
-       */
-      document.addEventListener('keydown', (e) => {
-        if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
-          this.close();
-          this.toggleButton.focus();
-        }
-      });
+    this.disableFallback();
 
-      const start = () => {
-        /**
-         * Delay template compilation to menu start to ensure
-         * footer & top menu blocks are rendered in main DOM before cloning them.
-         *
-         * Start removes itself in order to only run once.
-         */
-        this.compileTemplates();
-        this.toggleButton.removeEventListener('click', start);
-        this.start();
-      };
-      /**
-       * Add start-event to menu toggle button.
-       *
-       * Add Menu toggle function to menu button.
-       * Side effects:
-       * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
-       */
-      this.toggleButton.addEventListener('click', start);
-      this.toggleButton.addEventListener('click', () => this.toggle());
-
-      /**
-       * Open menu if it is required in the hash, then clear hash.
-       */
-      if (this.isOpen()) {
-        window.location.hash = '';
-        start();
-        this.open();
+    /**
+     * Close menu on Escape button click if it is open.
+     */
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
+        this.close();
+        this.toggleButton.focus();
       }
     });
+
+    const start = () => {
+      /**
+       * Delay template compilation to menu start to ensure
+       * footer & top menu blocks are rendered in main DOM before cloning them.
+       *
+       * Start removes itself in order to only run once.
+       */
+      this.compileTemplates();
+      this.toggleButton.removeEventListener('click', start);
+      this.start();
+    };
+    /**
+     * Add start-event to menu toggle button.
+     *
+     * Add Menu toggle function to menu button.
+     * Side effects:
+     * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
+     */
+    this.toggleButton.addEventListener('click', start);
+    this.toggleButton.addEventListener('click', () => this.toggle());
+
+    /**
+     * Open menu if it is required in the hash, then clear hash.
+     */
+    if (this.isOpen()) {
+      window.location.hash = '';
+      start();
+      this.open();
+    }
     this.running = true;
   },
 };
 
-module.exports = MobilePanel;
+export default MobilePanel;

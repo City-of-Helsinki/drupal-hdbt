@@ -69,26 +69,6 @@ global-styling:
     - hdbt/color-palette
     - hdbt/hdbt-icons
 
-nav-local:
-  version: 1.x
-  css:
-    theme:
-      dist/css/nav_local.min.css: {}
-  js:
-    dist/js/nav-local.min.js: {}
-  dependencies:
-    - hdbt/global-styling
-
-nav-global:
-  version: 1.x
-  css:
-    theme:
-      dist/css/nav_global.min.css: {}
-  js:
-    dist/js/nav-global.min.js: {}
-  dependencies:
-    - hdbt/global-styling
-
 # TODO Convert branding mobile to its own library.
 global-scripting:
   version: 1.x
@@ -139,11 +119,30 @@ disable_genesys_button:
   - core/drupal
   - core/drupalSettings
 
-event-list:
+nav-toggle:
   version: 1.x
   js:
-    dist/js/linkedevents.min.js: {}
+    dist/js/nav-toggle.min.js: { attributes: { defer: true } }
+  css:
+    theme:
+      dist/css/nav_toggle.min.css: {}
   dependencies:
     - core/drupalSettings
-    - core/jquery
-    - core/drupal
+
+nav-local:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_local.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+    - hdbt/nav-toggle
+
+nav-global:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_global.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+    - hdbt/nav-toggle
