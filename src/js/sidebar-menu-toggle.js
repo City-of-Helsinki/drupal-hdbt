@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function startSidebarNavigation() 
         item.classList.toggle(cssClass);
         toggleButton.setAttribute(
           'aria-expanded',
-          toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+          toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
         );
         event.stopPropagation();
       });
