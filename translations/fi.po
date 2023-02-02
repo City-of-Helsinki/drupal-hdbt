@@ -331,3 +331,7 @@ msgstr "Kirjaudu"
 msgctxt "Profile information-menu open button text for screen readers"
 msgid "You are logged in as @display_name. Open profile information menu."
 msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Sulje käyttäjä-valikko."
+
+msgctxt "TPR service channel call charge info"
+msgid "Call charge"
+msgstr "Puhelumaksu"
