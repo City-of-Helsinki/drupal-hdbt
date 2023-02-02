@@ -1,20 +1,18 @@
 import { Select } from 'hds-react';
+import { useAtomValue, useAtom } from 'jotai';
 
-import { useAtomValue } from 'jotai';
-import ApiKeys from '../enum/ApiKeys';
-import { locationsAtom, queryBuilderAtom } from '../store';
+import { locationAtom, locationSelectionAtom, queryBuilderAtom } from '../store';
+import SearchComponents from '../enum/SearchComponents';
+
 
 function LocationFilter() {
   const queryBuilder = useAtomValue(queryBuilderAtom);
-  const locationOptions = useAtomValue(locationsAtom);
+  const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
+  const locationOptions = useAtomValue(locationAtom);
 
   if (!queryBuilder || !locationOptions) {
     return null;
   }
-
-  const onChange = (value: any) => {
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
-  };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
 
@@ -26,8 +24,11 @@ function LocationFilter() {
         helper={locationHelper}
         label={Drupal.t('Select a venue')}
         multiselect
-        onChange={onChange}
-        options={locationOptions || []}
+        // @ts-ignore
+        options={locationOptions}
+        value={locationSelection}
+        id={SearchComponents.LOCATION}
+        onChange={setLocationFilter}
         placeholder={Drupal.t('All', {}, { context: 'Event search: all available options' })}
         selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'Event search: remove item aria label' })}
         theme={{

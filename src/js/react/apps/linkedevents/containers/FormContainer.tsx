@@ -6,9 +6,10 @@ import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
 import DateSelect from '../components/DateSelect';
 import CheckboxFilter from '../components/CheckboxFilter';
+import SelectionsContainer from './SelectionsContainer';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom } from '../store';
+import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom, locationSelectionAtom } from '../store';
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -50,6 +51,7 @@ function FormContainer({ loading }: {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
+  const locationSelection = useAtomValue(locationSelectionAtom);
   const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
   const setUrl = useSetAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
@@ -60,6 +62,7 @@ function FormContainer({ loading }: {
 
   const onSubmit = () => {
     setPage(1);
+    queryBuilder.setParams({ [ApiKeys.LOCATION]: locationSelection.map((location: any) => location.value).join(',') });
     setUrl(queryBuilder.updateUrl());
   };
 
@@ -234,6 +237,7 @@ function FormContainer({ loading }: {
           }
         </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
+        <SelectionsContainer />
       </div>
     </form>
   );

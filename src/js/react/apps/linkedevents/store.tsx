@@ -3,6 +3,7 @@ import QueryBuilder from './utils/QueryBuilder';
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
 import Location from './types/Location';
+import OptionType from './types/OptionType';
 
 // Transform locations from API response to options
 const transformLocations = (locations: any = null) => {
@@ -67,7 +68,7 @@ export const queryBuilderAtom = atom(
   (get) => get(baseAtom)?.queryBuilder
 );
 
-export const locationsAtom = atom(
+export const locationAtom = atom(
   (get) => get(baseAtom)?.locations
 );
 
@@ -87,4 +88,12 @@ export const settingsAtom = atom(
 
 export const pageAtom = atom(1);
 
-export const urlAtom = atom<string|null>(null);
+// export const urlAtom = atom<string|null>(null);
+export const urlAtom = atom<any>(null);
+
+export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+
+export const resetFormAtom = atom(null, (get, set) => {
+  set(locationSelectionAtom, []);
+  // TODO: Update url
+});
