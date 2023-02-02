@@ -15,13 +15,17 @@ export function Icon(props: IconProps): JSX.Element {
     onClick
   } = props;
 
+  const iconLabelledBy = `hdbt-icon--${Math.floor(Math.random() * 99999)}`;
+
   return (
     <span
       className={`hel-icon hel-icon--${icon} ${typeof className !== 'undefined' ? className : ''}`}
-      aria-label={label}
+      aria-labelledby={label && iconLabelledBy}
       aria-hidden={ label ? 'true' : 'false'}
       onClick={onClick}
-    />
+    >
+      {label && <span className="is-hidden" id={iconLabelledBy}>{label}</span>}
+    </span>
   );
 }
 
