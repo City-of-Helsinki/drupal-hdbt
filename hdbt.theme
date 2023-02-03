@@ -118,13 +118,8 @@ function hdbt_preprocess_html(&$variables) {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
   }
 
-  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
-  $service = \Drupal::service('file_url_generator');
-
-  // Add theme path to as variable.
-  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
-  $variables['theme_path'] = $service->generate($theme->getPath())
-    ->toString(TRUE)->getGeneratedUrl();
+  // Set theme path variable.
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -253,6 +248,9 @@ function hdbt_preprocess_page(&$variables) {
   if (isset($variables['page']['header_branding']['profileblock'])) {
     $variables['use_profile_block'] = TRUE;
   }
+
+  // Set theme path variable.
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -1567,4 +1565,17 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/event-list';
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
+}
+
+/**
+ * Helper function to hdbt theme path.
+ */
+function _hdbt_get_theme_path(): string {
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+
+  // Add theme path to as variable.
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
+  return $service->generate($theme->getPath())
+    ->toString(TRUE)->getGeneratedUrl();
 }
