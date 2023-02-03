@@ -15,9 +15,11 @@ const start = () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <Suspense fallback={<LoadingSpinner />}>
-        <ResultsContainer />
-      </Suspense>
+      <div className='component--react-search component--react-search--schools'>
+        <Suspense fallback={<LoadingSpinner />}>
+          <ResultsContainer />
+        </Suspense>
+      </div>
     </React.StrictMode>,
     rootElement,
   );

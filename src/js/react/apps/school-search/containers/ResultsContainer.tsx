@@ -56,7 +56,7 @@ const ResultsContainer = () => {
           {!Number.isNaN(total) &&
             <> 
               <span className='react-search__count'>{total}</span>
-              <span>{Drupal.t('schools', {}, {context: 'School search results statline'})}</span>
+              <span> {Drupal.t('schools', {}, {context: 'School search results statline'})}</span>
             </>
           }
           {results.map((hit: Result<School>) => (
