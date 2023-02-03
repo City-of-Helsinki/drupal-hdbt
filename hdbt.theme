@@ -23,6 +23,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Drupal\helfi_react_search\LinkedEvents;
 
 /**
  * Implements hook_preprocess().
@@ -1505,6 +1506,65 @@ function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
   return (UrlHelper::isExternal($link))
     ? Url::fromUri($link)
     : Url::fromUserInput($link === '<front>' ? '/' : $link);
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function hdbt_preprocess_paragraph__event_list(&$variables) {
+  // Expose event list variables to frontend.
+  if (isset($variables['paragraph'])) {
+    $paragraph = $variables['paragraph'];
+    $linkedEvents = Drupal::service('helfi_react_search_linked_events');
+    $settings = [];
+
+    if ($paragraph->hasField('field_event_list_title') && !$paragraph->get('field_event_list_title')->isEmpty()) {
+      $settings['field_event_list_title'] = $paragraph->get('field_event_list_title')->first()->getValue()['value'];
+    }
+
+    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
+      $settings['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
+    }
+    else {
+      $settings['field_event_count'] = '3';
+    }
+
+    if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
+      $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $params = $linkedEvents->parseParams($initialUrl);
+      $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
+      $settings['events_api_url'] = $eventUrl;
+      $settings['request_url'] = $eventUrl;
+      $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
+    }
+
+    $booleanFields = [
+      'field_event_location',
+      'field_event_time',
+      'field_free_events',
+      'field_remote_events',
+    ];
+
+    foreach ($booleanFields as $field) {
+      if ($paragraph->hasField($field) && !$paragraph->get($field)->isEmpty()) {
+        $settings[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
+      }
+    }
+
+    $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
+  }
+
+  // Render image placeholder for use in frontend.
+  $variables['#attached']['drupalSettings']['helfi_events']['imagePlaceholder'] = twig_render_template(
+    drupal_get_path('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
+    [
+      'image_placeholder' => 'calendar-clock',
+      'theme_hook_original' => '',
+    ]
+  );
+
+  $variables['#attached']['library'][] = 'hdbt/event-list';
+  $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
 }
 
 /**
