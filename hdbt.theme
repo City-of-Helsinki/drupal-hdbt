@@ -1578,8 +1578,6 @@ function _hdbt_get_theme_path(): string {
   $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
   return $service->generate($theme->getPath())
     ->toString(TRUE)->getGeneratedUrl();
- * Implements hook_preprocess_paragraph().
- */
 }
 
 /**

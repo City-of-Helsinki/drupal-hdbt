@@ -1,5 +1,5 @@
 const GlobalSettings = {
-  index: 'elasticsearch_index_drupal_schools',
+  index: 'schools',
   size: 10
 };
 
