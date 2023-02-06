@@ -18,7 +18,7 @@ export default class AccordionItem {
   }
 
   toggle(event) {
-    if (!this.constructor.isClick(event.which)) return;
+    if (!AccordionItem.isClick(event.which)) return;
     if (this.isOpen) {
       this.close();
     } else {
