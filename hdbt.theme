@@ -1530,8 +1530,9 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     }
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
-      $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
-      $params = $linkedEvents->parseParams($initialUrl);
+      $events_public_url = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $settings['events_public_url'] = $events_public_url;
+      $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
       $settings['request_url'] = $eventUrl;
