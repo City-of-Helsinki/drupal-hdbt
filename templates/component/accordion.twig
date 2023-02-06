@@ -8,10 +8,10 @@
 
 {{ attach_library('hdbt/accordion') }}
 
-<div class="accordion__wrapper handorgel">
+<div class="accordion__wrapper helfi-accordion">
 
-  <{{ heading_level|default('h2') }} class="accordion-item__header handorgel__header">
-    <button class="accordion-item__button accordion-item__button--toggle handorgel__header__button">
+  <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header">
+    <button class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button">
       {% if heading_icon %}
         <div class="accordion-item__icon">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: heading_icon} %}
@@ -20,8 +20,8 @@
       {{ heading|default('Missing heading'|t) }}
     </button>
   </{{ heading_level|default('h2')}}>
-  <div class="accordion-item__content handorgel__content">
-    <div class="accordion-item__content__inner handorgel__content__inner">
+  <div class="accordion-item__content helfi-accordion__content">
+    <div class="accordion-item__content__inner helfi-accordion__content__inner">
       {{ content|default('Missing content'|t) }}
       <span class="accordion-item__button accordion-item__button--close" role="button" tabindex="0">
         {{ 'Close'|t }}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-up'} %}
