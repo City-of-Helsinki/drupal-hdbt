@@ -1,6 +1,6 @@
 const path = require('path');
 const glob = require('glob');
-
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -8,12 +8,19 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const SvgToSprite = require('./webpack.svgToSprite');
 const { merge } = require('webpack-merge');
 
+// Entries for React searches.
+const REACT_SEARCHES = {
+  linkedevents:['./src/js/react/apps/linkedevents/index.tsx'],
+}
+
 // Handle entry points.
 const Entries = () => {
   let entries = {
+    ...REACT_SEARCHES,
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
+    nav_toggle: ['./src/scss/nav-toggle.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
     'component-library': [
       './src/scss/component-library.scss',
@@ -27,6 +34,7 @@ const Entries = () => {
     ],
   };
 
+  // Take all root level js files and create entries with matching names.
   const pattern = './src/js/**/*.js';
   const ignore = [
     './src/js/component-library.js'
@@ -40,20 +48,19 @@ const Entries = () => {
 
 
 module.exports = (env, argv) => {
-
   const isDev = (argv.mode === 'development');
 
-  // Set the base config
+  // Set the base config.
   const config = {
     entry() {
       return Entries();
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js', // WTF/min > too much. find this out
+      chunkFilename: 'js/async/[name].chunk.js',
       pathinfo: isDev,
       filename: 'js/[name].min.js',
-      publicPath: '../',
+      publicPath: 'auto',
       clean: true,
     },
     module: {
@@ -80,6 +87,16 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: ['babel-loader'],
           type: 'javascript/auto',
+        },
+        {
+          test: /\.jsx$/,
+          exclude: /node_modules/,
+          use: ['babel-loader'],
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: ['ts-loader'],
         },
         {
           test: /\.(css|sass|scss)$/,
@@ -117,12 +134,25 @@ module.exports = (env, argv) => {
       ],
     },
     resolve: {
+      fallback: {
+        // Fix hds-react import bugs.
+        path: require.resolve('path-browserify')
+      },
       modules: [
         path.join(__dirname, 'node_modules'),
       ],
-      extensions: ['.js', '.json'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      alias: {
+        '@/react/common': path.resolve(__dirname, 'src/js/react/common/'),
+        '@/types/': path.resolve(__dirname, 'src/js/types/'),
+      },
     },
     plugins: [
+      // Fix hds-react import bugs.
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        Buffer: ['buffer', 'Buffer'],
+      }),
       new SvgToSprite(
         path.resolve(__dirname, 'src/icons/**/*.svg'),
         'icons/sprite.svg',

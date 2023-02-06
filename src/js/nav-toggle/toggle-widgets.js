@@ -12,7 +12,7 @@ const HIDE_SELECTORS = [
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop, #aca--widget-button-close', // Watson chatbot in asuminen
   '#block-kuurahealthchat', // Kuurahealth in sote
   '#ed11y-panel', // Editoria11y accessibility tool
-  '#sliding-popup' // Cookie banner
+  '#sliding-popup', // Cookie banner
 ];
 
 const close = () => {
@@ -35,5 +35,5 @@ module.exports = {
   setHide,
   close,
   open,
-  HIDE_SELECTORS
+  HIDE_SELECTORS,
 };
