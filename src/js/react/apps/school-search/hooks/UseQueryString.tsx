@@ -1,6 +1,6 @@
 import GlobalSettings from '../enum/GlobalSettings';
 
-const useQueryString = () => {
+const UseQueryString = () => {
   const { size } = GlobalSettings;
 
   const query = {
@@ -26,4 +26,4 @@ const useQueryString = () => {
   });
 };
 
-export default useQueryString;
+export default UseQueryString;
