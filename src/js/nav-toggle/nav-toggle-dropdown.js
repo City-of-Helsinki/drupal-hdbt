@@ -75,16 +75,18 @@ class NavToggleDropdown {
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener('DOMContentLoaded', () => {
-      // Enhance nojs version with JavaScript
-      this.targetNode = document.querySelector(this.HASH_ID);
-      if (!this.targetNode) {
-        throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
-      }
-      // Hide nojs menu links, show button instead.
-      this.targetNode.dataset.js = true;
-      this.addListeners();
-    });
+
+    // This used to load after DOM was loaded, but we added defer for the javascript.
+    // so the check was removed.
+
+    // Enhance nojs version with JavaScript
+    this.targetNode = document.querySelector(this.HASH_ID);
+    if (!this.targetNode) {
+      throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
+    }
+    // Hide nojs menu links, show button instead.
+    this.targetNode.dataset.js = true;
+    this.addListeners();
 
     this.running = true;
   }

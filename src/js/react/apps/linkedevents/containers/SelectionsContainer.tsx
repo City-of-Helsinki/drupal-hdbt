@@ -16,14 +16,27 @@ import ApiKeys from '../enum/ApiKeys';
 
 const SelectionsContainer = () => {
   const resetForm = useSetAtom(resetFormAtom);
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const setUrl = useSetAtom(urlAtom);
+
   const locationOptions = useAtomValue(locationAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
 
   const showClearButton =  locationSelection.length;
 
+  if (!queryBuilder) {
+    return null;
+  }
+
+  const resetFormm = () => {
+    queryBuilder.reset();
+    setUrl(queryBuilder.updateUrl());
+    resetForm();
+  };
+
   return (
-    <div className='job-search-form__selections-wrapper'>
-      <ul className='job-search-form__selections-container content-tags__tags'>
+    <div className='hdbt-search__selections-wrapper'>
+      <ul className='hdbt-search__selections-container content-tags__tags'>
         {locationOptions && (
           <ListFilter
             updater={setLocationSelection}
@@ -38,16 +51,16 @@ const SelectionsContainer = () => {
             valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
           />
         )} */}
-        <li className='job-search-form__clear-all'>
+        <li className='hdbt-search__clear-all'>
           <Button
             aria-hidden={showClearButton ? 'true' : 'false'}
-            className='job-search-form__clear-all-button'
-            iconLeft={<IconCross className='job-search-form__clear-all-icon' />}
-            onClick={resetForm}
+            className='hdbt-search__clear-all-button'
+            iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
+            onClick={resetFormm}
             style={showClearButton ? {} : { visibility: 'hidden' }}
             variant='supplementary'
           >
-            {Drupal.t('Clear selections', {}, { context: 'Job search clear selections' })}
+            {Drupal.t('Clear selections', {}, { context: 'React search clear selections' })}
           </Button>
         </li>
       </ul>
@@ -163,7 +176,7 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { '@item': value.toString() },
         { context: 'Search: remove item aria label' }
       )}
-      className='job-search-form__remove-selection-button'
+      className='hdbt-search__remove-selection-button'
       iconRight={<IconCross />}
       variant='supplementary'
       onClick={clearSelection}

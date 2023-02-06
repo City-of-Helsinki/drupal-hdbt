@@ -1,4 +1,4 @@
-import { atom } from 'jotai';
+import { atom, useAtomValue, useSetAtom } from 'jotai';
 import QueryBuilder from './utils/QueryBuilder';
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
@@ -40,6 +40,7 @@ const createBaseAtom = () => {
   const settings = drupalSettings.helfi_events?.data?.[paragraphId];
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
+
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
@@ -95,5 +96,5 @@ export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
-  // TODO: Update url
+  set(pageAtom, 1);
 });

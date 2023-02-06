@@ -1,0 +1,45 @@
+{% if logged_in %}
+  {% set link_attributes = {
+    'class': [
+      'profile__logout-link',
+    ],
+  } %}
+
+  {% set dropdown_id = 'profile-dropdown' %}
+
+  {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+    modifier_class: 'nav-toggle--profile',
+    controls: dropdown_id,
+    anchor_target: '#profile',
+    js_target: 'js-profile-button',
+    modifier_suffix: 'profile',
+
+    open_label: display_name,
+    open_screenreader: 'You are logged in as @display_name. Open profile information menu.'|t({ '@display_name': display_name }, {'context': 'Profile information-menu open button text for screen readers'}),
+
+    close_label: 'Close'|t(),
+    close_screenreader: 'Close profile information menu'|t({}, {'context': 'Profile information-menu close button text for screen readers'}),
+  } %}
+  {% endembed %}
+
+  {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+    id: dropdown_id,
+    modifier_class: 'nav-toggle-dropdown--profile',
+  } %}
+    {% block content%}
+      <div class="profile--full">
+        <div class="profile__information">
+          <span class="profile__full-name">{{ full_name }}</span>
+        </div>
+        {{ link('Log out'|t({}, {'context': 'Log out link on profile dropdown'}), url, link_attributes) }}
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% else %}
+  {% set link_attributes = {
+    'class': [
+      'profile__login-link',
+    ],
+  } %}
+  {{ link('Log in'|t({}, {'context': 'Log in link text on header'}), url, link_attributes) }}
+{% endif %}

@@ -6,11 +6,11 @@ import SearchComponents from '../enum/SearchComponents';
 
 
 function LocationFilter() {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
+  // const queryBuilder = useAtomValue(queryBuilderAtom);
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
   const locationOptions = useAtomValue(locationAtom);
 
-  if (!queryBuilder || !locationOptions) {
+  if (!locationOptions) {
     return null;
   }
 
