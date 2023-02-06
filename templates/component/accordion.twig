@@ -8,9 +8,8 @@
 
 {{ attach_library('hdbt/accordion') }}
 
-<div class="accordion__wrapper helfi-accordion">
-
-  <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header">
+<div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
+  <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
     <button class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button">
       {% if heading_icon %}
         <div class="accordion-item__icon">
