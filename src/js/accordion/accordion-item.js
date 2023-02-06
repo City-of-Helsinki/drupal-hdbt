@@ -7,32 +7,33 @@ export default class AccordionItem {
     this.ariaOperations();
   }
 
-  open() {
+  open = () => {
     this.isOpen = true;
     this.ariaOperations();
-  }
+  };
 
-  close() {
+  close = ()  => {
     this.isOpen = false;
     this.ariaOperations();
-  }
+  };
 
-  toggle(event) {
-    if (!AccordionItem.isClick(event.which)) return;
+  toggle = (event) => {
+    // if (!AccordionItem.isClick(event.which)) return;
     if (this.isOpen) {
       this.close();
     } else {
+      console.log(this);
       this.open();
     }
-  }
+  };
 
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   }
 
-  ariaOperations() {
+  ariaOperations = () => {
     this.ariaExpanded = this.isOpen;
     this.element.getElementsByClassName(this.ariaElements['aria-expanded'])[0].setAttribute('aria-expanded', this.ariaExpanded);
-  }
+  };
 
 }
