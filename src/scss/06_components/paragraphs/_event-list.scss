@@ -8,40 +8,6 @@ $event-list-image-mobile-height: 264px;
 $tag-horizontal-padding: 12px;
 $tag-vertical-padding: 5px;
 
-.component--event-list {
-  background-color: $color-silver-light;
-}
-
-// Since the component is not "full width" next to a sidebar, we should uniform padding around
-.has-sidebar .components--upper .component--event-list .component__container {
-  padding: $spacing-double;
-}
-
-// If the event search search is just before footer it needs to function the same way as unit search.
-.layout-main-wrapper > *:last-child .component--event-list:last-child {
-  margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 55px; // Leave enough room between the last card and footer.
-}
-
-.component--event-list .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
-}
-
-.event-list__list-container {
-  margin-bottom: $spacing-double;
-}
-
-.event-list__count {
-  @include font('body');
-  margin-bottom: $spacing;
-}
-
 .events-list__empty-subtext {
   margin-bottom: $spacing-and-half;
 }
