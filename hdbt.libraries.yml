@@ -13,7 +13,7 @@ desktop-menu-toggle:
 accordion:
   version: 1.x
   js:
-    dist/js/accordion.min.js: { attributes: { defer: true } }
+    dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
 
 throbber:
   version: 1.x
