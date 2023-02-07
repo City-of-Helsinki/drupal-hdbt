@@ -32,44 +32,13 @@
 #}
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
-<div class="embedded-content-cookie-compliance media-{{ media.id }}">
-  <div class="message">
-    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
-    <h2>{{ 'Content cannot be displayed'|t }}</h2>
-    <p>
-      {% trans %}
-        This content is hosted by {{ video_service_url }}. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.
-      {% endtrans %}
-    </p>
-    <div class="buttons">
 
-      {% set external_link_attributes = {
-        'class': [
-          'hds-button',
-          'hds-button--primary',
-        ]
-      } %}
-
-      {% set external_link_title %}
-         <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
-      {% endset %}
-
-      {{ link(external_link_title, media_url, external_link_attributes) }}
-
-      {% set link_title %}
-        <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
-      {% endset %}
-      {% set link_attributes = {
-        'class': [
-          'hds-button',
-          'hds-button--secondary',
-        ],
-      } %}
-      {{ link(link_title, privacy_policy_url, link_attributes) }}
-
-    </div>
-  </div>
-</div>
+{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+  media_url: media_url,
+  media_id: media.id,
+  media_service_url: video_service_url,
+  privacy_policy_url: privacy_policy_url,
+} %}
 
 {% set drupal_settings = {
   '#attached': {
