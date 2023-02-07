@@ -23,6 +23,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\Service;
 
 /**
