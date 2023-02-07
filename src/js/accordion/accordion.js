@@ -6,8 +6,11 @@ const accordionElements = document.querySelectorAll(HelfiAccordion.accordionWrap
 // Add suffix to duplicate ids.
 const uniqueListOfIds = createListOfUniqueIds([...accordionElements]);
 
+
 accordionElements.forEach((element, index) => {
-  element.firstChild('h2').setAttribute('id', uniqueListOfIds[index]);
+  if (!element.firstChild('h2').hasAttribute('id')) {
+    element.firstChild('h2').setAttribute('id', uniqueListOfIds[index]);
+  }
 });
 
 // Initialize the accordions
@@ -16,3 +19,4 @@ document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accord
   const accordion = new HelfiAccordion(accordionElement, uniqueListOfIds);
   window.helfiAccordions.push(accordion);
 });
+

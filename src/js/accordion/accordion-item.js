@@ -14,11 +14,15 @@ export default class AccordionItem {
     this.addEventListeners();
 
     // Open accordion element by anchor link.
-    this.handleLinkAnchor();
+    // TODO: load this javascript on later point.
+    setTimeout(()=>{
+      this.handleLinkAnchor();
 
-    // Update element aria-expanded.
-    this.setAriaOpen();
+      // Update element aria-expanded.
+      this.setAriaOpen();
+    }, 50);
   }
+
 
   open = () => {
     this.isOpen = true;
@@ -44,7 +48,8 @@ export default class AccordionItem {
     const {hash} = window.location;
     if (!hash) return;
     if (this.element.querySelector(hash)) {
-      this.open = true;
+      this.isOpen = true;
+      this.setAriaOpen();
     }
   };
 

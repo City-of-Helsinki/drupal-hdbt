@@ -13,7 +13,7 @@ export default class HelfiAccordion {
   initializeAccordion() {
     Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
       const item = new AccordionItem(element);
-      this.accordionItems.push(element.getElementsByTagName('h2')[0].id = item);
+      this.accordionItems.push(item);
     });
   }
 
