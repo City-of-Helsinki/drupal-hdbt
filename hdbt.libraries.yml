@@ -10,26 +10,10 @@ desktop-menu-toggle:
   js:
     dist/js/desktop-menu-toggle.min.js: {}
 
-#handorgel:
-  #version: 0.5.0
-  #js:
-    #dist/js/handorgel/handorgel.min.js: {}
-  #css:
-    #theme:
-      #dist/css/handorgel/handorgel.min.css: {}
-
 accordion:
   version: 1.x
   js:
     dist/js/accordion.min.js: { attributes: { defer: true } }
-    #dist/js/accordion-settings.min.js: {}
-  #dependencies:
-    #- hdbt/handorgel
-
-#helfi-accordion:
-  #version: 1.x
-  #js:
-    #dist/js/helfi-accordion.js
 
 throbber:
   version: 1.x

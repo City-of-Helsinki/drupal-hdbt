@@ -21,10 +21,24 @@
   </{{ heading_level|default('h2')}}>
   <div class="accordion-item__content helfi-accordion__content">
     <div class="accordion-item__content__inner helfi-accordion__content__inner">
+
       {{ content|default('Missing content'|t) }}
+
+
+
+      <button class="accordion-item__button accordion-item__button--close">
+        {% if heading_icon %}
+          <div class="accordion-item__icon">
+            {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-up'} %}
+          </div>
+        {% endif %}
+        {{ 'Close'|t }}
+      </button>
+      <!--
       <span class="accordion-item__button accordion-item__button--close" role="button" tabindex="0">
         {{ 'Close'|t }}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-up'} %}
       </span>
+      -->
     </div>
   </div>
 </div>
