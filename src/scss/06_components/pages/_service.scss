@@ -30,13 +30,19 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .hel-icon {
+    --icon-size: #{$teaser-icon-size-mobile};
     bottom: 50%;
     left: auto;
     position: absolute;
     right: $spacing;
+    transform: translateY(50%);
+    transition: all 0.3s;
+
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
 
     @include pseudo-icon('arrow-right');
-    @include hover-link-arrow-transition;
 
     @include breakpoint($breakpoint-l) {
       --icon-size: #{ $teaser-icon-size-desktop};
@@ -89,10 +95,9 @@ $teaser-icon-size-desktop: 48px;
     text-decoration: underline;
 
     .hel-icon {
-      transform: translateX($spacing-quarter);
-
+      margin-left: $spacing;
       @media (prefers-reduced-motion) {
-        transform: none;
+        margin-left: 0;
       }
     }
   }
