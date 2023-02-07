@@ -6,7 +6,7 @@ const accordionElements = document.querySelectorAll(HelfiAccordion.accordionWrap
 // Add suffix to duplicate ids.
 const uniqueListOfIds = createListOfUniqueIds([...accordionElements]);
 
-
+// Replace all duplicate ids across all accordions.
 accordionElements.forEach((element, index) => {
   if (!element.firstChild('h2').hasAttribute('id')) {
     element.firstChild('h2').setAttribute('id', uniqueListOfIds[index]);

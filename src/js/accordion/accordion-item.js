@@ -8,7 +8,7 @@ export default class AccordionItem {
 
   static ariaExpandedElement = 'accordion-item__button--toggle';
 
-  constructor(element, ariaElements, isOpen = false) {
+  constructor(element, isOpen = false) {
     this.isOpen = isOpen;
     this.element = element;
     this.addEventListeners();
@@ -22,7 +22,6 @@ export default class AccordionItem {
       this.setAriaOpen();
     }, 50);
   }
-
 
   open = () => {
     this.isOpen = true;
@@ -50,6 +49,7 @@ export default class AccordionItem {
     if (this.element.querySelector(hash)) {
       this.isOpen = true;
       this.setAriaOpen();
+      this.element.scrollIntoView();
     }
   };
 
@@ -71,6 +71,6 @@ export default class AccordionItem {
 
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
-  }
+  };
 
 }
