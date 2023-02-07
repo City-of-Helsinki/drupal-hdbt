@@ -60,10 +60,10 @@ const ResultsContainer = () => {
             </>
           }
         </div>
-        {results.map((hit: Result<School>) => (
-          <ResultCard key={hit._id} {...hit._source} />
-        ))}
       </div>
+      {results.map((hit: Result<School>) => (
+        <ResultCard key={hit._id} {...hit._source} />
+      ))}
     </div>
   );
 };
