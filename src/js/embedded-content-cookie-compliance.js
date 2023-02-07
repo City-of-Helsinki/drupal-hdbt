@@ -22,7 +22,9 @@
         iframeElement.title = attributes.title;
 
         const containerElement = document.createElement('div');
-        containerElement.classList.add('responsive-video-container');
+        if (attributes.type === 'video') {
+          containerElement.classList.add('responsive-video-container'); 
+        }
         containerElement.appendChild(iframeElement);
 
         $(`.embedded-content-cookie-compliance.media-${id}`)
