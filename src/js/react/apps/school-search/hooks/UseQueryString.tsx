@@ -20,7 +20,7 @@ const useQueryString = () => {
     size,
     sort: [
       {
-        name: 'asc'
+        'name.keyword': 'asc'
       }
     ]
   });
