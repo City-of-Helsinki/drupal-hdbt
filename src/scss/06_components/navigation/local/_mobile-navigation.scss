@@ -1,189 +1,63 @@
-// stylelint-disable no-descending-specificity
 $-menu-transition-duration: 0.2s;
 $-cssnav-summary-width: 40px;
 $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-area
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Hidden checkbox that toggles visibility of menu, for css-only version it's visible to screen readers
-.cssmenu-toggle-checkbox {
-  height: 1px;
-  margin-left: -100vw; // We want to hide this checkbox, but leave it available, so that it's toggleable with screen readers
-  opacity: 0;
-  position: absolute;
-  user-select: none;
-  width: 1px;
-}
-
-.cssmenu-toggle-checkbox[data-js], // Hide checkbox fully when js is enabled
-.cssmenu-toggle-button, // Hide js version of button if js is not enabled
-[data-js] ~ * .cssmenu-toggle {
-  display: none; // Hide css-only toggle button when js is enabled
-}
-
-// Mobile menu toggle button, both css-only and js versions
-.cssmenu-toggle,
-[data-js] ~ * .cssmenu-toggle-button {
-  @include font('special.navigation.icon_label');
-  align-self: center;
-  color: $color-black-90;
-  cursor: pointer;
-  display: grid;
+.nav-toggle--cssmenu {
   grid-area: toggle;
-  grid-template-areas:
-    'icon'
-    'label';
-  padding: 5px; // Handles spacing for 'inside' focus ring
-  text-align: center;
-  user-select: none;
-  z-index: 2;
 
   @include breakpoint($breakpoint-l) {
     display: none;
   }
+}
 
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
+.nav-toggle--cssmenu .nav-toggle__label::before {
+  @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
+}
 
+.nav-toggle--cssmenu .nav-toggle__label--close {
   &::before {
-    @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
-    align-self: end;
-    grid-area: icon;
-    justify-self: center;
+    @include pseudo-icon-replace('cross');
   }
 }
 
-// Remove default button styles
-[data-js] ~ * .cssmenu-toggle-button {
-  background: transparent;
-  border: 0 none;
-}
-
-// Show focus ring for mobile menu toggle
-.cssmenu-toggle-checkbox:focus ~ * .cssmenu-toggle,
-.cssmenu-toggle-button:focus {
-  outline: 3px solid $color-black;
-  outline-offset: -3px;
-  text-decoration: underline;
-}
-
-// Text for mobile menu toggle
-.cssmenu-toggle__open,
-.cssmenu-toggle__close {
-  align-self: top;
-  grid-area: label;
-  text-align: center;
-}
-
-// Hide 'Close' text by default, but keep it in visual flow to reserve space
-.cssmenu-toggle__close {
-  visibility: hidden;
-}
-
-// Menu that opens when the toggle checkbox is checked
-.cssmenu-menu {
-  --menu-transition-duration: #{$-menu-transition-duration};
-  background: $color-white;
-  box-shadow: 0 $spacing 0 0 $color-black; // Hide rounding errors from bottom.
-  display: grid;
+.nav-toggle-dropdown--cssmenu {
   grid-area: menu;
-  grid-template-areas:
-    'lang'
-    'nav'
-    'footer';
-  grid-template-rows: auto auto 1fr;
-  height: 100vh;
-  max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full page height - header-branding height - 1px for rounding errors
-  max-width: 100vw;
-  overflow: auto;
-  transition: max-height var(--menu-transition-duration) linear, visibility 0s linear 0s, margin-left 0s linear 0s, box-shadow 0s linear var(--menu-transition-duration);
-  visibility: visible;
+}
 
-  @include breakpoint($breakpoint-m) {
-    max-height: calc(100vh - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px);
-    position: absolute; // Position above page content when closing;
-    top: calc(var(--drupal-toolbar-height, 0px) + var(--branding-height));
-    width: 100%;
-    z-index: 100; // Needs to be higher than page content
-  }
-
-  @include breakpoint($breakpoint-l) {
-    display: none;
-  }
-
-  @media (prefers-reduced-motion) {
-    transition: none !important;
+.nav-toggle-dropdown__wrapper {
+  .nav-toggle-dropdown--cssmenu & {
+    border-bottom: 1px solid $color-black-20; // Needs to be on this level for animation
   }
 }
 
-// Hide .cssmenu-menu so that it's not focusable, or seen by screen readers, but can stil animate open
-.cssmenu-toggle-checkbox:not(:checked) ~ * .cssmenu-menu {
-  box-shadow: 0 0 0 0 $color-black;
-  margin-left: -200vw;
-  max-height: 0;
-  transition: max-height var(--menu-transition-duration) linear, visibility 0s linear var(--menu-transition-duration), margin-left 0s linear var(--menu-transition-duration);
-  visibility: hidden;
-}
-
-.cssmenu-menu .block--language-switcher {
-  display: none; // Hidden by default to make closing menu not show double language selectors.
-  grid-area: lang;
-  margin-left: 0;
-  margin-right: 0;
-  width: auto;
-
-  @include breakpoint($breakpoint-m) {
-    display: none; // Hidden when the language menu has space in header bar
-  }
+.nav-toggle-dropdown--cssmenu .nav-toggle-dropdown__content {
+  background-color: $color-white;
 }
 
 // What should happen when menu is opened
-.cssmenu-toggle-checkbox:checked {
+#cssmenu:target,
+#cssmenu[data-target='true'] {
   & ~ * .header-branding {
     @include breakpoint(max-width $breakpoint-l) {
       border-bottom: 0 none; // Hide header branding bottom border when menu is open and visible
     }
   }
 
-  & ~ * .header-branding > .block--language-switcher {
-    display: none; // Should be hidden on small sizes when menu is open // First language switcher
+  & ~ * .language-wrapper {
+    display: none;
+  }
 
-    @include breakpoint($breakpoint-m) {
-      display: block; // Should be visible when second language switcher is not visible inside menu
+  @include breakpoint($breakpoint-l) {
+    & ~ * .language-wrapper {
+      display: flex;
     }
-  }
-
-  & ~ * .cssmenu-menu .block--language-switcher {
-    @include breakpoint(max-width $breakpoint-m) {
-      display: block; // Show second language-switcher when menu is open and first is not visible (second is hidden normally to help with animation)
-    }
-  }
-
-  & ~ * .cssmenu-toggle::before {
-    @include pseudo-icon-replace('cross'); // Switch menu toggle icon to cross when menu is open
-  }
-
-  & ~ * .cssmenu-toggle__open {
-    visibility: hidden; // Hide 'Menu'-text when menu is open
-  }
-
-  & ~ * .cssmenu-toggle__close {
-    visibility: visible; // Show 'Close' text when menu is open
-  }
-
-  & ~ .wrapper > *:not(.header), // All wrapper content except .header
-  & ~ .footer {
-    @include breakpoint(max-width $breakpoint-l) {
-      display: none; // Hide when menu is open and visible
-    } // Footer
   }
 }
 
-// Hide widgets like chats based on selectors in cssmenu.js
-[data-cssmenu-hide] {
-  display: none !important;
+// When js is enabled, hide fallback menu and mobile menu footer
+#cssmenu[data-js] ~ * .mega-and-mobilemenu .mobile-menu-fallback,
+#cssmenu[data-js] ~ * .mega-and-mobilemenu .mmenu__footer {
+  display: none;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -383,37 +257,4 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 
 .cssnav details[open] > summary > .cssnav__toggle::before {
   transform: rotate(180deg);
-}
-
-.cssmenu-menu__footer {
-  background: $color-black;
-  color: $color-white;
-  grid-area: footer;
-  padding-bottom: $-cssmenu-bottom-padding;
-  padding-top: $spacing;
-
-  .menu {
-    display: block;
-  }
-
-  .menu__item + .menu__item {
-    margin-left: 0;
-  }
-
-  .menu__link {
-    @include font('body');
-    color: $color-white;
-    display: block;
-    padding: $spacing-half $spacing;
-
-    &:focus,
-    &:active {
-      outline: 3px solid $color-white;
-      outline-offset: -5px;
-    }
-  }
-
-  & > .menu__link {
-    font-weight: $font-weight-bold; // Make the city link bolded like in design specs
-  }
 }
