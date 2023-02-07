@@ -39,6 +39,7 @@ const createBaseAtom = () => {
   const settings = drupalSettings.helfi_events?.data?.[paragraphId];
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
+  const eventsPublicUrl = settings?.events_public_url;
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
@@ -56,6 +57,7 @@ const createBaseAtom = () => {
     settings: filterSettings,
     locations,
     eventListTitle,
+    eventsPublicUrl,
   };
 };
 
@@ -73,6 +75,10 @@ export const locationsAtom = atom(
 
 export const titleAtom = atom(
   (get) => get(baseAtom)?.eventListTitle
+);
+
+export const eventsPublicUrl = atom(
+  (get) => get(baseAtom)?.eventsPublicUrl
 );
 
 export const settingsAtom = atom(
