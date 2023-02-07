@@ -50,7 +50,6 @@ export default class AccordionItem {
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('keypress', this.close);
   };
 
-
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   }

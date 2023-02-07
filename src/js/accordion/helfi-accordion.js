@@ -6,7 +6,6 @@ export default class HelfiAccordion {
 
   constructor(accordion) {
     this.accordion = accordion;
-
     this.accordionItems = [];
     this.initializeAccordion();
   }
