@@ -43,7 +43,6 @@ export default class AccordionItem {
   };
 
   addEventListeners = () => {
-    console.log(this.element);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mousedown', this.toggle);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
 
