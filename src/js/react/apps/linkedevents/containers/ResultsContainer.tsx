@@ -35,10 +35,10 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
   const addLastPage = count > size && count % size;
 
   return (
-    <div className='event-list__list-container'>
-      {count > 0 &&
-        <div className='event-list__count'>
-          <strong>{count}</strong> {Drupal.t('events')}
+    <div className='react-search__list-container'>
+      {!loading && count && !Number.isNaN(count) &&
+        <div className='react-search__count'>
+          {!loading && count}{loading && Drupal.t('loading')} {Drupal.t('events')}
         </div>
       }
       {events?.length > 0 ?
