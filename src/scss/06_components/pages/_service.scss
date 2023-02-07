@@ -36,7 +36,6 @@ $teaser-icon-size-desktop: 48px;
     position: absolute;
     right: $spacing;
     transform: translateY(50%);
-    transition: all 0.3s;
 
     @media (prefers-reduced-motion) {
       transition: none;
@@ -49,6 +48,7 @@ $teaser-icon-size-desktop: 48px;
       margin-top: $spacing-and-half;
       position: static;
       transform: none;
+      transition: transform 0.3s linear;
     }
   }
 }
@@ -90,15 +90,20 @@ $teaser-icon-size-desktop: 48px;
       width: 100%;
     }
   }
+}
 
-  &:hover {
-    text-decoration: underline;
+.service__link:hover {
+  text-decoration: underline;
+}
 
-    .hel-icon {
-      margin-left: $spacing;
-      @media (prefers-reduced-motion) {
-        margin-left: 0;
-      }
+.service__link:hover .hel-icon {
+  text-decoration: underline;
+
+  @include breakpoint($breakpoint-l) {
+    transform: translateX($spacing);
+
+    @media (prefers-reduced-motion) {
+      transform: none;
     }
   }
 }
