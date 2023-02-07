@@ -1,5 +1,4 @@
 # HDBT-theme
-
 ## Introduction
 
 HDBT theme is a base theme for the City of Helsinki. It is based on the core theme stable9. The abbrevation comes from
@@ -21,7 +20,7 @@ Requirements for developing:
 | nvm use       | Uses correct Node version chosen for the theme compiler.                          |
 | npm i         | Install dependencies and link local packages.                                     |
 | npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
-| npm run dev   | Compile styles for development environment. and watch file changes.               |
+| npm run dev   | Compile styles and js for development environment. and watch file changes.        |
 | npm run build | Build packages for production. Minify CSS/JS.                                     |
 
 Setup the developing environment by running
@@ -52,6 +51,27 @@ hdbt
     └───js
     └───icons
 ```
+
+## Webpack entries
+
+Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder.
+Typescript entrypoints must be added separately. See webpack.config.js.
+
+
+### How to use entries in Drupal libraries
+
+```
+component-library:
+  version: 1.x
+  css:
+    theme:
+      dist/css/component-library.min.css: {}
+  js:
+    dist/js/component-library.min.js: {}
+```
+
+Library must be loaded on the page where it's used.
+It can be added via preprocess function or in a twig template.
 
 ## Component library
 
@@ -171,6 +191,17 @@ To fix
 vendor/bin/phpcbf public/themes/contrib/hdbt --extensions=php,module,theme,inc --ignore="*.js,*.css" --standard=Drupal
 ```
 
+### How to develop React apps
+
+Add new REACT_SEARCHES entrypoint into webpack.config.js.
+
+Add new library to libraries.yml file.
+
+Inside Drupal: Load correct Drupal library to the page. Run `npm run dev` and make sure caches are disabled.
+Outside Drupal: Open React app index.html file in browser and run `npm run dev`.
+
+To build minified js file into the /dist folder run `npm run build`.
+
 ## Component documentation
 
 ### Accordion paragraph
@@ -190,8 +221,8 @@ it on the block layout, make sure that there is a block with the correct id on t
 
 ## ESLint
 
-We are using the airbnb-base which will be changed to full airbnb when there is react stuff.
-The current eslint config is the bare minimum that should pass always everywhere. Extend as necessary.
+We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
+Extend as necessary.
 
 ### Why is it so hard?
  - the eslint rules might be used from root (or beyond root) due to husky being funny

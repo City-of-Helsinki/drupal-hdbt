@@ -256,6 +256,11 @@ $-footerlink-target-size: 44px;
   font-weight: $font-weight-bold;
 }
 
+.mmenu__item-link--injected,
+.mmenu__item-link--injected + .mmenu__forward {
+  background: $color-black-5;
+}
+
 .mmenu__forward {
   align-items: center;
   background: none;

@@ -1,0 +1,37 @@
+.component--react-search {
+  background-color: $color-silver-light;
+}
+
+// Since the component is not "full width" next to a sidebar, we should uniform padding around
+.has-sidebar .components--upper .component--react-search .component__container {
+  padding-bottom: $spacing-double;
+  padding-left: $spacing-double;
+  padding-right: $spacing-double;
+  padding-top: $spacing-double;
+}
+
+// If the event search search is just before footer it needs to function the same way as unit search.
+.layout-main-wrapper > *:last-child .component--react-search:last-child {
+  margin-bottom: -115px; // Enough to get the block under the footer.
+  padding-bottom: 55px; // Leave enough room between the last card and footer.
+}
+
+.component--react-search .component__container {
+  padding-bottom: $spacing-double;
+  padding-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.react-search__list-container {
+  margin-bottom: $spacing-double;
+}
+
+.react-search__count {
+  @include font('body');
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing;
+}

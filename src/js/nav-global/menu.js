@@ -1,5 +1,5 @@
-const Mustache = require('mustache');
-const cls = require('classnames');
+import Mustache from 'mustache';
+import cls from 'classnames';
 
 const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
 const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
@@ -70,6 +70,14 @@ function isInPath() {
   return !!this.inPath;
 }
 
+/**
+ * Convert null `is_injected` values to boolean for mustache templates to avoid using parent values
+ * @return {boolean} does current object have is_injected set and trueish
+ */
+function isInjected() {
+  return !!this.is_injected;
+}
+
 /** *
  * Convert attributes to to template-friendly object
  * @return {object}  {external:bool, protocol:bool}
@@ -110,7 +118,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.',
-      }
+      },
     ),
   },
   tel: {
@@ -121,7 +129,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.',
-      }
+      },
     ),
   },
   external: {
@@ -132,7 +140,7 @@ externalLinkIcon.ICONS = {
       {
         context:
           'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.',
-      }
+      },
     ),
   },
 };
@@ -191,7 +199,7 @@ const MobilePanel = {
     <ul class="mmenu__items">
       {{#sub_tree}}
         <li class="mmenu__item">
-          <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}"{{#isActive}} aria-current="page"{{/isActive}}
+          <a href="{{url}}" class="mmenu__item-link{{#isInPath}} mmenu__item-link--in-path{{/isInPath}}{{#isInjected}} mmenu__item-link--injected{{/isInjected}}"{{#isActive}} aria-current="page"{{/isActive}}
           {{#externalLinkAttributes.external}}
             data-external="true"
           {{/externalLinkAttributes.external}}
@@ -260,7 +268,7 @@ const MobilePanel = {
           }
           return false;
         },
-        'sub_tree'
+        'sub_tree',
       );
 
       if (!found) {
@@ -285,6 +293,7 @@ const MobilePanel = {
       button,
       isActive,
       isInPath,
+      isInjected,
       externalLinkAttributes,
       hasLang,
       externalLinkIcon,
@@ -347,7 +356,7 @@ const MobilePanel = {
       },
       {
         sub_tree: this.templates.list,
-      }
+      },
     );
 
     if (state === 'load') {
@@ -448,7 +457,7 @@ const MobilePanel = {
       // eslint-disable-next-line no-console
       console.error(
         'Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',
-        e
+        e,
       );
       this.enableFallback();
       return;
@@ -531,64 +540,64 @@ const MobilePanel = {
     }
     this.onOpen = onOpen;
     this.onClose = onClose;
-    document.addEventListener('DOMContentLoaded', () => {
-      // See  block--mobile-navigation.html.twig for the button
-      this.toggleButton = document.querySelector('.js-menu-toggle-button');
-      if (!this.toggleButton) {
-        throw new Error('No toggle button for JS menu.');
-      }
-      // TODO Where is this #menu coming from Maybe name it better?
-      this.menu = document.querySelector('#menu');
-      if (!this.menu) {
-        // eslint-disable-next-line no-console
-        console.error('Panel not present in DOM. Cannot start JS mobile menu');
-        return;
-      }
 
-      this.disableFallback();
+    // This used to load after DOM was loaded, but we added defer for the javascript.
+    // See  block--mobile-navigation.html.twig for the button
+    this.toggleButton = document.querySelector('.js-menu-toggle-button');
+    if (!this.toggleButton) {
+      throw new Error('No toggle button for JS menu.');
+    }
+    // TODO Where is this #menu coming from Maybe name it better?
+    this.menu = document.querySelector('#menu');
+    if (!this.menu) {
+      // eslint-disable-next-line no-console
+      console.error('Panel not present in DOM. Cannot start JS mobile menu');
+      return;
+    }
 
-      /**
-       * Close menu on Escape button click if it is open.
-       */
-      document.addEventListener('keydown', (e) => {
-        if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
-          this.close();
-          this.toggleButton.focus();
-        }
-      });
+    this.disableFallback();
 
-      const start = () => {
-        /**
-         * Delay template compilation to menu start to ensure
-         * footer & top menu blocks are rendered in main DOM before cloning them.
-         *
-         * Start removes itself in order to only run once.
-         */
-        this.compileTemplates();
-        this.toggleButton.removeEventListener('click', start);
-        this.start();
-      };
-      /**
-       * Add start-event to menu toggle button.
-       *
-       * Add Menu toggle function to menu button.
-       * Side effects:
-       * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
-       */
-      this.toggleButton.addEventListener('click', start);
-      this.toggleButton.addEventListener('click', () => this.toggle());
-
-      /**
-       * Open menu if it is required in the hash, then clear hash.
-       */
-      if (this.isOpen()) {
-        window.location.hash = '';
-        start();
-        this.open();
+    /**
+     * Close menu on Escape button click if it is open.
+     */
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
+        this.close();
+        this.toggleButton.focus();
       }
     });
+
+    const start = () => {
+      /**
+       * Delay template compilation to menu start to ensure
+       * footer & top menu blocks are rendered in main DOM before cloning them.
+       *
+       * Start removes itself in order to only run once.
+       */
+      this.compileTemplates();
+      this.toggleButton.removeEventListener('click', start);
+      this.start();
+    };
+    /**
+     * Add start-event to menu toggle button.
+     *
+     * Add Menu toggle function to menu button.
+     * Side effects:
+     * Toggles chat widget display values and aria-expanded states and clears menu hash when closing.
+     */
+    this.toggleButton.addEventListener('click', start);
+    this.toggleButton.addEventListener('click', () => this.toggle());
+
+    /**
+     * Open menu if it is required in the hash, then clear hash.
+     */
+    if (this.isOpen()) {
+      window.location.hash = '';
+      start();
+      this.open();
+    }
     this.running = true;
   },
 };
 
-module.exports = MobilePanel;
+export default MobilePanel;

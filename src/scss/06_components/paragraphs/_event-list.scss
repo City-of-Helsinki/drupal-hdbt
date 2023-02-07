@@ -8,186 +8,78 @@ $event-list-image-mobile-height: 264px;
 $tag-horizontal-padding: 12px;
 $tag-vertical-padding: 5px;
 
-.event-list__event {
-  border-bottom: 1px solid $color-black-10;
-  padding-bottom: $spacing-half;
-  padding-top: $spacing-and-half;
-  position: relative;
-
-  @include breakpoint($breakpoint-l) {
-    display: grid;
-    grid-template-columns: $event-list-image-width 1fr;
-    padding-bottom: $spacing;
-    padding-top: $spacing;
-  }
-
-  &:first-child {
-    border-top: 1px solid $color-black-10;
-  }
-}
-
-.event-list__event-name {
-  @include font('h4');
-  margin-bottom: $spacing-and-half;
-  margin-top: $spacing;
-}
-
-.event-list__event-link {
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.event-list__event-link::before {
-  content: '';
-  display: block;
-  inset: 0;
-  position: absolute;
-
-  // Set z-index to make arrow icon clickable as well.
-  z-index: 1;
-}
-
-.event-list__image-container {
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-
-.event-list__event-image {
-  max-height: $event-list-image-mobile-height;
-  object-fit: cover;
-  width: 100%;
-
-  @include breakpoint($breakpoint-l) {
-    height: 100%;
-    max-height: unset;
-    position: absolute;
-  }
-}
-
-.event-list__content-container {
-  @include breakpoint($breakpoint-l) {
-    padding-left: $spacing-double;
-  }
-}
-
-.event-list__tags {
-  @include flex-gap($spacing);
-}
-
-.event-list__tags--mobile {
-  bottom: 0;
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: flex-end;
-  padding: $spacing;
-  position: absolute;
-  width: 100%;
-
-  // Prevent image placeholder from hiding the tags
-  z-index: 1;
-
-  @include breakpoint($breakpoint-l) {
-    display: none;
-  }
-}
-
-.event-list__tags--desktop {
-  display: none;
-
-  @include breakpoint($breakpoint-l) {
-    align-items: flex-start;
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
-.event-list__tag {
-  @include font('special.helper_text');
-  background: $color-silver;
-  border-radius: $spacing-and-half;
-  display: inline-block;
-  margin-bottom: $spacing;
-  padding: $tag-vertical-padding $tag-horizontal-padding;
-}
-
-.event__icon {
-  align-content: flex-start;
-  display: flex;
-  margin-right: $spacing-half;
-}
-
-.event__content {
-  @include font('body');
-  display: flex;
-  margin-bottom: $spacing;
-}
-
-.event-list__indicator-container {
-  align-items: flex-end;
-  display: flex;
-}
-
-.event-list__event-link-indicator {
-  @include pseudo-icon('link-external', $spacing-and-half);
-
-  @include breakpoint($breakpoint-l) {
-    @include pseudo-icon('link-external', $spacing-triple);
-  }
-}
-
-.event__content::before {
-  margin-right: $spacing-half;
-}
-
-.event__content--date::before {
-  @include pseudo-icon('calendar-clock', $spacing-and-half);
-}
-
-.event__content--location::before {
-  @include pseudo-icon('location', $spacing-and-half);
-}
-
-.event-list__list-container {
-  margin-bottom: $spacing-double;
-}
-
-.event__lower-container {
-  display: flex;
-  justify-content: space-between;
-
-  @include breakpoint($breakpoint-l) {
-    margin-bottom: $spacing-half;
-  }
-}
-
-.event-list__count {
-  @include font('body');
-  margin-bottom: $spacing;
-}
-
 .events-list__empty-subtext {
   margin-bottom: $spacing-and-half;
 }
 
-.event-list__load-more {
-  @include flex-gap($spacing);
+.event-form-container {
+  border-bottom: 1px solid $color-black-20;
+  margin-bottom: $spacing-double;
 }
 
-.event-list__load-more-button {
+.event-form__filters-container {
+  margin-top: $spacing;
+
+  .event-form__filter-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-and-half;
+    justify-content: space-between;
+  }
+
+  .event-form__filter--location,
+  .event-form__filter--date {
+    flex-basis: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      flex-basis: 48%;
+    }
+  }
+
+  .event-form__filter-checkbox-container {
+    display: flex;
+    flex-direction: column;
+
+    .hdbt-search__checkbox {
+      margin-top: var(--spacing-2-xs);
+    }
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      @include flex-gap($spacing-and-half);
+    }
+  }
+}
+
+// Override HDS style for multiple checkboxes
+.event-form__filter-section-container .hdbt-search__checkbox:not(:first-of-type) {
+  @include breakpoint($breakpoint-l) {
+    margin-top: 0;
+  }
+}
+
+.event-form__checkboxes-label {
+  font-weight: $font-weight-medium;
   margin-bottom: $spacing;
 }
 
-.event-list-spinner {
-  position: relative;
+.event-list__submit-button {
+  margin-bottom: $spacing-triple;
+  margin-top: $spacing;
 }
 
-// Use a specific selector here since spinner styles are loaded later than paragraphs
-.event-list-spinner .hds-loading-spinner {
-  margin-bottom: $spacing-triple;
-  margin-top: $spacing-triple;
-  position: relative;
+.event-list__see-all-button {
+  margin-inline: auto;
+  margin-top: $spacing-double;
+  text-align: center;
+}
+
+.event-list__loading-spinner > div {
+  margin-inline: auto;
+}
+
+.event-list__filter-title {
+  @include font('h3');
 }
