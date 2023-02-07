@@ -30,12 +30,13 @@ export function generateUniqueId(id, array, index = 1) {
 /**
  * Create list of unique ids by rewriting duplicates with suffix.
  *
- * @param {Object[]} elements of html elements.
+ * @param {Object[]} accordions of html elements.
  *
  * @return {String[]} Array of unique ids.
  */
-export function createListOfUniqueIds(elements) {
-  return elements.map((element) => element.dataset.accordionId)
+export function createListOfUniqueIds(accordions) {
+  return accordions.map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')).map(item => item.dataset.accordionId))
+    .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
     .reduce((accumulator, currentValue) => {
       const newId = accumulator.includes(currentValue) ? generateUniqueId(currentValue, accumulator) : currentValue;
       accumulator.push(newId);

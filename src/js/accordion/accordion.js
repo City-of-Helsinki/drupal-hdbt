@@ -1,10 +1,11 @@
 import HelfiAccordion from './helfi-accordion';
 import {createListOfUniqueIds} from './unique-id';
 
-const accordionElements = document.querySelectorAll(HelfiAccordion.accordionWrapper);
+const accordionElements = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
 
 // Add suffix to duplicate ids.
 const uniqueListOfIds = createListOfUniqueIds([...accordionElements]);
+console.log(uniqueListOfIds);
 
 // Replace all duplicate ids across all accordions.
 accordionElements.forEach((element, index) => {

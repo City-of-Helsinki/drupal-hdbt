@@ -13,14 +13,16 @@ export default class AccordionItem {
     this.element = element;
     this.addEventListeners();
 
+    this.handleLinkAnchor();
+
+    // Update element aria-expanded.
+    this.setAriaOpen();
+
     // Open accordion element by anchor link.
     // TODO: load this javascript on later point.
     setTimeout(()=>{
-      this.handleLinkAnchor();
 
-      // Update element aria-expanded.
-      this.setAriaOpen();
-    }, 50);
+    }, 100);
   }
 
   open = () => {
