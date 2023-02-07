@@ -2,27 +2,22 @@
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [
-        'component--react-search component--event-list'
+        'component--react-search',
+        'component--react-search--schools'
       ],
       component_title_level: 'h2',
       component_title: content.field_event_list_title,
       component_description: content.field_event_list_description,
-      component_content_class: 'event-list',
+      component_content_class: 'school-search',
     }
   %}
     {% block component_content %}
       {# Hook React app to this div #}
       <div
-        id="helfi-events-search"
+        id="helfi-school-search"
         data-paragraph-id="{{ paragraph.id() }}"
       >
       </div>
-      {# Indicate JS not enabled #}
-      <noscript>
-        <div class="event-list__javascript-disabled">
-          {{ 'You must enable JavaScript in your browser for event list to work'|t }}
-        </div>
-      </noscript>
     {% endblock %}
   {% endembed %}
 {% endblock %}

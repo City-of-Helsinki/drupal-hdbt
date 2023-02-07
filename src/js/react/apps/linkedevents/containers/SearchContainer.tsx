@@ -48,10 +48,10 @@ const SearchContainer = () => {
   const loading = !error && !data;
 
   return (
-    <>
+    <div className='component--react-search component--react-search--event-list'>
       <FormContainer loading={loading} />
       <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
-    </>
+    </div>
   );
 };
 
