@@ -59,10 +59,10 @@ const ResultsContainer = () => {
               <span> {Drupal.t('schools', {}, {context: 'School search results statline'})}</span>
             </>
           }
-          {results.map((hit: Result<School>) => (
-            <ResultCard key={hit._id} {...hit._source} />
-          ))}
         </div>
+        {results.map((hit: Result<School>) => (
+          <ResultCard key={hit._id} {...hit._source} />
+        ))}
       </div>
     </div>
   );
