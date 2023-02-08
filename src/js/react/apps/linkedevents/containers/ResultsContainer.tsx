@@ -34,13 +34,18 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
   const pages = Math.floor(count / size);
   const addLastPage = count > size && count % size;
 
+  const showCount = !Number.isNaN(count) && !loading;
+
   return (
     <div className='react-search__list-container'>
-      {!loading && count && !Number.isNaN(count) &&
-        <div className='react-search__count'>
-          {!loading && count}{loading && Drupal.t('loading')} {Drupal.t('events')}
-        </div>
+      <div className='react-search__results-stats'>
+      {Boolean(showCount) &&
+        <>
+          <span className='react-search__count'>{count} </span>
+          <span>{Drupal.t('events')}</span>
+        </>
       }
+      </div>
       {events?.length > 0 ?
         <>
           {events.map(event => <ResultCard key={event.id} {...event} />)}

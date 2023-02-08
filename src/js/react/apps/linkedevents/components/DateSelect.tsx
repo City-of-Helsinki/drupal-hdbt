@@ -62,7 +62,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             helperText={dateHelperText}
             id='start-date'
             label={Drupal.t('First day of the time period')}
-            lang={currentLanguage}
+            language={currentLanguage}
             invalid={invalidStartDate}
             errorText={startDateErrorText}
             value={startDate?.toFormat(HDS_DATE_FORMAT)}
@@ -81,7 +81,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate
             helperText={dateHelperText}
             id='end-date'
             label={Drupal.t('Last day of the time period')}
-            lang={currentLanguage}
+            language={currentLanguage}
             invalid={invalidEndDate}
             errorText={endDateErrorText}
             value={endDisabled ? startDate?.toFormat(HDS_DATE_FORMAT) : endDate?.toFormat(HDS_DATE_FORMAT)}

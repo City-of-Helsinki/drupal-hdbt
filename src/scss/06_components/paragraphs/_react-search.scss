@@ -30,8 +30,11 @@
   margin-bottom: $spacing-double;
 }
 
+.react-search__results-stats {
+  margin-bottom: $spacing;
+}
+
 .react-search__count {
   @include font('body');
   font-weight: $font-weight-bold;
-  margin-bottom: $spacing;
 }
