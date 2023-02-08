@@ -1,28 +1,37 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, memo } from 'react';
 import { SetStateAction, WritableAtom, useAtomValue, useSetAtom, useAtom } from 'jotai';
 import { Button, IconCross } from 'hds-react';
 
-import SearchComponents from '../enum/SearchComponents';
 import {
   resetFormAtom,
   locationAtom,
   locationSelectionAtom,
   queryBuilderAtom,
-  urlAtom
+  urlAtom,
+  freeFilterAtom,
+  remoteFilterAtom,
+  startDateAtom,
+  endDisabledAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 
+type SelectionsContainerProps = {
+  submitValue: number;
+};
 
-const SelectionsContainer = () => {
-  const resetForm = useSetAtom(resetFormAtom);
+const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
+  const freeFilter = useAtomValue(freeFilterAtom);
+  const remoteFilter = useAtomValue(remoteFilterAtom);
+  const locationOptions = useAtomValue(locationAtom);
+  // const startDate = useAtomValue(startDateAtom);
+  // const endDate = useAtomValue(endDisabledAtom);
+  const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
+  const resetForm = useSetAtom(resetFormAtom);
   const setUrl = useSetAtom(urlAtom);
 
-  const locationOptions = useAtomValue(locationAtom);
-  const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
-
-  const showClearButton =  locationSelection.length;
+  const showClearButton =  locationSelection.length || freeFilter || remoteFilter;
 
   if (!queryBuilder) {
     return null;
@@ -40,17 +49,25 @@ const SelectionsContainer = () => {
         {locationOptions && (
           <ListFilter
             updater={setLocationSelection}
-            valueKey={SearchComponents.LOCATION}
+            valueKey={ApiKeys.LOCATION}
             values={locationSelection}
           />
         )}
-        {/* {urlParams.youth_summer_jobs && (
+        {remoteFilter && (
           <CheckboxFilterPill
-            label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
-            atom={youthSummerJobsAtom}
-            valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
+            label={Drupal.t('Remote events')}
+            valueKey={ApiKeys.REMOTE}
+            atom={remoteFilterAtom}
           />
-        )} */}
+        )}
+        {freeFilter && (
+          <CheckboxFilterPill
+            label={Drupal.t('Free-of-charge events')}
+            valueKey={ApiKeys.FREE}
+            atom={freeFilterAtom}
+          />
+        )}
+
         <li className='hdbt-search__clear-all'>
           <Button
             aria-hidden={showClearButton ? 'true' : 'false'}
@@ -68,7 +85,16 @@ const SelectionsContainer = () => {
   );
 };
 
-export default SelectionsContainer;
+const updateSelections = (prev: SelectionsContainerProps, next: SelectionsContainerProps) => {
+  if (prev.submitValue === next.submitValue) {
+    return true;
+  }
+
+  return false;
+};
+
+export default memo(SelectionsContainer, updateSelections);
+
 
 type ListFilterProps = {
   updater: Function;
@@ -77,8 +103,6 @@ type ListFilterProps = {
 };
 
 const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
-  // const urlParams = useAtomValue(urlAtom);
-  // const setUrlParams = useSetAtom(urlUpdateAtom);
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setUrl = useSetAtom(urlAtom);
 
@@ -93,10 +117,6 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
     updater(newValue);
     queryBuilder.setParams({ [ApiKeys.LOCATION]: newValue.map((location: any) => location.value).join(',') });
     setUrl(queryBuilder.updateUrl());
-    // setUrlParams({
-    //   ...urlParams,
-    //   [valueKey]: newValue.map((selection: OptionType) => selection.value),
-    // });
   };
 
   return (
@@ -119,44 +139,49 @@ type CheckboxFilterPillProps = {
 };
 
 const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) => {
+  const queryBuilder = useAtomValue(queryBuilderAtom);
   const setValue = useSetAtom(atom);
-  // const urlParams = useAtomValue(urlAtom);
-  // const setUrlParams = useSetAtom(urlUpdateAtom);
+  const setUrl = useSetAtom(urlAtom);
+
+  if (!queryBuilder) {
+    return null;
+  }
 
   return (
     <FilterButton
       value={label}
       clearSelection={() => {
-        // setUrlParams({ ...urlParams, [valueKey]: false });
         setValue(false);
+        queryBuilder.resetParam(valueKey);
+        setUrl(queryBuilder.updateUrl());
       }}
     />
   );
 };
 
-type SingleFilterProps = {
-  atom: WritableAtom<OptionType | null, SetStateAction<OptionType | null>, void>;
-  valueKey: string;
-  label: string;
-};
+// type SingleFilterProps = {
+//   atom: WritableAtom<OptionType | null, SetStateAction<OptionType | null>, void>;
+//   valueKey: string;
+//   label: string;
+// };
 
-const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
-  const setValue = useSetAtom(atom);
-  // const urlParams = useAtomValue(urlAtom);
-  // const setUrlParams = useSetAtom(urlUpdateAtom);
+// const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
+//   const setValue = useSetAtom(atom);
+//   // const urlParams = useAtomValue(urlAtom);
+//   // const setUrlParams = useSetAtom(urlUpdateAtom);
 
-  // const { language, ...updatedParams } = urlParams;
+//   // const { language, ...updatedParams } = urlParams;
 
-  return (
-    <FilterButton
-      value={label}
-      clearSelection={() => {
-        // setUrlParams(updatedParams);
-        setValue(null);
-      }}
-    />
-  );
-};
+//   return (
+//     <FilterButton
+//       value={label}
+//       clearSelection={() => {
+//         // setUrlParams(updatedParams);
+//         setValue(null);
+//       }}
+//     />
+//   );
+// };
 
 type FilterButtonProps = {
   value: string;

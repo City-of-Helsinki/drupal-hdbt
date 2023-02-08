@@ -3,16 +3,22 @@ import { useAtomValue, useAtom } from 'jotai';
 
 import { locationAtom, locationSelectionAtom, queryBuilderAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
+import ApiKeys from '../enum/ApiKeys';
 
 
 function LocationFilter() {
-  // const queryBuilder = useAtomValue(queryBuilderAtom);
+  const queryBuilder = useAtomValue(queryBuilderAtom);
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
   const locationOptions = useAtomValue(locationAtom);
 
-  if (!locationOptions) {
+  if (!queryBuilder || !locationOptions) {
     return null;
   }
+
+  const onChange = (value: any) => {
+    setLocationFilter(value);
+    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+  };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
 
@@ -28,7 +34,7 @@ function LocationFilter() {
         options={locationOptions}
         value={locationSelection}
         id={SearchComponents.LOCATION}
-        onChange={setLocationFilter}
+        onChange={onChange}
         placeholder={Drupal.t('All', {}, { context: 'Event search: all available options' })}
         selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'Event search: remove item aria label' })}
         theme={{

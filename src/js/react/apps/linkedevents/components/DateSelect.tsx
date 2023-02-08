@@ -1,7 +1,5 @@
-import React from 'react';
 import { DateInput } from 'hds-react';
 import Collapsible from './Collapsible';
-import { QueryBuilder } from '../utils/QueryBuilder';
 import CheckboxFilter from './CheckboxFilter';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
@@ -9,7 +7,6 @@ import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 interface DateSelectActions {
   endDisabled: boolean;
   disableEnd: Function;
-  queryBuilder: QueryBuilder;
   setEndDate: Function;
   setStartDate: Function;
   invalidStartDate?: boolean;
@@ -36,7 +33,7 @@ const getTitle = ({ startDate, endDate }: DateSelectDateTimes): string => {
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY');
 
-function DateSelect({ endDate, endDisabled, disableEnd, queryBuilder, setEndDate, setStartDate, startDate, invalidStartDate = false, invalidEndDate = false }: DateSelectProps) {
+function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate, startDate, invalidStartDate = false, invalidEndDate = false }: DateSelectProps) {
 
   const { currentLanguage } = drupalSettings.path;
 

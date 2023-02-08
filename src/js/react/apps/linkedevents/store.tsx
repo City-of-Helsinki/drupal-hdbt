@@ -1,4 +1,6 @@
-import { atom, useAtomValue, useSetAtom } from 'jotai';
+import { atom } from 'jotai';
+import { DateTime } from 'luxon';
+
 import QueryBuilder from './utils/QueryBuilder';
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
@@ -87,14 +89,30 @@ export const settingsAtom = atom(
   }
 );
 
-export const pageAtom = atom(1);
+export const pageAtom = atom<number>(1);
 
-// export const urlAtom = atom<string|null>(null);
-export const urlAtom = atom<any>(null);
+export const submitValueAtom = atom<number>(0);
+
+export const urlAtom = atom<string|null>(null);
 
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
+export const startDateAtom = atom<DateTime|undefined>(undefined);
+
+export const endDateAtom = atom<DateTime|undefined>(undefined);
+
+export const endDisabledAtom = atom<boolean>(false);
+
+export const freeFilterAtom = atom<boolean>(false);
+
+export const remoteFilterAtom = atom<boolean>(false);
+
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
+  set(startDateAtom, undefined);
+  set(endDateAtom, undefined);
+  set(endDisabledAtom, false);
+  set(remoteFilterAtom, false);
+  set(freeFilterAtom, false);
   set(pageAtom, 1);
 });

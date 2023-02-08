@@ -1,7 +1,9 @@
 const SearchComponents = {
   LOCATION: 'location',
   DATE: 'date',
-  RESULTS: 'page'
+  FREE: 'is_free',
+  REMOTE: 'internet_based',
+  RESULTS: 'page',
 };
 
 export default SearchComponents;

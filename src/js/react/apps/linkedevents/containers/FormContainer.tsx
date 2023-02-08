@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom, useAtom } from 'jotai';
 import LocationFilter from '../components/LocationFilter';
 import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
@@ -9,7 +9,7 @@ import CheckboxFilter from '../components/CheckboxFilter';
 import SelectionsContainer from './SelectionsContainer';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom, locationSelectionAtom } from '../store';
+import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom, submitValueAtom, freeFilterAtom, remoteFilterAtom, startDateAtom, endDateAtom, endDisabledAtom } from '../store';
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -39,36 +39,36 @@ type FormErrors = {
 function FormContainer({ loading }: {
   loading: boolean
 }) {
-  const [endDisabled, disableEnd] = useState<boolean>(false);
-  const [startDate, setStartDate] = useState<DateTime>();
-  const [endDate, setEndDate] = useState<DateTime>();
-  const [freeFilter, setFreeFilter] = useState<boolean>(false);
-  const [remoteFilter, setRemoteFilter] = useState<boolean>(false);
   const [errors, setErrors] = useState<FormErrors>({
     invalidEndDate: false,
     invalidStartDate: false,
   });
+  const [endDisabled, disableEnd] = useAtom(endDisabledAtom);
+  const [startDate, setStartDate] = useAtom(startDateAtom);
+  const [endDate, setEndDate] = useAtom(endDateAtom);
+  const [freeFilter, setFreeFilter] = useAtom(freeFilterAtom);
+  const [remoteFilter, setRemoteFilter] = useAtom(remoteFilterAtom);
+  const [submitValue, setSubmitValue] = useAtom(submitValueAtom);
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
-  const locationSelection = useAtomValue(locationSelectionAtom);
-  const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
   const setUrl = useSetAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
+  const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
 
   if (!queryBuilder || !filterSettings) {
     return null;
   }
 
   const onSubmit = () => {
+    setSubmitValue(submitValue+1);
     setPage(1);
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: locationSelection.map((location: any) => location.value).join(',') });
     setUrl(queryBuilder.updateUrl());
   };
 
   const setStart = (d: string) => {
-
     const start = getDateTimeFromHDSFormat(d);
+
     if (INVALID_DATE(start)) {
       console.warn('invalid start date', { start, endDate });
       if (d.length === 0) {
@@ -76,10 +76,8 @@ function FormContainer({ loading }: {
         setErrors({ ...errors, invalidStartDate: false });
       } else {
         setErrors({ ...errors, invalidStartDate: true });
-
       }
     } else {
-
       if (isOutOfRange({ startDate: start, endDate })) {
         console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
         setEndDate(start?.plus({ 'days': 1 }));
@@ -90,8 +88,8 @@ function FormContainer({ loading }: {
   };
 
   const setEnd = (d: string) => {
-
     const end = getDateTimeFromHDSFormat(d);
+
     if (INVALID_DATE(end)) {
       console.warn('invalid end date', { end, d });
       if (d.length === 0) {
@@ -99,10 +97,8 @@ function FormContainer({ loading }: {
         setEndDate(undefined);
       } else {
         setErrors({ ...errors, invalidEndDate: true });
-
       }
     } else {
-
       if (isOutOfRange({ startDate, endDate: end })) {
         console.warn('Selected end date is out of range, setting end date to next day after start date.');
         setEndDate(startDate?.plus({ 'days': 1 }));
@@ -111,7 +107,6 @@ function FormContainer({ loading }: {
       }
       setErrors({ ...errors, invalidEndDate: false });
     }
-
   };
 
   useEffect(() => {
@@ -204,7 +199,6 @@ function FormContainer({ loading }: {
                 invalidStartDate={errors.invalidStartDate}
                 endDisabled={endDisabled}
                 disableEnd={handleDisableEnd}
-                queryBuilder={queryBuilder}
                 setEndDate={setEnd}
                 setStartDate={setStart}
                 startDate={startDate}
@@ -237,7 +231,7 @@ function FormContainer({ loading }: {
           }
         </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
-        <SelectionsContainer />
+        <SelectionsContainer submitValue={submitValue} />
       </div>
     </form>
   );
