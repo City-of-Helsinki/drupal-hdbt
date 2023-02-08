@@ -130,6 +130,10 @@ class HouseCleaningServiceVoucher {
     };
 
     const validate = (id) => {
+      const defaultInfo = {
+        title: 'Arvio kotihoidon asiakasmaksun avusta',
+        message: 'Täytä kaikki pakolliset tiedot, ja paina "Laske arvio". Arvio mahdollisesta tuestasi tulee näkyviin tähän. Jos päivität laskurin sisältöä muista painaa "Laske arvio" uudelleen.',
+      };
       const errorMessages = [];
 
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
@@ -137,7 +141,13 @@ class HouseCleaningServiceVoucher {
 
       // Check if any missing input errors were found
       if (errorMessages.length) {
-        return { error: true, title: this.t('missing_input'), message: errorMessages };
+        return {
+          error: {
+            title: this.t('missing_input'),
+            message: errorMessages
+          },
+          info: defaultInfo,
+        };
       }
 
       const household_size = this.calculator.getFieldValue('household_size');
@@ -151,15 +161,31 @@ class HouseCleaningServiceVoucher {
 
       // Check if first level is applicable
       if (gross_income_per_month <= family_data.first_level.max_allowed_income) {
-        return { info: true, title: this.t('result'), message: this.t('info_voucher_value', { voucher_value: family_data.first_level.value }) };
+        return {
+          info: {
+            title: this.t('result'),
+            message: this.t('info_voucher_value', { voucher_value: family_data.first_level.value }),
+          },
+        };
 
         // Check if second level is applicable
       } else if (gross_income_per_month <= family_data.second_level.max_allowed_income) {
-        return { info: true, title: this.t('result'), message: this.t('info_voucher_value', { voucher_value: family_data.second_level.value }) };
+        return {
+          info: {
+            title: this.t('result'),
+            message: this.t('info_voucher_value', { voucher_value: family_data.second_level.value }),
+          },
+        };
       }
 
       // Otherwise not applicable for voucher
-      return { alert: true, title: this.t('result'), message: this.t('alert_voucher_not_applicable') };
+      return {
+        alert: {
+          title: this.t('result'),
+          message: this.t('alert_voucher_not_applicable'),
+        },
+        info: defaultInfo,
+      };
     };
 
 

@@ -44,9 +44,9 @@ class HelfiCalculator {
 
       },
       calculate: {
-        fi: 'Laske',
-        sv: 'Beräkna',
-        en: 'Calculate',
+        fi: 'Laske arvio',
+        sv: 'Beräkna uppskattningen',
+        en: 'Calculate estimate',
       },
       reset: {
         fi: 'Tyhjennä',
@@ -262,34 +262,60 @@ class HelfiCalculator {
     }
   }
 
-  renderResult(result) {
-    let resultClass;
-    if (result.error) {
-      resultClass = 'hds-notification--error';
-    } else if (result.alert) {
-      resultClass = 'hds-notification--alert';
-    } else if (result.info) {
-      resultClass = 'hds-notification--info';
-    }
-
+  renderNotification(element, notificationClass, result) {
     let message = result.message;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
-    document.querySelector(`#${this.id} .helfi-calculator-result`).innerHTML = `
-        <section aria-label="Notification" class="hds-notification ${resultClass}">
-          <div class="hds-notification__content">
-            <div class="hds-notification__label" role="heading" aria-level="2">
-              <span>${result.title}</span>
-            </div>
-            <div class="hds-notification__body">${message}</div>
-          </div>
-        </section>`;
+    element.innerHTML = `
+      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+        <div class="hds-notification__content">
+          <h2 class="hds-notification__label">
+            <span>${result.title}</span>
+          </h2>
+          <div class="hds-notification__body">${message}</div>
+        </div>
+      </section>`;
+  }
+
+  renderReceipt(element, notificationClass, result) {
+    let message = result.message;
+    if (Array.isArray(result.message) && result.message.length > 1) {
+      message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
+    }
+
+    element.innerHTML = `
+      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+        <div class="hds-notification__content">
+          <h2 class="hds-notification__label">
+            <span>${result.title}</span>
+          </h2>
+          <div class="hds-notification__body">${message}</div>
+        </div>
+      </section>`;
+  }
+
+  renderResult(result) {
+    if (result.error) {
+      this.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error);
+      const titleElem = document.querySelector(`#${this.id} .helfi-calculator-notification--error .hds-notification__label`);
+      titleElem.setAttribute('tabindex', '0');
+      titleElem.focus();
+      titleElem.scrollIntoViewIfNeeded();
+      titleElem.setAttribute('tabindex', '-1');
+    }
+
+    if (result.alert) {
+      this.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
+    } else if (result.info) {
+      this.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
+    }
   }
 
   clearResult() {
-    document.querySelector(`#${this.id} .helfi-calculator-result`).innerHTML = '';
+    document.querySelector(`#${this.id} .helfi-calculator-notification--error`).innerHTML = '';
+    document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = '';
   }
 
   init({ id, form_data, eventHandlers }) {
@@ -297,6 +323,7 @@ class HelfiCalculator {
 
     this.templates = {
       form: `
+        <div class="helfi-calculator-notification helfi-calculator-notification--error" aria-live="polite" aria-atomic="true"></div>
         <form class="helfi-calculator">
           {{#form_items}}
             {{>form_item}}
@@ -306,7 +333,7 @@ class HelfiCalculator {
             <input type="reset" value="{{#reset}}{{reset}}{{/reset}}{{^reset}}${this.translate('reset')}{{/reset}}" class="hds-button hds-button--secondary">
           </div>
         </form>
-        <div class="helfi-calculator-result" aria-live="polite" aria-atomic="true"></div>
+        <div class="helfi-calculator-notification helfi-calculator-notification--result" aria-live="polite" aria-atomic="true"></div>
       `,
       partials: {
         form_item: `
