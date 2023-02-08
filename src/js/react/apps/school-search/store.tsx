@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import GlobalSettings from './enum/GlobalSettings';
+import SearchParams from './types/SearchParams';
 
 export const configurationsAtom = atom(async() => {
   const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
@@ -10,25 +11,43 @@ export const configurationsAtom = atom(async() => {
 });
 
 const initializeAddressQuery = () => {
-  const { serviceMapUrl } = GlobalSettings;
+  const { coordinatesBaseUrl } = GlobalSettings;
 
-  const baseUrl = new URL(serviceMapUrl);
-  return baseUrl.toString();
+  const baseUrl = new URL(coordinatesBaseUrl);
+  return {
+    address: null,
+    coordsUrl: baseUrl.toString()
+  };
 };
 
-export const addressQueryAtom = atom<string>(initializeAddressQuery());
-
-export const updateAddressQueryAtom = atom(
+type addressQueries = {
+  address: string|null;
+  coordsUrl: string;
+};
+export const addressQueriesAtom = atom<addressQueries>(initializeAddressQuery());
+export const updateAddressQueriesAtom = atom(
   null,
   (get, set, address: string) => {
-    const current = get(addressQueryAtom);
-    const url = new URL(current);
+    const current = get(addressQueriesAtom);
+    const url = new URL(current.coordsUrl);
     const params = new URLSearchParams(url.search);
-    params.set('address', address);
+    params.set('q', address);
     url.search = params.toString();
 
-    set(addressQueryAtom, url.toString());
+    set(addressQueriesAtom, {
+      address,
+      coordsUrl: url.toString()
+    });
   }
 );
+
+export const paramsAtom = atom<SearchParams>({});
+export const updateParamsAtom = atom(null, (get, set, params: SearchParams) => {
+  if (params.keyword) {
+    set(updateAddressQueriesAtom, params.keyword);
+  }
+
+  set(paramsAtom, params);
+});
 
 export default configurationsAtom;

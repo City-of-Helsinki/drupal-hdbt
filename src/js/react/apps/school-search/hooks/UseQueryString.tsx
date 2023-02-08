@@ -1,9 +1,12 @@
+import BooleanQuery from '@/types/BooleanQuery';
 import GlobalSettings from '../enum/GlobalSettings';
+import UseAddressQuery from './UseAddressQuery';
 
 const UseQueryString = () => {
   const { size } = GlobalSettings;
+  const { ids } = UseAddressQuery();
 
-  const query = {
+  const query: BooleanQuery = {
     bool: {
       filter: [
         {
@@ -14,6 +17,16 @@ const UseQueryString = () => {
       ],
     }
   };
+
+  if (ids && ids.length) {
+    query.bool.must = [
+      {
+        terms: {
+          id: ids
+        }
+      }
+    ];
+  }
 
   return JSON.stringify({
     query,
