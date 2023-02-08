@@ -7,12 +7,15 @@ export default class AccordionItem {
   static closeElement = 'accordion-item__button--close';
 
   static ariaExpandedElements = [
-    'accordion-item__button--toggle', 'helfi-accordion__content', 'accordion-item__button--close'
+    'accordion-item__button--toggle', 'accordion-item__button--close'
   ];
+
+  static contentElement = 'accordion-item__content';
 
   constructor(element, isOpen = false) {
     this.isOpen = isOpen;
     this.element = element;
+    this.setHidden();
     this.addEventListeners();
 
     // Open accordion element by anchor link.
@@ -29,12 +32,14 @@ export default class AccordionItem {
   open = () => {
     this.isOpen = true;
     this.setAriaOpen();
+    this.setHidden();
   };
 
   close = ()  => {
     this.isOpen = false;
     this.setAriaOpen();
     this.changeFocus();
+    this.setHidden();
   };
 
   toggle = (event) => {
@@ -50,8 +55,7 @@ export default class AccordionItem {
     const {hash} = window.location;
     if (!hash) return;
     if (this.element.querySelector(hash)) {
-      this.isOpen = true;
-      this.setAriaOpen();
+      this.open();
       this.element.scrollIntoView();
     }
   };
@@ -62,6 +66,16 @@ export default class AccordionItem {
     });
   };
 
+  setHidden = () => {
+    const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
+    if (this.isOpen) {
+      contentElement.classList.remove('is-hidden');
+    }
+    else {
+      contentElement.classList.add('is-hidden');
+    }
+  };
+
   changeFocus = () => {
     this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
   };
@@ -69,6 +83,8 @@ export default class AccordionItem {
   addEventListeners = () => {
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mousedown', this.toggle);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
+
+    // this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('focus', this.toggle);
 
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('mousedown', this.close);
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('keypress', this.close);
