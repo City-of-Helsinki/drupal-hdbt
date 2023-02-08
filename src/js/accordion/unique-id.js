@@ -35,9 +35,7 @@ export function generateUniqueId(id, array, index = 1) {
  * @return {String[]} Array of unique ids.
  */
 export function createListOfUniqueIds(accordions) {
-  return accordions.map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')).map(item => item.dataset.accordionId))
-    .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
-    .reduce((accumulator, currentValue) => {
+  return accordions.reduce((accumulator, currentValue) => {
       const newId = accumulator.includes(currentValue) ? generateUniqueId(currentValue, accumulator) : currentValue;
       accumulator.push(newId);
       return accumulator;
