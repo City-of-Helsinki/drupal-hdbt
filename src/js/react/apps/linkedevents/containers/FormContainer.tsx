@@ -9,7 +9,19 @@ import CheckboxFilter from '../components/CheckboxFilter';
 import SelectionsContainer from './SelectionsContainer';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import { pageAtom, queryBuilderAtom, settingsAtom, urlAtom, titleAtom, submitValueAtom, freeFilterAtom, remoteFilterAtom, startDateAtom, endDateAtom, endDisabledAtom } from '../store';
+import {
+  pageAtom,
+  queryBuilderAtom,
+  settingsAtom,
+  urlAtom,
+  titleAtom,
+  submitValueAtom,
+  freeFilterAtom,
+  remoteFilterAtom,
+  startDateAtom,
+  endDateAtom,
+  endDisabledAtom
+} from '../store';
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -43,9 +55,9 @@ function FormContainer({ loading }: {
     invalidEndDate: false,
     invalidStartDate: false,
   });
-  const [endDisabled, disableEnd] = useAtom(endDisabledAtom);
   const [startDate, setStartDate] = useAtom(startDateAtom);
   const [endDate, setEndDate] = useAtom(endDateAtom);
+  const [endDisabled, disableEnd] = useAtom(endDisabledAtom);
   const [freeFilter, setFreeFilter] = useAtom(freeFilterAtom);
   const [remoteFilter, setRemoteFilter] = useAtom(remoteFilterAtom);
   const [submitValue, setSubmitValue] = useAtom(submitValueAtom);

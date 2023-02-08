@@ -11,13 +11,30 @@ import {
   freeFilterAtom,
   remoteFilterAtom,
   startDateAtom,
-  endDisabledAtom,
+  endDateAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
+import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
+import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 
 type SelectionsContainerProps = {
   submitValue: number;
+};
+
+const getTitle = ({ startDate, endDate }: DateSelectDateTimes): string => {
+  if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
+    return Drupal.t('All', {}, { context: '' });
+  }
+
+  if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
+    return startDate.toFormat(HDS_DATE_FORMAT);
+  }
+
+  if ((!startDate || !startDate.isValid) && endDate?.isValid) {
+    return `- ${endDate.toFormat(HDS_DATE_FORMAT)}`;
+  }
+  return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;
 };
 
 const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
@@ -25,8 +42,8 @@ const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
   const freeFilter = useAtomValue(freeFilterAtom);
   const remoteFilter = useAtomValue(remoteFilterAtom);
   const locationOptions = useAtomValue(locationAtom);
-  // const startDate = useAtomValue(startDateAtom);
-  // const endDate = useAtomValue(endDisabledAtom);
+  const startDate = useAtomValue(startDateAtom);
+  const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const resetForm = useSetAtom(resetFormAtom);
   const setUrl = useSetAtom(urlAtom);
@@ -42,6 +59,8 @@ const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
     setUrl(queryBuilder.updateUrl());
     resetForm();
   };
+
+  const title = getTitle({ startDate, endDate });
 
   return (
     <div className='hdbt-search__selections-wrapper'>
@@ -115,7 +134,7 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
     const index = newValue.findIndex((selection: OptionType) => selection.value === value);
     newValue.splice(index, 1);
     updater(newValue);
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: newValue.map((location: any) => location.value).join(',') });
+    queryBuilder.setParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     setUrl(queryBuilder.updateUrl());
   };
 
@@ -159,29 +178,9 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
   );
 };
 
-// type SingleFilterProps = {
-//   atom: WritableAtom<OptionType | null, SetStateAction<OptionType | null>, void>;
-//   valueKey: string;
-//   label: string;
-// };
+const dateFilterPill = () => {
 
-// const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
-//   const setValue = useSetAtom(atom);
-//   // const urlParams = useAtomValue(urlAtom);
-//   // const setUrlParams = useSetAtom(urlUpdateAtom);
-
-//   // const { language, ...updatedParams } = urlParams;
-
-//   return (
-//     <FilterButton
-//       value={label}
-//       clearSelection={() => {
-//         // setUrlParams(updatedParams);
-//         setValue(null);
-//       }}
-//     />
-//   );
-// };
+};
 
 type FilterButtonProps = {
   value: string;
