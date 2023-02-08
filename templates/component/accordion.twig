@@ -8,9 +8,11 @@
 
 {{ attach_library('hdbt/accordion') }}
 
+{% set controlled_content_id = "accordion-item-content--" ~ random() %}
+
 <div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
   <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
-    <button class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button">
+    <button class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button" aria-expanded="true" aria-controls="{{ controlled_content_id }}">
       {% if heading_icon %}
         <div class="accordion-item__icon">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: heading_icon} %}
@@ -19,14 +21,12 @@
       {{ heading|default('Missing heading'|t) }}
     </button>
   </{{ heading_level|default('h2')}}>
-  <div class="accordion-item__content helfi-accordion__content">
+  <div class="accordion-item__content helfi-accordion__content" id="{{ controlled_content_id }}">
     <div class="accordion-item__content__inner helfi-accordion__content__inner">
 
       {{ content|default('Missing content'|t) }}
 
-
-
-      <button class="accordion-item__button accordion-item__button--close">
+      <button class="accordion-item__button accordion-item__button--close" aria-expanded="true" aria-controls="{{ controlled_content_id }}">
         {% if heading_icon %}
           <div class="accordion-item__icon">
             {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-up'} %}
