@@ -6,7 +6,9 @@ export default class AccordionItem {
 
   static closeElement = 'accordion-item__button--close';
 
-  static ariaExpandedElement = 'accordion-item__button--toggle';
+  static ariaExpandedElements = [
+    'accordion-item__button--toggle', 'helfi-accordion__content', 'accordion-item__button--close'
+  ];
 
   constructor(element, isOpen = false) {
     this.isOpen = isOpen;
@@ -55,7 +57,9 @@ export default class AccordionItem {
   };
 
   setAriaOpen = () => {
-    this.element.getElementsByClassName(AccordionItem.ariaExpandedElement)[0].setAttribute('aria-expanded', this.isOpen);
+    AccordionItem.ariaExpandedElements.forEach((className) => {
+      this.element.getElementsByClassName(className)[0].setAttribute('aria-expanded', this.isOpen);
+    });
   };
 
   changeFocus = () => {
