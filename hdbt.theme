@@ -58,7 +58,7 @@ function hdbt_get_theme_color_override() {
   if (!isset($color)) {
     $color = FALSE;
     if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
-      $page_entity = hdbt_content_get_page_entity();
+      $page_entity = hdbt_admin_tools_get_page_entity();
       if (
         !empty($page_entity) &&
         $page_entity instanceof ContentEntityInterface &&
@@ -216,7 +216,7 @@ function hdbt_preprocess_page(&$variables) {
   }
 
   // Check if current entity is published and set variable accordingly.
-  $page_entity = hdbt_content_get_page_entity();
+  $page_entity = hdbt_admin_tools_get_page_entity();
   if (
     $page_entity instanceof ContentEntityInterface &&
     method_exists($page_entity, 'isPublished')
@@ -533,7 +533,7 @@ function hdbt_preprocess_block(&$variables) {
 
   // Handle Page title block.
   if ($variables['plugin_id'] == 'page_title_block') {
-    $page_entity = hdbt_content_get_page_entity();
+    $page_entity = hdbt_admin_tools_get_page_entity();
 
     if ($page_entity instanceof ContentEntityInterface) {
       // Retrieve possible overridden value for page title block.
@@ -566,7 +566,7 @@ function hdbt_preprocess_block(&$variables) {
       $original_link = $current_level_menu_item['original_link'];
       $parent = $original_link->getParent();
       $menu_link_manager = Drupal::service('plugin.manager.menu.link');
-      $page_entity = hdbt_content_get_page_entity();
+      $page_entity = hdbt_admin_tools_get_page_entity();
 
       // Compare the current page menu link and parent menu link.
       if (!empty($page_entity) && $page_entity instanceof ContentEntityInterface) {
@@ -629,7 +629,7 @@ function hdbt_preprocess_breadcrumb(&$variables) {
   // If current entity has short title field set, use it to override
   // current page breadcrumb.
   if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
-    $page_entity = hdbt_content_get_page_entity();
+    $page_entity = hdbt_admin_tools_get_page_entity();
     if (
       !empty($page_entity) &&
       $page_entity instanceof ContentEntityInterface &&
