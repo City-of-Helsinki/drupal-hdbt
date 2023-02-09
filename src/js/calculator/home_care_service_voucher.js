@@ -13,7 +13,7 @@ class HomeCareServiceVoucher {
     const get_form_data = () => {
       return {
         form_id: this.id,
-        form_items: [
+        items: [
           {
             input_integer: {
               id: 'household_size',

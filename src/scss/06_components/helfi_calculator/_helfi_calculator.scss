@@ -5,7 +5,7 @@
     }
   }
 
-  .helfi-calculator__item,
+  .helfi-calculator__item:not(:first-child),
   .helfi-calculator__buttons {
     margin-top: $spacing-and-half;
   }
@@ -19,6 +19,10 @@
       flex-direction: row;
       flex-wrap: wrap;
     }
+  }
+
+  .helfi-calculator__item hr {
+    background-color: $color-black-70;
   }
 
   .helfi-calculator-notification {
@@ -44,12 +48,15 @@
     margin-right: $spacing-half;
   }
 
-  .required {
+  .input--required label[aria-labelledby]::after,
+  .input--required legend[aria-labelledby]::after {
     color: $color-error;
+    content: '*' / '';
   }
 
   .helfi-calculator__group {
-    border-left: $spacing-half solid $color-black-10;
+    border-left: $spacing-half solid $color-black-20;
+    margin-left: 10px; // 8px from design + 2px from HDS fieldset style, so that radiobuttons center match this center
     padding-left: $spacing-and-half;
   }
 
@@ -59,5 +66,53 @@
 
   [data-hide-group='true'] {
     display: none;
+  }
+
+  .helfi-calculator__dynamic-area__slots + button {
+    margin-top: 24px;
+  }
+
+  .helfi-calculator__dynamic-slot {
+    border: 1px solid $color-black-90;
+    padding: $spacing-double $spacing-and-half;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child {
+    margin-top: 0;
+  }
+
+  // For some unknown reason HDS does not include styles for helper-texts with radiobuttons.
+  .hds-selection-group .hds-text-input__helper-text {
+    color: $color-black-60;
+    display: block;
+    font-size: var(--fontsize-body-m);
+    line-height: var(--lineheight-l);
+    margin-top: $spacing-half;
+    white-space: pre-line;
+  }
+
+  .helfi-calculator__dynamic-remove-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .helfi-calculator__dynamic-remove {
+    @include font('special.helper_text');
+    border-color: transparent;
+    margin-bottom: - $spacing-and-half;
+    margin-right: - $spacing;
+
+    .hds-button__label {
+      padding-right: 0;
+    }
   }
 }

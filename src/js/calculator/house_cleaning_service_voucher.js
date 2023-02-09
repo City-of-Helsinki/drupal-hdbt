@@ -32,7 +32,7 @@ class HouseCleaningServiceVoucher {
     const get_form_data = () => {
       return {
         form_id: this.id,
-        form_items: [
+        items: [
           {
             input_float: {
               id: 'gross_income_per_month',

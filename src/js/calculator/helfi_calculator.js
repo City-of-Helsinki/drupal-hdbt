@@ -17,6 +17,11 @@ class HelfiCalculator {
         sv: 'i personer',
         en: 'persons',
       },
+      unit_person: {
+        fi: 'päivää',
+        sv: null,
+        en: null,
+      },
       unit_hour: {
         fi: 'tuntia',
         sv: 'i timmar',
@@ -43,6 +48,11 @@ class HelfiCalculator {
         en: '€ ${amount}',
 
       },
+      required: {
+        fi: '(Pakollinen kenttä)',
+        sv: null,
+        en: null,
+      },
       calculate: {
         fi: 'Laske arvio',
         sv: 'Beräkna uppskattningen',
@@ -59,39 +69,39 @@ class HelfiCalculator {
         en: 'Missing information',
       },
       select_radio: {
-        fi: 'Valitse "${fieldName}"',
+        fi: 'Valitse "${labelText}"',
         sv: null,
-        en: 'Select "${fieldName}"',
+        en: 'Select "${labelText}"',
       },
       enter_value: {
-        fi: 'Täytä "${fieldName}"',
+        fi: 'Täytä "${labelText}"',
         sv: null,
-        en: 'Enter "${fieldName}"',
+        en: 'Enter "${labelText}"',
       },
       must_be_number: {
-        fi: '${fieldName} pitää olla numero',
+        fi: '${labelText} pitää olla numero',
         sv: null,
-        en: '${fieldName} must be a number',
+        en: '${labelText} must be a number',
       },
       must_be_whole_number: {
-        fi: '${fieldName} pitää olla kokonaisluku',
+        fi: '${labelText} pitää olla kokonaisluku',
         sv: null,
-        en: '${fieldName} must be a whole number',
+        en: '${labelText} must be a whole number',
       },
       min_or_max_out_of_bounds: {
-        fi: '${fieldName} pitää olla väliltä ${min} ja ${max}',
+        fi: '${labelText} pitää olla väliltä ${min} ja ${max}',
         sv: null,
-        en: '${fieldName} must be between ${min} and ${max}',
+        en: '${labelText} must be between ${min} and ${max}',
       },
       min_out_of_bounds: {
-        fi: '${fieldName} pitää olla ${min} tai enemmän',
+        fi: '${labelText} pitää olla ${min} tai enemmän',
         sv: null,
-        en: '${fieldName} must be ${min} or more',
+        en: '${labelText} must be ${min} or more',
       },
       max_out_of_bounds: {
-        fi: '${fieldName} pitää olla ${max} tai vähemmän',
+        fi: '${labelText} pitää olla ${max} tai vähemmän',
         sv: null,
-        en: '${fieldName} must be ${max} or fewer',
+        en: '${labelText} must be ${max} or fewer',
       },
       result: {
         fi: 'Lopputulos',
@@ -191,12 +201,12 @@ class HelfiCalculator {
       throw `Element #${elemID}_${this.id} missing from ${this.name} at validateBasics`;
     }
 
-    const fieldName = document.querySelector(`#label_${elem.id}`)?.innerText || elem.id;
+    const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
 
     if (elem.dataset?.type === 'radio') {
       const checked = elem.querySelector('input:checked');
       if (!checked && elem.dataset.required) {
-        return [this.translate('select_radio', { fieldName: fieldName })];
+        return [this.translate('select_radio', { labelText: labelText })];
       }
     }
 
@@ -210,7 +220,7 @@ class HelfiCalculator {
 
       // Check that required input has value
       if (elem.value === 'undefined' || elem.value === '') {
-        return [this.translate('enter_value', { fieldName: fieldName })];
+        return [this.translate('enter_value', { labelText: labelText })];
       }
 
       const elemValue = elem.value.replace(',', '.');
@@ -218,29 +228,29 @@ class HelfiCalculator {
       // Check if it's an integer number
       const integerRegex = /^-?([1-9][0-9]*|0)$/;
       if (elem.dataset.type === 'input_integer' && !integerRegex.test(elemValue)) {
-        return [this.translate('must_be_whole_number', { fieldName: fieldName })];
+        return [this.translate('must_be_whole_number', { labelText: labelText })];
       }
 
       // Check if it's a decimal number or integer
       const floatRegex = /^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;
       if (elem.dataset.type === 'input_float' && !floatRegex.test(elemValue)) {
-        return [this.translate('must_be_number', { fieldName: fieldName })];
+        return [this.translate('must_be_number', { labelText: labelText })];
       }
 
       // If both bounds are set
       if (typeof elem.dataset.min !== 'undefined' && typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue) || elemValue > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('min_or_max_out_of_bounds', { fieldName: fieldName, min: elem.dataset.min, max: elem.dataset.max })];
+          return [this.translate('min_or_max_out_of_bounds', { labelText: labelText, min: elem.dataset.min, max: elem.dataset.max })];
         }
         // Less than min
       } else if (typeof elem.dataset.min !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue)) {
-          return [this.translate('min_out_of_bounds', { fieldName: fieldName, min: elem.dataset.min })];
+          return [this.translate('min_out_of_bounds', { labelText: labelText, min: elem.dataset.min })];
         }
         // More than max
       } else if (typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elemValue) > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('max_out_of_bounds', { fieldName: fieldName, max: elem.dataset.max })];
+          return [this.translate('max_out_of_bounds', { labelText: labelText, max: elem.dataset.max })];
         }
       }
     }
@@ -325,9 +335,10 @@ class HelfiCalculator {
       form: `
         <div class="helfi-calculator-notification helfi-calculator-notification--error" aria-live="polite" aria-atomic="true"></div>
         <form class="helfi-calculator">
-          {{#form_items}}
+          <span class="is-hidden" id="required_{{form_id}}">${this.translate('required')}</span>
+          {{#items}}
             {{>form_item}}
-          {{/form_items}}
+          {{/items}}
           <div class="helfi-calculator__buttons">
             <input type="submit" enterkeyhint="done" value="{{#submit}}{{submit}}{{/submit}}{{^submit}}${this.translate('calculate')}{{/submit}}" class="hds-button hds-button--primary">
             <input type="reset" value="{{#reset}}{{reset}}{{/reset}}{{^reset}}${this.translate('reset')}{{/reset}}" class="hds-button hds-button--secondary">
@@ -339,8 +350,10 @@ class HelfiCalculator {
         form_item: `
           <div class="helfi-calculator__item">
             {{#group}}{{>group}}{{/group}}
+            {{#dynamic_area}}{{>dynamic_area}}{{/dynamic_area}}
             {{#heading}}{{>heading}}{{/heading}}
             {{#paragraph}}{{>paragraph}}{{/paragraph}}
+            {{#hr}}{{>hr}}{{/hr}}
             {{#input}}{{>input}}{{/input}}
             {{#input_integer}}{{>input_integer}}{{/input_integer}}
             {{#input_float}}{{>input_float}}{{/input_float}}
@@ -351,6 +364,7 @@ class HelfiCalculator {
           <div class="helfi-calculator__item">
             {{#heading}}{{>heading}}{{/heading}}
             {{#paragraph}}{{>paragraph}}{{/paragraph}}
+            {{#hr}}{{>hr}}{{/hr}}
             {{#input}}{{>input}}{{/input}}
             {{#input_integer}}{{>input_integer}}{{/input_integer}}
             {{#input_float}}{{>input_float}}{{/input_float}}
@@ -359,9 +373,31 @@ class HelfiCalculator {
         `,
         group: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__group" {{#hide_group}}data-hide-group="true"{{/hide_group}}>
-            {{#group_items}}
-              {{>group_item}}
-            {{/group_items}}
+            {{#items}}
+              {{>form_item}}
+            {{/items}}
+          </div>
+        `,
+        dynamic_slot: `
+          <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot">
+            {{#items}}
+              {{>form_item}}
+            {{/items}}
+            {{#remove_label}}
+              <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--secondary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
+            {{/remove_label}}
+          </div>
+        `,
+        dynamic_area: `
+          <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-area">
+            <div id="slots_{{id}}_{{form_id}}" class="helfi-calculator__dynamic-area__slots">
+              {{#dynamic_slots}}
+                {{>dynamic_slot}}
+              {{/dynamic_slots}}
+            </div>
+            {{#add_button_label}}
+              <button class="hds-button hds-button--secondary"><span class="hel-icon hel-icon--plus" role="img" aria-hidden="true"></span><span class="hds-button__label">{{add_button_label}}</span></button>
+            {{/add_button_label}}
           </div>
         `,
         heading: `
@@ -370,9 +406,12 @@ class HelfiCalculator {
         paragraph: `
           <p>{{text}}</p>
         `,
+        hr: `
+          <hr>
+        `,
         input: `
-          <div class="form-item hds-text-input">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}">{{label}}{{#unit}} ({{unit}}){{/unit}}{{#required}}<span aria-label="required" class="required">*</span>{{/required}}</label>{{/label}}
+          <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="{{type}}"
@@ -394,8 +433,8 @@ class HelfiCalculator {
           </div>
         `,
         input_integer: `
-          <div class="form-item hds-text-input">
-            <label class="hds-text-input__label" for="{{id}}_{{form_id}}"><span id="label_{{id}}_{{form_id}}">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}<span aria-label="required" class="required">*</span>{{/required}}</label>
+          <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"
@@ -416,8 +455,8 @@ class HelfiCalculator {
           </div>
         `,
         input_float: `
-          <div class="form-item hds-text-input">
-            <label class="hds-text-input__label" for="{{id}}_{{form_id}}"><span id="label_{{id}}_{{form_id}}">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}<span aria-label="required" class="required">*</span>{{/required}}</label>
+          <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"${''/* We can not use numeric here, nor can we use inputmode decimal https://design-system.service.gov.uk/components/text-input/#asking-for-decimal-numbers */}
@@ -429,7 +468,6 @@ class HelfiCalculator {
                 {{#size}}size="{{size}}"{{/size}}
                 {{#maxlength}}maxlength="{{maxlength}}"{{/maxlength}}
                 {{#required}}data-required="required"{{/required}}
-                {{#label}}data-label="{{label}}"{{/label}}
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
             </div>
@@ -441,13 +479,14 @@ class HelfiCalculator {
               data-type="radio"
               id="{{id}}_{{form_id}}"
               {{#required}}data-required="true"{{/required}}
-              class="hds-selection-group">
-            <legend class="hds-selection-group__legend"><span id="label_{{id}}_{{form_id}}">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}<span aria-label="required" class="required">*</span>{{/required}}</legend>
+              class="hds-selection-group {{#required}}input--required{{/required}}">
+            {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</legend>{{/label}}
             <div class="hds-selection-group__items">
               {{#radio_items}}
                 {{>radio_item}}
               {{/radio_items}}
             </div>
+            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
           </fieldset>
         `,
         radio_item: `
@@ -468,9 +507,32 @@ class HelfiCalculator {
       }
     };
 
+    function addNullNestedProperties(obj) {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const value = obj[key];
+          if (typeof value === 'object') {
+            addNullNestedProperties(value);
+            if (!value.hasOwnProperty('items')) {
+              value.items = null;
+            }
+            if (!value.hasOwnProperty('group')) {
+              value.group = null;
+            }
+            if (!value.hasOwnProperty('dynamic_area')) {
+              value.dynamic_area = null;
+            }
+          }
+        }
+      }
+    }
+
+    addNullNestedProperties(form_data);
+    const processed_data = form_data;
+
     const render = Mustache.render(
       this.templates.form,
-      form_data,
+      processed_data,
       this.templates.partials,
     );
 

@@ -13,7 +13,7 @@ class HomeCareClientPayment {
     const get_form_data = () => {
       return {
         form_id: this.id,
-        form_items: [
+        items: [
           {
             input_integer: {
               id: 'household_size',
@@ -148,7 +148,7 @@ class HomeCareClientPayment {
             group: {
               id: 'foodservice_group_1',
               hide_group: true,
-              group_items: [
+              items: [
                 {
                   radio: {
                     id: 'foodservice_group_1_delivery_fee',
@@ -210,7 +210,7 @@ class HomeCareClientPayment {
               id: 'foodservice_group_2',
               label: this.t('foodservice_group_2'),
               hide_group: true,
-              group_items: [
+              items: [
                 {
                   radio: {
                     id: 'foodservice_group_2_delivery_fee',
@@ -251,7 +251,7 @@ class HomeCareClientPayment {
               id: 'foodservice_group_3',
               label: this.t('foodservice_group_3'),
               hide_group: true,
-              group_items: [
+              items: [
                 {
                   radio: {
                     id: 'foodservice_group_3_meal_price',
