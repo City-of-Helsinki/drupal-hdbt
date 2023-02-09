@@ -1,17 +1,18 @@
 export default class State {
 
   constructor() {
-    const { site } = window.drupalSettings.path.pathPrefix.match('/(.*?)/')[0];
+    this.site = window.drupalSettings.path.pathPrefix.match('/(.*?)/').shift().replaceAll('/', '');
     this.page = window.drupalSettings.path.currentPath;
 
     const siteAccordions = JSON.parse(localStorage.getItem(this.getStorageKey()));
     if (siteAccordions === null) {
+      this.siteAccordionStates = {};
       this.siteAccordionStates[this.page] = {};
+      this.pageAccordionStates = {};
     } else {
       this.siteAccordionStates = siteAccordions;
       this.pageAccordionStates = this.siteAccordionStates[this.page] === undefined ? {} : this.siteAccordionStates[this.page];
     }
-
   }
 
   getStorageKey = () => `${this.site}-accordion`;
