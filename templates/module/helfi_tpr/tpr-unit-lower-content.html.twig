@@ -10,9 +10,20 @@
 {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
 
 {% if services_view > 0 %}
-  <div class="unit__services">
-    {{ drupal_view('unit_services', 'unit_services') }}
-  </div>
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+      'component--unit-services',
+      'component--hardcoded',
+    ]
+    }
+  %}
+    {% block component_content %}
+      <div class="unit__services">
+        {{ drupal_view('unit_services', 'unit_services') }}
+      </div>
+    {% endblock component_content %}
+  {% endembed %}
 {% endif %}
 
 {% if content.accessibility_sentences|render %}
