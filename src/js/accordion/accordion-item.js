@@ -12,9 +12,11 @@ export default class AccordionItem {
 
   static contentElement = 'accordion-item__content';
 
-  constructor(element, isOpen = false) {
-    this.isOpen = isOpen;
+  constructor(element, state) {
     this.element = element;
+    this.id = element.querySelector('h2').id;
+    this.localState = state;
+    this.isOpen = this.localState.loadItemState(this.id);
     this.setHidden();
     this.addEventListeners();
 
@@ -33,6 +35,7 @@ export default class AccordionItem {
     this.isOpen = true;
     this.setAriaOpen();
     this.setHidden();
+    this.localState.saveItemState(this.id, this.isOpen);
   };
 
   close = ()  => {
@@ -40,6 +43,7 @@ export default class AccordionItem {
     this.setAriaOpen();
     this.changeFocus();
     this.setHidden();
+    this.localState.saveItemState(this.id, this.isOpen);
   };
 
   toggle = (event) => {

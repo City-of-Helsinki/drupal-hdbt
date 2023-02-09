@@ -1,4 +1,5 @@
 import HelfiAccordion from './helfi-accordion';
+import State from './state';
 import { createListOfUniqueIds } from './unique-id';
 
 const accordionElements = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
@@ -19,8 +20,10 @@ const uniqueListOfIds = createListOfUniqueIds(allAccordionItemIds);
 
 // Initialize the accordions
 window.helfiAccordions = [];
+
+const state = new State();
 document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
-  const accordion = new HelfiAccordion(accordionElement, uniqueListOfIds);
+  const accordion = new HelfiAccordion(accordionElement, state);
   window.helfiAccordions.push(accordion);
 });
 

@@ -4,19 +4,17 @@ export default class HelfiAccordion {
 
   static accordionWrapper = 'component--accordion';
 
-  static localStateKey = 'helfi-accordion-state';
-
-  constructor(accordion) {
+  constructor(accordion, state) {
     this.accordion = accordion;
+    this.localState = state;
     this.accordionItems = [];
-    this.state = [];
     this.getAccordionLocalState();
     this.initializeAccordion();
   }
 
   initializeAccordion = () => {
     Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
-      const item = new AccordionItem(element);
+      const item = new AccordionItem(element, this.localState);
       this.accordionItems.push(item);
     });
   };
