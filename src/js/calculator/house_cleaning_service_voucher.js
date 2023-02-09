@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 class HouseCleaningServiceVoucher {
   constructor(id, settings) {
     this.id = id;
@@ -29,8 +30,7 @@ class HouseCleaningServiceVoucher {
     */
 
     // Form content
-    const get_form_data = () => {
-      return {
+    const getFormData = () => ({
         form_id: this.id,
         items: [
           {
@@ -65,8 +65,7 @@ class HouseCleaningServiceVoucher {
             },
           },
         ]
-      };
-    };
+      });
 
     // Translations
     const translations = {
@@ -112,24 +111,7 @@ class HouseCleaningServiceVoucher {
       },
     };
 
-    const eventHandlers = {
-      submit:  (event) => {
-        event.preventDefault();
-        const result = validate(this.id);
-        this.calculator.renderResult(result);
-      },
-      keydown: () => {
-        this.calculator.clearResult();
-      },
-      change: () => {
-        this.calculator.clearResult();
-      },
-      reset: () => {
-        this.calculator.clearResult();
-      },
-    };
-
-    const validate = (id) => {
+    const validate = () => {
       const defaultInfo = {
         title: 'Arvio kotihoidon asiakasmaksun avusta',
         message: 'Täytä kaikki pakolliset tiedot, ja paina "Laske arvio". Arvio mahdollisesta tuestasi tulee näkyviin tähän. Jos päivität laskurin sisältöä muista painaa "Laske arvio" uudelleen.',
@@ -150,30 +132,31 @@ class HouseCleaningServiceVoucher {
         };
       }
 
-      const household_size = this.calculator.getFieldValue('household_size');
-      const gross_income_per_month = this.calculator.getFieldValue('gross_income_per_month');
+      const householdSize = this.calculator.getFieldValue('household_size');
+      const grossIncomePerMonth = this.calculator.getFieldValue('gross_income_per_month');
 
       // Get correct data values based on family size
-      const family_data = this.settings['household_size_' + household_size];
-      if (!family_data) {
-        throw 'household_size_' + household_size + ' missing from settings';
+      const familyData = this.settings[`household_size_${  householdSize}`];
+      if (!familyData) {
+        throw new Error(`household_size_${  householdSize  } missing from settings`);
       }
 
       // Check if first level is applicable
-      if (gross_income_per_month <= family_data.first_level.max_allowed_income) {
+      if (grossIncomePerMonth <= familyData.first_level.max_allowed_income) {
         return {
           info: {
             title: this.t('result'),
-            message: this.t('info_voucher_value', { voucher_value: family_data.first_level.value }),
+            message: this.t('info_voucher_value', { voucher_value: familyData.first_level.value }),
           },
         };
 
         // Check if second level is applicable
-      } else if (gross_income_per_month <= family_data.second_level.max_allowed_income) {
+      }
+      if (grossIncomePerMonth <= familyData.second_level.max_allowed_income) {
         return {
           info: {
             title: this.t('result'),
-            message: this.t('info_voucher_value', { voucher_value: family_data.second_level.value }),
+            message: this.t('info_voucher_value', { voucher_value: familyData.second_level.value }),
           },
         };
       }
@@ -188,6 +171,22 @@ class HouseCleaningServiceVoucher {
       };
     };
 
+    const eventHandlers = {
+      submit:  (event) => {
+        event.preventDefault();
+        const result = validate(this.id);
+        this.calculator.renderResult(result);
+      },
+      keydown: () => {
+        this.calculator.clearResult();
+      },
+      change: () => {
+        this.calculator.clearResult();
+      },
+      reset: () => {
+        this.calculator.clearResult();
+      },
+    };
 
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'house_cleaning_service_voucher', translations });
@@ -200,8 +199,8 @@ class HouseCleaningServiceVoucher {
 
     // Initialize calculator
     this.calculator.init({
-      id: id,
-      form_data: get_form_data(),
+      id,
+      formData: getFormData(),
       eventHandlers,
     });
   }

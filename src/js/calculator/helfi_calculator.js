@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 const Mustache = require('mustache');
 
 class HelfiCalculator {
@@ -6,7 +7,7 @@ class HelfiCalculator {
     this.templates = null;
     this.id = null;
 
-    const global_translations = {
+    const globalTranslations = {
       unit_euro: {
         fi: 'euroa',
         sv: 'i euro',
@@ -17,7 +18,7 @@ class HelfiCalculator {
         sv: 'i personer',
         en: 'persons',
       },
-      unit_person: {
+      unit_day: {
         fi: 'päivää',
         sv: null,
         en: null,
@@ -109,7 +110,7 @@ class HelfiCalculator {
         en: 'Result',
       },
     };
-    this.translations = { ...global_translations, ...translations };
+    this.translations = { ...globalTranslations, ...translations };
   }
 
   t(key, values) {
@@ -118,21 +119,22 @@ class HelfiCalculator {
 
   translate(key, values) {
     if (!this.translations) {
-      throw 'Translations are missing';
+      throw new Error('Translations are missing');
     }
 
     // https://stackoverflow.com/a/41540381
     function index(obj, is, value) {
-      if (typeof is == 'string') {
+      if (typeof is === 'string') {
         is = is.split('.');
       }
-      if (is.length == 1 && value !== undefined) {
-        return obj[is[0]] = value;
-      } else if (is.length == 0) {
-        return obj;
-      } else {
-        return index(obj[is[0]], is.slice(1), value);
+      if (is.length === 1 && value !== undefined) {
+        obj[is[0]] = value;
+        return value;
       }
+      if (is.length === 0) {
+        return obj;
+      }
+      return index(obj[is[0]], is.slice(1), value);
     }
 
     const lang = drupalSettings.path.currentLanguage || 'fi'; // TODO: Is this lang check ok?
@@ -151,6 +153,7 @@ class HelfiCalculator {
     try {
       parsed = JSON.parse(settings);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(`Problem with ${this.name} settings:`, settings);
       throw e;
     }
@@ -160,16 +163,15 @@ class HelfiCalculator {
   getFieldValue(elemID) {
     const elem = document.querySelector(`#${elemID}_${this.id}`);
     if (!elem) {
-      throw `Element #${elemID}_${this.id} missing from ${this.name} at getFieldValue`;
+      throw new Error(`Element #${elemID}_${this.id} missing from ${this.name} at getFieldValue`);
     }
 
     if (elem.dataset?.type === 'radio') {
       const checked = elem.querySelector('input:checked');
       if (checked) {
         return checked.value;
-      } else {
-        return null;
       }
+      return null;
     }
 
     if (elem.dataset?.type === 'input_integer' || elem.dataset?.type === 'input_float') {
@@ -181,7 +183,7 @@ class HelfiCalculator {
 
       const elemValue = elem.value.replace(',', '.');
 
-      if (elem.dataset.type === 'input_integer' && Number.isNaN(Number.parseInt(elemValue))) {
+      if (elem.dataset.type === 'input_integer' && Number.isNaN(Number.parseInt(elemValue, 10))) {
         return null;
       }
 
@@ -198,7 +200,7 @@ class HelfiCalculator {
 
     const elem = document.querySelector(`#${elemID}_${this.id}`);
     if (!elem) {
-      throw `Element #${elemID}_${this.id} missing from ${this.name} at validateBasics`;
+      throw new Error(`Element #${elemID}_${this.id} missing from ${this.name} at validateBasics`);
     }
 
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
@@ -206,7 +208,7 @@ class HelfiCalculator {
     if (elem.dataset?.type === 'radio') {
       const checked = elem.querySelector('input:checked');
       if (!checked && elem.dataset.required) {
-        return [this.translate('select_radio', { labelText: labelText })];
+        return [this.translate('select_radio', { labelText })];
       }
     }
 
@@ -220,7 +222,7 @@ class HelfiCalculator {
 
       // Check that required input has value
       if (elem.value === 'undefined' || elem.value === '') {
-        return [this.translate('enter_value', { labelText: labelText })];
+        return [this.translate('enter_value', { labelText })];
       }
 
       const elemValue = elem.value.replace(',', '.');
@@ -228,29 +230,29 @@ class HelfiCalculator {
       // Check if it's an integer number
       const integerRegex = /^-?([1-9][0-9]*|0)$/;
       if (elem.dataset.type === 'input_integer' && !integerRegex.test(elemValue)) {
-        return [this.translate('must_be_whole_number', { labelText: labelText })];
+        return [this.translate('must_be_whole_number', { labelText })];
       }
 
       // Check if it's a decimal number or integer
       const floatRegex = /^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;
       if (elem.dataset.type === 'input_float' && !floatRegex.test(elemValue)) {
-        return [this.translate('must_be_number', { labelText: labelText })];
+        return [this.translate('must_be_number', { labelText })];
       }
 
       // If both bounds are set
       if (typeof elem.dataset.min !== 'undefined' && typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue) || elemValue > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('min_or_max_out_of_bounds', { labelText: labelText, min: elem.dataset.min, max: elem.dataset.max })];
+          return [this.translate('min_or_max_out_of_bounds', { labelText, min: elem.dataset.min, max: elem.dataset.max })];
         }
         // Less than min
       } else if (typeof elem.dataset.min !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue)) {
-          return [this.translate('min_out_of_bounds', { labelText: labelText, min: elem.dataset.min })];
+          return [this.translate('min_out_of_bounds', { labelText, min: elem.dataset.min })];
         }
         // More than max
       } else if (typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elemValue) > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('max_out_of_bounds', { labelText: labelText, max: elem.dataset.max })];
+          return [this.translate('max_out_of_bounds', { labelText, max: elem.dataset.max })];
         }
       }
     }
@@ -272,8 +274,8 @@ class HelfiCalculator {
     }
   }
 
-  renderNotification(element, notificationClass, result) {
-    let message = result.message;
+  static renderNotification(element, notificationClass, result) {
+    let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -289,8 +291,8 @@ class HelfiCalculator {
       </section>`;
   }
 
-  renderReceipt(element, notificationClass, result) {
-    let message = result.message;
+  static renderReceipt(element, notificationClass, result) {
+    let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -308,7 +310,7 @@ class HelfiCalculator {
 
   renderResult(result) {
     if (result.error) {
-      this.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error);
       const titleElem = document.querySelector(`#${this.id} .helfi-calculator-notification--error .hds-notification__label`);
       titleElem.setAttribute('tabindex', '0');
       titleElem.focus();
@@ -317,9 +319,9 @@ class HelfiCalculator {
     }
 
     if (result.alert) {
-      this.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
     } else if (result.info) {
-      this.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
+      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
     }
   }
 
@@ -328,7 +330,7 @@ class HelfiCalculator {
     document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = '';
   }
 
-  init({ id, form_data, eventHandlers }) {
+  init({ id, formData, eventHandlers }) {
     this.id = id;
 
     this.templates = {
@@ -508,49 +510,46 @@ class HelfiCalculator {
     };
 
     function addNullNestedProperties(obj) {
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          const value = obj[key];
-          if (typeof value === 'object') {
-            addNullNestedProperties(value);
-            if (!value.hasOwnProperty('items')) {
-              value.items = null;
-            }
-            if (!value.hasOwnProperty('group')) {
-              value.group = null;
-            }
-            if (!value.hasOwnProperty('dynamic_area')) {
-              value.dynamic_area = null;
-            }
+      const keys = Object.keys(obj);
+      for (let i = 0; i < keys.length; i++) {
+        const value = obj[keys[i]];
+        if (typeof value === 'object') {
+          addNullNestedProperties(value);
+          if (!value.hasOwnProperty('items')) {
+            value.items = null;
+          }
+          if (!value.hasOwnProperty('group')) {
+            value.group = null;
+          }
+          if (!value.hasOwnProperty('dynamic_area')) {
+            value.dynamic_area = null;
           }
         }
       }
     }
 
-    addNullNestedProperties(form_data);
-    const processed_data = form_data;
+    addNullNestedProperties(formData);
+    const processedData = formData;
 
     const render = Mustache.render(
       this.templates.form,
-      processed_data,
+      processedData,
       this.templates.partials,
     );
 
     document.getElementById(this.id).innerHTML = render;
 
-    for (const event in eventHandlers) {
-      if (Object.hasOwnProperty.call(eventHandlers, event)) {
-        document.getElementById(id).addEventListener(event, eventHandlers[event]);
-        // console.log('Started waiting for', event, '-events');
-      }
+    const events = Object.keys(eventHandlers);
+    for (let i = 0; i < events.length; i++) {
+      const event = events[i];
+      document.getElementById(id).addEventListener(event, eventHandlers[event]);
+      // console.log('Started waiting for', event, '-events');
     }
   }
 }
 
 
 // module.exports = () => new HelfiCalculator();
-window.HelfiCalculator = (translations) => {
-  return new HelfiCalculator(translations);
-};
+window.HelfiCalculator = (translations) => new HelfiCalculator(translations);
 
 

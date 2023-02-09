@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 class HomeCareClientPayment {
   constructor(id, settings) {
     this.id = id;
@@ -10,8 +11,7 @@ class HomeCareClientPayment {
     */
 
     // Form content
-    const get_form_data = () => {
-      return {
+    const getFormData = () => ({
         form_id: this.id,
         items: [
           {
@@ -198,7 +198,7 @@ class HomeCareClientPayment {
                     unit: this.t('unit_amount_per_month'),
                     required: true,
                     min: '0',
-                    max: 60, //Max comes from specs
+                    max: 60, // Max comes from specs
                     // helper_text: '',
                   },
                 },
@@ -239,7 +239,7 @@ class HomeCareClientPayment {
                     unit: this.t('unit_amount_per_month'),
                     required: true,
                     min: '0',
-                    max: 60, //Max comes from specs
+                    max: 60, // Max comes from specs
                     helper_text: 'á 5,49 €',
                   },
                 },
@@ -290,7 +290,7 @@ class HomeCareClientPayment {
                     id: 'foodservice_group_3_usage',
                     label: this.t('foodservice_group_3_usage'),
                     min: '0',
-                    max: 60, //Max comes from specs
+                    max: 60, // Max comes from specs
                     required: true,
                     helper_text: 'á 2,35 €',
                   },
@@ -300,7 +300,7 @@ class HomeCareClientPayment {
                     id: 'foodservice_group_3_meals',
                     label: this.t('foodservice_group_3_meals'),
                     min: '0',
-                    max: 60, //Max comes from specs
+                    max: 60, // Max comes from specs
                     required: true,
                     // helper_text: '',
                   },
@@ -310,8 +310,7 @@ class HomeCareClientPayment {
           },
 
         ]
-      };
-    };
+      });
 
     // Translations
     const translations = {
@@ -541,27 +540,6 @@ class HomeCareClientPayment {
       },
     };
 
-    const eventHandlers = {
-      submit:(event) => {
-        event.preventDefault();
-        const result = validate(this.id);
-        this.calculator.renderResult(result);
-      },
-      keydown: () => {
-        update();
-        this.calculator.clearResult();
-      },
-      change: () => {
-        update();
-        this.calculator.clearResult();
-      },
-      reset: () => {
-        update();
-        this.calculator.clearResult();
-      },
-    };
-
-
     const update = () => {
       const foodservice = this.calculator.getFieldValue('foodservice');
 
@@ -590,7 +568,7 @@ class HomeCareClientPayment {
       }
     };
 
-    const validate =(id) => {
+    const validate = () => {
       const errorMessages = [];
 
       errorMessages.push(...this.calculator.validateBasics('household_size'));
@@ -628,33 +606,33 @@ class HomeCareClientPayment {
       if (errorMessages.length) {
         return { error: true, title: this.t('missing_input'), message: errorMessages };
       }
-      const household_size = this.calculator.getFieldValue('household_size');
-      const monthly_usage = this.calculator.getFieldValue('monthly_usage');
-      const gross_income_per_month = this.calculator.getFieldValue('gross_income_per_month');
+      const householdSize = this.calculator.getFieldValue('household_size');
+      const monthlyUsage = this.calculator.getFieldValue('monthly_usage');
+      const grossIncomePerMonth = this.calculator.getFieldValue('gross_income_per_month');
       const phone = this.calculator.getFieldValue('phone');
-      const sauna_no_travel = this.calculator.getFieldValue('sauna_no_travel');
-      const sauna_with_travel = this.calculator.getFieldValue('sauna_with_travel');
+      const saunaNoTravel = this.calculator.getFieldValue('sauna_no_travel');
+      const saunaWithTravel = this.calculator.getFieldValue('sauna_with_travel');
       const shopping = this.calculator.getFieldValue('shopping');
 
-      const foodservice_group_1 = {};
-      const foodservice_group_2 = {};
-      const foodservice_group_3 = {};
+      const foodserviceGroup1 = {};
+      const foodserviceGroup2 = {};
+      const foodserviceGroup3 = {};
 
       // TODO: Add the algorithm
       switch (foodservice) {
       case '1':
-        foodservice_group_1.delivery_fee = this.calculator.getFieldValue('foodservice_group_1_delivery_fee');
-        foodservice_group_1.meal_price = this.calculator.getFieldValue('foodservice_group_1_meal_price');
-        foodservice_group_1.meals = this.calculator.getFieldValue('foodservice_group_1_meals');
+        foodserviceGroup1.delivery_fee = this.calculator.getFieldValue('foodservice_group_1_delivery_fee');
+        foodserviceGroup1.meal_price = this.calculator.getFieldValue('foodservice_group_1_meal_price');
+        foodserviceGroup1.meals = this.calculator.getFieldValue('foodservice_group_1_meals');
         break;
       case '2':
-        foodservice_group_2.delivery_fee = this.calculator.getFieldValue('foodservice_group_2_delivery_fee');
-        foodservice_group_2.meals = this.calculator.getFieldValue('foodservice_group_2_meals');
+        foodserviceGroup2.delivery_fee = this.calculator.getFieldValue('foodservice_group_2_delivery_fee');
+        foodserviceGroup2.meals = this.calculator.getFieldValue('foodservice_group_2_meals');
         break;
       case '3':
-        foodservice_group_3.meal_price = this.calculator.getFieldValue('foodservice_group_3_meal_price');
-        foodservice_group_3.usage = this.calculator.getFieldValue('foodservice_group_3_usage');
-        foodservice_group_3.meals = this.calculator.getFieldValue('foodservice_group_3_meals');
+        foodserviceGroup3.meal_price = this.calculator.getFieldValue('foodservice_group_3_meal_price');
+        foodserviceGroup3.usage = this.calculator.getFieldValue('foodservice_group_3_usage');
+        foodserviceGroup3.meals = this.calculator.getFieldValue('foodservice_group_3_meals');
         break;
 
       default:
@@ -664,6 +642,26 @@ class HomeCareClientPayment {
       // // Otherwise not applicable for voucher
       // return { alert: true, title: this.t('result'), message: this.t('alert_voucher_not_applicable') };
       return { alert: true, title: this.t('result'), message: 'Algorithm is missing!' };
+    };
+
+    const eventHandlers = {
+      submit: (event) => {
+        event.preventDefault();
+        const result = validate(this.id);
+        this.calculator.renderResult(result);
+      },
+      keydown: () => {
+        update();
+        this.calculator.clearResult();
+      },
+      change: () => {
+        update();
+        this.calculator.clearResult();
+      },
+      reset: () => {
+        update();
+        this.calculator.clearResult();
+      },
     };
 
     this.calculator = window.HelfiCalculator({ name: 'home_care_client_payment', translations });
@@ -686,8 +684,8 @@ class HomeCareClientPayment {
 
     // Initialize calculator
     this.calculator.init({
-      id: id,
-      form_data: get_form_data(),
+      id,
+      formData: getFormData(),
       eventHandlers,
     });
   }

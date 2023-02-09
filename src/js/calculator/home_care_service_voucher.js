@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 class HomeCareServiceVoucher {
   constructor(id, settings) {
     this.id = id;
@@ -10,8 +11,7 @@ class HomeCareServiceVoucher {
     */
 
     // Form content
-    const get_form_data = () => {
-      return {
+    const getFormData = () => ({
         form_id: this.id,
         items: [
           {
@@ -59,8 +59,7 @@ class HomeCareServiceVoucher {
             },
           },
         ]
-      };
-    };
+      });
 
     // Translations
     const translations = {
@@ -116,24 +115,7 @@ class HomeCareServiceVoucher {
       },
     };
 
-    const eventHandlers = {
-      submit: (event) => {
-        event.preventDefault();
-        const result = validate(this.id);
-        this.calculator.renderResult(result);
-      },
-      keydown: () => {
-        this.calculator.clearResult();
-      },
-      change: () => {
-        this.calculator.clearResult();
-      },
-      reset: () => {
-        this.calculator.clearResult();
-      },
-    };
-
-    const validate =(id) => {
+    const validate = () => {
       const errorMessages = [];
 
       errorMessages.push(...this.calculator.validateBasics('household_size'));
@@ -157,6 +139,23 @@ class HomeCareServiceVoucher {
       return { alert: true, title: this.t('result'), message: 'Algorithm is missing!' };
     };
 
+    const eventHandlers = {
+      submit: (event) => {
+        event.preventDefault();
+        const result = validate(this.id);
+        this.calculator.renderResult(result);
+      },
+      keydown: () => {
+        this.calculator.clearResult();
+      },
+      change: () => {
+        this.calculator.clearResult();
+      },
+      reset: () => {
+        this.calculator.clearResult();
+      },
+    };
+
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'home_care_service_voucher', translations });
 
@@ -168,8 +167,8 @@ class HomeCareServiceVoucher {
 
     // Initialize calculator
     this.calculator.init({
-      id: id,
-      form_data: get_form_data(),
+      id,
+      formData: getFormData(),
       eventHandlers,
     });
   }
