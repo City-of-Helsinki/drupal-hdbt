@@ -60,6 +60,7 @@
       width: 32px;
     }
   }
+
   &::after {
     @include rotating-icon-transition();
     background-image: icon_url('angle-down');
@@ -84,11 +85,6 @@
     outline: 3px solid $color-black;
     outline-offset: -3px;
     position: relative;
-
-    &::before {
-      box-shadow: 0 0 0 3px $color-black-90;
-      pointer-events: none;
-    }
   }
 
   &:hover {
@@ -146,27 +142,26 @@
   border-top: none;
 }
 
-
 // Grey accordion styles
 .component--accordion-bg-grey {
   .accordion-item__header {
     background-color: $color-black-5;
     border-color: $color-white;
+  }
 
-    .accordion-item__button--toggle {
-      padding: $spacing ($spacing-double + 50px) $spacing $spacing;
+  .accordion-item__button--toggle {
+    padding: $spacing ($spacing-double + 50px) $spacing $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
+    }
+
+    &::before,
+    &::after {
+      right: $spacing;
 
       @include breakpoint($breakpoint-l) {
-        padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
-      }
-
-      &::before,
-      &::after {
-        right: $spacing;
-
-        @include breakpoint($breakpoint-l) {
-          right: $spacing-and-half;
-        }
+        right: $spacing-and-half;
       }
     }
   }
