@@ -335,3 +335,11 @@ msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Sulje käyttäjä-
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
 msgstr "Puhelumaksu"
+
+msgctxt "The helper text for toggle accordion visibility button"
+msgid "Toggle element: "
+msgstr "Laajenna alue: "
+
+msgctxt "The helper text for close accordion visibility button"
+msgid "Close element: "
+msgstr "Sulje alue: "

@@ -104,7 +104,6 @@
   &:focus {
     outline: 3px solid $color-black;
     outline-offset: -3px;
-    pointer-events: none;
   }
 
   &:hover {
