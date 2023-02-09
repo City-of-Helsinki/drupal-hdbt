@@ -38,7 +38,7 @@ export default class AccordionItem {
     this.localState.saveItemState(this.id, this.isOpen);
   };
 
-  close = ()  => {
+  close = () => {
     this.isOpen = false;
     this.setAriaOpen();
     this.changeFocus();
@@ -85,7 +85,7 @@ export default class AccordionItem {
   };
 
   addEventListeners = () => {
-    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mouseup', this.toggle);
+    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mousedown', this.toggle);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
 
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('mouseup', this.close);
@@ -95,5 +95,7 @@ export default class AccordionItem {
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   };
+
+  getId = () => this.id;
 
 }

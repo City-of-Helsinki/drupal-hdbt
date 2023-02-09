@@ -23,4 +23,6 @@ export default class HelfiAccordion {
     this.state = localStorage.getItem(HelfiAccordion.localStateKey);
   };
 
+  getAccordionItemById = (id) => this.accordionItems.filter((accordionItem) => accordionItem.getId() === id);
+
 }

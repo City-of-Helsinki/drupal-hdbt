@@ -18,6 +18,24 @@ const uniqueListOfIds = createListOfUniqueIds(allAccordionItemIds);
     element.querySelector('h2').setAttribute('id', uniqueListOfIds[index]);
   });
 
+
+// listen to hash change
+window.addEventListener('hashchange', (event) => {
+  const {hash} = window.location;
+
+  const element = [...accordionElements]
+    .map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')))
+    .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
+    .filter((el) => el.querySelector('h2').dataset.accordionId === hash.replace('#', ''));
+
+  let accordionItem;
+  window.helfiAccordions.forEach((accordion)=>{
+    accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
+    accordionItem[0].open();
+  });
+
+});
+
 // Initialize the accordions
 window.helfiAccordions = [];
 
