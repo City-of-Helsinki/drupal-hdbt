@@ -27,11 +27,11 @@
           'house_cleaning_service_voucher',
           'home_care_service_voucher',
           'home_care_client_payment',
+          'daycare_payment',
         ] %}
         {#
           'service_housing_service_voucher',
           'family_with_kids_home_service_client_payment',
-          'daycare_payment',
           'oral_health_care_procedure',
          #}
 
@@ -41,6 +41,8 @@
               const clean = window.helfi_calculator.{{calculator_name}}('{{ helfi_calculator_id }}', drupalSettings.{{calculator_name}});
             });
           </script>
+        {# {% else %}
+          {{ calculator_name }} #}
         {% endif %}
 
       {% endblock component_content %}
