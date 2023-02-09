@@ -33,6 +33,7 @@
 {% set media_id = media.id() %}
 {% set media_url = media.field_media_hel_map.value.0.uri %}
 {% set media_attributes = media.field_media_hel_map %}
+{% set link = content.field_media_hel_map.0['#link'] %}
 
 {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
   media_url: media_url,
@@ -55,3 +56,4 @@
   }
 } %}
 {{ drupal_settings }}
+{{ link(link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
