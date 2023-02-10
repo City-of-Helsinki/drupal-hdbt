@@ -19,21 +19,16 @@ const uniqueListOfIds = createListOfUniqueIds(allAccordionItemIds);
   });
 
 
-// listen to hash change
+// Listen to hash change.
 window.addEventListener('hashchange', (event) => {
   const {hash} = window.location;
 
-  const element = [...accordionElements]
-    .map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')))
-    .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
-    .filter((el) => el.querySelector('h2').dataset.accordionId === hash.replace('#', ''));
-
-  let accordionItem;
-  window.helfiAccordions.forEach((accordion)=>{
-    accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
-    accordionItem[0].open();
+  window.helfiAccordions.forEach((accordion) => {
+    const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
+    if (accordionItem) {
+      accordionItem.open();
+    }
   });
-
 });
 
 // Initialize the accordions
