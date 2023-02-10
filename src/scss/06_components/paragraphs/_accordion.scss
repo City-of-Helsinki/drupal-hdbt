@@ -109,9 +109,13 @@
   &:hover {
     cursor: pointer;
   }
+
+  &::after {
+    @include pseudo-icon('angle-up', $spacing-and-half, currentColor, inline-block);
+  }
 }
 
-.accordion-item__button[aria-expanded='true'] {
+.accordion-item__button--toggle[aria-expanded='true'] {
   background-color: transparent;
 
   &::after {
