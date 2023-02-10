@@ -170,6 +170,50 @@ class HelfiCalculator {
     return parsed;
   }
 
+  getElement(elemID) {
+    const elem = document.querySelector(`#${elemID}_${this.id}`);
+    if (!elem) {
+      throw new Error(`Element #${elemID}_${this.id} missing from ${this.name} at getElement`);
+    }
+
+    return elem;
+  }
+
+  getPartialRender(template, partialData) {
+    this.preprocessData(partialData);
+
+    // console.log('template:', template);
+    // console.log('preprocessed:', partialData);
+    // console.log('partials:', this.templates.partials);
+
+    return Mustache.render(
+      template,
+      partialData,
+      this.templates.partials,
+    );
+  }
+
+  preprocessData(obj) {
+    const keys = Object.keys(obj);
+    for (let i = 0; i < keys.length; i++) {
+      const value = obj[keys[i]];
+      if (typeof value === 'object') {
+        this.preprocessData(value);
+        if (!value.hasOwnProperty('items')) {
+          value.items = null;
+        }
+        if (!value.hasOwnProperty('group')) {
+          value.group = null;
+        }
+        if (!value.hasOwnProperty('dynamic_area')) {
+          value.dynamic_area = null;
+        }
+      } else if (typeof value === 'number') {
+        obj[keys[i]] += ''; // convert numeric values to strings so that mustache does not think 0 === false and skip it.
+      }
+    }
+  }
+
   getFieldValue(elemID) {
     const elem = document.querySelector(`#${elemID}_${this.id}`);
     if (!elem) {
@@ -339,9 +383,11 @@ class HelfiCalculator {
   clearResult() {
     document.querySelector(`#${this.id} .helfi-calculator-notification--error`).innerHTML = '';
     document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = '';
+    // this.init(this.initParams);
   }
 
   init({ id, formData, eventHandlers }) {
+    this.initParams = { id, formData, eventHandlers };
     this.id = id;
 
     this.templates = {
@@ -400,12 +446,12 @@ class HelfiCalculator {
           </div>
         `,
         dynamic_slot: `
-          <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot">
+          <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot" {{#slotNumber}}data-slot-number="{{slotNumber}}"{{/slotNumber}}>
             {{#items}}
               {{>form_item}}
             {{/items}}
             {{#remove_label}}
-              <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--secondary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
+              <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--supplementary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
             {{/remove_label}}
           </div>
         `,
@@ -417,7 +463,7 @@ class HelfiCalculator {
               {{/dynamic_slots}}
             </div>
             {{#add_button_label}}
-              <button class="hds-button hds-button--secondary"><span class="hel-icon hel-icon--plus" role="img" aria-hidden="true"></span><span class="hds-button__label">{{add_button_label}}</span></button>
+              <button id="add-button_{{id}}_{{form_id}}" class="hds-button hds-button--secondary"><span class="hel-icon hel-icon--plus" role="img" aria-hidden="true"></span><span class="hds-button__label">{{add_button_label}}</span></button>
             {{/add_button_label}}
           </div>
         `,
@@ -528,28 +574,7 @@ class HelfiCalculator {
       }
     };
 
-    function preprocessData(obj) {
-      const keys = Object.keys(obj);
-      for (let i = 0; i < keys.length; i++) {
-        const value = obj[keys[i]];
-        if (typeof value === 'object') {
-          preprocessData(value);
-          if (!value.hasOwnProperty('items')) {
-            value.items = null;
-          }
-          if (!value.hasOwnProperty('group')) {
-            value.group = null;
-          }
-          if (!value.hasOwnProperty('dynamic_area')) {
-            value.dynamic_area = null;
-          }
-        } else if (typeof value === 'number') {
-          obj[keys[i]] += ''; // convert numeric values to strings so that mustache does not think 0 === false and skip it.
-        }
-      }
-    }
-
-    preprocessData(formData);
+    this.preprocessData(formData);
     const processedData = formData;
 
     const render = Mustache.render(

@@ -58,7 +58,6 @@
   }
 
   .helfi-calculator-required {
-    color: $color-error;
     font-weight: bold;
   }
 
@@ -115,7 +114,6 @@
 
   .helfi-calculator__dynamic-remove {
     @include font('special.helper_text');
-    border-color: transparent;
     margin-bottom: - $spacing-and-half;
     margin-right: - $spacing;
 

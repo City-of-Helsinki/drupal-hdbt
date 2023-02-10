@@ -12,9 +12,10 @@ class DaycarePayment {
 
     // The following getFormData uses dynamic children, so we need to define them first.
 
-    const dynamicChild = (childNumber) => {
+    const dynamicChildData = (childNumber) => {
       const child = {
         id: `child_${childNumber}`,
+        slotNumber: childNumber,
         items: [
           {
             heading: {
@@ -300,7 +301,7 @@ class DaycarePayment {
           dynamic_area: {
             id: 'first_child',
             dynamic_slots: [
-              dynamicChild(1),
+              dynamicChildData(1),
             ],
           },
         },
@@ -309,8 +310,8 @@ class DaycarePayment {
             id: 'nth_child',
             add_button_label: this.t('add_next_child'),
             dynamic_slots: [
-              // dynamicChild(2),
-              // dynamicChild(3),
+              // dynamicChildData(2),
+              // dynamicChildData(3),
             ],
           },
         },
@@ -519,42 +520,53 @@ class DaycarePayment {
       },
     };
 
+    const updateChild = (childNumber) => {
+      const daycareTypeForChild = this.calculator.getFieldValue(`daycare_type_for_child_${childNumber}`);
 
-    const update = () => {
-      const daycareTypeForChild1 = this.calculator.getFieldValue('daycare_type_for_child_1');
-
-      switch (daycareTypeForChild1) {
+      switch (daycareTypeForChild) {
         case '1':
-          this.calculator.showGroup('daycare_type_1_1_group');
-          this.calculator.hideGroup('daycare_type_2_1_group');
-          this.calculator.hideGroup('daycare_type_3_1_group');
-          this.calculator.hideGroup('daycare_type_4_1_group');
+          this.calculator.showGroup(`daycare_type_1_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_2_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_3_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_4_${childNumber}_group`);
           break;
         case '2':
-          this.calculator.hideGroup('daycare_type_1_1_group');
-          this.calculator.showGroup('daycare_type_2_1_group');
-          this.calculator.hideGroup('daycare_type_3_1_group');
-          this.calculator.hideGroup('daycare_type_4_1_group');
+          this.calculator.hideGroup(`daycare_type_1_${childNumber}_group`);
+          this.calculator.showGroup(`daycare_type_2_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_3_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_4_${childNumber}_group`);
           break;
         case '3':
-          this.calculator.hideGroup('daycare_type_1_1_group');
-          this.calculator.hideGroup('daycare_type_2_1_group');
-          this.calculator.showGroup('daycare_type_3_1_group');
-          this.calculator.hideGroup('daycare_type_4_1_group');
+          this.calculator.hideGroup(`daycare_type_1_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_2_${childNumber}_group`);
+          this.calculator.showGroup(`daycare_type_3_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_4_${childNumber}_group`);
           break;
         case '4':
-          this.calculator.hideGroup('daycare_type_1_1_group');
-          this.calculator.hideGroup('daycare_type_2_1_group');
-          this.calculator.hideGroup('daycare_type_3_1_group');
-          this.calculator.showGroup('daycare_type_4_1_group');
+          this.calculator.hideGroup(`daycare_type_1_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_2_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_3_${childNumber}_group`);
+          this.calculator.showGroup(`daycare_type_4_${childNumber}_group`);
           break;
 
         default:
-          this.calculator.hideGroup('daycare_type_1_1_group');
-          this.calculator.hideGroup('daycare_type_2_1_group');
-          this.calculator.hideGroup('daycare_type_3_1_group');
-          this.calculator.hideGroup('daycare_type_4_1_group');
+          this.calculator.hideGroup(`daycare_type_1_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_2_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_3_${childNumber}_group`);
+          this.calculator.hideGroup(`daycare_type_4_${childNumber}_group`);
           break;
+      }
+    };
+
+    const update = () => {
+      updateChild(1);
+
+      const slots = this.calculator.getElement('slots_nth_child');
+      for (let i = 0; i < slots.children.length; i++) {
+        const child = slots.children[i];
+        if (child.dataset && child.dataset.slotNumber) {
+          updateChild(child.dataset.slotNumber);
+        }
       }
     };
 
@@ -598,7 +610,15 @@ class DaycarePayment {
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
 
       errorMessages.push(...validateChildBasics(1));
-      // First child
+
+
+      const slots = this.calculator.getElement('slots_nth_child');
+      for (let i = 0; i < slots.children.length; i++) {
+        const child = slots.children[i];
+        if (child.dataset && child.dataset.slotNumber) {
+          errorMessages.push(...validateChildBasics(child.dataset.slotNumber));
+        }
+      }
 
 
 
@@ -613,7 +633,6 @@ class DaycarePayment {
         };
       }
 
-      // Otherwise not applicable for voucher
       return {
         alert: {
           title: 'TBD',
@@ -625,6 +644,7 @@ class DaycarePayment {
 
     const eventHandlers = {
       submit: (event) => {
+        this.calculator.clearResult();
         event.preventDefault();
         const result = validate();
         this.calculator.renderResult(result);
@@ -644,6 +664,34 @@ class DaycarePayment {
       },
     };
 
+    const addChild = (event) => {
+      event.preventDefault();
+
+      const slots = this.calculator.getElement('slots_nth_child');
+
+      // Initialise itemCount with slots child count.
+      slots.dataset.itemCount = slots.dataset.itemCount || slots.childElementCount;
+
+      const nextChildNumber = Number(slots.dataset.itemCount) + 2;
+      const childData = {
+        form_id: this.id,
+        dynamic_slot: dynamicChildData(nextChildNumber),
+      };
+
+      const html = this.calculator.getPartialRender(
+        `
+          {{#dynamic_slot}}
+            {{>dynamic_slot}}
+          {{/dynamic_slot}}
+        `,
+        childData,
+      );
+
+      slots.innerHTML += html;
+
+      slots.dataset.itemCount = nextChildNumber - 1;
+    };
+
 
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'daycare_payment', translations });
@@ -660,6 +708,10 @@ class DaycarePayment {
       formData: getFormData(),
       eventHandlers,
     });
+
+    // Handle addButton clicks
+    const addButton = this.calculator.getElement('add-button_nth_child');
+    addButton.addEventListener('click', addChild);
   }
 }
 
