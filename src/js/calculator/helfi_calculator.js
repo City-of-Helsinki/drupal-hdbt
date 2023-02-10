@@ -509,12 +509,12 @@ class HelfiCalculator {
       }
     };
 
-    function addNullNestedProperties(obj) {
+    function preprocessData(obj) {
       const keys = Object.keys(obj);
       for (let i = 0; i < keys.length; i++) {
         const value = obj[keys[i]];
         if (typeof value === 'object') {
-          addNullNestedProperties(value);
+          preprocessData(value);
           if (!value.hasOwnProperty('items')) {
             value.items = null;
           }
@@ -524,11 +524,13 @@ class HelfiCalculator {
           if (!value.hasOwnProperty('dynamic_area')) {
             value.dynamic_area = null;
           }
+        } else if (typeof value === 'number') {
+          obj[keys[i]] += ''; // convert numeric values to strings so that mustache does not think 0 === false and skip it.
         }
       }
     }
 
-    addNullNestedProperties(formData);
+    preprocessData(formData);
     const processedData = formData;
 
     const render = Mustache.render(
