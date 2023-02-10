@@ -89,7 +89,7 @@ class DaycarePayment {
                 },
                 {
                   input_integer: {
-                    id: 'daycare_type_1_free_days',
+                    id: `daycare_type_1_${childNumber}_free_days`,
                     label: this.t('daycare_free_days'),
                     unit: this.t('unit_day'),
                     min: 0,
@@ -142,7 +142,7 @@ class DaycarePayment {
                 },
                 {
                   input_integer: {
-                    id: 'daycare_type_2_free_days',
+                    id: `daycare_type_2_${childNumber}_free_days`,
                     label: this.t('daycare_free_days'),
                     unit: this.t('unit_day'),
                     min: 0,
@@ -195,7 +195,7 @@ class DaycarePayment {
                 },
                 {
                   input_integer: {
-                    id: 'daycare_type_3_free_days',
+                    id: `daycare_type_3_${childNumber}_free_days`,
                     label: this.t('daycare_free_days'),
                     unit: this.t('unit_day'),
                     min: 0,
@@ -507,17 +507,100 @@ class DaycarePayment {
         sv: null,
         en: null,
       },
+      default_info_title: {
+        fi: 'Täytä kaikki pakolliset tiedot, ja paina "Laske arvio".',
+        sv: null,
+        en: null,
+      },
+      default_info_message: {
+        fi: 'Arvio asiakasmaksusta tulee näkyviin tähän. Jos päivität laskurin sisältöä, muista painaa "Laske arvio" uudelleen.',
+        sv: null,
+        en: null,
+      },
+    };
+
+
+    const update = () => {
+      const daycareTypeForChild1 = this.calculator.getFieldValue('daycare_type_for_child_1');
+
+      switch (daycareTypeForChild1) {
+        case '1':
+          this.calculator.showGroup('daycare_type_1_1_group');
+          this.calculator.hideGroup('daycare_type_2_1_group');
+          this.calculator.hideGroup('daycare_type_3_1_group');
+          this.calculator.hideGroup('daycare_type_4_1_group');
+          break;
+        case '2':
+          this.calculator.hideGroup('daycare_type_1_1_group');
+          this.calculator.showGroup('daycare_type_2_1_group');
+          this.calculator.hideGroup('daycare_type_3_1_group');
+          this.calculator.hideGroup('daycare_type_4_1_group');
+          break;
+        case '3':
+          this.calculator.hideGroup('daycare_type_1_1_group');
+          this.calculator.hideGroup('daycare_type_2_1_group');
+          this.calculator.showGroup('daycare_type_3_1_group');
+          this.calculator.hideGroup('daycare_type_4_1_group');
+          break;
+        case '4':
+          this.calculator.hideGroup('daycare_type_1_1_group');
+          this.calculator.hideGroup('daycare_type_2_1_group');
+          this.calculator.hideGroup('daycare_type_3_1_group');
+          this.calculator.showGroup('daycare_type_4_1_group');
+          break;
+
+        default:
+          this.calculator.hideGroup('daycare_type_1_1_group');
+          this.calculator.hideGroup('daycare_type_2_1_group');
+          this.calculator.hideGroup('daycare_type_3_1_group');
+          this.calculator.hideGroup('daycare_type_4_1_group');
+          break;
+      }
+    };
+
+    const validateChildBasics = (childNumber) => {
+      const errorMessages = [];
+      const daycareField = `daycare_type_for_child_${childNumber}`;
+      errorMessages.push(...this.calculator.validateBasics(daycareField));
+      const daycareType = this.calculator.getFieldValue(daycareField);
+
+      switch (daycareType) {
+        case '1':
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_1_${childNumber}_group_caretime`));
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_1_${childNumber}_free_days`));
+          break;
+        case '2':
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_2_${childNumber}_group_caretime`));
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_2_${childNumber}_free_days`));
+          break;
+        case '3':
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_3_${childNumber}_group_caretime`));
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_3_${childNumber}_free_days`));
+          break;
+        case '4':
+          errorMessages.push(...this.calculator.validateBasics(`daycare_type_4_${childNumber}_group_caretime`));
+          break;
+
+        default:
+          break;
+      }
+      return errorMessages;
     };
 
     const validate = () => {
       const defaultInfo = {
-        title: 'Arvio kotihoidon asiakasmaksun avusta',
-        message: 'Täytä kaikki pakolliset tiedot, ja paina "Laske arvio". Arvio mahdollisesta tuestasi tulee näkyviin tähän. Jos päivität laskurin sisältöä muista painaa "Laske arvio" uudelleen.',
+        title: this.t('default_info_title'),
+        message: this.t('default_info_message'),
       };
       const errorMessages = [];
 
-      errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
       errorMessages.push(...this.calculator.validateBasics('household_size'));
+      errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
+
+      errorMessages.push(...validateChildBasics(1));
+      // First child
+
+
 
       // Check if any missing input errors were found
       if (errorMessages.length) {
@@ -529,21 +612,34 @@ class DaycarePayment {
           info: defaultInfo,
         };
       }
+
+      // Otherwise not applicable for voucher
+      return {
+        alert: {
+          title: 'TBD',
+          message: 'TBD',
+        },
+        info: defaultInfo,
+      };
     };
 
     const eventHandlers = {
       submit: (event) => {
         event.preventDefault();
-        const result = validate(this.id);
+        const result = validate();
         this.calculator.renderResult(result);
       },
       keydown: () => {
-        this.calculator.clearResult();
+        update();
+        // this.calculator.clearResult();
       },
       change: () => {
-        this.calculator.clearResult();
+        update();
+        // this.calculator.clearResult();
+        validate();
       },
       reset: () => {
+        window.setTimeout(update, 1);
         this.calculator.clearResult();
       },
     };
