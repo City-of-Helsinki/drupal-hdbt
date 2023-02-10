@@ -1,4 +1,13 @@
 .helfi-calculator {
+  .helfi-calculator-disclaimer {
+    @include font('body');
+  }
+
+  .hds-selection-group,
+  .hds-text-input__input {
+    scroll-margin-top: $spacing-double;
+  }
+
   .hds-text-input__input {
     @include breakpoint($breakpoint-m) {
       width: auto;
@@ -48,10 +57,9 @@
     margin-right: $spacing-half;
   }
 
-  .input--required label[aria-labelledby]::after,
-  .input--required legend[aria-labelledby]::after {
+  .helfi-calculator-required {
     color: $color-error;
-    content: '*' / '';
+    font-weight: bold;
   }
 
   .helfi-calculator__group {

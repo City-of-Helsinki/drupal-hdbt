@@ -255,6 +255,7 @@ class DaycarePayment {
     // Form content
     const getFormData = () => ({
       form_id: this.id,
+      has_required_fields: true,
       items: [
         {
           heading: {

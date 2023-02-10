@@ -8,6 +8,16 @@ class HelfiCalculator {
     this.id = null;
 
     const globalTranslations = {
+      has_required_fields: {
+        fi: 'Pakolliset kentät on merkitty tähdellä ${required}.',
+        sv: null,
+        en: null,
+      },
+      not_saved: {
+        fi: 'Huomioithan, että laskuriin antamiasi tietoja ei tallenneta eikä lähetetä eteenpäin.',
+        sv: null,
+        en: null,
+      },
       unit_euro: {
         fi: 'euroa',
         sv: 'i euro',
@@ -60,24 +70,24 @@ class HelfiCalculator {
         en: 'Calculate estimate',
       },
       reset: {
-        fi: 'Tyhjennä',
+        fi: 'Tyhjennä tiedot',
         sv: null,
-        en: 'Reset',
+        en: null,
       },
       missing_input: {
-        fi: 'Tietoja puuttuu',
+        fi: 'Tarkistathan vielä nämä kohdat',
         sv: null,
-        en: 'Missing information',
+        en: null,
       },
       select_radio: {
-        fi: 'Valitse "${labelText}"',
+        fi: 'Valitse ${labelText}',
         sv: null,
-        en: 'Select "${labelText}"',
+        en: 'Select ${labelText}',
       },
       enter_value: {
-        fi: 'Täytä "${labelText}"',
+        fi: 'Täytä ${labelText}',
         sv: null,
-        en: 'Enter "${labelText}"',
+        en: 'Enter ${labelText}',
       },
       must_be_number: {
         fi: '${labelText} pitää olla numero',
@@ -204,11 +214,12 @@ class HelfiCalculator {
     }
 
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
+    const labelLink = `<a href="#${elem.id}">${labelText}</a>`;
 
     if (elem.dataset?.type === 'radio') {
       const checked = elem.querySelector('input:checked');
       if (!checked && elem.dataset.required) {
-        return [this.translate('select_radio', { labelText })];
+        return [this.translate('select_radio', { labelText: labelLink })];
       }
     }
 
@@ -222,7 +233,7 @@ class HelfiCalculator {
 
       // Check that required input has value
       if (elem.value === 'undefined' || elem.value === '') {
-        return [this.translate('enter_value', { labelText })];
+        return [this.translate('enter_value', { labelText: labelLink })];
       }
 
       const elemValue = elem.value.replace(',', '.');
@@ -230,29 +241,29 @@ class HelfiCalculator {
       // Check if it's an integer number
       const integerRegex = /^-?([1-9][0-9]*|0)$/;
       if (elem.dataset.type === 'input_integer' && !integerRegex.test(elemValue)) {
-        return [this.translate('must_be_whole_number', { labelText })];
+        return [this.translate('must_be_whole_number', { labelText: labelLink })];
       }
 
       // Check if it's a decimal number or integer
       const floatRegex = /^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;
       if (elem.dataset.type === 'input_float' && !floatRegex.test(elemValue)) {
-        return [this.translate('must_be_number', { labelText })];
+        return [this.translate('must_be_number', { labelText: labelLink })];
       }
 
       // If both bounds are set
       if (typeof elem.dataset.min !== 'undefined' && typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue) || elemValue > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('min_or_max_out_of_bounds', { labelText, min: elem.dataset.min, max: elem.dataset.max })];
+          return [this.translate('min_or_max_out_of_bounds', { labelText: labelLink, min: elem.dataset.min, max: elem.dataset.max })];
         }
         // Less than min
       } else if (typeof elem.dataset.min !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue)) {
-          return [this.translate('min_out_of_bounds', { labelText, min: elem.dataset.min })];
+          return [this.translate('min_out_of_bounds', { labelText: labelLink, min: elem.dataset.min })];
         }
         // More than max
       } else if (typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elemValue) > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('max_out_of_bounds', { labelText, max: elem.dataset.max })];
+          return [this.translate('max_out_of_bounds', { labelText: labelLink, max: elem.dataset.max })];
         }
       }
     }
@@ -335,9 +346,14 @@ class HelfiCalculator {
 
     this.templates = {
       form: `
+        <div class="helfi-calculator-disclaimer">
+          {{#has_required_fields}}
+            ${this.translate('has_required_fields', { required: '{{>required}}' }) }
+          {{/has_required_fields}}
+          ${this.translate('not_saved')}
+        </div>
         <div class="helfi-calculator-notification helfi-calculator-notification--error" aria-live="polite" aria-atomic="true"></div>
         <form class="helfi-calculator">
-          <span class="is-hidden" id="required_{{form_id}}">${this.translate('required')}</span>
           {{#items}}
             {{>form_item}}
           {{/items}}
@@ -349,6 +365,9 @@ class HelfiCalculator {
         <div class="helfi-calculator-notification helfi-calculator-notification--result" aria-live="polite" aria-atomic="true"></div>
       `,
       partials: {
+        required: `
+          <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>
+        `,
         form_item: `
           <div class="helfi-calculator__item">
             {{#group}}{{>group}}{{/group}}
@@ -413,7 +432,7 @@ class HelfiCalculator {
         `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="{{type}}"
@@ -436,7 +455,7 @@ class HelfiCalculator {
         `,
         input_integer: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"
@@ -458,7 +477,7 @@ class HelfiCalculator {
         `,
         input_float: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</label>{{/label}}
+            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"${''/* We can not use numeric here, nor can we use inputmode decimal https://design-system.service.gov.uk/components/text-input/#asking-for-decimal-numbers */}
@@ -482,7 +501,7 @@ class HelfiCalculator {
               id="{{id}}_{{form_id}}"
               {{#required}}data-required="true"{{/required}}
               class="hds-selection-group {{#required}}input--required{{/required}}">
-            {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"{{#required}} aria-labelledby="label_{{id}}_{{form_id}} required_{{form_id}}"{{/required}}><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}</legend>{{/label}}
+            {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>{{/label}}
             <div class="hds-selection-group__items">
               {{#radio_items}}
                 {{>radio_item}}
