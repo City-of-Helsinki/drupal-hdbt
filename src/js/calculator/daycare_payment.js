@@ -373,7 +373,7 @@ class DaycarePayment {
         en: null,
       },
       nth_child_title: {
-        fi: '${childNumber}. varhaiskasvatuksessa oleva lapsi',
+        fi: 'Seuraava varhaiskasvatuksessa oleva lapsi',
         sv: null,
         en: null,
       },
@@ -383,12 +383,12 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_1: {
-        fi: 'Päiväkotihoito',
+        fi: 'Varhaiskasvatus arkipäivisin',
         sv: null,
         en: null,
       },
       daycare_type_2: {
-        fi: 'Esiopetus ja varhaiskasvatus',
+        fi: '6-vuotiaiden esiopetus ja varhaiskasvatus',
         sv: null,
         en: null,
       },
@@ -398,7 +398,7 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_4: {
-        fi: 'Vuorohoito',
+        fi: 'Vuorohoito (hoitoa myös iltaisin ja viikonloppuisin)',
         sv: null,
         en: null,
       },
@@ -418,7 +418,7 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_1_caretime_3: {
-        fi: 'Osa-aikainen, enintään 5 tuntia päivässä',
+        fi: 'Osa-aikainen, alle 5 tuntia päivässä',
         sv: null,
         en: null,
       },
@@ -428,7 +428,7 @@ class DaycarePayment {
         en: null,
       },
       daycare_free_days_explanation: {
-        fi: 'Arkipäivät, jolloin lapsi ei osallistu päivähoitoon (4-12 päivää kuukaudessa)',
+        fi: 'Mahdolliset säännöllisesti toistuvat arkipäivät, jolloin lapsi ei osallistu päivähoitoon. Kuukaudessa 4-12 päivää vaikuttaa maksuun.',
         sv: null,
         en: null,
       },
@@ -488,17 +488,17 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_4_caretime_1: {
-        fi: '61-100 tuntia kuukaudessa (noin 3-5 tuntia päivässä)',
+        fi: '61-100 tuntia kuukaudessa (Esim. noin 3-5 tuntia arkipäivässä)',
         sv: null,
         en: null,
       },
       daycare_type_4_caretime_2: {
-        fi: '101-160 tuntia kuukaudessa (noin 5-7,5 tuntia päivässä)',
+        fi: '101-160 tuntia kuukaudessa (Esim. noin 5-7,5 tuntia arkipäivässä)',
         sv: null,
         en: null,
       },
       daycare_type_4_caretime_3: {
-        fi: 'Yli 160 tuntia kuukaudessa (yli 7,5 tuntia päivässä)',
+        fi: 'Yli 160 tuntia kuukaudessa (Esim. yli 7,5 tuntia arkipäivässä)',
         sv: null,
         en: null,
       },
