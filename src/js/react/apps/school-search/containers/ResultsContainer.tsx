@@ -13,12 +13,8 @@ const ResultsContainer = () => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const queryString = useQueryString();
 
-  if (!baseUrl) {
-    return null;
-  }
-
   const fetcher = () => {
-    const {index} = GlobalSettings;
+    const { index } = GlobalSettings;
 
     return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',

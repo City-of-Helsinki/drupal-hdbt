@@ -1,15 +1,16 @@
 import { TextInput } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
-import { paramsAtom, updateParamsAtom } from '../store';
+import { paramsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
+import UseCoordinates from '../hooks/UseCoordinates';
 
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
 };
 
 const FormContainer = () => {
-  const setParams = useSetAtom(updateParamsAtom);
+  const setParams = useSetAtom(paramsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,15 +18,15 @@ const FormContainer = () => {
     const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
-      params.keyword = keyword.value;
-    }
+      params.address = keyword.value;
+    };
 
     setParams(params);
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <TextInput id='keyword'/>
+      <TextInput type='search' id='keyword'/>
       <button type='submit'>{Drupal.t('Submit')}</button>
     </form>
   );

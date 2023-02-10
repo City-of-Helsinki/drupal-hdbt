@@ -3,8 +3,10 @@ import GlobalSettings from '../enum/GlobalSettings';
 import UseAddressQuery from './UseAddressQuery';
 
 const UseQueryString = () => {
+  const { ids, coordinates } = UseAddressQuery();
   const { size } = GlobalSettings;
-  const { ids } = UseAddressQuery();
+
+  console.log(ids);
 
   const query: BooleanQuery = {
     bool: {
@@ -28,14 +30,33 @@ const UseQueryString = () => {
     ];
   }
 
+  let sort: any = [
+    {
+      name: 'asc'
+    }
+  ];
+
+  if (coordinates) {
+    const [lat, lon] = coordinates;
+
+   sort =[{
+      _geo_distance: {
+        coordinates: {
+          lat,
+          lon,
+        },
+        order: 'asc',
+        unit: 'm',
+        distance_type: 'arc',
+        ignore_unmapped: true
+      }
+    }, ...sort];
+  }
+
   return JSON.stringify({
     query,
     size,
-    sort: [
-      {
-        'name.keyword': 'asc'
-      }
-    ]
+    sort
   });
 };
 
