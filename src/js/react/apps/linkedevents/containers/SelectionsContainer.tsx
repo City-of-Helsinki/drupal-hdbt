@@ -1,6 +1,7 @@
-import { MouseEventHandler, memo } from 'react';
+import { MouseEventHandler, memo, useState } from 'react';
 import { SetStateAction, WritableAtom, useAtomValue, useSetAtom, useAtom } from 'jotai';
 import { Button, IconCross } from 'hds-react';
+import type { DateTime } from 'luxon';
 
 import {
   resetFormAtom,
@@ -15,84 +16,68 @@ import {
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
-import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
+import getDateString from '../helpers/GetDate';
 
 type SelectionsContainerProps = {
-  submitValue: number;
+  url: string | null;
 };
 
-const getTitle = ({ startDate, endDate }: DateSelectDateTimes): string => {
-  if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
-    return Drupal.t('All', {}, { context: '' });
-  }
-
-  if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
-    return startDate.toFormat(HDS_DATE_FORMAT);
-  }
-
-  if ((!startDate || !startDate.isValid) && endDate?.isValid) {
-    return `- ${endDate.toFormat(HDS_DATE_FORMAT)}`;
-  }
-  return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;
-};
-
-const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
+const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const freeFilter = useAtomValue(freeFilterAtom);
   const remoteFilter = useAtomValue(remoteFilterAtom);
-  const locationOptions = useAtomValue(locationAtom);
   const startDate = useAtomValue(startDateAtom);
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
-  const resetForm = useSetAtom(resetFormAtom);
+  const resetFormStore = useSetAtom(resetFormAtom);
   const setUrl = useSetAtom(urlAtom);
 
-  const showClearButton =  locationSelection.length || freeFilter || remoteFilter;
+  const showClearButton = locationSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
-  if (!queryBuilder) {
+  if (!queryBuilder || !url) {
     return null;
   }
 
-  const resetFormm = () => {
+  const resetForm = () => {
     queryBuilder.reset();
     setUrl(queryBuilder.updateUrl());
-    resetForm();
+    resetFormStore();
   };
-
-  const title = getTitle({ startDate, endDate });
 
   return (
     <div className='hdbt-search__selections-wrapper'>
       <ul className='hdbt-search__selections-container content-tags__tags'>
-        {locationOptions && (
-          <ListFilter
-            updater={setLocationSelection}
-            valueKey={ApiKeys.LOCATION}
-            values={locationSelection}
-          />
-        )}
-        {remoteFilter && (
-          <CheckboxFilterPill
-            label={Drupal.t('Remote events')}
-            valueKey={ApiKeys.REMOTE}
-            atom={remoteFilterAtom}
-          />
-        )}
-        {freeFilter && (
-          <CheckboxFilterPill
-            label={Drupal.t('Free-of-charge events')}
-            valueKey={ApiKeys.FREE}
-            atom={freeFilterAtom}
-          />
-        )}
-
+        <ListFilterr
+          updater={setLocationSelection}
+          valueKey={ApiKeys.LOCATION}
+          values={locationSelection}
+          url={url}
+        />
+        <DateFilterPilll
+          startDate={startDate}
+          endDate={endDate}
+          url={url}
+        />
+        <CheckboxFilterPilll
+          label={Drupal.t('Remote events')}
+          valueKey={ApiKeys.REMOTE}
+          atom={remoteFilterAtom}
+          url={url}
+          value={remoteFilter}
+        />
+        <CheckboxFilterPilll
+          label={Drupal.t('Free-of-charge events')}
+          valueKey={ApiKeys.FREE}
+          atom={freeFilterAtom}
+          url={url}
+          value={freeFilter}
+        />
         <li className='hdbt-search__clear-all'>
           <Button
             aria-hidden={showClearButton ? 'true' : 'false'}
             className='hdbt-search__clear-all-button'
             iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
-            onClick={resetFormm}
+            onClick={resetForm}
             style={showClearButton ? {} : { visibility: 'hidden' }}
             variant='supplementary'
           >
@@ -104,28 +89,18 @@ const SelectionsContainer = ({ submitValue }: SelectionsContainerProps) => {
   );
 };
 
-const updateSelections = (prev: SelectionsContainerProps, next: SelectionsContainerProps) => {
-  if (prev.submitValue === next.submitValue) {
-    return true;
-  }
-
-  return false;
-};
-
-export default memo(SelectionsContainer, updateSelections);
-
-
 type ListFilterProps = {
   updater: Function;
   valueKey: string;
   values: OptionType[];
+  url: string | null;
 };
 
-const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
+const ListFilter = ({ updater, values, valueKey, url }: ListFilterProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setUrl = useSetAtom(urlAtom);
 
-  if (!queryBuilder) {
+  if (!queryBuilder || !values.length) {
     return null;
   }
 
@@ -155,14 +130,16 @@ type CheckboxFilterPillProps = {
   atom: WritableAtom<boolean, SetStateAction<boolean>, void>;
   valueKey: string;
   label: string;
+  url: string | null;
+  value: boolean;
 };
 
-const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) => {
+const CheckboxFilterPill = ({ atom, valueKey, label, url, value }: CheckboxFilterPillProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setValue = useSetAtom(atom);
   const setUrl = useSetAtom(urlAtom);
 
-  if (!queryBuilder) {
+  if (!queryBuilder || !value) {
     return null;
   }
 
@@ -178,21 +155,49 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
   );
 };
 
-const dateFilterPill = () => {
+type DateFilterPillProps = {
+  startDate: DateTime | undefined;
+  endDate: DateTime | undefined;
+  url: string | null;
+};
 
+const DateFilterPill = ({ startDate, endDate, url}: DateFilterPillProps) => {
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const setUrl = useSetAtom(urlAtom);
+  const setStartDate = useSetAtom(startDateAtom);
+  const setEndDate = useSetAtom(endDateAtom);
+
+  if (!queryBuilder) {
+    return null;
+  }
+
+  if (!startDate && !endDate) {
+    return null;
+  }
+
+  return (
+    <FilterButton
+      value={getDateString({ startDate, endDate })}
+      clearSelection={() => {
+        setStartDate(undefined);
+        setEndDate(undefined);
+        queryBuilder.resetParam('start');
+        queryBuilder.resetParam('end');
+        setUrl(queryBuilder.updateUrl());
+      }}
+    />
+  );
 };
 
 type FilterButtonProps = {
   value: string;
-  // clearSelection: MouseEventHandler<HTMLLIElement>;
   clearSelection: MouseEventHandler<HTMLButtonElement>;
 };
 
 const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
   <li
     className='content-tags__tags__tag content-tags__tags--interactive'
-    key={`test${  value.toString()}`}
-    // onClick={clearSelection}
+    key={`${value.toString()}`}
   >
     <Button
       aria-label={Drupal.t(
@@ -209,3 +214,50 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
     </Button>
   </li>
 );
+
+const updateSelections = (prev: any, next: any) => {
+  console.log('container',prev);
+  console.log('container', next);
+  if (prev.url === next.url) {
+    return true;
+  }
+
+  return false;
+};
+
+const updateSelectionss = (prev: any, next: any) => {
+  console.log('checkbox', prev);
+  console.log('checkbox' ,next);
+  if (prev.url === next.url) {
+    return true;
+  }
+
+  return false;
+};
+
+const updateSelectionsss = (prev: any, next: any) => {
+  console.log('date', prev);
+  console.log('date' ,next);
+  if (prev.url === next.url) {
+    return true;
+  }
+
+  return false;
+};
+
+const updateSelectionssss = (prev: any, next: any) => {
+  console.log('list',prev);
+  console.log('list', next);
+  if (prev.url === next.url) {
+    return true;
+  }
+
+  return false;
+};
+
+
+
+const ListFilterr = memo(ListFilter, updateSelectionssss);
+const CheckboxFilterPilll = memo(CheckboxFilterPill, updateSelectionss);
+const DateFilterPilll = memo(DateFilterPill, updateSelectionsss);
+export default memo(SelectionsContainer, updateSelections);

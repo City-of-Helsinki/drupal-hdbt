@@ -91,8 +91,6 @@ export const settingsAtom = atom(
 
 export const pageAtom = atom<number>(1);
 
-export const submitValueAtom = atom<number>(0);
-
 export const urlAtom = atom<string|null>(null);
 
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);

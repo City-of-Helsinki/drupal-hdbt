@@ -3,6 +3,7 @@ import Collapsible from './Collapsible';
 import CheckboxFilter from './CheckboxFilter';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
+import getDateString from '../helpers/GetDate';
 
 interface DateSelectActions {
   endDisabled: boolean;
@@ -15,22 +16,6 @@ interface DateSelectActions {
 
 type DateSelectProps = DateSelectDateTimes & DateSelectActions;
 
-const getTitle = ({ startDate, endDate }: DateSelectDateTimes): string => {
-  if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
-    return Drupal.t('All', {}, { context: '' });
-  }
-
-  if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
-    return startDate.toFormat(HDS_DATE_FORMAT);
-  }
-
-  if ((!startDate || !startDate.isValid) && endDate?.isValid) {
-    return `- ${endDate.toFormat(HDS_DATE_FORMAT)}`;
-  }
-  return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;
-};
-
-
 const dateHelperText = Drupal.t('Use the format D.M.YYYY');
 
 function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate, startDate, invalidStartDate = false, invalidEndDate = false }: DateSelectProps) {
@@ -41,7 +26,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate
     date === 'start' ? setStartDate(value) : setEndDate(value);
   };
 
-  const title = getTitle({ startDate, endDate });
+  const title = getDateString({ startDate, endDate });
   const startDateErrorText = invalidStartDate ? Drupal.t('Invalid start date') : '';
   const endDateErrorText = invalidEndDate ? Drupal.t('Invalid end date') : '';
 

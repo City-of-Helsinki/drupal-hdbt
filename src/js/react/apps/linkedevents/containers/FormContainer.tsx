@@ -15,7 +15,6 @@ import {
   settingsAtom,
   urlAtom,
   titleAtom,
-  submitValueAtom,
   freeFilterAtom,
   remoteFilterAtom,
   startDateAtom,
@@ -60,11 +59,10 @@ function FormContainer({ loading }: {
   const [endDisabled, disableEnd] = useAtom(endDisabledAtom);
   const [freeFilter, setFreeFilter] = useAtom(freeFilterAtom);
   const [remoteFilter, setRemoteFilter] = useAtom(remoteFilterAtom);
-  const [submitValue, setSubmitValue] = useAtom(submitValueAtom);
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
-  const setUrl = useSetAtom(urlAtom);
+  const[url, setUrl] = useAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
   const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
 
@@ -73,7 +71,6 @@ function FormContainer({ loading }: {
   }
 
   const onSubmit = () => {
-    setSubmitValue(submitValue+1);
     setPage(1);
     setUrl(queryBuilder.updateUrl());
   };
@@ -243,7 +240,7 @@ function FormContainer({ loading }: {
           }
         </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
-        <SelectionsContainer submitValue={submitValue} />
+        <SelectionsContainer url={url} />
       </div>
     </form>
   );
