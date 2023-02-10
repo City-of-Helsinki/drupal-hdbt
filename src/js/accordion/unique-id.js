@@ -24,7 +24,7 @@ export function generateUniqueId(id, array, index = 1) {
   if (array.includes(newValue)) {
     return generateUniqueId(newValue, array, index+1);
   }
-  return newValue;
+  return newValue.replaceAll();
 };
 
 /**
