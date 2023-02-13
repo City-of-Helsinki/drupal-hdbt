@@ -14,7 +14,7 @@ export default class AccordionItem {
 
   constructor(element, state) {
     this.element = element;
-    this.id = element.querySelector('h2').id;
+    this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
     this.isOpen = this.localState.loadItemState(this.id);
     this.setHidden();
