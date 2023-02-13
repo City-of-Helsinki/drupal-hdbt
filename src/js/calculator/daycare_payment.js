@@ -664,6 +664,16 @@ class DaycarePayment {
       },
     };
 
+    const removeChild = (event) => {
+      event.preventDefault();
+
+      const childElem = event.target.closest('.helfi-calculator__dynamic-slot');
+      if (childElem) {
+        event.target.removeEventListener('click', removeChild);
+        childElem.parentElement.removeChild(childElem);
+      }
+    };
+
     const addChild = (event) => {
       event.preventDefault();
 
@@ -687,11 +697,15 @@ class DaycarePayment {
         childData,
       );
 
-      slots.innerHTML += html;
+      slots.insertAdjacentHTML('beforeend', html);
+
+      // Handle "remove child"-button clicks
+      const newChildElem = this.calculator.getElement(`child_${nextChildNumber}`);
+      const removeChildButton = newChildElem.querySelector('.helfi-calculator__dynamic-remove');
+      removeChildButton.addEventListener('click', removeChild);
 
       slots.dataset.itemCount = nextChildNumber - 1;
     };
-
 
     // Prepare calculator for translations
     this.calculator = window.HelfiCalculator({ name: 'daycare_payment', translations });
