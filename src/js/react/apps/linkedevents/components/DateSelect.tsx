@@ -1,4 +1,3 @@
-import React from 'react';
 import { DateInput } from 'hds-react';
 import Collapsible from './Collapsible';
 import { QueryBuilder } from '../utils/QueryBuilder';
