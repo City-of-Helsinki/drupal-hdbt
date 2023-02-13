@@ -1519,7 +1519,9 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
       $settings['request_url'] = $eventUrl;
-      $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
+      if ($paragraph->get('field_event_location')->first()->getValue()['value']) {
+        $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
+      }
     }
 
     $booleanFields = [
