@@ -599,6 +599,30 @@ class DaycarePayment {
       return errorMessages;
     };
 
+    const getChildData = (childNumber) => {
+      const childData = {
+        daycareType: this.calculator.getFieldValue(`daycare_type_for_child_${childNumber}`),
+        daycareTypeData: {
+          '1': {
+            careTime: this.calculator.getFieldValue(`daycare_type_1_${childNumber}_group_caretime`),
+            freeDays: this.calculator.getFieldValue(`daycare_type_1_${childNumber}_free_days`),
+          },
+          '2': {
+            careTime: this.calculator.getFieldValue(`daycare_type_2_${childNumber}_group_caretime`),
+            freeDays: this.calculator.getFieldValue(`daycare_type_2_${childNumber}_free_days`),
+          },
+          '3': {
+            careTime: this.calculator.getFieldValue(`daycare_type_3_${childNumber}_group_caretime`),
+            freeDays: this.calculator.getFieldValue(`daycare_type_3_${childNumber}_free_days`),
+          },
+          '4': {
+            careTime: this.calculator.getFieldValue(`daycare_type_4_${childNumber}_group_caretime`),
+          },
+        }
+      };
+      return childData;
+    };
+
     const validate = () => {
       const defaultInfo = {
         title: this.t('default_info_title'),
@@ -620,8 +644,6 @@ class DaycarePayment {
         }
       }
 
-
-
       // Check if any missing input errors were found
       if (errorMessages.length) {
         return {
@@ -633,6 +655,27 @@ class DaycarePayment {
         };
       }
 
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      // Get fielf values for calculating.
+      const householdSize = this.calculator.getFieldValue('household_size');
+      const grossIncomePerMonth = this.calculator.getFieldValue('gross_income_per_month');
+      const children = [];
+
+      // Get first child separately as it's hardcoded.
+      children.push(getChildData(1));
+
+      // Get values for other children
+      for (let i = 0; i < slots.children.length; i++) {
+        const child = slots.children[i];
+        if (child.dataset && child.dataset.slotNumber) {
+          const childNumber = child.dataset.slotNumber;
+          children.push(getChildData(childNumber));
+        }
+      }
+
+      // console.log(householdSize, grossIncomePerMonth, children);
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       return {
         alert: {
           title: 'TBD',
