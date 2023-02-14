@@ -6,6 +6,7 @@ import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
 import Location from './types/Location';
 import OptionType from './types/OptionType';
+import FormErrors from './types/FormErrors';
 
 // Transform locations from API response to options
 const transformLocations = (locations: any = null) => {
@@ -100,6 +101,11 @@ export const startDateAtom = atom<DateTime|undefined>(undefined);
 export const endDateAtom = atom<DateTime|undefined>(undefined);
 
 export const endDisabledAtom = atom<boolean>(false);
+
+export const formErrorsAtom = atom<FormErrors>({
+  invalidEndDate: false,
+  invalidStartDate: false,
+});
 
 export const freeFilterAtom = atom<boolean>(false);
 
