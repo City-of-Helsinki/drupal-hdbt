@@ -334,7 +334,7 @@ class DaycarePayment {
         en: null,
       },
       household_size_is_too_small_for_child_count: {
-        fi: '${labelLink} pitäisi olla vähintään ${minValue} jos taloudessa on aikuinen ja ${childCount} lasta',
+        fi: '${labelLink} pitäisi olla vähintään ${minValue} jos samassa osoitteessa asuu aikuinen ja ${childCount} lasta',
         sv: null,
         en: null,
       },
