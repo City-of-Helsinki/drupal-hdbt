@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import type Event from '../types/Event';
-import { queryBuilderAtom, urlAtom } from '../store';
+import { initialUrlAtom, queryBuilderAtom, urlAtom } from '../store';
 
 type ResponseType = {
   data: Event[];
@@ -25,7 +25,8 @@ const SWR_REFRESH_OPTIONS = {
 
 const SearchContainer = () => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
-  const url = useAtomValue(urlAtom) || queryBuilder?.getUrl();
+  const initialUrl = useAtomValue(initialUrlAtom);
+  const url = useAtomValue(urlAtom) || initialUrl;
 
   if (!queryBuilder) {
     return null;
@@ -49,7 +50,7 @@ const SearchContainer = () => {
 
   return (
     <>
-      <FormContainer loading={loading} />
+      <FormContainer />
       <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
     </>
   );

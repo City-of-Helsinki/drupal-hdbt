@@ -44,7 +44,6 @@ const createBaseAtom = () => {
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
 
-
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
     showTimeFilter: settings?.field_event_time,
@@ -59,6 +58,7 @@ const createBaseAtom = () => {
   return {
     queryBuilder,
     settings: filterSettings,
+    url: eventsApiUrl,
     locations,
     eventListTitle,
   };
@@ -70,6 +70,10 @@ const baseAtom = atom(createBaseAtom());
 // Create derivates for set/get parts of data
 export const queryBuilderAtom = atom(
   (get) => get(baseAtom)?.queryBuilder
+);
+
+export const initialUrlAtom = atom(
+  (get) => get(baseAtom)?.url
 );
 
 export const locationAtom = atom(

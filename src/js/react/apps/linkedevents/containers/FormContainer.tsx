@@ -18,15 +18,12 @@ import {
 } from '../store';
 
 
-function FormContainer({ loading }: {
-  loading: boolean
-}) {
-
+function FormContainer() {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
   const errors = useAtomValue(formErrorsAtom);
-  const[url, setUrl] = useAtom(urlAtom);
+  const [url, setUrl] = useAtom(urlAtom);
   const setPage = useSetAtom(pageAtom);
   const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
 

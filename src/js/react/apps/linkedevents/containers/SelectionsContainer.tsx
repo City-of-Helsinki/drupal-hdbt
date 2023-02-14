@@ -38,25 +38,25 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   return (
     <div className='hdbt-search__selections-wrapper'>
       <ul className='hdbt-search__selections-container content-tags__tags'>
-        <ListFilterr
+        <ListFilterPills
           updater={setLocationSelection}
           valueKey={ApiKeys.LOCATION}
           values={locationSelection}
           url={url}
         />
-        <DateFilterPilll
+        <DateFilterPill
           startDate={startDate}
           endDate={endDate}
           url={url}
         />
-        <CheckboxFilterPilll
+        <CheckboxFilterPill
           label={Drupal.t('Remote events')}
           valueKey={ApiKeys.REMOTE}
           atom={remoteFilterAtom}
           url={url}
           value={remoteFilter}
         />
-        <CheckboxFilterPilll
+        <CheckboxFilterPill
           label={Drupal.t('Free-of-charge events')}
           valueKey={ApiKeys.FREE}
           atom={freeFilterAtom}
@@ -69,14 +69,14 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   );
 };
 
-type ListFilterProps = {
+type ListFilterBulletsProps = {
   updater: Function;
   valueKey: string;
   values: OptionType[];
   url: string | null;
 };
 
-const ListFilter = ({ updater, values, valueKey, url }: ListFilterProps) => {
+const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBulletsProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setUrl = useSetAtom(urlAtom);
 
@@ -106,7 +106,7 @@ const ListFilter = ({ updater, values, valueKey, url }: ListFilterProps) => {
   );
 };
 
-type CheckboxFilterPillProps = {
+type CheckboxFilterBulletProps = {
   atom: WritableAtom<boolean, SetStateAction<boolean>, void>;
   valueKey: string;
   label: string;
@@ -114,7 +114,7 @@ type CheckboxFilterPillProps = {
   value: boolean;
 };
 
-const CheckboxFilterPill = ({ atom, valueKey, label, url, value }: CheckboxFilterPillProps) => {
+const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFilterBulletProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setValue = useSetAtom(atom);
   const setUrl = useSetAtom(urlAtom);
@@ -135,13 +135,13 @@ const CheckboxFilterPill = ({ atom, valueKey, label, url, value }: CheckboxFilte
   );
 };
 
-type DateFilterPillProps = {
+type DateFilterBulletProps = {
   startDate: DateTime | undefined;
   endDate: DateTime | undefined;
   url: string | null;
 };
 
-const DateFilterPill = ({ startDate, endDate, url}: DateFilterPillProps) => {
+const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const setUrl = useSetAtom(urlAtom);
   const setStartDate = useSetAtom(startDateAtom);
@@ -236,8 +236,8 @@ const updateSelections = (prev: any, next: any) => {
   return false;
 };
 
-const ListFilterr = memo(ListFilter, updateSelections);
-const CheckboxFilterPilll = memo(CheckboxFilterPill, updateSelections);
-const DateFilterPilll = memo(DateFilterPill, updateSelections);
+const ListFilterPills = memo(ListFilterBullets, updateSelections);
+const CheckboxFilterPill = memo(CheckboxFilterBullet, updateSelections);
+const DateFilterPill = memo(DateFilterBullet, updateSelections);
 const ClearButtonn = memo(ClearButton, updateSelections);
 export default memo(SelectionsContainer, updateSelections);
