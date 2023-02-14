@@ -374,7 +374,7 @@ class DaycarePayment {
         en: null,
       },
       nth_child_title: {
-        fi: 'Seuraava varhaiskasvatuksessa oleva lapsi',
+        fi: 'Seuraavaksi nuorin varhaiskasvatuksessa oleva lapsi',
         sv: null,
         en: null,
       },
@@ -414,12 +414,12 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_1_caretime_2: {
-        fi: 'Kokopäiväinen, 5-7 tuntia päivässä',
+        fi: 'Kokopäiväinen, yli 5 ja enintään 7 tuntia päivässä',
         sv: null,
         en: null,
       },
       daycare_type_1_caretime_3: {
-        fi: 'Osa-aikainen, alle 5 tuntia päivässä',
+        fi: 'Osapäiväinen, enintään 5 tuntia päivässä',
         sv: null,
         en: null,
       },
@@ -429,12 +429,12 @@ class DaycarePayment {
         en: null,
       },
       daycare_free_days_explanation: {
-        fi: 'Mahdolliset säännöllisesti toistuvat arkipäivät, jolloin lapsi ei osallistu päivähoitoon. Kuukaudessa 4-12 päivää vaikuttaa maksuun.',
+        fi: 'Mahdolliset säännöllisesti toistuvat arkipäivät, jolloin lapsi ei osallistu päiväkotihoitoon. Kuukaudessa 4-12 vapaapäivää vaikuttaa maksuun.',
         sv: null,
         en: null,
       },
       daycare_type_2_caretime: {
-        fi: 'Esiopetuksen ja päivähoiton hoitoaika yhteensä',
+        fi: 'Esiopetuksen ja päiväkotihoidon hoitoaika yhteensä',
         sv: null,
         en: null,
       },
@@ -464,22 +464,22 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_3_caretime_1: {
-        fi: '4 tuntia päivässä (maksuton)',
+        fi: 'Yli 7 tuntia päivässä',
         sv: null,
         en: null,
       },
       daycare_type_3_caretime_2: {
-        fi: '4-5 tuntia päivässä',
-        sv: null,
-        en: null,
-      },
-      daycare_type_3_caretime_3: {
         fi: '5-7 tuntia päivässä',
         sv: null,
         en: null,
       },
+      daycare_type_3_caretime_3: {
+        fi: '4-5 tuntia päivässä',
+        sv: null,
+        en: null,
+      },
       daycare_type_3_caretime_4: {
-        fi: 'Yli 7 tuntia päivässä',
+        fi: '4 tuntia päivässä (maksuton)',
         sv: null,
         en: null,
       },
@@ -489,17 +489,17 @@ class DaycarePayment {
         en: null,
       },
       daycare_type_4_caretime_1: {
-        fi: '61-100 tuntia kuukaudessa (Esim. noin 3-5 tuntia arkipäivässä)',
+        fi: 'Yli 160 tuntia kuukaudessa',
         sv: null,
         en: null,
       },
       daycare_type_4_caretime_2: {
-        fi: '101-160 tuntia kuukaudessa (Esim. noin 5-7,5 tuntia arkipäivässä)',
+        fi: '101-160 tuntia kuukaudessa',
         sv: null,
         en: null,
       },
       daycare_type_4_caretime_3: {
-        fi: 'Yli 160 tuntia kuukaudessa (Esim. yli 7,5 tuntia arkipäivässä)',
+        fi: '61-100 tuntia kuukaudessa',
         sv: null,
         en: null,
       },
