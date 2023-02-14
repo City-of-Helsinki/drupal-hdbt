@@ -1,34 +1,136 @@
+import { useEffect } from 'react';
+import { DateTime } from 'luxon';
 import { DateInput } from 'hds-react';
+import { useAtomValue, useAtom } from 'jotai';
+
 import Collapsible from './Collapsible';
 import CheckboxFilter from './CheckboxFilter';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 import getDateString from '../helpers/GetDate';
-
-interface DateSelectActions {
-  endDisabled: boolean;
-  disableEnd: Function;
-  setEndDate: Function;
-  setStartDate: Function;
-  invalidStartDate?: boolean;
-  invalidEndDate?: boolean;
-}
-
-type DateSelectProps = DateSelectDateTimes & DateSelectActions;
+import ApiKeys from '../enum/ApiKeys';
+import SearchComponents from '../enum/SearchComponents';
+import {
+  startDateAtom,
+  endDateAtom,
+  endDisabledAtom,
+  queryBuilderAtom,
+  formErrorsAtom
+} from '../store';
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY');
 
-function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate, startDate, invalidStartDate = false, invalidEndDate = false }: DateSelectProps) {
+const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
+// End date must be after start date. But only if both are defined.
+const isOutOfRange = ({ endDate, startDate }: DateSelectDateTimes): boolean => !!(startDate && endDate && startDate.startOf('day') >= endDate.startOf('day'));
+
+// Date must be in within the next 1000 years or so....
+// This also validates that the string is not too long even though it might be valid.
+const INVALID_DATE = (dt: DateTime | undefined): boolean => {
+
+  if (!dt) {
+    return false;
+  }
+
+  if (dt.year > 9999) {
+    return true;
+  }
+
+  return !dt.isValid;
+};
+
+function DateSelect() {
   const { currentLanguage } = drupalSettings.path;
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const endDisabled = useAtomValue(endDisabledAtom);
+  const [startDate, setStartDate] = useAtom(startDateAtom);
+  const [endDate, setEndDate] = useAtom(endDateAtom);
+  const [errors, setErrors] = useAtom(formErrorsAtom);
+
+  if (!queryBuilder) {
+    return null;
+  }
 
   const changeDate = (value: string, date: 'start' | 'end') => {
-    date === 'start' ? setStartDate(value) : setEndDate(value);
+    date === 'start' ? setStart(value) : setEnd(value);
   };
 
   const title = getDateString({ startDate, endDate });
-  const startDateErrorText = invalidStartDate ? Drupal.t('Invalid start date') : '';
-  const endDateErrorText = invalidEndDate ? Drupal.t('Invalid end date') : '';
+  const startDateErrorText = errors.invalidStartDate ? Drupal.t('Invalid start date') : '';
+  const endDateErrorText = errors.invalidEndDate ? Drupal.t('Invalid end date') : '';
+
+  const setStart = (d: string) => {
+    const start = getDateTimeFromHDSFormat(d);
+
+    if (INVALID_DATE(start)) {
+      console.warn('invalid start date', { start, endDate });
+      if (d.length === 0) {
+        setStartDate(undefined);
+        setErrors({ ...errors, invalidStartDate: false });
+      } else {
+        setErrors({ ...errors, invalidStartDate: true });
+      }
+    } else {
+      if (isOutOfRange({ startDate: start, endDate })) {
+        console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
+        setEndDate(start?.plus({ 'days': 1 }));
+      }
+      setStartDate(start);
+      setErrors({ ...errors, invalidStartDate: false });
+    }
+  };
+
+  const setEnd = (d: string) => {
+    const end = getDateTimeFromHDSFormat(d);
+
+    if (INVALID_DATE(end)) {
+      console.warn('invalid end date', { end, d });
+      if (d.length === 0) {
+        setErrors({ ...errors, invalidEndDate: false });
+        setEndDate(undefined);
+      } else {
+        setErrors({ ...errors, invalidEndDate: true });
+      }
+    } else {
+      if (isOutOfRange({ startDate, endDate: end })) {
+        console.warn('Selected end date is out of range, setting end date to next day after start date.');
+        setEndDate(startDate?.plus({ 'days': 1 }));
+      } else {
+        setEndDate(end);
+      }
+      setErrors({ ...errors, invalidEndDate: false });
+    }
+  };
+
+  useEffect(() => {
+    const setDate = (key: string, date: DateTime | undefined) => {
+      if (!date || !date.isValid) {
+        queryBuilder.resetParam(key);
+        return;
+      }
+      if (date.isValid) {
+        queryBuilder.setParams({ [key]: date.toISODate() });
+      } else {
+        console.warn('invalid date given to setDate', { date });
+      }
+    };
+
+    setDate(ApiKeys.START, startDate);
+
+    if (endDisabled) {
+      setDate(ApiKeys.END, startDate);
+      setEndDate(startDate);
+      setErrors({ ...errors, invalidEndDate: false });
+    }
+
+    if (!endDisabled) {
+      setDate(ApiKeys.END, endDate);
+      setEndDate(endDate);
+      setErrors({ ...errors, invalidEndDate: false });
+    }
+
+  }, [startDate, endDate, endDisabled, queryBuilder]);
 
   return (
     <div className='hdbt-search__filter event-form__filter--date'>
@@ -45,16 +147,16 @@ function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate
             id='start-date'
             label={Drupal.t('First day of the time period')}
             language={currentLanguage}
-            invalid={invalidStartDate}
+            invalid={errors.invalidStartDate}
             errorText={startDateErrorText}
             value={startDate?.toFormat(HDS_DATE_FORMAT)}
             onChange={(value: string) => changeDate(value, 'start')}
           />
           <CheckboxFilter
-            checked={endDisabled}
             id='end-disabled'
             label={Drupal.t('The last day of the time period is the same as the first day')}
-            onChange={disableEnd}
+            atom={endDisabledAtom}
+            valueKey={SearchComponents.END_DISABLED}
           />
           <DateInput
             minDate={endDisabled ? undefined : startDate?.plus({ 'days': 1 }).toJSDate()}
@@ -64,7 +166,7 @@ function DateSelect({ endDate, endDisabled, disableEnd, setEndDate, setStartDate
             id='end-date'
             label={Drupal.t('Last day of the time period')}
             language={currentLanguage}
-            invalid={invalidEndDate}
+            invalid={errors.invalidEndDate}
             errorText={endDateErrorText}
             value={endDisabled ? startDate?.toFormat(HDS_DATE_FORMAT) : endDate?.toFormat(HDS_DATE_FORMAT)}
             onChange={(value: string) => changeDate(value, 'end')}
