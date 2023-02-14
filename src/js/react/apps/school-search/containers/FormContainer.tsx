@@ -3,7 +3,6 @@ import { useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
 import { paramsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
-import UseCoordinates from '../hooks/UseCoordinates';
 
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;

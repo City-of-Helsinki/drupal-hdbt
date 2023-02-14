@@ -12,33 +12,16 @@ import Pagination from '@/react/common/Pagination';
 
 const ResultsContainer = () => {
   const { size } = GlobalSettings;
-  const { baseUrl } = useAtomValue(configurationsAtom);
   const params = useAtomValue(paramsAtom);
-  const updatePage = useSetAtom(updatePageAtom);
-  const { url, noResults } = useQuery(params);
-
-  const fetcher = () => {
-    const { index } = GlobalSettings;
-
-    return fetch(`${baseUrl}/${index}/_search`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: url,
-    }).then((res) => res.json());
-  };
-
-  const { data, error } = useSWR(url, fetcher, {
-    revalidateOnFocus: false
-  });
+  // const updatePage = useSetAtom(updatePageAtom);
+  const { data, error } = useQuery(params);;
 
   if (!data && !error) {
     return <LoadingSpinner />;
   }
 
   // @todo: Implement no results message
-  if (!data?.hits?.hits.length || noResults) {
+  if (!data?.hits?.hits.length) {
     return (
       <div className='react-search__no-results'>
         No results
@@ -66,7 +49,7 @@ const ResultsContainer = () => {
       {results.map((hit: Result<School>) => (
         <ResultCard key={hit._id} {...hit._source} />
       ))}
-      <Pagination
+      {/* <Pagination
         currentPage={params.page || 1}
         pages={5}
         totalPages={addLastPage ? pages + 1 : pages}
@@ -74,7 +57,7 @@ const ResultsContainer = () => {
           e.preventDefault();
           updatePage(page);
         }}  
-      />
+      /> */}
     </div>
   );
 };
