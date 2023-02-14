@@ -14,7 +14,7 @@ export default class AccordionItem {
 
   constructor(element, state) {
     this.element = element;
-    this.id = element.querySelector('h2').id;
+    this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
     this.isOpen = this.localState.loadItemState(this.id);
     this.setHidden();
@@ -85,7 +85,7 @@ export default class AccordionItem {
   };
 
   addEventListeners = () => {
-    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mousedown', this.toggle);
+    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mouseup', this.toggle);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
 
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('mouseup', this.close);

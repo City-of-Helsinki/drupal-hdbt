@@ -15,7 +15,7 @@ const uniqueListOfIds = createListOfUniqueIds(allAccordionItemIds);
 [...accordionElements].map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')))
   .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
   .forEach((element, index) => {
-    element.querySelector('h2').setAttribute('id', uniqueListOfIds[index]);
+    element.querySelector('.helfi-accordion__header').setAttribute('id', uniqueListOfIds[index]);
   });
 
 
