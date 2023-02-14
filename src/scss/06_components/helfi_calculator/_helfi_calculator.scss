@@ -80,7 +80,7 @@
   }
 
   .helfi-calculator__dynamic-slot {
-    border: 1px solid $color-black-90;
+    background-color: $color-silver-light;
     padding: $spacing-double $spacing-and-half;
 
     &:not(:first-child) {
