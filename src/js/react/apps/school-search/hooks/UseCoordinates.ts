@@ -1,5 +1,7 @@
 import useSWR from 'swr';
+import { useAtomValue } from 'jotai';
 import GlobalSettings from '../enum/GlobalSettings';
+import { paramsAtom } from '../store';
 
 const getCoordsUrl = (address: string) => {
   const { coordinatesBaseUrl } = GlobalSettings; 
@@ -11,25 +13,32 @@ const getCoordsUrl = (address: string) => {
   return url.toString();
 };
 
-const UseCoordinates = (address?: string): number[]|null => {  
+const UseCoordinates = () => {  
+  const { address } = useAtomValue(paramsAtom);
+
   const fetcher = () => {
     if (!address) {
-      return null;
+      return [];
     }
 
     return fetch(getCoordsUrl(address)).then((res) => res.json());
   };
 
-  const { data, error } = useSWR(address, fetcher, {
+  const { data, error, isLoading } = useSWR(address, fetcher, {
     revalidateOnFocus: false
   });
   
-  if (!data || error) {
-    return null;
+  if (!data || !data.results || error) {
+    return {
+      coordinates: [],
+    };
   }
 
   const [lon, lat] = data.results[0].location.coordinates;
-  return [lat, lon];
+  return {
+    coordinates: [lat, lon],
+    isLoading
+  };
 };
 
 export default UseCoordinates;

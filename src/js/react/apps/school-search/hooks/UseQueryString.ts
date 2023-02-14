@@ -1,12 +1,13 @@
 import BooleanQuery from '@/types/BooleanQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 import UseAddressQuery from './UseAddressQuery';
+import UseCoordinates from './UseCoordinates';
 
 const UseQueryString = () => {
-  const { ids, coordinates } = UseAddressQuery();
   const { size } = GlobalSettings;
+  const { coordinates, ids, isLoading } = UseAddressQuery();
 
-  console.log(ids);
+  console.log(coordinates, ids, isLoading);
 
   const query: BooleanQuery = {
     bool: {
@@ -36,7 +37,7 @@ const UseQueryString = () => {
     }
   ];
 
-  if (coordinates) {
+  if (coordinates.length) {
     const [lat, lon] = coordinates;
 
    sort =[{

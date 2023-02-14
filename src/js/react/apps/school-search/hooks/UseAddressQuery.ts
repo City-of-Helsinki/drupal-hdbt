@@ -1,56 +1,43 @@
-import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
-import { paramsAtom } from '../store';
 import GlobalSettings from '../enum/GlobalSettings';
 import UseCoordinates from './UseCoordinates';
 
-const getLocationsQuery = (lon: number, lat: number) => {
+const getLocationsQuery = (lat: number|undefined, lon: number|undefined) => {
   const { locationsBaseUrl } = GlobalSettings;
 
   const url = new URL(locationsBaseUrl);
   const params = new URLSearchParams(url.search);
-  params.set('lon', lon.toString());
-  params.set('lat', lat.toString());
+
+  if (lat && lon) {
+    params.set('lon', lon.toString());
+    params.set('lat', lat.toString());
+  }
+
   url.search = params.toString();
 
   return url.toString();
 };
 
 const UseAddressQuery = () => {
-  const params = useAtomValue(paramsAtom);
-  const { address } = params;
-  const coordinates = UseCoordinates(address);
+  const { coordinates, isLoading: coordinatesLoading } = UseCoordinates();
 
   const fetcher = () => {
-    // Bail if no coordinates
-    if (!coordinates) {
-      return null;
-    }
-
     const [lat, lon] = coordinates;
-
-    return fetch(getLocationsQuery(lon, lat)).then((res) => res.json());
+    return fetch(getLocationsQuery(lat, lon)).then(res => res.json());
   };
 
-  const { data, error } = useSWR(coordinates, fetcher, {
+  const { data, error, isLoading, isValidating } = useSWR(coordinates, fetcher, {
     revalidateOnFocus: false
   });
 
-  if (!data) {
-    return {
-      ids: [],
-      coordinates,
-      error
-    };
-  }
-
-  const { results } = data;
-  const ids = results ? results.map((result: {service_point_id: string}) => result.service_point_id) : [];
+  const ids = (data && data.results) ? data.results.map((result: {service_point_id: string}) => result.service_point_id) : [];
 
   return {
-    ids,
     coordinates,
-    error 
+    error,
+    ids,
+    isLoading,
+    isValidating
   };
 };
 

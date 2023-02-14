@@ -1,13 +1,13 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import { LoadingSpinner } from 'hds-react';
-import { configurationsAtom } from '../store';
+import { configurationsAtom, paramsAtom } from '../store';
 import useQueryString from '../hooks/UseQueryString';
 import GlobalSettings from '../enum/GlobalSettings';
 import ResultCard from '../components/ResultCard';
 import Result from '@/types/Result';
 import { School } from '../types/School';
-
+import UseAddressQuery from '../hooks/UseAddressQuery';
 
 const ResultsContainer = () => {
   const { baseUrl } = useAtomValue(configurationsAtom);
