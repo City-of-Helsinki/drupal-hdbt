@@ -85,7 +85,7 @@ export default class AccordionItem {
   };
 
   addEventListeners = () => {
-    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mousedown', this.toggle);
+    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mouseup', this.toggle);
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
 
     this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('mouseup', this.close);
