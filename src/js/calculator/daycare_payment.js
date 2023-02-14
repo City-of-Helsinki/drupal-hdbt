@@ -623,6 +623,85 @@ class DaycarePayment {
       return childData;
     };
 
+    function getIncomeLimits(householdSize, incomeSettings) {
+      const limits = incomeSettings.family_size_income_limits[`${householdSize}`];
+      if (limits) {
+        return {
+          min: Number(limits.min),
+          max: Number(limits.max),
+        };
+      }
+      const maxDefinedLimitNum = Number(Object.keys(incomeSettings.family_size_income_limits).at(-1));
+      const diff = householdSize - maxDefinedLimitNum;
+      if (diff > 0) {
+        return {
+          min: diff * incomeSettings.family_size_beyond_defined_multiplier_euro + incomeSettings.family_size_income_limits[`${maxDefinedLimitNum}`].min,
+          max: diff * incomeSettings.family_size_beyond_defined_multiplier_euro + incomeSettings.family_size_income_limits[`${maxDefinedLimitNum}`].max,
+        };
+      }
+      throw new Error(`Income limits error for householdSize ${householdSize}`);
+    }
+
+    function getDiscount(child, discounts) {
+      const { careTime, freeDays } = child.daycareTypeData[child.daycareType];
+
+      // As the form has only numbers in its type and discounts come from verbose json settings, lets map them together
+      const daycareTypeMap = {
+        '1': {
+          type: 'early_education_on_weekdays',
+          careTime: {
+            '1': 'over_7_hours_percentage',
+            '2': 'over_5_and_at_most_7_hours_percentage',
+            '3': 'at_most_5_hours_percentage',
+          },
+        },
+        '2': {
+          type: 'for_6_year_old',
+          careTime: {
+            '1': 'over_7_hours_percentage',
+            '2': 'from_7_to_8_hours_percentage',
+            '3': 'over_5_and_at_most_7_hours_percentage',
+            '4': 'at_most_5_hours_percentage',
+          },
+        },
+        '3': {
+          type: 'for_5_year_old',
+          careTime: {
+             '1': 'over_7_hours_percentage',
+             '2': 'over_5_and_at_most_7_hours_percentage',
+             '3': 'over_4_and_at_most_5_hours_percentage',
+             '4': 'at_most_4_hours_percentage',
+          },
+        },
+        '4': {
+          type: 'round_the_clock_care',
+          careTime: {
+             '1': 'from_161_hours_percentage',
+             '2': 'from_101_to_160_hours_percentage',
+             '3': 'from_61_to_100_hours_percentage',
+          },
+        },
+      };
+      const daycareTypeKey = daycareTypeMap[child.daycareType].type;
+      const careTimeKey = daycareTypeMap[child.daycareType].careTime[careTime];
+
+      // Lets get the discount and convert it from 0-100 percentage a to a multiplier 0-1
+      const carePaymentMultiplier = Number(discounts[daycareTypeKey][careTimeKey]) / 100;
+
+      // By default there is no free day discount
+      let freeDayMultiplier = 1;
+      const freeDaysNum = Number(freeDays);
+
+      // If the free days are within 4-12 days, there's a discount based on day count.
+      if (freeDaysNum >= 4 && freeDaysNum <= 12) {
+        freeDayMultiplier = (100 - (Number(discounts.free_day_percentage) * Number(freeDays))) / 100;
+      }
+
+      const totalMultiplier = carePaymentMultiplier * freeDayMultiplier;
+
+      return { carePaymentMultiplier, freeDayMultiplier, totalMultiplier };
+    }
+
     const validate = () => {
       const defaultInfo = {
         title: this.t('default_info_title'),
@@ -630,6 +709,8 @@ class DaycarePayment {
       };
       const errorMessages = [];
 
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      // Validate basics from form
       errorMessages.push(...this.calculator.validateBasics('household_size'));
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
 
@@ -657,8 +738,8 @@ class DaycarePayment {
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Get fielf values for calculating.
-      const householdSize = this.calculator.getFieldValue('household_size');
-      const grossIncomePerMonth = this.calculator.getFieldValue('gross_income_per_month');
+      const householdSize = Number(this.calculator.getFieldValue('household_size'));
+      const grossIncomePerMonth = Number(this.calculator.getFieldValue('gross_income_per_month'));
       const children = [];
 
       // Get first child separately as it's hardcoded.
@@ -676,10 +757,120 @@ class DaycarePayment {
       // console.log(householdSize, grossIncomePerMonth, children);
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      // Calculate results
+      // 1. Get basic payment for youngest child in daycare based on family size and gross income
+      // 2. Make sure that it is below max bound
+      // 3. Calculate other childrens payments based on their sibling discount percentages and youngest childs basic payment
+      // 4. Get discount multipliers based on daycare type, care time and free days per month for all children
+      // 5. Calculate discounted payments for all children, check that they're not below minimum payment treshold
+      // 6. Round to full euros, then sum it all up and show results
+
+      const tempSettings = {
+        family_size_income_limits: {
+          '2': {
+            min: 3874,
+            max: 6626
+          },
+          '3': {
+            min: 4998,
+            max: 7750
+          },
+          '4': {
+            min: 5675,
+            max: 8427
+          },
+          '5': {
+            min: 6353,
+            max: 9105
+          },
+          '6': {
+            min: 7028,
+            max: 9780
+          },
+        },
+        family_size_beyond_defined_multiplier_euro: 262,
+        minimum_payment_euro: 28,
+        payment_percentage: 10.7,
+        child_1_max_euro: 295,
+        child_2_percent: 40,
+        child_n_percent: 20,
+        discounts: {
+          early_education_on_weekdays: {
+            over_7_hours_percentage: 100,
+            over_5_and_at_most_7_hours_percentage: 80,
+            at_most_5_hours_percentage: 60,
+          },
+          for_6_year_old: {
+            over_7_hours_percentage: 65,
+            from_7_to_8_hours_percentage: 60,
+            over_5_and_at_most_7_hours_percentage: 40,
+            at_most_5_hours_percentage: 20,
+          },
+          for_5_year_old: {
+            over_7_hours_percentage: 65,
+            over_5_and_at_most_7_hours_percentage: 40,
+            over_4_and_at_most_5_hours_percentage: 20,
+            at_most_4_hours_percentage: 0,
+          },
+          round_the_clock_care: {
+            from_161_hours_percentage: 100,
+            from_101_to_160_hours_percentage: 80,
+            from_61_to_100_hours_percentage: 60,
+          },
+          free_day_percentage: 4,
+        },
+      };
+
+      // Get limits for this household size
+      const limits = getIncomeLimits(householdSize, tempSettings);
+      let paymentForYoungest = null;
+
+      // If gross income per month is below payment limit, no payment.
+      if (grossIncomePerMonth < limits.min) {
+        paymentForYoungest = 0;
+      } else {
+        // Calculate the difference between minimum limit and gross income
+        const grossDiff = grossIncomePerMonth - limits.min;
+        // Get the percentage of the difference as our base payment
+        paymentForYoungest = grossDiff * (Number(tempSettings.payment_percentage) / 100);
+
+        // If the calculated payment would be above maximum payment limit, fix to max.
+        if (paymentForYoungest > Number(tempSettings.child_1_max_euro)) {
+          paymentForYoungest = Number(tempSettings.child_1_max_euro);
+        }
+      }
+
+      // Get discount for all children
+      for (let i = 0; i < children.length; i++) {
+        children[i].discounts = getDiscount(children[i], tempSettings.discounts);
+      }
+
+      let sum = 0;
+
+      // Calculate discounted payments for all children
+      for (let i = 0; i < children.length; i++) {
+        // Handle sibling discount if any
+        switch (i) {
+          case 0: // Youngest child gets no sibling discount
+            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest;
+            break;
+          case 1: // Second youngest child gets sibling discount for second youngest
+            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(tempSettings.child_2_percent) / 100);
+            break;
+          default: // All other children get even bigger discount
+            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(tempSettings.child_n_percent) / 100);
+            break;
+        }
+        children[i].paymentRounded = Math.round(children[i].payment);
+        sum += children[i].paymentRounded;
+      }
+
+      console.log('Children:', children, 'sum', sum );
+
       return {
         alert: {
           title: 'TBD',
-          message: 'TBD',
+          message: `Maksu: ${sum} euroa`,
         },
         info: defaultInfo,
       };
