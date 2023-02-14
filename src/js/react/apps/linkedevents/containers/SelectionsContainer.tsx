@@ -1,11 +1,10 @@
-import { MouseEventHandler, memo, useState } from 'react';
+import { MouseEventHandler, memo } from 'react';
 import { SetStateAction, WritableAtom, useAtomValue, useSetAtom, useAtom } from 'jotai';
 import { Button, IconCross } from 'hds-react';
 import type { DateTime } from 'luxon';
 
 import {
   resetFormAtom,
-  locationAtom,
   locationSelectionAtom,
   queryBuilderAtom,
   urlAtom,
@@ -29,20 +28,12 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const startDate = useAtomValue(startDateAtom);
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
-  const resetFormStore = useSetAtom(resetFormAtom);
-  const setUrl = useSetAtom(urlAtom);
 
   const showClearButton = locationSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
   if (!queryBuilder || !url) {
     return null;
   }
-
-  const resetForm = () => {
-    queryBuilder.reset();
-    setUrl(queryBuilder.updateUrl());
-    resetFormStore();
-  };
 
   return (
     <div className='hdbt-search__selections-wrapper'>
@@ -72,18 +63,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
           url={url}
           value={freeFilter}
         />
-        <li className='hdbt-search__clear-all'>
-          <Button
-            aria-hidden={showClearButton ? 'true' : 'false'}
-            className='hdbt-search__clear-all-button'
-            iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
-            onClick={resetForm}
-            style={showClearButton ? {} : { visibility: 'hidden' }}
-            variant='supplementary'
-          >
-            {Drupal.t('Clear selections', {}, { context: 'React search clear selections' })}
-          </Button>
-        </li>
+        <ClearButtonn showClearButton={showClearButton} url={url} />
       </ul>
     </div>
   );
@@ -167,11 +147,7 @@ const DateFilterPill = ({ startDate, endDate, url}: DateFilterPillProps) => {
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
 
-  if (!queryBuilder) {
-    return null;
-  }
-
-  if (!startDate && !endDate) {
+  if (!queryBuilder || !startDate && !endDate) {
     return null;
   }
 
@@ -215,9 +191,44 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
   </li>
 );
 
+type ClearButtonProps = {
+  showClearButton: number | boolean | DateTime;
+  url: string | null;
+};
+
+
+const ClearButton = ({ showClearButton, url }: ClearButtonProps) => {
+  const queryBuilder = useAtomValue(queryBuilderAtom);
+  const resetFormStore = useSetAtom(resetFormAtom);
+  const setUrl = useSetAtom(urlAtom);
+
+  if (!queryBuilder) {
+    return null;
+  }
+
+  const resetForm = () => {
+    resetFormStore();
+    queryBuilder.reset();
+    setUrl(queryBuilder.updateUrl());
+  };
+
+  return (
+    <li className='hdbt-search__clear-all'>
+      <Button
+        aria-hidden={showClearButton ? 'true' : 'false'}
+        className='hdbt-search__clear-all-button'
+        iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
+        onClick={resetForm}
+        style={showClearButton ? {} : { visibility: 'hidden' }}
+        variant='supplementary'
+      >
+        {Drupal.t('Clear selections', {}, { context: 'React search clear selections' })}
+      </Button>
+    </li>
+  );
+};
+
 const updateSelections = (prev: any, next: any) => {
-  console.log('container',prev);
-  console.log('container', next);
   if (prev.url === next.url) {
     return true;
   }
@@ -225,39 +236,8 @@ const updateSelections = (prev: any, next: any) => {
   return false;
 };
 
-const updateSelectionss = (prev: any, next: any) => {
-  console.log('checkbox', prev);
-  console.log('checkbox' ,next);
-  if (prev.url === next.url) {
-    return true;
-  }
-
-  return false;
-};
-
-const updateSelectionsss = (prev: any, next: any) => {
-  console.log('date', prev);
-  console.log('date' ,next);
-  if (prev.url === next.url) {
-    return true;
-  }
-
-  return false;
-};
-
-const updateSelectionssss = (prev: any, next: any) => {
-  console.log('list',prev);
-  console.log('list', next);
-  if (prev.url === next.url) {
-    return true;
-  }
-
-  return false;
-};
-
-
-
-const ListFilterr = memo(ListFilter, updateSelectionssss);
-const CheckboxFilterPilll = memo(CheckboxFilterPill, updateSelectionss);
-const DateFilterPilll = memo(DateFilterPill, updateSelectionsss);
+const ListFilterr = memo(ListFilter, updateSelections);
+const CheckboxFilterPilll = memo(CheckboxFilterPill, updateSelections);
+const DateFilterPilll = memo(DateFilterPill, updateSelections);
+const ClearButtonn = memo(ClearButton, updateSelections);
 export default memo(SelectionsContainer, updateSelections);
