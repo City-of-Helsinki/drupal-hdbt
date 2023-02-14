@@ -8,20 +8,24 @@ import GlobalSettings from '../enum/GlobalSettings';
 
 const UseQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
-  const { address } = params;
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
   const fetcher = async() => {
     const { index } = GlobalSettings;
+    const { address } = params;
 
     let coordinates = null;
     let ids = null;
 
-    if (address) {
+    if (address && address) {
       const coordinatesRes = await fetch(getCoordsUrl(address));
       const coordinatesData = await coordinatesRes.json();
 
       coordinates = parseCoordinates(coordinatesData);
+    }
+
+    if (address && !coordinates) {
+      return null;
     }
 
     if (coordinates && coordinates.length) {
@@ -45,13 +49,15 @@ const UseQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error } = useSWR(address, fetcher, {
+  const { data, error, isLoading, isValidating } = useSWR(`_${  Object.values(params).toString()}`, fetcher, {
     revalidateOnFocus: false
   });
 
   return {
     data,
-    error
+    error,
+    isLoading,
+    isValidating
   };
 };
 

@@ -13,15 +13,15 @@ import Pagination from '@/react/common/Pagination';
 const ResultsContainer = () => {
   const { size } = GlobalSettings;
   const params = useAtomValue(paramsAtom);
-  // const updatePage = useSetAtom(updatePageAtom);
-  const { data, error } = useQuery(params);;
+  const updatePage = useSetAtom(updatePageAtom);
+  const { data, error, isLoading, isValidating } = useQuery(params);
 
-  if (!data && !error) {
+  if (isLoading || isValidating) {
     return <LoadingSpinner />;
   }
 
   // @todo: Implement no results message
-  if (!data?.hits?.hits.length) {
+  if (!data?.hits?.hits.length || error) {
     return (
       <div className='react-search__no-results'>
         No results
@@ -49,7 +49,7 @@ const ResultsContainer = () => {
       {results.map((hit: Result<School>) => (
         <ResultCard key={hit._id} {...hit._source} />
       ))}
-      {/* <Pagination
+      <Pagination
         currentPage={params.page || 1}
         pages={5}
         totalPages={addLastPage ? pages + 1 : pages}
@@ -57,7 +57,7 @@ const ResultsContainer = () => {
           e.preventDefault();
           updatePage(page);
         }}  
-      /> */}
+      />
     </div>
   );
 };
