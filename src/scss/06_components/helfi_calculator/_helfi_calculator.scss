@@ -117,7 +117,12 @@
     margin-bottom: - $spacing-and-half;
     margin-right: - $spacing;
 
+    &::before {
+      content: none !important;
+    }
+
     .hds-button__label {
+      margin-bottom: 0;
       padding-right: 0;
     }
   }
