@@ -1,4 +1,4 @@
-import { TextInput } from 'hds-react';
+import { Button, TextInput } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
 import { paramsAtom } from '../store';
@@ -25,9 +25,15 @@ const FormContainer = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <TextInput type='search' id='keyword'/>
-      <button type='submit'>{Drupal.t('Submit')}</button>
+    <form className='react-search__form-container' onSubmit={onSubmit}>
+      <TextInput
+        className='hdbt-search__filter'
+        helperText={Drupal.t('Input street address')}
+        id='keyword'
+        label={Drupal.t('Home address')}
+        type='search'
+      />
+      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
     </form>
   );
 };
