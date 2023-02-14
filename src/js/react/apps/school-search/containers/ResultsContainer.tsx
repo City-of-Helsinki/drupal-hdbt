@@ -1,17 +1,21 @@
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
 import { LoadingSpinner } from 'hds-react';
-import { configurationsAtom, paramsAtom } from '../store';
-import useQueryString from '../hooks/UseQueryString';
+import { SyntheticEvent } from 'react';
+import { configurationsAtom, paramsAtom, updatePageAtom } from '../store';
+import useQuery from '../hooks/UseQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 import ResultCard from '../components/ResultCard';
 import Result from '@/types/Result';
 import { School } from '../types/School';
-import UseAddressQuery from '../hooks/UseAddressQuery';
+import Pagination from '@/react/common/Pagination';
 
 const ResultsContainer = () => {
+  const { size } = GlobalSettings;
   const { baseUrl } = useAtomValue(configurationsAtom);
-  const queryString = useQueryString();
+  const params = useAtomValue(paramsAtom);
+  const updatePage = useSetAtom(updatePageAtom);
+  const { url, noResults } = useQuery(params);
 
   const fetcher = () => {
     const { index } = GlobalSettings;
@@ -21,11 +25,11 @@ const ResultsContainer = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: queryString,
+      body: url,
     }).then((res) => res.json());
   };
 
-  const { data, error } = useSWR(queryString, fetcher, {
+  const { data, error } = useSWR(url, fetcher, {
     revalidateOnFocus: false
   });
 
@@ -34,7 +38,7 @@ const ResultsContainer = () => {
   }
 
   // @todo: Implement no results message
-  if (!data?.hits?.hits.length) {
+  if (!data?.hits?.hits.length || noResults) {
     return (
       <div className='react-search__no-results'>
         No results
@@ -44,6 +48,8 @@ const ResultsContainer = () => {
 
   const results = data.hits.hits;
   const total = data.hits.total.value;
+  const pages = Math.floor(total / size);
+  const addLastPage = total > size && total % size;
 
   return (
     <div className='react-search__results'>
@@ -60,6 +66,15 @@ const ResultsContainer = () => {
       {results.map((hit: Result<School>) => (
         <ResultCard key={hit._id} {...hit._source} />
       ))}
+      <Pagination
+        currentPage={params.page || 1}
+        pages={5}
+        totalPages={addLastPage ? pages + 1 : pages}
+        updatePage={(e: SyntheticEvent, page: number) => {
+          e.preventDefault();
+          updatePage(page);
+        }}  
+      />
     </div>
   );
 };

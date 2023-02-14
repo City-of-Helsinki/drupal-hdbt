@@ -2,12 +2,17 @@ import BooleanQuery from '@/types/BooleanQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 import UseAddressQuery from './UseAddressQuery';
 import UseCoordinates from './UseCoordinates';
+import SearchParams from '../types/SearchParams';
 
-const UseQueryString = () => {
+const UseQuery = (params: SearchParams) => {
+  const { address } = params;
   const { size } = GlobalSettings;
-  const { coordinates, ids, isLoading } = UseAddressQuery();
+  const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
-  console.log(coordinates, ids, isLoading);
+  const { coordinates, isLoading: coordsLoading, isValidating: coordsValidating, noResults } = UseCoordinates(address);
+  const { ids, isLoading: idsLoading, isValidating: idsValidating } = UseAddressQuery(coordinates);
+
+  console.log(coordinates, ids);
 
   const query: BooleanQuery = {
     bool: {
@@ -37,7 +42,7 @@ const UseQueryString = () => {
     }
   ];
 
-  if (coordinates.length) {
+  if (coordinates && coordinates.length) {
     const [lat, lon] = coordinates;
 
    sort =[{
@@ -54,11 +59,15 @@ const UseQueryString = () => {
     }, ...sort];
   }
 
-  return JSON.stringify({
-    query,
-    size,
-    sort
-  });
+  return {
+    noResults,
+    url: JSON.stringify({
+      from: size * (page - 1),
+      query,
+      size,
+      sort
+    })
+  };
 };
 
-export default UseQueryString;
+export default UseQuery;

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import { useAtomValue } from 'jotai';
 import GlobalSettings from '../enum/GlobalSettings';
-import { paramsAtom } from '../store';
+
+;
 
 const getCoordsUrl = (address: string) => {
   const { coordinatesBaseUrl } = GlobalSettings; 
@@ -13,31 +13,48 @@ const getCoordsUrl = (address: string) => {
   return url.toString();
 };
 
-const UseCoordinates = () => {  
-  const { address } = useAtomValue(paramsAtom);
+const parseCoordinates = (data: any) => {
+  const [lon, lat]: number[] = data.results[0].location.coordinates; 
+  return [lat, lon];
+};
 
+const UseCoordinates = (address: string|undefined) => {  
   const fetcher = () => {
     if (!address) {
-      return [];
+      return null;
     }
 
     return fetch(getCoordsUrl(address)).then((res) => res.json());
   };
 
-  const { data, error, isLoading } = useSWR(address, fetcher, {
+  const { data, isLoading, isValidating } = useSWR(address, fetcher, {
     revalidateOnFocus: false
   });
-  
-  if (!data || !data.results || error) {
+
+  if (!address) {
     return {
-      coordinates: [],
+      coordinates: null,
+      isLoading: false,
+      isValidating: false,
+      noResults: false
     };
   }
 
-  const [lon, lat] = data.results[0].location.coordinates;
+  let noResults = false;
+  let coordinates = null;
+
+  try {
+    coordinates = parseCoordinates(data);
+  }
+  catch (e) {
+    noResults = true;
+  }
+
   return {
-    coordinates: [lat, lon],
-    isLoading
+    coordinates,
+    isLoading,
+    isValidating,
+    noResults
   };
 };
 

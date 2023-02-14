@@ -12,5 +12,9 @@ export const configurationsAtom = atom(() => {
 });
 
 export const paramsAtom = atom<SearchParams>({});
+export const updatePageAtom = atom(null, (get, set, page: number) => {
+  const params = get(paramsAtom);
+  set(paramsAtom, {...params, page});
+});
 
 export default configurationsAtom;
