@@ -269,7 +269,7 @@ class DaycarePayment {
             id: 'household_size',
             label: this.t('household_size'),
             unit: this.t('unit_person'),
-            min: 1,
+            min: 2,
             size: 2,
             required: true,
             helper_text: this.t('household_size_explanation'),
