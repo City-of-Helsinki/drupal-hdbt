@@ -333,6 +333,11 @@ class DaycarePayment {
         sv: null,
         en: null,
       },
+      household_size_is_too_small_for_child_count: {
+        fi: '${labelLink} pitäisi olla vähintään ${minValue} jos taloudessa on aikuinen ja ${childCount} lasta',
+        sv: null,
+        en: null,
+      },
       household_size_explanation: {
         fi: 'Samassa osoitteessa asuvien aikuisten ja alaikäisten lasten määrä.',
         sv: null,
@@ -712,12 +717,19 @@ class DaycarePayment {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Validate basics from form
       errorMessages.push(...this.calculator.validateBasics('household_size'));
+
+      // If there are more than one child, minimum household minimum size grows too.
+      const slots = this.calculator.getElement('slots_nth_child');
+      if (slots.children.length && slots.children.length + 2 > Number(this.calculator.getFieldValue('household_size'))) {
+        errorMessages.push(...this.calculator.getError('household_size', 'household_size_is_too_small_for_child_count', { minValue: slots.children.length + 2, childCount: slots.children.length + 1 }));
+      }
+
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
 
+      // Check first child
       errorMessages.push(...validateChildBasics(1));
 
-
-      const slots = this.calculator.getElement('slots_nth_child');
+      // Check other children
       for (let i = 0; i < slots.children.length; i++) {
         const child = slots.children[i];
         if (child.dataset && child.dataset.slotNumber) {

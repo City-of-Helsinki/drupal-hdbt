@@ -80,39 +80,39 @@ class HelfiCalculator {
         en: null,
       },
       select_radio: {
-        fi: 'Valitse ${labelText}',
+        fi: 'Valitse ${labelLink}',
         sv: null,
-        en: 'Select ${labelText}',
+        en: 'Select ${labelLink}',
       },
       enter_value: {
-        fi: 'Täytä ${labelText}',
+        fi: 'Täytä ${labelLink}',
         sv: null,
-        en: 'Enter ${labelText}',
+        en: 'Enter ${labelLink}',
       },
       must_be_number: {
-        fi: '${labelText} pitää olla numero',
+        fi: '${labelLink} pitää olla numero',
         sv: null,
-        en: '${labelText} must be a number',
+        en: '${labelLink} must be a number',
       },
       must_be_whole_number: {
-        fi: '${labelText} pitää olla kokonaisluku',
+        fi: '${labelLink} pitää olla kokonaisluku',
         sv: null,
-        en: '${labelText} must be a whole number',
+        en: '${labelLink} must be a whole number',
       },
       min_or_max_out_of_bounds: {
-        fi: '${labelText} pitää olla väliltä ${min} ja ${max}',
+        fi: '${labelLink} pitää olla väliltä ${min} ja ${max}',
         sv: null,
-        en: '${labelText} must be between ${min} and ${max}',
+        en: '${labelLink} must be between ${min} and ${max}',
       },
       min_out_of_bounds: {
-        fi: '${labelText} pitää olla ${min} tai enemmän',
+        fi: '${labelLink} pitää olla ${min} tai enemmän',
         sv: null,
-        en: '${labelText} must be ${min} or more',
+        en: '${labelLink} must be ${min} or more',
       },
       max_out_of_bounds: {
-        fi: '${labelText} pitää olla ${max} tai vähemmän',
+        fi: '${labelLink} pitää olla ${max} tai vähemmän',
         sv: null,
-        en: '${labelText} must be ${max} or fewer',
+        en: '${labelLink} must be ${max} or fewer',
       },
       result: {
         fi: 'Lopputulos',
@@ -250,7 +250,7 @@ class HelfiCalculator {
 
   }
 
-  validateBasics(elemID) {
+  getError(elemID, translationKey, translationParams) {
 
     const elem = document.querySelector(`#${elemID}_${this.id}`);
     if (!elem) {
@@ -260,10 +260,20 @@ class HelfiCalculator {
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
     const labelLink = `<a href="#${elem.id}">${labelText}</a>`;
 
+    return [this.translate(translationKey, { labelLink, labelText, ...translationParams })];
+  }
+
+  validateBasics(elemID) {
+
+    const elem = document.querySelector(`#${elemID}_${this.id}`);
+    if (!elem) {
+      throw new Error(`Element #${elemID}_${this.id} missing from ${this.name} at validateBasics`);
+    }
+
     if (elem.dataset?.type === 'radio') {
       const checked = elem.querySelector('input:checked');
       if (!checked && elem.dataset.required) {
-        return [this.translate('select_radio', { labelText: labelLink })];
+        return this.getError(elemID, 'select_radio');
       }
     }
 
@@ -277,7 +287,7 @@ class HelfiCalculator {
 
       // Check that required input has value
       if (elem.value === 'undefined' || elem.value === '') {
-        return [this.translate('enter_value', { labelText: labelLink })];
+        return this.getError(elemID, 'enter_value');
       }
 
       const elemValue = elem.value.replace(',', '.');
@@ -285,29 +295,29 @@ class HelfiCalculator {
       // Check if it's an integer number
       const integerRegex = /^-?([1-9][0-9]*|0)$/;
       if (elem.dataset.type === 'input_integer' && !integerRegex.test(elemValue)) {
-        return [this.translate('must_be_whole_number', { labelText: labelLink })];
+        return this.getError(elemID, 'must_be_whole_number');
       }
 
       // Check if it's a decimal number or integer
       const floatRegex = /^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;
       if (elem.dataset.type === 'input_float' && !floatRegex.test(elemValue)) {
-        return [this.translate('must_be_number', { labelText: labelLink })];
+        return this.getError(elemID, 'must_be_number');
       }
 
       // If both bounds are set
       if (typeof elem.dataset.min !== 'undefined' && typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue) || elemValue > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('min_or_max_out_of_bounds', { labelText: labelLink, min: elem.dataset.min, max: elem.dataset.max })];
+          return this.getError(elemID, 'min_or_max_out_of_bounds', { min: elem.dataset.min, max: elem.dataset.max });
         }
         // Less than min
       } else if (typeof elem.dataset.min !== 'undefined') {
         if (Number.parseFloat(elem.dataset.min) > Number.parseFloat(elemValue)) {
-          return [this.translate('min_out_of_bounds', { labelText: labelLink, min: elem.dataset.min })];
+          return this.getError(elemID, 'min_out_of_bounds', { min: elem.dataset.min });
         }
         // More than max
       } else if (typeof elem.dataset.max !== 'undefined') {
         if (Number.parseFloat(elemValue) > Number.parseFloat(elem.dataset.max)) {
-          return [this.translate('max_out_of_bounds', { labelText: labelLink, max: elem.dataset.max })];
+          return this.getError(elemID, 'max_out_of_bounds', { max: elem.dataset.max });
         }
       }
     }
