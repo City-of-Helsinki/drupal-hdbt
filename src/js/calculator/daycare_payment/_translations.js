@@ -12,7 +12,7 @@ const translations = {
     en: null,
   },
   household_size_is_too_small_for_child_count: {
-    fi: 'Lukumäärän pitäisi olla vähintään ${minValue} jos samassa osoitteessa asuu aikuinen ja ${childCount} lasta',
+    fi: 'Lukumäärän pitäisi olla vähintään ${minValue}, jos samassa osoitteessa asuu aikuinen ja ${childCount} lasta.',
     sv: null,
     en: null,
   },
@@ -72,7 +72,7 @@ const translations = {
     en: null,
   },
   daycare_type_3: {
-    fi: '6-vuotiaiden esiopetus ja varhaiskasvatus',
+    fi: 'Esiopetus ja varhaiskasvatus',
     sv: null,
     en: null,
   },
@@ -87,7 +87,7 @@ const translations = {
     en: null,
   },
   daycare_type_1_explanation: {
-    fi: 'Varhaiskasvatusta järjestetään arkipäivinä pääsääntöisesti päiväkodeissa klo 6.15–17.30 tai perhepäivähoidossa 7–17.',
+    fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa arkipäivinä klo 6.15–17.30, ryhmäperhepäiväkodeissa noin klo 7.30–16.30 sekä perhepäiväkodeissa ja kolmiperhepäivähoidossa noin klo 8.00–16.00.',
     sv: null,
     en: null,
   },
@@ -102,7 +102,7 @@ const translations = {
     en: null,
   },
   daycare_type_1_caretime_2: {
-    fi: 'Yli 5 tuntia ja alle 7 tuntia päivässä',
+    fi: 'Yli 5 tuntia ja enintään 7 tuntia päivässä',
     sv: null,
     en: null,
   },
@@ -112,17 +112,17 @@ const translations = {
     en: null,
   },
   daycare_free_days: {
-    fi: 'Vapaapäivien määrä',
+    fi: 'Säännöllisiä vapaapäiviä kuukaudessa',
     sv: null,
     en: null,
   },
   daycare_free_days_explanation: {
-    fi: 'Säännölliset vapaapäivät 4–12 päivää kuukaudessa alentavat maksua.',
+    fi: 'Jos lapsi on säännöllisesti poissa varhaiskasvatuksesta osan kalenterikuukaudesta, voit sopia säännöllisistä vapaapäivistä. 4–12 vapaapäivää kuukaudessa alentaa varhaiskasvatusmaksua. ',
     sv: null,
     en: null,
   },
   daycare_type_2_explanation: {
-    fi: '5-vuotiaille varhaiskasvatus on maksutonta 4 tuntia päivässä. Jos lapsi on 5-vuotiaiden esiopetuskokeilussa, valitse kohta esiopetus ja varhaiskasvatus. ',
+    fi: '5-vuotiaiden varhaiskasvatus on maksutonta 4 tuntia päivässä, ja se koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
     sv: null,
     en: null,
   },
@@ -167,12 +167,12 @@ const translations = {
     en: null,
   },
   daycare_type_3_caretime_2: {
-    fi: '7–8 tuntia päivässä (ei koskaan yli 8 tuntia)',
+    fi: '7–8 tuntia päivässä (hoitoaika ei jousta yli 8 tunnin)',
     sv: null,
     en: null,
   },
   daycare_type_3_caretime_3: {
-    fi: 'Yli 5 ja alle 7 tuntia päivässä',
+    fi: 'Yli 5 ja enintään 7 tuntia päivässä',
     sv: null,
     en: null,
   },
@@ -192,17 +192,17 @@ const translations = {
     en: null,
   },
   daycare_type_4_caretime_1: {
-    fi: 'Yli 160 tuntia kuukaudessa',
+    fi: 'Yli 161 tuntia kuukaudessa',
     sv: null,
     en: null,
   },
   daycare_type_4_caretime_2: {
-    fi: '101-160 tuntia kuukaudessa',
+    fi: '101–160 tuntia kuukaudessa',
     sv: null,
     en: null,
   },
   daycare_type_4_caretime_3: {
-    fi: '61-100 tuntia kuukaudessa',
+    fi: '61–100 tuntia kuukaudessa',
     sv: null,
     en: null,
   },
@@ -227,7 +227,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. Lopullinen asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain.',
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. Tämä arvio on suuntaa antava. Tarkka asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain. Jos et ilmoita tuloja, lasketaan maksu korkeimman varhaiskasvatusmaksun mukaan.',
     sv: null,
     en: null,
   },
@@ -247,17 +247,17 @@ const translations = {
     en: null,
   },
   receipt_daycare_type_2_details: {
-    fi: 'Huomioithan, että 5-vuotiaiden maksuton varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
+    fi: '5-vuotiaiden maksuton varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
     sv: null,
     en: null,
   },
   receipt_daycare_type_3_details: {
-    fi: 'Huomioithan, että maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    fi: 'Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
     sv: null,
     en: null,
   },
   receipt_daycare_type_4_details: {
-    fi: 'Huomioithan, että lapsella tulisi olla vähintään kaksi vapaapäivää viikossa tai vaihtoehtoisesti kahdeksan vapaapäivää kuukaudessa.',
+    fi: 'Vuorohoidossa olevalla lapsella tulisi olla vähintään kaksi vapaapäivää viikossa tai vaihtoehtoisesti kahdeksan vapaapäivää kuukaudessa.',
     sv: null,
     en: null,
   },
