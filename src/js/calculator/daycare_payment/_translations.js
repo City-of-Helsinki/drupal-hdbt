@@ -121,36 +121,6 @@ const translations = {
     sv: null,
     en: null,
   },
-  daycare_type_3_explanation: {
-    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden esiopetuskokeilu on maksutonta 4 tuntia päivässä. Valitse vaihtoehdoista, jos lapsi on esiopetuksen lisäksi varhaiskasvatuksessa. ',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime: {
-    fi: 'Esiopetuksen ja varhaiskasvatuksen hoitoaika yhteensä ',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_1: {
-    fi: 'Yli 7 tuntia päivässä (hoitoaika voi joustaa yli 8 tunnin)',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_2: {
-    fi: '7–8 tuntia päivässä (ei koskaan yli 8 tuntia)',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_3: {
-    fi: 'Yli 5 ja alle 7 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_4: {
-    fi: 'Enintään 5 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
   daycare_type_2_explanation: {
     fi: '5-vuotiaille varhaiskasvatus on maksutonta 4 tuntia päivässä. Jos lapsi on 5-vuotiaiden esiopetuskokeilussa, valitse kohta esiopetus ja varhaiskasvatus. ',
     sv: null,
@@ -178,6 +148,36 @@ const translations = {
   },
   daycare_type_2_caretime_4: {
     fi: '4 tuntia päivässä (maksuton)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_explanation: {
+    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden esiopetuskokeilu on maksutonta 4 tuntia päivässä. Valitse vaihtoehdoista, jos lapsi on esiopetuksen lisäksi varhaiskasvatuksessa. ',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime: {
+    fi: 'Esiopetuksen ja varhaiskasvatuksen hoitoaika yhteensä ',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_1: {
+    fi: 'Yli 7 tuntia päivässä (hoitoaika voi joustaa yli 8 tunnin)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_2: {
+    fi: '7–8 tuntia päivässä (ei koskaan yli 8 tuntia)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_3: {
+    fi: 'Yli 5 ja alle 7 tuntia päivässä',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_4: {
+    fi: 'Enintään 5 tuntia päivässä',
     sv: null,
     en: null,
   },
