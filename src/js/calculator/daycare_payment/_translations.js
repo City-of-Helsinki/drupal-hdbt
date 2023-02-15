@@ -27,7 +27,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'Koko perheen yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä.',
+    fi: 'Koko perheen yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman maksun mukaisesti.',
     sv: null,
     en: null,
   },
@@ -71,12 +71,12 @@ const translations = {
     sv: null,
     en: null,
   },
-  daycare_type_2: {
+  daycare_type_3: {
     fi: '6-vuotiaiden esiopetus ja varhaiskasvatus',
     sv: null,
     en: null,
   },
-  daycare_type_3: {
+  daycare_type_2: {
     fi: '5-vuotiaiden varhaiskasvatus',
     sv: null,
     en: null,
@@ -86,23 +86,28 @@ const translations = {
     sv: null,
     en: null,
   },
+  daycare_type_1_explanation: {
+    fi: 'Varhaiskasvatusta järjestetään arkipäivinä pääsääntöisesti päiväkodeissa klo 6.15–17.30 tai perhepäivähoidossa 7–17.',
+    sv: null,
+    en: null,
+  },
   daycare_type_1_caretime: {
     fi: 'Hoitoaika',
     sv: null,
     en: null,
   },
   daycare_type_1_caretime_1: {
-    fi: 'Kokopäiväinen, yli 7 tuntia päivässä',
+    fi: 'Yli 7 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_1_caretime_2: {
-    fi: 'Kokopäiväinen, yli 5 ja enintään 7 tuntia päivässä',
+    fi: 'Yli 5 tuntia ja alle 7 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_1_caretime_3: {
-    fi: 'Osapäiväinen, enintään 5 tuntia päivässä',
+    fi: 'Enintään 5 tuntia päivässä',
     sv: null,
     en: null,
   },
@@ -112,12 +117,47 @@ const translations = {
     en: null,
   },
   daycare_free_days_explanation: {
-    fi: 'Mahdolliset säännöllisesti toistuvat arkipäivät, jolloin lapsi ei osallistu päiväkotihoitoon. Kuukaudessa 4-12 vapaapäivää vaikuttaa maksuun.',
+    fi: 'Säännölliset vapaapäivät 4–12 päivää kuukaudessa alentavat maksua 4 %/päivä.',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_explanation: {
+    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden esiopetuskokeilu on maksutonta 4 tuntia päivässä. Valitse vaihtoehdoista, jos lapsi on esiopetuksen lisäksi varhaiskasvatuksessa. ',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime: {
+    fi: 'Esiopetuksen ja varhaiskasvatuksen hoitoaika yhteensä ',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_1: {
+    fi: 'Yli 7 tuntia päivässä (hoitoaika voi joustaa yli 8 tunnin)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_2: {
+    fi: '7–8 tuntia päivässä (ei koskaan yli 8 tuntia)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_3: {
+    fi: 'Yli 5 ja alle 7 tuntia päivässä',
+    sv: null,
+    en: null,
+  },
+  daycare_type_3_caretime_4: {
+    fi: 'Enintään 5 tuntia päivässä',
+    sv: null,
+    en: null,
+  },
+  daycare_type_2_explanation: {
+    fi: '5-vuotiaille varhaiskasvatus on maksutonta 4 tuntia päivässä. Jos lapsi on 5-vuotiaiden esiopetuskokeilussa, valitse kohta esiopetus ja varhaiskasvatus. ',
     sv: null,
     en: null,
   },
   daycare_type_2_caretime: {
-    fi: 'Esiopetuksen ja päiväkotihoidon hoitoaika yhteensä',
+    fi: 'Hoitoaika',
     sv: null,
     en: null,
   },
@@ -127,42 +167,22 @@ const translations = {
     en: null,
   },
   daycare_type_2_caretime_2: {
-    fi: '7-8 tuntia päivässä (6 –vuotiaiden esiopetusikäisten ja 5 -vuotiaiden esiopetuskokeilu)',
+    fi: 'Yli 5 tuntia ja enintään 7 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_2_caretime_3: {
-    fi: 'Yli 5 ja alle 7 tuntia päivässä',
+    fi: 'Yli 4 tuntia ja enintään 5 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_2_caretime_4: {
-    fi: 'Enintään 5 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime: {
-    fi: 'Hoitoaika',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_1: {
-    fi: 'Yli 7 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_2: {
-    fi: '5-7 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_3: {
-    fi: '4-5 tuntia päivässä',
-    sv: null,
-    en: null,
-  },
-  daycare_type_3_caretime_4: {
     fi: '4 tuntia päivässä (maksuton)',
+    sv: null,
+    en: null,
+  },
+  daycare_type_4_explanation: {
+    fi: 'Vuorohoito tarkoittaa varhaiskasvatusta päiväkodeissa myös illalla, yöllä ja viikonloppuna huoltajan vuorotyön tai opiskelun vuoksi.',
     sv: null,
     en: null,
   },

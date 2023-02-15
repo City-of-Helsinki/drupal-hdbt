@@ -63,6 +63,11 @@ class DaycarePayment {
               hide_group: true,
               items: [
                 {
+                  paragraph: {
+                    text: this.t('daycare_type_1_explanation'),
+                  }
+                },
+                {
                   radio: {
                     id: `daycare_type_1_${childNumber}_group_caretime`,
                     label: this.t('daycare_type_1_caretime'),
@@ -109,6 +114,11 @@ class DaycarePayment {
               id: `daycare_type_2_${childNumber}_group`,
               hide_group: true,
               items: [
+                {
+                  paragraph: {
+                    text: this.t('daycare_type_2_explanation'),
+                  }
+                },
                 {
                   radio: {
                     id: `daycare_type_2_${childNumber}_group_caretime`,
@@ -163,6 +173,11 @@ class DaycarePayment {
               hide_group: true,
               items: [
                 {
+                  paragraph: {
+                    text: this.t('daycare_type_3_explanation'),
+                  }
+                },
+                {
                   radio: {
                     id: `daycare_type_3_${childNumber}_group_caretime`,
                     label: this.t('daycare_type_3_caretime'),
@@ -215,6 +230,11 @@ class DaycarePayment {
               id: `daycare_type_4_${childNumber}_group`,
               hide_group: true,
               items: [
+                {
+                  paragraph: {
+                    text: this.t('daycare_type_4_explanation'),
+                  }
+                },
                 {
                   radio: {
                     id: `daycare_type_4_${childNumber}_group_caretime`,
@@ -458,21 +478,21 @@ class DaycarePayment {
           },
         },
         '2': {
-          type: 'for_6_year_old',
-          careTime: {
-            '1': 'over_7_hours_percentage',
-            '2': 'from_7_to_8_hours_percentage',
-            '3': 'over_5_and_at_most_7_hours_percentage',
-            '4': 'at_most_5_hours_percentage',
-          },
-        },
-        '3': {
           type: 'for_5_year_old',
           careTime: {
              '1': 'over_7_hours_percentage',
              '2': 'over_5_and_at_most_7_hours_percentage',
              '3': 'over_4_and_at_most_5_hours_percentage',
              '4': 'at_most_4_hours_percentage',
+          },
+        },
+        '3': {
+          type: 'for_6_year_old',
+          careTime: {
+            '1': 'over_7_hours_percentage',
+            '2': 'from_7_to_8_hours_percentage',
+            '3': 'over_5_and_at_most_7_hours_percentage',
+            '4': 'at_most_5_hours_percentage',
           },
         },
         '4': {
@@ -610,17 +630,17 @@ class DaycarePayment {
             over_5_and_at_most_7_hours_percentage: 80,
             at_most_5_hours_percentage: 60,
           },
-          for_6_year_old: {
-            over_7_hours_percentage: 65,
-            from_7_to_8_hours_percentage: 60,
-            over_5_and_at_most_7_hours_percentage: 40,
-            at_most_5_hours_percentage: 20,
-          },
           for_5_year_old: {
             over_7_hours_percentage: 65,
             over_5_and_at_most_7_hours_percentage: 40,
             over_4_and_at_most_5_hours_percentage: 20,
             at_most_4_hours_percentage: 0,
+          },
+          for_6_year_old: {
+            over_7_hours_percentage: 65,
+            from_7_to_8_hours_percentage: 60,
+            over_5_and_at_most_7_hours_percentage: 40,
+            at_most_5_hours_percentage: 20,
           },
           round_the_clock_care: {
             from_161_hours_percentage: 100,
