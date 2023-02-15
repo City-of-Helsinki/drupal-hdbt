@@ -7,7 +7,7 @@ const globalTranslations = {
     en: null,
   },
   not_saved: {
-    fi: 'Huomioithan, että laskuriin antamiasi tietoja ei tallenneta eikä lähetetä eteenpäin.',
+    fi: 'Huomioithan, että laskuriin antamiasi tietoja ei tallenneta eikä lähetetä eteenpäin. Jos muutat laskurin tietoja, muista painaa "Laske arvio" uudelleen.',
     sv: null,
     en: null,
   },
@@ -17,7 +17,7 @@ const globalTranslations = {
     en: 'in euros',
   },
   unit_person: {
-    fi: 'henkeä',
+    fi: 'henkilöä',
     sv: 'i personer',
     en: 'persons',
   },

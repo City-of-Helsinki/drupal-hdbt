@@ -117,7 +117,7 @@ const translations = {
     en: null,
   },
   daycare_free_days_explanation: {
-    fi: 'Säännölliset vapaapäivät 4–12 päivää kuukaudessa alentavat maksua 4 %/päivä.',
+    fi: 'Säännölliset vapaapäivät 4–12 päivää kuukaudessa alentavat maksua.',
     sv: null,
     en: null,
   },
