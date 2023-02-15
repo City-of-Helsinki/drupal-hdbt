@@ -3,6 +3,10 @@
     @include font('body');
   }
 
+  .hds-text-input__label {
+    display: inline;
+  }
+
   .hds-selection-group,
   .hds-text-input__input {
     scroll-margin-top: $spacing-double;
@@ -84,7 +88,6 @@
       /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
       transition: visibility 0.5s linear;
       visibility: hidden;
-
     }
 
     &:not([data-hide-group='true']) {
