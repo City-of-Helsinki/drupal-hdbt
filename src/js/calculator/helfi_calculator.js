@@ -79,40 +79,45 @@ class HelfiCalculator {
         sv: null,
         en: null,
       },
-      select_radio: {
-        fi: 'Valitse ${labelLink}',
+      error_with_link: {
+        fi: '${error}, ${labelLink}',
         sv: null,
-        en: 'Select ${labelLink}',
+        en: null,
+      },
+      select_radio: {
+        fi: 'Valinta on pakollinen',
+        sv: null,
+        en: null,
       },
       enter_value: {
-        fi: 'Täytä ${labelLink}',
+        fi: 'Kenttä on pakollinen',
         sv: null,
-        en: 'Enter ${labelLink}',
+        en: null,
       },
       must_be_number: {
-        fi: '${labelLink} pitää olla numero',
+        fi: 'Kenttään on syötettävä numero',
         sv: null,
-        en: '${labelLink} must be a number',
+        en: null,
       },
       must_be_whole_number: {
-        fi: '${labelLink} pitää olla kokonaisluku',
+        fi: 'Kenttään on syötettävä kokonaisluku',
         sv: null,
-        en: '${labelLink} must be a whole number',
+        en: null,
       },
       min_or_max_out_of_bounds: {
-        fi: '${labelLink} pitää olla väliltä ${min} ja ${max}',
+        fi: 'Arvon pitää olla väliltä ${min} ja ${max}',
         sv: null,
-        en: '${labelLink} must be between ${min} and ${max}',
+        en: null,
       },
       min_out_of_bounds: {
-        fi: '${labelLink} pitää olla ${min} tai enemmän',
+        fi: 'Arvon pitää olla ${min} tai enemmän',
         sv: null,
-        en: '${labelLink} must be ${min} or more',
+        en: null,
       },
       max_out_of_bounds: {
-        fi: '${labelLink} pitää olla ${max} tai vähemmän',
+        fi: 'Arvon pitää olla ${max} tai vähemmän',
         sv: null,
-        en: '${labelLink} must be ${max} or fewer',
+        en: null,
       },
       result: {
         fi: 'Lopputulos',
@@ -260,7 +265,21 @@ class HelfiCalculator {
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
     const labelLink = `<a href="#${elem.id}">${labelText}</a>`;
 
-    return [this.translate(translationKey, { labelLink, labelText, ...translationParams })];
+
+    const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
+    const errorHtml = `<span class="hds-text-input__error-text">${error}</span>`;
+
+    const elemFormItem = elem.closest('.form-item');
+    if (elemFormItem) {
+      elemFormItem.classList.add('hds-text-input--invalid');
+      const errorContainer = elemFormItem.querySelector('.helfi-calculator__error-placeholder');
+      if (errorContainer) {
+        errorContainer.innerHTML = errorHtml;
+      }
+    }
+
+    const errorWithLink = this.translate('error_with_link', { error, labelLink});
+    return [errorWithLink];
   }
 
   validateBasics(elemID) {
@@ -393,6 +412,16 @@ class HelfiCalculator {
   clearResult() {
     document.querySelector(`#${this.id} .helfi-calculator-notification--error`).innerHTML = '';
     document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = '';
+    const errors = document.querySelectorAll(`#${this.id} .hds-text-input--invalid`);
+    Object.values(errors).forEach((error) => {
+      error.classList.remove('hds-text-input--invalid');
+    });
+    const errorsMessages = document.querySelectorAll(`#${this.id} .helfi-calculator__error-placeholder`);
+    Object.values(errorsMessages).forEach((errorMessage) => {
+      errorMessage.innerHTML = '';
+    });
+
+
     // this.init(this.initParams);
   }
 
@@ -409,7 +438,7 @@ class HelfiCalculator {
           ${this.translate('not_saved')}
         </div>
         <div class="helfi-calculator-notification helfi-calculator-notification--error" aria-live="polite" aria-atomic="true"></div>
-        <form class="helfi-calculator">
+        <form class="helfi-calculator" action="" method="post">
           {{#items}}
             {{>form_item}}
           {{/items}}
@@ -439,19 +468,23 @@ class HelfiCalculator {
         `,
         group: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__group" {{#hide_group}}data-hide-group="true"{{/hide_group}}>
-            {{#items}}
-              {{>form_item}}
-            {{/items}}
+            <div>
+              {{#items}}
+                {{>form_item}}
+              {{/items}}
+            </div>
           </div>
         `,
         dynamic_slot: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot" {{#slotNumber}}data-slot-number="{{slotNumber}}"{{/slotNumber}}>
-            {{#items}}
-              {{>form_item}}
-            {{/items}}
-            {{#remove_label}}
-              <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--supplementary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
-            {{/remove_label}}
+            <div>
+              {{#items}}
+                {{>form_item}}
+              {{/items}}
+              {{#remove_label}}
+                <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--supplementary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
+              {{/remove_label}}
+            </div>
           </div>
         `,
         dynamic_area: `
@@ -475,6 +508,9 @@ class HelfiCalculator {
         hr: `
           <hr>
         `,
+        error_placeholder: `
+          <div class="helfi-calculator__error-placeholder"></div>
+        `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
             {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
@@ -495,6 +531,7 @@ class HelfiCalculator {
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
             </div>
+            {{>error_placeholder}}
             {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
           </div>
         `,
@@ -517,6 +554,7 @@ class HelfiCalculator {
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
             </div>
+            {{>error_placeholder}}
             {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
           </div>
         `,
@@ -537,6 +575,7 @@ class HelfiCalculator {
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
             </div>
+            {{>error_placeholder}}
             {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
           </div>
         `,
@@ -545,13 +584,14 @@ class HelfiCalculator {
               data-type="radio"
               id="{{id}}_{{form_id}}"
               {{#required}}data-required="true"{{/required}}
-              class="hds-selection-group {{#required}}input--required{{/required}}">
+              class="form-item hds-selection-group {{#required}}input--required{{/required}}">
             {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>{{/label}}
             <div class="hds-selection-group__items">
               {{#radio_items}}
                 {{>radio_item}}
               {{/radio_items}}
             </div>
+            {{>error_placeholder}}
             {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
           </fieldset>
         `,
