@@ -282,7 +282,7 @@ class DaycarePayment {
             unit: this.t('unit_euro'),
             size: 8,
             // maxlength: 999,
-            required: true,
+            required: false,
             helper_text: this.t('gross_income_per_month_explanation'),
           },
         },
@@ -751,7 +751,8 @@ class DaycarePayment {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Get fielf values for calculating.
       const householdSize = Number(this.calculator.getFieldValue('household_size'));
-      const grossIncomePerMonth = Number(this.calculator.getFieldValue('gross_income_per_month'));
+      const grossIncomePerMonthRaw = this.calculator.getFieldValue('gross_income_per_month');
+      const grossIncomePerMonth = Number(grossIncomePerMonthRaw);
       const children = [];
 
       // Get first child separately as it's hardcoded.
@@ -838,7 +839,9 @@ class DaycarePayment {
       let paymentForYoungest = null;
 
       // If gross income per month is below payment limit, no payment.
-      if (grossIncomePerMonth < limits.min) {
+      if (!grossIncomePerMonthRaw && grossIncomePerMonthRaw !== 0) {
+        paymentForYoungest = Number(tempSettings.child_1_max_euro);
+      } else if (grossIncomePerMonth < limits.min) {
         paymentForYoungest = 0;
       } else {
         // Calculate the difference between minimum limit and gross income
@@ -902,7 +905,7 @@ class DaycarePayment {
       change: () => {
         update();
         // this.calculator.clearResult();
-        validate();
+        // validate();
       },
       reset: () => {
         window.setTimeout(update, 1);
