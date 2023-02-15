@@ -437,17 +437,6 @@ class HelfiCalculator {
             {{#radio}}{{>radio}}{{/radio}}
           </div>
         `,
-        group_item: `
-          <div class="helfi-calculator__item">
-            {{#heading}}{{>heading}}{{/heading}}
-            {{#paragraph}}{{>paragraph}}{{/paragraph}}
-            {{#hr}}{{>hr}}{{/hr}}
-            {{#input}}{{>input}}{{/input}}
-            {{#input_integer}}{{>input_integer}}{{/input_integer}}
-            {{#input_float}}{{>input_float}}{{/input_float}}
-            {{#radio}}{{>radio}}{{/radio}}
-          </div>
-        `,
         group: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__group" {{#hide_group}}data-hide-group="true"{{/hide_group}}>
             {{#items}}
