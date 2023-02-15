@@ -7,12 +7,64 @@ class DaycarePayment {
     // Expecting settings to follow this JSON format:
     /*
     {
+      family_size_income_limits: {
+        '2': {
+          min: 3874,
+          max: 6626
+        },
+        '3': {
+          min: 4998,
+          max: 7750
+        },
+        '4': {
+          min: 5675,
+          max: 8427
+        },
+        '5': {
+          min: 6353,
+          max: 9105
+        },
+        '6': {
+          min: 7028,
+          max: 9780
+        },
+      },
+      family_size_beyond_defined_multiplier_euro: 262,
+      minimum_payment_euro: 28,
+      payment_percentage: 10.7,
+      child_1_max_euro: 295,
+      child_2_percent: 40,
+      child_n_percent: 20,
+      discounts: {
+        early_education_on_weekdays: {
+          over_7_hours_percentage: 100,
+          over_5_and_at_most_7_hours_percentage: 80,
+          at_most_5_hours_percentage: 60,
+        },
+        for_5_year_old: {
+          over_7_hours_percentage: 65,
+          over_5_and_at_most_7_hours_percentage: 40,
+          over_4_and_at_most_5_hours_percentage: 20,
+          at_most_4_hours_percentage: 0,
+        },
+        for_6_year_old: {
+          over_7_hours_percentage: 65,
+          from_7_to_8_hours_percentage: 60,
+          over_5_and_at_most_7_hours_percentage: 40,
+          at_most_5_hours_percentage: 20,
+        },
+        round_the_clock_care: {
+          from_161_hours_percentage: 100,
+          from_101_to_160_hours_percentage: 80,
+          from_61_to_100_hours_percentage: 60,
+        },
+        free_day_percentage: 4,
+      },
     }
     */
 
 
     // The following getFormData uses dynamic children, so we need to define them first.
-
     const dynamicChildData = (childNumber) => {
       const child = {
         id: `child_${childNumber}`,
@@ -525,10 +577,6 @@ class DaycarePayment {
     }
 
     const validate = () => {
-      const defaultInfo = {
-        title: this.t('default_info_title'),
-        message: this.t('default_info_message'),
-      };
       const errorMessages = [];
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -561,7 +609,6 @@ class DaycarePayment {
             title: this.t('missing_input'),
             message: errorMessages
           },
-          info: defaultInfo,
         };
       }
 
@@ -704,7 +751,6 @@ class DaycarePayment {
           title: 'TBD',
           message: `Maksu: ${sum} euroa`,
         },
-        info: defaultInfo,
       };
     };
 

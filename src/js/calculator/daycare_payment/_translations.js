@@ -211,13 +211,53 @@ const translations = {
     sv: null,
     en: null,
   },
-  default_info_title: {
-    fi: 'Täytä kaikki pakolliset tiedot, ja paina "Laske arvio".',
+  receipt_estimate_of_payment: {
+    fi: 'Arvio asiakasmaksusta',
     sv: null,
     en: null,
   },
-  default_info_message: {
-    fi: 'Arvio asiakasmaksusta tulee näkyviin tähän. Jos päivität laskurin sisältöä, muista painaa "Laske arvio" uudelleen.',
+  receipt_family_estimated_payment_prefix: {
+    fi: 'Perheen arvioitu asiakasmaksu on',
+    sv: null,
+    en: null,
+  },
+  receipt_family_estimated_payment_suffix: {
+    fi: 'euroa kuukaudessa.',
+    sv: null,
+    en: null,
+  },
+  receipt_family_estimated_payment_explanation: {
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. Lopullinen asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain.',
+    sv: null,
+    en: null,
+  },
+  receipt_estimate_is_based_on: {
+    fi: 'Arvio muodostuu seuraavista tiedoista:',
+    sv: null,
+    en: null,
+  },
+  receipt_subtotal_euros_per_month: {
+    fi: '${value} €/kk',
+    sv: null,
+    en: null,
+  },
+  receipt_additional_details: {
+    fi: 'Lisähuomiot:',
+    sv: null,
+    en: null,
+  },
+  receipt_daycare_type_2_details: {
+    fi: 'Huomioithan, että 5-vuotiaiden maksuton varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
+    sv: null,
+    en: null,
+  },
+  receipt_daycare_type_3_details: {
+    fi: 'Huomioithan, että maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    sv: null,
+    en: null,
+  },
+  receipt_daycare_type_4_details: {
+    fi: 'Huomioithan, että lapsella tulisi olla vähintään kaksi vapaapäivää viikossa tai vaihtoehtoisesti kahdeksan vapaapäivää kuukaudessa.',
     sv: null,
     en: null,
   },
