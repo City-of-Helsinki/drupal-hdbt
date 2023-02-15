@@ -14,7 +14,7 @@
     }
   }
 
-  .helfi-calculator__item:not(:first-child),
+  .helfi-calculator__item:not(:first-child) > :first-child,
   .helfi-calculator__buttons {
     margin-top: $spacing-and-half;
   }
@@ -62,17 +62,38 @@
   }
 
   .helfi-calculator__group {
-    border-left: $spacing-half solid $color-black-20;
+    display: grid;
+    grid-template-rows: 0fr;
     margin-left: 10px; // 8px from design + 2px from HDS fieldset style, so that radiobuttons center match this center
-    padding-left: $spacing-and-half;
-  }
+    margin-top: 0 !important;
+    overflow: hidden;
+    transition: grid-template-rows 0.5s;
 
-  .helfi-calculator__group[data-hide-group='true'] {
-    display: none;
-  }
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
 
-  [data-hide-group='true'] {
-    display: none;
+    & > :first-child {
+      border-left: $spacing-half solid $color-black-20;
+      padding-left: $spacing-and-half;
+    }
+
+    & > * {
+      align-self: start;
+      min-height: 0;
+      /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+      transition: visibility 0.5s linear;
+      visibility: hidden;
+
+    }
+
+    &:not([data-hide-group='true']) {
+      grid-template-rows: 1fr;
+
+      & > * {
+        visibility: visible;
+      }
+    }
   }
 
   .helfi-calculator__dynamic-area__slots + button {
@@ -88,6 +109,30 @@
     }
   }
 
+  // Animate all added slots
+  [data-item-count] .helfi-calculator__dynamic-slot {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: append-animate 0.3s linear;
+    }
+    display: grid;
+    overflow: hidden;
+
+    & > div {
+      align-self: start;
+      min-height: 0;
+    }
+  }
+
+  @keyframes append-animate {
+    from {
+      grid-template-rows: 0fr;
+    }
+
+    to {
+      grid-template-rows: 1fr;
+    }
+  }
+
   h1:first-child,
   h2:first-child,
   h3:first-child,
@@ -97,14 +142,28 @@
     margin-top: 0;
   }
 
-  // For some unknown reason HDS does not include styles for helper-texts with radiobuttons.
-  .hds-selection-group .hds-text-input__helper-text {
-    color: $color-black-60;
-    display: block;
-    font-size: var(--fontsize-body-m);
-    line-height: var(--lineheight-l);
-    margin-top: $spacing-half;
-    white-space: pre-line;
+  // For some unknown reason HDS does not include styles for helper-texts and error-texts with radiobuttons.
+  .hds-selection-group {
+    .hds-text-input__helper-text {
+      color: $color-black-60;
+      display: block;
+      font-size: var(--fontsize-body-m);
+      line-height: var(--lineheight-l);
+      margin-top: $spacing-half;
+      white-space: pre-line;
+    }
+
+    .hds-text-input__error-text {
+      color: $color-error;
+      margin-top: $spacing;
+      padding-left: calc(var(--icon-size) + var(--spacing-2-xs));
+      position: relative;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &::before {
+        @include pseudo-icon('alert-circle-fill', $color: currentColor);
+      }
+    }
   }
 
   .helfi-calculator__dynamic-remove-wrapper {
@@ -113,7 +172,6 @@
   }
 
   .helfi-calculator__dynamic-remove {
-    @include font('special.helper_text');
     margin-bottom: - $spacing-and-half;
     margin-right: - $spacing;
 
