@@ -4,6 +4,7 @@ import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import type Event from '../types/Event';
 import { queryBuilderAtom, urlAtom } from '../store';
+import removeHdsNormalizeStyleElementFromDom from '@/react/common/hooks/removeHdsNormalizeStyleElementFromDom';
 
 type ResponseType = {
   data: Event[];
@@ -26,6 +27,8 @@ const SWR_REFRESH_OPTIONS = {
 const SearchContainer = () => {
   const queryBuilder = useAtomValue(queryBuilderAtom);
   const url = useAtomValue(urlAtom) || queryBuilder?.getUrl();
+
+  removeHdsNormalizeStyleElementFromDom();
 
   if (!queryBuilder) {
     return null;
