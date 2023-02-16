@@ -356,6 +356,7 @@ class DaycarePayment {
             size: 8,
             // maxlength: 999,
             required: false,
+            strip: '[€eE ]',
             helper_text: this.t('gross_income_per_month_explanation'),
           },
         },

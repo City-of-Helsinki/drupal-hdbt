@@ -124,7 +124,12 @@ class HelfiCalculator {
         return null;
       }
 
-      const elemValue = elem.value.replace(',', '.');
+      let elemValue = elem.value.replace(',', '.');
+
+      if (elem.dataset.strip) {
+        const regex = new RegExp(elem.dataset.strip,'g');
+        elemValue = elemValue.replaceAll(regex,'');
+      }
 
       if (elem.dataset.type === 'input_integer' && Number.isNaN(Number.parseInt(elemValue, 10))) {
         return null;
@@ -193,7 +198,12 @@ class HelfiCalculator {
         return this.getError(elemID, 'enter_value');
       }
 
-      const elemValue = elem.value.replace(',', '.');
+      let elemValue = elem.value.replace(',', '.');
+
+      if (elem.dataset.strip) {
+        const regex = new RegExp(elem.dataset.strip,'g');
+        elemValue = elemValue.replaceAll(regex, '');
+      }
 
       // Check if it's an integer number
       const integerRegex = /^-?([1-9][0-9]*|0)$/;
@@ -411,6 +421,7 @@ class HelfiCalculator {
                 {{#size}}size="{{size}}"{{/size}}
                 {{#maxlength}}maxlength="{{maxlength}}"{{/maxlength}}
                 {{#required}}data-required="required"{{/required}}
+                {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#label}}data-label="{{label}}"{{/label}}
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
@@ -434,6 +445,7 @@ class HelfiCalculator {
                 {{#size}}size="{{size}}"{{/size}}
                 {{#maxlength}}maxlength="{{maxlength}}"{{/maxlength}}
                 {{#required}}data-required="required"{{/required}}
+                {{#strip}}data-strip="{{strip}}"{{/strip}}
                 data-label="label_{{id}}_{{form_id}}"
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
@@ -456,6 +468,7 @@ class HelfiCalculator {
                 {{#size}}size="{{size}}"{{/size}}
                 {{#maxlength}}maxlength="{{maxlength}}"{{/maxlength}}
                 {{#required}}data-required="required"{{/required}}
+                {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#value}}value="{{value}}"{{/value}}
                 class="form-text hds-text-input__input">
             </div>
