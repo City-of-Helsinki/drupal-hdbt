@@ -312,7 +312,6 @@ class DaycarePayment {
                         value: 3,
                       },
                     ],
-                    helper_text: this.t('daycare_type_4_caretime_explanation'),
                   },
                 },
               ],

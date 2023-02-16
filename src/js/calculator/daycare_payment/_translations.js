@@ -117,7 +117,7 @@ const translations = {
     en: null,
   },
   daycare_free_days_explanation: {
-    fi: 'Jos lapsi on säännöllisesti poissa varhaiskasvatuksesta osan kalenterikuukaudesta, voit sopia säännöllisistä vapaapäivistä. 4–12 vapaapäivää kuukaudessa alentaa varhaiskasvatusmaksua. ',
+    fi: 'Säännölliset ja sovitut 4–12 vapaapäivää kuukaudessa alentavat varhaiskasvatusmaksua.',
     sv: null,
     en: null,
   },
@@ -206,11 +206,6 @@ const translations = {
     sv: null,
     en: null,
   },
-  daycare_type_4_caretime_explanation: {
-    fi: 'Lapsella tulisi olla vähintään kaksi vapaapäivää viikossa tai vaihtoehtoisesti kahdeksan vapaapäivää kuukaudessa.',
-    sv: null,
-    en: null,
-  },
   receipt_estimate_of_payment: {
     fi: 'Arvio asiakasmaksusta',
     sv: null,
@@ -237,7 +232,7 @@ const translations = {
     en: null,
   },
   receipt_subtotal_euros_per_month: {
-    fi: '${value} €/kk',
+    fi: '${value} €/kk',
     sv: null,
     en: null,
   },
@@ -253,11 +248,6 @@ const translations = {
   },
   receipt_daycare_type_3_details: {
     fi: 'Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
-    sv: null,
-    en: null,
-  },
-  receipt_daycare_type_4_details: {
-    fi: 'Vuorohoidossa olevalla lapsella tulisi olla vähintään kaksi vapaapäivää viikossa tai vaihtoehtoisesti kahdeksan vapaapäivää kuukaudessa.',
     sv: null,
     en: null,
   },
