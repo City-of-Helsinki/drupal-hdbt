@@ -725,6 +725,11 @@ class DaycarePayment {
       }
 
       let sum = 0;
+      const subtotals = [];
+      const additionalDetails = [];
+
+      // Check if payment sum is below minimum_payment_euro, set it to 0
+      let totalExplanation = '';
 
       // Calculate discounted payments for all children
       for (let i = 0; i < children.length; i++) {
@@ -741,17 +746,62 @@ class DaycarePayment {
             break;
         }
         children[i].paymentRounded = Math.round(children[i].payment);
+
+        if (children[i].paymentRounded < tempSettings.minimum_payment_euro) {
+          children[i].paymentRounded = 0;
+          totalExplanation = this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro });
+        }
+
+        const {daycareType} = children[i];
+        const {careTime, freeDays} = children[i].daycareTypeData[daycareType];
+
+        const careTypeAndcareTime = `${this.t(`daycare_type_${daycareType}`)}: ${this.t(`daycare_type_${daycareType}_caretime_${careTime}`)}`;
+
+        const subtotal = {
+          title: (i === 0) ? this.t('youngest_child_title') : this.t('nth_child_title'),
+          has_details: true,
+          details: [ careTypeAndcareTime ],
+          sum: this.t('receipt_subtotal_euros_per_month', { value: children[i].paymentRounded }),
+        };
+        if (freeDays && Number(freeDays) > 0) {
+          subtotal.details.push(`${this.t('daycare_free_days')}: ${freeDays}`);
+        }
+        subtotals.push(subtotal);
+
+        if (daycareType === '2' || daycareType === '3') {
+          let title = null;
+          if (!additionalDetails.length) {
+            title = this.t('receipt_additional_details');
+          }
+          additionalDetails.push({ title, text: this.t(`receipt_daycare_type_${daycareType}_details`) });
+        }
+
         sum += children[i].paymentRounded;
       }
 
-      console.log('Children:', children, 'sum', sum );
+      totalExplanation += this.t('receipt_family_estimated_payment_explanation');
 
-      return {
-        alert: {
-          title: 'TBD',
-          message: `Maksu: ${sum} euroa`,
+      const receiptData = {
+        id: this.id,
+        title: this.t('receipt_estimate_of_payment'),
+        total_prefix: this.t('receipt_family_estimated_payment_prefix'),
+        total_value: sum,
+        total_suffix: this.t('receipt_family_estimated_payment_suffix'),
+        total_explanation: totalExplanation,
+        hr: true,
+        breakdown: {
+          title: this.t('receipt_estimate_is_based_on'),
+          subtotals,
+          additional_details: additionalDetails,
         },
       };
+
+      const receipt = this.calculator.getPartialRender(
+        '{{>receipt}}',
+        receiptData,
+      );
+
+      return { receipt };
     };
 
     const eventHandlers = {
@@ -773,6 +823,9 @@ class DaycarePayment {
       reset: () => {
         window.setTimeout(update, 1);
         this.calculator.clearResult();
+
+        const slots = this.calculator.getElement('slots_nth_child');
+        slots.innerHTML = '';
       },
     };
 

@@ -275,7 +275,7 @@ class HelfiCalculator {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
-    element.innerHTML = `
+    const html = `
       <section aria-label="Notification" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
@@ -284,6 +284,10 @@ class HelfiCalculator {
           <div class="hds-notification__body">${message}</div>
         </div>
       </section>`;
+
+    element.innerHTML = '';
+    element.insertAdjacentHTML('beforeend', html);
+    element.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }
 
   renderResult(result) {
@@ -296,7 +300,9 @@ class HelfiCalculator {
       titleElem.setAttribute('tabindex', '-1');
     }
 
-    if (result.alert) {
+    if (result.receipt) {
+      document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
+    } else if (result.alert) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
     } else if (result.info) {
       HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
@@ -505,6 +511,49 @@ class HelfiCalculator {
                 class="hds-radio-button__input">
               <label for="{{item_id}}_{{form_id}}" class="hds-radio-button__label">{{label}}</label>
             </div>
+          </div>
+        `,
+        receipt: `
+          <div class="helfi-calculator__receipt" id="receipt_{{id}}">
+            <div class="helfi-calculator__receipt__wrapper">
+              <div class="helfi-calculator__receipt__container">
+                <h2>{{title}}</h2>
+                <p class="helfi-calculator__receipt-total">
+                  <span class="helfi-calculator__receipt-total__prefix">{{total_prefix}}</span>
+                  <span class="helfi-calculator__receipt-total__value">{{total_value}}</span>
+                  <span class="helfi-calculator__receipt-total__suffix">{{total_suffix}}</span>
+                </p>
+                {{#total_explanation}}
+                  <p class="helfi-calculator__receipt-total-explanation">{{total_explanation}}</p>
+                {{/total_explanation}}
+                {{#hr}}
+                  <hr class="helfi-calculator__receipt-hr" />
+                {{/hr}}
+                {{#breakdown}}
+                  <h3>{{title}}</h3>
+                  {{#subtotals}}
+                    {{>subtotal}}
+                  {{/subtotals}}
+                  {{#additional_details}}
+                    {{#title}}<h4>{{.}}</h4>{{/title}}
+                    {{#text}}<p>{{.}}</p>{{/text}}
+                  {{/additional_details}}
+                {{/breakdown}}
+              </div>
+            </div>
+          </div>
+        `,
+        subtotal: `
+          <div class="helfi-calculator__receipt-subtotal">
+            <h4>{{title}}</h4>
+            {{#has_details}}
+              <ul>
+              {{#details}}
+                <li>{{.}}</li>
+              {{/details}}
+              </ul>
+            {{/has_details}}
+            <span class="helfi-calculator__receipt-subtotal-sum">{{sum}}</span>
           </div>
         `,
       }

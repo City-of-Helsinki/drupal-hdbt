@@ -222,7 +222,12 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. Tämä arvio on suuntaa antava. Tarkka asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain. Jos et ilmoita tuloja, lasketaan maksu korkeimman varhaiskasvatusmaksun mukaan.',
+    fi: 'Tämä arvio on suuntaa antava. Tarkka asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain. Jos et ilmoita tuloja, lasketaan maksu korkeimman varhaiskasvatusmaksun mukaan.',
+    sv: null,
+    en: null,
+  },
+  receipt_family_estimated_payment_explanation_min: {
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
     sv: null,
     en: null,
   },
