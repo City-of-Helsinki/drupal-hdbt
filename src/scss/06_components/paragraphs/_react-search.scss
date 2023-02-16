@@ -26,6 +26,11 @@
   }
 }
 
+.react-search__form-container {
+  border-bottom: 1px solid $color-black-20;
+  margin-bottom: $spacing-double;
+}
+
 .react-search__list-container {
   margin-bottom: $spacing-double;
 }

@@ -50,6 +50,8 @@
   --color-focus: var(--hdbt-color-black);
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
+  margin-bottom: $spacing-triple;
+  margin-top: $spacing;
 }
 
 // Override HDS styles for date input
