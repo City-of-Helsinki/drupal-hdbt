@@ -35,6 +35,15 @@
   margin-bottom: $spacing-double;
 }
 
+.react-search__result-top-area {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .react-search__results-stats {
   margin-bottom: $spacing;
 }
