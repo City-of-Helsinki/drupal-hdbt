@@ -4,7 +4,6 @@
   function hideEverything(tabbedContent) {
     const allTabs = tabbedContent.querySelectorAll('.tab');
     const allContent = tabbedContent.querySelectorAll('.tab__content');
-
     // Update visibility
     for (let i = 0; i < allTabs.length; i++) {
       allTabs[i].setAttribute('aria-selected', 'false');
@@ -70,7 +69,7 @@
 
       // Go through all tabs and add a listener for mouse click or keyboard enter.
       for (let j = 0; j < allTabs.length; j++) {
-        const tab = allTabs[i];
+        const tab = allTabs[j];
 
         tab.addEventListener('click', function onTabClick() {
           // Toggle function.

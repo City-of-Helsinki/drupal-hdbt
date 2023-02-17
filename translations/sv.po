@@ -332,3 +332,11 @@ msgstr "Du är inloggad som @display_name. Stäng profilinformationsmenyn."
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
 msgstr "Samtalsavgift"
+
+msgctxt "The helper text for toggle accordion visibility button"
+msgid "Toggle element: "
+msgstr "Expandera elementet: "
+
+msgctxt "The helper text for close accordion visibility button"
+msgid "Close element: "
+msgstr "Stäng elementet: "

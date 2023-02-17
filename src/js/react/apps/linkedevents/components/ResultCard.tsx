@@ -21,7 +21,7 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
-const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })) as TagType[];
+const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
 
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;

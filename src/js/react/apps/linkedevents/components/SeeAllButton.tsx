@@ -1,8 +1,9 @@
-import ROOT_ID from '../enum/RootId';
+import { useAtomValue} from 'jotai';
+import { eventsPublicUrl } from '../store';
+
 
 function SeeAllButton() {
-  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-  const eventsUrl = rootElement?.dataset?.eventsUrl;
+  const eventsUrl = useAtomValue(eventsPublicUrl);
 
   return (
     <div className="event-list__see-all-button">

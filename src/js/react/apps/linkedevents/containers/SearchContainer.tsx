@@ -4,6 +4,7 @@ import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import type Event from '../types/Event';
 import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
+import removeHdsNormalizeStyleElementFromDom from '@/react/common/hooks/removeHdsNormalizeStyleElementFromDom';
 
 type ResponseType = {
   data: Event[];
@@ -33,6 +34,8 @@ const SearchContainer = () => {
     setParams(new URLSearchParams(initialParams.toString()));
   }
 
+  removeHdsNormalizeStyleElementFromDom();
+
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
     const response = await fetch(reqUrl);
 
@@ -50,10 +53,10 @@ const SearchContainer = () => {
   const loading = !error && !data;
 
   return (
-    <>
+    <div className='component--react-search component--react-search--event-list'>
       <FormContainer />
       <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
-    </>
+    </div>
   );
 };
 
