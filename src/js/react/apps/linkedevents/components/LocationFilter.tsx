@@ -31,8 +31,8 @@ function LocationFilter() {
         value={locationSelection}
         id={SearchComponents.LOCATION}
         onChange={onChange}
-        placeholder={Drupal.t('All', {}, { context: 'Event search: all available options' })}
-        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'Event search: remove item aria label' })}
+        placeholder={Drupal.t('All', {}, { context: 'React search: all available options' })}
+        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search: remove item aria label' })}
         theme={{
           '--focus-outline-color': 'var(--hdbt-color-black)',
           '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',

@@ -63,7 +63,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
           url={url}
           value={freeFilter}
         />
-        <ClearButtonn showClearButton={showClearButton} url={url} />
+        <ClearPillsButton showClearButton={showClearButton} url={url} />
       </ul>
     </div>
   );
@@ -214,7 +214,7 @@ const ClearButton = ({ showClearButton, url }: ClearButtonProps) => {
         style={showClearButton ? {} : { visibility: 'hidden' }}
         variant='supplementary'
       >
-        {Drupal.t('Clear selections', {}, { context: 'React search clear selections' })}
+        {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
       </Button>
     </li>
   );
@@ -231,5 +231,5 @@ const updateSelections = (prev: any, next: any) => {
 const ListFilterPills = memo(ListFilterBullets, updateSelections);
 const CheckboxFilterPill = memo(CheckboxFilterBullet, updateSelections);
 const DateFilterPill = memo(DateFilterBullet, updateSelections);
-const ClearButtonn = memo(ClearButton, updateSelections);
+const ClearPillsButton = memo(ClearButton, updateSelections);
 export default memo(SelectionsContainer, updateSelections);

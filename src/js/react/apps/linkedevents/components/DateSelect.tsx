@@ -134,7 +134,7 @@ function DateSelect() {
     <div className='hdbt-search__filter event-form__filter--date'>
       <Collapsible
         id='event-search__date-select'
-        label={Drupal.t('Date', {}, { context: 'Event search: date selection label' })}
+        label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
         helper={Drupal.t('Select a time period in which in which the event takes place')}
         title={title}
       >
