@@ -701,9 +701,11 @@ class DaycarePayment {
       // Get limits for this household size
       const limits = getIncomeLimits(householdSize, tempSettings);
       let paymentForYoungest = null;
+      let totalExplanation = '';
 
       // If gross income per month is below payment limit, no payment.
       if (!grossIncomePerMonthRaw && grossIncomePerMonthRaw !== 0) {
+        totalExplanation = this.t('receipt_family_empty_income');
         paymentForYoungest = Number(tempSettings.child_1_max_euro);
       } else if (grossIncomePerMonth < limits.min) {
         paymentForYoungest = 0;
@@ -728,9 +730,6 @@ class DaycarePayment {
       const subtotals = [];
       const additionalDetails = [];
 
-      // Check if payment sum is below minimum_payment_euro, set it to 0
-      let totalExplanation = '';
-
       // Calculate discounted payments for all children
       for (let i = 0; i < children.length; i++) {
         // Handle sibling discount if any
@@ -747,9 +746,10 @@ class DaycarePayment {
         }
         children[i].paymentRounded = Math.round(children[i].payment);
 
+        let paymentWasRoundedDown = false;
         if (children[i].paymentRounded < tempSettings.minimum_payment_euro) {
           children[i].paymentRounded = 0;
-          totalExplanation = this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro });
+          paymentWasRoundedDown = true;
         }
 
         const {daycareType} = children[i];
@@ -766,6 +766,9 @@ class DaycarePayment {
         if (freeDays && Number(freeDays) > 0) {
           subtotal.details.push(`${this.t('daycare_free_days')}: ${freeDays}`);
         }
+        if (paymentWasRoundedDown) {
+          subtotal.details.push(this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro }));
+        }
         subtotals.push(subtotal);
 
         if (daycareType === '2' || daycareType === '3') {
@@ -779,6 +782,11 @@ class DaycarePayment {
         sum += children[i].paymentRounded;
       }
 
+      // If total sum is below minimum payment limit, round it to 0 and tell user about it.
+      if (sum < tempSettings.minimum_payment_euro) {
+        sum = 0;
+        totalExplanation = this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro }) + totalExplanation;
+      }
       totalExplanation += this.t('receipt_family_estimated_payment_explanation');
 
       const receiptData = {

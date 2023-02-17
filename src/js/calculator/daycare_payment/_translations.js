@@ -221,13 +221,18 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava. Tarkka asiakasmaksu lasketaan tuloselvityksen perusteella vuosittain. Jos et ilmoita tuloja, lasketaan maksu korkeimman varhaiskasvatusmaksun mukaan.',
+  receipt_family_estimated_payment_explanation_min: {
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
     sv: null,
     en: null,
   },
-  receipt_family_estimated_payment_explanation_min: {
-    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
+  receipt_family_empty_income: {
+    fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin perheen kuukausituloja. ',
+    sv: null,
+    en: null,
+  },
+  receipt_family_estimated_payment_explanation: {
+    fi: 'Tämä arvio on suuntaa antava. Tarkan asiakasmaksun saat asiakasmaksupäätöksessä vuosittain.',
     sv: null,
     en: null,
   },
