@@ -6,23 +6,23 @@ import type { DateTime } from 'luxon';
 import {
   resetFormAtom,
   locationSelectionAtom,
-  queryBuilderAtom,
-  urlAtom,
   freeFilterAtom,
   remoteFilterAtom,
   startDateAtom,
   endDateAtom,
+  resetParamAtom,
+  updateParamsAtom,
+  updateUrlAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 import getDateString from '../helpers/GetDate';
 
 type SelectionsContainerProps = {
-  url: string | null;
+  url: string | undefined;
 };
 
 const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const freeFilter = useAtomValue(freeFilterAtom);
   const remoteFilter = useAtomValue(remoteFilterAtom);
   const startDate = useAtomValue(startDateAtom);
@@ -31,7 +31,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
 
   const showClearButton = locationSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
-  if (!queryBuilder || !url) {
+  if (!url) {
     return null;
   }
 
@@ -77,10 +77,10 @@ type ListFilterBulletsProps = {
 };
 
 const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBulletsProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
-  const setUrl = useSetAtom(urlAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
 
-  if (!queryBuilder || !values.length) {
+  if (!values.length) {
     return null;
   }
 
@@ -89,8 +89,8 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     const index = newValue.findIndex((selection: OptionType) => selection.value === value);
     newValue.splice(index, 1);
     updater(newValue);
-    queryBuilder.setParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
-    setUrl(queryBuilder.updateUrl());
+    updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
+    updateUrl();
   };
 
   return (
@@ -115,11 +115,11 @@ type CheckboxFilterBulletProps = {
 };
 
 const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFilterBulletProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const setValue = useSetAtom(atom);
-  const setUrl = useSetAtom(urlAtom);
+  const resetParam = useSetAtom(resetParamAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
 
-  if (!queryBuilder || !value) {
+  if (!value) {
     return null;
   }
 
@@ -128,8 +128,8 @@ const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFil
       value={label}
       clearSelection={() => {
         setValue(false);
-        queryBuilder.resetParam(valueKey);
-        setUrl(queryBuilder.updateUrl());
+        resetParam(valueKey);
+        updateUrl();
       }}
     />
   );
@@ -142,12 +142,12 @@ type DateFilterBulletProps = {
 };
 
 const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
-  const setUrl = useSetAtom(urlAtom);
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
+  const resetParam = useSetAtom(resetParamAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
 
-  if (!queryBuilder || !startDate && !endDate) {
+  if (!startDate && !endDate) {
     return null;
   }
 
@@ -157,9 +157,9 @@ const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => 
       clearSelection={() => {
         setStartDate(undefined);
         setEndDate(undefined);
-        queryBuilder.resetParam('start');
-        queryBuilder.resetParam('end');
-        setUrl(queryBuilder.updateUrl());
+        resetParam('start');
+        resetParam('end');
+        updateUrl();
       }}
     />
   );
@@ -198,18 +198,10 @@ type ClearButtonProps = {
 
 
 const ClearButton = ({ showClearButton, url }: ClearButtonProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const resetFormStore = useSetAtom(resetFormAtom);
-  const setUrl = useSetAtom(urlAtom);
-
-  if (!queryBuilder) {
-    return null;
-  }
 
   const resetForm = () => {
     resetFormStore();
-    queryBuilder.reset();
-    setUrl(queryBuilder.updateUrl());
   };
 
   return (

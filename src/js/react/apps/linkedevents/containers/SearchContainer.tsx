@@ -1,9 +1,9 @@
 import useSWR from 'swr';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useAtom } from 'jotai';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import type Event from '../types/Event';
-import { initialUrlAtom, queryBuilderAtom, urlAtom } from '../store';
+import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
 
 type ResponseType = {
   data: Event[];
@@ -24,12 +24,13 @@ const SWR_REFRESH_OPTIONS = {
 };
 
 const SearchContainer = () => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const initialUrl = useAtomValue(initialUrlAtom);
+  const initialParams = useAtomValue(initialParamsAtom);
+  const [params, setParams] = useAtom(paramsAtom);
   const url = useAtomValue(urlAtom) || initialUrl;
 
-  if (!queryBuilder) {
-    return null;
+  if (!params.toString()) {
+    setParams(new URLSearchParams(initialParams.toString()));
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {

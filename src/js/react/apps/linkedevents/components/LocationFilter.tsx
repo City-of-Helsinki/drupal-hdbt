@@ -1,23 +1,19 @@
 import { Select } from 'hds-react';
-import { useAtomValue, useAtom } from 'jotai';
+import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
-import { locationAtom, locationSelectionAtom, queryBuilderAtom } from '../store';
+import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
 
 
 function LocationFilter() {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const locationOptions = useAtomValue(locationAtom);
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
-
-  if (!queryBuilder || !locationOptions) {
-    return null;
-  }
+  const updateParams = useSetAtom(updateParamsAtom);
 
   const onChange = (value: any) => {
     setLocationFilter(value);
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+    updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
   };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');

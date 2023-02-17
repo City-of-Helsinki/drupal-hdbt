@@ -1,7 +1,7 @@
 import { Checkbox } from 'hds-react';
-import { SetStateAction, WritableAtom, useAtomValue, useAtom } from 'jotai';
+import { SetStateAction, WritableAtom, useAtom, useSetAtom } from 'jotai';
 
-import { queryBuilderAtom } from '../store';
+import { resetParamAtom, updateParamsAtom } from '../store';
 
 type CheckboxFilterProps = {
   id: string;
@@ -11,22 +11,19 @@ type CheckboxFilterProps = {
 };
 
 function CheckboxFilter({ id, label, atom, valueKey }: CheckboxFilterProps) {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const [value, setValue] = useAtom(atom);
-
-  if (!queryBuilder) {
-    return null;
-  }
+  const resetParam = useSetAtom(resetParamAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
 
   const toggleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event?.target?.checked) {
       setValue(false);
-      queryBuilder.resetParam(valueKey);
+      resetParam(valueKey);
       return;
     }
 
     setValue(true);
-    queryBuilder.setParams({ [valueKey]: 'true' });
+    updateParams({ [valueKey]: 'true' });
   };
 
   return (

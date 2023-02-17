@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { DateTime } from 'luxon';
 import { DateInput } from 'hds-react';
-import { useAtomValue, useAtom } from 'jotai';
+import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
 import Collapsible from './Collapsible';
 import CheckboxFilter from './CheckboxFilter';
@@ -14,8 +14,9 @@ import {
   startDateAtom,
   endDateAtom,
   endDisabledAtom,
-  queryBuilderAtom,
-  formErrorsAtom
+  formErrorsAtom,
+  resetParamAtom,
+  updateParamsAtom,
 } from '../store';
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY');
@@ -42,15 +43,12 @@ const INVALID_DATE = (dt: DateTime | undefined): boolean => {
 
 function DateSelect() {
   const { currentLanguage } = drupalSettings.path;
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const endDisabled = useAtomValue(endDisabledAtom);
   const [startDate, setStartDate] = useAtom(startDateAtom);
   const [endDate, setEndDate] = useAtom(endDateAtom);
   const [errors, setErrors] = useAtom(formErrorsAtom);
-
-  if (!queryBuilder) {
-    return null;
-  }
+  const resetParam = useSetAtom(resetParamAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
 
   const changeDate = (value: string, date: 'start' | 'end') => {
     date === 'start' ? setStart(value) : setEnd(value);
@@ -106,11 +104,11 @@ function DateSelect() {
   useEffect(() => {
     const setDate = (key: string, date: DateTime | undefined) => {
       if (!date || !date.isValid) {
-        queryBuilder.resetParam(key);
+        resetParam(key);
         return;
       }
       if (date.isValid) {
-        queryBuilder.setParams({ [key]: date.toISODate() });
+        updateParams({ [key]: date.toISODate() });
       } else {
         console.warn('invalid date given to setDate', { date });
       }
@@ -130,7 +128,7 @@ function DateSelect() {
       setErrors({ ...errors, invalidEndDate: false });
     }
 
-  }, [startDate, endDate, endDisabled, queryBuilder]);
+  }, [startDate, endDate, endDisabled]);
 
   return (
     <div className='hdbt-search__filter event-form__filter--date'>

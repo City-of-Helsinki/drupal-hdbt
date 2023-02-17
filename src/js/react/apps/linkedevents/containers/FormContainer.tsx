@@ -1,5 +1,5 @@
 import { FormEvent } from 'react';
-import { useAtomValue, useSetAtom, useAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import LocationFilter from '../components/LocationFilter';
 import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
@@ -7,33 +7,26 @@ import DateSelect from '../components/DateSelect';
 import CheckboxFilter from '../components/CheckboxFilter';
 import SelectionsContainer from './SelectionsContainer';
 import {
-  pageAtom,
-  queryBuilderAtom,
   settingsAtom,
   urlAtom,
   titleAtom,
   freeFilterAtom,
   remoteFilterAtom,
   formErrorsAtom,
+  updateUrlAtom,
 } from '../store';
 
 
 function FormContainer() {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
   const errors = useAtomValue(formErrorsAtom);
-  const [url, setUrl] = useAtom(urlAtom);
-  const setPage = useSetAtom(pageAtom);
+  const url = useAtomValue(urlAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
   const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
 
-  if (!queryBuilder || !filterSettings) {
-    return null;
-  }
-
   const onSubmit = () => {
-    setPage(1);
-    setUrl(queryBuilder.updateUrl());
+    updateUrl();
   };
 
   const handleSubmit = (e: FormEvent) => {
