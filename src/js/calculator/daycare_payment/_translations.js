@@ -102,7 +102,7 @@ const translations = {
     en: null,
   },
   daycare_type_1_caretime_2: {
-    fi: 'Yli 5 tuntia ja enintään 7 tuntia päivässä',
+    fi: '5–7 tuntia päivässä',
     sv: null,
     en: null,
   },
@@ -137,17 +137,17 @@ const translations = {
     en: null,
   },
   daycare_type_2_caretime_2: {
-    fi: 'Yli 5 tuntia ja enintään 7 tuntia päivässä',
+    fi: '5–7 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_2_caretime_3: {
-    fi: 'Yli 4 tuntia ja enintään 5 tuntia päivässä',
+    fi: '4–5 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_2_caretime_4: {
-    fi: '4 tuntia päivässä (maksuton)',
+    fi: 'Enintään 4 tuntia päivässä (maksuton)',
     sv: null,
     en: null,
   },
@@ -172,7 +172,7 @@ const translations = {
     en: null,
   },
   daycare_type_3_caretime_3: {
-    fi: 'Yli 5 ja enintään 7 tuntia päivässä',
+    fi: '5–7 tuntia päivässä',
     sv: null,
     en: null,
   },
