@@ -162,7 +162,8 @@ export const updateUrlAtom = atom(null, (get, set) => {
 });
 
 export const updatePageParamAtom = atom(null, (get, set, page: number) => {
-  const url = get(urlAtom);
+  const url = get(urlAtom) || get(initialUrlAtom);
+
   if (url) {
     const currentUrl = new URL(url);
     currentUrl.searchParams.set('page', page.toString());
