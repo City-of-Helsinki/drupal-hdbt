@@ -19,6 +19,9 @@ helfi_calculator:
   version: 1.x
   js:
     dist/js/helfi_calculator.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
 
 throbber:
   version: 1.x
