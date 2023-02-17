@@ -86,7 +86,7 @@ class HelfiCalculator {
     const keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {
       const value = obj[keys[i]];
-      if (typeof value === 'object') {
+      if (typeof value === 'object' && value !== null) {
         this.preprocessData(value);
         if (!value.hasOwnProperty('items')) {
           value.items = null;
