@@ -3,6 +3,7 @@ import translations from './_translations';
 class DaycarePayment {
   constructor(id, settings) {
     this.id = id;
+    const parsedSettings = JSON.parse(settings);
 
     // Expecting settings to follow this JSON format:
     /*
@@ -642,88 +643,32 @@ class DaycarePayment {
       // 5. Calculate discounted payments for all children, check that they're not below minimum payment treshold
       // 6. Round to full euros, then sum it all up and show results
 
-      const tempSettings = {
-        family_size_income_limits: {
-          '2': {
-            min: 3874,
-            max: 6626
-          },
-          '3': {
-            min: 4998,
-            max: 7750
-          },
-          '4': {
-            min: 5675,
-            max: 8427
-          },
-          '5': {
-            min: 6353,
-            max: 9105
-          },
-          '6': {
-            min: 7028,
-            max: 9780
-          },
-        },
-        family_size_beyond_defined_multiplier_euro: 262,
-        minimum_payment_euro: 28,
-        payment_percentage: 10.7,
-        child_1_max_euro: 295,
-        child_2_percent: 40,
-        child_n_percent: 20,
-        discounts: {
-          early_education_on_weekdays: {
-            over_7_hours_percentage: 100,
-            over_5_and_at_most_7_hours_percentage: 80,
-            at_most_5_hours_percentage: 60,
-          },
-          for_5_year_old: {
-            over_7_hours_percentage: 65,
-            over_5_and_at_most_7_hours_percentage: 40,
-            over_4_and_at_most_5_hours_percentage: 20,
-            at_most_4_hours_percentage: 0,
-          },
-          for_6_year_old: {
-            over_7_hours_percentage: 65,
-            from_7_to_8_hours_percentage: 60,
-            over_5_and_at_most_7_hours_percentage: 40,
-            at_most_5_hours_percentage: 20,
-          },
-          round_the_clock_care: {
-            from_161_hours_percentage: 100,
-            from_101_to_160_hours_percentage: 80,
-            from_61_to_100_hours_percentage: 60,
-          },
-          free_day_percentage: 4,
-        },
-      };
-
       // Get limits for this household size
-      const limits = getIncomeLimits(householdSize, tempSettings);
+      const limits = getIncomeLimits(householdSize, parsedSettings);
       let paymentForYoungest = null;
       let totalExplanation = '';
 
       // If gross income per month is below payment limit, no payment.
       if (!grossIncomePerMonthRaw && grossIncomePerMonthRaw !== 0) {
         totalExplanation = this.t('receipt_family_empty_income');
-        paymentForYoungest = Number(tempSettings.child_1_max_euro);
+        paymentForYoungest = Number(parsedSettings.child_1_max_euro);
       } else if (grossIncomePerMonth < limits.min) {
         paymentForYoungest = 0;
       } else {
         // Calculate the difference between minimum limit and gross income
         const grossDiff = grossIncomePerMonth - limits.min;
         // Get the percentage of the difference as our base payment
-        paymentForYoungest = grossDiff * (Number(tempSettings.payment_percentage) / 100);
+        paymentForYoungest = grossDiff * (Number(parsedSettings.payment_percentage) / 100);
 
         // If the calculated payment would be above maximum payment limit, fix to max.
-        if (paymentForYoungest > Number(tempSettings.child_1_max_euro)) {
-          paymentForYoungest = Number(tempSettings.child_1_max_euro);
+        if (paymentForYoungest > Number(parsedSettings.child_1_max_euro)) {
+          paymentForYoungest = Number(parsedSettings.child_1_max_euro);
         }
       }
 
       // Get discount for all children
       for (let i = 0; i < children.length; i++) {
-        children[i].discounts = getDiscount(children[i], tempSettings.discounts);
+        children[i].discounts = getDiscount(children[i], parsedSettings.discounts);
       }
 
       let sum = 0;
@@ -738,16 +683,16 @@ class DaycarePayment {
             children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest;
             break;
           case 1: // Second youngest child gets sibling discount for second youngest
-            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(tempSettings.child_2_percent) / 100);
+            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(parsedSettings.child_2_percent) / 100);
             break;
           default: // All other children get even bigger discount
-            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(tempSettings.child_n_percent) / 100);
+            children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(parsedSettings.child_n_percent) / 100);
             break;
         }
         children[i].paymentRounded = Math.round(children[i].payment);
 
         let paymentWasRoundedDown = false;
-        if (children[i].paymentRounded < tempSettings.minimum_payment_euro) {
+        if (children[i].paymentRounded < parsedSettings.minimum_payment_euro) {
           children[i].paymentRounded = 0;
           paymentWasRoundedDown = true;
         }
@@ -767,7 +712,7 @@ class DaycarePayment {
           subtotal.details.push(`${this.t('daycare_free_days')}: ${freeDays}`);
         }
         if (paymentWasRoundedDown) {
-          subtotal.details.push(this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro }));
+          subtotal.details.push(this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: parsedSettings.minimum_payment_euro }));
         }
         subtotals.push(subtotal);
 
@@ -783,9 +728,9 @@ class DaycarePayment {
       }
 
       // If total sum is below minimum payment limit, round it to 0 and tell user about it.
-      if (sum < tempSettings.minimum_payment_euro) {
+      if (sum < parsedSettings.minimum_payment_euro) {
         sum = 0;
-        totalExplanation = this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: tempSettings.minimum_payment_euro }) + totalExplanation;
+        totalExplanation = this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: parsedSettings.minimum_payment_euro }) + totalExplanation;
       }
       totalExplanation += this.t('receipt_family_estimated_payment_explanation');
 
