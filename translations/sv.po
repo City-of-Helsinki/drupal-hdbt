@@ -1,5 +1,6 @@
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 msgid "Change cookie settings"
 msgstr "Ändra inställningarna för cookies"
