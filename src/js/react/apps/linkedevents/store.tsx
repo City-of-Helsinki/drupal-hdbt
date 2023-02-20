@@ -143,6 +143,8 @@ export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
+  const initialParams = get(initialParamsAtom);
+
   set(locationSelectionAtom, []);
   set(startDateAtom, undefined);
   set(endDateAtom, undefined);
@@ -150,7 +152,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(remoteFilterAtom, false);
   set(freeFilterAtom, false);
   set(pageAtom, 1);
-  set(paramsAtom, get(initialParamsAtom));
+  set(paramsAtom, new URLSearchParams(initialParams.toString()));
   set(urlAtom, get(initialUrlAtom));
 });
 
