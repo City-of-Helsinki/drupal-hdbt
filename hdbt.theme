@@ -57,7 +57,7 @@ function hdbt_get_theme_color_override() {
 
   if (!isset($color)) {
     $color = FALSE;
-    if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+    if (Drupal::moduleHandler()->moduleExists('hdbt_admin_tools')) {
       $page_entity = hdbt_admin_tools_get_page_entity();
       if (
         !empty($page_entity) &&
@@ -628,7 +628,7 @@ function hdbt_preprocess_block(&$variables) {
 function hdbt_preprocess_breadcrumb(&$variables) {
   // If current entity has short title field set, use it to override
   // current page breadcrumb.
-  if (Drupal::moduleHandler()->moduleExists('hdbt_content')) {
+  if (Drupal::moduleHandler()->moduleExists('hdbt_admin_tools')) {
     $page_entity = hdbt_admin_tools_get_page_entity();
     if (
       !empty($page_entity) &&
