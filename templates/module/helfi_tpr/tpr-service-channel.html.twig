@@ -72,7 +72,7 @@
 
   {% if content.call_charge_info|render %}
     <div class="service-channel__call_charge">
-      <span class="service-channel__call_charge-label">{{ 'Call charge'|t }}:</span>
+      <span class="service-channel__call_charge-label">{{ 'Call charge'|t({}, {'context': 'TPR service channel call charge info'}) }}:</span>
       {{ content.call_charge_info }}
     </div>
   {% endif %}

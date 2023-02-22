@@ -72,8 +72,7 @@
     }
   }
 
-  .unit-search__results > .views-row:first-of-type,
-  .views-infinite-scroll-content-wrapper {
+  .unit-search__results > .views-row:first-of-type {
     margin-top: $spacing;
 
     @include breakpoint($breakpoint-m) {
@@ -94,7 +93,7 @@
     padding-top: $spacing-quadruple;
   }
 
-  > .views-infinite-scroll-content-wrapper > .views-row + .views-row {
+  > .views-row + .views-row {
     margin-top: $spacing;
   }
 }
@@ -184,8 +183,6 @@
 }
 
 // Unit search with large volume of units listed such as daycare search.
-// TODO: Remove this infinite scroll selector once we remove the infinite scroll pager is switched.
-.views--unit-search--large-volume .unit-search__results > .views-infinite-scroll-content-wrapper > .views-row + .views-row,
 .views--unit-search--large-volume .unit-search__results .views-row + .views-row {
   margin-top: $spacing-half;
 }

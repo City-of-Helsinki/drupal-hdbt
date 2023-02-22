@@ -315,3 +315,31 @@ msgstr "Etäisyys"
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
 msgstr "Ei uutisia tästä aiheesta."
+
+msgctxt "Profile information-menu close button text for screen readers"
+msgid "Close profile information menu"
+msgstr "Sulje käyttäjä-valikko"
+
+msgctxt "Log out link on profile dropdown"
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+msgctxt "Log in link text on header"
+msgid "Log in"
+msgstr "Kirjaudu"
+
+msgctxt "Profile information-menu open button text for screen readers"
+msgid "You are logged in as @display_name. Open profile information menu."
+msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Sulje käyttäjä-valikko."
+
+msgctxt "TPR service channel call charge info"
+msgid "Call charge"
+msgstr "Puhelumaksu"
+
+msgctxt "The helper text for toggle accordion visibility button"
+msgid "Toggle element: "
+msgstr "Laajenna alue: "
+
+msgctxt "The helper text for close accordion visibility button"
+msgid "Close element: "
+msgstr "Sulje alue: "

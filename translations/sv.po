@@ -312,3 +312,31 @@ msgstr "Distans"
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
 msgstr "Inga nyheter i ämnet."
+
+msgctxt "Profile information-menu close button text for screen readers"
+msgid "Close profile information menu"
+msgstr "Stäng profilinformationsmenyn"
+
+msgctxt "Log out link on profile dropdown"
+msgid "Log out"
+msgstr "Logga ut"
+
+msgctxt "Log in link text on header"
+msgid "Log in"
+msgstr "Logga in"
+
+msgctxt "Profile information-menu open button text for screen readers"
+msgid "You are logged in as @display_name. Open profile information menu."
+msgstr "Du är inloggad som @display_name. Stäng profilinformationsmenyn."
+
+msgctxt "TPR service channel call charge info"
+msgid "Call charge"
+msgstr "Samtalsavgift"
+
+msgctxt "The helper text for toggle accordion visibility button"
+msgid "Toggle element: "
+msgstr "Expandera elementet: "
+
+msgctxt "The helper text for close accordion visibility button"
+msgid "Close element: "
+msgstr "Stäng elementet: "

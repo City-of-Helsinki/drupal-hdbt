@@ -36,18 +36,26 @@
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
   {#
-    Anchor targets for global navi and other-langs nojs fallbacks.
-    Also works as a CSS data-attr selector reference point for JS version.
-    These must be on top and at root.
+  Anchor targets for global navi and other-langs nojs fallbacks.
+  Also works as a CSS data-attr selector reference point for JS version.
+  These must be on top and at root.
   #}
   <div id="menu" class="nav-toggle-target"></div>
-  <div id="otherlangs" class="nav-toggle-target"></div>
-  <div id="search" class="nav-toggle-target"></div>
-
 {% else %}
-
   {# This checkbox handles opening and closing mobile menu #}
-  <input type="checkbox" id="cssmenu-toggle-checkbox" class="cssmenu-toggle-checkbox js-cssmenu-toggle-checkbox" role="button" aria-labelledby="cssmenu-toggle">
+  <div id="cssmenu" class="nav-toggle-target"></div>
+{% endif %}
+
+{% if use_search_block %}
+  <div id="search" class="nav-toggle-target"></div>
+{% endif %}
+
+{% if use_otherlangs_block %}
+  <div id="otherlangs" class="nav-toggle-target"></div>
+{% endif %}
+
+{% if use_profile_block %}
+  <div id="profile" class="nav-toggle-target"></div>
 {% endif %}
 
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
