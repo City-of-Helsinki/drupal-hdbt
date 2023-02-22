@@ -61,14 +61,7 @@ const ResultsContainer = () => {
   const addLastPage = total > size && total % size;
 
   const mapClasses = ['school-search__map-container'];
-  const resultsClasses = [];
-
-  if (useMap) {
-    resultsClasses.push('is-hidden');
-  }
-  else {
-    mapClasses.push('is-hidden');
-  }
+  const resultsClasses = ['asd'];
 
   const mapUrl = getMapUrl(data?.aggregations.ids.buckets);
   const showPagination = !useMap && (pages > 1 || addLastPage);
@@ -99,37 +92,41 @@ const ResultsContainer = () => {
           }
         </Button>
       </div>
-      <div className={mapClasses.join(' ')}>
-        <div className='unit-search__result--map'>
-          <iframe
-            title="Palvelukartta - Etusivu"
-            className="unit-search__map"
-            src={mapUrl}
-          >
-          </iframe>
-        </div>
-        <div className='unit-search__map-actions'>
-          <a
-            href={mapUrl}
-            className="link"
-            data-is-external="true"
-          >
-            {Drupal.t('Open a larger version of the map')}
-            <span className="link__type link__type--external" aria-label={
-                Drupal.t('Link leads to external service',
-                {},
-                {context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}
-              )}
-            ></span>
-          </a>
-        </div>
-      </div>
-      <div className={resultsClasses.join(' ')}>
-        {results.map((hit: Result<School>) => (
-            <ResultCard key={hit._id} {...hit._source} />
-          ))
-        }
-      </div>
+      {
+        useMap ?
+          <div className='school-search__map-container'>
+            <div className='unit-search__result--map'>
+              <iframe
+                title="Palvelukartta - Etusivu"
+                className="unit-search__map"
+                src={mapUrl}
+              >
+              </iframe>
+            </div>
+            <div className='unit-search__map-actions'>
+              <a
+                href={mapUrl}
+                className="link"
+                data-is-external="true"
+              >
+                {Drupal.t('Open a larger version of the map')}
+                <span className="link__type link__type--external" aria-label={
+                    Drupal.t('Link leads to external service',
+                    {},
+                    {context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}
+                  )}
+                ></span>
+              </a>
+            </div>
+          </div>
+        :
+          <>
+            {results.map((hit: Result<School>) => (
+                <ResultCard key={hit._id} {...hit._source} />
+              ))
+            }
+          </>
+      }
       {
         showPagination &&
         <Pagination
