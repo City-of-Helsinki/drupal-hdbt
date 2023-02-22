@@ -8,7 +8,7 @@ type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
 };
 
-const FormContainer = () => {
+const ProximityFormContainer = () => {
   const setParams = useSetAtom(paramsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -37,4 +37,4 @@ const FormContainer = () => {
   );
 };
 
-export default FormContainer;
+export default ProximityFormContainer;

@@ -48,7 +48,11 @@
   margin-bottom: $spacing;
 }
 
-.react-search__count {
-  @include font('body');
-  font-weight: $font-weight-bold;
+.react-search__tabs {
+  margin-bottom: $spacing-triple;
+}
+
+.react-search__tab {
+  --tab-active-border-color: var(--hdbt-color-black);
+  --tab-color: var(--hdbt-color-black);
 }
