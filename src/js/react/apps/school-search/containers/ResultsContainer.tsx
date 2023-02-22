@@ -60,9 +60,6 @@ const ResultsContainer = () => {
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
 
-  const mapClasses = ['school-search__map-container'];
-  const resultsClasses = ['asd'];
-
   const mapUrl = getMapUrl(data?.aggregations.ids.buckets);
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
