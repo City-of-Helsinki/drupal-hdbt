@@ -13,16 +13,16 @@ export default class HelfiAccordion {
   }
 
   initializeAccordion = () => {
-    Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
-      const item = new AccordionItem(element, this.localState);
-      this.accordionItems.push(item);
-    });
+      Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
+        const item = new AccordionItem(element, this.localState);
+        this.accordionItems.push(item);
+      });
   };
 
   getAccordionLocalState = () => {
     this.state = localStorage.getItem(HelfiAccordion.localStateKey);
   };
 
-  getAccordionItemById = (id) => this.accordionItems.find((accordionItem) => accordionItem.getId() === id);
+  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id);
 
 }

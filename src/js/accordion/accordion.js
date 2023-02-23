@@ -17,12 +17,12 @@ window.addEventListener('hashchange', (event) => {
 
   if (!accordionItemFound) {
     const anchorElement = document.querySelector(hash);
-    const accordionItemToFind = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
-    if (accordionItemToFind) {
+    const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
+    if (accordionItemToOpen) {
       window.helfiAccordions.forEach((accordion) => {
-        const accordionItem = accordion.getAccordionItemById(accordionItemToFind.getId());
+        const accordionItem = accordion.getAccordionItemById(accordionItemToOpen.dataset.accordionId);
         if (accordionItem) {
-          accordionItem.open();
+          accordionItem.handleLinkAnchor();
         }
       });
     }
@@ -33,8 +33,11 @@ window.addEventListener('hashchange', (event) => {
 window.helfiAccordions = [];
 
 const state = new State();
-document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
-  const accordion = new HelfiAccordion(accordionElement, state);
-  window.helfiAccordions.push(accordion);
-});
+setTimeout(()=>{
+  document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
+    const accordion = new HelfiAccordion(accordionElement, state);
+    window.helfiAccordions.push(accordion);
+  });
+}, 50);
+
 
