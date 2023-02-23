@@ -26,7 +26,6 @@ export function stringTransliteration(string) {
  */
 export function generateUniqueId(id, array, index = 1) {
   let newValue = '';
-  console.log('iidee',id);
   // Create suffix for id.
   const lastCharacters = id.match('.{2}$');
   const suffixes = ['_1','_2','_3','_4','_5','_6','_7','_8','_9'];
