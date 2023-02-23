@@ -53,7 +53,7 @@ export function generateUniqueId(id, array, index = 1) {
 export function createListOfUniqueIds(accordions) {
   return accordions.reduce((accumulator, currentValue) => {
       const transliteratedId = stringTransliteration(currentValue);
-      const newId = accumulator.includes(currentValue) ? generateUniqueId(transliteratedId, accumulator) : transliteratedId;
+      const newId = accumulator.includes(transliteratedId) ? generateUniqueId(transliteratedId, accumulator) : transliteratedId;
       accumulator.push(newId);
       return accumulator;
     }, []);
