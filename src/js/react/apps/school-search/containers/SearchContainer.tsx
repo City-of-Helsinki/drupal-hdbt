@@ -1,7 +1,9 @@
 import { LoadingSpinner, Tab, TabList, Tabs } from 'hds-react';
 import { Suspense, useState } from 'react';
 import ProximityFormContainer from './ProximityFormContainer';
-import ResultsContainer from './ResultsContainer';
+import ProximityResultsContainer from './ProximityResultsContainer';
+import FeatureFormContainer from './FeatureFormContainer';
+import FeatureResultsContainer from './FeatureResultsContainer';
 
 const MODE_OPTIONS = {
   // Search by school features
@@ -36,11 +38,14 @@ const SearchContainer = () => {
       <Suspense fallback={<LoadingSpinner />}>
         {
           searchMode === MODE_OPTIONS.proximity ?
-            <>
+            <div>
               <ProximityFormContainer />
-              <ResultsContainer />
-            </> :
-            <ResultsContainer />
+              <ProximityResultsContainer />
+            </div> :
+            <div>
+              <FeatureFormContainer />
+              <FeatureResultsContainer />
+            </div>
         }
       </Suspense>
     </>

@@ -1,16 +1,21 @@
-
-import { useAtomValue, useSetAtom } from 'jotai';
-import { Button, IconMap, IconMenuHamburger, LoadingSpinner } from 'hds-react';
 import { SyntheticEvent, useState } from 'react';
-import { paramsAtom, updatePageAtom } from '../store';
-import useQuery from '../hooks/UseQuery';
+import { Button, IconMap, IconMenuHamburger, LoadingSpinner } from 'hds-react';
 import GlobalSettings from '../enum/GlobalSettings';
-import ResultCard from '../components/ResultCard';
+import bucketToMap from '@/react/common/helpers/Aggregations';
+import { AggregationItem } from '@/types/Aggregation';
 import Result from '@/types/Result';
 import { School } from '../types/School';
+import ResultCard from './ResultCard';
 import Pagination from '@/react/common/Pagination';
-import { AggregationItem } from '@/types/Aggregation';
-import bucketToMap from '@/react/common/helpers/Aggregations';
+
+type ResultsListProps = {
+  data: any;
+  error: boolean;
+  isLoading: boolean;
+  isValidating: boolean;
+  page?: number,
+  updatePage: Function
+}
 
 const getMapUrl = (ids?: AggregationItem[]) => {
   const multipleBaseUrl = 'https://palvelukartta.hel.fi/fi/embed/search';
@@ -36,12 +41,9 @@ const getMapUrl = (ids?: AggregationItem[]) => {
   return mapUrl.toString();
 };
 
-const ResultsContainer = () => {
+const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = GlobalSettings;
-  const params = useAtomValue(paramsAtom);
-  const updatePage = useSetAtom(updatePageAtom);
-  const { data, error, isLoading, isValidating } = useQuery(params);
 
   if (isLoading || isValidating) {
     return <LoadingSpinner />;
@@ -60,16 +62,6 @@ const ResultsContainer = () => {
   const total = data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
-
-  const mapClasses = ['school-search__map-container'];
-  const resultsClasses = [];
-
-  if (useMap) {
-    resultsClasses.push('is-hidden');
-  }
-  else {
-    mapClasses.push('is-hidden');
-  }
 
   const mapUrl = getMapUrl(data?.aggregations.ids.buckets);
   const showPagination = !useMap && (pages > 1 || addLastPage);
@@ -100,7 +92,7 @@ const ResultsContainer = () => {
           }
         </Button>
       </div>
-      <div className={mapClasses.join(' ')}>
+      <div className='school-search__map-container'>
         <div className='unit-search__result--map'>
           <iframe
             title="Palvelukartta - Etusivu"
@@ -125,7 +117,7 @@ const ResultsContainer = () => {
           </a>
         </div>
       </div>
-      <div className={resultsClasses.join(' ')}>
+      <div>
         {results.map((hit: Result<School>) => (
             <ResultCard key={hit._id} {...hit._source} />
           ))
@@ -134,12 +126,12 @@ const ResultsContainer = () => {
       {
         showPagination &&
         <Pagination
-          currentPage={params.page || 1}
+          currentPage={page || 1}
           pages={5}
           totalPages={addLastPage ? pages + 1 : pages}
-          updatePage={(e: SyntheticEvent, page: number) => {
+          updatePage={(e: SyntheticEvent, nextPage: number) => {
             e.preventDefault();
-            updatePage(page);
+            updatePage(nextPage);
           }}  
         />
       }
@@ -147,4 +139,4 @@ const ResultsContainer = () => {
   );
 };
 
-export default ResultsContainer;
+export default ResultsList;
