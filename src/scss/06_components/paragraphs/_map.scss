@@ -40,16 +40,19 @@ $-map-aspect-ratio-mobile: 1;
 }
 
 .map {
-  height: 0;
   margin: $spacing 0;
-  padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
   position: relative;
 
-  @include breakpoint($breakpoint-s) {
-    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-desktop);
+  .responsive-map-container {
+    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
+    height: 0;
+    position: relative;
+
+    @include breakpoint($breakpoint-s) {
+      padding-bottom: aspect-ratio-padding($-map-aspect-ratio-desktop);
+    }
   }
 
-  > div,
   iframe {
     background-color: $color-black-10; // Add color to show a "placeholder" while the map is loading
     border: 0;

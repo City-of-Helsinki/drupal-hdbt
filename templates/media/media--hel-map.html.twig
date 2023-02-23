@@ -30,13 +30,15 @@
  * @see template_preprocess_media()
  */
 #}
-{% set media_url = media.field_media_oembed_video.0.value %}
-{% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
+{% set media_id = media.id() %}
+{% set media_url = media.field_media_hel_map.value.0.uri %}
+{% set media_attributes = media.field_media_hel_map %}
+{% set link = content.field_media_hel_map.0['#link'] %}
 
 {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
   media_url: media_url,
   media_id: media.id,
-  media_service_url: video_service_url,
+  media_service_url: map_service_url,
   privacy_policy_url: privacy_policy_url,
 } %}
 
@@ -44,15 +46,14 @@
   '#attached': {
     'drupalSettings': {
       'embedded_media_attributes': {
-        (media.id): {
-          'src': media_attributes.src,
-          'height': media_attributes.height,
-          'width': media_attributes.width,
-          'title': iframe_title,
-          'type': 'video',
+        (media_id): {
+          'src': media_url,
+          'title': media_attributes.value.0['title'],
+          'type': 'map',
         }
       }
     }
   }
 } %}
 {{ drupal_settings }}
+{{ link(link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
