@@ -1,4 +1,21 @@
 /**
+ * Transliterate string.
+ *
+ * @param string String to transliterate.
+ * @return string Transliterated string.
+ */
+export function stringTransliteration(string) {
+  return string.trim()
+    .toLowerCase()
+    .replace(/ä/gi, 'a')
+    .replace(/ö/gi, 'o')
+    .replace(/å/gi, 'a')
+    .replace(/\W/g, '-')
+    .replace(/-(\d+)$/g, '_$1');
+}
+
+
+/**
  * Recursively recreate an id until a unique id has been created.
  *
  * @param {String} id Id which is not unique.
@@ -9,7 +26,7 @@
  */
 export function generateUniqueId(id, array, index = 1) {
   let newValue = '';
-
+  console.log('iidee',id);
   // Create suffix for id.
   const lastCharacters = id.match('.{2}$');
   const suffixes = ['_1','_2','_3','_4','_5','_6','_7','_8','_9'];
@@ -24,7 +41,7 @@ export function generateUniqueId(id, array, index = 1) {
   if (array.includes(newValue)) {
     return generateUniqueId(newValue, array, index+1);
   }
-  return newValue.replaceAll();
+  return newValue;
 };
 
 /**
@@ -36,7 +53,8 @@ export function generateUniqueId(id, array, index = 1) {
  */
 export function createListOfUniqueIds(accordions) {
   return accordions.reduce((accumulator, currentValue) => {
-      const newId = accumulator.includes(currentValue) ? generateUniqueId(currentValue, accumulator) : currentValue;
+      const transliteratedId = stringTransliteration(currentValue);
+      const newId = accumulator.includes(currentValue) ? generateUniqueId(transliteratedId, accumulator) : transliteratedId;
       accumulator.push(newId);
       return accumulator;
     }, []);

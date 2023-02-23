@@ -1,3 +1,5 @@
+import {stringTransliteration} from './unique-id';
+
 export default class AccordionItem {
 
   static accordionItemElement = 'helfi-accordion-item';
@@ -14,7 +16,7 @@ export default class AccordionItem {
 
   constructor(element, state) {
     this.element = element;
-    this.id = element.querySelector('.helfi-accordion__header').id;
+    this.id = stringTransliteration(element.querySelector('.helfi-accordion__header').id);
     this.localState = state;
     this.isOpen = this.localState.loadItemState(this.id);
     this.setHidden();
