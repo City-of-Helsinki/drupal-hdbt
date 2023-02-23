@@ -6,15 +6,17 @@ import AccordionItem from './accordion-item';
 window.addEventListener('hashchange', (event) => {
   const {hash} = window.location;
 
+  // Look for accordion headers for anchor links.
   let accordionItemFound = false;
   window.helfiAccordions.forEach((accordion) => {
     const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
     if (accordionItem) {
       accordionItemFound = true;
-      accordionItem.open();
+      accordionItem.handleLinkAnchor();
     }
   });
 
+  // If not found, look inside accordions for anchor links.
   if (!accordionItemFound) {
     const anchorElement = document.querySelector(hash);
     const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
