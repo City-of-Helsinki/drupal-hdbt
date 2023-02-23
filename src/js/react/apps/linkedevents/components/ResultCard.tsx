@@ -37,6 +37,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     let startDate;
     let endDate;
     let isMultiDate;
+
     try {
       startDate = new Date(start_time);
       endDate = new Date(end_time);

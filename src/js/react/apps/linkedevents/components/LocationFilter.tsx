@@ -1,19 +1,19 @@
 import { Select } from 'hds-react';
+import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
-import { useAtomValue } from 'jotai';
+import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
+import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
-import { locationsAtom, queryBuilderAtom } from '../store';
+
 
 function LocationFilter() {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
-  const locationOptions = useAtomValue(locationsAtom);
-
-  if (!queryBuilder || !locationOptions) {
-    return null;
-  }
+  const locationOptions = useAtomValue(locationAtom);
+  const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
 
   const onChange = (value: any) => {
-    queryBuilder.setParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+    setLocationFilter(value);
+    updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
   };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
@@ -26,10 +26,13 @@ function LocationFilter() {
         helper={locationHelper}
         label={Drupal.t('Select a venue')}
         multiselect
+        // @ts-ignore
+        options={locationOptions}
+        value={locationSelection}
+        id={SearchComponents.LOCATION}
         onChange={onChange}
-        options={locationOptions || []}
-        placeholder={Drupal.t('All', {}, { context: 'Event search: all available options' })}
-        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'Event search: remove item aria label' })}
+        placeholder={Drupal.t('All', {}, { context: 'React search: all available options' })}
+        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search: remove item aria label' })}
         theme={{
           '--focus-outline-color': 'var(--hdbt-color-black)',
           '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',

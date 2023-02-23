@@ -22,13 +22,18 @@
         iframeElement.title = attributes.title;
 
         const containerElement = document.createElement('div');
-        containerElement.classList.add('responsive-video-container');
         containerElement.appendChild(iframeElement);
-
-        $(`.embedded-content-cookie-compliance.media-${id}`)
-          .empty()
-          .append(containerElement)
-          .removeClass(`media-${id}`);
+        if (attributes.type === 'video') {
+          containerElement.classList.add('responsive-video-container'); 
+          $(`.embedded-content-cookie-compliance.media-${id}`)
+            .empty()
+            .append(containerElement)
+            .removeClass(`media-${id}`);
+        } else if (attributes.type === 'map') {
+          containerElement.classList.add('responsive-map-container');
+          $(`.embedded-content-cookie-compliance.media-${id}`)
+            .replaceWith(containerElement);
+        }
       }
 
       // Only load the embedded content once.

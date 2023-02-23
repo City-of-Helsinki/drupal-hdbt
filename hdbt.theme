@@ -137,7 +137,7 @@ function hdbt_preprocess_media(&$variables) {
   if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
     return;
   }
-  if ($variables['media']->bundle() === 'remote_video') {
+  if ($variables['media']->bundle() === 'remote_video' || $variables['media']->bundle() === 'hel_map') {
     $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 
@@ -154,6 +154,15 @@ function hdbt_preprocess_media(&$variables) {
       $variables['iframe_title'] = $variables['media']->field_media_oembed_video->iframe_title;
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_media__hel_map(&$variables) {
+  $map_url = $variables['media']->field_media_hel_map->uri;
+  $url_parts = parse_url($map_url);
+  $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
 }
 
 /**
