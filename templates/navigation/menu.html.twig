@@ -68,7 +68,7 @@
 
       {% set item_lang = '' %}
       {% if item.attributes.lang %}
-        {% set item_lang = ' lang=' ~ item.attributes.lang ~ '' %}
+        {% set item_lang %} lang="{{ item.attributes.lang }}"{% endset %}
       {% endif %}
 
       <li{{ item.attributes.removeAttribute('class', 'lang').addClass(item_classes) }}>
