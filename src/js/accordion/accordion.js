@@ -16,8 +16,6 @@ window.addEventListener('hashchange', (event) => {
     }
   });
 
-
-
   // If not found, look inside accordions for anchor links.
   if (!accordionItemFound) {
     const anchorElement = document.querySelector(`${hash}`);
