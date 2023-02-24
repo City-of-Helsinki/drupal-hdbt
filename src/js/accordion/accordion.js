@@ -1,42 +1,46 @@
 import HelfiAccordion from './helfi-accordion';
 import State from './state';
-import { createListOfUniqueIds } from './unique-id';
-
-const accordionElements = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
-
-const allAccordionItemIds = [...accordionElements]
-  .map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')).map(item => item.dataset.accordionId))
-  .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), []);
-
-// Add suffix to duplicate ids.
-const uniqueListOfIds = createListOfUniqueIds(allAccordionItemIds);
-
-// Replace all duplicate ids across all accordions.
-[...accordionElements].map(accordion => Array.from(accordion.getElementsByClassName('helfi-accordion-item')))
-  .reduce((accumulator, currentValue) => accumulator.concat(...currentValue), [])
-  .forEach((element, index) => {
-    element.querySelector('.helfi-accordion__header').setAttribute('id', uniqueListOfIds[index]);
-  });
-
+import AccordionItem from './accordion-item';
 
 // Listen to hash change.
 window.addEventListener('hashchange', (event) => {
   const {hash} = window.location;
 
+  // Look for accordion headers for anchor links.
+  let accordionItemFound = false;
   window.helfiAccordions.forEach((accordion) => {
     const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
     if (accordionItem) {
-      accordionItem.open();
+      accordionItemFound = true;
+      accordionItem.handleLinkAnchor();
     }
   });
+
+  // If not found, look inside accordions for anchor links.
+  if (!accordionItemFound) {
+    const anchorElement = document.querySelector(`${hash}`);
+    const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
+    if (accordionItemToOpen) {
+      window.helfiAccordions.forEach((accordion) => {
+        const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
+        const accordionItem = accordion.getAccordionItemById(idToSearch);
+        if (accordionItem) {
+          accordionItem.handleLinkAnchor();
+        }
+      });
+    }
+  }
 });
 
 // Initialize the accordions
 window.helfiAccordions = [];
 
 const state = new State();
-document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
-  const accordion = new HelfiAccordion(accordionElement, state);
-  window.helfiAccordions.push(accordion);
-});
+setTimeout(()=>{
+  document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
+    const accordion = new HelfiAccordion(accordionElement, state);
+    window.helfiAccordions.push(accordion);
+  });
+}, 50);
+
 
