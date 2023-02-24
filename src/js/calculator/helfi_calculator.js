@@ -408,12 +408,26 @@ class HelfiCalculator {
         hr: `
           <hr>
         `,
+        label: `
+          <label
+            class="hds-text-input__label"
+            for="{{id}}_{{form_id}}"
+            id="label_{{id}}_{{form_id}}"
+            aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
+            ><span
+              id="labelText_{{id}}_{{form_id}}"
+              class="label_text"
+              >{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>
+        `,
         error_placeholder: `
-          <div class="helfi-calculator__error-placeholder"></div>
+          <div class="helfi-calculator__error-placeholder" id="error_text_{{id}}_{{form_id}}"></div>
+        `,
+        helper_text: `
+          <span class="hds-text-input__helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
         `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="{{type}}"
@@ -433,12 +447,12 @@ class HelfiCalculator {
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         input_integer: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"
@@ -457,12 +471,12 @@ class HelfiCalculator {
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         input_float: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"${''/* We can not use numeric here, nor can we use inputmode decimal https://design-system.service.gov.uk/components/text-input/#asking-for-decimal-numbers */}
@@ -479,23 +493,31 @@ class HelfiCalculator {
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         radio: `
           <fieldset
-              data-type="radio"
-              id="{{id}}_{{form_id}}"
-              {{#required}}data-required="true"{{/required}}
-              class="form-item hds-selection-group {{#required}}input--required{{/required}}">
-            {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>{{/label}}
+            data-type="radio"
+            id="{{id}}_{{form_id}}"
+            {{#required}}data-required="true"{{/required}}
+            class="form-item hds-selection-group {{#required}}input--required{{/required}}"
+            >
+            <legend
+              class="hds-selection-group__legend"
+              id="label_{{id}}_{{form_id}}"
+              aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
+              ><span
+                id="labelText_{{id}}_{{form_id}}"
+                class="label_text"
+                >{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>
             <div class="hds-selection-group__items">
               {{#radio_items}}
                 {{>radio_item}}
               {{/radio_items}}
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </fieldset>
         `,
         radio_item: `
