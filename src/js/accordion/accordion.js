@@ -16,13 +16,16 @@ window.addEventListener('hashchange', (event) => {
     }
   });
 
+
+
   // If not found, look inside accordions for anchor links.
   if (!accordionItemFound) {
-    const anchorElement = document.querySelector(hash);
+    const anchorElement = document.querySelector(`${hash}`);
     const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
     if (accordionItemToOpen) {
       window.helfiAccordions.forEach((accordion) => {
-        const accordionItem = accordion.getAccordionItemById(accordionItemToOpen.dataset.accordionId);
+        const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
+        const accordionItem = accordion.getAccordionItemById(idToSearch);
         if (accordionItem) {
           accordionItem.handleLinkAnchor();
         }

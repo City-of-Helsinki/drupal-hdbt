@@ -14,18 +14,17 @@ export default class AccordionItem {
 
   constructor(element, state) {
     this.element = element;
-    this.id = element.querySelector('.helfi-accordion__header').dataset.accordionId;
+    // Use header id as this objects id since header id is unique.
+    this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
     this.isOpen = this.localState.loadItemState(this.id);
     this.setHidden();
     this.addEventListeners();
-
     // Open accordion element by anchor link.
     // TODO: Figure out why javascript cannot find elements at this point.
     // Possibly due to other timeouts
     setTimeout(()=>{
       this.handleLinkAnchor();
-
       // Update element aria-expanded.
       this.setAriaOpen();
     }, 100);
