@@ -252,14 +252,14 @@ class HelfiCalculator {
     }
   }
 
-  static renderNotification(element, notificationClass, result) {
+  static renderNotification(element, notificationClass, result, notificationAriaLabel) {
     let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
     element.innerHTML = `
-      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+      <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
             <span>${result.title}</span>
@@ -269,14 +269,14 @@ class HelfiCalculator {
       </section>`;
   }
 
-  static renderReceipt(element, notificationClass, result) {
+  static renderReceipt(element, notificationClass, result, notificationAriaLabel) {
     let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
     const html = `
-      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+      <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
             <span>${result.title}</span>
@@ -292,7 +292,7 @@ class HelfiCalculator {
 
   renderResult(result) {
     if (result.error) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error, this.translate('notification_aria_label_for_error'));
       const titleElem = document.querySelector(`#${this.id} .helfi-calculator-notification--error .hds-notification__label`);
       titleElem.setAttribute('tabindex', '0');
       titleElem.focus();
@@ -303,9 +303,9 @@ class HelfiCalculator {
     if (result.receipt) {
       document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
     } else if (result.alert) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
-      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
+      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info, this.translate('notification_aria_label_for_info'));
     }
   }
 

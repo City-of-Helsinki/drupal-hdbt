@@ -117,6 +117,21 @@ const globalTranslations = {
     sv: null,
     en: 'Result',
   },
+  notification_aria_label_for_error: {
+    fi: 'Virheilmoitus',
+    sv: null,
+    en: null,
+  },
+  notification_aria_label_for_alert: {
+    fi: 'Varoitus',
+    sv: null,
+    en: null,
+  },
+  notification_aria_label_for_info: {
+    fi: 'Tiedoksi',
+    sv: null,
+    en: null,
+  },
 };
 
 export default globalTranslations;
