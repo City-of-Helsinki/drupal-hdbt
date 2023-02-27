@@ -152,8 +152,14 @@ class HelfiCalculator {
     }
 
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
-    const labelLink = `<a href="#${elem.id}">${labelText}</a>`;
+    let labelLink = `<a href="#${elem.id}">${labelText}</a>`;
 
+    if (elem.tagName === 'FIELDSET') {
+      const firstRadio = elem.querySelector('input[type="radio"]');
+      if (firstRadio) {
+        labelLink = `<a href="#${firstRadio.id}">${labelText}</a>`;
+      }
+    }
 
     const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
     const errorHtml = `<span class="hds-text-input__error-text">${error}</span>`;
