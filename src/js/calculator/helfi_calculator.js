@@ -434,7 +434,6 @@ class HelfiCalculator {
             class="hds-text-input__label"
             for="{{id}}_{{form_id}}"
             id="label_{{id}}_{{form_id}}"
-            aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
             ><span
               id="labelText_{{id}}_{{form_id}}"
               class="label_text"
@@ -465,6 +464,7 @@ class HelfiCalculator {
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#label}}data-label="{{label}}"{{/label}}
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
@@ -489,6 +489,7 @@ class HelfiCalculator {
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 data-label="label_{{id}}_{{form_id}}"
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
@@ -511,6 +512,7 @@ class HelfiCalculator {
                 {{#required}}data-required="required"{{/required}}
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
