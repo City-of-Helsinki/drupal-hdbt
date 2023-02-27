@@ -707,6 +707,7 @@ class DaycarePayment {
           has_details: true,
           details: [ careTypeAndcareTime ],
           sum: this.t('receipt_subtotal_euros_per_month', { value: children[i].paymentRounded }),
+          sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: children[i].paymentRounded }),
         };
         if (freeDays && Number(freeDays) > 0) {
           subtotal.details.push(`${this.t('daycare_free_days')}: ${freeDays}`);

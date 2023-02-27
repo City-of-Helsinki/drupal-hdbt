@@ -51,6 +51,11 @@ const translations = {
     sv: null,
     en: null,
   },
+  removed_child: {
+    fi: 'Lapsen tiedot on nyt poistettu lomakkeelta',
+    sv: null,
+    en: null,
+  },
   youngest_child_title: {
     fi: 'Nuorin tai ainoa varhaiskasvatuksessa oleva lapsi',
     sv: null,
@@ -246,6 +251,11 @@ const translations = {
     sv: null,
     en: null,
   },
+  receipt_subtotal_euros_per_month_screenreader: {
+    fi: '${value} euroa kuukaudessa',
+    sv: null,
+    en: null,
+  },
   receipt_additional_details: {
     fi: 'Lisähuomiot:',
     sv: null,
@@ -258,6 +268,11 @@ const translations = {
   },
   receipt_daycare_type_3_details: {
     fi: 'Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    sv: null,
+    en: null,
+  },
+  receipt_aria_live: {
+    fi: 'Varhaiskasvatusmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
     sv: null,
     en: null,
   },
