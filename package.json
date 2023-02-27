@@ -22,7 +22,7 @@
     "chokidar": "^3.5.1",
     "classnames": "^2.3.1",
     "es6-promise": "^4.1.1",
-    "glob": "^8.0.0",
+    "glob": "^9.0.0",
     "handorgel": "^0.5.0",
     "hds-design-tokens": "^2.11.0",
     "hds-react": "^2.11.0",
