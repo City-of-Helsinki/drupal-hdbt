@@ -67,6 +67,11 @@ const globalTranslations = {
     sv: null,
     en: null,
   },
+  reset_aria_live: {
+    fi: 'Lomakkeen tiedot on nyt tyhjennetty',
+    sv: null,
+    en: null,
+  },
   missing_input: {
     fi: 'Tarkistathan vielä nämä kohdat',
     sv: null,

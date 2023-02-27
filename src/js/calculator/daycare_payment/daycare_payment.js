@@ -705,7 +705,7 @@ class DaycarePayment {
         const subtotal = {
           title: (i === 0) ? this.t('youngest_child_title') : this.t('nth_child_title'),
           has_details: true,
-          details: [ careTypeAndcareTime ],
+          details: [careTypeAndcareTime],
           sum: this.t('receipt_subtotal_euros_per_month', { value: children[i].paymentRounded }),
           sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: children[i].paymentRounded }),
         };
@@ -755,7 +755,10 @@ class DaycarePayment {
         receiptData,
       );
 
-      return { receipt };
+      return {
+        receipt,
+        ariaLive: this.t('receipt_aria_live', { payment: sum }),
+      };
     };
 
     const eventHandlers = {
@@ -777,6 +780,7 @@ class DaycarePayment {
       reset: () => {
         window.setTimeout(update, 1);
         this.calculator.clearResult();
+        this.calculator.showAriaLiveText(this.t('reset_aria_live'));
 
         const slots = this.calculator.getElement('slots_nth_child');
         slots.innerHTML = '';
@@ -794,6 +798,7 @@ class DaycarePayment {
         childElem.parentElement.removeChild(childElem);
 
         dynamicArea?.querySelector(':scope > .hds-button')?.focus();
+        this.calculator.showAriaLiveText(this.t('removed_child'));
       }
     };
 

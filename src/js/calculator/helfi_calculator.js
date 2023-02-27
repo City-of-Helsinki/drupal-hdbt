@@ -258,6 +258,16 @@ class HelfiCalculator {
     }
   }
 
+  showAriaLiveText(text) {
+    const ariaLiveElem = document.getElementById(`aria_live_${this.id}`);
+    ariaLiveElem.innerText = text;
+    // console.log('setting aria_live to:', text);
+    window.setTimeout(() => {
+      ariaLiveElem.innerText = '';
+      // console.log('clearing aria_live');
+    }, 1000);
+  }
+
   static renderNotification(element, notificationClass, result, notificationAriaLabel) {
     let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
@@ -306,6 +316,10 @@ class HelfiCalculator {
       titleElem.setAttribute('tabindex', '-1');
     }
 
+    if (result.ariaLive) {
+      this.showAriaLiveText(result.ariaLive);
+    }
+
     if (result.receipt) {
       document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
     } else if (result.alert) {
@@ -326,8 +340,6 @@ class HelfiCalculator {
     Object.values(errorsMessages).forEach((errorMessage) => {
       errorMessage.innerHTML = '';
     });
-
-
     // this.init(this.initParams);
   }
 
@@ -337,6 +349,7 @@ class HelfiCalculator {
 
     this.templates = {
       form: `
+        <div class="visually-hidden" aria-live="polite" aria-atomic="true" id="aria_live_{{form_id}}"></div>
         <div class="helfi-calculator-disclaimer">
           {{#has_required_fields}}
             ${this.translate('has_required_fields', { required: '{{>required}}' }) }
@@ -353,7 +366,7 @@ class HelfiCalculator {
             <input type="reset" value="{{#reset}}{{reset}}{{/reset}}{{^reset}}${this.translate('reset')}{{/reset}}" class="hds-button hds-button--secondary">
           </div>
         </form>
-        <div class="helfi-calculator-notification helfi-calculator-notification--result" aria-live="polite" aria-atomic="true"></div>
+        <div class="helfi-calculator-notification helfi-calculator-notification--result"></div>
       `,
       partials: {
         required: `
