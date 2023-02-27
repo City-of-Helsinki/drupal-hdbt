@@ -787,8 +787,12 @@ class DaycarePayment {
 
       const childElem = event.target.closest('.helfi-calculator__dynamic-slot');
       if (childElem) {
+        const dynamicArea = childElem.closest('.helfi-calculator__dynamic-area');
+
         event.target.removeEventListener('click', removeChild);
         childElem.parentElement.removeChild(childElem);
+
+        dynamicArea?.querySelector(':scope > .hds-button')?.focus();
       }
     };
 
@@ -823,6 +827,10 @@ class DaycarePayment {
       removeChildButton.addEventListener('click', removeChild);
 
       slots.dataset.itemCount = nextChildNumber - 1;
+
+      // Focus the first dynamic item in new child for accessibility.
+      newChildElem.querySelector('input').focus();
+
     };
 
     // Prepare calculator for translations
