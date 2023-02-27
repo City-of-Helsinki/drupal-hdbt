@@ -57,6 +57,11 @@ const globalTranslations = {
     sv: null,
     en: null,
   },
+  required_explanation: {
+    fi: 'sekä saavutettavalla tekstillä ',
+    sv: null,
+    en: null,
+  },
   calculate: {
     fi: 'Laske arvio',
     sv: 'Beräkna uppskattningen',

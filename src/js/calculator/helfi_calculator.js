@@ -352,7 +352,7 @@ class HelfiCalculator {
         <div class="visually-hidden" aria-live="polite" aria-atomic="true" id="aria_live_{{form_id}}"></div>
         <div class="helfi-calculator-disclaimer">
           {{#has_required_fields}}
-            ${this.translate('has_required_fields', { required: '{{>required}}' }) }
+            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}'}) }
           {{/has_required_fields}}
           ${this.translate('not_saved')}
         </div>
@@ -370,7 +370,9 @@ class HelfiCalculator {
       `,
       partials: {
         required: `
-          <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>
+          <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>`,
+        required_explanation: `
+          <span class="visually-hidden">${ this.translate('required_explanation') }</span>
         `,
         form_item: `
           <div class="helfi-calculator__item">
