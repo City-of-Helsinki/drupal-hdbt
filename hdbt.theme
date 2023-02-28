@@ -1262,6 +1262,12 @@ function hdbt_preprocess_field(&$variables) {
         $item['content']['#url']->setOption('attributes', $attributes);
       }
       break;
+
+    case 'service_map_embed':
+      $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
+      $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
+      $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+      break;
   }
 }
 
@@ -1358,6 +1364,9 @@ function hdbt_preprocess_tpr_unit(&$variables) {
 
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
+
+  // Add cookie compliance JS to unit pages since they have maps.
+  $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 }
 
 /**
