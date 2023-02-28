@@ -152,8 +152,14 @@ class HelfiCalculator {
     }
 
     const labelText = document.querySelector(`#labelText_${elem.id}`)?.innerText || elem.id;
-    const labelLink = `<a href="#${elem.id}">${labelText}</a>`;
+    let labelLink = `<a href="#${elem.id}">${labelText}</a>`;
 
+    if (elem.tagName === 'FIELDSET') {
+      const firstRadio = elem.querySelector('input[type="radio"]');
+      if (firstRadio) {
+        labelLink = `<a href="#${firstRadio.id}">${labelText}</a>`;
+      }
+    }
 
     const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
     const errorHtml = `<span class="hds-text-input__error-text">${error}</span>`;
@@ -252,14 +258,24 @@ class HelfiCalculator {
     }
   }
 
-  static renderNotification(element, notificationClass, result) {
+  showAriaLiveText(text) {
+    const ariaLiveElem = document.getElementById(`aria_live_${this.id}`);
+    ariaLiveElem.innerText = text;
+    // console.log('setting aria_live to:', text);
+    window.setTimeout(() => {
+      ariaLiveElem.innerText = '';
+      // console.log('clearing aria_live');
+    }, 1000);
+  }
+
+  static renderNotification(element, notificationClass, result, notificationAriaLabel) {
     let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
     element.innerHTML = `
-      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+      <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
             <span>${result.title}</span>
@@ -269,14 +285,14 @@ class HelfiCalculator {
       </section>`;
   }
 
-  static renderReceipt(element, notificationClass, result) {
+  static renderReceipt(element, notificationClass, result, notificationAriaLabel) {
     let {message} = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
 
     const html = `
-      <section aria-label="Notification" class="hds-notification ${notificationClass}">
+      <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
             <span>${result.title}</span>
@@ -292,7 +308,7 @@ class HelfiCalculator {
 
   renderResult(result) {
     if (result.error) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error, this.translate('notification_aria_label_for_error'));
       const titleElem = document.querySelector(`#${this.id} .helfi-calculator-notification--error .hds-notification__label`);
       titleElem.setAttribute('tabindex', '0');
       titleElem.focus();
@@ -300,12 +316,16 @@ class HelfiCalculator {
       titleElem.setAttribute('tabindex', '-1');
     }
 
+    if (result.ariaLive) {
+      this.showAriaLiveText(result.ariaLive);
+    }
+
     if (result.receipt) {
       document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
     } else if (result.alert) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert);
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
-      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info);
+      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info, this.translate('notification_aria_label_for_info'));
     }
   }
 
@@ -320,8 +340,6 @@ class HelfiCalculator {
     Object.values(errorsMessages).forEach((errorMessage) => {
       errorMessage.innerHTML = '';
     });
-
-
     // this.init(this.initParams);
   }
 
@@ -331,9 +349,10 @@ class HelfiCalculator {
 
     this.templates = {
       form: `
+        <div class="visually-hidden" aria-live="polite" aria-atomic="true" id="aria_live_{{form_id}}"></div>
         <div class="helfi-calculator-disclaimer">
           {{#has_required_fields}}
-            ${this.translate('has_required_fields', { required: '{{>required}}' }) }
+            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}'}) }
           {{/has_required_fields}}
           ${this.translate('not_saved')}
         </div>
@@ -347,11 +366,13 @@ class HelfiCalculator {
             <input type="reset" value="{{#reset}}{{reset}}{{/reset}}{{^reset}}${this.translate('reset')}{{/reset}}" class="hds-button hds-button--secondary">
           </div>
         </form>
-        <div class="helfi-calculator-notification helfi-calculator-notification--result" aria-live="polite" aria-atomic="true"></div>
+        <div class="helfi-calculator-notification helfi-calculator-notification--result"></div>
       `,
       partials: {
         required: `
-          <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>
+          <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>`,
+        required_explanation: `
+          <span class="visually-hidden">${ this.translate('required_explanation') }</span>
         `,
         form_item: `
           <div class="helfi-calculator__item">
@@ -408,12 +429,25 @@ class HelfiCalculator {
         hr: `
           <hr>
         `,
+        label: `
+          <label
+            class="hds-text-input__label"
+            for="{{id}}_{{form_id}}"
+            id="label_{{id}}_{{form_id}}"
+            ><span
+              id="labelText_{{id}}_{{form_id}}"
+              class="label_text"
+              >{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>
+        `,
         error_placeholder: `
-          <div class="helfi-calculator__error-placeholder"></div>
+          <div class="helfi-calculator__error-placeholder" id="error_text_{{id}}_{{form_id}}"></div>
+        `,
+        helper_text: `
+          <span class="hds-text-input__helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
         `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="{{type}}"
@@ -430,15 +464,16 @@ class HelfiCalculator {
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#label}}data-label="{{label}}"{{/label}}
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         input_integer: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"
@@ -454,15 +489,16 @@ class HelfiCalculator {
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 data-label="label_{{id}}_{{form_id}}"
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         input_float: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
-            {{#label}}<label class="hds-text-input__label" for="{{id}}_{{form_id}}" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</label>{{/label}}
+            {{>label}}
             <div class="hds-text-input__input-wrapper">
               <input
                 type="text"${''/* We can not use numeric here, nor can we use inputmode decimal https://design-system.service.gov.uk/components/text-input/#asking-for-decimal-numbers */}
@@ -476,26 +512,35 @@ class HelfiCalculator {
                 {{#required}}data-required="required"{{/required}}
                 {{#strip}}data-strip="{{strip}}"{{/strip}}
                 {{#value}}value="{{value}}"{{/value}}
+                aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </div>
         `,
         radio: `
           <fieldset
-              data-type="radio"
-              id="{{id}}_{{form_id}}"
-              {{#required}}data-required="true"{{/required}}
-              class="form-item hds-selection-group {{#required}}input--required{{/required}}">
-            {{#label}}<legend class="hds-selection-group__legend" id="label_{{id}}_{{form_id}}"><span id="labelText_{{id}}_{{form_id}}" class="label_text">{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>{{/label}}
+            data-type="radio"
+            id="{{id}}_{{form_id}}"
+            {{#required}}data-required="true"{{/required}}
+            class="form-item hds-selection-group {{#required}}input--required{{/required}}"
+            >
+            <legend
+              class="hds-selection-group__legend"
+              id="label_{{id}}_{{form_id}}"
+              aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
+              ><span
+                id="labelText_{{id}}_{{form_id}}"
+                class="label_text"
+                >{{label}}</span>{{#unit}} ({{unit}}){{/unit}}{{#required}}{{>required}}{{/required}}</legend>
             <div class="hds-selection-group__items">
               {{#radio_items}}
                 {{>radio_item}}
               {{/radio_items}}
             </div>
             {{>error_placeholder}}
-            {{#helper_text}}<span class="hds-text-input__helper-text">{{helper_text}}</span>{{/helper_text}}
+            {{>helper_text}}
           </fieldset>
         `,
         radio_item: `
@@ -553,7 +598,15 @@ class HelfiCalculator {
               {{/details}}
               </ul>
             {{/has_details}}
-            <span class="helfi-calculator__receipt-subtotal-sum">{{sum}}</span>
+            <span class="helfi-calculator__receipt-subtotal-sum">
+              {{#sum_screenreader}}
+                <span aria-hidden="true">{{sum}}</span>
+                <span class="visually-hidden">{{sum_screenreader}}</span>
+              {{/sum_screenreader}}
+              {{^sum_screenreader}}
+                {{sum}}
+              {{/sum_screenreader}}
+            </span>
           </div>
         `,
       }

@@ -57,6 +57,11 @@ const globalTranslations = {
     sv: null,
     en: null,
   },
+  required_explanation: {
+    fi: 'sekä saavutettavalla tekstillä ',
+    sv: null,
+    en: null,
+  },
   calculate: {
     fi: 'Laske arvio',
     sv: 'Beräkna uppskattningen',
@@ -64,6 +69,11 @@ const globalTranslations = {
   },
   reset: {
     fi: 'Tyhjennä tiedot',
+    sv: null,
+    en: null,
+  },
+  reset_aria_live: {
+    fi: 'Lomakkeen tiedot on nyt tyhjennetty',
     sv: null,
     en: null,
   },
@@ -116,6 +126,21 @@ const globalTranslations = {
     fi: 'Lopputulos',
     sv: null,
     en: 'Result',
+  },
+  notification_aria_label_for_error: {
+    fi: 'Virheilmoitus',
+    sv: null,
+    en: null,
+  },
+  notification_aria_label_for_alert: {
+    fi: 'Varoitus',
+    sv: null,
+    en: null,
+  },
+  notification_aria_label_for_info: {
+    fi: 'Tiedoksi',
+    sv: null,
+    en: null,
   },
 };
 
