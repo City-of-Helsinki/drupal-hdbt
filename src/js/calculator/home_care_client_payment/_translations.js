@@ -96,7 +96,31 @@ const translations = {
     sv: null,
     en: null,
   },
-
+  meal_service_heading: {
+    fi: 'Ateriapalvelu',
+    sv: null,
+    en: null,
+  },
+  meal_service_paragraph: {
+    fi: 'Ateriapalvelussa kotiisi kuljetetaan valmiita aterioita, jotka voit itse lämmittää. Ateriapalvelun hintaan kuuluu lounaan hinta ja kuljetusmaksu.',
+    sv: null,
+    en: null,
+  },
+  meal_service: {
+    fi: 'Laske arvioon ateriapalvelu',
+    sv: null,
+    en: null,
+  },
+  meal_service_per_week: {
+    fi: 'Aterioiden määrä viikossa',
+    sv: null,
+    en: null,
+  },
+  meal_service_per_week_explanation: {
+    fi: 'Voit tilata ateriapalvelun hinnaston mukaisia aterioita enintään 7 ateriaa viikossa.',
+    sv: null,
+    en: null,
+  },
 
 
 

@@ -23,6 +23,14 @@ class HomeCareClientPayment {
       } else {
         this.calculator.hideGroup('shopping_service_group');
       }
+
+      const mealService = this.calculator.getFieldValue('meal_service');
+
+      if (mealService === '1') {
+        this.calculator.showGroup('meal_service_group');
+      } else {
+        this.calculator.hideGroup('meal_service_group');
+      }
     };
 
     const validate = () => {
@@ -34,11 +42,17 @@ class HomeCareClientPayment {
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
       errorMessages.push(...this.calculator.validateBasics('monthly_usage'));
       errorMessages.push(...this.calculator.validateBasics('safetyphone'));
-      errorMessages.push(...this.calculator.validateBasics('shopping_service'));
 
+      errorMessages.push(...this.calculator.validateBasics('shopping_service'));
       const shoppingService = this.calculator.getFieldValue('gross_income_per_month');
       if (shoppingService === '1') {
         errorMessages.push(...this.calculator.validateBasics('shopping_service_per_week'));
+      }
+
+      errorMessages.push(...this.calculator.validateBasics('meal_service'));
+      const mealService = this.calculator.getFieldValue('gross_income_per_month');
+      if (mealService === '1') {
+        errorMessages.push(...this.calculator.validateBasics('meal_service_per_week'));
       }
 
       // Check if any missing input errors were found
@@ -60,8 +74,8 @@ class HomeCareClientPayment {
       const safetyphone = Number(this.calculator.getFieldValue('safetyphone'));
       // Shopping service is set earlier
       const shoppingServicePerWeek = Number(this.calculator.getFieldValue('shopping_service_per_week'));
-
-
+      // Meal service is set earlier
+      const mealServicePerWeek = Number(this.calculator.getFieldValue('meal_service_per_week'));
 
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
