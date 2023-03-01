@@ -21,7 +21,7 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
-const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })) as TagType[];
+const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
 
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
   const { currentLanguage } = drupalSettings.path;
@@ -37,10 +37,11 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     let startDate;
     let endDate;
     let isMultiDate;
+
     try {
       startDate = new Date(start_time);
       endDate = new Date(end_time);
-      isMultiDate = overDayApart(startDate, endDate);
+      isMultiDate = end_time ? overDayApart(startDate, endDate) : false;
     } catch (e) {
       throw new Error('DATE ERROR');
     }

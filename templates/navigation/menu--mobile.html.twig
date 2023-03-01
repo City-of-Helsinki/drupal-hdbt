@@ -57,8 +57,13 @@
 
           <li{{ item.attributes.addClass(item_classes) }}>
 
+            {% set item_lang = '' %}
+            {% if item.attributes.lang %}
+              {% set item_lang %} lang="{{ item.attributes.lang }}"{% endset %}
+            {% endif %}
+
             {% set item_title %}
-              <span class="mmenu__link__text"{{ (item.attributes.lang) ? ' lang=' ~ item.attributes.lang : '' }}>{{ item.title }}</span>
+              <span class="mmenu__link__text"{{ item_lang }}>{{ item.title }}</span>
             {% endset %}
 
             {% set item_title = item.title %}

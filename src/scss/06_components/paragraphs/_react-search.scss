@@ -11,9 +11,9 @@
 }
 
 // If the event search search is just before footer it needs to function the same way as unit search.
-.layout-main-wrapper > *:last-child .component--react-search:last-child {
+.layout-main-wrapper > *:last-child .component--react-search:last-child .component__container {
   margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 55px; // Leave enough room between the last card and footer.
+  padding-bottom: 115px; // Leave enough room between the last card and footer.
 }
 
 .component--react-search .component__container {
@@ -26,12 +26,29 @@
   }
 }
 
+.react-search__form-container {
+  border-bottom: 1px solid $color-black-20;
+  margin-bottom: $spacing-double;
+}
+
 .react-search__list-container {
   margin-bottom: $spacing-double;
+}
+
+.react-search__result-top-area {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.react-search__results-stats {
+  margin-bottom: $spacing;
 }
 
 .react-search__count {
   @include font('body');
   font-weight: $font-weight-bold;
-  margin-bottom: $spacing;
 }

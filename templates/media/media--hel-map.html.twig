@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Theme override to present a media item.
+ *
+ * Available variables:
+ * - media: The media item, with limited access to object properties and
+ *   methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ *   For example:
+ *   - entity.getEntityTypeId() will return the entity type ID.
+ *   - entity.hasField('field_example') returns TRUE if the entity includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   Calling other methods, such as entity.delete(), will result in
+ *   an exception.
+ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
+ * - name: Name of the media item.
+ * - content: Media content.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - privacy_policy_url: The URL for the privacy policy page.
+ *
+ * @see template_preprocess_media()
+ */
+#}
+{% set media_id = media.id() %}
+{% set media_url = media.field_media_hel_map.value.0.uri %}
+{% set media_attributes = media.field_media_hel_map %}
+{% set link = content.field_media_hel_map.0['#link'] %}
+
+{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+  media_url: media_url,
+  media_id: media.id,
+  media_service_url: map_service_url,
+  privacy_policy_url: privacy_policy_url,
+} %}
+
+{% set drupal_settings = {
+  '#attached': {
+    'drupalSettings': {
+      'embedded_media_attributes': {
+        (media_id): {
+          'src': media_url,
+          'title': media_attributes.value.0['title'],
+          'type': 'map',
+        }
+      }
+    }
+  }
+} %}
+{{ drupal_settings }}
+{{ link(link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
