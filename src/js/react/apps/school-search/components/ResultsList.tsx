@@ -7,6 +7,8 @@ import Result from '@/types/Result';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
 import Pagination from '@/react/common/Pagination';
+import CookieComplianceStatement from '@/react/common/CookieComplianceStatement';
+import ExternalLink from '@/react/common/ExternalLink';
 
 type ResultsListProps = {
   data: any;
@@ -66,6 +68,36 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const mapUrl = getMapUrl(data?.aggregations.ids.buckets);
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
+  const getMap = () => {
+    if (Drupal.eu_cookie_compliance && Drupal.eu_cookie_compliance.hasAgreed('preference') && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+      return (
+        <div className='school-search__map-container'>
+          <div className='unit-search__result--map'>
+            <iframe
+              title="Palvelukartta - Etusivu"
+              className="unit-search__map"
+              src={mapUrl}
+            >
+            </iframe>
+          </div>
+          <div className='unit-search__map-actions'>
+            <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map')}</span>} />
+          </div>
+        </div>
+      );
+    }
+
+    const url = new URL(mapUrl);
+
+    return (
+      <CookieComplianceStatement
+        host={url.host}
+        policyUrl={drupalSettings.helfi_school_search.cookie_privacy_url}
+        sourceUrl={mapUrl}
+      />
+    );
+  };
+
   return (
     <div className='react-search__results'>
       <div className='react-search__result-top-area'>
@@ -92,37 +124,17 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
           }
         </Button>
       </div>
-      <div className='school-search__map-container'>
-        <div className='unit-search__result--map'>
-          <iframe
-            title="Palvelukartta - Etusivu"
-            className="unit-search__map"
-            src={mapUrl}
-          >
-          </iframe>
-        </div>
-        <div className='unit-search__map-actions'>
-          <a
-            href={mapUrl}
-            className="link"
-            data-is-external="true"
-          >
-            {Drupal.t('Open a larger version of the map')}
-            <span className="link__type link__type--external" aria-label={
-                Drupal.t('Link leads to external service',
-                {},
-                {context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}
-              )}
-            ></span>
-          </a>
-        </div>
-      </div>
-      <div>
-        {results.map((hit: Result<School>) => (
-            <ResultCard key={hit._id} {...hit._source} />
-          ))
-        }
-      </div>
+      {
+        useMap ?
+          getMap()
+        :
+          <>
+            {results.map((hit: Result<School>) => (
+                <ResultCard key={hit._id} {...hit._source} />
+              ))
+            }
+          </>
+      }
       {
         showPagination &&
         <Pagination
