@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
@@ -28,7 +27,7 @@ use Drupal\helfi_react_search\LinkedEvents;
 /**
  * Implements hook_preprocess().
  */
-function hdbt_preprocess(&$variables, $hook) {
+function hdbt_preprocess(&$variables): void {
   $variables['koro'] = hdbt_get_settings('koro');
   $variables['theme_color'] = hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = hdbt_get_settings('default_icon');
@@ -59,7 +58,7 @@ function hdbt_preprocess(&$variables, $hook) {
 /**
  * Retrieve possible theme color palette override.
  */
-function hdbt_get_theme_color_override() {
+function hdbt_get_theme_color_override(): string|false {
   $color = &drupal_static(__FUNCTION__);
 
   if (!isset($color)) {
@@ -82,7 +81,7 @@ function hdbt_get_theme_color_override() {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_html(&$variables) {
+function hdbt_preprocess_html(&$variables): void {
   // See if the page we are has exception.
   $page_status = Drupal::requestStack()
     ->getCurrentRequest()?->attributes->get('exception');
@@ -125,7 +124,7 @@ function hdbt_preprocess_html(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_region(&$variables) {
+function hdbt_preprocess_region(&$variables): void {
   // Set site information to variables.
   _hdbt_set_site_information($variables);
 }
@@ -133,12 +132,12 @@ function hdbt_preprocess_region(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_media(&$variables) {
+function hdbt_preprocess_media(&$variables): void {
   if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
     return;
   }
   if ($variables['media']->bundle() === 'remote_video' || $variables['media']->bundle() === 'hel_map') {
-    $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+    $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 
     // If Oembed providers module is installed, get provider URL based on
@@ -148,10 +147,12 @@ function hdbt_preprocess_media(&$variables) {
       $variables['media']->hasField('field_media_oembed_video')
     ) {
       $url_resolver = Drupal::service('media.oembed.url_resolver');
-      $video_url = $variables['media']->field_media_oembed_video->value;
+      $video_url = $variables['media']->get('field_media_oembed_video')->value;
       $provider = $url_resolver->getProviderByUrl($video_url);
       $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
-      $variables['iframe_title'] = $variables['media']->field_media_oembed_video->iframe_title;
+      $variables['iframe_title'] = $variables['media']
+        ->get('field_media_oembed_video')
+        ->iframe_title;
     }
   }
 }
@@ -159,7 +160,7 @@ function hdbt_preprocess_media(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_media__hel_map(&$variables) {
+function hdbt_preprocess_media__hel_map(&$variables): void {
   $map_url = $variables['media']->field_media_hel_map->uri;
   $url_parts = parse_url($map_url);
   $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
@@ -176,14 +177,15 @@ function hdbt_preprocess_media__hel_map(&$variables) {
  * @return string|null
  *   Returns the desired setting as a string or false.
  */
-function hdbt_get_settings(string $setting, string $group = 'site_settings') {
-  return Drupal::config('hdbt_admin_tools.site_settings')?->getOriginal("$group.$setting", FALSE);
+function hdbt_get_settings(string $setting, string $group = 'site_settings'): string|null {
+  return Drupal::config('hdbt_admin_tools.site_settings')
+    ?->getOriginal("$group.$setting", FALSE);
 }
 
 /**
  * Retrieves urls by langcode.
  */
-function hdbt_get_global_url(string $langcode) : array {
+function hdbt_get_global_url(string $langcode): array {
   if ($langcode == 'fi') {
     $urls = [
       'events_link_url' => 'https://tapahtumat.hel.fi/fi/',
@@ -217,7 +219,7 @@ function hdbt_get_global_url(string $langcode) : array {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_page(&$variables) {
+function hdbt_preprocess_page(&$variables): void {
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
@@ -242,7 +244,7 @@ function hdbt_preprocess_page(&$variables) {
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  if ($variables['use_global_navigation'] == TRUE) {
+  if ($variables['use_global_navigation']) {
     $variables['use_search_block'] = TRUE;
   }
 
@@ -265,7 +267,7 @@ function hdbt_preprocess_page(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_node(&$variables) {
+function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
@@ -302,8 +304,8 @@ function hdbt_preprocess_node(&$variables) {
     $variables['short_title'] = $node->getTitle();
 
     // If node has short title set, use it as short-title.
-    if (!$node->field_short_title->isEmpty()) {
-      $variables['short_title'] = $node->field_short_title->value;
+    if (!$node->get('field_short_title')->isEmpty()) {
+      $variables['short_title'] = $node->get('field_short_title')->value;
     }
   }
 }
@@ -320,7 +322,7 @@ function hdbt_preprocess_node(&$variables) {
  * @param string $image_caption
  *   Image caption field name.
  */
-function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption) {
+function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption): void {
   $entity = $variables[$entity_type];
 
   if (!$entity instanceof ContentEntityInterface) {
@@ -347,7 +349,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       $photographer = $entity->{$image}->entity->field_photographer->value;
 
       // If both caption and photographer exists, use targeted translation
-      // for the caption and photographer. Otherwise set only photographer as
+      // for the caption and photographer. Otherwise, set only photographer as
       // caption.
       if (!empty($caption)) {
         $alt = $caption = t(
@@ -383,7 +385,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $variables): void {
   $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#type'];
 }
 
@@ -392,7 +394,7 @@ function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $v
  *
  * Provide block based menu suggestions.
  */
-function hdbt_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+function hdbt_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
   $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
 }
 
@@ -401,36 +403,22 @@ function hdbt_theme_suggestions_form_alter(array &$suggestions, array $variables
  *
  * Provide block based menu suggestions.
  */
-function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables) {
+function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables): void {
   if (isset($variables['attributes']['block_id'])) {
-    switch ($variables['attributes']['block_id']) {
-      case 'mobile_navigation':
-        $suggestions[] = 'menu__mobile';
-        break;
-
-      case 'mainnavigation':
-        $suggestions[] = 'menu__main__desktop';
-        break;
-
-      case 'main_navigation_level_2':
-        $suggestions[] = 'menu__main__sidebar';
-        break;
-
-      case 'brandingnavigation':
-        $suggestions[] = 'menu__main__branding';
-        break;
-
-      default:
-        $suggestions[] = 'menu__' . $variables['attributes']['block_id'];
-        break;
-    }
+    $suggestions[] = match ($variables['attributes']['block_id']) {
+      'mobile_navigation' => 'menu__mobile',
+      'mainnavigation' => 'menu__main__desktop',
+      'main_navigation_level_2' => 'menu__main__sidebar',
+      'brandingnavigation' => 'menu__main__branding',
+      default => 'menu__' . $variables['attributes']['block_id'],
+    };
   }
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_form_element(&$variables) {
+function hdbt_preprocess_form_element(&$variables): void {
   if (isset($variables['type']) && is_array($variables['label'])) {
     switch ($variables['type']) {
       case 'checkbox':
@@ -458,7 +446,7 @@ function hdbt_preprocess_form_element(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_input__submit(&$variables) {
+function hdbt_preprocess_input__submit(&$variables): void {
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name === 'user.login' && $variables['element']['#id'] === 'edit-submit') {
     $variables['is_login_submit'] = TRUE;
@@ -468,7 +456,7 @@ function hdbt_preprocess_input__submit(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_menu(&$variables) {
+function hdbt_preprocess_menu(&$variables): void {
   $apply_lang_attribute = array_key_exists('menu_type', $variables);
 
   if (
@@ -497,7 +485,7 @@ function hdbt_preprocess_menu(&$variables) {
  * @param bool $apply_lang_attribute
  *   Indicates whether we should search for the possible lang attribute.
  */
-function _hdbt_menu_item_apply_attributes(array &$item, $apply_lang_attribute) {
+function _hdbt_menu_item_apply_attributes(array &$item, bool $apply_lang_attribute): void {
   // Iterate through child menu items.
   if (!empty($item['below'])) {
     foreach ($item['below'] as &$item_below) {
@@ -555,7 +543,7 @@ function _hdbt_menu_item_apply_attributes(array &$item, $apply_lang_attribute) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_block(&$variables) {
+function hdbt_preprocess_block(&$variables): void {
   // Set site information to variables.
   _hdbt_set_site_information($variables);
 
@@ -667,7 +655,7 @@ function hdbt_preprocess_block(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_breadcrumb(&$variables) {
+function hdbt_preprocess_breadcrumb(&$variables): void {
   // If current entity has short title field set, use it to override
   // current page breadcrumb.
   if (Drupal::moduleHandler()->moduleExists('hdbt_admin_tools')) {
@@ -681,7 +669,7 @@ function hdbt_preprocess_breadcrumb(&$variables) {
       /** @var \Drupal\Core\Link $current */
       $current = array_pop($variables['links']);
       $current->setText($page_entity->field_short_title->value);
-      array_push($variables['links'], $current);
+      $variables['links'][] = $current;
     }
   }
 }
@@ -695,7 +683,7 @@ function hdbt_preprocess_breadcrumb(&$variables) {
  *   - paragraph: The paragraph object.
  *   - view_mode: View mode; e.g., 'full', 'teaser'...
  */
-function hdbt_preprocess_paragraph(array &$variables) {
+function hdbt_preprocess_paragraph(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
@@ -723,7 +711,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $paragraph_parent = $paragraph->getParentEntity();
     $accordion_has_title = (bool) !$paragraph_parent
       ->get('field_accordion_title')->isEmpty();
-    $accordion_title_level = $paragraph_parent
+    $accordion_title_level = (int) $paragraph_parent
       ->get('field_accordion_title_level')->getString();
     $accordion_item_heading_level = $paragraph_parent
       ->get('field_accordion_heading_level')->getString();
@@ -775,7 +763,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
-  // Check if the paragraph is a type of hero and it has image field available.
+  // Check if the paragraph is a type of hero, and it has image field available.
   if (
     $paragraph_type == 'hero' &&
     $paragraph->hasField('field_hero_image')
@@ -785,25 +773,12 @@ function hdbt_preprocess_paragraph(array &$variables) {
     // should be used when rendering the hero image.
     if ($paragraph->hasField('field_hero_design')) {
 
-      switch ($paragraph->field_hero_design->value) {
-        case 'with-image-right':
-        case 'with-image-left':
-          $image_style = 'hero__left_right';
-          break;
-
-        case 'with-image-bottom':
-          $image_style = 'hero__bottom';
-          break;
-
-        case 'diagonal':
-        case 'with-search':
-          $image_style = 'hero__diagonal';
-          break;
-
-        default:
-          $image_style = 'hero__background';
-          break;
-      }
+      $image_style = match ($paragraph->get('field_hero_design')->value) {
+        'with-image-right', 'with-image-left' => 'hero__left_right',
+        'with-image-bottom' => 'hero__bottom',
+        'diagonal', 'with-search' => 'hero__diagonal',
+        default => 'hero__background',
+      };
 
       _hdbt_set_image_style(
         $variables,
@@ -814,7 +789,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }
   }
 
-  // Check if the paragraph is a type of hero and it has with search as design.
+  // Check if the paragraph is a type of hero, and it has with search as design.
   if (
     $paragraph_type == 'hero' &&
     $paragraph->hasField('field_hero_design') &&
@@ -832,21 +807,16 @@ function hdbt_preprocess_paragraph(array &$variables) {
   ) {
 
     // Determine based on image design which responsive image style
-    // should be used when rendering the liftup with image image.
+    // should be used when rendering the "liftup with image" -image.
     if ($paragraph->hasField('field_liftup_with_image_design')) {
 
-      switch ($paragraph->field_liftup_with_image_design->value) {
-        case 'image-on-right':
-        case 'image-on-left':
-        case 'image-on-right-secondary':
-        case 'image-on-left-secondary':
-          $image_style = 'image__3_2';
-          break;
-
-        default:
-          $image_style = 'hero__background';
-          break;
-      }
+      $image_style = match ($paragraph->get('field_liftup_with_image_design')->value) {
+        'image-on-right',
+        'image-on-left',
+        'image-on-right-secondary',
+        'image-on-left-secondary' => 'image__3_2',
+        default => 'hero__background',
+      };
 
       _hdbt_set_image_style(
         $variables,
@@ -865,7 +835,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['search_parent_paragraph'] = $paragraph->id();
     $variables['units_list'] = implode(',', array_map(function ($unit) {
       return $unit['target_id'];
-    }, $paragraph->field_unit_search_units->getValue()));
+    }, $paragraph->get('field_unit_search_units')->getValue()));
   }
 
   // Service list paragraph.
@@ -876,7 +846,7 @@ function hdbt_preprocess_paragraph(array &$variables) {
     $variables['search_parent_paragraph'] = $paragraph->id();
     $variables['services_list'] = implode(',', array_map(function ($service) {
       return $service['target_id'];
-    }, $paragraph->field_service_list_services->getValue()));
+    }, $paragraph->get('field_service_list_services')->getValue()));
   }
 
   // Contact card paragraph.
@@ -1039,7 +1009,7 @@ function _hdbt_set_site_information(array &$variables) {
  * @param string $image_style
  *   Image style name.
  */
-function _hdbt_set_image_style(array &$variables, string $entity_type, string $image, string $image_style) {
+function _hdbt_set_image_style(array &$variables, string $entity_type, string $image, string $image_style): void {
   $entity = &$variables[$entity_type];
 
   if (!$entity instanceof ContentEntityInterface) {
@@ -1062,7 +1032,7 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_image(&$variables) {
+function hdbt_preprocess_image(&$variables): void {
   // Convert double double quotes to empty string for image alt-texts.
   if (isset($variables['alt']) && $variables['alt'] === '""') {
     $variables['attributes']['alt'] = '';
@@ -1072,7 +1042,7 @@ function hdbt_preprocess_image(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_responsive_image_formatter(&$variables) {
+function hdbt_preprocess_responsive_image_formatter(&$variables): void {
   if (!$variables['item'] instanceof ImageItem) {
     return;
   }
@@ -1087,17 +1057,45 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
     $variables['responsive_image']['#responsive_image_style_id'] = $variables['item']->altered_image_style;
   }
 
-  // Add width and height for the image, if the width and height can be
-  // retrieved from responsive image style. If aforesaid is not possible,
-  // use image width and height as fallback values.
-  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+  $image_style = array_key_exists('#responsive_image_style_id', $variables['responsive_image'])
+    ? $variables['responsive_image']['#responsive_image_style_id']
+    : NULL;
+
+  _hdbt_add_image_element_dimensions(
+    $image_style,
+    $variables['responsive_image']['#width'],
+    $variables['responsive_image']['#height'],
+    $variables['responsive_image'],
+  );
+}
+
+/**
+ * Add image element dimensions.
+ *
+ * This function will add the image dimensions to the image element, if
+ * the width and height can be retrieved from responsive image style.
+ * If aforesaid is not possible, use image width and height as fallback values.
+ * See: https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+ *
+ * @param string|null $responsive_image_style_id
+ *   Responsive image style ID.
+ * @param string $width
+ *   Current image width.
+ * @param string $height
+ *   Current image height.
+ * @param array $element
+ *   Current image element.
+ */
+function _hdbt_add_image_element_dimensions(string|null $responsive_image_style_id, string $width, string $height, array &$element): void {
+  // Add width and height for the imagecache external image.
   $image_width = FALSE;
   $image_height = FALSE;
 
-  if (isset($variables['responsive_image']['#responsive_image_style_id'])) {
-    $variables['responsive_image_style_id'] = $variables['responsive_image']['#responsive_image_style_id'];
-    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image']['#responsive_image_style_id']);
-    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
+  if (!empty($responsive_image_style_id)) {
+    $responsive_image_style = ResponsiveImageStyle::load($responsive_image_style_id);
+    $fallback_image_style_config = ImageStyle::load(
+      $responsive_image_style->getFallbackImageStyle()
+    )->getEffects()->getConfiguration();
 
     foreach ($fallback_image_style_config as $config) {
       if (
@@ -1112,18 +1110,15 @@ function hdbt_preprocess_responsive_image_formatter(&$variables) {
       }
     }
   }
-  elseif (
-    !empty($variables['responsive_image']['#width']) &&
-    !empty($variables['responsive_image']['#height'])
-  ) {
-    $image_width = $variables['responsive_image']['#width'];
-    $image_height = $variables['responsive_image']['#height'];
+  elseif (!empty($width) && !empty($height)) {
+    $image_width = $width;
+    $image_height = $height;
   }
 
   // Set responsive image width and height values if available.
   if ($image_height && $image_width) {
-    $variables['responsive_image']['#attributes']['width'] = $image_width;
-    $variables['responsive_image']['#attributes']['height'] = $image_height;
+    $element['#attributes']['width'] = $image_width;
+    $element['#attributes']['height'] = $image_height;
   }
 }
 
@@ -1135,46 +1130,22 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
     return;
   }
 
-  // Add width and height for the imagecache external image, if the width and
-  // height can be retrieved from responsive image style. If aforesaid is not
-  // possible, use image width and height as fallback values.
-  // See. https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
-  $image_width = FALSE;
-  $image_height = FALSE;
+  $image_style = array_key_exists('responsive_image_style_id', $variables)
+    ? $variables['responsive_image_style_id']
+    : NULL;
 
-  if (isset($variables['responsive_image_style_id'])) {
-    $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
-    $fallback_image_style_config = ImageStyle::load($responsive_image_style->getFallbackImageStyle())->getEffects()->getConfiguration();
-
-    foreach ($fallback_image_style_config as $config) {
-      if (
-        isset($config['data']) &&
-        isset($config['data']['width'])
-      ) {
-        $image_width = $config['data']['width'];
-        // If image height is null, treat the image as square image.
-        $image_height = !empty($config['data']['height'])
-          ? $config['data']['height']
-          : $config['data']['width'];
-      }
-    }
-  }
-  elseif (!empty($variables['width']) && !empty($variables['height'])) {
-    $image_width = $variables['width'];
-    $image_height = $variables['height'];
-  }
-
-  // Set responsive image width and height values if available.
-  if ($image_height && $image_width) {
-    $variables['img_element']['#attributes']['width'] = $image_width;
-    $variables['img_element']['#attributes']['height'] = $image_height;
-  }
+  _hdbt_add_image_element_dimensions(
+    $image_style,
+    $variables['width'],
+    $variables['height'],
+    $variables['img_element'],
+  );
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_field(&$variables) {
+function hdbt_preprocess_field(&$variables): void {
   switch ($variables['field_name']) {
     case 'links':
       // Craft Service channel links url and title for the templates.
@@ -1205,7 +1176,7 @@ function hdbt_preprocess_field(&$variables) {
     case 'service_map_embed':
       $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
       $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-      $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+      $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
       break;
   }
 }
@@ -1213,7 +1184,7 @@ function hdbt_preprocess_field(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables): void {
   if (
     isset($variables['view']) &&
     !empty($variables['view']->id())
@@ -1225,7 +1196,7 @@ function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $var
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
+function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables): void {
   if (isset($variables['view'])) {
     $view = $variables['view'];
 
@@ -1242,7 +1213,7 @@ function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_views_view(&$variables) {
+function hdbt_preprocess_views_view(&$variables): void {
   // Add pager items per page as a variable.
   if ($variables['view']->pager != NULL) {
     $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
@@ -1256,7 +1227,7 @@ function hdbt_preprocess_views_view(&$variables) {
 /**
  * Implements hook_views_pre_render().
  */
-function hdbt_views_pre_render(ViewExecutable $view) {
+function hdbt_views_pre_render(ViewExecutable $view): void {
   // Add library to all for ajax progress.
   if (!isset($view->element["#name"]) || $view->element["#name"] !== 'high_school_search') {
     return;
@@ -1271,7 +1242,7 @@ function hdbt_views_pre_render(ViewExecutable $view) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_tpr_unit(&$variables) {
+function hdbt_preprocess_tpr_unit(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Unit) {
     return;
   }
@@ -1287,7 +1258,7 @@ function hdbt_preprocess_tpr_unit(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_tpr_service_channel(&$variables) {
+function hdbt_preprocess_tpr_service_channel(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Channel) {
     return;
   }
@@ -1302,7 +1273,7 @@ function hdbt_preprocess_tpr_service_channel(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_tpr_errand_service(&$variables) {
+function hdbt_preprocess_tpr_errand_service(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof ErrandService) {
     return;
   }
@@ -1346,7 +1317,7 @@ function hdbt_preprocess_tpr_errand_service(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_maintenance_page(&$variables) {
+function hdbt_preprocess_maintenance_page(&$variables): void {
   // This same preprocess needs to be done separately for maintenance page.
   // We check what language is set and provide links to homepage and feedback
   // accordingly.
@@ -1371,7 +1342,7 @@ function hdbt_preprocess_maintenance_page(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_social_media_links(&$variables) {
+function hdbt_preprocess_social_media_links(&$variables): void {
   // Convert Attributes to strings.
   if (isset($variables['elements'])) {
     foreach ($variables['elements'] as &$element) {
@@ -1400,7 +1371,7 @@ function hdbt_preprocess_social_media_links(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_pager(&$variables) {
+function hdbt_preprocess_pager(&$variables): void {
   $element = $variables['pager']['#element'];
 
   /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
@@ -1413,21 +1384,9 @@ function hdbt_preprocess_pager(&$variables) {
 }
 
 /**
- * Helper function to get the privacy policy link URL.
- */
-function _hdbt_eu_cookie_compliance_get_privacy_policy_url(): Url {
-  $config = Drupal::config('eu_cookie_compliance.settings');
-  $link = $config->get('popup_link');
-
-  return (UrlHelper::isExternal($link))
-    ? Url::fromUri($link)
-    : Url::fromUserInput($link === '<front>' ? '/' : $link);
-}
-
-/**
  * Implements hook_preprocess_paragraph().
  */
-function hdbt_preprocess_paragraph__event_list(&$variables) {
+function hdbt_preprocess_paragraph__event_list(&$variables): void {
   // Expose event list variables to frontend.
   if (isset($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
@@ -1501,6 +1460,6 @@ function _hdbt_get_theme_path(): string {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_paragraph__school_search(array &$variables) {
+function hdbt_preprocess_paragraph__school_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/school-search';
 }
