@@ -20,7 +20,7 @@ const getQueryString = (keyword?: string) => {
     query.bool.should = [
       {
         match_phrase_prefix: {
-          address: {
+          name: {
             query: keyword,
             boost: 1.5
           },
@@ -28,8 +28,15 @@ const getQueryString = (keyword?: string) => {
       },
       {
         match: {
-          address: {
+          name: {
             query: keyword
+          }
+        }
+      },
+      {
+        wildcard: {
+          name: {
+            value: `*${keyword}*`
           }
         }
       },
