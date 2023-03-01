@@ -7,6 +7,8 @@ accordion:
   version: 1.1
   js:
     dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
+  dependencies:
+    - helfi_toc/table_of_contents
 
 throbber:
   version: 1.x

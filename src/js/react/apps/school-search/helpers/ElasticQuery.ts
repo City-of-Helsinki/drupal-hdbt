@@ -50,6 +50,14 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
   }
 
   return JSON.stringify({
+    aggs: {
+      ids: {
+        terms: {
+          field: 'id',
+          size: 1000
+        },
+      },
+    },
     from: size * (page - 1),
     query,
     size,
