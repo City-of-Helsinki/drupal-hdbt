@@ -211,6 +211,11 @@ const translations = {
     sv: null,
     en: null,
   },
+  daycare_has_preschool: {
+    fi: 'Lapsi on esiopetuksessa tai 5-vuotiaiden varhaiskasvatuksessa',
+    sv: null,
+    en: null,
+  },
   receipt_estimate_of_payment: {
     fi: 'Arvio asiakasmaksusta',
     sv: null,
@@ -268,6 +273,11 @@ const translations = {
   },
   receipt_daycare_type_3_details: {
     fi: 'Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    sv: null,
+    en: null,
+  },
+  receipt_daycare_type_4_details: {
+    fi: '5-vuotiaiden maksuton varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus. Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
     sv: null,
     en: null,
   },
