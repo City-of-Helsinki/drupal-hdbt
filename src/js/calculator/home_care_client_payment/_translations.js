@@ -22,12 +22,12 @@ const translations = {
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä etuudet, esimerkiksi eläkkeensaajan hoitotuki.',
+    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä etuudet, esimerkiksi eläkkeensaajan hoitotuki. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman maksun mukaisesti.',
     sv: null,
     en: null,
   },
   monthly_usage: {
-    fi: 'Kotihoidon tuntimäärä kuukaudessa*',
+    fi: 'Kotihoidon tuntimäärä kuukaudessa',
     sv: null,
     en: null,
   },
@@ -92,7 +92,7 @@ const translations = {
     en: null,
   },
   shopping_service_per_week_explanation: {
-    fi: 'Voit tilata ateriapalvelun hinnaston mukaisia aterioita enintään 7 ateriaa viikossa.',
+    fi: 'Yksi toimitus viikossa maksaa ${first_per_week_price} euroa, muut toimitukset ${others_per_week_price} euroa per toimitus.',
     sv: null,
     en: null,
   },
@@ -126,12 +126,12 @@ const translations = {
 
 
   receipt_estimate_of_payment: {
-    fi: 'Arvio asiakasmaksusta',
+    fi: 'Arvio kotihoidon asiakasmaksusta',
     sv: null,
     en: null,
   },
   receipt_family_estimated_payment_prefix: {
-    fi: 'Perheen arvioitu asiakasmaksu on',
+    fi: 'Arvioitu asiakasmaksu on yhteensä',
     sv: null,
     en: null,
   },
@@ -146,12 +146,12 @@ const translations = {
     en: null,
   },
   receipt_family_empty_income: {
-    fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin perheen kuukausituloja. ',
+    fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin talouden kuukausituloja. ',
     sv: null,
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava. Tarkan asiakasmaksun saat asiakasmaksupäätöksessä vuosittain.',
+    fi: 'Tämä arvio on suuntaa antava.  Asiakasmaksujen tarkka määrä lasketaan kotihoidon maksupäätökseen.',
     sv: null,
     en: null,
   },
@@ -175,18 +175,18 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_daycare_type_2_details: {
-    fi: '5-vuotiaiden maksuton varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
+  receipt_homecare_payment: {
+    fi: 'Kotihoidon asiakasmaksu',
     sv: null,
     en: null,
   },
-  receipt_daycare_type_3_details: {
-    fi: 'Maksutonta esiopetusta ei ole koulun lomien aikana. 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+  receipt_homecare_payment_two_or_more: {
+    fi: 'Jos molemmat puolisot ovat jatkuvan ja säännöllisen kotihoidon kuukausimaksuasiakkaita, maksu jakautuu kummallekin palvelu- ja hoitosuunnitelman mukaisesti.',
     sv: null,
     en: null,
   },
   receipt_aria_live: {
-    fi: 'Varhaiskasvatusmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    fi: 'Kotihoidon asiakasmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
     sv: null,
     en: null,
   },
