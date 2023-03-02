@@ -131,8 +131,8 @@ class HelfiCalculator {
       let elemValue = elem.value.replace(',', '.');
 
       if (elem.dataset.strip) {
-        const regex = new RegExp(elem.dataset.strip,'g');
-        elemValue = elemValue.replaceAll(regex,'');
+        const regex = new RegExp(elem.dataset.strip, 'g');
+        elemValue = elemValue.replaceAll(regex, '');
       }
 
       if (elem.dataset.type === 'input_integer' && Number.isNaN(Number.parseInt(elemValue, 10))) {
@@ -177,7 +177,7 @@ class HelfiCalculator {
       }
     }
 
-    const errorWithLink = this.translate('error_with_link', { error, labelLink});
+    const errorWithLink = this.translate('error_with_link', { error, labelLink });
     return [errorWithLink];
   }
 
@@ -211,7 +211,7 @@ class HelfiCalculator {
       let elemValue = elem.value.replace(',', '.');
 
       if (elem.dataset.strip) {
-        const regex = new RegExp(elem.dataset.strip,'g');
+        const regex = new RegExp(elem.dataset.strip, 'g');
         elemValue = elemValue.replaceAll(regex, '');
       }
 
@@ -273,7 +273,7 @@ class HelfiCalculator {
   }
 
   static renderNotification(element, notificationClass, result, notificationAriaLabel) {
-    let {message} = result;
+    let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -290,7 +290,7 @@ class HelfiCalculator {
   }
 
   static renderReceipt(element, notificationClass, result, notificationAriaLabel) {
-    let {message} = result;
+    let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -356,7 +356,7 @@ class HelfiCalculator {
         <div class="visually-hidden" aria-live="polite" aria-atomic="true" id="aria_live_{{form_id}}"></div>
         <div class="helfi-calculator-disclaimer">
           {{#has_required_fields}}
-            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}'}) }
+            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}' })}
           {{/has_required_fields}}
           ${this.translate('not_saved')}
         </div>
@@ -376,7 +376,7 @@ class HelfiCalculator {
         required: `
           <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>`,
         required_explanation: `
-          <span class="visually-hidden">${ this.translate('required_explanation') }</span>
+          <span class="visually-hidden">${this.translate('required_explanation')}</span>
         `,
         form_item: `
           <div class="helfi-calculator__item">

@@ -214,10 +214,10 @@ class DaycarePayment {
         '2': {
           type: 'for_5_year_old',
           careTime: {
-             '1': 'over_7_hours_percentage',
-             '2': 'over_5_and_at_most_7_hours_percentage',
-             '3': 'over_4_and_at_most_5_hours_percentage',
-             '4': 'at_most_4_hours_percentage',
+            '1': 'over_7_hours_percentage',
+            '2': 'over_5_and_at_most_7_hours_percentage',
+            '3': 'over_4_and_at_most_5_hours_percentage',
+            '4': 'at_most_4_hours_percentage',
           },
         },
         '3': {
@@ -232,9 +232,9 @@ class DaycarePayment {
         '4': {
           type: 'round_the_clock_care',
           careTime: {
-             '1': 'from_161_hours_percentage',
-             '2': 'from_101_to_160_hours_percentage',
-             '3': 'from_61_to_100_hours_percentage',
+            '1': 'from_161_hours_percentage',
+            '2': 'from_101_to_160_hours_percentage',
+            '3': 'from_61_to_100_hours_percentage',
           },
         },
       };
