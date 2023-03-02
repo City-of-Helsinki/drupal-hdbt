@@ -121,10 +121,6 @@ const translations = {
     sv: null,
     en: null,
   },
-
-
-
-
   receipt_estimate_of_payment: {
     fi: 'Arvio kotihoidon asiakasmaksusta',
     sv: null,
@@ -182,6 +178,26 @@ const translations = {
   },
   receipt_homecare_payment_two_or_more: {
     fi: 'Jos molemmat puolisot ovat jatkuvan ja säännöllisen kotihoidon kuukausimaksuasiakkaita, maksu jakautuu kummallekin palvelu- ja hoitosuunnitelman mukaisesti.',
+    sv: null,
+    en: null,
+  },
+  receipt_shopping_service_math_single: {
+    fi: 'Yksi toimitus viikossa eli neljä toimitusta kuukaudessa.',
+    sv: null,
+    en: null,
+  },
+  receipt_shopping_service_math_multiple: {
+    fi: '${delivery_count_per_week} toimitusta viikossa eli ${delivery_count_per_month} toimitusta kuukaudessa.',
+    sv: null,
+    en: null,
+  },
+  receipt_shopping_service_explanation: {
+    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Loput saman viikon toimitukset maksavat ${others_per_week} euroa kukin.',
+    sv: null,
+    en: null,
+  },
+  receipt_shopping_service_algorithm: {
+    fi: 'Laskuri laskee kuljetukset tasaisesti viikoille, mutta voit itse vaikuttaa kauppakäyntien määrään tarpeesi mukaan.',
     sv: null,
     en: null,
   },

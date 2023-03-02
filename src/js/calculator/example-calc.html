@@ -44,63 +44,137 @@
     drupalSettings.family_with_kids_home_service_client_payment = `{}`;
     drupalSettings.daycare_payment = `
 {
-  "family_size_income_limits": {
+  "household_size": {
+    "1": {
+      "gross_income_limit": 598,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 8,
+        "9": 12,
+        "13": 16,
+        "17": 20,
+        "21": 22,
+        "25": 24,
+        "29": 26,
+        "33": 28,
+        "37": 30,
+        "41": 35
+      }
+    },
     "2": {
-      "min": 3874,
-      "max": 6626
+      "gross_income_limit": 1103,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 7,
+        "9": 10,
+        "13": 12,
+        "17": 16,
+        "21": 18,
+        "25": 20,
+        "29": 20,
+        "33": 20,
+        "37": 20,
+        "41": 20
+      }
     },
     "3": {
-      "min": 4998,
-      "max": 7750
+      "gross_income_limit": 1731,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 11,
+        "17": 14,
+        "21": 16,
+        "25": 16,
+        "29": 16,
+        "33": 16,
+        "37": 16,
+        "41": 16
+      }
     },
     "4": {
-      "min": 5675,
-      "max": 8427
+      "gross_income_limit": 2140,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 11,
+        "17": 12,
+        "21": 12,
+        "25": 12,
+        "29": 12,
+        "33": 12,
+        "37": 12,
+        "41": 12
+      }
     },
     "5": {
-      "min": 6353,
-      "max": 9105
+      "gross_income_limit": 2591,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 10,
+        "17": 10,
+        "21": 10,
+        "25": 10,
+        "29": 10,
+        "33": 10,
+        "37": 10,
+        "41": 10
+      }
     },
     "6": {
-      "min": 7028,
-      "max": 9780
+      "gross_income_limit": 2976,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 8,
+        "13": 9,
+        "17": 9,
+        "21": 9,
+        "25": 9,
+        "29": 9,
+        "33": 9,
+        "37": 9,
+        "41": 9
+      }
     }
   },
-  "family_size_beyond_defined_multiplier_euro": 262,
-  "minimum_payment_euro": 28,
-  "payment_percentage": 10.7,
-  "child_1_max_euro": 295,
-  "child_2_percent": 40,
-  "child_n_percent": 20,
-  "discounts": {
-    "early_education_on_weekdays": {
-      "over_7_hours_percentage": 100,
-      "over_5_and_at_most_7_hours_percentage": 80,
-      "at_most_5_hours_percentage": 60
+  "monthly_usage_max_payment": {
+    "0": 119.66,
+    "5": 538.47,
+    "9": 1017.12,
+    "13": 1495.76,
+    "17": 1974.4,
+    "21": 2453.05,
+    "25": 2931.69,
+    "29": 3410.33,
+    "33": 3888.98,
+    "37": 4367.62,
+    "41": 4906.1
+  },
+  "safetyphone_limits": {
+    "1": {
+      "0": 0,
+      "1138.01": 34.55,
+      "1707.01": 54
     },
-    "for_5_year_old": {
-      "over_7_hours_percentage": 65,
-      "over_5_and_at_most_7_hours_percentage": 40,
-      "over_4_and_at_most_5_hours_percentage": 20,
-      "at_most_4_hours_percentage": 0
-    },
-    "for_6_year_old": {
-      "over_7_hours_percentage": 65,
-      "from_7_to_8_hours_percentage": 60,
-      "over_5_and_at_most_7_hours_percentage": 40,
-      "at_most_5_hours_percentage": 20
-    },
-    "round_the_clock_care": {
-      "from_161_hours_percentage": 100,
-      "from_101_to_160_hours_percentage": 80,
-      "from_61_to_100_hours_percentage": 60
-    },
-    "round_the_clock_care_with_preschool": {
-      "from_161_hours_percentage": 65,
-      "from_101_to_160_hours_percentage": 40,
-      "from_61_to_100_hours_percentage": 20
-    },
-    "free_day_percentage": 4
+    "2": {
+      "0": 0,
+      "1138.01": 34.55,
+      "2101.01": 54
+    }
+  },
+  "shopping_service_prices": {
+    "first_per_week": 9.37,
+    "others_per_week": 11.35
+  },
+  "meal_service_prices": {
+    "lunch": 3.9,
+    "delivery": 7,
+    "max_meals_for_single_delivery_per_week": 3
   }
 }
 `;
@@ -230,7 +304,7 @@
       // }
     </script>
     <button id="preset_2" onclick="setValues('helfi_calc_1655485697',{
-          '#household_size_helfi_calc_1655485697': 1,
+          '#household_size_helfi_calc_1655485697': 2,
           '#gross_income_per_month_helfi_calc_1655485697': 1500,
           '#monthly_usage_helfi_calc_1655485697': 15,
           '#safetyphone_1_helfi_calc_1655485697': true,
