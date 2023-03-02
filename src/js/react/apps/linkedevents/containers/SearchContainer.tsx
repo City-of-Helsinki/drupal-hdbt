@@ -1,12 +1,10 @@
-import React, { Suspense } from 'react';
 import useSWR from 'swr';
 import { useAtomValue, useAtom } from 'jotai';
 import ResultsContainer from './ResultsContainer';
+import FormContainer from './FormContainer';
 import type Event from '../types/Event';
 import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
 import removeHdsNormalizeStyleElementFromDom from '@/react/common/hooks/removeHdsNormalizeStyleElementFromDom';
-
-const FormContainer = React.lazy(() => import('./FormContainer'));
 
 type ResponseType = {
   data: Event[];
@@ -56,9 +54,7 @@ const SearchContainer = () => {
 
   return (
     <>
-      <Suspense fallback="...loading">
-        <FormContainer />
-      </Suspense>
+      <FormContainer />
       <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
     </>
   );
