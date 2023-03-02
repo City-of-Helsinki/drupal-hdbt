@@ -117,6 +117,10 @@ class HelfiCalculator {
       return null;
     }
 
+    if (elem.dataset?.type === 'checkbox') {
+      return elem.checked;
+    }
+
     if (elem.dataset?.type === 'input_integer' || elem.dataset?.type === 'input_float') {
 
       // Check that required input has value
@@ -162,7 +166,7 @@ class HelfiCalculator {
     }
 
     const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
-    const errorHtml = `<span class="hds-text-input__error-text">${error}</span>`;
+    const errorHtml = `<span class="hdbt-error-text">${error}</span>`;
 
     const elemFormItem = elem.closest('.form-item');
     if (elemFormItem) {
@@ -385,6 +389,7 @@ class HelfiCalculator {
             {{#input_integer}}{{>input_integer}}{{/input_integer}}
             {{#input_float}}{{>input_float}}{{/input_float}}
             {{#radio}}{{>radio}}{{/radio}}
+            {{#checkbox}}{{>checkbox}}{{/checkbox}}
           </div>
         `,
         group: `
@@ -443,7 +448,7 @@ class HelfiCalculator {
           <div class="helfi-calculator__error-placeholder" id="error_text_{{id}}_{{form_id}}"></div>
         `,
         helper_text: `
-          <span class="hds-text-input__helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
+          <span class="hdbt-helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
         `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
@@ -515,6 +520,28 @@ class HelfiCalculator {
                 aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
+            {{>error_placeholder}}
+            {{>helper_text}}
+          </div>
+        `,
+        checkbox: `
+          <div class="hds-checkbox">
+            <input
+              type="checkbox"
+              data-type="checkbox"
+              id="{{id}}_{{form_id}}"
+              class="hds-checkbox__input"
+              aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
+              {{#checked}}checked{{/checked}}
+              >
+            <label
+              class="hds-checkbox__label"
+              for="{{id}}_{{form_id}}"
+              id="label_{{id}}_{{form_id}}"
+              ><span
+                id="labelText_{{id}}_{{form_id}}"
+                class="label_text"
+                >{{label}}</span></label>
             {{>error_placeholder}}
             {{>helper_text}}
           </div>
