@@ -591,13 +591,6 @@ class HelfiCalculator {
         subtotal: `
           <div class="helfi-calculator__receipt-subtotal">
             <h4>{{title}}</h4>
-            {{#has_details}}
-              <ul>
-              {{#details}}
-                <li>{{.}}</li>
-              {{/details}}
-              </ul>
-            {{/has_details}}
             <span class="helfi-calculator__receipt-subtotal-sum">
               {{#sum_screenreader}}
                 <span aria-hidden="true">{{sum}}</span>
@@ -607,6 +600,13 @@ class HelfiCalculator {
                 {{sum}}
               {{/sum_screenreader}}
             </span>
+            {{#has_details}}
+              <ul>
+              {{#details}}
+                <li>{{.}}</li>
+              {{/details}}
+              </ul>
+            {{/has_details}}
           </div>
         `,
       }

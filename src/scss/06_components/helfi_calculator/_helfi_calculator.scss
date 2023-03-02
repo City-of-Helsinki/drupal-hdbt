@@ -292,7 +292,7 @@
       display: grid;
       grid-template-areas:
         'title sum'
-        'details details';
+        'details sum';
       grid-template-columns: 1fr min-content;
       grid-template-rows: auto 1fr;
     }
