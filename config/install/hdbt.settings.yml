@@ -2,9 +2,9 @@ features:
   node_user_picture: false
   comment_user_picture: true
   comment_user_verification: true
-  favicon: 1
+  favicon: true
 logo:
-  use_default: 1
+  use_default: true
 favicon:
-  use_default: 0
+  use_default: false
   path: ''
