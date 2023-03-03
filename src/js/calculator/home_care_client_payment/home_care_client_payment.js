@@ -140,6 +140,10 @@ class HomeCareClientPayment {
         lunch: 3.9,
         delivery: 7,
         max_meals_for_single_delivery_per_week: 3,
+        menumat: {
+          lunch: 6.4,
+          device_per_day: 2.36,
+        }
       },
     };
     // */
@@ -297,6 +301,7 @@ class HomeCareClientPayment {
       }
 
       const subtotals = [homecareSubtotal];
+      const additionalDetails = [];
 
       // 5. If safetyphone is selected, calculate value for it.
       let safetyphonePayment = 0;
@@ -364,6 +369,7 @@ class HomeCareClientPayment {
         // Calculate meal price
         mealPaymentPerWeek = mealServicePerWeek * parsedSettings.meal_service_prices.lunch;
 
+
         // Delivery price is based on meal amount per week, either 1 or 2 deliveries
         if (mealServicePerWeek <= parsedSettings.meal_service_prices.max_meals_for_single_delivery_per_week) {
           deliveriesPerWeek = 1;
@@ -380,24 +386,53 @@ class HomeCareClientPayment {
             title: this.t('meal_service_heading'),
             has_details: true,
             details: [
-              'Sano jotain viisasta tässä'
+              this.t(
+                (mealServicePerWeek === 1) ?
+                  'receipt_meal_service_count_single' :
+                  'receipt_meal_service_count_multiple',
+                {
+                  meals_per_week: mealServicePerWeek,
+                  meals_per_month: mealServicePerWeek * 4,
+                }
+              ),
+              this.t('receipt_meal_service_price', {
+                meal_service_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.lunch),
+                meal_deliveries_per_week: deliveriesPerWeek,
+                meal_deliveries_per_month: deliveriesPerWeek * 4,
+              }),
+              this.t(`receipt_meal_service_${deliveriesPerWeek}_delivery_price`, {
+                meal_service_delivery_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.delivery),
+              }),
             ],
             sum: this.t('receipt_subtotal_euros_per_month', { value: formatFinnishEuroCents(mealPaymentPerMonth) }),
             sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: formatEuroCents(mealPaymentPerMonth) }),
           }
         );
+        additionalDetails.push(
+          {
+            title: this.t('receipt_additional_details'),
+            text: this.t('receipt_meal_service_menumat_notice',
+              {
+                menumat_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.lunch),
+                menumat_device_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.device_per_day),
+              }
+            )
+          }
+        );
       }
 
-
-
-      console.log('maximumPayment', maximumPayment);
-      console.log('grossIncomeLimit', grossIncomeLimit);
-      console.log('paymentPercentage', paymentPercentage);
-      console.log('referencePayment', referencePayment);
-      console.log('payment', payment);
-      console.log('safetyphonePayment', safetyphonePayment);
-      console.log('shoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`);
-      console.log('mealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`);
+      console.log(
+          'maximumPayment', maximumPayment,
+          '\ngrossIncomeLimit', grossIncomeLimit,
+          '\ngrossIncomeLimit', grossIncomeLimit,
+          '\npaymentPercentage', paymentPercentage,
+          '\nreferencePayment', referencePayment,
+          '\n',
+          '\npayment', payment,
+          '\nsafetyphonePayment', safetyphonePayment,
+          '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
+          '\nmealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`,
+        );
 
       const sum = payment + safetyphonePayment + shoppingPaymentPerMonth + mealPaymentPerMonth;
 
@@ -412,7 +447,7 @@ class HomeCareClientPayment {
         breakdown: {
           title: this.t('receipt_estimate_is_based_on'),
           subtotals,
-          additional_details: null,
+          additional_details: additionalDetails,
         },
       };
 

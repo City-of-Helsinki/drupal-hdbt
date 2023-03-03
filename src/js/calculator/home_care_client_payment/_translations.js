@@ -92,7 +92,7 @@ const translations = {
     en: null,
   },
   shopping_service_per_week_explanation: {
-    fi: 'Yksi toimitus viikossa maksaa ${first_per_week_price} euroa, muut toimitukset ${others_per_week_price} euroa per toimitus.',
+    fi: 'Yksi toimitus viikossa maksaa ${first_per_week_price} euroa, muut toimitukset ${others_per_week_price} euroa per toimitus.',
     sv: null,
     en: null,
   },
@@ -137,7 +137,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation_min: {
-    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
     sv: null,
     en: null,
   },
@@ -162,7 +162,7 @@ const translations = {
     en: null,
   },
   receipt_subtotal_euros_per_month_screenreader: {
-    fi: '${value} euroa kuukaudessa',
+    fi: '${value} euroa kuukaudessa',
     sv: null,
     en: null,
   },
@@ -187,12 +187,12 @@ const translations = {
     en: null,
   },
   receipt_shopping_service_math_multiple: {
-    fi: '${delivery_count_per_week} toimitusta viikossa eli ${delivery_count_per_month} toimitusta kuukaudessa.',
+    fi: '${delivery_count_per_week} toimitusta viikossa eli ${delivery_count_per_month} toimitusta kuukaudessa.',
     sv: null,
     en: null,
   },
   receipt_shopping_service_explanation: {
-    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Loput saman viikon toimitukset maksavat ${others_per_week} euroa kukin.',
+    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Loput saman viikon toimitukset maksavat ${others_per_week} euroa kukin.',
     sv: null,
     en: null,
   },
@@ -202,7 +202,37 @@ const translations = {
     en: null,
   },
   receipt_aria_live: {
-    fi: 'Kotihoidon asiakasmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    fi: 'Kotihoidon asiakasmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_count_single: {
+    fi: 'Yksi ateria viikossa, eli neljä ateriaa kuukaudessa.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_count_multiple: {
+    fi: '${meals_per_week} ateriaa viikossa, eli ${meals_per_month} ateriaa kuukaudessa',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_price: {
+    fi: 'Yksittäisen lounasaterian hinta on ${meal_service_price} euroa. Lounaan lisäksi voit tilata maksullisen jälkiruuan.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_1_delivery_price: {
+    fi: 'Hintaan on laskettu yksi kuljetusmaksu viikossa (eli 4 kuukaudessa), hinnaltaan ${meal_service_delivery_price} euroa per kuljetus.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_2_deliveries_price: {
+    fi: 'Hintaan on laskettu kaksi kuljetusmaksua (eli 8 kuukaudessa), ${meal_service_delivery_price} euroa per kuljetus.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_menumat_notice: {
+    fi: 'Ateriapalvelun sijaan voit tilata Menumat-ateria-automaatin. Lounasateria maksaa silloin ${menumat_price} euroa kappale ja palvelumaksu on ${menumat_device_price} euroa vuorokaudessa. Lounaan lisäksi voit tilata maksullisen jälkiruoan.',
     sv: null,
     en: null,
   },
