@@ -15,7 +15,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
           label: t('household_size'),
           unit: t('unit_person'),
           min: 1,
-          max: 6,
+          max: 6, // The maximum comes from specs not defining what happens at size of 7
           size: 2,
           required: true,
           helper_text: t('household_size_explanation'),
@@ -26,9 +26,9 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
           id: 'gross_income_per_month',
           label: t('gross_income_per_month'),
           unit: t('unit_euro'),
+          min: 0,
           size: 8,
-          // maxlength: 999,
-          required: false,
+          required: false, // If value is not entered, we calculate at max bounds
           strip: '[€eE ]',
           helper_text: t('gross_income_per_month_explanation'),
         },
@@ -39,7 +39,8 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
           label: t('monthly_usage'),
           unit: t('unit_hour'),
           min: 0,
-          size: 2,
+          max: 744, // Mathematical max hours: 31 days * 24 hours = 744 hours per month
+          size: 3,
           required: true,
           helper_text: t('monthly_usage_explanation'),
         },
@@ -130,7 +131,6 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
                 label: t('shopping_service_per_week'),
                 unit: t('unit_amount'),
                 min: 1,
-                // max: 12,
                 size: 2,
                 required: true,
                 helper_text: t('shopping_service_per_week_explanation', { first_per_week_price: firstPerWeekPrice, others_per_week_price: othersPerWeekPrice }),
@@ -182,7 +182,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
                 label: t('meal_service_per_week'),
                 unit: t('unit_amount'),
                 min: 1,
-                max: 7,
+                max: 7, // maximum comes from specs
                 size: 2,
                 required: true,
                 helper_text: t('meal_service_per_week_explanation'),
