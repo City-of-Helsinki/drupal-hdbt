@@ -4,10 +4,10 @@ import translations from './_translations';
 class HomeCareClientPayment {
   constructor(id, settings) {
     this.id = id;
-    // const parsedSettings = JSON.parse(settings);
+    const parsedSettings = JSON.parse(settings);
 
     // Expecting settings to follow this JSON format:
-    //*
+    /*
     const parsedSettings = {
       household_size: {
         '1': {
