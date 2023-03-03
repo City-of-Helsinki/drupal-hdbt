@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hel.fi Calculators</title>
+  <link rel="stylesheet" media="all" href="../../../dist/css/styles.min.css">
+  <link rel="stylesheet" media="all" href="../../../dist/css/hdbt-icons.css">
+  <script>
+    // Simulate Drupal environment
+    var drupalSettings = {};
+    drupalSettings.path = {};
+    drupalSettings.path.currentLanguage = 'fi';
+
+    drupalSettings.house_cleaning_service_voucher = `
+{
+  "household_size_1": {
+    "first_level": {
+      "value": 24,
+      "max_allowed_income": 1138
+    },
+    "second_level": {
+      "value": 21,
+      "max_allowed_income": 1422
+    }
+  },
+  "household_size_2": {
+    "first_level": {
+      "value": 24,
+      "max_allowed_income": 1575
+    },
+    "second_level": {
+      "value": 21,
+      "max_allowed_income": 2107
+    }
+  }
+}
+`;
+
+    drupalSettings.home_care_service_voucher = `{}`;
+    drupalSettings.home_care_client_payment = `{}`;
+    drupalSettings.service_housing_service_voucher = `{}`;
+    drupalSettings.family_with_kids_home_service_client_payment = `{}`;
+    drupalSettings.daycare_payment = `
+{
+  "family_size_income_limits": {
+    "2": {
+      "min": 3874,
+      "max": 6626
+    },
+    "3": {
+      "min": 4998,
+      "max": 7750
+    },
+    "4": {
+      "min": 5675,
+      "max": 8427
+    },
+    "5": {
+      "min": 6353,
+      "max": 9105
+    },
+    "6": {
+      "min": 7028,
+      "max": 9780
+    }
+  },
+  "family_size_beyond_defined_multiplier_euro": 262,
+  "minimum_payment_euro": 28,
+  "payment_percentage": 10.7,
+  "child_1_max_euro": 295,
+  "child_2_percent": 40,
+  "child_n_percent": 20,
+  "discounts": {
+    "early_education_on_weekdays": {
+      "over_7_hours_percentage": 100,
+      "over_5_and_at_most_7_hours_percentage": 80,
+      "at_most_5_hours_percentage": 60
+    },
+    "for_5_year_old": {
+      "over_7_hours_percentage": 65,
+      "over_5_and_at_most_7_hours_percentage": 40,
+      "over_4_and_at_most_5_hours_percentage": 20,
+      "at_most_4_hours_percentage": 0
+    },
+    "for_6_year_old": {
+      "over_7_hours_percentage": 65,
+      "from_7_to_8_hours_percentage": 60,
+      "over_5_and_at_most_7_hours_percentage": 40,
+      "at_most_5_hours_percentage": 20
+    },
+    "round_the_clock_care": {
+      "from_161_hours_percentage": 100,
+      "from_101_to_160_hours_percentage": 80,
+      "from_61_to_100_hours_percentage": 60
+    },
+    "free_day_percentage": 4
+  }
+}
+`;
+    drupalSettings.oral_health_care_procedure = `{}`;
+
+  </script>
+  <script src="../../../dist/js/helfi_calculator.min.js"></script>
+</head>
+
+<body>
+  <div class="paragraph-content components components--upper">
+
+    <script>
+      function setValues(selector, data) {
+        const elem = document.querySelector(selector);
+        const selectors = Object.keys(data);
+        for (let i = 0; i < selectors.length; i++) {
+          const selector = selectors[i];
+          const value = data[selector];
+          const field = document.querySelector(selector);
+          if (field && field.tagName === 'INPUT') {
+            if (field.type === 'text') {
+              field.value = value;
+              field.dispatchEvent(new CustomEvent('change',{bubbles: true}));
+            } else if (field.type === 'radio') {
+              field.checked = value;
+              field.dispatchEvent(new CustomEvent('change',{bubbles: true}));
+            } else if (field.type === 'submit' && value === true) {
+              field.click();
+            }
+          } else if (field && field.tagName === 'BUTTON' && value === true) {
+            field.click();
+          }
+        }
+      }
+      window.onload = () => {
+        document.querySelector("#preset_1").click();
+        window.setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+        }, 600);
+      }
+    </script>
+
+    <button id="preset_1" onclick="setValues('helfi_calc_1025838706',{
+      '#household_size_helfi_calc_1025838706': 3,
+      '#gross_income_per_month_helfi_calc_1025838706': 5928,
+      '#daycare_type_for_child_1_1_helfi_calc_1025838706': true,
+      '#daycare_type_1_1_group_caretime_1_helfi_calc_1025838706': true,
+      '#add-button_nth_child_helfi_calc_1025838706': true,
+      '#daycare_type_for_child_2_2_helfi_calc_1025838706': true,
+      '#daycare_type_2_2_group_caretime_1_helfi_calc_1025838706': true,
+      '#daycare_type_2_2_free_days_helfi_calc_1025838706': 10,
+      'input.hds-button--primary': true
+    })">family size 3, 5928, 2 full time kids, second with 10 holidays = 100€</button>
+
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <h2 class="component__title">Laske arvio varhaiskasvatusmaksusta</h2>
+        <div class="component__content helfi-calculator">
+          <noscript>
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <div id="helfi_calc_1025838706"></div>
+          <script src="../../../dist/js/daycare_payment.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.daycare_payment('helfi_calc_1025838706', drupalSettings.daycare_payment);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+<!--
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <h2 class="component__title">House cleaning service voucher</h2>
+        <div class="component__content helfi-calculator">
+          <noscript>
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <div id="helfi_calc_1025838707"></div>
+          <script src="../../../dist/js/house_cleaning_service_voucher.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.house_cleaning_service_voucher('helfi_calc_1025838707', drupalSettings.house_cleaning_service_voucher);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <h2 class="component__title">Home care service voucher</h2>
+        <div class="component__content helfi-calculator">
+          <noscript>
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <div id="helfi_calc_1700329077"></div>
+          <script src="../../../dist/js/home_care_service_voucher.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.home_care_service_voucher('helfi_calc_1700329077', drupalSettings.home_care_service_voucher);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <h2 class="component__title">Home care client payment</h2>
+        <div class="component__content helfi-calculator">
+          <noscript>
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <div id="helfi_calc_1655485697"></div>
+          <script src="../../../dist/js/home_care_client_payment.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.home_care_client_payment('helfi_calc_1655485697', drupalSettings.home_care_client_payment);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+ -->
+
+  </div>
+</body>
+</html>

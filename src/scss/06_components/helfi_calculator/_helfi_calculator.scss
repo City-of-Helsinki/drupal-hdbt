@@ -1,0 +1,300 @@
+.helfi-calculator {
+  .helfi-calculator-disclaimer {
+    @include font('body');
+  }
+
+  .hds-text-input__label {
+    display: inline;
+  }
+
+  .hds-selection-group,
+  .hds-text-input__input {
+    scroll-margin-top: $spacing-double;
+  }
+
+  .hds-text-input__input {
+    @include breakpoint($breakpoint-m) {
+      width: auto;
+    }
+  }
+
+  .helfi-calculator__item:not(:first-child) > :first-child,
+  .helfi-calculator__buttons {
+    margin-top: $spacing-and-half;
+  }
+
+  .helfi-calculator__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .helfi-calculator__item hr {
+    background-color: $color-black-70;
+  }
+
+  .helfi-calculator-notification {
+    margin-top: $spacing-double;
+  }
+
+  .helfi-calculator-notification .hds-notification__body > ul {
+    margin-block: 0;
+  }
+
+  .helfi-calculator-notification .hds-notification__body li {
+    margin-top: $spacing-half;
+  }
+
+  .hds-notification__label {
+    margin-top: 0;
+  }
+
+  .hds-notification--error .hds-notification__label::before {
+    --line-height: 1; // HDS line-height here is same as font-size
+
+    @include pseudo-icon('alert-circle-fill');
+    margin-right: $spacing-half;
+  }
+
+  .helfi-calculator-required {
+    font-weight: bold;
+  }
+
+  .helfi-calculator__group {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-left: 10px; // 8px from design + 2px from HDS fieldset style, so that radiobuttons center match this center
+    margin-top: 0 !important;
+    overflow: hidden;
+    transition: grid-template-rows 0.5s;
+
+    @media (prefers-reduced-motion) {
+      transition: none;
+    }
+
+    & > :first-child {
+      border-left: $spacing-half solid $color-black-20;
+      padding-left: $spacing-and-half;
+    }
+
+    & > * {
+      align-self: start;
+      min-height: 0;
+      /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+      transition: visibility 0.5s linear;
+      visibility: hidden;
+    }
+
+    &:not([data-hide-group='true']) {
+      grid-template-rows: 1fr;
+
+      & > * {
+        visibility: visible;
+      }
+    }
+  }
+
+  .helfi-calculator__dynamic-area__slots + button {
+    margin-top: 24px;
+  }
+
+  .helfi-calculator__dynamic-slot {
+    background-color: $color-silver-light;
+    padding: $spacing-double $spacing-and-half;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+
+  // Animate all added slots
+  [data-item-count] .helfi-calculator__dynamic-slot,
+  .helfi-calculator__receipt {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: append-animate 0.3s linear;
+    }
+    display: grid;
+    overflow: hidden;
+
+    & > div {
+      align-self: start;
+      min-height: 0;
+    }
+  }
+
+  .helfi-calculator__receipt {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-duration: 0.3s;
+    }
+  }
+
+  @keyframes append-animate {
+    from {
+      grid-template-rows: 0fr;
+    }
+
+    to {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child {
+    margin-top: 0;
+  }
+
+  // For some unknown reason HDS does not include styles for helper-texts and error-texts with radiobuttons.
+  .hds-selection-group {
+    .hds-text-input__helper-text {
+      color: $color-black-60;
+      display: block;
+      font-size: var(--fontsize-body-m);
+      line-height: var(--lineheight-l);
+      margin-top: $spacing-half;
+      white-space: pre-line;
+    }
+
+    .hds-text-input__error-text {
+      color: $color-error;
+      margin-top: $spacing;
+      padding-left: calc(var(--icon-size) + var(--spacing-2-xs));
+      position: relative;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &::before {
+        @include pseudo-icon('alert-circle-fill', $color: currentColor);
+      }
+    }
+  }
+
+  .helfi-calculator__dynamic-remove-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .helfi-calculator__dynamic-remove {
+    margin-bottom: - $spacing-and-half;
+    margin-right: - $spacing;
+
+    &::before {
+      content: none !important;
+    }
+
+    .hds-button__label {
+      margin-bottom: 0;
+      padding-right: 0;
+    }
+  }
+
+  .helfi-calculator__receipt__wrapper {
+    &::before,
+    &::after {
+      --height-unitless: 16;
+      --scale: calc(var(--height-unitless) / 50);
+      background-color: $color-fog-light;
+      content: '';
+      display: block;
+      height: calc(var(--height-unitless) * 1px);
+      mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><path d='M67 50v-7.64L33.5 8.5 0 42.36V50h67z'/></svg>");
+      mask-position: top left;
+      mask-repeat: round;
+      mask-size: calc(67px * var(--scale)) calc(50px * var(--scale));
+      width: 100%;
+    }
+
+    &::after {
+      transform: rotate(180deg);
+    }
+
+    p,
+    .helfi-calculator__receipt-subtotal {
+      max-width: $content-width-max;
+    }
+  }
+
+  .helfi-calculator__receipt__container {
+    background: $color-fog-light;
+    padding: $spacing-double;
+  }
+
+  .helfi-calculator__receipt-total {
+    border-left: 8px solid $color-gold;
+    margin-top: 40px;
+    padding-left: 40px;
+  }
+
+  .helfi-calculator__receipt-total__prefix {
+    @include font('lead');
+    display: block;
+  }
+
+  .helfi-calculator__receipt-total__value {
+    @include font('h1');
+    display: block;
+    margin-top: 24px;
+  }
+
+  .helfi-calculator__receipt-total__suffix {
+    @include font('h6');
+    display: block;
+  }
+
+  .helfi-calculator__receipt-total-explanation {
+    display: flex;
+    gap: 8px;
+    margin-left: 8px;
+    padding-top: 4px;
+
+    &::before {
+      @include pseudo-icon('info-circle');
+
+      --icon-size: 32px;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+  }
+
+  .helfi-calculator__receipt-hr {
+    margin-top: 48px;
+  }
+
+  .helfi-calculator__receipt-subtotal {
+    margin-top: 40px;
+
+    h4 {
+      grid-area: title;
+    }
+
+    ul {
+      grid-area: details;
+      margin-block: 0;
+    }
+
+    li {
+      margin-top: 0;
+    }
+
+    .helfi-calculator__receipt-subtotal-sum {
+      @include font('h4');
+      grid-area: sum;
+    }
+
+    @include breakpoint($breakpoint-s) {
+      display: grid;
+      grid-template-areas:
+        'title sum'
+        'details details';
+      grid-template-columns: 1fr min-content;
+      grid-template-rows: auto 1fr;
+    }
+  }
+}
