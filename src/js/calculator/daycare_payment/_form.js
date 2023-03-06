@@ -249,6 +249,12 @@ const dynamicChildData = (childNumber, t) => {
                 ],
               },
             },
+            {
+              checkbox: {
+                id: `daycare_type_4_${childNumber}_has_preschool`,
+                label: t('daycare_has_preschool'),
+              }
+            },
           ],
         },
       },

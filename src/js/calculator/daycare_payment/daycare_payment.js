@@ -60,6 +60,11 @@ class DaycarePayment {
           from_101_to_160_hours_percentage: 80,
           from_61_to_100_hours_percentage: 60,
         },
+        round_the_clock_care_with_preschool: {
+          from_161_hours_percentage: 65,
+          from_101_to_160_hours_percentage: 40,
+          from_61_to_100_hours_percentage: 20,
+        },
         free_day_percentage: 4,
       },
     }
@@ -167,6 +172,7 @@ class DaycarePayment {
           },
           '4': {
             careTime: this.calculator.getFieldValue(`daycare_type_4_${childNumber}_group_caretime`),
+            roundTheClockCareWithPreschool: this.calculator.getFieldValue(`daycare_type_4_${childNumber}_has_preschool`),
           },
         }
       };
@@ -208,10 +214,10 @@ class DaycarePayment {
         '2': {
           type: 'for_5_year_old',
           careTime: {
-             '1': 'over_7_hours_percentage',
-             '2': 'over_5_and_at_most_7_hours_percentage',
-             '3': 'over_4_and_at_most_5_hours_percentage',
-             '4': 'at_most_4_hours_percentage',
+            '1': 'over_7_hours_percentage',
+            '2': 'over_5_and_at_most_7_hours_percentage',
+            '3': 'over_4_and_at_most_5_hours_percentage',
+            '4': 'at_most_4_hours_percentage',
           },
         },
         '3': {
@@ -226,13 +232,21 @@ class DaycarePayment {
         '4': {
           type: 'round_the_clock_care',
           careTime: {
-             '1': 'from_161_hours_percentage',
-             '2': 'from_101_to_160_hours_percentage',
-             '3': 'from_61_to_100_hours_percentage',
+            '1': 'from_161_hours_percentage',
+            '2': 'from_101_to_160_hours_percentage',
+            '3': 'from_61_to_100_hours_percentage',
           },
         },
       };
-      const daycareTypeKey = daycareTypeMap[child.daycareType].type;
+      let daycareTypeKey = daycareTypeMap[child.daycareType].type;
+      let hasRoundTheClockCareWithPreschool = false;
+
+      // If the type is round the clock care and the child is in preschool, apply bigger discount
+      if (daycareTypeKey === 'round_the_clock_care' && child.daycareTypeData[child.daycareType].roundTheClockCareWithPreschool) {
+        daycareTypeKey = 'round_the_clock_care_with_preschool';
+        hasRoundTheClockCareWithPreschool = true;
+      }
+
       const careTimeKey = daycareTypeMap[child.daycareType].careTime[careTime];
 
       // Lets get the discount and convert it from 0-100 percentage a to a multiplier 0-1
@@ -249,7 +263,7 @@ class DaycarePayment {
 
       const totalMultiplier = carePaymentMultiplier * freeDayMultiplier;
 
-      return { carePaymentMultiplier, freeDayMultiplier, totalMultiplier };
+      return { carePaymentMultiplier, freeDayMultiplier, totalMultiplier, hasRoundTheClockCareWithPreschool };
     }
 
     const validate = () => {
@@ -372,8 +386,9 @@ class DaycarePayment {
           paymentWasRoundedDown = true;
         }
 
-        const {daycareType} = children[i];
-        const {careTime, freeDays} = children[i].daycareTypeData[daycareType];
+        const { daycareType } = children[i];
+        const { careTime, freeDays } = children[i].daycareTypeData[daycareType];
+        const { hasRoundTheClockCareWithPreschool } = children[i].discounts;
 
         const careTypeAndcareTime = `${this.t(`daycare_type_${daycareType}`)}: ${this.t(`daycare_type_${daycareType}_caretime_${careTime}`)}`;
 
@@ -390,9 +405,12 @@ class DaycarePayment {
         if (paymentWasRoundedDown) {
           subtotal.details.push(this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: parsedSettings.minimum_payment_euro }));
         }
+        if (hasRoundTheClockCareWithPreschool) {
+          subtotal.details.push(this.t('daycare_has_preschool'));
+        }
         subtotals.push(subtotal);
 
-        if (daycareType === '2' || daycareType === '3') {
+        if (daycareType === '2' || daycareType === '3' || hasRoundTheClockCareWithPreschool) {
           let title = null;
           if (!additionalDetails.length) {
             title = this.t('receipt_additional_details');

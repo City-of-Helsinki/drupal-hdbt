@@ -39,7 +39,146 @@
 `;
 
     drupalSettings.home_care_service_voucher = `{}`;
-    drupalSettings.home_care_client_payment = `{}`;
+    drupalSettings.home_care_client_payment = = `
+{
+  "household_size": {
+    "1": {
+      "gross_income_limit": 598,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 8,
+        "9": 12,
+        "13": 16,
+        "17": 20,
+        "21": 22,
+        "25": 24,
+        "29": 26,
+        "33": 28,
+        "37": 30,
+        "41": 35
+      }
+    },
+    "2": {
+      "gross_income_limit": 1103,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 7,
+        "9": 10,
+        "13": 12,
+        "17": 16,
+        "21": 18,
+        "25": 20,
+        "29": 20,
+        "33": 20,
+        "37": 20,
+        "41": 20
+      }
+    },
+    "3": {
+      "gross_income_limit": 1731,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 11,
+        "17": 14,
+        "21": 16,
+        "25": 16,
+        "29": 16,
+        "33": 16,
+        "37": 16,
+        "41": 16
+      }
+    },
+    "4": {
+      "gross_income_limit": 2140,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 11,
+        "17": 12,
+        "21": 12,
+        "25": 12,
+        "29": 12,
+        "33": 12,
+        "37": 12,
+        "41": 12
+      }
+    },
+    "5": {
+      "gross_income_limit": 2591,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 9,
+        "13": 10,
+        "17": 10,
+        "21": 10,
+        "25": 10,
+        "29": 10,
+        "33": 10,
+        "37": 10,
+        "41": 10
+      }
+    },
+    "6": {
+      "gross_income_limit": 2976,
+      "monthly_usage_percentage": {
+        "0": 4,
+        "5": 6,
+        "9": 8,
+        "13": 9,
+        "17": 9,
+        "21": 9,
+        "25": 9,
+        "29": 9,
+        "33": 9,
+        "37": 9,
+        "41": 9
+      }
+    }
+  },
+  "monthly_usage_max_payment": {
+    "0": 119.66,
+    "5": 538.47,
+    "9": 1017.12,
+    "13": 1495.76,
+    "17": 1974.4,
+    "21": 2453.05,
+    "25": 2931.69,
+    "29": 3410.33,
+    "33": 3888.98,
+    "37": 4367.62,
+    "41": 4906.1
+  },
+  "safetyphone_limits": {
+    "1": {
+      "0": 0,
+      "1138.01": 34.55,
+      "1707.01": 54
+    },
+    "2": {
+      "0": 0,
+      "1138.01": 34.55,
+      "2101.01": 54
+    }
+  },
+  "shopping_service_prices": {
+    "first_per_week": 9.37,
+    "others_per_week": 11.35
+  },
+  "meal_service_prices": {
+    "lunch": 3.9,
+    "delivery": 7,
+    "max_meals_for_single_delivery_per_week": 3,
+    "menumat": {
+      "lunch": 6.4,
+      "device_per_day": 2.36
+    }
+  }
+}
+`;
     drupalSettings.service_housing_service_voucher = `{}`;
     drupalSettings.family_with_kids_home_service_client_payment = `{}`;
     drupalSettings.daycare_payment = `
@@ -95,6 +234,11 @@
       "from_101_to_160_hours_percentage": 80,
       "from_61_to_100_hours_percentage": 60
     },
+    "round_the_clock_care_with_preschool": {
+      "from_161_hours_percentage": 65,
+      "from_101_to_160_hours_percentage": 40,
+      "from_61_to_100_hours_percentage": 20
+    },
     "free_day_percentage": 4
   }
 }
@@ -131,14 +275,17 @@
           }
         }
       }
-      window.onload = () => {
-        document.querySelector("#preset_1").click();
-        window.setTimeout(() => {
-          window.scrollTo(0, document.body.scrollHeight);
-        }, 600);
-      }
     </script>
 
+<!-- - ->
+    <script>
+      // window.onload = () => {
+      //   document.querySelector("#preset_1").click();
+      //   window.setTimeout(() => {
+      //     window.scrollTo(0, document.body.scrollHeight);
+      //   }, 600);
+      // }
+    </script>
     <button id="preset_1" onclick="setValues('helfi_calc_1025838706',{
       '#household_size_helfi_calc_1025838706': 3,
       '#gross_income_per_month_helfi_calc_1025838706': 5928,
@@ -170,7 +317,8 @@
         </div>
       </div>
     </div>
-<!--
+<!-- -->
+<!-- - ->
     <div class="component component--helfi-calculator">
       <div class="component__container">
         <h2 class="component__title">House cleaning service voucher</h2>
@@ -211,9 +359,29 @@
       </div>
     </div>
 
+ <!-- -->
+    <script>
+      // window.onload = () => {
+      //   document.querySelector("#preset_2").click();
+      //   window.setTimeout(() => {
+      //     window.scrollTo(0, document.body.scrollHeight);
+      //   }, 600);
+      // }
+    </script>
+    <button id="preset_2" onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 2,
+          '#gross_income_per_month_helfi_calc_1655485697': 1500,
+          '#monthly_usage_helfi_calc_1655485697': 15,
+          '#safetyphone_1_helfi_calc_1655485697': true,
+          '#shopping_service_1_helfi_calc_1655485697': true,
+          '#shopping_service_per_week_helfi_calc_1655485697': 2,
+          '#meal_service_1_helfi_calc_1655485697': true,
+          '#meal_service_per_week_helfi_calc_1655485697': 2,
+          'input.hds-button--primary': true
+        })">Debug</button>
     <div class="component component--helfi-calculator">
       <div class="component__container">
-        <h2 class="component__title">Home care client payment</h2>
+        <h2 class="component__title">Laske arvio asiakasmaksusta</h2>
         <div class="component__content helfi-calculator">
           <noscript>
             <div class="component__needs-js">
@@ -230,7 +398,6 @@
         </div>
       </div>
     </div>
- -->
 
   </div>
 </body>

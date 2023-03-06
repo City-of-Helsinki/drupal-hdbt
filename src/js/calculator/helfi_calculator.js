@@ -117,6 +117,10 @@ class HelfiCalculator {
       return null;
     }
 
+    if (elem.dataset?.type === 'checkbox') {
+      return elem.checked;
+    }
+
     if (elem.dataset?.type === 'input_integer' || elem.dataset?.type === 'input_float') {
 
       // Check that required input has value
@@ -127,8 +131,8 @@ class HelfiCalculator {
       let elemValue = elem.value.replace(',', '.');
 
       if (elem.dataset.strip) {
-        const regex = new RegExp(elem.dataset.strip,'g');
-        elemValue = elemValue.replaceAll(regex,'');
+        const regex = new RegExp(elem.dataset.strip, 'g');
+        elemValue = elemValue.replaceAll(regex, '');
       }
 
       if (elem.dataset.type === 'input_integer' && Number.isNaN(Number.parseInt(elemValue, 10))) {
@@ -162,7 +166,7 @@ class HelfiCalculator {
     }
 
     const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
-    const errorHtml = `<span class="hds-text-input__error-text">${error}</span>`;
+    const errorHtml = `<span class="hdbt-error-text">${error}</span>`;
 
     const elemFormItem = elem.closest('.form-item');
     if (elemFormItem) {
@@ -173,7 +177,7 @@ class HelfiCalculator {
       }
     }
 
-    const errorWithLink = this.translate('error_with_link', { error, labelLink});
+    const errorWithLink = this.translate('error_with_link', { error, labelLink });
     return [errorWithLink];
   }
 
@@ -207,7 +211,7 @@ class HelfiCalculator {
       let elemValue = elem.value.replace(',', '.');
 
       if (elem.dataset.strip) {
-        const regex = new RegExp(elem.dataset.strip,'g');
+        const regex = new RegExp(elem.dataset.strip, 'g');
         elemValue = elemValue.replaceAll(regex, '');
       }
 
@@ -269,7 +273,7 @@ class HelfiCalculator {
   }
 
   static renderNotification(element, notificationClass, result, notificationAriaLabel) {
-    let {message} = result;
+    let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -286,7 +290,7 @@ class HelfiCalculator {
   }
 
   static renderReceipt(element, notificationClass, result, notificationAriaLabel) {
-    let {message} = result;
+    let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
       message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
     }
@@ -352,7 +356,7 @@ class HelfiCalculator {
         <div class="visually-hidden" aria-live="polite" aria-atomic="true" id="aria_live_{{form_id}}"></div>
         <div class="helfi-calculator-disclaimer">
           {{#has_required_fields}}
-            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}'}) }
+            ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}' })}
           {{/has_required_fields}}
           ${this.translate('not_saved')}
         </div>
@@ -372,7 +376,7 @@ class HelfiCalculator {
         required: `
           <span class="visually-hidden">${this.translate('required')}</span><span aria-hidden="true" class="helfi-calculator-required">*</span>`,
         required_explanation: `
-          <span class="visually-hidden">${ this.translate('required_explanation') }</span>
+          <span class="visually-hidden">${this.translate('required_explanation')}</span>
         `,
         form_item: `
           <div class="helfi-calculator__item">
@@ -385,6 +389,7 @@ class HelfiCalculator {
             {{#input_integer}}{{>input_integer}}{{/input_integer}}
             {{#input_float}}{{>input_float}}{{/input_float}}
             {{#radio}}{{>radio}}{{/radio}}
+            {{#checkbox}}{{>checkbox}}{{/checkbox}}
           </div>
         `,
         group: `
@@ -443,7 +448,7 @@ class HelfiCalculator {
           <div class="helfi-calculator__error-placeholder" id="error_text_{{id}}_{{form_id}}"></div>
         `,
         helper_text: `
-          <span class="hds-text-input__helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
+          <span class="hdbt-helper-text" id="helper_text_{{id}}_{{form_id}}">{{helper_text}}</span>
         `,
         input: `
           <div class="form-item hds-text-input {{#required}}input--required{{/required}}">
@@ -515,6 +520,28 @@ class HelfiCalculator {
                 aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
                 class="form-text hds-text-input__input">
             </div>
+            {{>error_placeholder}}
+            {{>helper_text}}
+          </div>
+        `,
+        checkbox: `
+          <div class="hds-checkbox">
+            <input
+              type="checkbox"
+              data-type="checkbox"
+              id="{{id}}_{{form_id}}"
+              class="hds-checkbox__input"
+              aria-describedby="error_text_{{id}}_{{form_id}}{{#helper_text}} helper_text_{{id}}_{{form_id}}{{/helper_text}}"
+              {{#checked}}checked{{/checked}}
+              >
+            <label
+              class="hds-checkbox__label"
+              for="{{id}}_{{form_id}}"
+              id="label_{{id}}_{{form_id}}"
+              ><span
+                id="labelText_{{id}}_{{form_id}}"
+                class="label_text"
+                >{{label}}</span></label>
             {{>error_placeholder}}
             {{>helper_text}}
           </div>
@@ -591,13 +618,6 @@ class HelfiCalculator {
         subtotal: `
           <div class="helfi-calculator__receipt-subtotal">
             <h4>{{title}}</h4>
-            {{#has_details}}
-              <ul>
-              {{#details}}
-                <li>{{.}}</li>
-              {{/details}}
-              </ul>
-            {{/has_details}}
             <span class="helfi-calculator__receipt-subtotal-sum">
               {{#sum_screenreader}}
                 <span aria-hidden="true">{{sum}}</span>
@@ -607,6 +627,13 @@ class HelfiCalculator {
                 {{sum}}
               {{/sum_screenreader}}
             </span>
+            {{#has_details}}
+              <ul>
+              {{#details}}
+                <li>{{.}}</li>
+              {{/details}}
+              </ul>
+            {{/has_details}}
           </div>
         `,
       }
