@@ -22,7 +22,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä etuudet, esimerkiksi eläkkeensaajan hoitotuki. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman maksun mukaisesti.',
+    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä eläkkeensaajan hoitotuki.',
     sv: null,
     en: null,
   },
@@ -102,7 +102,7 @@ const translations = {
     en: null,
   },
   meal_service_paragraph: {
-    fi: 'Ateriapalvelussa kotiisi kuljetetaan valmiita aterioita, jotka voit itse lämmittää. Ateriapalvelun hintaan kuuluu lounaan hinta ja kuljetusmaksu.',
+    fi: 'Ateriapalvelussa kotiisi kuljetetaan valmiita aterioita, jotka voit itse lämmittää. Ateriapalvelun hintaan kuuluu aterian hinta ja kuljetusmaksu.',
     sv: null,
     en: null,
   },
@@ -182,7 +182,7 @@ const translations = {
     en: null,
   },
   receipt_shopping_service_math_single: {
-    fi: 'Yksi toimitus viikossa eli neljä toimitusta kuukaudessa.',
+    fi: '1 toimitus viikossa eli 4 toimitusta kuukaudessa.',
     sv: null,
     en: null,
   },
@@ -192,12 +192,12 @@ const translations = {
     en: null,
   },
   receipt_shopping_service_explanation: {
-    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Loput saman viikon toimitukset maksavat ${others_per_week} euroa kukin.',
+    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Muut saman viikon toimitukset maksavat kukin ${others_per_week} euroa.',
     sv: null,
     en: null,
   },
   receipt_shopping_service_algorithm: {
-    fi: 'Laskuri laskee kuljetukset tasaisesti viikoille, mutta voit itse vaikuttaa kauppakäyntien määrään tarpeesi mukaan.',
+    fi: 'Laskuri laskee kuljetukset tasaisesti viikoille, mutta voit itse vaikuttaa kauppatoimitusten määrään tarpeesi mukaan.',
     sv: null,
     en: null,
   },
@@ -207,32 +207,32 @@ const translations = {
     en: null,
   },
   receipt_meal_service_count_single: {
-    fi: 'Yksi ateria viikossa, eli neljä ateriaa kuukaudessa.',
+    fi: '1 ateria viikossa eli 4 ateriaa kuukaudessa.',
     sv: null,
     en: null,
   },
   receipt_meal_service_count_multiple: {
-    fi: '${meals_per_week} ateriaa viikossa, eli ${meals_per_month} ateriaa kuukaudessa',
+    fi: '${meals_per_week} ateriaa viikossa eli ${meals_per_month} ateriaa kuukaudessa',
     sv: null,
     en: null,
   },
   receipt_meal_service_price: {
-    fi: 'Yksittäisen lounasaterian hinta on ${meal_service_price} euroa. Lounaan lisäksi voit tilata maksullisen jälkiruuan.',
+    fi: 'Yksittäisen aterian hinta on ${meal_service_price} euroa. Lämpimän aterian lisäksi voit tilata maksullisen jälkiruuan.',
     sv: null,
     en: null,
   },
   receipt_meal_service_1_delivery_price: {
-    fi: 'Hintaan on laskettu yksi kuljetusmaksu viikossa (eli 4 kuukaudessa), hinnaltaan ${meal_service_delivery_price} euroa per kuljetus.',
+    fi: 'Hintaan on laskettu yksi kuljetusmaksu viikossa eli 4 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
     sv: null,
     en: null,
   },
   receipt_meal_service_2_deliveries_price: {
-    fi: 'Hintaan on laskettu kaksi kuljetusmaksua (eli 8 kuukaudessa), ${meal_service_delivery_price} euroa per kuljetus.',
+    fi: 'Hintaan on laskettu kaksi kuljetusmaksua eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
     sv: null,
     en: null,
   },
   receipt_meal_service_menumat_notice: {
-    fi: 'Ateriapalvelun sijaan voit tilata Menumat-ateria-automaatin. Lounasateria maksaa silloin ${menumat_price} euroa kappale ja palvelumaksu on ${menumat_device_price} euroa vuorokaudessa. Lounaan lisäksi voit tilata maksullisen jälkiruoan.',
+    fi: 'Ateriapalvelun sijaan voit tilata kotiisi pakastimen ja uunin yhdistelmän eli Menumat-ateria-automaatin. Menumat-palvelussa aterian hinta on ${menumat_price} euroa ja palvelumaksu on ${menumat_device_price} euroa vuorokaudessa. Aterian lisäksi voit tilata maksullisen jälkiruoan.',
     sv: null,
     en: null,
   },
