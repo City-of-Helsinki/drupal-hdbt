@@ -1,9 +1,10 @@
 import useSWR from 'swr';
-import { useAtomValue } from 'jotai';
-import FormContainer from './FormContainer';
+import { useAtomValue, useAtom } from 'jotai';
 import ResultsContainer from './ResultsContainer';
+import FormContainer from './FormContainer';
 import type Event from '../types/Event';
-import { queryBuilderAtom, urlAtom } from '../store';
+import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
+import removeHdsNormalizeStyleElementFromDom from '@/react/common/hooks/removeHdsNormalizeStyleElementFromDom';
 
 type ResponseType = {
   data: Event[];
@@ -24,12 +25,16 @@ const SWR_REFRESH_OPTIONS = {
 };
 
 const SearchContainer = () => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
-  const url = useAtomValue(urlAtom) || queryBuilder?.getUrl();
+  const initialUrl = useAtomValue(initialUrlAtom);
+  const initialParams = useAtomValue(initialParamsAtom);
+  const [params, setParams] = useAtom(paramsAtom);
+  const url = useAtomValue(urlAtom) || initialUrl;
 
-  if (!queryBuilder) {
-    return null;
+  if (!params.toString()) {
+    setParams(new URLSearchParams(initialParams.toString()));
   }
+
+  removeHdsNormalizeStyleElementFromDom();
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
     const response = await fetch(reqUrl);
@@ -48,10 +53,10 @@ const SearchContainer = () => {
   const loading = !error && !data;
 
   return (
-    <div className='component--react-search component--react-search--event-list'>
-      <FormContainer loading={loading} />
+    <>
+      <FormContainer />
       <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
-    </div>
+    </>
   );
 };
 

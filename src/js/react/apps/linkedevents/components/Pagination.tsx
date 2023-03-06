@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 
 import { Pagination as CommonPagination } from '@/react/common/Pagination';
-import { pageAtom, queryBuilderAtom, urlAtom } from '../store';
+import { pageAtom, updatePageParamAtom } from '../store';
 
 type PaginationProps = {
   pages: number;
@@ -10,13 +10,8 @@ type PaginationProps = {
 };
 
 export const Pagination = ({ pages, totalPages }: PaginationProps) => {
-  const queryBuilder = useAtomValue(queryBuilderAtom);
   const [page, setPage] = useAtom(pageAtom);
-  const setUrl = useSetAtom(urlAtom);
-
-  if (!queryBuilder || !totalPages) {
-    return null;
-  }
+  const updatePageParam = useSetAtom(updatePageParamAtom);
 
   if (!Number.isFinite(totalPages)) {
     return null;
@@ -24,8 +19,8 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
 
   const updatePage = (e: React.MouseEvent<HTMLElement>, index: number) => {
     e.preventDefault();
-    setUrl(queryBuilder.updatePageParam(index));
     setPage(index);
+    updatePageParam(index);
   };
 
   return (
