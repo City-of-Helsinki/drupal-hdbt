@@ -31,6 +31,11 @@ const globalTranslations = {
     sv: 'i timmar',
     en: 'in hours',
   },
+  unit_amount: {
+    fi: 'kpl',
+    sv: null,
+    en: null,
+  },
   unit_times_per_month: {
     fi: 'krt / kk',
     sv: null,

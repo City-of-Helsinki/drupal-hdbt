@@ -1,227 +1,238 @@
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
+  family_info: {
+    fi: 'Talouden tiedot',
+    sv: null,
+    en: null,
+  },
   household_size: {
-    fi: 'Perheenjäsenten määrä numeroin',
+    fi: 'Talouden koko',
     sv: null,
     en: null,
   },
-  monthly_usage: {
-    fi: 'Kotona tarvittavan palvelun määrä tunteina kuukaudessa (palvelu - ja hoitosuunnitelman mukainen tuntimäärä)',
-    sv: null,
-    en: null,
-  },
-  monthly_usage_explanation: {
-    fi: 'Kuukausipalvelun määrä saadaan laskukaavalla: viikkotuntimäärä jaettuna seitsemällä x 30.',
+  household_size_explanation: {
+    fi: 'Samassa osoitteessa asuvien perheenjäsenten määrä.',
     sv: null,
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Bruttotulot kuukaudessa',
+    fi: 'Talouden tulot kuukaudessa',
     sv: null,
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'jos ette halua ilmoittaa tulojanne, jättäkää kohta tyhjäksi.',
+    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot sekä etuudet ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä etuudet, esimerkiksi eläkkeensaajan hoitotuki. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman maksun mukaisesti.',
     sv: null,
     en: null,
   },
-
-
-  phone: {
-    fi: 'Haluatteko käyttöönne Helsingin palvelukeskuksen turvapuhelimen?',
+  monthly_usage: {
+    fi: 'Kotihoidon tuntimäärä kuukaudessa',
     sv: null,
     en: null,
   },
-  phone_no: {
+  monthly_usage_explanation: {
+    fi: 'Löydät tuntimäärän kotihoidon päätöksestä.',
+    sv: null,
+    en: null,
+  },
+  living_at_home_heading: {
+    fi: 'Kotona asumista tukevat palvelut',
+    sv: null,
+    en: null,
+  },
+  living_at_home_paragraph: {
+    fi: 'Voit laskea mukaan kotona asumista tukevia palveluja. Palvelut ovat maksullisia.',
+    sv: null,
+    en: null,
+  },
+  safetyphone_heading: {
+    fi: 'Turvapuhelin ja turvaranneke',
+    sv: null,
+    en: null,
+  },
+  safetyphone_paragraph: {
+    fi: 'Turvapuhelinpalveluun kuuluu turvapuhelin ja turvaranneke, joilla saat tarvittaessa apua ympäri vuorokauden. Turvapuhelinpalvelun maksut riippuvat talouden tuloista.',
+    sv: null,
+    en: null,
+  },
+  safetyphone: {
+    fi: 'Laske arvioon turvapuhelin ja turvaranneke',
+    sv: null,
+    en: null,
+  },
+  yes_calculate: {
+    fi: 'Kyllä, laske arvioon.',
+    sv: null,
+    en: null,
+  },
+  no: {
     fi: 'Ei',
     sv: null,
     en: null,
   },
-  phone_yes: {
-    fi: 'Kyllä',
-    sv: null,
-    en: null,
-  },
-  support_service_payments: {
-    fi: 'Tukipalvelujen maksut',
-    sv: null,
-    en: null,
-  },
-  support_service_payments_not_income_based: {
-    fi: 'Alla mainittujen tukipalvelujen maksut eivät ole tulosidonnaisia.',
-    sv: null,
-    en: null,
-  },
-  sauna_no_travel: {
-    fi: 'Saunotus ilman kuljetusta',
-    sv: null,
-    en: null,
-  },
-  sauna_with_travel: {
-    fi: 'Saunotus ja kuljetusmaksu',
-    sv: null,
-    en: null,
-  },
-  shopping: {
+  shopping_service_heading: {
     fi: 'Kauppapalvelu',
     sv: null,
     en: null,
   },
-  foodservice: {
-    fi: 'Valitse ateriapalvelu',
+  shopping_service_paragraph: {
+    fi: 'Kauppapalvelussa tilaamasi ruokaostokset toimitetaan kotiovellesi. Palvelussa on toimitusmaksu.',
     sv: null,
     en: null,
   },
-  foodservice_1: {
-    fi: 'Olen eteläisen tai kaakkoisen kotihoidon asiakas',
+  shopping_service: {
+    fi: 'Laske arvioon kauppapalvelu',
     sv: null,
     en: null,
   },
-  foodservice_2: {
-    fi: 'Olen muun kotihoitoyksikön asiakas',
+  shopping_service_per_week: {
+    fi: 'Kauppapalvelun toimitusten määrä viikossa',
     sv: null,
     en: null,
   },
-  foodservice_3: {
-    fi: 'Käytössäni on Menumat-ateria-automaatti',
+  shopping_service_per_week_explanation: {
+    fi: 'Yksi toimitus viikossa maksaa ${first_per_week_price} euroa, muut toimitukset ${others_per_week_price} euroa per toimitus.',
     sv: null,
     en: null,
   },
-  foodservice_4: {
-    fi: 'Ei ateriapalvelua',
+  meal_service_heading: {
+    fi: 'Ateriapalvelu',
     sv: null,
     en: null,
   },
-  foodservice_group_1_delivery_fee: {
-    fi: 'Aterioiden kuljetusmaksu',
+  meal_service_paragraph: {
+    fi: 'Ateriapalvelussa kotiisi kuljetetaan valmiita aterioita, jotka voit itse lämmittää. Ateriapalvelun hintaan kuuluu lounaan hinta ja kuljetusmaksu.',
     sv: null,
     en: null,
   },
-  foodservice_group_1_delivery_fee_1: {
-    fi: 'Kylmien aterioiden kuljetus 4 krt / kk, á 7,21',
+  meal_service: {
+    fi: 'Laske arvioon ateriapalvelu',
     sv: null,
     en: null,
   },
-  foodservice_group_1_delivery_fee_2: {
-    fi: 'Kylmien aterioiden kuljetus 8 krt / kk, á 7,21',
+  meal_service_per_week: {
+    fi: 'Aterioiden määrä viikossa',
     sv: null,
     en: null,
   },
-  meal_price: {
-    fi: 'Aterian hinta',
+  meal_service_per_week_explanation: {
+    fi: 'Voit tilata ateriapalvelun hinnaston mukaisia aterioita enintään 7 ateriaa viikossa.',
     sv: null,
     en: null,
   },
-  foodservice_group_1_meal_price_1: {
-    fi: '4,98 €',
+  receipt_estimate_of_payment: {
+    fi: 'Arvio kotihoidon asiakasmaksusta',
     sv: null,
     en: null,
   },
-  foodservice_group_1_meal_price_2: {
-    fi: '5,49 €',
+  receipt_family_estimated_payment_prefix: {
+    fi: 'Arvioitu asiakasmaksu on yhteensä',
     sv: null,
     en: null,
   },
-  meals: {
-    fi: 'Ateriat',
+  receipt_family_estimated_payment_suffix: {
+    fi: 'euroa kuukaudessa.',
     sv: null,
     en: null,
   },
-  foodservice_group_2_delivery_fee: {
-    fi: 'Aterioiden kuljetusmaksu',
+  receipt_family_estimated_payment_explanation_min: {
+    fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
     sv: null,
     en: null,
   },
-  foodservice_group_2_delivery_fee_1: {
-    fi: 'Kylmien aterioiden kuljetus 4 krt / kk, á 7,21',
+  receipt_family_empty_income: {
+    fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin talouden kuukausituloja. ',
     sv: null,
     en: null,
   },
-  foodservice_group_2_delivery_fee_2: {
-    fi: 'Kylmien aterioiden kuljetus 8 krt / kk, á 7,21',
+  receipt_family_estimated_payment_explanation: {
+    fi: 'Tämä arvio on suuntaa antava.  Asiakasmaksujen tarkka määrä lasketaan kotihoidon maksupäätökseen.',
     sv: null,
     en: null,
   },
-  foodservice_group_2_meals: {
-    fi: 'Ateriat (määrä / kk)',
+  receipt_estimate_is_based_on: {
+    fi: 'Arvio muodostuu seuraavista tiedoista:',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meal_price: {
-    fi: 'Aterian hinta',
+  receipt_subtotal_euros_per_month: {
+    fi: '${value} €/kk',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meal_price_1: {
-    fi: 'Lounas 4,99 €',
+  receipt_subtotal_euros_per_month_screenreader: {
+    fi: '${value} euroa kuukaudessa',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meal_price_2: {
-    fi: 'Lounas 4,99 € + jälkiruoka 1,12 €',
+  receipt_additional_details: {
+    fi: 'Lisähuomiot:',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meal_price_3: {
-    fi: 'Lounas 5,57 €',
+  receipt_homecare_payment: {
+    fi: 'Kotihoidon asiakasmaksu',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meal_price_4: {
-    fi: 'Lounas 5,57 € + jälkiruoka 1,12 €',
+  receipt_homecare_payment_two_or_more: {
+    fi: 'Jos molemmat puolisot ovat jatkuvan ja säännöllisen kotihoidon kuukausimaksuasiakkaita, maksu jakautuu kummallekin palvelu- ja hoitosuunnitelman mukaisesti.',
     sv: null,
     en: null,
   },
-  foodservice_group_3_usage: {
-    fi: 'Palvelun käyttö',
+  receipt_shopping_service_math_single: {
+    fi: 'Yksi toimitus viikossa eli neljä toimitusta kuukaudessa.',
     sv: null,
     en: null,
   },
-  foodservice_group_3_meals: {
-    fi: 'Ateriat',
+  receipt_shopping_service_math_multiple: {
+    fi: '${delivery_count_per_week} toimitusta viikossa eli ${delivery_count_per_month} toimitusta kuukaudessa.',
     sv: null,
     en: null,
   },
-
-
-  info_voucher_value: {
-    fi: 'Palvelusetelin arvo ${voucher_value} € / kk.',
+  receipt_shopping_service_explanation: {
+    fi: 'Kunkin viikon ensimmäinen toimitus maksaa ${first_per_week} euroa. Loput saman viikon toimitukset maksavat ${others_per_week} euroa kukin.',
     sv: null,
     en: null,
   },
-  alert_voucher_not_applicable: {
-    fi: 'Ei oikeutta palveluseteliin.',
+  receipt_shopping_service_algorithm: {
+    fi: 'Laskuri laskee kuljetukset tasaisesti viikoille, mutta voit itse vaikuttaa kauppakäyntien määrään tarpeesi mukaan.',
     sv: null,
     en: null,
   },
-  error_check_size: {
-    fi: 'Tarkista "Talouden koko"',
+  receipt_aria_live: {
+    fi: 'Kotihoidon asiakasmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
     sv: null,
     en: null,
   },
-  error_check_usage: {
-    fi: 'Tarkista "Kuukausittainen käyttö"',
+  receipt_meal_service_count_single: {
+    fi: 'Yksi ateria viikossa, eli neljä ateriaa kuukaudessa.',
     sv: null,
     en: null,
   },
-  error_check_income: {
-    fi: 'Tarkista "Bruttotulot kuukaudessa"',
+  receipt_meal_service_count_multiple: {
+    fi: '${meals_per_week} ateriaa viikossa, eli ${meals_per_month} ateriaa kuukaudessa',
     sv: null,
     en: null,
   },
-  error_check_price: {
-    fi: 'Tarkista "Palveluntuottajan tuntihinta"',
+  receipt_meal_service_price: {
+    fi: 'Yksittäisen lounasaterian hinta on ${meal_service_price} euroa. Lounaan lisäksi voit tilata maksullisen jälkiruuan.',
     sv: null,
     en: null,
   },
-  missing_input: {
-    fi: 'Tietoja puuttuu',
+  receipt_meal_service_1_delivery_price: {
+    fi: 'Hintaan on laskettu yksi kuljetusmaksu viikossa (eli 4 kuukaudessa), hinnaltaan ${meal_service_delivery_price} euroa per kuljetus.',
     sv: null,
     en: null,
   },
-  result: {
-    fi: 'Lopputulos',
+  receipt_meal_service_2_deliveries_price: {
+    fi: 'Hintaan on laskettu kaksi kuljetusmaksua (eli 8 kuukaudessa), ${meal_service_delivery_price} euroa per kuljetus.',
+    sv: null,
+    en: null,
+  },
+  receipt_meal_service_menumat_notice: {
+    fi: 'Ateriapalvelun sijaan voit tilata Menumat-ateria-automaatin. Lounasateria maksaa silloin ${menumat_price} euroa kappale ja palvelumaksu on ${menumat_device_price} euroa vuorokaudessa. Lounaan lisäksi voit tilata maksullisen jälkiruoan.',
     sv: null,
     en: null,
   },
