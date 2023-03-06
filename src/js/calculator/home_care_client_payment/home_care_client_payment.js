@@ -308,8 +308,11 @@ class HomeCareClientPayment {
       if (safetyphone === '1') {
         // Lets get the proper range (when writing, only 1 or 2 household size is used, but this approach supports larger sizes too)
         const householdSizeRange = getMinimumRange(householdSize, parsedSettings.safetyphone_limits);
+
+        // If the user has not entered a value to income field, we'll calculate the value as max.
+        const calculatedIncomePerMonth = (grossIncomePerMonthRaw === null) ? Infinity : grossIncomePerMonth;
         // Get the payment based on income and found range.
-        safetyphonePayment = getMinimumRange(grossIncomePerMonth, householdSizeRange);
+        safetyphonePayment = getMinimumRange(calculatedIncomePerMonth, householdSizeRange);
 
         // Add details to receipt
         subtotals.push(
