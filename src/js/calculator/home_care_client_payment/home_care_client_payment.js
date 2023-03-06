@@ -284,8 +284,8 @@ class HomeCareClientPayment {
         totalExplanation = this.t('receipt_family_empty_income') + totalExplanation;
       }
 
-      // 4. Payment should never be higher than maximumPayment
-      const payment = Math.min(referencePayment, maximumPayment);
+      // 4. Payment should never be higher than maximumPayment nor lower than 0
+      const payment = Math.max(Math.min(referencePayment, maximumPayment), 0);
 
       const homecareSubtotal = {
         title: this.t('receipt_homecare_payment'),
