@@ -344,7 +344,13 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
-      $photographer = $entity->{$image}->entity->field_photographer->value;
+      // Get translated photographer text if available.
+      if ($entity->{$image}->entity->hasTranslation($variables['current_langcode'])) {
+        $photographer = $entity->{$image}->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+      }
+      else {
+        $photographer = $entity->{$image}->entity->field_photographer->value;
+      }
 
       // If both caption and photographer exists, use targeted translation
       // for the caption and photographer. Otherwise set only photographer as
