@@ -1,11 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
-  family_info: {
-    fi: 'Talouden tiedot',
-    sv: null,
-    en: null,
-  },
   household_size: {
     fi: 'Talouden koko',
     sv: null,

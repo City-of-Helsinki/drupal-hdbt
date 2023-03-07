@@ -4,12 +4,6 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
     has_required_fields: true,
     items: [
       {
-        heading: {
-          text: t('family_info'),
-          level: 3,
-        }
-      },
-      {
         input_integer: {
           id: 'household_size',
           label: t('household_size'),
