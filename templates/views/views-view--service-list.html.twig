@@ -41,19 +41,6 @@
 %}
 
 <div{{attributes.addClass(classes)}}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
-
-  {% if header %}
-    <header>
-      {{ header }}
-    </header>
-  {% endif %}
-
-  {{ exposed }}
-  {{ attachment_before }}
-
   {%  if total_rows > pager_items_per_page %}
     <span class="service-list__count-container">
       <span class="service-list__count">{{ total_rows }}</span>
@@ -61,19 +48,10 @@
     </span>
   {% endif %}
 
-  {{ rows }}
+  <div class="service-list__results">
+    {{ rows }}
+  </div>
 
   {{ empty }}
   {{ pager }}
-
-  {{ attachment_after }}
-  {{ more }}
-
-  {% if footer %}
-    <footer>
-      {{ footer }}
-    </footer>
-  {% endif %}
-
-  {{ feed_icons }}
 </div>

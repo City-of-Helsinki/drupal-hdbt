@@ -1,4 +1,3 @@
-{{ element[0]['iframe'] }}
 {% set link_url = element[0]['link']['#attributes']['href'] %}
 {% set link_attributes = {
   'class': [
@@ -7,4 +6,27 @@
   ],
   'target': '_blank',
 } %}
+{% set iframe_attributes = element[0]['iframe']['#attributes'] %}
+
+{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+  media_url: iframe_attributes['src'],
+  media_id: element['#object'].id.value,
+  media_service_url: map_service_url,
+  privacy_policy_url: privacy_policy_url,
+} %}
+
+{% set drupal_settings = {
+  '#attached': {
+    'drupalSettings': {
+      'embedded_media_attributes': {
+        (element['#object'].id.value): {
+          'src': iframe_attributes['src'],
+          'title': iframe_attributes['title'],
+          'type': 'map',
+        }
+      }
+    }
+  }
+} %}
+{{ drupal_settings }}
 {{ link(element[0]['link']['#value'], link_url, link_attributes) }}

@@ -1,58 +1,28 @@
 {%
   set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-  ]
+  'views',
+  'views--' ~ id|clean_class,
+  'views--' ~ display_id|clean_class,
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'service__units__content'
+]
 %}
 
-{% embed "@hdbt/misc/component.twig" with
-  {
-    component_classes: [
-      'component--service-units',
-      'component--hardcoded'
-    ]
-  }
-%}
-  {% block component_content %}
+<div{{attributes.addClass(classes)}}>
+  <div class="service__units__header">
+    <h2 class="service__units__title">{% trans %}Service points{% endtrans %}</h2>
+    {%  if total_rows > pager_items_per_page %}
+      <span class="service__units__count-container">
+        <span class="service__units__count">{{ total_rows }}</span>
+        {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
+      </span>
+    {% endif %}
+  </div>
 
-    <div class="service__units__header">
-      <h2 class="service__units__title">{% trans %}Service points{% endtrans %}</h2>
-      {%  if total_rows > pager_items_per_page %}
-        <span class="service__units__count-container">
-          <span class="service__units__count">{{ total_rows }}</span>
-          {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
-        </span>
-      {% endif %}
-    </div>
-    <div{{ attributes.addClass(classes) }}>
-      {% if header %}
-        <header>
-          {{ header }}
-        </header>
-      {% endif %}
+  <div class="service__units__list">
+    {{ rows }}
+  </div>
 
-      {{ exposed }}
-      {{ attachment_before }}
-
-      <div class="service__units__list">
-        {% if rows -%}
-          {{ rows }}
-        {% elseif empty -%}
-          {{ empty }}
-        {% endif %}
-        {{ pager }}
-      </div>
-
-      {{ attachment_after }}
-      {{ more }}
-
-      {% if footer %}
-        <footer>
-          {{ footer }}
-        </footer>
-      {% endif %}
-
-      {{ feed_icons }}
-    </div>
-
-  {% endblock component_content %}
-{% endembed %}
+  {{ empty }}
+  {{ pager }}
+</div>

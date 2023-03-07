@@ -116,14 +116,18 @@
 
 /* LABEL */
 
-input[type="submit"].hds-button,
+input[type='button'].hds-button,
+input[type='reset'].hds-button,
+input[type='submit'].hds-button,
 .hds-button__label {
   font-weight: inherit;
   line-height: 1.25em;
   padding: var(--spacing-s);
 }
 
-input[type="submit"].hds-button {
+input[type='button'].hds-button,
+input[type='reset'].hds-button,
+input[type='submit'].hds-button {
   cursor: pointer;
   padding: var(--spacing-s) var(--spacing-l);
 }

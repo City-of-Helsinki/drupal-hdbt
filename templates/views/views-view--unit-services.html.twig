@@ -32,59 +32,29 @@
 #}
 {%
   set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-  ]
+  'views',
+  'views--' ~ id|clean_class,
+  'views--' ~ display_id|clean_class,
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'unit__services__content'
+]
 %}
 
-{% embed "@hdbt/misc/component.twig" with
-  {
-    component_classes: [
-      'component--unit-services',
-      'component--hardcoded',
-    ]
-  }
-%}
-  {% block component_content %}
-
-    <div class="unit__services__header">
-      <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
-      {%  if total_rows > pager_items_per_page %}
-        <span class="unit__services__count-container">
+<div{{attributes.addClass(classes)}}>
+  <div class="unit__services__header">
+    <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
+    {%  if total_rows > pager_items_per_page %}
+      <span class="unit__services__count-container">
           <span class="unit__services__count">{{ total_rows }}</span>
           {% trans with {'context': 'Unit services count'}%}service{% plural total_rows %}services{% endtrans %}
         </span>
-      {% endif %}
-    </div>
-    <div{{ attributes.addClass(classes) }}>
-      {% if header %}
-        <header>
-          {{ header }}
-        </header>
-      {% endif %}
+    {% endif %}
+  </div>
 
-      {{ exposed }}
-      {{ attachment_before }}
+  <div class="unit__services__list">
+    {{ rows }}
+  </div>
 
-      <div class="unit__services__list">
-        {% if rows -%}
-          {{ rows }}
-        {% elseif empty -%}
-          {{ empty }}
-        {% endif %}
-        {{ pager }}
-      </div>
-
-      {{ attachment_after }}
-      {{ more }}
-
-      {% if footer %}
-        <footer>
-          {{ footer }}
-        </footer>
-      {% endif %}
-
-      {{ feed_icons }}
-    </div>
-
-  {% endblock component_content %}
-{% endembed %}
+  {{ empty }}
+  {{ pager }}
+</div>

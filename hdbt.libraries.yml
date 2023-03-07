@@ -10,20 +10,20 @@ desktop-menu-toggle:
   js:
     dist/js/desktop-menu-toggle.min.js: {}
 
-handorgel:
-  version: 0.5.0
-  js:
-    dist/js/handorgel/handorgel.min.js: {}
-  css:
-    theme:
-      dist/css/handorgel/handorgel.min.css: {}
-
 accordion:
+  version: 1.1
+  js:
+    dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
+  dependencies:
+    - helfi_toc/table_of_contents
+
+helfi_calculator:
   version: 1.x
   js:
-    dist/js/accordion-settings.min.js: {}
+    dist/js/helfi_calculator.min.js: {}
   dependencies:
-    - hdbt/handorgel
+    - core/drupal
+    - core/drupalSettings
 
 throbber:
   version: 1.x
@@ -68,26 +68,6 @@ global-styling:
   dependencies:
     - hdbt/color-palette
     - hdbt/hdbt-icons
-
-nav-local:
-  version: 1.x
-  css:
-    theme:
-      dist/css/nav_local.min.css: {}
-  js:
-    dist/js/nav-local.min.js: {}
-  dependencies:
-    - hdbt/global-styling
-
-nav-global:
-  version: 1.x
-  css:
-    theme:
-      dist/css/nav_global.min.css: {}
-  js:
-    dist/js/nav-global.min.js: {}
-  dependencies:
-    - hdbt/global-styling
 
 # TODO Convert branding mobile to its own library.
 global-scripting:
@@ -138,3 +118,48 @@ disable_genesys_button:
   - core/jquery
   - core/drupal
   - core/drupalSettings
+
+nav-toggle:
+  version: 1.x
+  js:
+    dist/js/nav-toggle.min.js: { attributes: { defer: true } }
+  css:
+    theme:
+      dist/css/nav_toggle.min.css: {}
+  dependencies:
+    - core/drupalSettings
+
+nav-local:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_local.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+    - hdbt/nav-toggle
+
+nav-global:
+  version: 1.x
+  css:
+    theme:
+      dist/css/nav_global.min.css: {}
+  dependencies:
+    - hdbt/global-styling
+    - hdbt/nav-toggle
+
+event-list:
+  version: 1.x
+  js:
+    dist/js/linkedevents.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - core/drupal
+
+school-search:
+  version: 1.x
+  js:
+    dist/js/school-search.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

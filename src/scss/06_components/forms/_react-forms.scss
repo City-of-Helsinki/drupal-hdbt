@@ -1,0 +1,121 @@
+// Checkbox styles need specific selectors to override HDS styles
+.hdbt-search__filter.hdbt-search__checkbox {
+  --background-unselected: transparent;
+  --background-selected: var(--hdbt-color-black);
+  --background-hover: var(--hdbt-color-black);
+  --border-color-selected: var(--hdbt-color-black);
+  --border-color-selected-hover: var(--hdbt-color-black);
+  --border-color-selected-focus: var(--hdbt-color-black);
+  --border-color-unselected: var(--hdbt-color-black);
+  --border-color-unselected-hover: var(--hdbt-color-black);
+  --border-color-unselected-focus: var(--hdbt-color-black);
+  --icon-color-unselected: transparent;
+  --icon-color-selected: var(--hdbt-text-color);
+  --icon-color-disabled: var(--hdbt-text-color);
+  --focus-outline-color: var(--hdbt-color-black);
+}
+
+.hdbt-search__filter.hdbt-search__checkbox label {
+  font-weight: $font-weight-regular;
+}
+
+.hdbt-search__filter {
+  margin-bottom: $spacing;
+}
+
+// Override HDBTs li+li
+.hdbt-search__filter li {
+  margin-top: 0;
+}
+
+.hdbt-search__filter label {
+  color: $color-black;
+  display: block;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-quarter;
+}
+
+// Need specific selector here to override HDS styles
+.hdbt-search__submit-button:not(:disabled) {
+  --background-color: var(--hdbt-color-black);
+  --background-color-hover: var(--hdbt-text-color);
+  --background-color-focus: var(--hdbt-text-color);
+  --background-color-hover-focus: var(--hdbt-text-color);
+  --border-color: var(--hdbt-color-black);
+  --border-color-hover: var(--hdbt-color-black);
+  --border-color-focus: var(--hdbt-color-black);
+  --border-color-hover-focus: var(--hdbt-color-black);
+  --color: var(--hdbt-text-color);
+  --color-hover: var(--hdbt-color-black);
+  --color-focus: var(--hdbt-color-black);
+  --color-hover-focus: var(--hdbt-color-black);
+  --focus-outline-color: var(--hdbt-color-black);
+  margin-bottom: $spacing-triple;
+  margin-top: $spacing;
+}
+
+// Override HDS styles for date input
+.hdbt-search__filter.hdbt-search__date-input {
+  --focus-outline-color: var(--hdbt-color-black);
+}
+
+// Check this table when work with https://helsinkisolutionoffice.atlassian.net/browse/UHF-3044
+// Override HDBT table styles to fix date picker
+.hdbt-search__date-input table {
+  border: none;
+  display: table;
+  margin-top: 0;
+}
+
+.hdbt-search__date-input table thead th {
+  background: $color-white;
+  color: $color-black;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  text-align: center;
+}
+
+.hdbt-search__selections-container {
+  list-style-type: none;
+}
+
+// Use a very specific selector here to override hds styles
+button.hdbt-search__remove-selection-button:not(:disabled) {
+  @include tag('interactive--deletable');
+
+  --color-hover-focus: var(--hdbt-text-color);
+  color: var(--hdbt-color-black);
+}
+
+// Neagate HDS-defined paddings for span-element inside button
+.hdbt-search__remove-selection-button span {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+// Negate HDS-defined margin for icon inside remove button
+.hdbt-search__selections-wrapper button.hdbt-search__remove-selection-button > div {
+  margin-right: 0;
+}
+
+.hdbt-search__clear-all {
+  margin-top: 0;
+}
+
+// Need a specific selector to override hds styles
+.hdbt-search__clear-all .hdbt-search__clear-all-button {
+  --background-color-hover: transparent;
+  --background-color-focus: transparent;
+  --background-color-hover-focus: transparent;
+  --border-color-hover: var(--hdbt-color-black);
+  --border-color-focus: var(--hdbt-color-black);
+  --border-color-hover-focus: var(--hdbt-color-black);
+  --color: var(--hdbt-color-black);
+  --color-hover: var(--hdbt-color-black);
+  --color-focus: var(--hdbt-color-black);
+  --color-hover-focus: var(--hdbt-color-black);
+  --focus-outline-color: var(--hdbt-color-black);
+}
