@@ -134,15 +134,14 @@ msgid "The page you are trying to access has restricted access. You need to log 
 msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
 
 msgid ""
-"This content is hosted by @video_service_url. To see the content, "
+"This content is hosted by @media_service_url. To see the content, "
 "switch over to the external site or modify your cookie settings to "
 "allow for preference and statistics cookies."
 msgstr ""
-"Tämä sisältö haetaan osoitteesta @video_service_url. Sen "
+"Tämä sisältö haetaan osoitteesta @media_service_url. Sen "
 "näyttämiseen vaaditaan, että hyväksyt sivuston evästeet. Pääset "
 "näkemään sisällön joko siirtymällä ulkoiselle sivustolle tai "
 "sallimalla evästeasetuksista personointi- ja tilastointievästeet."
-
 
 msgid "This page is available to registered users only. If you have the necessary permissions, you can sign in to see the content."
 msgstr "Sivu näkyy vain kirjautuneille käyttäjille. Jos sinulla on riittävät käyttöoikeudet, näet sisällön kirjautumalla sisään."
@@ -335,3 +334,11 @@ msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Sulje käyttäjä-
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
 msgstr "Puhelumaksu"
+
+msgctxt "The helper text for toggle accordion visibility button"
+msgid "Toggle element: "
+msgstr "Laajenna alue: "
+
+msgctxt "The helper text for close accordion visibility button"
+msgid "Close element: "
+msgstr "Sulje alue: "

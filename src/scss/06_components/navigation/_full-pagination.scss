@@ -27,8 +27,8 @@
     display: block;
     float: right; // Floated pseudo-element wraps the inline ul around it.
     line-height: 60px;
-    padding-left: 26px; // 16px button padding + 2px button border + 8px margin to paging
-    padding-right: 30px; // 24px icon + 4px icon padding + 2px button border
+    padding-left: 34px; // 8px gap + 2px button border + 8px button padding + 16px span padding
+    padding-right: 46px; // 4px gap + 24px icon + 8px icon margin + 8px button padding + 2px button border
     transform: scaleY(-1); // Helps debugging text position
     visibility: hidden; // Remove this for debugging
   }

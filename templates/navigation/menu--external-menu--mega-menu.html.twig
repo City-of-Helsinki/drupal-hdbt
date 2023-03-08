@@ -61,12 +61,15 @@
             'megamenu__item--level-' ~ (level + 1),
           ]%}
 
-          {% set langAttribute = item.attributes.lang %}
+          {% set item_lang = '' %}
+          {% if item.attributes.lang %}
+            {% set item_lang %} lang="{{ item.attributes.lang }}"{% endset %}
+          {% endif %}
 
           <li{{ item.attributes.removeAttribute('class').removeAttribute('lang').addClass(item_classes) }}>
 
             {% set item_title %}
-              <span class="megamenu__link__text"{{ (langAttribute) ? ' lang='~langAttribute : '' }}>{{item.title}}</span>
+              <span class="megamenu__link__text"{{ item_lang }}>{{item.title}}</span>
             {% endset %}
 
             {% if not item.is_nolink %}
@@ -76,7 +79,7 @@
                 {% if icon_name %}
                   {% set item_title %}
                     {% include '@hdbt/misc/icon.twig' with {icon: icon_name, class: 'megamenu__link__icon'} %}
-                    <span class="megamenu__link__text"{{ (langAttribute) ? ' lang='~langAttribute : '' }}>{{ item.title }}</span>
+                    <span class="megamenu__link__text"{{ item_lang }}>{{ item.title }}</span>
                   {% endset %}
                 {% endif %}
 

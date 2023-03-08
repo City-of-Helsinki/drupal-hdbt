@@ -118,13 +118,8 @@ function hdbt_preprocess_html(&$variables) {
     $variables['#attached']['library'][] = 'hdbt/nav-local';
   }
 
-  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
-  $service = \Drupal::service('file_url_generator');
-
-  // Add theme path to as variable.
-  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
-  $variables['theme_path'] = $service->generate($theme->getPath())
-    ->toString(TRUE)->getGeneratedUrl();
+  // Set theme path variable.
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -142,7 +137,7 @@ function hdbt_preprocess_media(&$variables) {
   if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
     return;
   }
-  if ($variables['media']->bundle() === 'remote_video') {
+  if ($variables['media']->bundle() === 'remote_video' || $variables['media']->bundle() === 'hel_map') {
     $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 
@@ -159,6 +154,15 @@ function hdbt_preprocess_media(&$variables) {
       $variables['iframe_title'] = $variables['media']->field_media_oembed_video->iframe_title;
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_media__hel_map(&$variables) {
+  $map_url = $variables['media']->field_media_hel_map->uri;
+  $url_parts = parse_url($map_url);
+  $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
 }
 
 /**
@@ -253,6 +257,9 @@ function hdbt_preprocess_page(&$variables) {
   if (isset($variables['page']['header_branding']['profileblock'])) {
     $variables['use_profile_block'] = TRUE;
   }
+
+  // Set theme path variable.
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -337,7 +344,13 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
-      $photographer = $entity->{$image}->entity->field_photographer->value;
+      // Get translated photographer text if available.
+      if ($entity->{$image}->entity->hasTranslation($variables['current_langcode'])) {
+        $photographer = $entity->{$image}->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+      }
+      else {
+        $photographer = $entity->{$image}->entity->field_photographer->value;
+      }
 
       // If both caption and photographer exists, use targeted translation
       // for the caption and photographer. Otherwise set only photographer as
@@ -1255,6 +1268,12 @@ function hdbt_preprocess_field(&$variables) {
         $item['content']['#url']->setOption('attributes', $attributes);
       }
       break;
+
+    case 'service_map_embed':
+      $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
+      $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
+      $variables['privacy_policy_url'] = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+      break;
   }
 }
 
@@ -1312,23 +1331,6 @@ function hdbt_theme_suggestions_views_view_unformatted_alter(array &$suggestions
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function hdbt_theme_suggestions_views_infinite_scroll_pager_alter(array &$suggestions, array $variables) {
-  if (isset($variables['view'])) {
-    $view = $variables['view'];
-
-    if (!empty($view->id())) {
-      $suggestions[] = 'views_infinite_scroll_pager__' . $view->id();
-
-      if (!empty($view->getDisplay()->display['id'])) {
-        $suggestions[] = 'views_infinite_scroll_pager__' . $view->id() . '__' . $view->getDisplay()->display['id'];
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_views_view(&$variables) {
@@ -1368,6 +1370,9 @@ function hdbt_preprocess_tpr_unit(&$variables) {
 
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
+
+  // Add cookie compliance JS to unit pages since they have maps.
+  $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 }
 
 /**
@@ -1517,7 +1522,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
   // Expose event list variables to frontend.
   if (isset($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
-    $linkedEvents = Drupal::service('helfi_react_search_linked_events');
     $settings = [];
 
     if ($paragraph->hasField('field_event_list_title') && !$paragraph->get('field_event_list_title')->isEmpty()) {
@@ -1532,12 +1536,15 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
     }
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
-      $initialUrl = $paragraph->get('field_api_url')->first()->getUrl()->toString();
-      $params = $linkedEvents->parseParams($initialUrl);
+      $linkedEvents = Drupal::service('helfi_react_search_linked_events');
+      $events_public_url = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $settings['events_public_url'] = $events_public_url;
+      $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
-      $settings['request_url'] = $eventUrl;
-      $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
+      if (!empty($paragraph->get('field_event_location')->getValue()) && $paragraph->get('field_event_location')->first()->getValue()['value']) {
+        $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
+      }
     }
 
     $booleanFields = [
@@ -1567,4 +1574,24 @@ function hdbt_preprocess_paragraph__event_list(&$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/event-list';
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
+}
+
+/**
+ * Helper function to hdbt theme path.
+ */
+function _hdbt_get_theme_path(): string {
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+
+  // Add theme path to as variable.
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
+  return $service->generate($theme->getPath())
+    ->toString(TRUE)->getGeneratedUrl();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__school_search(array &$variables) {
+  $variables['#attached']['library'][] = 'hdbt/school-search';
 }

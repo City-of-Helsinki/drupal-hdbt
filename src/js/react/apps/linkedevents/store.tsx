@@ -1,8 +1,16 @@
 import { atom } from 'jotai';
-import QueryBuilder from './utils/QueryBuilder';
+import { DateTime } from 'luxon';
+
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
 import Location from './types/Location';
+import OptionType from './types/OptionType';
+import FormErrors from './types/FormErrors';
+import ApiKeys from './enum/ApiKeys';
+
+interface Options {
+  [key: string]: string
+}
 
 // Transform locations from API response to options
 const transformLocations = (locations: any = null) => {
@@ -39,6 +47,7 @@ const createBaseAtom = () => {
   const settings = drupalSettings.helfi_events?.data?.[paragraphId];
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
+  const eventsPublicUrl = settings?.events_public_url;
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
@@ -49,13 +58,26 @@ const createBaseAtom = () => {
   };
   const locations = transformLocations(settings?.places);
 
-  const queryBuilder = QueryBuilder(eventsApiUrl);
+  let baseUrl;
+  let initialParams;
+
+  if (eventsApiUrl.indexOf('?') !== -1) {
+    const [url, queryString] = eventsApiUrl.split('?');
+    baseUrl = url;
+    initialParams = new URLSearchParams(queryString);
+  } else {
+    baseUrl = eventsApiUrl;
+    initialParams = new URLSearchParams();
+  }
 
   return {
-    queryBuilder,
     settings: filterSettings,
+    baseUrl,
+    initialUrl: eventsApiUrl,
+    initialParams,
     locations,
     eventListTitle,
+    eventsPublicUrl,
   };
 };
 
@@ -63,16 +85,28 @@ const createBaseAtom = () => {
 const baseAtom = atom(createBaseAtom());
 
 // Create derivates for set/get parts of data
-export const queryBuilderAtom = atom(
-  (get) => get(baseAtom)?.queryBuilder
+export const baseUrlAtom = atom(
+  (get) => get(baseAtom)?.baseUrl
 );
 
-export const locationsAtom = atom(
+export const initialUrlAtom = atom(
+  (get) => get(baseAtom)?.initialUrl
+);
+
+export const initialParamsAtom = atom(
+  (get) => get(baseAtom)?.initialParams || new URLSearchParams()
+);
+
+export const locationAtom = atom(
   (get) => get(baseAtom)?.locations
 );
 
 export const titleAtom = atom(
   (get) => get(baseAtom)?.eventListTitle
+);
+
+export const eventsPublicUrl = atom(
+  (get) => get(baseAtom)?.eventsPublicUrl
 );
 
 export const settingsAtom = atom(
@@ -85,6 +119,77 @@ export const settingsAtom = atom(
   }
 );
 
-export const pageAtom = atom(1);
+export const pageAtom = atom<number>(1);
 
-export const urlAtom = atom<string|null>(null);
+export const urlAtom = atom<string|undefined>(undefined);
+
+export const paramsAtom = atom(new URLSearchParams());
+
+export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+
+export const startDateAtom = atom<DateTime|undefined>(undefined);
+
+export const endDateAtom = atom<DateTime|undefined>(undefined);
+
+export const endDisabledAtom = atom<boolean>(false);
+
+export const formErrorsAtom = atom<FormErrors>({
+  invalidEndDate: false,
+  invalidStartDate: false,
+});
+
+export const freeFilterAtom = atom<boolean>(false);
+
+export const remoteFilterAtom = atom<boolean>(false);
+
+export const resetFormAtom = atom(null, (get, set) => {
+  const initialParams = get(initialParamsAtom);
+
+  set(locationSelectionAtom, []);
+  set(startDateAtom, undefined);
+  set(endDateAtom, undefined);
+  set(endDisabledAtom, false);
+  set(remoteFilterAtom, false);
+  set(freeFilterAtom, false);
+  set(pageAtom, 1);
+  set(paramsAtom, new URLSearchParams(initialParams.toString()));
+  set(urlAtom, get(initialUrlAtom));
+});
+
+export const updateUrlAtom = atom(null, (get, set) => {
+  set(pageAtom, 1);
+  const params = get(paramsAtom);
+  const baseUrl = get(baseUrlAtom);
+  set(urlAtom, `${baseUrl}?${params.toString()}`);
+});
+
+export const updatePageParamAtom = atom(null, (get, set, page: number) => {
+  const url = get(urlAtom) || get(initialUrlAtom);
+
+  if (url) {
+    const currentUrl = new URL(url);
+    currentUrl.searchParams.set('page', page.toString());
+    set(urlAtom, currentUrl.toString());
+  }
+});
+
+export const resetParamAtom = atom(null, (get, set, option: string) => {
+  const initialParams = get(initialParamsAtom);
+  const params = get(paramsAtom);
+
+  if (Object.values(ApiKeys).indexOf(option) !== -1) {
+    const initial = initialParams.get(option);
+    initial ? params.set(option, initial) : params.delete(option);
+    set(paramsAtom, params);
+  }
+});
+
+export const updateParamsAtom = atom(null, (get, set, options: Options) => {
+  const params = get(paramsAtom);
+  Object.keys(options).forEach((option: string) => {
+    if (Object.values(ApiKeys).indexOf(option) !== -1) {
+      params.set(option, options[option]);
+    }
+  });
+  set(paramsAtom, params);
+});
