@@ -42,7 +42,7 @@ const getQueryString = (keyword?: string) => {
       },
       {
         term: {
-          'postal_code.keyword': keyword
+          'postal_code': keyword
         }
       }
     ];
@@ -55,7 +55,7 @@ const getQueryString = (keyword?: string) => {
     aggs: {
       ids: {
         terms: {
-          field: 'id.keyword',
+          field: 'id',
           size: 1000
         },
       },

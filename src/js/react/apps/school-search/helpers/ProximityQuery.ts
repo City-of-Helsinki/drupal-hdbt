@@ -53,7 +53,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
     aggs: {
       ids: {
         terms: {
-          field: 'id.keyword',
+          field: 'id',
           size: 1000
         },
       },
