@@ -64,7 +64,7 @@
     "not dead"
   ],
   "peerDependencies": {
-    "@react-aria/visually-hidden": "3.6.1",
+    "@react-aria/visually-hidden": "3.7.0",
     "react-popper": "2.3.0",
     "react-virtual": "2.10.4"
   },
