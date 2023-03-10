@@ -67,9 +67,12 @@ const FeatureFormContainer = () => {
         value={keywordValue}
       />
       <div className='react-search__checkbox-filter-container'>
-        <fieldset>
-          <legend>{Drupal.t('Education language')}</legend>
+        <fieldset className='react-search__fieldset'>
+          <legend className='react-search__legend'>
+            {Drupal.t('Education language')}
+          </legend>
           <Checkbox
+            className='react-search__checkbox'
             checked={fiChecked}
             id='finnish_education'
             label={Drupal.t('Finnish')}
@@ -78,6 +81,7 @@ const FeatureFormContainer = () => {
             value={fiChecked.toString()}
           />
           <Checkbox
+            className='react-search__checkbox'
             checked={seChecked}
             id='swedish_education'
             label={Drupal.t('Swedish')}
@@ -86,9 +90,12 @@ const FeatureFormContainer = () => {
             value={seChecked.toString()}
           />
         </fieldset>
-        <fieldset>
-          <legend>{Drupal.t('Education level')}</legend>
+        <fieldset className='react-search__fieldset'>
+          <legend className='react-search__legend'>
+            {Drupal.t('Education level')}
+          </legend>
           <Checkbox
+            className='react-search__checkbox'
             checked={lowerChecked}
             id='grades_1_6'
             label={Drupal.t('Lower levels (1-6)')}
@@ -97,6 +104,7 @@ const FeatureFormContainer = () => {
             value={lowerChecked.toString()}
           />
           <Checkbox
+            className='react-search__checkbox'
             checked={upperChecked}
             id='grades_7_9'
             label={Drupal.t('Upper levels (7-9)')}
