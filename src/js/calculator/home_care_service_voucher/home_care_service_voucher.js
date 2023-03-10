@@ -353,6 +353,7 @@ class HomeCareServiceVoucher {
           title: this.t('receipt_city_pays_to_provider'),
           has_details: true,
           details: [
+            this.t('receipt_voucher_value', { voucher: this.calculator.formatFinnishEuroCents(voucher) }),
             this.t('receipt_city_pays_to_provider_max', { covered_hours: parsedSettings.covered_hours_per_month })
           ],
           sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(paymentByCity) }),
@@ -383,28 +384,37 @@ class HomeCareServiceVoucher {
         {
           title: null,
           text: this.t('receipt_included_homecare'),
-        },
-        {
-          title: null,
-          text: this.t('receipt_cost_of_city_homecare', {
-            city_homecare_cost: this.calculator.formatFinnishEuroCents(cityHomeCarePayment),
-          }),
-        },
+        }
       );
 
       const receiptData = {
         id: this.id,
         title: this.t('receipt_estimate_of_payment'),
         total_prefix: this.t('receipt_family_estimated_payment_prefix'),
-        total_value: this.calculator.formatFinnishEuroCents(voucher),
+        total_value: this.calculator.formatFinnishEuroCents(totalPaymentToProviderByClient),
         total_suffix: this.t('receipt_family_estimated_payment_suffix'),
         total_explanation: totalExplanation,
         hr: true,
-        breakdown: {
-          title: this.t('receipt_estimate_is_based_on'),
-          subtotals,
-          additional_details: additionalDetails,
-        },
+        breakdown: [
+          {
+            title: this.t('receipt_estimate_is_based_on'),
+            subtotals,
+            additional_details: additionalDetails,
+          },
+          {
+            title: this.t('receipt_estimate_if_done_by_city'),
+            subtotals: [
+              {
+                title: this.t('receipt_when_done_by_city'),
+                has_details: false,
+                details: [],
+                sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(cityHomeCarePayment) }),
+                sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(cityHomeCarePayment) }),
+              },
+            ],
+            additional_details: null,
+          },
+        ],
       };
 
       const receipt = this.calculator.getPartialRender(
@@ -414,7 +424,7 @@ class HomeCareServiceVoucher {
 
       return {
         receipt,
-        ariaLive: this.t('receipt_aria_live', { payment: this.calculator.formatEuroCents(voucher) }),
+        ariaLive: this.t('receipt_aria_live', { payment: this.calculator.formatEuroCents(totalPaymentToProviderByClient) }),
       };
     };
 

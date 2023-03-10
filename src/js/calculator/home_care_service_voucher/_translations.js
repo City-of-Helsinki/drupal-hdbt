@@ -12,12 +12,12 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Talouden yhteenlasketut tulot kuukaudessa',
+    fi: 'Talouden tulot kuukaudessa',
     sv: null,
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'Kuukausitulot tarkoittavat bruttotuloja eli tuloja ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä etuudet, esimerkiksi eläkkeensaajan hoitotuki.',
+    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä eläkkeensaajan hoitotuki. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman tulorajan mukaisesti.',
     sv: null,
     en: null,
   },
@@ -27,7 +27,7 @@ const translations = {
     en: null,
   },
   monthly_usage_explanation: {
-    fi: 'Löydät tuntimäärän kotihoidon hoito- ja palvelusuunnitelmastasi.',
+    fi: 'Löydät tuntimäärän kotihoidon päätöksestä.',
     sv: null,
     en: null,
   },
@@ -37,18 +37,18 @@ const translations = {
     en: null,
   },
   service_provider_price_explanation: {
-    fi: 'Valitsemasi palveluntuottajan perimä kotihoidon tuntihinta.',
+    fi: 'Valitsemasi palveluntuottajan tuntihinta kotihoidon palveluista.',
     sv: null,
     en: null,
   },
 
   receipt_estimate_of_payment: {
-    fi: 'Arvio kotihoidon palvelusetelistä',
+    fi: 'Arvio palvelusetelillä hankitusta yksityisestä kotihoidosta',
     sv: null,
     en: null,
   },
   receipt_family_estimated_payment_prefix: {
-    fi: 'Palvelusetelisi arvo on',
+    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on',
     sv: null,
     en: null,
   },
@@ -63,12 +63,12 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava.  Palvelusetelin tarkka arvo lasketaan kotihoidon tekemän päätöksen mukaan.',
+    fi: 'Arvio ovat suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
     sv: null,
     en: null,
   },
   receipt_estimate_is_based_on: {
-    fi: 'Kotihoidon hinta palvelusetelillä ostettuna muodostuu seuraavasti:',
+    fi: 'Arvio muodostuu seuraavasti:',
     sv: null,
     en: null,
   },
@@ -83,22 +83,27 @@ const translations = {
     en: null,
   },
   receipt_homecare_total: {
-    fi: 'Kotihoidon kokonaiskustannus',
+    fi: 'Palvelusetelillä hankittavan palvelun kokonaiskustannus',
     sv: null,
     en: null,
   },
   receipt_city_pays_to_provider: {
-    fi: 'Kaupunki maksaa palvelusetelillä yksityiselle tuottajalle',
+    fi: 'Kaupunki maksaa palvelusetelillä tuotetusta palvelusta yksityiselle palveluntuottajalle',
+    sv: null,
+    en: null,
+  },
+  receipt_voucher_value: {
+    fi: 'Palvelusetelisi arvo on ${voucher} euroa per tunti.',
     sv: null,
     en: null,
   },
   receipt_city_pays_to_provider_max: {
-    fi: 'Enintään ${covered_hours} tuntia kuukaudessa',
+    fi: 'Palvelusetelillä voidaan maksaa enintään ${covered_hours} tuntia kuukaudessa.',
     sv: null,
     en: null,
   },
   receipt_client_self_payment: {
-    fi: 'Sinulle maksettavaksi jäävä osuus eli omavastuu',
+    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu',
     sv: null,
     en: null,
   },
@@ -108,7 +113,7 @@ const translations = {
     en: null,
   },
   receipt_monthly_hours_are_over_covered_hours: {
-    fi: 'Kaupunki myöntää palvelusetelin ${covered_hours} tuntiin kuukaudessa asti, jonka ylittävä osuus jää kokonaan asiakkaan maksettavaksi. Tämä itse maksettava osuus on ${overflow_hours} tuntia eli ${overflow_euros} euroa.',
+    fi: 'Kaupunki myöntää palvelusetelin ${covered_hours} tuntiin kuukaudessa asti, jonka ylittävä osuus jää kokonaan asiakkaan maksettavaksi. Tämä itse maksettava osuus on ${overflow_hours} tuntia eli ${overflow_euros} euroa.',
     sv: null,
     en: null,
   },
@@ -117,13 +122,18 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_cost_of_city_homecare: {
-    fi: 'Kaupungin kotihoidon tuottamana sama palvelu maksaisi ${city_homecare_cost} euroa kuukaudessa.',
+  receipt_estimate_if_done_by_city: {
+    fi: 'Arvio kotihoidon maksusta kaupungin tuottamana:',
+    sv: null,
+    en: null,
+  },
+  receipt_when_done_by_city: {
+    fi: 'Kaupungin kotihoidon tuottamana palvelun asiakasmaksu',
     sv: null,
     en: null,
   },
   receipt_aria_live: {
-    fi: 'Kotihoidon palvelustetelin arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
     sv: null,
     en: null,
   },
