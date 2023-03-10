@@ -28,7 +28,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
 
   let sort: any = [
     {
-      name: 'asc'
+      'name.keyword': 'asc'
     }
   ];
 

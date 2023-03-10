@@ -1594,4 +1594,11 @@ function _hdbt_get_theme_path(): string {
  */
 function hdbt_preprocess_paragraph__school_search(array &$variables) {
   $variables['#attached']['library'][] = 'hdbt/school-search';
+
+  $privacyUrl = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+
+  if ($privacyUrl instanceof \Drupal\Core\Url) {
+    $privacyUrl->setAbsolute();
+    $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
+  }
 }
