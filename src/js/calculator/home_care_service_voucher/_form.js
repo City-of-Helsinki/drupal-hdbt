@@ -21,7 +21,7 @@ function getFormData(id, t) {
           unit: t('unit_euro'),
           min: 0,
           size: 8,
-          required: true,
+          required: false,
           strip: '[€eE ]',
           helper_text: t('gross_income_per_month_explanation'),
         },
