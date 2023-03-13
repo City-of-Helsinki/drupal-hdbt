@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { LoadingSpinner } from 'hds-react';
-import ResultsContainer from './containers/ResultsContainer';
-import FormContainer from './containers/FormContainer';
+import SearchContainer from './containers/SearchContainer';
 
 const ROOT_ID = 'helfi-school-search';
 
@@ -17,10 +16,7 @@ const start = () => {
   ReactDOM.render(
     <React.StrictMode>
       <div className='component--react-search component--react-search--schools'>
-        <Suspense fallback={<LoadingSpinner />}>
-          <FormContainer />
-          <ResultsContainer />
-        </Suspense>
+        <SearchContainer />
       </div>
     </React.StrictMode>,
     rootElement,

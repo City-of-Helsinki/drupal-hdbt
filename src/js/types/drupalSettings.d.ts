@@ -29,4 +29,7 @@ declare namespace drupalSettings {
   const helfi_react_search: {
     elastic_proxy_url: string
   };
+  const helfi_school_search: {
+    cookie_privacy_url: string;
+  };
 }
