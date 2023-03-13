@@ -1,4 +1,11 @@
-type imageOverride = {
+type AdditionalFilters = {
+  grades_1_6: boolean;
+  grades_7_9: boolean;
+  finnish_education: boolean;
+  swedish_education: boolean;
+};
+
+type ImageOverride = {
   picture_url_override: {
     alt: string,
     photographer: string,
@@ -9,6 +16,7 @@ type imageOverride = {
 
 export type School = {
   _language: string,
+  additional_filters: AdditionalFilters[];
   address: string[],
   id: string[],
   latitude: string[],
@@ -16,7 +24,7 @@ export type School = {
   name: string[],
   name_override?: string[],
   picture_url?: string[],
-  media_as_objects?: imageOverride[],
+  media_as_objects?: ImageOverride[],
   summary_processed?: string[],
   url: string[]
 };
