@@ -41,8 +41,8 @@ const Entries = () => {
     './src/js/component-library.js'
   ];
 
-  glob.sync(pattern, {ignore: ignore}).map((item) => {
-    entries[path.parse(item).name] = item; }
+  glob.globSync(pattern, {ignore: ignore}).map((item) => {
+    entries[path.parse(item).name] = './' + item; }
   );
   return entries;
 };
