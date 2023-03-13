@@ -4,10 +4,10 @@ import translations from './_translations';
 class HomeCareServiceVoucher {
   constructor(id, settings) {
     this.id = id;
-    // const parsedSettings = JSON.parse(settings);
+    const parsedSettings = JSON.parse(settings);
 
     // Expecting settings to follow this JSON format:
-    //*
+    /*
     const parsedSettings = {
       voucher_limits: {
         min: 7,
@@ -186,8 +186,6 @@ class HomeCareServiceVoucher {
       // },
       voucher_divisor: 60, // TODO: From where does this value come from?
     };
-
-
     // */
     // Form content
     const getFormData = () => form.getFormData(this.id, this.t);
@@ -303,26 +301,26 @@ class HomeCareServiceVoucher {
         cityHomeCarePayment = this.calculator.clamp(0, cityHomeCarePaymentBeforeChecks, maximumPaymentWithoutVoucher);
       }
 
-      console.log(
-        'Entered:',
-        '\n householdSize B5', householdSize,
-        '\n grossIncomePerMonth B6', grossIncomePerMonth,
-        '\n grossIncomePerMonthRaw B7', grossIncomePerMonthRaw,
-        '\n monthlyUsage B8', monthlyUsage,
-        '\n serviceProviderPrice B9', serviceProviderPrice,
-        '\n\nCalculated:',
-        '\n limit B11', limit,
-        '\n percent B12', percent,
-        // '\n paymentClassFromUsagePerMonth', paymentClassFromUsagePerMonth,
-        '\n paymentForHoursNotCoveredByVoucher B13', paymentForHoursNotCoveredByVoucher,
-        '\n paymentPercentageForIncomeExeedingLowerLimit B15', paymentPercentageForIncomeExeedingLowerLimit,
-        '\n maximumPaymentWithoutVoucher B16', maximumPaymentWithoutVoucher,
-        '\n cityHomeCarePaymentBeforeChecks B17', cityHomeCarePaymentBeforeChecks,
-        '\n voucher B20', voucher,
-        '\n cityHomeCarePayment B21', cityHomeCarePayment,
-        '\n paymentByCity B22', paymentByCity,
-        '\n totalPaymentToProviderByClient B23', totalPaymentToProviderByClient,
-      );
+      // console.log(
+      //   'Entered:',
+      //   '\n householdSize B5', householdSize,
+      //   '\n grossIncomePerMonth B6', grossIncomePerMonth,
+      //   '\n grossIncomePerMonthRaw B7', grossIncomePerMonthRaw,
+      //   '\n monthlyUsage B8', monthlyUsage,
+      //   '\n serviceProviderPrice B9', serviceProviderPrice,
+      //   '\n\nCalculated:',
+      //   '\n limit B11', limit,
+      //   '\n percent B12', percent,
+      //   // '\n paymentClassFromUsagePerMonth', paymentClassFromUsagePerMonth,
+      //   '\n paymentForHoursNotCoveredByVoucher B13', paymentForHoursNotCoveredByVoucher,
+      //   '\n paymentPercentageForIncomeExeedingLowerLimit B15', paymentPercentageForIncomeExeedingLowerLimit,
+      //   '\n maximumPaymentWithoutVoucher B16', maximumPaymentWithoutVoucher,
+      //   '\n cityHomeCarePaymentBeforeChecks B17', cityHomeCarePaymentBeforeChecks,
+      //   '\n voucher B20', voucher,
+      //   '\n cityHomeCarePayment B21', cityHomeCarePayment,
+      //   '\n paymentByCity B22', paymentByCity,
+      //   '\n totalPaymentToProviderByClient B23', totalPaymentToProviderByClient,
+      // );
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Show results on the receipt

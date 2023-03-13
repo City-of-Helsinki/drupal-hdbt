@@ -221,7 +221,7 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_meal_service_2_deliveries_price: {
+  receipt_meal_service_2_delivery_price: {
     fi: 'Hintaan on laskettu kaksi kuljetusmaksua eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
     sv: null,
     en: null,
