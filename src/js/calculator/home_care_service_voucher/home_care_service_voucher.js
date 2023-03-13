@@ -251,7 +251,7 @@ class HomeCareServiceVoucher {
       // 3. Calculate voucher value based on income and limits
       // 4. Calculate how much city will pay with vouchers (cap it to covered hours) per month
       // 5. Calculate how much client should pay for hours not covered by vouchers per month
-      // 6. Calculate voucher self payment (omavastuu) part and add result from previous step
+      // 6. Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
       // 7. Get maximum payment value from table if bought without voucher
       // 8. Calculate what the payment would be as service bought from city instead of private company with voucher
 
@@ -286,8 +286,8 @@ class HomeCareServiceVoucher {
       // 5. [Excel B13] Calculate how much client should pay for hours not covered by vouchers per month
       const paymentForHoursNotCoveredByVoucher = Math.max(0, monthlyUsage - parsedSettings.covered_hours_per_month) * serviceProviderPrice;
 
-      // 6. [Excel B23] Calculate voucher self payment (omavastuu) part and add result from previous step
-      const totalPaymentToProviderByClient = (serviceProviderPrice - voucher) * Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) + paymentForHoursNotCoveredByVoucher;
+      // 6. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
+      const totalPaymentToProviderByClient = Math.max(0, serviceProviderPrice - voucher) * Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) + paymentForHoursNotCoveredByVoucher;
 
       // 7. [Excel B16] Get maximum payment value from table if bought without voucher
       // TODO: Check these values, excel and doc were in conflict
