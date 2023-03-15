@@ -1597,7 +1597,7 @@ function hdbt_preprocess_paragraph__school_search(array &$variables) {
 
   $privacyUrl = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
 
-  if ($privacyUrl instanceof \Drupal\Core\Url) {
+  if ($privacyUrl instanceof Url) {
     $privacyUrl->setAbsolute();
     $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
