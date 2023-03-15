@@ -3,6 +3,7 @@ import { Button, Checkbox, TextInput } from 'hds-react';
 import { useState } from 'react';
 import { paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
+import SelectionsContainer from './SelectionsContainer';
 
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
@@ -115,6 +116,7 @@ const FeatureFormContainer = () => {
         </fieldset>
       </div>
       <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
+      <SelectionsContainer />
     </form>
   );
 };
