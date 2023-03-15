@@ -171,46 +171,15 @@ class HomeCareClientPayment {
       }
     };
 
-    // Finds the smallest matching value >= key from object
-    const getMinimumRange = (value, range) => {
-      const rangeKeys = Object.keys(range).reverse();
-      for (let i = 0; i < rangeKeys.length; i++) {
-        const valueLimit = rangeKeys[i];
-        if (Number(valueLimit) <= value) {
-          return range[valueLimit];
-        }
-      }
-      throw new Error('Minimum range not found for', value, 'from', range);
-    };
-
     const getHouseholdLimitAndPercentage = (householdSize, monthlyUsage, householdSizeData) => {
       // Currently we have values up until 6 person household sizes, this way it's configurable.
-      const household = getMinimumRange(householdSize, householdSizeData);
+      const household = this.calculator.getMinimumRange(householdSize, householdSizeData);
 
       const grossIncomeLimit = household.gross_income_limit;
-      const paymentPercentage = getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
+      const paymentPercentage = this.calculator.getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
 
       return { grossIncomeLimit, paymentPercentage };
     };
-
-    function formatEuroCents(num) {
-      // Round the number to two decimal places
-      num = `${Math.round(num * 100) / 100}`;
-
-      // Pad the number with zeros if necessary
-      const decimalPos = num.indexOf('.');
-      if (decimalPos === -1) {
-        num += '.00';
-      } else if (num.length - decimalPos === 2) {
-        num += '0';
-      }
-
-      return num;
-    }
-
-    function formatFinnishEuroCents(num) {
-      return formatEuroCents(num).replace('.', ',');
-    }
 
     const validate = () => {
       const errorMessages = [];
@@ -271,7 +240,7 @@ class HomeCareClientPayment {
       let totalExplanation = this.t('receipt_family_estimated_payment_explanation');
 
       // 1. Get proper limits based on given values and the parsed settings.
-      const maximumPayment = getMinimumRange(monthlyUsage, parsedSettings.monthly_usage_max_payment);
+      const maximumPayment = this.calculator.getMinimumRange(monthlyUsage, parsedSettings.monthly_usage_max_payment);
       const { grossIncomeLimit, paymentPercentage } = getHouseholdLimitAndPercentage(householdSize, monthlyUsage, parsedSettings.household_size);
 
       // 2. If the gross income field is null, lets use the maximumPayment
@@ -284,15 +253,15 @@ class HomeCareClientPayment {
         totalExplanation = this.t('receipt_family_empty_income') + totalExplanation;
       }
 
-      // 4. Payment should never be higher than maximumPayment
-      const payment = Math.min(referencePayment, maximumPayment);
+      // 4. Payment should never be higher than maximumPayment nor lower than 0
+      const payment = this.calculator.clamp(0, referencePayment, maximumPayment);
 
       const homecareSubtotal = {
         title: this.t('receipt_homecare_payment'),
         has_details: false,
         details: [],
-        sum: this.t('receipt_subtotal_euros_per_month', { value: formatFinnishEuroCents(payment) }),
-        sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: formatEuroCents(payment) }),
+        sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(payment) }),
+        sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(payment) }),
       };
 
       if (householdSize >= 2) {
@@ -307,9 +276,12 @@ class HomeCareClientPayment {
       let safetyphonePayment = 0;
       if (safetyphone === '1') {
         // Lets get the proper range (when writing, only 1 or 2 household size is used, but this approach supports larger sizes too)
-        const householdSizeRange = getMinimumRange(householdSize, parsedSettings.safetyphone_limits);
+        const householdSizeRange = this.calculator.getMinimumRange(householdSize, parsedSettings.safetyphone_limits);
+
+        // If the user has not entered a value to income field, we'll calculate the value as max.
+        const calculatedIncomePerMonth = (grossIncomePerMonthRaw === null) ? Infinity : grossIncomePerMonth;
         // Get the payment based on income and found range.
-        safetyphonePayment = getMinimumRange(grossIncomePerMonth, householdSizeRange);
+        safetyphonePayment = this.calculator.getMinimumRange(calculatedIncomePerMonth, householdSizeRange);
 
         // Add details to receipt
         subtotals.push(
@@ -317,8 +289,8 @@ class HomeCareClientPayment {
             title: this.t('safetyphone_heading'),
             has_details: false,
             details: [],
-            sum: this.t('receipt_subtotal_euros_per_month', { value: formatFinnishEuroCents(safetyphonePayment) }),
-            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: formatEuroCents(safetyphonePayment) }),
+            sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(safetyphonePayment) }),
+            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(safetyphonePayment) }),
           }
         );
       }
@@ -349,14 +321,14 @@ class HomeCareClientPayment {
               this.t(
                 'receipt_shopping_service_explanation',
                 {
-                  first_per_week: formatFinnishEuroCents(parsedSettings.shopping_service_prices.first_per_week),
-                  others_per_week: formatFinnishEuroCents(parsedSettings.shopping_service_prices.others_per_week),
+                  first_per_week: this.calculator.formatFinnishEuroCents(parsedSettings.shopping_service_prices.first_per_week),
+                  others_per_week: this.calculator.formatFinnishEuroCents(parsedSettings.shopping_service_prices.others_per_week),
                 },
               ),
               this.t('receipt_shopping_service_algorithm')
             ],
-            sum: this.t('receipt_subtotal_euros_per_month', { value: formatFinnishEuroCents(shoppingPaymentPerMonth) }),
-            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: formatEuroCents(shoppingPaymentPerMonth) }),
+            sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(shoppingPaymentPerMonth) }),
+            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(shoppingPaymentPerMonth) }),
           }
         );
       }
@@ -396,16 +368,16 @@ class HomeCareClientPayment {
                 }
               ),
               this.t('receipt_meal_service_price', {
-                meal_service_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.lunch),
+                meal_service_price: this.calculator.formatFinnishEuroCents(parsedSettings.meal_service_prices.lunch),
                 meal_deliveries_per_week: deliveriesPerWeek,
                 meal_deliveries_per_month: deliveriesPerWeek * 4,
               }),
               this.t(`receipt_meal_service_${deliveriesPerWeek}_delivery_price`, {
-                meal_service_delivery_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.delivery),
+                meal_service_delivery_price: this.calculator.formatFinnishEuroCents(parsedSettings.meal_service_prices.delivery),
               }),
             ],
-            sum: this.t('receipt_subtotal_euros_per_month', { value: formatFinnishEuroCents(mealPaymentPerMonth) }),
-            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: formatEuroCents(mealPaymentPerMonth) }),
+            sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(mealPaymentPerMonth) }),
+            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(mealPaymentPerMonth) }),
           }
         );
         additionalDetails.push(
@@ -413,8 +385,8 @@ class HomeCareClientPayment {
             title: this.t('receipt_additional_details'),
             text: this.t('receipt_meal_service_menumat_notice',
               {
-                menumat_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.lunch),
-                menumat_device_price: formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.device_per_day),
+                menumat_price: this.calculator.formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.lunch),
+                menumat_device_price: this.calculator.formatFinnishEuroCents(parsedSettings.meal_service_prices.menumat.device_per_day),
               }
             )
           }
@@ -440,7 +412,7 @@ class HomeCareClientPayment {
         id: this.id,
         title: this.t('receipt_estimate_of_payment'),
         total_prefix: this.t('receipt_family_estimated_payment_prefix'),
-        total_value: formatFinnishEuroCents(sum),
+        total_value: this.calculator.formatFinnishEuroCents(sum),
         total_suffix: this.t('receipt_family_estimated_payment_suffix'),
         total_explanation: totalExplanation,
         hr: true,
