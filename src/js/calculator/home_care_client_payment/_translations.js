@@ -12,12 +12,12 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Talouden tulot kuukaudessa',
+    fi: 'Talouden bruttotulot kuukaudessa',
     sv: null,
     en: null,
   },
   gross_income_per_month_explanation: {
-    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä eläkkeensaajan hoitotuki.',
+    fi: 'Koko talouden yhteenlasketut ansio- ja pääomatulot ennen verojen vähentämistä. Tuloihin lasketaan palkka, eläke-, vuokra- ja korkotulot sekä eläkkeensaajan hoitotuki. Jos jätät kentän tyhjäksi, lasketaan arvio korkeimman maksun mukaisesti.',
     sv: null,
     en: null,
   },
@@ -27,7 +27,7 @@ const translations = {
     en: null,
   },
   monthly_usage_explanation: {
-    fi: 'Löydät tuntimäärän kotihoidon päätöksestä.',
+    fi: 'Löydät tuntimäärän kotihoidon hoito- ja palvelusuunnitelmasta.',
     sv: null,
     en: null,
   },
@@ -37,7 +37,7 @@ const translations = {
     en: null,
   },
   living_at_home_paragraph: {
-    fi: 'Voit laskea mukaan kotona asumista tukevia palveluja. Palvelut ovat maksullisia.',
+    fi: 'Voit laskea mukaan kotona asumista tukevia palveluja. Tukipalvelut ovat maksullisia.',
     sv: null,
     en: null,
   },
@@ -142,7 +142,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava.  Asiakasmaksujen tarkka määrä lasketaan kotihoidon maksupäätökseen.',
+    fi: 'Tämä arvio on suuntaa antava. Tarkan arvon saat kotihoidon päätöksessä.',
     sv: null,
     en: null,
   },
@@ -221,7 +221,7 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_meal_service_2_deliveries_price: {
+  receipt_meal_service_2_delivery_price: {
     fi: 'Hintaan on laskettu kaksi kuljetusmaksua eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
     sv: null,
     en: null,

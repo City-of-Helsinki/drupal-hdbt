@@ -297,6 +297,7 @@
 
     @include breakpoint($breakpoint-s) {
       display: grid;
+      gap: $spacing-half;
       grid-template-areas:
         'title sum'
         'details sum';

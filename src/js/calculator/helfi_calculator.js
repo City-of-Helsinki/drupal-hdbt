@@ -82,6 +82,47 @@ class HelfiCalculator {
     );
   }
 
+  // Finds the smallest matching value >= key from object
+  // eslint-disable-next-line class-methods-use-this
+  getMinimumRange(value, range) {
+    const rangeKeys = Object.keys(range).reverse();
+    for (let i = 0; i < rangeKeys.length; i++) {
+      const valueLimit = rangeKeys[i];
+      if (Number(valueLimit) <= value) {
+        return range[valueLimit];
+      }
+    }
+    throw new Error('Minimum range not found for', value, 'from', range);
+  };
+
+  // Clamps value within min-max range
+  // eslint-disable-next-line class-methods-use-this
+  clamp(min, value, max) {
+    return Math.max(min, Math.min(value, max));
+  };
+
+  // Format number as string with two decimal points, used with screen reader texts as computers handle . better than , as separator.
+  // eslint-disable-next-line class-methods-use-this
+  formatEuroCents(num) {
+    // Round the number to two decimal places
+    num = `${Math.round(num * 100) / 100}`;
+
+    // Pad the number with zeros if necessary
+    const decimalPos = num.indexOf('.');
+    if (decimalPos === -1) {
+      num += '.00';
+    } else if (num.length - decimalPos === 2) {
+      num += '0';
+    }
+
+    return num;
+  }
+
+  // Format number as string with Finnish euro cents style
+  formatFinnishEuroCents(num) {
+    return this.formatEuroCents(num).replace('.', ',');
+  }
+
   preprocessData(obj) {
     const keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {

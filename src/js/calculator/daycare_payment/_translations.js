@@ -22,7 +22,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Perheen tulot kuukaudessa',
+    fi: 'Perheen bruttotulot kuukaudessa',
     sv: null,
     en: null,
   },
@@ -92,7 +92,7 @@ const translations = {
     en: null,
   },
   daycare_type_1_explanation: {
-    fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa arkipäivinä klo 6.15–17.30, ryhmäperhepäiväkodeissa noin klo 7.30–16.30 sekä perhepäiväkodeissa ja kolmiperhepäivähoidossa noin klo 8.00–16.00.',
+    fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa, ryhmäperhepäiväkodeissa sekä perhepäiväkodeissa ja kolmiperhepäivähoidossa.',
     sv: null,
     en: null,
   },
@@ -167,12 +167,12 @@ const translations = {
     en: null,
   },
   daycare_type_3_caretime_1: {
-    fi: 'Yli 7 tuntia päivässä (hoitoaika voi joustaa yli 8 tunnin)',
+    fi: 'Yli 7 tuntia päivässä',
     sv: null,
     en: null,
   },
   daycare_type_3_caretime_2: {
-    fi: '7–8 tuntia päivässä (hoitoaika ei jousta yli 8 tunnin)',
+    fi: '7–8 tuntia päivässä (enintään 8 tuntia)',
     sv: null,
     en: null,
   },
@@ -197,7 +197,7 @@ const translations = {
     en: null,
   },
   daycare_type_4_caretime_1: {
-    fi: 'Yli 161 tuntia kuukaudessa',
+    fi: '161 tuntia tai enemmän kuukaudessa',
     sv: null,
     en: null,
   },
@@ -242,7 +242,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava. Tarkan asiakasmaksun saat asiakasmaksupäätöksessä vuosittain.',
+    fi: 'Tämä arvio on suuntaa antava. Tarkan asiakasmaksun saat asiakasmaksupäätöksessä.',
     sv: null,
     en: null,
   },
@@ -267,7 +267,7 @@ const translations = {
     en: null,
   },
   receipt_daycare_type_2_details: {
-    fi: '5-vuotiaiden varhaiskasvatus on maksutonta 4 tuntia päivässä, ja se koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
+    fi: '5-vuotiaiden varhaiskasvatus on maksutonta 4 tuntia päivässä ja koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
     sv: null,
     en: null,
   },
