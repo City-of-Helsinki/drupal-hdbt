@@ -55,10 +55,12 @@
   {{ attachment_before }}
 
   <div class="unit-search__results">
-    <span class="unit-search__count-container">
-      <span class="unit-search__count">{{ total_rows ? total_rows : 0 }}</span>
-      {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
-    </span>
+    {% if total_rows %}
+      <span class="unit-search__count-container">
+        <span class="unit-search__count">{{ total_rows }}</span>
+        {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+      </span>
+    {% endif %}
 
     {{ rows }}
   
