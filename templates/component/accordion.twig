@@ -15,7 +15,7 @@
 <div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
   <span class="is-hidden" id="{{ toggle_button_labelledby_id }}">{{ 'Toggle element: '|t({}, {'context': 'The helper text for toggle accordion visibility button'}) }}{{ heading|default('Missing heading'|t) }}</span>
   <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
-    <button class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button" aria-expanded="true" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ toggle_button_labelledby_id }}">
+    <button type="button" class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button" aria-expanded="true" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ toggle_button_labelledby_id }}">
       {% if heading_icon %}
         <div class="accordion-item__icon">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: heading_icon} %}
@@ -29,7 +29,7 @@
 
       {{ content|default('Missing content'|t) }}
 
-      <button class="accordion-item__button accordion-item__button--close" aria-expanded="true" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ close_button_labelled_by_id }}">
+      <button type="button" class="accordion-item__button accordion-item__button--close" aria-expanded="true" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ close_button_labelled_by_id }}">
         <span class="is-hidden" id="{{ close_button_labelled_by_id }}">{{ 'Close element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}{{ heading|default('Missing heading'|t) }}</span>
         {{ 'Close'|t }}
       </button>
