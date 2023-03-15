@@ -44,8 +44,8 @@ $-map-aspect-ratio-mobile: 1;
   position: relative;
 
   .responsive-map-container {
-    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
     height: 0;
+    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
     position: relative;
 
     @include breakpoint($breakpoint-s) {

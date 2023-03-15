@@ -1,14 +1,13 @@
-import { Button, TextInput } from 'hds-react';
 import { useSetAtom } from 'jotai';
-import { SyntheticEvent } from 'react';
+import { Button, TextInput } from 'hds-react';
 import { paramsAtom } from '../store';
-import SearchParams from '../types/SearchParams';
+import type SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
 };
 
-const FormContainer = () => {
+const FeatureFormContainer = () => {
   const setParams = useSetAtom(paramsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -25,11 +24,20 @@ const FormContainer = () => {
 
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
+      <h3>
+        {Drupal.t('Search by school features')}
+      </h3>
+      <p className='react-search__form-description'>
+        {Drupal.t(
+          'You can search schools by name, language, level, or postal code. Students may be accepted into schools outside of their own district if there\'s room. Note that some schools require passing an exam.',
+          {},
+          {context: 'Feature search description'}
+        )}
+      </p>
       <TextInput
         className='hdbt-search__filter'
-        helperText={Drupal.t('Input street address')}
         id='keyword'
-        label={Drupal.t('Home address')}
+        label={Drupal.t('School name or postal code')}
         type='search'
       />
       <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
@@ -37,4 +45,4 @@ const FormContainer = () => {
   );
 };
 
-export default FormContainer;
+export default FeatureFormContainer;

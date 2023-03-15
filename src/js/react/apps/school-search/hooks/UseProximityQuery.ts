@@ -3,10 +3,10 @@ import { useAtomValue } from 'jotai';
 import SearchParams from '../types/SearchParams';
 import configurationsAtom from '../store';
 import { getCoordsUrl, getLocationsUrl, parseCoordinates } from '../helpers/SubQueries';
-import getQueryString from '../helpers/ElasticQuery';
+import getQueryString from '../helpers/ProximityQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 
-const UseQuery = (params: SearchParams) => {
+const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
@@ -61,4 +61,4 @@ const UseQuery = (params: SearchParams) => {
   };
 };
 
-export default UseQuery;
+export default UseProximityQuery;

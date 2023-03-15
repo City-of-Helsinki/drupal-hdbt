@@ -344,7 +344,13 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
-      $photographer = $entity->{$image}->entity->field_photographer->value;
+      // Get translated photographer text if available.
+      if ($entity->{$image}->entity->hasTranslation($variables['current_langcode'])) {
+        $photographer = $entity->{$image}->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+      }
+      else {
+        $photographer = $entity->{$image}->entity->field_photographer->value;
+      }
 
       // If both caption and photographer exists, use targeted translation
       // for the caption and photographer. Otherwise set only photographer as
@@ -1588,4 +1594,11 @@ function _hdbt_get_theme_path(): string {
  */
 function hdbt_preprocess_paragraph__school_search(array &$variables) {
   $variables['#attached']['library'][] = 'hdbt/school-search';
+
+  $privacyUrl = _hdbt_eu_cookie_compliance_get_privacy_policy_url();
+
+  if ($privacyUrl instanceof \Drupal\Core\Url) {
+    $privacyUrl->setAbsolute();
+    $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
+  }
 }

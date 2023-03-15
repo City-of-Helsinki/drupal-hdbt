@@ -214,7 +214,7 @@ class svgToSprite {
 
   // Map files to suitable variables.
   checkForFiles() {
-    glob.sync(this.inputPattern).map((match) => {
+    glob.globSync(this.inputPattern).map((match) => {
       const pathname = path.resolve(match);
       const stats = fs.lstatSync(pathname);
 
