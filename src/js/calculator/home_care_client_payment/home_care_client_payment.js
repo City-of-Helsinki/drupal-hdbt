@@ -284,8 +284,8 @@ class HomeCareClientPayment {
         totalExplanation = this.t('receipt_family_empty_income') + totalExplanation;
       }
 
-      // 4. Payment should never be higher than maximumPayment
-      const payment = Math.min(referencePayment, maximumPayment);
+      // 4. Payment should never be higher than maximumPayment nor lower than 0
+      const payment = Math.max(Math.min(referencePayment, maximumPayment), 0);
 
       const homecareSubtotal = {
         title: this.t('receipt_homecare_payment'),
@@ -308,8 +308,11 @@ class HomeCareClientPayment {
       if (safetyphone === '1') {
         // Lets get the proper range (when writing, only 1 or 2 household size is used, but this approach supports larger sizes too)
         const householdSizeRange = getMinimumRange(householdSize, parsedSettings.safetyphone_limits);
+
+        // If the user has not entered a value to income field, we'll calculate the value as max.
+        const calculatedIncomePerMonth = (grossIncomePerMonthRaw === null) ? Infinity : grossIncomePerMonth;
         // Get the payment based on income and found range.
-        safetyphonePayment = getMinimumRange(grossIncomePerMonth, householdSizeRange);
+        safetyphonePayment = getMinimumRange(calculatedIncomePerMonth, householdSizeRange);
 
         // Add details to receipt
         subtotals.push(
