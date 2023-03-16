@@ -1,6 +1,38 @@
 import GlobalSettings from '../enum/GlobalSettings';
 import BooleanQuery from '@/types/BooleanQuery';
 import SearchParams from '../types/SearchParams';
+import UseFeatureQuery from '../hooks/UseFeatureQuery';
+
+const getCheckBoxFilters = (params: SearchParams) => {
+  const languageKeys = ['finnish_education', 'swedish_education'];
+  const gradeKeys = ['grades_1_6', 'grades_7_9'];
+  const query: any = [];
+
+  [languageKeys, gradeKeys].forEach((keys) => {
+    const hits: string[] = [];
+    
+    keys.forEach((key: string) => {
+      if (params[key as keyof SearchParams]) {
+        hits.push(key);
+      }
+    });
+
+    if (hits.length) {
+      query.push({
+        bool: {
+          minimum_should_match: 1,
+          should: hits.map((hit) => ({
+            term: {
+              [`additional_filters.${hit}`]: true
+            }
+          }))
+        }
+      });
+    }
+  });
+
+  return query;
+};
 
 const getQueryString = (params: SearchParams) => {
   const { size } = GlobalSettings;
@@ -52,27 +84,14 @@ const getQueryString = (params: SearchParams) => {
     query.bool.minimum_should_match = 1;
   }
   
-  const checkBoxFilters: any = [];
-  ['finnish_education', 'swedish_education', 'grades_1_6', 'grades_7_9'].forEach(key => {
-    if (!params[key as keyof SearchParams]) {
-      return;
-    };
-
-    checkBoxFilters.push({
-      term: {
-        [`additional_filters.${key}`]: true
-      }
-    });
-  });
-
+  const checkBoxFilters: any = getCheckBoxFilters(params);
   if (checkBoxFilters.length) {
       query.bool.must = [{
         nested: {
         path: 'additional_filters',
         query: {
           bool: {
-            should: checkBoxFilters,
-            minimum_should_match: 1
+            must: checkBoxFilters
           }
         }
       }
