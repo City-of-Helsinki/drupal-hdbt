@@ -14,50 +14,38 @@ class HomeCareServiceVoucher {
         min: 7,
         max: 34
       },
-      // limits updated from here: https://stm.fi/maksut-kotipalvelu-kotisairaanhoito
+      household_percent_hour_slots: [ 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38 ],
       household_size: {
-        '1': {
+        1: {
           limit: 598,
-          percent: 35,
+          percent: [ 8, 10, 12, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5, 30, 30.5, 31, 31.5, 32, 32.5, 33, 33.5, 34, 34.5, 35 ],
         },
-        '2': {
+        2: {
           limit: 1103,
-          percent: 22,
+          percent: [ 7, 8.75, 10.5, 12.25, 14, 14.75, 15.5, 16.25, 17, 17.75, 18.5, 19.25, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24 ],
         },
-        '3': {
+        3: {
           limit: 1731,
-          percent: 18,
+          percent: [ 6, 7.5, 9, 10.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19 ],
         },
-        '4': {
+        4: {
           limit: 2140,
-          percent: 15,
+          percent: [ 6, 7.5, 9, 10.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 ],
         },
-        '5': {
+        5: {
           limit: 2591,
-          percent: 13,
+          percent: [ 6, 7.5, 9, 10.5, 12, 12.5, 13, 13.5, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14 ],
         },
-        '6': {
+        6: {
           limit: 2976,
-          percent: 11,
-        },
-        '7': {
-          limit: 3332,
-          percent: 10,
-        },
-        '8': {
-          limit: 3688,
-          percent: 9,
+          percent: [ 6, 7.5, 9, 10.5, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
         }
       },
       beyond_cutoff: {
-        cutoff: 8,
+        cutoff: 6,
         limit: {
           multiply_n: 356,
-          add: 3688,
-        },
-        percent: {
-          multiply_n: -1,
-          add: 9,
+          add: 2976,
         },
       },
       covered_hours_per_month: 40,
@@ -74,22 +62,13 @@ class HomeCareServiceVoucher {
       if (foundLimit) {
         return foundLimit;
       }
-      const { cutoff, limit, percent } = incomeSettings.beyond_cutoff;
-      const paymentClassFromUsagePerMonth = incomeSettings.beyond_cutoff.payment_class_from_usage_per_month;
+      const { cutoff, limit } = incomeSettings.beyond_cutoff;
       const n = householdSize - cutoff;
       // Get limits at cutoff point, so that they can be scaled down on n+1 values
       const cutoffLimits = getLimits(cutoff, incomeSettings);
       return {
         limit: limit.multiply_n * n + limit.add,
-        percent: percent.multiply_n * n + percent.add,
-        payment_class_from_usage_per_month: Object.fromEntries(
-          Object.entries(cutoffLimits.payment_class_from_usage_per_month).map(
-            ([key, value]) => [
-              key,
-              Math.max(0, value + paymentClassFromUsagePerMonth.multiply_n * n + paymentClassFromUsagePerMonth.add),
-            ]
-          )
-        ),
+        percent: cutoffLimits.percent,
       };
     }
 
@@ -124,48 +103,48 @@ class HomeCareServiceVoucher {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Calculate results
       // 1. Get limits for math from parsedSettings based on household size
-      // 2. Calculate payment percentage for income that exeeds limit
-      // 3. Calculate voucher value based on income and limits
-      // 4. Calculate how much city will pay with vouchers (cap it to covered hours) per month
-      // 5. Calculate how much client should pay for hours not covered by vouchers per month
-      // 6. Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
-
+      // 2. Calculate voucher value based on income and limits
+      // 3. Calculate how much city will pay with vouchers (cap it to covered hours) per month
+      // 4. Calculate how much client should pay for hours not covered by vouchers per month
+      // 5. Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
 
       // 1. Get limits based on household size
       const {
         limit,
-        percent,
-        // payment_class_from_usage_per_month: paymentClassFromUsagePerMonth
+        percent: percentArray,
       } = getLimits(householdSize, parsedSettings);
 
-      // // 2. [Excel B15] Calculate payment percentage for income that exeeds lower limit
-      // const paymentPercentageForIncomeExeedingLowerLimit = this.calculator.getMinimumRange(monthlyUsage, paymentClassFromUsagePerMonth);
+      // Convert percentArray range to object that monthlyUsage limit and corresponding percent
+      const percentRange = {};
+      parsedSettings.household_percent_hour_slots.forEach((slotName, i) => {
+        percentRange[slotName] = percentArray[i];
+      });
+      // Get percent for given family size and monthly usage
+      const percent = this.calculator.getMinimumRange(monthlyUsage, percentRange);
 
-      const deductedIncome = grossIncomePerMonth - limit;
-
-      // 3. [Excel B20] Calculate voucher value and clamp it between min and max, then round it to two decimals (cents) as rounded value is used in further math.
+      // 2. [Excel B20] Calculate voucher value and clamp it between min and max, then round it to two decimals (cents) as rounded value is used in further math.
       const voucher = Math.round(
         (
           // If gross income has been given, calculate the value, otherwise use minimum voucher value
           (grossIncomePerMonthRaw !== null) ?
             this.calculator.clamp(
               parsedSettings.voucher_limits.min,
-              parsedSettings.voucher_limits.max - (deductedIncome * (percent / 100) / parsedSettings.voucher_divisor),
+              parsedSettings.voucher_limits.max - ((grossIncomePerMonth - limit) * (percent / 100) / parsedSettings.voucher_divisor),
               parsedSettings.voucher_limits.max
             ) :
             parsedSettings.voucher_limits.min
         ) * 100) / 100;
 
-      // 4. [Excel B22] Calculate how much city will pay with vouchers (cap it to covered hours) per month
+      // 3. [Excel B22] Calculate how much city will pay with vouchers (cap it to covered hours) per month
       const paymentByCity = Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) * voucher;
 
-      // 5. [Excel B13] Calculate how much client should pay for hours not covered by vouchers per month
+      // 4. [Excel B13] Calculate how much client should pay for hours not covered by vouchers per month
       const paymentForHoursNotCoveredByVoucher = Math.max(0, monthlyUsage - parsedSettings.covered_hours_per_month) * serviceProviderPrice;
 
-      // 6. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
+      // 5. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
       const totalPaymentToProviderByClient = Math.max(0, serviceProviderPrice - voucher) * Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) + paymentForHoursNotCoveredByVoucher;
 
-      // 7. Calculate what the payment would be as service bought from city instead of private company with voucher using home_care_client_payment function
+      // 6. Calculate what the payment would be as service bought from city instead of private company with voucher using home_care_client_payment function
       const cityHomeCarePayment = calculatePayment(
         householdSize,
         grossIncomePerMonth,
@@ -173,7 +152,7 @@ class HomeCareServiceVoucher {
         monthlyUsage,
         this.calculator,
         JSON.parse(drupalSettings.home_care_client_payment),
-        true, // Debug
+        false, // Debug
       );
 
       // console.log(

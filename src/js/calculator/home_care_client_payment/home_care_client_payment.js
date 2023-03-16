@@ -281,7 +281,7 @@ class HomeCareClientPayment {
         monthlyUsage,
         this.calculator,
         parsedSettings,
-        true, // Debug
+        false, // Debug
       );
 
       // If the gross income field does not have a value, show notice on receipt about it
@@ -426,12 +426,12 @@ class HomeCareClientPayment {
         );
       }
 
-      console.log(
-          '\npayment', payment,
-          '\nsafetyphonePayment', safetyphonePayment,
-          '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
-          '\nmealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`,
-        );
+      // console.log(
+      //     '\npayment', payment,
+      //     '\nsafetyphonePayment', safetyphonePayment,
+      //     '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
+      //     '\nmealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`,
+      //   );
 
       const sum = payment + safetyphonePayment + shoppingPaymentPerMonth + mealPaymentPerMonth;
 
