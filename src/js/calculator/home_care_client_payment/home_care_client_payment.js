@@ -2,6 +2,50 @@ import form from './_form';
 import translations from './_translations';
 
 class HomeCareClientPayment {
+
+
+  // eslint-disable-next-line class-methods-use-this
+  static calculatePayment(
+    householdSize,
+    grossIncomePerMonth,
+    grossIncomePerMonthRaw,
+    monthlyUsage,
+    calculator,
+    calculatorSettings,
+    printDebug = false,
+  ) {
+
+    // 1. Get proper limits based on given values and the parsed settings.
+    const maximumPayment = calculator.getMinimumRange(monthlyUsage, calculatorSettings.monthly_usage_max_payment);
+    const household = calculator.getMinimumRange(householdSize, calculatorSettings.household_size);
+    const grossIncomeLimit = household.gross_income_limit;
+    const paymentPercentage = calculator.getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
+
+    // 2. If the gross income field is null, lets use the maximumPayment
+    let referencePayment = maximumPayment;
+
+    // 3. If the gross income field has a value, calculate refrence payment
+    if (grossIncomePerMonthRaw !== null) {
+      referencePayment = (grossIncomePerMonth - grossIncomeLimit) * (paymentPercentage / 100);
+    }
+
+    // 4. Payment should never be higher than maximumPayment nor lower than 0
+    const payment = calculator.clamp(0, referencePayment, maximumPayment);
+
+    if (printDebug) {
+      // eslint-disable-next-line no-console
+      console.log(
+        'maximumPayment', maximumPayment,
+        '\ngrossIncomeLimit', grossIncomeLimit,
+        '\ngrossIncomeLimit', grossIncomeLimit,
+        '\npaymentPercentage', paymentPercentage,
+        '\nreferencePayment', referencePayment,
+      );
+    }
+
+    return payment;
+  };
+
   constructor(id, settings) {
     this.id = id;
     const parsedSettings = JSON.parse(settings);
@@ -171,16 +215,6 @@ class HomeCareClientPayment {
       }
     };
 
-    const getHouseholdLimitAndPercentage = (householdSize, monthlyUsage, householdSizeData) => {
-      // Currently we have values up until 6 person household sizes, this way it's configurable.
-      const household = this.calculator.getMinimumRange(householdSize, householdSizeData);
-
-      const grossIncomeLimit = household.gross_income_limit;
-      const paymentPercentage = this.calculator.getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
-
-      return { grossIncomeLimit, paymentPercentage };
-    };
-
     const validate = () => {
       const errorMessages = [];
 
@@ -239,22 +273,21 @@ class HomeCareClientPayment {
 
       let totalExplanation = this.t('receipt_family_estimated_payment_explanation');
 
-      // 1. Get proper limits based on given values and the parsed settings.
-      const maximumPayment = this.calculator.getMinimumRange(monthlyUsage, parsedSettings.monthly_usage_max_payment);
-      const { grossIncomeLimit, paymentPercentage } = getHouseholdLimitAndPercentage(householdSize, monthlyUsage, parsedSettings.household_size);
+      // Steps 1-4 in a separate function, so that they can be used in home_care_service_voucher.js too
+      const payment = HomeCareClientPayment.calculatePayment(
+        householdSize,
+        grossIncomePerMonth,
+        grossIncomePerMonthRaw,
+        monthlyUsage,
+        this.calculator,
+        parsedSettings,
+        true, // Debug
+      );
 
-      // 2. If the gross income field is null, lets use the maximumPayment
-      let referencePayment = maximumPayment;
-
-      // 3. If the gross income field has a value, calculate refrence payment
-      if (grossIncomePerMonthRaw !== null) {
-        referencePayment = (grossIncomePerMonth - grossIncomeLimit) * (paymentPercentage / 100);
-      } else {
+      // If the gross income field does not have a value, show notice on receipt about it
+      if (grossIncomePerMonthRaw === null) {
         totalExplanation = this.t('receipt_family_empty_income') + totalExplanation;
       }
-
-      // 4. Payment should never be higher than maximumPayment nor lower than 0
-      const payment = this.calculator.clamp(0, referencePayment, maximumPayment);
 
       const homecareSubtotal = {
         title: this.t('receipt_homecare_payment'),
@@ -394,12 +427,6 @@ class HomeCareClientPayment {
       }
 
       console.log(
-          'maximumPayment', maximumPayment,
-          '\ngrossIncomeLimit', grossIncomeLimit,
-          '\ngrossIncomeLimit', grossIncomeLimit,
-          '\npaymentPercentage', paymentPercentage,
-          '\nreferencePayment', referencePayment,
-          '\n',
           '\npayment', payment,
           '\nsafetyphonePayment', safetyphonePayment,
           '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
@@ -477,3 +504,5 @@ class HomeCareClientPayment {
 
 window.helfi_calculator = window.helfi_calculator || {};
 window.helfi_calculator.home_care_client_payment = (id, settings) => new HomeCareClientPayment(id, settings);
+
+export default HomeCareClientPayment.calculatePayment;

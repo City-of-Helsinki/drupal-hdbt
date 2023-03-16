@@ -1,5 +1,6 @@
 import form from './_form';
 import translations from './_translations';
+import calculatePayment from '../home_care_client_payment/home_care_client_payment';
 
 class HomeCareServiceVoucher {
   constructor(id, settings) {
@@ -11,179 +12,55 @@ class HomeCareServiceVoucher {
     const parsedSettings = {
       voucher_limits: {
         min: 7,
-        max: 34,
+        max: 34
       },
+      // limits updated from here: https://stm.fi/maksut-kotipalvelu-kotisairaanhoito
       household_size: {
         '1': {
-          limit: 588,
+          limit: 598,
           percent: 35,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 8,
-            '9': 12,
-            '13': 16,
-            '17': 20,
-            '21': 22,
-            '25': 24,
-            '29': 26,
-            '33': 28,
-            '37': 30,
-            '41': 35,
-          },
         },
         '2': {
-          limit: 1084,
+          limit: 1103,
           percent: 22,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 7,
-            '9': 10,
-            '13': 12,
-            '17': 16,
-            '21': 18,
-            '25': 20,
-            '29': 20,
-            '33': 20,
-            '37': 20,
-            '41': 20,
-          },
         },
         '3': {
-          limit: 1701,
+          limit: 1731,
           percent: 18,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 9,
-            '13': 11,
-            '17': 14,
-            '21': 16,
-            '25': 16,
-            '29': 16,
-            '33': 16,
-            '37': 16,
-            '41': 16,
-          },
         },
         '4': {
-          limit: 2103,
+          limit: 2140,
           percent: 15,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 9,
-            '13': 11,
-            '17': 12,
-            '21': 12,
-            '25': 12,
-            '29': 12,
-            '33': 12,
-            '37': 12,
-            '41': 12,
-          },
         },
         '5': {
-          limit: 2546,
+          limit: 2591,
           percent: 13,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 9,
-            '13': 10,
-            '17': 10,
-            '21': 10,
-            '25': 10,
-            '29': 10,
-            '33': 10,
-            '37': 10,
-            '41': 10,
-          },
         },
         '6': {
-          limit: 2924,
+          limit: 2976,
           percent: 11,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 8,
-            '13': 9,
-            '17': 9,
-            '21': 9,
-            '25': 9,
-            '29': 9,
-            '33': 9,
-            '37': 9,
-            '41': 9,
-          },
         },
         '7': {
-          limit: 3274,
+          limit: 3332,
           percent: 10,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 8,
-            '13': 9,
-            '17': 9,
-            '21': 9,
-            '25': 9,
-            '29': 9,
-            '33': 9,
-            '37': 9,
-            '41': 9,
-          },
         },
         '8': {
-          limit: 3624,
+          limit: 3688,
           percent: 9,
-          payment_class_from_usage_per_month: {
-            '0': 4,
-            '5': 6,
-            '9': 8,
-            '13': 9,
-            '17': 9,
-            '21': 9,
-            '25': 9,
-            '29': 9,
-            '33': 9,
-            '37': 9,
-            '41': 9,
-          },
-        },
+        }
       },
       beyond_cutoff: {
         cutoff: 8,
         limit: {
-          multiply_n: 342,
-          add: 3483,
+          multiply_n: 356,
+          add: 3688,
         },
         percent: {
           multiply_n: -1,
           add: 9,
         },
-        payment_class_from_usage_per_month: {
-          multiply_n: -1,
-          add: 0,
-        },
       },
       covered_hours_per_month: 40,
-      // TODO: Check these values, excel and word were in conflict
-      // Values from excel
-      maximum_payment_from_monthly_usage: {
-        '0': 109.78,
-        '6': 329.34,
-        '11': 603.79,
-        '21': 1152.69,
-        '41': 2250.49,
-      },
-      // Values from word
-      // maximum_payment_from_monthly_usage: {
-      //   '0': 112.2,
-      //   '6': 336.6,
-      //   '11': 617.09,
-      //   '21': 1178.09,
-      //   '41': 2300.08,
-      // },
       voucher_divisor: 60, // TODO: From where does this value come from?
     };
     // */
@@ -252,18 +129,17 @@ class HomeCareServiceVoucher {
       // 4. Calculate how much city will pay with vouchers (cap it to covered hours) per month
       // 5. Calculate how much client should pay for hours not covered by vouchers per month
       // 6. Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
-      // 7. Get maximum payment value from table if bought without voucher
-      // 8. Calculate what the payment would be as service bought from city instead of private company with voucher
+
 
       // 1. Get limits based on household size
       const {
         limit,
         percent,
-        payment_class_from_usage_per_month: paymentClassFromUsagePerMonth
+        // payment_class_from_usage_per_month: paymentClassFromUsagePerMonth
       } = getLimits(householdSize, parsedSettings);
 
-      // 2. [Excel B15] Calculate payment percentage for income that exeeds lower limit
-      const paymentPercentageForIncomeExeedingLowerLimit = this.calculator.getMinimumRange(monthlyUsage, paymentClassFromUsagePerMonth);
+      // // 2. [Excel B15] Calculate payment percentage for income that exeeds lower limit
+      // const paymentPercentageForIncomeExeedingLowerLimit = this.calculator.getMinimumRange(monthlyUsage, paymentClassFromUsagePerMonth);
 
       const deductedIncome = grossIncomePerMonth - limit;
 
@@ -289,17 +165,16 @@ class HomeCareServiceVoucher {
       // 6. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
       const totalPaymentToProviderByClient = Math.max(0, serviceProviderPrice - voucher) * Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) + paymentForHoursNotCoveredByVoucher;
 
-      // 7. [Excel B16] Get maximum payment value from table if bought without voucher
-      // TODO: Check these values, excel and doc were in conflict
-      const maximumPaymentWithoutVoucher = this.calculator.getMinimumRange(monthlyUsage, parsedSettings.maximum_payment_from_monthly_usage);
-
-      // 8. [Excel B17, B21] Calculate what the payment would be as service bought from city instead of private company with voucher
-      const cityHomeCarePaymentBeforeChecks = deductedIncome * (paymentPercentageForIncomeExeedingLowerLimit / 100);
-      let cityHomeCarePayment = maximumPaymentWithoutVoucher; // Assume that gross income has not been entered, use max
-      if (grossIncomePerMonthRaw !== null) { // If income has been given, instead calculate based on that.
-        // Clamp customer payment between 0 and maximumPaymentWithoutVoucher
-        cityHomeCarePayment = this.calculator.clamp(0, cityHomeCarePaymentBeforeChecks, maximumPaymentWithoutVoucher);
-      }
+      // 7. Calculate what the payment would be as service bought from city instead of private company with voucher using home_care_client_payment function
+      const cityHomeCarePayment = calculatePayment(
+        householdSize,
+        grossIncomePerMonth,
+        grossIncomePerMonthRaw,
+        monthlyUsage,
+        this.calculator,
+        JSON.parse(drupalSettings.home_care_client_payment),
+        true, // Debug
+      );
 
       // console.log(
       //   'Entered:',
@@ -311,11 +186,7 @@ class HomeCareServiceVoucher {
       //   '\n\nCalculated:',
       //   '\n limit B11', limit,
       //   '\n percent B12', percent,
-      //   // '\n paymentClassFromUsagePerMonth', paymentClassFromUsagePerMonth,
       //   '\n paymentForHoursNotCoveredByVoucher B13', paymentForHoursNotCoveredByVoucher,
-      //   '\n paymentPercentageForIncomeExeedingLowerLimit B15', paymentPercentageForIncomeExeedingLowerLimit,
-      //   '\n maximumPaymentWithoutVoucher B16', maximumPaymentWithoutVoucher,
-      //   '\n cityHomeCarePaymentBeforeChecks B17', cityHomeCarePaymentBeforeChecks,
       //   '\n voucher B20', voucher,
       //   '\n cityHomeCarePayment B21', cityHomeCarePayment,
       //   '\n paymentByCity B22', paymentByCity,
