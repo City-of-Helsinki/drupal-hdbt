@@ -39,7 +39,7 @@
         {% set language_link = '' %}
         {% set lang = item.link['#options']['#abbreviation'] %}
         {% set untranslated = item.link['#options']['#untranslated'] %}
-        {% set alternative_language = item.link['#options']['#alternative_language'] %}
+        {% set alternative_language = not item.link['#options']['#primary_language'] %}
         {% set classes = ['language-link'] %}
         {% set ariaCurrent = null %}
         {% set title = null %}
