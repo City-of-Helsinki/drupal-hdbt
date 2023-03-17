@@ -31,6 +31,7 @@ export type CardItemProps = {
   daterange?: string;
   theme?: string;
   language?: string;
+  languageLabel?: string;
   time?: string;
 };
 
@@ -52,6 +53,7 @@ function CardItem({
   theme,
   daterange,
   language,
+  languageLabel,
   time
 }: CardItemProps): JSX.Element {
   const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
@@ -118,7 +120,7 @@ function CardItem({
             <Metarow icon="locate" label={Drupal.t('Theme')} content={theme} />
           }
           {language &&
-            <Metarow icon="globe" label={Drupal.t('Language')} content={language} />
+            <Metarow icon="globe" label={languageLabel || Drupal.t('Language')} content={language} />
           }
           {time &&
             <Metarow icon="calendar" label={Drupal.t('Time', { context: 'Time of event' })} content={time} />
