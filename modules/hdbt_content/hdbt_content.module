@@ -208,17 +208,19 @@ function hdbt_content_language_switch_links_alter(array &$links) {
     }
   }
 
-  // @todo Needs a functionality for the alternative languages which should be shown in an alternative menu.
-  $alternative_languages = [
-    'ru',
+  // @todo Needs a functionality for the non-primary languages which should be shown in an alternative menu.
+  $primary_languages = [
+    'fi',
+    'sv',
+    'en',
   ];
 
   // Compare the links with current entity and check for possible translations.
   foreach ($links as $lang_code => &$link) {
     $link['#abbreviation'] = $lang_code;
 
-    if (in_array($lang_code, $alternative_languages)) {
-      $link['#alternative_language'] = TRUE;
+    if (in_array($lang_code, $primary_languages)) {
+      $link['#primary_language'] = TRUE;
     }
 
     if ($entity && $entity instanceof ContentEntityInterface) {
