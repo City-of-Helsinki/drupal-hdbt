@@ -48,7 +48,47 @@
   margin-bottom: $spacing;
 }
 
-.react-search__count {
-  @include font('body');
-  font-weight: $font-weight-bold;
+.react-search__tabs {
+  margin-bottom: $spacing-triple;
+}
+
+.react-search__tab {
+  --tab-active-border-color: var(--hdbt-color-black);
+  --tab-color: var(--hdbt-color-black);
+}
+
+.react-search__form-description {
+  margin-bottom: $spacing;
+}
+
+// Override some fieldset default styles here
+.react-search__fieldset {
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    flex: wrap;
+  }
+  border: none;
+  margin-bottom: $spacing-double;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+.react-search__legend {
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing;
+}
+
+// Use specific selectors here to override HDS styles
+fieldset .react-search__checkbox {
+  --background-selected: var(--hdbt-color-black);
+}
+
+fieldset .react-search__checkbox:not(:first-of-type) {
+  @include breakpoint($breakpoint-l) {
+    margin-left: $spacing;
+    margin-top: 0;
+  }
+  margin-top: $spacing-double;
 }

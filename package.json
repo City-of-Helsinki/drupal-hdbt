@@ -22,7 +22,7 @@
     "chokidar": "^3.5.1",
     "classnames": "^2.3.1",
     "es6-promise": "^4.1.1",
-    "glob": "^8.0.0",
+    "glob": "^9.0.0",
     "handorgel": "^0.5.0",
     "hds-design-tokens": "^2.11.0",
     "hds-react": "^2.11.0",
@@ -43,13 +43,13 @@
     "postcss-import-ext-glob": "^2.0.1",
     "postcss-loader": "^7.0.0",
     "postcss-nested": "^6.0.0",
-    "postcss-nesting": "^10.0.2",
-    "postcss-preset-env": "^7.4.3",
+    "postcss-nesting": "^11.0.0",
+    "postcss-preset-env": "^8.0.0",
     "postcss-scss": "^4.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.43.4",
-    "swr": "2.0.3"
+    "swr": "2.1.0"
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
@@ -64,7 +64,7 @@
     "not dead"
   ],
   "peerDependencies": {
-    "@react-aria/visually-hidden": "3.6.1",
+    "@react-aria/visually-hidden": "3.7.0",
     "react-popper": "2.3.0",
     "react-virtual": "2.10.4"
   },
@@ -109,11 +109,11 @@
     "prettier": "^2.7.1",
     "process": "^0.11.10",
     "sass-loader": "^13.0.0",
-    "stylelint": "^14.6.1",
-    "stylelint-config-standard-scss": "^6.0.0",
-    "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
-    "stylelint-high-performance-animation": "^1.6.0",
-    "stylelint-order": "^5.0.0",
+    "stylelint": "^15.0.0",
+    "stylelint-config-standard-scss": "^7.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
+    "stylelint-high-performance-animation": "^1.8.0",
+    "stylelint-order": "^6.0.3",
     "stylelint-scss": "^4.2.0",
     "svg-inline-loader": "^0.8.0",
     "svg-sprite": "^2.0",

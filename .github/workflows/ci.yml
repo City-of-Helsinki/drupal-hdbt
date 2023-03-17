@@ -1,30 +1,13 @@
 on: [push]
 name: CI
-env:
-  SIMPLETEST_DB: "mysql://drupal:drupal@db:3306/drupal"
-  SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-  THEME_NAME: hdbt
-  SYMFONY_DEPRECATIONS_HELPER: disabled
 jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1']
+        php-versions: ['8.1']
     container:
       image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
-
-    services:
-      db:
-        image: mariadb:10.10
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
-        ports:
-          - 3306:3306
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -33,11 +16,16 @@ jobs:
       - name: Set variables
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
 
+      - name: Parse $THEME_NAME from composer.json
+        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+
+      - name: Clone platform
+        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+
       - name: Build project
         run: |
-          composer create-project city-of-helsinki/drupal-helfi-platform:dev-main $DRUPAL_ROOT --no-interaction --repository https://repository.drupal.hel.ninja/
           cd $DRUPAL_ROOT
-          echo "$(jq --indent 4 '.repositories |= [{"type": "path", "url": "'$GITHUB_WORKSPACE'"}] + .' composer.json)" > composer.json
+          composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/$THEME_NAME -W
 
       - name: Check that theme is not built with dev mode

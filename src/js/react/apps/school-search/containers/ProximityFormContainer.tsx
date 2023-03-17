@@ -8,7 +8,7 @@ type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
 };
 
-const FormContainer = () => {
+const ProximityFormContainer = () => {
   const setParams = useSetAtom(paramsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -17,7 +17,7 @@ const FormContainer = () => {
     const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
-      params.address = keyword.value;
+      params.keyword = keyword.value;
     };
 
     setParams(params);
@@ -25,6 +25,16 @@ const FormContainer = () => {
 
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
+      <h3>
+        {Drupal.t('Search by home address')}
+      </h3>
+      <p className='react-search__form-description'>
+        {Drupal.t(
+          'You may search the primary shool choice for your child by the child\'s home address. Results are yielded from all comprehensive schools with classes 1-9. Private and national schools have their own pages.',
+          {},
+          {context: 'Proximity search description'}
+        )}
+      </p>
       <TextInput
         className='hdbt-search__filter'
         helperText={Drupal.t('Input street address')}
@@ -37,4 +47,4 @@ const FormContainer = () => {
   );
 };
 
-export default FormContainer;
+export default ProximityFormContainer;

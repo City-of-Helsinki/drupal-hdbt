@@ -19,6 +19,9 @@ window.addEventListener('hashchange', (event) => {
   // If not found, look inside accordions for anchor links.
   if (!accordionItemFound) {
     const anchorElement = document.querySelector(`${hash}`);
+    if (!anchorElement) {
+      return;
+    }
     const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
     if (accordionItemToOpen) {
       window.helfiAccordions.forEach((accordion) => {

@@ -3,28 +3,28 @@ import { useAtomValue } from 'jotai';
 import SearchParams from '../types/SearchParams';
 import configurationsAtom from '../store';
 import { getCoordsUrl, getLocationsUrl, parseCoordinates } from '../helpers/SubQueries';
-import getQueryString from '../helpers/ElasticQuery';
+import getQueryString from '../helpers/ProximityQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 
-const UseQuery = (params: SearchParams) => {
+const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
   const fetcher = async() => {
     const { index } = GlobalSettings;
-    const { address } = params;
+    const { keyword } = params;
 
     let coordinates = null;
     let ids = null;
 
-    if (address && address) {
-      const coordinatesRes = await fetch(getCoordsUrl(address));
+    if (keyword && keyword) {
+      const coordinatesRes = await fetch(getCoordsUrl(keyword));
       const coordinatesData = await coordinatesRes.json();
 
       coordinates = parseCoordinates(coordinatesData);
     }
 
-    if (address && !coordinates) {
+    if (keyword && !coordinates) {
       return null;
     }
 
@@ -61,4 +61,4 @@ const UseQuery = (params: SearchParams) => {
   };
 };
 
-export default UseQuery;
+export default UseProximityQuery;
