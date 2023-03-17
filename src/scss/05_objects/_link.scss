@@ -2,8 +2,9 @@
   @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
   @include hover-link-arrow-transition;
 
-  --external-icon-move: translate(3px, -3px);
+  --external-icon-move: scaleX(var(--lang-direction, 1)) translate(3px, -3px);
   overflow: hidden;
+  transform: scaleX(var(--lang-direction, 1));
 
   @media (prefers-reduced-motion) {
     --external-icon-move: scale(1);
@@ -18,13 +19,13 @@ a:hover .link__type {
 .link__type--tel {
   @include pseudo-icon-replace('tel');
 
-  --external-icon-move: rotate(15deg);
+  --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(15deg);
 }
 
 .link__type--mailto {
   @include pseudo-icon-replace('mailto');
 
-  --external-icon-move: rotate(15deg);
+  --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(15deg);
 }
 
 .link__style--highlight {
