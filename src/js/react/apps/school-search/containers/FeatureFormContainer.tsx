@@ -22,8 +22,6 @@ const FeatureFormContainer = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { keyword, finnish_education, grades_1_6, swedish_education, grades_7_9 } = event.target as SubmitFormType;
-    // TS doesn't support constructing from FormData, use any type as workaround
-    // const query = new URLSearchParams(new FormData(event.currentTarget) as any).toString();
     const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
