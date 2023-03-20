@@ -1,7 +1,7 @@
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Button, Checkbox, TextInput } from 'hds-react';
 import { useState } from 'react';
-import { paramsAtom } from '../store';
+import { paramsAtom, stagedParamsAtom, updateParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 import SelectionsContainer from './SelectionsContainer';
 
@@ -15,20 +15,16 @@ type SubmitFormType = HTMLFormElement & {
 
 const FeatureFormContainer = () => {
   const [keywordValue, setKeywordValue] = useState<string|undefined>();
-  const [fiChecked, setFiChecked] = useState<boolean>(false);
-  const [seChecked, setSeChecked] = useState<boolean>(false);
-  const [lowerChecked, setLowerChecked] = useState<boolean>(false);
-  const [upperChecked, setUpperChecked] = useState<boolean>(false);
-  const setParams = useSetAtom(paramsAtom);
+  const stagedParams = useAtomValue(stagedParamsAtom);
+  const setParams = useSetAtom(updateParamsAtom);
+  const setStagedParams = useSetAtom(stagedParamsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { keyword, finnish_education, grades_1_6, swedish_education, grades_7_9 } = event.target as SubmitFormType;
     // TS doesn't support constructing from FormData, use any type as workaround
-    const query = new URLSearchParams(new FormData(event.currentTarget) as any).toString();
-    const params: SearchParams = {
-      query
-    };
+    // const query = new URLSearchParams(new FormData(event.currentTarget) as any).toString();
+    const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
       params.keyword = keyword.value;
@@ -45,6 +41,8 @@ const FeatureFormContainer = () => {
 
     setParams(params);
   };
+
+  const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'>> = ['grades_1_6', 'grades_7_9', 'finnish_education', 'swedish_education'];
 
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
@@ -74,21 +72,21 @@ const FeatureFormContainer = () => {
           </legend>
           <Checkbox
             className='react-search__checkbox'
-            checked={fiChecked}
+            checked={stagedParams?.finnish_education || false}
             id='finnish_education'
             label={Drupal.t('Finnish')}
             name='finnish_education'
-            onClick={() => setFiChecked(!fiChecked)}
-            value={fiChecked.toString()}
+            onClick={() => setStagedParams({...stagedParams, finnish_education: !stagedParams?.finnish_education})}
+            value={stagedParams?.finnish_education?.toString() || 'false'}
           />
           <Checkbox
             className='react-search__checkbox'
-            checked={seChecked}
+            checked={stagedParams?.swedish_education || false}
             id='swedish_education'
             label={Drupal.t('Swedish')}
             name='swedish_education'
-            onClick={() => setSeChecked(!seChecked)}
-            value={seChecked.toString()}
+            onClick={() => setStagedParams({...stagedParams, swedish_education: !stagedParams?.swedish_education})}
+            value={stagedParams?.swedish_education?.toString() || 'false'}
           />
         </fieldset>
         <fieldset className='react-search__fieldset'>
@@ -97,26 +95,26 @@ const FeatureFormContainer = () => {
           </legend>
           <Checkbox
             className='react-search__checkbox'
-            checked={lowerChecked}
+            checked={stagedParams?.grades_1_6 || false}
             id='grades_1_6'
             label={Drupal.t('Lower levels (1-6)')}
             name='grades_1_6'
-            onClick={() => setLowerChecked(!lowerChecked)}
-            value={lowerChecked.toString()}
+            onClick={() => setStagedParams({...stagedParams, grades_1_6: !stagedParams?.grades_1_6})}
+            value={stagedParams?.grades_1_6?.toString() || 'false'}
           />
           <Checkbox
             className='react-search__checkbox'
-            checked={upperChecked}
+            checked={stagedParams?.grades_7_9 || false}
             id='grades_7_9'
             label={Drupal.t('Upper levels (7-9)')}
             name='grades_7_9'
-            onClick={() => setUpperChecked(!upperChecked)}
-            value={upperChecked.toString()}
+            onClick={() => setStagedParams({...stagedParams, grades_7_9: !stagedParams?.grades_7_9})}
+            value={stagedParams?.grades_7_9?.toString() || 'false'}
           />
         </fieldset>
       </div>
       <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
-      <SelectionsContainer />
+      <SelectionsContainer keys={keys} />
     </form>
   );
 };
