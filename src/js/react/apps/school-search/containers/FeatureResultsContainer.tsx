@@ -1,12 +1,18 @@
 
 import { useAtomValue, useSetAtom } from 'jotai';
-import { paramsAtom, updatePageAtom } from '../store';
+import { paramsAtom, updateParamsAtom } from '../store';
 import UseFeatureQuery from '../hooks/UseFeatureQuery';
 import ResultsList from '../components/ResultsList';
 
 const FeatureResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
-  const updatePage = useSetAtom(updatePageAtom);
+  const setParams = useSetAtom(updateParamsAtom);
+  const updatePage = (page: number) => {
+    setParams({
+      ...params,
+      page
+    });
+  };
   const { data, error, isLoading, isValidating } = UseFeatureQuery(params);
   const { page } = params;
 

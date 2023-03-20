@@ -13,12 +13,12 @@ const UseFeatureQuery = (params: SearchParams) => {
   const fetcher = () => {
     const { index } = GlobalSettings;
 
-    return fetch(`${baseUrl}/${index}/_search`, {
+      return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: getQueryString(params),
+      body: getQueryString(params, page),
     }).then((res) => res.json());
   };
 
