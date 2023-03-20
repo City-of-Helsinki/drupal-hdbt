@@ -24,6 +24,23 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
         }
       }
     ];
+  
+    // Boost finnish education schools to the top
+    query.bool.should = [
+      {
+        nested: {
+          path: 'additional_filters',
+          query: {
+            term: {
+              'additional_filters.finnish_education': {
+                value: true,
+                boost: 10
+              }
+            }
+          }
+        }
+      }
+    ];
   }
 
   let sort: any = [
@@ -35,7 +52,11 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
   if (coordinates && coordinates.length) {
     const [lat, lon] = coordinates;
 
-   sort =[{
+    sort = [
+      {
+        _score: 'desc'
+      },
+      {
       _geo_distance: {
         coordinates: {
           lat,
