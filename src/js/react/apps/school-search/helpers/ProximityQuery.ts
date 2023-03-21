@@ -25,8 +25,8 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       }
     ];
   
-    // Boost finnish education schools to the top
     query.bool.should = [
+      // Show finnish schools first
       {
         nested: {
           path: 'additional_filters',
@@ -40,6 +40,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
           }
         }
       },
+      // Show 1-6 classes before 7-9
       {
         nested: {
           path: 'additional_filters',
