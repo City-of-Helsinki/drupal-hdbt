@@ -34,7 +34,6 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
           clearSelection={() => {
             const newParams = {...searchParams};
             newParams[key] = false;
-            console.log(newParams);
             setSearchParams(newParams);
           }}
         />

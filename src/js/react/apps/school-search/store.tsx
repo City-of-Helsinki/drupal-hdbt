@@ -24,8 +24,6 @@ export const updateParamsAtom = atom(null, (get, set, params: SearchParams) => {
   const query = new URLSearchParams(urlSearchParams).toString();
   set(stagedParamsAtom, { ...params, query});
   set(paramsAtom, {...params, query});
-
-  console.log(params, query);
 });
 
 export default configurationsAtom;
