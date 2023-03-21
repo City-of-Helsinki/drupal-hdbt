@@ -12,19 +12,19 @@ const UseProximityQuery = (params: SearchParams) => {
 
   const fetcher = async() => {
     const { index } = GlobalSettings;
-    const { address } = params;
+    const { keyword } = params;
 
     let coordinates = null;
     let ids = null;
 
-    if (address && address) {
-      const coordinatesRes = await fetch(getCoordsUrl(address));
+    if (keyword && keyword) {
+      const coordinatesRes = await fetch(getCoordsUrl(keyword));
       const coordinatesData = await coordinatesRes.json();
 
       coordinates = parseCoordinates(coordinatesData);
     }
 
-    if (address && !coordinates) {
+    if (keyword && !coordinates) {
       return null;
     }
 

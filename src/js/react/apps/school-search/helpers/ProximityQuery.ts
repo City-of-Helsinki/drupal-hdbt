@@ -24,6 +24,37 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
         }
       }
     ];
+  
+    query.bool.should = [
+      // Show finnish schools first
+      {
+        nested: {
+          path: 'additional_filters',
+          query: {
+            term: {
+              'additional_filters.finnish_education': {
+                value: true,
+                boost: 20
+              }
+            }
+          }
+        }
+      },
+      // Show 1-6 classes before 7-9
+      {
+        nested: {
+          path: 'additional_filters',
+          query: {
+            term: {
+              'additional_filters.grades_1_6': {
+                value: true,
+                boost: 10
+              }
+            }
+          }
+        }
+      }
+    ];
   }
 
   let sort: any = [
@@ -35,7 +66,11 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
   if (coordinates && coordinates.length) {
     const [lat, lon] = coordinates;
 
-   sort =[{
+    sort = [
+      {
+        _score: 'desc'
+      },
+      {
       _geo_distance: {
         coordinates: {
           lat,
@@ -53,7 +88,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
     aggs: {
       ids: {
         terms: {
-          field: 'id',
+          field: 'id.keyword',
           size: 1000
         },
       },

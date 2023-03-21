@@ -2,9 +2,10 @@ import CardItem from '@/react/common/Card';
 import { School } from '../types/School';
 import CardImage from '@/react/common/CardImage';
 
-const ResultCard = ({ address, summary_processed, name, name_override, picture_url, media_as_objects, url }: School) => {
+const ResultCard = ({ additional_filters, address, summary_processed, name, name_override, picture_url, media_as_objects, url }: School) => {
   const title = name_override?.[0] || name?.[0];
   const imageOverride = media_as_objects?.[0].picture_url_override;
+  const additionalFilters = additional_filters[0];
 
   if (!title) {
     return null;
@@ -24,6 +25,17 @@ const ResultCard = ({ address, summary_processed, name, name_override, picture_u
     cardImage = <CardImage src={picture_url?.[0]} />;
   }
 
+  let language;
+
+  if (additionalFilters.finnish_education) {
+    language = Drupal.t('Finnish');
+  }
+
+  if (additionalFilters.swedish_education) {
+    const swedish = Drupal.t('Swedish');
+    language = language?.length ? `${language  }, ${  swedish.toLowerCase()}` : swedish;
+  }
+
   return (
     <CardItem
       cardDescription={summary_processed?.[0]}
@@ -32,6 +44,8 @@ const ResultCard = ({ address, summary_processed, name, name_override, picture_u
       cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
+      language={language}
+      languageLabel={Drupal.t('Education language')}
       location={address?.[0]}
     />
   );
