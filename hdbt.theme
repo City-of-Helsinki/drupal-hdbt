@@ -24,6 +24,8 @@ use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 use Drupal\helfi_react_search\LinkedEvents;
+use Drupal\helfi_tpr\Entity\Service;
+
 
 /**
  * Implements hook_preprocess().
@@ -899,6 +901,22 @@ function hdbt_preprocess_paragraph(array &$variables) {
     }, $paragraph->field_service_list_services->getValue()));
   }
 
+  if ($paragraph_type == 'service_list_search') {
+    $ids = '';
+    $service_ids = '';
+    if ($paragraph->hasField('field_service_list_services')) {
+      $ids = implode(',', array_map(function ($service) {
+        return $service['target_id'];
+      }, $paragraph->field_service_list_services->getValue()));
+    }
+    if ($paragraph->hasField('field_service_list_service_ids')) {
+      $service_ids = implode(',', array_map(function ($service) {
+        return $service['value'];
+      }, $paragraph->field_service_list_service_ids->getValue()));
+    }
+    $variables['services_list_views_argument'] = $ids . '|' . $service_ids;
+  }
+
   // Contact card paragraph.
   if (
     $paragraph_type == 'contact_card' &&
@@ -1305,11 +1323,14 @@ function _hdbt_craft_token(string $name, array &$variables) {
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
-  if (
-    isset($variables['view']) &&
-    !empty($variables['view']->id())
-  ) {
-    $suggestions[] = 'views_view__' . $variables['view']->id();
+  if (isset($variables['view'])) {
+    $view = $variables['view'];
+    if (!empty($variables['view']->id())) {
+      $suggestions[] = 'views_view__' . $variables['view']->id();
+    }
+    if (!empty($view->getDisplay()->display['id'])) {
+      $suggestions[] = 'views_view__' . $variables['view']->id() . '__' . $variables['view']->current_display;
+    }
   }
 }
 
@@ -1341,6 +1362,9 @@ function hdbt_preprocess_views_view(&$variables) {
   // Add total rows as a variable.
   if ($variables['view']->total_rows != NULL) {
     $variables['total_rows'] = $variables['view']->total_rows;
+  }
+  if ($variables['view']->id() == 'service_list') {
+    $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
 }
 
@@ -1388,6 +1412,18 @@ function hdbt_preprocess_tpr_service_channel(&$variables) {
   if (!$entity->email->isEmpty()) {
     $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_service(&$variables) {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Service) {
+    return;
+  }
+  $entity = $variables['entity'];
+
+  $variables['service_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
 
 /**
