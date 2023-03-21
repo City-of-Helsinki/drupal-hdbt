@@ -34,7 +34,7 @@ const getCheckBoxFilters = (params: SearchParams) => {
   return query;
 };
 
-const getQueryString = (params: SearchParams) => {
+const getQueryString = (params: SearchParams, page: number) => {
   const { size } = GlobalSettings;
   const { keyword } = params;
 
@@ -107,6 +107,7 @@ const getQueryString = (params: SearchParams) => {
         },
       },
     },
+    from: size * (page - 1),
     query,
     size,
     sort: [

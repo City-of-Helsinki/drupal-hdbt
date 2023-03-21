@@ -11,9 +11,19 @@ export const configurationsAtom = atom(() => {
 });
 
 export const paramsAtom = atom<SearchParams>({});
-export const updatePageAtom = atom(null, (get, set, page: number) => {
-  const params = get(paramsAtom);
-  set(paramsAtom, {...params, page});
+export const stagedParamsAtom = atom<SearchParams>({});
+export const updateParamsAtom = atom(null, (get, set, params: SearchParams) => {
+  const urlSearchParams: {[key: string]: string} = {};
+  Object.keys(params).forEach((key: string) => {
+    if (key === 'query') {
+      return;
+    }
+
+    urlSearchParams[key as string] = String(params[key as keyof SearchParams]);
+  });
+  const query = new URLSearchParams(urlSearchParams).toString();
+  set(stagedParamsAtom, { ...params, query});
+  set(paramsAtom, {...params, query});
 });
 
 export default configurationsAtom;
