@@ -34,6 +34,19 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
             term: {
               'additional_filters.finnish_education': {
                 value: true,
+                boost: 20
+              }
+            }
+          }
+        }
+      },
+      {
+        nested: {
+          path: 'additional_filters',
+          query: {
+            term: {
+              'additional_filters.grades_1_6': {
+                value: true,
                 boost: 10
               }
             }
