@@ -38,20 +38,21 @@
 .accordion-item__button--toggle {
   @include font('h4');
   border: none;
-  color: $color-black;
-  padding: $spacing 60px $spacing 0;
+  padding-block: $spacing;
+  padding-inline-end: 60px;
   position: relative;
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
-    padding: $spacing-and-half 60px $spacing-and-half 0;
+    padding-block: $spacing-and-half;
+    padding-inline-end: 60px;
   }
 
   &::before {
     content: "";
     height: 30px;
+    inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
-    right: 4px; // Move the icon slightly to the left
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
@@ -70,8 +71,8 @@
     background-size: 100%;
     content: "";
     height: 30px;
+    inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
-    right: 4px; // Move the icon slightly to the left
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
@@ -98,9 +99,9 @@
   align-items: center;
   bottom: $spacing;
   display: flex;
+  inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
   padding: $spacing-half;
   position: absolute;
-  right: -1px; // To adjust the positioning so that the element lines up nicely.
 
   &:focus {
     outline: 3px solid $color-black;
