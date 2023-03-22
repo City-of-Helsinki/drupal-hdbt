@@ -20,10 +20,10 @@
 
 .accordion-item__icon {
   display: inline-flex;
-  margin-right: $spacing-half;
+  margin-inline-end: $spacing-half;
 
   @include breakpoint($breakpoint-l) {
-    margin-right: $spacing;
+    margin-inline-end: $spacing;
   }
 
   .hel-icon {
