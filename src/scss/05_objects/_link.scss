@@ -28,14 +28,22 @@ a:hover .link__type {
   --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(15deg);
 }
 
+[dir="rtl"] .link__style--highlight {
+  &::before {
+    @include pseudo-icon('arrow-left', calc(var(--line-height) * 1em), currentColor, inline-block);
+  }
+}
 .link__style--highlight {
   @include font('special.large_link');
   margin-bottom: $spacing;
-  padding-left: calc(var(--line-height) * 1em + $spacing-half);
+  // padding-left: calc(var(--line-height) * 1em + $spacing-half);
+  padding-inline-start: calc(var(--line-height) * 1em + $spacing-half);
 
   &::before {
     @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
-    margin-left: calc(var(--line-height) * -1em - $spacing-half);
-    margin-right: $spacing-half;
+    margin-inline-end: $spacing-half;
+    /* margin-left: calc(var(--line-height) * -1em - $spacing-half);
+    margin-right: $spacing-half; */
+    margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
   }
 }
