@@ -11,6 +11,7 @@ $-card-teaser-min-width: 280px;
 
 .news-listing {
   margin-top: 0;
+  padding-inline-start: 0;
   padding-left: 0;
   padding-top: 0;
 }
@@ -70,6 +71,8 @@ $-card-teaser-min-width: 280px;
 
 // News listings using medium teasers.
 .news-listing--latest-medium-teasers {
+  padding-inline-start: 0; // User agent stylesheet override
+
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-wrap: wrap;
@@ -88,18 +91,18 @@ $-card-teaser-min-width: 280px;
 
     @include breakpoint($breakpoint-m) {
       margin-top: $spacing-double;
-      padding-right: $spacing-and-half;
+      padding-inline-end: $spacing-and-half;
       width: 50%;
     }
   }
 }
 
 .news-listing__medium-teaser {
-  border-left: 4px solid var(--hdbt-color-palette--accent);
-  padding-left: $spacing;
+  border-inline-start: 4px solid var(--hdbt-color-palette--accent);
+  padding-inline-start: $spacing;
 
   @include breakpoint($breakpoint-l) {
-    padding-left: $spacing-and-half;
+    padding-inline-start: $spacing-and-half;
   }
 
   .news-listing__title {
@@ -146,13 +149,13 @@ $-card-teaser-min-width: 280px;
     width: 100%;
 
     @include breakpoint($breakpoint-m) {
-      padding-right: $spacing-and-half;
+      padding-inline-end: $spacing-and-half;
       width: 75%;
     }
   }
 
   .news-listing__content--with-image {
-    padding-right: $spacing-and-half;
+    padding-inline-end: $spacing-and-half;
     width: 75%;
   }
 
@@ -183,11 +186,13 @@ $-card-teaser-min-width: 280px;
 }
 
 .news-listing--card-teasers {
+  padding-inline-start: 0; // User agent stylesheet override
+
   @include breakpoint($breakpoint-m) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-right: -#{$spacing-and-half};
+    margin-inline-end: -#{$spacing-and-half};
   }
 
   .news-listing__item {
@@ -222,7 +227,7 @@ $-card-teaser-min-width: 280px;
   @include breakpoint($breakpoint-m) {
     border: 1px solid var(--color-black);
     flex-direction: column;
-    margin-right: $spacing-and-half;
+    margin-inline-end: $spacing-and-half;
     padding-bottom: 0;
   }
 
@@ -260,7 +265,7 @@ $-card-teaser-min-width: 280px;
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-left: $spacing;
+    padding-inline-start: $spacing;
     width: 60%;
 
     @include breakpoint($breakpoint-m) {
