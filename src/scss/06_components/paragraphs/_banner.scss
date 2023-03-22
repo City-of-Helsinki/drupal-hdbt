@@ -19,10 +19,12 @@
 .banner__icon {
   display: inline-flex;
   margin-bottom: $spacing-and-half;
-  margin-right: $spacing;
+  // margin-right: $spacing;
+  margin-inline-end: $spacing;
 
   @include breakpoint($breakpoint-m) {
-    margin-right: $spacing-and-half;
+    // margin-right: $spacing-and-half;
+    margin-inline-end: $spacing-and-half;
   }
 
   .hel-icon {
