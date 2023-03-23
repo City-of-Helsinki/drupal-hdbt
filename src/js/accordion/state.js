@@ -11,7 +11,8 @@ export default class State {
       this.pageAccordionStates = {};
     } else {
       this.siteAccordionStates = siteAccordions;
-      this.pageAccordionStates = this.siteAccordionStates[this.page] === undefined ? {} : this.siteAccordionStates[this.page];
+      this.siteAccordionStates[this.page] = this.siteAccordionStates[this.page] === undefined ? {} : this.siteAccordionStates[this.page];
+      this.pageAccordionStates = this.siteAccordionStates[this.page];
     }
   }
 
