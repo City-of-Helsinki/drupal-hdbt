@@ -59,7 +59,7 @@ $-item-spacing: $spacing-triple;
       text-decoration: underline;
 
       &::after {
-        transform: translateX($spacing-half);
+        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
 
         @media (prefers-reduced-motion) {
           transform: none;
@@ -84,6 +84,7 @@ $-item-spacing: $spacing-triple;
       flex-shrink: 0;
       margin-left: -$spacing-quarter;
       margin-top: $spacing-half;
+      transform: scaleX(var(--lang-direction, 1));
 
       @include breakpoint($breakpoint-s) {
         --icon-size: 3rem;
@@ -116,7 +117,7 @@ $-item-spacing: $spacing-triple;
 
     &:focus .link__type--external,
     &:hover .link__type--external {
-      transform: translate($spacing-quarter, - $spacing-quarter);
+      transform: scaleX(var(--lang-direction, 1)) translate($spacing-quarter, - $spacing-quarter);
 
       @media (prefers-reduced-motion) {
         transform: none;
