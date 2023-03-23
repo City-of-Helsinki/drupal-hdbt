@@ -8,21 +8,21 @@ import SearchParams from '../types/SearchParams';
 const UseFeatureQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
+  const { query } = params;
 
   const fetcher = () => {
     const { index } = GlobalSettings;
-    const { address } = params;
 
-    return fetch(`${baseUrl}/${index}/_search`, {
+      return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: getQueryString(address),
+      body: getQueryString(params, page),
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${  Object.values(params).toString()}`, fetcher, {
+  const { data, error, isLoading, isValidating } = useSWR(`_${query || ''}}`, fetcher, {
     revalidateOnFocus: false
   });
 

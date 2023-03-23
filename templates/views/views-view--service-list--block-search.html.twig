@@ -33,10 +33,9 @@
 {%
   set classes = [
   'views',
-  'views--' ~ id|clean_class,
-  'views--' ~ display_id|clean_class,
+  'views--service-list',
+  'views--service-list--block-search',
   dom_id ? 'js-view-dom-id-' ~ dom_id,
-  'unit-search__content'
 ]
 %}
 
@@ -51,22 +50,21 @@
     </header>
   {% endif %}
 
-  {{ exposed }}
+  {% if is_ajax_request or total_rows > pager_items_per_page %}
+    {{ exposed }}
+    <span class="service-list__count-container">
+      <span class="service-list__count">{{ total_rows ?? 0 }}</span>
+      {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
+    </span>
+  {% endif %}
+
   {{ attachment_before }}
 
-  <div class="unit-search__results">
-    {% if total_rows %}
-      <span class="unit-search__count-container">
-        <span class="unit-search__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
-      </span>
-    {% endif %}
+  {{ rows }}
 
-    {{ rows }}
-  
-    {{ empty }}
-    {{ pager }}
-  </div>
+  {{ empty }}
+  {{ pager }}
+
   {{ attachment_after }}
   {{ more }}
 

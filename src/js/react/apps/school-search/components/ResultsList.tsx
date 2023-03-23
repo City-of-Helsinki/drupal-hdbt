@@ -15,7 +15,7 @@ type ResultsListProps = {
   error: boolean;
   isLoading: boolean;
   isValidating: boolean;
-  page?: number,
+  page?: number;
   updatePage: Function
 }
 

@@ -1,0 +1,15 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--service-list-search' ],
+      component_title: content.field_service_list_title,
+      component_description: content.field_service_list_description,
+    }
+  %}
+
+    {% block component_content %}
+      {{ drupal_view('service_list', 'block_search', services_list_views_argument) }}
+
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}
