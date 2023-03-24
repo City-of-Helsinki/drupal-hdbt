@@ -59,7 +59,7 @@ $-item-spacing: $spacing-triple;
       text-decoration: underline;
 
       &::after {
-        transform: translateX($spacing-half);
+        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
 
         @media (prefers-reduced-motion) {
           transform: none;
@@ -84,6 +84,7 @@ $-item-spacing: $spacing-triple;
       flex-shrink: 0;
       margin-left: -$spacing-quarter;
       margin-top: $spacing-half;
+      transform: scaleX(var(--lang-direction, 1));
 
       @include breakpoint($breakpoint-s) {
         --icon-size: 3rem;
@@ -102,21 +103,21 @@ $-item-spacing: $spacing-triple;
       display: block;
       flex-shrink: 0;
       height: var(--icon-size);
-      margin-left: -$spacing-quarter;
+      margin-inline-start: -$spacing-quarter;
       margin-top: $spacing-half;
       mask-size: var(--icon-size) var(--icon-size);
       width: var(--icon-size);
 
       @include breakpoint($breakpoint-s) {
         --icon-size: 3rem;
-        margin-left: -$spacing-half;
+        margin-inline-start: -$spacing-half;
         margin-top: $spacing;
       }
     }
 
     &:focus .link__type--external,
     &:hover .link__type--external {
-      transform: translate($spacing-quarter, - $spacing-quarter);
+      transform: scaleX(var(--lang-direction, 1)) translate($spacing-quarter, - $spacing-quarter);
 
       @media (prefers-reduced-motion) {
         transform: none;
@@ -125,9 +126,9 @@ $-item-spacing: $spacing-triple;
   }
 
   .list-of-links__item__image {
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
     position: absolute;
-    top: 0;
 
     // Size of thumbnails on mobile
     width: 90px;
@@ -150,10 +151,12 @@ $-item-spacing: $spacing-triple;
 
   .list-of-links__item__title {
     @include font('h4');
-    margin: 0 0 0 (100px + $spacing);
+    margin-block: 0;
+    margin-inline: (100px + $spacing) 0;
 
     @include breakpoint($breakpoint-s) {
       margin: 0;
+      margin-inline-start: 0;
     }
   }
 }
@@ -186,7 +189,7 @@ $-item-spacing: $spacing-triple;
       .link__type,
       &::after {
         align-self: flex-start;
-        margin-left: $spacing-half;
+        margin-inline-start: $spacing-half;
         margin-top: -2px; // Pull the arrow a bit higher to match the text line-height.
 
         @include breakpoint($breakpoint-s) {
@@ -202,6 +205,7 @@ $-item-spacing: $spacing-triple;
 
     .list-of-links__item__title {
       display: flex;
+      margin-inline: 0;
       margin-left: 0;
     }
 
