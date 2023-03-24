@@ -217,7 +217,7 @@ $-card-teaser-min-width: 280px;
   position: relative;
 
   &:hover .hel-icon--arrow-right {
-    transform: translateX($spacing-quarter);
+    transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
 
     @media (prefers-reduced-motion) {
       transform: none;
@@ -289,6 +289,7 @@ $-card-teaser-min-width: 280px;
 
     display: none;
     height: $spacing-triple;
+    transform: scaleX(var(--lang-direction, 1));
     width: $spacing-triple;
 
     @include breakpoint($breakpoint-m) {
@@ -308,7 +309,8 @@ $-card-teaser-min-width: 280px;
     .hel-icon--arrow-right {
       @include hover-link-arrow-transition;
       height: $spacing-and-half;
-      margin-left: $spacing-quarter;
+      margin-inline-start: $spacing-quarter;
+      transform: scaleX(var(--lang-direction, 1));
       width: $spacing-and-half;
     }
 
@@ -317,7 +319,7 @@ $-card-teaser-min-width: 280px;
       text-decoration: underline;
 
       .hel-icon {
-        transform: translateX($spacing-quarter);
+        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
 
         @media (prefers-reduced-motion) {
           transform: none;
