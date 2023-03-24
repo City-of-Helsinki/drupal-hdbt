@@ -1,5 +1,5 @@
 const fs = require('fs');
-const md5 = require('md5')
+const md5 = require('md5');
 const path = require('path');
 const glob = require('glob');
 const SVGSpriter = require('svg-sprite');
@@ -58,7 +58,7 @@ class svgToSprite {
             });
 
             // Add SVG files to Spriter instance.
-            this.files.map((pathname) => {
+            this.files.forEach(function(pathname) {
               spriter.add(pathname, null, fs.readFileSync(pathname, 'utf-8'));
             });
 
