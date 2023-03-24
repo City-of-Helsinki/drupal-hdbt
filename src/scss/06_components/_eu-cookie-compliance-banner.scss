@@ -71,7 +71,7 @@
     margin-top: $spacing;
 
     @include breakpoint($breakpoint-m) {
-      margin-left: $spacing;
+      margin-inline-start: $spacing;
       margin-top: 0;
     }
   }
