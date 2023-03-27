@@ -1,3 +1,4 @@
+import { Button } from 'hds-react';
 import ExternalLink from './ExternalLink';
 
 type CookiCookieComplianceStatementProps = {
@@ -12,16 +13,16 @@ const CookieComplianceStatement = ({ host, policyUrl, sourceUrl }: CookiCookieCo
         <h2>{Drupal.t('Content cannot be displayed')}</h2>
         <p>
           {Drupal.t(
-            'This content is hosted by @host. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.',
-            {'@host': host}
+            'This content is hosted by @media_service_url. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.',
+            {'@media_service_url': host}
           )}
         </p>
         <div className='buttons'>
             {sourceUrl &&
-              <ExternalLink href={sourceUrl} title={<span className='hds-button__label'>{Drupal.t('See content on external site')}</span>} />
+              <ExternalLink className='hds-button hds-button--primary' href={sourceUrl} title={<span className='hds-button__label'>{Drupal.t('See content on external site')}</span>} />
             }
             {policyUrl &&
-              <ExternalLink href={policyUrl} title={<span className='hds-button__label'>{Drupal.t('Change cookie settings')}</span>} />
+              <ExternalLink className='hds-button hds-button--secondary' href={policyUrl} title={<span className='hds-button__label'>{Drupal.t('Change cookie settings')}</span>} />
             }
         </div>
       </div>
