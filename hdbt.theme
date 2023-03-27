@@ -1109,7 +1109,7 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
  * @param array $element
  *   Current image element.
  */
-function _hdbt_add_image_element_dimensions(string|null $responsive_image_style_id, int|string $width, int|string $height, array &$element): void {
+function _hdbt_add_image_element_dimensions(?string $responsive_image_style_id, mixed $width, mixed $height, array &$element): void {
   // Add width and height for the imagecache external image.
   $image_width = FALSE;
   $image_height = FALSE;
