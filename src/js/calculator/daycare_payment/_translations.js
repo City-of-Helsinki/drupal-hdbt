@@ -92,12 +92,12 @@ const translations = {
     en: null,
   },
   daycare_type_1_explanation: {
-    fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa, ryhmäperhepäiväkodeissa sekä perhepäiväkodeissa ja kolmiperhepäivähoidossa.',
+    fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa, ryhmäperhepäiväkodeissa sekä perhepäivähoidossa ja kolmiperhepäivähoidossa.',
     sv: null,
     en: null,
   },
   daycare_type_1_caretime: {
-    fi: 'Hoitoaika',
+    fi: 'Hoitotunnit',
     sv: null,
     en: null,
   },
@@ -132,7 +132,7 @@ const translations = {
     en: null,
   },
   daycare_type_2_caretime: {
-    fi: 'Hoitoaika',
+    fi: 'Hoitotunnit',
     sv: null,
     en: null,
   },
@@ -157,12 +157,12 @@ const translations = {
     en: null,
   },
   daycare_type_3_explanation: {
-    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden esiopetuskokeilu on maksutonta 4 tuntia päivässä. Valitse vaihtoehdoista, jos lapsi on esiopetuksen lisäksi varhaiskasvatuksessa.',
+    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden kaksivuotinen esiopetuskokeilu on maksutonta 4 tuntia päivässä. Valitse vaihtoehdoista, jos lapsi on esiopetuksen lisäksi varhaiskasvatuksessa.',
     sv: null,
     en: null,
   },
   daycare_type_3_caretime: {
-    fi: 'Esiopetuksen ja varhaiskasvatuksen hoitoaika yhteensä ',
+    fi: 'Esiopetuksen ja varhaiskasvatuksen hoitotunnit yhteensä ',
     sv: null,
     en: null,
   },
@@ -192,7 +192,7 @@ const translations = {
     en: null,
   },
   daycare_type_4_caretime: {
-    fi: 'Hoitoaika',
+    fi: 'Hoitotunnit',
     sv: null,
     en: null,
   },
@@ -272,17 +272,17 @@ const translations = {
     en: null,
   },
   receipt_daycare_type_3_details: {
-    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden esiopetuskokeilu ovat maksuttomia 4 tuntia päivässä. Maksutonta esiopetusta ei ole koulun lomien aikana, jolloin 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    fi: '6-vuotiaiden esiopetus ja 5-vuotiaiden kaksivuotinen esiopetuskokeilu ovat maksuttomia 4 tuntia päivässä. Maksutonta esiopetusta ei ole koulun lomien aikana, jolloin 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta päivässä myös koulun lomien aikana.',
     sv: null,
     en: null,
   },
   receipt_daycare_type_4_details: {
-    fi: 'Esiopetus ja 5-vuotiaiden varhaiskasvatus ovat maksuttomia 4 tuntia arkipäivässä, 20 tuntia viikossa. 5-vuotiaiden varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus. 6-vuotiaiden esiopetusta ja 5-vuotiaiden esiopetuskokeilua ei ole koulun lomien aikana, jolloin 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta myös koulun lomien aikana.',
+    fi: 'Esiopetus ja 5-vuotiaiden varhaiskasvatus ovat maksuttomia 4 tuntia arkipäivässä, 20 tuntia viikossa. 5-vuotiaiden varhaiskasvatus koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus. 6-vuotiaiden esiopetusta ja 5-vuotiaiden esiopetuskokeilua ei ole koulun lomien aikana, jolloin 6-vuotiaasta esiopetuksessa olevasta lapsesta peritään kokopäivähoidon mukainen maksu jokaiselta läsnäolopäivältä. 5-vuotias esiopetuskokeilussa oleva lapsi saa 4 tuntia maksutonta varhaiskasvatusta päivässä myös koulun lomien aikana.',
     sv: null,
     en: null,
   },
   receipt_aria_live: {
-    fi: 'Varhaiskasvatusmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    fi: 'Varhaiskasvatusmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja alta.',
     sv: null,
     en: null,
   },
