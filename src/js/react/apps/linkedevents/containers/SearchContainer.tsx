@@ -4,7 +4,6 @@ import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
 import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
-import removeHdsNormalizeStyleElementFromDom from '@/react/common/hooks/removeHdsNormalizeStyleElementFromDom';
 
 type ResponseType = {
   data: Event[];
@@ -33,8 +32,6 @@ const SearchContainer = () => {
   if (!params.toString()) {
     setParams(new URLSearchParams(initialParams.toString()));
   }
-
-  removeHdsNormalizeStyleElementFromDom();
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
     const response = await fetch(reqUrl);
