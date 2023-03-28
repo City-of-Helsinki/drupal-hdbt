@@ -48,7 +48,7 @@ const globalTranslations = {
   },
   calculate: {
     fi: 'Laske arvio',
-    sv: 'Räkna uppskattning',
+    sv: 'Beräkna uppskattning',
     en: 'Calculate estimate',
   },
   reset: {

@@ -43,13 +43,13 @@ const translations = {
   },
   add_next_child: {
     fi: 'Lisää seuraavan lapsen tiedot',
-    sv: 'Lägg till nästa barn',
-    en: 'Add the next child',
+    sv: 'Lägg till uppgifter om nästa barn',
+    en: 'Add next child´s information',
   },
   remove_child: {
     fi: 'Poista lapsen tiedot',
-    sv: 'Radera uppgifter om barnet',
-    en: 'Clear data of the child',
+    sv: 'Radera barnets uppgifter',
+    en: 'Delete child´s information',
   },
   removed_child: {
     fi: 'Lapsen tiedot on nyt poistettu lomakkeelta.',
@@ -120,6 +120,11 @@ const translations = {
     fi: 'Säännöllisiä vapaapäiviä kuukaudessa',
     sv: 'Regelbundna lediga dagar per månad ',
     en: 'Regular days off per month',
+  },
+  daycare_free_days_does_not_affect: {
+    fi: '. Huomioithan, että vain 4–12 säännöllistä ja sovittua vapaapäivää kuukaudessa alentavat varhaiskasvatusmaksua.',
+    sv: '. Observera att endast 4–12 regelbundna och överenskomna lediga dagar per månad minskar avgiften för småbarnspedagogiken.',
+    en: '. Please note that only regular and scheduled 4–12 days off per month reduce the early childhood education fee.',
   },
   daycare_free_days_explanation: {
     fi: 'Säännölliset ja sovitut 4–12 vapaapäivää kuukaudessa alentavat varhaiskasvatusmaksua.',
@@ -233,8 +238,8 @@ const translations = {
   },
   receipt_family_estimated_payment_explanation_min: {
     fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
-    sv: 'Avgifter under ${minimum_payment_euro} euro tas inte ut.',
-    en: 'Fees under ${minimum_payment_euro} euros are not charged.',
+    sv: 'Avgifter på under ${minimum_payment_euro} euro faktureras inte. ',
+    en: 'Fees under ${minimum_payment_euro} euros will not be invoiced. ',
   },
   receipt_family_empty_income: {
     fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin perheen kuukausituloja. ',

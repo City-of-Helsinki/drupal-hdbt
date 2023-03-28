@@ -400,7 +400,11 @@ class DaycarePayment {
           sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: children[i].paymentRounded }),
         };
         if (freeDays && Number(freeDays) > 0) {
-          subtotal.details.push(`${this.t('daycare_free_days')}: ${freeDays}`);
+          let freeDaysNote = `${this.t('daycare_free_days')}: ${freeDays}`;
+          if (Number(freeDays) < 4) {
+            freeDaysNote += this.t('daycare_free_days_does_not_affect');
+          }
+          subtotal.details.push(freeDaysNote);
         }
         if (paymentWasRoundedDown) {
           subtotal.details.push(this.t('receipt_family_estimated_payment_explanation_min', { minimum_payment_euro: parsedSettings.minimum_payment_euro }));
