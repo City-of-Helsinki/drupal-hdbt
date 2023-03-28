@@ -13,31 +13,6 @@
     drupalSettings.path = {};
     drupalSettings.path.currentLanguage = 'fi';
 
-    drupalSettings.house_cleaning_service_voucher = `
-{
-  "household_size_1": {
-    "first_level": {
-      "value": 24,
-      "max_allowed_income": 1138
-    },
-    "second_level": {
-      "value": 21,
-      "max_allowed_income": 1422
-    }
-  },
-  "household_size_2": {
-    "first_level": {
-      "value": 24,
-      "max_allowed_income": 1575
-    },
-    "second_level": {
-      "value": 21,
-      "max_allowed_income": 2107
-    }
-  }
-}
-`;
-
     drupalSettings.home_care_service_voucher = `
 {
   "voucher_limits": {
@@ -520,26 +495,6 @@
       </div>
     </div>
 <!-- -->
-<!-- - ->
-    <div class="component component--helfi-calculator">
-      <div class="component__container">
-        <h2 class="component__title">House cleaning service voucher</h2>
-        <div class="component__content helfi-calculator">
-          <noscript>
-            <div class="component__needs-js">
-              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
-            </div>
-          </noscript>
-          <div id="helfi_calc_1025838707"></div>
-          <script src="../../../dist/js/house_cleaning_service_voucher.min.js"></script>
-          <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-              const clean = window.helfi_calculator.house_cleaning_service_voucher('helfi_calc_1025838707', drupalSettings.house_cleaning_service_voucher);
-            });
-          </script>
-        </div>
-      </div>
-    </div>
 
 <!-- - ->
     <script>
