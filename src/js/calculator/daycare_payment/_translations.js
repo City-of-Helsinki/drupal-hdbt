@@ -4,7 +4,7 @@ const translations = {
   family_info: {
     fi: 'Perheen tiedot',
     sv: 'Uppgifter om familjen',
-    en: 'Your family´s information',
+    en: 'Your family’s information',
   },
   household_size: {
     fi: 'Perheen koko',
@@ -13,8 +13,8 @@ const translations = {
   },
   household_size_is_too_small_for_child_count: {
     fi: 'Lukumäärän pitäisi olla vähintään ${minValue}, jos samassa osoitteessa asuu aikuinen ja ${childCount} lasta.',
-    sv: 'Antalet bör vara minst ${minValue} om det bor en vuxen och ${childCount} barn på samma adress.',
-    en: 'The number should be at least ${minValue} if you have an adult and ${childCount} children living at the same address.',
+    sv: 'Antalet skulle vara minst ${minValue}, om en vuxen och ${childCount} barn bor på samma adress.',
+    en: 'The number should be at least ${minValue} if an adult and ${childCount} children live at the same address.',
   },
   household_size_explanation: {
     fi: 'Samassa osoitteessa asuvien aikuisten ja alaikäisten lasten määrä.',
@@ -43,18 +43,18 @@ const translations = {
   },
   add_next_child: {
     fi: 'Lisää seuraavan lapsen tiedot',
-    sv: null,
-    en: null,
+    sv: 'Lägg till nästa barn',
+    en: 'Add the next child',
   },
   remove_child: {
     fi: 'Poista lapsen tiedot',
-    sv: null,
-    en: null,
+    sv: 'Radera uppgifter om barnet',
+    en: 'Clear data of the child',
   },
   removed_child: {
     fi: 'Lapsen tiedot on nyt poistettu lomakkeelta.',
-    sv: null,
-    en: null,
+    sv: 'Uppgifterna har nu raderats från blanketten.',
+    en: 'The data on the form has now been cleared.',
   },
   youngest_child_title: {
     fi: 'Nuorin tai ainoa varhaiskasvatuksessa oleva lapsi',
@@ -74,22 +74,22 @@ const translations = {
   daycare_type_1: {
     fi: 'Varhaiskasvatus arkipäivisin',
     sv: 'Småbarnspedagogik på vardagar',
-    en: 'Early childhood education from Monday to Friday',
+    en: 'Early childhood education on weekdays',
   },
   daycare_type_3: {
     fi: 'Esiopetus ja varhaiskasvatus arkipäivisin',
     sv: 'Förskoleundervisning och småbarnspedagogik på vardagar',
-    en: 'Pre-primary education and early childhood education from Monday to Friday',
+    en: 'Pre-primary education and early childhood education on weekdays',
   },
   daycare_type_2: {
     fi: '5-vuotiaiden varhaiskasvatus arkipäivisin',
     sv: 'Småbarnspedagogik för 5-åringar på vardagar',
-    en: 'Early childhood education for 5-year-olds from Monday to Friday',
+    en: 'Early childhood education for 5-year-olds on weekdays',
   },
   daycare_type_4: {
     fi: 'Vuorohoito (hoitoa myös iltaisin ja viikonloppuisin)',
-    sv: 'Skiftesvård (småbarnspedagogik även på kvällar och veckoslut)',
-    en: 'Round-the-clock care (early childhood education provided also in the evenings and at weekends)',
+    sv: 'Skiftesvård (även på kvällar och veckoslut)',
+    en: 'Round-the-clock care (also in the evenings and at weekends)',
   },
   daycare_type_1_explanation: {
     fi: 'Varhaiskasvatusta tarjotaan kunnallisissa päiväkodeissa, ryhmäperhepäiväkodeissa sekä perhepäivähoidossa ja kolmiperhepäivähoidossa.',
@@ -129,7 +129,7 @@ const translations = {
   daycare_type_2_explanation: {
     fi: '5-vuotiaiden varhaiskasvatus on maksutonta 4 tuntia päivässä, ja se koskee kuluvan kalenterivuoden aikana 5 vuotta täyttäviä. Maksuton varhaiskasvatus alkaa aina 1.8. ja päättyy, kun lapsella alkaa esiopetus.',
     sv: 'Småbarnspedagogiken för 5-åringar är avgiftsfri fyra timmar per dag för barn som fyller fem år under det innevarande kalenderåret. Den avgiftsfria småbarnspedagogiken börjar alltid den 1 augusti och slutar när barnet börjar i förskolan.',
-    en: 'Early childhood education for 5-year-olds is free of charge for 4 hours per day and applies to children who turn 5 during the current calendar year. Free early childhood education always starts on 1 August and ends when the child starts pre- primary education.',
+    en: 'Early childhood education for 5-year-olds is free of charge for 4 hours per day and applies to children who turn 5 during the current calendar year. Free early childhood education always starts on 1 August and ends when the child starts pre-primary education.',
   },
   daycare_type_2_caretime: {
     fi: 'Hoitotunnit',
@@ -138,7 +138,7 @@ const translations = {
   },
   daycare_type_2_caretime_1: {
     fi: 'Yli 7 tuntia päivässä',
-    sv: 'Över sju timmar per dag',
+    sv: 'Över 7 timmar per dag',
     en: 'More than 7 hours per day',
   },
   daycare_type_2_caretime_2: {
@@ -229,12 +229,12 @@ const translations = {
   receipt_family_estimated_payment_suffix: {
     fi: 'euroa kuukaudessa.',
     sv: 'euro per månad.',
-    en: 'EUR per month.',
+    en: 'euros per month.',
   },
   receipt_family_estimated_payment_explanation_min: {
     fi: 'Alle ${minimum_payment_euro} euron maksuja ei laskuteta. ',
-    sv: null,
-    en: null,
+    sv: 'Avgifter under ${minimum_payment_euro} euro tas inte ut.',
+    en: 'Fees under ${minimum_payment_euro} euros are not charged.',
   },
   receipt_family_empty_income: {
     fi: 'Arvio on laskettu korkeimman maksun mukaisesti, koska et täyttänyt laskuriin perheen kuukausituloja. ',
@@ -283,7 +283,7 @@ const translations = {
   },
   receipt_aria_live: {
     fi: 'Varhaiskasvatusmaksun arvio on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
-    sv: 'Den uppskattade avgiften för småbarnspedagogiken är ${payment euro per månad, ytterligare information under formuläret.',
+    sv: 'Den uppskattade avgiften för småbarnspedagogiken är ${payment euro per månad, ytterligare information under blanketten.',
     en: 'Your estimated early childhood education fee is ${payment euros per month, read more below the form.',
   },
 };

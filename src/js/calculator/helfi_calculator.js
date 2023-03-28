@@ -207,7 +207,7 @@ class HelfiCalculator {
     }
 
     const error = this.translate(translationKey, { labelLink, labelText, ...translationParams });
-    const errorHtml = `<span class="hdbt-error-text">${error}</span>`;
+    const errorHtml = `<span class="hdbt-error-text">${error}.</span>`;
 
     const elemFormItem = elem.closest('.form-item');
     if (elemFormItem) {
@@ -399,7 +399,7 @@ class HelfiCalculator {
           {{#has_required_fields}}
             ${this.translate('has_required_fields', { required: '{{>required_explanation}} {{>required}}' })}
           {{/has_required_fields}}
-          ${this.translate('not_saved')}
+          ${this.translate('not_saved', { calculate: this.translate('calculate')})}
         </div>
         <div class="helfi-calculator-notification helfi-calculator-notification--error" aria-live="polite" aria-atomic="true"></div>
         <form class="helfi-calculator" action="" method="post">

@@ -7,33 +7,33 @@ const globalTranslations = {
     en: 'Required fields are indicated with an asterisk ${required}.',
   },
   not_saved: {
-    fi: 'Huomioithan, että laskuriin antamiasi tietoja ei tallenneta eikä lähetetä eteenpäin. Jos muutat laskurin tietoja, muista painaa "Laske arvio" uudelleen.',
-    sv: 'Observera att de uppgifter som du anger i räknaren inte sparas eller skickas vidare. Om du ändrar uppgifterna i räknaren ska du komma ihåg att klicka på "Beräkna uppskattningen" på nytt.',
-    en: 'Please note that the information you enter will not be stored or forwarded. If you change any of the calculator information, remember to click "Calculate estimate" again.',
+    fi: 'Huomioithan, että laskuriin antamiasi tietoja ei tallenneta eikä lähetetä eteenpäin. Jos muutat laskurin tietoja, muista painaa "${calculate}" uudelleen.',
+    sv: 'Observera att de uppgifter som du anger i räknaren inte sparas eller skickas vidare. Om du ändrar uppgifterna i räknaren ska du komma ihåg att klicka på "${calculate}" på nytt.',
+    en: 'Please note that the information you enter will not be stored or forwarded. If you change any of the calculator information, remember to click "${calculate}" again.',
   },
   unit_euro: {
     fi: 'euroa',
-    sv: 'i euro',
-    en: 'in euros',
+    sv: 'euro',
+    en: 'euros',
   },
   unit_person: {
     fi: 'henkilöä',
-    sv: 'i personer',
-    en: 'in persons',
+    sv: 'personer',
+    en: 'persons',
   },
   unit_day: {
     fi: 'päivää',
-    sv: 'i dagar',
-    en: 'in days',
+    sv: 'dagar',
+    en: 'days',
   },
   unit_hour: {
     fi: 'tuntia',
-    sv: 'i timmar',
-    en: 'in hours',
+    sv: 'timmar',
+    en: 'hours',
   },
   unit_amount: {
     fi: 'kpl',
-    sv: 'st',
+    sv: 'st.',
     en: 'pcs',
   },
   required: {
@@ -42,13 +42,13 @@ const globalTranslations = {
     en: '(Required field)',
   },
   required_explanation: {
-    fi: 'sekä saavutettavalla tekstillä ',
+    fi: 'ja saavutettavalla tekstillä ',
     sv: 'och med tillgänglig text ',
     en: 'and with accessible text ',
   },
   calculate: {
     fi: 'Laske arvio',
-    sv: 'Beräkna uppskattningen',
+    sv: 'Räkna uppskattning',
     en: 'Calculate estimate',
   },
   reset: {
@@ -57,9 +57,9 @@ const globalTranslations = {
     en: 'Clear data',
   },
   reset_aria_live: {
-    fi: 'Lomakkeen tiedot on nyt tyhjennetty',
-    sv: 'Uppgifterna har nu raderats från blanketten',
-    en: 'The data on the form has now been cleared',
+    fi: 'Lomakkeen tiedot on nyt tyhjennetty.',
+    sv: 'Uppgifterna har nu raderats från blanketten.',
+    en: 'The data on the form has now been cleared.',
   },
   missing_input: {
     fi: 'Tarkistathan vielä nämä kohdat',
@@ -67,9 +67,9 @@ const globalTranslations = {
     en: 'Please check these items',
   },
   error_with_link: {
-    fi: '${error}, ${labelLink}',
-    sv: '${error}, ${labelLink}',
-    en: '${error}, ${labelLink}',
+    fi: '${error}: ${labelLink}.',
+    sv: '${error}: ${labelLink}.',
+    en: '${error}: ${labelLink}.',
   },
   select_radio: {
     fi: 'Valinta on pakollinen',
