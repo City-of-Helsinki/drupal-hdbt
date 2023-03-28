@@ -66,7 +66,7 @@ class ServiceHousingServiceVoucher {
       }
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // Get fielf values for calculating.
+      // Get field values for calculating.
       const netIncomePerMonth = Number(this.calculator.getFieldValue('net_income_per_month'));
       // const netIncomePerMonthRaw = this.calculator.getFieldValue('gross_income_per_month');
       const serviceProviderPrice = Number(this.calculator.getFieldValue('service_provider_price'));
@@ -75,18 +75,16 @@ class ServiceHousingServiceVoucher {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Calculate results
 
-      console.log('p', parsedSettings);
-
       const voucherValue = this.calculator.getMinimumRange(netIncomePerMonth, parsedSettings.voucher_from_net_income);
       const selfPayment = Math.max(0, serviceProviderPrice - voucherValue);
 
-      console.log(
-        '\n netIncomePerMonth', netIncomePerMonth,
-        '\n serviceProviderPrice', serviceProviderPrice,
-        '\n',
-        '\n voucherValue', voucherValue,
-        '\n selfPayment', selfPayment,
-      );
+      // console.log(
+      //   '\n netIncomePerMonth', netIncomePerMonth,
+      //   '\n serviceProviderPrice', serviceProviderPrice,
+      //   '\n',
+      //   '\n voucherValue', voucherValue,
+      //   '\n selfPayment', selfPayment,
+      // );
 
       const subtotals = [];
 
