@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_api_base\Environment\Project;
@@ -32,7 +33,7 @@ function hdbt_preprocess(&$variables): void {
   $variables['koro'] = hdbt_get_settings('koro');
   $variables['theme_color'] = hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = hdbt_get_settings('default_icon');
-  $language = Drupal::languageManager()->getCurrentLanguage();
+  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
 
