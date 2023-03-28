@@ -348,7 +348,40 @@
   }
 }
 `;
-    drupalSettings.service_housing_service_voucher = `{}`;
+    drupalSettings.service_housing_service_voucher = `
+{
+  "voucher_from_net_income": {
+    "0": 3300,
+    "900.01": 3200,
+    "1000.01": 3100,
+    "1100.01": 3000,
+    "1200.01": 2900,
+    "1300.01": 2800,
+    "1400.01": 2700,
+    "1500.01": 2600,
+    "1600.01": 2500,
+    "1700.01": 2400,
+    "1800.01": 2300,
+    "1900.01": 2200,
+    "2000.01": 2100,
+    "2100.01": 2000,
+    "2200.01": 1900,
+    "2300.01": 1800,
+    "2400.01": 1700,
+    "2500.01": 1600,
+    "2600.01": 1500,
+    "2700.01": 1400,
+    "2800.01": 1300,
+    "2900.01": 1200,
+    "3000.01": 1100,
+    "3100.01": 1000,
+    "3200.01": 900,
+    "3300.01": 800,
+    "3400.01": 700,
+    "3500.01": 600
+  }
+}
+`;
     drupalSettings.family_with_kids_home_service_client_payment = `{}`;
     drupalSettings.daycare_payment = `
 {
@@ -508,10 +541,10 @@
       </div>
     </div>
 
-<!-- -->
+<!-- - ->
     <script>
       // window.onload = () => {
-      //   document.querySelector("#preset_1").click();
+      //   document.querySelector("#preset_3").click();
       //   window.setTimeout(() => {
       //     window.scrollTo(0, document.body.scrollHeight);
       //   }, 600);
@@ -578,6 +611,40 @@
           <script>
             document.addEventListener('DOMContentLoaded', (event) => {
               const clean = window.helfi_calculator.home_care_client_payment('helfi_calc_1655485697', drupalSettings.home_care_client_payment);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+<!-- -->
+<!-- -->
+    <script>
+      // window.onload = () => {
+      //   document.querySelector("#preset_4").click();
+      //   window.setTimeout(() => {
+      //     window.scrollTo(0, document.body.scrollHeight);
+      //   }, 600);
+      // }
+    </script>
+    <button id="preset_4" onclick="setValues('helfi_calc_1655488697',{
+          '#net_income_per_month_helfi_calc_1655488697': 1291.66,
+          '#service_provider_price_helfi_calc_1655488697': 3200,
+          'input.hds-button--primary': true
+        })">Debug</button>
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <h2 class="component__title">Täytä tiedot palvelusetelin arvon arvioimiseksi</h2>
+        <div class="component__content helfi-calculator">
+          <noscript>
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <div id="helfi_calc_1655488697"></div>
+          <script src="../../../dist/js/service_housing_service_voucher.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.service_housing_service_voucher('helfi_calc_1655488697', drupalSettings.service_housing_service_voucher);
             });
           </script>
         </div>
