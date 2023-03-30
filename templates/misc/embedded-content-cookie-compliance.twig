@@ -1,4 +1,7 @@
-<div class="embedded-content-cookie-compliance media-{{ media_id }}">
+{% if current_langcode not in primary_languages %}
+  {% set lang_attr = 'lang=en' %}
+{% endif %}
+<div class="embedded-content-cookie-compliance media-{{ media_id }}" {{ lang_attr }} dir="ltr">
   <div class="message">
     {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
     <h2>{{ 'Content cannot be displayed'|t }}</h2>
