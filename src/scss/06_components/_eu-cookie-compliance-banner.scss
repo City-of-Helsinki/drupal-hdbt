@@ -96,6 +96,11 @@
   }
 }
 
+// Override style from eu_cookie_compliance styles.
+[dir='ltr'] .eu-cookie-compliance-message {
+  text-align: left;
+}
+
 .sliding-popup-bottom {
   width: 100%;
 }
