@@ -1,5 +1,6 @@
 {% if current_langcode not in primary_languages %}
   {% set lang_attr = 'lang=en' %}
+  {% set dir_attr = 'dir=ltr' %}
 {% endif %}
 <div class="embedded-content-cookie-compliance media-{{ media_id }}" {{ lang_attr }} dir="ltr">
   <div class="message">
