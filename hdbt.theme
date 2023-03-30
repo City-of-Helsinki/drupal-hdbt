@@ -34,6 +34,11 @@ function hdbt_preprocess(&$variables): void {
   $language = Drupal::languageManager()->getCurrentLanguage();
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
+  $variables['primary_languages'] = [
+    'fi',
+    'en',
+    'sv',
+  ];
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
