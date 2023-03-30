@@ -2,11 +2,9 @@
 :root,
 [dir='ltr'] {
   --lang-direction: 1;
-  --lang-translate-half-start: -50%;
 }
 
 // Reverse lang direction for RTL languages. Should be used in a transform where needed.
 [dir='rtl'] {
   --lang-direction: -1;
-  --lang-translate-half-start: 50%;
 }

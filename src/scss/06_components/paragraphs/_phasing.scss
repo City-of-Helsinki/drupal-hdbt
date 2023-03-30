@@ -45,7 +45,7 @@ $-circle-size--ol-l: $spacing-triple;
     background-color: $color-black;
     height: calc(100% + $-item-gap + $spacing-half); // Height of the line should overlap 16px with the one below it.
     top: 0;
-    transform: translateX(var(--lang-translate-half-start));
+    transform: translateX(calc(var(--lang-direction) * -50%));
     width: 2px;
   }
 
@@ -68,7 +68,7 @@ $-circle-size--ol-l: $spacing-triple;
     border-radius: 50%;
     height: var(--circle-size);
     top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
-    transform: translate(var(--lang-translate-half-start), -50%);
+    transform: translate(calc(var(--lang-direction) * -50%), -50%);
     width: var(--circle-size);
   }
 }
