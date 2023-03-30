@@ -126,12 +126,13 @@
       max-width: 400px; // To avoid too long buttons.
 
       @include breakpoint($breakpoint-m) {
-        margin-inline-start: $spacing;
+        margin-left: $spacing;
         margin-top: 0;
       }
 
       &:first-child {
-        margin: 0;
+        margin-left: 0;
+        margin-top: 0;
       }
     }
   }
