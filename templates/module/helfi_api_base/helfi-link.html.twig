@@ -5,9 +5,12 @@
   {% endif %}
 
   {% if 'data-is-external' in attributes|keys %}
+    {% if current_langcode not in primary_languages %}
+      {% set lang_attr = 'lang=en' %}
+    {% endif %}
     {% set external_link_id = 'hdbt-link-' ~ random() %}
     {% set attribute_icon %} <span class="link__type link__type--external" aria-labelledby="{{ external_link_id }}"></span>
-    <span class="is-hidden" id="{{ external_link_id }}">{{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }}</span>{%- endset %}
+    <span class="is-hidden" id="{{ external_link_id }}" {{ lang_attr }}>({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{%- endset %}
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
