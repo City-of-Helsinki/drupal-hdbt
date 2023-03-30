@@ -1476,3 +1476,22 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
     $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
 }
+
+/**
+ * Implements hook_preprocess_eu_cookie_compliance_popup_info().
+ */
+function hdbt_preprocess_eu_cookie_compliance_popup_info(array &$variables) {
+  $primaryLanguages = [
+    'fi',
+    'en',
+    'sv'
+  ];
+
+  $language = Drupal::languageManager()->getCurrentLanguage();
+
+  // Ensure lang=en and LTR text direction for non-primary languages.
+  if (!in_array($language, $primaryLanguages)) {
+    $variables['attributes']['lang'] = 'en';
+    $variables['attributes']['dir'] = 'ltr';
+  }
+}
