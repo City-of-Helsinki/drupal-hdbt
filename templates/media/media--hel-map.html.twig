@@ -42,6 +42,10 @@
   privacy_policy_url: privacy_policy_url,
 } %}
 
+{% if current_langcode not in primary_languages %}
+  {% set link = link|merge({'#attributes': {'lang': 'en', 'dir': 'ltr' }}) %}
+{% endif %}
+
 {% set drupal_settings = {
   '#attached': {
     'drupalSettings': {
