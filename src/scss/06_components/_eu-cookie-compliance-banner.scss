@@ -96,9 +96,17 @@
   }
 }
 
-// Override style from eu_cookie_compliance styles.
+// Ensure text-align in forced LTR
 [dir='ltr'] .eu-cookie-compliance-message {
   text-align: left;
+}
+
+// Ensure alignment in forced LTR
+[dir='ltr'] .eu-cookie-compliance-categories-buttons {
+  @include breakpoint($breakpoint-m) {
+    margin-left: $spacing;
+    margin-right: 0;;
+  }
 }
 
 .sliding-popup-bottom {
