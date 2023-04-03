@@ -152,7 +152,7 @@ $-item-spacing: $spacing-triple;
   .list-of-links__item__title {
     @include font('h4');
     margin-block: 0;
-    margin-inline: (100px + $spacing) 0;
+    margin-inline-start: (100px + $spacing);
 
     @include breakpoint($breakpoint-s) {
       margin: 0;
