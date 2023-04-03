@@ -12,8 +12,8 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const setSearchParams = useSetAtom(updateParamsAtom);
 
   const checkBoxFilters = {
-    grades_1_6: Drupal.t('Lower levels (1-6)'),
-    grades_7_9: Drupal.t('Upper levels (7-9)'),
+    grades_1_6: Drupal.t('Primary schools (grades 1-6)', {}, {context: 'School search: education level option'}),
+    grades_7_9: Drupal.t('Lower secondary schools (grades 7-9)'),
     finnish_education: Drupal.t('Finnish'),
     swedish_education: Drupal.t('Swedish'),
   };
