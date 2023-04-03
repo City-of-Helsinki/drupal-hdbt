@@ -85,7 +85,7 @@ $koro-height: 50px;
     background-color: var(--hdbt-color-palette--accent);
     bottom: -90px;
     height: 100px;
-    left: $spacing-and-half;
+    inset-inline-start: $spacing-and-half;
     mask-image: icon_url('hero-arrow-mobile');
     mask-position: center;
     mask-repeat: no-repeat;
@@ -472,7 +472,7 @@ $koro-height: 50px;
         bottom: 50%;
         left: 5%;
         top: auto;
-        transform: rotate(135deg);
+        transform: scaleX(var(--lang-direction, 1)) rotate(135deg);
         transform-origin: center;
         width: 100%;
       }
@@ -508,7 +508,7 @@ $koro-height: 50px;
       z-index: 0;
 
       @include breakpoint($breakpoint-l) {
-        margin-left: 30%;
+        margin-inline-start: 30%;
         position: static;
         transform: none;
       }

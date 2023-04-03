@@ -35,7 +35,17 @@
         {% endif %}
 
       </div>
-      <a href="#skip-to-main" onclick="document.getElementById('skip-to-main').focus();" class="footer__back-to-top">
+
+      {% set alternative_language = current_langcode not in primary_languages %}
+      {% set skip_link_attributes = {
+          'class': [
+            'footer__back-to-top'
+          ],
+          'dir': alternative_language ? 'ltr',
+          'lang': alternative_language ? 'en'
+        }
+      %}
+      <a href="#skip-to-main" onclick="document.getElementById('skip-to-main').focus();" {{ create_attribute(skip_link_attributes) }}>
         {% trans with {'context': 'Footer back to top link'}  %}Back to top{% endtrans %}{% include '@hdbt/misc/icon.twig' with {icon: 'arrow-up'} %}
       </a>
     </div>

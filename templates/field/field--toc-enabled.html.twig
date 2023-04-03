@@ -1,8 +1,19 @@
 {% if toc_enabled|render|striptags|trim is not empty %}
+  {% set alternative_language = current_langcode not in primary_languages %}
+
   <div class="table-of-contents">
     <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
       {% if toc_title|render %}
-        <h2 class="table-of-contents__title">{{ toc_title }}</h2>
+        {% set title_attributes = {
+            'class': [
+              'table-of-contents__title',
+            ],
+            'dir': alternative_language ? 'ltr',
+            'lang': alternative_language ? 'en',
+          }
+        %}
+
+        <h2 {{ create_attribute(title_attributes) }}>{{ toc_title }}</h2>
       {% endif %}
       <nav id="helfi-toc-table-of-contents-list" class="table-of-contents__content">
         <ul class="table-of-contents__list">
