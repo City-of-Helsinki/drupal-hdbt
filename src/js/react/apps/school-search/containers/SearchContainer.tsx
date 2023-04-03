@@ -24,14 +24,14 @@ const SearchContainer = () => {
             index={0}
             onClick={() => setSearchMode(MODE_OPTIONS.proximity)}
           >
-            {Drupal.t('Find nearby shools')}
+            {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
           </Tab>
           <Tab
             className='react-search__tab'
             index={1}
             onClick={() => setSearchMode(MODE_OPTIONS.feature)}
           >
-            {Drupal.t('Find by school features')}
+            {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
           </Tab>
         </TabList>
       </Tabs>

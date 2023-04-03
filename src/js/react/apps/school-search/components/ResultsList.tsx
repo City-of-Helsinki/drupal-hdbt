@@ -28,7 +28,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   if (!data?.hits?.hits.length || error) {
     return (
       <div className='react-search__no-results'>
-        No results
+        {Drupal.t('No results', {}, {context: 'No search results'})}
       </div>
     );
   }
@@ -48,7 +48,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
             {!Number.isNaN(total) &&
               <> 
                 <span className='react-search__count'>{total}</span>
-                <span> {Drupal.t('schools', {}, {context: 'School search results statline'})}</span>
+                <span> {Drupal.t('schools', {}, {context: 'School search: results statline'})}</span>
               </>
             }
           </div>
@@ -61,8 +61,8 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
           variant='secondary'
         >
           {useMap ?
-            Drupal.t('Show schools as a list') :
-            Drupal.t('Show schools on map')
+            Drupal.t('Show schools as a list', {}, {context: 'School search: result display'}) :
+            Drupal.t('Show the schools on a map', {}, {context: 'School search: result display'})
           }
         </Button>
       </div>
