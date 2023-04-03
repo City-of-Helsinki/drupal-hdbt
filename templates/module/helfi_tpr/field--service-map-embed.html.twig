@@ -6,6 +6,11 @@
   ],
   'target': '_blank',
 } %}
+
+{% if current_langcode not in primary_languages %}
+  {% set link = link|merge({'#attributes': {'lang': 'en', 'dir': 'ltr' }}) %}
+{% endif %}
+
 {% set iframe_attributes = element[0]['iframe']['#attributes'] %}
 
 {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
