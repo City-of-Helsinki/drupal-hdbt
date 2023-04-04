@@ -1,6 +1,9 @@
 <div class="social-media__items">
   {% set classes = ['social-media__item'] %}
-  {% for element in elements %}
+  {% for key, element in elements %}
+    {# Only email text is translated #}
+    {% set alternative_language = current_langcode not in primary_languages and key != 'email' %}
+
     {% if element.url and element.img and element.text %}
       {% set link_title %}
         {% include "@hdbt/misc/icon.twig" with {icon: element.img, label: element.text } %}
@@ -9,7 +12,14 @@
         'class': classes|merge(element.classes),
         'title': element.text
       } %}
-      {{ link(link_title, element.url, link_attributes) }}
+      {% if alternative_language %}
+        {% set link_attributes = link_attributes|merge({
+          'dir': 'ltr',
+          'lang': 'en'
+        }) 
+        %}
+      {% endif %}
+      {{ link(link_title, element.url, create_attribute(link_attributes)) }}
     {% endif %}
   {% endfor %}
 </div>
