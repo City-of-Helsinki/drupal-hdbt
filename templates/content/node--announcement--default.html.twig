@@ -7,6 +7,7 @@
 {% endif %}
 
 {% set link = content.field_announcement_link[0] %}
+{% set alternative_language = current_langcode not in primary_languages %}
 
 <div class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div class="announcement__container">
@@ -22,6 +23,8 @@
         </div>
       {% endif %}
     </div>
-    <button type="button" class="announcement__close js-announcement__close--disabled" aria-label="{{ "Close announcement"|t }}"></button>
+    <button type="button" class="announcement__close js-announcement__close--disabled" aria-labelledby="announcement__close__aria-label">
+      <span id="announcement__close__aria-label" class="visually-hidden">{{ "Close announcement"|t }}</span>
+    </button>
   </div>
 </div>
