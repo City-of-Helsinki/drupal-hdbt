@@ -7,12 +7,16 @@
         {% set title_attributes = {
             'class': [
               'table-of-contents__title',
-            ],
-            'dir': alternative_language ? 'ltr',
-            'lang': alternative_language ? 'en',
+            ]
           }
         %}
-
+        {% if alternative_language %}
+          {% set title_attributes = title_attributes|merge({
+              'dir': 'ltr',
+              'lang': 'en'
+            })
+          %}
+        {% endif %}
         <h2 {{ create_attribute(title_attributes) }}>{{ toc_title }}</h2>
       {% endif %}
       <nav id="helfi-toc-table-of-contents-list" class="table-of-contents__content">

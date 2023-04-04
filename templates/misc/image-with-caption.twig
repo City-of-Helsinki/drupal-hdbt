@@ -2,7 +2,16 @@
   {{ image }}
 
   {% if image_caption %}
-    <figcaption class="image__caption">
+  {% set alternative_language = current_langcode not in primary_languages %}
+  {% set figcaption_attributes = {
+      'class': [
+        'image__caption',
+      ],
+      'dir': alternative_language ? 'ltr',
+      'lang': alternative_language ? 'en'
+    }
+  %}
+    <figcaption {{ create_attribute(figcaption_attributes) }}>
       {{ image_caption }}
     </figcaption>
   {% endif %}
