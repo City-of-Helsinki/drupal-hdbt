@@ -7,7 +7,6 @@
 {% endif %}
 
 {% set link = content.field_announcement_link[0] %}
-{% set alternative_language = current_langcode not in primary_languages %}
 
 <div class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div class="announcement__container">

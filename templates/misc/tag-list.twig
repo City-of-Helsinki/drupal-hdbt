@@ -3,7 +3,6 @@
 {% else %}
   {% set type_class = 'content-tags__tags--static' %}
 {% endif %}
-{% set alternative_language = current_langcode not in primary_languages %}
 
  <section class="content-tags"  aria-labelledby='content-tags__label'>
   <span id='content-tags__label' class='visually-hidden' {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>
