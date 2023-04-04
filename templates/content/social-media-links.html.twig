@@ -2,7 +2,7 @@
   {% set classes = ['social-media__item'] %}
   {% for key, element in elements %}
     {# Only email text is translated #}
-    {% set alternative_language = current_langcode not in primary_languages and key != 'email' %}
+    {% set alternative_language = alternative_language and key != 'email' %}
 
     {% if element.url and element.img and element.text %}
       {% set link_title %}

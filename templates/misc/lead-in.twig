@@ -1,5 +1,4 @@
 {% if content|render %}
-  {% set alternative_language = current_langcode not in primary_languages %}
   <section class="lead-in" aria-labelledby="lead-in__label">
     <span id="lead-in__label" class="visually-hidden" {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>
       {{ 'Lead-in paragraph'|t({}, {'context': 'Page lead-in section explanation for screen readers'}) }}

@@ -26,7 +26,6 @@
  */
 #}
 {% if label %}
-  {% set alternative_language = current_langcode not in primary_languages %}
   <h2{{ title_attributes.addClass('sidebar_block_heading') }} {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>{{ label }}</h2>
 {% endif %}
 {% block content %}
