@@ -142,13 +142,14 @@
       @include pseudo-icon('arrow-right');
       @include hover-link-arrow-transition;
       margin-left: $spacing-quarter;
+      transform: scaleX(var(--lang-direction, 1));
     }
 
     &:hover {
       text-decoration: none;
 
       &::after {
-        transform: translateX($spacing-quarter);
+        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
 
         @media (prefers-reduced-motion) {
           transform: none;
