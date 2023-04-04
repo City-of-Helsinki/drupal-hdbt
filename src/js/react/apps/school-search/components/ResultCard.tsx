@@ -45,7 +45,7 @@ const ResultCard = ({ additional_filters, address, summary_processed, name, name
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       language={language}
-      languageLabel={Drupal.t('Education language')}
+      languageLabel={Drupal.t('Language of instruction', {}, {context: 'School search: language options'})}
       location={address?.[0]}
     />
   );

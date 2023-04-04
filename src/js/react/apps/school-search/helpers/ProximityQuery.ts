@@ -16,7 +16,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
     }
   };
 
-  if (ids && ids.length) {
+  if (ids && Array.isArray(ids)) {
     query.bool.must = [
       {
         terms: {

@@ -26,20 +26,20 @@ const ProximityFormContainer = () => {
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
       <h3>
-        {Drupal.t('Search by home address')}
+        {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
       </h3>
       <p className='react-search__form-description'>
         {Drupal.t(
-          'You may search the primary shool choice for your child by the child\'s home address. Results are yielded from all comprehensive schools with classes 1-9. Private and national schools have their own pages.',
+          'Your child\'s primary comprehensive school, i.e. their local school, is determined based on the child\'s home address. The local school has a place for all local children. The search will return Finnish- and Swedish- language comprehensive schools',
           {},
-          {context: 'Proximity search description'}
+          {context: 'School search: local search description'}
         )}
       </p>
       <TextInput
         className='hdbt-search__filter'
-        helperText={Drupal.t('Input street address')}
+        helperText={Drupal.t('Enter the street name and house number', {}, {context: 'School search: input helper'})}
         id='keyword'
-        label={Drupal.t('Home address')}
+        label={Drupal.t('The child\'s home address', {}, {context: 'School search: input label'})}
         type='search'
       />
       <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>

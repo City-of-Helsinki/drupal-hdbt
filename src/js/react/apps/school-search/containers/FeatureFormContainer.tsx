@@ -45,19 +45,19 @@ const FeatureFormContainer = () => {
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
       <h3>
-        {Drupal.t('Search by school features')}
+        {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
       </h3>
       <p className='react-search__form-description'>
         {Drupal.t(
-          'You can search schools by name, language, level, or postal code. Students may be accepted into schools outside of their own district if there\'s room. Note that some schools require passing an exam.',
+          'You can search for a school by name, language of instruction, grade or postal code. Schools can also admit pupils that do not live in the school\'s admission area, if there are available spaces. Please note that you may have to apply to schools by taking an aptitude test.',
           {},
-          {context: 'Feature search description'}
+          {context: 'School search: Feature form description'}
         )}
       </p>
       <TextInput
         className='hdbt-search__filter'
         id='keyword'
-        label={Drupal.t('School name or postal code')}
+        label={Drupal.t('Name or postal code of the school', {}, {context: 'School search: Feature input label'})}
         name='keyword'
         onChange={({target: { value }}: { target: { value: string }}) => setKeywordValue(value)}
         type='search'
@@ -66,7 +66,7 @@ const FeatureFormContainer = () => {
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='react-search__fieldset'>
           <legend className='react-search__legend'>
-            {Drupal.t('Education language')}
+            {Drupal.t('Language of instruction', {}, {context: 'School search: language options'})}
           </legend>
           <Checkbox
             className='react-search__checkbox'
@@ -89,13 +89,13 @@ const FeatureFormContainer = () => {
         </fieldset>
         <fieldset className='react-search__fieldset'>
           <legend className='react-search__legend'>
-            {Drupal.t('Education level')}
+            {Drupal.t('School level', {}, {context: 'School search: education level'})}
           </legend>
           <Checkbox
             className='react-search__checkbox'
             checked={stagedParams?.grades_1_6 || false}
             id='grades_1_6'
-            label={Drupal.t('Lower levels (1-6)')}
+            label={Drupal.t('Primary schools (grades 1-6)', {}, {context: 'School search: education level option'})}
             name='grades_1_6'
             onClick={() => setStagedParams({...stagedParams, grades_1_6: !stagedParams?.grades_1_6})}
             value={stagedParams?.grades_1_6?.toString() || 'false'}
@@ -104,7 +104,7 @@ const FeatureFormContainer = () => {
             className='react-search__checkbox'
             checked={stagedParams?.grades_7_9 || false}
             id='grades_7_9'
-            label={Drupal.t('Upper levels (7-9)')}
+            label={Drupal.t('Lower secondary schools (grades 7-9)', {}, {context: 'School search: education level option'})}
             name='grades_7_9'
             onClick={() => setStagedParams({...stagedParams, grades_7_9: !stagedParams?.grades_7_9})}
             value={stagedParams?.grades_7_9?.toString() || 'false'}
