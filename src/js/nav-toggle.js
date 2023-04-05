@@ -121,12 +121,12 @@
       return true;
     }
 
-    const scrolledPanel = e.target.closest('.mmenu__panel--current');
+    const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
     const preventBodyScrolling =
       isMobile() &&
       isAnyMenuOpen() &&
       // Don't scroll body from shared header
-      (e.target.closest('#nav-toggle-dropdown--menu') === null ||
+      (e.target.closest('.nav-toggle-dropdown') === null ||
         // If element has no overflow, it has no overscroll containment.
         // See overscroll-behavour CSS specs
         (scrolledPanel !== null && !isScrollable(scrolledPanel)));
