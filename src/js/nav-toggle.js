@@ -55,6 +55,10 @@
           MenuDropdown.close();
         }
         close();
+        if (key === 'SearchDropdown') {
+          // Focus search field on open.
+          window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10); // Delay focus until element is focusable
+        }
       },
       onClose: open
     });
