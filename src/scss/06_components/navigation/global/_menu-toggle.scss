@@ -50,10 +50,10 @@
     display: none;
   }
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($breakpoint-m) {
     & ~ * .language-wrapper {
       display: flex;
-    }
+    } // This breakpoint needs to be in sync with branding navigation lang button position breakpoint
   }
 }
 

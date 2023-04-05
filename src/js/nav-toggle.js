@@ -31,7 +31,7 @@
     return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
   }
 
-  const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches; // Needs to be 768px as after that breakpoint user can scroll header almost offscreen, open menu accidentally and not be able to scroll back up.
 
   const AllElements = BRANDING_ELEMENTS;
 
