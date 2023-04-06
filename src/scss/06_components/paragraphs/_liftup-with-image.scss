@@ -1,13 +1,5 @@
 $breakpoint-design-image-on-left-right: 830px;
 
-[dir="rtl"] .component--liftup-with-image-img {
-  direction: ltr;
-
-  .liftup-with-image__content {
-    direction: rtl;
-  }
-}
-
 .component--liftup-with-image-img {
   --side-padding: 10%;
   color: var(--hdbt-color-palette-text--primary);
@@ -34,6 +26,11 @@ $breakpoint-design-image-on-left-right: 830px;
     // row1 and row2 overlap
     grid-template-rows: [row1-start] 1fr [row2-start] $spacing-double [row1-end]  min-content [row2-end];
 
+    // Maintain direction even on RTL languages
+    [dir='rtl'] & {
+      grid-template-columns: [col2-start] var(--side-padding) [col1-start] 1fr [col2-end] var(--side-padding) [col1-end];
+    }
+
     @include breakpoint($breakpoint-design-image-on-left-right) {
       // single row
       grid-template-rows: [row1-start row2-start] 1fr [row1-end row2-end];
@@ -43,6 +40,10 @@ $breakpoint-design-image-on-left-right: 830px;
   &.component--liftup-with-image-img-on-right .liftup-with-image {
     --content-area: row2-start / col1-start / row2-end / col1-end;
     --image-area: row1-start / col2-start / row1-end / col2-end;
+
+    [dir='rtl'] & {
+      --content-margin-left: auto;
+    }
   }
 
   &.component--liftup-with-image-img-on-left .liftup-with-image {
@@ -55,6 +56,7 @@ $breakpoint-design-image-on-left-right: 830px;
     background-color: var(--hdbt-color-palette--primary);
     color: var(--hdbt-color-palette-text--primary);
     margin-left: var(--content-margin-right);
+    margin-right: var(--content-margin-left);
     padding: $spacing-double;
     width: fit-content;
 
@@ -251,16 +253,6 @@ $breakpoint-design-image-on-left-right: 830px;
   padding-inline: 0;
 }
 
-[dir="rtl"] .component--liftup-with-image-bg {
-  .liftup-with-image {
-    direction: ltr;
-  }
-
-  .liftup-with-image__content {
-    direction: rtl;
-  }
-}
-
 .component--liftup-with-image-bg {
   .component__container {
     max-width: none;
@@ -391,18 +383,23 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
-.component--liftup-with-image-bg.component--liftup-with-image-img-on-left {
-  .liftup-with-image__container {
-    @include breakpoint($breakpoint-l) {
-      justify-self: end;
+.component--liftup-with-image-bg.component--liftup-with-image-img-on-left  .liftup-with-image__container {
+  @include breakpoint($breakpoint-l) {
+    justify-self: end;
+
+    [dir='rtl'] & {
+      justify-self: start;
     }
   }
 }
 
-.component--liftup-with-image-bg.component--liftup-with-image-img-on-right {
-  .liftup-with-image__container {
-    @include breakpoint($breakpoint-l) {
-      justify-self: start;
+
+.component--liftup-with-image-bg.component--liftup-with-image-img-on-right .liftup-with-image__container {
+  @include breakpoint($breakpoint-l) {
+    justify-self: start;
+
+    [dir='rtl'] & {
+      justify-self: end;
     }
   }
 }
