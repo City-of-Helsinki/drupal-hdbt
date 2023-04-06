@@ -156,3 +156,12 @@ school-search:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+helfi_cookie_banner:
+  version: 1.x
+  js:
+    dist/js/cookie-banner.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+

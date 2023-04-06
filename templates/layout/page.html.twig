@@ -200,6 +200,13 @@
 
   <footer role="contentinfo" class="footer {{ footer_variant }}">
     {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
+      {{ attach_library('hdbt/helfi_cookie_banner') }}
+      <div id="helfi-cookie-banner">
+      </div>
+    {% if cookie_banner %}
+    {% endif %}
+
+
     {% if page.footer_top %}
       {{ page.footer_top }}
     {% endif %}

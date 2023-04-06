@@ -264,6 +264,8 @@ function hdbt_preprocess_page(&$variables): void {
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
+
+  $variables['cookie_banner'] = $_COOKIE['city-of-helsinki-cookie-consents'];
 }
 
 /**
