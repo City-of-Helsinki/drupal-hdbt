@@ -1,6 +1,5 @@
 {% spaceless %}
 
-  {% set alternative_language = current_langcode not in primary_languages %}
   {% if 'data-selected-icon' in url.options.attributes|keys %}
     {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
   {% endif %}

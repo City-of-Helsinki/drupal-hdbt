@@ -31,11 +31,12 @@ $-outline-width: 3px;
       @include hover-link-arrow-transition;
       margin-left: $spacing-half;
       margin-right: $spacing;
+      transform: scaleX(var(--lang-direction, 1));
     }
 
     &:focus::before,
     &:hover::before {
-      transform: translateX(-$spacing-quarter);
+      transform: scaleX(var(--lang-direction, 1)) translateX(-$spacing-quarter);
 
       @media (prefers-reduced-motion) {
         transform: none;

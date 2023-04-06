@@ -42,7 +42,7 @@
   privacy_policy_url: privacy_policy_url,
 } %}
 
-{% if current_langcode not in primary_languages %}
+{% if alternative_language %}
   {% set link = link|merge({'#attributes': {'lang': 'en', 'dir': 'ltr' }}) %}
 {% endif %}
 
