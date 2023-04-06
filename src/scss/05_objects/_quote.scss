@@ -2,7 +2,8 @@
   @include font('special.quote');
   display: block;
   margin: $spacing-triple 0;
-  padding: $spacing-half 0 $spacing-half $spacing-and-half;
+  padding-block: $spacing-half;
+  padding-inline: $spacing-and-half 0;
   position: relative;
 
   @include breakpoint($breakpoint-l) {
@@ -14,9 +15,9 @@
     background-color: var(--hdbt-color-palette--primary);
     content: '';
     height: 100%;
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
     position: absolute;
-    top: 0;
     width: 8px;
   }
 }
@@ -45,7 +46,7 @@
 
   &::before {
     content: '-';
-    margin-right: 3px;
+    margin-inline-end: 3px;
   }
 
   cite {
