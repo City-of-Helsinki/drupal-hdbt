@@ -2,7 +2,7 @@
   {% set classes = ['social-media__item'] %}
   {% for key, element in elements %}
     {# Only email text is translated #}
-    {% set alternative_language = alternative_language and key != 'email' %}
+    {% set use_lang_attributes = alternative_language and key != 'email' %}
 
     {% if element.url and element.img and element.text %}
       {% set link_title %}
@@ -12,7 +12,7 @@
         'class': classes|merge(element.classes),
         'title': element.text
       } %}
-      {% if alternative_language %}
+      {% if use_lang_attributes %}
         {% set link_attributes = link_attributes|merge({
           'dir': 'ltr',
           'lang': 'en'
