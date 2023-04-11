@@ -58,7 +58,7 @@ function hdbt_preprocess(&$variables): void {
       $id = \Drupal::service('helfi_api_base.environment_resolver')
         ->getActiveEnvironment()
         ->getId();
-      $variables['#attached']['drupalSettings']['helfi_environment_name'] = $id;
+      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $id;
     }
     catch(\Exception $exception) {
     }

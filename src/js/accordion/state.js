@@ -1,8 +1,8 @@
 export default class State {
 
   constructor() {
-    if (window.drupalSettings.helfi_environment_name !== undefined) {
-      this.site = window.drupalSettings.helfi_environment_name;
+    if (window.drupalSettings.helfi_instance_name !== undefined) {
+      this.site = window.drupalSettings.helfi_instance_name;
     }
     this.page = window.drupalSettings.path.currentPath;
 
