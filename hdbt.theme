@@ -52,6 +52,18 @@ function hdbt_preprocess(&$variables): void {
     $variables['theme_color'] = $theme_color;
   }
 
+  // Add helfi-environment name.
+  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
+    try {
+      $id = \Drupal::service('helfi_api_base.environment_resolver')
+        ->getActiveEnvironment()
+        ->getId();
+      $variables['#attached']['drupalSettings']['helfi_environment_name'] = $id;
+    }
+    catch(\Exception $exception) {
+    }
+  }
+
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
