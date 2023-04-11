@@ -81,6 +81,10 @@ msgctxt "Label for screen reader software users explaining that this is a list o
 msgid "Tags"
 msgstr "Tunnisteet"
 
+msgctxt "Contact card paragraph field labels"
+msgid "Title"
+msgstr "Titteli"
+
 msgctxt "Log in block title on error pages"
 msgid "Log in"
 msgstr "Kirjaudu sisään"
