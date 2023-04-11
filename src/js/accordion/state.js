@@ -29,7 +29,7 @@ export default class State {
   };
 
   loadItemState = accordionItemId => {
-    if (!this.site) {
+    if (this.site === undefined) {
       return false;
     }
     return this.pageAccordionStates[accordionItemId] === undefined ? false : this.pageAccordionStates[accordionItemId];
