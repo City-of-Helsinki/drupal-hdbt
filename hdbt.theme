@@ -60,7 +60,7 @@ function hdbt_preprocess(&$variables): void {
         ->getId();
       $variables['#attached']['drupalSettings']['helfi_instance_name'] = $id;
     }
-    catch(\Exception $exception) {
+    catch (\Exception $exception) {
     }
   }
 
