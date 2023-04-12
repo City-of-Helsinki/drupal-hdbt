@@ -984,7 +984,7 @@ function hdbt_preprocess_paragraph(array &$variables): void {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
-  $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
   // Set site_name as variable.
   $site_config = \Drupal::config('system.site');
