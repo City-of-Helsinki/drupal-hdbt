@@ -31,7 +31,7 @@
     return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
   }
 
-  const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches; // Needs to be 768px as after that breakpoint user can scroll header almost offscreen, open menu accidentally and not be able to scroll back up.
 
   const AllElements = BRANDING_ELEMENTS;
 
@@ -55,6 +55,10 @@
           MenuDropdown.close();
         }
         close();
+        if (key === 'SearchDropdown') {
+          // Focus search field on open.
+          window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10); // Delay focus until element is focusable
+        }
       },
       onClose: open
     });
@@ -117,12 +121,12 @@
       return true;
     }
 
-    const scrolledPanel = e.target.closest('.mmenu__panel--current');
+    const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
     const preventBodyScrolling =
       isMobile() &&
       isAnyMenuOpen() &&
       // Don't scroll body from shared header
-      (e.target.closest('#nav-toggle-dropdown--menu') === null ||
+      (e.target.closest('.nav-toggle-dropdown') === null ||
         // If element has no overflow, it has no overscroll containment.
         // See overscroll-behavour CSS specs
         (scrolledPanel !== null && !isScrollable(scrolledPanel)));

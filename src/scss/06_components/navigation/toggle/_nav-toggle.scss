@@ -217,7 +217,7 @@ $label-font: 'special.navigation.icon_label';
   }
 
   // When JS is enabled, switch to use button instead of anchor
-  #{$id}[data-js] ~ * {
+  #{$id}[data-js] ~ * #{$nav-toggle-modifier} {
     .nav-toggle__anchor {
       display: none;
     }
