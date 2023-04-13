@@ -1,0 +1,4 @@
+// Hyphenopoly hyphenates these with &shy; where browser does not support it automatically.
+.hyphenate {
+  hyphens: auto;
+}
