@@ -33,9 +33,9 @@
     {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
       {% block container_content %}
         <div class="hero__text-content">
-          <h1 class="hero__title">
-            {{ content.field_hero_title }}
-          </h1>
+          {# Hyphenate the visible title, but share to screen readers unhyphenated version as for example NVDA reads hyphenated text poorly #}
+          <h1 class="hero__title hyphenate" aria-labelledby="page_title">{{ content.field_hero_title }}</h1>
+          <span class="is-hidden" id="page_title">{{ content.field_hero_title }}</span>
 
           {% if design == "with-search"%}
             {% include "@hdbt/component/helfi-search-form.twig" with {
