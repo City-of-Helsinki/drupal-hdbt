@@ -165,6 +165,18 @@ module.exports = (env, argv) => {
             'from': 'node_modules/handorgel/lib/css/handorgel.min.css',
             'to': path.resolve(__dirname, 'dist') + '/css/handorgel/',
             'force': true,
+          }, {
+            'from': 'node_modules/hyphenopoly/min/Hyphenopoly_Loader.js',
+            'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
+            'force': true,
+          }, {
+            'from': 'node_modules/hyphenopoly/min/Hyphenopoly.js',
+            'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
+            'force': true,
+          }, {
+            'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv,en-gb}.wasm',
+            'to': path.resolve(__dirname, 'dist', 'js/hyphenopoly/patterns', '[name][ext]'),
+            'force': true,
           }
         ]
       }),
