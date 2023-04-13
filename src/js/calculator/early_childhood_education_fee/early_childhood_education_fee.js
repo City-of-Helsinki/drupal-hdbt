@@ -1,7 +1,7 @@
 import form from './_form';
 import translations from './_translations';
 
-class DaycarePayment {
+class EarlyChildhoodEducationFee {
   constructor(id, settings) {
     this.id = id;
     const parsedSettings = JSON.parse(settings);
@@ -537,7 +537,7 @@ class DaycarePayment {
     };
 
     // Prepare calculator for translations
-    this.calculator = window.HelfiCalculator({ name: 'daycare_payment', translations });
+    this.calculator = window.HelfiCalculator({ name: 'early_childhood_education_fee', translations });
 
     // Create shortcut for translations
     this.t = (key, value) => this.calculator.translate(key, value);
@@ -559,4 +559,4 @@ class DaycarePayment {
 }
 
 window.helfi_calculator = window.helfi_calculator || {};
-window.helfi_calculator.daycare_payment = (id, settings) => new DaycarePayment(id, settings);
+window.helfi_calculator.early_childhood_education_fee = (id, settings) => new EarlyChildhoodEducationFee(id, settings);

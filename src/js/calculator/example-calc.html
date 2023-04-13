@@ -183,7 +183,7 @@
   "voucher_divisor": 60
 }
     `;
-    drupalSettings.home_care_client_payment = `
+    drupalSettings.home_care_client_fee = `
 {
   "household_size": {
     "1": {
@@ -323,7 +323,7 @@
   }
 }
 `;
-    drupalSettings.service_housing_service_voucher = `
+    drupalSettings.continuous_housing_service_voucher = `
 {
   "voucher_from_net_income": {
     "0": 3300,
@@ -357,7 +357,7 @@
   }
 }
 `;
-    drupalSettings.family_with_kids_home_service_client_payment = `
+    drupalSettings.families_home_services_client_fee = `
 {
   "income_limit": {
     "1": 598,
@@ -415,7 +415,7 @@
   }
 }
 `;
-    drupalSettings.daycare_payment = `
+    drupalSettings.early_childhood_education_fee = `
 {
   "family_size_income_limits": {
     "2": {
@@ -541,10 +541,10 @@
             </div>
           </noscript>
           <div id="helfi_calc_1025838706"></div>
-          <script src="../../../dist/js/daycare_payment.min.js"></script>
+          <script src="../../../dist/js/early_childhood_education_fee.min.js"></script>
           <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-              const clean = window.helfi_calculator.daycare_payment('helfi_calc_1025838706', drupalSettings.daycare_payment);
+              const clean = window.helfi_calculator.early_childhood_education_fee('helfi_calc_1025838706', drupalSettings.early_childhood_education_fee);
             });
           </script>
         </div>
@@ -618,10 +618,10 @@
             </div>
           </noscript>
           <div id="helfi_calc_1655485697"></div>
-          <script src="../../../dist/js/home_care_client_payment.min.js"></script>
+          <script src="../../../dist/js/home_care_client_fee.min.js"></script>
           <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-              const clean = window.helfi_calculator.home_care_client_payment('helfi_calc_1655485697', drupalSettings.home_care_client_payment);
+              const clean = window.helfi_calculator.home_care_client_fee('helfi_calc_1655485697', drupalSettings.home_care_client_fee);
             });
           </script>
         </div>
@@ -652,10 +652,10 @@
             </div>
           </noscript>
           <div id="helfi_calc_1655488697"></div>
-          <script src="../../../dist/js/service_housing_service_voucher.min.js"></script>
+          <script src="../../../dist/js/continuous_housing_service_voucher.min.js"></script>
           <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-              const clean = window.helfi_calculator.service_housing_service_voucher('helfi_calc_1655488697', drupalSettings.service_housing_service_voucher);
+              const clean = window.helfi_calculator.continuous_housing_service_voucher('helfi_calc_1655488697', drupalSettings.continuous_housing_service_voucher);
             });
           </script>
         </div>
@@ -686,10 +686,10 @@
         </div>
       </noscript>
       <div id="helfi_calc_2655488697"></div>
-      <script src="../../../dist/js/family_with_kids_home_service_client_payment.min.js"></script>
+      <script src="../../../dist/js/families_home_services_client_fee.min.js"></script>
       <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-          const clean = window.helfi_calculator.family_with_kids_home_service_client_payment('helfi_calc_2655488697', drupalSettings.family_with_kids_home_service_client_payment);
+          const clean = window.helfi_calculator.families_home_services_client_fee('helfi_calc_2655488697', drupalSettings.families_home_services_client_fee);
         });
       </script>
     </div>
