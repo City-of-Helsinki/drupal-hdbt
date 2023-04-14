@@ -3,12 +3,12 @@
   display: block;
   margin: $spacing-triple 0;
   padding-block: $spacing-half;
-  padding-inline: $spacing-and-half 0;
+  padding-inline-start: $spacing-and-half;
   position: relative;
 
   @include breakpoint($breakpoint-l) {
     margin: $spacing-quadruple 0;
-    padding: 0 0 0 $spacing-double + $spacing-half;
+    padding-inline-start: $spacing-double + $spacing-half;
   }
 
   &::before {
