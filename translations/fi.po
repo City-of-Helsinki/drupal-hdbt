@@ -82,8 +82,24 @@ msgid "Tags"
 msgstr "Tunnisteet"
 
 msgctxt "Contact card paragraph field labels"
+msgid "Name"
+msgstr "Nimi"
+
+msgctxt "Contact card paragraph field labels"
 msgid "Title"
 msgstr "Titteli"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Phone number"
+msgstr "Puhelinnumero"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Email"
+msgstr "Sähköposti"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Description"
+msgstr "Kuvaus"
 
 msgctxt "Log in block title on error pages"
 msgid "Log in"
