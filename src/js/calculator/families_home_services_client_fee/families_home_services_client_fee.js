@@ -1,7 +1,7 @@
 import form from './_form';
 import translations from './_translations';
 
-class FamilyWithKidsHomeServiceClientPayment {
+class FamiliesHomeServicesClientFee {
   constructor(id, settings) {
     this.id = id;
     const parsedSettings = JSON.parse(settings);
@@ -185,7 +185,7 @@ class FamilyWithKidsHomeServiceClientPayment {
     };
 
     // Prepare calculator for translations
-    this.calculator = window.HelfiCalculator({ name: 'home_care_client_payment', translations });
+    this.calculator = window.HelfiCalculator({ name: 'families_home_services_client_fee', translations });
 
     // Create shortcut for translations
     this.t = (key, value) => this.calculator.translate(key, value);
@@ -203,4 +203,4 @@ class FamilyWithKidsHomeServiceClientPayment {
 }
 
 window.helfi_calculator = window.helfi_calculator || {};
-window.helfi_calculator.family_with_kids_home_service_client_payment = (id, settings) => new FamilyWithKidsHomeServiceClientPayment(id, settings);
+window.helfi_calculator.families_home_services_client_fee = (id, settings) => new FamiliesHomeServicesClientFee(id, settings);

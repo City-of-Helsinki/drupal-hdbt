@@ -456,7 +456,7 @@ const MobilePanel = {
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(
-        'Unable to load menu data, using mock menu for development purposes. Reset to nojs-fallback when integrating with actual API',
+        'Unable to load menu API, using fallback menu instead',
         e,
       );
       this.enableFallback();
