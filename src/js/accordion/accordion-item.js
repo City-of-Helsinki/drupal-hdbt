@@ -57,9 +57,10 @@ export default class AccordionItem {
   handleLinkAnchor = () => {
     const {hash} = window.location;
     if (!hash) return;
-    if (this.element.querySelector(hash)) {
+    const item = this.element.querySelector(hash);
+    if (item !== undefined) {
       this.open();
-      this.element.scrollIntoView();
+      item.scrollIntoView();
     }
   };
 
