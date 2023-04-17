@@ -1,7 +1,9 @@
 export default class State {
 
   constructor() {
-    this.site = window.drupalSettings.path.pathPrefix.match('/(.*?)/').shift().replaceAll('/', '');
+    if (window.drupalSettings.helfi_instance_name !== undefined) {
+      this.site = window.drupalSettings.helfi_instance_name;
+    }
     this.page = window.drupalSettings.path.currentPath;
 
     const siteAccordions = JSON.parse(localStorage.getItem(this.getStorageKey()));
@@ -19,15 +21,19 @@ export default class State {
   getStorageKey = () => `${this.site}-accordion`;
 
   saveItemState = (accordionItemId, isOpen) => {
+    if (this.site === undefined) {
+      return false;
+    }
     this.siteAccordionStates[this.page][accordionItemId] = isOpen;
     localStorage.setItem(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
   };
 
   loadItemState = accordionItemId => {
-    if (!this.siteAccordionStates) {
+    if (this.site === undefined) {
       return false;
     }
     return this.pageAccordionStates[accordionItemId] === undefined ? false : this.pageAccordionStates[accordionItemId];
   };
 
 }
+
