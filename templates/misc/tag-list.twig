@@ -5,7 +5,7 @@
 {% endif %}
 
  <section class="content-tags"  aria-labelledby='content-tags__label'>
-  <span id='content-tags__label' class='is-hidden' {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>
+  <span id='content-tags__label' class='is-hidden' {{ alternative_language ? create_attribute(({ 'lang': attributes.lang, 'dir': attributes.dir })) }}>
     {{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}
   </span>
   <ul class="content-tags__tags {{ type_class }}">

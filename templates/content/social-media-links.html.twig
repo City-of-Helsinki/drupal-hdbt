@@ -14,8 +14,8 @@
       } %}
       {% if use_lang_attributes %}
         {% set link_attributes = link_attributes|merge({
-          'dir': 'ltr',
-          'lang': 'en'
+          'dir': attributes.dir,
+          'lang': attributes.lang
         }) 
         %}
       {% endif %}

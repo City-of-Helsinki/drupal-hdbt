@@ -43,6 +43,11 @@ function hdbt_preprocess(&$variables): void {
   ];
   $variables['alternative_language'] = !in_array($variables['current_langcode'], $primary_languages);
 
+  if ($variables['alternative_language']) {
+    $variables['attributes']['lang'] = 'en';
+    $variables['attributes']['dir'] = 'ltr';
+  }
+
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
@@ -1531,24 +1536,5 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
   if ($privacyUrl instanceof Url) {
     $privacyUrl->setAbsolute();
     $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
-}
-
-/**
- * Implements hook_preprocess_eu_cookie_compliance_popup_info().
- */
-function hdbt_preprocess_eu_cookie_compliance_popup_info(array &$variables) {
-  $primaryLanguages = [
-    'fi',
-    'en',
-    'sv',
-  ];
-
-  $language = Drupal::languageManager()->getCurrentLanguage();
-
-  // Ensure lang=en and LTR text direction for non-primary languages.
-  if (!in_array($language, $primaryLanguages)) {
-    $variables['attributes']['lang'] = 'en';
-    $variables['attributes']['dir'] = 'ltr';
   }
 }

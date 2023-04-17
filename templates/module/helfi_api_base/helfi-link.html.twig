@@ -7,7 +7,7 @@
   {% if 'data-is-external' in attributes|keys %}
     {% set external_link_id = 'hdbt-link-' ~ random() %}
     {% set attribute_icon %} <span class="link__type link__type--external" aria-labelledby="{{ external_link_id }}"></span>
-    <span class="is-hidden" id="{{ external_link_id }}" {{ alternative_language ? create_attribute({'lang': 'en', 'dir': 'ltr'}) }}>({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{%- endset %}
+    <span class="is-hidden" id="{{ external_link_id }}" {{ alternative_language ? create_attribute({'lang': attributes.lang, 'dir': attributes.dir}) }}>({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>{%- endset %}
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
@@ -15,13 +15,13 @@
       {% set tel_aria_id = 'tel-' ~ random() %}
       {% set attribute_icon %}
         <span class="link__type link__type--tel" aria-labelledby="{{ tel_aria_id }}"></span>
-        <span id="{{ tel_aria_id }}" class="is-hidden" {{ alternative_language ? create_attribute({'lang': 'en', 'dir': 'ltr'}) }}>({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
+        <span id="{{ tel_aria_id }}" class="is-hidden" {{ alternative_language ? create_attribute({'lang': attributes.lang, 'dir': attributes.dir}) }}>({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
       {%- endset %}
     {% elseif attributes['data-protocol'] == 'mailto' %}
       {% set email_aria_id = 'email-' ~ random() %}
       {% set attribute_icon %}
         <span class="link__type link__type--mailto" aria-labelledby="{{ email_aria_id }}"></span>
-        <span id="{{ email_aria_id }}" class="is-hidden" {{ alternative_language ? create_attribute({'lang': 'en', 'dir': 'ltr'}) }}>({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
+        <span id="{{ email_aria_id }}" class="is-hidden" {{ alternative_language ? create_attribute({'lang': attributes.lang, 'dir': attributes.dir}) }}>({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
       {%- endset %}
     {% endif %}
   {% endif %}

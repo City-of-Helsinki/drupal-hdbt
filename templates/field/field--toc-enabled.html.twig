@@ -10,8 +10,8 @@
         %}
         {% if alternative_language %}
           {% set title_attributes = title_attributes|merge({
-              'dir': 'ltr',
-              'lang': 'en'
+              'dir': attributes.dir,
+              'lang': attributes.lang
             })
           %}
         {% endif %}

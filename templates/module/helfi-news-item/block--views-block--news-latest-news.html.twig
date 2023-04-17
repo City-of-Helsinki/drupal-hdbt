@@ -26,7 +26,7 @@
  */
 #}
 {% if label %}
-  <h2{{ title_attributes.addClass('sidebar_block_heading') }} {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>{{ label }}</h2>
+  <h2{{ title_attributes.addClass('sidebar_block_heading') }} {{ alternative_language ? create_attribute(({ 'lang': attributes.lang, 'dir': attributes.dir })) }}>{{ label }}</h2>
 {% endif %}
 {% block content %}
   <div class="news-listing--sidebar">

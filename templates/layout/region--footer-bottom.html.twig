@@ -44,8 +44,8 @@
       %}
       {% if alternative_language %}
         {% set skip_link_attributes = skip_link_attributes|merge({
-            'dir': 'ltr',
-            'lang': 'en'
+            'dir': attributes.dir,
+            'lang': attributes.lang
           }) 
         %}
       {% endif %}

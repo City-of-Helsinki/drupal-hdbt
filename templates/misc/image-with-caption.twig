@@ -10,8 +10,8 @@
     %}
     {% if alternative_language %}
       {% set figcaption_attributes = figcaption_attributes|merge({
-          'dir': 'ltr',
-          'lang': 'en'
+          'dir': attributes.dir,
+          'lang': attributes.lang
         })
       %}
     {% endif %}

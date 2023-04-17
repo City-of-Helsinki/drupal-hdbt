@@ -8,7 +8,7 @@
 } %}
 
 {% if alternative_language %}
-  {% set link = link|merge({'#attributes': {'lang': 'en', 'dir': 'ltr' }}) %}
+  {% set link = link|merge({'#attributes': {'lang': attributes.lang, 'dir': attributes.dir }}) %}
 {% endif %}
 
 {% set iframe_attributes = element[0]['iframe']['#attributes'] %}
