@@ -696,6 +696,9 @@ function hdbt_preprocess_paragraph(array &$variables): void {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
 
+  // Set theme path variable for paragraphs as well.
+  $variables['theme_path'] = _hdbt_get_theme_path();
+
   // Check if the paragraph is a type of list of links item
   // and tell it its parents design.
   if ($paragraph_type == 'list_of_links_item') {
