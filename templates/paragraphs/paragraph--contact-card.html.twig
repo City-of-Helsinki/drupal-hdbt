@@ -14,21 +14,25 @@
     <div class="contact-card--information-container">
     {% if content.field_contact_name|render %}
       <{{ heading_level|default('h2') }} class="contact-card--person-information contact-card--person-name">
+      <div class="label visually-hidden">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_contact_name }}
       </{{ heading_level|default('h2') }}>
     {% endif %}
     {% if content.field_contact_title|render %}
       <div class="contact-card--person-information">
+        <div class="label visually-hidden">{{ 'Title'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_contact_title }}
       </div>
     {% endif %}
     {% if content.field_phone_number|render %}
       <div class="contact-card--person-information contact-card--person-phone-number">
+        <div class="label visually-hidden">{{ 'Phone number'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_phone_number }}
       </div>
     {% endif %}
     {% if content.field_email|render %}
       <div class="contact-card--person-information contact-card--person-email">
+        <div class="label visually-hidden">{{ 'Email'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_email }}
       </div>
     {% endif %}
@@ -39,6 +43,7 @@
     {% endif %}
     {% if content.field_contact_description|render %}
       <div class="contact-card--person-information contact-card--person-description">
+        <div class="label visually-hidden">{{ 'Description'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_contact_description }}
       </div>
     {% endif %}

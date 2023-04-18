@@ -81,6 +81,26 @@ msgctxt "Label for screen reader software users explaining that this is a list o
 msgid "Tags"
 msgstr "Taggar"
 
+msgctxt "Contact card paragraph field labels"
+msgid "Name"
+msgstr "Namn"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Title"
+msgstr "Titel"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Email"
+msgstr "E-post"
+
+msgctxt "Contact card paragraph field labels"
+msgid "Description"
+msgstr "Beskrivning"
+
 msgctxt "Log in block title on error pages"
 msgid "Log in"
 msgstr "Logga in"
