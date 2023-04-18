@@ -58,7 +58,7 @@ export default class AccordionItem {
     const {hash} = window.location;
     if (!hash) return;
     const item = this.element.querySelector(hash);
-    if (item !== undefined) {
+    if (item) {
       this.open();
       item.scrollIntoView();
     }
