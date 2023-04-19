@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <g fill="none" fill-rule="evenodd">
-    <rect width="24" height="24"/>
-    <path fill="currentColor" d="M10,3 L10,5 L5,5 L5,19 L19,19 L19,14 L21,14 L21,21 L3,21 L3,3 L10,3 Z M21,3 L21,11 L19,11 L19,6.413 L12,13.4142136 L10.5857864,12 L17.585,5 L13,5 L13,3 L21,3 Z"/>
-  </g>
-</svg>
+<svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M10 3v2H5v14h14v-5h2v7H3V3h7zm11 0v8h-2V6.413l-7 7.001L10.586 12l6.999-7H13V3h8z" fill="currentColor"/></g></svg>
