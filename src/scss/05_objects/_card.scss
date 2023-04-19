@@ -57,6 +57,7 @@ $item-gap: $spacing-half;
     flex-grow: 1;
     margin-top: $spacing;
     mask-position: bottom center;
+    pointer-events: none;
 
     @include breakpoint($breakpoint-m) {
       --icon-size: #{$spacing-triple};
