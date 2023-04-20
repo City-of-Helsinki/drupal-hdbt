@@ -10,6 +10,7 @@
     {% block component_tags %}
       {% include "@hdbt/misc/news-tags.twig" with 
         {
+          container_classes: ['component__tags'],
           tags: content.field_helfi_news_groups,
           neighbourhoods: content.field_helfi_news_tags,
           groups: content.field_helfi_news_neighbourhoods

@@ -67,7 +67,8 @@
 
 // Lonely title should have same distance to content as component description
 .component__title + .component__content,
-.component__description + .component__content {
+.component__description + .component__content,
+.component__tags + .component__content {
   margin-top: $component-desc-spacing-mobile;
 
   @if $component-desc-spacing-mobile != $component-desc-spacing-desktop {
@@ -81,4 +82,8 @@
 .component--unit-services,
 .component--service-units {
   @include component-side-padding;
+}
+
+.component__tags {
+  margin-top: $spacing-and-half;
 }
