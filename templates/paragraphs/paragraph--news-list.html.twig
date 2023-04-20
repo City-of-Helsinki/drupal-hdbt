@@ -1,4 +1,5 @@
 {% block paragraph %}
+{{ dump(content|keys) }}
 	{% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--news-list' ],
@@ -6,8 +7,17 @@
       component_description: content.field_news_list_description,
     }
   %}
-		{% block component_content %}
+    {% block component_tags %}
+      {% include "@hdbt/misc/news-tags.twig" with 
+        {
+          tags: content.field_helfi_news_groups,
+          neighbourhoods: content.field_helfi_news_tags,
+          groups: content.field_helfi_news_neighbourhoods
+        }
+      %}
+    {% endblock %}
 
+		{% block component_content %}
       {% if content.news_list %}
         <ul class="news-listing news-listing--latest-medium-teasers">
           {{ content.news_list }}
