@@ -155,7 +155,6 @@ $-item-spacing: $spacing-triple;
     margin-inline-start: (100px + $spacing);
 
     @include breakpoint($breakpoint-s) {
-      margin: 0;
       margin-inline-start: 0;
     }
   }
@@ -206,7 +205,6 @@ $-item-spacing: $spacing-triple;
     .list-of-links__item__title {
       display: flex;
       margin-inline: 0;
-      margin-left: 0;
     }
 
     .list-of-links__item__arrow {
