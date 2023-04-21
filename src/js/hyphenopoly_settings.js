@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
   Hyphenopoly.config({
     require: {
       'fi': 'yhdyssanahirviö', // use `FORCEHYPHENOPOLY` if you do not wish to autodetect hyphenation only load bigger code if needed
-      'sv': 'informationssäkerhetskampanj',
-      'en': 'antidisestablishmentarianism'
+      'sv': 'informationssäkerhetskampanj'
     },
     setup: {
       selectors: {
