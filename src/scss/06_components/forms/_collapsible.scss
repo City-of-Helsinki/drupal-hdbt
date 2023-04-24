@@ -25,6 +25,7 @@ $collapsible-height: 56px;
   @include font('body');
   align-items: center;
   background: $color-white;
+  color: $color-black;
   display: flex;
 
   // 12px is for keeping padding in line with HDS select component
