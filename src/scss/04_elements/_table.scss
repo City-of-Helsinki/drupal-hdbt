@@ -14,7 +14,7 @@ table {
     background-color: $color-black;
     color: $color-white;
     padding: $spacing-double $spacing;
-    text-align: left;
+    text-align: start;
   }
 
   thead {
@@ -26,7 +26,7 @@ table {
       font-weight: $font-weight-medium;
       min-width: 140px;
       padding: $spacing;
-      text-align: left;
+      text-align: start;
       vertical-align: middle;
       white-space: normal;
 
@@ -56,7 +56,7 @@ table {
         color: $hdbt-color-black;
         min-width: 140px;
         padding: $spacing;
-        text-align: left;
+        text-align: start;
         vertical-align: middle;
         white-space: normal;
 
