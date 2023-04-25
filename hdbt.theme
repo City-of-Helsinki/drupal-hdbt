@@ -1547,3 +1547,21 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
     $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_node__announcement(array &$variables) {
+  $type = $variables['node']->get('field_announcement_type')->value;
+
+  $type_label = match($type) {
+    'alert' => t('Alert'),
+    'attention' => t('Attention'),
+    default => t('Notification')
+  };
+
+  $close_label = t('Close');
+
+  $variables['type_label'] = $type_label;
+  $variables['close_label'] =  $close_label;
+}
