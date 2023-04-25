@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 // Fix sidebar width when there are only short news titles
 // TODO: REGIONS Clean this up with other region things
@@ -285,9 +285,9 @@ $-card-teaser-min-width: 280px;
 
   .hel-icon--arrow-right {
     @include hover-link-arrow-transition;
-
     display: none;
     height: $spacing-triple;
+    pointer-events: none;
     transform: scaleX(var(--lang-direction, 1));
     width: $spacing-triple;
 
