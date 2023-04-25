@@ -1563,5 +1563,5 @@ function hdbt_preprocess_node__announcement(array &$variables) {
   $close_label = t('Close');
 
   $variables['type_label'] = $type_label;
-  $variables['close_label'] =  $close_label;
+  $variables['close_label'] = $close_label;
 }
