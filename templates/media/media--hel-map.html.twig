@@ -42,6 +42,10 @@
   privacy_policy_url: privacy_policy_url,
 } %}
 
+{% if alternative_language %}
+  {% set link = link|merge({'#attributes': {'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir }}) %}
+{% endif %}
+
 {% set drupal_settings = {
   '#attached': {
     'drupalSettings': {

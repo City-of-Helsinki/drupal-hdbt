@@ -65,15 +65,15 @@
     padding: $spacing;
 
     li {
-      margin-left: $spacing-double;
-      padding-left: $spacing-half;
+      margin-inline-start: $spacing-double;
+      padding-inline-start: $spacing-half;
     }
 
     ul, ol {
       margin-top: 0;
 
       li {
-        margin-left: $spacing-half;
+        margin-inline-start: $spacing-half;
       }
     }
   }

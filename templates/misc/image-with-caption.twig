@@ -2,7 +2,20 @@
   {{ image }}
 
   {% if image_caption %}
-    <figcaption class="image__caption">
+    {% set figcaption_attributes = {
+        'class': [
+          'image__caption',
+        ]
+      }
+    %}
+    {% if alternative_language %}
+      {% set figcaption_attributes = figcaption_attributes|merge({
+          'dir': lang_attributes.fallback_dir,
+          'lang': lang_attributes.fallback_lang
+        })
+      %}
+    {% endif %}
+    <figcaption {{ create_attribute(figcaption_attributes) }}>
       {{ image_caption }}
     </figcaption>
   {% endif %}

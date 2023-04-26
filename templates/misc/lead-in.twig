@@ -1,5 +1,8 @@
 {% if content|render %}
-  <section class="lead-in" aria-label="{{ 'Lead-in paragraph'|t({}, {'context': 'Page lead-in section explanation for screen readers'}) }}">
+  <section class="lead-in" aria-labelledby="lead-in__label">
+    <span id="lead-in__label" class="is-hidden" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+      {{ 'Lead-in paragraph'|t({}, {'context': 'Page lead-in section explanation for screen readers'}) }}
+    </span>
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [

@@ -423,3 +423,7 @@ msgstr "Alakoulut (luokat 1-6)"
 msgctxt "School search: education level option"
 msgid "Lower secondary schools (grades 7-9)"
 msgstr "Yläkoulut (luokat 7-9)"
+
+msgctxt "The text for close accordion visibility button"
+msgid "Close"
+msgstr "Sulje"

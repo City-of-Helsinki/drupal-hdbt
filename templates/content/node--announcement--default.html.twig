@@ -22,6 +22,8 @@
         </div>
       {% endif %}
     </div>
-    <button type="button" class="announcement__close js-announcement__close--disabled" aria-label="{{ "Close announcement"|t }}"></button>
+    <button type="button" class="announcement__close js-announcement__close--disabled" aria-labelledby="announcement__close__aria-label">
+      <span id="announcement__close__aria-label" class="is-hidden">{{ "Close announcement"|t }}</span>
+    </button>
   </div>
 </div>
