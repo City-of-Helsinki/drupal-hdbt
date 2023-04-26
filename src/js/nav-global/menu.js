@@ -112,36 +112,15 @@ function externalLinkIcon() {
 externalLinkIcon.ICONS = {
   mailto: {
     class: 'link__type link__type--mailto',
-    text: Drupal.t(
-      'Link opens default mail program',
-      {},
-      {
-        context:
-          'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.',
-      },
-    ),
+    aria_id: 'aria-mailto-link-label',
   },
   tel: {
     class: 'link__type link__type--tel',
-    text: Drupal.t(
-      'Link starts a phone call',
-      {},
-      {
-        context:
-          'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.',
-      },
-    ),
+    aria_id: 'aria-tel-link-label',
   },
   external: {
     class: 'link__type link__type--external',
-    text: Drupal.t(
-      'Link leads to external service',
-      {},
-      {
-        context:
-          'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.',
-      },
-    ),
+    aria_id: 'aria-external-link-label',
   },
 };
 
@@ -178,7 +157,7 @@ const MobilePanel = {
           lang="{{attributes.lang}}"
         {{/hasLang}}
 
-        >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}</a>
+        >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-labelledby="{{aria_id}}"></span>{{/externalLinkIcon}}</a>
         {{>sub_tree}}
       </div>
       ${document.querySelector('.js-mmenu__footer')?.outerHTML}
@@ -213,7 +192,7 @@ const MobilePanel = {
             lang="{{attributes.lang}}"
           {{/hasLang}}
 
-          >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-label="({{text}})"></span>{{/externalLinkIcon}}
+          >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}" aria-labelledby="{{aria_id}}"></span>{{/externalLinkIcon}}
           </a>
           {{#button}}
             <button class="mmenu__forward " value={{id}}><span class="visually-hidden">{{openSubMenuTranslation}} {{name}}</span></button>
