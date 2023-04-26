@@ -587,7 +587,8 @@ function hdbt_preprocess_block(&$variables): void {
         $page_entity instanceof NodeInterface &&
         $page_entity->hasField('field_hero') &&
         $page_entity->hasField('field_has_hero') &&
-        boolval($page_entity->get('field_has_hero')->getString())
+        $page_entity->get('field_has_hero')->value &&
+        !$page_entity->get('field_hero')->isEmpty()
       ) {
         $variables['hide_block'] = TRUE;
       }
