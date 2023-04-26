@@ -1413,7 +1413,7 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
 function hdbt_preprocess_social_media_links(&$variables): void {
   // Convert Attributes to strings.
   if (isset($variables['elements'])) {
-    foreach ($variables['elements'] as &$element) {
+    foreach ($variables['elements'] as $key => &$element) {
       // Convert href attribute to URL.
       if (
         $element['api'] instanceof Attribute &&
@@ -1431,6 +1431,14 @@ function hdbt_preprocess_social_media_links(&$variables): void {
         $element['classes'][] = $element['attr']['class']
           ->offsetGet('class')
           ->__toString();
+      }
+
+      // Add lang and dir attributes if the link text is not translated.
+      if ($key === 'email' && $variables['alternative_language']) {
+        if (!isset(\Drupal::languageManager()->getLanguageConfigOverride($variables['current_langcode'], 'social_media.settings')->get('social_media')['email']['text'])) {
+          $element['attr']['lang'] = 'en';
+          $element['attr']['dir'] = 'ltr';
+        }
       }
     }
   }
