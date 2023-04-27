@@ -331,7 +331,57 @@ $-card-teaser-min-width: 280px;
 .news-archive__heading {
   @include font('h3');
   border-bottom: 2px solid $color-black;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
   margin-top: 0;
   padding-bottom: $spacing-and-half;
   width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    flex-flow: row;
+  }
+}
+
+.news-archive__feed-link {
+  @include font('button');
+  align-items: self-end;
+  display: flex;
+  padding-top: $spacing;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    padding-top: 0;
+  }
+
+  .link {
+    display: block;
+    margin-inline-start: $spacing-quarter;
+    text-decoration: none;
+    
+    &::after {
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .link-text:after {
+      @include pseudo-icon('link-external');
+      @include hover-link-arrow-transition;
+      margin-inline-start: $spacing-quarter;
+      pointer-events: none;
+    } 
+
+    &:focus-within .link-text::after,
+    &:hover .link-text::after {
+      transform: translate($spacing-quarter, -$spacing-quarter);
+  
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+  }
 }
