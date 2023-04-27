@@ -3,7 +3,7 @@
   display: block;
   margin: $spacing-triple 0;
   padding-block: $spacing-half;
-  padding-inline: 0 $spacing-and-half;
+  padding-inline-start: $spacing-and-half;
   position: relative;
 
   @include breakpoint($breakpoint-l) {
@@ -15,9 +15,9 @@
     background-color: var(--hdbt-color-palette--primary);
     content: '';
     height: 100%;
+    inset-block-start: 0;
     inset-inline-start: 0;
     position: absolute;
-    top: 0;
     width: 8px;
   }
 }
