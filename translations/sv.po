@@ -422,6 +422,10 @@ msgctxt "School search: education level option"
 msgid "Lower secondary schools (grades 7-9)"
 msgstr "Grundskolor (år 7-9)"
 
-msgctxt "Aria label fo main navigation"
+msgctxt "Aria label for main navigation"
 msgid "Main navigation"
 msgstr "Huvudmeny"
+
+msgctxt "Aria label for language switcher"
+msgid "Select site language"
+msgstr "Välj språk"
