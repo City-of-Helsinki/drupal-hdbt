@@ -174,7 +174,7 @@ module.exports = (env, argv) => {
             'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
             'force': true,
           }, {
-            'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv,en-gb}.wasm',
+            'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv}.wasm',
             'to': path.resolve(__dirname, 'dist', 'js/hyphenopoly/patterns', '[name][ext]'),
             'force': true,
           }
