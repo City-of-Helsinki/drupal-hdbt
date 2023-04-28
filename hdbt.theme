@@ -296,6 +296,9 @@ function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
+  // Add current langcode for easy access.
+  $variables['node_langcode'] = $node->get('langcode')->value;
+
   // Add current node Url to variable.
   $variables['node_url'] = !$node->isNew() ? $node->toUrl('canonical') : NULL;
 
