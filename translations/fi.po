@@ -254,6 +254,10 @@ msgctxt "News list paragraph see all news link"
 msgid "See all the news"
 msgstr "Katso kaikki uutiset"
 
+msgctxt "News list paragraph see all related news link"
+msgid "See all related news"
+msgstr "Katso kaikki aiheen uutiset"
+
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "Kaikki uutiset"

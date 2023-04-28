@@ -27,7 +27,11 @@
       {% endif %}
 
 			{% set link_title %}
-			  <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
+        {% if content.field_helfi_news_groups|render or content.field_helfi_news_tags|render or content.field_helfi_news_neighbourhoods|render %}
+			    <span class="hds-button__label">{{ 'See all related news'|t({}, {'context' : 'News list paragraph see all related news link'}) }}</span>
+        {% else %}
+			    <span class="hds-button__label">{{ 'See all the news'|t({}, {'context' : 'News list paragraph see all news link'}) }}</span>
+        {% endif %}
 			{% endset %}
 
 			{% set link_attributes = {
