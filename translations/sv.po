@@ -171,6 +171,14 @@ msgstr ""
 msgid "You do not have permission to access this page"
 msgstr "Du har inte användarrätt till sidan"
 
+msgctxt "Mobile navigation menu open button text"
+msgid "Menu"
+msgstr "Meny"
+
+msgctxt "Mobile navigation menu close button text"
+msgid "Close"
+msgstr "Stäng"
+
 msgctxt "Mobile navigation menu open button text for screen readers"
 msgid "Open navigation menu"
 msgstr "Öppna navigeringsmenyn"
