@@ -41,28 +41,29 @@ $-circle-size--ol-l: $spacing-triple;
     position: absolute;
   }
 
-  &::before {
+  &::after {
     background-color: $color-black;
     height: calc(100% + $-item-gap + $spacing-half); // Height of the line should overlap 16px with the one below it.
     top: 0;
     transform: translateX(calc(var(--lang-direction) * -50%));
     width: 2px;
+    z-index: 0;
   }
 
-  &:first-of-type::before {
+  &:first-of-type::after {
     height: 100%;
     top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
   }
 
-  &:last-of-type::before {
+  &:last-of-type::after {
     height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
   }
 
-  &:only-child::before {
+  &:only-child::after {
     display: none;
   }
 
-  &::after {
+  &::before {
     background-color: $color-white;
     border: 3px solid $color-black;
     border-radius: 50%;
@@ -70,6 +71,7 @@ $-circle-size--ol-l: $spacing-triple;
     top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
     transform: translate(calc(var(--lang-direction) * -50%), -50%);
     width: var(--circle-size);
+    z-index: 1;
   }
 }
 
@@ -82,7 +84,7 @@ $-circle-size--ol-l: $spacing-triple;
     --p-left: #{$-item-padding-left--ol-l};
   }
 
-  &::after {
+  &::before {
     align-items: center;
     content: counter(item);
     counter-increment: item;
