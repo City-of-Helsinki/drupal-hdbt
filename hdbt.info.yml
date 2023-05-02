@@ -28,6 +28,7 @@ regions:
 libraries:
   - hdbt/global-styling
   - hdbt/global-scripting
+  - hdbt/hyphenopoly
 
 # Libraries extend
 libraries-extend:
