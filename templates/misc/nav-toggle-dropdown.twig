@@ -1,5 +1,7 @@
 {% if description %}
-  <nav id="{{ id }}" role="navigation" class="nav-toggle-dropdown {{ modifier_class }}" aria-label="{{ description }}">
+  {% set nav_toggle_dropdown_id = id ~ '-menu'|clean_id %}
+  <nav id="{{ id }}" role="navigation" class="nav-toggle-dropdown {{ modifier_class }}" aria-labelledby="{{ nav_toggle_dropdown_id }}">
+    <span class="is-hidden" id="{{ nav_toggle_dropdown_id }}">{{ description }}</span>
 {% else %}
   <div id="{{ id }}" class="nav-toggle-dropdown {{ modifier_class }}">
 {% endif %}
