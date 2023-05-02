@@ -156,3 +156,10 @@ school-search:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+hyphenopoly:
+  version: 5.x
+  header: true
+  js:
+    dist/js/hyphenopoly_settings.min.js: {}
+    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {}

@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - 5.x
 name: CI
 jobs:
   tests:

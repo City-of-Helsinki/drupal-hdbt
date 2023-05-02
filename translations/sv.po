@@ -252,6 +252,10 @@ msgctxt "News list paragraph see all news link"
 msgid "See all the news"
 msgstr "Se alla nyheter"
 
+msgctxt "News list paragraph see all related news link"
+msgid "See all related news"
+msgstr "Se alla nyheter i ämnet"
+
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "All nyheter"
@@ -429,3 +433,7 @@ msgstr "Huvudmeny"
 msgctxt "Aria label for language switcher"
 msgid "Select site language"
 msgstr "Välj språk"
+
+msgctxt "The text for close accordion visibility button"
+msgid "Close"
+msgstr "Stäng"

@@ -71,7 +71,7 @@
     margin-top: $spacing;
 
     @include breakpoint($breakpoint-m) {
-      margin-left: $spacing;
+      margin-inline-start: $spacing;
       margin-top: 0;
     }
   }
@@ -93,6 +93,19 @@
     @include breakpoint($breakpoint-m) {
       width: auto;
     }
+  }
+}
+
+// Ensure text-align in forced LTR
+[dir='ltr'] .eu-cookie-compliance-message {
+  text-align: left;
+}
+
+// Ensure alignment in forced LTR
+[dir='ltr'] .eu-cookie-compliance-categories-buttons {
+  @include breakpoint($breakpoint-m) {
+    margin-left: $spacing;
+    margin-right: 0;
   }
 }
 
