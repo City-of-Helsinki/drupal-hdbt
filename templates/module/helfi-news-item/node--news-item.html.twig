@@ -80,36 +80,13 @@
     {{ drupal_block('helfi_platform_config_social_sharing_block') }}
 
     {# Tags #}
-    {% if content.field_news_item_tags|render or content.field_news_neighbourhoods|render or content.field_news_groups|render %}
-      {% embed '@hdbt/misc/tag-list.twig' with { type: 'static' }%}
-        {% block content %}
-          {% if content.field_news_item_tags|render %}
-            {% for key in content.field_news_item_tags['#items']|keys %}
-              {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_item_tags[key],
-                addSpan: true,
-              }%}
-            {% endfor %}
-          {% endif %}
-          {% if content.field_news_neighbourhoods|render %}
-            {% for key in content.field_news_neighbourhoods['#items']|keys %}
-              {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_neighbourhoods[key],
-                addSpan: true,
-              }%}
-            {% endfor %}
-          {% endif %}
-          {% if content.field_news_groups|render %}
-            {% for key in content.field_news_groups['#items']|keys %}
-              {% include '@hdbt/misc/tag.twig' with {
-                tag: content.field_news_groups[key],
-                addSpan: true,
-              }%}
-            {% endfor %}
-          {% endif %}
-        {% endblock content %}
-      {% endembed %}
-    {% endif %}
+    {% include "@hdbt/misc/news-tags.twig" with
+      {
+        tags: content.news_item_tags,
+        neighbourhoods: content.field_news_neighbourhoods,
+        groups: content.field_news_groups,
+      }
+    %}
 
     {# Radioactivity #}
     {% if content.field_radioactivity|render %}

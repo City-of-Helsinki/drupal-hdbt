@@ -252,6 +252,10 @@ msgctxt "News list paragraph see all news link"
 msgid "See all the news"
 msgstr "Se alla nyheter"
 
+msgctxt "News list paragraph see all related news link"
+msgid "See all related news"
+msgstr "Se alla nyheter i ämnet"
+
 msgctxt "News archive heading"
 msgid "All news items"
 msgstr "All nyheter"

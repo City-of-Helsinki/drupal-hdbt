@@ -64,6 +64,10 @@ Example usage:
       </div>
     {% endif %}
 
+    {# Reserved spot for tags, print nothing by default #}
+    {% block component_tags %}
+    {% endblock %}
+
     <{{ tag }}{{ container_attr.addClass('component__content', component_content_class) }}>
       {% block component_content %}
         {{ content }}
