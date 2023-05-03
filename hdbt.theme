@@ -1002,6 +1002,24 @@ function hdbt_preprocess_paragraph(array &$variables): void {
     $variables['phasing_item_heading_level'] = 'h' . $phasing_item_heading_level;
     $variables['show_numbers'] = $paragraph_parent->get('field_show_phase_numbers')->value;
   }
+
+  if ($paragraph_type == 'sote_section') {
+    // @todo this library is only for demo purpose.
+    $variables['#attached']['library'][] = 'helfi_ahjo/hierarchical_taxonomy_tree';
+    $variables['vocabulary'] = 'sote_section';
+    $variables['max_depth'] = $paragraph->get('field_max_depth')->value ?? 0;
+    $variables['collapsible'] = 1;
+
+    $excludeByTypeId = [];
+    foreach ($paragraph->get('field_exclude_by_type_id') as $value) {
+      $excludeByTypeId[] = $value->getString();
+    }
+
+    $menu_tree = \Drupal::service('helfi_ahjo.ahjo_service')
+      ->getDataAsTree($excludeByTypeId, $paragraph->get('field_organization')->target_id,  $paragraph->get('field_max_depth')->value);
+    $variables['menu_tree'] = $menu_tree;
+    $variables['#cache']['tags'][] = 'taxonomy_term_list:sote_section';
+  }
 }
 
 /**
