@@ -161,5 +161,9 @@ hyphenopoly:
   version: 5.x
   header: true
   js:
-    dist/js/hyphenopoly_settings.min.js: {}
-    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {}
+    hyphenopoly/hyphenopoly_settings.js: {
+      attributes: { defer: true }
+    }
+    hyphenopoly/Hyphenopoly_Loader.js: {
+      attributes: { defer: true }
+    }

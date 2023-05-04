@@ -167,15 +167,15 @@ module.exports = (env, argv) => {
             'force': true,
           }, {
             'from': 'node_modules/hyphenopoly/min/Hyphenopoly_Loader.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
+            'to': path.resolve(__dirname, '.') + '/hyphenopoly/',
             'force': true,
           }, {
             'from': 'node_modules/hyphenopoly/min/Hyphenopoly.js',
-            'to': path.resolve(__dirname, 'dist') + '/js/hyphenopoly/',
+            'to': path.resolve(__dirname, '.') + '/hyphenopoly/',
             'force': true,
           }, {
             'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv}.wasm',
-            'to': path.resolve(__dirname, 'dist', 'js/hyphenopoly/patterns', '[name][ext]'),
+            'to': path.resolve(__dirname, '.', 'hyphenopoly/patterns', '[name][ext]'),
             'force': true,
           }
         ]
