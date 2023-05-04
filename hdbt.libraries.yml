@@ -161,5 +161,9 @@ hyphenopoly:
   version: 5.x
   header: true
   js:
-    dist/js/hyphenopoly_settings.min.js: {}
-    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {}
+    dist/js/hyphenopoly_settings.min.js: {
+      preprocess: false
+    }
+    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
+      preprocess: false
+    }
