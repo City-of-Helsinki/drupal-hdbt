@@ -6,14 +6,6 @@
     component_content_class: 'map',
   }%}
   {% block component_content %}
-    {% set after_map_id = 'map-' ~ id ~ '-after'|clean_id %}
-    {% set before_map_id = 'map-' ~ id ~ '-before'|clean_id %}
-    <a href="#{{ after_map_id }}" id="{{ before_map_id }}" class="focusable skip-map skip-map--before">
-      {{ 'Continue below the map'|t({}, {'context': 'Skip link before the map for the map paragraph'}) }}
-    </a>
     {{ map }}
-    <a href="#{{ before_map_id }}" id="{{ after_map_id }}" class="focusable skip-map skip-map--after">
-      {{ 'Continue above the map'|t({}, {'context': 'Skip link after the map for the map paragraph'}) }}
-    </a>
   {% endblock component_content %}
 {% endembed %}

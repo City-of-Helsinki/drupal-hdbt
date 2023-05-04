@@ -1,0 +1,42 @@
+.skip-link {
+  --border-width: 2px;
+  --border-color: var(--color-white);
+  --outline-width: 3px;
+  --background-color: var(--hdbt-color-black);
+  --color: var(--color-white);
+  --focus-outline-color: var(--hdbt-color-black);
+  word-wrap: normal;
+  background-color: var(--background-color);
+  border: var(--border-width) solid var(--border-color);
+  color: var(--color);
+  font-weight: $font-weight-medium;
+  left: 50%;
+  max-width: 90%;
+  position: absolute;
+  scroll-margin-top: 105px; // Amount of air that should be left when scrolled to top.
+  text-align: center;
+  text-decoration: none;
+  transform: translate(-50%, 0);
+  transition: transform ease-out 0.2s;
+  width: max-content; // This avoids pushing the content to two rows until absolutely necessary
+  z-index: 2;
+
+  &:not(:focus) {
+    @include visually-hidden;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    scroll-margin-top: 24px; // Amount of air that should be left when scrolled to top.
+  }
+
+  &:focus,
+  &:active {
+    outline: var(--outline-width) solid var(--focus-outline-color);
+    outline-offset: 0; // Chrome has a bug that shows a small offset when focused with keyboard instead of developer tools. This combats that problem.
+    padding: $spacing-half $spacing-and-half;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
