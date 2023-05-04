@@ -38,6 +38,7 @@
 .accordion-item__button--toggle {
   @include font('h4');
   border: none;
+  color: $color-black;
   padding-block: $spacing;
   padding-inline-end: 60px;
   position: relative;
