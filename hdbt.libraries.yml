@@ -163,3 +163,12 @@ hyphenopoly:
   js:
     dist/js/hyphenopoly_settings.min.js: {}
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {}
+
+job-search:
+  version: 1.x
+  js:
+    dist/js/job-search.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+
