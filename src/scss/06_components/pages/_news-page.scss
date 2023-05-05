@@ -345,19 +345,21 @@ $-card-teaser-min-width: 280px;
 
 .news-archive__feed-link {
   @include font('button');
-  align-items: self-end;
+  align-items: flex-start;
   display: flex;
+  flex-wrap: nowrap;
   padding-top: $spacing;
   position: relative;
 
   @include breakpoint($breakpoint-m) {
-    padding-top: 0;
+    padding-top: $spacing-quarter;
   }
 
   .link {
     display: block;
     margin-inline-start: $spacing-quarter;
     text-decoration: none;
+    width: max-content;
     
     &::after {
       bottom: 0;
