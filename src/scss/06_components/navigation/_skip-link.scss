@@ -20,6 +20,10 @@
   transition: transform ease-out 0.2s;
   width: max-content; // This avoids pushing the content to two rows until absolutely necessary
   z-index: 2;
+  
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
 
   &:not(:focus) {
     @include visually-hidden;
