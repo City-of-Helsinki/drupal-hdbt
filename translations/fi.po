@@ -436,6 +436,14 @@ msgctxt "School search: education level option"
 msgid "Lower secondary schools (grades 7-9)"
 msgstr "Yläkoulut (luokat 7-9)"
 
+msgctxt "Aria label for main navigation"
+msgid "Main navigation"
+msgstr "Päävalikko"
+
+msgctxt "Aria label for language switcher"
+msgid "Select site language"
+msgstr "Valitse sivuston kieli"
+
 msgctxt "The text for close accordion visibility button"
 msgid "Close"
 msgstr "Sulje"
