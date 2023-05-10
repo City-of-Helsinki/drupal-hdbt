@@ -6,7 +6,7 @@ import { resetParamAtom, updateParamsAtom } from '../store';
 type CheckboxFilterProps = {
   id: string;
   label: string;
-  atom: WritableAtom<boolean, SetStateAction<boolean>, void>;
+  atom: any;
   valueKey: string;
 };
 
@@ -26,9 +26,14 @@ function CheckboxFilter({ id, label, atom, valueKey }: CheckboxFilterProps) {
     updateParams({ [valueKey]: 'true' });
   };
 
+  let checked = false;
+  if (value) {
+    checked = true;
+  }
+
   return (
     <Checkbox
-      checked={value || false}
+      checked={checked}
       className="hdbt-search__filter hdbt-search__checkbox"
       id={id}
       label={label}

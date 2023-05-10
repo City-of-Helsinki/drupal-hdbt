@@ -107,7 +107,7 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
 };
 
 type CheckboxFilterBulletProps = {
-  atom: WritableAtom<boolean, SetStateAction<boolean>, void>;
+  atom: any;
   valueKey: string;
   label: string;
   url: string | null;

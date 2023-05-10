@@ -11,7 +11,7 @@ const { merge } = require('webpack-merge');
 // Entries for React searches.
 const REACT_SEARCHES = {
   linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
-  'school_search': ['./src/js/react/apps/school-search/index.tsx'],
+  'school-search': ['./src/js/react/apps/school-search/index.tsx'],
   'job-search': ['./src/js/react/apps/job-search/index.tsx'],
 };
 
