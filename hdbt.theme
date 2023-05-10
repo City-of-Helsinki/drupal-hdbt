@@ -20,6 +20,7 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
@@ -1564,4 +1565,36 @@ function hdbt_preprocess_node__announcement(array &$variables) {
 
   $variables['type_label'] = $type_label;
   $variables['close_label'] = $close_label;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__job_search(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraph_type = $paragraph->getType();
+
+  if ($paragraph_type == 'job_search') {
+    if ($search_result_page_nid = $paragraph->get('field_job_search_result_page')->getString()) {
+      $entity = Node::load($search_result_page_nid);
+      $language = \Drupal::languageManager()
+        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+        ->getId();
+
+      if ($entity->hasTranslation($language)) {
+        $entity = $entity->getTranslation($language);
+      }
+
+      $url = $entity->toUrl()->toString();
+      $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['results_page_path'] = $url;
+    }
+  }
+
+  $config = \Drupal::config('elastic_proxy.settings');
+  if ($config->get('elastic_proxy_url')) {
+    $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
+  }
+
+  $variables['#attached']['library'][] = 'hdbt/job-search';
 }
