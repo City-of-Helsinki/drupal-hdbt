@@ -1,6 +1,5 @@
 import { Select } from 'hds-react';
-import { useAtomValue } from 'jotai';
-import { useUpdateAtom } from 'jotai/utils';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect , useState } from 'react';
 
 import Global from '../../enum/Global';
@@ -21,7 +20,7 @@ const options: OptionType[] = [
 
 const ResultsSort = () => {
   const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useUpdateAtom(urlUpdateAtom);
+  const setUrlParams = useSetAtom(urlUpdateAtom);
   const [sort, setSort] = useState<OptionType>(options[1]);
 
   useEffect(() => {

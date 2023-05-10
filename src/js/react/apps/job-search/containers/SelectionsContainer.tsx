@@ -1,6 +1,5 @@
 import { Button, IconCross } from 'hds-react';
-import { SetStateAction, WritableAtom, useAtomValue } from 'jotai';
-import { useUpdateAtom } from 'jotai/utils';
+import { SetStateAction, WritableAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';
@@ -24,11 +23,11 @@ import OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
-  const resetForm = useUpdateAtom(resetFormAtom);
+  const resetForm = useSetAtom(resetFormAtom);
   const taskAreaOptions = useAtomValue(taskAreasAtom);
-  const updateTaskAreas = useUpdateAtom(taskAreasSelectionAtom);
+  const updateTaskAreas = useSetAtom(taskAreasSelectionAtom);
   const employmentOptions = useAtomValue(employmentAtom);
-  const updateEmploymentOptions = useUpdateAtom(employmentSelectionAtom);
+  const updateEmploymentOptions = useSetAtom(employmentSelectionAtom);
 
   const showClearButton =
     urlParams?.task_areas?.length ||
@@ -121,7 +120,7 @@ type ListFilterProps = {
 
 const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
   const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useUpdateAtom(urlUpdateAtom);
+  const setUrlParams = useSetAtom(urlUpdateAtom);
 
   const removeSelection = (value: string) => {
     const newValue = values;
@@ -148,15 +147,15 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 };
 
 type CheckboxFilterPillProps = {
-  atom: WritableAtom<boolean, SetStateAction<boolean>, void>;
+  atom: any;
   valueKey: string;
   label: string;
 };
 
 const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) => {
-  const setValue = useUpdateAtom(atom);
+  const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useUpdateAtom(urlUpdateAtom);
+  const setUrlParams = useSetAtom(urlUpdateAtom);
 
   return (
     <FilterButton
@@ -170,14 +169,14 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
 };
 
 type SingleFilterProps = {
-  atom: WritableAtom<OptionType | null, SetStateAction<OptionType | null>, void>;
+  atom: any;
   valueKey: string;
   label: string;
 };
 const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
-  const setValue = useUpdateAtom(atom);
+  const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useUpdateAtom(urlUpdateAtom);
+  const setUrlParams = useSetAtom(urlUpdateAtom);
 
   const { language, ...updatedParams } = urlParams;
 

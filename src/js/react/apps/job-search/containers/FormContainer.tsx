@@ -1,6 +1,5 @@
 import { Button, Checkbox, Select, TextInput } from 'hds-react';
-import { useAtom, useAtomValue } from 'jotai';
-import { useUpdateAtom } from 'jotai/utils';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import React, { useEffect } from 'react';
 
 import CustomIds from '../enum/CustomTermIds';
@@ -22,7 +21,8 @@ import {
   taskAreasSelectionAtom,
   urlUpdateAtom,
   youthSummerJobsAtom,
- urlAtom } from '../store';
+  urlAtom
+} from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
 
@@ -34,7 +34,7 @@ const FormContainer = () => {
   const [youthSummerJobs, setYouthSummerJobs] = useAtom(youthSummerJobsAtom);
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useUpdateAtom(urlUpdateAtom);
+  const setUrlParams = useSetAtom(urlUpdateAtom);
   const [taskAreaSelection, setTaskAreaFilter] = useAtom(taskAreasSelectionAtom);
   const taskAreasOptions = useAtomValue(taskAreasAtom);
   const employmentOptions = useAtomValue(employmentAtom);
@@ -94,6 +94,8 @@ const FormContainer = () => {
     employmentSearchIdMap.get(CustomIds.YOUTH_SUMMER_JOBS) || employmentSearchIdMap.get(CustomIds.COOL_SUMMER_PROJECT);
   const showCheckboxes = showContinuous || showInternships || showSummerJobs || showYouthSummerJobs;
 
+  const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
+
   return (
     <form className='job-search-form' onSubmit={handleSubmit} action={formAction}>
       <TextInput
@@ -112,7 +114,9 @@ const FormContainer = () => {
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
+            {/* @ts-ignore */}
             <Select
+              clearable
               clearButtonAriaLabel={Drupal.t('Clear selection', {}, { context: 'Job search clear button aria label' })}
               className='job-search-form__dropdown'
               selectedItemRemoveButtonAriaLabel={Drupal.t(
@@ -122,8 +126,7 @@ const FormContainer = () => {
               )}
               placeholder={Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' })}
               multiselect
-              label={Drupal.t('Task area', {}, { context: 'Task areas filter label' })}
-              // @ts-ignore
+              label={taskAreasLabel}
               options={taskAreasOptions}
               value={taskAreaSelection}
               id={SearchComponents.TASK_AREAS}
@@ -131,6 +134,7 @@ const FormContainer = () => {
             />
           </div>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
+            {/* @ts-ignore */}
             <Select
               clearButtonAriaLabel={Drupal.t('Clear selection', {}, { context: 'Job search clear button aria label' })}
               className='job-search-form__dropdown'
@@ -146,7 +150,6 @@ const FormContainer = () => {
               )}
               multiselect
               label={Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' })}
-              // @ts-ignore
               options={employmentOptions}
               value={employmentSelection}
               id={SearchComponents.TASK_AREAS}

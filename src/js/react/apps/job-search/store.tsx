@@ -74,7 +74,18 @@ export const setPageAtom = atom(null, (get, set, page: string) => {
 
 export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
 
-export const configurationsAtom = atom(async () => {
+type configurations = {
+  error: Error|null,
+  taskAreaOptions: any,
+  taskAreas: any,
+  employment: any,
+  employmentOptions: any,
+  employmentSearchIds: any,
+  employmentType: any,
+  languages: any,
+};
+
+export const configurationsAtom = atom(async(): Promise<configurations> => {
   const proxyUrl = drupalSettings?.helfi_rekry_job_search?.elastic_proxy_url;
   const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
   const ndjsonHeader = '{}';
@@ -96,6 +107,7 @@ export const configurationsAtom = atom(async () => {
     }\n${ 
     JSON.stringify(LANGUAGE_OPTIONS) 
     }\n`;
+
   return fetch(`${url}/_msearch`, {
     method: 'POST',
     headers: {
@@ -103,36 +115,42 @@ export const configurationsAtom = atom(async () => {
     },
     body,
   })
-    .then((res) => res.json())
-    .then((json) => {
-      // Simplify response for later use.
-      const responses = json?.responses;
+  .then(res => res.json())
+  .then(json => {
+    const responses = json?.responses;
 
-      if (!responses || !Array.isArray(responses)) {
-        return {
-          error: new Error(
-            `Initialization failed. Expected responses to be an array of data but got ${  typeof responses}`
-          ),
-        };
-      }
-
-      const [aggs, taskAreas, employmentOptions, languages] = responses;
-
+    if (!responses || !Array.isArray(responses)) {
       return {
-        error: null,
-        taskAreaOptions: taskAreas?.hits?.hits || [],
-        taskAreas: aggs?.aggregations?.occupations?.buckets || [],
-        employment: aggs?.aggregations?.employment?.buckets || [],
-        employmentOptions: employmentOptions?.hits?.hits || [],
-        employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
-        employmentType: aggs?.aggregations?.employment_type?.buckets || [],
-        languages: languages?.aggregations?.languages?.buckets || [],
+        error: new Error(
+          `Initialization failed. Expected responses to be an array of data but got ${  typeof responses}`
+        ),
+        taskAreaOptions: [],
+        taskAreas: [],
+        employment: [],
+        employmentOptions: [],
+        employmentSearchIds: [],
+        employmentType: [],
+        languages: [],
       };
-    });
+    }
+
+    const [aggs, taskAreas, employmentOptions, languages] = responses;
+
+    return {
+      error: null,
+      taskAreaOptions: taskAreas?.hits?.hits || [],
+      taskAreas: aggs?.aggregations?.occupations?.buckets || [],
+      employment: aggs?.aggregations?.employment?.buckets || [],
+      employmentOptions: employmentOptions?.hits?.hits || [],
+      employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
+      employmentType: aggs?.aggregations?.employment_type?.buckets || [],
+      languages: languages?.aggregations?.languages?.buckets || [],
+    };
+  });
 });
 
-export const taskAreasAtom = atom<OptionType[]>((get) => {
-  const { error, taskAreaOptions, taskAreas } = get(configurationsAtom);
+export const taskAreasAtom = atom(async (get) => {
+  const { error, taskAreaOptions, taskAreas } = await get(configurationsAtom);
 
   if (error) {
     return [];
@@ -156,8 +174,8 @@ export const taskAreasAtom = atom<OptionType[]>((get) => {
 });
 export const taskAreasSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
-export const employmentAtom = atom<OptionType[]>((get) => {
-  const { error, employment, employmentOptions, employmentType } = get(configurationsAtom);
+export const employmentAtom = atom(async(get) => {
+  const { error, employment, employmentOptions, employmentType } = await get(configurationsAtom);
 
   if (error) {
     return [];
@@ -213,8 +231,8 @@ export const employmentAtom = atom<OptionType[]>((get) => {
 });
 export const employmentSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
-export const languagesAtom = atom<OptionType[]>((get) => {
-  const { error, languages } = get(configurationsAtom);
+export const languagesAtom = atom(async(get) => {
+  const { error, languages } = await get(configurationsAtom);
 
   if (error) {
     return [];

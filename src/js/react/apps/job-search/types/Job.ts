@@ -10,6 +10,7 @@ type Job = {
   field_original_language: string[];
   field_postal_area: string[];
   field_publication_starts: number[];
+  field_recruitment_id: string[];
   field_recruitment_type: string[];
   field_task_area: string[];
   langcode: string[];

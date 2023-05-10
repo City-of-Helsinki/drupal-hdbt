@@ -1,12 +1,15 @@
 import { LoadingSpinner } from 'hds-react';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
 
+import { SyntheticEvent } from 'react';
+import Pagination from '@/react/common/Pagination';
+import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import useQueryString from '../hooks/useQueryString';
-import { configurationsAtom, urlAtom } from '../store';
+import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import type URLParams from '../types/URLParams';
 
 const ResultsContainer = () => {
@@ -14,6 +17,8 @@ const ResultsContainer = () => {
   const urlParams: URLParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const { error: initializationError } = useAtomValue(configurationsAtom);
+  const setPage = useSetAtom(setPageAtom);
+  const currentPage = useAtomValue(pageAtom);
   const fetcher = () => {
     const proxyUrl = drupalSettings?.helfi_rekry_job_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
@@ -66,6 +71,10 @@ const ResultsContainer = () => {
 
   // Total number of available jobs
   const jobs: number = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+  const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
+    e.preventDefault();
+    setPage(index.toString());
+  };
 
   return (
     <div className='job-search__results'>
@@ -86,10 +95,14 @@ const ResultsContainer = () => {
         <ResultsSort />
       </div>
       {results.map((hit: any) => (
-        {...hit}
-        // <ResultCard key={hit._id} {...hit._source} />
+        <ResultCard key={hit._id} {...hit._source} />
       ))}
-      {/* <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} /> */}
+      <Pagination
+        currentPage={currentPage}
+        pages={5}
+        totalPages={addLastPage ? pages + 1 : pages}
+        updatePage={updatePage}
+      />
     </div>
   );
 };
