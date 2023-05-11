@@ -36,16 +36,15 @@ function hdbt_preprocess(&$variables): void {
   $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
-  $primary_languages = [
-    'fi',
-    'en',
-    'sv',
-  ];
-  $variables['alternative_language'] = !in_array($variables['current_langcode'], $primary_languages);
+
+  /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
+  $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
+  $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($language->getId());
 
   if ($variables['alternative_language']) {
-    $variables['lang_attributes']['fallback_lang'] = 'en';
-    $variables['lang_attributes']['fallback_dir'] = 'ltr';
+    $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
+    $variables['lang_attributes']['fallback_lang'] = $attributes['lang'];
+    $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
   }
 
   // Toggle between global and local navigation in twig templates.
@@ -295,6 +294,9 @@ function hdbt_preprocess_page(&$variables): void {
 function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
+
+  // Add current langcode for easy access.
+  $variables['node_langcode'] = $node->get('langcode')->value;
 
   // Add current node Url to variable.
   $variables['node_url'] = !$node->isNew() ? $node->toUrl('canonical') : NULL;
@@ -1437,8 +1439,11 @@ function hdbt_preprocess_social_media_links(&$variables): void {
       // Add lang and dir attributes if the link text is not translated.
       if ($key === 'email' && $variables['alternative_language']) {
         if (!isset(\Drupal::languageManager()->getLanguageConfigOverride($variables['current_langcode'], 'social_media.settings')->get('social_media')['email']['text'])) {
-          $element['attr']['lang'] = 'en';
-          $element['attr']['dir'] = 'ltr';
+          /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
+          $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
+          $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
+          $element['attr']['lang'] = $attributes['lang'];
+          $element['attr']['dir'] = $attributes['dir'];
         }
       }
     }
