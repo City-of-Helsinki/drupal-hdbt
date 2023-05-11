@@ -42,12 +42,19 @@ const ResultCard = ({
     const unpublish = unpublish_on?.[0];
 
     if (!unpublish || Number.isNaN(unpublish)) {
-      return undefined;
+      return '-';
     } 
 
     try {
       dateObject = new Date(unpublish * 1000);
-      date = dateObject.toLocaleDateString('fi-FI');
+      console.log(dateObject);
+      date = dateObject.toLocaleString('fi-FI', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
     } catch (e) {
       console.warn(`Unable to parse date for job ${field_recruitment_id?.[0]}: ${  e}`);
       return undefined;
@@ -56,10 +63,19 @@ const ResultCard = ({
     return date;
   });
 
+  const employmentTags = Array.isArray(field_employment) ? field_employment : [];
+  const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
+  const tags: any = employmentTags.concat(typeTags).map(tag => ({
+      tag
+    }));
+
+  console.log(field_employment, employmentTags, tags);
+
   return (
     <CardItem
       cardDescription={orgName}
       cardModifierClass='node--type-job-listing node--view-mode-teaser'
+      cardTags={tags}
       cardTitle={cardTitle}
       cardUrl={url?.[0]}
       date={getDate()}
