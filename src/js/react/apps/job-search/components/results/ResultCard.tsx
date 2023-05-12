@@ -47,7 +47,6 @@ const ResultCard = ({
 
     try {
       dateObject = new Date(unpublish * 1000);
-      console.log(dateObject);
       date = dateObject.toLocaleString('fi-FI', {
         year: 'numeric',
         month: 'numeric',
@@ -68,8 +67,6 @@ const ResultCard = ({
   const tags: any = employmentTags.concat(typeTags).map(tag => ({
       tag
     }));
-
-  console.log(field_employment, employmentTags, tags);
 
   return (
     <CardItem
