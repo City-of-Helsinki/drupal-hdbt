@@ -366,7 +366,13 @@ class HelfiCalculator {
     }
 
     if (result.receipt) {
-      document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
+      const element = document.querySelector(`#${this.id} .helfi-calculator-notification--result`);
+      element.innerHTML = result.receipt;
+      const titleElem = element.querySelector('h2');
+      titleElem.setAttribute('tabindex', '0');
+      titleElem.focus();
+      titleElem.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      titleElem.setAttribute('tabindex', '-1');
     } else if (result.alert) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
