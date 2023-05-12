@@ -66,7 +66,19 @@
       {% endif %}
 
       {% if page.header_branding %}
-        <div id="header-branding" class="header-branding">
+        {% set header_branding_attributes = {
+            'id': 'header-branding',
+            'class': ['header-branding']
+          }
+        %}
+        {% if alternative_language %}
+          {% set header_branding_attributes = header_branding_attributes|merge({
+              'dir': lang_attributes.fallback_dir,
+              'lang': lang_attributes.fallback_lang
+            })
+          %}
+        {% endif %}
+        <div {{ create_attribute(header_branding_attributes) }}>
           {% set prefix = active_theme == 'hdbt_subtheme' ? 'hdbt_subtheme_' : '' %}
 
           {# Manually select which blocks to render in header branding region. #}

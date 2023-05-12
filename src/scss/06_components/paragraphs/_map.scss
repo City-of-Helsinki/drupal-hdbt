@@ -73,3 +73,21 @@ $-map-aspect-ratio-mobile: 1;
     text-decoration: underline;
   }
 }
+
+.skip-link--map--after {
+  bottom: 0;
+
+  &:focus,
+  &:active {
+    transform: translate(-50%, -24px);
+  }
+}
+
+.skip-link--map--before {
+  top: 0;
+
+  &:focus,
+  &:active {
+    transform: translate(-50%, 24px);
+  }
+}

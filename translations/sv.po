@@ -171,6 +171,14 @@ msgstr ""
 msgid "You do not have permission to access this page"
 msgstr "Du har inte användarrätt till sidan"
 
+msgctxt "Mobile navigation menu open button text"
+msgid "Menu"
+msgstr "Meny"
+
+msgctxt "Mobile navigation menu close button text"
+msgid "Close"
+msgstr "Stäng"
+
 msgctxt "Mobile navigation menu open button text for screen readers"
 msgid "Open navigation menu"
 msgstr "Öppna navigeringsmenyn"
@@ -437,3 +445,11 @@ msgstr "Välj språk"
 msgctxt "The text for close accordion visibility button"
 msgid "Close"
 msgstr "Stäng"
+
+msgctxt "Skip link after the map for the map paragraph"
+msgid "Continue above the map"
+msgstr "Gå förbi kartan uppåt"
+
+msgctxt "Skip link before the map for the map paragraph"
+msgid "Continue below the map"
+msgstr "Gå förbi kartan nedåt"
