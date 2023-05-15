@@ -1,8 +1,8 @@
 import { LoadingSpinner } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
+import { useEffect , SyntheticEvent } from 'react';
 
-import { SyntheticEvent } from 'react';
 import Pagination from '@/react/common/Pagination';
 import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
@@ -35,6 +35,19 @@ const ResultsContainer = () => {
   const { data, error } = useSWR(queryString, fetcher, {
     revalidateOnFocus: false,
   });
+
+  useEffect(() => {
+    const el = document.getElementById('results-container');
+
+    if (el && window.location.search) {
+      const titleEl = el.querySelector<HTMLElement>('.job-listing-search__count-container');
+      if (!titleEl) return;
+      titleEl.setAttribute('tabindex', '0');
+      titleEl.focus();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      titleEl.setAttribute('tabindex', '-1');
+    }
+  }, [data]);
 
   if (!data && !error) {
     return <LoadingSpinner />;
@@ -77,7 +90,7 @@ const ResultsContainer = () => {
   };
 
   return (
-    <div className='job-search__results'>
+    <div className='job-search__results' id='results-container'>
       <div className='job-search__results-stats'>
         <div className='job-listing-search__count-container'>
           {!Number.isNaN(jobs) && !Number.isNaN(total) && (
