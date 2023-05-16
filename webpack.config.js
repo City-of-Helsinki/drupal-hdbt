@@ -11,13 +11,18 @@ const { merge } = require('webpack-merge');
 // Entries for React searches.
 const REACT_SEARCHES = {
   linkedevents:['./src/js/react/apps/linkedevents/index.tsx'],
-  'school-search':['./src/js/react/apps/school-search/index.tsx']
+  'school-search':['./src/js/react/apps/school-search/index.tsx'],
+};
+
+const HDS_WEB_COMPONENTS = {
+  'hds-accordion': ['./src/js/hds-web-component-lib/components/Accordion/index.js']
 };
 
 // Handle entry points.
 const Entries = () => {
   let entries = {
     ...REACT_SEARCHES,
+    ...HDS_WEB_COMPONENTS,
     styles: ['./src/scss/styles.scss'],
     nav_local: ['./src/scss/nav-local.scss'],
     nav_global: ['./src/scss/nav-global.scss'],
