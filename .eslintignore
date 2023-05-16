@@ -3,3 +3,5 @@ node_modules/**/*
 webpack.config.js
 webpack.config.dev.js
 webpack.config.build.js
+# TODO: remove this when POC phase is over
+src/js/hds-web-component-lib/**/*
