@@ -6,7 +6,36 @@
     - content:       'The content'
 #}
 
-{{ attach_library('hdbt/accordion') }}
+{# For testing HDS Accordion web component #}
+
+{#
+  HDS Accordion props:
+
+    heading: 'How to publish data?',
+    headingLevel: '3',
+    id: 'joku id',
+    language: 'en',
+    children: 'To publish your data, open your profile settings and click button "Publish".',
+    border: false,
+    card: false,
+    size: 'm',
+    initiallyOpen: true
+    theme: '',
+    style: { 'max-width': '360px' },
+#}
+
+{{ attach_library('hdbt/hds-accordion') }}
+
+<div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
+  <hds-accordion card="false" border="false" closeButton="false" heading="Heading text" headingLevel="1" language="fi" size="m" id="{{heading[0]['#context']['value']|clean_class}}" initiallyOpen="true">
+    {{ content|default('Missing content'|t) }}
+  </hds-accordion>
+</div>
+
+
+{# hel.fi Accordion code: #}
+
+{# {{ attach_library('hdbt/accordion') }}
 
 {% set controlled_content_id = "accordion-item-content--" ~ random() %}
 {% set close_button_labelled_by_id = "accordion-item__button--close--" ~ random() %}
@@ -33,4 +62,4 @@
       </button>
     </div>
   </div>
-</div>
+</div> #}
