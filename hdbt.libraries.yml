@@ -172,5 +172,3 @@ hds-accordion:
   version: 1.x
   js:
     dist/js/hds-accordion.min.js: {}
-  dependencies:
-    - core/drupal
