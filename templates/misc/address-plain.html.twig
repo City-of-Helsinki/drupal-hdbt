@@ -36,7 +36,7 @@
  * @ingroup themeable
  */
 #}
-<p class="address" translate="no">
+<span class="address" translate="no">
   {% if given_name or family_name %}
     <span class="given-name">{{ given_name }} {{ family_name }}</span>
   {% endif %}
@@ -44,13 +44,13 @@
     <span class="organization">{{ organization }}</span>
   {% endif %}
   {% if address_line1 %}
-    <span class="address-line1">{{ address_line1 }}, </span>
+    <span class="address-line1">{{ address_line1 }}<span class="comma">, </span></span>
   {% endif %}
   {% if address_line2 %}
-    <span class="address-line2">{{ address_line2 }}</span>
+    <span class="address-line2">{{ address_line2 }}<span class="comma">, </span></span>
   {% endif %}
   {% if dependent_locality.code %}
-    <span class="dependent-locality-code">{{ dependent_locality.code }}</span>
+    <span class="dependent-locality-code">{{ dependent_locality.code }}<span class="comma">, </span></span>
   {% endif %}
   {% if postal_code or administrative_area.code %}
     <span class="postal-code">{{ postal_code }} {{ administrative_area.code }}</span>
@@ -58,4 +58,4 @@
   {% if locality.code %}
     <span class="locality">{{ locality.code }}</span>
   {% endif %}
-</p>
+</span>
