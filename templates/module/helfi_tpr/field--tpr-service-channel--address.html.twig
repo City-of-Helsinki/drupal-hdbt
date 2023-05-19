@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for the 'plain' address formatter in TPR service channels.
+ *
+ * Get the variables from `content` and massage the variables to a suitable
+ * format for the address-plain.html.twig.
+ */
+#}
+{% for item in items %}
+  {% set locality = { 'code': item.content.locality } %}
+  {% set dependent_locality = { 'code': item.content.dependent_locality } %}
+  {% set administrative_area = { 'code': item.content.administrative_area } %}
+
+  {% include '@hdbt/misc/address-plain.html.twig' with {
+    given_name: item.content.given_name,
+    family_name: item.content.family_name,
+    organization: item.content.organization,
+    address_line1: item.content.address_line1,
+    address_line2: item.content.address_line2,
+    dependent_locality: dependent_locality,
+    postal_code: item.content.postal_code,
+    administrative_area: administrative_area,
+    locality: locality,
+  } %}
+{% endfor %}
