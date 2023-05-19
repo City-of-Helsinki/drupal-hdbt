@@ -1,8 +1,9 @@
 // React & Share block
 .block--react-and-share {
-  @include component-margin-top();
+  @include component-margin-top;
   width: 100%;
 
+  &:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
   &:last-child {
     background: $color-black-5;
 
@@ -12,13 +13,14 @@
   }
 }
 
+.js .block--react-and-share:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
 .js .block--react-and-share:last-child {
   margin-bottom: -112px;
 }
 
 .rns {
-  @include components-container-max-width();
-  @include component-side-padding();
+  @include components-container-max-width;
+  @include component-side-padding;
   margin-left: auto;
   margin-right: auto;
 
@@ -73,10 +75,10 @@
             padding: 14px $spacing-double;
             position: relative;
 
-            &:before {
+            &::before {
               --size: 100%;
               border: 2px solid transparent;
-              content: "";
+              content: '';
               height: var(--size);
               left: 0;
               position: absolute;
@@ -92,7 +94,7 @@
               min-width: max-content;
               width: 100%;
 
-              &:after {
+              &::after {
                 @include pseudo-icon('face-neutral', $spacing-and-half, $color-black, flex);
                 margin-left: 16px;
               }
@@ -111,7 +113,7 @@
                 color: $color-black;
               }
 
-              &:before {
+              &::before {
                 --size: calc(100% + calc(#{$spacing-and-half} / 2));
                 border-color: $color-black;
                 left: calc(-#{$spacing-and-half} / 4);
@@ -124,7 +126,7 @@
               .rns-label {
                 color: $color-white;
 
-                &:after {
+                &::after {
                   background-color: $color-white;
                 }
               }
@@ -141,17 +143,17 @@
             .rns-label {
               color: $color-white;
 
-              &:after {
+              &::after {
                 background-color: $color-white;
               }
             }
           }
 
-          &:first-child .rns-label:after {
+          &:first-child .rns-label::after {
             @include pseudo-icon-replace('face-smile');
           }
 
-          &:last-child .rns-label:after {
+          &:last-child .rns-label::after {
             @include pseudo-icon-replace('face-sad');
           }
         }
@@ -170,6 +172,7 @@
 
       .rns-shares-list {
         margin-top: $spacing-double;
+
         @media only screen and (min-width: 681px) {
           margin-bottom: 0;
           margin-left: -$spacing-half;
@@ -217,17 +220,17 @@
             justify-content: left;
             padding: 0;
 
-            &:after {
+            &::after {
               --size: 100%;
               border: 2px solid transparent;
-              content: "";
+              content: '';
               height: var(--size);
               left: 0;
               position: absolute;
               width: var(--size);
             }
 
-            &:before {
+            &::before {
               @include pseudo-icon('share', $spacing-double, $color-black, flex);
               margin-right: $spacing-half;
             }
@@ -236,7 +239,7 @@
               box-shadow: none;
               outline: none;
 
-              &:after {
+              &::after {
                 --size: calc(100% + #{$spacing-half});
                 border-color: $color-black;
                 left: calc(-#{$spacing-half} / 2);
@@ -247,7 +250,7 @@
             &:hover {
               opacity: 1;
 
-              &:before {
+              &::before {
                 background-color: $color-black;
               }
 
@@ -267,19 +270,19 @@
             }
           }
 
-          &.rns-share-facebook .rns-share-button:before {
+          &.rns-share-facebook .rns-share-button::before {
             @include pseudo-icon-replace('facebook');
           }
 
-          &.rns-share-whatsapp .rns-share-button:before {
+          &.rns-share-whatsapp .rns-share-button::before {
             @include pseudo-icon-replace('whatsapp');
           }
 
-          &.rns-share-twitter .rns-share-button:before {
+          &.rns-share-twitter .rns-share-button::before {
             @include pseudo-icon-replace('twitter');
           }
 
-          &.rns-share-email .rns-share-button:before {
+          &.rns-share-email .rns-share-button::before {
             @include pseudo-icon-replace('email');
           }
         }
@@ -298,9 +301,9 @@
       }
 
       .rns-input-description {
-        margin: $spacing-and-half 0 0;
         @include font('small');
         color: $color-black-60;
+        margin: $spacing-and-half 0 0;
         opacity: 1;
       }
 
@@ -325,15 +328,15 @@
     padding: $spacing $spacing-and-half;
     position: relative;
 
-    &:after {
+    &::after {
       @include pseudo-icon('arrow-right', $spacing-and-half, $color-white, flex);
       margin-left: $spacing;
     }
 
-    &:before {
+    &::before {
       --size: 100%;
       border: 2px solid transparent;
-      content: "";
+      content: '';
       height: var(--size);
       left: 0;
       position: absolute;
@@ -345,7 +348,7 @@
       box-shadow: none;
       outline: none;
 
-      &:before {
+      &::before {
         --size: calc(100% + calc(#{$spacing-and-half} / 2));
         border-color: $color-black;
         left: calc(-#{$spacing-and-half} / 4);
@@ -357,7 +360,7 @@
       background-color: $color-white;
       color: $color-black;
 
-      &:after {
+      &::after {
         background-color: $color-black;
       }
     }
