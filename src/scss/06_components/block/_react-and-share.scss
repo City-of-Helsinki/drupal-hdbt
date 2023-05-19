@@ -3,6 +3,7 @@
   @include component-margin-top();
   width: 100%;
 
+  &:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
   &:last-child {
     background: $color-black-5;
 
@@ -12,6 +13,7 @@
   }
 }
 
+.js .block--react-and-share:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
 .js .block--react-and-share:last-child {
   margin-bottom: -112px;
 }
