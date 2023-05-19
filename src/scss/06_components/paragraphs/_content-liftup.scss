@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 $-content-liftup-aspect-ratio-mobile: 2.3;
 $-content-liftup-aspect-ratio-desktop: 1.5;
@@ -6,12 +6,12 @@ $-info-row-line-height: 26px;
 $-info-row-icon-size: $spacing-and-half;
 
 .content-liftup {
-  --info-row__gap-size: #{$spacing-quarter};
+  --info-row--gap-size: #{$spacing-quarter};
   border: 1px solid $color-black;
   position: relative;
 
   @include breakpoint($breakpoint-m) {
-    --info-row__gap-size: #{$spacing-half};
+    --info-row--gap-size: #{$spacing-half};
     display: flex; // image and other content in same row
     min-height: 400px; // Defined by design specs
   }
@@ -123,7 +123,7 @@ $-info-row-icon-size: $spacing-and-half;
 .content-liftup__info-row {
   @include font('body');
 
-  --margin-size: calc(#{$-info-row-icon-size} + var(--info-row__gap-size));
+  --margin-size: calc(#{$-info-row-icon-size} + var(--info-row--gap-size));
   margin-left: var(--margin-size);
 
   & + & {
@@ -137,7 +137,7 @@ $-info-row-icon-size: $spacing-and-half;
   &::before {
     margin-bottom: ($-info-row-line-height - $-info-row-icon-size) * 0.5; // Center icon on row
     margin-left: calc( -1 * var(--margin-size));
-    margin-right: var(--info-row__gap-size);
+    margin-right: var(--info-row--gap-size);
   }
 }
 
@@ -166,7 +166,7 @@ $-info-row-icon-size: $spacing-and-half;
 .content-liftup__read-more {
   @include font('button');
   display: flex; // force arrow to stay on same line
-  margin-left: calc(#{$-info-row-icon-size} + var(--info-row__gap-size));
+  margin-left: calc(#{$-info-row-icon-size} + var(--info-row--gap-size));
   padding-bottom: $spacing-half;
   padding-top: $spacing;
 

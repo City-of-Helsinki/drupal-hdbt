@@ -65,7 +65,7 @@
     text-indent: -9999px;
     width: 24px;
 
-    &:after {
+    &::after {
       @include pseudo-icon(null, $spacing-and-half, $color-black);
       left: 0;
       position: absolute;
@@ -113,35 +113,35 @@
   }
 }
 
-.service-channel--email .service-channel__type:after {
+.service-channel--email .service-channel__type::after {
   @include pseudo-icon-replace('glyph-at');
 }
 
-.service-channel--sms .service-channel__type:after {
+.service-channel--sms .service-channel__type::after {
   @include pseudo-icon-replace('mobile');
 }
 
-.service-channel--telephone .service-channel__type:after {
+.service-channel--telephone .service-channel__type::after {
   @include pseudo-icon-replace('phone');
 }
 
-.service-channel--printable_form .service-channel__type:after {
+.service-channel--printable_form .service-channel__type::after {
   @include pseudo-icon-replace('document');
 }
 
-.service-channel--webpage .service-channel__type:after {
+.service-channel--webpage .service-channel__type::after {
   @include pseudo-icon-replace('globe');
 }
 
-.service-channel--chat .service-channel__type:after {
+.service-channel--chat .service-channel__type::after {
   @include pseudo-icon-replace('speechbubble-text');
 }
 
-.service-channel--local .service-channel__type:after {
+.service-channel--local .service-channel__type::after {
   @include pseudo-icon-replace('location');
 }
 
-.service-channel--mail .service-channel__type:after {
+.service-channel--mail .service-channel__type::after {
   @include pseudo-icon-replace('envelope');
 }
 
@@ -208,13 +208,13 @@
       display: flex;
       margin-top: 0;
 
-      &:after {
+      &::after {
         content: '|';
         margin: 0 $spacing;
       }
 
       &:last-child {
-        &:after {
+        &::after {
           content: '';
         }
       }
