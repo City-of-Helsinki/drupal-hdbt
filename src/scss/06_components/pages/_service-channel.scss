@@ -145,6 +145,16 @@
   @include pseudo-icon-replace('envelope');
 }
 
+.service-channel__address {
+  .address > span {
+    display: block;
+  }
+
+  .comma {
+    display: none;
+  }
+}
+
 .service-channel__phone,
 .service-channel__email {
   margin-top: $spacing;

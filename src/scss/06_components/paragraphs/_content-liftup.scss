@@ -155,11 +155,6 @@ $-info-row-icon-size: $spacing-and-half;
   .content-liftup__info-row__title::before {
     @include pseudo-icon('location', $spacing-and-half, currentColor);
   }
-
-  .address-line1::after,
-  .address-line2::after {
-    content: ',';
-  }
 }
 
 .content-liftup__info-row--opening-hours {
