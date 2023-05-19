@@ -8,18 +8,18 @@
  */
 #}
 {% for item in items %}
-  {% set locality = { 'code': item.content.locality } %}
-  {% set dependent_locality = { 'code': item.content.dependent_locality } %}
-  {% set administrative_area = { 'code': item.content.administrative_area } %}
+  {% set dependent_locality = { 'code': item.content.dependent_locality['#value'] } %}
+  {% set administrative_area = { 'code': item.content.administrative_area['#value'] } %}
+  {% set locality = { 'code': item.content.locality['#value'] } %}
 
   {% include '@hdbt/misc/address-plain.html.twig' with {
-    given_name: item.content.given_name,
-    family_name: item.content.family_name,
-    organization: item.content.organization,
-    address_line1: item.content.address_line1,
-    address_line2: item.content.address_line2,
+    given_name: item.content.given_name['#value'],
+    family_name: item.content.family_name['#value'],
+    organization: item.content.organization['#value'],
+    address_line1: item.content.address_line1['#value'],
+    address_line2: item.content.address_line2['#value'],
+    postal_code: item.content.postal_code['#value'],
     dependent_locality: dependent_locality,
-    postal_code: item.content.postal_code,
     administrative_area: administrative_area,
     locality: locality,
   } %}
