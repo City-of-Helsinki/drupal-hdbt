@@ -255,6 +255,7 @@
   }
 
   .helfi-calculator__receipt-total-explanation {
+    @include font('body');
     display: flex;
     gap: $spacing-half;
     margin-left: $spacing-half;
@@ -263,9 +264,9 @@
     &::before {
       @include pseudo-icon('info-circle');
 
-      --icon-size: #{$spacing-double};
+      --icon-size: #{$spacing-and-half};
       flex-shrink: 0;
-      margin-top: - $spacing-quarter;
+      margin-top: 2px; // Adjusting the icon position to align with the text.
     }
   }
 
