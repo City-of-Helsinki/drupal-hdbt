@@ -264,9 +264,8 @@
     &::before {
       @include pseudo-icon('info-circle');
 
-      --icon-size: #{$spacing-and-half};
+      --icon-size: #{get-line-height('body', true)};
       flex-shrink: 0;
-      margin-top: 2px; // Adjusting the icon position to align with the text.
     }
   }
 
