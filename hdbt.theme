@@ -1082,7 +1082,7 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
 
     // Make sure we load the correct translation.
     if ($file->hasTranslation($variables['current_langcode'])) {
-      $file = $entity->{$image}->entity->getTranslation($variables['current_langcode']);
+      $file = $file->getTranslation($variables['current_langcode']);
     }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
