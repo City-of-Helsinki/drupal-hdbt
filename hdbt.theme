@@ -1128,7 +1128,6 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
     $variables['responsive_image']['#height'],
     $variables['responsive_image'],
   );
-  $x = 1;
 }
 
 /**
