@@ -1077,9 +1077,16 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
     $entity->{$image}->entity->hasField('field_media_image') &&
     !$entity->{$image}->entity->field_media_image->first()->isEmpty()
   ) {
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $entity->{$image}->entity;
+
+    // Make sure we load the correct translation.
+    if ($file->hasTranslation($variables['current_langcode'])) {
+      $file = $entity->{$image}->entity->getTranslation($variables['current_langcode']);
+    }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
-    $entity->{$image}->entity->field_media_image->first()->altered_image_style = $image_style;
+    $file->field_media_image->first()->altered_image_style = $image_style;
   }
 }
 
@@ -1121,6 +1128,7 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
     $variables['responsive_image']['#height'],
     $variables['responsive_image'],
   );
+  $x = 1;
 }
 
 /**
