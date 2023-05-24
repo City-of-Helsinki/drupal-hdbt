@@ -1080,7 +1080,9 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
     /** @var \Drupal\file\FileInterface $file */
     $file = $entity->{$image}->entity;
 
-    // Make sure we load the correct translation.
+    // Make sure we load the correct file translation, otherwise
+    // hdbt_preprocess_responsive_image_formatter() will receive an empty
+    // 'altered_image_style' value for translated media entities.
     if ($file->hasTranslation($variables['current_langcode'])) {
       $file = $file->getTranslation($variables['current_langcode']);
     }
