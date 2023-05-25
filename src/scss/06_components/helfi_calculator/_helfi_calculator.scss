@@ -136,6 +136,37 @@
     }
   }
 
+  .helfi-calculator__dynamic_slot__fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .helfi-calculator__legend--level_1 {
+    @include font('h1');
+  }
+
+  .helfi-calculator__legend--level_2 {
+    @include font('h2');
+  }
+
+  .helfi-calculator__legend--level_3 {
+    @include font('h3');
+  }
+
+  .helfi-calculator__legend--level_4 {
+    @include font('h4');
+  }
+
+  .helfi-calculator__legend--level_5 {
+    @include font('h5');
+  }
+
+  .helfi-calculator__legend--level_6 {
+    @include font('h6');
+  }
+
+
   .helfi-calculator__receipt {
     @media (prefers-reduced-motion: no-preference) {
       animation-duration: 0.3s;

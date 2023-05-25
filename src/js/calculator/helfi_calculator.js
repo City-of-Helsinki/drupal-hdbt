@@ -436,6 +436,7 @@ class HelfiCalculator {
             {{#group}}{{>group}}{{/group}}
             {{#dynamic_area}}{{>dynamic_area}}{{/dynamic_area}}
             {{#heading}}{{>heading}}{{/heading}}
+            {{#legend}}{{>legend}}{{/legend}}
             {{#paragraph}}{{>paragraph}}{{/paragraph}}
             {{#hr}}{{>hr}}{{/hr}}
             {{#input}}{{>input}}{{/input}}
@@ -456,14 +457,14 @@ class HelfiCalculator {
         `,
         dynamic_slot: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot" {{#slotNumber}}data-slot-number="{{slotNumber}}"{{/slotNumber}}>
-            <div>
+            <fieldset class="helfi-calculator__dynamic_slot__fieldset">
               {{#items}}
                 {{>form_item}}
               {{/items}}
               {{#remove_label}}
                 <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--supplementary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
               {{/remove_label}}
-            </div>
+            </fieldset>
           </div>
         `,
         dynamic_area: `
@@ -480,6 +481,9 @@ class HelfiCalculator {
         `,
         heading: `
           <h{{level}}{{^level}}2{{/level}}>{{text}}</h{{level}}{{^level}}2{{/level}}>
+        `,
+        legend: `
+          <legend class="helfi-calculator__legend helfi-calculator__legend--level_{{level}}{{^level}}2{{/level}}">{{text}}</legend>
         `,
         paragraph: `
           <p>{{text}}</p>
