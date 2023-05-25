@@ -351,6 +351,14 @@ class HelfiCalculator {
     element.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  focusReceiptHeading(element) {
+    const titleElem = element.querySelector('h2');
+    titleElem.setAttribute('tabindex', '0');
+    titleElem.focus();
+    titleElem.setAttribute('tabindex', '-1');
+  }
+
   renderResult(result) {
     if (result.error) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error, this.translate('notification_aria_label_for_error'));
@@ -368,11 +376,8 @@ class HelfiCalculator {
     if (result.receipt) {
       const element = document.querySelector(`#${this.id} .helfi-calculator-notification--result`);
       element.innerHTML = result.receipt;
-      const titleElem = element.querySelector('h2');
-      titleElem.setAttribute('tabindex', '0');
-      titleElem.focus();
-      titleElem.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-      titleElem.setAttribute('tabindex', '-1');
+      element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' }); // Scroll receipt into view while it's animating.
+      window.setTimeout(() => { this.focusReceiptHeading(element); }, this.receiptOpenMs + 10); // Add 10ms after animation so that title is in place when focusing into it.
     } else if (result.alert) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
@@ -397,6 +402,7 @@ class HelfiCalculator {
   init({ id, formData, eventHandlers }) {
     this.initParams = { id, formData, eventHandlers };
     this.id = id;
+    this.receiptOpenMs = 300; // Should be same as in src/scss/06_components/helfi_calculator/_helfi_calculator.scss:141 with.helfi-calculator__receipt animation-duration.
 
     this.templates = {
       form: `

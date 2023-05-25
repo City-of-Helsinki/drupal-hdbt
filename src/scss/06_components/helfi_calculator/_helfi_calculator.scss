@@ -40,6 +40,11 @@
 
   .helfi-calculator-notification {
     margin-top: $spacing-double;
+    scroll-margin-top: 16px + 56px + 32px; // 16px for space above button, button height, margin below button before receipt
+  }
+
+  .helfi-calculator__receipt__container h2:first-child {
+    scroll-margin-top: 16px + 56px + 32px + 16px + 32px;// 16px for space above button, button height, margin below button before receipt, 16px for receipt koro, 32px for receipt top padding before heading
   }
 
   .helfi-calculator-notification .hds-notification__body > ul {
