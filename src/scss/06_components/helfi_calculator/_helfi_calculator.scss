@@ -263,8 +263,6 @@
 
     &::before {
       @include pseudo-icon('info-circle');
-
-      --icon-size: #{get-line-height('body', true)};
       flex-shrink: 0;
     }
   }
