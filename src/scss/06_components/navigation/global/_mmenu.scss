@@ -310,7 +310,8 @@ $-footerlink-target-size: 44px;
     padding: 0;
   }
 
-  .menu__link {
+  .menu__link,
+  span.menu__item--nolink {
     $-footer-link-font: 'body';
     $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
 
