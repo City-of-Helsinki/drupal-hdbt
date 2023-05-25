@@ -311,7 +311,7 @@ $-footerlink-target-size: 44px;
   }
 
   .menu__link,
-  span.menu__item--nolink {
+  .menu__nolink {
     $-footer-link-font: 'body';
     $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
 
