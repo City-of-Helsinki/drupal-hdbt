@@ -16,7 +16,7 @@ const Metarow = ({ icon, label, content} : MetadataType) => (
 export type CardItemProps = {
   cardModifierClass: string;
   cardImage?: string | JSX.Element | JSX.Element[];
-  cardTitle: string;
+  cardTitle: string | JSX.Element;
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 3
   cardUrl: string;
   cardUrlExternal?: boolean;
@@ -27,12 +27,17 @@ export type CardItemProps = {
   cardHelptextHtml?: boolean;
   cardTags?: Array<TagType>;
   location?: string | JSX.Element;
+  locationLabel?: string;
   date?: string;
+  dateLabel?: string;
   daterange?: string;
+  dateRangeLabel?: string;
   theme?: string;
+  themeLabel?: string;
   language?: string;
   languageLabel?: string;
   time?: string;
+  timeLabel?: string;
 };
 
 function CardItem({
@@ -49,12 +54,17 @@ function CardItem({
   cardHelptextHtml,
   cardTags,
   location,
+  locationLabel,
   date,
+  dateLabel,
   theme,
+  themeLabel,
   daterange,
+  dateRangeLabel,
   language,
   languageLabel,
-  time
+  time,
+  timeLabel,
 }: CardItemProps): JSX.Element {
   const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
@@ -108,22 +118,22 @@ function CardItem({
 
         <div className="card__metas">
           {location &&
-            <Metarow icon="location" label={Drupal.t('Location')} content={location} />
+            <Metarow icon="location" label={locationLabel || Drupal.t('Location')} content={location} />
           }
           {date &&
-            <Metarow icon="clock" label={Drupal.t('Date')} content={date} />
+            <Metarow icon="clock" label={dateLabel || Drupal.t('Date')} content={date} />
           }
           {daterange &&
-            <Metarow icon="calendar" label={Drupal.t('Estimated schedule')} content={daterange} />
+            <Metarow icon="calendar" label={dateRangeLabel|| Drupal.t('Estimated schedule')} content={daterange} />
           }
           {theme &&
-            <Metarow icon="locate" label={Drupal.t('Theme')} content={theme} />
+            <Metarow icon="locate" label={themeLabel || Drupal.t('Theme')} content={theme} />
           }
           {language &&
             <Metarow icon="globe" label={languageLabel || Drupal.t('Language')} content={language} />
           }
           {time &&
-            <Metarow icon="calendar" label={Drupal.t('Time', { context: 'Time of event' })} content={time} />
+            <Metarow icon="calendar" label={timeLabel || Drupal.t('Time', { context: 'Time of event' })} content={time} />
           }
         </div>
 

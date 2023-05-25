@@ -1,0 +1,16 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--job-listing-search'],
+      component_title: content.field_job_search_title,
+      component_description: content.field_job_search_desc,
+      component_content_class: 'job-listing-search',
+    }
+  %}
+    {% block component_content %}
+      <div id="helfi-rekry-job-search">
+        {{ drupal_view('job_listing_search', 'job_listing_search') }}
+      </div>
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}

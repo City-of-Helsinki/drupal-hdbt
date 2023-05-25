@@ -54,6 +54,10 @@
     }
   }
 
+  .unit__contact-row--address .comma {
+    display: none;
+  }
+
   .unit__contact-row--email a {
     word-break: break-all;
   }
@@ -343,11 +347,6 @@
 
     .address {
       display: inline;
-
-      .address-line1::after,
-      .address-line2::after {
-        content: ',';
-      }
     }
   }
 
@@ -464,11 +463,6 @@
 
       // Align the address to center with the arrow and the title.
       margin-top: 2px;
-    }
-
-    .address-line1::after,
-    .address-line2::after {
-      content: ',';
     }
 
     p:first-child {

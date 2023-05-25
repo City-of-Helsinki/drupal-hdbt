@@ -1,14 +1,10 @@
-@use "sass:math";
+@use 'sass:math';
 
 $-map-aspect-ratio-desktop: math.div(16, 9);
 $-map-aspect-ratio-mobile: 1;
 
 .component--map {
   background-color: $color-silver-light;
-
-  .address-line1::after {
-    content: ',';
-  }
 }
 
 .unit .component--map {
