@@ -69,12 +69,12 @@ const translations = {
   second_youngest_child_sibling_discount: {
     fi: 'Sisarusalennus, ${discount} % nuorimman lapsen kokoaikaisesta maksusta.',
     sv: 'Syskonrabatt, ${discount} % av heltidsavgiften för det yngsta barnet.',
-    en: 'Sibling discount, ${discount} % of the full- time fee for the youngest child.',
+    en: 'Sibling discount, ${discount} % of the full-time fee for the youngest child.',
   },
   nth_youngest_child_sibling_discount: {
     fi: 'Sisarusalennus, ${discount} % nuorimman lapsen kokoaikaisesta maksusta.',
     sv: 'Syskonrabatt, ${discount} % av heltidsavgiften för det yngsta barnet.',
-    en: 'Sibling discount, ${discount} % of the full - time fee for the youngest child.',
+    en: 'Sibling discount, ${discount} % of the full-time fee for the youngest child.',
   },
   daycare_type: {
     fi: 'Varhaiskasvatuksen muoto',
