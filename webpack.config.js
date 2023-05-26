@@ -10,9 +10,10 @@ const { merge } = require('webpack-merge');
 
 // Entries for React searches.
 const REACT_SEARCHES = {
+  'district-and-project-search': ['./src/js/react/apps/district-and-project-search/index.tsx'],
+  'job-search': ['./src/js/react/apps/job-search/index.tsx'],
   linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
   'school-search': ['./src/js/react/apps/school-search/index.tsx'],
-  'job-search': ['./src/js/react/apps/job-search/index.tsx'],
 };
 
 // Handle entry points.
