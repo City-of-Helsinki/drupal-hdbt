@@ -1,5 +1,5 @@
 import { Button, IconCross } from 'hds-react';
-import { SetStateAction, WritableAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';

@@ -1,5 +1,5 @@
 import { MouseEventHandler, memo } from 'react';
-import { SetStateAction, WritableAtom, useAtomValue, useSetAtom, useAtom } from 'jotai';
+import { useAtomValue, useSetAtom, useAtom } from 'jotai';
 import { Button, IconCross } from 'hds-react';
 import type { DateTime } from 'luxon';
 
