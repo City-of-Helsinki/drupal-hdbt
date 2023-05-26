@@ -351,6 +351,14 @@ class HelfiCalculator {
     element.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  focusReceiptHeading(element) {
+    const titleElem = element.querySelector('h2');
+    titleElem.setAttribute('tabindex', '0');
+    titleElem.focus();
+    titleElem.setAttribute('tabindex', '-1');
+  }
+
   renderResult(result) {
     if (result.error) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error, this.translate('notification_aria_label_for_error'));
@@ -366,7 +374,10 @@ class HelfiCalculator {
     }
 
     if (result.receipt) {
-      document.querySelector(`#${this.id} .helfi-calculator-notification--result`).innerHTML = result.receipt;
+      const element = document.querySelector(`#${this.id} .helfi-calculator-notification--result`);
+      element.innerHTML = result.receipt;
+      element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' }); // Scroll receipt into view while it's animating.
+      window.setTimeout(() => { this.focusReceiptHeading(element); }, this.receiptOpenMs + 10); // Add 10ms after animation so that title is in place when focusing into it.
     } else if (result.alert) {
       HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
@@ -391,6 +402,7 @@ class HelfiCalculator {
   init({ id, formData, eventHandlers }) {
     this.initParams = { id, formData, eventHandlers };
     this.id = id;
+    this.receiptOpenMs = 300; // Should be same as in src/scss/06_components/helfi_calculator/_helfi_calculator.scss:141 with.helfi-calculator__receipt animation-duration.
 
     this.templates = {
       form: `
@@ -424,6 +436,7 @@ class HelfiCalculator {
             {{#group}}{{>group}}{{/group}}
             {{#dynamic_area}}{{>dynamic_area}}{{/dynamic_area}}
             {{#heading}}{{>heading}}{{/heading}}
+            {{#legend}}{{>legend}}{{/legend}}
             {{#paragraph}}{{>paragraph}}{{/paragraph}}
             {{#hr}}{{>hr}}{{/hr}}
             {{#input}}{{>input}}{{/input}}
@@ -444,14 +457,14 @@ class HelfiCalculator {
         `,
         dynamic_slot: `
           <div id="{{id}}_{{form_id}}" class="helfi-calculator__dynamic-slot" {{#slotNumber}}data-slot-number="{{slotNumber}}"{{/slotNumber}}>
-            <div>
+            <fieldset class="helfi-calculator__dynamic_slot__fieldset">
               {{#items}}
                 {{>form_item}}
               {{/items}}
               {{#remove_label}}
                 <div class="helfi-calculator__dynamic-remove-wrapper"><button class="helfi-calculator__dynamic-remove hds-button hds-button--supplementary"><span class="hds-button__label">{{remove_label}}</span><span class="hel-icon hel-icon--cross" role="img" aria-hidden="true"></button></div>
               {{/remove_label}}
-            </div>
+            </fieldset>
           </div>
         `,
         dynamic_area: `
@@ -468,6 +481,9 @@ class HelfiCalculator {
         `,
         heading: `
           <h{{level}}{{^level}}2{{/level}}>{{text}}</h{{level}}{{^level}}2{{/level}}>
+        `,
+        legend: `
+          <legend class="helfi-calculator__legend helfi-calculator__legend--level_{{level}}{{^level}}2{{/level}}">{{text}}</legend>
         `,
         paragraph: `
           <p>{{text}}</p>
