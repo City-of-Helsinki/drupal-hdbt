@@ -31,7 +31,7 @@
  */
 #}
 {% set media_id = media.id() %}
-{% set media_url = media.field_media_hel_map.value.0.uri %}
+{% set media_url = content.field_media_hel_map.0['#iframe']['#attributes']['src'] %}
 {% set media_attributes = media.field_media_hel_map %}
 {% set link = content.field_media_hel_map.0['#link'] %}
 
