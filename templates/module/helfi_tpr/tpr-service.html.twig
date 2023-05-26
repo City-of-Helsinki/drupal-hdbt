@@ -39,9 +39,9 @@
 
   <div class="service service--teaser">
     <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
-      <h3 class="service__title">
+      <span class="service__title h4">
         {{ entity.label }}
-      </h3>
+      </span>
       {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
     </a>
   </div>
