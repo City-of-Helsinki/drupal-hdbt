@@ -366,6 +366,8 @@ class EarlyChildhoodEducationFee {
 
       // Calculate discounted payments for all children
       for (let i = 0; i < children.length; i++) {
+        const siblingDiscount = [];
+
         // Handle sibling discount if any
         switch (i) {
           case 0: // Youngest child gets no sibling discount
@@ -373,9 +375,11 @@ class EarlyChildhoodEducationFee {
             break;
           case 1: // Second youngest child gets sibling discount for second youngest
             children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(parsedSettings.child_2_percent) / 100);
+            siblingDiscount.push(this.t('second_youngest_child_sibling_discount', { discount: parsedSettings.child_2_percent }));
             break;
           default: // All other children get even bigger discount
             children[i].payment = children[i].discounts.totalMultiplier * paymentForYoungest * (Number(parsedSettings.child_n_percent) / 100);
+            siblingDiscount.push(this.t('nth_youngest_child_sibling_discount', { discount: parsedSettings.child_n_percent }));
             break;
         }
         children[i].paymentRounded = Math.round(children[i].payment);
@@ -395,7 +399,7 @@ class EarlyChildhoodEducationFee {
         const subtotal = {
           title: (i === 0) ? this.t('youngest_child_title') : this.t('nth_child_title'),
           has_details: true,
-          details: [careTypeAndcareTime],
+          details: [careTypeAndcareTime].concat(siblingDiscount),
           sum: this.t('receipt_subtotal_euros_per_month', { value: children[i].paymentRounded }),
           sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: children[i].paymentRounded }),
         };
