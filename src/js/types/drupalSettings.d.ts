@@ -36,4 +36,7 @@ declare namespace drupalSettings {
     elastic_proxy_url: string;
     results_page_path: string;
   };
+  const helfi_kymp_district_project_search: {
+    elastic_proxy_url: string;
+  };
 }
