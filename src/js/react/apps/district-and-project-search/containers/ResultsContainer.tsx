@@ -86,7 +86,7 @@ const ResultsContainer = (): JSX.Element => {
       <div className="district-project-search__results_heading">
         <div className="district-project-search__count__container">
           <span className="district-project-search__count">
-            <span className="district-project-search__count-total">{total}</span>
+            <span className="district-project-search__count-total">{total} </span>
             <span className="district-project-search__count-label">{Drupal.t('search results', {}, { context: 'District and project search' })} </span>
           </span>
         </div>

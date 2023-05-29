@@ -18,8 +18,9 @@ import {
 import SelectionsContainer from './SelectionsContainer';
 import SearchComponents from '../enum/SearchComponents';
 import transformDropdownsValues from '../helpers/Params';
+import { ComponentMap } from '../helpers/helpers';
 import type OptionType from '../types/OptionType';
-
+import URLParams from '../types/URLParams';
 
 const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -56,6 +57,7 @@ const FormContainer = () => {
   };
 
   const handleTitleChange = ({ target: { value } }: { target: { value: string } }) => setTitle(value);
+  const accordionInitiallyOpen = !!Object.keys(urlParams).find(param => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -91,7 +93,7 @@ const FormContainer = () => {
         <Accordion
           className='district-project-search-form__additional-filters'
           size='s'
-          initiallyOpen={!!new URLSearchParams(window.location.search).toString()}
+          initiallyOpen={accordionInitiallyOpen}
           headingLevel={4}
           heading={Drupal.t('Refine the project search', {}, { context: 'District and project search' })}
           language={window.drupalSettings.path.currentLanguage || 'fi'}
@@ -157,18 +159,18 @@ const FormContainer = () => {
             />
           </div>
         </Accordion>
+        <div className='district-project-search-form__submit'>
+          <Button
+            className='district-project-search-form__submit-button'
+            type='submit'
+            variant='primary'
+            theme='black'
+          >
+            {Drupal.t('Search', {}, { context: 'District and project search' })}
+          </Button>
+        </div>
+        <SelectionsContainer />
       </div>
-      <div className='district-project-search-form__submit'>
-        <Button
-          className='district-project-search-form__submit-button'
-          type='submit'
-          variant='primary'
-          theme='black'
-        >
-          {Drupal.t('Search', {}, { context: 'District and project search' })}
-        </Button>
-      </div>
-      <SelectionsContainer />
     </form>
   );
 };
