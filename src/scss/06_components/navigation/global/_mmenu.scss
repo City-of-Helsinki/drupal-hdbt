@@ -310,8 +310,19 @@ $-footerlink-target-size: 44px;
     padding: 0;
   }
 
-  .menu__link,
+
   .menu__nolink {
+    $-footer-link-font: 'body';
+    $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
+    display: block;
+    @include font($-footer-link-font);
+    padding-bottom: $-footer-link-vertical-padding;   
+    padding-left: $spacing;
+    padding-right: $spacing;
+    padding-top: $-footer-link-vertical-padding;
+  }
+
+  .menu__link {
     $-footer-link-font: 'body';
     $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
 
