@@ -453,3 +453,99 @@ msgstr "Gå förbi kartan uppåt"
 msgctxt "Skip link before the map for the map paragraph"
 msgid "Continue below the map"
 msgstr "Gå förbi kartan nedåt"
+
+msgctxt "District and project search"
+msgid "districts"
+msgstr "områden"
+
+msgctxt "District and project search"
+msgid "District"
+msgstr "Område"
+
+msgctxt "District and project search"
+msgid "Project"
+msgstr "Projekt"
+
+msgctxt "District and project search form label"
+msgid "Name of residential area or project"
+msgstr "Namn på bostadsområdet eller projektet"
+
+msgctxt "District and project search form label"
+msgid 'Use a search word such as "Pasila"'
+msgstr "Sök med sökord, t.ex. Böle"
+
+msgctxt "District and project search form label"
+msgid "Select the residential area from the list"
+msgstr "Välj bostadsområde på listan"
+
+msgctxt "District and project search form label"
+msgid "Select area"
+msgstr "Välj område"
+
+msgctxt "District and project search"
+msgid "All areas"
+msgstr "Alla områden"
+
+msgctxt "District and project search"
+msgid "Refine the project search"
+msgstr "Gör en avancerad sökning av projekten"
+
+msgctxt "District and project search form label"
+msgid "Project theme"
+msgstr "Projektets tema"
+
+msgctxt "District and project search form label"
+msgid "All themes"
+msgstr "Alla teman"
+
+msgctxt "District and project search form label"
+msgid "Project stage"
+msgstr "Projektets skede"
+
+msgctxt "District and project search form label"
+msgid "All stages"
+msgstr "Alla skeden"
+
+msgctxt "District and project search form label"
+msgid "Project type"
+msgstr "Projektets typ"
+
+msgctxt "District and project search form label"
+msgid "All types"
+msgstr "Alla typer"
+
+msgctxt "District and project search"
+msgid "Search"
+msgstr "Sök"
+
+msgctxt "District and project search"
+msgid "Clear selections"
+msgstr "Töm urvalet"
+
+msgctxt "District and project search"
+msgid "search results"
+msgstr "träffar"
+
+msgctxt "District and project search form label"
+msgid "Sort search results"
+msgstr "Sortera sökresultat"
+
+msgctxt "District and project search sort option"
+msgid "Most relevant first"
+msgstr "Mest relevanta först"
+
+msgctxt "District and project search sort option"
+msgid "Alphabetical @AO"
+msgstr "I bokstavsordning @AO"
+
+msgctxt "District and project search sort option"
+msgid "Alphabetical @OA"
+msgstr "I bokstavsordning @OA"
+
+msgctxt "District and project search"
+msgid "Oh no! We did not find anything matching the search terms."
+msgstr "Vad synd! Vi hittade inga resultat med dessa sökvillkor."
+
+msgctxt "District and project search"
+msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
+msgstr "På vår webbplats finns för närvarande endast en del av Helsingfors projekt och bostadsområden. Du kan försöka på nytt genom att ta bort något av avgränsningsvillkoren eller genom att börja om från början."
