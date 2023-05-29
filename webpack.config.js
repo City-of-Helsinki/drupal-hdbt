@@ -212,6 +212,12 @@ module.exports = (env, argv) => {
           new TerserPlugin({
             terserOptions: {
               ecma: 2020,
+              mangle: {
+                reserved:[
+                  'Drupal',
+                  'drupalSettings'
+                ]
+              },
               format: {
                 comments: false,
               },

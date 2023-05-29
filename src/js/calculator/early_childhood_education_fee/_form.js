@@ -6,7 +6,7 @@ const dynamicChildData = (childNumber, t) => {
     slotNumber: childNumber,
     items: [
       {
-        heading: {
+        legend: {
           text: (childNumber === 1) ? t('youngest_child_title') : t('nth_child_title', { childNumber }),
           level: 4,
         }

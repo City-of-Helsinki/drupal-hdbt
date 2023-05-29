@@ -32,14 +32,14 @@ const translations = {
     en: 'Your whole family’s total income from earnings, capital income and benefits before taxes. If you leave the field blank, the estimate will be calculated using the highest fee.',
   },
   child_info: {
-    fi: 'Lasten tiedot',
-    sv: 'Uppgifter om barn',
-    en: 'Children’s information',
+    fi: 'Varhaiskasvatuksessa olevien lasten tiedot',
+    sv: 'Uppgifter om barn som deltar i småbarnspedagogiken',
+    en: 'Information of the children in early childhood education',
   },
   child_info_paragraph: {
-    fi: 'Täytä tiedot koko perheen varhaiskasvatuksessa olevista tai sinne tulevista lapsista. Jos lapsia on useampi, maksu määräytyy nuorimmasta alkaen.',
-    sv: 'Fyll i uppgifterna om alla barn i familjen som deltar eller ska delta i småbarnspedagogiken. Om du har flera barn bestäms avgiften utgående från det yngsta barnet.',
-    en: 'Fill in information about all the children in your family who are currently attending or starting early childhood education. If you have more than one child, the fee will be determined starting from your youngest.',
+    fi: 'Täytä tiedot kaikista perheen lapsista, jotka ovat varhaiskasvatuksessa. Täytä ensin nuorimman lapsen tiedot, sen jälkeen muut lapset ikäjärjestyksessä. Nuorimman lapsen maksu on korkein, seuraavat lapset saavat sisarusalennuksen.',
+    sv: 'Fyll i uppgifterna om alla barn i familjen som deltar i småbarnspedagogik. Fyll först i uppgifterna om det yngsta barnet, sedan de andra barnen i ålderföljden. Avgiften för det yngsta barnet är högst, nästa barn får syskonrabatt.',
+    en: 'Fill in information about all children in the family who are in early childhood education. First, fill in the details of the youngest child, then the other children in order of age. The fee for the youngest child is the highest, the next children receive a sibling discount.',
   },
   add_next_child: {
     fi: 'Lisää seuraavan lapsen tiedot',
@@ -57,14 +57,24 @@ const translations = {
     en: 'The data on the form has now been cleared.',
   },
   youngest_child_title: {
-    fi: 'Nuorin tai ainoa varhaiskasvatuksessa oleva lapsi',
-    sv: 'Det yngsta eller det enda barnet som deltar småbarnspedagogiken',
-    en: 'Youngest or only child in early childhood education',
+    fi: 'Nuorin lapsi',
+    sv: 'Det yngsta barnet',
+    en: 'Youngest child',
   },
   nth_child_title: {
-    fi: 'Seuraavaksi nuorin varhaiskasvatuksessa oleva lapsi',
-    sv: 'Nästa barn i åldersordningen',
-    en: 'Second youngest child in early childhood education',
+    fi: 'Seuraavaksi nuorin lapsi',
+    sv: 'Näst yngsta barnet',
+    en: 'Next youngest child',
+  },
+  second_youngest_child_sibling_discount: {
+    fi: 'Sisarusalennus, ${discount} % nuorimman lapsen kokoaikaisesta maksusta.',
+    sv: 'Syskonrabatt, ${discount} % av heltidsavgiften för det yngsta barnet.',
+    en: 'Sibling discount, ${discount} % of the full-time fee for the youngest child.',
+  },
+  nth_youngest_child_sibling_discount: {
+    fi: 'Sisarusalennus, ${discount} % nuorimman lapsen kokoaikaisesta maksusta.',
+    sv: 'Syskonrabatt, ${discount} % av heltidsavgiften för det yngsta barnet.',
+    en: 'Sibling discount, ${discount} % of the full-time fee for the youngest child.',
   },
   daycare_type: {
     fi: 'Varhaiskasvatuksen muoto',

@@ -40,6 +40,11 @@
 
   .helfi-calculator-notification {
     margin-top: $spacing-double;
+    scroll-margin-top: 16px + 56px + 32px; // 16px for space above button, button height, margin below button before receipt
+  }
+
+  .helfi-calculator__receipt__container h2:first-child {
+    scroll-margin-top: 16px + 56px + 32px + 16px + 32px;// 16px for space above button, button height, margin below button before receipt, 16px for receipt koro, 32px for receipt top padding before heading
   }
 
   .helfi-calculator-notification .hds-notification__body > ul {
@@ -130,6 +135,37 @@
       min-height: 0;
     }
   }
+
+  .helfi-calculator__dynamic_slot__fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .helfi-calculator__legend--level_1 {
+    @include font('h1');
+  }
+
+  .helfi-calculator__legend--level_2 {
+    @include font('h2');
+  }
+
+  .helfi-calculator__legend--level_3 {
+    @include font('h3');
+  }
+
+  .helfi-calculator__legend--level_4 {
+    @include font('h4');
+  }
+
+  .helfi-calculator__legend--level_5 {
+    @include font('h5');
+  }
+
+  .helfi-calculator__legend--level_6 {
+    @include font('h6');
+  }
+
 
   .helfi-calculator__receipt {
     @media (prefers-reduced-motion: no-preference) {
@@ -255,6 +291,7 @@
   }
 
   .helfi-calculator__receipt-total-explanation {
+    @include font('body');
     display: flex;
     gap: $spacing-half;
     margin-left: $spacing-half;
@@ -262,10 +299,7 @@
 
     &::before {
       @include pseudo-icon('info-circle');
-
-      --icon-size: #{$spacing-double};
       flex-shrink: 0;
-      margin-top: - $spacing-quarter;
     }
   }
 
