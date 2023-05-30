@@ -27,5 +27,3 @@ jobs:
             git commit -m "CI built assets"
             git push
           fi
-
-
