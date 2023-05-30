@@ -11,6 +11,7 @@ import useQueryString from '../hooks/useQueryString';
 import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
+import Result from '../types/Result';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -99,7 +100,7 @@ const ResultsContainer = (): JSX.Element => {
 
       <div className='district-project-search__container'>
         <ul className='district-project-search__listing'>
-          {results.map((hit: any) => (
+          {results.map((hit: Result) => (
             <ResultCard key={hit._id} {...hit._source} />
           ))}
         </ul>

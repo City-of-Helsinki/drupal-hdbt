@@ -1,8 +1,9 @@
-interface Result {
+interface Result  {
   _index: string;
   _type: string;
   _id: string;
   _score: number;
+  _source: any;
   _language: string;
   url: Array<string>;
   nid: Array<number>;
@@ -19,8 +20,8 @@ interface Result {
   field_project_search_metatags?: Array<string>;
   field_project_theme_name?: Array<string>;
   field_project_type_name?: Array<string>;
-  project_execution_schedule?: Array<number>;
-  project_plan_schedule?: Array<number>;
+  project_execution_schedule?: Array<string>;
+  project_plan_schedule?: Array<string>;
   project_image_absolute_url?: Array<string>;
   district_image_absolute_url?: Array<string>;
   field_district_image_alt?: Array<string>;

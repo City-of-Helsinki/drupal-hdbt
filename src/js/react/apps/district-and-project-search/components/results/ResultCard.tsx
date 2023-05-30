@@ -51,7 +51,7 @@ const ResultCard = ({
     color: isProject ? 'gold' : 'coat-of-arms',
   };
 
-  const getVisibleTime = (dateString: number): string => {
+  const getVisibleTime = (dateString: string): string => {
     const dateObject = new Date(dateString);
     // en-US because the date is displayed month/year.
     return dateObject.toLocaleString('en-US', {
@@ -60,13 +60,13 @@ const ResultCard = ({
     });
   };
 
-  const getHtmlTime = (dateString: number): string => {
+  const getHtmlTime = (dateString: string): string => {
     const d = new Date(dateString);
     return `${d.toLocaleString('fi-FI', {year: 'numeric'})}-${d.toLocaleString('fi-FI', {month: '2-digit'})}-${d.toLocaleString('fi-FI', {day: '2-digit'})}T${d.toLocaleString('fi-FI', {hour: '2-digit'})}:${d.toLocaleString('fi-FI', {minute: '2-digit'})}Z`;
   };
 
-  const getTimeItem = (dateStrings: any): JSX.Element => (
-    dateStrings.map((dateString: number, i: number) => (
+  const getTimeItem = (dateStrings: string[]) => (
+    dateStrings.map((dateString: string, i: number) => (
       <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}> {i !== 0 && '-'} {getVisibleTime(dateString)}</time>
     ))
   );
