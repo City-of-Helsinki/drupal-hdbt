@@ -11,12 +11,12 @@ jobs:
           fetch-depth: 1
 
       - name: Set variables
-        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_ENV
 
       - name: Clone platform
         run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
       - name: Build assets
         run: |
-          docker run  --rm --name helfi-node-18.15.0-alpine -v $(pwd):/app -w /app node:18.15.0-alpine "ls -la"
+          docker run --rm -v $(pwd):/app -w /app node:${NODE_VERSION}-alpine ""npm install && npm run build""
 
