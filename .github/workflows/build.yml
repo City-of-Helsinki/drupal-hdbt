@@ -1,6 +1,7 @@
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches:
+      - UHF-8554
 name: Build assets
 jobs:
   tests:
@@ -24,8 +25,7 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
           git add dist
-          git commit -m "CI build"
+          git commit -m "CI built assets"
           git push
-
 
 
