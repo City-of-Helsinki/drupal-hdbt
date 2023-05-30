@@ -77,38 +77,32 @@ export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
 export const configurationsAtom = atom(async(): Promise<configurations> => {
   const proxyUrl = drupalSettings?.helfi_kymp_district_project_search.elastic_proxy_url;
   const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
-  const ndjsonHeader = '{}';
 
-  const body =
-    `${ndjsonHeader
-    }\n${
-    JSON.stringify(AGGREGATIONS)
-    }\n`;
+  const body = JSON.stringify(AGGREGATIONS);
 
-  return fetch(`${url}/${Settings.INDEX}/_msearch`, {
+  return fetch(`${url}/${Settings.INDEX}/_search`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-ndjson',
+      'Content-Type': 'application/json',
     },
     body,
   })
   .then(res => res.json())
   .then(json => {
-    const responses = json?.responses;
+    const aggregations = json?.aggregations;
 
-    if (!responses || !Array.isArray(responses)) {
+    if (!aggregations) {
       return {
         error: new Error(
-          `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`
+          'Initialization failed.'
         ),
-        aggs:[]
+        aggs:{}
       };
     }
-    const [aggs] = responses;
 
     return {
       error: null,
-      aggs: aggs.aggregations
+      aggs: aggregations
     };
   });
 });
