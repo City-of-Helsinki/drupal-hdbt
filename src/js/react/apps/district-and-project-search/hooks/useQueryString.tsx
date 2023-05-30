@@ -62,7 +62,7 @@ const useQueryString = (urlParams: URLParams): string => {
     const isDistrictFilterSet = urlParams?.districts?.length;
     const isTitleFilterSet = urlParams?.title?.length;
 
-    query.function_score.min_score = (isProjectFilterSet && isDistrictFilterSet) || (isProjectFilterSet && isTitleFilterSet) ? Number(100) : Number(weight + 1);
+    query.function_score.min_score = (isProjectFilterSet && isDistrictFilterSet) || (isProjectFilterSet && isTitleFilterSet) ? Number(300) : Number(weight + 1);
 
     if (urlParams?.title?.length) {
       const title = urlParams.title.toString().toLowerCase();
@@ -107,7 +107,7 @@ const useQueryString = (urlParams: URLParams): string => {
       Object.keys(project_theme).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_THEME_NAME]: { value: project_theme[key].toLowerCase(), boost: 50 }
+            [IndexFields.FIELD_PROJECT_THEME_NAME]: { value: project_theme[key].toLowerCase(), boost: 10 }
           }
         });
       });
@@ -119,7 +119,7 @@ const useQueryString = (urlParams: URLParams): string => {
       Object.keys(project_phase).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_PHASE_NAME]: { value: project_phase[key].toLowerCase(), boost: 50 }
+            [IndexFields.FIELD_PROJECT_PHASE_NAME]: { value: project_phase[key].toLowerCase(), boost: 10 }
           }
         });
       });
@@ -131,7 +131,7 @@ const useQueryString = (urlParams: URLParams): string => {
       Object.keys(project_type).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_TYPE_NAME]: { value: project_type[key].toLowerCase(), boost: 50 }
+            [IndexFields.FIELD_PROJECT_TYPE_NAME]: { value: project_type[key].toLowerCase(), boost: 10 }
           }
         });
       });
