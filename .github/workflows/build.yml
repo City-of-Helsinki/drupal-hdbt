@@ -36,6 +36,6 @@ jobs:
         run: |
           ls -la /home/runner/drupal
           ls -la /home/runner/drupal/public/themes/contrib/hdbt
-          docker run  --rm --name helfi-node-18.15.0-alpine -v /home/runner/drupal:/app -w /app/public/themes/contrib/hdbt node:18.15.0-alpine "ls -la"
+          docker run  --rm --name helfi-node-18.15.0-alpine -v /home/runner/drupal:/app -w /app/public/themes/contrib/hdbt/ node:18.15.0-alpine "ls -la"
           make install-hdbt build-hdbt
 
