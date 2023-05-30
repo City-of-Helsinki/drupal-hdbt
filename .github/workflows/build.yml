@@ -1,8 +1,7 @@
 on:
   push:
     branches:
-      - 5.x
-      - main
+      - UHF-8554
 name: Build assets
 jobs:
   tests:
