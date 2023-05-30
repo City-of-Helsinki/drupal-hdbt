@@ -37,14 +37,14 @@ const ResultsContainer = (): JSX.Element => {
   });
 
   useEffect(() => {
-    const el = document.getElementById('results-container');
+    const el = document.getElementById('helfi-kymp-district-project-search');
 
     if (el && window.location.search) {
       const titleEl = el.querySelector<HTMLElement>('.district-project-search__results');
       if (!titleEl) return;
       titleEl.setAttribute('tabindex', '0');
       titleEl.focus();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      el.scrollIntoView({ behavior: 'smooth' });
       titleEl.setAttribute('tabindex', '-1');
     }
   }, [data]);
@@ -55,9 +55,11 @@ const ResultsContainer = (): JSX.Element => {
 
   if (!data?.hits?.hits.length) {
     return (
-      <div className='district-project-search__listing__no-results'>
-        <h2>{Drupal.t('Oh no! We did not find anything matching the search terms.', {}, { context: 'District and project search' })}</h2>
-        <p>{Drupal.t('Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over.', {}, { context: 'District and project search' })}</p>
+      <div className="district-project-search__results">
+        <div className='district-project-search__listing__no-results'>
+          <h2>{Drupal.t('Oh no! We did not find anything matching the search terms.', {}, { context: 'District and project search' })}</h2>
+          <p>{Drupal.t('Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over.', {}, { context: 'District and project search' })}</p>
+        </div>
       </div>
     );
   }
@@ -82,7 +84,7 @@ const ResultsContainer = (): JSX.Element => {
   };
 
   return (
-    <div className="district-project-search__results" id='results-container'>
+    <div className="district-project-search__results">
       <div className="district-project-search__results_heading">
         <div className="district-project-search__count__container">
           <span className="district-project-search__count">
