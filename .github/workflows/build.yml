@@ -34,6 +34,6 @@ jobs:
       - name: Build assets
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          ls -la public/themes/contrib/hdbt
+          ls -la public/themes/contrib/hdbt/
           make install-hdbt build-hdbt
 
