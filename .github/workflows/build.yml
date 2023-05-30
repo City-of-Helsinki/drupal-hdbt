@@ -34,6 +34,7 @@ jobs:
       - name: Build assets
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
+          docker run  --rm --name helfi-node-18.15.0-alpine -v /home/runner/drupal:/app -w /app/public/themes/contrib/hdbt node:18.15.0-alpine "ls -la"
           ls -la public/themes/contrib/hdbt/
           make install-hdbt build-hdbt
 
