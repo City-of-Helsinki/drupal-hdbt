@@ -17,6 +17,15 @@ jobs:
         run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
       - name: Build assets
+        run: docker run --rm -v $(pwd):/app -w /app node:${NODE_VERSION}-alpine ""npm install && npm run build""
+
+      - name: Commit changed assets
         run: |
-          docker run --rm -v $(pwd):/app -w /app node:${NODE_VERSION}-alpine ""npm install && npm run build""
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add dist
+          git commit -m "CI build"
+          git push
+
+
 
