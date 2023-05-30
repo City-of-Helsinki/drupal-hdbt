@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set variables
         run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_ENV
