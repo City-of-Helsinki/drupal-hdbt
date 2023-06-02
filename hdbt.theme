@@ -1317,6 +1317,13 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   }
   $entity = $variables['entity'];
 
+  // Add unit publish state to variable.
+  $variables['unit_unpublished'] = TRUE;
+
+  if($entity->isPublished()) {
+    $variables['unit_unpublished'] = FALSE;
+  }
+
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 
