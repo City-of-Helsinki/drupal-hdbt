@@ -360,7 +360,7 @@ msgstr "Logga in"
 
 msgctxt "Profile information-menu open button text for screen readers"
 msgid "You are logged in as @display_name. Open profile information menu."
-msgstr "Du är inloggad som @display_name. Stäng profilinformationsmenyn."
+msgstr "Du är inloggad som @display_name. Öppna profilinformationsmenyn."
 
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
