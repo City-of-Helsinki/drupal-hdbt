@@ -17,6 +17,15 @@ $-info-row-icon-size: $spacing-and-half;
   }
 }
 
+.content-liftup--unpublished {
+  border-color: var(--color-error);
+  color: var(--color-error);
+
+  a {
+    color: var(--color-error);
+  }
+}
+
 .content-liftup__image {
   flex-basis: 50%;
   flex-grow: 0;

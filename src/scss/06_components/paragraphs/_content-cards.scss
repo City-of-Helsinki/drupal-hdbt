@@ -96,6 +96,19 @@ $-card-spacing: $spacing-and-half;
   }
 }
 
+.content-card--unpublished {
+  outline: 2px solid var(--color-error);
+  outline-offset: $spacing-quarter;
+
+  .content-card__link {
+    color: var(--color-error);
+
+    &::after {
+      background-color: var(--color-error);
+    }
+  }
+}
+
 .component--content-cards-large {
   .content-card {
     @include breakpoint($breakpoint-s) {

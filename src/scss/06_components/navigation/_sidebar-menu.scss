@@ -51,6 +51,10 @@ $-outline-width: 3px;
 
     &.sidebar-navigation__title-link--unpublished {
       color: var(--color-error);
+
+      &::before {
+        background-color: var(--color-error);
+      }
     }
 
   }
