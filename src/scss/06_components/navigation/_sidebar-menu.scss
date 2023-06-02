@@ -18,7 +18,7 @@ $-outline-width: 3px;
   border-bottom: 2px solid $color-black;
   margin-top: 0;
 
-  a {
+  .sidebar-navigation__title-link {
     @include navigation_link_defaults;
     align-items: center;
     display: flex;
@@ -47,6 +47,12 @@ $-outline-width: 3px;
       outline: $-outline-width solid $color-black;
       outline-offset: -5px;
     }
+
+
+    &.sidebar-navigation__title-link--unpublished {
+      color: var(--color-error);
+    }
+
   }
 }
 

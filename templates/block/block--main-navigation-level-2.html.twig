@@ -39,10 +39,17 @@
   {% set link_url = 'internal:/' ~ path('<front>') %}
 {% endif %}
 
+{% set link_attributes = {
+  'class': [
+    'sidebar-navigation__title-link',
+    menu_link_parent.unpublished ? 'sidebar-navigation__title-link--unpublished',
+  ],
+} %}
+
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }} class="sidebar-navigation">
   <div{{ title_attributes.setAttribute('id', heading_id) }} class="sidebar-navigation__title">
-    {{ link(link_title, link_url) }}
+    {{ link(link_title, link_url, link_attributes) }}
   </div>
 
   {# Menu. #}
