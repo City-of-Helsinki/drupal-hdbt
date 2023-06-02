@@ -1355,6 +1355,13 @@ function hdbt_preprocess_tpr_service(&$variables): void {
   }
   $entity = $variables['entity'];
 
+  // Add service publish state to variable.
+  $variables['service_unpublished'] = TRUE;
+
+  if($entity->isPublished()) {
+    $variables['service_unpublished'] = FALSE;
+  }
+
   $variables['service_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }
 

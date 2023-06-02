@@ -49,6 +49,10 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
+.service--teaser--unpublished {
+  color: var(--color-error);
+}
+
 .service__link {
   border: 1px solid $color-black;
   display: block;
