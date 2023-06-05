@@ -1353,10 +1353,10 @@ function hdbt_preprocess_tpr_service(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Service) {
     return;
   }
-  $entity = $variables['entity'];
-
   // Add service publish state to variable.
   $variables['service_unpublished'] = TRUE;
+
+  $entity = $variables['entity'];
 
   if($entity->isPublished()) {
     $variables['service_unpublished'] = FALSE;

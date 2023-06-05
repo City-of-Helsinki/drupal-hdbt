@@ -12,8 +12,15 @@
   {% endif %}
 {% endset %}
 
+{%
+  set card_tpr_classes = [
+    unit_unpublished ? 'card--unpublished',
+    'card--tpr-teaser',
+  ]
+%}
+
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: 'card--tpr-teaser ' ~ teaser_class,
+  card_modifier_class: card_tpr_classes|join(' ') ~ teaser_class,
   card_image: card_image,
   card_title: entity.label,
   card_url: unit_url,
