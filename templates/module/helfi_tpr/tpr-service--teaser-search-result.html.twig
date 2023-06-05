@@ -1,5 +1,12 @@
+{%
+  set card_tpr_classes = [
+  service_unpublished ? 'card--unpublished',
+  'card--tpr-service-teaser',
+]
+%}
+
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: 'card--tpr-service-teaser',
+  card_modifier_class: card_tpr_classes|join(' '),
   card_title: entity.label,
   card_url: service_url,
   card_description: content.description,
