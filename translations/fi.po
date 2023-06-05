@@ -455,3 +455,100 @@ msgstr "Siirry kartan yläpuolelle"
 msgctxt "Skip link before the map for the map paragraph"
 msgid "Continue below the map"
 msgstr "Siirry kartan alapuolelle"
+
+msgctxt "District and project search"
+msgid "districts"
+msgstr "aluetta"
+
+msgctxt "District and project search"
+msgid "District"
+msgstr "Alue"
+
+msgctxt "District and project search"
+msgid "Project"
+msgstr "Hanke"
+
+msgctxt "District and project search form label"
+msgid "Name of residential area or project"
+msgstr "Asuinalueen tai hankkeen nimi"
+
+msgctxt "District and project search form label"
+msgid 'Use a search word such as "Pasila"'
+msgstr "Etsi hakusanalla, esim. Pasila"
+
+msgctxt "District and project search form label"
+msgid "Select the residential area from the list"
+msgstr "Valitse asuinalue listasta"
+
+msgctxt "District and project search form label"
+msgid "Select area"
+msgstr "Valitse alue"
+
+msgctxt "District and project search"
+msgid "All areas"
+msgstr "Kaikki alueet"
+
+msgctxt "District and project search"
+msgid "Refine the project search"
+msgstr "Tarkenna hankkeiden hakua"
+
+msgctxt "District and project search form label"
+msgid "Project theme"
+msgstr "Hankkeen teema"
+
+msgctxt "District and project search form label"
+msgid "All themes"
+msgstr "Kaikki teemat"
+
+msgctxt "District and project search form label"
+msgid "Project stage"
+msgstr "Hankkeen vaihe"
+
+msgctxt "District and project search form label"
+msgid "All stages"
+msgstr "Kaikki vaiheet"
+
+msgctxt "District and project search form label"
+msgid "Project type"
+msgstr "Hankkeen tyyppi"
+
+msgctxt "District and project search form label"
+msgid "All types"
+msgstr "Kaikki tyypit"
+
+msgctxt "District and project search"
+msgid "Search"
+msgstr "Hae"
+
+msgctxt "District and project search"
+msgid "Clear selections"
+msgstr "Tyhjennä valinnat"
+
+msgctxt "District and project search"
+msgid "search results"
+msgstr "hakutulosta"
+
+msgctxt "District and project search form label"
+msgid "Sort search results"
+msgstr "Järjestä hakutulokset"
+
+msgctxt "District and project search sort option"
+msgid "Most relevant first"
+msgstr "Osuvimmat ensin"
+
+msgctxt "District and project search sort option"
+msgid "Alphabetical @AO"
+msgstr "Aakkosittain @AO"
+
+msgctxt "District and project search sort option"
+msgid "Alphabetical @OA"
+msgstr "Aakkosittain @OA"
+
+msgctxt "District and project search"
+msgid "Oh no! We did not find anything matching the search terms."
+msgstr "Voi harmi! Emme löytäneet hakuehdoilla yhtään tulosta."
+
+msgctxt "District and project search"
+msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
+msgstr "Sivuillamme esitetään toistaiseksi vain osa Helsingin hankkeista ja asuinalueista. Voit kokeilla uudestaan poistamalla jonkin rajausehdoista tai aloittamalla alusta."
+

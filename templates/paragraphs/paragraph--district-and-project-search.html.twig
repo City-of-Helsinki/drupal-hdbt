@@ -1,0 +1,17 @@
+{{ attach_library('hdbt/district-and-project-search') }}
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--react-search'],
+      component_title: content.field_district_project_title,
+      component_description: content.field_district_project_desc,
+      component_content_class: 'district-and-project-search',
+    }
+  %}
+    {% block component_content %}
+      <div id="helfi-kymp-district-project-search">
+        {{ drupal_view('district_and_project_search', 'district_and_project_search') }}
+      </div>
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}
