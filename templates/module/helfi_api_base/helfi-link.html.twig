@@ -1,4 +1,4 @@
-{% spaceless %}
+{% apply spaceless %}
 
   {% if 'data-selected-icon' in url.options.attributes|keys %}
     {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
@@ -18,4 +18,4 @@
 
   {{ selected_icon }}{{ title }}{{ attribute_icon }}
 
-{% endspaceless %}
+{% endapply %}
