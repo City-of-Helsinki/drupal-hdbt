@@ -1523,9 +1523,11 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
   }
 
+  $path = Drupal\Core\Extension\ExtensionPathResolver::getPath('theme', 'hdbt') . '/templates/misc/image-placeholder.twig';
+
   // Render image placeholder for use in frontend.
   $variables['#attached']['drupalSettings']['helfi_events']['imagePlaceholder'] = twig_render_template(
-    drupal_get_path('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
+    $path,
     [
       'image_placeholder' => 'calendar-clock',
       'theme_hook_original' => '',
