@@ -283,6 +283,7 @@
       }
     }
   },
+  "household_size_beyond_defined_multiplier_euro": 356,
   "monthly_usage_max_payment": {
     "0": 119.66,
     "5": 538.47,
@@ -588,7 +589,7 @@
       </div>
     </div>
 
- <!-- - ->
+ <!-- -->
     <script>
       // window.onload = () => {
       //   document.querySelector("#preset_2").click();
@@ -608,6 +609,98 @@
           '#meal_service_per_week_helfi_calc_1655485697': 2,
           'input.hds-button--primary': true
         })">Debug</button>
+
+    <!-- These tests came from context experts -->
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 1,
+          '#gross_income_per_month_helfi_calc_1655485697': 4300,
+          '#monthly_usage_helfi_calc_1655485697': 12,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 1 = 444,24€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 1,
+          '#gross_income_per_month_helfi_calc_1655485697': 2000,
+          '#monthly_usage_helfi_calc_1655485697': 24,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 2 = 307,44€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 1,
+          '#gross_income_per_month_helfi_calc_1655485697': 3000,
+          '#monthly_usage_helfi_calc_1655485697': 40,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 3 = 720,60€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 2,
+          '#gross_income_per_month_helfi_calc_1655485697': 3200,
+          '#monthly_usage_helfi_calc_1655485697': 24,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 4 = 377,46€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 2,
+          '#gross_income_per_month_helfi_calc_1655485697': 6000,
+          '#monthly_usage_helfi_calc_1655485697': 80,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 5 = 979,40€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 3,
+          '#gross_income_per_month_helfi_calc_1655485697': 4500,
+          '#monthly_usage_helfi_calc_1655485697': 24,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 6 = 443,04€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 7,
+          '#gross_income_per_month_helfi_calc_1655485697': 5000,
+          '#monthly_usage_helfi_calc_1655485697': 24,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 7 = 150,12€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 2,
+          '#gross_income_per_month_helfi_calc_1655485697': 1100,
+          '#monthly_usage_helfi_calc_1655485697': 14,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 8 = 0,00€</button>
+
+    <button onclick="setValues('helfi_calc_1655485697',{
+          '#household_size_helfi_calc_1655485697': 2,
+          '#gross_income_per_month_helfi_calc_1655485697': 4700,
+          '#monthly_usage_helfi_calc_1655485697': 3,
+          '#safetyphone_2_helfi_calc_1655485697': true,
+          '#shopping_service_2_helfi_calc_1655485697': true,
+          '#meal_service_2_helfi_calc_1655485697': true,
+          'input.hds-button--primary': true
+        })">Test 9 = 119,66€</button>
+
     <div class="component component--helfi-calculator">
       <div class="component__container">
         <h2 class="component__title">Laske arvio asiakasmaksusta</h2>

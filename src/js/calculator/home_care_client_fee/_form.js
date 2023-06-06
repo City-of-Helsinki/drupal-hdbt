@@ -9,7 +9,6 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
           label: t('household_size'),
           unit: t('unit_person'),
           min: 1,
-          max: 6, // The maximum comes from specs not defining what happens at size of 7
           size: 2,
           required: true,
           helper_text: t('household_size_explanation'),
