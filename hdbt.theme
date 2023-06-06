@@ -1320,7 +1320,7 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   // Add unit publish state to variable.
   $variables['unit_unpublished'] = TRUE;
 
-  if($entity->isPublished()) {
+  if ($entity->isPublished()) {
     $variables['unit_unpublished'] = FALSE;
   }
 
@@ -1358,7 +1358,7 @@ function hdbt_preprocess_tpr_service(&$variables): void {
 
   $entity = $variables['entity'];
 
-  if($entity->isPublished()) {
+  if ($entity->isPublished()) {
     $variables['service_unpublished'] = FALSE;
   }
 
