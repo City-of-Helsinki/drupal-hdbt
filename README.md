@@ -192,14 +192,6 @@ Outside Drupal: Open React app index.html file in browser and run `npm run dev`.
 
 To build minified js file into the /dist folder run `npm run build`.
 
-## Component documentation
-
-### Kuura Health Chat
-Kuura Health chat is attached to a block id `block-kuurahealthchat` when adding the external library. This causes the
-chat to appear in inline-mode which adds class `kuura-widget-container-inline` for the widget. These styles are
-overridden in the `_kuura-health-chat.scss` file. If in some cases the chat doesn't appear on the site even if adding
-it on the block layout, make sure that there is a block with the correct id on the html-dom.
-
 ## ESLint
 
 We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
