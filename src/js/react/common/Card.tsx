@@ -30,7 +30,7 @@ export type CardItemProps = {
   locationLabel?: string;
   date?: string;
   dateLabel?: string;
-  daterange?: string;
+  daterange?: string | JSX.Element;
   dateRangeLabel?: string;
   theme?: string;
   themeLabel?: string;

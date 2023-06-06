@@ -175,3 +175,11 @@ job-search:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+district-and-project-search:
+  version: 1.x
+  js:
+    dist/js/district-and-project-search.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

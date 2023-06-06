@@ -98,7 +98,7 @@
 
             {% endspaceless %}
           {% else %}
-            <span{{ create_attribute({'class': item_classes}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}"{{ item_lang }}>{{ item.title }}</span></span>
+            <span{{ create_attribute({'class': item_classes|merge(['menu__nolink'])}) }}><span class="menu__link__text" id="{{ item_is_collabsible ? link_id }}"{{ item_lang }}>{{ item.title }}</span></span>
           {% endif %}
 
           {% set menu_aria_controls = "menu--level-" ~ (menu_level + 1) ~ "-" ~ menu_id ~ random() %}
