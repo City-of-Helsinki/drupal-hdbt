@@ -2,9 +2,7 @@
 {% set design = content.field_hero_design[0]['#markup'] %}
 {% set description = content.field_hero_desc %}
 
-{% if design == "background-image" %}
-  {% set design_class = "hero--with-image-bottom" %}
-{% elseif design == "diagonal" %}
+{% if design == "diagonal" %}
   {% set design_class = "hero--diagonal" %}
 {% elseif design == "with-image-bottom" %}
   {% set design_class = "hero--with-image-bottom" %}
@@ -59,26 +57,6 @@
             {% endif %}
           {% endif %}
 
-          {% if
-            design == "background-image" and
-            content.field_hero_link|render
-          %}
-            {% set link_type = content.field_hero_link_design[0]['#markup'] %}
-            <div class="hero__cta">
-              {% for key, item in content.field_hero_link if key|first != '#' %}
-                {% set open_in_a_new_window = item['#options']['target_new'] %}
-                {% include '@hdbt/navigation/link-button.html.twig' with {
-                  type: link_type|clean_class,
-                  label: item['#title'],
-                  url: item['#url'],
-                  class: 'hero__button',
-                  open_in_a_new_window: open_in_a_new_window,
-                  icon: true,
-                  icon_type: item['#options']['icon']|clean_class,
-                } %}
-              {% endfor %}
-            </div>
-          {% endif %}
         </div>
         <span class="hero__arrow" aria-hidden="true"></span>
       {% endblock %}
