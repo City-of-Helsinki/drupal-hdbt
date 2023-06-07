@@ -32,6 +32,17 @@ Explanations for commands.
 - `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
 
+Related files.
+- `.nvmrc` : Defines the node version used to compile the theme.
+- `package.json and package-lock.json` : Defines the node modules for compiling the theme.
+- `postcss.config.js and postcss.plugins.js` : Configurations for the postcss-tool that is run when the theme is built.
+You can read more about the tool here: https://postcss.org/
+- `webpack.config.js` : Configuration file for the webpack-tool that is used to actually build the theme. Similar tool
+to Gulp or Grunt. Usually if there is something wrong with the compiled theme files the culprit can be found here.
+- `webpack.svgToSprite.js` : This file is used to create a sprite of all the icons used on the site. It gets all the
+icons from the src-folder, compiles them into a sprite under `dist/icons` and also creates a css-file where the icons are
+referenced called _hdbt-icons.css_.
+
 ## Structure for files and folders
 
 ```
@@ -56,7 +67,6 @@ hdbt
 
 Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder.
 Typescript entrypoints must be added separately. See webpack.config.js.
-
 
 ### How to use entries in Drupal libraries
 
