@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - main
-      - 5.x
 name: Build assets
 jobs:
   tests:
