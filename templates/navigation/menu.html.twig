@@ -88,7 +88,7 @@
                 'class': [
                   'menu__link',
                   item.in_active_trail ? 'menu__link--active-trail',
-                  item.content_is_unpublished ? 'menu__link--unpublished'
+                  not item.content_is_published ? 'menu__link--unpublished'
                 ],
                 'id': item_is_collabsible ? link_id : null,
                 'aria-current': item.is_currentPage ? 'page' : null,

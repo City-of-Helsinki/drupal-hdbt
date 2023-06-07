@@ -83,7 +83,7 @@
                   'class': [
                     'mmenu__item-link',
                     item.is_currentPage ? 'mmenu__item-link--in-path',
-                    item.content_is_unpublished ? 'menu__link--unpublished',
+                    not item.content_is_published ? 'menu__link--unpublished',
                   ],
                   'aria-current': item.is_currentPage ? 'page': null,
                 } %}

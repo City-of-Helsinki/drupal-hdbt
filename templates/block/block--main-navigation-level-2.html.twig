@@ -42,7 +42,7 @@
 {% set link_attributes = {
   'class': [
     'sidebar-navigation__title-link',
-    menu_link_parent.unpublished ? 'sidebar-navigation__title-link--unpublished',
+    not menu_link_parent.published ? 'sidebar-navigation__title-link--unpublished',
   ],
 } %}
 

@@ -41,7 +41,7 @@
     set service_classes = [
       'service',
       'service--teaser',
-      service_unpublished ? 'service--teaser--unpublished',
+      not service_published ? 'service--teaser--unpublished',
     ]
   %}
 
