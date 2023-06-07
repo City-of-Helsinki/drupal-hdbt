@@ -45,23 +45,29 @@ referenced called _hdbt-icons.css_.
 
 ## Structure for files and folders
 
-```
-hdbt
-│   README.md
-└───src
-│   └───scss
-│   │   │   styles.scss
-│   └───js
-│   │   │   common.js
-│   └───icons
-│       |   sprite.svg
-│       └───subdir
-│           |   some-icon.svg
-└───dist
-    └───css
-    └───js
-    └───icons
-```
+### The config-folder
+
+The config-folder includes configurations that are used when installing a new project from scratch. These configuration
+files are copied under the conf/cmi folder and used there so altering them under theme doesn't change anything unless
+you are building a new instance.
+
+### The dist- and src-folders
+
+Under the src-folder there is all the theme components that are being compiled to dist-folder such as css, javascript,
+icons and fonts. Dist-folder includes the compiled version of the same information created using the commands listed
+under commands-title.
+
+The theme styles under the scss-folder are structured by implementing principles from the itcss architecture but with
+small adjustments to make it work for the needs of the project.
+
+### Templates-folder
+
+Under the templates folder the structure is similar to the base-theme stable9 with few additions such as the module
+folder that includes templates for the helfi-prefixed modules that are created for this project.
+
+### Translations-folder
+
+Translations-folder includes translations to all the translatable strings that are provided by the hdbt-theme.
 
 ## Webpack entries
 
