@@ -77,6 +77,7 @@ Typescript entrypoints must be added separately. See webpack.config.js.
 
 ### How to use entries in Drupal libraries
 
+Example:
 ```
 component-library:
   version: 1.x
@@ -87,8 +88,9 @@ component-library:
     dist/js/component-library.min.js: {}
 ```
 
-Library must be loaded on the page where it's used.
-It can be added via preprocess function or in a twig template.
+Library must be loaded on the page where it's used. It can be added via preprocess function or in a twig template. Read
+more about using libraries in Drupal from for example from
+[here](https://www.drupal.org/docs/develop/creating-modules/adding-assets-css-js-to-a-drupal-module-via-librariesyml).
 
 ### Usage as a base-theme
 
@@ -115,9 +117,11 @@ $config['system.performance']['js']['preprocess'] = 0;
 
 ### I need to rebuild caches every time I build the css or change the twig files. How can I automate it?
 
-You can create a `local.settings.php` and `local.services.yml` files to `/sites/default/` folder and paste the following contents in them.
+You can create a `local.settings.php` and `local.services.yml` files to `/sites/default/` folder and paste the following
+contents in them.
 
-_Keep in mind that using the Null Cache Backend is the primary culprit for caching issues. F.e. Something works in local environment, but not in production environment._
+_Keep in mind that using the Null Cache Backend is the primary culprit for caching issues. F.e. Something works in local
+environment, but not in production environment._
 
 local.services.yml:
 ```
@@ -155,7 +159,8 @@ aggregation from Drupal. Go to /admin/config/development/performance and uncheck
 site caches and you should be able to continue with your work.
 
 ### How can I add custom translations?
-Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8 documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
+Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8
+documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
 These translations consists of:
 
 PHP
