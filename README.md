@@ -10,8 +10,9 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 This theme requires Drupal core >= 9.1.0.
 
 Requirements for developing:
-- [NodeJS ( ^ 16.10 )](https://nodejs.org/en/)
+- [NodeJS](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
+- optional [NVM](https://github.com/nvm-sh/nvm)
 
 ## Commands
 
