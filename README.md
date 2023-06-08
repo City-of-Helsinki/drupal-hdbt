@@ -35,40 +35,40 @@ Explanations for commands.
 
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.
-- `package.json and package-lock.json` : Defines the node modules for compiling the theme.
+- `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
 - `postcss.config.js and postcss.plugins.js` : Configurations for the postcss-tool that is run when the theme is built.
 You can read more about the tool here: https://postcss.org/
 - `webpack.config.js` : Configuration file for the webpack-tool that is used to actually build the theme. Similar tool
 to Gulp or Grunt. Usually if there is something wrong with the compiled theme files the culprit can be found here.
 - `webpack.svgToSprite.js` : This file is used to create a sprite of all the icons used on the site. It gets all the
-icons from the src-folder, compiles them into a sprite under `dist/icons` and also creates a css-file where the icons are
-referenced called _hdbt-icons.css_.
+icons from the `./src`, compiles them into a sprite under `./dist/icons` and also creates a css-file where the icons are
+referenced called `./dist/css/hdbt-icons.css`.
 
 ## Structure for files and folders
 
 ### The config-folder
 
-The config-folder includes configurations that are used when installing a new project from scratch. These configuration
-files are copied under the conf/cmi folder and used there so altering them under theme doesn't change anything unless
-you are building a new instance.
+The config folder includes configurations that are used when installing a new project from scratch. These configuration
+files are copied under the `conf/cmi` folder and used there. Therefore, altering them under the theme doesn't change
+anything unless you are building a new instance.
 
 ### The dist- and src-folders
 
-Under the src-folder there is all the theme components that are being compiled to dist-folder such as css, javascript,
-icons and fonts. Dist-folder includes the compiled version of the same information created using the commands listed
-under commands-title.
+Under the `./src` folder, there are all the theme components that are being compiled to the `./dist` folder, such as
+CSS, JavaScript, icons, and fonts. The `./dist` folder includes the compiled version of the same information created
+using the commands listed under the commands title.
 
-The theme styles under the scss-folder are structured by implementing principles from the itcss architecture but with
-small adjustments to make it work for the needs of the project.
+The theme styles under the `./scss` folder are structured by implementing principles from the ITCSS architecture but
+with small adjustments to make it work for the needs of the project.
 
 ### Templates-folder
 
-Under the templates folder the structure is similar to the base-theme stable9 with few additions such as the module
-folder that includes templates for the helfi-prefixed modules that are created for this project.
+Under the `./templates` folder, the structure is similar to the base-theme stable9 with a few additions, such as the
+`./templates/module` folder that includes templates for the helfi-prefixed modules created for this project.
 
 ### Translations-folder
 
-Translations-folder includes translations to all the translatable strings that are provided by the hdbt-theme.
+The `./translations` folder includes translations for all the translatable strings provided by the hdbt-theme.
 
 ## Webpack entries
 
@@ -159,7 +159,7 @@ aggregation from Drupal. Go to /admin/config/development/performance and uncheck
 site caches and you should be able to continue with your work.
 
 ### How can I add custom translations?
-Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8
+Add your UI translations to `./translations/{fi/sv}.po` files like it is explained in Translation in Drupal
 documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
 These translations consists of:
 
@@ -185,7 +185,7 @@ msgstr "Esimerkki"
 
 To see these translation changes in an instance, run in container shell:
 ```
-drush locale:check && drush locale:update
+drush locale:check && drush locale:update && drush cr
 ```
 And then flush all caches from top left drupal admin menu under "Druplicon".
 
