@@ -10,8 +10,9 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 This theme requires Drupal core >= 9.1.0.
 
 Requirements for developing:
-- [NodeJS ( ^ 16.10 )](https://nodejs.org/en/)
+- [NodeJS](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
+- optional [NVM](https://github.com/nvm-sh/nvm)
 
 ## Commands
 
@@ -32,34 +33,51 @@ Explanations for commands.
 - `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
 
+Related files.
+- `.nvmrc` : Defines the node version used to compile the theme.
+- `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
+- `postcss.config.js and postcss.plugins.js` : Configurations for the postcss-tool that is run when the theme is built.
+You can read more about the tool here: https://postcss.org/
+- `webpack.config.js` : Configuration file for the webpack-tool that is used to actually build the theme. Similar tool
+to Gulp or Grunt. Usually if there is something wrong with the compiled theme files the culprit can be found here.
+- `webpack.svgToSprite.js` : This file is used to create a sprite of all the icons used on the site. It gets all the
+icons from the `./src`, compiles them into a sprite under `./dist/icons` and also creates a css-file where the icons are
+referenced called `./dist/css/hdbt-icons.css`.
+
 ## Structure for files and folders
 
-```
-hdbt
-│   README.md
-└───src
-│   └───scss
-│   │   │   styles.scss
-│   └───js
-│   │   │   common.js
-│   └───icons
-│       |   sprite.svg
-│       └───subdir
-│           |   some-icon.svg
-└───dist
-    └───css
-    └───js
-    └───icons
-```
+### The config-folder
+
+The config folder includes configurations that are used when installing a new project from scratch. These configuration
+files are copied under the `conf/cmi` folder and used there. Therefore, altering them under the theme doesn't change
+anything unless you are building a new instance.
+
+### The dist- and src-folders
+
+Under the `./src` folder, there are all the theme components that are being compiled to the `./dist` folder, such as
+CSS, JavaScript, icons, and fonts. The `./dist` folder includes the compiled version of the same information created
+using the commands listed under the commands title.
+
+The theme styles under the `./scss` folder are structured by implementing principles from the ITCSS architecture but
+with small adjustments to make it work for the needs of the project.
+
+### Templates-folder
+
+Under the `./templates` folder, the structure is similar to the base-theme stable9 with a few additions, such as the
+`./templates/module` folder that includes templates for the helfi-prefixed modules created for this project.
+
+### Translations-folder
+
+The `./translations` folder includes translations for all the translatable strings provided by the hdbt-theme.
 
 ## Webpack entries
 
 Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder.
 Typescript entrypoints must be added separately. See webpack.config.js.
 
-
 ### How to use entries in Drupal libraries
 
+Example:
 ```
 component-library:
   version: 1.x
@@ -70,8 +88,9 @@ component-library:
     dist/js/component-library.min.js: {}
 ```
 
-Library must be loaded on the page where it's used.
-It can be added via preprocess function or in a twig template.
+Library must be loaded on the page where it's used. It can be added via preprocess function or in a twig template. Read
+more about using libraries in Drupal from for example from
+[here](https://www.drupal.org/docs/develop/creating-modules/adding-assets-css-js-to-a-drupal-module-via-librariesyml).
 
 ### Usage as a base-theme
 
@@ -98,9 +117,11 @@ $config['system.performance']['js']['preprocess'] = 0;
 
 ### I need to rebuild caches every time I build the css or change the twig files. How can I automate it?
 
-You can create a `local.settings.php` and `local.services.yml` files to `/sites/default/` folder and paste the following contents in them.
+You can create a `local.settings.php` and `local.services.yml` files to `/sites/default/` folder and paste the following
+contents in them.
 
-_Keep in mind that using the Null Cache Backend is the primary culprit for caching issues. F.e. Something works in local environment, but not in production environment._
+_Keep in mind that using the Null Cache Backend is the primary culprit for caching issues. F.e. Something works in local
+environment, but not in production environment._
 
 local.services.yml:
 ```
@@ -138,7 +159,8 @@ aggregation from Drupal. Go to /admin/config/development/performance and uncheck
 site caches and you should be able to continue with your work.
 
 ### How can I add custom translations?
-Add your UI translations to ``./translations/{fi/sv}.po`` files like it is explained in Translation in Drupal 8 documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
+Add your UI translations to `./translations/{fi/sv}.po` files like it is explained in Translation in Drupal
+documentation: https://www.drupal.org/docs/understanding-drupal/translation-in-drupal-8.
 These translations consists of:
 
 PHP
@@ -163,7 +185,7 @@ msgstr "Esimerkki"
 
 To see these translation changes in an instance, run in container shell:
 ```
-drush locale:check && drush locale:update
+drush locale:check && drush locale:update && drush cr
 ```
 And then flush all caches from top left drupal admin menu under "Druplicon".
 
@@ -191,14 +213,6 @@ Inside Drupal: Load correct Drupal library to the page. Run `npm run dev` and ma
 Outside Drupal: Open React app index.html file in browser and run `npm run dev`.
 
 To build minified js file into the /dist folder run `npm run build`.
-
-## Component documentation
-
-### Kuura Health Chat
-Kuura Health chat is attached to a block id `block-kuurahealthchat` when adding the external library. This causes the
-chat to appear in inline-mode which adds class `kuura-widget-container-inline` for the widget. These styles are
-overridden in the `_kuura-health-chat.scss` file. If in some cases the chat doesn't appear on the site even if adding
-it on the block layout, make sure that there is a block with the correct id on the html-dom.
 
 ## ESLint
 
