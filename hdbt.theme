@@ -1317,6 +1317,13 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   }
   $entity = $variables['entity'];
 
+  // Add unit publish state to variable.
+  $variables['content_entity_published'] = TRUE;
+
+  if (!$entity->isPublished()) {
+    $variables['content_entity_published'] = FALSE;
+  }
+
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 
@@ -1346,7 +1353,14 @@ function hdbt_preprocess_tpr_service(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Service) {
     return;
   }
+  // Add service publish state to variable.
+  $variables['content_entity_published'] = TRUE;
+
   $entity = $variables['entity'];
+
+  if (!$entity->isPublished()) {
+    $variables['content_entity_published'] = FALSE;
+  }
 
   $variables['service_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 }

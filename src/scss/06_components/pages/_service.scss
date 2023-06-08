@@ -49,6 +49,22 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
+.service.service--teaser--unpublished {
+  color: var(--color-error);
+
+  .service__link {
+    border-color: var(--color-error);
+    color: var(--color-error);
+
+    &::before {
+      opacity: 30%;
+    }
+  }
+  .hel-icon {
+    background-color: var(--color-error);
+  }
+}
+
 .service__link {
   border: 1px solid $color-black;
   display: block;

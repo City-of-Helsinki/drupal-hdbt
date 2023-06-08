@@ -87,6 +87,20 @@ $item-gap: $spacing-half;
   }
 }
 
+.card--unpublished {
+  color: var(--color-error);
+  outline: 2px solid var(--color-error);
+  outline-offset: -2px;
+
+  .card__link {
+    color: var(--color-error);
+  }
+
+  .card__text::after {
+    background-color: var(--color-error);
+  }
+}
+
 .card--external .link__type--external {
   @include visually-hidden; // Avoid two arrows on card visually, but let screen readers see it.
 }
