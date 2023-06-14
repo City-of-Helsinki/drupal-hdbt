@@ -10,11 +10,13 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
+use Drupal\helfi_tpr\Entity\Service;
 use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
@@ -24,8 +26,6 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
-use Drupal\helfi_react_search\LinkedEvents;
-use Drupal\helfi_tpr\Entity\Service;
 
 /**
  * Implements hook_preprocess().
@@ -83,7 +83,7 @@ function hdbt_preprocess(&$variables): void {
 /**
  * Retrieve possible theme color palette override.
  */
-function hdbt_get_theme_color_override(): string|false {
+function hdbt_get_theme_color_override(): string|FALSE {
   $color = &drupal_static(__FUNCTION__);
 
   if (!isset($color)) {
@@ -165,6 +165,13 @@ function hdbt_preprocess_media(&$variables): void {
     $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 
+    // If the media in question is a map, get the iframe title for variables.
+    if ($variables['media']->hasField('field_media_hel_map')) {
+      $variables['iframe_title'] = $variables['media']
+        ->get('field_media_hel_map')
+        ->title;
+    }
+
     // If Oembed providers module is installed, get provider URL based on
     // current remote video URL.
     if (
@@ -200,9 +207,9 @@ function hdbt_preprocess_media__hel_map(&$variables): void {
  *   Indicates which group does the settings belong to.
  *
  * @return string|null
- *   Returns the desired setting as a string or false.
+ *   Returns the desired setting as a string or FALSE.
  */
-function hdbt_get_settings(string $setting, string $group = 'site_settings'): string|null {
+function hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
   return Drupal::config('hdbt_admin_tools.site_settings')
     ?->getOriginal("$group.$setting", FALSE);
 }
