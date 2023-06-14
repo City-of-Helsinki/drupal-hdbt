@@ -165,6 +165,13 @@ function hdbt_preprocess_media(&$variables): void {
     $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
     $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
 
+    // If the media in question is a map, get the iframe title for variables.
+    if ($variables['media']->hasField('field_media_hel_map')) {
+      $variables['iframe_title'] = $variables['media']
+        ->get('field_media_hel_map')
+        ->title;
+    }
+
     // If Oembed providers module is installed, get provider URL based on
     // current remote video URL.
     if (

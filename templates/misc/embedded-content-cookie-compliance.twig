@@ -17,7 +17,13 @@
       } %}
 
       {% set external_link_title %}
-         <span class="hds-button__label">{{ 'See content on external site'|t }}</span>
+        {% set button_labelled_by_id = 'button__external-aria-label--' ~ random()|clean_id %}
+         <span class="hds-button__label" aria-labelledby="{{ button_labelled_by_id }}">
+           {{ 'See content on external site'|t }}
+         </span>
+        <span class="is-hidden" id="{{ button_labelled_by_id }}">
+          {{ media_iframe_title }}
+        </span>
       {% endset %}
 
       {{ link(external_link_title, media_url, external_link_attributes) }}
