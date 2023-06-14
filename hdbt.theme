@@ -10,8 +10,8 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -83,7 +83,7 @@ function hdbt_preprocess(&$variables): void {
 /**
  * Retrieve possible theme color palette override.
  */
-function hdbt_get_theme_color_override(): string|false {
+function hdbt_get_theme_color_override(): string|FALSE {
   $color = &drupal_static(__FUNCTION__);
 
   if (!isset($color)) {
@@ -207,9 +207,9 @@ function hdbt_preprocess_media__hel_map(&$variables): void {
  *   Indicates which group does the settings belong to.
  *
  * @return string|null
- *   Returns the desired setting as a string or false.
+ *   Returns the desired setting as a string or FALSE.
  */
-function hdbt_get_settings(string $setting, string $group = 'site_settings'): string|null {
+function hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
   return Drupal::config('hdbt_admin_tools.site_settings')
     ?->getOriginal("$group.$setting", FALSE);
 }
