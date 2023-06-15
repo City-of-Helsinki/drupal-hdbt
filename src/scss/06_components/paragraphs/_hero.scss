@@ -89,15 +89,10 @@ $koro-height: 50px;
   }
 }
 
-.hero__container .helfi-search__form .hds-text-input__label {
-  color: inherit;
-}
-
 /**
  * DESIGNS
  */
 
-// With image designs.
 .hero--with-image-right,
 .hero--with-image-left,
 .hero--with-image-bottom {
@@ -361,4 +356,8 @@ $koro-height: 50px;
       bottom: -70px;
     }
   }
+}
+
+.hero--with-search .helfi-search__form .hds-text-input__label {
+  color: inherit;
 }
