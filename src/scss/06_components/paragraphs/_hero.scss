@@ -1,108 +1,70 @@
 $koro-height: 50px;
 
 .hero {
-  color: $body-bg-color;
+  background-color: var(--hdbt-color-palette--primary);
+  color: var(--hdbt-color-palette-text--primary);
 
-  .hero__container {
-    color: $color-black-90;
-    padding-bottom: $spacing-triple;
-    padding-top: $spacing-and-half;
-    position: relative;
-
-    @include breakpoint(max-width $breakpoint-s) {
-      max-width: 100%;
-    }
-  }
-
-  .hds-koros {
-    svg {
-      margin-bottom: -1px;
-    }
-  }
-
-  .hero__text-content {
-    max-width: 690px;
-  }
-
-  .hero__title {
-    margin-bottom: $spacing;
-    margin-top: $spacing;
-  }
-
-  .hero__title + .hero__cta {
-    margin-top: $spacing-triple;
-  }
-
-  .hero__cta {
-    align-items: flex-start;
-    display: inline-flex;
-    flex-flow: column;
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-s) {
-      flex-flow: row;
-      margin: $spacing-double 0 0;
-    }
-
-    .hero__button {
-      margin-top: $spacing-half 0 0;
-
-      @include breakpoint($breakpoint-s) {
-        margin: 0 0 0 $spacing;
-      }
-
-      &:first-child {
-        margin: 0;
-      }
-
-      &.hds-button--supplementary {
-        margin-left: calc(-#{$spacing-half} + (-2px));
-
-        @include breakpoint($breakpoint-s) {
-          margin-left: $spacing;
-        }
-
-        &:first-child {
-          @include breakpoint($breakpoint-s) {
-            margin-left: -#{$spacing-half};
-          }
-        }
-      }
-    }
-  }
-
-  .hero__description {
-    p {
-      @include font('body');
-    }
-
-    a:not(.hds-button) {
-      color: currentColor;
-    }
-  }
-
-  .hero__arrow {
-    background-color: var(--hdbt-color-palette--accent);
-    bottom: -90px;
-    height: 100px;
-    inset-inline-start: $spacing-and-half;
-    mask-image: icon_url('hero-arrow-mobile');
-    mask-position: center;
-    mask-repeat: no-repeat;
-    position: absolute;
-    width: 94px;
-    z-index: 10;
-
-    @include breakpoint($breakpoint-l) {
-      bottom: -100px;
-      height: 110px;
-      left: $spacing-double;
-      mask-image: icon_url('hero-arrow-desktop');
-      width: 94px;
-    }
+  > .hds-koros {
+    color: $color-white;
   }
 }
 
+.hero__container {
+  color: var(--hdbt-color-palette-text--primary);
+  padding-bottom: $spacing-triple;
+  padding-top: $spacing-and-half;
+  position: relative;
+
+  @include breakpoint(max-width $breakpoint-s) {
+    max-width: 100%;
+  }
+}
+
+.hero__image-container {
+  color: var(--hdbt-color-palette--primary);
+}
+
+.hero__text-content {
+  max-width: 690px;
+}
+
+.hero__title {
+  margin-bottom: $spacing;
+  margin-top: $spacing;
+}
+
+.hero__description {
+  p {
+    @include font('body');
+  }
+
+  a:not(.hds-button) {
+    color: currentColor;
+  }
+}
+
+.hero__arrow {
+  background-color: var(--hdbt-color-palette--accent);
+  bottom: -90px;
+  height: 100px;
+  inset-inline-start: $spacing-and-half;
+  mask-image: icon_url('hero-arrow-mobile');
+  mask-position: center;
+  mask-repeat: no-repeat;
+  position: absolute;
+  width: 94px;
+  z-index: 10;
+
+  @include breakpoint($breakpoint-l) {
+    bottom: -100px;
+    height: 110px;
+    left: $spacing-double;
+    mask-image: icon_url('hero-arrow-desktop');
+    width: 94px;
+  }
+}
+
+// Gray first block styles.
 .hero-wrapper.has-first-gray-bg-block {
   background-color: $color-silver-light;
   margin-bottom: -$spacing-quadruple;
@@ -111,133 +73,18 @@ $koro-height: 50px;
   @include breakpoint($breakpoint-m) {
     margin-bottom: -$spacing-sextuple;
   }
-}
 
-// Hero colors
-.hero--bg-color--coat-of-arms {
-  background-color: $color-coat-of-arms;
-
-  .hero__container {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    color: $color-coat-of-arms;
-  }
-
-  .hds-button {
-    @include hds-button-colors-on-dark-bg;
+  .hero > .hds-koros {
+    color: $color-silver-light;
   }
 }
 
-.hero--bg-color--gold {
-  background-color: $color-gold;
-
-  .hero__image-container {
-    color: $color-gold;
-  }
-}
-
-.hero--bg-color--silver {
-  background-color: $color-silver;
-
-  .hero__image-container {
-    color: $color-silver;
-  }
-}
-
-.hero--bg-color--brick {
-  background-color: $color-brick;
-
-  .hero__container {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    color: $color-brick;
-  }
-
-  .hds-button {
-    @include hds-button-colors-on-dark-bg;
-  }
-}
-
-.hero--bg-color--bus {
-  background-color: $color-bus;
-
-  .hero__container {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    color: $color-bus;
-  }
-
-  .hds-button {
-    @include hds-button-colors-on-dark-bg;
-  }
-}
-
-.hero--bg-color--copper {
-  background-color: $color-copper;
-
-  .hero__image-container {
-    color: $color-copper;
-  }
-}
-
-.hero--bg-color--engel {
-  background-color: $color-engel;
-
-  .hero__image-container {
-    color: $color-engel;
-  }
-}
-
-.hero--bg-color--fog {
-  background-color: $color-fog;
-
-  .hero__image-container {
-    color: $color-fog;
-  }
-}
-
-.hero--bg-color--metro {
-  background-color: $color-metro;
-
-  .hero__image-container {
-    color: $color-metro;
-  }
-}
-
-.hero--bg-color--summer {
-  background-color: $color-summer;
-
-  .hero__image-container {
-    color: $color-summer;
-  }
-}
-
-.hero--bg-color--suomenlinna {
-  background-color: $color-suomenlinna;
-
-  .hero__image-container {
-    color: $color-suomenlinna;
-  }
-}
-
-.hero--bg-color--tram {
-  background-color: $color-tram;
-
-  .hero__container {
-    color: $color-white;
-  }
-
-  .hero__image-container {
-    color: $color-tram;
-  }
-
-  .hds-button {
+// HDS-button coloring depending on the theme selected
+.hdbt-theme--coat-of-arms,
+.hdbt-theme--brick,
+.hdbt-theme--bus,
+.hdbt-theme--tram {
+  .hero .hds-button {
     @include hds-button-colors-on-dark-bg;
   }
 }
@@ -249,12 +96,6 @@ $koro-height: 50px;
 /**
  * DESIGNS
  */
-
-.hero--without-image-left {
-  .has-first-gray-bg-block & .hds-koros {
-    color: $color-silver-light;
-  }
-}
 
 // With image designs.
 .hero--with-image-right,
@@ -325,12 +166,6 @@ $koro-height: 50px;
   .hds-koros {
     @include breakpoint($breakpoint-m) {
       display: block;
-    }
-  }
-
-  .has-first-gray-bg-block & .hds-koros {
-    @include breakpoint($breakpoint-m) {
-      color: $color-silver-light;
     }
   }
 
