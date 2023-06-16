@@ -38,4 +38,4 @@
   }
 } %}
 {{ drupal_settings }}
-{{ link(element[0]['link']['#value'], link_url, link_attributes) }}
+{{ link(iframe_attributes['title'] ~ ' - ' ~ element[0]['link']['#value'], link_url, link_attributes) }}
