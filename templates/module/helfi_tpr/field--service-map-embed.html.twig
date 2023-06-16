@@ -4,8 +4,10 @@
     'map__external-link',
     'link'
   ],
-  'target': '_blank',
 } %}
+
+{% set after_map_id = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
+{% set before_map_id = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
 
 {% if alternative_language %}
   {% set link = link|merge({'#attributes': {'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir }}) %}
@@ -28,6 +30,8 @@
           'src': iframe_attributes['src'],
           'title': iframe_attributes['title'],
           'type': 'map',
+          'skipLinkAfterId' : after_map_id,
+          'skipLinkBeforeId' : before_map_id,
         }
       }
     }
