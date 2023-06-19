@@ -2,7 +2,10 @@
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--react-search'],
+      component_classes: [
+        'component--react-search',
+        'component--district-and-project-search',
+      ],
       component_title: content.field_district_project_title,
       component_description: content.field_district_project_desc,
       component_content_class: 'district-and-project-search',
