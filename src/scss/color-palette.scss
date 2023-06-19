@@ -93,11 +93,11 @@
   --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
   --hdbt-color-palette-text--accent: #{$hdbt-color-black};
 
-  --hdbt-color-palette-button--primary: #{$hdbt-color-white};
-  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
 
   --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
-  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-black};
 }
 
 .hdbt-theme--silver {

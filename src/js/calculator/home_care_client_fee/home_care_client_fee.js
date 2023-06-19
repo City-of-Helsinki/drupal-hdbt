@@ -107,6 +107,7 @@ class HomeCareClientFee {
           },
         },
       },
+      household_size_beyond_defined_multiplier_euro: 356,
       monthly_usage_max_payment: {
         '0': 119.66,
         '5': 538.47,
@@ -171,11 +172,20 @@ class HomeCareClientFee {
       }
     };
 
-    const getHouseholdLimitAndPercentage = (householdSize, monthlyUsage, householdSizeData) => {
+    const getHouseholdLimitAndPercentage = (householdSize, monthlyUsage, householdSizeData, householdSizeBeyondDefinedMultiplierEuro) => {
       // Currently we have values up until 6 person household sizes, this way it's configurable.
       const household = this.calculator.getMinimumRange(householdSize, householdSizeData);
 
-      const grossIncomeLimit = household.gross_income_limit;
+      // Calculate limit for households bigger than in reference tables
+      let multipliedLimit = 0; // By default the extra limit is 0
+      const maxDefinedLimitNum = Number(Object.keys(householdSizeData).at(-1));
+      const diff = householdSize - maxDefinedLimitNum;
+      if (diff > 0) {
+        multipliedLimit = diff * householdSizeBeyondDefinedMultiplierEuro;
+      }
+
+      // Calculate gross income limit with potential extra limit if the household is bigger than reference table data
+      const grossIncomeLimit = household.gross_income_limit + multipliedLimit;
       const paymentPercentage = this.calculator.getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
 
       return { grossIncomeLimit, paymentPercentage };
@@ -241,7 +251,7 @@ class HomeCareClientFee {
 
       // 1. Get proper limits based on given values and the parsed settings.
       const maximumPayment = this.calculator.getMinimumRange(monthlyUsage, parsedSettings.monthly_usage_max_payment);
-      const { grossIncomeLimit, paymentPercentage } = getHouseholdLimitAndPercentage(householdSize, monthlyUsage, parsedSettings.household_size);
+      const { grossIncomeLimit, paymentPercentage } = getHouseholdLimitAndPercentage(householdSize, monthlyUsage, parsedSettings.household_size, parsedSettings.household_size_beyond_defined_multiplier_euro);
 
       // 2. If the gross income field is null, lets use the maximumPayment
       let referencePayment = maximumPayment;
@@ -393,18 +403,17 @@ class HomeCareClientFee {
         );
       }
 
-      console.log(
-          'maximumPayment', maximumPayment,
-          '\ngrossIncomeLimit', grossIncomeLimit,
-          '\ngrossIncomeLimit', grossIncomeLimit,
-          '\npaymentPercentage', paymentPercentage,
-          '\nreferencePayment', referencePayment,
-          '\n',
-          '\npayment', payment,
-          '\nsafetyphonePayment', safetyphonePayment,
-          '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
-          '\nmealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`,
-        );
+      // console.log(
+      //     'maximumPayment', maximumPayment,
+      //     '\ngrossIncomeLimit', grossIncomeLimit,
+      //     '\npaymentPercentage', paymentPercentage,
+      //     '\nreferencePayment', referencePayment,
+      //     '\n',
+      //     '\npayment', payment,
+      //     '\nsafetyphonePayment', safetyphonePayment,
+      //     '\nshoppingPaymentPerMonth', shoppingPaymentPerMonth, `(${shoppingPaymentPerWeek} € * 4 weeks)`,
+      //     '\nmealPaymentPerMonth', mealPaymentPerMonth, `(${mealPaymentPerWeek} € * 4 weeks)`,
+      //   );
 
       const sum = payment + safetyphonePayment + shoppingPaymentPerMonth + mealPaymentPerMonth;
 
