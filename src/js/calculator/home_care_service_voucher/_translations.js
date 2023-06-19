@@ -1,3 +1,4 @@
+
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
@@ -12,7 +13,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Talouden tulot kuukaudessa',
+    fi: 'Talouden bruttotulot kuukaudessa',
     sv: null,
     en: null,
   },
@@ -43,7 +44,7 @@ const translations = {
   },
 
   receipt_estimate_of_payment: {
-    fi: 'Arvio palvelusetelillä hankitusta yksityisestä kotihoidosta',
+    fi: 'Arvio palvelusetelillä hankitusta kotihoidosta',
     sv: null,
     en: null,
   },
@@ -63,7 +64,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Arvio ovat suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
+    fi: 'Tämä arvio on suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
     sv: null,
     en: null,
   },
@@ -88,7 +89,7 @@ const translations = {
     en: null,
   },
   receipt_city_pays_to_provider: {
-    fi: 'Kaupunki maksaa palvelusetelillä tuotetusta palvelusta yksityiselle palveluntuottajalle',
+    fi: 'Kaupunki maksaa palvelusetelillä palveluntuottajalle',
     sv: null,
     en: null,
   },
@@ -123,12 +124,12 @@ const translations = {
     en: null,
   },
   receipt_estimate_if_done_by_city: {
-    fi: 'Arvio kotihoidon maksusta kaupungin tuottamana:',
+    fi: 'Arvio kaupungin kotihoidon asiakasmaksusta:',
     sv: null,
     en: null,
   },
   receipt_when_done_by_city: {
-    fi: 'Kaupungin kotihoidon tuottamana palvelun asiakasmaksu',
+    fi: 'Kaupungin kotihoidon tuottamana palvelu maksaisi',
     sv: null,
     en: null,
   },
