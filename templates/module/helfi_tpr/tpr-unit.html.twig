@@ -62,6 +62,50 @@
   {% block main_content %}
     <div class="enriched-content components components--unit">
       {{ content.field_content }}
+
+      {% if content.price_info|render %}
+        {% embed "@hdbt/misc/component.twig" with {
+          component_classes: [ 'component--paragraph-text' ],
+          component_title: content.price_info['#title'],
+        }%}
+          {% block component_content %}
+            {{ content.price_info }}
+          {% endblock component_content %}
+        {% endembed %}
+      {% endif %}
+
+      {% if content.contacts|render %}
+          {% embed "@hdbt/misc/component.twig" with {
+            component_classes: [ 'component--paragraph-text' ],
+            component_title: content.contacts['#title'],
+          }%}
+          {% block component_content %}
+            {{ content.contacts }}
+          {% endblock component_content %}
+        {% endembed %}
+      {% endif %}
+
+      {% if content.links|render %}
+          {% embed "@hdbt/misc/component.twig" with {
+            component_classes: [ 'component--paragraph-text' ],
+            component_title: content.links['#title'],
+          }%}
+          {% block component_content %}
+            {{ content.links }}
+          {% endblock component_content %}
+        {% endembed %}
+      {% endif %}
+
+      {% if content.other_info|render %}
+        {% embed "@hdbt/misc/component.twig" with {
+          component_classes: [ 'component--paragraph-text' ],
+          component_title: content.other_info['#title'],
+        }%}
+          {% block component_content %}
+            {{ content.other_info }}
+          {% endblock component_content %}
+        {% endembed %}
+      {% endif %}
     </div>
   {% endblock main_content %}
 
@@ -75,4 +119,5 @@
       description: content.address,
     } %}
   {% endif %}
+
 </article>
