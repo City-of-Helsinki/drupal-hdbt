@@ -24,7 +24,6 @@
   set classes = [
     'hero',
     design_class ? design_class,
-    background_color ? 'hero--bg-color--' ~ background_color
   ]
 %}
 
@@ -58,27 +57,6 @@
               </div>
             {% endif %}
           {% endif %}
-
-          {% if
-            design == "background-image" and
-            content.field_hero_link|render
-          %}
-            {% set link_type = content.field_hero_link_design[0]['#markup'] %}
-            <div class="hero__cta">
-              {% for key, item in content.field_hero_link if key|first != '#' %}
-                {% set open_in_a_new_window = item['#options']['target_new'] %}
-                {% include '@hdbt/navigation/link-button.html.twig' with {
-                  type: link_type|clean_class,
-                  label: item['#title'],
-                  url: item['#url'],
-                  class: 'hero__button',
-                  open_in_a_new_window: open_in_a_new_window,
-                  icon: true,
-                  icon_type: item['#options']['icon']|clean_class,
-                } %}
-              {% endfor %}
-            </div>
-          {% endif %}
         </div>
         <span class="hero__arrow" aria-hidden="true"></span>
       {% endblock %}
@@ -88,7 +66,6 @@
       design == "with-image-right" or
       design == "with-image-left" or
       design == "with-image-bottom" or
-      design == "background-image" or
       design == "diagonal" or
       design == "with-search"
     %}
