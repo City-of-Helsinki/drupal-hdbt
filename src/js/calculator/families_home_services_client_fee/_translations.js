@@ -12,7 +12,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Perheen tulot kuukaudessa',
+    fi: 'Perheen bruttotulot kuukaudessa',
     sv: null,
     en: null,
   },
