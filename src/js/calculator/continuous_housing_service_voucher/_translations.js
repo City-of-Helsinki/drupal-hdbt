@@ -12,12 +12,12 @@ const translations = {
     en: null,
   },
   service_provider_price: {
-    fi: 'Palveluntuottajan kuukausihinta',
+    fi: 'Palvelunasumisen vuorokausihinta',
     sv: null,
     en: null,
   },
   service_provider_price_explanation: {
-    fi: 'Valitsemasi palveluntuottajan perimä palveluasumisen kuukausihinta.',
+    fi: 'Palveluntuottajan ilmoittama palvelun hinta vuorokaudessa.',
     sv: null,
     en: null,
   },
@@ -37,22 +37,22 @@ const translations = {
     en: null,
   },
   receipt_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava.  Tarkka arvo lasketaan kotihoidon tekemän päätöksen mukaan.',
+    fi: 'Tämä arvio on suuntaa antava.  Tarkka arvo lasketaan asiakaspäätökseen.',
     sv: null,
     en: null,
   },
   receipt_estimate_is_based_on: {
-    fi: 'Palveluasumisen hinta palvelusetelillä ostettuna muodostuu seuraavasti:',
+    fi: 'Arvio muodostuu seuraavasti:',
     sv: null,
     en: null,
   },
   receipt_subtotal_full_price: {
-    fi: 'Palveluasumisen kokonaiskustannus',
+    fi: 'Palvelusetelillä hankittavan palvelun kokonaiskustannus',
     sv: null,
     en: null,
   },
   receipt_subtotal_city_price: {
-    fi: 'Kaupunki maksaa palvelusetelillä yksityiselle tuottajalle ',
+    fi: 'Kaupunki maksaa palvelusetelillä palveluntuottajalle ',
     sv: null,
     en: null,
   },
@@ -73,6 +73,16 @@ const translations = {
   },
   receipt_additional_details: {
     fi: 'Lisähuomiot:',
+    sv: null,
+    en: null,
+  },
+  receipt_additional_details_1: {
+    fi: 'Palvelusetelillä maksettavia yksityisen palveluasumisen kustannuksia ovat palveluasumisen palvelumaksu, perusmaksu ja ateriamaksu. Palvelumaksu peritään hoidosta ja huolenpidosta. Perusmaksu kattaa yksikön yhteisiin tiloihin, valvontaan ja turvajärjestelyihin liittyviä kuluja. Palveluntuottajien tarkat hinnat löytyvät heidän omilta verkkosivuiltaan ja Palse.fi-sivustolta. Asiakas tai hänen omaisensa ja palveluntuottaja sopivat keskenään palvelun lopullisen hinnan.',
+    sv: null,
+    en: null,
+  },
+  receipt_additional_details_2: {
+    fi: 'Omavastuuosuuden lisäksi asiakkaalle jää maksettavaksi myös palveluasumisen vuokra, lääkkeet ja muut henkilökohtaiset kulut.',
     sv: null,
     en: null,
   },
