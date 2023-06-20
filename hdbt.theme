@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -1021,10 +1022,19 @@ function hdbt_preprocess_paragraph(array &$variables): void {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
+  // Check if the configuration is cached.
+  $cacheKey = 'hdbt_site_information';
+  if ($cache = \Drupal::cache()->get($cacheKey)) {
+    $site_config = $cache->data;
+  }
+  else {
+    // Set site_name as variable.
+    $site_config = \Drupal::config('system.site');
+  }
+
   $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
   // Set site_name as variable.
-  $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
 
   $variables['city_name'] = t('City of Helsinki');
@@ -1056,6 +1066,8 @@ function _hdbt_set_site_information(array &$variables) {
 
   // Set Etusivu absolute url as variable.
   $variables['frontpage_instance_url'] = Url::fromUri($url);
+  // Set configuration to cache.
+  \Drupal::cache()->set($cacheKey, $site_config, CacheBackendInterface::CACHE_PERMANENT);
 }
 
 /**
