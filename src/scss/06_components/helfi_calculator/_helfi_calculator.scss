@@ -202,19 +202,21 @@
   }
 
   .hdbt-error-text {
-    --icon-size: #{$spacing-and-half};
-    color: $color-error;
+    background-color: $color-error-light;
+    border-left: $spacing-half solid $color-error;
+    color: $color-black-90;
     display: block;
     margin-top: $spacing;
-    padding-left: calc(var(--icon-size) + var(--spacing-2-xs));
+    padding: $spacing;
+    padding-left: calc($spacing + var(--icon-size) + var(--spacing-2-xs));
     position: relative;
 
     /* stylelint-disable-next-line max-nesting-depth */
     &::before {
-      @include pseudo-icon('alert-circle-fill', $color: currentColor);
-      left: 0;
+      @include pseudo-icon('alert-circle-fill', $color: $color-error);
+      left: $spacing;
       position: absolute;
-      top: 0;
+      top: $spacing;
     }
   }
 
