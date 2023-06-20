@@ -21,18 +21,33 @@
         iframeElement.width = attributes.width;
         iframeElement.title = attributes.title;
 
+        const skipLinkBefore = document.createElement('a');
+        skipLinkBefore.classList.add('focusable', 'skip-link');
+        skipLinkBefore.href = `#${attributes.skipLinkAfterId}`;
+        skipLinkBefore.id = attributes.skipLinkBeforeId;
+
+
+        const skipLinkAfter = document.createElement('a');
+        skipLinkAfter.classList.add('focusable', 'skip-link');
+        skipLinkAfter.href = `#${attributes.skipLinkBeforeId}`;
+        skipLinkAfter.id = attributes.skipLinkAfterId;
+
         const containerElement = document.createElement('div');
         containerElement.appendChild(iframeElement);
         if (attributes.type === 'video') {
-          containerElement.classList.add('responsive-video-container'); 
+          containerElement.classList.add('responsive-video-container');
           $(`.embedded-content-cookie-compliance.media-${id}`)
             .empty()
             .append(containerElement)
             .removeClass(`media-${id}`);
         } else if (attributes.type === 'map') {
           containerElement.classList.add('responsive-map-container');
+          skipLinkAfter.classList.add('skip-link--map--after');
+          skipLinkBefore.classList.add('skip-link--map--before');
+          skipLinkAfter.text = Drupal.t('Continue above the map', {}, { context: 'Skip link after the map for the map paragraph' });
+          skipLinkBefore.text = Drupal.t('Continue below the map', {}, { context: 'Skip link before the map for the map paragraph' });
           $(`.embedded-content-cookie-compliance.media-${id}`)
-            .replaceWith(containerElement);
+            .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
         }
       }
 
