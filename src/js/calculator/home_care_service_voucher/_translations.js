@@ -1,3 +1,4 @@
+
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
@@ -12,7 +13,7 @@ const translations = {
     en: null,
   },
   gross_income_per_month: {
-    fi: 'Talouden tulot kuukaudessa',
+    fi: 'Talouden bruttotulot kuukaudessa',
     sv: null,
     en: null,
   },
@@ -43,7 +44,7 @@ const translations = {
   },
 
   receipt_estimate_of_payment: {
-    fi: 'Arvio palvelusetelillä hankitusta yksityisestä kotihoidosta',
+    fi: 'Arvio palvelusetelillä hankitusta kotihoidosta',
     sv: null,
     en: null,
   },
@@ -63,7 +64,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Arvio ovat suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
+    fi: 'Tämä arvio on suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
     sv: null,
     en: null,
   },
@@ -82,23 +83,28 @@ const translations = {
     sv: null,
     en: null,
   },
+  receipt_subtotal_euros_per_hour: {
+    fi: '${value} €/tunti',
+    sv: null,
+    en: null,
+  },
+  receipt_subtotal_euros_per_hour_screenreader: {
+    fi: '${value} euroa per tunti',
+    sv: null,
+    en: null,
+  },
   receipt_homecare_total: {
     fi: 'Palvelusetelillä hankittavan palvelun kokonaiskustannus',
     sv: null,
     en: null,
   },
   receipt_city_pays_to_provider: {
-    fi: 'Kaupunki maksaa palvelusetelillä tuotetusta palvelusta yksityiselle palveluntuottajalle',
+    fi: 'Kaupunki maksaa palvelusetelillä palveluntuottajalle',
     sv: null,
     en: null,
   },
   receipt_voucher_value: {
-    fi: 'Palvelusetelisi arvo on ${voucher} euroa per tunti.',
-    sv: null,
-    en: null,
-  },
-  receipt_city_pays_to_provider_max: {
-    fi: 'Palvelusetelillä voidaan maksaa enintään ${covered_hours} tuntia kuukaudessa.',
+    fi: 'Palvelusetelisi arvo',
     sv: null,
     en: null,
   },
@@ -112,23 +118,18 @@ const translations = {
     sv: null,
     en: null,
   },
-  receipt_monthly_hours_are_over_covered_hours: {
-    fi: 'Kaupunki myöntää palvelusetelin ${covered_hours} tuntiin kuukaudessa asti, jonka ylittävä osuus jää kokonaan asiakkaan maksettavaksi. Tämä itse maksettava osuus on ${overflow_hours} tuntia eli ${overflow_euros} euroa.',
-    sv: null,
-    en: null,
-  },
   receipt_included_homecare: {
     fi: 'Jos palvelu - ja hoitosuunnitelmassasi on myös kaupungin tuottamaa kotihoitoa, siitä laskutetaan erikseen kotihoidon asiakasmaksun mukaisesti.',
     sv: null,
     en: null,
   },
   receipt_estimate_if_done_by_city: {
-    fi: 'Arvio kotihoidon maksusta kaupungin tuottamana:',
+    fi: 'Arvio kaupungin kotihoidon asiakasmaksusta:',
     sv: null,
     en: null,
   },
   receipt_when_done_by_city: {
-    fi: 'Kaupungin kotihoidon tuottamana palvelun asiakasmaksu',
+    fi: 'Kaupungin kotihoidon tuottamana palvelu maksaisi',
     sv: null,
     en: null,
   },

@@ -69,7 +69,7 @@ class ContinuousHousingServiceVoucher {
       // Get field values for calculating.
       const netIncomePerMonth = Number(this.calculator.getFieldValue('net_income_per_month'));
       // const netIncomePerMonthRaw = this.calculator.getFieldValue('gross_income_per_month');
-      const serviceProviderPrice = Number(this.calculator.getFieldValue('service_provider_price'));
+      const serviceProviderPrice = Number(this.calculator.getFieldValue('service_provider_price')) * (365 / 12);
 
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -103,16 +103,22 @@ class ContinuousHousingServiceVoucher {
           sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(voucherValue) }),
           sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(voucherValue) }),
         },
-        {
-          title: this.t('receipt_subtotal_self_price'),
-          has_details: false,
-          details: [],
-          sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(selfPayment) }),
-          sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(selfPayment) }),
-        },
       );
 
-      const additionalDetails = null;
+      const additionalDetails = [
+        {
+          title: this.t('receipt_additional_details'),
+          text: null,
+        },
+        {
+          title: null,
+          text: this.t('receipt_additional_details_1', { link: this.t('link', { link: this.t('receipt_additional_details_1_link'), url: this.t('receipt_additional_details_1_url') })}),
+        },
+        {
+          title: null,
+          text: this.t('receipt_additional_details_2'),
+        },
+      ];
 
       const receiptData = {
         id: this.id,
