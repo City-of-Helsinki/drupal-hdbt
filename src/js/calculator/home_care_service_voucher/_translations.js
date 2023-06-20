@@ -83,6 +83,16 @@ const translations = {
     sv: null,
     en: null,
   },
+  receipt_subtotal_euros_per_hour: {
+    fi: '${value} €/tunti',
+    sv: null,
+    en: null,
+  },
+  receipt_subtotal_euros_per_hour_screenreader: {
+    fi: '${value} euroa per tunti',
+    sv: null,
+    en: null,
+  },
   receipt_homecare_total: {
     fi: 'Palvelusetelillä hankittavan palvelun kokonaiskustannus',
     sv: null,
@@ -94,12 +104,7 @@ const translations = {
     en: null,
   },
   receipt_voucher_value: {
-    fi: 'Palvelusetelisi arvo on ${voucher} euroa per tunti.',
-    sv: null,
-    en: null,
-  },
-  receipt_city_pays_to_provider_max: {
-    fi: 'Palvelusetelillä voidaan maksaa enintään ${covered_hours} tuntia kuukaudessa.',
+    fi: 'Palvelusetelisi arvo',
     sv: null,
     en: null,
   },
@@ -110,11 +115,6 @@ const translations = {
   },
   receipt_additional_details: {
     fi: 'Lisähuomiot:',
-    sv: null,
-    en: null,
-  },
-  receipt_monthly_hours_are_over_covered_hours: {
-    fi: 'Kaupunki myöntää palvelusetelin ${covered_hours} tuntiin kuukaudessa asti, jonka ylittävä osuus jää kokonaan asiakkaan maksettavaksi. Tämä itse maksettava osuus on ${overflow_hours} tuntia eli ${overflow_euros} euroa.',
     sv: null,
     en: null,
   },

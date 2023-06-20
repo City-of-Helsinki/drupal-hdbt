@@ -36,7 +36,6 @@ class HomeCareServiceVoucher {
         },
       },
       household_size_beyond_defined_multiplier_percent: -1,
-      covered_hours_per_month: 40,
       voucher_divisor: 60,
     };
     // */
@@ -111,11 +110,10 @@ class HomeCareServiceVoucher {
       // 1. Get limits for math from parsedSettings based on household size
       // 2. Calculate payment percentage for income that exeeds limit
       // 3. Calculate voucher value based on income and limits
-      // 4. Calculate how much city will pay with vouchers (cap it to covered hours) per month
-      // 5. Calculate how much client should pay for hours not covered by vouchers per month
-      // 6. Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
-      // 7. Get maximum payment value from table if bought without voucher
-      // 8. Calculate what the payment would be as service bought from city instead of private company with voucher
+      // 4. Calculate how much city will pay with vouchers per month
+      // 5. Calculate voucher self payment (omavastuu) part (min 0)
+      // 6. Get maximum payment value from table if bought without voucher
+      // 7. Calculate what the payment would be as service bought from city instead of private company with voucher
 
       // 1. Get limits based on household size
       const {
@@ -138,15 +136,13 @@ class HomeCareServiceVoucher {
             parsedSettings.voucher_limits.min
         ) * 100) / 100;
 
-      // 4. [Excel B22] Calculate how much city will pay with vouchers (cap it to covered hours) per month
-      const paymentByCity = Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) * voucher;
+      // 4. [Excel B22] Calculate how much city will pay with vouchers per month
+      const paymentByCity = monthlyUsage * voucher;
 
-      // 5. [Excel B13] Calculate how much client should pay for hours not covered by vouchers per month
-      const paymentForHoursNotCoveredByVoucher = Math.max(0, monthlyUsage - parsedSettings.covered_hours_per_month) * serviceProviderPrice;
+      // 5. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0)
+      const totalPaymentToProviderByClient = Math.max(0, serviceProviderPrice - voucher) * monthlyUsage;
 
-      // 6. [Excel B23] Calculate voucher self payment (omavastuu) part (min 0) and add result from previous step
-      const totalPaymentToProviderByClient = Math.max(0, serviceProviderPrice - voucher) * Math.min(monthlyUsage, parsedSettings.covered_hours_per_month) + paymentForHoursNotCoveredByVoucher;
-
+      // Steps 6 and 7 are handled by city home care payment calculator
       const cityHomeCarePayment = calculateClientFee(
         householdSize,
         grossIncomePerMonth,
@@ -167,7 +163,6 @@ class HomeCareServiceVoucher {
       //   '\n\nCalculated:',
       //   '\n limit B11', limit,
       //   '\n percent B12', percent,
-      //   '\n paymentForHoursNotCoveredByVoucher B13', paymentForHoursNotCoveredByVoucher,
       //   '\n voucher B20', voucher,
       //   '\n cityHomeCarePayment B21', cityHomeCarePayment,
       //   '\n paymentByCity B22', paymentByCity,
@@ -201,35 +196,20 @@ class HomeCareServiceVoucher {
         },
         {
           title: this.t('receipt_city_pays_to_provider'),
-          has_details: true,
-          details: [
-            this.t('receipt_voucher_value', { voucher: this.calculator.formatFinnishEuroCents(voucher) }),
-            this.t('receipt_city_pays_to_provider_max', { covered_hours: parsedSettings.covered_hours_per_month })
-          ],
+          has_details: false,
+          details: [],
           sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(paymentByCity) }),
           sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(paymentByCity) }),
         },
         {
-          title: this.t('receipt_client_self_payment'),
+          title: this.t('receipt_voucher_value'),
           has_details: false,
           details: [],
-          sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(totalPaymentToProviderByClient) }),
-          sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(totalPaymentToProviderByClient) }),
+          sum: this.t('receipt_subtotal_euros_per_hour', { value: this.calculator.formatFinnishEuroCents(voucher) }),
+          sum_screenreader: this.t('receipt_subtotal_euros_per_hour_screenreader', { value: this.calculator.formatEuroCents(voucher) }),
         },
       );
 
-      if (monthlyUsage > parsedSettings.covered_hours_per_month) {
-        additionalDetails.push(
-          {
-            title: null,
-            text: this.t('receipt_monthly_hours_are_over_covered_hours', {
-              covered_hours: parsedSettings.covered_hours_per_month,
-              overflow_hours: monthlyUsage - parsedSettings.covered_hours_per_month,
-              overflow_euros: this.calculator.formatFinnishEuroCents(paymentForHoursNotCoveredByVoucher),
-            }),
-          }
-        );
-      }
       additionalDetails.push(
         {
           title: null,
