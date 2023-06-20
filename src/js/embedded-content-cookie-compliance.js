@@ -17,9 +17,13 @@
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
-        iframeElement.height = attributes.height;
-        iframeElement.width = attributes.width;
         iframeElement.title = attributes.title;
+        if (attributes.height) {
+          iframeElement.height = attributes.height;
+        }
+        if (attributes.width) {
+          iframeElement.width = attributes.width;
+        }
 
         const skipLinkBefore = document.createElement('a');
         skipLinkBefore.classList.add('focusable', 'skip-link');
@@ -48,6 +52,14 @@
           skipLinkBefore.text = Drupal.t('Continue below the map', {}, { context: 'Skip link before the map for the map paragraph' });
           $(`.embedded-content-cookie-compliance.media-${id}`)
             .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+        } else if (attributes.type === 'journey_planner') {
+          containerElement.classList.add('journey-planner-container');
+          skipLinkAfter.classList.add('skip-link--planner--after');
+          skipLinkBefore.classList.add('skip-link--planner--before');
+          skipLinkAfter.text = Drupal.t('Continue above the journey planner', {}, { context: 'Skip link after the journey planner for the journey planner paragraph' });
+          skipLinkBefore.text = Drupal.t('Continue below the journey planner', {}, { context: 'Skip link before the journey planner for the journey planner paragraph' });
+          $(`.embedded-content-cookie-compliance.media-${id}`)
+            .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);   
         }
       }
 
