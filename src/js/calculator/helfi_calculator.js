@@ -92,7 +92,7 @@ class HelfiCalculator {
         return range[valueLimit];
       }
     }
-    throw new Error('Minimum range not found for', value, 'from', range);
+    throw new Error(`Minimum range not found for ${value} from ${range}`);
   };
 
   // Clamps value within min-max range

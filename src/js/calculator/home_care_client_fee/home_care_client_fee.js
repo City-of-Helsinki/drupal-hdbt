@@ -2,6 +2,73 @@ import form from './_form';
 import translations from './_translations';
 
 class HomeCareClientFee {
+
+  // Separate function for calculating client fee, so that it can be used in home_care_service_voucher.js too
+  // eslint-disable-next-line class-methods-use-this
+  static calculateClientFee(
+    householdSize,
+    grossIncomePerMonth,
+    grossIncomePerMonthRaw,
+    monthlyUsage,
+    calculator,
+    calculatorSettings,
+    printDebug = false,
+  ) {
+
+    // Finds the smallest matching value >= key from object
+    function getMinimumRange(value, range) {
+      const rangeKeys = Object.keys(range).reverse();
+      for (let i = 0; i < rangeKeys.length; i++) {
+        const valueLimit = rangeKeys[i];
+        if (Number(valueLimit) <= value) {
+          return range[valueLimit];
+        }
+      }
+      throw new Error(`Minimum range not found for ${value} from ${range}`);
+    };
+
+    // 1. Get proper limits based on given values and the parsed settings.
+    const maximumPayment = getMinimumRange(monthlyUsage, calculatorSettings.monthly_usage_max_payment);
+
+    // Currently we have values up until 6 person household sizes, this way it's configurable.
+    const household = getMinimumRange(householdSize, calculatorSettings.household_size);
+
+    // Calculate limit for households bigger than in reference tables
+    let multipliedLimit = 0; // By default the extra limit is 0
+    const maxDefinedLimitNum = Number(Object.keys(calculatorSettings.household_size).at(-1));
+    const diff = householdSize - maxDefinedLimitNum;
+    if (diff > 0) {
+      multipliedLimit = diff * calculatorSettings.household_size_beyond_defined_multiplier_euro;
+    }
+
+    // Calculate gross income limit with potential extra limit if the household is bigger than reference table data
+    const grossIncomeLimit = household.gross_income_limit + multipliedLimit;
+    const paymentPercentage = getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
+
+    // 2. If the gross income field is null, lets use the maximumPayment
+    let referencePayment = maximumPayment;
+
+    // 3. If the gross income field has a value, calculate refrence payment
+    if (grossIncomePerMonthRaw !== null) {
+      referencePayment = (grossIncomePerMonth - grossIncomeLimit) * (paymentPercentage / 100);
+    }
+
+    // 4. Payment should never be higher than maximumPayment nor lower than 0
+    const payment = calculator.clamp(0, referencePayment, maximumPayment);
+
+    if (printDebug) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `maximumPayment\t${  maximumPayment}`,
+        `\ngrossIncomeLimit\t${  grossIncomeLimit}`,
+        `\npaymentPercentage\t${  paymentPercentage}`,
+        `\nreferencePayment\t${  referencePayment}`,
+      );
+    }
+
+    return payment;
+  }
+
   constructor(id, settings) {
     this.id = id;
     const parsedSettings = JSON.parse(settings);
@@ -172,25 +239,6 @@ class HomeCareClientFee {
       }
     };
 
-    const getHouseholdLimitAndPercentage = (householdSize, monthlyUsage, householdSizeData, householdSizeBeyondDefinedMultiplierEuro) => {
-      // Currently we have values up until 6 person household sizes, this way it's configurable.
-      const household = this.calculator.getMinimumRange(householdSize, householdSizeData);
-
-      // Calculate limit for households bigger than in reference tables
-      let multipliedLimit = 0; // By default the extra limit is 0
-      const maxDefinedLimitNum = Number(Object.keys(householdSizeData).at(-1));
-      const diff = householdSize - maxDefinedLimitNum;
-      if (diff > 0) {
-        multipliedLimit = diff * householdSizeBeyondDefinedMultiplierEuro;
-      }
-
-      // Calculate gross income limit with potential extra limit if the household is bigger than reference table data
-      const grossIncomeLimit = household.gross_income_limit + multipliedLimit;
-      const paymentPercentage = this.calculator.getMinimumRange(monthlyUsage, household.monthly_usage_percentage);
-
-      return { grossIncomeLimit, paymentPercentage };
-    };
-
     const validate = () => {
       const errorMessages = [];
 
@@ -249,22 +297,21 @@ class HomeCareClientFee {
 
       let totalExplanation = this.t('receipt_family_estimated_payment_explanation');
 
-      // 1. Get proper limits based on given values and the parsed settings.
-      const maximumPayment = this.calculator.getMinimumRange(monthlyUsage, parsedSettings.monthly_usage_max_payment);
-      const { grossIncomeLimit, paymentPercentage } = getHouseholdLimitAndPercentage(householdSize, monthlyUsage, parsedSettings.household_size, parsedSettings.household_size_beyond_defined_multiplier_euro);
+      // Steps 1-4 in a separate function, so that they can be used in home_care_service_voucher.js too
+      const payment = HomeCareClientFee.calculateClientFee(
+        householdSize,
+        grossIncomePerMonth,
+        grossIncomePerMonthRaw,
+        monthlyUsage,
+        this.calculator,
+        parsedSettings,
+        false, // Debug
+      );
 
-      // 2. If the gross income field is null, lets use the maximumPayment
-      let referencePayment = maximumPayment;
-
-      // 3. If the gross income field has a value, calculate refrence payment
-      if (grossIncomePerMonthRaw !== null) {
-        referencePayment = (grossIncomePerMonth - grossIncomeLimit) * (paymentPercentage / 100);
-      } else {
+      // If the gross income field does not have a value, show notice on receipt about it
+      if (grossIncomePerMonthRaw === null) {
         totalExplanation = this.t('receipt_family_empty_income') + totalExplanation;
       }
-
-      // 4. Payment should never be higher than maximumPayment nor lower than 0
-      const payment = this.calculator.clamp(0, referencePayment, maximumPayment);
 
       const homecareSubtotal = {
         title: this.t('receipt_homecare_payment'),
@@ -486,3 +533,5 @@ class HomeCareClientFee {
 
 window.helfi_calculator = window.helfi_calculator || {};
 window.helfi_calculator.home_care_client_fee = (id, settings) => new HomeCareClientFee(id, settings);
+
+export default HomeCareClientFee.calculateClientFee;
