@@ -1022,25 +1022,23 @@ function hdbt_preprocess_paragraph(array &$variables): void {
  *   Variables array.
  */
 function _hdbt_set_site_information(array &$variables) {
-  // Check if the configuration is cached.
-  $cacheKey = 'hdbt_site_information';
-  if ($cache = \Drupal::cache()->get($cacheKey)) {
-    $site_config = $cache->data;
-  }
-  else {
-    // Set site_name as variable.
+  // Store in static cache to save computation time.
+  $site_info = &drupal_static(__FUNCTION__);
+  if (!isset($site_info)) {
     $site_config = \Drupal::config('system.site');
+    $site_info['site_name'] = $site_config->get('name');
+    $site_info['city_name'] = t('City of Helsinki');
+    $site_info['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+
+    $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $site_info['lang_id'] = $language_id;
+    $site_info['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
+
   }
-
-  $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-
-  // Set site_name as variable.
-  $variables['site_name'] = $site_config->get('name');
-
-  $variables['city_name'] = t('City of Helsinki');
-
+    $variables['site_name'] = $site_info['site_name'];
+    $variables['city_name'] = $site_info['city_name'];
   // Set site front page absolute url as variable.
-  $variables['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+    $variables['site_front_url'] = $site_info['site_front_url'];
 
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
   $resolver = \Drupal::service('helfi_api_base.environment_resolver');
@@ -1052,13 +1050,13 @@ function _hdbt_set_site_information(array &$variables) {
   }
   catch (\Exception $e) {
     // Set Etusivu absolute url as variable.
-    $variables['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
+    $variables['frontpage_instance_url'] = $site_info['frontpage_instance_url'];
     return;
   }
 
   // Revert to English path, if current language path is not found.
   try {
-    $url = $environment->getUrl($language_id);
+    $url = $environment->getUrl($site_info['lang_id']);
   }
   catch (\Exception $e) {
     $url = $environment->getUrl('en');
@@ -1066,8 +1064,6 @@ function _hdbt_set_site_information(array &$variables) {
 
   // Set Etusivu absolute url as variable.
   $variables['frontpage_instance_url'] = Url::fromUri($url);
-  // Set configuration to cache.
-  \Drupal::cache()->set($cacheKey, $site_config, CacheBackendInterface::CACHE_PERMANENT);
 }
 
 /**
