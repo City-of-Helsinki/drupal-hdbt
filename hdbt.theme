@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -1035,10 +1034,10 @@ function _hdbt_set_site_information(array &$variables) {
     $site_info['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
 
   }
-    $variables['site_name'] = $site_info['site_name'];
-    $variables['city_name'] = $site_info['city_name'];
+  $variables['site_name'] = $site_info['site_name'];
+  $variables['city_name'] = $site_info['city_name'];
   // Set site front page absolute url as variable.
-    $variables['site_front_url'] = $site_info['site_front_url'];
+  $variables['site_front_url'] = $site_info['site_front_url'];
 
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
   $resolver = \Drupal::service('helfi_api_base.environment_resolver');
