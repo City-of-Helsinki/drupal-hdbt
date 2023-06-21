@@ -12,6 +12,10 @@
     scroll-margin-top: $spacing-double;
   }
 
+  .hds-selection-group > .helfi-calculator__error-placeholder {
+    float: none;
+  }
+
   .hds-text-input__input {
     @include breakpoint($breakpoint-m) {
       width: auto;
