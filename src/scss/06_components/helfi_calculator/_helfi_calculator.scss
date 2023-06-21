@@ -60,10 +60,10 @@
   }
 
   .hds-notification--error .hds-notification__label::before {
-    --line-height: 1; // HDS line-height here is same as font-size
-
-    @include pseudo-icon('alert-circle-fill');
+    --icon-size: #{$spacing-and-half};
+    @include pseudo-icon('error-fill', $color: $color-error);
     margin-right: $spacing-half;
+    margin-top: -3px;
   }
 
   .helfi-calculator-required {
@@ -213,7 +213,7 @@
 
     /* stylelint-disable-next-line max-nesting-depth */
     &::before {
-      @include pseudo-icon('alert-circle-fill', $color: $color-error);
+      @include pseudo-icon('error-fill', $color: $color-error);
       left: $spacing;
       position: absolute;
       top: $spacing;
