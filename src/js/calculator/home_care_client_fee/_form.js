@@ -52,7 +52,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
       {
         heading: {
           text: t('safetyphone_heading'),
-          level: 3,
+          level: 4,
         }
       },
       {
@@ -84,7 +84,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
       {
         heading: {
           text: t('shopping_service_heading'),
-          level: 3,
+          level: 4,
         }
       },
       {
@@ -135,7 +135,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
       {
         heading: {
           text: t('meal_service_heading'),
-          level: 3,
+          level: 4,
         }
       },
       {
