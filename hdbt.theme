@@ -1022,47 +1022,46 @@ function hdbt_preprocess_paragraph(array &$variables): void {
  */
 function _hdbt_set_site_information(array &$variables) {
   // Store in static cache to save computation time.
-  $site_info = &drupal_static(__FUNCTION__);
-  if (!isset($site_info)) {
-    $site_config = \Drupal::config('system.site');
-    $site_info['site_name'] = $site_config->get('name');
-    $site_info['city_name'] = t('City of Helsinki');
-    $site_info['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+  static $values = [];
 
+  if (!$values) {
     $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-    $site_info['lang_id'] = $language_id;
-    $site_info['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
 
-  }
-  $variables['site_name'] = $site_info['site_name'];
-  $variables['city_name'] = $site_info['city_name'];
-  // Set site front page absolute url as variable.
-  $variables['site_front_url'] = $site_info['site_front_url'];
+    // Set site_name as variable.
+    $site_config = \Drupal::config('system.site');
+    $values['site_name'] = $site_config->get('name');
 
-  /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
-  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+    $values['city_name'] = t('City of Helsinki');
 
-  // Return if the current project is not in environments list.
-  try {
-    $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
-    $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
-  }
-  catch (\Exception $e) {
+    // Set site front page absolute url as variable.
+    $values['site_front_url'] = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+
+    /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $resolver */
+    $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+
+    // Return if the current project is not in environments list.
+    try {
+      $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
+      $environment = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+    }
+    catch (\Exception $e) {
+      // Set Etusivu absolute url as variable.
+      $values['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
+      return;
+    }
+
+    // Revert to English path, if current language path is not found.
+    try {
+      $url = $environment->getUrl($language_id);
+    }
+    catch (\Exception $e) {
+      $url = $environment->getUrl('en');
+    }
+
     // Set Etusivu absolute url as variable.
-    $variables['frontpage_instance_url'] = $site_info['frontpage_instance_url'];
-    return;
+    $values['frontpage_instance_url'] = Url::fromUri($url);
   }
-
-  // Revert to English path, if current language path is not found.
-  try {
-    $url = $environment->getUrl($site_info['lang_id']);
-  }
-  catch (\Exception $e) {
-    $url = $environment->getUrl('en');
-  }
-
-  // Set Etusivu absolute url as variable.
-  $variables['frontpage_instance_url'] = Url::fromUri($url);
+  $variables += $values;
 }
 
 /**
