@@ -12,7 +12,7 @@ const translations = {
     en: null,
   },
   service_provider_price: {
-    fi: 'Palvelunasumisen vuorokausihinta',
+    fi: 'Palveluasumisen vuorokausihinta',
     sv: null,
     en: null,
   },
@@ -77,12 +77,12 @@ const translations = {
     en: null,
   },
   receipt_additional_details_1: {
-    fi: 'Palvelusetelillä maksettavia yksityisen palveluasumisen kustannuksia ovat palveluasumisen palvelumaksu, perusmaksu ja ateriamaksu. Palvelumaksu peritään hoidosta ja huolenpidosta. Perusmaksu kattaa yksikön yhteisiin tiloihin, valvontaan ja turvajärjestelyihin liittyviä kuluja. Palveluntuottajien tarkat hinnat löytyvät heidän omilta verkkosivuiltaan ja Palse.fi-sivustolta. Asiakas tai hänen omaisensa ja palveluntuottaja sopivat keskenään palvelun lopullisen hinnan.',
+    fi: 'Palvelusetelillä maksettavia yksityisen palveluasumisen kustannuksia ovat palveluasumisen palvelumaksu, perusmaksu ja ateriamaksu.',
     sv: null,
     en: null,
   },
   receipt_additional_details_2: {
-    fi: 'Omavastuuosuuden lisäksi asiakkaalle jää maksettavaksi myös palveluasumisen vuokra, lääkkeet ja muut henkilökohtaiset kulut.',
+    fi: 'Omavastuuosuuden lisäksi sinulle jää maksettavaksi myös palveluasumisen vuokra, lääkkeet ja muut henkilökohtaiset kulut.',
     sv: null,
     en: null,
   },

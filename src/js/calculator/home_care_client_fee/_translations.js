@@ -27,7 +27,7 @@ const translations = {
     en: null,
   },
   monthly_usage_explanation: {
-    fi: 'Löydät tuntimäärän kotihoidon hoito- ja palvelusuunnitelmasta.',
+    fi: 'Löydät tuntimäärän kotihoidon palvelu- ja hoitosuunnitelmasta.',
     sv: null,
     en: null,
   },
@@ -72,7 +72,7 @@ const translations = {
     en: null,
   },
   shopping_service_paragraph: {
-    fi: 'Kauppapalvelussa tilaamasi ruokaostokset toimitetaan kotiovellesi. Palvelussa on toimitusmaksu.',
+    fi: 'Kauppapalvelussa tilaamasi ruokaostokset toimitetaan kotiovellesi. Kauppapalvelun hintaan kuuluu ruokaostosten keräily ja toimitus.',
     sv: null,
     en: null,
   },
@@ -142,7 +142,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava. Tarkan arvon saat kotihoidon päätöksessä.',
+    fi: 'Tämä arvio on suuntaa antava. Tarkka arvo lasketaan kotihoidon päätökseen.',
     sv: null,
     en: null,
   },
@@ -177,12 +177,12 @@ const translations = {
     en: null,
   },
   receipt_shopping_service_math_single: {
-    fi: '1 kauppatoimitus viikossa eli hintaan on laskettu 4 toimitusta kuukaudessa.',
+    fi: '1 kauppatoimitus viikossa, kuukausihintaan on laskettu 4 toimitusta.',
     sv: null,
     en: null,
   },
   receipt_shopping_service_math_multiple: {
-    fi: '${delivery_count_per_week} kauppatoimitusta viikossa eli hintaan on laskettu ${delivery_count_per_month} toimitusta kuukaudessa.',
+    fi: '${delivery_count_per_week} kauppatoimitusta viikossa, kuukausihintaan on laskettu ${delivery_count_per_month} toimitusta.',
     sv: null,
     en: null,
   },
@@ -202,12 +202,12 @@ const translations = {
     en: null,
   },
   receipt_meal_service_count_single: {
-    fi: '1 lounasateria viikossa eli hintaan on laskettu 4 ateriaa kuukaudessa.',
+    fi: '1 lounasateria viikossa, kuukausihintaan on laskettu 4 ateriaa.',
     sv: null,
     en: null,
   },
   receipt_meal_service_count_multiple: {
-    fi: '${meals_per_week} lounasateriaa viikossa eli hintaan on laskettu ${meals_per_month} ateriaa kuukaudessa',
+    fi: '${meals_per_week} lounasateriaa viikossa, kuukausihintaan on laskettu ${meals_per_month} ateriaa.',
     sv: null,
     en: null,
   },
@@ -222,7 +222,7 @@ const translations = {
     en: null,
   },
   receipt_meal_service_2_delivery_price: {
-    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu kaksi kuljetusmaksua eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
+    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu kaksi kuljetusmaksua viikossa eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
     sv: null,
     en: null,
   },

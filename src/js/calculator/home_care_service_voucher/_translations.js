@@ -28,7 +28,7 @@ const translations = {
     en: null,
   },
   monthly_usage_explanation: {
-    fi: 'Löydät tuntimäärän kotihoidon päätöksestä.',
+    fi: 'Löydät tuntimäärän kotihoidon palvelu- ja hoitosuunnitelmasta.',
     sv: null,
     en: null,
   },
@@ -64,7 +64,7 @@ const translations = {
     en: null,
   },
   receipt_family_estimated_payment_explanation: {
-    fi: 'Tämä arvio on suuntaa antava.  Tarkka arvo lasketaan kotihoidon päätökseen.',
+    fi: 'Tämä arvio on suuntaa antava. Tarkka arvo lasketaan kotihoidon päätökseen.',
     sv: null,
     en: null,
   },
