@@ -1,9 +1,23 @@
 import CustomIds from '../enum/CustomTermIds';
 import IndexFields from '../enum/IndexFields';
 
+const language = window.drupalSettings.path.currentLanguage || 'fi';
+
 // Filter by current language
-export const languageFilter = {
-  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+const languageFilter = {
+  term: {[`${IndexFields.LANGUAGE}`]: language},
+};
+
+export const pageLangScore = {
+  script: {
+    source: `
+      if (doc['${IndexFields.LANGUAGE}'] == '${language}') {3}
+      else if (
+        doc['${IndexFields.LANGUAGE}'] == 'fi' ||
+        doc['${IndexFields.LANGUAGE}'] == 'sv'
+      ) {2}
+    `.trim()
+  }
 };
 
 // Filter out taxonomy terms

@@ -1,13 +1,24 @@
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import { languageFilter, nodeFilter } from '../query/queries';
+import { nodeFilter, pageLangScore } from '../query/queries';
 import URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size, sortOptions } = Global;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const must = [];
+  const must: any[] = [{
+    // Legacy sanity check, make sure forced translations aren't included
+    bool: {
+      must: [
+        {
+          term: {
+            [IndexFields.COPIED]: false,
+          },
+        },
+      ],
+    }
+  }];
   const should = [];
 
   if (urlParams.keyword && urlParams.keyword.length > 0) {
@@ -109,28 +120,15 @@ const useQueryString = (urlParams: URLParams): string => {
   const query: any = {
     bool: {
       filter: [
-        urlParams.language
-          ? {
-              term: {
-                [IndexFields.LANGUAGE]: urlParams.language.toString(),
-              },
-            }
-          : languageFilter,
         nodeFilter,
       ],
-    },
+    }
   };
 
   if (urlParams.language) {
-    must.push({
-      bool: {
-        must: [
-          {
-            term: {
-              [IndexFields.COPIED]: false,
-            },
-          },
-        ],
+    query.bool.filter.push({
+      term: {
+        [IndexFields.LANGUAGE]: urlParams.language.toString(),
       },
     });
   }
@@ -166,10 +164,18 @@ const useQueryString = (urlParams: URLParams): string => {
         },
       },
     },
-    sort: [sort],
+    collapse: {
+      field: `${IndexFields.RECRUITMENT_ID}.keyword`
+    },
+    sort: [sort, '_score'],
     size,
     from: size * (page - 1),
-    query,
+    query: {
+      script_score: {
+        query,
+        ...pageLangScore
+      }
+    }
   });
 };
 
