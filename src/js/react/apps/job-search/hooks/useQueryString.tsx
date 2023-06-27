@@ -1,7 +1,7 @@
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import { nodeFilter, pageLangScore } from '../query/queries';
+import { nodeFilter } from '../query/queries';
 import URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
@@ -163,19 +163,25 @@ const useQueryString = (urlParams: URLParams): string => {
           missing: 1,
         },
       },
+      // Use cardinality agg to calculate total (collapsing affects the total)
+      total_count: {
+        cardinality: {
+          field: `${IndexFields.RECRUITMENT_ID}.keyword`
+        }
+      }
     },
+    // Use collapse to group translations
     collapse: {
-      field: `${IndexFields.RECRUITMENT_ID}.keyword`
+      field: `${IndexFields.RECRUITMENT_ID}.keyword`,
+      inner_hits: {
+        name: 'translations',
+        size: 3,
+      }
     },
     sort: [sort, '_score'],
     size,
     from: size * (page - 1),
-    query: {
-      script_score: {
-        query,
-        ...pageLangScore
-      }
-    }
+    query
   });
 };
 
