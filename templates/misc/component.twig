@@ -44,6 +44,10 @@ Example usage:
   {% set tag = 'div' %}
 {% endif %}
 
+{# Check if the fields are empty, ignore html comments, non-breaking spaces (&nbsp; and character) and whitespace. #}
+{% set hasTitle = component_title|render|striptags|replace({"&nbsp;":" "," ":" "})|trim %}
+{% set hasDescription = component_description|render|striptags|replace({"&nbsp;":" "," ":" "})|trim %}
+
 <div{{ component_attr.addClass('component', component_classes) }}>
 
   {% if component_koro %}
@@ -51,14 +55,13 @@ Example usage:
   {% endif %}
 
   <div class="component__container">
-
-    {% if component_title|render %}
+    {% if hasTitle %}
       <{{ component_title_level|default('h2') }} class="component__title">
         {{ component_title }}
       </{{ component_title_level|default('h2')}}>
     {% endif %}
 
-    {% if component_description|render %}
+    {% if hasDescription %}
       <div class="component__description user-edited-content">
         {{ component_description}}
       </div>
