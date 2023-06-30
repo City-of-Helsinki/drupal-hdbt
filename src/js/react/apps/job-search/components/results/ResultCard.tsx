@@ -1,9 +1,13 @@
 import { HTMLAttributes } from 'react';
+import { useAtomValue } from 'jotai';
 import CardItem from '@/react/common/Card';
+import { currentLanguage } from '../../query/queries';
 
 import Job from '../../types/Job';
+import Result from '@/types/Result';
+import { urlAtom } from '../../store';
 
-const ResultCard = ({
+const getResultCard = ({
   title,
   field_copied,
   field_original_language,
@@ -14,12 +18,8 @@ const ResultCard = ({
   field_organization_name,
   field_recruitment_id,
   unpublish_on,
-  url,
+  url
 }: Job) => {
-  if (!title || !title.length) {
-    return null;
-  }
-
   const customAtts: HTMLAttributes<HTMLHeadingElement | HTMLDivElement> = {};
   if (field_copied?.length && field_original_language?.length) {
     const [ lang ] = field_original_language;
@@ -81,6 +81,38 @@ const ResultCard = ({
       dateRangeLabel={Drupal.t('Employment contract')}
     />
   );
+};
+
+type ResultCardProps = {
+  job: Job,
+  innerHits: Result<Job>[]
+};
+
+const ResultCard = ({
+  job,
+  innerHits
+}: ResultCardProps) => {
+  const {
+    _language,
+    title,
+  } = job;
+
+  if (!title || !title.length) {
+    return null;
+  }
+
+  const languageFilterActive = useAtomValue(urlAtom)?.language;
+  // If no filtering by language, prefer showing current language translation
+  if (!languageFilterActive && innerHits.length > 1 && _language !== currentLanguage) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const hit of innerHits) {
+      if (hit._source._language === currentLanguage) {
+        return getResultCard(hit._source);
+      }
+    }
+  }
+
+  return getResultCard(job);
 };
 
 export default ResultCard;

@@ -11,6 +11,8 @@ import IndexFields from '../enum/IndexFields';
 import useQueryString from '../hooks/useQueryString';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import type URLParams from '../types/URLParams';
+import Result from '@/types/Result';
+import Job from '../types/Job';
 
 const ResultsContainer = () => {
   const { size } = Global;
@@ -69,7 +71,7 @@ const ResultsContainer = () => {
   }
 
   const results = data.hits.hits;
-  const total = data.hits.total.value;
+  const total = data.aggregations.total_count.value || data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
 
@@ -107,8 +109,12 @@ const ResultsContainer = () => {
         </div>
         <ResultsSort />
       </div>
-      {results.map((hit: any) => (
-        <ResultCard key={hit._id} {...hit._source} />
+      {results.map((hit: Result<Job>) => (
+        <ResultCard
+          key={hit._id}
+          innerHits={hit?.inner_hits.translations.hits.hits || null}
+          job={hit._source}
+        />
       ))}
       <Pagination
         currentPage={currentPage}

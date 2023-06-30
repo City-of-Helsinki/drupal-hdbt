@@ -1,5 +1,5 @@
 type Job = {
-  _language: string[];
+  _language: string;
   field_employment: string[];
   field_employment_type: string[];
   field_copied: boolean[];

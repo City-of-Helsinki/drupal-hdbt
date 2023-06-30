@@ -1,9 +1,11 @@
 import CustomIds from '../enum/CustomTermIds';
 import IndexFields from '../enum/IndexFields';
 
+export const currentLanguage = window.drupalSettings.path.currentLanguage || 'fi';
+
 // Filter by current language
-export const languageFilter = {
-  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+const languageFilter = {
+  term: {[`${IndexFields.LANGUAGE}`]: currentLanguage},
 };
 
 // Filter out taxonomy terms
