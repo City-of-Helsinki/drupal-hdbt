@@ -14,6 +14,7 @@ const REACT_SEARCHES = {
   'job-search': ['./src/js/react/apps/job-search/index.tsx'],
   linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
   'school-search': ['./src/js/react/apps/school-search/index.tsx'],
+  'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
 };
 
 // Handle entry points.
