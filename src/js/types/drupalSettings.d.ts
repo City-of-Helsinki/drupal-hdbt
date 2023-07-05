@@ -39,4 +39,8 @@ declare namespace drupalSettings {
   const helfi_kymp_district_project_search: {
     elastic_proxy_url: string;
   };
+  const helfi_news_archive: {
+    elastic_proxy_url: string;
+    feed_base_url: string;
+  };
 }

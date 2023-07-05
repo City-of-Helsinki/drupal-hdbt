@@ -1,14 +1,8 @@
 import SearchComponents from '../enum/SearchComponents';
-import type InitialState from '../types/InitialState';
+import URLParams from '../types/URLParams';
 
+type ArrayParams = Pick<URLParams, 'topic'|'neighbourhoods'|'groups'>;;
 class NewsSearchParams extends URLSearchParams {
-  private ALLOWED_KEYS = [
-    SearchComponents.TOPIC,
-    SearchComponents.NEIGHBOURHOODS,
-    SearchComponents.NEWS_GROUPS,
-    SearchComponents.RESULTS,
-  ];
-
   constructor(paramString: string | null = null) {
     super();
 
@@ -16,42 +10,36 @@ class NewsSearchParams extends URLSearchParams {
       return;
     }
 
+    // Decode the php-style parameters to native
     const params = new URLSearchParams(paramString);
     const entries = params.entries();
     let result = entries.next();
-    const initialParams: InitialState = {
-      [SearchComponents.NEWS_GROUPS]: [],
-      [SearchComponents.NEIGHBOURHOODS]: [],
-      [SearchComponents.TOPIC]: [],
-    };
+    const arrayValues: {[key:string]: string[]} = {};
+    const arrayKeys = ['topic','neighbourhoods','groups'];
 
     while (!result.done) {
       const [key, value] = result.value;
-      const matchedKey = this.ALLOWED_KEYS.find((stateKey) => key.includes(stateKey));
+      const matchedKey = arrayKeys.find((stateKey) => key.includes(stateKey));
 
-      if (!matchedKey) {
-        result = entries.next();
-        continue;
+      if (matchedKey) {
+        arrayValues?.[matchedKey]?.length ? arrayValues[matchedKey].push(value) : arrayValues[matchedKey] = [value];
       }
-
-      if (matchedKey === SearchComponents.RESULTS) {
-        this.set(SearchComponents.RESULTS, value);
-      } else if (this.ALLOWED_KEYS.includes(matchedKey)) {
-        initialParams[matchedKey as keyof Omit<InitialState, 'page'>]?.push(value);
+      else {
+        this.set(key, value);
       }
 
       result = entries.next();
     }
 
-    Object.keys(initialParams).forEach((key: string) => {
-      if (initialParams[key as keyof Omit<InitialState, 'page'>]?.length) {
-        this.set(key, JSON.stringify(initialParams[key as keyof Omit<InitialState, 'page'>]));
+    Object.keys(arrayValues).forEach((key) => {
+      if (arrayValues[key?.length]) {
+        this.set(key, arrayValues[key].toString());
       }
     });
   }
-
-  toInitialValue(): InitialState {
-    let initialParams: InitialState = {
+  
+  toInitialValue(): URLParams {
+    const initialParams: URLParams = {
       groups: [],
       neighbourhoods: [],
       topic: [],
@@ -64,22 +52,21 @@ class NewsSearchParams extends URLSearchParams {
       const [key, value] = result.value;
       const matchedKey = keys.find((stateKey) => key.includes(stateKey));
 
-      let parsedValue;
+      if (!matchedKey) {
+        let parsedValue;
 
-      try {
-        parsedValue = JSON.parse(value);
-      } catch (e) {
-        parsedValue = value;
-      }
-
-      if (matchedKey) {
-        initialParams[matchedKey as keyof Omit<InitialState, 'page'>] = parsedValue;
+        try {
+          parsedValue = JSON.parse(value);
+          initialParams[matchedKey as keyof ArrayParams] = value.split(',').map(id => Number(id));
+        } catch (e) {
+          parsedValue = value;
+        }
       }
 
       result = entries.next();
     }
 
-    const initialPage = Number(this.get('page'));
+    const initialPage = this.get('page');
     if (initialPage) {
       initialParams.page = Number(initialPage);
     }
@@ -116,12 +103,12 @@ class NewsSearchParams extends URLSearchParams {
         }
       }
 
-      allParamsString += allParamsString.length ? '&' + paramString : paramString;
+      allParamsString += allParamsString.length ? `&${  paramString}` : paramString;
       result = entries.next();
     }
 
     if (allParamsString.length) {
-      allParamsString = '?' + allParamsString;
+      allParamsString = `?${  allParamsString}`;
     }
 
     return allParamsString;

@@ -1,11 +1,11 @@
 import useLanguageQuery from '@/react/common/hooks/useLanguageQuery';
 import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
-
-
+import Global from '../enum/Global';
 
 const useQueryString = (urlParams: URLParams) => {
   const languageFilter = useLanguageQuery();
+  const size = Global.SIZE;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [];
 
@@ -31,7 +31,7 @@ const useQueryString = (urlParams: URLParams) => {
     },
     query: {
       bool: {
-        filter: [{ term: { vid: vid } }, termFilter, ...languageFilter.bool.filter],
+        filter: [{ term: { vid } }, termFilter, ...languageFilter.bool.filter],
       },
     },
   });
@@ -60,11 +60,11 @@ const useQueryString = (urlParams: URLParams) => {
     });
   }
 
-  let query: any = {
+  const query: any = {
     ...languageFilter
-  }
+  };
 
-  let aggs: any = {};
+  const aggs: any = {};
 
   const aggMap = {
     [IndexFields.FIELD_NEWS_ITEM_TAGS]: 'news_tags',
@@ -73,16 +73,15 @@ const useQueryString = (urlParams: URLParams) => {
   };
 
   // Aggregations for field options
-  for (const key in aggMap) {
+  Object.keys(aggMap).forEach(key => {
     aggs[key] = getFieldAgg(key, aggMap[key]);
-  }
+  });
 
   return JSON.stringify({
-    sort: sort,
     size,
     from: size * (page - 1),
     query
-  })
-}
+  });
+};
 
 export default useQueryString;
