@@ -1,0 +1,31 @@
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+<script>
+{# Using inline javascript to hide announcements with as little flashing as possible and considering server cache #}
+!function(){let e=JSON.parse(window.localStorage.getItem("hidden-helfi-announcements")),n=document.querySelectorAll(".js-announcement");e&&n&&n.forEach(n=>{let{uuid:t}=n.dataset;e.includes(t)&&n.remove()})}();
+{# Above snippet is minimized from source:
+(function(){
+  const uuidsToHide = JSON.parse(window.localStorage.getItem('hidden-helfi-announcements'));
+  const elements = document.querySelectorAll('.js-announcement');
+
+  if (!uuidsToHide || !elements) {
+    return;
+  }
+
+  elements.forEach((element)=>{
+    const { uuid } = element.dataset;
+    if (uuidsToHide.includes(uuid)) {
+      element.remove();
+    }
+  });
+})();
+#}
+</script>
+</div>
