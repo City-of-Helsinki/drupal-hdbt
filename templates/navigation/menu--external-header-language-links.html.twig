@@ -23,9 +23,9 @@
 
 {% macro link_render(item) %}
   {% if item.is_nolink %}
-    <div {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
+    <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
       {{item.title}}
-    </div>
+    </span>
   {% else %}
     {% set link_attributes = {
       'class': [
@@ -54,11 +54,11 @@
     <li>
       {{ _self.link_render(item) }}
       {% if item.below %}
-        <div class="headerlanguagelinks__group">
+        <ul class="headerlanguagelinks__group">
           {% for below in item.below %}
-            {{ _self.link_render(below) }}
+            <li>{{ _self.link_render(below) }}</li>
           {% endfor %}
-        </div>
+        </ul>
       {% endif %}
     </li>
   {% endfor %}
