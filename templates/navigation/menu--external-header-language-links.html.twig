@@ -23,9 +23,9 @@
 
 {% macro link_render(item) %}
   {% if item.is_nolink %}
-    <div {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
+    <span {{ item.attributes.addClass( "headerlanguagelinks__link headerlanguagelinks__link--nolink") }}>
       {{item.title}}
-    </div>
+    </span>
   {% else %}
     {% set link_attributes = {
       'class': [
