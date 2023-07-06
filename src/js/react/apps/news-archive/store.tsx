@@ -35,3 +35,8 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   newUrl.search = newParams.toString();
   window.history.pushState({}, '', newUrl);
 });
+
+export const setPageAtom = atom(null, (get, set, page: number) => {
+  const params = get(urlAtom);
+  set(urlUpdateAtom, { ...params, page });
+});
