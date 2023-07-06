@@ -450,7 +450,6 @@ function hdbt_theme_suggestions_menu_alter(&$suggestions, $variables): void {
       'mobile_navigation' => 'menu__mobile',
       'mainnavigation' => 'menu__main__desktop',
       'main_navigation_level_2' => 'menu__main__sidebar',
-      'brandingnavigation' => 'menu__main__branding',
       default => 'menu__' . $variables['attributes']['block_id'],
     };
   }

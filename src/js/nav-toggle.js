@@ -7,7 +7,7 @@
   let MENU;
   let MenuDropdown = {};
 
-  // Check what features on branding navigation are on.
+  // Check what features on header branding region are on.
   if (drupalSettings.hdbt.profile_dropdown === true) {
     BRANDING_ELEMENTS.ProfileDropdown = 'profile';
   }
@@ -140,9 +140,9 @@
 
 
   /**
-   * Attach outside click listener to the whole branding navigation area
+   * Attach outside click listener to the whole header branding region area
    * so that OtherLangs Menu and Mega menu
-   * can be closed when clicking outside of branding navi block
+   * can be closed when clicking outside of header branding region
    */
 
   // This used to load after DOM was loaded, but we added defer for the javascript.

@@ -87,7 +87,6 @@
           {% set block__external_menu_mega_menu = 'external_menu_mega_menu' %}
           {% set block__language_switcher = prefix ~ 'language_switcher' %}
           {% set block__external_header_language_links = 'external_header_language_links' %}
-          {% set block__branding_navigation = prefix ~ 'brandingnavigation' %}
 
           {#
             Render the header branding region blocks in a specific order: mobile tabbing order
@@ -117,14 +116,11 @@
             {% include "@hdbt/component/header-search.twig" %}
           {% endif %}
 
-          {{ drupal_entity('block', block__branding_navigation) }} {# Branding menu, aka icon menu #}
-
           {{ drupal_entity('block', block__external_fallback_menu) }} {# Mobile menu #}
 
           {# Render the header branding region without manually rendered blocks #}
           {{ page.header_branding|without([
             block__site_branding,
-            block__branding_navigation,
             block__external_fallback_menu,
             block__language_switcher,
             block__external_header_language_links,
