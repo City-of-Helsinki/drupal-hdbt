@@ -53,6 +53,14 @@ function mouseLeave() {
   updateFirstChildAriaExpanded(this);
 }
 
+function mouseLeaveButton() {
+  closeOpenItems(this.closest('.menu__item--children'));
+  const item = this.closest('.menu__item--children');
+  item.classList.remove(HOVER_CLASS);
+  updateFirstChildAriaExpanded(item);
+}
+
+
 // Utility functions
 // Gets the children of the given element and skips the one that is given
 // to it as an option for skipMe.
@@ -69,15 +77,17 @@ function getSiblings(n) {
 
 document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
   // Find all menu items with children menus.
-  const itemsWithChildren = document.querySelectorAll('.desktop-menu .menu--level-0 > .menu__item--children');
+  const itemsWithVisibleChildren = document.querySelectorAll('.desktop-menu .menu--level-0 > .menu__item--item-below');
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const item of itemsWithChildren) {
+  for (const item of itemsWithVisibleChildren) {
     if (item) {
-      const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--children > .menu__link-wrapper > a');
+      const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a');
+      const firstLevelItemButton = item.querySelector('.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button');
 
       toggleDesktopMenuLevel(item);
       firstLevelItem.addEventListener('mouseover', mouseOver, false);
+      firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
       item.addEventListener('mouseleave', mouseLeave, false);
     }
   }

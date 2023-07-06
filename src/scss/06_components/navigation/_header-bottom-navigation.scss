@@ -62,13 +62,12 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     padding: 0;
 
     &:hover {
+      background-color: $color-black-20;
       cursor: pointer;
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px $color-black;
-      outline: none;
-      padding: 6px 0;
+      outline: solid 3px $color-black;
     }
   }
 
