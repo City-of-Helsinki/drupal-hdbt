@@ -31,6 +31,11 @@ $-otherlangs-min-width: 240px; // From design specs
   }
 }
 
+.headerlanguagelinks__group {
+  list-style-type: none;
+  padding-left: $spacing-half;
+}
+
 .headerlanguagelinks__group + .headerlanguagelinks__group {
   margin-top: $spacing-and-half;
 }
