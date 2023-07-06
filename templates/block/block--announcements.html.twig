@@ -9,19 +9,24 @@
   {% endblock %}
 <script>
 {# Using inline javascript to hide announcements with as little flashing as possible and considering server cache #}
-!function(){try{for(var e=JSON.parse(window.localStorage.getItem("hidden-helfi-announcements")),n=0;n<e.length;n++){var t=document.querySelector('.js-announcement[data-uuid="'+e[n]+'"]');t&&t.remove()}}catch(e){}}();
-{# Above snippet is minimized from source:
+// !function(){try{for(var e=JSON.parse(window.localStorage.getItem("hidden-helfi-announcements")),n=0;n<e.length;n++){var t=document.querySelector('.js-announcement[data-uuid="'+e[n]+'"]');t&&t.remove()}}catch(e){}}();
+{# Above snippet is minimized from source: #}
 (function(){
-  try {
-    var uuids = JSON.parse(window.localStorage.getItem('hidden-helfi-announcements'));
-    for (var i = 0; i < uuids.length; i++) {
-      var node = document.querySelector('.js-announcement[data-uuid="' + uuids[i] + '"]');
-      if (node) {
-        node.remove();
-      }
+  const uuidsToHide = JSON.parse(window.localStorage.getItem('hidden-helfi-announcements'));
+  const elements = document.querySelectorAll('.js-announcement');
+
+  if (!uuidsToHide || !elements) {
+    return;
+  }
+
+  elements.forEach((element)=>{
+    const { uuid } = element.dataset;
+    if (uuidsToHide.includes(uuid)) {
+      element.remove();
     }
-  } catch (e) {}
+  })
 })();
+{#
 #}
 </script>
 </div>
