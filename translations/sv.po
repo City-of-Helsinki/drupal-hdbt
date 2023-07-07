@@ -549,3 +549,27 @@ msgstr "Vad synd! Vi hittade inga resultat med dessa sökvillkor."
 msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "På vår webbplats finns för närvarande endast en del av Helsingfors projekt och bostadsområden. Du kan försöka på nytt genom att ta bort något av avgränsningsvillkoren eller genom att börja om från början."
+
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentar"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommentar"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "på"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Öppnades"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Stängs"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktivitet"

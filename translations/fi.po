@@ -552,3 +552,26 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "Sivuillamme esitetään toistaiseksi vain osa Helsingin hankkeista ja asuinalueista. Voit kokeilla uudestaan poistamalla jonkin rajausehdoista tai aloittamalla alusta."
 
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentti"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommenttia"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "klo"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Avautui"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Sulkeutuu"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktiivisuus"

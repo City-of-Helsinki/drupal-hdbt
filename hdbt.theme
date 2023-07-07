@@ -1639,3 +1639,16 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
 
   $variables['#attached']['library'][] = 'hdbt/job-search';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__hearings(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraph_type = $paragraph->getType();
+
+  if ($paragraph_type == 'hearings') {
+    $variables['hearings'] = views_embed_view('hearings', 'block_1');
+  }
+}
