@@ -1,0 +1,42 @@
+{%
+  set card_hearing_classes = [
+    not node.isPublished() ? 'card--unpublished',
+    'card--hearing',
+  ]
+%}
+
+{% if content.field_comments['#items'].value == '1' %}
+  {% set card_hearing_comments = content.field_comments['#items'].value ~ ' ' ~ 'comment'|t({}, {'context': 'Hearing activity suffix singular'}) %}
+{% else %}
+  {% set card_hearing_comments = content.field_comments['#items'].value ~ ' ' ~ 'comments'|t({}, {'context': 'Hearing activity suffix plural'}) %}
+{% endif %}
+
+{% set card_published_on = node.published_at.value|date('j.n.Y') %}
+
+{% set card_unpublished_on = node.unpublish_on.value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ node.unpublish_on.value|date('H:i') %}
+
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: card_hearing_classes|join(' '),
+  card_title: label,
+  card_image: content.field_hearing_main_image,
+  card_url: content.field_url['0']['#url'].uri,
+  card_url_external: true,
+  card_metas: [
+    {
+      icon: 'clock',
+      label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
+      content: card_published_on,
+    },
+    {
+      icon: 'clock',
+      label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
+      content: card_unpublished_on,
+    },
+    {
+      icon: 'speechbubble-text',
+      label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
+      content: card_hearing_comments,
+    },
+  ],
+} %}
+{% endembed %}

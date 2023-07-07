@@ -635,3 +635,27 @@ msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentti"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommenttia"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "klo"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Avautui"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Sulkeutuu"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktiivisuus"

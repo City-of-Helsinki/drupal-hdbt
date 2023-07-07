@@ -633,3 +633,27 @@ msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentar"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommentar"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "på"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Öppnades"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Stängs"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktivitet"
