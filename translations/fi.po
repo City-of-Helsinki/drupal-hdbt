@@ -575,3 +575,17 @@ msgstr "Sulkeutuu"
 msgctxt "Label for hearing activity row"
 msgid "Activity"
 msgstr "Aktiivisuus"
+
+msgctxt "Hearings count"
+msgid "plan open for commenting"
+msgid_plural "plans open for commenting"
+msgstr[0] "suunnitelma avoinna kommentoitavaksi"
+msgstr[1] "suunnitelmaa avoinna kommentoitavaksi"
+
+msgctxt "See all plans link text"
+msgid "See all plans"
+msgstr "Katso kaikki suunnitelmat"
+
+msgctxt "See closed plans link text"
+msgid "See all already closed plans"
+msgstr "Katso jo sulkeutuneet suunnitelmat"
