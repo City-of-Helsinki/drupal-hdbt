@@ -1,5 +1,4 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import useSWR from 'swr';
 import { LoadingSpinner } from 'hds-react';
 import React, { SyntheticEvent } from 'react';
 import { setPageAtom, urlAtom } from '../store';
@@ -14,29 +13,14 @@ import ResultsHeading from '../components/results/ResultsHeading';
 import MostReadNews from '../components/results/MostReadNews';
 import Pagination from '@/react/common/Pagination';
 import RssFeedLink from '../components/RssFeedLink';
+import useIndexQuery from '../hooks/useIndexQuery';
 
 const ResultsContainer = () => {
   const size = Global.SIZE;
-  const index = Global.INDEX;
   const urlParams = useAtomValue(urlAtom);
   const setPage = useSetAtom(setPageAtom);
   const queryString = useQueryString(urlParams);
-  const fetcher = () => {
-    const proxyUrl = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
-    const url: string|undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
-
-    return fetch(`${url}/${index}/_search`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: queryString,
-    }).then((res) => res.json());
-  };
-
-  const { data, error } = useSWR(queryString, fetcher, {
-    revalidateOnFocus: false
-  });
+  const { data, error } = useIndexQuery(queryString);
 
   const total = data?.hits?.total.value || 0;
 
