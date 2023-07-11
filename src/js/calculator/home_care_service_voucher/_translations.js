@@ -134,9 +134,9 @@ const translations = {
     en: 'Provided by the city\'s home care, the service would cost',
   },
   receipt_aria_live: {
-    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
-    sv: 'Självriskandelen, det vill säga den klientavgift som du ska betala för, är ${payment} euro per månad, se mer information under blanketten.',
-    en: 'The copayment, i.e. the client fee payable by you, is ${payment} euros per month; read more under the form.',
+    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    sv: 'Självriskandelen, det vill säga den klientavgift som du ska betala för, är ${payment} euro per månad, se mer information under blanketten.',
+    en: 'The copayment, i.e. the client fee payable by you, is ${payment} euros per month; read more under the form.',
   },
 };
 

@@ -87,9 +87,9 @@ const translations = {
     en: 'In addition to the copayment, you will also have to pay for the service housing rent, medicines and other personal expenses.',
   },
   receipt_aria_live: {
-    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
-    sv: 'Självriskandelen, det vill säga den klientavgift som du ska betala, är ${payment} euro per månad, mer information under blanketten.',
-    en: 'The copayment, i.e. the client fee payable by you, is ${payment} euros per month; read more under the form.',
+    fi: 'Omavastuuosuus eli sinulle maksettavaksi jäävä asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    sv: 'Självriskandelen, det vill säga den klientavgift som du ska betala, är ${payment} euro per månad, mer information under blanketten.',
+    en: 'The copayment, i.e. the client fee payable by you, is ${payment} euros per month; read more under the form.',
   },
 };
 
