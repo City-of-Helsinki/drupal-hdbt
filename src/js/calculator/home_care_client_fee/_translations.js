@@ -202,14 +202,14 @@ const translations = {
     en: 'The estimated home care client fee is ${payment} euros per month; read more under the form.',
   },
   receipt_meal_service_count_single: {
-    fi: '1 lounasateria viikossa, kuukausihintaan on laskettu 4 ateriaa.',
-    sv: '1 butiksleverans per vecka, 4 leveranser ingår i månadspriset.',
-    en: '1 lunch meal per week; the monthly fee includes 4 meals.',
+    fi: '1 lounasateria viikossa, kuukausihintaan on laskettu 4 ateriaa.',
+    sv: '1 butiksleverans per vecka, 4 leveranser ingår i månadspriset.',
+    en: '1 lunch meal per week; the monthly fee includes 4 meals.',
   },
   receipt_meal_service_count_multiple: {
-    fi: '${meals_per_week} lounasateriaa viikossa, kuukausihintaan on laskettu ${meals_per_month} ateriaa.',
-    sv: '${meals_per_week} lunchmåltider per vecka, i månadspriset ingår ${meals_per_month} måltider.',
-    en: '${meals_per_week} lunch meals per week; the monthly fee includes ${meals_per_month} meals.',
+    fi: '${meals_per_week} lounasateriaa viikossa, kuukausihintaan on laskettu ${meals_per_month} ateriaa.',
+    sv: '${meals_per_week} lunchmåltider per vecka, i månadspriset ingår ${meals_per_month} måltider.',
+    en: '${meals_per_week} lunch meals per week; the monthly fee includes ${meals_per_month} meals.',
   },
   receipt_meal_service_price: {
     fi: 'Yksittäisen lounasaterian hinta on ${meal_service_price} euroa. Lämpimän aterian lisäksi voit tilata maksullisen jälkiruuan. Voit tilata ateriapalvelun hinnaston mukaisia lounasaterioita enintään 7 ateriaa viikossa, muut ateriat ovat omakustanteisia.',
@@ -217,14 +217,14 @@ const translations = {
     en: 'The price of a single lunch meal is ${meal_service_price} euros. In addition to a hot meal, you can order a dessert for a fee. You can order up to 7 lunch meals according to the meal service price list per week; any additional meals are at your own expense.',
   },
   receipt_meal_service_1_delivery_price: {
-    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu yksi kuljetusmaksu viikossa eli 4 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
-    sv: 'Måltiderna levereras hem 1–2 gånger per vecka. Det görs en leverans för 1–3 beställda måltider, och två leveranser för 4 eller fler måltider. I priset ingår en leveransavgift per vecka, med andra ord 4 leveranser per månad. Varje leverans kostar ${meal_service_delivery_price} euro.',
-    en: 'The meals will be delivered to your home once or twice a week: once a week if you order 1–3 meals, twice a week if you order 4 or more meals. The price includes one delivery fee per week, i.e. 4 deliveries per month. Each delivery costs ${meal_service_delivery_price} euros.',
+    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu yksi kuljetusmaksu viikossa eli 4 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
+    sv: 'Måltiderna levereras hem 1–2 gånger per vecka. Det görs en leverans för 1–3 beställda måltider, och två leveranser för 4 eller fler måltider. I priset ingår en leveransavgift per vecka, med andra ord 4 leveranser per månad. Varje leverans kostar ${meal_service_delivery_price} euro.',
+    en: 'The meals will be delivered to your home once or twice a week: once a week if you order 1–3 meals, twice a week if you order 4 or more meals. The price includes one delivery fee per week, i.e. 4 deliveries per month. Each delivery costs ${meal_service_delivery_price} euros.',
   },
   receipt_meal_service_2_delivery_price: {
-    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu kaksi kuljetusmaksua viikossa eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
-    sv: 'Måltiderna levereras hem 1–2 gånger per vecka. Det görs en leverans för 1–3 beställda måltider, och två leveranser för 4 eller fler måltider. I priset ingår två leveransavgifter per vecka, med andra ord 8 leveranser per månad. Varje leverans kostar ${meal_service_delivery_price} euro.',
-    en: 'The meals will be delivered to your home once or twice a week: once a week if you order 1–3 meals, twice a week if you order 4 or more meals. The price includes two delivery fees per week, i.e. 8 deliveries per month. Each delivery costs ${meal_service_delivery_price} euros.',
+    fi: 'Ateriat toimitetaan kotiin 1–2 kertaa viikossa. Kuljetuksia on yksi, kun tilattuja aterioita on 1–3, ja kuljetuksia on kaksi, kun aterioita on 4 tai enemmän. Hintaan on laskettu kaksi kuljetusmaksua viikossa eli 8 kuljetusta kuukaudessa. Kukin kuljetus maksaa ${meal_service_delivery_price} euroa.',
+    sv: 'Måltiderna levereras hem 1–2 gånger per vecka. Det görs en leverans för 1–3 beställda måltider, och två leveranser för 4 eller fler måltider. I priset ingår två leveransavgifter per vecka, med andra ord 8 leveranser per månad. Varje leverans kostar ${meal_service_delivery_price} euro.',
+    en: 'The meals will be delivered to your home once or twice a week: once a week if you order 1–3 meals, twice a week if you order 4 or more meals. The price includes two delivery fees per week, i.e. 8 deliveries per month. Each delivery costs ${meal_service_delivery_price} euros.',
   },
   receipt_meal_service_menumat_notice: {
     fi: 'Ateriapalvelun sijaan voit tilata kotiisi pakastimen ja uunin yhdistelmän eli Menumat-ateria-automaatin. Menumat-palvelussa aterian hinta on ${menumat_price} euroa ja palvelumaksu on ${menumat_device_price} euroa vuorokaudessa. Aterian lisäksi voit tilata maksullisen jälkiruoan.',

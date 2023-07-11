@@ -62,9 +62,9 @@ const translations = {
     en: 'The home services for families with children will be charged on the basis of the services used based on the hourly rate.',
   },
   receipt_aria_live: {
-    fi: 'Arvioitu asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
-    sv: 'Den beräknade klientavgiften är ${payment} euro per månad, mer information under blanketten.',
-    en: 'The estimated client fee is ${payment} euros per month; read more under the form.',
+    fi: 'Arvioitu asiakasmaksu on ${payment} euroa kuukaudessa, lue lisätietoja lomakkeen alta.',
+    sv: 'Den beräknade klientavgiften är ${payment} euro per månad, mer information under blanketten.',
+    en: 'The estimated client fee is ${payment} euros per month; read more under the form.',
   },
 };
 
