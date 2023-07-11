@@ -152,14 +152,14 @@ const translations = {
     en: 'The estimate consists of the following:',
   },
   receipt_subtotal_euros_per_month: {
-    fi: '${value} €/kk',
-    sv: '${value} euro/månad',
-    en: '${value} €/month',
+    fi: '${value} €/kk',
+    sv: '${value} euro/månad',
+    en: '${value} €/month',
   },
   receipt_subtotal_euros_per_month_screenreader: {
-    fi: '${value} euroa kuukaudessa',
-    sv: '${value} euro per månad',
-    en: '${value} euros per month',
+    fi: '${value} euroa kuukaudessa',
+    sv: '${value} euro per månad',
+    en: '${value} euros per month',
   },
   receipt_additional_details: {
     fi: 'Lisähuomiot:',
