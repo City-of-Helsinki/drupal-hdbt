@@ -152,7 +152,7 @@ const FormContainer = () => {
               label={Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' })}
               options={employmentOptions}
               value={employmentSelection}
-              id={SearchComponents.TASK_AREAS}
+              id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
               onChange={setEmploymentFilter}
             />
           </div>
