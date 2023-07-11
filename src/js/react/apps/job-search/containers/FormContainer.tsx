@@ -95,6 +95,7 @@ const FormContainer = () => {
   const showCheckboxes = showContinuous || showInternships || showSummerJobs || showYouthSummerJobs;
 
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
+  const employmentRelationshipLabel: string = Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' });
 
   return (
     <form className='job-search-form' onSubmit={handleSubmit} action={formAction}>
@@ -117,7 +118,7 @@ const FormContainer = () => {
             {/* @ts-ignore */}
             <Select
               clearable
-              clearButtonAriaLabel={Drupal.t('Clear selection', {}, { context: 'Job search clear button aria label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'Job search clear selection label' })}
               className='job-search-form__dropdown'
               selectedItemRemoveButtonAriaLabel={Drupal.t(
                 'Remove item',
@@ -136,7 +137,7 @@ const FormContainer = () => {
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
             {/* @ts-ignore */}
             <Select
-              clearButtonAriaLabel={Drupal.t('Clear selection', {}, { context: 'Job search clear button aria label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'Job search clear selection label' })}
               className='job-search-form__dropdown'
               selectedItemRemoveButtonAriaLabel={Drupal.t(
                 'Remove item',
@@ -149,7 +150,7 @@ const FormContainer = () => {
                 { context: 'Employment filter placeholder' }
               )}
               multiselect
-              label={Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' })}
+              label={employmentRelationshipLabel}
               options={employmentOptions}
               value={employmentSelection}
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
