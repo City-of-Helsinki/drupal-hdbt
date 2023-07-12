@@ -96,6 +96,7 @@ const FormContainer = () => {
 
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
   const employmentRelationshipLabel: string = Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' });
+  const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
   return (
     <form className='job-search-form' onSubmit={handleSubmit} action={formAction}>
@@ -191,11 +192,7 @@ const FormContainer = () => {
           <div className='job-search-form__dropdowns__lower'>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
-                clearButtonAriaLabel={Drupal.t(
-                  'Clear selection',
-                  {},
-                  { context: 'Job search clear button aria label' }
-                )}
+                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'Job search clear selection label' })}
                 className='job-search-form__dropdown'
                 clearable
                 selectedItemRemoveButtonAriaLabel={Drupal.t(
@@ -204,7 +201,7 @@ const FormContainer = () => {
                   { context: 'Job search remove item aria label' }
                 )}
                 placeholder={Drupal.t('All languages', {}, { context: 'Language placeholder' })}
-                label={Drupal.t('Language', {}, { context: 'Language filter label' })}
+                label={languageLabel}
                 // @ts-ignore
                 options={languagesOptions}
                 value={languageSelection}
