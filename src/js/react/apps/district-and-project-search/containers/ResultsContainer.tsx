@@ -41,7 +41,10 @@ const ResultsContainer = (): JSX.Element => {
     const el = document.getElementById('helfi-kymp-district-project-search');
 
     if (el && window.location.search) {
-      const titleEl = el.querySelector<HTMLElement>('.district-project-search__results');
+      const titleElClass = !data?.hits?.hits.length
+        ? '.district-project-search__listing__no-results'
+        : '.district-project-search__count__container';
+      const titleEl = el.querySelector<HTMLElement>(titleElClass);
       if (!titleEl) return;
       titleEl.setAttribute('tabindex', '0');
       titleEl.focus();
