@@ -2,13 +2,11 @@ import { atom } from 'jotai';
 import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
 
-const getParams = () => {
-  const params = new NewsSearchParams(window.location.search);
+const params = new NewsSearchParams(window.location.search);
 
-  return params.toInitialValue();
-};
+const initialParams = params.toInitialValue();
 
-export const urlAtom = atom<URLParams>(getParams());
+export const urlAtom = atom<URLParams>(initialParams);
 
 export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   // Set atom value
@@ -23,9 +21,7 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   for (const key in values) {
     const value = values[key as keyof URLParams];
 
-    if (Array.isArray(value)) {
-      value.forEach((option: number) => newParams.append(key, option.toString()));
-    } else if (value) {
+    if (value) {
       newParams.set(key, value.toString());
     } else {
       newParams.delete(key);
@@ -36,7 +32,9 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   window.history.pushState({}, '', newUrl);
 });
 
+export const stagedParamsAtom = atom<URLParams>(initialParams);
+
 export const setPageAtom = atom(null, (get, set, page: number) => {
-  const params = get(urlAtom);
-  set(urlUpdateAtom, { ...params, page });
+  const urlParams = get(urlAtom);
+  set(urlUpdateAtom, { ...urlParams, page });
 });

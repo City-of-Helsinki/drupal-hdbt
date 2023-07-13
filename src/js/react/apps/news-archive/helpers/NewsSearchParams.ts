@@ -1,7 +1,6 @@
 import SearchComponents from '../enum/SearchComponents';
 import URLParams from '../types/URLParams';
 
-type ArrayParams = Pick<URLParams, 'topic'|'neighbourhoods'|'groups'>;;
 class NewsSearchParams extends URLSearchParams {
   constructor(paramString: string | null = null) {
     super();
@@ -31,11 +30,7 @@ class NewsSearchParams extends URLSearchParams {
       result = entries.next();
     }
 
-    Object.keys(arrayValues).forEach((key) => {
-      if (arrayValues[key?.length]) {
-        this.set(key, arrayValues[key].toString());
-      }
-    });
+    Object.keys(arrayValues).forEach((key) => this.set(key, arrayValues[key].toString()));
   }
   
   toInitialValue(): URLParams {
@@ -52,15 +47,9 @@ class NewsSearchParams extends URLSearchParams {
       const [key, value] = result.value;
       const matchedKey = keys.find((stateKey) => key.includes(stateKey));
 
-      if (!matchedKey) {
-        let parsedValue;
-
-        try {
-          parsedValue = JSON.parse(value);
-          initialParams[matchedKey as keyof ArrayParams] = value.split(',').map(id => Number(id));
-        } catch (e) {
-          parsedValue = value;
-        }
+      if (matchedKey) {
+        const arrayValue = value.split(',');
+        initialParams[matchedKey as keyof Omit<URLParams, 'page'>] = arrayValue.map((id) => Number(id));
       }
 
       result = entries.next();
@@ -86,24 +75,24 @@ class NewsSearchParams extends URLSearchParams {
       if (key === SearchComponents.RESULTS) {
         paramString = `${key}=${value}`;
       } else if (value && value.length) {
-        let parsedValue;
+        
+        if (value.includes(',')) {
+          const valueArray = value.split(',');
 
-        try {
-          parsedValue = JSON.parse(value);
-        } catch (e) {
-          parsedValue = value;
-        }
+          for (let i = 0; i < valueArray.length; i++) {
+            if (paramString.length) {
+              paramString += '&';
+            }
 
-        for (let i = 0; i < parsedValue.length; i++) {
-          if (paramString.length) {
-            paramString += '&';
+            paramString += `${key}[${i}]=${valueArray[i].replaceAll(' ', '+').toLowerCase()}`;
           }
-
-          paramString += `${key}[${i}]=${parsedValue[i].replaceAll(' ', '+').toLowerCase()}`;
+        }
+        else {
+          paramString += `${key}[0]=${value.toString()}`;
         }
       }
 
-      allParamsString += allParamsString.length ? `&${  paramString}` : paramString;
+      allParamsString += allParamsString.length ? `&${paramString}` : paramString;
       result = entries.next();
     }
 

@@ -1,6 +1,6 @@
 import CardItem from '@/react/common/Card';
-import CardImage from '@/react/common/CardImage';
 import type NewsItem from '../../types/NewsItem';
+import CardImage from '@/react/common/CardImage';
 
 const ResultCard = ({
   alt,
@@ -43,7 +43,7 @@ const ResultCard = ({
     }
 
     return (
-      <img
+      <CardImage
         src={main_image_url[0]}
         alt={getAlt()}
         data-photographer={field_photographer && field_photographer.length ? field_photographer[0] : null}
@@ -58,7 +58,7 @@ const ResultCard = ({
       cardModifierClass='news-listing__item'
       cardUrl={url.toString()}
       date={getDate()}
-      dateLabel={Drupal.t('Published')}
+      dateLabel={Drupal.t('published')}
     />
   );
 };
