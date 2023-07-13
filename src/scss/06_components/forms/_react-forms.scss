@@ -121,6 +121,7 @@ button.hdbt-search__remove-selection-button:not(:disabled) {
 }
 
 // Remove margin from pill buttons
-[class*="button_hds-button__label"] ~ [class*="button_hds-icon"] {
-  margin: 0;
+[class*="button_hds-button__label"] ~ [class*="button_hds-icon"],
+[class*="button_hds-button"] [class*="button_hds-icon"] {
+  margin: 0 !important;
 }
