@@ -1,6 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { LoadingSpinner } from 'hds-react';
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, createRef } from 'react';
 import { setPageAtom, urlAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import NoResults from '../components/results/NoResults';
@@ -14,30 +13,35 @@ import MostReadNews from '../components/results/MostReadNews';
 import Pagination from '@/react/common/Pagination';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
+import ResultWrapper from '@/react/common/ResultWrapper';
 
 const ResultsContainer = () => {
   const size = Global.SIZE;
   const urlParams = useAtomValue(urlAtom);
   const setPage = useSetAtom(setPageAtom);
   const queryString = useQueryString(urlParams);
-  const { data, error } = useIndexQuery(queryString);
+  const { data, error, isLoading, isValidating } = useIndexQuery({
+    keepPreviousData: true,
+    query: queryString
+  });
+  const resultsContainer = createRef<HTMLDivElement>();
 
-  const total = data?.hits?.total.value || 0;
+  const hits = data?.hits?.hits;
+  const total = data?.hits.total.value || 0;
 
   const getResults = () => {
-    if (!data && !error) {
-      return <LoadingSpinner />;
+    if (!data) {
+      return;
     }
 
-    if (!data?.hits?.hits.length) {
+    if (!hits?.length) {
       return <NoResults />;
     }
 
     if (error) {
       return <ResultsError />;
     }
-
-    const results = data.hits.hits;
+    
     const pages = Math.floor(total / size);
     const addLastPage = total > size && total % size;
     const currentPage = Number(urlParams.page) || 1;
@@ -48,7 +52,7 @@ const ResultsContainer = () => {
 
     return (
       <>
-        {results.map((hit: Result<NewsItem>) => (
+        {hits.map((hit: Result<NewsItem>) => (
           <ResultCard
             key={hit._id}
             {...hit._source}
@@ -70,15 +74,16 @@ const ResultsContainer = () => {
     Boolean(urlParams.neighbourhoods?.length) ||
     Boolean(urlParams.topic?.length);
 
+  const loading = isLoading || isValidating;
   return (
     <div className='news-wrapper main-content'>
-      <div className='layout-content'>
+      <ResultWrapper className='layout-content' loading={loading}>
         <ResultsHeading
           choices={choices}
           total={total}
         />
         {getResults()}
-      </div>
+      </ResultWrapper>
       <MostReadNews />
     </div>
   );

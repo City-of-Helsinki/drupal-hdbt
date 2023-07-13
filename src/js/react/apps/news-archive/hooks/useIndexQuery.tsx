@@ -1,13 +1,35 @@
 import useSWR from 'swr';
+import { PublicConfiguration } from 'swr/_internal';
 import Global from '../enum/Global';
 
-const useIndexQuery = (query: string, multi: boolean = false) => {
+type useIndexQueryProps = {
+  // Dev purposes only, use this to debug certain requests
+  debug?: boolean;
+  // Custom key for query, use if you dont want to use query as key
+  key?: string;
+  // Uses _mquery endpoint if true
+  multi?: boolean;
+  // Elastic query
+  query: string;
+}
+// Allows passing SWR hook options
+& Partial<PublicConfiguration>;
+
+const useIndexQuery = ({debug, query, multi, key, ...rest}: useIndexQueryProps) => {
   const fetcher = () => {
     const index = Global.INDEX;
     const proxyUrl = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
     const url: string|undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = multi ? 'application/x-ndjson' : 'application/json';
+
+    if (debug) {
+      console.warn('Executing request with props: ', {
+        debug,
+        query,
+        multi
+      });
+    }
 
     return fetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
@@ -18,8 +40,9 @@ const useIndexQuery = (query: string, multi: boolean = false) => {
     }).then((res) => res.json());
   };
 
-  return useSWR(query, fetcher, {
-    revalidateOnFocus: false
+  return useSWR(key || query, fetcher, {
+    revalidateOnFocus: false,
+    ...rest,
   });
 };
 

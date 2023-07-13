@@ -37,6 +37,10 @@ const useQueryString = (urlParams: URLParams) => {
     ...languageFilter
   };
 
+  if (must.length) {
+    query.bool.must = must;
+  }
+
   return JSON.stringify({
     size,
     from: size * (page - 1),

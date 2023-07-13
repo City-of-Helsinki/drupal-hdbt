@@ -1,8 +1,12 @@
-import { Select } from 'hds-react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { SyntheticEvent } from 'react';
 import useInitialQuery from '../hooks/useInitialQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import IndexFields from '../enum/IndexFields';
 import AggregationItem from '../types/AggregationItem';
+import Filter from '../components/Filter';
+import SubmitButton from '../components/SubmitButton';
+import { stagedParamsAtom, urlUpdateAtom } from '../store';
 
 const parseAggData = (data: AggregationItem[]) => {
   if (!data.length) {
@@ -20,8 +24,15 @@ const parseAggData = (data: AggregationItem[]) => {
 };
 
 const FormContainer = () => {
+  const stagedParams = useAtomValue(stagedParamsAtom);
+  const setParams = useSetAtom(urlUpdateAtom);
   const initialQuery = useInitialQuery();
-  const { data } = useIndexQuery(initialQuery, true);
+  const { data, isLoading, isValidating } = useIndexQuery({
+    debug: true,
+    query: initialQuery,
+    multi: true,
+    key: 'initialdata'
+  });
   let topicOptions; let neighbourhoodOptions; let groupOptions;
 
   if (data?.responses) {
@@ -50,42 +61,46 @@ const FormContainer = () => {
     });
   }
 
+  const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setParams(stagedParams);
+  };
+
+  const loading = isLoading || isValidating;
+
   return (
-    <form className='news-form'>
-      <h2>{Drupal.t('Filter news items', {}, {context: 'News archive filter results heading'})}</h2>
-      <div className='news-form__filters-container'>
-        {topicOptions && <Select
-          className='news-form__filter'
-          clearable
-          clearButtonAriaLabel={Drupal.t('Clear selection')}
-          label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
-          placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
-          options={topicOptions}
-          multiselect
-          selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item')}
-        />}
-        {neighbourhoodOptions && <Select
-          className='news-form__filter'
-          clearable
-          clearButtonAriaLabel={Drupal.t('Clear selection')}
-          label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
-          placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
-          options={neighbourhoodOptions}
-          multiselect
-          selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item')}
-        />}
-        {groupOptions && <Select
-          className='news-form__filter'
-          clearable
-          clearButtonAriaLabel={Drupal.t('Clear selection')}
-          label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
-          placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
-          options={groupOptions}
-          multiselect
-          selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item')}
-        />}
+    <div className='news-form-wrapper'>
+      <div className='news-form-container'>
+        <form className='news-form' onSubmit={onSubmit}>
+          <h2>{Drupal.t('Filter news items', {}, {context: 'News archive filter results heading'})}</h2>
+          <div className='news-form__filters-container'>
+            {topicOptions && <Filter
+                label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
+                placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
+                options={topicOptions}
+                stateKey='topic'
+            />}
+            {neighbourhoodOptions && <Filter
+              label={Drupal.t('City disctricts', {}, { context: 'News archive neighbourhoods label' })}
+              placeholder={Drupal.t(
+                'All city disctricts',
+                {},
+                { context: 'News archive neighbourhoods placeholder' }
+              )}
+              options={neighbourhoodOptions}
+              stateKey='neighbourhoods'
+            />}
+            {groupOptions && <Filter
+              label={Drupal.t('Target groups', {}, { context: 'News archive groups label' })}
+              placeholder={Drupal.t('All target groups', {}, { context: 'News archive groups placeholder' })}
+              options={groupOptions}
+              stateKey='groups'
+            />}
+            <SubmitButton disabled={loading} />
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
 
