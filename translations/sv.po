@@ -470,10 +470,6 @@ msgctxt "District and project search"
 msgid "Project"
 msgstr "Projekt"
 
-msgctxt "District and project search residential area"
-msgid "Residential area"
-msgstr "Bostadsområdet"
-
 msgctxt "District and project search form label"
 msgid "Name of residential area or project"
 msgstr "Namn på bostadsområdet eller projektet"
@@ -529,10 +525,6 @@ msgstr "Sök"
 msgctxt "District and project search"
 msgid "Clear selections"
 msgstr "Töm urvalet"
-
-msgctxt "District and project search clear selection label"
-msgid "Clear @label selection"
-msgstr "Töm urvalet @label"
 
 msgctxt "District and project search"
 msgid "search results"
