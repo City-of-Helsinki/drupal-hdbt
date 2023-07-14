@@ -17,7 +17,7 @@ if (rootElement) {
       }>
         <FormContainer />
         <ResultsContainer />
-        </Suspense>
+      </Suspense>
     </React.StrictMode>,
     rootElement
   );

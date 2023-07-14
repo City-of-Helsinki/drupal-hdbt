@@ -7,6 +7,7 @@ import AggregationItem from '../types/AggregationItem';
 import Filter from '../components/Filter';
 import SubmitButton from '../components/SubmitButton';
 import { stagedParamsAtom, urlUpdateAtom } from '../store';
+import SelectionsContainer from './SelectionsContainer';
 
 const parseAggData = (data: AggregationItem[]) => {
   if (!data.length) {
@@ -28,7 +29,6 @@ const FormContainer = () => {
   const setParams = useSetAtom(urlUpdateAtom);
   const initialQuery = useInitialQuery();
   const { data, isLoading, isValidating } = useIndexQuery({
-    debug: true,
     query: initialQuery,
     multi: true,
     key: 'initialdata'
@@ -63,7 +63,7 @@ const FormContainer = () => {
 
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setParams(stagedParams);
+    setParams({...stagedParams, page: 1});
   };
 
   const loading = isLoading || isValidating;
@@ -99,6 +99,11 @@ const FormContainer = () => {
             <SubmitButton disabled={loading} />
           </div>
         </form>
+        <SelectionsContainer
+          topic={topicOptions}
+          neighbourhoods={neighbourhoodOptions}
+          groups={groupOptions}
+        />
       </div>
     </div>
   );
