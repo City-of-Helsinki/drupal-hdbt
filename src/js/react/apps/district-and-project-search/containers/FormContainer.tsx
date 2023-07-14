@@ -58,6 +58,7 @@ const FormContainer = () => {
 
   const handleTitleChange = ({ target: { value } }: { target: { value: string } }) => setTitle(value);
   const accordionInitiallyOpen = !!Object.keys(urlParams).find(param => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length);
+  const residentialAreaLabel: string = Drupal.t('Select the residential area from the list', {}, { context: 'District and project search form label' });
   const projectThemeLabel: string = Drupal.t('Project theme', {}, { context: 'District and project search form label' });
   const projectStageLabel: string = Drupal.t('Project stage', {}, { context: 'District and project search form label' });
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
@@ -81,12 +82,9 @@ const FormContainer = () => {
             value={districtSelection}
             onChange={setDistrictFilter}
             icon={<IconLocation />}
-            label={Drupal.t('Select the residential area from the list', {}, { context: 'District and project search form label' })}
+            label={residentialAreaLabel}
             placeholder={Drupal.t('Select area', {}, { context: 'District and project search form label' })}
-            clearButtonAriaLabel={
-              Drupal.t('Clear @label selection', 
-                {'@label': Drupal.t('Residential area', {}, { context: 'District and project search residential area' })}, 
-                  { context: 'District and project search clear selection label' })}
+            clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' })}
             selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
             toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
             theme={{
@@ -118,7 +116,7 @@ const FormContainer = () => {
               onChange={setThemeFilter}
               label={projectThemeLabel}
               placeholder={Drupal.t('All themes', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'District and project search clear selection label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' })}
               selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
               toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
               theme={{
@@ -136,7 +134,7 @@ const FormContainer = () => {
               onChange={setPhaseFilter}
               label={projectStageLabel}
               placeholder={Drupal.t('All stages', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'District and project search clear selection label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' })}
               selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
               toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
               theme={{
@@ -154,7 +152,7 @@ const FormContainer = () => {
               onChange={setTypeFilter}
               label={projectTypeLabel}
               placeholder={Drupal.t('All types', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'District and project search clear selection label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' })}
               selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
               toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
               theme={{
