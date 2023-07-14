@@ -1,6 +1,7 @@
 import { atom } from 'jotai';
 import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
+import OptionType from '@/types/OptionType';
 
 const params = new NewsSearchParams(window.location.search);
 
@@ -12,6 +13,7 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   // Set atom value
   values.page = values.page || 1;
   set(urlAtom, values);
+  set(stagedParamsAtom, values);
 
   // Push new params to window.history
   const newUrl = new URL(window.location.toString());
