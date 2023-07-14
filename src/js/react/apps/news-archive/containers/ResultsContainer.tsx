@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import React, { SyntheticEvent, createRef } from 'react';
+import React, { SyntheticEvent, createRef, useEffect } from 'react';
 import { setPageAtom, urlAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import NoResults from '../components/results/NoResults';
@@ -25,6 +25,16 @@ const ResultsContainer = () => {
     query: queryString
   });
   const resultsContainer = createRef<HTMLDivElement>();
+  const choices =
+    Boolean(urlParams.groups?.length) ||
+    Boolean(urlParams.neighbourhoods?.length) ||
+    Boolean(urlParams.topic?.length);
+
+  useEffect(() => {
+    if (resultsContainer.current && choices) {
+      resultsContainer.current.scrollIntoView({behavior: 'smooth'});
+    }
+  }, [choices, resultsContainer]);
 
   const hits = data?.hits?.hits;
   const total = data?.hits.total.value || 0;
@@ -69,14 +79,9 @@ const ResultsContainer = () => {
     );
   };
 
-  const choices =
-    Boolean(urlParams.groups?.length) ||
-    Boolean(urlParams.neighbourhoods?.length) ||
-    Boolean(urlParams.topic?.length);
-
   const loading = isLoading || isValidating;
   return (
-    <div className='news-wrapper main-content'>
+    <div className='news-wrapper main-content' ref={resultsContainer}>
       <ResultWrapper className='layout-content' loading={loading}>
         <ResultsHeading
           choices={choices}
