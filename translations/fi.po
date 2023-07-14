@@ -484,10 +484,6 @@ msgctxt "District and project search"
 msgid "Project"
 msgstr "Hanke"
 
-msgctxt "District and project search residential area"
-msgid "Residential area"
-msgstr "Asuinalue"
-
 msgctxt "District and project search form label"
 msgid "Name of residential area or project"
 msgstr "Asuinalueen tai hankkeen nimi"
@@ -543,10 +539,6 @@ msgstr "Hae"
 msgctxt "District and project search"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
-
-msgctxt "District and project search clear selection label"
-msgid "Clear @label selection"
-msgstr "Tyhjennä @label valinnat"
 
 msgctxt "District and project search"
 msgid "search results"
