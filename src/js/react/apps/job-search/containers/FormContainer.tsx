@@ -119,7 +119,7 @@ const FormContainer = () => {
             {/* @ts-ignore */}
             <Select
               clearable
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'Job search clear selection label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' })}
               className='job-search-form__dropdown'
               selectedItemRemoveButtonAriaLabel={Drupal.t(
                 'Remove item',
@@ -138,7 +138,7 @@ const FormContainer = () => {
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
             {/* @ts-ignore */}
             <Select
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'Job search clear selection label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' })}
               className='job-search-form__dropdown'
               selectedItemRemoveButtonAriaLabel={Drupal.t(
                 'Remove item',
@@ -192,7 +192,7 @@ const FormContainer = () => {
           <div className='job-search-form__dropdowns__lower'>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
-                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'Job search clear selection label' })}
+                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' })}
                 className='job-search-form__dropdown'
                 clearable
                 selectedItemRemoveButtonAriaLabel={Drupal.t(
