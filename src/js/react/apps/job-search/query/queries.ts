@@ -20,6 +20,14 @@ const alphabeticallySortTerms = {
   },
 };
 
+const termSubAgg = {
+  unique: {
+    cardinality: {
+      field: `${IndexFields.RECRUITMENT_ID}.keyword`
+    }
+  }
+};
+
 // Base aggregations
 export const AGGREGATIONS = {
   aggs: {
@@ -28,29 +36,41 @@ export const AGGREGATIONS = {
         field: 'task_area_external_id',
         size: 100,
       },
+      aggs: termSubAgg
     },
     employment: {
       terms: {
         field: 'employment_id',
         size: 100,
       },
+      aggs: termSubAgg
     },
     employment_type: {
       terms: {
         field: 'employment_type_id',
         size: 100,
       },
+      aggs: termSubAgg
     },
     employment_search_id: {
       terms: {
         field: 'employment_search_id',
         size: 100,
       },
+      aggs: termSubAgg
     },
   },
   query: {
     bool: {
-      filter: [languageFilter, nodeFilter],
+      filter: [nodeFilter],
+      // Legacy: filter out "forced" translations
+      must: [
+        {
+          term: {
+            [IndexFields.COPIED]: false,
+          },
+        },
+      ],
     },
   },
 };
