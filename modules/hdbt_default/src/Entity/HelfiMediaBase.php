@@ -8,7 +8,7 @@ use Drupal\media\MediaInterface;
 
 class HelfiMediaBase extends Media implements MediaInterface {
 
-  public function getPrivacyPolicyUrl(): string {
+  public function getPrivacyPolicyUrl(): Url|string {
     return helfi_eu_cookie_compliance_get_privacy_policy_url();
   }
 
