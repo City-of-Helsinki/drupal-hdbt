@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\hdbt_default\Entity\RemoteVideo;
+
 function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   $variables['koro'] = _hdbt_get_settings('koro');
   $variables['theme_color'] = _hdbt_get_settings('theme_color');
@@ -52,4 +54,11 @@ function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
 function _hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
   return Drupal::config('hdbt_admin_tools.site_settings')
     ?->getOriginal("$group.$setting", FALSE);
+}
+
+function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
+  if (isset($bundles['media'])) {
+    $bundles['media']['remote_video']['class'] = RemoteVideo::class;
+    $bundles['media']['hel_map']['class'] = \Drupal\hdbt_default\Entity\HelMap::class;
+  }
 }

@@ -102,50 +102,6 @@ function hdbt_preprocess_region(&$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_media(&$variables): void {
-  if (empty($variables['media']) || !$variables['media'] instanceof EntityInterface) {
-    return;
-  }
-  if ($variables['media']->bundle() === 'remote_video' || $variables['media']->bundle() === 'hel_map') {
-    $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
-    $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
-
-    // If the media in question is a map, get the iframe title for variables.
-    if ($variables['media']->hasField('field_media_hel_map')) {
-      $variables['iframe_title'] = $variables['media']
-        ->get('field_media_hel_map')
-        ->title;
-    }
-
-    // If Oembed providers module is installed, get provider URL based on
-    // current remote video URL.
-    if (
-      Drupal::moduleHandler()->moduleExists('oembed_providers') &&
-      $variables['media']->hasField('field_media_oembed_video')
-    ) {
-      $url_resolver = Drupal::service('media.oembed.url_resolver');
-      $video_url = $variables['media']->get('field_media_oembed_video')->value;
-      $provider = $url_resolver->getProviderByUrl($video_url);
-      $variables['video_service_url'] = rtrim($provider->getUrl(), '/');
-      $variables['iframe_title'] = $variables['media']
-        ->get('field_media_oembed_video')
-        ->iframe_title;
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_media__hel_map(&$variables): void {
-  $map_url = $variables['media']->field_media_hel_map->uri;
-  $url_parts = parse_url($map_url);
-  $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-}
-
-/**
  * Helper function to get the settings from configurations.
  *
  * @param string $setting
