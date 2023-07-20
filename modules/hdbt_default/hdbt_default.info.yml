@@ -1,0 +1,5 @@
+name: 'HDBT default'
+type: module
+description: 'Provides theme defaults'
+core_version_requirement: ^9 || ^10
+package: 'Theme'
