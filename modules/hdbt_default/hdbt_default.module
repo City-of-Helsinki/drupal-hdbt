@@ -5,10 +5,13 @@ use Drupal\hdbt_default\Entity\AccordionItem;
 use Drupal\hdbt_default\Entity\ContactCard;
 use Drupal\hdbt_default\Entity\HelMap;
 use Drupal\hdbt_default\Entity\ListOfLinksItem;
+use Drupal\hdbt_default\Entity\Phasing;
+use Drupal\hdbt_default\Entity\PhasingItem;
 use Drupal\hdbt_default\Entity\RemoteVideo;
 use Drupal\hdbt_default\Entity\ServiceList;
 use Drupal\hdbt_default\Entity\UnitSearch;
 use Drupal\hdbt_default\Entity\SocialMediaLink;
+
 
 function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   $variables['koro'] = _hdbt_get_settings('koro');
@@ -98,6 +101,8 @@ function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
     $bundles['paragraph']['accordion_item']['class'] = AccordionItem::class;
     $bundles['paragraph']['contact_card']['class'] = ContactCard::class;
     $bundles['paragraph']['list_of_links_item']['class'] = ListOfLinksItem::class;
+    $bundles['paragraph']['phasing']['class'] = Phasing::class;
+    $bundles['paragraph']['phasing_item']['class'] = PhasingItem::class;
     $bundles['paragraph']['service_list']['class'] = ServiceList::class;
     $bundles['paragraph']['social_media_link']['class'] = SocialMediaLink::class;
     $bundles['paragraph']['unit_search']['class'] = UnitSearch::class;
