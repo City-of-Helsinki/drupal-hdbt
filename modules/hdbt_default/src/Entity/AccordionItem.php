@@ -18,7 +18,7 @@ class AccordionItem extends HelfiParagraphBase {
    */
   public function getTitleHeadingLevel(): int {
     if (!$this->hasTitle()) {
-      return $this->getTitleHeadingLevel();
+      return $this->getTitleLevel();
     }
 
     $title_level = $this->getTitleLevel();

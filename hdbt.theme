@@ -776,34 +776,6 @@ function hdbt_preprocess_paragraph(array &$variables): void {
       );
     }
   }
-  
-  // Contact card paragraph.
-  if (
-    $paragraph_type == 'contact_card' &&
-    $paragraph->hasField('field_contact_image_photographer') &&
-    $paragraph->hasField('field_contact_image')
-  ) {
-    if (
-      !$paragraph->get('field_contact_image_photographer')->isEmpty() &&
-      !$paragraph->get('field_contact_image')->isEmpty()
-      ) {
-      // Adds the photographer to the image alt-text.
-      $photographer = $paragraph->get('field_contact_image_photographer')->value;
-      $alt = $paragraph->get('field_contact_image')->alt;
-      $alt_with_photographer = t('@alt @photographer_text: @photographer', [
-        '@alt' => $alt,
-        '@photographer_text' => t('Photographer'),
-        '@photographer' => $photographer,
-      ]);
-      $paragraph->get('field_contact_image')->alt = $alt_with_photographer;
-    }
-
-    $parent = $paragraph->getParentEntity();
-
-    if ($parent->hasField('field_title') && !$parent->get('field_title')->isEmpty()) {
-      $variables['heading_level'] = 'h3';
-    }
-  }
 
   // Contact card paragraph.
   if (
