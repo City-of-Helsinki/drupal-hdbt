@@ -45,6 +45,8 @@
   ]
 %}
 
+{% set icon_name = paragraph.getIconName() %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
    {% set link_title %}
