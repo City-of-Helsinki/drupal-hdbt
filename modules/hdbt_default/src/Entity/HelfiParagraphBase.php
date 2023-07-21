@@ -20,4 +20,25 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
       ->toString(TRUE)->getGeneratedUrl();
   }
 
+  public function getParagraphId(): string|int|null {
+    return $this->id();
+  }
+
+  /**
+   * Turn list fields to comma separated strings, used by service lists.
+   *
+   * @param $field_name
+   *   Name of the field.
+   * @param $type
+   *   'target_id' for entity reference fields, 'value' for string or number.
+
+   * @return string
+   *   Comma separated string of list items.
+   */
+  protected function getListAsString($field_name, $type): string {
+    return implode(',', array_map(function ($service) use ($type) {
+      return $service[$type];
+    }, $this->get($field_name)->getValue()));
+  }
+
 }

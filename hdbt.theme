@@ -713,17 +713,6 @@ function hdbt_preprocess_paragraph(array &$variables): void {
     }, $paragraph->get('field_unit_search_units')->getValue()));
   }
 
-  // Service list paragraph.
-  if (
-    $paragraph_type == 'service_list' &&
-    $paragraph->hasField('field_service_list_services')
-  ) {
-    $variables['search_parent_paragraph'] = $paragraph->id();
-    $variables['services_list'] = implode(',', array_map(function ($service) {
-      return $service['target_id'];
-    }, $paragraph->get('field_service_list_services')->getValue()));
-  }
-
   if ($paragraph_type == 'service_list_search') {
     $ids = '';
     $service_ids = '';
