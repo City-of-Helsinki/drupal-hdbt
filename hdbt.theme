@@ -27,29 +27,6 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
 /**
- * Retrieve possible theme color palette override.
- */
-function hdbt_get_theme_color_override(): string|FALSE {
-  $color = &drupal_static(__FUNCTION__);
-
-  if (!isset($color)) {
-    $color = FALSE;
-    if (Drupal::moduleHandler()->moduleExists('hdbt_admin_tools')) {
-      $page_entity = hdbt_admin_tools_get_page_entity();
-      if (
-        !empty($page_entity) &&
-        $page_entity instanceof ContentEntityInterface &&
-        $page_entity->hasField('color_palette') &&
-        !empty($page_entity->color_palette->value)
-      ) {
-        $color = $page_entity->color_palette->value;
-      }
-    }
-  }
-  return $color;
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_html(&$variables): void {
