@@ -38,6 +38,9 @@
  * @ingroup themeable
  */
 #}
+
+{% set accordion_item_heading_level = paragraph.getTitleHeadingLevel() %}
+
 {% block paragraph %}
   {% include '@hdbt/component/accordion.twig' with {
     heading_level: 'h' ~ accordion_item_heading_level,
