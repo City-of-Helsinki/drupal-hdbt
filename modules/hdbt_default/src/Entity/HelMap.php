@@ -2,8 +2,6 @@
 
 namespace Drupal\hdbt_default\Entity;
 
-use Drupal\Core\Url;
-
 class HelMap extends HelfiMediaBase {
   public function getIframeTitle(): ?string {
     if ($this->hasField('field_media_hel_map')) {

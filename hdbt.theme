@@ -777,17 +777,6 @@ function hdbt_preprocess_paragraph(array &$variables): void {
     }
   }
 
-  // Contact card paragraph.
-  if (
-    $paragraph_type == 'social_media_link' &&
-    $paragraph->hasField('field_icon')
-    ) {
-    // Icon name for accessibility.
-    if (!$paragraph->get('field_icon')->isEmpty()) {
-      $variables['icon_name'] = ucfirst($paragraph->get('field_icon')->icon);
-    }
-  }
-
   // Map paragraph.
   if (
     $paragraph_type == 'map' &&
