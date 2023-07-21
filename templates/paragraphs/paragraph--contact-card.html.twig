@@ -1,3 +1,6 @@
+{% set contact_image = paragraph.getContactImage() %}
+{% set heading_level = paragraph.getHeadingLevel()|default('h2') %}
+
 {%
   set classes = [
     'contact-card',
@@ -8,15 +11,15 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="{% if content.field_contact_image|render %}contact-card--image-container{% else %}contact-card--color-line{% endif %}">
-      {{ content.field_contact_image }}
+    <div class="{% if contact_image|render %}contact-card--image-container{% else %}contact-card--color-line{% endif %}">
+      {{ contact_image }}
     </div>
     <div class="contact-card--information-container">
     {% if content.field_contact_name|render %}
-      <{{ heading_level|default('h2') }} class="contact-card--person-information contact-card--person-name">
+      <{{ heading_level }} class="contact-card--person-information contact-card--person-name">
       <div class="label visually-hidden">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_contact_name }}
-      </{{ heading_level|default('h2') }}>
+      </{{ heading_level }}>
     {% endif %}
     {% if content.field_contact_title|render %}
       <div class="contact-card--person-information">

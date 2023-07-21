@@ -2,6 +2,7 @@
 
 use Drupal\hdbt_default\Entity\Accordion;
 use Drupal\hdbt_default\Entity\AccordionItem;
+use Drupal\hdbt_default\Entity\ContactCard;
 use Drupal\hdbt_default\Entity\HelMap;
 use Drupal\hdbt_default\Entity\ListOfLinksItem;
 use Drupal\hdbt_default\Entity\RemoteVideo;
@@ -94,6 +95,7 @@ function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['paragraph'])) {
     $bundles['paragraph']['accordion']['class'] = Accordion::class;
     $bundles['paragraph']['accordion_item']['class'] = AccordionItem::class;
+    $bundles['paragraph']['contact_card']['class'] = ContactCard::class;
     $bundles['paragraph']['list_of_links_item']['class'] = ListOfLinksItem::class;
     $bundles['paragraph']['service_list']['class'] = ServiceList::class;
     $bundles['paragraph']['unit_search']['class'] = UnitSearch::class;
