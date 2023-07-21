@@ -2,8 +2,6 @@
 
 namespace Drupal\hdbt_default\Entity;
 
-use Drupal\Core\Url;
-
 class ServiceList extends HelfiParagraphBase {
 
   public function getServicesList(): ?string {
