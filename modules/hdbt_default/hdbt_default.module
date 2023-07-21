@@ -30,7 +30,7 @@ function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
     ->moduleExists('helfi_navigation');
 
   // Apply override for the theme color.
-  if (!empty($theme_color = hdbt_get_theme_color_override())) {
+  if (!empty($theme_color = _hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
   }
 
@@ -49,6 +49,29 @@ function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
+}
+
+/**
+ * Retrieve possible theme color palette override.
+ */
+function _hdbt_get_theme_color_override(): string|FALSE {
+  $color = &drupal_static(__FUNCTION__);
+
+  if (!isset($color)) {
+    $color = FALSE;
+    if (Drupal::moduleHandler()->moduleExists('hdbt_admin_tools')) {
+      $page_entity = hdbt_admin_tools_get_page_entity();
+      if (
+        !empty($page_entity) &&
+        $page_entity instanceof ContentEntityInterface &&
+        $page_entity->hasField('color_palette') &&
+        !empty($page_entity->color_palette->value)
+      ) {
+        $color = $page_entity->color_palette->value;
+      }
+    }
+  }
+  return $color;
 }
 
 function _hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
