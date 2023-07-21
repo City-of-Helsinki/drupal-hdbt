@@ -612,16 +612,6 @@ function hdbt_preprocess_paragraph(array &$variables): void {
   // Set theme path variable for paragraphs as well.
   $variables['theme_path'] = _hdbt_get_theme_path();
 
-  // Check if the paragraph is a type of list of links item
-  // and tell it its parents design.
-  if ($paragraph_type == 'list_of_links_item') {
-    $paragraph_parent = $paragraph->getParentEntity();
-    $variables['list_of_links_design'] = $paragraph_parent
-      ->get('field_list_of_links_design')->getString();
-    $variables['list_of_links_paragraph_has_title'] = (bool) !$paragraph_parent
-      ->get('field_list_of_links_title')->isEmpty();
-  }
-
   // Check if the paragraph is a type of accordion
   // and dig out the title level.
   if ($paragraph_type == 'accordion') {
