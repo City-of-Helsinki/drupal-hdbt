@@ -20,7 +20,7 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
       ->toString(TRUE)->getGeneratedUrl();
   }
 
-  public function getParagraphId(): string|int|null {
+  public function getSearchParentParagraph(): string|int|null {
     return $this->id();
   }
 
