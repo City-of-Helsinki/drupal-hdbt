@@ -49,6 +49,8 @@
 {% set text = content.field_list_of_links_link.0['#title'] %}
 {% set image = content.field_list_of_links_image %}
 {% set desc = content.field_list_of_links_desc.0 %}
+{% set list_of_links_paragraph_has_title = paragraph.hasTitle() %}
+{% set list_of_links_design = paragraph.getDesign() %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
