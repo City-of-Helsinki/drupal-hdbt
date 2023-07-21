@@ -828,18 +828,6 @@ function hdbt_preprocess_paragraph(array &$variables): void {
     }
   }
 
-  // Chart paragraph.
-  if ($paragraph_type == 'phasing') {
-    $phasing_title_level = $paragraph->get('field_phasing_title_level')->getString();
-    $variables['phasing_title_level'] = 'h' . $phasing_title_level;
-  }
-
-  if ($paragraph_type == 'phasing_item') {
-    $paragraph_parent = $paragraph->getParentEntity();
-    $phasing_item_heading_level = $paragraph_parent->get('field_phasing_item_title_level')->getString();
-    $variables['phasing_item_heading_level'] = 'h' . $phasing_item_heading_level;
-    $variables['show_numbers'] = $paragraph_parent->get('field_show_phase_numbers')->value;
-  }
 }
 
 /**
