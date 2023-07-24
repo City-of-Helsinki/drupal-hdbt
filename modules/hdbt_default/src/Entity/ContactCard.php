@@ -2,14 +2,21 @@
 
 namespace Drupal\hdbt_default\Entity;
 
-use Drupal\file\Plugin\Field\FieldType\FileItem;
-use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Symfony\Contracts\Translation\TranslatorTrait;
 
+/**
+ * Bundle class for contact_card paragraph.
+ */
 class ContactCard extends HelfiParagraphBase {
 
   use TranslatorTrait;
 
+  /**
+   * Get the contact image.
+   *
+   * @return array
+   *   The contact image.
+   */
   public function getContactImage(): array {
     $image = $this->get('field_contact_image')[0];
     if (
@@ -29,6 +36,12 @@ class ContactCard extends HelfiParagraphBase {
     return $image->view();
   }
 
+  /**
+   * Get the heading level.
+   *
+   * @return string|null
+   *   Level of heading.
+   */
   public function getHeadingLevel(): ?string {
     $parent = $this->getParentEntity();
     if (

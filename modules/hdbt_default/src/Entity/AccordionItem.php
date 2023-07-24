@@ -2,8 +2,17 @@
 
 namespace Drupal\hdbt_default\Entity;
 
+/**
+ * Bundle class for accordion_item paragraph.
+ */
 class AccordionItem extends HelfiParagraphBase {
 
+  /**
+   * Does parent paragraph have a heading.
+   *
+   * @return bool
+   *   Parent paragraph has a heading.
+   */
   public function hasTitle(): bool {
     return !$this->getParentEntity()
       ->get('field_accordion_title')
@@ -35,9 +44,16 @@ class AccordionItem extends HelfiParagraphBase {
     return ($title_level+1) < $heading_level ? ($title_level+1) : $heading_level;
   }
 
+  /**
+   * Get the title level.
+   *
+   * @return int
+   *   The title level.
+   */
   protected function getTitleLevel(): int {
     return (int) $this->getParentEntity()
       ->get('field_accordion_title_level')
       ->getString();
   }
+
 }

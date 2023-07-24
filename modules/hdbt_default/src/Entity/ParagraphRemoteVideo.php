@@ -4,12 +4,20 @@ namespace Drupal\hdbt_default\Entity;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+/**
+ * Bundle class for remote_video paragraph.
+ */
 class ParagraphRemoteVideo extends HelfiParagraphBase {
 
   use StringTranslationTrait;
 
-  public function getIframeTitle(): ?string
-  {
+  /**
+   * Get title of video.
+   *
+   * @return string|null
+   *   Title of the video.
+   */
+  public function getIframeTitle(): ?string {
     if (!$this->isValid()) {
       return NULL;
     }
@@ -18,6 +26,12 @@ class ParagraphRemoteVideo extends HelfiParagraphBase {
       ? $this->t('Embedded video') : $this->get('field_iframe_title')->value;
   }
 
+  /**
+   * Is valid.
+   *
+   * @return bool
+   *   Is valid.
+   */
   private function isValid(): bool {
     if (
       !$this->hasField('field_remote_video') ||
