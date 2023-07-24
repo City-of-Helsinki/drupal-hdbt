@@ -42,7 +42,7 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
    * @param string $field_name
    *   Name of the field.
    * @param string $type
-   *   'target_id' for entity reference fields, 'value' for string or number.
+   *   Target_id for entity reference fields, 'value' for string or number.
    *
    * @return string
    *   Comma separated string of list items.
