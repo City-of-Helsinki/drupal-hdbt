@@ -3,7 +3,7 @@
 namespace Drupal\hdbt_default\Entity;
 
 /**
- * Baseclass for list_of_links paragraph
+ * Baseclass for list_of_links paragraph.
  */
 class ListOfLinksItem extends HelfiParagraphBase {
 

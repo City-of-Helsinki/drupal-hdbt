@@ -30,7 +30,7 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
    * Get the id of the paragraph to search a parent for.
    *
    * @return string|int|null
-   *   Id of paragraph.
+   *   Id of the paragraph.
    */
   public function getSearchParentParagraph(): string|int|null {
     return $this->id();
@@ -39,15 +39,15 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
   /**
    * Turn list fields to comma separated strings, used by service lists.
    *
-   * @param $field_name
+   * @param string $field_name
    *   Name of the field.
-   * @param $type
+   * @param string $type
    *   'target_id' for entity reference fields, 'value' for string or number.
-
+   *
    * @return string
    *   Comma separated string of list items.
    */
-  protected function getListAsString($field_name, $type): string {
+  protected function getListAsString(string $field_name, string $type): string {
     return implode(',', array_map(function ($service) use ($type) {
       return $service[$type];
     }, $this->get($field_name)->getValue()));

@@ -1,12 +1,16 @@
 <?php
 
+/**
+ * @file
+ * Contains theme defaults.
+ */
+
 use Drupal\hdbt_default\Entity\Accordion;
 use Drupal\hdbt_default\Entity\AccordionItem;
 use Drupal\hdbt_default\Entity\ContactCard;
 use Drupal\hdbt_default\Entity\Map;
 use Drupal\hdbt_default\Entity\HelMap;
 use Drupal\hdbt_default\Entity\ListOfLinksItem;
-use Drupal\hdbt_default\Entity\ParagraphRemoteVideo;
 use Drupal\hdbt_default\Entity\Phasing;
 use Drupal\hdbt_default\Entity\PhasingItem;
 use Drupal\hdbt_default\Entity\RemoteVideo;
@@ -14,7 +18,9 @@ use Drupal\hdbt_default\Entity\ServiceList;
 use Drupal\hdbt_default\Entity\UnitSearch;
 use Drupal\hdbt_default\Entity\SocialMediaLink;
 
-
+/**
+ * Implement hook_default_template_preprocess_default_variables_alter.
+ */
 function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   $variables['koro'] = _hdbt_get_settings('koro');
   $variables['theme_color'] = _hdbt_get_settings('theme_color');
@@ -87,6 +93,17 @@ function _hdbt_get_theme_color_override(): string|FALSE {
   return $color;
 }
 
+/**
+ * Get hdbt settings.
+ *
+ * @param string $setting
+ *   Settings to get.
+ * @param string $group
+ *   The group.
+ *
+ * @return string|NULL
+ *   The setting.
+ */
 function _hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
   return Drupal::config('hdbt_admin_tools.site_settings')
     ?->getOriginal("$group.$setting", FALSE);
