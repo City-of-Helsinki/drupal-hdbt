@@ -32,15 +32,17 @@
 #}
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
+{% set iframe_title = media.getMediaTitle() %}
+{% set service_url = media.getServiceUrl() %}
+{% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
 
 {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
   media_url: media_url,
   media_id: media.id,
-  media_iframe_title: media.getIframeTitle(),
-  media_service_url: media.getServiceUrl(),
-  privacy_policy_url: media.getPrivacyPolicyUrl(),
+  media_iframe_title: iframe_title,
+  media_service_url: service_url,
+  privacy_policy_url: privacy_policy_url,
 } %}
-
 
 {% set drupal_settings = {
   '#attached': {
@@ -57,5 +59,6 @@
     }
   }
 } %}
+
 {{ drupal_settings }}
 {{ attach_library(media.getJsLibrary()) }}
