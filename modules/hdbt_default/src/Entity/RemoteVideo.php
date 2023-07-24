@@ -23,6 +23,12 @@ class RemoteVideo extends HelfiMediaBase {
     return rtrim($provider->getUrl(), '/');
   }
 
+  /**
+   * Get the video title.
+   *
+   * @return mixed
+   *   The video title.
+   */
   public function getMediaTitle() {
     return $this->get('field_media_oembed_video')
       ->iframe_title;

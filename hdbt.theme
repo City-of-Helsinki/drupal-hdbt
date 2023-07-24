@@ -1305,7 +1305,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
