@@ -14,7 +14,7 @@ class HelfiMediaBase extends Media implements MediaInterface {
   /**
    * Get url.
    *
-   * @return Url|string
+   * @return Drupal\Core\Url|string
    *   The url.
    */
   public function getPrivacyPolicyUrl(): Url|string {
@@ -37,7 +37,7 @@ class HelfiMediaBase extends Media implements MediaInterface {
    * @return bool
    *   Module exists.
    */
-  protected function hasProvider(): bool{
+  protected function hasProvider(): bool {
     return \Drupal::moduleHandler()->moduleExists('oembed_providers') &&
       $this->hasField('field_media_oembed_video');
   }

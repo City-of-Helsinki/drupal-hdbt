@@ -5,8 +5,7 @@ namespace Drupal\hdbt_default\Entity;
 /**
  * Bundle class for unit_search paragraph.
  */
-class UnitSearch extends HelfiParagraphBase
-{
+class UnitSearch extends HelfiParagraphBase {
 
   /**
    * Get unit lists.

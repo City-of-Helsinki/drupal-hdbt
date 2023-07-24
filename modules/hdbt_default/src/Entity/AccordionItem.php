@@ -20,10 +20,10 @@ class AccordionItem extends HelfiParagraphBase {
   }
 
   /**
-   * Check if accordion paragraph has a title and set item heading level
-   * based on that. If not, use level given by editor.
+   * Check if accordion paragraph has a title and set item heading level based on that.
    *
    * @return string
+   *   The level of heading.
    */
   public function getTitleHeadingLevel(): int {
     if (!$this->hasTitle()) {
@@ -41,7 +41,7 @@ class AccordionItem extends HelfiParagraphBase {
     // title h2, item h3 --> item h3,
     // title h3, item h3 --> item h3,
     // title h5, item h3 --> item h3.
-    return ($title_level+1) < $heading_level ? ($title_level+1) : $heading_level;
+    return ($title_level + 1) < $heading_level ? ($title_level + 1) : $heading_level;
   }
 
   /**
