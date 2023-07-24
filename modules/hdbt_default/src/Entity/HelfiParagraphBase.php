@@ -5,10 +5,16 @@ namespace Drupal\hdbt_default\Entity;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\ParagraphInterface;
 
+/**
+ * Baseclass for paragraphs.
+ */
 class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
 
   /**
+   * Get the path to theme.
+   *
    * @return string
+   *   The path to theme.
    */
   public function getThemePath() {
     /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
@@ -20,6 +26,12 @@ class HelfiParagraphBase extends Paragraph implements ParagraphInterface {
       ->toString(TRUE)->getGeneratedUrl();
   }
 
+  /**
+   * Get the id of the paragraph to search a parent for.
+   *
+   * @return string|int|null
+   *   Id of paragraph.
+   */
   public function getSearchParentParagraph(): string|int|null {
     return $this->id();
   }

@@ -2,7 +2,17 @@
 
 namespace Drupal\hdbt_default\Entity;
 
+/**
+ * Bundle class for remote_video media.
+ */
 class RemoteVideo extends HelfiMediaBase {
+
+  /**
+   * Get the video service provider url.
+   *
+   * @return string|null
+   *   Url of video service provider.
+   */
   public function getServiceUrl(): ?string {
     if (!$this->hasProvider()) {
       return NULL;
