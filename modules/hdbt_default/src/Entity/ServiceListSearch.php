@@ -2,8 +2,17 @@
 
 namespace Drupal\hdbt_default\Entity;
 
+/**
+ * Bundle class for service_list_search paragraph.
+ */
 class ServiceListSearch extends HelfiParagraphBase {
 
+  /**
+   * Get services list for search.
+   *
+   * @return string|null
+   *   Concatenated list of service list ids and target ids.
+   */
   public function getServicesListSearch(): ?string {
     $ids = '';
     $service_ids = '';
