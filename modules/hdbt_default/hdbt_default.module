@@ -8,7 +8,6 @@
 use Drupal\hdbt_default\Entity\Accordion;
 use Drupal\hdbt_default\Entity\AccordionItem;
 use Drupal\hdbt_default\Entity\ContactCard;
-use Drupal\hdbt_default\Entity\Map;
 use Drupal\hdbt_default\Entity\HelMap;
 use Drupal\hdbt_default\Entity\ListOfLinksItem;
 use Drupal\hdbt_default\Entity\Phasing;
