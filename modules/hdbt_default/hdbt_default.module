@@ -3,8 +3,10 @@
 use Drupal\hdbt_default\Entity\Accordion;
 use Drupal\hdbt_default\Entity\AccordionItem;
 use Drupal\hdbt_default\Entity\ContactCard;
+use Drupal\hdbt_default\Entity\Map;
 use Drupal\hdbt_default\Entity\HelMap;
 use Drupal\hdbt_default\Entity\ListOfLinksItem;
+use Drupal\hdbt_default\Entity\ParagraphRemoteVideo;
 use Drupal\hdbt_default\Entity\Phasing;
 use Drupal\hdbt_default\Entity\PhasingItem;
 use Drupal\hdbt_default\Entity\RemoteVideo;
@@ -90,6 +92,19 @@ function _hdbt_get_settings(string $setting, string $group = 'site_settings'): s
     ?->getOriginal("$group.$setting", FALSE);
 }
 
+/**
+ * Helper function to hdbt theme path.
+ */
+function _hdbt_get_theme_path(): string {
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+
+  // Add theme path to as variable.
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
+  return $service->generate($theme->getPath())
+    ->toString(TRUE)->getGeneratedUrl();
+}
+
 function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['media'])) {
     $bundles['media']['hel_map']['class'] = HelMap::class;
@@ -106,12 +121,5 @@ function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
     $bundles['paragraph']['service_list']['class'] = ServiceList::class;
     $bundles['paragraph']['social_media_link']['class'] = SocialMediaLink::class;
     $bundles['paragraph']['unit_search']['class'] = UnitSearch::class;
-
   }
-
-  /*
-  if (isset($bundles[''])) {
-    $bundles['']['']['']
-  }
-  */
 }
