@@ -670,6 +670,9 @@ function hdbt_preprocess_breadcrumb(&$variables): void {
   }
 }
 
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
 function hdbt_preprocess_paragraph__image(&$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
@@ -701,6 +704,9 @@ function hdbt_preprocess_paragraph__image(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
 function hdbt_preprocess_paragraph__hero(&$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
@@ -740,6 +746,9 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
 function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
   $paragraph = $variables['paragraph'];
 
