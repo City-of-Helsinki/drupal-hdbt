@@ -1652,7 +1652,7 @@ function hdbt_preprocess_paragraph__hearings(array &$variables) {
   $count = \Drupal::entityQuery('node')
     ->condition('type', 'hearing')
     ->condition('langcode', $langcode)
-    ->condition('publish', 1)
+    ->condition('status', 1)
     ->accessCheck(FALSE)
     ->count()
     ->execute();
