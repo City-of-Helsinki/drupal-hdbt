@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 
 /**
  * @file
@@ -14,11 +15,11 @@ use Drupal\hdbt_default\Entity\Phasing;
 use Drupal\hdbt_default\Entity\PhasingItem;
 use Drupal\hdbt_default\Entity\RemoteVideo;
 use Drupal\hdbt_default\Entity\ServiceList;
-use Drupal\hdbt_default\Entity\UnitSearch;
 use Drupal\hdbt_default\Entity\SocialMediaLink;
+use Drupal\hdbt_default\Entity\UnitSearch;
 
 /**
- * Implement hook_default_template_preprocess_default_variables_alter.
+ * Implement hook_default_template_preprocess_default_variables_alter().
  */
 function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   $variables['koro'] = _hdbt_get_settings('koro');
@@ -103,7 +104,7 @@ function _hdbt_get_theme_color_override(): string|FALSE {
  * @return string|NULL
  *   The setting.
  */
-function _hdbt_get_settings(string $setting, string $group = 'site_settings'): string|NULL {
+function _hdbt_get_settings(string $setting, string $group = 'site_settings'): string|null {
   return Drupal::config('hdbt_admin_tools.site_settings')
     ?->getOriginal("$group.$setting", FALSE);
 }
@@ -121,6 +122,9 @@ function _hdbt_get_theme_path(): string {
     ->toString(TRUE)->getGeneratedUrl();
 }
 
+/**
+ * Implements hook_default_entity_bundle_info_alter().
+ */
 function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['media'])) {
     $bundles['media']['hel_map']['class'] = HelMap::class;

@@ -20,7 +20,7 @@ class AccordionItem extends HelfiParagraphBase {
   }
 
   /**
-   * set item heading level based on accordion paragraph title.
+   * Set item heading level based on accordion paragraph title.
    *
    * @return string
    *   The level of heading.
