@@ -21,14 +21,14 @@ const FeatureFormContainer = () => {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { keyword, finnish_education, grades_1_6, swedish_education, grades_7_9 } = event.target as SubmitFormType;
+    const { keyword, finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education } = event.target as SubmitFormType;
     const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
       params.keyword = keyword.value;
     };
 
-    [finnish_education, grades_1_6, swedish_education, grades_7_9].forEach(element => {
+    [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education, ].forEach(element => {
       if (!element || !element.checked || !element.name) {
         return;
       };
@@ -95,10 +95,19 @@ const FeatureFormContainer = () => {
             className='react-search__checkbox'
             checked={stagedParams?.grades_1_6 || false}
             id='grades_1_6'
-            label={Drupal.t('Primary schools (grades 1-6)', {}, {context: 'School search: education level option'})}
+            label={Drupal.t('School providing grades 1 to 6', {}, {context: 'School search: education level option'})}
             name='grades_1_6'
             onClick={() => setStagedParams({...stagedParams, grades_1_6: !stagedParams?.grades_1_6})}
             value={stagedParams?.grades_1_6?.toString() || 'false'}
+          />
+          <Checkbox
+            className='react-search__checkbox'
+            id='grades_1_9'
+            checked={stagedParams?.grades_1_9 || false}
+            label={Drupal.t('School providing grades 1 to 9', {}, {context: 'School search: education level option'})}
+            name='grades_1_9'
+            onClick={() => setStagedParams({...stagedParams, grades_1_9: !stagedParams?.grades_1_9})}
+            value={stagedParams?.grades_1_9?.toString() || 'false'}
           />
           <Checkbox
             className='react-search__checkbox'
