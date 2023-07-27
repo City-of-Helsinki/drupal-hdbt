@@ -45,11 +45,11 @@ const FeatureFormContainer = () => {
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
       <h3>
-        {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
+        {Drupal.t('Search with school details', {}, {context: 'School search: Feature form title'})}
       </h3>
       <p className='react-search__form-description'>
         {Drupal.t(
-          'You can search for a school by name, language of instruction, grade or postal code. Schools can also admit pupils that do not live in the school\'s admission area, if there are available spaces. Please note that you may have to apply to schools by taking an aptitude test.',
+          'You can search for a school by its name, language of instruction, grade or post code.',
           {},
           {context: 'School search: Feature form description'}
         )}
@@ -57,7 +57,7 @@ const FeatureFormContainer = () => {
       <TextInput
         className='hdbt-search__filter'
         id='keyword'
-        label={Drupal.t('Name or postal code of the school', {}, {context: 'School search: Feature input label'})}
+        label={Drupal.t('School\'s name or post code', {}, {context: 'School search: Feature input label'})}
         name='keyword'
         onChange={({target: { value }}: { target: { value: string }}) => setKeywordValue(value)}
         type='search'
@@ -89,7 +89,7 @@ const FeatureFormContainer = () => {
         </fieldset>
         <fieldset className='react-search__fieldset'>
           <legend className='react-search__legend'>
-            {Drupal.t('School level', {}, {context: 'School search: education level'})}
+            {Drupal.t('Grade', {}, {context: 'School search: education level'})}
           </legend>
           <Checkbox
             className='react-search__checkbox'
@@ -113,14 +113,14 @@ const FeatureFormContainer = () => {
             className='react-search__checkbox'
             checked={stagedParams?.grades_7_9 || false}
             id='grades_7_9'
-            label={Drupal.t('Lower secondary schools (grades 7-9)', {}, {context: 'School search: education level option'})}
+            label={Drupal.t('School providing grades 7 to 9', {}, {context: 'School search: education level option'})}
             name='grades_7_9'
             onClick={() => setStagedParams({...stagedParams, grades_7_9: !stagedParams?.grades_7_9})}
             value={stagedParams?.grades_7_9?.toString() || 'false'}
           />
         </fieldset>
       </div>
-      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
+      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Search')}</Button>
       <SelectionsContainer keys={keys} />
     </form>
   );
