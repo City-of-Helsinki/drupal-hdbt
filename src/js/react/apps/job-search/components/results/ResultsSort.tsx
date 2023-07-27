@@ -21,7 +21,7 @@ const options: OptionType[] = [
 const ResultsSort = () => {
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
-  const [sort, setSort] = useState<OptionType>(options[1]);
+  const [sort, setSort] = useState<OptionType>(options[0]);
 
   useEffect(() => {
     if (urlParams.sort) {
