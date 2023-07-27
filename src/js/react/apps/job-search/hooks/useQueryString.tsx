@@ -153,7 +153,7 @@ const useQueryString = (urlParams: URLParams): string => {
     },
   };
 
-  const sort = urlParams?.sort === sortOptions.newestFirst ? newest : closing;
+  const sort = urlParams?.sort === sortOptions.newestFirst ? closing : newest;
 
   return JSON.stringify({
     aggs: {
