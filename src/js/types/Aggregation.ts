@@ -1,10 +1,6 @@
 export type AggregationItem = {
   key: string;
   doc_count: number;
-  // Subaggregation typing
-  unique?: {
-    value: number
-  }
 };
 
 export type Aggregation = {
