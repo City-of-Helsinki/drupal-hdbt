@@ -30,7 +30,7 @@ const ProximityFormContainer = () => {
       </h3>
       <p className='react-search__form-description'>
         {Drupal.t(
-          'Your child\'s primary comprehensive school, i.e. their local school, is determined based on the child\'s home address. The local school has a place for all local children. The search will return Finnish- and Swedish- language comprehensive schools',
+          'Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools.',
           {},
           {context: 'School search: local search description'}
         )}
@@ -42,7 +42,7 @@ const ProximityFormContainer = () => {
         label={Drupal.t('The child\'s home address', {}, {context: 'School search: input label'})}
         type='search'
       />
-      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Submit')}</Button>
+      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Search')}</Button>
     </form>
   );
 };
