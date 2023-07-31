@@ -1304,6 +1304,17 @@ function hdbt_preprocess_views_view(&$variables): void {
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
+  if ($variables['view']->id() == 'hearings') {
+    $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $count = \Drupal::entityQuery('node')
+      ->condition('type', 'hearing')
+      ->condition('langcode', $langcode)
+      ->condition('status', 1)
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+    $variables['hearings_count'] = $count;
+  }
 }
 
 /**
@@ -1648,16 +1659,8 @@ function hdbt_preprocess_paragraph__hearings(array &$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
 
-  $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-  $count = \Drupal::entityQuery('node')
-    ->condition('type', 'hearing')
-    ->condition('langcode', $langcode)
-    ->condition('status', 1)
-    ->accessCheck(FALSE)
-    ->count()
-    ->execute();
-
   if ($paragraph_type == 'hearings') {
     $variables['hearings'] = views_embed_view('hearings', 'block_1');
   }
 }
+
