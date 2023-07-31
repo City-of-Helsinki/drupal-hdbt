@@ -55,10 +55,12 @@
   {{ attachment_before }}
 
   <div class="hearings__results">
-    <div class="hearings__count-container">
-      <span class="hearings__count">[NUMBER]</span>
-      {% trans with {'context': 'Hearings count'}%}plan open for commenting{% plural total_rows %}plans open for commenting{% endtrans %}
-    </div>
+    {% if hearings_count > 0 %}
+      <div class="hearings__count-container">
+        <span class="hearings__count">{{ hearings_count }}</span>
+        {% trans with {'context': 'Hearings count'}%}plan open for commenting{% plural hearings_count %}plans open for commenting{% endtrans %}
+      </div>
+    {% endif %}
 
     {{ rows }}
 
