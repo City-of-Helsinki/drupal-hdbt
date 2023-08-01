@@ -673,3 +673,16 @@ msgstr "Katso kaikki suunnitelmat"
 msgctxt "See closed plans link text"
 msgid "See all already closed plans"
 msgstr "Katso jo sulkeutuneet suunnitelmat"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English"
+msgstr "Kommentoitavissa vain englanniksi"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in Swedish"
+msgstr "Kommentoitavissa vain ruotsiksi"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English and Swedish"
+msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
+
