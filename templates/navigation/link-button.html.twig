@@ -51,7 +51,7 @@
 {% endif %}
 
 {% if icon == true %}
-  {% set link_options = link_options|merge({'data-selected-icon': icon_type}) %}
+  {% set link_options = link_options|merge({'data-selected-icon': icon_type, 'helfi_link': 'true'}) %}
 {% endif %}
 
 {% set title %}
