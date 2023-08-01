@@ -11,9 +11,17 @@
   {% set card_hearing_comments = content.field_comments['#items'].value ~ ' ' ~ 'comments'|t({}, {'context': 'Hearing activity suffix plural'}) %}
 {% endif %}
 
-{% set card_published_on = node.published_at.value|date('j.n.Y') %}
+{% if node.published_at.value is not empty %}
+  {% set card_published_on = node.published_at.value|date('j.n.Y') %}
+{% else %}
+  {% set card_published_on = '-' %}
+{% endif %}
 
-{% set card_unpublished_on = node.unpublish_on.value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ node.unpublish_on.value|date('H:i') %}
+{% if node.unpublish_on.value is not empty %}
+  {% set card_unpublished_on = node.unpublish_on.value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ node.unpublish_on.value|date('H:i') %}
+{% else %}
+  {% set card_unpublished_on = '-' %}
+{% endif %}
 
 {% embed '@hdbt/component/card.twig' with {
   card_modifier_class: card_hearing_classes|join(' '),
