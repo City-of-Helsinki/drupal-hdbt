@@ -8,6 +8,7 @@ const IndexFields = {
   EMPLOYMENT_SEARCH_ID: 'employment_search_id',
   ENTITY_TYPE: 'entity_type',
   JOB_DURATION: 'field_job_duration',
+  NID: 'nid',
   NUMBER_OF_JOBS: 'field_jobs',
   ORGANIZATION: 'field_organization',
   ORGANIZATION_NAME: 'field_organization_name',

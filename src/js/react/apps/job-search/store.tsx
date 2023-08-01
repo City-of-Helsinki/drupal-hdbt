@@ -5,7 +5,7 @@ import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
 import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, TASK_AREA_OPTIONS } from './query/queries';
 import type OptionType from './types/OptionType';
-import type Result from './types/Result';
+import type Result from '@/types/Result';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
