@@ -573,3 +573,23 @@ msgstr "Stängs"
 msgctxt "Label for hearing activity row"
 msgid "Activity"
 msgstr "Aktivitet"
+
+msgctxt "See all plans link text"
+msgid "See all plans"
+msgstr "Se alla planer"
+
+msgctxt "See closed plans link text"
+msgid "See all already closed plans"
+msgstr "Se alla redan stängda planer"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English"
+msgstr "Hörandet finns endast på engelska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in Finnish"
+msgstr "Hörandet finns endast på finska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English and Finnish"
+msgstr "Hörandet finns endast på engelska och finska"

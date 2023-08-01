@@ -1664,3 +1664,41 @@ function hdbt_preprocess_paragraph__hearings(array &$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_node__hearing(array &$variables) {
+  $language_versions = $variables['node']->getTranslationLanguages();
+  $language = \Drupal::languageManager()
+    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+    ->getId();
+
+  // Check that if the displayed hearing node is of different language version
+  // than the current page language.
+  if (!array_key_exists($language, $language_versions)) {
+    $available_languages = array();
+
+    foreach ($language_versions as $language_version) {
+      // We need to assign the language names here manually because
+      // $language_version->getName() provides the localized name, and it will
+      // mess up the string that is passed to be translated.
+      switch ($language_version->getId()) {
+        case 'en':
+          $available_languages[] = 'English';
+          break;
+        case 'fi':
+          $available_languages[] = 'Finnish';
+          break;
+        case 'sv':
+          $available_languages[] = 'Swedish';
+          break;
+      }
+    }
+
+    // Sort the array so that the languages are always in the same order when
+    // we create the $available_in_languages string.
+    sort($available_languages);
+    $available_in_languages = 'Hearing only available in ' . implode(" and ", $available_languages);
+    $variables['available_in_languages'] = t($available_in_languages, [], ['context' => 'Hearing available in languages']);
+  }
+}
