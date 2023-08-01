@@ -4,8 +4,8 @@ import IndexFields from '../enum/IndexFields';
 import { nodeFilter } from '../query/queries';
 import URLParams from '../types/URLParams';
 
-const useQueryString = (urlParams: URLParams): string => {
-  const { size, sortOptions } = Global;
+const useQueryString = (urlParams: URLParams, promoted: number[] = []): string => {
+  const { size: globalSize, sortOptions } = Global;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [{
     // Legacy sanity check, make sure forced translations aren't included
@@ -20,6 +20,14 @@ const useQueryString = (urlParams: URLParams): string => {
     }
   }];
   const should = [];
+
+  if (promoted) {
+    must[0].bool.must_not = {
+      terms: {
+        [IndexFields.NID]: promoted
+      }
+    };
+  }
 
   if (urlParams.keyword && urlParams.keyword.length > 0) {
     must.push({
@@ -155,6 +163,34 @@ const useQueryString = (urlParams: URLParams): string => {
 
   const sort = urlParams?.sort === sortOptions.newestFirst ? closing : newest;
 
+  const getSizeFrom = () => {
+    if (!promoted.length) {
+      return [globalSize, globalSize * (page - 1)];
+    }
+
+    const promotedOnPage = (globalSize * (page - 1)) < promoted.length;
+    const pastResults = globalSize * (page - 1);
+    const promotedToShow = promotedOnPage && promoted.length - pastResults;
+    const leftovers = promoted.length % globalSize;
+
+    // Promoted take up the whole, no need to retrieve anything.
+    if (promotedToShow >= globalSize) {
+      return [0, 0];
+    }
+
+    // Retrieve results past promoted
+    if (!promotedToShow) {
+      const promotedPages = Math.ceil(promoted.length / globalSize);
+      const normalPages = page - 1 - promotedPages;
+;
+      return [globalSize, globalSize * normalPages + (globalSize - leftovers)];
+    }
+
+    return [globalSize - leftovers, 0];
+  };
+
+  const [size, from] = getSizeFrom();
+
   return JSON.stringify({
     aggs: {
       [IndexFields.NUMBER_OF_JOBS]: {
@@ -178,10 +214,10 @@ const useQueryString = (urlParams: URLParams): string => {
         size: 3,
       }
     },
+    from,
+    query,
     sort: [sort, '_score'],
     size,
-    from: size * (page - 1),
-    query
   });
 };
 
