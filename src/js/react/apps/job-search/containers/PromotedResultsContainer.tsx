@@ -13,6 +13,7 @@ import ResultsSort from '../components/results/ResultsSort';
 import ResultsCount from '../components/results/ResultsCount';
 import ResultsList from '../components/results/ResultsList';
 import Pagination from '@/react/common/Pagination';
+import ResultWrapper from '@/react/common/ResultWrapper';
 
 type PromotedResultsContainerProps = {
   promoted: number[];
@@ -25,47 +26,48 @@ const PromotedResultsContainer = ({ promoted }: PromotedResultsContainerProps) =
   const setPage = useSetAtom(setPageAtom);
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const promotedQuery = usePromotedQuery(promoted, urlParams);
-  const { data, error } = useIndexQuery({
+  const { data, error, isLoading, isValidating } = useIndexQuery({
+    keepPreviousData: true,
     query: promotedQuery,
     multi: true
   });
-
-  if (!data && !error) {
-    return <LoadingSpinner />;
-  }
-
-  if (error || initializationError|| data.error) {
-    return <ResultsError error={error||initializationError||data.error} />;
-  }
-
-  const [promotedResponse, baseResponse] = data.responses;
-
-  // Typecheck and combine totals from both queries
-  const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
-  const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
-  const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
-
-  if (total <= 0) {
-    return <NoResults />;
-  }
-
-  const pages = Math.floor(total / size);
-  const addLastPage = total > size && total % size;
-
-  // Typecheck and combine job totals (aggregated vacancies)
-  const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const jobs = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
   };
 
-  const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
+  const getResults = () => {
+    if (!data && !error) {
+      return;
+    }
+  
+    if (error || initializationError|| data.error) {
+      return <ResultsError error={error||initializationError||data.error} />;
+    }
+  
+    const [promotedResponse, baseResponse] = data.responses;
+  
+    // Typecheck and combine totals from both queries
+    const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
+    const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
+    const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
+  
+    if (total <= 0) {
+      return <NoResults />;
+    }
+  
+    const pages = Math.floor(total / size);
+    const addLastPage = total > size && total % size;
+  
+    // Typecheck and combine job totals (aggregated vacancies)
+    const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+    const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+    const jobs = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
+    const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
 
-  return (
-    <div className='job-search__results' id='results-container'>
+    return (
+      <>
         <div className='job-search__results-stats'>
           <ResultsCount
             jobs={jobs}
@@ -80,6 +82,15 @@ const PromotedResultsContainer = ({ promoted }: PromotedResultsContainerProps) =
           totalPages={addLastPage ? pages + 1 : pages}
           updatePage={updatePage}
         />
+      </>
+    );
+  };
+
+  return (
+    <div className='job-search__results' id='results-container'>
+      <ResultWrapper loading={isLoading || isValidating}>
+        {getResults()}
+      </ResultWrapper>
     </div>
   );
 };
