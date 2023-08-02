@@ -27,6 +27,7 @@
   {% embed '@hdbt/component/card.twig' with {
     card_modifier_class: card_hearing_classes|join(' '),
     card_title: label,
+    card_title_lang: node.default_langcode.langcode,
     card_image: content.field_hearing_main_image,
     card_url: content.field_url['0']['#url'].uri,
     card_url_external: true,
