@@ -3,7 +3,7 @@ import { atom } from 'jotai';
 import CustomIds from './enum/CustomTermIds';
 import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
-import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, TASK_AREA_OPTIONS } from './query/queries';
+import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, PROMOTED_IDS, TASK_AREA_OPTIONS } from './query/queries';
 import type OptionType from './types/OptionType';
 import type Result from '@/types/Result';
 import type Term from './types/Term';
@@ -99,6 +99,7 @@ type configurations = {
   employmentSearchIds: any,
   employmentType: any,
   languages: any,
+  promoted: any
 };
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
@@ -122,6 +123,10 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
     ndjsonHeader 
     }\n${ 
     JSON.stringify(LANGUAGE_OPTIONS) 
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(PROMOTED_IDS)
     }\n`;
 
   return fetch(`${url}/_msearch`, {
@@ -147,10 +152,11 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
         employmentSearchIds: [],
         employmentType: [],
         languages: [],
+        promoted: [],
       };
     }
 
-    const [aggs, taskAreas, employmentOptions, languages] = responses;
+    const [aggs, taskAreas, employmentOptions, languages, promoted] = responses;
 
     return {
       error: null,
@@ -161,6 +167,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
       employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
       employmentType: aggs?.aggregations?.employment_type?.buckets || [],
       languages: languages?.aggregations?.languages?.buckets || [],
+      promoted: promoted?.aggregations?.promoted?.buckets || [],
     };
   });
 });

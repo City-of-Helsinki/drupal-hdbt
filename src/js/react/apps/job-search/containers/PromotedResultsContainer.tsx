@@ -15,17 +15,13 @@ import ResultsList from '../components/results/ResultsList';
 import Pagination from '@/react/common/Pagination';
 import ResultWrapper from '@/react/common/ResultWrapper';
 
-type PromotedResultsContainerProps = {
-  promoted: number[];
-}
-
-const PromotedResultsContainer = ({ promoted }: PromotedResultsContainerProps) => {
+const PromotedResultsContainer = () => {
   const { size } = Global;
   const urlParams: URLParams = useAtomValue(urlAtom);
   const currentPage = useAtomValue(pageAtom);
   const setPage = useSetAtom(setPageAtom);
   const { error: initializationError } = useAtomValue(configurationsAtom);
-  const promotedQuery = usePromotedQuery(promoted, urlParams);
+  const promotedQuery = usePromotedQuery(urlParams);
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
     query: promotedQuery,

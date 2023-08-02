@@ -1,8 +1,10 @@
+import { useAtomValue } from 'jotai';
 import SimpleResultsContainer from './SimpleResultsContainer';
 import PromotedResultsContainer from './PromotedResultsContainer';
+import { configurationsAtom } from '../store';
 
 const ResultsContainer = () => {
-  const promoted = drupalSettings.helfi_rekry_job_search?.promoted_ids;
+  const { promoted } = useAtomValue(configurationsAtom);
 
   // useEffect(() => {
   //   const el = document.getElementById('results-container');
@@ -17,8 +19,8 @@ const ResultsContainer = () => {
   //   }
   // }, [data]);
 
-  return promoted ?
-    <PromotedResultsContainer promoted={promoted} /> :
+  return promoted?.length ?
+    <PromotedResultsContainer /> :
     <SimpleResultsContainer />;
 };
 
