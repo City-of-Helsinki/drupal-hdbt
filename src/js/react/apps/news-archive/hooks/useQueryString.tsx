@@ -44,7 +44,12 @@ const useQueryString = (urlParams: URLParams) => {
   return JSON.stringify({
     size,
     from: size * (page - 1),
-    query
+    query,
+    sort: [
+      {
+        [IndexFields.PUBLISHED_AT]: 'desc'
+      }
+    ]
   });
 };
 
