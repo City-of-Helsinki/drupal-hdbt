@@ -1,7 +1,6 @@
 import { atom } from 'jotai';
 
 import CustomIds from './enum/CustomTermIds';
-import bucketToMap from '@/react/common/helpers/Aggregations';
 import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
 import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, TASK_AREA_OPTIONS } from './query/queries';
@@ -9,6 +8,20 @@ import type OptionType from './types/OptionType';
 import type Result from './types/Result';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
+import AggregationItem from './types/AggregationItem';
+
+// Make maps out of bucket responses
+const bucketToMap = (bucket: AggregationItem[]) => {
+  const result = new Map();
+
+  bucket.forEach(item => {
+    if (item?.unique?.value) {
+      result.set(item.key, item.unique.value);
+    }
+  });
+
+  return result;
+};
 
 const getParams = (searchParams: URLSearchParams) => {
   const params: { [k: string]: any } = {};
