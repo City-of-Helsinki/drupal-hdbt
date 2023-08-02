@@ -12,6 +12,14 @@
     {% set descriptive_lang_dir = current_language_dir %}
   {% endif %}
 
+  {% if alternative_language %}
+    {% set descriptive_lang = lang_attributes.fallback_lang %}
+    {% set descriptive_lang_dir = lang_attributes.fallback_dir %}
+  {% else %}
+    {% set descriptive_lang = current_langcode %}
+    {% set descriptive_lang_dir = current_language_dir %}
+  {% endif %}
+
   {% if 'data-selected-icon' in url.options.attributes|keys %}
     {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
   {% endif %}
