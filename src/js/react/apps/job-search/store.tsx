@@ -18,6 +18,9 @@ const bucketToMap = (bucket: AggregationItem[]) => {
     if (item?.unique?.value) {
       result.set(item.key, item.unique.value);
     }
+    else {
+      result.set(item.key, item.doc_count);
+    }
   });
 
   return result;
