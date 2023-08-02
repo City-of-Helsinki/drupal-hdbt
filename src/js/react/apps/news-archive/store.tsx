@@ -1,7 +1,6 @@
 import { atom } from 'jotai';
 import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
-import OptionType from '@/types/OptionType';
 
 const params = new NewsSearchParams(window.location.search);
 

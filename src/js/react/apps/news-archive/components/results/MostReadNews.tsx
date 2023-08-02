@@ -1,3 +1,5 @@
+import parse from 'html-react-parser';
+
 const MostReadNews = () => {
   const mostReadBlocks = (document.querySelector('noscript.most-read-news') as HTMLElement)?.innerText;
 
@@ -5,7 +7,7 @@ const MostReadNews = () => {
     return null;
   }
 
-  return <div className='layout-sidebar-second' dangerouslySetInnerHTML={{ __html: mostReadBlocks.trim() }} />;
+  return <div className='layout-sidebar-second'>{parse(mostReadBlocks.trim())}</div>;
 };
 
 export default MostReadNews;
