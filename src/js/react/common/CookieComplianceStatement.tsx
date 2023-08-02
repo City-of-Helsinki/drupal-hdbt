@@ -1,4 +1,3 @@
-import { Button } from 'hds-react';
 import ExternalLink from './ExternalLink';
 
 type CookiCookieComplianceStatementProps = {

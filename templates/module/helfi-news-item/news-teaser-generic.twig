@@ -1,4 +1,10 @@
-<div{{ attributes.addClass('news-listing__content', class) }}">
+{%
+  set default_classes = [
+    not node.isPublished() ? 'news-listing__content--unpublished',
+  ]
+%}
+
+<div{{ attributes.addClass('news-listing__content', default_classes, class) }}">
   {# Short title or Title #}
   <{{ heading_level }} class="news-listing__title">
     {% set link_attributes = {

@@ -329,8 +329,8 @@ msgid "Close Information in other languages menu"
 msgstr "Sulje tietoa muilla kielillä valikko"
 
 msgctxt "Other languages-navigation"
-msgid "Information in other languages"
-msgstr "Tietoa muilla kielillä"
+msgid "Information in other languages menu"
+msgstr "Tietoa muilla kielillä valikko"
 
 msgctxt "Search: remove item aria label"
 msgid "Remove @item from search results"
@@ -552,3 +552,66 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "Sivuillamme esitetään toistaiseksi vain osa Helsingin hankkeista ja asuinalueista. Voit kokeilla uudestaan poistamalla jonkin rajausehdoista tai aloittamalla alusta."
 
+msgctxt "News archive filter results heading"
+msgid "Filter news items"
+msgstr "Suodata uutisia"
+
+msgctxt "News archive heading"
+msgid "All news items"
+msgstr "Kaikki uutiset"
+
+msgctxt "News archive heading"
+msgid "News based on your choices"
+msgstr "Uutiset valintojesi perusteella"
+
+msgctxt "News archive clear button aria label"
+msgid "Clear selection"
+msgstr "Tyhjennä kaikki valinnat"
+
+msgctxt "News archive remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
+
+msgctxt "News archive topics label"
+msgid "Topics"
+msgstr "Aiheet"
+
+msgctxt "News archive topics placeholder"
+msgid "All topics"
+msgstr "Kaikki aiheet"
+
+msgctxt "News archive neighbourhoods label"
+msgid "City disctricts"
+msgstr "Kaupunginosat"
+
+msgctxt "News archive neighbourhoods placeholder"
+msgid "All city disctricts"
+msgstr "Kaikki kaupunginosat"
+
+msgctxt "News archive groups label"
+msgid "Target groups"
+msgstr "Kohderyhmät"
+
+msgctxt "News archive groups placeholder"
+msgid "All target groups"
+msgstr "Kaikki kohderyhmät"
+
+msgctxt "News archive clear selections"
+msgid "Clear selections"
+msgstr "Tyhjennä valinnat"
+
+msgctxt "News archive no results"
+msgid "No results found"
+msgstr "Ei tuloksia"
+
+msgctxt "News archive open dropdown aria label"
+msgid "Open the combobox"
+msgstr "Avaa alasvetovalikko"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to all news as RSS feed"
+msgstr "Tilaa kaikkien uutisten RSS-syöte"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to RSS feed of news based on your choices"
+msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"

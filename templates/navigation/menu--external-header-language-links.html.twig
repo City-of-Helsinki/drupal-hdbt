@@ -54,11 +54,11 @@
     <li>
       {{ _self.link_render(item) }}
       {% if item.below %}
-        <div class="headerlanguagelinks__group">
+        <ul class="headerlanguagelinks__group">
           {% for below in item.below %}
-            {{ _self.link_render(below) }}
+            <li>{{ _self.link_render(below) }}</li>
           {% endfor %}
-        </div>
+        </ul>
       {% endif %}
     </li>
   {% endfor %}
