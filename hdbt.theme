@@ -1638,14 +1638,4 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   }
 
   $variables['#attached']['library'][] = 'hdbt/job-search';
-
-  $promoted_query = \Drupal::entityQuery('node')
-    ->condition('type', 'job_listing')
-    ->condition('field_promoted', TRUE);
-
-  $promoted_ids = $promoted_query->execute();
-  
-  if ($promoted_ids) {
-    $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['promoted_ids'] = array_values($promoted_ids);
-  }
 }

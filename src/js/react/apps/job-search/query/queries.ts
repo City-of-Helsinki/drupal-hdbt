@@ -28,6 +28,34 @@ const termSubAgg = {
   }
 };
 
+export const PROMOTED_IDS = {
+  aggs: {
+    promoted: {
+      terms: {
+        field: IndexFields.NID,
+        size: 100,
+      }
+    }
+  },
+  query: {
+    bool: {
+      filter: [nodeFilter],
+      must: [
+        {
+          term: {
+            [IndexFields.PROMOTED]: true,
+          }
+        },
+        {
+          term: {
+            [IndexFields.COPIED]: false
+          }
+        }
+      ]
+    }
+  }
+};
+
 // Base aggregations
 export const AGGREGATIONS = {
   aggs: {

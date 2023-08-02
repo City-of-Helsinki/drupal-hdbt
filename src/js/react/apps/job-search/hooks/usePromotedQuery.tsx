@@ -3,15 +3,15 @@ import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
 import useQueryString from './useQueryString';
 
-const usePromotedQuery = (promoted: number[], urlParams: URLParams): string => {
+const usePromotedQuery = (urlParams: URLParams): string => {
   const { size } = Global;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const baseQuery = useQueryString(urlParams, promoted);
+  const baseQuery = useQueryString(urlParams);
   const promotedQuery = JSON.parse(baseQuery);
   
   const promotedClause = {
-    terms: {
-      [IndexFields.NID]: promoted
+    term: {
+      [IndexFields.PROMOTED]: true
     }
   };
 

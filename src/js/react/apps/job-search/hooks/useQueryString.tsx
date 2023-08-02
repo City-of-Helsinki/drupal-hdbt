@@ -1,11 +1,14 @@
+import { useAtomValue } from 'jotai';
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import { nodeFilter } from '../query/queries';
 import URLParams from '../types/URLParams';
+import { configurationsAtom } from '../store';
 
-const useQueryString = (urlParams: URLParams, promoted: number[] = []): string => {
+const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
+  const { promoted } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [{
     // Legacy sanity check, make sure forced translations aren't included
@@ -17,17 +20,14 @@ const useQueryString = (urlParams: URLParams, promoted: number[] = []): string =
           },
         },
       ],
+      must_not: {
+        term: {
+          [IndexFields.PROMOTED]: true
+        }
+      }
     }
   }];
   const should = [];
-
-  if (promoted) {
-    must[0].bool.must_not = {
-      terms: {
-        [IndexFields.NID]: promoted
-      }
-    };
-  }
 
   if (urlParams.keyword && urlParams.keyword.length > 0) {
     must.push({
