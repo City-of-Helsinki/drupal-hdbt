@@ -161,7 +161,19 @@ const useQueryString = (urlParams: URLParams): string => {
     },
   };
 
-  const sort = urlParams?.sort === sortOptions.newestFirst ? closing : newest;
+  const getSort = () => {
+    if (urlParams?.sort === sortOptions.closing) {
+      return closing;
+    }
+    if (urlParams?.sort === sortOptions.newestFirst) {
+      return newest;
+    }
+
+    // Sort by newest by default
+    return newest;
+  };
+
+  const sort = getSort();
 
   const getSizeFrom = () => {
     if (!promoted.length) {

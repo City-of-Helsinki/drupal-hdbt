@@ -22,7 +22,7 @@ const usePromotedQuery = (urlParams: URLParams): string => {
 
   const ndJsonHeader = '{}';
 
-  return `${ndJsonHeader  }\n${  JSON.stringify(promotedQuery)  }\n${  ndJsonHeader  }\n${  baseQuery  }\n`;
+  return `${ndJsonHeader}\n${JSON.stringify(promotedQuery)}\n${ndJsonHeader}\n${baseQuery}\n`;
 };
 
 export default usePromotedQuery;

@@ -35,7 +35,6 @@ declare namespace drupalSettings {
   const helfi_rekry_job_search: {
     elastic_proxy_url: string;
     results_page_path: string;
-    promoted_ids?: number[];
   };
   const helfi_kymp_district_project_search: {
     elastic_proxy_url: string;
