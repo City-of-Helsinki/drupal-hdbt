@@ -1,10 +1,15 @@
+import { ForwardedRef, forwardRef } from 'react';
+
 type ResultsCountProps = {
   jobs?: number;
   total?: number;
 };
 
-const ResultsCount = ({ jobs, total }: ResultsCountProps) => (
-    <div className='job-listing-search__count-container'>
+const ResultsCount = forwardRef((props: ResultsCountProps, ref: ForwardedRef<HTMLDivElement>) => {
+  const { jobs, total } = props;
+
+  return (
+    <div className='job-listing-search__count-container' ref={ref}>
       {!Number.isNaN(jobs) && !Number.isNaN(total) && (
         <>
           <span className='job-listing-search__count'>{jobs}</span>
@@ -18,5 +23,6 @@ const ResultsCount = ({ jobs, total }: ResultsCountProps) => (
       )}
     </div>
   );
+});
 
 export default ResultsCount;

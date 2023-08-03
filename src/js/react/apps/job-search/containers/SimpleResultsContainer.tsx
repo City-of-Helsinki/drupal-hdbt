@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { LoadingSpinner } from 'hds-react';
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, createRef, useEffect } from 'react';
 import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
@@ -19,13 +19,25 @@ const SimpleResultsContainer = () => {
   const { size } = Global;
   const urlParams: URLParams = useAtomValue(urlAtom);
   const query = useQueryString(urlParams);
+  const { error: initializationError } = useAtomValue(configurationsAtom);
+  const setPage = useSetAtom(setPageAtom);
+  const currentPage = useAtomValue(pageAtom);
+  const scrollTarget = createRef<HTMLDivElement>();
+
+  // Scroll to results when they change.
+  const choices = Object.keys(urlParams).length;
+  useEffect(() => {
+    if (scrollTarget?.current && choices) {
+      scrollTarget.current.tabIndex = -1;
+      scrollTarget.current.focus();
+      scrollTarget.current.scrollIntoView({behavior: 'smooth'});
+    }
+  }, [choices, scrollTarget]);
+
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
     query
   });
-  const { error: initializationError } = useAtomValue(configurationsAtom);
-  const setPage = useSetAtom(setPageAtom);
-  const currentPage = useAtomValue(pageAtom);
 
   const getResults = () => {
     if (!data && !error) {
@@ -54,6 +66,7 @@ const SimpleResultsContainer = () => {
           <ResultsCount
             jobs={jobs}
             total={total}
+            ref={scrollTarget}
           />
           <ResultsSort />
         </div>
@@ -74,7 +87,7 @@ const SimpleResultsContainer = () => {
   };
 
   return (
-    <div className='job-search__results' id='results-container'>
+    <div className='job-search__results'>
       <ResultWrapper loading={isLoading || isValidating}>
         {getResults()}
       </ResultWrapper>
