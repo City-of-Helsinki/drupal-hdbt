@@ -178,7 +178,7 @@ const MobilePanel = {
           lang="{{attributes.lang}}"
         {{/hasLang}}
 
-        >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}"></span>{{/externalLinkIcon}}</a>
+        >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}"></span><span class="visually-hidden">({{ text }})</span>{{/externalLinkIcon}}</a>
         {{>sub_tree}}
       </div>
       ${document.querySelector('.js-mmenu__footer')?.outerHTML}
