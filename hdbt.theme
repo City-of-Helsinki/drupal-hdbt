@@ -37,6 +37,7 @@ function hdbt_preprocess(&$variables): void {
   $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
+  $variables['current_language_dir'] = $language->getDirection();
 
   /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
   $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
