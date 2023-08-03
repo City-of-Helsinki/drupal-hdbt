@@ -14,6 +14,7 @@ import ResultsList from '../components/results/ResultsList';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const SimpleResultsContainer = () => {
   const { size } = Global;
@@ -25,14 +26,8 @@ const SimpleResultsContainer = () => {
   const scrollTarget = createRef<HTMLDivElement>();
 
   // Scroll to results when they change.
-  const choices = Object.keys(urlParams).length;
-  useEffect(() => {
-    if (scrollTarget?.current && choices) {
-      scrollTarget.current.tabIndex = -1;
-      scrollTarget.current.focus();
-      scrollTarget.current.scrollIntoView({behavior: 'smooth'});
-    }
-  }, [choices, scrollTarget]);
+  const choices = Boolean(Object.keys(urlParams).length);
+  useScrollToResults(scrollTarget, choices);
 
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
@@ -45,11 +40,11 @@ const SimpleResultsContainer = () => {
     }
   
     if (!data?.hits?.hits.length) {
-      return <NoResults />;
+      return <NoResults ref={scrollTarget} />;
     }
   
     if (error || initializationError) {
-      return <ResultsError {...{error, initializationError}}/>;
+      return <ResultsError error={error||initializationError} ref={scrollTarget}/>;
     }
   
     const results = data.hits.hits;

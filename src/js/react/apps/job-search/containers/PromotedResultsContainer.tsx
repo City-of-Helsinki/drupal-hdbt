@@ -14,6 +14,7 @@ import ResultsCount from '../components/results/ResultsCount';
 import ResultsList from '../components/results/ResultsList';
 import Pagination from '@/react/common/Pagination';
 import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const PromotedResultsContainer = () => {
   const { size } = Global;
@@ -25,14 +26,8 @@ const PromotedResultsContainer = () => {
   const scrollTarget = createRef<HTMLDivElement>();
 
   // Scroll to results when they change.
-  const choices = Object.keys(urlParams).length;
-  useEffect(() => {
-    if (scrollTarget?.current && choices) {
-      scrollTarget.current.tabIndex = -1;
-      scrollTarget.current.focus();
-      scrollTarget.current.scrollIntoView({behavior: 'smooth'});
-    }
-  }, [choices, scrollTarget]);
+  const choices = Boolean(Object.keys(urlParams).length);
+  useScrollToResults(scrollTarget, choices);
 
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
@@ -51,7 +46,12 @@ const PromotedResultsContainer = () => {
     }
   
     if (error || initializationError|| data.error) {
-      return <ResultsError error={error||initializationError||data.error} />;
+      return (
+        <ResultsError
+          error={error||initializationError||data.error}
+          ref={scrollTarget}
+        />
+      );
     }
   
     const [promotedResponse, baseResponse] = data.responses;
@@ -62,7 +62,7 @@ const PromotedResultsContainer = () => {
     const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
   
     if (total <= 0) {
-      return <NoResults />;
+      return <NoResults ref={scrollTarget} />;
     }
   
     const pages = Math.floor(total / size);
