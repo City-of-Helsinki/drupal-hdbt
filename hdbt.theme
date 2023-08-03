@@ -1733,7 +1733,7 @@ function hdbt_preprocess_node__hearing(array &$variables) {
   // Check that if the displayed hearing node is of different language version
   // than the current page language.
   if (!array_key_exists($language, $language_versions)) {
-    $available_languages = array();
+    $available_languages = [];
 
     foreach ($language_versions as $language_version) {
       // We need to assign the language names here manually because
@@ -1743,9 +1743,11 @@ function hdbt_preprocess_node__hearing(array &$variables) {
         case 'en':
           $available_languages[] = 'English';
           break;
+
         case 'fi':
           $available_languages[] = 'Finnish';
           break;
+
         case 'sv':
           $available_languages[] = 'Swedish';
           break;
