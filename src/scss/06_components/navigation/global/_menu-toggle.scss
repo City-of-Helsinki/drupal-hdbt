@@ -53,7 +53,7 @@
   @include breakpoint($breakpoint-m) {
     & ~ * .language-wrapper {
       display: flex;
-    } // This breakpoint needs to be in sync with branding navigation lang button position breakpoint
+    } // This breakpoint needs to be in sync with header branding lang button position breakpoint
   }
 }
 

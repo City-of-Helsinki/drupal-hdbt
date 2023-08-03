@@ -183,3 +183,11 @@ district-and-project-search:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+news-archive:
+  version: 1.x
+  js:
+    dist/js/news-archive.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

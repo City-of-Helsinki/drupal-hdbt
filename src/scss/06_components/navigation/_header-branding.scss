@@ -1,0 +1,65 @@
+$-branding-icon-size-desktop: $spacing-double;
+
+.header-branding {
+  --branding-height: 65px;
+  --header-branding-padding: #{$spacing};
+  background-color: $color-white;
+  display: grid;
+  grid-template-areas:
+    '. logo . search toggle profile .'
+    'menu menu menu menu menu menu menu'
+    'lang lang lang lang lang lang lang'
+    'langmenu langmenu langmenu langmenu langmenu langmenu langmenu';
+  grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto var(--header-branding-padding);
+  grid-template-rows: var(--branding-height) min-content min-content min-content;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+  @include breakpoint($breakpoint-m) {
+    --branding-height: 86px;
+    --header-branding-padding: #{$spacing-and-half};
+    grid-template-areas:
+      '. logo . lang search toggle profile .'
+      'langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu'
+      'menu menu menu menu menu menu menu menu';
+    grid-template-columns: var(--header-branding-padding) auto 1fr auto auto auto auto var(--header-branding-padding);
+    grid-template-rows: var(--branding-height) auto;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    grid-template-areas:
+      '. logo . lang search toggle profile .'
+      'langmenu langmenu langmenu langmenu . . . .'
+      'menu menu menu menu menu menu menu menu';
+  }
+
+  @include breakpoint($breakpoint-m) {
+    position: relative;
+    top: auto;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    --header-branding-padding: #{$spacing-double};
+  }
+
+  &::before {
+    align-self: end;
+    background-color: $color-white;
+    border-bottom: 1px solid $color-black-20;
+    content: '';
+    grid-column: 1 / -1; // Full width
+    grid-row: 1 / span 1; // First row
+    height: 100%;
+    z-index: 1;
+
+    @include breakpoint($breakpoint-m) {
+      height: 0;
+    }
+  }
+
+  .toolbar-vertical & {
+    top: var(--drupal-toolbar-height);
+  }
+}
