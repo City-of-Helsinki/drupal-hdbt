@@ -1677,29 +1677,27 @@ function hdbt_preprocess_node__hearing(array &$variables) {
   if (!array_key_exists($language, $language_versions)) {
     $available_languages = [];
 
-    foreach ($language_versions as $language_version) {
-      // We need to assign the language names here manually because
-      // $language_version->getName() provides the localized name, and it will
-      // mess up the string that is passed to be translated.
-      switch ($language_version->getId()) {
-        case 'en':
-          $available_languages[] = 'English';
-          break;
-
-        case 'fi':
-          $available_languages[] = 'Finnish';
-          break;
-
-        case 'sv':
-          $available_languages[] = 'Swedish';
-          break;
-      }
+    // This is ugly, I know but after discussing this we were able
+    // to come up only with this as viable solution. We need to assign
+    // the translateable string here manually because we need to pass a
+    // string to the t() function and not a variable.
+    if(array_key_exists("fi", $language_versions) && array_key_exists("en", $language_versions) && count($language_versions) === 2) {
+      $variables['available_in_languages'] = t('Hearing only available in Finnish and English', [], ['context' => 'Hearing available in languages']);
     }
-
-    // Sort the array so that the languages are always in the same order when
-    // we create the $available_in_languages string.
-    sort($available_languages);
-    $available_in_languages = 'Hearing only available in ' . implode(" and ", $available_languages);
-    $variables['available_in_languages'] = t($available_in_languages, [], ['context' => 'Hearing available in languages']);
+    if(array_key_exists("fi", $language_versions) && array_key_exists("sv", $language_versions) && count($language_versions) === 2) {
+      $variables['available_in_languages'] = t('Hearing only available in Finnish and Swedish', [], ['context' => 'Hearing available in languages']);
+    }
+    if(array_key_exists("en", $language_versions) && array_key_exists("sv", $language_versions) && count($language_versions) === 2) {
+      $variables['available_in_languages'] = t('Hearing only available in English and Swedish', [], ['context' => 'Hearing available in languages']);
+    }
+    if(array_key_exists("fi", $language_versions) && count($language_versions) === 1) {
+      $variables['available_in_languages'] = t('Hearing only available in Finnish', [], ['context' => 'Hearing available in languages']);
+    }
+    if(array_key_exists("en", $language_versions) && count($language_versions) === 1) {
+      $variables['available_in_languages'] = t('Hearing only available in English', [], ['context' => 'Hearing available in languages']);
+    }
+    if(array_key_exists("sv", $language_versions) && count($language_versions) === 1) {
+      $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
+    }
   }
 }
