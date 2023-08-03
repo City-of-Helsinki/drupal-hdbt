@@ -1,8 +1,11 @@
-{%
-  set default_classes = [
-    not node.isPublished() ? 'news-listing__content--unpublished',
-  ]
-%}
+{# External entities don't have published state so check that the printed entity is node #}
+{% if node is not null %}
+  {%
+    set default_classes = [
+      not node.isPublished() ? 'news-listing__content--unpublished',
+    ]
+  %}
+{% endif %}
 
 <div{{ attributes.addClass('news-listing__content', default_classes, class) }}">
   {# Short title or Title #}
