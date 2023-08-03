@@ -1,5 +1,5 @@
 type ResultsErrorProps = {
-  error: any;
+  error: string|Error;
 }
 
 const ResultsError = ({ error }: ResultsErrorProps ) => {
