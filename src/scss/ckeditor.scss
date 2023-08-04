@@ -10,10 +10,191 @@
 @import '02_mixins/_index';
 
 // /* Content is created after this point */
-@import '03_generic/_index';
-@import '04_elements/_index';
+
+// We can't bring everything from generic folder anymore since the CKEditor is no longer in an iframe.
+// That is why we pick the two that we know we need and that don't have styles that would break the admin-theme.
+@import '03_generic/_colors';
+@import '03_generic/_fonts';
 @import '05_objects/_index';
 @import '06_components/paragraphs/text';
+
+// Since we can't import the '03_generic/__index' and '04_elements/_index' here since the CKEditor is no longer in an
+// iframe the required styles are rewritten here with a prefix.
+
+// 04_generic/_base.scss
+.ck-content {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: $body-bg-color;
+  color: $color-black-90;
+  display: flex;
+  flex-direction: column;
+  font-family: $base-font-family;
+  font-size: 1rem;
+  line-height: $base-line-height;
+}
+
+// 04_elements/_figure.scss
+.ck-content figure {
+  margin: 0;
+}
+
+// 04_elements/_list.scss
+.ck-content ul, ol {
+  margin-bottom: $spacing-and-half;
+  margin-left: 0;
+  margin-top: $spacing-and-half;
+  padding-left: $spacing-double;
+
+  ul, ol {
+    margin-bottom: 0;
+    margin-top: $spacing;
+  }
+}
+
+.ck-content li {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.ck-content li + li {
+  margin-top: $spacing;
+}
+
+// 04_elements/_table.scss
+.ck-content table {
+  background-color: $color-white;
+  border: 1px solid $color-black-60;
+  border-spacing: 0;
+  display: block;
+  margin: $spacing-double 0;
+  max-width: fit-content;
+  overflow-x: auto;
+  table-layout: fixed;
+  white-space: nowrap;
+
+  caption {
+    @include font('body');
+    background-color: $color-black;
+    color: $color-white;
+    padding: $spacing-double $spacing;
+    text-align: start;
+  }
+}
+
+.ck-content thead {
+  background-color: $color-black;
+
+  th {
+    @include font('small');
+    color: $color-white;
+    font-weight: $font-weight-medium;
+    min-width: 140px;
+    padding: $spacing;
+    text-align: start;
+    vertical-align: middle;
+    white-space: normal;
+
+    p {
+      font-size: inherit;
+      font-weight: inherit;
+      margin: 0;
+    }
+  }
+}
+
+.ck-content tbody,
+.ck-content tfoot {
+  background-color: $color-white;
+
+  tr {
+    background-color: $color-white;
+
+    &:hover,
+    &:active {
+      background-color: $color-black-5;
+    }
+
+    th,
+    td {
+      @include font('small');
+      color: $hdbt-color-black;
+      min-width: 140px;
+      padding: $spacing;
+      text-align: start;
+      vertical-align: middle;
+      white-space: normal;
+    }
+
+    th {
+      background-color: $color-black;
+      color: $color-white;
+      font-weight: $font-weight-medium;
+    }
+
+    // Row border-color.
+    &:not(:last-of-type) {
+      td {
+        border-bottom: 1px solid $color-black-10;
+      }
+    }
+  }
+
+  tr th p,
+  tr td p {
+    margin: 0;
+
+    & + p {
+      margin: $spacing 0 0;
+    }
+  }
+}
+
+// 04_elements/_typography.scss
+.ck-content h1,
+.ck-content h2,
+.ck-content h3,
+.ck-content h4,
+.ck-content h5,
+.ck-content h6 {
+  margin-bottom: 0;
+  margin-top: $spacing-triple;
+}
+
+.ck-content  h1 {
+  @include font('h1');
+}
+
+.ck-content h2 {
+  @include font('h2');
+}
+
+.ck-content h3 {
+  @include font('h3');
+}
+
+.ck-content h4 {
+  @include font('h4');
+}
+
+.ck-content h5 {
+  @include font('h5');
+}
+
+.ck-content h6 {
+  @include font('h6');
+}
+
+.ck-content a {
+  color: var(--hdbt-default-link-color);
+  overflow-wrap: break-word;
+}
+
+.ck-content p {
+  margin-bottom: 0;
+  margin-top: $spacing;
+  overflow-wrap: break-word;
+}
 
 [data-selected-icon]::before,
 [data-is-external]::after,
@@ -83,4 +264,13 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-ex
 [data-is-external].hds-button--primary .hds-button__label:only-child,
 [data-is-external].hds-button--secondary .hds-button__label:only-child {
   margin-right: 0;
+}
+
+// CKEditor5 overrides.
+.ck-editor .ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+  flex-wrap: wrap;
+}
+
+.ck-editor .ck.ck-toolbar>.ck-toolbar__items>:not(.ck-toolbar__line-break) {
+  margin-right: var(--ck-spacing-tiny);
 }
