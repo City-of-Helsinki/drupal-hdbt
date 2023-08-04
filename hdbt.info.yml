@@ -35,7 +35,7 @@ libraries-extend:
   core/drupal.ajax:
     - hdbt/throbber
 
-ckeditor_stylesheets:
+ckeditor5-stylesheets:
   - dist/css/hdbt-icons.css
   - dist/css/ckeditor-icons.css
   - dist/css/ckeditor.min.css
