@@ -16,13 +16,13 @@
 @import '03_generic/_colors';
 @import '03_generic/_fonts';
 @import '05_objects/_index';
-@import '06_components/paragraphs/text';
 
 // Since we can't import the '03_generic/__index' and '04_elements/_index' here since the CKEditor is no longer in an
 // iframe the required styles are rewritten here with a prefix.
 
-// 04_generic/_base.scss
+// Text paragraph styles as written in 04_generic/_base.scss and '06_components/paragraphs/text'.
 .ck-content {
+  @include font('body');
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: $body-bg-color;
@@ -30,8 +30,10 @@
   display: flex;
   flex-direction: column;
   font-family: $base-font-family;
-  font-size: 1rem;
-  line-height: $base-line-height;
+
+  > div {
+    max-width: $content-width-max;
+  }
 }
 
 // 04_elements/_figure.scss
@@ -40,7 +42,8 @@
 }
 
 // 04_elements/_list.scss
-.ck-content ul, ol {
+.ck-content ul,
+.ck-content ol {
   margin-bottom: $spacing-and-half;
   margin-left: 0;
   margin-top: $spacing-and-half;
@@ -61,32 +64,48 @@
   margin-top: $spacing;
 }
 
+// CKEditor5 overrides.
+.ck-editor .ck-content ul {
+  list-style-type: disc;
+}
+
 // 04_elements/_table.scss
-.ck-content table {
+// The CKEditor table element dom is quite different from what the end result will be once the node is saved
+// so the styles needed quite a bit adjusting. When the table styles are updated remember to update these as well.
+// Specificity required because of overlapping styles from CKEditor and HDBT-admin theme.
+.ck-editor .ck-content figure.table {
   background-color: $color-white;
-  border: 1px solid $color-black-60;
+  border-collapse: separate;
   border-spacing: 0;
-  display: block;
   margin: $spacing-double 0;
+  outline: 1px solid $color-black-60;
+}
+
+.ck-editor .ck-content figure.table table {
+  border: 0;
+  display: block;
+  margin: 0;
   max-width: fit-content;
   overflow-x: auto;
   table-layout: fixed;
   white-space: nowrap;
-
-  caption {
-    @include font('body');
-    background-color: $color-black;
-    color: $color-white;
-    padding: $spacing-double $spacing;
-    text-align: start;
-  }
 }
 
-.ck-content thead {
+.ck-editor .ck-content figure.table > figcaption {
+  @include font('body');
+  background-color: $color-black;
+  border: 0;
+  color: $color-white;
+  padding: $spacing-double $spacing;
+  text-align: start;
+}
+
+.ck-editor .ck-content figure.table table thead {
   background-color: $color-black;
 
   th {
     @include font('small');
+    background-color: $color-black;
     color: $color-white;
     font-weight: $font-weight-medium;
     min-width: 140px;
@@ -103,12 +122,13 @@
   }
 }
 
-.ck-content tbody,
-.ck-content tfoot {
+.ck-editor .ck-content figure.table table tbody,
+.ck-editor .ck-content figure.table table tfoot {
   background-color: $color-white;
 
   tr {
     background-color: $color-white;
+    border: 0;
 
     &:hover,
     &:active {
@@ -120,7 +140,6 @@
       @include font('small');
       color: $hdbt-color-black;
       min-width: 140px;
-      padding: $spacing;
       text-align: start;
       vertical-align: middle;
       white-space: normal;
@@ -130,13 +149,6 @@
       background-color: $color-black;
       color: $color-white;
       font-weight: $font-weight-medium;
-    }
-
-    // Row border-color.
-    &:not(:last-of-type) {
-      td {
-        border-bottom: 1px solid $color-black-10;
-      }
     }
   }
 
@@ -148,6 +160,30 @@
       margin: $spacing 0 0;
     }
   }
+}
+
+// HDBT-admin overrides
+.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody {
+  tr td,
+  tr th {
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    padding: $spacing;
+  }
+
+  // Row border-color.
+  tr:not(:last-of-type) {
+    td {
+      border-bottom: 1px solid $color-black-10;
+    }
+  }
+}
+
+.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table thead tr th,
+.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody tr th {
+  border: 0;
 }
 
 // 04_elements/_typography.scss
@@ -188,6 +224,27 @@
 .ck-content a {
   color: var(--hdbt-default-link-color);
   overflow-wrap: break-word;
+  text-decoration: underline;
+
+  // External link styles
+  &[href^='https://']::after {
+    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
+  }
+
+  // E-mail link styles
+  &[href^='mailto:']::after {
+    @include pseudo-icon('mailto', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
+  }
+
+  // Tel link styles. For some reason tel-links have only # in their href on the editor so I added both here in case
+  // this changes at some point.
+  &[href^='tel:']::after,
+  &[href='#']::after {
+    @include pseudo-icon('tel', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
+  }
 }
 
 .ck-content p {
@@ -273,4 +330,9 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-ex
 
 .ck-editor .ck.ck-toolbar>.ck-toolbar__items>:not(.ck-toolbar__line-break) {
   margin-right: var(--ck-spacing-tiny);
+}
+
+// Gin overrides.
+.quote::before {
+  border-radius: 0;
 }
