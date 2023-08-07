@@ -15,7 +15,7 @@
 // That is why we pick the two that we know we need and that don't have styles that would break the admin-theme.
 @import '03_generic/_colors';
 @import '03_generic/_fonts';
-@import '05_objects/_index';
+@import '05_objects/_quote';
 
 // Since we can't import the '03_generic/__index' and '04_elements/_index' here since the CKEditor is no longer in an
 // iframe the required styles are rewritten here with a prefix.
@@ -23,22 +23,12 @@
 // Text paragraph styles as written in 04_generic/_base.scss and '06_components/paragraphs/text'.
 .ck-content {
   @include font('body');
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  background-color: $body-bg-color;
   color: $color-black-90;
-  display: flex;
-  flex-direction: column;
   font-family: $base-font-family;
 
   > div {
     max-width: $content-width-max;
   }
-}
-
-// 04_elements/_figure.scss
-.ck-content figure {
-  margin: 0;
 }
 
 // 04_elements/_list.scss
@@ -67,6 +57,18 @@
 // CKEditor5 overrides.
 .ck-editor .ck-content ul {
   list-style-type: disc;
+
+  ul {
+    list-style-type: circle;
+  }
+
+  ul ul {
+    list-style-type: square;
+  }
+}
+
+.ck-editor .ck-content ol {
+  list-style-type: decimal;
 }
 
 // 04_elements/_table.scss
@@ -74,9 +76,6 @@
 // so the styles needed quite a bit adjusting. When the table styles are updated remember to update these as well.
 // Specificity required because of overlapping styles from CKEditor and HDBT-admin theme.
 .ck-editor .ck-content figure.table {
-  background-color: $color-white;
-  border-collapse: separate;
-  border-spacing: 0;
   margin: $spacing-double 0;
   outline: 1px solid $color-black-60;
 }
@@ -100,60 +99,52 @@
   text-align: start;
 }
 
-.ck-editor .ck-content figure.table table thead {
+.ck-editor .ck-content figure.table table thead th {
+  @include font('small');
   background-color: $color-black;
+  color: $color-white;
+  font-weight: $font-weight-medium;
+  min-width: 140px;
+  padding: $spacing;
+  text-align: start;
+  vertical-align: middle;
+  white-space: normal;
 
-  th {
-    @include font('small');
-    background-color: $color-black;
-    color: $color-white;
-    font-weight: $font-weight-medium;
-    min-width: 140px;
-    padding: $spacing;
-    text-align: start;
-    vertical-align: middle;
-    white-space: normal;
-
-    p {
-      font-size: inherit;
-      font-weight: inherit;
-      margin: 0;
-    }
+  p {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
   }
 }
 
-.ck-editor .ck-content figure.table table tbody,
-.ck-editor .ck-content figure.table table tfoot {
-  background-color: $color-white;
 
-  tr {
-    background-color: $color-white;
-    border: 0;
+.ck-editor .ck-content figure.table table tbody tr,
+.ck-editor .ck-content figure.table table tfoot tr {
+  border: 0;
 
-    &:hover,
-    &:active {
-      background-color: $color-black-5;
-    }
-
-    th,
-    td {
-      @include font('small');
-      color: $hdbt-color-black;
-      min-width: 140px;
-      text-align: start;
-      vertical-align: middle;
-      white-space: normal;
-    }
-
-    th {
-      background-color: $color-black;
-      color: $color-white;
-      font-weight: $font-weight-medium;
-    }
+  &:hover,
+  &:active {
+    background-color: $color-black-5;
   }
 
-  tr th p,
-  tr td p {
+  th,
+  td {
+    @include font('small');
+    color: $hdbt-color-black;
+    min-width: 140px;
+    text-align: start;
+    vertical-align: middle;
+    white-space: normal;
+  }
+
+  th {
+    background-color: $color-black;
+    color: $color-white;
+    font-weight: $font-weight-medium;
+  }
+
+  th p,
+  td p {
     margin: 0;
 
     & + p {
@@ -166,10 +157,7 @@
 .hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody {
   tr td,
   tr th {
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
+    border: 0;
     padding: $spacing;
   }
 
