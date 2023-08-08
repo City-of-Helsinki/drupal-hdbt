@@ -9,19 +9,14 @@
 @import '01_variables/_index';
 @import '02_mixins/_index';
 
-// /* Content is created after this point */
-
-// We can't bring everything from generic folder anymore since the CKEditor is no longer in an iframe.
-// That is why we pick the two that we know we need and that don't have styles that would break the admin-theme.
-@import '03_generic/_colors';
-@import '03_generic/_fonts';
-@import '05_objects/_quote';
-
-// Since we can't import the '03_generic/__index' and '04_elements/_index' here since the CKEditor is no longer in an
-// iframe the required styles are rewritten here with a prefix.
-
-// Text paragraph styles as written in 04_generic/_base.scss and '06_components/paragraphs/text'.
 .ck-content {
+  @import '03_generic/__index';
+  @import '04_elements/_index';
+
+  // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
+  @import '05_objects/_quote';
+
+  // Text paragraph styles as written in 04_generic/_base.scss and '06_components/paragraphs/text'.
   @include font('body');
   color: $color-black-90;
   font-family: $base-font-family;
@@ -31,30 +26,34 @@
   }
 }
 
-// 04_elements/_list.scss
-.ck-content ul,
-.ck-content ol {
-  margin-bottom: $spacing-and-half;
-  margin-left: 0;
-  margin-top: $spacing-and-half;
-  padding-left: $spacing-double;
+// Additional styling for links.
+// The CKEditor link element dom doesn't have all the elements that the rendered version has so we are adding the
+// icons here for the links so that the links look similar as in the end result.
+.ck-content a {
+  text-decoration: underline;
 
-  ul, ol {
-    margin-bottom: 0;
-    margin-top: $spacing;
+  // External link styles
+  &[href^='https://']::after {
+    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
+  }
+
+  // E-mail link styles
+  &[href^='mailto:']::after {
+    @include pseudo-icon('mailto', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
+  }
+
+  // Tel link styles. For some reason tel-links have only # in their href on the editor so I added both here in case
+  // this changes at some point.
+  &[href^='tel:']::after,
+  &[href='#']::after {
+    @include pseudo-icon('tel', calc(var(--line-height) * 1em), currentColor, inline-block);
+    overflow: hidden;
   }
 }
 
-.ck-content li {
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.ck-content li + li {
-  margin-top: $spacing;
-}
-
-// CKEditor5 overrides.
+// CKEditor5 overrides for lists.
 .ck-editor .ck-content ul {
   list-style-type: disc;
 
@@ -117,7 +116,6 @@
   }
 }
 
-
 .ck-editor .ck-content figure.table table tbody tr,
 .ck-editor .ck-content figure.table table tfoot tr {
   border: 0;
@@ -153,7 +151,7 @@
   }
 }
 
-// HDBT-admin overrides
+// hdbt_admin overrides for table styles.
 .hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody {
   tr td,
   tr th {
@@ -174,72 +172,10 @@
   border: 0;
 }
 
-// 04_elements/_typography.scss
-.ck-content h1,
-.ck-content h2,
-.ck-content h3,
-.ck-content h4,
-.ck-content h5,
-.ck-content h6 {
-  margin-bottom: 0;
-  margin-top: $spacing-triple;
-}
 
-.ck-content  h1 {
-  @include font('h1');
-}
-
-.ck-content h2 {
-  @include font('h2');
-}
-
-.ck-content h3 {
-  @include font('h3');
-}
-
-.ck-content h4 {
-  @include font('h4');
-}
-
-.ck-content h5 {
-  @include font('h5');
-}
-
-.ck-content h6 {
-  @include font('h6');
-}
-
-.ck-content a {
-  color: var(--hdbt-default-link-color);
-  overflow-wrap: break-word;
-  text-decoration: underline;
-
-  // External link styles
-  &[href^='https://']::after {
-    @include pseudo-icon('link-external', calc(var(--line-height) * 1em), currentColor, inline-block);
-    overflow: hidden;
-  }
-
-  // E-mail link styles
-  &[href^='mailto:']::after {
-    @include pseudo-icon('mailto', calc(var(--line-height) * 1em), currentColor, inline-block);
-    overflow: hidden;
-  }
-
-  // Tel link styles. For some reason tel-links have only # in their href on the editor so I added both here in case
-  // this changes at some point.
-  &[href^='tel:']::after,
-  &[href='#']::after {
-    @include pseudo-icon('tel', calc(var(--line-height) * 1em), currentColor, inline-block);
-    overflow: hidden;
-  }
-}
-
-.ck-content p {
-  margin-bottom: 0;
-  margin-top: $spacing;
-  overflow-wrap: break-word;
-}
+// hds-button styles for CKEditor. These are copied from the old CKEditor stylesheet so not sure if they are still
+// usable/needed when the new version is created.
+// TODO: UHF-8489 Check that if these styles are still valid/needed and adjust accordingly.
 
 [data-selected-icon]::before,
 [data-is-external]::after,
@@ -269,7 +205,7 @@ p > a.hds-button.hds-button--supplementary[data-selected-icon]:first-child {
   margin-left: 0;
 }
 
-a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-external='true']):before {
+a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-external='true'])::before {
   content: none;
 }
 
@@ -310,6 +246,7 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon]):not([data-is-ex
 [data-is-external].hds-button--secondary .hds-button__label:only-child {
   margin-right: 0;
 }
+
 
 // CKEditor5 overrides.
 .ck-editor .ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
