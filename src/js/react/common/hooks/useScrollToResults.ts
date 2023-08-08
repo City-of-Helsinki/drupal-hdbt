@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: boolean, ) => {
+const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: boolean) => {
   useEffect(() => {
     const { current } = ref;
 
