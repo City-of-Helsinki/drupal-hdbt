@@ -5,7 +5,7 @@ import UseFeatureQuery from '../hooks/UseFeatureQuery';
 
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
-  const gradeKeys = ['grades_1_6', 'grades_7_9'];
+  const gradeKeys = ['grades_1_6', 'grades_1_9', 'grades_7_9'];
   const query: any = [];
 
   [languageKeys, gradeKeys].forEach((keys) => {
