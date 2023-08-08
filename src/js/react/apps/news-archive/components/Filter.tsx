@@ -11,7 +11,7 @@ type FilterProps = {
   stateKey: keyof URLParams;
 };
 
-const Filter = ({label, stateKey, options, ...rest}: FilterProps) =>  {
+const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
   const [params, setParams] = useAtom(stagedParamsAtom);
   const valueIds = params?.[stateKey] || [];
 
