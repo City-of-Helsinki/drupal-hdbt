@@ -10,6 +10,12 @@
   padding-top: $spacing-double;
 }
 
+.has-sidebar .components--upper .component--react-search {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include component-negative-side-margin;
+  }
+}
+
 // If the event search search is just before footer it needs to function the same way as unit search.
 .layout-main-wrapper > *:last-child .component--react-search:last-child .component__container {
   margin-bottom: -115px; // Enough to get the block under the footer.
