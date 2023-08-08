@@ -55,7 +55,6 @@ function hdbt_preprocess(&$variables): void {
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
-  // @todo Fix this to be independent block as well.
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
