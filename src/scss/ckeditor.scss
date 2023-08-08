@@ -10,7 +10,7 @@
 @import '02_mixins/_index';
 
 .ck-content {
-  @import '03_generic/__index';
+  @import '03_generic/_index';
   @import '04_elements/_index';
 
   // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
