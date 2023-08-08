@@ -14,6 +14,7 @@ import Pagination from '@/react/common/Pagination';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
 import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const ResultsContainer = () => {
   const size = Global.SIZE;
@@ -30,11 +31,7 @@ const ResultsContainer = () => {
     Boolean(urlParams.neighbourhoods?.length) ||
     Boolean(urlParams.topic?.length);
 
-  useEffect(() => {
-    if (resultsContainer.current && choices) {
-      resultsContainer.current.scrollIntoView({behavior: 'smooth'});
-    }
-  }, [choices, resultsContainer]);
+  useScrollToResults(resultsContainer, choices);
 
   const hits = data?.hits?.hits;
   const total = data?.hits.total.value || 0;
