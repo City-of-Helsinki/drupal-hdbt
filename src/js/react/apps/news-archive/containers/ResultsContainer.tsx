@@ -25,13 +25,14 @@ const ResultsContainer = () => {
     keepPreviousData: true,
     query: queryString
   });
-  const resultsContainer = createRef<HTMLDivElement>();
+  const scrollTarget = createRef<HTMLDivElement>();
   const choices =
+    Boolean(urlParams.page) ||
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
     Boolean(urlParams.topic?.length);
 
-  useScrollToResults(resultsContainer, choices);
+  useScrollToResults(scrollTarget, choices);
 
   const hits = data?.hits?.hits;
   const total = data?.hits.total.value || 0;
@@ -78,10 +79,11 @@ const ResultsContainer = () => {
 
   const loading = isLoading || isValidating;
   return (
-    <div className='news-wrapper main-content' ref={resultsContainer}>
+    <div className='news-wrapper main-content'>
       <ResultWrapper className='layout-content' loading={loading}>
         <ResultsHeading
           choices={choices}
+          ref={scrollTarget}
           total={total}
         />
         {getResults()}
