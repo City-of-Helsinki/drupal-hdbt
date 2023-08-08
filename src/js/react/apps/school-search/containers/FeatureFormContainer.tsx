@@ -40,7 +40,7 @@ const FeatureFormContainer = () => {
     setParams(params);
   };
 
-  const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'>> = ['grades_1_6', 'grades_7_9', 'finnish_education', 'swedish_education'];
+  const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'>> = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];
 
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
