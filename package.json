@@ -36,7 +36,6 @@
     "md5": "^2.3.0",
     "mustache": "^4.2.0",
     "normalize.css": "^8.0.1",
-    "postcss": "^8.3.0",
     "postcss-cli": "^10.0.0",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-easy-import": "^4.0.0",
@@ -54,7 +53,7 @@
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
-      "postcss *.scss --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
+      "postcss *.scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
     ],
     "src/js/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
@@ -91,7 +90,7 @@
     "babel-preset-react": "^6.5.0",
     "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
-    "css-declaration-sorter": "^7.0.0",
+    "css-declaration-sorter": "^7.0.3",
     "css-loader": "^6.5.0",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -106,6 +105,7 @@
     "lint-staged": ">=10",
     "mini-css-extract-plugin": "^2.0.0",
     "path-browserify": "^1.0.1",
+    "postcss": "^8.4.27",
     "pre-commit": "^1.2.2",
     "prettier": "^2.7.1",
     "process": "^0.11.10",
