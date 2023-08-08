@@ -11,7 +11,7 @@ type FilterProps = {
   stateKey: keyof URLParams;
 };
 
-const Filter = ({stateKey, options, ...rest}: FilterProps) =>  {
+const Filter = ({label, stateKey, options, ...rest}: FilterProps) =>  {
   const [params, setParams] = useAtom(stagedParamsAtom);
   const valueIds = params?.[stateKey] || [];
 
@@ -39,14 +39,19 @@ const Filter = ({stateKey, options, ...rest}: FilterProps) =>  {
   };
 
   return (
+    /* @ts-ignore */
     <Select
       className='news-form__filter'
       clearable
-      clearButtonAriaLabel={Drupal.t('Clear selection')}
+      clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' })}
+      label={label}
       onChange={onChange}
       multiselect
-      selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item')}
-      /* @ts-ignore */
+      selectedItemRemoveButtonAriaLabel={Drupal.t(
+        'Remove item',
+        {},
+        { context: 'Job search remove item aria label' }
+      )}  
       options={options}
       value={getValue()}
       {...rest}
