@@ -62,7 +62,7 @@ global-styling:
     - hdbt/color-palette
     - hdbt/hdbt-icons
 
-# TODO Convert branding mobile to its own library.
+# TODO: UHF-8773 Convert branding mobile to its own library.
 global-scripting:
   version: 1.x
   js:
