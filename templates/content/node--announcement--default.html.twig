@@ -25,9 +25,9 @@
   <div {{ create_attribute(announcement_attributes) }}>
     <div class="announcement__content">
       {% if content.body|render != null %}
-        <span class="announcenemnt__content-body">
+        <div class="announcenemnt__content-body">
           {{ content.body }}
-        </span>
+        </div>
       {% endif %}
       {% if link != null %}
         <div class="announcement__link">

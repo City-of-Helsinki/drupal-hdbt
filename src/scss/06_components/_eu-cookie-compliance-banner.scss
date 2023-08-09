@@ -112,3 +112,9 @@
 .sliding-popup-bottom {
   width: 100%;
 }
+
+// Patch Siteimprove false positive color contrast issue to reduce noise
+.eu-cookie-compliance-block-form .hds-checkbox__label,
+.eu-cookie-compliance-block-form .description > p {
+  background-color: $color-white;
+}
