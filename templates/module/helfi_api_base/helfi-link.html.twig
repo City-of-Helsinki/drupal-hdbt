@@ -1,3 +1,7 @@
+{#
+  This twig is called only for certain links
+  see conditions in \Drupal\helfi_api_base\Link\LinkProcessor::preRenderLink
+#}
 {% spaceless %}
 
   {% if 'data-selected-icon' in url.options.attributes|keys %}
