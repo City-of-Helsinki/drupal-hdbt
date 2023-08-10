@@ -547,7 +547,7 @@ const MobilePanel = {
     if (!this.toggleButton) {
       throw new Error('No toggle button for JS menu.');
     }
-    // TODO Where is this #menu coming from Maybe name it better?
+    // TODO: UHF-8791 Where is this #menu coming from? Maybe name it better?
     this.menu = document.querySelector('#menu');
     if (!this.menu) {
       // eslint-disable-next-line no-console
