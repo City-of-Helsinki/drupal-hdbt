@@ -80,12 +80,6 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
     transform: rotate(180deg);
   }
 
-  .menu__item--nolink {
-    @include font('body'); // TODO: is this whole selector unnecessary?
-    padding: $spacing-and-half 0;
-    text-decoration: none;
-  }
-
   .menu__link-wrapper {
     align-items: center;
     display: flex;
