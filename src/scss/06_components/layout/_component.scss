@@ -1,7 +1,5 @@
 // Margins between components
 * ~ .components,
-.service__units + .component, // TODO: .service__units should be stripped from extra wrapping divs, so that .component element would be sibling to other components. service page margins were broken otherwise
-.unit__services + .component, // TODO: same as above for unit page where accessibility sentences accordion needs this
 .component ~ .component {
   @include component-margin-top;
 }
