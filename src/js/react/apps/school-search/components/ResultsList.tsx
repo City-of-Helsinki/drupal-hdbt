@@ -24,7 +24,6 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
     return <LoadingSpinner />;
   }
 
-  // @todo: Implement no results message
   if (!data?.hits?.hits.length || error) {
     return (
       <div className='react-search__no-results'>
@@ -46,7 +45,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         <div className='react-search__results-stats'>
           <div className='react-search__count-container'>
             {!Number.isNaN(total) &&
-              <> 
+              <>
                 <span className='react-search__count'>{total}</span>
                 <span> {Drupal.t('schools', {}, {context: 'School search: results statline'})}</span>
               </>
@@ -86,7 +85,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
           updatePage={(e: SyntheticEvent, nextPage: number) => {
             e.preventDefault();
             updatePage(nextPage);
-          }}  
+          }}
         />
       }
     </div>
