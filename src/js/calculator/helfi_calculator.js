@@ -36,7 +36,7 @@ class HelfiCalculator {
       return index(obj[is[0]], is.slice(1), value);
     }
 
-    const lang = drupalSettings.path.currentLanguage || 'fi'; // TODO: Is this lang check ok?
+    const lang = drupalSettings.path.currentLanguage || 'fi';
     const translation = this.translations[key] ? this.translations[key][lang] : null;
     if (translation) {
       return translation.replace(/\$\{.+?\}/g, (match) => {
