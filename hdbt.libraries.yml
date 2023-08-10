@@ -62,7 +62,7 @@ global-styling:
     - hdbt/color-palette
     - hdbt/hdbt-icons
 
-# TODO: UHF-8773 Convert branding mobile to its own library.
+# TODO: UHF-8773 Convert branding mobile to its own library (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8773).
 global-scripting:
   version: 1.x
   js:
