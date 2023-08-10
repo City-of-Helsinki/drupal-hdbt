@@ -1,4 +1,4 @@
-table {
+table:not(.hds-table) {
   background-color: $color-white;
   border: 1px solid $color-black-60;
   border-spacing: 0;
