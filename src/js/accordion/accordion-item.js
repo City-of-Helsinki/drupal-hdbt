@@ -21,7 +21,7 @@ export default class AccordionItem {
     this.setHidden();
     this.addEventListeners();
     // Open accordion element by anchor link.
-    // TODO: UHF-8775 Figure out why javascript cannot find elements at this point.
+    // TODO: UHF-8775 Figure out why javascript cannot find elements at this point (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8775).
     // Possibly due to other timeouts
     setTimeout(()=>{
       this.handleLinkAnchor();

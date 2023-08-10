@@ -1,5 +1,5 @@
 .local-tasks__wrapper {
-  // TODO: UHF-8798 Local tasks are hidden in smaller devices since the design doesn't scale.
+  // TODO: UHF-8798 Local tasks are hidden in smaller devices since the design doesn't scale (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8798).
   display: none;
 
   @include breakpoint($breakpoint-m) {

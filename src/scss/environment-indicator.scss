@@ -2,7 +2,7 @@
 .toolbar .toolbar-menu,
 .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
 .toolbar-lining {
-  // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well
+  // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8774).
   box-shadow: inset 0 -8px 0 var(--bg);
 }
 
@@ -24,16 +24,16 @@
   color: var(--color);
   content: var(--name);
   display: block;
-  font-size: 14px; // TODO: UHF-8774 Get fontsize variable to work in hdbt_admin as well
-  line-height: 1.5; // TODO: UHF-8774 Get lineheight variable to work in hdbt_admin as well
-  padding: 4px 16px; // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well
+  font-size: 14px; // TODO: UHF-8774 Get fontsize variable to work in hdbt_admin as well (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8774).
+  line-height: 1.5; // TODO: UHF-8774 Get lineheight variable to work in hdbt_admin as well (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8774).
+  padding: 4px 16px; // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8774).
   z-index: 3;
 }
 
 .toolbar-tray-horizontal .toolbar-lining::after {
   position: absolute;
   right: 0;
-  top: 24px; // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well
+  top: 24px; // TODO: UHF-8774 Get spacing variable to work in hdbt_admin as well (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8774).
 }
 
 .env-local {
