@@ -30,11 +30,12 @@ const ResultCard = ({
     if (field_main_image_caption && field_main_image_caption.length) {
       return field_main_image_caption[0];
     }
-    if (alt && alt.length) {
-      return alt[0];
+
+    if (!alt?.length || alt[0] === '""') {
+      return '';
     }
 
-    return '';
+    return alt[0];
   };
 
   const getImage = () => {
