@@ -18,10 +18,8 @@
   color: $color-black-90;
   font-family: $base-font-family;
 
-  // This is a div that comes directly after the ck-content class and wraps the whole user edited content
-  // and not a div that is actually written to the content using the editor. Giving the max-width value here
-  // makes sure all the content inside is limited to this max-width.
-  > div {
+  // Giving the max-width value here makes sure all the content inside is limited to this max-width.
+  > * {
     max-width: $content-width-max;
   }
 
