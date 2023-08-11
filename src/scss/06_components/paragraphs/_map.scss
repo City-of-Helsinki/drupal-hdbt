@@ -41,7 +41,6 @@
 
   .responsive-map-container {
     aspect-ratio: 1;
-    height: 0;
     position: relative;
 
     @include breakpoint($breakpoint-s) {
