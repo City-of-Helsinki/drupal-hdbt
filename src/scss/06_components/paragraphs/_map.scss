@@ -1,8 +1,3 @@
-@use 'sass:math';
-
-$-map-aspect-ratio-desktop: math.div(16, 9);
-$-map-aspect-ratio-mobile: 1;
-
 .component--map {
   background-color: $color-silver-light;
 }
@@ -45,12 +40,12 @@ $-map-aspect-ratio-mobile: 1;
   position: relative;
 
   .responsive-map-container {
+    aspect-ratio: 1;
     height: 0;
-    padding-bottom: aspect-ratio-padding($-map-aspect-ratio-mobile);
     position: relative;
 
     @include breakpoint($breakpoint-s) {
-      padding-bottom: aspect-ratio-padding($-map-aspect-ratio-desktop);
+      aspect-ratio: 16/9;
     }
   }
 
