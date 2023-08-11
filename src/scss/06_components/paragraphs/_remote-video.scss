@@ -32,7 +32,6 @@
   .responsive-video-container {
     aspect-ratio: 16/9;
     background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
-    height: 0;
     overflow: hidden;
 
     iframe {
