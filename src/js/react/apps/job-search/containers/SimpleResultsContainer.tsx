@@ -1,6 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { LoadingSpinner } from 'hds-react';
-import { SyntheticEvent, createRef, useEffect } from 'react';
+import { SyntheticEvent, createRef } from 'react';
 import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
@@ -38,15 +37,15 @@ const SimpleResultsContainer = () => {
     if (!data && !error) {
       return;
     }
-  
+
     if (!data?.hits?.hits.length) {
       return <NoResults ref={scrollTarget} />;
     }
-  
+
     if (error || initializationError) {
       return <ResultsError error={error||initializationError} ref={scrollTarget}/>;
     }
-  
+
     const results = data.hits.hits;
     const total = data.aggregations.total_count.value || data.hits.total.value;
     const pages = Math.floor(total / size);
