@@ -1,5 +1,0 @@
-@use "sass:math";
-
-@function aspect-ratio-padding($aspect-ratio) {
-  @return math.div(1, $aspect-ratio) * 100%;
-}
