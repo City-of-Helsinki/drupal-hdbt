@@ -139,6 +139,7 @@ function CardItem({
 
         {cardTags &&
           <div className="card__tags">
+            <h1>asdfgh</h1>
             <Tags tags={cardTags} />
           </div>
         }
