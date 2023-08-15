@@ -1,5 +1,5 @@
 import { Checkbox } from 'hds-react';
-import { SetStateAction, WritableAtom, useAtom, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 
 import { resetParamAtom, updateParamsAtom } from '../store';
 
