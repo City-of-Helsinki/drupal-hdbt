@@ -98,6 +98,18 @@ const getQueryString = (params: SearchParams, page: number) => {
     }];
   };
 
+  const sort: any[] = [
+    {
+      'name.keyword': 'asc'
+    }
+  ];
+
+  if (keyword?.length) {
+    sort.unshift({
+      _score: 'desc'
+    });
+  }
+
   return JSON.stringify({
     aggs: {
       ids: {
@@ -110,14 +122,7 @@ const getQueryString = (params: SearchParams, page: number) => {
     from: size * (page - 1),
     query,
     size,
-    sort: [
-      {
-        _score: 'desc',
-      },
-      {
-        'name.keyword': 'asc'
-      }
-    ]
+    sort,
   });
 };
 
