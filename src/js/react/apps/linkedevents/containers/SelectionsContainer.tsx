@@ -182,7 +182,7 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { context: 'Search: remove item aria label' }
       )}
       className='hdbt-search__remove-selection-button'
-      iconRight={<IconCross />}
+      iconRight={<IconCross className='hdbt-search__remove-selection-icon' />}
       variant='supplementary'
       onClick={clearSelection}
     >
