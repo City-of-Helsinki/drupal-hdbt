@@ -3,7 +3,7 @@ import State from './state';
 import AccordionItem from './accordion-item';
 
 // Listen to hash change.
-window.addEventListener('hashchange', (event) => {
+window.addEventListener('hashchange', () => {
   const {hash} = window.location;
 
   // Look for accordion headers for anchor links.
