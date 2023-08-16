@@ -1,6 +1,5 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { LoadingSpinner } from 'hds-react';
 import SearchContainer from './containers/SearchContainer';
 
 const ROOT_ID = 'helfi-school-search';

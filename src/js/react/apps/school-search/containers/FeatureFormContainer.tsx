@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { Button, Checkbox, TextInput } from 'hds-react';
 import { useState } from 'react';
-import { paramsAtom, stagedParamsAtom, updateParamsAtom } from '../store';
+import { stagedParamsAtom, updateParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 import SelectionsContainer from './SelectionsContainer';
 
