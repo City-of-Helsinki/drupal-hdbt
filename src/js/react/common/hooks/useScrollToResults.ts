@@ -7,7 +7,7 @@ const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: b
     if (current && shouldScrollOnRender) {
       current.setAttribute('tabindex', '0');
       current.focus();
-      current.scrollIntoView({behavior: 'smooth'});
+      current.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
   }, [ref, shouldScrollOnRender]);
 };
