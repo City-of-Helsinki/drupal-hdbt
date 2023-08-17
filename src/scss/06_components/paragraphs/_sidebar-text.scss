@@ -32,7 +32,7 @@
     }
 
     > p {
-      background-color: var(--hdbt-color-palette--secondary);
+      background-color: var(--color-black-5);
       padding: $spacing-and-half $spacing;
     }
 
@@ -61,7 +61,7 @@
   }
 
   ul, ol {
-    background-color: var(--hdbt-color-palette--secondary);
+    background-color: var(--color-black-5);
     padding: $spacing;
 
     li {
@@ -82,7 +82,7 @@
 .sidebar-text--service-links {
   .sidebar-text__text-content {
     > a {
-      background-color: var(--hdbt-color-palette--secondary);
+      background-color: var(--color-black-5);
       display: grid;
       grid-template-columns: 1fr calc(#{$spacing-and-half} + #{$spacing-half});
       margin-top: $spacing;
