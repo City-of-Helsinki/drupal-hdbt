@@ -78,7 +78,7 @@ const SelectionsContainer = ({
         {getPills()}
         <li className='news-form__clear-all'>
           <Button
-            aria-hidden={selectionsExist ? 'true' : 'false'}
+            aria-hidden={selectionsExist ? 'false' : 'true'}
             className='news-form__clear-all-button'
             iconLeft={<IconCross className='news-form__clear-all-icon' />}
             onClick={clearSelections}
