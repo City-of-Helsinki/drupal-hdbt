@@ -1,7 +1,7 @@
 import { LoadingSpinner } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
-import { useEffect, SyntheticEvent } from 'react';
+import { SyntheticEvent, createRef } from 'react';
 
 import Pagination from '@/react/common/Pagination';
 import ResultCard from '../components/results/ResultCard';
@@ -12,6 +12,7 @@ import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import Result from '../types/Result';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -20,6 +21,11 @@ const ResultsContainer = (): JSX.Element => {
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
+  const scrollTarget = createRef<HTMLDivElement>();
+
+  const choices = Boolean(window.location.search?.length);
+  useScrollToResults(scrollTarget, choices);
+
   const fetcher = () => {
     const proxyUrl = drupalSettings?.helfi_kymp_district_project_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
@@ -37,18 +43,6 @@ const ResultsContainer = (): JSX.Element => {
     revalidateOnFocus: false,
   });
 
-  useEffect(() => {
-    const el = document.getElementById('helfi-kymp-district-project-search');
-
-    if (el && window.location.search) {
-      const titleEl = el.querySelector<HTMLElement>('.district-project-search__results');
-      if (!titleEl) return;
-      titleEl.setAttribute('tabindex', '0');
-      titleEl.focus();
-      el.scrollIntoView({ behavior: 'smooth' });
-      titleEl.setAttribute('tabindex', '-1');
-    }
-  }, [data]);
 
   if (!data && !error) {
     return <LoadingSpinner />;
@@ -57,7 +51,7 @@ const ResultsContainer = (): JSX.Element => {
   if (!data?.hits?.hits.length) {
     return (
       <div className="district-project-search__results">
-        <div className='district-project-search__listing__no-results'>
+        <div className='district-project-search__listing__no-results' ref={scrollTarget}>
           <h2>{Drupal.t('Oh no! We did not find anything matching the search terms.', {}, { context: 'District and project search' })}</h2>
           <p>{Drupal.t('Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over.', {}, { context: 'District and project search' })}</p>
         </div>
@@ -73,7 +67,7 @@ const ResultsContainer = (): JSX.Element => {
   if (error || initializationError) {
     console.warn(`Error loading data. ${  error || initializationError}`);
     return (
-      <div className='district-project-search__results'>
+      <div className='district-project-search__results' ref={scrollTarget}>
         {Drupal.t('The website encountered an unexpected error. Please try again later.')}
       </div>
     );
@@ -87,7 +81,7 @@ const ResultsContainer = (): JSX.Element => {
   return (
     <div className="district-project-search__results">
       <div className="district-project-search__results_heading">
-        <div className="district-project-search__count__container">
+        <div className="district-project-search__count__container" ref={scrollTarget}>
           <span className="district-project-search__count">
             <span className="district-project-search__count-total">{total} </span>
             <span className="district-project-search__count-label">{Drupal.t('search results', {}, { context: 'District and project search' })} </span>

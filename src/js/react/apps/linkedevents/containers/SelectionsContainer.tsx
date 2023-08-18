@@ -182,7 +182,7 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { context: 'Search: remove item aria label' }
       )}
       className='hdbt-search__remove-selection-button'
-      iconRight={<IconCross />}
+      iconRight={<IconCross className='hdbt-search__remove-selection-icon' />}
       variant='supplementary'
       onClick={clearSelection}
     >
@@ -207,7 +207,7 @@ const ClearButton = ({ showClearButton, url }: ClearButtonProps) => {
   return (
     <li className='hdbt-search__clear-all'>
       <Button
-        aria-hidden={showClearButton ? 'true' : 'false'}
+        aria-hidden={showClearButton ? 'false' : 'true'}
         className='hdbt-search__clear-all-button'
         iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
         onClick={resetForm}
