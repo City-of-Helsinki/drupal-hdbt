@@ -62,7 +62,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
         {getPills()}
         <li className='hdbt-search__clear-all'>
           <Button
-            aria-hidden={showClearButton}
+            aria-hidden={!showClearButton}
             className="hdbt-search__clear-all-button"
             iconLeft={<IconCross className='job-search-form__clear-all-icon' />}
             onClick={resetForm}

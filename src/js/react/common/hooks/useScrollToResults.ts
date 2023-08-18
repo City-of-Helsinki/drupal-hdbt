@@ -1,13 +1,13 @@
 import { RefObject, useEffect } from 'react';
 
-const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: boolean, ) => {
+const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: boolean) => {
   useEffect(() => {
     const { current } = ref;
 
     if (current && shouldScrollOnRender) {
       current.setAttribute('tabindex', '0');
       current.focus();
-      current.scrollIntoView({behavior: 'smooth'});
+      current.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
   }, [ref, shouldScrollOnRender]);
 };

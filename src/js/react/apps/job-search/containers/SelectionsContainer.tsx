@@ -95,7 +95,7 @@ const SelectionsContainer = () => {
         )}
         <li className='job-search-form__clear-all'>
           <Button
-            aria-hidden={showClearButton ? 'true' : 'false'}
+            aria-hidden={showClearButton ? 'false' : 'true'}
             className='job-search-form__clear-all-button'
             iconLeft={<IconCross className='job-search-form__clear-all-icon' />}
             onClick={resetForm}
