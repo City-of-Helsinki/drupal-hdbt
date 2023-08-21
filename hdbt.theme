@@ -1352,6 +1352,13 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
   }
   $entity = $variables['entity'];
 
+  if (!$entity->phone->isEmpty()) {
+    $phone_number = $entity->phone->value;
+    $trimmed_phone_number = trim($entity->phone->value);
+    $variables['service_channel_phone_number'] = t('Call', [], ['context' => 'Service channel phone number prefix']) . ' ' . $phone_number;
+    $variables['service_channel_phone_number_url'] = Url::fromUri('tel:' . $trimmed_phone_number);
+  }
+
   // Convert email link to Url object and set as new variable for the template.
   if (!$entity->email->isEmpty()) {
     $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
