@@ -6,17 +6,8 @@
  * Contains theme defaults.
  */
 
-use Drupal\hdbt_default\Entity\Accordion;
-use Drupal\hdbt_default\Entity\AccordionItem;
-use Drupal\hdbt_default\Entity\ContactCard;
-use Drupal\hdbt_default\Entity\HelMap;
-use Drupal\hdbt_default\Entity\ListOfLinksItem;
-use Drupal\hdbt_default\Entity\Phasing;
-use Drupal\hdbt_default\Entity\PhasingItem;
-use Drupal\hdbt_default\Entity\RemoteVideo;
-use Drupal\hdbt_default\Entity\ServiceList;
-use Drupal\hdbt_default\Entity\SocialMediaLink;
-use Drupal\hdbt_default\Entity\UnitSearch;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implement hook_default_template_preprocess_default_variables_alter().
@@ -25,7 +16,7 @@ function hdbt_default_template_preprocess_default_variables_alter(&$variables) {
   $variables['koro'] = _hdbt_get_settings('koro');
   $variables['theme_color'] = _hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = _hdbt_get_settings('default_icon');
-  $language = Drupal::languageManager()->getCurrentLanguage(\Drupal\Core\Language\LanguageInterface::TYPE_CONTENT);
+  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
 
@@ -120,26 +111,4 @@ function _hdbt_get_theme_path(): string {
   $theme = \Drupal::service('theme_handler')->getTheme('hdbt');
   return $service->generate($theme->getPath())
     ->toString(TRUE)->getGeneratedUrl();
-}
-
-/**
- * Implements hook_default_entity_bundle_info_alter().
- */
-function hdbt_default_entity_bundle_info_alter(array &$bundles): void {
-  if (isset($bundles['media'])) {
-    $bundles['media']['hel_map']['class'] = HelMap::class;
-    $bundles['media']['remote_video']['class'] = RemoteVideo::class;
-  }
-
-  if (isset($bundles['paragraph'])) {
-    $bundles['paragraph']['accordion']['class'] = Accordion::class;
-    $bundles['paragraph']['accordion_item']['class'] = AccordionItem::class;
-    $bundles['paragraph']['contact_card']['class'] = ContactCard::class;
-    $bundles['paragraph']['list_of_links_item']['class'] = ListOfLinksItem::class;
-    $bundles['paragraph']['phasing']['class'] = Phasing::class;
-    $bundles['paragraph']['phasing_item']['class'] = PhasingItem::class;
-    $bundles['paragraph']['service_list']['class'] = ServiceList::class;
-    $bundles['paragraph']['social_media_link']['class'] = SocialMediaLink::class;
-    $bundles['paragraph']['unit_search']['class'] = UnitSearch::class;
-  }
 }
