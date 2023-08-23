@@ -680,3 +680,39 @@ msgstr "Hörandet finns endast på engelska och finska"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "För närvarande finns det inga öppna planer för kommentarer."
+
+msgctxt "Service channel type verb"
+msgid "Use electric service"
+msgstr "Använd eltjänst"
+
+msgctxt "Service channel type verb"
+msgid "Fill a form"
+msgstr "Fyll i ett formulär"
+
+msgctxt "Service channel type verb"
+msgid "Call"
+msgstr "Ring upp"
+
+msgctxt "Service channel type verb"
+msgid "Send email"
+msgstr "Skicka epost"
+
+msgctxt "Service channel type verb"
+msgid "Send mail"
+msgstr "Skicka brev"
+
+msgctxt "Service channel default fee override"
+msgid "Normal phone charge"
+msgstr "Normal telefonladdning"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Ring upp"
+
+msgctxt "TPR service channel availability label"
+msgid "Open"
+msgstr "Öppen"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
