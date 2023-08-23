@@ -654,6 +654,10 @@ msgctxt "Service channel type verb"
 msgid "Visit webpage"
 msgstr "Besök webbsidan"
 
+msgctxt "Service channel type verb"
+msgid "Send SMS"
+msgstr "Skicka SMS"
+
 msgctxt "Service channel default fee override"
 msgid "Normal phone charge"
 msgstr "Normal telefonladdning"

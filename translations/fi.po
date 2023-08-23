@@ -656,6 +656,10 @@ msgctxt "Service channel type verb"
 msgid "Visit webpage"
 msgstr "Vieraile verkkosivuilla"
 
+msgctxt "Service channel type verb"
+msgid "Send SMS"
+msgstr "Lähetä tekstiviesti"
+
 msgctxt "Service channel default fee override"
 msgid "Normal phone charge"
 msgstr "Normaali puhelumaksu"
