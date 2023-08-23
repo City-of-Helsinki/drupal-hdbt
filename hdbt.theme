@@ -27,7 +27,7 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
 /**
- * Implement hook_preprocess().
+ * Implements hook_preprocess().
  */
 function hdbt_preprocess(&$variables): void {
   $variables['koro'] = hdbt_get_settings('koro');
