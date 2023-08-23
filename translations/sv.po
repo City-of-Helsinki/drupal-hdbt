@@ -642,6 +642,18 @@ msgctxt "Service channel type verb"
 msgid "Send mail"
 msgstr "Skicka brev"
 
+msgctxt "Service channel type verb"
+msgid "Chat"
+msgstr "Chatt"
+
+msgctxt "Service channel type verb"
+msgid "Visit"
+msgstr "Besök"
+
+msgctxt "Service channel type verb"
+msgid "Visit webpage"
+msgstr "Besök webbsidan"
+
 msgctxt "Service channel default fee override"
 msgid "Normal phone charge"
 msgstr "Normal telefonladdning"
