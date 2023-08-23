@@ -14,13 +14,9 @@
   {% if item.link_title and item.link_url %}
     {% set link_attributes = {
       'class': [
-        'hds-button',
-        'hds-button--primary',
+        'service-channel__link',
       ]
     } %}
-    {% set link_title %}
-      <span class="hds-button__label">{{ item.link_title }}</span>
-    {% endset %}
-    {{ link(link_title, item.link_url, link_attributes) }}
+    {{ link(item.link_title, item.link_url, link_attributes) }}
   {% endif %}
 {% endfor %}
