@@ -115,13 +115,6 @@
 
 .service-channel__phone-link {
   @include font('body');
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-
-  .link__type {
-    margin-right: $spacing-quarter;
-  }
 }
 
 .service-channel__phone,
@@ -134,6 +127,10 @@
   .service-channel__email {
     margin-top: 0;
   }
+}
+
+.service-channel--printable_form .service-channel__link::after {
+  @include pseudo-icon('printableform', calc(var(--line-height) * 1em), currentColor, inline-block);
 }
 
 .service-channel__availabilities,

@@ -41,7 +41,7 @@
 
   <div{{ content_attributes.addClass('service-channel__header') }}>
     <{{ service_channel_heading_level }}{{ content_attributes.addClass('service-channel__type') }}>
-      {{ content.type_string}}
+      {{ service_channel_type_verb}}
     </{{ service_channel_heading_level }}>
     {% if title_set %}
       <{{ service_channel_title_level }}{{ title_attributes.addClass('service-channel__title') }}>
@@ -73,7 +73,7 @@
   {% if content.call_charge_info|render %}
     <div class="service-channel__call_charge">
       <span class="service-channel__call_charge-label">{{ 'Call charge'|t({}, {'context': 'TPR service channel call charge info'}) }}:</span>
-      {{ content.call_charge_info }}
+      {{ service_channel_phone_charge }}
     </div>
   {% endif %}
 
