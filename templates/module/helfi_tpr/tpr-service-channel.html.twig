@@ -50,12 +50,12 @@
     {% endif %}
   </div>
 
-  {% if content.availability_summary|render %}
+  {% if service_channel_availability %}
     <div class="service-channel__availabilities">
       <span class="service-channel__availabilities-label">
         {{ 'Open'|t({}, {'context': 'TPR service channel availability label'}) }}:
       </span>
-      {{ content.availability_summary}}
+      {{ service_channel_availability }}
     </div>
   {% endif %}
 

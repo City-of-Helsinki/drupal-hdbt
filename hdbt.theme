@@ -1392,6 +1392,20 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
     }
   }
 
+  // For e-services we don't want to display opening hours if it is open 24/7.
+  if ($entity->type->value === 'ESERVICE' && !$entity->availability_summary->isEmpty()) {
+    if (
+      $entity->availability_summary->value === 'Avoinna joka päivä ympäri vuorokauden' ||
+      $entity->availability_summary->value === 'Öppet dygnet runt varje dag' ||
+      $entity->availability_summary->value === 'Open every day around the clock'
+    ) {
+      $variables['service_channel_availability'] = '';
+    }
+    else {
+      $variables['service_channel_availability'] = $entity->availability_summary->value;
+    }
+  }
+
   if (!$entity->phone->isEmpty()) {
     $phone_number = $entity->phone->value;
     $trimmed_phone_number = trim($entity->phone->value);
