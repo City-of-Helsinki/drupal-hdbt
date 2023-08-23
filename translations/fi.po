@@ -623,3 +623,39 @@ msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgctxt "Service channel type verb"
+msgid "Use electric service"
+msgstr "Asio verkossa"
+
+msgctxt "Service channel type verb"
+msgid "Fill a form"
+msgstr "Täytä lomake"
+
+msgctxt "Service channel type verb"
+msgid "Call"
+msgstr "Soita"
+
+msgctxt "Service channel type verb"
+msgid "Send email"
+msgstr "Lähetä sähköpostia"
+
+msgctxt "Service channel type verb"
+msgid "Send mail"
+msgstr "Lähetä postia"
+
+msgctxt "Service channel default fee override"
+msgid "Normal phone charge"
+msgstr "Normaali puhelumaksu"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Soita"
+
+msgctxt "TPR service channel availability label"
+msgid "Open"
+msgstr "Avoinna"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"
