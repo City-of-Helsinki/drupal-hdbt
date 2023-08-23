@@ -1352,6 +1352,46 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
   }
   $entity = $variables['entity'];
 
+  // We want to name the service channel types a bit differently than how they are written in TPR so we do the naming
+  // based on the type here.
+  if (!$entity->type->isEmpty()) {
+    $type = $entity->type->value;
+    $type_verb = '';
+    switch ($type) {
+      case 'ESERVICE':
+        $type_verb = t('Use electric service', [], ['context' => 'Service channel type verb']);
+        break;
+      case 'PRINTABLE_FORM':
+        $type_verb = t('Fill a form', [], ['context' => 'Service channel type verb']);
+        break;
+      case 'TELEPHONE':
+        $type_verb = t('Call', [], ['context' => 'Service channel type verb']);
+        break;
+      case 'EMAIL':
+        $type_verb = t('Send email', [], ['context' => 'Service channel type verb']);
+        break;
+      case 'MAIL':
+        $type_verb = t('Send mail', [], ['context' => 'Service channel type verb']);
+        break;
+    }
+    $variables['service_channel_type_verb'] = $type_verb;
+  }
+
+  // Here we override for all three languages the default phone charge value that the TPR outputs since it is
+  // not very easily understandable.
+  if ($entity->type->value === 'TELEPHONE' && !$entity->call_charge_info->isEmpty()) {
+    if (
+      $entity->call_charge_info->value === 'pvm/mpm' ||
+      $entity->call_charge_info->value === 'msa/lna' ||
+      $entity->call_charge_info->value === 'mobile call charge / local network charge'
+    ) {
+      $variables['service_channel_phone_charge'] = t('Normal phone charge', [], ['context' => 'Service channel default fee override']);
+    }
+    else {
+      $variables['service_channel_phone_charge'] = $entity->call_charge_info->value;
+    }
+  }
+
   if (!$entity->phone->isEmpty()) {
     $phone_number = $entity->phone->value;
     $trimmed_phone_number = trim($entity->phone->value);
@@ -1644,4 +1684,20 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   }
 
   $variables['#attached']['library'][] = 'hdbt/job-search';
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ */
+function hdbt_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  if (
+    $variables['element']['#entity_type'] === 'tpr_service_channel' &&
+    $variables['element']['#object']->get('type')->value
+  ) {
+    $entity_type = $variables['element']['#entity_type'];
+    $channel_type = strtolower($variables['element']['#object']->get('type')->value);
+    $name = $variables['element']['#field_name'];
+
+    $suggestions[] = 'field__' . $entity_type . '__' . $channel_type  . '__' . $name;
+  }
 }
