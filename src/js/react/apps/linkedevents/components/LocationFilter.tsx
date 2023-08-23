@@ -17,14 +17,15 @@ function LocationFilter() {
   };
 
   const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
+  const selectVenueLabel: string = Drupal.t('Select a venue');
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
       <Select
         className='hdbt-search__dropdown'
-        clearButtonAriaLabel={Drupal.t('Clear selections', {}, { context: 'Event search: clear button aria label' })}
+        clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' })}
         helper={locationHelper}
-        label={Drupal.t('Select a venue')}
+        label={selectVenueLabel}
         multiselect
         // @ts-ignore
         options={locationOptions}
