@@ -1389,6 +1389,10 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
       case 'WEBPAGE':
         $type_verb = t('Visit webpage', [], ['context' => 'Service channel type verb']);
         break;
+
+      case 'SMS':
+        $type_verb = t('Send SMS', [], ['context' => 'Service channel type verb']);
+        break;
     }
     $variables['service_channel_type_verb'] = $type_verb;
   }
