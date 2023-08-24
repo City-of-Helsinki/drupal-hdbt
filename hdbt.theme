@@ -1446,7 +1446,7 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
 
   $variables['errand_service_fees'] = $fees;
 
-  // Additional information accrodion content.
+  // Additional information accordion content.
   $additional_info = [];
 
   $additional_info_fields = [
