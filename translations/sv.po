@@ -629,3 +629,7 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Rensa alla @label"

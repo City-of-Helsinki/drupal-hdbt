@@ -631,3 +631,7 @@ msgstr "Tilaa kaikkien uutisten RSS-syöte"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
+
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Tyhjennä @label valinnat"
