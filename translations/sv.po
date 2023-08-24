@@ -23,7 +23,7 @@ msgstr "Se detaljer"
 
 msgctxt "Errand service accordion heading"
 msgid "Process"
-msgstr "Behandlingen"
+msgstr "Hur ärendet framskrider"
 
 msgctxt "Errand service accordion heading"
 msgid "Fees"
