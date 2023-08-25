@@ -1716,8 +1716,9 @@ function hdbt_preprocess_paragraph__hearings(array &$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
 
-  if ($paragraph_type == 'hearings') {
-    $variables['hearings'] = views_embed_view('hearings', 'block_1');
+  $variables['hearings'] = [];
+  if ($hearing = \Drupal\block\Entity\Block::load($paragraph_type)) {
+    $variables['hearings'] = $hearing->getPlugin()->build();
   }
 }
 

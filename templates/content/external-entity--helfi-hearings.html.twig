@@ -1,0 +1,80 @@
+{% set card_hearing_classes = ['card--hearing'] %}
+
+{% if content.comments[0]['#context'].value == '1' %}
+  {% set card_hearing_comments = content.comments[0]['#context'].value ~ ' ' ~ 'comment'|t({}, {'context': 'Hearing activity suffix singular'}) %}
+{% else %}
+  {% set card_hearing_comments = content.comments[0]['#context'].value ~ ' ' ~ 'comments'|t({}, {'context': 'Hearing activity suffix plural'}) %}
+{% endif %}
+
+{% if content.open_at[0]['#context'].value is not empty %}
+  {% set card_published_on = content.open_at[0]['#context'].value|date('j.n.Y') %}
+{% else %}
+  {% set card_published_on = '-' %}
+{% endif %}
+
+{% if content.close_at[0]['#context'].value is not empty %}
+  {% set card_unpublished_on = content.close_at[0]['#context'].value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ node.unpublish_on.value|date('H:i') %}
+{% else %}
+  {% set card_unpublished_on = '-' %}
+{% endif %}
+
+{% if available_in_languages %}
+  {% embed '@hdbt/component/card.twig' with {
+    card_modifier_class: card_hearing_classes|join(' '),
+    card_title: content.title[0]['#context'].value,
+    card_title_lang: 'fi',
+    card_image: content.main_image_url[0]['#context'].value|imagecache_external('gallery_thumbnail'),
+    card_url: content.url[0]['#context'].value,
+    card_url_external: true,
+    card_metas: [
+      {
+        icon: 'clock',
+        label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
+        content: card_published_on,
+      },
+      {
+        icon: 'clock',
+        label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
+        content: card_unpublished_on,
+      },
+      {
+        icon: 'speechbubble-text',
+        label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
+        content: card_hearing_comments,
+      },
+    ],
+    card_tags: [
+      {
+        tag: available_in_languages,
+        color: 'alert',
+      }
+    ],
+  } %}
+  {% endembed %}
+{% else %}
+  {% embed '@hdbt/component/card.twig' with {
+    card_modifier_class: card_hearing_classes|join(' '),
+    card_title: content.title[0]['#context'].value,
+    card_image: content.main_image_url[0]['#context'].value|imagecache_external('gallery_thumbnail'),
+    card_url: content.url[0]['#context'].value,
+    card_url_external: true,
+    card_metas: [
+      {
+        icon: 'clock',
+        label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
+        content: card_published_on,
+      },
+      {
+        icon: 'clock',
+        label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
+        content: card_unpublished_on,
+      },
+      {
+        icon: 'speechbubble-text',
+        label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
+        content: card_hearing_comments,
+      },
+    ]
+  } %}
+  {% endembed %}
+{% endif %}
