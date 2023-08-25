@@ -50,19 +50,17 @@
     {% endif %}
   </div>
 
-  {% if service_channel_availability %}
+  {% if content.availability_summary|render %}
     <div class="service-channel__availabilities">
-      <span class="service-channel__availabilities-label">
-        {{ 'Open'|t({}, {'context': 'TPR service channel availability label'}) }}:
-      </span>
-      {{ service_channel_availability }}
+      {{ content.availability_summary }}
     </div>
   {% endif %}
 
   {% if service_channel_email_link and content.email|render %}
     {% set link_attributes = {
       'class': [
-        'service-channel__email-link',
+        'service-channel__link',
+        'service-channel__link--email',
       ],
     } %}
     <div class="service-channel__email">
@@ -81,7 +79,8 @@
     <div class="service-channel__phone">
       {% set link_attributes = {
         'class': [
-          'service-channel__phone-link',
+          'service-channel__link',
+          'service-channel__link--phone',
         ],
       } %}
       {{ link(service_channel_phone_number, service_channel_phone_number_url, link_attributes) }}
