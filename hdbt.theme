@@ -851,6 +851,138 @@ function hdbt_preprocess_paragraph__chart(&$variables) {
       }
     }
   }
+
+  // Chart paragraph.
+  if ($paragraph_type == 'phasing') {
+    $phasing_title_level = $paragraph->get('field_phasing_title_level')->getString();
+    $variables['phasing_title_level'] = 'h' . $phasing_title_level;
+  }
+
+  if ($paragraph_type == 'phasing_item') {
+    $paragraph_parent = $paragraph->getParentEntity();
+    $phasing_item_heading_level = $paragraph_parent->get('field_phasing_item_title_level')->getString();
+    $variables['phasing_item_heading_level'] = 'h' . $phasing_item_heading_level;
+    $variables['show_numbers'] = $paragraph_parent->get('field_show_phase_numbers')->value;
+  }
+
+  // Check if the paragraph is a type of unit accessibility information and
+  // get the information from the unit entity.
+  if ($paragraph_type == 'unit_accessibility_information') {
+    $langcode = \Drupal::languageManager()
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $unit = $paragraph->get('field_unit_accessibility_unit')
+      ?->first()
+      ?->get('entity')
+      ?->getTarget()
+      ?->getEntity();
+
+    if ($unit instanceof Unit && $unit->hasTranslation($langcode)) {
+
+      $variables['unit_accessbility_information'] = $unit
+        ->getTranslation($langcode)
+        ?->get('accessibility_sentences')
+        ?->view('full');
+    }
+  }
+
+  // Add unit information for unit_contact_card paragraph.
+  if ($paragraph_type == 'unit_contact_card') {
+    $langcode = \Drupal::languageManager()
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $unit = $paragraph->get('field_unit_contact_unit')
+      ?->first()
+      ?->get('entity')
+      ?->getTarget()
+      ?->getEntity();
+
+    if ($unit instanceof Unit && $unit->hasTranslation($langcode)) {
+      $unit_translation = $unit->getTranslation($langcode);
+      $variables['unit_contact_card'] = [];
+
+      // Get title from paragraph settings.
+      if (!empty($paragraph_title = $paragraph->get('field_unit_contact_title')
+        ?->view('full'))) {
+        $variables['unit_contact_card']['title'] = $paragraph_title;
+      }
+      else {
+        $variables['unit_contact_card']['title'] = $unit_translation?->get('name')
+          ?->view('full');
+      }
+
+      // Show address if chosen from paragraph settings.
+      if ($paragraph->get('field_unit_contact_use_address')->value === '1') {
+        $variables['unit_contact_card']['address'] = $unit_translation?->get('address')
+          ?->view('full');
+      }
+
+      // Show postal address if chosen from paragraph settings.
+      if ($paragraph->get('field_unit_contact_use_postal')->value === '1') {
+        $variables['unit_contact_card']['address_postal'] = $unit_translation?->get('address_postal')
+          ?->view('full');
+      }
+
+      // Show phone number if chosen from paragraph settings.
+      if ($paragraph->get('field_unit_contact_use_phone')->value === '1') {
+        $variables['unit_contact_card']['phone'] = $unit_translation?->get('phone')
+          ?->view('full');
+      }
+
+      // Show opening hours if chosen from paragraph settings.
+      if ($paragraph->get('field_unit_contact_use_opening')->value === '1') {
+        $variables['unit_contact_card']['opening_hours'] = $unit_translation?->get('opening_hours')
+          ?->view('full');
+      }
+
+      // Show picture if chosen from paragraph settings.
+      if ($paragraph->get('field_unit_contact_use_picture')->value === '1') {
+        $variables['unit_contact_card']['picture_url'] = $unit_translation?->get('picture_url')
+          ?->view('full');
+        if ($paragraph->get('field_unit_contact_use_override')->value === '1') {
+          $variables['unit_contact_card']['picture_url_override'] = $unit_translation?->get('picture_url_override')
+            ?->view('full');
+        }
+      }
+
+      // Show highlight connections as additional information if chosen from
+      // paragraph settings.
+      if (
+        $paragraph->get('field_unit_contact_use_details')->value === '1' &&
+        $unit_translation->hasField('highlights')
+      ) {
+        $variables['unit_contact_card']['details'] = $unit_translation->get('highlights')
+          ?->view('full');
+      }
+
+      // Show link to unit page if chosen from paragraph settings and unit is
+      // published.
+      if (
+        $paragraph->get('field_unit_contact_use_link')->value === '1' &&
+        $unit_translation->isPublished()
+      ) {
+        $variables['unit_contact_card']['unit_url'] = !$unit_translation->isNew() ? $unit_translation->toUrl('canonical') : NULL;
+      }
+
+      // Check if the highlight content is printed on left or right column of
+      // unit content card.
+      if (
+        ($paragraph->get('field_unit_contact_use_picture')->value === '1') &&
+        ($paragraph->get('field_unit_contact_use_address')->value === '1') &&
+        (empty($variables['unit_contact_card']['address_postal']) && empty($variables['unit_contact_card']['phone']) && empty($variables['unit_contact_card']['opening_hours']))
+      ) {
+        $variables['unit_contact_card']['details_on_left'] = TRUE;
+      }
+
+      if (
+        empty($variables['unit_contact_card']['address']) &&
+        empty($variables['unit_contact_card']['address_postal']) &&
+        empty($variables['unit_contact_card']['phone']) &&
+        empty($variables['unit_contact_card']['opening_hours']) &&
+        empty($variables['unit_contact_card']['unit_url'])
+      ) {
+        $variables['unit_contact_card']['left_column_empty'] = TRUE;
+      }
+    }
+  }
 }
 
 /**
