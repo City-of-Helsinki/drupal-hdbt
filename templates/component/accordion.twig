@@ -28,8 +28,8 @@
       {{ content|default('Missing content'|t) }}
 
       <button type="button" class="accordion-item__button accordion-item__button--close" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ close_button_labelled_by_id }}">
-        <span class="is-hidden" id="{{ close_button_labelled_by_id }}"><span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang })) }}>{{ 'Close element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}</span>{{ heading|default('Missing heading'|t) }}</span>
-        {{ 'Close'|t({}, {'context': 'The text for close accordion visibility button'}) }}
+        <span class="is-hidden" id="{{ close_button_labelled_by_id }}"><span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}</span>{{ heading|default('Missing heading'|t) }}</span>
+        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close'|t({}, {'context': 'The text for close accordion visibility button'}) }}</span>
       </button>
     </div>
   </div>
