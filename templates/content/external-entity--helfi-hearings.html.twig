@@ -23,7 +23,7 @@
     card_modifier_class: card_hearing_classes|join(' '),
     card_title: content.title[0]['#context'].value,
     card_title_lang: 'fi',
-    card_image: content.main_image_url[0]['#context'].value|imagecache_external('gallery_thumbnail'),
+    card_image: content.main_image,
     card_url: content.url[0]['#context'].value,
     card_url_external: true,
     card_metas: [
@@ -55,7 +55,7 @@
   {% embed '@hdbt/component/card.twig' with {
     card_modifier_class: card_hearing_classes|join(' '),
     card_title: content.title[0]['#context'].value,
-    card_image: content.main_image_url[0]['#context'].value|imagecache_external('gallery_thumbnail'),
+    card_image: content.main_image,
     card_url: content.url[0]['#context'].value,
     card_url_external: true,
     card_metas: [
