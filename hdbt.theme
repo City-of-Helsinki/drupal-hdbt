@@ -1359,39 +1359,39 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
     $type_verb = '';
     switch ($type) {
       case 'ESERVICE':
-        $type_verb = t('Use electric service', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Use the online service', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'PRINTABLE_FORM':
-        $type_verb = t('Fill a form', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Fill in a form', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'TELEPHONE':
-        $type_verb = t('Call', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Call us', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'EMAIL':
-        $type_verb = t('Send email', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Send us an email', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'MAIL':
-        $type_verb = t('Send mail', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Send us mail', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'LOCAL':
-        $type_verb = t('Visit', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Visit us', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'CHAT':
-        $type_verb = t('Chat', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Ask in the chat', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'WEBPAGE':
-        $type_verb = t('Visit webpage', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Online information', [], ['context' => 'Service channel type verb']);
         break;
 
       case 'SMS':
-        $type_verb = t('Send SMS', [], ['context' => 'Service channel type verb']);
+        $type_verb = t('Send a text message', [], ['context' => 'Service channel type verb']);
         break;
     }
     $variables['service_channel_type_verb'] = $type_verb;
@@ -1405,24 +1405,10 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
       $entity->call_charge_info->value === 'msa/lna' ||
       $entity->call_charge_info->value === 'mobile call charge / local network charge'
     ) {
-      $variables['service_channel_phone_charge'] = t('Normal phone charge', [], ['context' => 'Service channel default fee override']);
+      $variables['service_channel_phone_charge'] = t('Standard telephone charges apply', [], ['context' => 'Service channel default fee override']);
     }
     else {
       $variables['service_channel_phone_charge'] = $entity->call_charge_info->value;
-    }
-  }
-
-  // For e-services we don't want to display opening hours if it is open 24/7.
-  if ($entity->type->value === 'ESERVICE' && !$entity->availability_summary->isEmpty()) {
-    if (
-      $entity->availability_summary->value === 'Avoinna joka päivä ympäri vuorokauden' ||
-      $entity->availability_summary->value === 'Öppet dygnet runt varje dag' ||
-      $entity->availability_summary->value === 'Open every day around the clock'
-    ) {
-      $variables['service_channel_availability'] = '';
-    }
-    else {
-      $variables['service_channel_availability'] = $entity->availability_summary->value;
     }
   }
 
