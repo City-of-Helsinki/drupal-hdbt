@@ -630,6 +630,12 @@ msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
 
+msgid "Unit homepage"
+msgstr "Enhetens hemsida"
+
+msgid "Additional details"
+msgstr "Ytterligare detaljer"
+
 msgctxt "Hearing activity suffix singular"
 msgid "comment"
 msgstr "kommentar"
