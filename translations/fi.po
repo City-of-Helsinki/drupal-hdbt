@@ -635,3 +635,9 @@ msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgid "Unit homepage"
+msgstr "Toimipisteen kotisivut"
+
+msgid "Additional details"
+msgstr "Lisätiedot"

@@ -633,3 +633,9 @@ msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgid "Unit homepage"
+msgstr "Enhetens hemsida"
+
+msgid "Additional details"
+msgstr "Ytterligare detaljer"
