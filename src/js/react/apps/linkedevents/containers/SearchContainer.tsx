@@ -16,6 +16,7 @@ type ResponseType = {
 
 const SWR_REFRESH_OPTIONS = {
   errorRetryCount: 3,
+  keepPreviousData: true,
   revalidateOnMount: true,
   revalidateIfStale: false,
   revalidateOnFocus: false,
@@ -46,13 +47,17 @@ const SearchContainer = () => {
 
     throw new Error('Failed to get data from the API');
   };
-  const { data, error } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
-  const loading = !error && !data;
+  const { data, error, isLoading, isValidating } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
 
   return (
     <>
       <FormContainer />
-      <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
+      <ResultsContainer
+        error={error}
+        count={data?.meta.count || 0}
+        loading={isLoading || isValidating}
+        events={data?.data || []}
+      />
     </>
   );
 };
