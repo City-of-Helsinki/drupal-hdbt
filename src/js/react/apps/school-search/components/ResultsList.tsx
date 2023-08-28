@@ -29,7 +29,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner loadingText="" loadingFinishedText="" />;
   }
 
   if (!data?.hits?.hits.length || error) {
