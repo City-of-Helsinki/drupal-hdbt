@@ -25,7 +25,7 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
   if (loading) {
     return (
       <div className='event-list__loading-spinner'>
-        <LoadingSpinner />
+        <LoadingSpinner loadingText="" loadingFinishedText="" />
       </div>
     );
   }
