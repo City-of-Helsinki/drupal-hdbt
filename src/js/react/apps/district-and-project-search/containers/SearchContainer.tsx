@@ -8,7 +8,7 @@ import ResultsContainer from './ResultsContainer';
 const SearchContainer = ():JSX.Element => (
   <>
     {/* For async atoms that need to load option values from elastic */}
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={<LoadingSpinner loadingText="" loadingFinishedText="" />}>
       <FormContainer />
       <ResultsContainer />
     </Suspense>
