@@ -1346,88 +1346,6 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_tpr_service_channel(&$variables): void {
-  if (!isset($variables['entity']) || !$variables['entity'] instanceof Channel) {
-    return;
-  }
-  $entity = $variables['entity'];
-
-  // We want to name the service channel types a bit differently than how
-  // they are written in TPR so we do the naming based on the type here.
-  if (!$entity->type->isEmpty()) {
-    $type = $entity->type->value;
-    $type_verb = '';
-    switch ($type) {
-      case 'ESERVICE':
-        $type_verb = t('Use the online service', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'PRINTABLE_FORM':
-        $type_verb = t('Fill in a form', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'TELEPHONE':
-        $type_verb = t('Call us', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'EMAIL':
-        $type_verb = t('Send us an email', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'MAIL':
-        $type_verb = t('Send us mail', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'LOCAL':
-        $type_verb = t('Visit us', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'CHAT':
-        $type_verb = t('Ask in the chat', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'WEBPAGE':
-        $type_verb = t('Online information', [], ['context' => 'Service channel type verb']);
-        break;
-
-      case 'SMS':
-        $type_verb = t('Send a text message', [], ['context' => 'Service channel type verb']);
-        break;
-    }
-    $variables['service_channel_type_verb'] = $type_verb;
-  }
-
-  // Here we override for all three languages the default phone charge value
-  // that the TPR outputs since it is not very easily understandable.
-  if ($entity->type->value === 'TELEPHONE' && !$entity->call_charge_info->isEmpty()) {
-    if (
-      $entity->call_charge_info->value === 'pvm/mpm' ||
-      $entity->call_charge_info->value === 'msa/lna' ||
-      $entity->call_charge_info->value === 'mobile call charge / local network charge'
-    ) {
-      $variables['service_channel_phone_charge'] = t('Standard telephone charges apply', [], ['context' => 'Service channel default fee override']);
-    }
-    else {
-      $variables['service_channel_phone_charge'] = $entity->call_charge_info->value;
-    }
-  }
-
-  if (!$entity->phone->isEmpty()) {
-    $phone_number = $entity->phone->value;
-    $trimmed_phone_number = trim($entity->phone->value);
-    $variables['service_channel_phone_number'] = t('Call', [], ['context' => 'Service channel phone number prefix']) . ' ' . $phone_number;
-    $variables['service_channel_phone_number_url'] = Url::fromUri('tel:' . $trimmed_phone_number);
-  }
-
-  // Convert email link to Url object and set as new variable for the template.
-  if (!$entity->email->isEmpty()) {
-    $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_tpr_service(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Service) {
     return;
@@ -1544,6 +1462,60 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
   }
 
   $variables['errand_service_additional_info'] = $additional_info;
+
+  $variables['errand_service_channels'] = [];
+
+  foreach ($entity->get('channels')->getValue() as $channel) {
+    $channel = Channel::load($channel['target_id']);
+
+    $variables['errand_service_channels'][$channel->get('type')->value]['content'][] = $channel;
+
+    // We want to name the service channel types a bit differently than how
+    // they are written in TPR, so we do the naming based on the type here.
+    if (!$channel->get('type')->isEmpty()) {
+      $type = $channel->get('type')->value;
+      $type_verb = '';
+      switch ($type) {
+        case 'ESERVICE':
+          $type_verb = t('Use the online service', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'TELEPHONE':
+          $type_verb = t('Call us', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'EMAIL':
+          $type_verb = t('Send us an email', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'PRINTABLE_FORM':
+          $type_verb = t('Fill in a form', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'MAIL':
+          $type_verb = t('Send us mail', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'LOCAL':
+          $type_verb = t('Visit us', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'CHAT':
+          $type_verb = t('Ask in the chat', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'WEBPAGE':
+          $type_verb = t('Online information', [], ['context' => 'Service channel type verb']);
+          break;
+
+        case 'SMS':
+          $type_verb = t('Send a text message', [], ['context' => 'Service channel type verb']);
+          break;
+      }
+      $variables['errand_service_channels'][$channel->get('type')->value]['type'] = $channel->get('type')->value;
+      $variables['errand_service_channels'][$channel->get('type')->value]['type_verb'] = $type_verb;
+    }
+  }
 }
 
 /**
