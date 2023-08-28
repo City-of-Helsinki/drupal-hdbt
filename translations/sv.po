@@ -21,6 +21,18 @@ msgctxt "Content liftup card hit for seeing more information on content page"
 msgid "See details"
 msgstr "Se detaljer"
 
+msgctxt "Errand service accordion heading"
+msgid "Process"
+msgstr "Hur ärendet framskrider"
+
+msgctxt "Errand service accordion heading"
+msgid "Fees"
+msgstr "Avgifter"
+
+msgctxt "Errand service accordion heading"
+msgid "Additional information and links"
+msgstr "Ytterligare upplysningar och länkar"
+
 msgctxt "Errand service detail heading"
 msgid "Processing time"
 msgstr "Handläggningstid"
@@ -38,8 +50,8 @@ msgid "Additional information"
 msgstr "Ytterligare upplysningar"
 
 msgctxt "Errand service detail heading"
-msgid "Additional links"
-msgstr "Länkar för ytterligare upplysningar"
+msgid "Links"
+msgstr "Länkar"
 
 msgctxt "Errand service detail heading"
 msgid "How the process works"
@@ -617,3 +629,7 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Rensa alla @label"

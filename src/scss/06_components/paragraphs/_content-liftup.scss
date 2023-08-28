@@ -59,6 +59,7 @@ $-info-row-icon-size: $spacing-and-half;
   max-width: 100%;
   object-fit: cover;
   overflow: hidden;
+  width: auto; // This property is needed, otherwise when image does not load, the layout explodes
 
   @include breakpoint($breakpoint-m) {
     aspect-ratio: unset;
@@ -74,10 +75,10 @@ $-info-row-icon-size: $spacing-and-half;
 }
 
 .content-liftup__image .image-placeholder {
-  padding-bottom: aspect-ratio-padding($-content-liftup-aspect-ratio-mobile);
+  aspect-ratio: $-content-liftup-aspect-ratio-mobile;
 
   @include breakpoint($breakpoint-m) {
-    padding-bottom: aspect-ratio-padding($-content-liftup-aspect-ratio-desktop);
+    aspect-ratio: $-content-liftup-aspect-ratio-desktop;
   }
 
   @include breakpoint($breakpoint-l) {
@@ -145,7 +146,7 @@ $-info-row-icon-size: $spacing-and-half;
 
   &::before {
     margin-bottom: ($-info-row-line-height - $-info-row-icon-size) * 0.5; // Center icon on row
-    margin-left: calc( -1 * var(--margin-size));
+    margin-left: calc(-1 * var(--margin-size));
     margin-right: var(--info-row--gap-size);
   }
 }

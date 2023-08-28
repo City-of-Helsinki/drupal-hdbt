@@ -1,2 +1,4 @@
-<h4 class="errand-service__detail-title">{{ title }}</h4>
+{% if title %}
+  <h4 class="errand-service__detail-title">{{ title }}</h4>
+{% endif %}
 {{ content }}

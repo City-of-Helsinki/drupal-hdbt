@@ -53,11 +53,37 @@
           %}
             {% block component_content %}
 
-              {% include '@hdbt/component/accordion.twig' with {
-                heading_level: 'h3',
-                heading: 'Details'|t,
-                content: errand_service_details,
-              } %}
+              {% if
+                content.process_description|render or
+                content.processing_time|render or
+                content.expiration_time|render
+              %}
+
+                {% include '@hdbt/component/accordion.twig' with {
+                  heading_level: 'h3',
+                  heading: 'Process'|t({}, {'context': 'Errand service accordion heading'}),
+                  content: errand_service_process,
+                } %}
+
+              {% endif %}
+              {% if content.costs|render %}
+
+                {% include '@hdbt/component/accordion.twig' with {
+                  heading_level: 'h3',
+                  heading: 'Fees'|t({}, {'context': 'Errand service accordion heading'}),
+                  content: errand_service_fees,
+                } %}
+
+              {% endif %}
+              {% if content.information|render %}
+
+                {% include '@hdbt/component/accordion.twig' with {
+                  heading_level: 'h3',
+                  heading: 'Additional information and links'|t({}, {'context': 'Errand service accordion heading'}),
+                  content: errand_service_additional_info,
+                } %}
+
+              {% endif %}
 
             {% endblock component_content %}
           {% endembed %}
@@ -65,6 +91,7 @@
 
       {% endif %}
     {% endif %}
+
 
     {% if content.channels|render %}
       <div class="errand-service__channels">
