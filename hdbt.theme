@@ -1465,7 +1465,8 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
 
   $variables['errand_service_channels'] = [];
 
-  // Go through all service channels and give service channel template required data.
+  // Go through all service channels and give service channel
+  // template required data.
   foreach ($entity->get('channels')->getValue() as $channel) {
     $channel = Channel::load($channel['target_id']);
     $variables['errand_service_channels'][$channel->get('type')->value]['content'][] = $channel;
