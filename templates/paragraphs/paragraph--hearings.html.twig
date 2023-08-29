@@ -11,9 +11,11 @@
     }
   %}
     {% block component_content %}
-
-      {{ content.list }}
-
+      {% if content.list %}
+        {{ content.list }}
+      {% else %}
+        <p>{{ "At the moment there is no open hearings for commenting."|t }}</p>
+      {% endif %}
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}

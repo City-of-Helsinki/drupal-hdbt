@@ -686,3 +686,5 @@ msgctxt "Hearing available in languages"
 msgid "Hearing only available in English and Swedish"
 msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
 
+msgid "At the moment there is no open hearings for commenting."
+msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
