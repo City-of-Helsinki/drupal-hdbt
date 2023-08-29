@@ -61,9 +61,6 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
   <body{{ attributes }}>
-    <span class="is-hidden" id="aria-external-link-label" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>
-    <span class="is-hidden" id="aria-tel-link-label" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
-    <span class="is-hidden" id="aria-mailto-link-label" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.

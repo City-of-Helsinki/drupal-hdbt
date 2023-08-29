@@ -21,6 +21,18 @@ msgctxt "Content liftup card hit for seeing more information on content page"
 msgid "See details"
 msgstr "Katso tarkemmat tiedot"
 
+msgctxt "Errand service accordion heading"
+msgid "Process"
+msgstr "Asian eteneminen"
+
+msgctxt "Errand service accordion heading"
+msgid "Fees"
+msgstr "Maksut"
+
+msgctxt "Errand service accordion heading"
+msgid "Additional information and links"
+msgstr "Lisätiedot ja linkit"
+
 msgctxt "Errand service detail heading"
 msgid "Processing time"
 msgstr "Käsittelyaika"
@@ -38,8 +50,8 @@ msgid "Additional information"
 msgstr "Lisätiedot"
 
 msgctxt "Errand service detail heading"
-msgid "Additional links"
-msgstr "Lisätietolinkit"
+msgid "Links"
+msgstr "Linkit"
 
 msgctxt "Errand service detail heading"
 msgid "How the process works"
@@ -381,8 +393,8 @@ msgid "Search for your local school"
 msgstr "Etsi lähikoulua"
 
 msgctxt "School search: local search description"
-msgid "Your child's primary comprehensive school, i.e. their local school, is determined based on the child's home address. The local school has a place for all local children. The search will return Finnish- and Swedish- language comprehensive schools"
-msgstr "Lapsen ensisijainen peruskoulu, eli lähikoulu, määräytyy lapsen kotiosoitteen mukaan. Lähikoulussa on paikka kaikille lapsille. Hausta löytyvät suomen- ja ruotsinkieliset peruskoulut."
+msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools."
+msgstr "Lapsen ensisijainen peruskoulu, eli lähikoulu, määräytyy lapsen kotiosoitteen mukaan. Hausta löytyvät suomen- ja ruotsinkieliset peruskoulut."
 
 msgctxt "School search: input helper"
 msgid "Enter the street name and house number"
@@ -409,19 +421,19 @@ msgid "Language of instruction"
 msgstr "Opetuskieli"
 
 msgctxt "School search: Feature form title"
-msgid "Search with school information"
+msgid "Search with school details"
 msgstr "Etsi koulun tiedoilla"
 
 msgctxt "School search: Feature form description"
-msgid "You can search for a school by name, language of instruction, grade or postal code. Schools can also admit pupils that do not live in the school's admission area, if there are available spaces. Please note that you may have to apply to schools by taking an aptitude test."
-msgstr "Voit etsiä koulua nimen, opetuskielen, luokka-asteen tai postinumeron mukaan. Kouluihin voidaan ottaa myös muita kuin oman oppilaaksiottoalueen oppilaita, mikäli siellä on tilaa. Huomaa, että kouluihin voi joutua hakemaan valintakokeen kautta."
+msgid "You can search for a school by its name, language of instruction, grade or post code."
+msgstr "Voit etsiä koulua nimen, opetuskielen, vuosiluokan tai postinumeron mukaan."
 
 msgctxt "School search: education level"
-msgid "School level"
-msgstr "Kouluaste"
+msgid "Grade"
+msgstr "Vuosiluokka"
 
 msgctxt "School search: Feature input label"
-msgid "Name or postal code of the school"
+msgid "School's name or post code"
 msgstr "Koulun nimi tai postinumero"
 
 msgctxt "No search results"
@@ -429,12 +441,16 @@ msgid "No results"
 msgstr "Ei tuloksia"
 
 msgctxt "School search: education level option"
-msgid "Primary schools (grades 1-6)"
-msgstr "Alakoulut (luokat 1-6)"
+msgid "School providing grades 1 to 6"
+msgstr "Koulut, joissa vuosiluokat 1-6"
 
 msgctxt "School search: education level option"
-msgid "Lower secondary schools (grades 7-9)"
-msgstr "Yläkoulut (luokat 7-9)"
+msgid "School providing grades 1 to 9"
+msgstr "Koulut, joissa vuosiluokat 1-9"
+
+msgctxt "School search: education level option"
+msgid "School providing grades 7 to 9"
+msgstr "Koulut, joissa vuosiluokat 7-9"
 
 msgctxt "Aria label for main navigation"
 msgid "Main navigation"
@@ -668,3 +684,7 @@ msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
+
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Tyhjennä @label valinnat"

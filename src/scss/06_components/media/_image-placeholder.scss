@@ -1,11 +1,6 @@
-@use "sass:math";
-
-$-placeholder-aspect-ratio: math.div(16, 9);
-
-// TODO: Move under correct component when correct component is done.
 .image-placeholder {
+  aspect-ratio: 16/9;
   background-color: var(--hdbt-color-palette--primary);
-  padding-bottom: aspect-ratio-padding($-placeholder-aspect-ratio);
   position: relative;
   width: 100%;
 

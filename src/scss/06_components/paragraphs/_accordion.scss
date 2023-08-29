@@ -148,6 +148,12 @@
   border-top: none;
 }
 
+
+// Patch Siteimprove false positive color contrast issue to reduce noise
+.component--accordion-bg-white .accordion-item__button--close {
+  background-color: $color-white;
+}
+
 // Grey accordion styles
 .component--accordion-bg-grey {
   .accordion-item__header {
@@ -185,6 +191,11 @@
       padding-left: $spacing-and-half;
       padding-right: $spacing-and-half;
     }
+  }
+
+  // Patch Siteimprove false positive color contrast issue to reduce noise
+  .accordion-item__button--close {
+    background-color: $color-black-5;
   }
 }
 

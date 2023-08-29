@@ -1,11 +1,14 @@
+import { useAtomValue } from 'jotai';
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import { nodeFilter } from '../query/queries';
 import URLParams from '../types/URLParams';
+import { configurationsAtom } from '../store';
 
 const useQueryString = (urlParams: URLParams): string => {
-  const { size, sortOptions } = Global;
+  const { size: globalSize, sortOptions } = Global;
+  const { promoted } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [{
     // Legacy sanity check, make sure forced translations aren't included
@@ -17,6 +20,11 @@ const useQueryString = (urlParams: URLParams): string => {
           },
         },
       ],
+      must_not: {
+        term: {
+          [IndexFields.PROMOTED]: true
+        }
+      }
     }
   }];
   const should = [];
@@ -153,7 +161,47 @@ const useQueryString = (urlParams: URLParams): string => {
     },
   };
 
-  const sort = urlParams?.sort === sortOptions.newestFirst ? newest : closing;
+  const getSort = () => {
+    if (urlParams?.sort === sortOptions.closing) {
+      return closing;
+    }
+    if (urlParams?.sort === sortOptions.newestFirst) {
+      return newest;
+    }
+
+    // Sort by newest by default
+    return newest;
+  };
+
+  const sort = getSort();
+
+  const getSizeFrom = () => {
+    if (!promoted.length) {
+      return [globalSize, globalSize * (page - 1)];
+    }
+
+    const promotedOnPage = (globalSize * (page - 1)) < promoted.length;
+    const pastResults = globalSize * (page - 1);
+    const promotedToShow = promotedOnPage && promoted.length - pastResults;
+    const leftovers = promoted.length % globalSize;
+
+    // Promoted take up the whole, no need to retrieve anything.
+    if (Number(promotedToShow) >= globalSize) {
+      return [0, 0];
+    }
+
+    // Retrieve results past promoted
+    if (!promotedToShow) {
+      const promotedPages = Math.ceil(promoted.length / globalSize);
+      const normalPages = page - 1 - promotedPages;
+;
+      return [globalSize, globalSize * normalPages + (globalSize - leftovers)];
+    }
+
+    return [globalSize - leftovers, 0];
+  };
+
+  const [size, from] = getSizeFrom();
 
   return JSON.stringify({
     aggs: {
@@ -178,10 +226,10 @@ const useQueryString = (urlParams: URLParams): string => {
         size: 3,
       }
     },
+    from,
+    query,
     sort: [sort, '_score'],
     size,
-    from: size * (page - 1),
-    query
   });
 };
 

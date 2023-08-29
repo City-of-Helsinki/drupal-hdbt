@@ -1,6 +1,6 @@
 // Header element directly under the wrapper element.
 .wrapper > .header {
-  // TODO: REGIONS needs to be calculated dynamically
+  // TODO: UHF-8810 Try to find a way to remove this hard-coding.
   padding-top: 114px; // Height of the navigation element
 
   @include breakpoint($breakpoint-m) {
