@@ -1711,52 +1711,34 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_paragraph__hearings(array &$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $paragraph_type = $paragraph->getType();
-
-  $variables['hearings'] = [];
-  if ($hearing = \Drupal\block\Entity\Block::load($paragraph_type)) {
-    $variables['hearings'] = $hearing->getPlugin()->build();
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_node__hearing(array &$variables) {
-  $language_versions = $variables['node']->getTranslationLanguages();
+function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
   $language = \Drupal::languageManager()
     ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
     ->getId();
-
-  // Check that if the displayed hearing node is of different language version
-  // than the current page language.
-  if (!array_key_exists($language, $language_versions)) {
-    $available_languages = [];
-
-    // This is ugly, I know but after discussing this we were able
-    // to come up only with this as viable solution. We need to assign
-    // the translateable string here manually because we need to pass a
-    // string to the t() function and not a variable.
-    if (array_key_exists("fi", $language_versions) && array_key_exists("en", $language_versions) && count($language_versions) === 2) {
-      $variables['available_in_languages'] = t('Hearing only available in Finnish and English', [], ['context' => 'Hearing available in languages']);
-    }
-    if (array_key_exists("fi", $language_versions) && array_key_exists("sv", $language_versions) && count($language_versions) === 2) {
-      $variables['available_in_languages'] = t('Hearing only available in Finnish and Swedish', [], ['context' => 'Hearing available in languages']);
-    }
-    if (array_key_exists("en", $language_versions) && array_key_exists("sv", $language_versions) && count($language_versions) === 2) {
-      $variables['available_in_languages'] = t('Hearing only available in English and Swedish', [], ['context' => 'Hearing available in languages']);
-    }
-    if (array_key_exists("fi", $language_versions) && count($language_versions) === 1) {
-      $variables['available_in_languages'] = t('Hearing only available in Finnish', [], ['context' => 'Hearing available in languages']);
-    }
-    if (array_key_exists("en", $language_versions) && count($language_versions) === 1) {
-      $variables['available_in_languages'] = t('Hearing only available in English', [], ['context' => 'Hearing available in languages']);
-    }
-    if (array_key_exists("sv", $language_versions) && count($language_versions) === 1) {
-      $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
-    }
+  $entity = $variables['external_entity'];
+  $hearingLangcode = $entity->get('langcode')->value;
+  if ($hearingLangcode && $hearingLangcode == $language) {
+    return;
   }
+  $existingLanguages = explode(',', $entity->get('existing_translations')->value);
+
+  if (in_array("fi", $existingLanguages) && in_array("en", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish and English', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("fi", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish and Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("en", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in English and Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("fi", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("en", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in English', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+
 }
