@@ -665,3 +665,6 @@ msgstr "Tilaa kaikkien uutisten RSS-syöte"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
+
+msgid "At the moment there is no open hearings for commenting."
+msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
