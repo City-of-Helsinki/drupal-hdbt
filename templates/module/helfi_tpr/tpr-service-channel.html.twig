@@ -68,7 +68,7 @@
     {% if channel.requires_authentication.value == 1 %}
       {{ 'Requires authentication'|t }}.
     {% endif %}
-    {% if channel.links.value and service_channel_eservice_links_new_tab %}
+    {% if channel.links.value and service_channel_eservice_links_new_tab and channel_type|lower == 'eservice' %}
       {{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.
     {% endif %}
   </div>
