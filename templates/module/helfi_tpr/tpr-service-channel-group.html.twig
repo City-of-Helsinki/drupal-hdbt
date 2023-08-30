@@ -1,4 +1,8 @@
+{%  set service_channel_group_heading_level = service_channel_group_heading_level|default('h3') %}
+
 <article class="service-channel service-channel--{{ type }}">
-  <h3 class="service-channel__type">{{ label }}</h3>
+  <{{ service_channel_group_heading_level }} class="service-channel__type">
+    {{ label }}
+  </{{ service_channel_group_heading_level }}>
   {{ content }}
 </article>

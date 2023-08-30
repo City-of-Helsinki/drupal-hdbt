@@ -9,9 +9,13 @@
   {% set show_mail = true %}
 {% endif %}
 
+{%  set service_channel_heading_level = service_channel_heading_level|default('h4') %}
+
 {% set service_channel_eservice_links_new_tab = service_channel_eservice_links_new_tab|default(0) %}
 
-<h4 class="service-channel__title">{{ content.name }}</h4>
+<{{ service_channel_heading_level }} class="service-channel__title">
+  {{ content.name }}
+</{{ service_channel_heading_level }}>
 
 {% if content.availability_summary|render %}
   <div class="service-channel__availabilities">{{ content.availability_summary }}</div>
