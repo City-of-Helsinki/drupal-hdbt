@@ -566,6 +566,50 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "På vår webbplats finns för närvarande endast en del av Helsingfors projekt och bostadsområden. Du kan försöka på nytt genom att ta bort något av avgränsningsvillkoren eller genom att börja om från början."
 
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentar"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommentar"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "på"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Öppnades"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Stängs"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktivitet"
+
+msgctxt "See all plans link text"
+msgid "See all plans"
+msgstr "Se alla planer"
+
+msgctxt "See closed plans link text"
+msgid "See all already closed plans"
+msgstr "Se alla redan stängda planer"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English"
+msgstr "Hörandet finns endast på engelska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in Finnish"
+msgstr "Hörandet finns endast på finska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English and Finnish"
+msgstr "Hörandet finns endast på engelska och finska"
+
 msgctxt "News archive filter results heading"
 msgid "Filter news items"
 msgstr "Filtera nyheter"
@@ -629,6 +673,9 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgid "At the moment there is no open hearings for commenting."
+msgstr "För närvarande finns det inga öppna planer för kommentarer."
 
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
