@@ -1,6 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { LoadingSpinner } from 'hds-react';
-import { ForwardedRef, SyntheticEvent, createRef, useEffect } from 'react';
+import { SyntheticEvent, createRef } from 'react';
 import Global from '../enum/Global';
 import URLParams from '../types/URLParams';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
@@ -44,7 +43,7 @@ const PromotedResultsContainer = () => {
     if (!data && !error) {
       return;
     }
-  
+
     if (error || initializationError|| data.error) {
       return (
         <ResultsError
@@ -53,21 +52,21 @@ const PromotedResultsContainer = () => {
         />
       );
     }
-  
+
     const [promotedResponse, baseResponse] = data.responses;
-  
+
     // Typecheck and combine totals from both queries
     const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
     const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
     const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
-  
+
     if (total <= 0) {
       return <NoResults ref={scrollTarget} />;
     }
-  
+
     const pages = Math.floor(total / size);
     const addLastPage = total > size && total % size;
-  
+
     // Typecheck and combine job totals (aggregated vacancies)
     const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
     const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;

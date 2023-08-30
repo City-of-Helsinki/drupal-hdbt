@@ -1,0 +1,26 @@
+.component--hearings {
+  background: $color-silver-light;
+}
+
+.component--hearings .component__container {
+  padding-bottom: $spacing-double;
+  padding-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.hearings__count-container {
+  @include font('small');
+  margin-bottom: $spacing;
+
+  .hearings__count {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.hearings__results {
+  margin-bottom: $spacing-double;
+}

@@ -186,7 +186,7 @@ const useQueryString = (urlParams: URLParams): string => {
     const leftovers = promoted.length % globalSize;
 
     // Promoted take up the whole, no need to retrieve anything.
-    if (promotedToShow >= globalSize) {
+    if (Number(promotedToShow) >= globalSize) {
       return [0, 0];
     }
 

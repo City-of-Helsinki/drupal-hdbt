@@ -47,7 +47,7 @@ const SearchContainer = () => {
           </Tab>
         </TabList>
       </Tabs>
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner loadingText="" loadingFinishedText="" />}>
         {
           searchMode === MODE_OPTIONS.proximity ?
             <div>
