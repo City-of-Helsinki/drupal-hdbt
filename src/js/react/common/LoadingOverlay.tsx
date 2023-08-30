@@ -2,7 +2,7 @@ import { LoadingSpinner } from 'hds-react';
 
 const LoadingOverlay = () => (
     <div className='hdbt__loading-overlay'>
-      <LoadingSpinner />
+      <LoadingSpinner loadingText="" loadingFinishedText="" />
     </div>
   );
 
