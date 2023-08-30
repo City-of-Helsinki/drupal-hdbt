@@ -689,42 +689,6 @@ msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
 
-msgctxt "Service channel type verb"
-msgid "Use the online service"
-msgstr "Asio verkossa"
-
-msgctxt "Service channel type verb"
-msgid "Fill in a form"
-msgstr "Täytä lomake"
-
-msgctxt "Service channel type verb"
-msgid "Call us"
-msgstr "Soita"
-
-msgctxt "Service channel type verb"
-msgid "Send us an email"
-msgstr "Lähetä sähköpostia"
-
-msgctxt "Service channel type verb"
-msgid "Send us mail"
-msgstr "Lähetä postia"
-
-msgctxt "Service channel type verb"
-msgid "Ask in the chat"
-msgstr "Kysy chatissa"
-
-msgctxt "Service channel type verb"
-msgid "Visit us"
-msgstr "Asioi paikan päällä"
-
-msgctxt "Service channel type verb"
-msgid "Online information"
-msgstr "Tietoa verkossa"
-
-msgctxt "Service channel type verb"
-msgid "Send a text message"
-msgstr "Lähetä tekstiviesti"
-
 msgctxt "Service channel default fee override"
 msgid "standard telephone charges apply"
 msgstr "normaali puhelumaksu"
