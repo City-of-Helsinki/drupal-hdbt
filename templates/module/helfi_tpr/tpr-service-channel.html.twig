@@ -5,47 +5,47 @@
  */
 #}
 
-{% if channel_type|lower == 'local' or channel_type|lower == 'mail' %}
+{% if entity.type.value|lower == 'local' or entity.type.value|lower == 'mail' %}
   {% set show_mail = true %}
 {% endif %}
 
 {% set service_channel_links_new_tab = service_channel_links_new_tab|default(0) %}
 
-<{{ channel_title_level }} class="service-channel__title">
-{{ channel.name.value }}
-</{{ channel_title_level }}>
+<h4 class="service-channel__title">{{ content.name }}</h4>
 
-{% if channel.availability_summary.value %}
-  <div class="service-channel__availabilities">
-    {{ channel.availability_summary.value }}
-  </div>
+{% if content.availability_summary|render %}
+  <div class="service-channel__availabilities">{{ content.availability_summary }}</div>
 {% endif %}
 
 
-{% if channel.getMailto and channel.email.value %}
+{% if service_channel_email_link and content.email|render %}
   {% set link_attributes = {
     'class': [
       'service-channel__link',
       'service-channel__link--email',
     ],
   } %}
-  <div class="service-channel__email">
-    {{ link(channel.email.value, channel.getMailto, link_attributes) }}
-  </div>
+  <div class="service-channel__email">{{ link(content.email, service_channel_email_link, link_attributes) }}</div>
 {% endif %}
 
-{% if channel.call_charge_info.value %}
+{% if content.call_charge_info|render %}
   <div class="service-channel__call_charge">
-    <span class="service-channel__call_charge-label">{{ 'Call charge'|t({}, {'context': 'TPR service channel call charge info'}) }}:</span>
-    {% if channel.call_charge_info.value == 'pvm/mpm' or channel.call_charge_info.value == 'msa/lna' or channel.call_charge_info.value == 'mobile call charge / local network charge' %}
-      {{ 'Standard telephone charges apply'|t({}, {'context': 'Service channel default fee override'}) }}
+    <span class="service-channel__call_charge-label">
+      {{ 'Call charge'|t({}, {'context': 'TPR service channel call charge info'}) }}:
+    </span>
+    {% if
+      content.call_charge_info.0['#text'] == 'pvm/mpm' or
+      content.call_charge_info.0['#text'] == 'msa/lna' or
+      content.call_charge_info.0['#text'] == 'mobile call charge / local network charge'
+    %}
+      {{ 'standard telephone charges apply'|t({}, {'context': 'Service channel default fee override'}) }}
     {% else %}
-      {{ channel.call_charge_info.value }}
+      {{ content.call_charge_info.0['#text'] }}
     {% endif %}
   </div>
 {% endif %}
 
-{% if channel.getPhoneNumber %}
+{% if content.phone|render %}
   <div class="service-channel__phone">
     {% set link_attributes = {
       'class': [
@@ -53,31 +53,29 @@
         'service-channel__link--phone',
       ],
     } %}
-    {{ link('Call'|t({}, {'context': 'Service channel phone number prefix'}) ~ ' ' ~ channel.phone.value, channel.getPhoneNumber, link_attributes) }}
+    {{ link('Call'|t({}, {'context': 'Service channel phone number prefix'}) ~ ' ' ~ content.phone.0['#title'], content.phone.0['#url'], link_attributes) }}
   </div>
 {% endif %}
 
-{% if show_mail and channel.getFormattedAddress %}
-  <div class="service-channel__address">
-    {{ channel.getFormattedAddress }}
-  </div>
+{% if show_mail and content.address|render %}
+  <div class="service-channel__address">{{ content.address }}</div>
 {% endif %}
 
-{% if channel.requires_authentication.value == 1 or service_channel_eservice_links_new_tab %}
+{% if entity.requires_authentication.value == 1 or service_channel_eservice_links_new_tab %}
   <div class="service-channel__extra-information">
-    {% if channel.requires_authentication.value == 1 %}
+    {% if entity.requires_authentication.value == 1 %}
       {{ 'Requires authentication'|t }}.
     {% endif %}
-    {% if channel.links.value and service_channel_eservice_links_new_tab and channel_type|lower == 'eservice' %}
+    {% if content.links and service_channel_eservice_links_new_tab and  entity.type.value|lower == 'eservice' %}
       {{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.
     {% endif %}
   </div>
 {% endif %}
 
-{% if channel.links.value %}
+{% if content.links|render %}
   <div class="service-channel__links">
-    {% for link in channel.links.value %}
-      {% if channel_type|lower == 'eservice' %}
+    {% for link in content.links['#items'] %}
+      {% if entity.type.value|lower == 'eservice' %}
         {% if service_channel_eservice_links_new_tab %}
           {% set link_attributes = {
             'class': [
