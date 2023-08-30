@@ -1222,19 +1222,6 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
  */
 function hdbt_preprocess_field(&$variables): void {
   switch ($variables['field_name']) {
-    case 'links':
-      // Craft Service channel links url and title for the templates.
-      if (
-        isset($variables['entity_type']) &&
-        $variables['entity_type'] === 'tpr_service_channel'
-      ) {
-        foreach ($variables['items'] as &$item) {
-          $item['link_url'] = $item['content']['#url'];
-          $item['link_title'] = $item['content']['#title'];
-        }
-      }
-      break;
-
     case 'field_service_links':
       foreach ($variables['items'] as &$item) {
         $existing = $item['content']['#url']->getOption('attributes');
@@ -1462,77 +1449,29 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
   }
 
   $variables['errand_service_additional_info'] = $additional_info;
+}
 
-  $variables['errand_service_channels'] = [];
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_tpr_service_channel(&$variables): void {
+  if (!isset($variables['entity']) || !$variables['entity'] instanceof Channel) {
+    return;
+  }
+  $entity = $variables['entity'];
 
-  // Go through all service channels and give service channel
-  // template required data.
-  foreach ($entity->get('channels')->getValue() as $channel) {
-    $channel = Channel::load($channel['target_id']);
-    $variables['errand_service_channels'][$channel->get('type')->value]['content'][] = $channel;
-
-    // We want to name the service channel types a bit differently than how
-    // they are written in TPR, so we do the naming based on the type here.
-    if (!$channel->get('type')->isEmpty()) {
-      $type = $channel->get('type')->value;
-      $type_verb = '';
-      $weight = 10;
-      switch ($type) {
-        case 'ESERVICE':
-          $type_verb = t('Use the online service', [], ['context' => 'Service channel type verb']);
-          $weight = 0;
-          break;
-
-        case 'TELEPHONE':
-          $type_verb = t('Call us', [], ['context' => 'Service channel type verb']);
-          $weight = 1;
-          break;
-
-        case 'EMAIL':
-          $type_verb = t('Send us an email', [], ['context' => 'Service channel type verb']);
-          $weight = 2;
-          break;
-
-        case 'PRINTABLE_FORM':
-          $type_verb = t('Fill in a form', [], ['context' => 'Service channel type verb']);
-          $weight = 3;
-          break;
-
-        case 'MAIL':
-          $type_verb = t('Send us mail', [], ['context' => 'Service channel type verb']);
-          $weight = 4;
-          break;
-
-        case 'LOCAL':
-          $type_verb = t('Visit us', [], ['context' => 'Service channel type verb']);
-          $weight = 5;
-          break;
-
-        case 'CHAT':
-          $type_verb = t('Ask in the chat', [], ['context' => 'Service channel type verb']);
-          $weight = 6;
-          break;
-
-        case 'WEBPAGE':
-          $type_verb = t('Online information', [], ['context' => 'Service channel type verb']);
-          $weight = 7;
-          break;
-
-        case 'SMS':
-          $type_verb = t('Send a text message', [], ['context' => 'Service channel type verb']);
-          $weight = 8;
-          break;
-      }
-      $variables['errand_service_channels'][$channel->get('type')->value]['type'] = $channel->get('type')->value;
-      $variables['errand_service_channels'][$channel->get('type')->value]['type_verb'] = $type_verb;
-      $variables['errand_service_channels'][$channel->get('type')->value]['weight'] = $weight;
-    }
+  // Convert email link to Url object and set as new variable for the template.
+  if (!$entity->email->isEmpty()) {
+    $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
   }
 
-  // Sort the array according to the weights of the service channel types.
-  $key_values = array_column($variables['errand_service_channels'], 'weight');
-  array_multisort($key_values, SORT_ASC, $variables['errand_service_channels']);
+  // Convert phone number to Url object and set as new variable for the template.
+  if (!$entity->phone->isEmpty()) {
+    $trimmed_phone_number = trim($entity->phone->value);
+    $variables['service_channel_phone_link'] = Url::fromUri('tel:' . $trimmed_phone_number);
+  }
 }
+
 
 /**
  * Implements hook_preprocess_HOOK().

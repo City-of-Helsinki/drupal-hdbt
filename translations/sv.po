@@ -671,8 +671,8 @@ msgid "Send a text message"
 msgstr "Skicka textmeddelande"
 
 msgctxt "Service channel default fee override"
-msgid "Standard telephone charges apply"
-msgstr "Normalt samtalspris"
+msgid "standard telephone charges apply"
+msgstr "normalt samtalspris"
 
 msgctxt "Service channel phone number prefix"
 msgid "Call"

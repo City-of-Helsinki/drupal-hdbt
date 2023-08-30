@@ -673,8 +673,8 @@ msgid "Send a text message"
 msgstr "Lähetä tekstiviesti"
 
 msgctxt "Service channel default fee override"
-msgid "Standard telephone charges apply"
-msgstr "Normaali puhelumaksu"
+msgid "standard telephone charges apply"
+msgstr "normaali puhelumaksu"
 
 msgctxt "Service channel phone number prefix"
 msgid "Call"
