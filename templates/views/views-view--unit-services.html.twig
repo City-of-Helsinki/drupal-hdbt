@@ -51,9 +51,21 @@
     {% endif %}
   </div>
 
+ {% if display_id != 'unit_services_listing' %}
+
   <div class="unit__services__list">
     {{ rows }}
   </div>
+
+ {% elseif display_id == 'unit_services_listing'  %}
+
+  <div class="unit__services__list">
+    <ul>
+      {{ rows }}
+    </ul>
+  </div>
+
+ {% endif %}
 
   {{ empty }}
   {{ pager }}

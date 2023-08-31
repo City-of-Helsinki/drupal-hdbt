@@ -119,7 +119,7 @@
       margin-top: $spacing-triple;
     }
 
-    .service {
+    .service--teaser {
       width: 100%;
 
       @include breakpoint($breakpoint-l) {
