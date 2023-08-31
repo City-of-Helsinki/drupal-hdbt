@@ -573,20 +573,8 @@ msgid "Filter news items"
 msgstr "Suodata uutisia"
 
 msgctxt "News archive heading"
-msgid "All news items"
-msgstr "Kaikki uutiset"
-
-msgctxt "News archive heading"
 msgid "News based on your choices"
 msgstr "Uutiset valintojesi perusteella"
-
-msgctxt "News archive clear button aria label"
-msgid "Clear selection"
-msgstr "Tyhjennä kaikki valinnat"
-
-msgctxt "News archive remove item aria label"
-msgid "Remove item"
-msgstr "Poista valinta"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -612,17 +600,9 @@ msgctxt "News archive groups placeholder"
 msgid "All target groups"
 msgstr "Kaikki kohderyhmät"
 
-msgctxt "News archive clear selections"
-msgid "Clear selections"
-msgstr "Tyhjennä valinnat"
-
 msgctxt "News archive no results"
 msgid "No results found"
 msgstr "Ei tuloksia"
-
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "Avaa alasvetovalikko"
 
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
