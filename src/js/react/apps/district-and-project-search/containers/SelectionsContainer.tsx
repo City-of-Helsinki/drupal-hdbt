@@ -19,7 +19,6 @@ import {
   resetFormAtom
 } from '../store';
 import OptionType from '../types/OptionType';
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
