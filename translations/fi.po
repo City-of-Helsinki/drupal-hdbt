@@ -647,11 +647,11 @@ msgid "All topics"
 msgstr "Kaikki aiheet"
 
 msgctxt "News archive neighbourhoods label"
-msgid "City disctricts"
+msgid "City districts"
 msgstr "Kaupunginosat"
 
 msgctxt "News archive neighbourhoods placeholder"
-msgid "All city disctricts"
+msgid "All city districts"
 msgstr "Kaikki kaupunginosat"
 
 msgctxt "News archive groups label"
