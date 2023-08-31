@@ -45,7 +45,7 @@ const ResultsContainer = (): JSX.Element => {
 
 
   if (!data && !error) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner loadingText="" loadingFinishedText="" />;
   }
 
   if (!data?.hits?.hits.length) {
