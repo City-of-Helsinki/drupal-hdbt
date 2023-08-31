@@ -1,7 +1,3 @@
-@use "sass:math";
-
-$-video-aspect-ratio: math.div(16, 9);
-
 .component--remote-video {
   @include hds-button-colors-on-dark-bg;
   @include component-side-padding;
@@ -34,10 +30,9 @@ $-video-aspect-ratio: math.div(16, 9);
   position: relative;
 
   .responsive-video-container {
+    aspect-ratio: 16/9;
     background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
-    height: 0;
     overflow: hidden;
-    padding-bottom: aspect-ratio-padding($-video-aspect-ratio);
 
     iframe {
       border: 0;

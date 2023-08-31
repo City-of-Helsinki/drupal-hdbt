@@ -91,7 +91,7 @@ class svgToSprite {
     // SVG to CSS.
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
-      let useOldClass = true; // TODO: Remove once hdbt-icon class has been removed.
+      let useOldClass = true; // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
 
       // Create --hel-icon--{icon name} CSS variables.
       let cssVariables = [];
@@ -112,7 +112,7 @@ class svgToSprite {
         let name = filename.split('.');
         cssClasses += `.${this.iconClass}-icon--${name[0]}{--url:var(--${this.iconClass}-icon--${name[0]})}`;
 
-        // TODO: Remove once hdbt-icon class has been removed.
+        // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
         if (useOldClass) {
           cssClasses += `.hdbt-icon--${name[0]}{--url:var(--${this.iconClass}-icon--${name[0]})}`;
         }
@@ -126,7 +126,7 @@ class svgToSprite {
         `mask-image:var(--url)` +
       `}`;
 
-      // TODO: Remove once hdbt-icon class has been removed.
+      // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
       if (useOldClass) {
         hdbtIconUrl += `.hdbt-icon::before{` +
           `-webkit-mask-image:var(--url);` +

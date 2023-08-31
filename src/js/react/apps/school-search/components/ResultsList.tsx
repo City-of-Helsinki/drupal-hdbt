@@ -1,11 +1,14 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, createRef, useState } from 'react';
 import { Button, IconMap, IconMenuHamburger, LoadingSpinner } from 'hds-react';
+import { useAtomValue } from 'jotai';
 import GlobalSettings from '../enum/GlobalSettings';
 import Result from '@/types/Result';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
 import Pagination from '@/react/common/Pagination';
 import ResultsMap from './ResultsMap';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import { paramsAtom } from '../store';
 
 type ResultsListProps = {
   data: any;
@@ -19,15 +22,19 @@ type ResultsListProps = {
 const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = GlobalSettings;
+  const params = useAtomValue(paramsAtom);
+  const scrollTarget = createRef<HTMLDivElement>();
+
+  const choices = Boolean(Object.keys(params).length);
+  useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner loadingText="" loadingFinishedText="" />;
   }
 
-  // @todo: Implement no results message
   if (!data?.hits?.hits.length || error) {
     return (
-      <div className='react-search__no-results'>
+      <div className='react-search__no-results' ref={scrollTarget}>
         {Drupal.t('No results', {}, {context: 'No search results'})}
       </div>
     );
@@ -44,9 +51,9 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
     <div className='react-search__results'>
       <div className='react-search__result-top-area'>
         <div className='react-search__results-stats'>
-          <div className='react-search__count-container'>
+          <div className='react-search__count-container' ref={scrollTarget}>
             {!Number.isNaN(total) &&
-              <> 
+              <>
                 <span className='react-search__count'>{total}</span>
                 <span> {Drupal.t('schools', {}, {context: 'School search: results statline'})}</span>
               </>
@@ -86,7 +93,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
           updatePage={(e: SyntheticEvent, nextPage: number) => {
             e.preventDefault();
             updatePage(nextPage);
-          }}  
+          }}
         />
       }
     </div>

@@ -1,16 +1,15 @@
 import GlobalSettings from '../enum/GlobalSettings';
 import BooleanQuery from '@/types/BooleanQuery';
 import SearchParams from '../types/SearchParams';
-import UseFeatureQuery from '../hooks/UseFeatureQuery';
 
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
-  const gradeKeys = ['grades_1_6', 'grades_7_9'];
+  const gradeKeys = ['grades_1_6', 'grades_1_9', 'grades_7_9'];
   const query: any = [];
 
   [languageKeys, gradeKeys].forEach((keys) => {
     const hits: string[] = [];
-    
+
     keys.forEach((key: string) => {
       if (params[key as keyof SearchParams]) {
         hits.push(key);
@@ -83,7 +82,7 @@ const getQueryString = (params: SearchParams, page: number) => {
 
     query.bool.minimum_should_match = 1;
   }
-  
+
   const checkBoxFilters: any = getCheckBoxFilters(params);
   if (checkBoxFilters.length) {
       query.bool.must = [{
@@ -98,6 +97,18 @@ const getQueryString = (params: SearchParams, page: number) => {
     }];
   };
 
+  const sort: any[] = [
+    {
+      'name.keyword': 'asc'
+    }
+  ];
+
+  if (keyword?.length) {
+    sort.unshift({
+      _score: 'desc'
+    });
+  }
+
   return JSON.stringify({
     aggs: {
       ids: {
@@ -110,14 +121,7 @@ const getQueryString = (params: SearchParams, page: number) => {
     from: size * (page - 1),
     query,
     size,
-    sort: [
-      {
-        _score: 'desc',
-      },
-      {
-        'name.keyword': 'asc'
-      }
-    ]
+    sort,
   });
 };
 

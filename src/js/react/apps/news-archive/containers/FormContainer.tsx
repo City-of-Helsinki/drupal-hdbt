@@ -44,7 +44,7 @@ const FormContainer = () => {
       groupData?.aggregations?.[IndexFields.FIELD_NEWS_GROUPS]?.buckets || []
     ].forEach((sourceData, index) => {
       const parsedData = parseAggData(sourceData);
-      
+
       switch(index) {
         case 0:
           topicOptions = parsedData;
@@ -67,6 +67,9 @@ const FormContainer = () => {
   };
 
   const loading = isLoading || isValidating;
+  const topicLabel = Drupal.t('Topics', {}, { context: 'News archive topics label' });
+  const neighbourhoodLabel = Drupal.t('City districts', {}, { context: 'News archive neighbourhoods label' });
+  const groupLabel = Drupal.t('Target groups', {}, { context: 'News archive groups label' });
 
   return (
     <div className='news-form-wrapper'>
@@ -75,15 +78,15 @@ const FormContainer = () => {
           <h2>{Drupal.t('Filter news items', {}, {context: 'News archive filter results heading'})}</h2>
           <div className='news-form__filters-container'>
             {topicOptions && <Filter
-                label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
+                label={topicLabel}
                 placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
                 options={topicOptions}
                 stateKey='topic'
             />}
             {neighbourhoodOptions && <Filter
-              label={Drupal.t('City disctricts', {}, { context: 'News archive neighbourhoods label' })}
+              label={neighbourhoodLabel}
               placeholder={Drupal.t(
-                'All city disctricts',
+                'All city districts',
                 {},
                 { context: 'News archive neighbourhoods placeholder' }
               )}
@@ -91,7 +94,7 @@ const FormContainer = () => {
               stateKey='neighbourhoods'
             />}
             {groupOptions && <Filter
-              label={Drupal.t('Target groups', {}, { context: 'News archive groups label' })}
+              label={groupLabel}
               placeholder={Drupal.t('All target groups', {}, { context: 'News archive groups placeholder' })}
               options={groupOptions}
               stateKey='groups'

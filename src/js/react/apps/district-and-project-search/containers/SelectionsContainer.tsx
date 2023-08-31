@@ -76,7 +76,7 @@ const SelectionsContainer = () => {
         )}
         <li className='hdbt-search__clear-all'>
           <Button
-            aria-hidden={showClearButton ? 'true' : 'false'}
+            aria-hidden={showClearButton ? 'false' : 'true'}
             className='hdbt-search__clear-all-button'
             iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
             onClick={resetForm}

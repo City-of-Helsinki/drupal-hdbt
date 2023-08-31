@@ -89,7 +89,7 @@
   .page-divider,
   .main-image,
   .long-desc,
-  .enriched-content {
+  .enriched-content:not(.components) {
     @include components-container-max-width;
     @include component-side-padding;
     margin-left: auto;

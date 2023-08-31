@@ -14,6 +14,7 @@ import Pagination from '@/react/common/Pagination';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
 import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const ResultsContainer = () => {
   const size = Global.SIZE;
@@ -24,17 +25,14 @@ const ResultsContainer = () => {
     keepPreviousData: true,
     query: queryString
   });
-  const resultsContainer = createRef<HTMLDivElement>();
+  const scrollTarget = createRef<HTMLDivElement>();
   const choices =
+    Boolean(urlParams.page) ||
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
     Boolean(urlParams.topic?.length);
 
-  useEffect(() => {
-    if (resultsContainer.current && choices) {
-      resultsContainer.current.scrollIntoView({behavior: 'smooth'});
-    }
-  }, [choices, resultsContainer]);
+  useScrollToResults(scrollTarget, choices);
 
   const hits = data?.hits?.hits;
   const total = data?.hits.total.value || 0;
@@ -81,10 +79,11 @@ const ResultsContainer = () => {
 
   const loading = isLoading || isValidating;
   return (
-    <div className='news-wrapper main-content' ref={resultsContainer}>
+    <div className='news-wrapper main-content'>
       <ResultWrapper className='layout-content' loading={loading}>
         <ResultsHeading
           choices={choices}
+          ref={scrollTarget}
           total={total}
         />
         {getResults()}

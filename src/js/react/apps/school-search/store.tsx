@@ -1,5 +1,4 @@
 import { atom } from 'jotai';
-import GlobalSettings from './enum/GlobalSettings';
 import SearchParams from './types/SearchParams';
 
 export const configurationsAtom = atom(() => {

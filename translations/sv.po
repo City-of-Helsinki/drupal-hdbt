@@ -21,6 +21,18 @@ msgctxt "Content liftup card hit for seeing more information on content page"
 msgid "See details"
 msgstr "Se detaljer"
 
+msgctxt "Errand service accordion heading"
+msgid "Process"
+msgstr "Hur ärendet framskrider"
+
+msgctxt "Errand service accordion heading"
+msgid "Fees"
+msgstr "Avgifter"
+
+msgctxt "Errand service accordion heading"
+msgid "Additional information and links"
+msgstr "Ytterligare upplysningar och länkar"
+
 msgctxt "Errand service detail heading"
 msgid "Processing time"
 msgstr "Handläggningstid"
@@ -38,8 +50,8 @@ msgid "Additional information"
 msgstr "Ytterligare upplysningar"
 
 msgctxt "Errand service detail heading"
-msgid "Additional links"
-msgstr "Länkar för ytterligare upplysningar"
+msgid "Links"
+msgstr "Länkar"
 
 msgctxt "Errand service detail heading"
 msgid "How the process works"
@@ -376,11 +388,11 @@ msgstr "Stäng elementet: "
 
 msgctxt "School search: local search title"
 msgid "Search for your local school"
-msgstr "Sök närskola"
+msgstr "Hitta närskola"
 
 msgctxt "School search: local search description"
-msgid "Your child's primary comprehensive school, i.e. their local school, is determined based on the child's home address. The local school has a place for all local children. The search will return Finnish- and Swedish- language comprehensive schools"
-msgstr "Barnets primära grundskola, dvs. närskolan, bestäms enligt barnets hemadress. I närskolan finns en plats föralla barn. I sökningen finns finsk- ja svenskspråkiga grundskolor."
+msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools."
+msgstr "Barnets primära grundskola, alltså närskolan, bestäms enligt barnets hemadress. I söktjänsten kan du söka efter svensk- och finskspråkiga grundskolor."
 
 msgctxt "School search: input helper"
 msgid "Enter the street name and house number"
@@ -407,19 +419,19 @@ msgid "Language of instruction"
 msgstr "Undervisningsspråk"
 
 msgctxt "School search: Feature form title"
-msgid "Search with school information"
+msgid "Search with school details"
 msgstr "Sök på skolans uppgifter"
 
 msgctxt "School search: Feature form description"
-msgid "You can search for a school by name, language of instruction, grade or postal code. Schools can also admit pupils that do not live in the school's admission area, if there are available spaces. Please note that you may have to apply to schools by taking an aptitude test."
-msgstr "Du kan söka skola på namn, undervisningsspråk, årskurs eller postnummer. Skolorna kan också ta emot andra elever än de som bor inom det egna elevupptagningsområdet, om det finns plats. Observera att man kan bli tvungen att söka till skolorna via inträdesprov."
+msgid "You can search for a school by its name, language of instruction, grade or post code."
+msgstr "Du kan söka skola på namn, undervisningsspråk, årskurs eller postnummer."
 
 msgctxt "School search: education level"
-msgid "School level'"
-msgstr "Skolstadium"
+msgid "Grade"
+msgstr "Årskurser"
 
 msgctxt "School search: Feature input label"
-msgid "Name or postal code of the school"
+msgid "School's name or post code"
 msgstr "Skolans namn eller postnummer"
 
 msgctxt "No search results"
@@ -427,12 +439,16 @@ msgid "No results"
 msgstr "Inga resultat"
 
 msgctxt "School search: education level option"
-msgid "Primary schools (grades 1-6)"
-msgstr "Grundskolor (år 1-6)"
+msgid "School providing grades 1 to 6"
+msgstr "Skolor med årskurserna 1–6"
 
 msgctxt "School search: education level option"
-msgid "Lower secondary schools (grades 7-9)"
-msgstr "Grundskolor (år 7-9)"
+msgid "School providing grades 1 to 9"
+msgstr "Skolor med årskurserna 1–9"
+
+msgctxt "School search: education level option"
+msgid "School providing grades 7 to 9"
+msgstr "Skolor med årskurserna 7–9"
 
 msgctxt "Aria label for main navigation"
 msgid "Main navigation"
@@ -550,6 +566,50 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "På vår webbplats finns för närvarande endast en del av Helsingfors projekt och bostadsområden. Du kan försöka på nytt genom att ta bort något av avgränsningsvillkoren eller genom att börja om från början."
 
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentar"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommentar"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "på"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Öppnades"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Stängs"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktivitet"
+
+msgctxt "See all plans link text"
+msgid "See all plans"
+msgstr "Se alla planer"
+
+msgctxt "See closed plans link text"
+msgid "See all already closed plans"
+msgstr "Se alla redan stängda planer"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English"
+msgstr "Hörandet finns endast på engelska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in Finnish"
+msgstr "Hörandet finns endast på finska"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English and Finnish"
+msgstr "Hörandet finns endast på engelska och finska"
+
 msgctxt "News archive filter results heading"
 msgid "Filter news items"
 msgstr "Filtera nyheter"
@@ -579,11 +639,11 @@ msgid "All topics"
 msgstr "Alla ämnen"
 
 msgctxt "News archive neighbourhoods label"
-msgid "City disctricts"
+msgid "City districts"
 msgstr "Stadsdel"
 
 msgctxt "News archive neighbourhoods placeholder"
-msgid "All city disctricts"
+msgid "All city districts"
 msgstr "Alla stadsdelar"
 
 msgctxt "News archive groups label"
@@ -613,3 +673,10 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgid "At the moment there is no open hearings for commenting."
+msgstr "För närvarande finns det inga öppna planer för kommentarer."
+
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Rensa alla @label"

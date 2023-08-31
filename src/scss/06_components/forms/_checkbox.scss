@@ -2,7 +2,7 @@
   --focus-outline-color: #{$color-black}; // We should use hdbt color theme instead of hds
 
   > label {
-    @extend .hds-checkbox__label !optional; // TODO: we should refactor to get rid of this extend
+    @extend .hds-checkbox__label !optional; // TODO: UHF-8797 we should refactor to get rid of this extend (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8797).
   }
 
   .hds-checkbox__input:focus {

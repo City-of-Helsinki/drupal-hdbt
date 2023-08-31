@@ -55,7 +55,6 @@ function hdbt_preprocess(&$variables): void {
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
-  // @todo Fix this to be independent block as well.
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
@@ -1386,26 +1385,24 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
     return;
   }
   $entity = $variables['entity'];
-  $details = [];
 
-  $detail_fields = [
+  // Process accordion content.
+  $process = [];
+  $process_fields = [
     'process_description' => t('How the process works', [], ['context' => 'Errand service detail heading']),
     'processing_time' => t('Processing time', [], ['context' => 'Errand service detail heading']),
-    'costs' => t('Fees', [], ['context' => 'Errand service detail heading']),
     'expiration_time' => t('Validity period', [], ['context' => 'Errand service detail heading']),
-    'information' => t('Additional information', [], ['context' => 'Errand service detail heading']),
-    'links' => t('Additional links', [], ['context' => 'Errand service detail heading']),
   ];
 
-  foreach ($detail_fields as $detail_key => $heading) {
-    if (!$entity->{$detail_key}->isEmpty()) {
+  foreach ($process_fields as $process_key => $heading) {
+    if (!$entity->{$process_key}->isEmpty()) {
       $content = [];
-      if ($detail_key !== 'links') {
+      if ($process_key !== 'links') {
         $content['#theme'] = 'tpr_errand_service_detail';
         $content['#title'] = $heading;
         $content['#content'] = [
           '#type' => 'processed_text',
-          '#text' => $entity->{$detail_key}->value,
+          '#text' => $entity->{$process_key}->value,
           '#format' => 'full_html',
         ];
       }
@@ -1415,11 +1412,71 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
         $content['#links'] = $entity->links;
       }
 
-      $details[] = $content;
+      $process[] = $content;
     }
   }
 
-  $variables['errand_service_details'] = $details;
+  $variables['errand_service_process'] = $process;
+
+  // Fees accordion content.
+  $fees = [];
+  $fees_fields = [
+    'costs' => t('Fees', [], ['context' => 'Errand service detail heading']),
+  ];
+
+  foreach ($fees_fields as $fees_key => $heading) {
+    if (!$entity->{$fees_key}->isEmpty()) {
+      $content = [];
+      if ($fees_key !== 'links') {
+        $content['#theme'] = 'tpr_errand_service_detail';
+        $content['#content'] = [
+          '#type' => 'processed_text',
+          '#text' => $entity->{$fees_key}->value,
+          '#format' => 'full_html',
+        ];
+      }
+      else {
+        $content['#theme'] = 'tpr_errand_service_detail_link';
+        $content['#links'] = $entity->links;
+      }
+
+      $fees[] = $content;
+    }
+  }
+
+  $variables['errand_service_fees'] = $fees;
+
+  // Additional information accordion content.
+  $additional_info = [];
+
+  $additional_info_fields = [
+    'information' => t('Additional information', [], ['context' => 'Errand service detail heading']),
+    'links' => t('Links', [], ['context' => 'Errand service detail heading']),
+  ];
+
+  foreach ($additional_info_fields as $additional_info_key => $heading) {
+    if (!$entity->{$additional_info_key}->isEmpty()) {
+      $content = [];
+      if ($additional_info_key !== 'links') {
+        $content['#theme'] = 'tpr_errand_service_detail';
+        $content['#title'] = $heading;
+        $content['#content'] = [
+          '#type' => 'processed_text',
+          '#text' => $entity->{$additional_info_key}->value,
+          '#format' => 'full_html',
+        ];
+      }
+      else {
+        $content['#theme'] = 'tpr_errand_service_detail_link';
+        $content['#title'] = $heading;
+        $content['#links'] = $entity->links;
+      }
+
+      $additional_info[] = $content;
+    }
+  }
+
+  $variables['errand_service_additional_info'] = $additional_info;
 }
 
 /**
@@ -1638,4 +1695,39 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   }
 
   $variables['#attached']['library'][] = 'hdbt/job-search';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
+  $language = \Drupal::languageManager()
+    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+    ->getId();
+  $entity = $variables['external_entity'];
+  $hearingLangcode = $entity->get('langcode')->value;
+  if ($hearingLangcode && $hearingLangcode == $language) {
+    return;
+  }
+  $existingLanguages = explode(',', $entity->get('existing_translations')->value);
+
+  if (in_array("fi", $existingLanguages) && in_array("en", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish and English', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("fi", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish and Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("en", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
+    $variables['available_in_languages'] = t('Hearing only available in English and Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("fi", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in Finnish', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("en", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in English', [], ['context' => 'Hearing available in languages']);
+  }
+  if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
+    $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
+  }
+
 }

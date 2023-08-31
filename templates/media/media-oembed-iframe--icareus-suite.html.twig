@@ -11,7 +11,7 @@
   <head>
     <css-placeholder token="{{ placeholder_token }}">
   </head>
-  {# TODO: Fix "right: -15px" once embedded video is returned without scrollbars. #}
+  {# The "right: -15px" is added to the video because it is returned with scrollbars. Once they are removed this can also be removed. #}
   <body style="margin: 0; height: 100%; left: 0; right: -15px; position: absolute; top: 0; width: auto; overflow: hidden;">
     {{ media|raw }}
   </body>
