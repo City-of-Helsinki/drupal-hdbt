@@ -1,7 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { Button, IconCross } from 'hds-react';
+
 import { paramsAtom, updateParamsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
 
 type SelectionsContainerProps = {
@@ -28,7 +29,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
       if (!checkBoxKeys.includes(key) || !searchParams[key]) {
         return;
       }
-      
+
       pills.push(
         <FilterButton
           key={key}
@@ -57,23 +58,9 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
     searchParams.grades_7_9;
 
   return (
-    <div className='hdbt-search__selections-wrapper'>
-      <ul className='hdbt-search__selections-container content-tags__tags'>
-        {getPills()}
-        <li className='hdbt-search__clear-all'>
-          <Button
-            aria-hidden={!showClearButton}
-            className="hdbt-search__clear-all-button"
-            iconLeft={<IconCross className='job-search-form__clear-all-icon' />}
-            onClick={resetForm}
-            style={showClearButton ? {} : { visibility: 'hidden'}}
-            variant='supplementary'
-          >
-            {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
-          </Button>
-        </li>
-      </ul>
-    </div>
+    <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
+      {getPills()}
+    </SelectionsWrapper>
   );
 };
 
