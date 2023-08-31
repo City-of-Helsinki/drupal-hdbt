@@ -1460,7 +1460,8 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
   }
   $entity = $variables['entity'];
 
-  // TODO: UHF-8908 Remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8908)
+  // @todo UHF-8908 Remove this
+  // (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8908)
   if (!$entity->email->isEmpty()) {
     $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
   }
