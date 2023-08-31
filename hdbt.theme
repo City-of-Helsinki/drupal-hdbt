@@ -1460,16 +1460,9 @@ function hdbt_preprocess_tpr_service_channel(&$variables): void {
   }
   $entity = $variables['entity'];
 
-  // Convert email link to Url object and set as new variable for the template.
+  // TODO: UHF-8908 Remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8908)
   if (!$entity->email->isEmpty()) {
     $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
-  }
-
-  // Convert phone number to Url object and set as new variable for the
-  // template.
-  if (!$entity->phone->isEmpty()) {
-    $trimmed_phone_number = trim($entity->phone->value);
-    $variables['service_channel_phone_link'] = Url::fromUri('tel:' . $trimmed_phone_number);
   }
 }
 
