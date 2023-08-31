@@ -650,6 +650,10 @@ msgctxt "News archive groups placeholder"
 msgid "All target groups"
 msgstr "Kaikki kohderyhmät"
 
+msgctxt "News archive no results"
+msgid "No results found"
+msgstr "Ei tuloksia"
+
 msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
