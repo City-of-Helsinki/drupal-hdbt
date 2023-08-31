@@ -124,39 +124,12 @@ $news-archive-background: #f2f2f2;
   }
 }
 
-.news-form__selections-container {
-  align-items: center;
-}
-
 .news-wrapper {
   padding-top: $spacing-triple;
 }
 
 .news-listing--teasers {
   max-width: 100%;
-}
-
-.news-form__clear-all {
-  list-style-type: none;
-  margin-bottom: $spacing-half;
-
-  // Negate hdbt's li+li margin
-  margin-top: 0;
-}
-
-// Need a specific selector to override hds styles
-.news-form__clear-all .news-form__clear-all-button {
-  --background-color-hover: transparent;
-  --background-color-focus: transparent;
-  --background-color-hover-focus: transparent;
-  --border-color-hover: var(--hdbt-color-black);
-  --border-color-focus: var(--hdbt-color-black);
-  --border-color-hover-focus: var(--hdbt-color-black);
-  --color: var(--hdbt-color-black);
-  --color-hover: var(--hdbt-color-black);
-  --color-focus: var(--hdbt-color-black);
-  --color-hover-focus: var(--hdbt-color-black);
-  --focus-outline-color: var(--hdbt-color-black);
 }
 
 .news-listing__no-results {
@@ -178,11 +151,6 @@ button.news-form__remove-selection-button:not(:disabled) {
   padding-top: 0;
 }
 
-// Negate HDS-defined margin for icon inside remove button
-.news-form__selections-wrapper button.news-form__remove-selection-button > div {
-  margin-right: 0;
-}
-
 .news-archive__heading {
   border-bottom: 2px solid $color-black;
   display: flex;
@@ -195,7 +163,7 @@ button.news-form__remove-selection-button:not(:disabled) {
   }
 }
 
-.news-archive__title { 
+.news-archive__title {
   @include font('h3');
   margin-top: 0;
   padding-bottom: $spacing-and-half;
