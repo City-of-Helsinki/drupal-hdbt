@@ -23,6 +23,14 @@
   }
 }
 
+.service-channel__content + .service-channel__content .service-channel__title {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+  }
+}
+
 .service-channel__links {
   display: flex;
   flex-direction: column;
