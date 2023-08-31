@@ -568,6 +568,56 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "Sivuillamme esitetään toistaiseksi vain osa Helsingin hankkeista ja asuinalueista. Voit kokeilla uudestaan poistamalla jonkin rajausehdoista tai aloittamalla alusta."
 
+msgctxt "Hearing activity suffix singular"
+msgid "comment"
+msgstr "kommentti"
+
+msgctxt "Hearing activity suffix plural"
+msgid "comments"
+msgstr "kommenttia"
+
+msgctxt "Word in between hearing unpublished date and time"
+msgid "at"
+msgstr "klo"
+
+msgctxt "Label for hearing opened date"
+msgid "Opened"
+msgstr "Avautui"
+
+msgctxt "Label for hearing closes date"
+msgid "Closes"
+msgstr "Sulkeutuu"
+
+msgctxt "Label for hearing activity row"
+msgid "Activity"
+msgstr "Aktiivisuus"
+
+msgctxt "Hearings count"
+msgid "plan open for commenting"
+msgid_plural "plans open for commenting"
+msgstr[0] "suunnitelma avoinna kommentoitavaksi"
+msgstr[1] "suunnitelmaa avoinna kommentoitavaksi"
+
+msgctxt "See all plans link text"
+msgid "See all plans"
+msgstr "Katso kaikki suunnitelmat"
+
+msgctxt "See closed plans link text"
+msgid "See all already closed plans"
+msgstr "Katso jo sulkeutuneet suunnitelmat"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English"
+msgstr "Kommentoitavissa vain englanniksi"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in Swedish"
+msgstr "Kommentoitavissa vain ruotsiksi"
+
+msgctxt "Hearing available in languages"
+msgid "Hearing only available in English and Swedish"
+msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
+
 msgctxt "News archive filter results heading"
 msgid "Filter news items"
 msgstr "Suodata uutisia"
@@ -597,11 +647,11 @@ msgid "All topics"
 msgstr "Kaikki aiheet"
 
 msgctxt "News archive neighbourhoods label"
-msgid "City disctricts"
+msgid "City districts"
 msgstr "Kaupunginosat"
 
 msgctxt "News archive neighbourhoods placeholder"
-msgid "All city disctricts"
+msgid "All city districts"
 msgstr "Kaikki kaupunginosat"
 
 msgctxt "News archive groups label"
@@ -631,6 +681,9 @@ msgstr "Tilaa kaikkien uutisten RSS-syöte"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
+
+msgid "At the moment there is no open hearings for commenting."
+msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
 
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
