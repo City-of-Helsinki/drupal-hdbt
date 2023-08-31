@@ -1,7 +1,7 @@
-import { Button, IconCross } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
 import transformDropdownsValues from '../helpers/Params';
 import { capitalize } from '../helpers/helpers';
@@ -19,7 +19,6 @@ import {
   resetFormAtom
 } from '../store';
 import OptionType from '../types/OptionType';
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
