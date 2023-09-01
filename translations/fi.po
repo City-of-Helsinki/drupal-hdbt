@@ -378,7 +378,7 @@ msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Avaa käyttäjäva
 
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
-msgstr "Puhelumaksu"
+msgstr "Puhelun hinta"
 
 msgctxt "The helper text for toggle accordion visibility button"
 msgid "Toggle element: "
@@ -688,3 +688,15 @@ msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgctxt "Service channel default fee override"
+msgid "standard telephone charges apply"
+msgstr "normaali puhelumaksu"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Soita"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"

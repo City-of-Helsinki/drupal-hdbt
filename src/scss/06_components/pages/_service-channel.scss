@@ -1,148 +1,55 @@
+.service-channel {
+  @include font('body');
+  background-color: var(--color-fog-light);
+  margin: $spacing-double 0 0;
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    padding: $spacing-double;
+  }
+}
+
+.service-channel__type {
+  @include font('h3');
+  margin-top: 0;
+}
+
+.service-channel__title {
+  @include font('h4');
+  margin-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-double;
+  }
+}
+
+.service-channel__content + .service-channel__content .service-channel__title {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-triple;
+  }
+}
+
 .service-channel__links {
   display: flex;
   flex-direction: column;
   gap: $spacing-half;
-  place-items: flex-start;
-
-  .service-channel__link-explanation {
-    @include font('small');
-    color: $color-black-60;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-
-  a:not(.service-channel__link) {
-    --background-color-hover: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color: var(--hdbt-color-palette-button--secondary);
-    --background-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover: var(--hdbt-color-palette-button--secondary);
-    --border-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --color: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover: var(--hdbt-color-palette-button--secondary);
-    --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-}
-
-.service-channel:not(.service-channel--eservice) {
-  margin: $spacing-and-half 0 0;
-  padding-bottom: 0;
-
-  // Padding-left: Icon width + spacing between icon and text
-  padding-left: calc(#{$spacing-and-half} + #{$spacing-half});
-  padding-right: $spacing;
-  padding-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    border: 1px solid $color-black;
-    margin: $spacing-double 0 0;
-    padding-bottom: $spacing-double;
-
-    // Padding-left: spacing to element edge + Icon width + spacing between icon and text
-    padding-left: calc(#{$spacing-and-half} + #{$spacing-and-half} + #{$spacing-half});
-    padding-right: $spacing-and-half;
-    padding-top: $spacing-double;
-  }
-
-  .service-channel__header {
-    align-items: flex-start;
-    display: flex;
-  }
-
-  .service-channel__type {
-    height: 24px;
-    margin-left: calc(-#{$spacing-and-half} - #{$spacing-half});
-    overflow: hidden;
-    position: absolute;
-    text-indent: -9999px;
-    width: 24px;
-
-    &::after {
-      @include pseudo-icon(null, $spacing-and-half, $color-black);
-      left: 0;
-      position: absolute;
-      text-indent: 0;
-      top: 0;
-    }
-  }
-
-  .service-channel__title {
-    @include font('h6'); // Design has smaller font size than normal h3.
-    margin-top: 0;
-    width: 100%;
-  }
-
-  .service-channel__links {
-    margin-top: $spacing-and-half;
-  }
-}
-
-.service-channel--eservice {
-  background-color: var(--hdbt-color-palette--secondary);
   margin-top: $spacing-and-half;
-  padding: $spacing-and-half $spacing-and-half $spacing-double;
-
-  @include breakpoint($breakpoint-l) {
-    margin: $spacing-double 0 0;
-    padding: $spacing-triple $spacing-double;
-  }
-
-  .service-channel__type {
-    @include font('h6');
-  }
-
-  .service-channel__title {
-    @include font('special.card_title');
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing;
-    }
-  }
-
-  .service-channel__links {
-    margin-top: $spacing-and-half;
-  }
+  place-items: flex-start;
 }
 
-.service-channel--email .service-channel__type::after {
-  @include pseudo-icon-replace('glyph-at');
+.service-channel--eservice .service-channel__links {
+  margin-top: $spacing;
 }
 
-.service-channel--sms .service-channel__type::after {
-  @include pseudo-icon-replace('mobile');
+.service-channel__link {
+  @include font('body');
+  font-weight: 500;
 }
 
-.service-channel--telephone .service-channel__type::after {
-  @include pseudo-icon-replace('phone');
-}
-
-.service-channel--printable_form .service-channel__type::after {
-  @include pseudo-icon-replace('document');
-}
-
-.service-channel--webpage .service-channel__type::after {
-  @include pseudo-icon-replace('globe');
-}
-
-.service-channel--chat .service-channel__type::after {
-  @include pseudo-icon-replace('speechbubble-text');
-}
-
-.service-channel--local .service-channel__type::after {
-  @include pseudo-icon-replace('location');
-}
-
-.service-channel--mail .service-channel__type::after {
-  @include pseudo-icon-replace('envelope');
+.service-channel--printable_form .service-channel__link::after {
+  @include pseudo-icon('printableform', calc(var(--line-height) * 1em), currentColor, inline-block);
 }
 
 .service-channel__address {
@@ -154,70 +61,29 @@
     display: none;
   }
 }
-
-.service-channel__phone,
-.service-channel__email {
-  margin-top: $spacing;
-
-  > a {
-    @include font('h4');
-  }
+.service-channel__address,
+.service-channel__email,
+.service-channel__phone {
+  margin-top: $spacing-and-half;
 }
 
-.service-channel--no-title {
-  .service-channel__phone,
-  .service-channel__email {
-    margin-top: 0;
-  }
-}
-
+.service-channel__availabilities,
 .service-channel__call_charge {
-  display: flex;
+  display: block;
   margin-top: $spacing;
-
-  .service-channel__call_charge-label {
-    font-weight: $font-weight-medium;
-    margin-right: $spacing-quarter;
-  }
 
   p:first-of-type {
     margin-top: 0;
   }
 }
 
-.service-channel__info {
-  @include font('small');
-  margin-top: $spacing-and-half;
-
-  > * {
-    display: block;
-
-    & + * {
-      margin-top: $spacing-half;
-    }
-  }
+.service-channel__extra-information {
+  margin-top: $spacing;
 }
 
-@include breakpoint($breakpoint-l) {
-  .service-channel__info {
-    align-items: center;
-    display: flex;
-
-    > * {
-      align-items: center;
-      display: flex;
-      margin-top: 0;
-
-      &::after {
-        content: '|';
-        margin: 0 $spacing;
-      }
-
-      &:last-child {
-        &::after {
-          content: '';
-        }
-      }
-    }
+.service-channel--no-title {
+  .service-channel__email,
+  .service-channel__phone {
+    margin-top: 0;
   }
 }

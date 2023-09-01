@@ -376,7 +376,7 @@ msgstr "Du är inloggad som @display_name. Öppna profilinformationsmenyn."
 
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
-msgstr "Samtalsavgift"
+msgstr "Samtalets pris"
 
 msgctxt "The helper text for toggle accordion visibility button"
 msgid "Toggle element: "
@@ -680,3 +680,15 @@ msgstr "För närvarande finns det inga öppna planer för kommentarer."
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgctxt "Service channel default fee override"
+msgid "standard telephone charges apply"
+msgstr "normalt samtalspris"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Ring upp"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
