@@ -3,6 +3,7 @@
     card_modifier_class: 'card--cardtype',
     card_image: card_image,
     card_title_level: 'h3',
+    card_title_lang: 'fi',
     card_title: 'Otsikko',
     card_url: 'https://www.hel.fi/fi/',
     card_url_external: false,
@@ -49,8 +50,8 @@
   {% endif %}
 
   <div class="card__text">
-    <{{ card_title_level|default('h3') }} class="card__title">
-      {{ link(card_title, card_url, { 'class':['card__link'],  'rel':'bookmark' }) }}
+    <{{ card_title_level|default('h3') }} class="card__title" {% if card_title_lang %}lang="{{ card_title_lang }}"{% endif %}>
+      {{ link(card_title, card_url, { 'class':['card__link'], 'rel':'bookmark' }) }}
     </{{ card_title_level|default('h3') }}>
 
     {% if card_category_tag %}
