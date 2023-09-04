@@ -1,4 +1,5 @@
 {% set design = content.field_accordion_design.0|first|clean_class %}
+{% set accordion_title_level = paragraph.getTitleLevel() %}
 
 {% set header_class = null %}
 {% if not content.field_accordion_title|render and not content.field_accordion_description|render  %}
