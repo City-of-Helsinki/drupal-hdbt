@@ -1,3 +1,6 @@
+{% set search_parent_paragraph = paragraph.getSearchParentParagraph() %}
+{% set units_list = paragraph.getUnitsList() %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
