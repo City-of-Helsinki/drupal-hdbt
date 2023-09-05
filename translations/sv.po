@@ -653,13 +653,13 @@ msgctxt "Label for hearing activity row"
 msgid "Activity"
 msgstr "Aktivitet"
 
-msgctxt "See all plans link text"
-msgid "See all plans"
-msgstr "Se alla planer"
+msgctxt "See all hearings link text"
+msgid "See all hearings"
+msgstr "Se alla Hörandet"
 
-msgctxt "See closed plans link text"
-msgid "See all already closed plans"
-msgstr "Se alla redan stängda planer"
+msgctxt "See closed hearings link text"
+msgid "See all already closed hearings"
+msgstr "Se alla redan stängda Hörandet"
 
 msgctxt "Hearing available in languages"
 msgid "Hearing only available in English"
@@ -674,7 +674,7 @@ msgid "Hearing only available in English and Finnish"
 msgstr "Hörandet finns endast på engelska och finska"
 
 msgid "At the moment there is no open hearings for commenting."
-msgstr "För närvarande finns det inga öppna planer för kommentarer."
+msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
 
 msgctxt "Service channel type verb"
 msgid "Use the online service"
