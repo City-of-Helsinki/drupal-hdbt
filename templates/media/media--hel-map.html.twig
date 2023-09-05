@@ -34,6 +34,9 @@
 {% set media_url = content.field_media_hel_map.0['#iframe']['#attributes']['src'] %}
 {% set media_attributes = media.field_media_hel_map %}
 {% set link = content.field_media_hel_map.0['#link'] %}
+{% set map_service_url = media.getServiceUrl() %}
+{% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
+{% set iframe_title = media.getMediaTitle() %}
 
 {% set after_map_id = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
 {% set before_map_id = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
@@ -66,5 +69,6 @@
   }
 } %}
 {{ drupal_settings }}
+{{ attach_library(media.getJsLibrary()) }}
 
 {{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}

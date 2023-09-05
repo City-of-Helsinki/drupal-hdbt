@@ -1,3 +1,6 @@
+{% set search_parent_paragraph = paragraph.getSearchParentParagraph() %}
+{% set services_list = paragraph.getServicesList() %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
