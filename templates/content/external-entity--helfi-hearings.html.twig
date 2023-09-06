@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if content.close_at[0]['#context'].value is not empty %}
-  {% set card_unpublished_on = content.close_at[0]['#context'].value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ node.unpublish_on.value|date('H:i') %}
+  {% set card_unpublished_on = content.close_at[0]['#context'].value|date('j.n.Y') ~ ' ' ~ 'at'|t({}, {'context': 'Word in between hearing unpublished date and time'}) ~ ' ' ~ content.close_at[0]['#context'].value|date('H:i', 'Europe/Helsinki') %}
 {% else %}
   {% set card_unpublished_on = '-' %}
 {% endif %}
