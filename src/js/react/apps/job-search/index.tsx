@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 
 import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
+import initSentry from './helpers/Sentry';
+
+initSentry();
 
 initSentry();
 
