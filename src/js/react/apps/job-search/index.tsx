@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SearchContainer from './containers/SearchContainer';
+import initSentry from './helpers/Sentry';
+
+initSentry();
 
 const rootSelector: string = 'helfi-rekry-job-search';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
