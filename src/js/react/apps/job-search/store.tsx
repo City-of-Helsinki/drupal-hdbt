@@ -103,26 +103,26 @@ type configurations = {
 };
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_rekry_job_search?.elastic_proxy_url;
-  const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
+  const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
+  const url: string | undefined = proxyUrl;
   const ndjsonHeader = '{}';
 
   const body =
-    `${ndjsonHeader 
-    }\n${ 
-    JSON.stringify(AGGREGATIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(TASK_AREA_OPTIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(EMPLOYMENT_FILTER_OPTIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(LANGUAGE_OPTIONS) 
+    `${ndjsonHeader
+    }\n${
+    JSON.stringify(AGGREGATIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(TASK_AREA_OPTIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(LANGUAGE_OPTIONS)
     }\n${
     ndjsonHeader
     }\n${

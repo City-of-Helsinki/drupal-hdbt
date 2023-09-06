@@ -27,13 +27,13 @@ declare namespace drupalSettings {
     }
   };
   const helfi_react_search: {
-    elastic_proxy_url: string
+    elastic_proxy_url: string;
+    sentry_dsn_react: string;
   };
   const helfi_school_search: {
     cookie_privacy_url: string;
   };
   const helfi_rekry_job_search: {
-    elastic_proxy_url: string;
     results_page_path: string;
   };
   const helfi_kymp_district_project_search: {

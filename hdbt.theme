@@ -1504,11 +1504,6 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     }
   }
 
-  $config = \Drupal::config('elastic_proxy.settings');
-  if ($config->get('elastic_proxy_url')) {
-    $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
-  }
-
   $variables['#attached']['library'][] = 'hdbt/job-search';
 }
 
