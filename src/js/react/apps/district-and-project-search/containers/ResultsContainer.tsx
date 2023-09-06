@@ -28,7 +28,7 @@ const ResultsContainer = (): JSX.Element => {
 
   const fetcher = () => {
     const proxyUrl = drupalSettings?.helfi_kymp_district_project_search?.elastic_proxy_url;
-    const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
+    const url: string | undefined = proxyUrl;
 
     return fetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
