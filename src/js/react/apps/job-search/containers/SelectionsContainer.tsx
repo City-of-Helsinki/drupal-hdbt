@@ -1,6 +1,6 @@
-import { Button, IconCross } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';
 import { getLanguageLabel } from '../helpers/Language';
@@ -42,71 +42,57 @@ const SelectionsContainer = () => {
   const showEmployment = Boolean(urlParams.employment?.length && urlParams.employment?.length > 0);
 
   return (
-    <div className='job-search-form__selections-wrapper'>
-      <ul className='job-search-form__selections-container content-tags__tags'>
-        {showTaskAreas && (
-          <ListFilter
-            updater={updateTaskAreas}
-            valueKey={SearchComponents.TASK_AREAS}
-            values={transformDropdownsValues(urlParams.task_areas, taskAreaOptions)}
-          />
-        )}
-        {showEmployment && (
-          <ListFilter
-            updater={updateEmploymentOptions}
-            valueKey={SearchComponents.EMPLOYMENT}
-            values={transformDropdownsValues(urlParams.employment, employmentOptions)}
-          />
-        )}
-        {urlParams.language && (
-          <SingleFilter
-            label={getLanguageLabel(urlParams.language)}
-            atom={languageSelectionAtom}
-            valueKey={SearchComponents.LANGUAGE}
-          />
-        )}
-        {urlParams.continuous && (
-          <CheckboxFilterPill
-            label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
-            atom={continuousAtom}
-            valueKey={SearchComponents.CONTINUOUS}
-          />
-        )}
-        {urlParams.internship && (
-          <CheckboxFilterPill
-            label={Drupal.t('Practical training', {}, { context: 'Job search' })}
-            atom={internshipAtom}
-            valueKey={SearchComponents.INTERNSHIPS}
-          />
-        )}
-        {urlParams.summer_jobs && (
-          <CheckboxFilterPill
-            label={Drupal.t('Summer jobs', {}, { context: 'Job search' })}
-            atom={summerJobsAtom}
-            valueKey={SearchComponents.SUMMER_JOBS}
-          />
-        )}
-        {urlParams.youth_summer_jobs && (
-          <CheckboxFilterPill
-            label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
-            atom={youthSummerJobsAtom}
-            valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
-          />
-        )}
-        <li className='job-search-form__clear-all'>
-          <Button
-            aria-hidden={showClearButton ? 'false' : 'true'}
-            className='job-search-form__clear-all-button'
-            iconLeft={<IconCross className='job-search-form__clear-all-icon' />}
-            onClick={resetForm}
-            style={showClearButton ? {} : { visibility: 'hidden' }}
-            variant='supplementary'
-          >
-            {Drupal.t('Clear selections', {}, { context: 'Job search clear selections' })}
-          </Button>
-        </li>
-      </ul>
-    </div>
+    <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
+      {showTaskAreas && (
+        <ListFilter
+          updater={updateTaskAreas}
+          valueKey={SearchComponents.TASK_AREAS}
+          values={transformDropdownsValues(urlParams.task_areas, taskAreaOptions)}
+        />
+      )}
+      {showEmployment && (
+        <ListFilter
+          updater={updateEmploymentOptions}
+          valueKey={SearchComponents.EMPLOYMENT}
+          values={transformDropdownsValues(urlParams.employment, employmentOptions)}
+        />
+      )}
+      {urlParams.language && (
+        <SingleFilter
+          label={getLanguageLabel(urlParams.language)}
+          atom={languageSelectionAtom}
+          valueKey={SearchComponents.LANGUAGE}
+        />
+      )}
+      {urlParams.continuous && (
+        <CheckboxFilterPill
+          label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
+          atom={continuousAtom}
+          valueKey={SearchComponents.CONTINUOUS}
+        />
+      )}
+      {urlParams.internship && (
+        <CheckboxFilterPill
+          label={Drupal.t('Practical training', {}, { context: 'Job search' })}
+          atom={internshipAtom}
+          valueKey={SearchComponents.INTERNSHIPS}
+        />
+      )}
+      {urlParams.summer_jobs && (
+        <CheckboxFilterPill
+          label={Drupal.t('Summer jobs', {}, { context: 'Job search' })}
+          atom={summerJobsAtom}
+          valueKey={SearchComponents.SUMMER_JOBS}
+        />
+      )}
+      {urlParams.youth_summer_jobs && (
+        <CheckboxFilterPill
+          label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
+          atom={youthSummerJobsAtom}
+          valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
+        />
+      )}
+    </SelectionsWrapper>
   );
 };
 

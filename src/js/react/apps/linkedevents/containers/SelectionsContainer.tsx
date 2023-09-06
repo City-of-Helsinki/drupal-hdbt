@@ -1,8 +1,9 @@
-import { MouseEventHandler, memo } from 'react';
+import { MouseEventHandler, memo, ReactNode } from 'react';
 import { useAtomValue, useSetAtom, useAtom } from 'jotai';
-import { Button, IconCross } from 'hds-react';
 import type { DateTime } from 'luxon';
 
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import FilterButton from '@/react/common/FilterButton';
 import {
   resetFormAtom,
   locationSelectionAtom,
@@ -28,6 +29,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const startDate = useAtomValue(startDateAtom);
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
+  const resetForm = useSetAtom(resetFormAtom);
 
   const showClearButton = locationSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
@@ -36,38 +38,48 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   }
 
   return (
-    <div className='hdbt-search__selections-wrapper'>
-      <ul className='hdbt-search__selections-container content-tags__tags'>
-        <ListFilterPills
-          updater={setLocationSelection}
-          valueKey={ApiKeys.LOCATION}
-          values={locationSelection}
-          url={url}
-        />
-        <DateFilterPill
-          startDate={startDate}
-          endDate={endDate}
-          url={url}
-        />
-        <CheckboxFilterPill
-          label={Drupal.t('Remote events')}
-          valueKey={ApiKeys.REMOTE}
-          atom={remoteFilterAtom}
-          url={url}
-          value={remoteFilter}
-        />
-        <CheckboxFilterPill
-          label={Drupal.t('Free-of-charge events')}
-          valueKey={ApiKeys.FREE}
-          atom={freeFilterAtom}
-          url={url}
-          value={freeFilter}
-        />
-        <ClearPillsButton showClearButton={showClearButton} url={url} />
-      </ul>
-    </div>
+    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={url}>
+      <ListFilterPills
+        updater={setLocationSelection}
+        valueKey={ApiKeys.LOCATION}
+        values={locationSelection}
+        url={url}
+      />
+      <DateFilterPill
+        startDate={startDate}
+        endDate={endDate}
+        url={url}
+      />
+      <CheckboxFilterPill
+        label={Drupal.t('Remote events')}
+        valueKey={ApiKeys.REMOTE}
+        atom={remoteFilterAtom}
+        url={url}
+        value={remoteFilter}
+      />
+      <CheckboxFilterPill
+        label={Drupal.t('Free-of-charge events')}
+        valueKey={ApiKeys.FREE}
+        atom={freeFilterAtom}
+        url={url}
+        value={freeFilter}
+      />
+    </FilterBulletsWrapper>
   );
 };
+
+type FilterBulletsProps = {
+  showClearButton: string | number | boolean | true | DateTime |undefined;
+  resetForm: MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+  url: string | null;
+};
+
+const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBulletsProps) => (
+  <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
+    {children}
+  </SelectionsWrapper>
+);
 
 type ListFilterBulletsProps = {
   updater: Function;
@@ -165,61 +177,6 @@ const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => 
   );
 };
 
-type FilterButtonProps = {
-  value: string;
-  clearSelection: MouseEventHandler<HTMLButtonElement>;
-};
-
-const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
-  <li
-    className='content-tags__tags__tag content-tags__tags--interactive'
-    key={`${value.toString()}`}
-  >
-    <Button
-      aria-label={Drupal.t(
-        'Remove @item from search results',
-        { '@item': value.toString() },
-        { context: 'Search: remove item aria label' }
-      )}
-      className='hdbt-search__remove-selection-button'
-      iconRight={<IconCross className='hdbt-search__remove-selection-icon' />}
-      variant='supplementary'
-      onClick={clearSelection}
-    >
-      {value}
-    </Button>
-  </li>
-);
-
-type ClearButtonProps = {
-  showClearButton: number | boolean | DateTime;
-  url: string | null;
-};
-
-
-const ClearButton = ({ showClearButton, url }: ClearButtonProps) => {
-  const resetFormStore = useSetAtom(resetFormAtom);
-
-  const resetForm = () => {
-    resetFormStore();
-  };
-
-  return (
-    <li className='hdbt-search__clear-all'>
-      <Button
-        aria-hidden={showClearButton ? 'false' : 'true'}
-        className='hdbt-search__clear-all-button'
-        iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
-        onClick={resetForm}
-        style={showClearButton ? {} : { visibility: 'hidden' }}
-        variant='supplementary'
-      >
-        {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
-      </Button>
-    </li>
-  );
-};
-
 const updateSelections = (prev: any, next: any) => {
   if (prev.url === next.url) {
     return true;
@@ -228,8 +185,8 @@ const updateSelections = (prev: any, next: any) => {
   return false;
 };
 
+const FilterBulletsWrapper = memo(FilterBullets, updateSelections);
 const ListFilterPills = memo(ListFilterBullets, updateSelections);
 const CheckboxFilterPill = memo(CheckboxFilterBullet, updateSelections);
 const DateFilterPill = memo(DateFilterBullet, updateSelections);
-const ClearPillsButton = memo(ClearButton, updateSelections);
 export default memo(SelectionsContainer, updateSelections);

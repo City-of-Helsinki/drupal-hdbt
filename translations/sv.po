@@ -590,13 +590,13 @@ msgctxt "Label for hearing activity row"
 msgid "Activity"
 msgstr "Aktivitet"
 
-msgctxt "See all plans link text"
-msgid "See all plans"
-msgstr "Se alla planer"
+msgctxt "See all hearings link text"
+msgid "See all hearings"
+msgstr "Se alla Hörandet"
 
-msgctxt "See closed plans link text"
-msgid "See all already closed plans"
-msgstr "Se alla redan stängda planer"
+msgctxt "See closed hearings link text"
+msgid "See all already closed hearings"
+msgstr "Se alla redan stängda Hörandet"
 
 msgctxt "Hearing available in languages"
 msgid "Hearing only available in English"
@@ -614,21 +614,10 @@ msgctxt "News archive filter results heading"
 msgid "Filter news items"
 msgstr "Filtera nyheter"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "All nyheter"
 
 msgctxt "News archive heading"
 msgid "News based on your choices"
 msgstr "Nyheter baserat på dina val"
-
-msgctxt "News archive clear button aria label"
-msgid "Clear selection"
-msgstr "Rensa alla"
-
-msgctxt "News archive remove item aria label"
-msgid "Remove item"
-msgstr "Töm valda"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -654,17 +643,9 @@ msgctxt "News archive groups placeholder"
 msgid "All target groups"
 msgstr "Alla målgrupper"
 
-msgctxt "News archive clear selections"
-msgid "Clear selections"
-msgstr "Töm urvalet"
-
 msgctxt "News archive no results"
 msgid "No results found"
 msgstr "Inga resultat"
-
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "öppna rullgardinsmenyn"
 
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
@@ -675,7 +656,7 @@ msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
 
 msgid "At the moment there is no open hearings for commenting."
-msgstr "För närvarande finns det inga öppna planer för kommentarer."
+msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
 
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"

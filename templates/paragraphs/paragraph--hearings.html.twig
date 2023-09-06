@@ -17,13 +17,13 @@
         <section class="hearings__results">
           <div class="hearings__count-container">
             <span class="hearings__count">{{ hearings_count }}</span>
-            {% trans with {'context': 'Hearings count'}%}plan open for commenting{% plural hearings_count %}plans open for commenting{% endtrans %}
+            {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural hearings_count %}hearings open for commenting{% endtrans %}
           </div>
           {{ content.list }}
         </section>
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'primary',
-          label: 'See all plans'|t({},{'context': 'See all plans link text'}),
+          label: 'See all hearings'|t({},{'context': 'See all hearings link text'}),
           url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
           class: 'hearings__link',
           is_external: true,
@@ -35,7 +35,7 @@
         </section>
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'primary',
-          label: 'See all already closed plans'|t({},{'context': 'See closed plans link text'}),
+          label: 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}),
           url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
           class: 'hearings__link',
           is_external: true,
