@@ -669,6 +669,12 @@ msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
 
+msgid "Unit homepage"
+msgstr "Toimipisteen kotisivut"
+
+msgid "Additional details"
+msgstr "Lisätiedot"
+
 msgctxt "Service channel default fee override"
 msgid "standard telephone charges apply"
 msgstr "normaali puhelumaksu"
