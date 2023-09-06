@@ -27,7 +27,7 @@ const ResultsContainer = (): JSX.Element => {
   useScrollToResults(scrollTarget, choices);
 
   const fetcher = () => {
-    const proxyUrl = drupalSettings?.helfi_kymp_district_project_search?.elastic_proxy_url;
+    const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl;
 
     return fetch(`${url}/${Settings.INDEX}/_search`, {
@@ -65,7 +65,7 @@ const ResultsContainer = (): JSX.Element => {
   const addLastPage = total > size && total % size;
 
   if (error || initializationError) {
-    console.warn(`Error loading data. ${  error || initializationError}`);
+    console.warn(`Error loading data. ${error || initializationError}`);
     return (
       <div className='district-project-search__results' ref={scrollTarget}>
         {Drupal.t('The website encountered an unexpected error. Please try again later.')}

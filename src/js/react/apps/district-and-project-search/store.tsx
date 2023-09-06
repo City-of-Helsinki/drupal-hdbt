@@ -75,8 +75,8 @@ export const setPageAtom = atom(null, (get, set, page: string) => {
 export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_kymp_district_project_search.elastic_proxy_url;
-  const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
+  const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
+  const url: string | undefined = proxyUrl;
 
   const body = JSON.stringify(AGGREGATIONS);
 
