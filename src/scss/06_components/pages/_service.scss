@@ -21,6 +21,7 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__title {
+    @include heading-hyphens;
     @include font('h4');
     margin: 0;
   }
