@@ -1,5 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent, createRef } from 'react';
+
+import Pagination from '@/react/common/Pagination';
+import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Global from '../enum/Global';
 import URLParams from '../types/URLParams';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
@@ -11,9 +15,6 @@ import IndexFields from '../enum/IndexFields';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsCount from '../components/results/ResultsCount';
 import ResultsList from '../components/results/ResultsList';
-import Pagination from '@/react/common/Pagination';
-import ResultWrapper from '@/react/common/ResultWrapper';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const PromotedResultsContainer = () => {
   const { size } = Global;
