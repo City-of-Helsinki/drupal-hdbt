@@ -1,8 +1,12 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+
+import LoadingOverlay from '@/react/common/LoadingOverlay';
+import initSentry from '@/react/common/helpers/Sentry';
 import ResultsContainer from './containers/ResultsContainer';
 import FormContainer from './containers/FormContainer';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
+
+initSentry();
 
 const rootSelector: string = 'helfi-etusivu-news-search';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
