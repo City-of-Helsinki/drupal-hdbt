@@ -96,7 +96,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
         error: new Error(
           'Initialization failed.'
         ),
-        aggs:{}
+        aggs: {}
       };
     }
 
@@ -104,7 +104,11 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
       error: null,
       aggs: aggregations
     };
-  });
+  })
+  .catch(error => ({
+    error,
+    aggs: {}
+  }));
 });
 
 export const titleAtom = atom('');
