@@ -1,13 +1,15 @@
 import { SyntheticEvent, createRef, useState } from 'react';
 import { Button, IconMap, IconMenuHamburger, LoadingSpinner } from 'hds-react';
 import { useAtomValue } from 'jotai';
-import GlobalSettings from '../enum/GlobalSettings';
+import * as Sentry from '@sentry/react';
+
 import Result from '@/types/Result';
+import Pagination from '@/react/common/Pagination';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import GlobalSettings from '../enum/GlobalSettings';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
-import Pagination from '@/react/common/Pagination';
 import ResultsMap from './ResultsMap';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import { paramsAtom } from '../store';
 
 type ResultsListProps = {
@@ -33,6 +35,10 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   if (!data?.hits?.hits.length || error) {
+    if (error) {
+      Sentry.captureException(error);
+    }
+
     return (
       <div className='react-search__no-results' ref={scrollTarget}>
         {Drupal.t('No results', {}, {context: 'No search results'})}
