@@ -28,3 +28,9 @@
     }
   }
 }
+
+// Adds heading related hyphens settings, useful when you want to fake certaing heading style
+@mixin heading-hyphens() {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
