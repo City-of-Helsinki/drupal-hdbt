@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
 
