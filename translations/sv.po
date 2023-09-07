@@ -614,10 +614,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
 
-msgctxt "News archive no results"
-msgid "No results found"
-msgstr "Inga resultat"
-
 msgctxt "News archive open dropdown aria label"
 msgid "Open the combobox"
 msgstr "öppna rullgardinsmenyn"
