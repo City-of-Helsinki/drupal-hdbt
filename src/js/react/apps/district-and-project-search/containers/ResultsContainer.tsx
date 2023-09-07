@@ -1,9 +1,10 @@
-import { LoadingSpinner } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
 import { SyntheticEvent, createRef } from 'react';
 
 import Pagination from '@/react/common/Pagination';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
@@ -12,7 +13,7 @@ import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import Result from '../types/Result';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import ResultsError from '../components/results/ResultsError';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -43,9 +44,16 @@ const ResultsContainer = (): JSX.Element => {
     revalidateOnFocus: false,
   });
 
-
   if (!data && !error) {
-    return <LoadingSpinner loadingText="" loadingFinishedText="" />;
+    return (
+      <div className='hdbt__loading-wrapper'>
+        <LoadingOverlay />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <ResultsError error={error || initializationError} ref={scrollTarget}/>;
   }
 
   if (!data?.hits?.hits.length) {
@@ -63,15 +71,6 @@ const ResultsContainer = (): JSX.Element => {
   const total = data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
-
-  if (error || initializationError) {
-    console.warn(`Error loading data. ${error || initializationError}`);
-    return (
-      <div className='district-project-search__results' ref={scrollTarget}>
-        {Drupal.t('The website encountered an unexpected error. Please try again later.')}
-      </div>
-    );
-  }
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
