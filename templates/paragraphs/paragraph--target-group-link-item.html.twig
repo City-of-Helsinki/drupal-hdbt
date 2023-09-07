@@ -4,13 +4,13 @@
 
       <div class="target-group-link__icon">{{ content.field_icon }}</div>
 
-      <h3 class="target-group-link__title">{{
+      <div class="target-group-link__title">{{
           link(
             content.field_target_group_item_link.0['#title'],
             content.field_target_group_item_link.0['#url'],
             {'class': 'target-group-link__link'}
           )
-      }}</h3>
+      }}</div>
 
       {% if content.field_target_group_item_subtitle|render %}
         <div class="target-group-link__subtitle">
