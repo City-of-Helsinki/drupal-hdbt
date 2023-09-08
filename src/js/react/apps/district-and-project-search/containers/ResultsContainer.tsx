@@ -5,6 +5,7 @@ import { SyntheticEvent, createRef } from 'react';
 import Pagination from '@/react/common/Pagination';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
+import ResultsError from '@/react/common/ResultsError';
 import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
@@ -13,7 +14,6 @@ import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import Result from '../types/Result';
-import ResultsError from '@/react/common/ResultsError';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
