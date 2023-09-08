@@ -13,7 +13,7 @@ import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import Result from '../types/Result';
-import ResultsError from '../components/results/ResultsError';
+import ResultsError from '@/react/common/ResultsError';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -53,7 +53,13 @@ const ResultsContainer = (): JSX.Element => {
   }
 
   if (error) {
-    return <ResultsError error={error || initializationError} ref={scrollTarget}/>;
+    return (
+      <ResultsError
+        error={error || initializationError}
+        className='district-project-search__results'
+        ref={scrollTarget}
+      />
+    );
   }
 
   if (!data?.hits?.hits.length) {

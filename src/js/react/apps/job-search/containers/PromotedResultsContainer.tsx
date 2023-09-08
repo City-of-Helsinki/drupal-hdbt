@@ -10,7 +10,7 @@ import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import usePromotedQuery from '../hooks/usePromotedQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import NoResults from '../components/results/NoResults';
-import ResultsError from '../components/results/ResultsError';
+import ResultsError from '@/react/common/ResultsError';
 import IndexFields from '../enum/IndexFields';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsCount from '../components/results/ResultsCount';
@@ -45,10 +45,11 @@ const PromotedResultsContainer = () => {
       return;
     }
 
-    if (error || initializationError|| data.error) {
+    if (error || initializationError || data.error) {
       return (
         <ResultsError
-          error={error||initializationError||data.error}
+          error={error || initializationError || data.error}
+          className='job-search__results'
           ref={scrollTarget}
         />
       );
