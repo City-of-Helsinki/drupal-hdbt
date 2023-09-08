@@ -1,0 +1,9 @@
+// If the unit accessibility information is at the upper content area.
+.components--upper,
+.components--unit,
+.components--service {
+  > .component--unit-accessibility-information {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
