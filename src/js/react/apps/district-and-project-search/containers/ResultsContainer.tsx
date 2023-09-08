@@ -52,7 +52,7 @@ const ResultsContainer = (): JSX.Element => {
     );
   }
 
-  if (error) {
+  if (error || initializationError) {
     return (
       <ResultsError
         error={error || initializationError}
