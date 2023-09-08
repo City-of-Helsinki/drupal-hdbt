@@ -10,7 +10,7 @@ import useQueryString from '../hooks/useQueryString';
 import useIndexQuery from '../hooks/useIndexQuery';
 import ResultsCount from '../components/results/ResultsCount';
 import NoResults from '../components/results/NoResults';
-import ResultsError from '../components/results/ResultsError';
+import ResultsError from '@/react/common/ResultsError';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsList from '../components/results/ResultsList';
 import Global from '../enum/Global';
@@ -40,7 +40,13 @@ const SimpleResultsContainer = () => {
     }
 
     if (error || initializationError) {
-      return <ResultsError error={error||initializationError} ref={scrollTarget}/>;
+      return (
+        <ResultsError
+          error={error || initializationError}
+          className='job-search__results'
+          ref={scrollTarget}
+        />
+      );
     }
 
     if (!data?.hits?.hits.length) {

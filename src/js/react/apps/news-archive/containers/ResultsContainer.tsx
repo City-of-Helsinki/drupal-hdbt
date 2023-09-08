@@ -8,7 +8,7 @@ import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import { setPageAtom, urlAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import NoResults from '../components/results/NoResults';
-import ResultsError from '../components/results/ResultsError';
+import ResultsError from '@/react/common/ResultsError';
 import type NewsItem from '../types/NewsItem';
 import ResultCard from '../components/results/ResultCard';
 import Global from '../enum/Global';
@@ -44,7 +44,13 @@ const ResultsContainer = () => {
     }
 
     if (error) {
-      return <ResultsError error={error} ref={scrollTarget}/>;
+      return (
+        <ResultsError
+          error={error}
+          className='news-listing__no-results'
+          ref={scrollTarget}
+        />
+      );
     }
 
     if (!hits?.length) {
