@@ -6,12 +6,12 @@ type ResultsErrorProps = {
   className: string;
 }
 
-const ResultsError = forwardRef(({ error, className }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement> ) => {
+const ResultsError = forwardRef(({ error, className }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
   console.warn(`Error loading data. ${error}`);
   Sentry.captureException(error);
   return (
     <div className={className} ref={ref}>
-      {Drupal.t('The website encountered an unexpected error. Please try again later.')}
+      {Drupal.t('An error occured while loading the content. Please reload page.', {}, { context: 'React search' })}
     </div>
   );
 });

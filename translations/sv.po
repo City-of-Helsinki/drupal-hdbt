@@ -723,3 +723,7 @@ msgstr "Ring upp"
 msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
 msgid "The link opens in a new tab"
 msgstr "Länken öppnas i en ny flik"
+
+msgctxt "React search"
+msgid "An error occured while loading the content. Please reload page."
+msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
