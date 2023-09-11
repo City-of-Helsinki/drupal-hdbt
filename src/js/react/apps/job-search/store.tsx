@@ -1,11 +1,11 @@
 import { atom } from 'jotai';
 
+import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
 import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
 import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, PROMOTED_IDS, TASK_AREA_OPTIONS } from './query/queries';
 import type OptionType from './types/OptionType';
-import type Result from '@/types/Result';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
@@ -103,26 +103,26 @@ type configurations = {
 };
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_rekry_job_search?.elastic_proxy_url;
-  const url: string | undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
+  const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
+  const url: string | undefined = proxyUrl;
   const ndjsonHeader = '{}';
 
   const body =
-    `${ndjsonHeader 
-    }\n${ 
-    JSON.stringify(AGGREGATIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(TASK_AREA_OPTIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(EMPLOYMENT_FILTER_OPTIONS) 
-    }\n${ 
-    ndjsonHeader 
-    }\n${ 
-    JSON.stringify(LANGUAGE_OPTIONS) 
+    `${ndjsonHeader
+    }\n${
+    JSON.stringify(AGGREGATIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(TASK_AREA_OPTIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)
+    }\n${
+    ndjsonHeader
+    }\n${
+    JSON.stringify(LANGUAGE_OPTIONS)
     }\n${
     ndjsonHeader
     }\n${
@@ -143,7 +143,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
     if (!responses || !Array.isArray(responses)) {
       return {
         error: new Error(
-          `Initialization failed. Expected responses to be an array of data but got ${  typeof responses}`
+          `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`
         ),
         taskAreaOptions: [],
         taskAreas: [],
@@ -169,7 +169,18 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
       languages: languages?.aggregations?.languages?.buckets || [],
       promoted: promoted?.aggregations?.promoted?.buckets || [],
     };
-  });
+  })
+  .catch(error => ({
+    error,
+    taskAreaOptions: [],
+    taskAreas: [],
+    employment: [],
+    employmentOptions: [],
+    employmentSearchIds: [],
+    employmentType: [],
+    languages: [],
+    promoted: [],
+  }));
 });
 
 export const taskAreasAtom = atom(async (get) => {

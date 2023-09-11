@@ -1,20 +1,21 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import React, { SyntheticEvent, createRef, useEffect } from 'react';
+import { SyntheticEvent, createRef } from 'react';
+
+import Result from '@/types/Result';
+import Pagination from '@/react/common/Pagination';
+import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import ResultsError from '@/react/common/ResultsError';
 import { setPageAtom, urlAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import NoResults from '../components/results/NoResults';
-import ResultsError from '../components/results/ResultsError';
-import Result from '@/types/Result';
 import type NewsItem from '../types/NewsItem';
 import ResultCard from '../components/results/ResultCard';
 import Global from '../enum/Global';
 import ResultsHeading from '../components/results/ResultsHeading';
 import MostReadNews from '../components/results/MostReadNews';
-import Pagination from '@/react/common/Pagination';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
-import ResultWrapper from '@/react/common/ResultWrapper';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const ResultsContainer = () => {
   const size = Global.SIZE;
@@ -38,18 +39,24 @@ const ResultsContainer = () => {
   const total = data?.hits.total.value || 0;
 
   const getResults = () => {
-    if (!data) {
+    if (!data && !error) {
       return;
     }
 
-    if (!hits?.length) {
-      return <NoResults />;
+    if (error) {
+      return (
+        <ResultsError
+          error={error}
+          className='news-listing__no-results'
+          ref={scrollTarget}
+        />
+      );
     }
 
-    if (error) {
-      return <ResultsError />;
+    if (!hits?.length) {
+      return <NoResults ref={scrollTarget}/>;
     }
-    
+
     const pages = Math.floor(total / size);
     const addLastPage = total > size && total % size;
     const currentPage = Number(urlParams.page) || 1;

@@ -1,19 +1,20 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent, createRef } from 'react';
+
+import Pagination from '@/react/common/Pagination';
+import ResultWrapper from '@/react/common/ResultWrapper';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import ResultsError from '@/react/common/ResultsError';
 import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import useIndexQuery from '../hooks/useIndexQuery';
 import ResultsCount from '../components/results/ResultsCount';
 import NoResults from '../components/results/NoResults';
-import ResultsError from '../components/results/ResultsError';
 import ResultsSort from '../components/results/ResultsSort';
-import Pagination from '@/react/common/Pagination';
 import ResultsList from '../components/results/ResultsList';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import ResultWrapper from '@/react/common/ResultWrapper';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 const SimpleResultsContainer = () => {
   const { size } = Global;
@@ -38,12 +39,18 @@ const SimpleResultsContainer = () => {
       return;
     }
 
-    if (!data?.hits?.hits.length) {
-      return <NoResults ref={scrollTarget} />;
+    if (error || initializationError) {
+      return (
+        <ResultsError
+          error={error || initializationError}
+          className='job-search__results'
+          ref={scrollTarget}
+        />
+      );
     }
 
-    if (error || initializationError) {
-      return <ResultsError error={error||initializationError} ref={scrollTarget}/>;
+    if (!data?.hits?.hits.length) {
+      return <NoResults ref={scrollTarget} />;
     }
 
     const results = data.hits.hits;

@@ -12,8 +12,8 @@ type UseIndexQueryProps = {
 
 const useIndexQuery = ({ query, multi, ...rest }: UseIndexQueryProps) => {
   const fetcher = () => {
-    const proxyUrl = drupalSettings?.helfi_rekry_job_search?.elastic_proxy_url;
-    const url: string|undefined = proxyUrl || process.env.REACT_APP_ELASTIC_URL;
+    const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
+    const url: string|undefined = proxyUrl;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = `application/${multi ? 'x-ndjson' : 'json'}`;
 
