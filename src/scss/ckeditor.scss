@@ -26,6 +26,7 @@
   @import '04_elements/_index';
 
   // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
+  @import '05_objects/_button';
   @import '05_objects/_quote';
 }
 
