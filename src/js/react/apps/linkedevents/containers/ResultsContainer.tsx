@@ -42,7 +42,6 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
   const size = settings.eventCount;
   const pages = Math.floor(count / size);
   const addLastPage = count > size && count % size;
-
   const showCount = !Number.isNaN(count) && !loading;
 
   return (
@@ -69,7 +68,6 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
       <SeeAllButton />
     </div>
   );
-
 }
 
 export default ResultsContainer;

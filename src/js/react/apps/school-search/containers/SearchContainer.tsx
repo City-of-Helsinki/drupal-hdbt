@@ -1,6 +1,8 @@
-import { LoadingSpinner, Tab, TabList, Tabs } from 'hds-react';
+import { Tab, TabList, Tabs } from 'hds-react';
 import { Suspense, useState } from 'react';
 import { useSetAtom } from 'jotai';
+
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ProximityFormContainer from './ProximityFormContainer';
 import ProximityResultsContainer from './ProximityResultsContainer';
 import FeatureFormContainer from './FeatureFormContainer';
@@ -21,7 +23,7 @@ const SearchContainer = () => {
   const changeSearchMode = (mode: string) => {
     if (mode === searchMode) {
       return;
-    } 
+    }
 
     setParams({});
     setSearchMode(mode);
@@ -47,7 +49,11 @@ const SearchContainer = () => {
           </Tab>
         </TabList>
       </Tabs>
-      <Suspense fallback={<LoadingSpinner loadingText="" loadingFinishedText="" />}>
+      <Suspense fallback={
+        <div className='hdbt__loading-wrapper'>
+          <LoadingOverlay />
+        </div>
+      }>
         {
           searchMode === MODE_OPTIONS.proximity ?
             <div>
