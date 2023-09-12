@@ -7,7 +7,7 @@ type ResultsErrorProps = {
 }
 
 const ResultsError = forwardRef(({ error, className }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
-  console.warn(`Error loading data. ${error}`);
+  console.warn(`Error loading data from Elastic: ${error}`);
 
   if (drupalSettings?.helfi_react_search?.sentry_dsn_react) {
     Sentry.captureException(error);
