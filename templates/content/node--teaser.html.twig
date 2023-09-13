@@ -91,7 +91,8 @@
   'rel': 'bookmark',
 } %}
 
-<div{{ attributes.addClass(classes) }}>
+{# Role is removed from below to avoid populating UI with role="article" elements for accessibility #}
+<div{{ attributes.removeAttribute('role').addClass(classes) }}>
 
   <div class="content-card__image">
     {% if image.0 %}
