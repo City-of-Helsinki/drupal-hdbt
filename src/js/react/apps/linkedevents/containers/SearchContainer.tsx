@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import { useAtomValue, useAtom } from 'jotai';
+
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
