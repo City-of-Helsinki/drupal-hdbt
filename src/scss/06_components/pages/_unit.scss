@@ -110,45 +110,6 @@
 
   .unit__services__list {
     margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: calc(-#{$spacing-and-half} / 2);
-      margin-right: calc(-#{$spacing-and-half} / 2);
-      margin-top: $spacing-triple;
-    }
-
-    .service {
-      width: 100%;
-
-      @include breakpoint($breakpoint-l) {
-        margin-top: $spacing-and-half;
-        width: 25%;
-      }
-
-      &:nth-child(-n+4) {
-        margin-top: 0;
-      }
-
-      @include breakpoint($breakpoint-l) {
-        width: calc(25% - #{$spacing-and-half});
-      }
-
-      // If there is 1 or 2 items inside the services listing:
-      @include content_count(1, 2) {
-        @include breakpoint($breakpoint-l) {
-          width: calc(50% - #{$spacing-and-half});
-        }
-      }
-
-      // If there 3 items inside the services listing:
-      @include content_count(3) {
-        @include breakpoint($breakpoint-l) {
-          width: calc(33.33% - #{$spacing-and-half});
-        }
-      }
-    }
   }
 }
 
