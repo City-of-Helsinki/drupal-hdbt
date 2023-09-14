@@ -1,5 +1,6 @@
 import { Button, TextInput } from 'hds-react';
 import { useSetAtom } from 'jotai';
+
 import { paramsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
 
