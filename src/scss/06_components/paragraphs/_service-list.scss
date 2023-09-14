@@ -53,7 +53,6 @@
 
 .service-list__count-container {
   display: block;
-  margin-bottom: $spacing-double;
   margin-top: $spacing-triple;
 
   @include font('lead');
@@ -66,19 +65,6 @@
 
 .service-list__results {
   margin-top: $spacing-and-half;
-
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-inline: calc(-#{$spacing-and-half} / 2);
-    margin-top: $spacing-triple;
-  }
-
-  .views-row {
-    @include breakpoint($breakpoint-l) {
-      width: 25%;
-    }
-  }
 }
 
 .service-search__results {
