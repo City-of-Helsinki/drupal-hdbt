@@ -91,9 +91,11 @@ class svgToSprite {
     // SVG to CSS.
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
-      let useOldClass = true; // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
+      // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
+      // TODO: Related to UHF-8792 and UHF-8489, turned off the "useOldClass". This, and the code related to hdbt-icon classes can be removed in UHF-8792.
+      let useOldClass = false;
 
-      // Create --hel-icon--{icon name} CSS variables.
+      // Create --hel-icon--{icon name} and [data-icon-start:'{icon name}'] CSS variables.
       let cssVariables = [];
 
       while(this.cssVariables.length) {
@@ -104,13 +106,13 @@ class svgToSprite {
       }
       cssVariables = `:root{${ cssVariables.join(';') }}`;
 
-      // Create .hel-icon--{icon name} or {theme-name}--{icon name} css classes.
+      // Create .hel-icon--{icon name} & [data-icon-start:'{icon name}'] or {theme-name}--{icon name} css classes.
       let cssClasses = '';
       while(this.classes.length) {
         let fullFilename = this.classes.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssClasses += `.${this.iconClass}-icon--${name[0]}{--url:var(--${this.iconClass}-icon--${name[0]})}`;
+        cssClasses += `.${this.iconClass}-icon--${name[0]},[data-icon-start='${name[0]}']{--url:var(--${this.iconClass}-icon--${name[0]})}`;
 
         // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
         if (useOldClass) {
@@ -121,7 +123,7 @@ class svgToSprite {
       // Add a URL as a CSS variable to the hel-icon mask-image.
       // If icons are used elsewhere (f.e. in a separate theme or module) this
       // variable will provide the correct URL for the icon.
-      let hdbtIconUrl = `.${this.iconClass}-icon{` +
+      let hdbtIconUrl = `.${this.iconClass}-icon,[data-icon-start]::before{` +
         `-webkit-mask-image:var(--url);` +
         `mask-image:var(--url)` +
       `}`;
@@ -160,7 +162,7 @@ class svgToSprite {
         let fullFilename = this.ckeditorVariables.shift();
         let filename = fullFilename.replace(/^.*[\\\/]/, '')
         let name = filename.split('.');
-        cssClasses += `[data-selected-icon=${name[0]}]::before{` +
+        cssClasses += `[data-icon-start=${name[0]}]::before,[data-selected-icon=${name[0]}]::before{` +
           `-webkit-mask-image:var(--${this.iconClass}-icon--${name[0]});` +
           `mask-image:var(--${this.iconClass}-icon--${name[0]})` +
           `}`;
