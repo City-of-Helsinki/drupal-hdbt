@@ -1,15 +1,16 @@
-import GlobalSettings from '../enum/GlobalSettings';
 import BooleanQuery from '@/types/BooleanQuery';
+import GlobalSettings from '../enum/GlobalSettings';
 
 const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: number) => {
   const { size } = GlobalSettings;
+  const lang = drupalSettings.path.currentLanguage;
 
   const query: BooleanQuery = {
     bool: {
       filter: [
         {
           term: {
-            _language: drupalSettings.path.currentLanguage
+            _language: lang
           }
         }
       ],
@@ -24,64 +25,33 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
         }
       }
     ];
-  
+
     query.bool.should = [
-      // Show finnish schools first
+      // Show finnish schools first when using fi or en, swedish when sv
       {
         nested: {
           path: 'additional_filters',
           query: {
-            term: {
-              'additional_filters.finnish_education': {
-                value: true,
-                boost: 20
+            constant_score: {
+              boost: 1,
+              filter: {
+                term: {
+                  [lang === 'sv' ? 'additional_filters.swedish_education' : 'additional_filters.finnish_education']: {
+                    value: true,
+                  }
+                }
               }
             }
-          }
+          },
         }
       },
-      // Show 1-6 classes before 7-9
-      {
-        nested: {
-          path: 'additional_filters',
-          query: {
-            term: {
-              'additional_filters.grades_1_6': {
-                value: true,
-                boost: 10
-              }
-            }
-          }
-        }
-      }
     ];
   }
 
-  let sort: any = [
-    {
-      'name.keyword': 'asc'
-    }
-  ];
+  let sort: any = [{'name.keyword':'asc'}];
 
   if (coordinates && coordinates.length) {
-    const [lat, lon] = coordinates;
-
-    sort = [
-      {
-        _score: 'desc'
-      },
-      {
-      _geo_distance: {
-        coordinates: {
-          lat,
-          lon,
-        },
-        order: 'asc',
-        unit: 'm',
-        distance_type: 'arc',
-        ignore_unmapped: true
-      }
-    }, ...sort];
+    sort = [{_score:'desc'}, ...sort];
   }
 
   return JSON.stringify({
