@@ -97,17 +97,6 @@
     margin-top: 0;
   }
 
-  .unit__services__count-container {
-    @include font('lead');
-    display: block;
-    margin-top: $spacing-and-half;
-    width: 100%;
-
-    .unit__services__count {
-      font-weight: $font-weight-bold;
-    }
-  }
-
   .unit__services__list {
     margin-top: $spacing-and-half;
   }

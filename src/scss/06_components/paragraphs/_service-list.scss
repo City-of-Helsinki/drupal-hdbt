@@ -51,18 +51,6 @@
   }
 }
 
-.service-list__count-container {
-  display: block;
-  margin-top: $spacing-triple;
-
-  @include font('lead');
-  width: 100%;
-
-  .service-list__count {
-    font-weight: $font-weight-bold;
-  }
-}
-
 .service-list__results {
   margin-top: $spacing-and-half;
 }
