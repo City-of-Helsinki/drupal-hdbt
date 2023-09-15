@@ -14,39 +14,7 @@ $teaser-icon-size-desktop: 48px;
 }
 
 .service.service--teaser {
-  @include breakpoint($breakpoint-l) {
-    height: 100%;
-    margin-left: calc(#{$spacing-and-half} / 2);
-    margin-right: calc(#{$spacing-and-half} / 2);
-  }
-
-  .service__title {
-    @include font('h4');
-    margin: 0;
-  }
-
-  .hel-icon {
-    --icon-size: #{$teaser-icon-size-mobile};
-    bottom: 50%;
-    left: auto;
-    position: absolute;
-    right: $spacing;
-    transform: translateY(50%);
-
-    @media (prefers-reduced-motion) {
-      transition: none;
-    }
-
-    @include pseudo-icon('arrow-right');
-
-    @include breakpoint($breakpoint-l) {
-      --icon-size: #{ $teaser-icon-size-desktop};
-      margin-top: $spacing-and-half;
-      position: static;
-      transform: none;
-      transition: transform 0.3s linear;
-    }
-  }
+  @include font('body');
 }
 
 .service.service--teaser--unpublished {
