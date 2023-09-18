@@ -20,7 +20,8 @@ $teaser-icon-size-desktop: 48px;
 .service.service--teaser--unpublished {
   color: var(--color-error);
 
-  .service__link {
+  .service__link,
+  a {
     border-color: var(--color-error);
     color: var(--color-error);
 
@@ -28,6 +29,7 @@ $teaser-icon-size-desktop: 48px;
       opacity: 30%;
     }
   }
+
   .hel-icon {
     background-color: var(--color-error);
   }
