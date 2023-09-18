@@ -35,28 +35,20 @@
   'views',
   'views--' ~ id|clean_class,
   'views--' ~ display_id|clean_class,
-  dom_id ? 'js-view-dom-id-' ~ dom_id
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'unit__services__content'
 ]
 %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [
-        'component--service-list',
-        'component--hardcoded',
-      ],
-      component_title: 'Services'|trans
-    }
-  %}
-    {% block component_content %}
-      <div{{attributes.addClass(classes)}}>
-        <ul class="service-list">
-          {{ rows }}
-        </ul>
 
-        {{ empty }}
-        {{ pager }}
-      </div>
-    {% endblock component_content %}
-  {% endembed %}
+<div{{attributes.addClass(classes)}}>
+  <div class="unit__services__header">
+    <h2 class="unit__services__title">{% trans %}Services{% endtrans %}</h2>
+  </div>
 
+  <ul class="unit__services__list">
+    {{ rows }}
+  </ul>
 
+  {{ empty }}
+  {{ pager }}
+</div>
