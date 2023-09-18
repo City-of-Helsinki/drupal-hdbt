@@ -1,3 +1,11 @@
+// Service list is divided into two columns on breakpoint-l if there is more
+// than 6 items and less than 20 items in the list.
+.service-list:has(li:nth-last-child(n+6)):not(:has(li:nth-last-child(n+21))) {
+  @include breakpoint($breakpoint-l) {
+    columns: 2;
+  }
+}
+
 .views--service-list {
   .form-actions .hds-button--primary {
     width: 100%;
@@ -49,10 +57,6 @@
       width: 30%;
     }
   }
-}
-
-.service-list__results {
-  margin-top: $spacing-and-half;
 }
 
 .service-search__results {
