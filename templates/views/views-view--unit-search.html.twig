@@ -54,7 +54,7 @@
   {{ exposed }}
   {{ attachment_before }}
 
-  <div class="unit-search__results">
+  <div class="unit-search__results" data-id-number="{{ dom_id }}">
     {% if total_rows %}
       <span class="unit-search__count-container">
         <span class="unit-search__count">{{ total_rows }}</span>
