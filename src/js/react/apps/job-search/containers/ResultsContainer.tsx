@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+
 import SimpleResultsContainer from './SimpleResultsContainer';
 import PromotedResultsContainer from './PromotedResultsContainer';
 import { configurationsAtom } from '../store';
