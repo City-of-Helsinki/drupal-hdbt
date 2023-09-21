@@ -27,6 +27,7 @@
 
 <section aria-label="{{ type_label }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div {{ create_attribute(announcement_attributes) }}>
+    {% set announcement_close_labelled_by = "announcement__close__aria-label--" ~ random() %}
     <button type="button" class="announcement__close js-announcement__close--disabled" aria-labelledby="{{announcement_close_labelled_by}}">
       <span id="{{announcement_close_labelled_by}}" class="is-hidden">{{ [announcement_title, close_label, type_label|lower]|join(" ") }}</span>
     </button>
@@ -42,6 +43,5 @@
         </div>
       {% endif %}
     </div>
-    {% set announcement_close_labelled_by = "announcement__close__aria-label--" ~ random() %}
   </div>
 </section>
