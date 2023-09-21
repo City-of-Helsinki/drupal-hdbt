@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
+
 import LocationFilter from '../components/LocationFilter';
 import ApiKeys from '../enum/ApiKeys';
 import SubmitButton from '../components/SubmitButton';
