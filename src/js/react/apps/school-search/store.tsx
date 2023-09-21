@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import SearchParams from './types/SearchParams';
 
 export const configurationsAtom = atom(() => {

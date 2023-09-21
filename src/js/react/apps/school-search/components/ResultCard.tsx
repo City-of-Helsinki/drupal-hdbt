@@ -1,6 +1,6 @@
 import CardItem from '@/react/common/Card';
-import { School } from '../types/School';
 import CardImage from '@/react/common/CardImage';
+import { School } from '../types/School';
 
 const ResultCard = ({ additional_filters, address, summary_processed, name, name_override, picture_url, media_as_objects, url }: School) => {
   const title = name_override?.[0] || name?.[0];

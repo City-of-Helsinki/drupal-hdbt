@@ -36,7 +36,7 @@ const ResultsContainer = () => {
   useScrollToResults(scrollTarget, choices);
 
   const hits = data?.hits?.hits;
-  const total = data?.hits.total.value || 0;
+  const total = data?.hits?.total?.value || 0;
 
   const getResults = () => {
     if (!data && !error) {

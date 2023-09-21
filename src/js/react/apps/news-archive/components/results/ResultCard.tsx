@@ -1,6 +1,6 @@
 import CardItem from '@/react/common/Card';
-import type NewsItem from '../../types/NewsItem';
 import CardImage from '@/react/common/CardImage';
+import type NewsItem from '../../types/NewsItem';
 
 const ResultCard = ({
   alt,
