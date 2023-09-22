@@ -2,6 +2,17 @@
 // than 6 items and less than 20 items in the list.
 .service-list:has(li:nth-last-child(n+6)):not(:has(li:nth-last-child(n+21))) {
   @include breakpoint($breakpoint-l) {
+    column-gap: $spacing-triple;
+    columns: 2;
+  }
+}
+
+.has-sidebar .main-content .service-list:has(li:nth-last-child(n+6)):not(:has(li:nth-last-child(n+21))) {
+  @include breakpoint($breakpoint-l) {
+    columns: 1;
+  }
+  @include breakpoint($breakpoint-xl) {
+    column-gap: $spacing-triple;
     columns: 2;
   }
 }

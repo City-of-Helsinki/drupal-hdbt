@@ -32,18 +32,16 @@
 #}
 {%
   set classes = [
+  'service-list',
   'views--service-list',
   'views--service-list--block',
   dom_id ? 'js-view-dom-id-' ~ dom_id,
 ]
 %}
 
-<div{{attributes.addClass(classes)}}>
+<ul{{attributes.addClass(classes)}}>
+  {{ rows }}
+</ul>
 
-  <ul class="service-list">
-    {{ rows }}
-  </ul>
-
-  {{ empty }}
-  {{ pager }}
-</div>
+{{ empty }}
+{{ pager }}

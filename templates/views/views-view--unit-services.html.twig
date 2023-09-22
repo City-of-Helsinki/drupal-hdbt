@@ -32,6 +32,7 @@
 #}
 {%
   set classes = [
+  'service-list',
   'views',
   'views--' ~ id|clean_class,
   'views--' ~ display_id|clean_class,
@@ -48,13 +49,11 @@
   }
 %}
   {% block component_content %}
-    <div{{attributes.addClass(classes)}}>
-      <ul class="service-list">
-        {{ rows }}
-      </ul>
+    <ul{{attributes.addClass(classes)}}>
+      {{ rows }}
+    </ul>
 
-      {{ empty }}
-      {{ pager }}
-    </div>
+    {{ empty }}
+    {{ pager }}
   {% endblock component_content %}
 {% endembed %}
