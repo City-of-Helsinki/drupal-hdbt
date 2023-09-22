@@ -1674,8 +1674,7 @@ function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
 /**
  * Implements hook_theme_suggestions_alter() for container.
  */
-function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$variables)
-{
+function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$variables) {
   $name = '';
   $type = '';
   if (isset($variables['element']['#name'])) {
