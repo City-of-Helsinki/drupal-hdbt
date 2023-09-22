@@ -7,7 +7,7 @@ import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import { settingsAtom } from '../store';
+import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 
 type ResultsContainerProps = {
@@ -20,7 +20,10 @@ type ResultsContainerProps = {
 function ResultsContainer({ count, events, loading, error }: ResultsContainerProps) {
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-  useScrollToResults(scrollTarget, true);
+  const url = useAtomValue(urlAtom);
+  // Checks when user makes the first search and api url is set.
+  const choices = Boolean(url);
+  useScrollToResults(scrollTarget, choices);
 
   if (loading) {
     return (

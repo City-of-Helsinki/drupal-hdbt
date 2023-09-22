@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+
 import { paramsAtom, updateParamsAtom } from '../store';
 import UseProximityQuery from '../hooks/UseProximityQuery';
 import ResultsList from '../components/ResultsList';
