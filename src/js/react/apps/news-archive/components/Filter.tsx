@@ -1,5 +1,6 @@
 import { Select } from 'hds-react';
 import { useAtom } from 'jotai';
+
 import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
 import URLParams from '../types/URLParams';
@@ -43,15 +44,15 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
     <Select
       className='news-form__filter'
       clearable
-      clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' })}
+      clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': label }, { context: 'React search clear selection label' })}
       label={label}
       onChange={onChange}
       multiselect
       selectedItemRemoveButtonAriaLabel={Drupal.t(
         'Remove item',
         {},
-        { context: 'Job search remove item aria label' }
-      )}  
+        { context: 'React search remove item aria label' }
+      )}
       options={options}
       value={getValue()}
       {...rest}
