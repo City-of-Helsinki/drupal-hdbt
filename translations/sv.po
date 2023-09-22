@@ -607,10 +607,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
 
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "öppna rullgardinsmenyn"
-
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
 msgstr "Prenumerera på alla nyheter som RSS-flöde"
@@ -622,6 +618,14 @@ msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgctxt "React search remove item aria label"
+msgid "Remove item"
+msgstr "Töm valda"
+
+msgctxt "React search open dropdown aria label"
+msgid "Open the combobox"
+msgstr "öppna rullgardinsmenyn"
 
 msgid "Unit homepage"
 msgstr "Enhetens hemsida"

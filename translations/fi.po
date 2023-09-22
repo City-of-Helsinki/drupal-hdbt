@@ -608,10 +608,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "Avaa alasvetovalikko"
-
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
 msgstr "Tilaa kaikkien uutisten RSS-syöte"
@@ -623,6 +619,14 @@ msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgctxt "React search remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
+
+msgctxt "React search open dropdown aria label"
+msgid "Open the combobox"
+msgstr "Avaa alasvetovalikko"
 
 msgid "Unit homepage"
 msgstr "Toimipisteen kotisivut"
