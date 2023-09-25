@@ -1,3 +1,4 @@
+blockquote[data-helfi-quote],
 .quote {
   @include font('special.quote');
   display: block;
@@ -22,6 +23,7 @@
   }
 }
 
+p[data-helfi-quote-text],
 .quote__text {
   font-style: italic;
   margin-top: 0;
@@ -40,6 +42,7 @@
   }
 }
 
+footer[data-helfi-quote-author],
 .quote__author {
   @include font('body');
   margin-top: $spacing-and-half;
