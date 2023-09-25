@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { Button, IconCross } from 'hds-react';
+
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
 import { urlAtom, urlUpdateAtom } from '../store';
 import OptionType from '@/types/OptionType';
@@ -43,7 +44,7 @@ const SelectionsContainer = ({
     const keys: ParamsKey[] = ['topic', 'neighbourhoods', 'groups'];
     const passedOptions = {
       topic,
-      neighbourhoods, 
+      neighbourhoods,
       groups
     };
     [params.topic, params.neighbourhoods, params.groups].forEach((selections, index) => {
@@ -70,26 +71,12 @@ const SelectionsContainer = ({
     });
   };
 
-  const selectionsExist = params.topic?.length || params.neighbourhoods?.length || params.groups?.length;
+  const showClearButton = params.topic?.length || params.neighbourhoods?.length || params.groups?.length;
 
   return (
-    <div className='news-form__selections-wrapper'>
-      <ul className='news-form__selections-container content-tags__tags'>
-        {getPills()}
-        <li className='news-form__clear-all'>
-          <Button
-            aria-hidden={selectionsExist ? 'false' : 'true'}
-            className='news-form__clear-all-button'
-            iconLeft={<IconCross className='news-form__clear-all-icon' />}
-            onClick={clearSelections}
-            style={selectionsExist ? {} : { visibility: 'hidden' }}
-            variant='supplementary'
-          >
-            {Drupal.t('Clear selections', {}, { context: 'News archive clear selections' })}
-          </Button>
-        </li>
-      </ul>
-    </div>
+    <SelectionsWrapper showClearButton={showClearButton} resetForm={clearSelections}>
+      {getPills()}
+    </SelectionsWrapper>
   );
 };
 

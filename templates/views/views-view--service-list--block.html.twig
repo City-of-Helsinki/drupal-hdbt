@@ -32,24 +32,16 @@
 #}
 {%
   set classes = [
+  'service-list',
   'views--service-list',
   'views--service-list--block',
   dom_id ? 'js-view-dom-id-' ~ dom_id,
 ]
 %}
 
-<div{{attributes.addClass(classes)}}>
-  {%  if total_rows > pager_items_per_page %}
-    <span class="service-list__count-container">
-      <span class="service-list__count">{{ total_rows }}</span>
-      {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
-    </span>
-  {% endif %}
+<ul{{attributes.addClass(classes)}}>
+  {{ rows }}
+</ul>
 
-  <div class="service-list__results">
-    {{ rows }}
-  </div>
-
-  {{ empty }}
-  {{ pager }}
-</div>
+{{ empty }}
+{{ pager }}

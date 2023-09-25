@@ -2,7 +2,7 @@
   This twig is called only for certain links
   see conditions in \Drupal\helfi_api_base\Link\LinkProcessor::preRenderLink
 #}
-{% spaceless %}
+{% apply spaceless %}
 
   {% if alternative_language %}
     {% set descriptive_lang = lang_attributes.fallback_lang %}
@@ -39,4 +39,4 @@
 
   {{ selected_icon }}{{ title }}{{ attribute_icon }}
 
-{% endspaceless %}
+{% endapply %}

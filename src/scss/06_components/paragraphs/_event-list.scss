@@ -71,10 +71,6 @@ $tag-vertical-padding: 5px;
   text-align: center;
 }
 
-.event-list__loading-spinner > div {
-  margin-inline: auto;
-}
-
 .event-list__filter-title {
   @include font('h3');
 }

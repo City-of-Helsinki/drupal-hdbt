@@ -72,19 +72,15 @@
 {%
   set classes = [
     'content-card',
-    'content-card--' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'content-card--promoted',
-    node.isSticky() ? 'content-card--sticky',
     not node.isPublished() ? 'content-card--unpublished',
-    view_mode ? 'content-card--design-' ~ view_mode|clean_class,
   ]
 %}
 
 {% set link_title %}
   {{ title_prefix }}
-  <h3 class="content-card__title">
+  <span class="content-card__title">
     {{ label }}
-  </h3>
+  </span>
   {{ title_suffix }}
 {% endset %}
 
@@ -95,7 +91,8 @@
   'rel': 'bookmark',
 } %}
 
-<article{{ attributes.addClass(classes) }}>
+{# Role is removed from below to avoid populating UI with role="article" elements for accessibility #}
+<div{{ attributes.removeAttribute('role').addClass(classes) }}>
 
   <div class="content-card__image">
     {% if image.0 %}
@@ -107,4 +104,4 @@
 
   {{ link(link_title, node_url, link_attributes) }}
 
-</article>
+</div>
