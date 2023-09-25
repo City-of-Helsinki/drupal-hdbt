@@ -1,18 +1,21 @@
 import { SyntheticEvent, createRef, useState } from 'react';
-import { Button, IconMap, IconMenuHamburger, LoadingSpinner } from 'hds-react';
+import { Button, IconMap, IconMenuHamburger } from 'hds-react';
 import { useAtomValue } from 'jotai';
-import GlobalSettings from '../enum/GlobalSettings';
+
 import Result from '@/types/Result';
+import Pagination from '@/react/common/Pagination';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
+import ResultsError from '@/react/common/ResultsError';
+import GlobalSettings from '../enum/GlobalSettings';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
-import Pagination from '@/react/common/Pagination';
 import ResultsMap from './ResultsMap';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import { paramsAtom } from '../store';
 
 type ResultsListProps = {
   data: any;
-  error: boolean;
+  error: string|Error;
   isLoading: boolean;
   isValidating: boolean;
   page?: number;
@@ -24,17 +27,29 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const { size } = GlobalSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
-    return <LoadingSpinner loadingText="" loadingFinishedText="" />;
+    return (
+      <div className='hdbt__loading-wrapper'>
+        <LoadingOverlay />
+      </div>
+    );
   }
 
-  if (!data?.hits?.hits.length || error) {
+  if (error) {
     return (
-      <div className='react-search__no-results' ref={scrollTarget}>
+      <ResultsError
+        error={error}
+        ref={scrollTarget}
+      />
+    );
+  }
+
+  if (!data?.hits?.hits.length) {
+    return (
+      <div ref={scrollTarget}>
         {Drupal.t('No results', {}, {context: 'No search results'})}
       </div>
     );
@@ -44,7 +59,6 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const total = data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
-
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
   return (

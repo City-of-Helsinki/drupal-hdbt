@@ -378,7 +378,7 @@ msgstr "Olet kirjautuneena käyttäjänimellä @display_name. Avaa käyttäjäva
 
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
-msgstr "Puhelumaksu"
+msgstr "Puhelun hinta"
 
 msgctxt "The helper text for toggle accordion visibility button"
 msgid "Toggle element: "
@@ -594,17 +594,17 @@ msgstr "Aktiivisuus"
 
 msgctxt "Hearings count"
 msgid "plan open for commenting"
-msgid_plural "plans open for commenting"
-msgstr[0] "suunnitelma avoinna kommentoitavaksi"
-msgstr[1] "suunnitelmaa avoinna kommentoitavaksi"
+msgid_plural "hearings open for commenting"
+msgstr[0] "kuuleminen avoinna kommentoitavaksi"
+msgstr[1] "kuulemiset avoinna kommentoitavaksi"
 
-msgctxt "See all plans link text"
-msgid "See all plans"
-msgstr "Katso kaikki suunnitelmat"
+msgctxt "See all hearings link text"
+msgid "See all hearings"
+msgstr "Katso kaikki kuulemiset"
 
-msgctxt "See closed plans link text"
-msgid "See all already closed plans"
-msgstr "Katso jo sulkeutuneet suunnitelmat"
+msgctxt "See closed hearings link text"
+msgid "See all already closed hearings"
+msgstr "Katso jo sulkeutuneet kuulemiset"
 
 msgctxt "Hearing available in languages"
 msgid "Hearing only available in English"
@@ -623,20 +623,8 @@ msgid "Filter news items"
 msgstr "Suodata uutisia"
 
 msgctxt "News archive heading"
-msgid "All news items"
-msgstr "Kaikki uutiset"
-
-msgctxt "News archive heading"
 msgid "News based on your choices"
 msgstr "Uutiset valintojesi perusteella"
-
-msgctxt "News archive clear button aria label"
-msgid "Clear selection"
-msgstr "Tyhjennä kaikki valinnat"
-
-msgctxt "News archive remove item aria label"
-msgid "Remove item"
-msgstr "Poista valinta"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -666,10 +654,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
-msgctxt "News archive no results"
-msgid "No results found"
-msgstr "Ei tuloksia"
-
 msgctxt "News archive open dropdown aria label"
 msgid "Open the combobox"
 msgstr "Avaa alasvetovalikko"
@@ -683,8 +667,30 @@ msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 
 msgid "At the moment there is no open hearings for commenting."
-msgstr "Tällä hetkellä ei ole avoimia suunnitelmia kommentoitavaksi."
+msgstr "Tällä hetkellä ei ole avoimia kuulemisia kommentoitavaksi."
 
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgid "Unit homepage"
+msgstr "Toimipisteen kotisivut"
+
+msgid "Additional details"
+msgstr "Lisätiedot"
+
+msgctxt "Service channel default fee override"
+msgid "standard telephone charges apply"
+msgstr "normaali puhelumaksu"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Soita"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"
+
+msgctxt "React search"
+msgid "An error occured while loading the content. Please reload page."
+msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."

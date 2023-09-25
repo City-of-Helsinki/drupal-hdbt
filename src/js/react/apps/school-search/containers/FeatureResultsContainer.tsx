@@ -1,5 +1,6 @@
 
 import { useAtomValue, useSetAtom } from 'jotai';
+
 import { paramsAtom, updateParamsAtom } from '../store';
 import UseFeatureQuery from '../hooks/UseFeatureQuery';
 import ResultsList from '../components/ResultsList';

@@ -150,6 +150,7 @@ $-item-spacing: $spacing-triple;
   }
 
   .list-of-links__item__title {
+    @include heading-hyphens;
     @include font('h4');
     margin-block: 0;
     margin-inline-start: (100px + $spacing);

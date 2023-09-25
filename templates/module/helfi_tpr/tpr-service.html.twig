@@ -47,13 +47,10 @@
 
   {% set wrapper_attributes = create_attribute() %}
 
-  <div{{ wrapper_attributes.addClass(service_classes) }}>
-    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}" class="service__link">
-      <span class="service__title hyphenate">
-        {{ entity.label }}
-      </span>
-      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
+  <li{{ wrapper_attributes.addClass(service_classes) }}>
+    <a href="{{ url('entity.tpr_service.canonical', { 'tpr_service': entity.id() }) }}">
+      {{ entity.label }}
     </a>
-  </div>
+  </li>
 
 {% endif %}

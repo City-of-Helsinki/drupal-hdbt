@@ -49,6 +49,7 @@
 {% set text = content.field_list_of_links_link.0['#title'] %}
 {% set image = content.field_list_of_links_image %}
 {% set desc = content.field_list_of_links_desc.0 %}
+{% set list_of_links_design = paragraph.getDesign() %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
@@ -72,8 +73,7 @@
         ],
         'target': target_new ? '_blank' : null,
       } %}
-      {% set titleHeading = list_of_links_paragraph_has_title ? 'h3' : 'h2' %}
-      <{{titleHeading}} class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</{{titleHeading}}>
+      <div class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</div>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>

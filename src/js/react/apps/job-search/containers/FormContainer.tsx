@@ -2,9 +2,9 @@ import { Button, Checkbox, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import React, { useEffect } from 'react';
 
+import bucketToMap from '@/react/common/helpers/Aggregations';
 import CustomIds from '../enum/CustomTermIds';
 import SearchComponents from '../enum/SearchComponents';
-import bucketToMap from '@/react/common/helpers/Aggregations';
 import { getInitialLanguage } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
 import {

@@ -46,7 +46,9 @@ $-card-spacing: $spacing-and-half;
 }
 
 .content-card__title {
+  @include heading-hyphens;
   @include font('h4');
+  display: block;
   margin-top: $spacing;
 }
 

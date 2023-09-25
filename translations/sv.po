@@ -376,7 +376,7 @@ msgstr "Du är inloggad som @display_name. Öppna profilinformationsmenyn."
 
 msgctxt "TPR service channel call charge info"
 msgid "Call charge"
-msgstr "Samtalsavgift"
+msgstr "Samtalets pris"
 
 msgctxt "The helper text for toggle accordion visibility button"
 msgid "Toggle element: "
@@ -590,13 +590,13 @@ msgctxt "Label for hearing activity row"
 msgid "Activity"
 msgstr "Aktivitet"
 
-msgctxt "See all plans link text"
-msgid "See all plans"
-msgstr "Se alla planer"
+msgctxt "See all hearings link text"
+msgid "See all hearings"
+msgstr "Se alla Hörandet"
 
-msgctxt "See closed plans link text"
-msgid "See all already closed plans"
-msgstr "Se alla redan stängda planer"
+msgctxt "See closed hearings link text"
+msgid "See all already closed hearings"
+msgstr "Se alla redan stängda Hörandet"
 
 msgctxt "Hearing available in languages"
 msgid "Hearing only available in English"
@@ -614,21 +614,10 @@ msgctxt "News archive filter results heading"
 msgid "Filter news items"
 msgstr "Filtera nyheter"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "All nyheter"
 
 msgctxt "News archive heading"
 msgid "News based on your choices"
 msgstr "Nyheter baserat på dina val"
-
-msgctxt "News archive clear button aria label"
-msgid "Clear selection"
-msgstr "Rensa alla"
-
-msgctxt "News archive remove item aria label"
-msgid "Remove item"
-msgstr "Töm valda"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -658,10 +647,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
 
-msgctxt "News archive no results"
-msgid "No results found"
-msgstr "Inga resultat"
-
 msgctxt "News archive open dropdown aria label"
 msgid "Open the combobox"
 msgstr "öppna rullgardinsmenyn"
@@ -675,8 +660,30 @@ msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
 
 msgid "At the moment there is no open hearings for commenting."
-msgstr "För närvarande finns det inga öppna planer för kommentarer."
+msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
 
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgid "Unit homepage"
+msgstr "Enhetens hemsida"
+
+msgid "Additional details"
+msgstr "Ytterligare detaljer"
+
+msgctxt "Service channel default fee override"
+msgid "standard telephone charges apply"
+msgstr "normalt samtalspris"
+
+msgctxt "Service channel phone number prefix"
+msgid "Call"
+msgstr "Ring upp"
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
+
+msgctxt "React search"
+msgid "An error occured while loading the content. Please reload page."
+msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."

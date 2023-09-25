@@ -1,7 +1,7 @@
-import { Button, IconCross } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
 import transformDropdownsValues from '../helpers/Params';
 import { capitalize } from '../helpers/helpers';
@@ -44,50 +44,36 @@ const SelectionsContainer = () => {
   const showProjectTypes = Boolean(urlParams.project_type?.length);
 
   return (
-    <div className='hdbt-search__selections-wrapper'>
-      <ul className='hdbt-search__selections-container content-tags__tags'>
-        {showDistricts && (
-          <ListFilter
-            updater={updateDistricts}
-            valueKey={SearchComponents.DISTRICTS}
-            values={transformDropdownsValues(urlParams.districts, districtOptions)}
-          />
-        )}
-        {showProjectThemes && (
-          <ListFilter
-            updater={updateThemes}
-            valueKey={SearchComponents.THEME}
-            values={transformDropdownsValues(urlParams.project_theme, themeOptions)}
-          />
-        )}
-        {showProjectPhases && (
-          <ListFilter
-            updater={updatePhases}
-            valueKey={SearchComponents.PHASE}
-            values={transformDropdownsValues(urlParams.project_phase, phaseOptions)}
-          />
-        )}
-        {showProjectTypes && (
-          <ListFilter
-            updater={updateTypes}
-            valueKey={SearchComponents.TYPE}
-            values={transformDropdownsValues(urlParams.project_type, typeOptions)}
-          />
-        )}
-        <li className='hdbt-search__clear-all'>
-          <Button
-            aria-hidden={showClearButton ? 'false' : 'true'}
-            className='hdbt-search__clear-all-button'
-            iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
-            onClick={resetForm}
-            style={showClearButton ? {} : { visibility: 'hidden' }}
-            variant='supplementary'
-          >
-          {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
-          </Button>
-        </li>
-      </ul>
-    </div>
+    <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
+      {showDistricts && (
+        <ListFilter
+          updater={updateDistricts}
+          valueKey={SearchComponents.DISTRICTS}
+          values={transformDropdownsValues(urlParams.districts, districtOptions)}
+        />
+      )}
+      {showProjectThemes && (
+        <ListFilter
+          updater={updateThemes}
+          valueKey={SearchComponents.THEME}
+          values={transformDropdownsValues(urlParams.project_theme, themeOptions)}
+        />
+      )}
+      {showProjectPhases && (
+        <ListFilter
+          updater={updatePhases}
+          valueKey={SearchComponents.PHASE}
+          values={transformDropdownsValues(urlParams.project_phase, phaseOptions)}
+        />
+      )}
+      {showProjectTypes && (
+        <ListFilter
+          updater={updateTypes}
+          valueKey={SearchComponents.TYPE}
+          values={transformDropdownsValues(urlParams.project_type, typeOptions)}
+        />
+      )}
+    </SelectionsWrapper>
   );
 };
 
