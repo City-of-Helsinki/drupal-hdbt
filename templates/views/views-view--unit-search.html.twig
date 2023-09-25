@@ -54,17 +54,18 @@
   {{ exposed }}
   {{ attachment_before }}
 
-  <div class="unit-search__results">
-    {% if total_rows %}
+  <div class="unit-search__results" data-id-number="{{ dom_id }}">
       <span class="unit-search__count-container">
-        <span class="unit-search__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+        {% if total_rows %}
+          <span class="unit-search__count">{{ total_rows }}</span>
+          {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+        {% endif %}
+        
+        {{ empty }}
       </span>
-    {% endif %}
 
     {{ rows }}
   
-    {{ empty }}
     {{ pager }}
   </div>
   {{ attachment_after }}

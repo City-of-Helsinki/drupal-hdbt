@@ -1,9 +1,9 @@
 import parse from 'html-react-parser';
 
-import Tags from './Tags';
-import Icon from './Icon';
 import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
+import Tags from './Tags';
+import Icon from './Icon';
 
 const Metarow = ({ icon, label, content} : MetadataType) => (
   <div className="card__meta">

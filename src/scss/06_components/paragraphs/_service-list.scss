@@ -1,3 +1,22 @@
+// Service list is divided into two columns on breakpoint-l if there is more
+// than 6 items and less than 20 items in the list.
+.service-list:has(li:nth-last-child(n+6)):not(:has(li:nth-last-child(n+21))) {
+  @include breakpoint($breakpoint-l) {
+    column-gap: $spacing-triple;
+    columns: 2;
+  }
+}
+
+.has-sidebar .main-content .service-list:has(li:nth-last-child(n+6)):not(:has(li:nth-last-child(n+21))) {
+  @include breakpoint($breakpoint-l) {
+    columns: 1;
+  }
+  @include breakpoint($breakpoint-xl) {
+    column-gap: $spacing-triple;
+    columns: 2;
+  }
+}
+
 .views--service-list {
   .form-actions .hds-button--primary {
     width: 100%;
@@ -47,36 +66,6 @@
     @include breakpoint($breakpoint-m) {
       display: flex;
       width: 30%;
-    }
-  }
-}
-
-.service-list__count-container {
-  display: block;
-  margin-bottom: $spacing-double;
-  margin-top: $spacing-triple;
-
-  @include font('lead');
-  width: 100%;
-
-  .service-list__count {
-    font-weight: $font-weight-bold;
-  }
-}
-
-.service-list__results {
-  margin-top: $spacing-and-half;
-
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-inline: calc(-#{$spacing-and-half} / 2);
-    margin-top: $spacing-triple;
-  }
-
-  .views-row {
-    @include breakpoint($breakpoint-l) {
-      width: 25%;
     }
   }
 }
