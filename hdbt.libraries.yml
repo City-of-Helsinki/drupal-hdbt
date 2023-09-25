@@ -191,3 +191,8 @@ news-archive:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+search-helper:
+  version: 1.x
+  js:
+    src/js/search-helper.js: {}

@@ -1687,3 +1687,10 @@ function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$var
 
   array_unshift($suggestions, 'container__' . $type . '__' . $name);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_views_exposed_form(array &$variables) {
+  $variables['#attached']['library'][] = 'hdbt/search-helper';
+}
