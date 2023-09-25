@@ -10,5 +10,6 @@
     if (!resultCountEl) return;
     resultCountEl.setAttribute('tabindex', '-1');
     resultCountEl.focus();
+    resultCountEl.scrollIntoView({behavior: 'smooth', block: 'center'});
   });
 })(jQuery);
