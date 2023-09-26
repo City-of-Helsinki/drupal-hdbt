@@ -239,3 +239,7 @@ Extend as necessary.
 - always verify, never override lint-staged
 - fix your code before commit
 - only override eslint rules inline for readability
+
+## Contact
+
+Slack: #helfi-drupal (http://helsinkicity.slack.com/)
