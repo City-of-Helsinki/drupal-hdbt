@@ -195,4 +195,4 @@ news-archive:
 search-helper:
   version: 1.x
   js:
-    src/js/search-helper.js: {}
+    dist/js/search-helper.min.js: {}
