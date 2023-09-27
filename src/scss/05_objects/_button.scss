@@ -457,7 +457,6 @@ a[data-variant][href] {
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
-  box-sizing: border-box;
   color: var(--color);
   cursor: pointer;
   display: inline-flex;
@@ -470,6 +469,21 @@ a[data-variant][href] {
   padding: var(--spacing-s) var(--spacing-m);
   text-decoration: none;
   vertical-align: top;
+
+  & {
+    gap: $spacing;
+    line-height: 1.25em;
+    padding: var(--spacing-s) var(--spacing-m);
+  }
+
+  &,
+  &::before,
+  &::after,
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: border-box;
+  }
 
   &:hover,
   &:focus,
@@ -488,16 +502,45 @@ a[data-variant][href] {
   &:focus {
     background-color: var(--background-color-focus, transparent);
     color: var(--color-focus);
+    // outline: none;
   }
 
   &:focus:hover {
     background-color: var(--background-color-hover-focus, transparent);
   }
 
+  &:disabled {
+    background-color: var(--background-color-disabled, transparent);
+    border-color: var(--border-color-disabled, transparent);
+    color: var(--color-disabled);
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    border-color: var(--border-color, transparent);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--border-color-hover, transparent);
+  }
+
+  &:not(:disabled):active,
+  &:not(:disabled):focus {
+    border-color: var(--border-color-focus, transparent);
+  }
+
+  &:not(:disabled):active:hover,
+  &:not(:disabled):focus:hover {
+    border-color: var(--border-color-hover-focus, transparent);
+    color: var(--color-hover-focus);
+  }
+
+  // FOCUS OUTLINE
   &:active,
   &:focus {
     outline: var(--outline-width) solid var(--focus-outline-color);
     outline-offset: var(--outline-gutter);
+    // outline-offset: 2px;
   }
 
   &[data-icon-start]::before {
@@ -634,5 +677,82 @@ a[data-variant][href] {
 
     // Focus ring
     --focus-outline-color: var(--theme-focus, transparent);
+  }
+
+  // LOADING
+  &[data-variant='loading'] {
+    // Backgrounds
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+
+    // Borders
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: transparent;
+    --border-color-hover-focus: transparent;
+    --border-color-disabled: transparent;
+
+    // Colors
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-black-90);
+
+    // Cursor
+    cursor: wait;
+  }
+
+
+  // UTILITY
+  // success
+  &[data-variant='success'] {
+    // Backgrounds
+    --background-color: var(--color-success);
+    --background-color-hover: var(--color-success-dark);
+    --background-color-focus: var(--color-success);
+    --background-color-hover-focus: var(--color-success-dark);
+
+    // Borders
+    --border-color: var(--color-success);
+    --border-color-hover: var(--color-success-dark);
+    --border-color-focus: var(--color-success);
+    --border-color-hover-focus: var(--color-success-dark);
+
+    // Colors
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  }
+
+  /* danger */
+  &[data-variant='danger'] {
+    // Backgrounds
+    --background-color: var(--color-error);
+    --background-color-hover: var(--color-error-dark);
+    --background-color-focus: var(--color-error);
+    --background-color-hover-focus: var(--color-error-dark);
+
+    // Borders
+    --border-color: var(--color-error);
+    --border-color-hover: var(--color-error-dark);
+    --border-color-focus: var(--color-error);
+    --border-color-hover-focus: var(--color-error-dark);
+
+    // Colors
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
   }
 }
