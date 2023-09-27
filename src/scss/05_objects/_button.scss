@@ -15,7 +15,7 @@
 }
 
 :root {
-  @include hds-button-colors-on-light-bg();
+  @include hds-button-colors-on-light-bg;
 }
 
 // Content from HDS button.css starts
@@ -27,7 +27,6 @@
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-
   align-content: flex-start;
   align-items: center;
   background-color: var(--background-color, transparent);
@@ -333,7 +332,6 @@ input[type='submit'].hds-button {
 // TODO: UHF-8793 Refactor hds-button (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8793).
 // Fix for button margins when using hel-icon.
 .hds-button {
-
   // Set icon size for the button icons.
   .hel-icon {
     --icon-size: 24px;
@@ -351,9 +349,6 @@ input[type='submit'].hds-button {
   .hel-icon:last-of-type:not(:first-of-type) {
     margin: 0 $spacing-half 0 0;
   }
-}
-
-.hds-button {
 
   // The supplementary button just won't work with the focus and default layout in the left aligned layout
   // so these changes are required to make it look even a bit more decent.
@@ -373,22 +368,24 @@ input[type='submit'].hds-button {
     }
 
     // Target before element when there is no selected icon, otherwise target after element
-    &:not([data-selected-icon]):not([data-is-external])::before,
+    &:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
+
       @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
-      @include hover-link-arrow-transition();
+      @include hover-link-arrow-transition;
       order: 3;
       position: static;
       transform: scaleX(var(--lang-direction, 1));
     }
 
     // Handle animation for above on focus and hover
-    &:focus:not([data-selected-icon]):not([data-is-external])::before,
-    &:hover:not([data-selected-icon]):not([data-is-external])::before,
+    &:focus:not([data-selected-icon], [data-is-external])::before,
+    &:hover:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:focus:not([data-is-external])::after,
     &[data-selected-icon]:hover:not([data-is-external])::after {
       transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
+
       @media (prefers-reduced-motion) {
         transform: none;
       }
@@ -409,8 +406,8 @@ input[type='submit'].hds-button {
   }
 }
 
-.hds-button--supplementary:not(.hdbt-icon):not([data-selected-icon]) {
-  &:before {
+.hds-button--supplementary:not(.hdbt-icon, [data-selected-icon]) {
+  &::before {
     // Add default icon (arrow icon) for the supplementary button.
     @include pseudo-icon-replace('arrow-right');
   }
@@ -432,7 +429,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
 // Hide target blank explanation text from others than screen-readers
 .hds-button__target-blank {
-  @include visually-hidden();
+  @include visually-hidden;
 }
 
 // Combat ckeditor leaking spans from inside buttons and hds setting these spans stupid paddings and margins
@@ -475,7 +472,7 @@ a[data-variant][href] {
   &:focus,
   &:active {
     transition-duration: 85ms;
-    /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+    // stylelint-disable-next-line plugin/no-low-performance-animation-properties
     transition-property: background-color, border-color, color;
     transition-timing-function: ease-out;
   }
@@ -534,7 +531,8 @@ a[data-variant][href] {
     @include pseudo-icon-replace('mailto');
   }
 
-  &[data-variant='supplementary']:not([data-icon-start]):not(
+  &[data-variant='supplementary']:not(
+    [data-icon-start],
     [data-is-external],
     [data-protocol='tel'],
     [data-protocol='mailto']
