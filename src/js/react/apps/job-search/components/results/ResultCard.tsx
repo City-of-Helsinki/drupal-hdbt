@@ -30,7 +30,7 @@ const getResultCard = ({
   const cardTitle = (
     <>
       <span {...customAtts}>{heading}</span>
-      {field_jobs?.[0] > 1 && <span>{`(${field_jobs} ${Drupal.t('jobs')})`}</span>}
+      {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
     </>
   );
 
