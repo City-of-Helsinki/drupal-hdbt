@@ -180,6 +180,11 @@ function getConfig(hostname, type) {
           'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
+        {
+          'label': 'DC: layout standard - hero - subnav - no-sidebar',
+          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-hero-subnav-no`,
+          'removeSelectors': removeDefault
+        },
 
         // TPR Unit
         {
@@ -436,6 +441,33 @@ function getConfig(hostname, type) {
           'selectors': [
             '.component--unit-search'
           ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: component news list',
+          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-news-list`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--news-list'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: component popular services',
+          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-popular-services`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--popular-services'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: component phasing ',
+          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-phasing`,
+          'removeSelectors': removeDefault,
+/*           'selectors': [
+            '.component--phasing'
+          ], */
           'selectorExpansion': expandComponents,
         },
         // {
