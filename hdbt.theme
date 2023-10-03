@@ -784,6 +784,27 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       $image_style
     );
   }
+
+  // Add the photographer to the image caption.
+  if ($paragraph->hasField('field_liftup_with_image_image')) {
+
+    // Get translated photographer text if available.
+    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($variables['current_langcode'])) {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+    }
+    else {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->field_photographer->value;
+    }
+
+    $caption = t(
+      'Photo: @photographer',
+      ['@photographer' => $photographer],
+      ['context' => 'Image photographer']
+    );
+
+    // Set image caption variable to render array for the template.
+    $variables['image_caption'] = $caption;
+  }
 }
 
 /**
