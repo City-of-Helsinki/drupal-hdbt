@@ -45,10 +45,18 @@
     {% set main_image = content.picture_url %}
   {% endif %}
 
+  {# Main image caption #}
+  {% if content.picture_url_override_caption|render %}
+    {% set main_image_caption = content.picture_url_override_caption %}
+  {% elseif content.picture_url_override_caption|render %}
+    {% set main_image_caption = '' %}
+  {% endif %}
+
   {% if main_image %}
     {% include '@hdbt/misc/image-with-caption.twig' with {
       figure_class: 'main-image',
-      image: main_image
+      image: main_image,
+      image_caption: main_image_caption
     } %}
   {% endif %}
   {# End of Main image #}
