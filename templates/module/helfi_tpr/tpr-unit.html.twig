@@ -46,9 +46,9 @@
   {% endif %}
 
   {# Main image caption #}
-  {% if content.picture_url_override_caption|render %}
-    {% set main_image_caption = content.picture_url_override_caption %}
-  {% elseif content.picture_url_override_caption|render %}
+  {% if content.unit_picture_caption|render %}
+    {% set main_image_caption = content.unit_picture_caption %}
+  {% else %}
     {% set main_image_caption = '' %}
   {% endif %}
 
