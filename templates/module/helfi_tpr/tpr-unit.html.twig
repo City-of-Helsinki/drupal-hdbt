@@ -46,8 +46,8 @@
   {% endif %}
 
   {# Main image caption #}
-  {% if content.unit_picture_caption|render %}
-    {% set main_image_caption = content.unit_picture_caption %}
+  {% if unit_picture_caption|render %}
+    {% set main_image_caption = unit_picture_caption %}
   {% else %}
     {% set main_image_caption = '' %}
   {% endif %}
