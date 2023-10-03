@@ -30,7 +30,10 @@
 
       {% if content.field_liftup_with_image_image|render %}
         <div class="liftup-with-image__image">
-          {{ content.field_liftup_with_image_image }}
+          {% include '@hdbt/misc/image-with-caption.twig' with {
+            image: content.field_liftup_with_image_image,
+            image_caption: image_caption
+          } %}
         </div>
       {% endif %}
       <div class="liftup-with-image__container">
