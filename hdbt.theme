@@ -797,11 +797,15 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       $photographer = $paragraph->field_liftup_with_image_image->entity->field_photographer->value;
     }
 
-    $caption = t(
-      'Photo: @photographer',
-      ['@photographer' => $photographer],
-      ['context' => 'Image photographer']
-    );
+    if (!$photographer) {
+      $caption = '';
+    } else {
+      $caption = t(
+        'Photo: @photographer',
+        ['@photographer' => $photographer],
+        ['context' => 'Image photographer']
+      );
+    }
 
     // Set image caption variable to render array for the template.
     $variables['image_caption'] = $caption;

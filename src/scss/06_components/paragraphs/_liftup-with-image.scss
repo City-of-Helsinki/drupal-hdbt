@@ -37,12 +37,26 @@ $breakpoint-design-image-on-left-right: 830px;
     }
   }
 
+  &.component--liftup-with-image-img-on-right .liftup-with-image .image__caption,
+  &.component--liftup-with-image-img-on-left .liftup-with-image .image__caption {
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      bottom: $spacing;
+      position: absolute;
+    }
+  }
+
   &.component--liftup-with-image-img-on-right .liftup-with-image {
     --content-area: row2-start / col1-start / row2-end / col1-end;
     --image-area: row1-start / col2-start / row1-end / col2-end;
 
     [dir='rtl'] & {
       --content-margin-left: auto;
+    }
+
+    .image__caption {
+      @include breakpoint($breakpoint-design-image-on-left-right) {
+        right: 0;
+      }
     }
   }
 
@@ -248,6 +262,46 @@ $breakpoint-design-image-on-left-right: 830px;
   }
 }
 
+// Designs with overlapping image and text
+.component--liftup-with-image-img {
+  .image {
+    display: flex;
+    flex-direction: column;
+  }
+
+  picture {
+    order: 2;
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      order: 1;
+      padding-top: 0;
+    }
+  }
+
+  .image__caption {
+    order: 1;
+    padding-top: 0;
+    text-align: right;
+
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      order: 2;
+      padding-top: $spacing;
+    }
+  }
+
+  &.has-image-caption .liftup-with-image {
+    @include breakpoint($breakpoint-design-image-on-left-right) {
+      // Same line-height as the one used in the caption.
+      --line-height: 1.5;
+      // Line-height of the caption + spacing above the caption + spacing under the caption.
+      padding-bottom: calc((var(--line-height) * 1rem) + $spacing + $spacing);
+      position: relative;
+    }
+  }
+}
+
+
 // Designs with image as background.
 .no-sidebar .components--upper > .component--liftup-with-image-bg.component--liftup-with-image-bg {
   padding-inline: 0;
@@ -273,17 +327,38 @@ $breakpoint-design-image-on-left-right: 830px;
     @include breakpoint($breakpoint-l) {
       min-height: 540px; // Minimum height determined with designers.
       position: relative;
+    }
 
-      // stylelint-disable-next-line max-nesting-depth
-      picture {
+    // stylelint-disable-next-line max-nesting-depth
+    picture {
+      @include breakpoint($breakpoint-l) {
         inset: 0;
         position: absolute;
       }
+    }
 
-      // stylelint-disable-next-line max-nesting-depth
-      img {
+    // stylelint-disable-next-line max-nesting-depth
+    img {
+      @include breakpoint($breakpoint-l) {
         @include image-defaults($height: 100%, $width: 100%, $max-width: null);
         object-fit: cover;
+      }
+    }
+
+    // stylelint-disable-next-line max-nesting-depth
+    .image__caption {
+      padding-left: $spacing;
+
+      @include breakpoint($breakpoint-m) {
+        padding-left: $spacing-double;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        // Make the value negative * line-height of the caption + spacing above the caption.
+        bottom: calc(-1 * (var(--line-height) * 1rem + $spacing));
+        left: $spacing;
+        padding-left: 0;
+        position: absolute;
       }
     }
   }
@@ -379,6 +454,16 @@ $breakpoint-design-image-on-left-right: 830px;
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  &.has-image-caption .liftup-with-image {
+    @include breakpoint($breakpoint-l) {
+      // Same line-height as the one used in the caption.
+      --line-height: 1.5;
+      // Line-height of the caption + spacing above the caption + spacing under the caption.
+      padding-bottom: calc((var(--line-height) * 1rem) + $spacing + $spacing);
+      position: relative;
     }
   }
 }
