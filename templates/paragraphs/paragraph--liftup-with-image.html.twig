@@ -16,12 +16,17 @@
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
 
+{% if image_caption %}
+  {% set image_caption_class = 'has-image-caption' %}
+{% endif %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [
         'component--liftup-with-image',
         design_class,
+        image_caption_class,
       ],
       component_content_class: 'liftup-with-image',
     }
