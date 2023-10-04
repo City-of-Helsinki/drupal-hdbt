@@ -272,7 +272,7 @@ function getConfig(hostname, type) {
           'label': 'DC: component events',
           'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-events`,
           'removeSelectors': removeDefault,
-          // "hideSelectors": [
+          // 'hideSelectors': [
           //   '.event-list__event-image',
           // ],
           'delay': 1000, // The images are slow to load
@@ -382,7 +382,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component phasing ',
+          'label': 'DC: component phasing',
           'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-phasing`,
           'removeSelectors': removeDefault,
 /*           'selectors': [
@@ -391,30 +391,30 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         // {
-        //   "label": "Component Banner",
-        //   "cookiePath": "backstop_data/engine_scripts/cookies.json",
-        //   "url"` "https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-banner`,
-        //   "referenceUrl": "",
-        //   "readyEvent": "",
-        //   "readySelector": "",
-        //   "delay": 0,
-        //   "hideSelectors": [],
-        //   "removeSelectors": removeDefault,
-        //   "hoverSelector": "",
-        //   "clickSelector": "",
-        //   "postInteractionWait": 0,
-        //   "selectors": [
-        //     ".component--banner"
+        //   'label': 'Component Banner',
+        //   'cookiePath': 'backstop_data/engine_scripts/cookies.json',
+        //   'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-banner`,
+        //   'referenceUrl': '',
+        //   'readyEvent': '',
+        //   'readySelector': '',
+        //   'delay': 0,
+        //   'hideSelectors': [],
+        //   'removeSelectors': removeDefault,
+        //   'hoverSelector': '',
+        //   'clickSelector': '',
+        //   'postInteractionWait': 0,
+        //   'selectors': [
+        //     '.component--banner'
         //   ],
-        //   "selectorExpansion": true,
-        //   "expect": 0,
-        //   "misMatchThreshold": 0.1,
-        //   "requireSameDimensions": true
+        //   'selectorExpansion': true,
+        //   'expect': 0,
+        //   'misMatchThreshold': 0.1,
+        //   'requireSameDimensions': true
         // }
       ],
       'mergeImgHack': true,
-      // "onBeforeScript": "puppet/onBefore.js",
-      // "onReadyScript": "puppet/onReady.js",
+        // 'onBeforeScript': 'onBefore.js',
+        // 'onReadyScript': 'puppet/onReady.js',
       'paths': {
         'bitmaps_reference': `backstop_data/${type}/bitmaps_reference`,
         'bitmaps_test': `backstop_data/${type}/bitmaps_test`,
@@ -426,14 +426,14 @@ function getConfig(hostname, type) {
       'engine': 'playwright',
       'engineOptions': {
         'browser': 'chromium',
-        // "browser": 'firefox',
-        // "browser": 'webkit',
-        'args': ['--no-sandbox']
+        // 'browser': 'firefox',
+        // 'browser': 'webkit',
+        'args': ['--no-sandbox'],
       },
       'asyncCaptureLimit': 10,
       'asyncCompareLimit': 100,
       'debug': false,
-      'debugWindow': false
+      'debugWindow': false,
     }
   };
 }
