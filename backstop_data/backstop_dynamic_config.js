@@ -413,7 +413,7 @@ function getConfig(hostname, type) {
         // }
       ],
       'mergeImgHack': true,
-        // 'onBeforeScript': 'onBefore.js',
+      'onBeforeScript': 'onBefore.js',
         // 'onReadyScript': 'puppet/onReady.js',
       'paths': {
         'bitmaps_reference': `backstop_data/${type}/bitmaps_reference`,
