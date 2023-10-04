@@ -7,3 +7,7 @@ npm-debug.log
 .idea
 dist/**/*.map
 yarn.lock
+
+# BackstopJS
+backstop_data/fast
+backstop_data/full
