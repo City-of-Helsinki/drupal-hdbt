@@ -738,3 +738,7 @@ msgstr "Linkki avautuu uuteen välilehteen"
 msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."
+
+msgctxt "Unit services title"
+msgid "Services"
+msgstr "Palvelut"
