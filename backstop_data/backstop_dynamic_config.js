@@ -100,7 +100,7 @@ function getConfig(hostname, type) {
   }
 
   return {
-    // filter: 'component events', // Add filter for label string here if you want to debug a single component, like the events component.
+    filter: processArgs[2] ?? null, // Add filter for label string here if you want to debug a single component, like the events component.
     config: {
       'id': type,
       'viewports': viewports,
@@ -385,9 +385,6 @@ function getConfig(hostname, type) {
           'label': 'DC: component phasing',
           'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-phasing`,
           'removeSelectors': removeDefault,
-/*           'selectors': [
-            '.component--phasing'
-          ], */
           'selectorExpansion': expandComponents,
         },
         // {
