@@ -465,9 +465,6 @@ function getConfig(hostname, type) {
           'label': 'DC: component phasing ',
           'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-phasing`,
           'removeSelectors': removeDefault,
-/*           'selectors': [
-            '.component--phasing'
-          ], */
           'selectorExpansion': expandComponents,
         },
         // {
