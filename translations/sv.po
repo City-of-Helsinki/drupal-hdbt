@@ -691,3 +691,7 @@ msgstr "Länken öppnas i en ny flik"
 msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
+
+msgctxt "Unit services title"
+msgid "Services"
+msgstr "Tjänster"
