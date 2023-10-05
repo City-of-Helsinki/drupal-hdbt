@@ -414,7 +414,7 @@ function getConfig(hostname, type) {
       ],
       'mergeImgHack': true,
       'onBeforeScript': 'onBefore.js',
-        // 'onReadyScript': 'puppet/onReady.js',
+      // 'onReadyScript': 'onReady.js',
       'paths': {
         'bitmaps_reference': `backstop_data/${type}/bitmaps_reference`,
         'bitmaps_test': `backstop_data/${type}/bitmaps_test`,
@@ -434,6 +434,7 @@ function getConfig(hostname, type) {
       'asyncCompareLimit': 100,
       'debug': false,
       'debugWindow': false,
+      'hostname': `${hostname}`,
     }
   };
 }
