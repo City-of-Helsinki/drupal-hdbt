@@ -263,6 +263,11 @@ Full test is a more comprehensive test that covers multiple variants, edge cases
 1. Add the component to the `helfi_test_content` module following the instuctions in its README.
 2. Add a test scenario for the component following the example of existing scenarios.
 
+### Filtering components to test
+It's possible to filter which components are tested by adding the name or part of it in the end of the command.
+
+A command `npm run fast-reference list` would test all components that have "list" in their name, for example "events list" and "news list".
+
 ### Known issues
 On a Windows + WSL2 setup with Chromium as the engine, the test might get stuck in the beginning for painfully long time. This probably can be fixed with some configuration but as a workaround, the engine for the tests can also be switched to Firefox or Webkit with the `engineOptions` option in `backstop_dynamic_js`.
 
