@@ -798,7 +798,8 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 
     if (!$photographer) {
       $caption = '';
-    } else {
+    }
+    else {
       $caption = t(
         'Photo: @photographer',
         ['@photographer' => $photographer],
