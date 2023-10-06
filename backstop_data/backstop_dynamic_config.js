@@ -108,105 +108,125 @@ function getConfig(hostname, type) {
 
         // Layout landing
         {
-          'label': 'DC: layout landing - hero',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page//dc-landing-hero`,
+          'label': 'DC: Landing page - hero',
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout landing - no-hero',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page//dc-landing-no-hero`,
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Landing page - hero - without image, align left',
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Landing page - hero - image on the left',
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Landing page - hero - image on the bottom',
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Landing page - hero - diagonal',
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal`,
           'removeSelectors': removeDefault
         },
 
-        // Layout standard
+        // Standard page
         {
-          'label': 'DC: layout standard - hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-subnav-sidebar`,
+          'label': 'DC: Standard page - hero - subnav - sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-no-subnav`,
+          'label': 'DC: Standard page - hero - no-subnav - sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-no-subnav-no`,
+          'label': 'DC: Standard page - hero - no-subnav - no-sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - no-hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-subnav`,
+          'label': 'DC: Standard page - no-hero - subnav - sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - no-hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-subnav-no`,
+          'label': 'DC: Standard page - no-hero - subnav - no-sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - no-hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-no-subnav-0`,
+          'label': 'DC: Standard page - no-hero - no-subnav - sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - no-hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-no-subnav`,
+          'label': 'DC: Standard page - no-hero - no-subnav - no-sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout standard - hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-subnav-no`,
+          'label': 'DC: Standard page - hero - subnav - no-sidebar',
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
 
-        // Layout tpr unit
+        // TPR Unit
         {
-          'label': 'DC: layout tpr unit - subnav - sidebar',
+          'label': 'DC: TPR Unit - subnav - sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr unit - subnav - no-sidebar',
+          'label': 'DC: TPR Unit - subnav - no-sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr unit - no-subnav - sidebar',
+          'label': 'DC: TPR Unit - no-subnav - sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr unit - no-subnav - no-sidebar',
+          'label': 'DC: TPR Unit - no-subnav - no-sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
 
-        // Layout tpr service
+        // TPR Service
         {
-          'label': 'DC: layout tpr service - subnav - sidebar',
+          'label': 'DC: TPR Service - subnav - sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr service - subnav - no-sidebar',
+          'label': 'DC: TPR Service - subnav - no-sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr service - no-subnav - sidebar',
+          'label': 'DC: TPR Service - no-subnav - sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: layout tpr service - no-subnav - no-sidebar',
+          'label': 'DC: TPR Service - no-subnav - no-sidebar',
           'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
 
         // Components
         {
-          'label': 'DC: component accordion',
+          'label': 'DC: Accordion',
           'url': `https://${hostname}/en/dc-components/dc-accordion`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -215,7 +235,16 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component banner',
+          'label': 'DC: Announcements',
+          'url': `https://${hostname}/en/dc-components/dc-announcements`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.block-hdbt-subtheme-announcements'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Banner',
           'url': `https://${hostname}/en/dc-components/dc-banner`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -224,7 +253,16 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component chart',
+          'label': 'DC: Calculator',
+          'url': `https://${hostname}/en/dc-components/dc-calculator`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--helfi-calculator'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Chart',
           'url': `https://${hostname}/en/dc-components/dc-chart`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -233,7 +271,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component columns',
+          'label': 'DC: Columns',
           'url': `https://${hostname}/en/dc-components/dc-columns`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -242,7 +280,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component contact card listing',
+          'label': 'DC: Contact card listing',
           'url': `https://${hostname}/en/dc-components/dc-contact-card-listing`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -251,7 +289,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component content cards',
+          'label': 'DC: Content cards',
           'url': `https://${hostname}/en/dc-components/dc-content-cards`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -260,7 +298,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component content liftup',
+          'label': 'DC: Content liftup',
           'url': `https://${hostname}/en/dc-components/dc-content-liftup`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -269,7 +307,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component events',
+          'label': 'DC: Events',
           'url': `https://${hostname}/en/dc-components/dc-events`,
           'removeSelectors': removeDefault,
           // 'hideSelectors': [
@@ -283,7 +321,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component image',
+          'label': 'DC: Image',
           'url': `https://${hostname}/en/dc-components/dc-image`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -292,7 +330,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component liftup with image',
+          'label': 'DC: Liftup with image',
           'url': `https://${hostname}/en/dc-components/dc-liftup-with-image`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -301,7 +339,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component list of links',
+          'label': 'DC: List of links',
           'url': `https://${hostname}/en/dc-components/dc-list-of-links`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -310,7 +348,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component map',
+          'label': 'DC: Map',
           'url': `https://${hostname}/en/dc-components/dc-map`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -319,52 +357,7 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component remote video',
-          'url': `https://${hostname}/en/dc-components/dc-remote-video`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.component--remote-video'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
-          'label': 'DC: component service list',
-          'url': `https://${hostname}/en/dc-components/dc-service-list`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.component--service-list'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
-          'label': 'DC: component sidebar text',
-          'url': `https://${hostname}/en/dc-components/dc-sidebar-text`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.sidebar-text'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
-          'label': 'DC: component text',
-          'url': `https://${hostname}/en/dc-components/dc-text`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.component--paragraph-text'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
-          'label': 'DC: component unit search',
-          'url': `https://${hostname}/en/dc-components/dc-unit-search`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.component--unit-search'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
-          'label': 'DC: component news list',
+          'label': 'DC: News list',
           'url': `https://${hostname}/en/dc-components/dc-news-list`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -373,7 +366,13 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component popular services',
+          'label': 'DC: Phasing',
+          'url': `https://${hostname}/en/dc-components/dc-phasing`,
+          'removeSelectors': removeDefault,
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Popular services',
           'url': `https://${hostname}/en/dc-components/dc-popular-services`,
           'removeSelectors': removeDefault,
           'selectors': [
@@ -382,9 +381,57 @@ function getConfig(hostname, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: component phasing',
-          'url': `https://${hostname}/en/dc-components/dc-phasing`,
+          'label': 'DC: Remote video',
+          'url': `https://${hostname}/en/dc-components/dc-remote-video`,
           'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--remote-video'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Service list',
+          'url': `https://${hostname}/en/dc-components/dc-service-list`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--service-list'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Sidebar text',
+          'url': `https://${hostname}/en/dc-components/dc-sidebar-text`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.sidebar-text'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Text',
+          'url': `https://${hostname}/en/dc-components/dc-text`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--paragraph-text'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Target group links',
+          'url': `https://${hostname}/en/dc-components/dc-target-group-links`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--target-group-links'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
+          'label': 'DC: Unit search',
+          'url': `https://${hostname}/en/dc-components/dc-unit-search`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--unit-search'
+          ],
           'selectorExpansion': expandComponents,
         },
         // {
