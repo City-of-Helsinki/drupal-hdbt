@@ -109,105 +109,105 @@ function getConfig(hostname, type) {
         // Layout landing
         {
           'label': 'DC: layout landing - hero',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-landing/dc-layout-landing-hero`,
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page//dc-landing-hero`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout landing - no-hero',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-landing/dc-layout-landing-no-hero`,
+          'url': `https://${hostname}/en/dc-layouts/dc-landing-page//dc-landing-no-hero`,
           'removeSelectors': removeDefault
         },
 
         // Layout standard
         {
           'label': 'DC: layout standard - hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-hero-subnav-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-hero-no-subnav`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-no-subnav`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-hero-no-subnav-no`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-no-subnav-no`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - no-hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-no-hero-subnav`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-subnav`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - no-hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-no-hero-subnav-no`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-subnav-no`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - no-hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-no-hero-no-subnav-0`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-no-subnav-0`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - no-hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-no-hero-no-subnav`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-no-hero-no-subnav`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout standard - hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-layouts/dc-layout-standard/dc-layout-standard-hero-subnav-no`,
+          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-hero-subnav-no`,
           'removeSelectors': removeDefault
         },
 
         // Layout tpr unit
         {
           'label': 'DC: layout tpr unit - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-unit-subnav-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr unit - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-unit-subnav-no-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr unit - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-unit-no-subnav-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr unit - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-unit-no-subnav-no-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
 
         // Layout tpr service
         {
           'label': 'DC: layout tpr service - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-service-subnav-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr service - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-service-subnav-no-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr service - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-service-no-subnav-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout tpr service - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-page-types/dc-layout-tpr-service-no-subnav-no-sidebar`,
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
 
         // Components
         {
           'label': 'DC: component accordion',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-accordion`,
+          'url': `https://${hostname}/en/dc-components/dc-accordion`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--accordion'
@@ -216,7 +216,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component banner',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-banner`,
+          'url': `https://${hostname}/en/dc-components/dc-banner`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--banner'
@@ -225,7 +225,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component chart',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-chart`,
+          'url': `https://${hostname}/en/dc-components/dc-chart`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--chart'
@@ -234,7 +234,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component columns',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-columns`,
+          'url': `https://${hostname}/en/dc-components/dc-columns`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--columns'
@@ -243,7 +243,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component contact card listing',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-contact-card-listing`,
+          'url': `https://${hostname}/en/dc-components/dc-contact-card-listing`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--contact-card-listing'
@@ -252,7 +252,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component content cards',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-content-cards`,
+          'url': `https://${hostname}/en/dc-components/dc-content-cards`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--content-cards'
@@ -261,7 +261,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component content liftup',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-content-liftup`,
+          'url': `https://${hostname}/en/dc-components/dc-content-liftup`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--content-liftup'
@@ -270,7 +270,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component events',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-events`,
+          'url': `https://${hostname}/en/dc-components/dc-events`,
           'removeSelectors': removeDefault,
           // 'hideSelectors': [
           //   '.event-list__event-image',
@@ -284,7 +284,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component image',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-image`,
+          'url': `https://${hostname}/en/dc-components/dc-image`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--image'
@@ -293,7 +293,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component liftup with image',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-liftup-with-image`,
+          'url': `https://${hostname}/en/dc-components/dc-liftup-with-image`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--liftup-with-image'
@@ -302,7 +302,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component list of links',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-list-of-links`,
+          'url': `https://${hostname}/en/dc-components/dc-list-of-links`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--list-of-links'
@@ -311,7 +311,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component map',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-map`,
+          'url': `https://${hostname}/en/dc-components/dc-map`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--map'
@@ -320,7 +320,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component remote video',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-remote-video`,
+          'url': `https://${hostname}/en/dc-components/dc-remote-video`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--remote-video'
@@ -329,7 +329,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component service list',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-service-list`,
+          'url': `https://${hostname}/en/dc-components/dc-service-list`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--service-list'
@@ -338,7 +338,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component sidebar text',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-sidebar-text`,
+          'url': `https://${hostname}/en/dc-components/dc-sidebar-text`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.sidebar-text'
@@ -347,7 +347,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component text',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-text`,
+          'url': `https://${hostname}/en/dc-components/dc-text`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--paragraph-text'
@@ -356,7 +356,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component unit search',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-unit-search`,
+          'url': `https://${hostname}/en/dc-components/dc-unit-search`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--unit-search'
@@ -365,7 +365,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component news list',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-news-list`,
+          'url': `https://${hostname}/en/dc-components/dc-news-list`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--news-list'
@@ -374,7 +374,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component popular services',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-popular-services`,
+          'url': `https://${hostname}/en/dc-components/dc-popular-services`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--popular-services'
@@ -383,14 +383,14 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: component phasing',
-          'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-phasing`,
+          'url': `https://${hostname}/en/dc-components/dc-phasing`,
           'removeSelectors': removeDefault,
           'selectorExpansion': expandComponents,
         },
         // {
         //   'label': 'Component Banner',
         //   'cookiePath': 'backstop_data/engine_scripts/cookies.json',
-        //   'url': `https://${hostname}/en/dc-helfi-platform-test-content/dc-components/dc-component-banner`,
+        //   'url': `https://${hostname}/en/dc-components/dc-banner`,
         //   'referenceUrl': '',
         //   'readyEvent': '',
         //   'readySelector': '',
