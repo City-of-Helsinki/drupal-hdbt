@@ -44,14 +44,14 @@ set languages = {
   }
 %}
 
-{% for item in items %}
+{%- for item in items -%}
   {% set language = languages[item.content['#context']['value']]|t %}
 
-  {% if current_langcode != 'en' %}
+  {%- if current_langcode != 'en' -%}
     {{- language|lower -}}
-  {% else %}
+  {%- else -%}
     {{- language -}}
-  {% endif %}
+  {%- endif -%}
   
-  {% if not loop.last %}<span class="comma">, </span> {% endif %}
-{% endfor %}
+  {% if not loop.last %}, {% endif %}
+{%- endfor -%}
