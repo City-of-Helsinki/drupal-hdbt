@@ -241,7 +241,8 @@ Extend as necessary.
 - only override eslint rules inline for readability
 
 ## Visual regression testing
-BackstopJS is used for testing visual regressions. By default the test runs with Chromium as the browser.
+BackstopJS is used for testing visual regressions. By default the testing runs with Chromium as the browser engine.
+The tests run against the content from the `helfi_test_content` module, so it should be installed and the test content imported.
 
 ### Fast test
 Fast test is for a quicker check covering only two breakpoints, mobile and desktop. Also not all variants are checked in this mode.
