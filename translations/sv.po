@@ -691,3 +691,19 @@ msgstr "Länken öppnas i en ny flik"
 msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
+
+msgctxt "TPR unit contact information show accessibility information link"
+msgid "Show accessibility information"
+msgstr "Visa tillgänglighetsuppgifter"
+
+msgctxt "TPR unit contact information arrival title"
+msgid "How to get here"
+msgstr "Hur du besöker oss"
+
+msgctxt "TPR unit contact information service language"
+msgid "Service language"
+msgstr "Servicespråk"
+
+msgctxt "TPR unit contact information HSL Journey Planner link"
+msgid "Show the route in the HSL Journey Planner"
+msgstr "Visa rutten i HRT:s reseplaneraren"
