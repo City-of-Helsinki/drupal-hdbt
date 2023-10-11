@@ -45,10 +45,18 @@
     {% set main_image = content.picture_url %}
   {% endif %}
 
+  {# Main image caption #}
+  {% if unit_picture_caption|render %}
+    {% set main_image_caption = unit_picture_caption %}
+  {% else %}
+    {% set main_image_caption = '' %}
+  {% endif %}
+
   {% if main_image %}
     {% include '@hdbt/misc/image-with-caption.twig' with {
       figure_class: 'main-image',
-      image: main_image
+      image: main_image,
+      image_caption: main_image_caption
     } %}
   {% endif %}
   {# End of Main image #}
@@ -61,6 +69,18 @@
 
   {% block main_content %}
     <div class="enriched-content components components--unit">
+      {% embed "@hdbt/misc/component.twig" with {
+          component_classes: [ 'component--unit-contact-information' ],
+          component_title: 'Contact information'|trans
+        }%}
+        {% block component_content %}
+          {% include "@hdbt/module/helfi_tpr/tpr-unit-contact-information.html.twig" with {
+              content: content
+            }
+          %}
+        {% endblock component_content %}
+      {% endembed %}
+
       {{ content.field_content }}
 
       {% if content.price_info|render %}
@@ -120,4 +140,43 @@
     } %}
   {% endif %}
 
+  {% if content.accessibility_sentences|render %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--accordion',
+        'component--accordion-bg-grey',
+        'component--hardcoded'
+      ],
+        component_content_class: 'accordion',
+      }
+    %}
+    {% block component_content %}
+
+      {% set accordion_content %}
+
+        {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+          {% block component_content %}
+            {{ content.accessibility_sentences }}
+          {% endblock component_content %}
+        {% endembed %}
+
+      {% endset %}
+
+      {% include '@hdbt/component/accordion.twig' ignore missing with {
+        heading_level: 'h2',
+        heading_icon: 'person-wheelchair',
+        heading: 'Accessibility information'|t,
+        content: accordion_content,
+      } %}
+
+      {% endblock component_content %}
+    {% endembed %}
+  {% endif %}
+
+  {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
+
+  {% if services_view > 0 %}
+    {{ drupal_view('unit_services', 'unit_services') }}
+  {% endif %}
 </article>

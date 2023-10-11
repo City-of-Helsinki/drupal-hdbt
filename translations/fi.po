@@ -702,3 +702,19 @@ msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."
 msgctxt "Unit services title"
 msgid "Services"
 msgstr "Palvelut"
+
+msgctxt "TPR unit contact information show accessibility information link"
+msgid "Show accessibility information"
+msgstr "Näytä esteettömyystiedot"
+
+msgctxt "TPR unit contact information arrival title"
+msgid "How to get here"
+msgstr "Saapuminen"
+
+msgctxt "TPR unit contact information service language"
+msgid "Service language"
+msgstr "Palvelukieli"
+
+msgctxt "TPR unit contact information HSL Journey Planner link"
+msgid "Show the route in the HSL Journey Planner"
+msgstr "Näytä reitti HSL-reittioppaassa"
