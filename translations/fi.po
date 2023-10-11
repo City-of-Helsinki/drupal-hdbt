@@ -699,6 +699,10 @@ msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."
 
+msgctxt "Unit services title"
+msgid "Services"
+msgstr "Palvelut"
+
 msgctxt "TPR unit contact information show accessibility information link"
 msgid "Show accessibility information"
 msgstr "Näytä esteettömyystiedot"
