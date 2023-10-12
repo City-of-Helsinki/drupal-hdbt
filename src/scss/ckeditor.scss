@@ -32,7 +32,7 @@
   // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
   @import '05_objects/_quote';
   @import '05_objects/_button';
-  @import '05_objects/_button-v2';
+  @include hds-button-colors-on-light-bg;
 }
 
 // Additional styling for links.
