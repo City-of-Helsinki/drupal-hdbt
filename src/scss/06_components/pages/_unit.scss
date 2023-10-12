@@ -279,39 +279,6 @@
   .content-tags {
     margin-top: $spacing;
   }
-
-  .unit__read-more {
-    @include font('button');
-    display: flex;
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-m) {
-      justify-content: flex-end;
-      margin-top: $spacing;
-    }
-
-    .unit__read-more__text {
-      font-weight: $font-weight-medium;
-    }
-
-    .hel-icon {
-      @include hover-link-arrow-transition;
-      margin-left: $spacing-half;
-      pointer-events: none;
-    }
-  }
-
-  &:hover {
-    .unit__read-more {
-      .hel-icon {
-        transform: translateX($spacing-quarter);
-
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
-    }
-  }
 }
 
 .unit--minimal {
