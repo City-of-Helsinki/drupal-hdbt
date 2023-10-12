@@ -98,11 +98,12 @@
 .accordion-item__button--close {
   @include font('button');
   align-items: center;
-  bottom: $spacing;
   display: flex;
   inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
+  margin-block-end: $spacing;
+  margin-block-start: $spacing-half;
+  margin-inline-start: auto;
   padding: $spacing-half;
-  position: absolute;
 
   &:focus {
     outline: 3px solid $color-black;
@@ -130,13 +131,8 @@
   border: none;
 }
 
-.accordion-item__content__inner {
-  padding: 0 0 $spacing-quadruple;
-  position: relative;
-
-  > *:first-child {
-    margin-top: 0;
-  }
+.accordion-item__content__inner  > *:first-child {
+  margin-top: 0;
 }
 
 .component--accordion .component--image .component__content {
