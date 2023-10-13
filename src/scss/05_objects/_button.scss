@@ -29,13 +29,13 @@
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
+  align-content: flex-start;
+  align-items: center;
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: button;
-  align-content: flex-start;
-  align-items: center;
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
@@ -562,13 +562,13 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
+  align-content: flex-start;
+  align-items: center;
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: button;
-  align-content: flex-start;
-  align-items: center;
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
