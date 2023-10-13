@@ -4,6 +4,7 @@
   --theme-bg1: var(--color-black);
   --theme-bg2: transparent;
   --theme-focus: var(--color-black);
+  --theme-focus-gutter-color: transparent; // set this to white if we want double colored focus rings
 }
 
 @mixin hds-button-colors-on-dark-bg(){
@@ -12,6 +13,7 @@
   --theme-bg1: var(--color-white);
   --theme-bg2: transparent;
   --theme-focus: var(--color-white);
+  --theme-focus-gutter-color: transparent; // set this to black if we want double colored focus rings
 }
 
 :root {
@@ -56,6 +58,7 @@
   min-height: var(--min-size);
   min-width: var(--min-size);
   padding: 0 var(--spacing-2-xs);
+  position: relative;
   text-decoration: none;
 
   // Normalize.css rule
@@ -103,7 +106,7 @@
 
 // button transitions
 .hds-button:hover,
-.hds-button:focus,
+.hds-button:focus-visible,
 .hds-button:active {
   transition-duration: 85ms;
   // stylelint-disable-next-line plugin/no-low-performance-animation-properties
@@ -116,14 +119,19 @@
   color: var(--color-hover);
 }
 
-.hds-button:focus {
+// HDBT focus outline styles differ from HDS on purpose as outline focus ring is
+// better than the after-pseudoelement stuff HDS is using
+.hds-button:focus-visible,
+.hds-button:active {
   background-color: var(--background-color-focus, transparent);
+  box-shadow: 0 0 0 calc(var(--outline-gutter, 2px) + var(--outline-width, 3px)) var(--submit-input-focus-gutter-color, transparent);
   color: var(--color-focus);
-  outline: none;
+  outline: var(--outline-width, 3px) solid var(--focus-outline-color, $color-black);
+  outline-offset: var(--outline-gutter, 2px);
 }
 
-.hds-button:focus:hover {
-  background-color: var(--background-color-hover-focus, transparent);
+.hds-button:not(:disabled) {
+  border-color: var(--border-color, transparent);
 }
 
 .hds-button:disabled {
@@ -133,31 +141,24 @@
   cursor: not-allowed;
 }
 
-.hds-button:not(:disabled) {
-  border-color: var(--border-color, transparent);
+.hds-button:focus-visible:hover,
+.hds-button:active:hover {
+  background-color: var(--background-color-hover-focus, transparent);
 }
 
 .hds-button:not(:disabled):hover {
   border-color: var(--border-color-hover, transparent);
 }
 
-.hds-button:not(:disabled):active,
-.hds-button:not(:disabled):focus {
+.hds-button:not(:disabled):focus-visible,
+.hds-button:not(:disabled):active {
   border-color: var(--border-color-focus, transparent);
 }
 
-.hds-button:not(:disabled):active:hover,
-.hds-button:not(:disabled):focus:hover {
+.hds-button:not(:disabled):focus-visible:hover,
+.hds-button:not(:disabled):active:hover {
   border-color: var(--border-color-hover-focus, transparent);
   color: var(--color-hover-focus);
-}
-
-// FOCUS OUTLINE
-.hds-button:active,
-.hds-button:focus {
-  outline: var(--outline-width) solid var(--focus-outline-color);
-  outline-offset: var(--outline-gutter);
-  outline-offset: 2px;
 }
 
 // LABEL
@@ -182,9 +183,22 @@ input[type='submit'].hds-button {
   margin: 0 var(--spacing-2-xs);
 }
 
+input[type='button'].hds-button--small,
+input[type='reset'].hds-button--small,
+input[type='submit'].hds-button--small,
+.hds-button--small .hds-button__label {
+  line-height: var(--lineheight-s);
+  padding: var(--spacing-2-xs) var(--spacing-xs);
+}
+
 // supplementary with right icon
 .hds-button--supplementary .hds-button__label:first-child {
   padding-right: var(--spacing-3-xs);
+}
+
+// no icons
+.hds-button--small .hds-button__label:only-child {
+  margin: 0 var(--spacing-xs);
 }
 
 // supplementary with left icon
@@ -196,6 +210,28 @@ input[type='submit'].hds-button {
 .hds-button--supplementary .hds-icon + .hds-button__label:not(:last-child) {
   padding-left: var(--spacing-3-xs);
   padding-right: var(--spacing-3-xs);
+}
+
+// SMALL
+.hds-button--small {
+  padding: 0;
+}
+
+input[type='button'].hds-button--small,
+input[type='reset'].hds-button--small,
+input[type='submit'].hds-button--small {
+  padding: var(--spacing-2-xs) var(--spacing-m);
+}
+
+/* both icons */
+.hds-button--small .hds-button__label:not(:first-of-type):not(:last-of-type) {
+  padding: var(--spacing-2-xs) var(--spacing-2-xs);
+}
+
+/* FULL WIDTH */
+
+.hds-button--fullwidth {
+  width: 100%;
 }
 
 // ICONS
@@ -211,6 +247,16 @@ input[type='submit'].hds-button {
   margin: 0 var(--spacing-s) 0 0;
 }
 
+// left - small
+.hds-button--small .hds-icon {
+  margin-left: var(--spacing-2-xs);
+}
+
+// right - small
+.hds-button .hds-button--small .hds-button__label ~ .hds-icon {
+  margin: 0 var(--spacing-2-xs) 0 0;
+}
+
 // both icons - left
 .hds-button .hds-icon:first-of-type:not(:last-of-type) {
   margin: 0 0 0 var(--spacing-2-xs);
@@ -218,6 +264,16 @@ input[type='submit'].hds-button {
 
 // both icons - right
 .hds-button .hds-icon:last-of-type:not(:first-of-type) {
+  margin: 0 var(--spacing-2-xs) 0 0;
+}
+
+/* both icons - left - small */
+.hds-button--small .hds-icon:first-child:not(:last-of-type) {
+  margin: 0 0 0 var(--spacing-2-xs);
+}
+
+/* both icons - right - small */
+.hds-button--small .hds-icon:last-child:not(:first-of-type) {
   margin: 0 var(--spacing-2-xs) 0 0;
 }
 
@@ -247,6 +303,7 @@ input[type='submit'].hds-button {
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
 // SECONDARY
@@ -275,6 +332,7 @@ input[type='submit'].hds-button {
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
 // SUPPLEMENTARY
@@ -302,6 +360,7 @@ input[type='submit'].hds-button {
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, transparent);
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, transparent);
 }
 
 // LOADING
@@ -531,7 +590,8 @@ a[data-variant][href] {
   margin: 0; /* 2 */
   min-height: var(--min-size);
   min-width: var(--min-size);
-  padding: var(--spacing-s) var(--spacing-m);
+  padding: var(--spacing-s) var(--spacing-l);
+  position: relative;
   text-decoration: none;
 
   // Normalize.css rule
