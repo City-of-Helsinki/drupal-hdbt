@@ -71,7 +71,7 @@
     <div class="enriched-content components components--unit">
       {% embed "@hdbt/misc/component.twig" with {
           component_classes: [ 'component--unit-contact-information' ],
-          component_title: 'Contact information'|trans
+          component_title: 'Contact information'|t({}, {'context': 'TPR unit contact information title'})
         }%}
         {% block component_content %}
           {% include "@hdbt/module/helfi_tpr/tpr-unit-contact-information.html.twig" with {
