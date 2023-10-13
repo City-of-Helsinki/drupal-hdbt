@@ -224,7 +224,7 @@ input[type='submit'].hds-button--small {
 }
 
 /* both icons */
-.hds-button--small .hds-button__label:not(:first-of-type):not(:last-of-type) {
+.hds-button--small .hds-button__label:not(:first-of-type,:last-of-type) {
   padding: var(--spacing-2-xs) var(--spacing-2-xs);
 }
 
@@ -442,6 +442,7 @@ input[type='submit'].hds-button--small {
 // Content fron HDS button.css ends
 // TODO: UHF-8793 Refactor hds-button (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8793).
 // Fix for button margins when using hel-icon.
+// stylelint-disable-next-line no-duplicate-selectors
 .hds-button {
   // Set icon size for the button icons.
   .hel-icon {
@@ -497,6 +498,7 @@ input[type='submit'].hds-button--small {
     &[data-selected-icon]:hover:not([data-is-external])::after {
       transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
 
+      // stylelint-disable-next-line max-nesting-depth
       @media (prefers-reduced-motion) {
         transform: none;
       }
@@ -615,6 +617,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   &[type='submit'] {
     // stylelint-disable-next-line property-no-vendor-prefix
     -webkit-appearance: button;
+    cursor: pointer;
   }
 
   // Normalize.css rules
@@ -692,13 +695,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
     color: var(--color-hover-focus);
   }
 
-  &[type="button"],
-  &[type="reset"],
-  &[type="submit"] {
-    cursor: pointer;
-  }
-
-
   // ICONS
   &[data-icon-start]::before {
     @include pseudo-icon(null, $size: $spacing-and-half, $color: currentColor);
@@ -708,7 +704,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   &:not(:empty)[data-icon-start]::before{
     margin-inline-end: -8px;
     margin-inline-start: -16px; // In current HDS styles, this icon is closer to the starting edge than plain label (left edge on LTR languages)
-    }
+  }
 
   &:empty{
     padding-inline: 16px;
@@ -825,7 +821,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
   // SUPPLEMENTARY
   &[data-variant='supplementary'] {
-
     // Backgrounds
     --background-color: var(--theme-bg2, transparent);
     --background-color-hover: var(--theme-bg2, var(--color-bus-light));
