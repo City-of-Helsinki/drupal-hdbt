@@ -554,7 +554,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
 // ---------------------------------------------------------------------------------------------------------------------
 // Button v2
 
-[data-hds='button']:not([class*='hds-button']) {
+[data-hds-component='button']:not([class*='hds-button']) {
   @include font('button');
 
   --border-width: 2px;
@@ -696,12 +696,12 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 
   // ICONS
-  &[data-icon-start]::before {
+  &[data-hds-icon-start]::before {
     @include pseudo-icon(null, $size: $spacing-and-half, $color: currentColor);
     margin-block: -2px;
   }
 
-  &:not(:empty)[data-icon-start]::before{
+  &:not(:empty)[data-hds-icon-start]::before{
     margin-inline-start: -16px; // In current HDS styles, this icon is closer to the starting edge than plain label (left edge on LTR languages)
   }
 
@@ -710,7 +710,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 
   &:where(
-    [data-icon-end],
+    [data-hds-icon-end],
     [data-is-external],
     [data-protocol='tel'],
     [data-protocol='mailto']
@@ -720,7 +720,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 
   &:not(:empty):where(
-    [data-icon-end],
+    [data-hds-icon-end],
     [data-is-external],
     [data-protocol='tel'],
     [data-protocol='mailto']
@@ -740,13 +740,13 @@ p > a.hds-button.hds-button--supplementary:first-child {
     @include pseudo-icon-replace('mailto');
   }
 
-  &[data-variant='supplementary']:not(
-    [data-icon-start],
+  &[data-hds-variant='supplementary']:not(
+    [data-hds-icon-start],
     [data-is-external],
     [data-protocol='tel'],
     [data-protocol='mailto']
   )::before,
-  &[data-variant='supplementary'][data-icon-start]:not(
+  &[data-hds-variant='supplementary'][data-hds-icon-start]:not(
     [data-is-external],
     [data-protocol='tel'],
     [data-protocol='mailto']
@@ -761,8 +761,8 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
   // PRIMARY
   // default (bus)
-  &:not([data-variant]), // Fallback to primary button style
-  &[data-variant='primary'] {
+  &:not([data-hds-variant]), // Fallback to primary button style
+  &[data-hds-variant='primary'] {
     // Backgrounds
     --background-color: var(--theme-bg1, var(--color-bus));
     --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
@@ -791,7 +791,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
   // SECONDARY
   // default (bus)
-  &[data-variant='secondary'] {
+  &[data-hds-variant='secondary'] {
     // Backgrounds
     --background-color: var(--theme-bg2, transparent);
     --background-color-hover: var(--theme-bg1, var(--color-bus-light));
@@ -819,7 +819,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 
   // SUPPLEMENTARY
-  &[data-variant='supplementary'] {
+  &[data-hds-variant='supplementary'] {
     gap: $spacing-half; // For some reason hds styles have less gap between supplementary icon and label
 
     // Backgrounds
@@ -849,12 +849,12 @@ p > a.hds-button.hds-button--supplementary:first-child {
     padding: $spacing-half; // supplementary buttons have less padding to fit more nicely inline
   }
 
-  &[data-variant='supplementary']:not([data-icon-start]) {
+  &[data-hds-variant='supplementary']:not([data-hds-icon-start]) {
     margin-inline-start: -10px; // supplementary buttons with no icon try to align their label with paragraph text
   }
 
   // LOADING
-  &[data-variant='loading'] {
+  &[data-hds-variant='loading'] {
     // Backgrounds
     --background-color: transparent;
     --background-color-hover: transparent;
@@ -882,7 +882,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
   // UTILITY
   // success
-  &[data-variant='success'] {
+  &[data-hds-variant='success'] {
     // Backgrounds
     --background-color: var(--color-success);
     --background-color-hover: var(--color-success-dark);
@@ -906,7 +906,7 @@ p > a.hds-button.hds-button--supplementary:first-child {
   }
 
   /* danger */
-  &[data-variant='danger'] {
+  &[data-hds-variant='danger'] {
     // Backgrounds
     --background-color: var(--color-error);
     --background-color-hover: var(--color-error-dark);
