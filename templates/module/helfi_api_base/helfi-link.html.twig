@@ -26,9 +26,11 @@
 
   {% if 'data-is-external' in attributes|keys %}
     {% set attribute_icon %}
-      <span class="link__type link__type--external"></span>
+      {%- if render_old_link -%}
+        <span class="link__type link__type--external"></span>
+      {%- endif -%}
       <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>
-    {%- endset %}
+    {% endset %}
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
