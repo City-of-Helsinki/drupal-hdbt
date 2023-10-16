@@ -137,6 +137,10 @@
   > *:first-child {
     margin-top: 0;
   }
+
+  > .component--paragraph-text .component__container .component__content > .form-item:first-child > *:first-child {
+    margin-top: 0;
+  }
 }
 
 .component--accordion .component--image .component__content {
