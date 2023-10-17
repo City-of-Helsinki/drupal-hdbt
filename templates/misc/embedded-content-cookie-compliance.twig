@@ -2,6 +2,13 @@
   <div class="message" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>
     {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
     <h2>{{ 'Content cannot be displayed'|t }}</h2>
+    <noscript class="js-remove">
+      <p>
+        {% trans with {'context': 'Generic javascript required message'} %}
+            This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+        {% endtrans %}
+      </p>
+    </noscript>
     <p>
       {% trans %}
         This content is hosted by {{ media_service_url }}. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.
