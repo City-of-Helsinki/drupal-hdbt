@@ -36,8 +36,7 @@
 
   {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
 
-  {# Page divider, normally it comes from table of contents, but unit does not have that #}
-  <div class="page-divider"></div>
+  {{ content.toc_enabled }}
 
   {{ supports_swedish }}
 
