@@ -71,6 +71,9 @@
   // Run after choosing cookie settings.
   $(document).on('eu_cookie_compliance.changeStatus', loadEmbeddedContent);
 
+  // Remove noscript element.
+  $('.embedded-content-cookie-compliance .js-remove').remove();
+
   // Run after page is ready.
   $(document).ready(loadEmbeddedContent);
 })(jQuery, Drupal, drupalSettings);
