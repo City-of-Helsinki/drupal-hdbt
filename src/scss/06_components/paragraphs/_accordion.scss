@@ -138,7 +138,8 @@
     margin-top: 0;
   }
 
-  > .component--paragraph-text .component__container .component__content > .form-item:first-child > *:first-child {
+  // Removes the gap between accordion heading and accordion content caused by p (or other) tag.
+  > .component--paragraph-text .component__content div:first-child > *:first-child {
     margin-top: 0;
   }
 }
