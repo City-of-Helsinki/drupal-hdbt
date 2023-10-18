@@ -108,7 +108,7 @@
       --icon-size: #{$spacing-quadruple};
   
       @include breakpoint($breakpoint-m) {
-        --icon-size: 6.25rem;
+        --icon-size: #{remify(100px)};
       }
     }
   }
