@@ -6,6 +6,9 @@
  * @see hdbt_admin_tools_preprocess_tpr_unit()
  */
 #}
+{% set has_prices = content.price_info|render ? true : false %}
+{% set has_contacts = content.contacts|render ? true : false %}
+{% set has_other_info = content.highlights|render or content.topical|render or content.other_info|render or content.links|render ?: false %}
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
@@ -33,10 +36,9 @@
 
   {% embed "@hdbt/misc/lead-in.twig" with { content: content.description_summary } %}{% endembed %}
 
-  {# Page divider, normally it comes from table of contents, but unit does not have that #}
-  <div class="page-divider"></div>
-
   {{ supports_swedish }}
+
+  {{ content.toc_enabled }}
 
   {# Main image #}
   {% if content.picture_url_override|render %}
@@ -45,10 +47,18 @@
     {% set main_image = content.picture_url %}
   {% endif %}
 
+  {# Main image caption #}
+  {% if unit_picture_caption|render %}
+    {% set main_image_caption = unit_picture_caption %}
+  {% else %}
+    {% set main_image_caption = '' %}
+  {% endif %}
+
   {% if main_image %}
     {% include '@hdbt/misc/image-with-caption.twig' with {
       figure_class: 'main-image',
-      image: main_image
+      image: main_image,
+      image_caption: main_image_caption
     } %}
   {% endif %}
   {# End of Main image #}
@@ -61,48 +71,90 @@
 
   {% block main_content %}
     <div class="enriched-content components components--unit">
+      {% embed "@hdbt/misc/component.twig" with {
+          component_classes: [ 'component--unit-contact-information' ],
+          component_title: 'Contact information'|trans
+        }%}
+        {% block component_content %}
+          {% include "@hdbt/module/helfi_tpr/tpr-unit-contact-information.html.twig" with {
+              content: content
+            }
+          %}
+        {% endblock component_content %}
+      {% endembed %}
+
       {{ content.field_content }}
 
-      {% if content.price_info|render %}
-        {% embed "@hdbt/misc/component.twig" with {
-          component_classes: [ 'component--paragraph-text' ],
-          component_title: content.price_info['#title'],
-        }%}
-          {% block component_content %}
-            {{ content.price_info }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+      {% if has_prices or has_contacts or has_other_info %}
+        {% embed "@hdbt/misc/component.twig" with
+          {
+            component_classes: [
+            'component--accordion',
+            'component--accordion-bg-grey',
+            'component--hardcoded'
+          ],
+            component_content_class: 'accordion',
+          }
+        %}
+        {% block component_content %}
 
-      {% if content.contacts|render %}
-          {% embed "@hdbt/misc/component.twig" with {
-            component_classes: [ 'component--paragraph-text' ],
-            component_title: content.contacts['#title'],
-          }%}
-          {% block component_content %}
-            {{ content.contacts }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+          {% if has_prices %}
+            {% set accordion_content %}
 
-      {% if content.links|render %}
-          {% embed "@hdbt/misc/component.twig" with {
-            component_classes: [ 'component--paragraph-text' ],
-            component_title: content.links['#title'],
-          }%}
-          {% block component_content %}
-            {{ content.links }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.price_info }}
+                {% endblock component_content %}
+              {% endembed %}
 
-      {% if content.other_info|render %}
-        {% embed "@hdbt/misc/component.twig" with {
-          component_classes: [ 'component--paragraph-text' ],
-          component_title: content.other_info['#title'],
-        }%}
-          {% block component_content %}
-            {{ content.other_info }}
+            {% endset %}
+
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading: 'Charges'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+              content: accordion_content,
+            } %}
+          {% endif %}
+
+          {% if has_contacts %}
+            {% set contacts_accordion_content %}
+
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.contacts }}
+                {% endblock component_content %}
+              {% endembed %}
+
+            {% endset %}
+
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading: 'Other contact information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}) ,
+              content: contacts_accordion_content,
+            } %}
+          {% endif %}
+ 
+          {% if has_other_info %}
+            {% set other_info_accordion_content %}
+
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.highlights }}
+                  {{ content.topical }}
+                  {{ content.other_info }}
+                  {{ content.links }}
+                {% endblock component_content %}
+              {% endembed %}
+
+            {% endset %}
+          {% endif %}
+
+          {% include '@hdbt/component/accordion.twig' ignore missing with {
+            heading_level: 'h2',
+            heading: 'Further information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+            content: other_info_accordion_content,
+          } %}
+
           {% endblock component_content %}
         {% endembed %}
       {% endif %}
@@ -120,4 +172,43 @@
     } %}
   {% endif %}
 
+  {% if content.accessibility_sentences|render %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--accordion',
+        'component--accordion-bg-grey',
+        'component--hardcoded'
+      ],
+        component_content_class: 'accordion',
+      }
+    %}
+    {% block component_content %}
+
+      {% set accordion_content %}
+
+        {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+          {% block component_content %}
+            {{ content.accessibility_sentences }}
+          {% endblock component_content %}
+        {% endembed %}
+
+      {% endset %}
+
+      {% include '@hdbt/component/accordion.twig' ignore missing with {
+        heading_level: 'h2',
+        heading_icon: 'person-wheelchair',
+        heading: 'Accessibility information'|t,
+        content: accordion_content,
+      } %}
+
+      {% endblock component_content %}
+    {% endembed %}
+  {% endif %}
+
+  {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
+
+  {% if services_view > 0 %}
+    {{ drupal_view('unit_services', 'unit_services') }}
+  {% endif %}
 </article>

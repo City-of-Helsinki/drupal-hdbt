@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
@@ -40,7 +41,7 @@ const useQueryString = (urlParams: URLParams): string => {
           },
           {
             combined_fields: {
-              query: urlParams.keyword.toString(),
+              query: urlParams.keyword.toString().toLowerCase(),
               fields: [
                 `${IndexFields.TITLE}^2`,
                 `${IndexFields.ORGANIZATION}^1.5`,
@@ -51,7 +52,7 @@ const useQueryString = (urlParams: URLParams): string => {
           },
           {
             wildcard: {
-              [`${IndexFields.TITLE}`]: `*${urlParams.keyword.toString()}*`,
+              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*`,
             },
           },
         ],

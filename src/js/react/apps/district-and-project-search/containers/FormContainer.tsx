@@ -84,9 +84,9 @@ const FormContainer = () => {
             icon={<IconLocation />}
             label={residentialAreaLabel}
             placeholder={Drupal.t('Select area', {}, { context: 'District and project search form label' })}
-            clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' })}
-            selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
-            toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
+            clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': residentialAreaLabel }, { context: 'React search clear selection label' })}
+            selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
+            toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
             theme={{
               '--focus-outline-color': 'var(--hdbt-color-black)',
               '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -106,7 +106,7 @@ const FormContainer = () => {
             '--header-line-height': 'var(--lineheight-s)',
           }}
         >
-          <div className='district-project-search-form__filters'>          
+          <div className='district-project-search-form__filters'>
             <Combobox
               multiselect
               id={SearchComponents.THEME}
@@ -116,9 +116,9 @@ const FormContainer = () => {
               onChange={setThemeFilter}
               label={projectThemeLabel}
               placeholder={Drupal.t('All themes', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectThemeLabel }, { context: 'React search clear selection label' })}
+              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
+              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
               theme={{
                 '--focus-outline-color': 'var(--hdbt-color-black)',
                 '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -134,9 +134,9 @@ const FormContainer = () => {
               onChange={setPhaseFilter}
               label={projectStageLabel}
               placeholder={Drupal.t('All stages', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectStageLabel }, { context: 'React search clear selection label' })}
+              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
+              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
               theme={{
                 '--focus-outline-color': 'var(--hdbt-color-black)',
                 '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -152,9 +152,9 @@ const FormContainer = () => {
               onChange={setTypeFilter}
               label={projectTypeLabel}
               placeholder={Drupal.t('All types', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'District and project search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'District and project search open dropdown aria label' })}
+              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectTypeLabel }, { context: 'React search clear selection label' })}
+              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
+              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
               theme={{
                 '--focus-outline-color': 'var(--hdbt-color-black)',
                 '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',

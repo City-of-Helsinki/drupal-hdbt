@@ -239,3 +239,48 @@ Extend as necessary.
 - always verify, never override lint-staged
 - fix your code before commit
 - only override eslint rules inline for readability
+
+## Visual regression testing
+BackstopJS is used for testing visual regressions. By default the testing runs with Chromium as the browser engine.
+The tests run against the content from the `helfi_test_content` module, so it should be installed and the test content imported.
+
+### Fast test
+Fast test is for a quicker check covering only two breakpoints, mobile and desktop. Also not all variants are checked in this mode.
+
+1. Before any changes, run `npm run fast-reference` for creating reference images.
+2. After the changes, run `npm run build`.
+2. To generate the test images and comparison report, run `npm run fast-test`.
+3. Check the results from the link given at the end of the test.
+
+### Full test
+Full test is a more comprehensive test that covers multiple variants, edge cases and breakpoints.
+
+1. Before any changes, run `npm run full-reference` for creating reference images.
+2. Make the changes and run `npm run build`.
+2. To generate the test images and comparison report, run `npm run full-test`.
+3. Check the results from the link given at the end of the test.
+
+### Adding a new component to the test
+1. Add the component to the `helfi_test_content` module following the instuctions in its README.
+2. Add a test scenario for the component following the example of existing scenarios.
+
+### Filtering components to test
+It's possible to filter which components are tested by adding the name or part of it in the end of the command.
+
+A command `npm run fast-reference list` would test all components that have "list" in their name, for example "events list" and "news list".
+
+### Known issues
+On a Windows + WSL2 setup with Chromium as the engine, the test might get stuck in the beginning for painfully long time. This probably can be fixed with some configuration but as a workaround, the engine for the tests can also be switched to Firefox or Webkit with the `engineOptions` option in `backstop_dynamic_js`.
+
+```
+'engineOptions': {
+  'browser': 'chromium',
+  // 'browser': 'firefox',
+  // 'browser': 'webkit',
+  ...
+},
+```
+
+## Contact
+
+Slack: #helfi-drupal (http://helsinkicity.slack.com/)

@@ -654,10 +654,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "Avaa alasvetovalikko"
-
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
 msgstr "Tilaa kaikkien uutisten RSS-syöte"
@@ -672,6 +668,14 @@ msgstr "Tällä hetkellä ei ole avoimia kuulemisia kommentoitavaksi."
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Tyhjennä @label valinnat"
+
+msgctxt "React search remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
+
+msgctxt "React search open dropdown aria label"
+msgid "Open the combobox"
+msgstr "Avaa alasvetovalikko"
 
 msgid "Unit homepage"
 msgstr "Toimipisteen kotisivut"
@@ -694,3 +698,39 @@ msgstr "Linkki avautuu uuteen välilehteen"
 msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."
+
+msgctxt "Unit services title"
+msgid "Services"
+msgstr "Palvelut"
+
+msgctxt "TPR unit contact information show accessibility information link"
+msgid "Show accessibility information"
+msgstr "Näytä esteettömyystiedot"
+
+msgctxt "TPR unit contact information arrival title"
+msgid "How to get here"
+msgstr "Saapuminen"
+
+msgctxt "TPR unit contact information service language"
+msgid "Service language"
+msgstr "Palvelukieli"
+
+msgctxt "TPR unit contact information HSL Journey Planner link"
+msgid "Show the route in the HSL Journey Planner"
+msgstr "Näytä reitti HSL-reittioppaassa"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Charges"
+msgstr "Hinnat"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Other contact information"
+msgstr "Muut yhteystiedot"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Further information"
+msgstr "Lisätiedot"
+
+msgctxt "Table of contents, no javascript"
+msgid "Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Sisällysluettelo käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."

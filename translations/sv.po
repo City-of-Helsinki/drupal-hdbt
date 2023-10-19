@@ -647,10 +647,6 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
 
-msgctxt "News archive open dropdown aria label"
-msgid "Open the combobox"
-msgstr "öppna rullgardinsmenyn"
-
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
 msgstr "Prenumerera på alla nyheter som RSS-flöde"
@@ -665,6 +661,14 @@ msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
 msgctxt "React search clear selection label"
 msgid "Clear @label selection"
 msgstr "Rensa alla @label"
+
+msgctxt "React search remove item aria label"
+msgid "Remove item"
+msgstr "Töm valda"
+
+msgctxt "React search open dropdown aria label"
+msgid "Open the combobox"
+msgstr "öppna rullgardinsmenyn"
 
 msgid "Unit homepage"
 msgstr "Enhetens hemsida"
@@ -687,3 +691,39 @@ msgstr "Länken öppnas i en ny flik"
 msgctxt "React search"
 msgid "An error occured while loading the content. Please reload page."
 msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
+
+msgctxt "Unit services title"
+msgid "Services"
+msgstr "Tjänster"
+
+msgctxt "TPR unit contact information show accessibility information link"
+msgid "Show accessibility information"
+msgstr "Visa tillgänglighetsuppgifter"
+
+msgctxt "TPR unit contact information arrival title"
+msgid "How to get here"
+msgstr "Hur du besöker oss"
+
+msgctxt "TPR unit contact information service language"
+msgid "Service language"
+msgstr "Servicespråk"
+
+msgctxt "TPR unit contact information HSL Journey Planner link"
+msgid "Show the route in the HSL Journey Planner"
+msgstr "Visa rutten i HRT:s reseplaneraren"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Charges"
+msgstr "Priser"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Other contact information"
+msgstr "Andra kontaktuppgifter"
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Further information"
+msgstr "Ytterligare uppgifter"
+
+msgctxt "Table of contents, no javascript"
+msgid "Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
+msgstr "Innehållsförteckning använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."

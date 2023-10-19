@@ -1,6 +1,6 @@
 {% if toc_enabled|render|striptags|trim is not empty %}
   <div class="table-of-contents">
-    <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
+    <div id="helfi-toc-table-of-contents" class="table-of-contents__container table-of-contents__js">
       {% if toc_title|render %}
         {% set title_attributes = {
             'class': [
@@ -23,6 +23,23 @@
         </ul>
       </nav>
     </div>
+    <noscript class="table-of-contents__nojs js-remove">
+      <div class="nojs__icon">
+        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+      </div>
+      <div class="nojs__content-wrapper">
+        <div class="nojs__content">
+          <h2 class="nojs__title"> {{ 'Content cannot be displayed'|t }}</h2>
+          <div class="nojs__desc">
+            <p>
+              {% trans with {'context': 'Table of contents, no javascript'} %}
+                Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+              {% endtrans %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </noscript>
   </div>
 {% else %}
   <div class="page-divider"></div>
