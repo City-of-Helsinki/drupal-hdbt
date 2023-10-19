@@ -100,6 +100,8 @@ a.banner__button {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]),
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
   .hds-button--primary {
     --background-color: var(--hdbt-color-palette-button--primary);
     --background-color-hover: transparent;
@@ -120,6 +122,7 @@ a.banner__button {
     --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--primary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'],
   .hds-button--secondary {
     --background-color: transparent;
     --background-color-hover: var(--hdbt-color-palette-button--primary);
@@ -138,6 +141,7 @@ a.banner__button {
     --focus-outline-color: var(--hdbt-color-palette-button--primary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
   .hds-button--supplementary {
     --background-color: transparent;
     --background-color-hover: transparent;
@@ -169,6 +173,8 @@ a.banner__button {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--secondary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]),
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
   .hds-button--primary {
     --background-color: var(--hdbt-color-palette-button--secondary);
     --background-color-hover: transparent;
@@ -189,6 +195,7 @@ a.banner__button {
     --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--secondary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'],
   .hds-button--secondary {
     --background-color: transparent;
     --background-color-hover: var(--hdbt-color-palette-button--secondary);
@@ -207,6 +214,7 @@ a.banner__button {
     --focus-outline-color: var(--hdbt-color-palette-button--secondary);
   }
 
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
   .hds-button--supplementary {
     --background-color: transparent;
     --background-color-hover: transparent;
