@@ -16,7 +16,7 @@
   }
 }
 
-// Add extra margin to long description and main image if table of contents is enabled.
+// Add extra margin to the following element if table of contents is enabled.
 .table-of-contents + * {
   @include component-margin-top;
 }
