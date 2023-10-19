@@ -127,6 +127,7 @@
 
 .unit.unit--full .content-tags {
   margin-bottom: $spacing-and-half;
+  margin-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     margin-bottom: $spacing-double;
