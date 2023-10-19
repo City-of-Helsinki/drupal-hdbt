@@ -23,10 +23,6 @@ table {
   padding: 0;
   width: auto;
 
-  table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
-    background: $color-black-5;
-  }
-
   td,
   th {
     border-bottom: 1px solid $color-black-50;
@@ -53,4 +49,8 @@ table {
   td {
     background: $color-white;
   }
+}
+
+table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+  background: $color-black-5;
 }
