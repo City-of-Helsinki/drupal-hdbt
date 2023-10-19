@@ -819,16 +819,40 @@ p > a.hds-button.hds-button--supplementary:first-child {
     padding-inline: $spacing;
   }
 
+  &:is(
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ){
+    &::after{
+      @include hover-link-arrow-transition;
+    }
+
+    &:is(
+      :focus-visible,
+      :hover
+    )::after {
+      transform: scaleX(var(--lang-direction, 1))  translateY(-50%) var(--external-icon-move);
+    }
+  }
+
+
   &[data-is-external]::after {
     @include pseudo-icon-replace('link-external');
+
+    --external-icon-move: translate(3px, -3px);
   }
 
   &[data-protocol='tel']::after {
     @include pseudo-icon-replace('tel');
+
+    --external-icon-move: rotate(15deg);
   }
 
   &[data-protocol='mailto']::after {
     @include pseudo-icon-replace('mailto');
+
+    --external-icon-move: rotate(15deg);
   }
 
   // Add arrow-right icon when not overridden with another icon to supplementary button
@@ -845,11 +869,32 @@ p > a.hds-button.hds-button--supplementary:first-child {
   )::after {
     @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
     @include hover-link-arrow-transition;
+
+    --external-icon-move: translateX(#{$spacing-quarter});
     inset-inline-end: 8px;
     margin-block: -2px;
     position: absolute;
     top: 50%;
     transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
+
+    @media (prefers-reduced-motion) {
+      --external-icon-move: translateX(0);
+    }
+  }
+
+  // Handle focus and hover styles for the above
+  &[data-hds-variant='supplementary']:not(
+    [data-hds-icon-start],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ):where(:focus-visible,:hover)::before,
+  &[data-hds-variant='supplementary'][data-hds-icon-start]:not(
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ):where(:focus-visible,:hover)::after {
+    transform: scaleX(var(--lang-direction, 1)) translateY(-50%) var(--external-icon-move);
   }
 
   // PRIMARY
