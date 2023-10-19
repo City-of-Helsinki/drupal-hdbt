@@ -6,6 +6,9 @@
  * @see hdbt_admin_tools_preprocess_tpr_unit()
  */
 #}
+{% set has_prices = content.price_info|render ? true : false %}
+{% set has_contacts = content.contacts|render ? true : false %}
+{% set has_other_info = content.highlights|render or content.topical|render or content.other_info|render or content.links|render ?: false %}
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
@@ -83,46 +86,76 @@
 
       {{ content.field_content }}
 
-      {% if content.price_info|render %}
-        {% embed "@hdbt/misc/component.twig" with {
-          component_classes: [ 'component--paragraph-text' ],
-          component_title: content.price_info['#title'],
-        }%}
-          {% block component_content %}
-            {{ content.price_info }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+      {% if has_prices or has_contacts or has_other_info %}
+        {% embed "@hdbt/misc/component.twig" with
+          {
+            component_classes: [
+            'component--accordion',
+            'component--accordion-bg-grey',
+            'component--hardcoded'
+          ],
+            component_content_class: 'accordion',
+          }
+        %}
+        {% block component_content %}
 
-      {% if content.contacts|render %}
-          {% embed "@hdbt/misc/component.twig" with {
-            component_classes: [ 'component--paragraph-text' ],
-            component_title: content.contacts['#title'],
-          }%}
-          {% block component_content %}
-            {{ content.contacts }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+          {% if has_prices %}
+            {% set accordion_content %}
 
-      {% if content.links|render %}
-          {% embed "@hdbt/misc/component.twig" with {
-            component_classes: [ 'component--paragraph-text' ],
-            component_title: content.links['#title'],
-          }%}
-          {% block component_content %}
-            {{ content.links }}
-          {% endblock component_content %}
-        {% endembed %}
-      {% endif %}
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.price_info }}
+                {% endblock component_content %}
+              {% endembed %}
 
-      {% if content.other_info|render %}
-        {% embed "@hdbt/misc/component.twig" with {
-          component_classes: [ 'component--paragraph-text' ],
-          component_title: content.other_info['#title'],
-        }%}
-          {% block component_content %}
-            {{ content.other_info }}
+            {% endset %}
+
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading: 'Charges'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+              content: accordion_content,
+            } %}
+          {% endif %}
+
+          {% if has_contacts %}
+            {% set contacts_accordion_content %}
+
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.contacts }}
+                {% endblock component_content %}
+              {% endembed %}
+
+            {% endset %}
+
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading: 'Other contact information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}) ,
+              content: contacts_accordion_content,
+            } %}
+          {% endif %}
+ 
+          {% if has_other_info %}
+            {% set other_info_accordion_content %}
+
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.highlights }}
+                  {{ content.topical }}
+                  {{ content.other_info }}
+                  {{ content.links }}
+                {% endblock component_content %}
+              {% endembed %}
+
+            {% endset %}
+          {% endif %}
+
+          {% include '@hdbt/component/accordion.twig' ignore missing with {
+            heading_level: 'h2',
+            heading: 'Further information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+            content: other_info_accordion_content,
+          } %}
+
           {% endblock component_content %}
         {% endembed %}
       {% endif %}
