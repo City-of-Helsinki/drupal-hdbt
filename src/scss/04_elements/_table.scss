@@ -1,86 +1,56 @@
+// TODO What to do with these?
+figure.table {
+  margin: 0;
+}
+
+// TODO What to do with these?
+figure.table figcaption {
+  @include font('h4');
+  color: $color-black;
+  margin-bottom: $spacing;
+  margin-top: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    @include font('h3');
+  }
+}
+
 table {
-  background-color: $color-white;
-  border: 1px solid $color-black-60;
+  @include font('body');
+  border: 2px solid $color-black-90;
   border-spacing: 0;
-  display: block;
-  margin: $spacing-double 0;
-  max-width: fit-content;
-  overflow-x: auto;
-  table-layout: fixed;
-  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  width: auto;
 
-  caption {
-    @include font('body');
-    background-color: $color-black;
-    color: $color-white;
-    padding: $spacing-double $spacing;
-    text-align: start;
+  table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+    background: $color-black-5;
   }
 
-  thead {
-    background-color: $color-black;
+  td,
+  th {
+    border-bottom: 1px solid $color-black-50;
+    color: $color-black;
+    min-width: 0;
+    padding: $spacing-half $spacing;
+    text-align: left;
 
-    th {
-      @include font('small');
-      color: $color-white;
-      font-weight: $font-weight-medium;
-      min-width: 140px;
-      padding: $spacing;
-      text-align: start;
-      vertical-align: middle;
-      white-space: normal;
-
-      p {
-        font-size: inherit;
-        font-weight: inherit;
-        margin: 0;
-      }
+    @include breakpoint($breakpoint-m) {
+      // Specs: 12px top and bottom padding.
+      padding: 12px $spacing-and-half;
     }
   }
 
-  tbody,
-  tfoot {
-    background-color: $color-white;
+  th {
+    background: $color-black-10;
+    font-weight: $font-weight-bold;
 
-    tr {
-      background-color: $color-white;
-
-      &:hover,
-      &:active {
-        background-color: $color-black-5;
-      }
-
-      th,
-      td {
-        @include font('small');
-        color: $hdbt-color-black;
-        min-width: 140px;
-        padding: $spacing;
-        text-align: start;
-        vertical-align: middle;
-        white-space: normal;
-
-        p {
-          margin: 0;
-
-          & + p {
-            margin: $spacing 0 0;
-          }
-        }
-      }
-
-      th {
-        background-color: $color-black;
-        color: $color-white;
-        font-weight: $font-weight-medium;
-      }
-
-      // Row border-color.
-      &:not(:last-of-type) {
-        td {
-          border-bottom: 1px solid $color-black-10;
-        }
-      }
+    strong {
+      font-weight: $font-weight-bold;
     }
+  }
+
+  td {
+    background: $color-white;
   }
 }
