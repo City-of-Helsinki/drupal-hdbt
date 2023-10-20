@@ -1,40 +1,33 @@
-// TODO What to do with these?
 figure.table {
   margin: 0;
+  overflow-x: auto;
 }
 
-// TODO What to do with these?
 figure.table figcaption {
   @include font('h4');
-  color: $color-black;
-  margin-bottom: $spacing;
-  margin-top: $spacing;
-
-  @include breakpoint($breakpoint-l) {
-    @include font('h3');
-  }
+  margin-top: $spacing-quadruple;
 }
 
 table {
   @include font('body');
-  border: 2px solid $color-black-90;
+  background: $color-white;
+  border: 2px solid $color-black-50;
+  border-collapse: collapse;
   border-spacing: 0;
-  margin: 0;
+  margin: $spacing 0 0 0;
   padding: 0;
   width: auto;
 
+  tr {
+    border-bottom: 1px solid $color-black-50;
+  }
+
   td,
   th {
-    border-bottom: 1px solid $color-black-50;
     color: $color-black;
     min-width: 0;
-    padding: $spacing-half $spacing;
+    padding: $spacing-three-quarters $spacing-and-half;
     text-align: left;
-
-    @include breakpoint($breakpoint-m) {
-      // Specs: 12px top and bottom padding.
-      padding: 12px $spacing-and-half;
-    }
   }
 
   th {
@@ -45,12 +38,9 @@ table {
       font-weight: $font-weight-bold;
     }
   }
-
-  td {
-    background: $color-white;
-  }
 }
 
+// Zebra stripes for every other row.
 table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
   background: $color-black-5;
 }
