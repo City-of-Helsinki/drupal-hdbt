@@ -7,7 +7,7 @@ export default class AccordionItem {
   static closeElement = 'accordion-item__button--close';
 
   static ariaExpandedElements = [
-    'accordion-item__button--toggle', 'accordion-item__button--close'
+    'accordion-item__button--toggle'
   ];
 
   static contentElement = 'accordion-item__content';
