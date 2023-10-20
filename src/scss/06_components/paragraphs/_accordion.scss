@@ -39,14 +39,12 @@
   @include font('h4');
   border: none;
   color: $color-black;
-  padding-block: $spacing;
-  padding-inline-end: 60px;
+  padding: $spacing ($spacing-double + 50px) $spacing $spacing;
   position: relative;
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
-    padding-block: $spacing-and-half;
-    padding-inline-end: 60px;
+    padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
   }
 
   &::before {
@@ -81,6 +79,15 @@
     @include breakpoint($breakpoint-l) {
       height: 32px;
       width: 32px;
+    }
+  }
+
+  &::before,
+  &::after {
+    right: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      right: $spacing-and-half;
     }
   }
 
@@ -129,6 +136,13 @@
 
 .accordion-item__content {
   border: none;
+  padding-left: $spacing;
+  padding-right: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    padding-left: $spacing-and-half;
+    padding-right: $spacing-and-half;
+  }
 }
 
 .accordion-item__content__inner {
@@ -164,36 +178,12 @@
     border-color: $color-white;
   }
 
-  .accordion-item__button--toggle {
-    padding: $spacing ($spacing-double + 50px) $spacing $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
-    }
-
-    &::before,
-    &::after {
-      right: $spacing;
-
-      @include breakpoint($breakpoint-l) {
-        right: $spacing-and-half;
-      }
-    }
-  }
-
   .accordion__wrapper {
     border-color: $color-black-5;
   }
 
   .accordion-item__content {
     background-color: $color-black-5;
-    padding-left: $spacing;
-    padding-right: $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-and-half;
-      padding-right: $spacing-and-half;
-    }
   }
 
   // Patch Siteimprove false positive color contrast issue to reduce noise
