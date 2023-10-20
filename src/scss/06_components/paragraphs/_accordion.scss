@@ -27,7 +27,6 @@
   }
 
   .hel-icon {
-    // --icon-size: 1.5rem;
     --icon-size: #{remify(24px)};
 
     @include breakpoint($breakpoint-l) {
