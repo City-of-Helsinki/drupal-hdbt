@@ -38,7 +38,10 @@ $koro-height: 50px;
     @include font('body');
   }
 
-  a:not(.hds-button) {
+  a:not(
+    .hds-button,
+    [data-hds-component='button']:not([class*='hds-button'])
+  ) {
     color: currentColor;
   }
 }
@@ -84,6 +87,7 @@ $koro-height: 50px;
 .hdbt-theme--brick,
 .hdbt-theme--bus,
 .hdbt-theme--tram {
+  .hero [data-hds-component='button']:not([class*='hds-button']),
   .hero .hds-button {
     @include hds-button-colors-on-dark-bg;
   }

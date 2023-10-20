@@ -18,6 +18,8 @@
 }
 
 .views--service-list {
+  .form-actions [data-hds-component='button']:not([class*='hds-button']):not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
+  .form-actions [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
   .form-actions .hds-button--primary {
     width: 100%;
 
