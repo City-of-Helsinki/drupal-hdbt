@@ -36,7 +36,7 @@
 }
 
 .accordion-item__button--toggle {
-  @include font('h4');
+  @include font('h3');
   border: none;
   color: $color-black;
   padding: $spacing ($spacing-double + 50px) $spacing $spacing;
