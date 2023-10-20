@@ -82,6 +82,7 @@ a.banner__button {
         margin-right: 0;
       }
 
+      &[data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
       &.hds-button--supplementary {
         // Fix for supplementary button alignment.
         margin-left: calc(-#{$spacing-half} + (-2px));

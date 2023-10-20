@@ -85,6 +85,7 @@
     display: none; // hide withdraw button from screen readers and tab lists as we're not using it.
   }
 
+  [data-hds-component='button']:not([class*='hds-button']),
   .hds-button {
     @include hds-button-colors-on-dark-bg;
     max-width: 400px;
