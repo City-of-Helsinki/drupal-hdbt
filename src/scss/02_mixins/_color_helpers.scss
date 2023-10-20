@@ -7,7 +7,7 @@
     $theme: 'primary';
   }
 
-  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]),
+  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary styles
   [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
   .hds-button--primary {
     --background-color: var(--hdbt-color-palette-button--#{$theme});
