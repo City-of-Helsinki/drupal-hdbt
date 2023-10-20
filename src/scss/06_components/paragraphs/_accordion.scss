@@ -27,10 +27,11 @@
   }
 
   .hel-icon {
-    --icon-size: 1.5rem;
+    // --icon-size: 1.5rem;
+    --icon-size: #{remify(24px)};
 
     @include breakpoint($breakpoint-l) {
-      --icon-size: 3rem;
+      --icon-size: #{remify(48px)};
     }
   }
 }
