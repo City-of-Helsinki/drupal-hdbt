@@ -240,7 +240,7 @@ function getConfig(hostname, type) {
           'url': `https://${hostname}/en/dc-components/dc-announcements`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '.block-hdbt-subtheme-announcements'
+            '#block-hdbt-subtheme-announcements'
           ],
           'selectorExpansion': expandComponents,
         },
