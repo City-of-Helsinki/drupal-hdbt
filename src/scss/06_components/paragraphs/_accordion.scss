@@ -136,12 +136,10 @@
 
 .accordion-item__content {
   border: none;
-  padding-left: $spacing;
-  padding-right: $spacing;
+  padding: $spacing $spacing 0 $spacing;
 
   @include breakpoint($breakpoint-l) {
-    padding-left: $spacing-and-half;
-    padding-right: $spacing-and-half;
+    padding: $spacing-and-half $spacing-and-half 0 $spacing-and-half;
   }
 }
 
