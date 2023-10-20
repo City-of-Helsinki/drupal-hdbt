@@ -44,7 +44,8 @@ function getConfig(hostname, type) {
     '.breadcrumb__container',
     '.block--react-and-share',
     '.footer',
-    '.sliding-popup-bottom'
+    '.sliding-popup-bottom',
+    'iframe',
   ];
 
   // All of our breakpoints
