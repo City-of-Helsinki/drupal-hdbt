@@ -568,72 +568,6 @@ msgctxt "District and project search"
 msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
 msgstr "Sivuillamme esitetään toistaiseksi vain osa Helsingin hankkeista ja asuinalueista. Voit kokeilla uudestaan poistamalla jonkin rajausehdoista tai aloittamalla alusta."
 
-msgctxt "News archive filter results heading"
-msgid "Filter news items"
-msgstr "Suodata uutisia"
-
-msgctxt "News archive heading"
-msgid "News based on your choices"
-msgstr "Uutiset valintojesi perusteella"
-
-msgctxt "News archive topics label"
-msgid "Topics"
-msgstr "Aiheet"
-
-msgctxt "News archive topics placeholder"
-msgid "All topics"
-msgstr "Kaikki aiheet"
-
-msgctxt "News archive neighbourhoods label"
-msgid "City districts"
-msgstr "Kaupunginosat"
-
-msgctxt "News archive neighbourhoods placeholder"
-msgid "All city districts"
-msgstr "Kaikki kaupunginosat"
-
-msgctxt "News archive groups label"
-msgid "Target groups"
-msgstr "Kohderyhmät"
-
-msgctxt "News archive groups placeholder"
-msgid "All target groups"
-msgstr "Kaikki kohderyhmät"
-
-msgctxt "News archive no results"
-msgid "No results found"
-msgstr "Ei tuloksia"
-
-msgctxt "News archive clear selections"
-msgid "Clear selections"
-msgstr "Tyhjennä valinnat"
-
-msgctxt "News RSS feed subscribe link"
-msgid "Subscribe to all news as RSS feed"
-msgstr "Tilaa kaikkien uutisten RSS-syöte"
-
-msgctxt "News RSS feed subscribe link"
-msgid "Subscribe to RSS feed of news based on your choices"
-msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
-
-msgctxt "React search clear selection label"
-msgid "Clear @label selection"
-msgstr "Tyhjennä @label valinnat"
-
-msgctxt "React search remove item aria label"
-msgid "Remove item"
-msgstr "Poista valinta"
-
-msgctxt "React search open dropdown aria label"
-msgid "Open the combobox"
-msgstr "Avaa alasvetovalikko"
-
-msgid "Unit homepage"
-msgstr "Toimipisteen kotisivut"
-
-msgid "Additional details"
-msgstr "Lisätiedot"
-
 msgctxt "Hearing activity suffix singular"
 msgid "comment"
 msgstr "kommentti"
@@ -684,44 +618,70 @@ msgctxt "Hearing available in languages"
 msgid "Hearing only available in English and Swedish"
 msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
 
+msgctxt "News archive filter results heading"
+msgid "Filter news items"
+msgstr "Suodata uutisia"
+
+msgctxt "News archive heading"
+msgid "News based on your choices"
+msgstr "Uutiset valintojesi perusteella"
+
+msgctxt "News archive topics label"
+msgid "Topics"
+msgstr "Aiheet"
+
+msgctxt "News archive topics placeholder"
+msgid "All topics"
+msgstr "Kaikki aiheet"
+
+msgctxt "News archive neighbourhoods label"
+msgid "City districts"
+msgstr "Kaupunginosat"
+
+msgctxt "News archive neighbourhoods placeholder"
+msgid "All city districts"
+msgstr "Kaikki kaupunginosat"
+
+msgctxt "News archive groups label"
+msgid "Target groups"
+msgstr "Kohderyhmät"
+
+msgctxt "News archive groups placeholder"
+msgid "All target groups"
+msgstr "Kaikki kohderyhmät"
+
+msgctxt "News archive clear selections"
+msgid "Clear selections"
+msgstr "Tyhjennä valinnat"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to all news as RSS feed"
+msgstr "Tilaa kaikkien uutisten RSS-syöte"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to RSS feed of news based on your choices"
+msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
+
 msgid "At the moment there is no open hearings for commenting."
 msgstr "Tällä hetkellä ei ole avoimia kuulemisia kommentoitavaksi."
 
-msgctxt "Service channel type verb"
-msgid "Use the online service"
-msgstr "Asio verkossa"
+msgctxt "React search clear selection label"
+msgid "Clear @label selection"
+msgstr "Tyhjennä @label valinnat"
 
-msgctxt "Service channel type verb"
-msgid "Fill in a form"
-msgstr "Täytä lomake"
+msgctxt "React search remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
 
-msgctxt "Service channel type verb"
-msgid "Call us"
-msgstr "Soita"
+msgctxt "React search open dropdown aria label"
+msgid "Open the combobox"
+msgstr "Avaa alasvetovalikko"
 
-msgctxt "Service channel type verb"
-msgid "Send us an email"
-msgstr "Lähetä sähköpostia"
+msgid "Unit homepage"
+msgstr "Toimipisteen kotisivut"
 
-msgctxt "Service channel type verb"
-msgid "Send us mail"
-msgstr "Lähetä postia"
-
-msgctxt "Service channel type verb"
-msgid "Ask in the chat"
-msgstr "Kysy chatissa"
-
-msgctxt "Service channel type verb"
-msgid "Visit us"
-msgstr "Asioi paikan päällä"
-
-msgctxt "Service channel type verb"
-msgid "Online information"
-msgstr "Tietoa verkossa"
-
-msgctxt "Service channel type verb"
-msgid "Send a text message"
-msgstr "Lähetä tekstiviesti"
+msgid "Additional details"
+msgstr "Lisätiedot"
 
 msgctxt "Service channel default fee override"
 msgid "standard telephone charges apply"
