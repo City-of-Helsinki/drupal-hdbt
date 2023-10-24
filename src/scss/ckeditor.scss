@@ -10,6 +10,10 @@
 @import '01_variables/_index';
 @import '02_mixins/_index';
 
+// The hds-button styles depend on hds_base variables.
+// TODO: UHF-8794 We should fix the 05_objects/_button to use our own variables and not hds variables (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8794).
+@import '03_generic/_hds_base';
+
 .ck-content {
   @import '03_generic/_index';
 
@@ -27,6 +31,8 @@
 
   // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
   @import '05_objects/_quote';
+  @import '05_objects/_button';
+  @include hds-button-colors-on-light-bg;
 }
 
 // Additional styling for links.
@@ -47,6 +53,23 @@
   &[href='#']::after {
     @include pseudo-icon('tel', calc(var(--line-height) * 1em), currentColor, inline-block);
     overflow: hidden;
+  }
+
+  // Button styles rely on data-attributes which are not available in CKE5.
+  // TODO: UHF-8794 We should fix the 05_objects/_button to drop the support for data-attributes like data-selected-icon (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8794).
+  &.hds-button:not([data-selected-icon], [data-is-external='true'])::before {
+    content: none !important;
+  }
+
+  // Switch HDS button label cursor to default to indicate user for an editable element.
+  &[data-variant] {
+    cursor: text;
+  }
+
+  // Fix the cursor bug when clicking outside of button link.
+  &.ck-editor__editable ~ a:not(.ck-editor__editable) {
+    margin-inline-end: 3px;
+    margin-inline-start: 3px;
   }
 }
 

@@ -90,6 +90,7 @@ $breakpoint-design-image-on-left-right: 830px;
       min-height: 435px; // According to layouts
     }
 
+    [data-hds-component='button']:not([class*='hds-button']),
     .hds-button {
       @include font('button');
     }
@@ -100,63 +101,7 @@ $breakpoint-design-image-on-left-right: 830px;
     color: var(--hdbt-color-palette-text--primary);
   }
 
-  .hds-button--primary {
-    --background-color: var(--hdbt-color-palette-button--primary);
-    --background-color-hover: transparent;
-    --background-color-focus: var(--hdbt-color-palette-button--primary);
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--hdbt-color-palette-button--primary);
-    --border-color-hover: var(--hdbt-color-palette-button--primary);
-    --border-color-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--hdbt-color-palette-button-contrast--primary);
-    --color-hover: var(--hdbt-color-palette-button--primary);
-    --color-focus: var(--hdbt-color-palette-button-contrast--primary);
-    --color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --color-disabled: var(--color-black);
-    --focus-outline-color: var(--hdbt-color-palette-button--primary);
-    --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--primary);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--hdbt-color-palette-button--primary);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --background-color-disabled: transparent;
-    --border-color: var(--hdbt-color-palette-button--primary);
-    --border-color-hover: var(--hdbt-color-palette-button--primary);
-    --border-color-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-disabled: var(--hdbt-color-palette-button--primary);
-    --color: var(--hdbt-color-palette-button--primary);
-    --color-hover: var(--hdbt-color-palette-button-contrast--primary);
-    --color-focus: var(--hdbt-color-palette-button--primary);
-    --color-hover-focus: var(--hdbt-color-palette-button-contrast--primary);
-    --focus-outline-color: var(--hdbt-color-palette-button--primary);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --border-color-disabled: transparent;
-    --color: var(--hdbt-color-palette-button--primary);
-    --color-hover: var(--hdbt-color-palette-button--primary);
-    --color-focus: var(--hdbt-color-palette-button--primary);
-    --color-hover-focus: var(--hdbt-color-palette-button--primary);
-    --color-disabled: var(--hdbt-color-palette-button--primary);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-  }
+  @include button-palettes('primary');
 }
 
 // Designs with secondary background color.
@@ -172,63 +117,7 @@ $breakpoint-design-image-on-left-right: 830px;
     color: var(--hdbt-color-palette-text--secondary);
   }
 
-  .hds-button--primary {
-    --background-color: var(--hdbt-color-palette-button--secondary);
-    --background-color-hover: transparent;
-    --background-color-focus: var(--hdbt-color-palette-button--secondary);
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover: var(--hdbt-color-palette-button--secondary);
-    --border-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover: var(--hdbt-color-palette-button--secondary);
-    --color-focus: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --color-disabled: var(--color-black);
-    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-    --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--secondary);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--hdbt-color-palette-button--secondary);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --background-color-disabled: transparent;
-    --border-color: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover: var(--hdbt-color-palette-button--secondary);
-    --border-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-disabled: var(--hdbt-color-palette-button--secondary);
-    --color: var(--hdbt-color-palette-button--secondary);
-    --color-hover: var(--hdbt-color-palette-button-contrast--secondary);
-    --color-focus: var(--hdbt-color-palette-button--secondary);
-    --color-hover-focus: var(--hdbt-color-palette-button-contrast--secondary);
-    --focus-outline-color: var(--hdbt-color-palette-button--secondary);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --border-color-disabled: transparent;
-    --color: var(--hdbt-color-palette-button--secondary);
-    --color-hover: var(--hdbt-color-palette-button--secondary);
-    --color-focus: var(--hdbt-color-palette-button--secondary);
-    --color-hover-focus: var(--hdbt-color-palette-button--secondary);
-    --color-disabled: var(--hdbt-color-palette-button--secondary);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-  }
+  @include button-palettes('secondary');
 }
 
 .liftup-with-image__image {
@@ -400,67 +289,7 @@ $breakpoint-design-image-on-left-right: 830px;
     --hdbt-default-link-color: var(--color-black);
   }
 
-  .hds-button--primary {
-    --background-color: var(--color-black-90);
-    --background-color-hover: var(--color-white);
-    --background-color-focus: var(--color-black-90);
-    --background-color-hover-focus: var(--color-white);
-    --background-color-disabled: var(--color-black-20);
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: var(--color-black-20);
-    --color: var(--color-white);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-white);
-    --color-hover-focus: var(--color-black-90);
-    --color-disabled: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-    --submit-input-focus-gutter-color: var(--color-white);
-  }
-
-  .hds-button--secondary {
-    --background-color: transparent;
-    --background-color-hover: var(--color-black-90);
-    --background-color-focus: transparent;
-    --background-color-hover-focus: var(--color-black-90);
-    --background-color-disabled: transparent;
-    --border-color: var(--color-black-90);
-    --border-color-hover: var(--color-black-90);
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: var(--color-black-50);
-    --color: var(--color-black-90);
-    --color-hover: var(--color-white);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-white);
-    --focus-outline-color: var(--color-black-90);
-  }
-
-  .hds-button--supplementary {
-    --background-color: transparent;
-    --background-color-hover: transparent;
-    --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --background-color-disabled: transparent;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --border-color-focus: var(--color-black-90);
-    --border-color-hover-focus: var(--color-black-90);
-    --border-color-disabled: transparent;
-    --color: var(--color-black-90);
-    --color-hover: var(--color-black-90);
-    --color-focus: var(--color-black-90);
-    --color-hover-focus: var(--color-black-90);
-    --color-disabled: var(--color-black-20);
-    --focus-outline-color: transparent;
-    --submit-input-focus-gutter-color: transparent;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  @include button-palettes('on-light-bg');
 
   &.has-image-caption .liftup-with-image {
     @include breakpoint($breakpoint-l) {

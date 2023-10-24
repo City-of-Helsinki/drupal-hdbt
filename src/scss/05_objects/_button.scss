@@ -4,6 +4,7 @@
   --theme-bg1: var(--color-black);
   --theme-bg2: transparent;
   --theme-focus: var(--color-black);
+  --theme-focus-gutter-color: transparent; // set this to white if we want double colored focus rings
 }
 
 @mixin hds-button-colors-on-dark-bg(){
@@ -12,10 +13,11 @@
   --theme-bg1: var(--color-white);
   --theme-bg2: transparent;
   --theme-focus: var(--color-white);
+  --theme-focus-gutter-color: transparent; // set this to black if we want double colored focus rings
 }
 
 :root {
-  @include hds-button-colors-on-light-bg();
+  @include hds-button-colors-on-light-bg;
 }
 
 // Content from HDS button.css starts
@@ -27,21 +29,41 @@
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-
   align-content: flex-start;
   align-items: center;
+
+  // Normalize.css rules
+  // Correct the inability to style clickable types in iOS and Safari.
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-appearance: button;
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
   color: var(--color);
   cursor: pointer;
   display: inline-flex;
+
+  // Normalize.css rules
+  // 1. Change the font styles in all browsers.
+  // font-family: inherit; /* 1 */ // These are handled by HDBT
+  // font-size: 100%; /* 1 */ // These are handled by HDBT
   font-weight: $font-weight-medium;
   justify-content: center;
+
+  // Normalize.css rules
+  // 1. Change the font styles in all browsers.
+  // 2. Remove the margin in Firefox and Safari.
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
   min-height: var(--min-size);
   min-width: var(--min-size);
   padding: 0 var(--spacing-2-xs);
+  position: relative;
   text-decoration: none;
+
+  // Normalize.css rule
+  // Remove the inheritance of text transform in Edge, Firefox, and IE.
+  text-transform: none;
   vertical-align: top;
 }
 
@@ -54,12 +76,40 @@
   box-sizing: border-box;
 }
 
-/* button transitions */
+ // Normalize.css rules
+ // Correct the inability to style clickable types in iOS and Safari.
+.hds-button[type='button'],
+.hds-button[type='reset'],
+.hds-button[type='submit'] {
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-appearance: button;
+}
 
+ // Normalize.css rules
+ // Remove the inner border and padding in Firefox.
+.hds-button::-moz-focus-inner,
+.hds-button[type='button']::-moz-focus-inner,
+.hds-button[type='reset']::-moz-focus-inner,
+.hds-button[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+ // Normalize.css rules
+ // Restore the focus styles unset by the previous rule.
+ .hds-button:-moz-focusring,
+ .hds-button[type='button']:-moz-focusring,
+ .hds-button[type='reset']:-moz-focusring,
+ .hds-button[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+// button transitions
 .hds-button:hover,
-.hds-button:focus,
+.hds-button:focus-visible,
 .hds-button:active {
   transition-duration: 85ms;
+  // stylelint-disable-next-line plugin/no-low-performance-animation-properties
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-out;
 }
@@ -69,14 +119,19 @@
   color: var(--color-hover);
 }
 
-.hds-button:focus {
+// HDBT focus outline styles differ from HDS on purpose as outline focus ring is
+// better than the after-pseudoelement stuff HDS is using
+.hds-button:focus-visible,
+.hds-button:active {
   background-color: var(--background-color-focus, transparent);
+  box-shadow: 0 0 0 calc(var(--outline-gutter, 2px) + var(--outline-width, 3px)) var(--submit-input-focus-gutter-color, transparent);
   color: var(--color-focus);
-  outline: none;
+  outline: var(--outline-width, 3px) solid var(--focus-outline-color, $color-black);
+  outline-offset: var(--outline-gutter, 2px);
 }
 
-.hds-button:focus:hover {
-  background-color: var(--background-color-hover-focus, transparent);
+.hds-button:not(:disabled) {
+  border-color: var(--border-color, transparent);
 }
 
 .hds-button:disabled {
@@ -86,36 +141,27 @@
   cursor: not-allowed;
 }
 
-.hds-button:not(:disabled) {
-  border-color: var(--border-color, transparent);
+.hds-button:focus-visible:hover,
+.hds-button:active:hover {
+  background-color: var(--background-color-hover-focus, transparent);
 }
 
 .hds-button:not(:disabled):hover {
   border-color: var(--border-color-hover, transparent);
 }
 
-.hds-button:not(:disabled):active,
-.hds-button:not(:disabled):focus {
+.hds-button:not(:disabled):focus-visible,
+.hds-button:not(:disabled):active {
   border-color: var(--border-color-focus, transparent);
 }
 
-.hds-button:not(:disabled):active:hover,
-.hds-button:not(:disabled):focus:hover {
+.hds-button:not(:disabled):focus-visible:hover,
+.hds-button:not(:disabled):active:hover {
   border-color: var(--border-color-hover-focus, transparent);
   color: var(--color-hover-focus);
 }
 
-/* FOCUS OUTLINE */
-
-.hds-button:active,
-.hds-button:focus {
-  outline: var(--outline-width) solid var(--focus-outline-color);
-  outline-offset: var(--outline-gutter);
-  outline-offset: 2px;
-}
-
-/* LABEL */
-
+// LABEL
 input[type='button'].hds-button,
 input[type='reset'].hds-button,
 input[type='submit'].hds-button,
@@ -132,208 +178,272 @@ input[type='submit'].hds-button {
   padding: var(--spacing-s) var(--spacing-l);
 }
 
-/* no icons */
-
+// no icons
 .hds-button__label:only-child {
   margin: 0 var(--spacing-2-xs);
 }
 
-/* supplementary with right icon */
+input[type='button'].hds-button--small,
+input[type='reset'].hds-button--small,
+input[type='submit'].hds-button--small,
+.hds-button--small .hds-button__label {
+  line-height: var(--lineheight-s);
+  padding: var(--spacing-2-xs) var(--spacing-xs);
+}
 
+// supplementary with right icon
 .hds-button--supplementary .hds-button__label:first-child {
   padding-right: var(--spacing-3-xs);
 }
 
-/* supplementary with left icon */
+// no icons
+.hds-button--small .hds-button__label:only-child {
+  margin: 0 var(--spacing-xs);
+}
 
+// supplementary with left icon
 .hds-button--supplementary .hds-icon + .hds-button__label:last-child {
   padding-left: var(--spacing-3-xs);
 }
 
-/* supplementary with both icons */
-
+// supplementary with both icons
 .hds-button--supplementary .hds-icon + .hds-button__label:not(:last-child) {
   padding-left: var(--spacing-3-xs);
   padding-right: var(--spacing-3-xs);
 }
 
-/* ICONS */
+// SMALL
+.hds-button--small {
+  padding: 0;
+}
 
-/* left */
+input[type='button'].hds-button--small,
+input[type='reset'].hds-button--small,
+input[type='submit'].hds-button--small {
+  padding: var(--spacing-2-xs) var(--spacing-m);
+}
 
+/* both icons */
+.hds-button--small .hds-button__label:not(:first-of-type,:last-of-type) {
+  padding: var(--spacing-2-xs) var(--spacing-2-xs);
+}
+
+/* FULL WIDTH */
+
+.hds-button--fullwidth {
+  width: 100%;
+}
+
+// ICONS
+// left
 .hds-button .hds-icon {
   height: var(--spacing-m);
   margin-left: var(--spacing-s);
   width: var(--spacing-m);
 }
 
-/* right */
-
+// right
 .hds-button__label ~ .hds-icon {
   margin: 0 var(--spacing-s) 0 0;
 }
 
-/* both icons - left */
+// left - small
+.hds-button--small .hds-icon {
+  margin-left: var(--spacing-2-xs);
+}
 
+// right - small
+.hds-button .hds-button--small .hds-button__label ~ .hds-icon {
+  margin: 0 var(--spacing-2-xs) 0 0;
+}
+
+// both icons - left
 .hds-button .hds-icon:first-of-type:not(:last-of-type) {
   margin: 0 0 0 var(--spacing-2-xs);
 }
 
-/* both icons - right */
-
+// both icons - right
 .hds-button .hds-icon:last-of-type:not(:first-of-type) {
   margin: 0 var(--spacing-2-xs) 0 0;
 }
 
-/* PRIMARY */
+/* both icons - left - small */
+.hds-button--small .hds-icon:first-child:not(:last-of-type) {
+  margin: 0 0 0 var(--spacing-2-xs);
+}
 
-/* default (bus) */
+/* both icons - right - small */
+.hds-button--small .hds-icon:last-child:not(:first-of-type) {
+  margin: 0 var(--spacing-2-xs) 0 0;
+}
 
+// PRIMARY
+// default (bus)
 .hds-button--primary {
+  // Backgrounds
   --background-color: var(--theme-bg1, var(--color-bus));
   --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
   --background-color-focus: var(--theme-bg1, var(--color-bus));
   --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
   --background-color-disabled: var(--color-black-20);
 
+  // Borders
   --border-color: var(--theme-bg1, var(--color-bus));
   --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
   --border-color-focus: var(--theme-bg1, var(--color-bus));
   --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
   --border-color-disabled: var(--color-black-20);
 
+  // Colors
   --color: var(--theme-fg1, var(--color-white));
   --color-hover: var(--theme-fg2, var(--color-white));
   --color-focus: var(--theme-fg1, var(--color-white));
   --color-hover-focus: var(--theme-fg2, var(--color-white));
   --color-disabled: var(--color-white);
 
+  // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
-/* SECONDARY */
-
-/* default (bus) */
-
+// SECONDARY
+// default (bus)
 .hds-button--secondary {
+  // Backgrounds
   --background-color: var(--theme-bg2, transparent);
   --background-color-hover: var(--theme-bg1, var(--color-bus-light));
   --background-color-focus: var(--theme-bg2, transparent);
   --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
   --background-color-disabled: transparent;
 
+  // Borders
   --border-color: var(--theme-bg1, var(--color-bus));
   --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
   --border-color-focus: var(--theme-bg1, var(--color-bus));
   --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
   --border-color-disabled: var(--color-black-50);
 
+  // Colors
   --color: var(--theme-fg2, var(--color-bus));
   --color-hover: var(--theme-fg1, var(--color-bus-dark));
   --color-focus: var(--theme-fg2, var(--color-bus));
   --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
   --color-disabled: var(--color-black-40);
 
+  // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
-/* SUPPLEMENTARY */
-
+// SUPPLEMENTARY
 .hds-button--supplementary {
+  // Backgrounds
   --background-color: var(--theme-bg2, transparent);
   --background-color-hover: var(--theme-bg2, var(--color-bus-light));
   --background-color-focus: var(--theme-bg2, transparent);
   --background-color-hover-focus: var(--theme-bg2, var(--color-bus-light));
   --background-color-disabled: transparent;
 
+  // Borders
   --border-color: var(--theme-bg2, transparent);
   --border-color-hover: var(--theme-bg2, transparent);
   --border-color-focus: var(--theme-bg2, var(--color-coat-of-arms));
   --border-color-hover-focus: var(--theme-bg2, var(--color-coat-of-arms));
   --border-color-disabled: transparent;
 
+  // Colors
   --color: var(--theme-fg2, var(--color-bus));
   --color-hover: var(--theme-fg2, var(--color-bus-dark));
   --color-focus: var(--theme-fg2, var(--color-bus));
   --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
   --color-disabled: var(--color-black-40);
 
+  // Focus ring
   --focus-outline-color: var(--theme-focus, transparent);
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, transparent);
 }
 
-/* LOADING */
-
+// LOADING
 .hds-button--loading {
+  // Backgrounds
   --background-color: transparent;
   --background-color-hover: transparent;
   --background-color-focus: transparent;
   --background-color-hover-focus: transparent;
   --background-color-disabled: transparent;
 
+  // Borders
   --border-color: transparent;
   --border-color-hover: transparent;
   --border-color-focus: transparent;
   --border-color-hover-focus: transparent;
   --border-color-disabled: transparent;
 
+  // Colors
   --color: var(--color-black-90);
   --color-hover: var(--color-black-90);
   --color-focus: var(--color-black-90);
   --color-hover-focus: var(--color-black-90);
   --color-disabled: var(--color-black-90);
 
+  // Cursor
   cursor: wait;
 }
 
-/* UTILITY */
-
-/* success */
-
+// UTILITY
+// success
 .hds-button--success {
+  // Backgrounds
   --background-color: var(--color-success);
   --background-color-hover: var(--color-success-dark);
   --background-color-focus: var(--color-success);
   --background-color-hover-focus: var(--color-success-dark);
 
+  // Borders
   --border-color: var(--color-success);
   --border-color-hover: var(--color-success-dark);
   --border-color-focus: var(--color-success);
   --border-color-hover-focus: var(--color-success-dark);
 
+  // Colors
   --color: var(--color-white);
   --color-hover: var(--color-white);
   --color-focus: var(--color-white);
   --color-hover-focus: var(--color-white);
 
+  // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
-/* danger */
-
+// danger
 .hds-button--danger {
+  // Backgrounds
   --background-color: var(--color-error);
   --background-color-hover: var(--color-error-dark);
   --background-color-focus: var(--color-error);
   --background-color-hover-focus: var(--color-error-dark);
 
+  // Borders
   --border-color: var(--color-error);
   --border-color-hover: var(--color-error-dark);
   --border-color-focus: var(--color-error);
   --border-color-hover-focus: var(--color-error-dark);
 
+  // Colors
   --color: var(--color-white);
   --color-hover: var(--color-white);
   --color-focus: var(--color-white);
   --color-hover-focus: var(--color-white);
 
+  // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
 }
 
 // Content fron HDS button.css ends
 // TODO: UHF-8793 Refactor hds-button (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8793).
 // Fix for button margins when using hel-icon.
+// stylelint-disable-next-line no-duplicate-selectors
 .hds-button {
-
   // Set icon size for the button icons.
   .hel-icon {
     --icon-size: 24px;
@@ -351,9 +461,6 @@ input[type='submit'].hds-button {
   .hel-icon:last-of-type:not(:first-of-type) {
     margin: 0 $spacing-half 0 0;
   }
-}
-
-.hds-button {
 
   // The supplementary button just won't work with the focus and default layout in the left aligned layout
   // so these changes are required to make it look even a bit more decent.
@@ -373,22 +480,25 @@ input[type='submit'].hds-button {
     }
 
     // Target before element when there is no selected icon, otherwise target after element
-    &:not([data-selected-icon]):not([data-is-external])::before,
+    &:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
+
       @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
-      @include hover-link-arrow-transition();
+      @include hover-link-arrow-transition;
       order: 3;
       position: static;
       transform: scaleX(var(--lang-direction, 1));
     }
 
     // Handle animation for above on focus and hover
-    &:focus:not([data-selected-icon]):not([data-is-external])::before,
-    &:hover:not([data-selected-icon]):not([data-is-external])::before,
+    &:focus:not([data-selected-icon], [data-is-external])::before,
+    &:hover:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:focus:not([data-is-external])::after,
     &[data-selected-icon]:hover:not([data-is-external])::after {
       transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
+
+      // stylelint-disable-next-line max-nesting-depth
       @media (prefers-reduced-motion) {
         transform: none;
       }
@@ -409,8 +519,8 @@ input[type='submit'].hds-button {
   }
 }
 
-.hds-button--supplementary:not(.hdbt-icon):not([data-selected-icon]) {
-  &:before {
+.hds-button--supplementary:not(.hdbt-icon, [data-selected-icon]) {
+  &::before {
     // Add default icon (arrow icon) for the supplementary button.
     @include pseudo-icon-replace('arrow-right');
   }
@@ -432,11 +542,500 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
 // Hide target blank explanation text from others than screen-readers
 .hds-button__target-blank {
-  @include visually-hidden();
+  @include visually-hidden;
 }
 
 // Combat ckeditor leaking spans from inside buttons and hds setting these spans stupid paddings and margins
 :not(.hds-button) > .hds-button__label {
   margin: 0;
   padding: 0;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Button v2
+
+[data-hds-component='button']:not([class*='hds-button']) {
+  @include font('button');
+
+  --border-width: 2px;
+  --button-gap: #{$spacing}; // New style specific
+  --color: inherit;
+  --icon-size: #{$spacing-and-half}; // In case new button styles have hel-icon elements, lets set their default size.
+  --min-size: 44px;
+  --outline-gutter: 2px;
+  --outline-width: 3px;
+  align-content: flex-start;
+  align-items: center;
+
+  // Normalize.css rules
+  // Correct the inability to style clickable types in iOS and Safari.
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-appearance: button;
+  background-color: var(--background-color, transparent);
+  border: var(--border-width) solid var(--border-color, transparent);
+  border-radius: 0;
+  color: var(--color);
+  cursor: pointer;
+
+  // display: inline-flex;
+  display: inline-block; // This can not be flex, as we do not have a wrapper around the button label and we want to support language attributes.
+
+  // Normalize.css rules
+  // 1. Change the font styles in all browsers.
+  // font-family: inherit; /* 1 */ // These are handled by HDBT
+  // font-size: 100%; /* 1 */ // These are handled by HDBT
+  font-weight: $font-weight-medium;
+  justify-content: center;
+
+  // Normalize.css rules
+  // 1. Change the font styles in all browsers.
+  // 2. Remove the margin in Firefox and Safari.
+  // line-height: 1.15; /* 1 */  // Overridden later in original HDS code with 1.25, left for comparison with HDS
+  line-height: 1.25em;
+  margin: 0; /* 2 */
+  min-height: var(--min-size);
+  min-width: var(--min-size);
+  padding-block: var(--spacing-s);
+  padding-inline-end:  calc(var(--spacing-l) + var(--button-padding-end-adjust, 0px) + var(--button-padding-end-adjust-supplementary, 0px)); // Default padding + button with icon adjust + supplementary button adjust
+  padding-inline-start:  calc(var(--spacing-l) + var(--button-padding-start-adjust, 0px) + var(--button-padding-start-adjust-supplementary, 0px)); // Default padding + button with icon adjust + supplementary button adjust
+  position: relative;
+  text-decoration: none;
+
+  // Normalize.css rule
+  // Remove the inheritance of text transform in Edge, Firefox, and IE.
+  text-transform: none;
+  vertical-align: top;
+
+  &,
+  &::before,
+  &::after,
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: border-box;
+  }
+
+  // Normalize.css rules
+  // Correct the inability to style clickable types in iOS and Safari.
+  &[type='button'],
+  &[type='reset'],
+  &[type='submit'] {
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-appearance: button;
+    cursor: pointer;
+  }
+
+  // Normalize.css rules
+  // Remove the inner border and padding in Firefox.
+  &::-moz-focus-inner,
+  &[type='button']::-moz-focus-inner,
+  &[type='reset']::-moz-focus-inner,
+  &[type='submit']::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  // Normalize.css rules
+  // Restore the focus styles unset by the previous rule.
+  &:-moz-focusring,
+  &[type='button']:-moz-focusring,
+  &[type='reset']:-moz-focusring,
+  &[type='submit']:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    transition-duration: 85ms;
+    // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+    transition-property: background-color, border-color, color;
+    transition-timing-function: ease-out;
+  }
+
+  &:hover {
+    background-color: var(--background-color-hover, transparent);
+    color: var(--color-hover);
+  }
+
+  // HDBT focus outline styles differ from HDS on purpose as outline focus ring is
+  // better than the after-pseudoelement stuff HDS is using
+  &:focus-visible,
+  &:active {
+    background-color: var(--background-color-focus, transparent);
+    box-shadow: 0 0 0 calc(var(--outline-gutter, 2px) + var(--outline-width, 3px)) var(--submit-input-focus-gutter-color, transparent);
+    color: var(--color-focus);
+    outline: var(--outline-width, 3px) solid var(--focus-outline-color, $color-black);
+    outline-offset: var(--outline-gutter, 2px);
+  }
+
+  &:not(:disabled) {
+    border-color: var(--border-color, transparent);
+  }
+
+  &:disabled {
+    background-color: var(--background-color-disabled, transparent);
+    border-color: var(--border-color-disabled, transparent);
+    color: var(--color-disabled);
+    cursor: not-allowed;
+  }
+
+  &:focus-visible:hover,
+  &:active:hover {
+    background-color: var(--background-color-hover-focus, transparent);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--border-color-hover, transparent);
+  }
+
+  &:not(:disabled):focus-visible,
+  &:not(:disabled):active {
+    border-color: var(--border-color-focus, transparent);
+  }
+
+  &:not(:disabled):focus-visible:hover,
+  &:not(:disabled):active:hover {
+    border-color: var(--border-color-hover-focus, transparent);
+    color: var(--color-hover-focus);
+  }
+
+  // SUPPLEMENTARY
+  &[data-hds-variant='supplementary'] {
+    --button-padding-end-adjust: calc(-16px + var(--icon-size) + var(--button-gap));
+    --button-padding-end-adjust-supplementary: -16px; // Supplementary buttons have less padding on the icon side
+    --button-padding-start-adjust: -24px;
+    line-height: $spacing-and-half; // To avoid too low link buttons
+    text-decoration: underline;
+
+    // Backgrounds
+    --background-color: var(--theme-bg2, transparent);
+    --background-color-hover: var(--theme-bg2, var(--color-bus-light));
+    --background-color-focus: var(--theme-bg2, transparent);
+    --background-color-hover-focus: var(--theme-bg2, var(--color-bus-light));
+    --background-color-disabled: transparent;
+
+    // Borders
+    --border-color: var(--theme-bg2, transparent);
+    --border-color-hover: var(--theme-bg2, transparent);
+    --border-color-focus: var(--theme-bg2, var(--color-coat-of-arms));
+    --border-color-hover-focus: var(--theme-bg2, var(--color-coat-of-arms));
+    --border-color-disabled: transparent;
+
+    // Colors
+    --color: var(--theme-fg2, var(--color-bus));
+    --color-hover: var(--theme-fg2, var(--color-bus-dark));
+    --color-focus: var(--theme-fg2, var(--color-bus));
+    --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
+    --color-disabled: var(--color-black-40);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, transparent);
+    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, transparent);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &[data-hds-variant='supplementary']:not([data-hds-icon-start]) {
+    margin-inline-start: -10px; // supplementary buttons with no icon try to align their label with paragraph text 8px padding + 2px border
+  }
+
+  // ICONS
+
+  // All buttons that contain icons
+  &:where(
+    [data-hds-icon-start],
+    [data-hds-icon-end],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ){
+    --button-padding-end-adjust: -8px; // HDS buttons have less padding on both sides if they contain any icon
+    --button-padding-start-adjust: -8px; // HDS buttons have less padding on both sides if they contain any icon
+  }
+
+  // Buttons with icon on left in LTR languages
+  &[data-hds-icon-start]{
+    --button-padding-start-adjust: calc(-16px + var(--icon-size) + var(--button-gap));
+
+    &[data-hds-variant='supplementary']{
+      --button-padding-start-adjust-supplementary: -16px; // Supplemnentary icons have even less padding
+    }
+  }
+
+  // Buttons with icon on right in LTR languages
+  &:is(
+    [data-hds-icon-end],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ) {
+    --button-padding-end-adjust: calc(-16px + var(--icon-size) + var(--button-gap));
+  }
+
+  // Prepare icons for the buttons
+  &[data-hds-icon-start]::before,
+  &:is(
+    [data-hds-icon-end],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  )::after {
+    @include pseudo-icon(null, $size: $spacing-and-half, $color: currentColor);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &[data-hds-icon-start]::before {
+    inset-inline-start: $spacing; // left on RTL
+  }
+
+  &[data-hds-icon-start][data-hds-variant='supplementary']::before {
+    inset-inline-start: $spacing-half; // Supplementary icons are closer to the button edge
+  }
+
+  &:is(
+    [data-hds-icon-end],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  )::after {
+    inset-inline-end: $spacing; // right on RTL
+  }
+
+  &:is(
+    [data-hds-icon-end],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  )[data-hds-variant='supplementary']::after{
+    inset-inline-end: $spacing-half; // Supplementary icons are closer to the button edge
+  }
+
+  &:empty{
+    padding-inline: $spacing;
+  }
+
+  &:is(
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ){
+    &::after{
+      @include hover-link-arrow-transition;
+    }
+
+    &:is(
+      :focus-visible,
+      :hover
+    )::after {
+      transform: scaleX(var(--lang-direction, 1))  translateY(-50%) var(--external-icon-move);
+    }
+  }
+
+
+  &[data-is-external]::after {
+    @include pseudo-icon-replace('link-external');
+
+    --external-icon-move: translate(3px, -3px);
+  }
+
+  &[data-protocol='tel']::after {
+    @include pseudo-icon-replace('tel');
+
+    --external-icon-move: rotate(15deg);
+  }
+
+  &[data-protocol='mailto']::after {
+    @include pseudo-icon-replace('mailto');
+
+    --external-icon-move: rotate(15deg);
+  }
+
+  // Add arrow-right icon when not overridden with another icon to supplementary button
+  &[data-hds-variant='supplementary']:not(
+    [data-hds-icon-start],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  )::before,
+  &[data-hds-variant='supplementary'][data-hds-icon-start]:not(
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  )::after {
+    @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
+    @include hover-link-arrow-transition;
+
+    --external-icon-move: translateX(#{$spacing-quarter});
+    inset-inline-end: 8px;
+    margin-block: -2px;
+    position: absolute;
+    top: 50%;
+    transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
+
+    @media (prefers-reduced-motion) {
+      --external-icon-move: translateX(0);
+    }
+  }
+
+  // Handle focus and hover styles for the above
+  &[data-hds-variant='supplementary']:not(
+    [data-hds-icon-start],
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ):where(:focus-visible,:hover)::before,
+  &[data-hds-variant='supplementary'][data-hds-icon-start]:not(
+    [data-is-external],
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ):where(:focus-visible,:hover)::after {
+    transform: scaleX(var(--lang-direction, 1)) translateY(-50%) var(--external-icon-move);
+  }
+
+  // PRIMARY
+  // default (bus)
+  &:not([data-hds-variant]), // Fallback to primary button style
+  &[data-hds-variant='primary'] {
+    // Backgrounds
+    --background-color: var(--theme-bg1, var(--color-bus));
+    --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
+    --background-color-focus: var(--theme-bg1, var(--color-bus));
+    --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+    --background-color-disabled: var(--color-black-20);
+
+    // Borders
+    --border-color: var(--theme-bg1, var(--color-bus));
+    --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
+    --border-color-focus: var(--theme-bg1, var(--color-bus));
+    --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
+    --border-color-disabled: var(--color-black-20);
+
+    // Colors
+    --color: var(--theme-fg1, var(--color-white));
+    --color-hover: var(--theme-fg2, var(--color-white));
+    --color-focus: var(--theme-fg1, var(--color-white));
+    --color-hover-focus: var(--theme-fg2, var(--color-white));
+    --color-disabled: var(--color-white);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
+  }
+
+  // SECONDARY
+  // default (bus)
+  &[data-hds-variant='secondary'] {
+    // Backgrounds
+    --background-color: var(--theme-bg2, transparent);
+    --background-color-hover: var(--theme-bg1, var(--color-bus-light));
+    --background-color-focus: var(--theme-bg2, transparent);
+    --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
+    --background-color-disabled: transparent;
+
+    // Borders
+    --border-color: var(--theme-bg1, var(--color-bus));
+    --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
+    --border-color-focus: var(--theme-bg1, var(--color-bus));
+    --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+    --border-color-disabled: var(--color-black-50);
+
+    // Colors
+    --color: var(--theme-fg2, var(--color-bus));
+    --color-hover: var(--theme-fg1, var(--color-bus-dark));
+    --color-focus: var(--theme-fg2, var(--color-bus));
+    --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
+    --color-disabled: var(--color-black-40);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
+  }
+
+  // LOADING
+  &[data-hds-variant='loading'] {
+    // Backgrounds
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+
+    // Borders
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: transparent;
+    --border-color-hover-focus: transparent;
+    --border-color-disabled: transparent;
+
+    // Colors
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-black-90);
+
+    // Cursor
+    cursor: wait;
+  }
+
+  // UTILITY
+  // success
+  &[data-hds-variant='success'] {
+    // Backgrounds
+    --background-color: var(--color-success);
+    --background-color-hover: var(--color-success-dark);
+    --background-color-focus: var(--color-success);
+    --background-color-hover-focus: var(--color-success-dark);
+
+    // Borders
+    --border-color: var(--color-success);
+    --border-color-hover: var(--color-success-dark);
+    --border-color-focus: var(--color-success);
+    --border-color-hover-focus: var(--color-success-dark);
+
+    // Colors
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  }
+
+  /* danger */
+  &[data-hds-variant='danger'] {
+    // Backgrounds
+    --background-color: var(--color-error);
+    --background-color-hover: var(--color-error-dark);
+    --background-color-focus: var(--color-error);
+    --background-color-hover-focus: var(--color-error-dark);
+
+    // Borders
+    --border-color: var(--color-error);
+    --border-color-hover: var(--color-error-dark);
+    --border-color-focus: var(--color-error);
+    --border-color-hover-focus: var(--color-error-dark);
+
+    // Colors
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
+
+    // Focus ring
+    --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
+  }
+
+  // In case a button with supplementary style is the first child inside a p-tag we can assume it is next to
+  // spacing of the element that contains the link so we want to move the supplementary button little bit to the left.
+  // Example: A button is written inside of a WYSIWYG-element and it is inside its p-tag as first item.
+  p > &[data-hds-variant='supplementary']:first-child {
+    margin-left: calc(-#{$spacing-half} + (-2px));
+  }
 }
