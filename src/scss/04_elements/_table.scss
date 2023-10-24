@@ -1,86 +1,46 @@
-table {
-  background-color: $color-white;
-  border: 1px solid $color-black-60;
-  border-spacing: 0;
-  display: block;
-  margin: $spacing-double 0;
-  max-width: fit-content;
+figure.table {
+  margin: 0;
   overflow-x: auto;
-  table-layout: fixed;
-  white-space: nowrap;
+}
 
-  caption {
-    @include font('body');
-    background-color: $color-black;
-    color: $color-white;
-    padding: $spacing-double $spacing;
-    text-align: start;
+figure.table figcaption {
+  @include font('h4');
+  margin-top: $spacing-quadruple;
+}
+
+table {
+  @include font('body');
+  background: $color-white;
+  border: 2px solid $color-black-50;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: $spacing 0 0 0;
+  padding: 0;
+  width: auto;
+
+  tr {
+    border-bottom: 1px solid $color-black-50;
   }
 
-  thead {
-    background-color: $color-black;
+  td,
+  th {
+    color: $color-black;
+    min-width: 0;
+    padding: $spacing-three-quarters $spacing-and-half;
+    text-align: left;
+  }
 
-    th {
-      @include font('small');
-      color: $color-white;
-      font-weight: $font-weight-medium;
-      min-width: 140px;
-      padding: $spacing;
-      text-align: start;
-      vertical-align: middle;
-      white-space: normal;
+  th {
+    background: $color-black-10;
+    font-weight: $font-weight-bold;
 
-      p {
-        font-size: inherit;
-        font-weight: inherit;
-        margin: 0;
-      }
+    strong {
+      font-weight: $font-weight-bold;
     }
   }
+}
 
-  tbody,
-  tfoot {
-    background-color: $color-white;
-
-    tr {
-      background-color: $color-white;
-
-      &:hover,
-      &:active {
-        background-color: $color-black-5;
-      }
-
-      th,
-      td {
-        @include font('small');
-        color: $hdbt-color-black;
-        min-width: 140px;
-        padding: $spacing;
-        text-align: start;
-        vertical-align: middle;
-        white-space: normal;
-
-        p {
-          margin: 0;
-
-          & + p {
-            margin: $spacing 0 0;
-          }
-        }
-      }
-
-      th {
-        background-color: $color-black;
-        color: $color-white;
-        font-weight: $font-weight-medium;
-      }
-
-      // Row border-color.
-      &:not(:last-of-type) {
-        td {
-          border-bottom: 1px solid $color-black-10;
-        }
-      }
-    }
-  }
+// Zebra stripes for every other row.
+table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+  background: $color-black-5;
 }

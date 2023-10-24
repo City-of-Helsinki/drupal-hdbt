@@ -91,107 +91,46 @@
 }
 
 // 04_elements/_table.scss
-// The CKEditor table element dom is quite different from what the end result will be once the node is saved
-// so the styles needed quite a bit adjusting. When the table styles are updated remember to update these as well.
-// Specificity required because of overlapping styles from CKEditor and hdbt_admin theme.
-.ck-editor .ck-content figure.table {
-  margin: $spacing-double 0;
-  outline: 1px solid $color-black-60;
-}
+.ck-editor .ck-content {
+  @import '04_elements/_table';
 
-.ck-editor .ck-content figure.table table {
-  border: 0;
-  display: block;
-  margin: 0;
-  max-width: fit-content;
-  overflow-x: auto;
-  table-layout: fixed;
-  white-space: nowrap;
-}
+  // CKEditor and Gin styling overrides. These are quite nasty but so are the styles automatically set by
+  // the Gin-theme and CKEditor-module.
 
-.ck-editor .ck-content figure.table > figcaption {
-  @include font('body');
-  background-color: $color-black;
-  border: 0;
-  color: $color-white;
-  padding: $spacing-double $spacing;
-  text-align: start;
-}
-
-.ck-editor .ck-content figure.table table thead th {
-  @include font('small');
-  background-color: $color-black;
-  color: $color-white;
-  font-weight: $font-weight-medium;
-  min-width: 140px;
-  padding: $spacing;
-  text-align: start;
-  vertical-align: middle;
-  white-space: normal;
-
-  p {
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-  }
-}
-
-.ck-editor .ck-content figure.table table tbody tr,
-.ck-editor .ck-content figure.table table tfoot tr {
-  border: 0;
-
-  &:hover,
-  &:active {
-    background-color: $color-black-5;
+  // CKEditor sets a background color and padding for the figcaption and aligns the text to center.
+  // These lines change the layout similar to what we have on the layout.
+  .table > figcaption {
+    background-color: transparent;
+    padding: 0;
+    text-align: left;
   }
 
-  th,
-  td {
-    @include font('small');
-    color: $hdbt-color-black;
-    min-width: 140px;
-    text-align: start;
-    vertical-align: middle;
-    white-space: normal;
-  }
+  // CKEditor sets border styles for the tables. Changing that to the design we have.
+  .table table {
+    border: 2px solid $color-black-50;
 
-  th {
-    background-color: $color-black;
-    color: $color-white;
-    font-weight: $font-weight-medium;
-  }
+    // Gin sets this after element for .field-multiple-table thead element but because of the selectors
+    // inaccuracy it also is visible on the editor. Hiding it with this.
+    thead::after {
+      display: none;
+    }
 
-  th p,
-  td p {
-    margin: 0;
+    // Gin sets all th-elements to small font size for some reason with very inaccurate selector so we need
+    // to change the font-size here. Also CKEditor sets background color for the th-element which is not the
+    // right for our design so changing it here.
+    th {
+      background-color: $color-black-10;
+      font-size: remify(18px);
+    }
 
-    & + p {
-      margin: $spacing 0 0;
+    // CKEditor adds paddings and borders for td- and th-elements so changing them to correct here.
+    td,
+    th {
+      border: 0;
+      padding: $spacing-three-quarters $spacing-and-half;
     }
   }
 }
-
-// hdbt_admin overrides for table styles.
-.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody {
-  tr td,
-  tr th {
-    border: 0;
-    padding: $spacing;
-  }
-
-  // Row border-color.
-  tr:not(:last-of-type) {
-    td {
-      border-bottom: 1px solid $color-black-10;
-    }
-  }
-}
-
-.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table thead tr th,
-.hdbt-admin .paragraphs-tabs-wrapper .ck-editor .ck-content figure.table table tbody tr th {
-  border: 0;
-}
-
 
 // hds-button styles for CKEditor. These are copied from the old CKEditor stylesheet so not sure if they are still
 // usable/needed when the new version is created.
