@@ -6,8 +6,6 @@ import SearchContainer from './containers/SearchContainer';
 
 initSentry();
 
-initSentry();
-
 const rootSelector: string = 'helfi-rekry-job-search';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
 

@@ -91,7 +91,9 @@ class svgToSprite {
     // SVG to CSS.
     // Create styles for the icons.
     compiler.hooks.emit.tapAsync('svgToCss', (compilation, callback) => {
-      let useOldClass = true; // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
+      // TODO: UHF-8792 If sensible lets try to get rid of the hdbt-icon class. If that can be done, remove this (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
+      // TODO: Related to UHF-8792 and UHF-8489, turned off the "useOldClass". This, and the code related to hdbt-icon classes can be removed in UHF-8792.
+      let useOldClass = false;
 
       // Create --hel-icon--{icon name} and [data-hds-icon-start:'{icon name}'] CSS variables.
       let cssVariables = [];

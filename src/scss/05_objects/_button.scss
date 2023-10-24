@@ -29,13 +29,13 @@
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-  align-content: flex-start;
-  align-items: center;
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: button;
+  align-content: flex-start;
+  align-items: center;
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
@@ -564,13 +564,13 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-  align-content: flex-start;
-  align-items: center;
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: button;
+  align-content: flex-start;
+  align-items: center;
   background-color: var(--background-color, transparent);
   border: var(--border-width) solid var(--border-color, transparent);
   border-radius: 0;
@@ -705,8 +705,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
     --button-padding-end-adjust: calc(-16px + var(--icon-size) + var(--button-gap));
     --button-padding-end-adjust-supplementary: -16px; // Supplementary buttons have less padding on the icon side
     --button-padding-start-adjust: -24px;
-    line-height: $spacing-and-half; // To avoid too low link buttons
-    text-decoration: underline;
 
     // Backgrounds
     --background-color: var(--theme-bg2, transparent);
@@ -732,6 +730,8 @@ p > a.hds-button.hds-button--supplementary:first-child {
     // Focus ring
     --focus-outline-color: var(--theme-focus, transparent);
     --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, transparent);
+    line-height: $spacing-and-half; // To avoid too low link buttons
+    text-decoration: underline;
 
     &:hover {
       text-decoration: none;

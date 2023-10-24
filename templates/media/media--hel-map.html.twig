@@ -44,9 +44,9 @@
 {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
   media_url: media_url,
   media_id: media.id,
-  media_iframe_title: media.getIframeTitle(),
-  media_service_url: media.getServiceUrl(),
-  privacy_policy_url: media.getPrivacyPolicyUrl(),
+  media_iframe_title: iframe_title,
+  media_service_url: map_service_url,
+  privacy_policy_url: privacy_policy_url,
 } %}
 
 {% if alternative_language %}
@@ -69,8 +69,6 @@
   }
 } %}
 {{ drupal_settings }}
-{{ attach_library(media.getJsLibrary()) }}
-
 {{ attach_library(media.getJsLibrary()) }}
 
 {{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}

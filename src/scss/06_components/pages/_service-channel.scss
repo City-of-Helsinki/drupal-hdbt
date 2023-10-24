@@ -48,6 +48,10 @@
   font-weight: 500;
 }
 
+.service-channel--printable_form .service-channel__link::after {
+  @include pseudo-icon('printableform', calc(var(--line-height) * 1em), currentColor, inline-block);
+}
+
 .service-channel__address {
   .address > span {
     display: block;

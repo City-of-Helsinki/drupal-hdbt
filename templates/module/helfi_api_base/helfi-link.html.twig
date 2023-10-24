@@ -12,16 +12,16 @@
     {% set descriptive_lang_dir = current_language_dir %}
   {% endif %}
 
-  {% if alternative_language %}
-    {% set descriptive_lang = lang_attributes.fallback_lang %}
-    {% set descriptive_lang_dir = lang_attributes.fallback_dir %}
-  {% else %}
-    {% set descriptive_lang = current_langcode %}
-    {% set descriptive_lang_dir = current_language_dir %}
+  {# Check if we want to render old link icons, the new links with data-hds="button" use pseudo elements instead #}
+  {% set render_old_link = false %}
+  {% if 'data-hds-component' not in attributes|keys or attributes['data-hds-component'] != 'button' %}
+    {% set render_old_link = true %}
   {% endif %}
 
   {% if 'data-selected-icon' in url.options.attributes|keys %}
-    {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
+      {% if render_old_link %}
+        {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
+      {% endif %}
   {% endif %}
 
   {% if 'data-is-external' in attributes|keys %}
@@ -36,12 +36,16 @@
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
     {% if attributes['data-protocol'] == 'tel' %}
       {% set attribute_icon %}
-        <span class="link__type link__type--tel"></span>
+        {% if render_old_link %}
+          <span class="link__type link__type--tel"></span>
+        {% endif %}
         <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
       {% endset %}
     {% elseif attributes['data-protocol'] == 'mailto' %}
       {% set attribute_icon %}
-        <span class="link__type link__type--mailto"></span>
+        {% if render_old_link %}
+          <span class="link__type link__type--mailto"></span>
+        {% endif %}
         <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
       {% endset %}
     {% endif %}
