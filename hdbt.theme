@@ -784,6 +784,32 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       $image_style
     );
   }
+
+  // Add the photographer to the image caption.
+  if ($paragraph->hasField('field_liftup_with_image_image')) {
+
+    // Get translated photographer text if available.
+    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($variables['current_langcode'])) {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+    }
+    else {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->field_photographer->value;
+    }
+
+    if (!$photographer) {
+      $caption = '';
+    }
+    else {
+      $caption = t(
+        'Photo: @photographer',
+        ['@photographer' => $photographer],
+        ['context' => 'Image photographer']
+      );
+    }
+
+    // Set image caption variable to render array for the template.
+    $variables['image_caption'] = $caption;
+  }
 }
 
 /**
@@ -1297,6 +1323,16 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
 
   // Add cookie compliance JS to unit pages since they have maps.
   $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
+
+  // Handle TPR unit picture caption preprocessing.
+  if ($entity->hasField('picture_url_override')) {
+    _hdbt_preprocess_image_caption(
+      $variables,
+      'entity',
+      'picture_url_override',
+      'unit_picture_caption'
+    );
+  }
 }
 
 /**
@@ -1668,7 +1704,6 @@ function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
   if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
     $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
   }
-
 }
 
 /**
@@ -1686,4 +1721,11 @@ function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$var
   }
 
   array_unshift($suggestions, 'container__' . $type . '__' . $name);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_views_exposed_form(array &$variables) {
+  $variables['#attached']['library'][] = 'hdbt/search-helper';
 }

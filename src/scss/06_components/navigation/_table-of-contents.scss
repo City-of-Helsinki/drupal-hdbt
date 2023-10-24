@@ -16,8 +16,8 @@
   }
 }
 
-// Add extra margin to long description if table of contents is enabled.
-.table-of-contents + .long-desc {
+// Add extra margin to the following element if table of contents is enabled.
+.table-of-contents + * {
   @include component-margin-top;
 }
 
@@ -73,6 +73,61 @@
       top: 50%;
       transform: translateY(-50%);
       width: calc(100% + #{$spacing-half});
+    }
+  }
+}
+
+.table-of-contents__js {
+  display: none;
+
+  &[data-js="true"] {
+    display: block;
+  }
+}
+
+.table-of-contents__nojs {
+  background-color: $color-silver-light;
+  display: flex;
+  flex-flow: column;
+  padding: $spacing-double $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    flex-flow: row;
+  }
+
+  .nojs__icon {
+    display: inline-flex;
+    margin-bottom: $spacing-and-half;
+    margin-inline-end: $spacing;
+  
+    @include breakpoint($breakpoint-m) {
+      margin-inline-end: $spacing-and-half;
+    }
+
+    .hel-icon {
+      --icon-size: #{$spacing-quadruple};
+  
+      @include breakpoint($breakpoint-m) {
+        --icon-size: #{remify(100px)};
+      }
+    }
+  }
+
+  .nojs__title {
+    @include font('h3');
+    margin-top: 0;
+  }
+
+  .nojs__desc {
+    @include font('body');
+    margin-top: $spacing;
+  
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-and-half;
+    }
+  
+    p:first-child {
+      margin: 0;
     }
   }
 }

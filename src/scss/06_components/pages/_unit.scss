@@ -1,26 +1,7 @@
 /* stylelint-disable max-nesting-depth */
 .unit__contact {
-  &:first-child .unit__contact__title {
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-half;
-    }
-  }
-
-  .unit__contact__title {
-    @include font('h4');
-    border-bottom: 2px solid $color-black;
-    margin-bottom: $spacing-and-half;
-    margin-top: $spacing-half;
-    padding-bottom: $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-double;
-    }
-  }
-
   .unit__contact-row {
     @include font('body');
-    border-bottom: 1px solid $color-black-20;
     margin-bottom: $spacing;
     padding-bottom: $spacing;
     padding-left: $spacing-double;
@@ -54,18 +35,8 @@
     }
   }
 
-  .unit__contact-row--address .comma {
-    display: none;
-  }
-
   .unit__contact-row--email a {
     word-break: break-all;
-  }
-
-  .address {
-    > * {
-      display: block;
-    }
   }
 
   .phone {
@@ -75,6 +46,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .address {
+    display: block;
   }
 }
 
@@ -152,6 +127,7 @@
 
 .unit.unit--full .content-tags {
   margin-bottom: $spacing-and-half;
+  margin-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     margin-bottom: $spacing-double;
@@ -303,39 +279,6 @@
   .content-tags {
     margin-top: $spacing;
   }
-
-  .unit__read-more {
-    @include font('button');
-    display: flex;
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-m) {
-      justify-content: flex-end;
-      margin-top: $spacing;
-    }
-
-    .unit__read-more__text {
-      font-weight: $font-weight-medium;
-    }
-
-    .hel-icon {
-      @include hover-link-arrow-transition;
-      margin-left: $spacing-half;
-      pointer-events: none;
-    }
-  }
-
-  &:hover {
-    .unit__read-more {
-      .hel-icon {
-        transform: translateX($spacing-quarter);
-
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
-      }
-    }
-  }
 }
 
 .unit--minimal {
@@ -446,6 +389,17 @@
       --icon-size: #{$spacing-double};
 
       @include hover-link-arrow-transition;
+    }
+  }
+}
+
+.component--unit-contact-information {
+  .component__container {
+    background-color: $color-silver-light;
+    padding: $spacing-and-half $spacing $spacing-triple;
+
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing-double $spacing-double $spacing-triple;
     }
   }
 }

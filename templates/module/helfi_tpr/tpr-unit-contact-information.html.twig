@@ -15,10 +15,8 @@
   content.opening_hours|render or
   content.www|render
 %}
+
   <div class="unit__contact">
-    <h2 class="unit__contact__title">
-      {% trans with {'context': 'Contact card title'} %}Contact information{% endtrans %}
-    </h2>
     {% if content.address|render %}
       <div class="unit__contact-row unit__contact-row--address">
         <label class="unit__contact-row__label">
@@ -26,6 +24,10 @@
           {{ 'Visiting address'|t }}:
         </label>
         {{ content.address }}
+
+        {% if content.accessibility_sentences|render %}
+          {% include '@hdbt/misc/accessibility-link.twig' %}
+        {% endif %}
       </div>
     {% endif %}
     {% if unit_email_link and content.email|render %}
@@ -60,6 +62,15 @@
         {{ content.opening_hours }}
       </div>
     {% endif %}
+    {% if content.provided_languages|render %}
+      <div class="unit__contact-row unit__contact-row--provided-languages">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'globe'} %}
+          {{ 'Service language'|t({}, {'context': 'TPR unit contact information service language'}) }}:
+        </label>
+        {{ content.provided_languages }}
+      </div>
+    {% endif %}
     {% if content.address_postal|render %}
       <div class="unit__contact-row unit__contact-row--postal-address">
         <label class="unit__contact-row__label">
@@ -76,6 +87,15 @@
           {{ 'Website link'|t }}:
         </label>
         {{ content.www }}
+      </div>
+    {% endif %}
+    {% if content.address|render %}
+      <div class="unit__contact-row unit__contact-row--address">
+        <label class="unit__contact-row__label">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'map'} %}
+          {{ 'How to get here'|t({}, {'context': 'TPR unit contact information arrival title'}) }}:
+        </label>
+        {% include '@hdbt/misc/reittiopas-link.twig' with content %}
       </div>
     {% endif %}
   </div>

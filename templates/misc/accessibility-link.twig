@@ -1,0 +1,7 @@
+{# Accessibility information accordion has hardcoded header which is used as the element id #}
+{% set accordion_id = 'Accessibility information'|t|replace({'ä': 'a', 'ö': 'o', 'å': 'a'})|clean_class %}
+{% set link_title = 'Show accessibility information'|t({}, {'context': 'TPR unit contact information show accessibility information link'}) %}
+{% set link_url = drupal_url('<current>', {'fragment': accordion_id}) %}
+{% set link_attributes = {'class': ['link']} %}
+
+{{ link(link_title, link_url, link_attributes) }}

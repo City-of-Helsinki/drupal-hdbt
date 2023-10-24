@@ -16,12 +16,17 @@
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
 
+{% if image_caption %}
+  {% set image_caption_class = 'has-image-caption' %}
+{% endif %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [
         'component--liftup-with-image',
         design_class,
+        image_caption_class,
       ],
       component_content_class: 'liftup-with-image',
     }
@@ -30,7 +35,10 @@
 
       {% if content.field_liftup_with_image_image|render %}
         <div class="liftup-with-image__image">
-          {{ content.field_liftup_with_image_image }}
+          {% include '@hdbt/misc/image-with-caption.twig' with {
+            image: content.field_liftup_with_image_image,
+            image_caption: image_caption
+          } %}
         </div>
       {% endif %}
       <div class="liftup-with-image__container">

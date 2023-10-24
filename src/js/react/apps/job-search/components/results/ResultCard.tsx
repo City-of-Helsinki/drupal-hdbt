@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react';
 import { useAtomValue } from 'jotai';
-import CardItem from '@/react/common/Card';
-import { currentLanguage } from '../../query/queries';
 
-import Job from '../../types/Job';
+import CardItem from '@/react/common/Card';
 import Result from '@/types/Result';
+import { currentLanguage } from '../../query/queries';
+import Job from '../../types/Job';
 import { urlAtom } from '../../store';
 
 const getResultCard = ({
@@ -29,13 +29,11 @@ const getResultCard = ({
   const heading = title[0];
   const cardTitle = (
     <>
-      <span {...customAtts}>{heading.charAt(0).toUpperCase() + heading.slice(1)}</span>
+      <span {...customAtts}>{heading}</span>
       {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
     </>
   );
 
-  const orgName = field_organization_name && field_organization_name.length > 0 && field_organization_name[0] || '';
-  
   const getDate = (() => {
     let date: undefined|string;
     let dateObject: undefined|Date;
@@ -43,7 +41,7 @@ const getResultCard = ({
 
     if (!unpublish || Number.isNaN(unpublish)) {
       return '-';
-    } 
+    }
 
     try {
       dateObject = new Date(unpublish * 1000);
@@ -62,11 +60,10 @@ const getResultCard = ({
     return date;
   });
 
+  const orgName = field_organization_name && field_organization_name.length > 0 && field_organization_name[0] || '';
   const employmentTags = Array.isArray(field_employment) ? field_employment : [];
   const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
-  const tags: any = employmentTags.concat(typeTags).map(tag => ({
-      tag
-    }));
+  const tags: any = employmentTags.concat(typeTags).map(tag => ({ tag }));
 
   return (
     <CardItem

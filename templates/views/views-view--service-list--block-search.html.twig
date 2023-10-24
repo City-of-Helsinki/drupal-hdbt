@@ -50,19 +50,22 @@
     </header>
   {% endif %}
 
-  {% if is_ajax_request or total_rows > pager_items_per_page %}
-    {{ exposed }}
+  {{ exposed }}
+  <div class="services-search__results" data-id-number="{{ dom_id }}">
     <span class="service-list__count-container">
-      <span class="service-list__count">{{ total_rows ?? 0 }}</span>
-      {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
-    </span>
-  {% endif %}
+      {% if total_rows %}
+        <span class="service-list__count">{{ total_rows }}</span>
+        {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
+      {% endif %}
 
+      {{ empty }}
+    </span>
+  </div>
   {{ attachment_before }}
 
   {{ rows }}
 
-  {{ empty }}
+  
   {{ pager }}
 
   {{ attachment_after }}
