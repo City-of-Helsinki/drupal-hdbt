@@ -703,6 +703,10 @@ msgctxt "Unit services title"
 msgid "Services"
 msgstr "Palvelut"
 
+msgctxt "TPR unit contact information title"
+msgid "Contact information"
+msgstr "Yhteystiedot"
+
 msgctxt "TPR unit contact information show accessibility information link"
 msgid "Show accessibility information"
 msgstr "Näytä esteettömyystiedot"

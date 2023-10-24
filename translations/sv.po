@@ -696,6 +696,10 @@ msgctxt "Unit services title"
 msgid "Services"
 msgstr "Tjänster"
 
+msgctxt "TPR unit contact information title"
+msgid "Contact information"
+msgstr "Kontaktuppgifter"
+
 msgctxt "TPR unit contact information show accessibility information link"
 msgid "Show accessibility information"
 msgstr "Visa tillgänglighetsuppgifter"
