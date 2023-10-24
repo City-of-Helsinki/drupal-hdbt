@@ -370,6 +370,9 @@ function getConfig(hostname, type) {
           'label': 'DC: Phasing',
           'url': `https://${hostname}/en/dc-components/dc-phasing`,
           'removeSelectors': removeDefault,
+          'selectors': [
+            '.components'
+          ],
           'selectorExpansion': expandComponents,
         },
         {
@@ -413,7 +416,7 @@ function getConfig(hostname, type) {
           'url': `https://${hostname}/en/dc-components/dc-text`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '.component--paragraph-text'
+            '.components'
           ],
           'selectorExpansion': expandComponents,
         },
