@@ -44,7 +44,8 @@ function getConfig(hostname, type) {
     '.breadcrumb__container',
     '.block--react-and-share',
     '.footer',
-    '.sliding-popup-bottom'
+    '.sliding-popup-bottom',
+    'iframe',
   ];
 
   // All of our breakpoints
@@ -239,7 +240,7 @@ function getConfig(hostname, type) {
           'url': `https://${hostname}/en/dc-components/dc-announcements`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '.block-hdbt-subtheme-announcements'
+            '#block-hdbt-subtheme-announcements'
           ],
           'selectorExpansion': expandComponents,
         },
@@ -369,6 +370,9 @@ function getConfig(hostname, type) {
           'label': 'DC: Phasing',
           'url': `https://${hostname}/en/dc-components/dc-phasing`,
           'removeSelectors': removeDefault,
+          'selectors': [
+            '.components'
+          ],
           'selectorExpansion': expandComponents,
         },
         {
@@ -412,7 +416,7 @@ function getConfig(hostname, type) {
           'url': `https://${hostname}/en/dc-components/dc-text`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '.component--paragraph-text'
+            '.components'
           ],
           'selectorExpansion': expandComponents,
         },
