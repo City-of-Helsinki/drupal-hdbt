@@ -1,4 +1,5 @@
 .component--unit-search {
+  @include component-side-padding;
   background-color: $color-silver-light;
 }
 

@@ -113,6 +113,7 @@
 }
 
 .component--service-list-search {
+  @include component-side-padding;
   background-color: $color-silver-light;
 
   .component__container {

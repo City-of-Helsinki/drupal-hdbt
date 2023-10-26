@@ -1,4 +1,5 @@
 .component--map {
+  @include component-side-padding;
   background-color: $color-silver-light;
 }
 
@@ -21,10 +22,10 @@
 
 .unit .component--map .component__container,
 .has-sidebar .component--map .component__container {
-  padding: $spacing-and-half $spacing $spacing-triple;
+  padding-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
-    padding: $spacing-double $spacing-double $spacing-triple;
+    padding-top: $spacing-double;
   }
 }
 

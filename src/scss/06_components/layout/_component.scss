@@ -7,7 +7,7 @@
 // When components are full width and do not contain liftup-with-img-bg,
 // they should have padding that keeps them from touching side.
 .components--lower > .component:not(.component--liftup-with-image-bg),
-.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg) {
+.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg) {
   @include component-side-padding;
 }
 
@@ -84,4 +84,35 @@
 
 .component__tags {
   margin-top: $spacing-and-half;
+}
+
+// Components on other pages than landing-page
+// need to be limited to content max-width to maintain readability.
+:not(.page-type--landing-page).no-sidebar .components--upper,
+:not(.page-type--landing-page).no-sidebar .components:not(.components--lower) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-area-wrapper-width-max;
+
+  .component {
+    max-width: $content-width-max;
+  }
+}
+
+// Unit needs also these following fixed elements max-width. This should/could be fixed
+// by changing the elements dom to use component classes.
+.no-sidebar .unit--full .main-image picture {
+  max-width: $content-width-max
+}
+
+// Service needs also these following fixed elements max-width.  This should/could be fixed
+// by changing the elements dom to use component classes.
+.no-sidebar .service--full .service__errand-services {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-area-wrapper-width-max;
+
+  .errand-service {
+    max-width: $content-width-max;
+  }
 }
