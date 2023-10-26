@@ -49,13 +49,24 @@
       }
     }
 
+    [data-hds-component='button']:not([class*='hds-button']):where(
+      :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
+      [data-hds-variant='primary'],
+      [data-hds-variant='secondary']
+    ) {
+      @include breakpoint($breakpoint-l) {
+        display: block;
+
+        &:not(:first-child) {
+          margin-top: $spacing-half;
+        }
+      }
+    }
+
+    [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
     .hds-button--supplementary {
       &:first-child {
         margin-left: 0;
-      }
-
-      &.hdbt-icon::before {
-        margin-left: $spacing-half;
       }
     }
   }
