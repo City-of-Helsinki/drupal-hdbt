@@ -1,0 +1,23 @@
+name: v6 sync
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: '6.x'
+
+      - name: Merge main to 6.x branch
+        run: |
+          # Set git user from the latest commit
+          git config user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+          git pull origin main
+          git push origin 6.x
