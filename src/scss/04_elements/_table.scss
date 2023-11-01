@@ -1,6 +1,31 @@
+// Styles for table markup without figure and figcaption.
+table {
+  display: block;
+  overflow-x: auto;
+
+  caption {
+    @include font('h4');
+    background: $color-black-10;
+    font-weight: $font-weight-bold;
+    padding: $spacing $spacing-and-half 0;
+    text-align: start;
+
+    strong {
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+// Styles for new table markup with figure.table and figcaption.
 figure.table {
   margin: 0;
   overflow-x: auto;
+}
+
+// Reset the overflow and display properties for figure.table tables.
+figure.table table {
+  display: table;
+  overflow-x: visible;
 }
 
 figure.table figcaption {
