@@ -1707,7 +1707,6 @@ function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
   if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
     $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
   }
-
 }
 
 /**
