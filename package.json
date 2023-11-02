@@ -31,7 +31,7 @@
     "classnames": "^2.3.1",
     "es6-promise": "^4.1.1",
     "glob": "^10.0.0",
-    "hds-design-tokens": "^2.13.0",
+    "hds-design-tokens": "^3.0.0",
     "hds-react": "^2.13.0",
     "html-react-parser": "^4.0.0",
     "husky": "^8.0.0",
