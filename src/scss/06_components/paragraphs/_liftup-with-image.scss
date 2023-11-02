@@ -44,6 +44,7 @@ $breakpoint-design-image-on-left-right: 830px;
   &.component--liftup-with-image-img-on-right .liftup-with-image .image__caption,
   &.component--liftup-with-image-img-on-left .liftup-with-image .image__caption {
     @include breakpoint($breakpoint-design-image-on-left-right) {
+      background-color: $color-white; // Since this element is absolutely positioned, we need a background color to show Siteimprove that the contrast is ok.
       bottom: $spacing;
       position: absolute;
     }
@@ -178,8 +179,8 @@ $breakpoint-design-image-on-left-right: 830px;
     text-align: right;
 
     @include breakpoint($breakpoint-design-image-on-left-right) {
+      margin-top: $spacing;
       order: 2;
-      padding-top: $spacing;
     }
   }
 
@@ -241,13 +242,16 @@ $breakpoint-design-image-on-left-right: 830px;
     // stylelint-disable-next-line max-nesting-depth
     .image__caption {
       color: $color-black;
+      margin-top: $spacing;
       padding-left: $spacing;
+      padding-top: 0;
 
       @include breakpoint($breakpoint-m) {
         padding-left: $spacing-double;
       }
 
       @include breakpoint($breakpoint-l) {
+        background-color: $color-white; // Since this element is absolutely positioned, we need a background color to show Siteimprove that the contrast is ok.
         // Make the value negative * line-height of the caption + spacing above the caption.
         bottom: calc(-1 * (var(--line-height) * 1rem + $spacing));
         left: $spacing;
