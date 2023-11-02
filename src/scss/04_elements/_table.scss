@@ -1,6 +1,8 @@
 // Styles for table markup without figure and figcaption.
-table {
+.user-edited-content > table,
+.user-edited-content :not(figure) > table {
   display: block;
+  max-width: fit-content;
   overflow-x: auto;
 
   caption {
@@ -16,24 +18,18 @@ table {
   }
 }
 
-// Styles for new table markup with figure.table and figcaption.
-figure.table {
+// Styles for new table markup with figure and figcaption.
+.user-edited-content figure {
   margin: 0;
   overflow-x: auto;
 }
 
-// Reset the overflow and display properties for figure.table tables.
-figure.table table {
-  display: table;
-  overflow-x: visible;
-}
-
-figure.table figcaption {
+.user-edited-content figure figcaption {
   @include font('h4');
   margin-top: $spacing-quadruple;
 }
 
-table {
+.user-edited-content table {
   @include font('body');
   background: $color-white;
   border: 2px solid $color-black-50;
@@ -43,7 +39,7 @@ table {
   padding: 0;
   width: auto;
 
-  tr {
+  tr:not(tbody:last-child *:last-child) {
     border-bottom: 1px solid $color-black-50;
   }
 
@@ -66,6 +62,6 @@ table {
 }
 
 // Zebra stripes for every other row.
-table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+.user-edited-content table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
   background: $color-black-5;
 }
