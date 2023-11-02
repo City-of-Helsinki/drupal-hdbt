@@ -97,17 +97,31 @@
   // CKEditor and Gin styling overrides. These are quite nasty but so are the styles automatically set by
   // the Gin-theme and CKEditor-module.
 
+  // CKEditor sets the table to aligned middle, which does not reflect to our theme.
+  figure.table {
+    margin: 0;
+  }
+
   // CKEditor sets a background color and padding for the figcaption and aligns the text to center.
   // These lines change the layout similar to what we have on the layout.
-  .table > figcaption {
+  figure > figcaption {
+    @include font('h4');
     background-color: transparent;
+    margin-top: $spacing-triple;
     padding: 0;
     text-align: left;
   }
 
   // CKEditor sets border styles for the tables. Changing that to the design we have.
-  .table table {
+  figure > table {
+    @include font('body');
+    background: $color-white;
     border: 2px solid $color-black-50;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: $spacing 0 0 0;
+    padding: 0;
+    width: auto;
 
     // Gin sets this after element for .field-multiple-table thead element but because of the selectors
     // inaccuracy it also is visible on the editor. Hiding it with this.
@@ -115,19 +129,37 @@
       display: none;
     }
 
+    tr:not(tbody:last-child *:last-child) {
+      border-bottom: 1px solid $color-black-50;
+    }
+
     // Gin sets all th-elements to small font size for some reason with very inaccurate selector so we need
     // to change the font-size here. Also CKEditor sets background color for the th-element which is not the
     // right for our design so changing it here.
     th {
-      background-color: $color-black-10;
+      background: $color-black-10;
       font-size: remify(18px);
+      font-weight: $font-weight-bold;
+
+      strong {
+        font-weight: $font-weight-bold;
+      }
     }
 
     // CKEditor adds paddings and borders for td- and th-elements so changing them to correct here.
+    // The padding is set to important because of paragraphs (.paragraphs-tabs-wrapper .field-multiple-table .draggable td)
     td,
     th {
       border: 0;
-      padding: $spacing-three-quarters $spacing-and-half;
+      color: $color-black;
+      min-width: 0;
+      padding: $spacing-three-quarters $spacing-and-half !important;
+      text-align: left;
+    }
+
+    // Zebra stripes for every other row.
+    &:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+      background: $color-black-5;
     }
   }
 }
