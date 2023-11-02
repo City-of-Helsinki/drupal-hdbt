@@ -152,6 +152,12 @@
   width: $size;
 }
 
+// CKEditor5 duplicates current anchor link when navigating with arrow keys.
+// This hides those anchor links, as they do not have href attribute set.
+a:not([href]) {
+  display: none;
+}
+
 a.hds-button.hds-button--supplementary::before {
   order: unset;
 }
