@@ -24,7 +24,7 @@ jobs:
         run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
       - name: Clone platform
-        run: git clone --branch=4.x https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
       - name: Build project
         run: |
