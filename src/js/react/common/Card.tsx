@@ -5,11 +5,11 @@ import type TagType from '@/types/TagType';
 import Tags from './Tags';
 import Icon from './Icon';
 
-const Metarow = ({ icon, label, content} : MetadataType) => (
+const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
   <div className="card__meta">
     <span className="card__meta__icon"><Icon icon={icon} /></span>
     <span className="card__meta__label">{label}: </span>
-    <span className="card__meta__content">{content}</span>
+    <span className="card__meta__content" {...langAttribute}>{content}</span>
   </div>
 );
 
@@ -34,6 +34,7 @@ export type CardItemProps = {
   dateRangeLabel?: string;
   theme?: string;
   themeLabel?: string;
+  langAttribute?: any;
   language?: string;
   languageLabel?: string;
   time?: string;
@@ -61,6 +62,7 @@ function CardItem({
   themeLabel,
   daterange,
   dateRangeLabel,
+  langAttribute,
   language,
   languageLabel,
   time,
@@ -78,7 +80,7 @@ function CardItem({
       }
 
       <div className="card__text">
-        <HeadingTag className="card__title">
+        <HeadingTag className="card__title" {...langAttribute}>
           <a href={cardUrl} className="card__link" {...cardUrlExternal && { 'data-is-external': 'true' }} rel="bookmark">
             <span>{ cardTitle }</span>
             {cardUrlExternal &&
@@ -101,7 +103,7 @@ function CardItem({
             { cardDescriptionHtml ?
               parse(cardDescription)
               :
-              <p>{ cardDescription }</p>
+              <p {...langAttribute}>{ cardDescription }</p>
             }
           </div>
         }
@@ -124,7 +126,7 @@ function CardItem({
             <Metarow icon="clock" label={dateLabel || Drupal.t('Date')} content={date} />
           }
           {daterange &&
-            <Metarow icon="calendar" label={dateRangeLabel|| Drupal.t('Estimated schedule')} content={daterange} />
+            <Metarow icon="calendar" label={dateRangeLabel|| Drupal.t('Estimated schedule')} content={daterange} langAttribute={langAttribute} />
           }
           {theme &&
             <Metarow icon="locate" label={themeLabel || Drupal.t('Theme')} content={theme} />
@@ -139,7 +141,7 @@ function CardItem({
 
         {cardTags &&
           <div className="card__tags">
-            <Tags tags={cardTags} />
+            <Tags tags={cardTags} langAttribute={langAttribute} />
           </div>
         }
       </div>

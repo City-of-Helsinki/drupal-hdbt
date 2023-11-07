@@ -18,7 +18,8 @@ const getResultCard = ({
   field_organization_name,
   field_recruitment_id,
   unpublish_on,
-  url
+  url,
+  _language
 }: Job) => {
   const customAtts: HTMLAttributes<HTMLHeadingElement | HTMLDivElement> = {};
   if (field_copied?.length && field_original_language?.length) {
@@ -64,6 +65,7 @@ const getResultCard = ({
   const employmentTags = Array.isArray(field_employment) ? field_employment : [];
   const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
   const tags: any = employmentTags.concat(typeTags).map(tag => ({ tag }));
+  const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
 
   return (
     <CardItem
@@ -76,6 +78,7 @@ const getResultCard = ({
       dateLabel={Drupal.t('Application period ends')}
       daterange={field_job_duration?.[0].toString()}
       dateRangeLabel={Drupal.t('Employment contract')}
+      langAttribute={langAttribute}
     />
   );
 };
