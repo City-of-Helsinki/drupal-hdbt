@@ -141,7 +141,6 @@
 
               {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
                 {% block component_content %}
-                  TODO: Lukuvuosi asetus haettuna tähän: Lukuvuosi 2023-2024
                   {{ content.field_ontologyword_details }}
                 {% endblock component_content %}
               {% endembed %}
@@ -150,7 +149,7 @@
 
             {% include '@hdbt/component/accordion.twig' ignore missing with {
               heading_level: 'h2',
-              heading: 'Kieliohjelma ja painotettu opetus'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+              heading: 'Language program and weighted curriculum education'|t({}, {'context': 'TPR Ontologyword details schools'}),
               content: ontologyword_details_accordion_content,
             } %}
 
