@@ -21,18 +21,12 @@ const getResultCard = ({
   url,
   _language
 }: Job) => {
-  const customAtts: HTMLAttributes<HTMLHeadingElement | HTMLDivElement> = {};
-  if (field_copied?.length && field_original_language?.length) {
-    const [ lang ] = field_original_language;
-    customAtts.lang = lang;
-  }
-
   const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
 
   const heading = title[0];
   const cardTitle = (
     <>
-      <span {...customAtts} {...langAttribute}>{heading}</span>
+      <span {...langAttribute}>{heading}</span>
       {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
     </>
   );
