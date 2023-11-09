@@ -80,7 +80,7 @@ function CardItem({
       }
 
       <div className="card__text">
-        <HeadingTag className="card__title" {...langAttribute}>
+        <HeadingTag className="card__title">
           <a href={cardUrl} className="card__link" {...cardUrlExternal && { 'data-is-external': 'true' }} rel="bookmark">
             <span>{ cardTitle }</span>
             {cardUrlExternal &&

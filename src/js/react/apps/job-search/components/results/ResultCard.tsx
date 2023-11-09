@@ -27,10 +27,12 @@ const getResultCard = ({
     customAtts.lang = lang;
   }
 
+  const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
+
   const heading = title[0];
   const cardTitle = (
     <>
-      <span {...customAtts}>{heading}</span>
+      <span {...customAtts} {...langAttribute}>{heading}</span>
       {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
     </>
   );
@@ -65,7 +67,6 @@ const getResultCard = ({
   const employmentTags = Array.isArray(field_employment) ? field_employment : [];
   const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
   const tags: any = employmentTags.concat(typeTags).map(tag => ({ tag }));
-  const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
 
   return (
     <CardItem
