@@ -9,8 +9,6 @@ import { urlAtom } from '../../store';
 
 const getResultCard = ({
   title,
-  field_copied,
-  field_original_language,
   field_employment,
   field_employment_type,
   field_job_duration,
