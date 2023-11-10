@@ -731,3 +731,99 @@ msgstr "Ytterligare uppgifter"
 msgctxt "Table of contents, no javascript"
 msgid "Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
 msgstr "Innehållsförteckning använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
+
+msgctxt "HELfi Rekry job search keyword placeholder"
+msgid "Eg. title, location, department"
+msgstr "T.ex. titel, verksamhetsställe, enhet"
+
+msgctxt "Job search results statline"
+msgid "open positions (@listings job listings)"
+msgstr "lediga jobb (@listings annons)"
+
+msgctxt "HELfi Rekry job search"
+msgid "Sort by"
+msgstr "Ordning"
+
+msgctxt "Job search clear button aria label"
+msgid "Clear selection"
+msgstr "Rensa alla"
+
+msgctxt "Job search remove item aria label"
+msgid "Remove item"
+msgstr "Töm valda"
+
+msgctxt "Task areas filter label"
+msgid "Task area"
+msgstr "Bransch"
+
+msgctxt "Task areas filter placeholder"
+msgid "All fields"
+msgstr "Alla yrkesbranscher"
+
+msgctxt "Employment filter label"
+msgid "Type of employment relationship"
+msgstr "Typ av anställning"
+
+msgctxt "Employment filter placeholder"
+msgid "All employment relationship options"
+msgstr "Alla typer av anställningsförhållande"
+
+msgctxt "Language filter label"
+msgid "Language"
+msgstr "Annonsens språk"
+
+msgctxt "Language placeholder"
+msgid "All languages"
+msgstr "Alla språk"
+
+msgctxt "Organisation filter label"
+msgid "Organisation"
+msgstr "Organisaatio"
+
+msgctxt "Organisation placeholder"
+msgid "All organisations"
+msgstr "Kaikki organisaatiot"
+
+msgctxt "Location filter label"
+msgid "Location of the workplace"
+msgstr "Työpaikan sijainti"
+
+msgctxt "Location placeholder"
+msgid "All areas"
+msgstr "Kaikki alueet"
+
+msgctxt "Checkbox filters heading"
+msgid "Filters"
+msgstr "Visa endast"
+
+msgctxt "Job search"
+msgid "Open-ended vacancies"
+msgstr "Platser som kan sökas kontinuerligt"
+
+msgctxt "Job search"
+msgid "Practical training"
+msgstr "Praktik"
+
+msgctxt "Job search"
+msgid "Summer jobs"
+msgstr "Sommarjobb och sommarvikariat"
+
+msgctxt "Job search"
+msgid "Summer jobs for young people"
+msgstr "Sommarjobb för unga"
+
+msgctxt "Job search"
+msgid "Newest first"
+msgstr "Nyaste först"
+
+msgctxt "Job search"
+msgid "Closing date"
+msgstr "Kort tid kvar före stängning"
+
+msgctxt "Job search clear selections"
+msgid "Clear selections"
+msgstr "Töm urvalet"
+
+msgctxt "Job search no results message"
+msgid "Jobs meeting search criteria was not found. Try different search criteria."
+msgstr "Lediga jobb som uppfyller kriterierna finns inte. Prova andra kriterierna för sök."
