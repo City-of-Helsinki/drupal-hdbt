@@ -1,5 +1,10 @@
 .accordion__wrapper {
+  --js-accordion-open-time: 200ms;
   border-bottom: 1px solid $color-black-20;
+
+  @media (prefers-reduced-motion) {
+    --js-accordion-open-time: 0s!important;
+  }
 }
 
 .accordion-item__header {
@@ -135,10 +140,32 @@
 
 .accordion-item__content {
   border: none;
-  padding: $spacing $spacing 0 $spacing;
+  display: grid!important; // Has to be important to battle the default hiding that blocks animation
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--js-accordion-open-time) linear;
 
-  @include breakpoint($breakpoint-l) {
-    padding: $spacing-and-half $spacing-and-half 0 $spacing-and-half;
+  .accordion-item__content__animator {
+    overflow: hidden;
+  }
+
+  .accordion-item__content__inner {
+    padding-inline: $spacing;
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-inline: $spacing-and-half;
+      padding-top: $spacing-and-half;
+    }
+  }
+
+  &.is-hidden {
+    grid-template-rows: 0fr; // This allows animation of height
+
+    .accordion-item__content__animator {
+      // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+      transition: visibility 0s linear var(--js-accordion-open-time);  // Delay visibility hidden right after animation
+      visibility: hidden;
+    }
   }
 }
 

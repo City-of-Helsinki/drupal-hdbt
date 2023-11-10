@@ -18,6 +18,7 @@ export default class AccordionItem {
     this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
     this.isOpen = this.localState.loadItemState(this.id);
+    this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
     this.setHidden();
     this.addEventListeners();
     // Open accordion element by anchor link.
@@ -27,6 +28,7 @@ export default class AccordionItem {
       this.handleLinkAnchor();
       // Update element aria-expanded.
       this.setAriaOpen();
+      this.element.style = null; // allow animating accordions after pageload
     }, 100);
   }
 
