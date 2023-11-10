@@ -107,7 +107,6 @@
   align-items: center;
   display: flex;
   inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
-  margin-block-end: $spacing;
   margin-block-start: $spacing-half;
   margin-inline-start: auto;
   padding: $spacing-half;
@@ -144,6 +143,8 @@
 }
 
 .accordion-item__content__inner {
+  padding-bottom: $spacing;
+
   > *:first-child {
     margin-top: 0;
   }
