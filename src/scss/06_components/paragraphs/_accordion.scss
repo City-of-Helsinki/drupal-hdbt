@@ -48,7 +48,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     height: 30px;
     inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
@@ -63,12 +63,12 @@
   }
 
   &::after {
-    @include rotating-icon-transition();
+    @include rotating-icon-transition;
     background-image: icon_url('angle-down');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    content: "";
+    content: '';
     height: 30px;
     inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
@@ -195,6 +195,7 @@
 .component--accordion-bg-grey + .component--accordion-bg-grey.component--no-header {
   margin-top: 0;
 }
+
 // White accordions following each other should have only a single border between them if the later one has no header.
 .component--accordion-bg-white + .component--accordion-bg-white.component--no-header .accordion-item__header {
   border-top: 0 none;
@@ -204,6 +205,7 @@
 .accordion--white + .accordion--white.accordion--no-header,
 .accordion--grey + .accordion--grey.accordion--no-header {
   margin-top: 0;
+
   > .container {
     padding-top: 0;
   }
