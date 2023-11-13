@@ -23,14 +23,16 @@
     </button>
   </{{ heading_level|default('h2')}}>
   <div class="accordion-item__content helfi-accordion__content" id="{{ controlled_content_id }}">
-    <div class="accordion-item__content__inner helfi-accordion__content__inner">
+    <div class="accordion-item__content__animator">
+      <div class="accordion-item__content__inner helfi-accordion__content__inner">
 
-      {{ content|default('Missing content'|t) }}
+        {{ content|default('Missing content'|t) }}
 
-      <button type="button" class="accordion-item__button accordion-item__button--close" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ close_button_labelled_by_id }}">
-        <span class="is-hidden" id="{{ close_button_labelled_by_id }}"><span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}</span>{{ heading|default('Missing heading'|t) }}</span>
-        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close'|t({}, {'context': 'The text for close accordion visibility button'}) }}</span>
-      </button>
+        <button type="button" class="accordion-item__button accordion-item__button--close" aria-controls="{{ controlled_content_id }}" aria-labelledby="{{ close_button_labelled_by_id }}">
+          <span class="is-hidden" id="{{ close_button_labelled_by_id }}"><span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}</span>{{ heading|default('Missing heading'|t) }}</span>
+          <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Close'|t({}, {'context': 'The text for close accordion visibility button'}) }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
