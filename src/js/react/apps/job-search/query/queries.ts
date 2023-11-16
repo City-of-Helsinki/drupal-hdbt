@@ -45,11 +45,6 @@ export const PROMOTED_IDS = {
           term: {
             [IndexFields.PROMOTED]: true,
           }
-        },
-        {
-          term: {
-            [IndexFields.COPIED]: false
-          }
         }
       ]
     }
@@ -91,14 +86,6 @@ export const AGGREGATIONS = {
   query: {
     bool: {
       filter: [nodeFilter],
-      // Legacy: filter out "forced" translations
-      must: [
-        {
-          term: {
-            [IndexFields.COPIED]: false,
-          },
-        },
-      ],
     },
   },
 };
@@ -135,11 +122,6 @@ export const LANGUAGE_OPTIONS = {
   query: {
     bool: {
       filter: [
-        {
-          term: {
-            field_copied: false,
-          },
-        },
         nodeFilter,
       ],
     },

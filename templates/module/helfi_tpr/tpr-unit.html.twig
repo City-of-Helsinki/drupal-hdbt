@@ -6,7 +6,6 @@
  * @see hdbt_admin_tools_preprocess_tpr_unit()
  */
 #}
-
 {% set has_prices = content.price_info|render ? true : false %}
 {% set has_contacts = content.contacts|render ? true : false %}
 {% set has_ontologyword_details = content.field_ontologyword_details|render ? true : false %}
@@ -98,84 +97,82 @@
             component_content_class: 'accordion',
           }
         %}
-        {% block component_content %}
+          {% block component_content %}
+            {% if has_prices %}
+              {% set accordion_content %}
 
-          {% if has_prices %}
-            {% set accordion_content %}
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.price_info }}
+                  {% endblock component_content %}
+                {% endembed %}
 
-              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
-                {% block component_content %}
-                  {{ content.price_info }}
-                {% endblock component_content %}
-              {% endembed %}
+              {% endset %}
 
-            {% endset %}
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Charges'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+                content: accordion_content,
+              } %}
+            {% endif %}
 
-            {% include '@hdbt/component/accordion.twig' ignore missing with {
-              heading_level: 'h2',
-              heading: 'Charges'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
-              content: accordion_content,
-            } %}
-          {% endif %}
+            {% if has_contacts %}
+              {% set contacts_accordion_content %}
 
-          {% if has_contacts %}
-            {% set contacts_accordion_content %}
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.contacts }}
+                  {% endblock component_content %}
+                {% endembed %}
 
-              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
-                {% block component_content %}
-                  {{ content.contacts }}
-                {% endblock component_content %}
-              {% endembed %}
+              {% endset %}
 
-            {% endset %}
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Other contact information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}) ,
+                content: contacts_accordion_content,
+              } %}
+            {% endif %}
 
-            {% include '@hdbt/component/accordion.twig' ignore missing with {
-              heading_level: 'h2',
-              heading: 'Other contact information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}) ,
-              content: contacts_accordion_content,
-            } %}
-          {% endif %}
+            {% if has_ontologyword_details %}
+              {% set ontologyword_details_accordion_content %}
 
-          {% if has_ontologyword_details %}
-            {% set ontologyword_details_accordion_content %}
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.field_ontologyword_details }}
+                  {% endblock component_content %}
+                {% endembed %}
 
-              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
-                {% block component_content %}
-                  {{ content.field_ontologyword_details }}
-                {% endblock component_content %}
-              {% endembed %}
+              {% endset %}
 
-            {% endset %}
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Language program and weighted curriculum education'|t({}, {'context': 'TPR Ontologyword details schools'}),
+                content: ontologyword_details_accordion_content,
+              } %}
 
-            {% include '@hdbt/component/accordion.twig' ignore missing with {
-              heading_level: 'h2',
-              heading: 'Language program and weighted curriculum education'|t({}, {'context': 'TPR Ontologyword details schools'}),
-              content: ontologyword_details_accordion_content,
-            } %}
+            {% endif %}
 
-          {% endif %}
+            {% if has_other_info %}
+              {% set other_info_accordion_content %}
 
-          {% if has_other_info %}
-            {% set other_info_accordion_content %}
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.highlights }}
+                    {{ content.topical }}
+                    {{ content.other_info }}
+                    {{ content.links }}
+                  {% endblock component_content %}
+                {% endembed %}
 
-              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
-                {% block component_content %}
-                  {{ content.highlights }}
-                  {{ content.topical }}
-                  {{ content.other_info }}
-                  {{ content.links }}
-                {% endblock component_content %}
-              {% endembed %}
+              {% endset %}
 
-            {% endset %}
-          {% endif %}
-
-          {% include '@hdbt/component/accordion.twig' ignore missing with {
-            heading_level: 'h2',
-            heading: 'Further information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
-            content: other_info_accordion_content,
-          } %}
-
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Further information'|t({}, {'context': 'TPR Unit tpr data accordion heading'}),
+                content: other_info_accordion_content,
+              } %}
+            {% endif %}
           {% endblock component_content %}
         {% endembed %}
       {% endif %}

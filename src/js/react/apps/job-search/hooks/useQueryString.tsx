@@ -14,13 +14,6 @@ const useQueryString = (urlParams: URLParams): string => {
   const must: any[] = [{
     // Legacy sanity check, make sure forced translations aren't included
     bool: {
-      must: [
-        {
-          term: {
-            [IndexFields.COPIED]: false,
-          },
-        },
-      ],
       must_not: {
         term: {
           [IndexFields.PROMOTED]: true

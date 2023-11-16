@@ -1,5 +1,10 @@
 .accordion__wrapper {
+  --js-accordion-open-time: 200ms;
   border-bottom: 1px solid $color-black-20;
+
+  @media (prefers-reduced-motion) {
+    --js-accordion-open-time: 0s!important;
+  }
 }
 
 .accordion-item__header {
@@ -27,30 +32,28 @@
   }
 
   .hel-icon {
-    --icon-size: 1.5rem;
+    --icon-size: #{remify(24px)};
 
     @include breakpoint($breakpoint-l) {
-      --icon-size: 3rem;
+      --icon-size: #{remify(48px)};
     }
   }
 }
 
 .accordion-item__button--toggle {
-  @include font('h4');
+  @include font('h3');
   border: none;
   color: $color-black;
-  padding-block: $spacing;
-  padding-inline-end: 60px;
+  padding: $spacing ($spacing-double + 50px) $spacing $spacing;
   position: relative;
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
-    padding-block: $spacing-and-half;
-    padding-inline-end: 60px;
+    padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
   }
 
   &::before {
-    content: "";
+    content: '';
     height: 30px;
     inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
@@ -65,12 +68,12 @@
   }
 
   &::after {
-    @include rotating-icon-transition();
+    @include rotating-icon-transition;
     background-image: icon_url('angle-down');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    content: "";
+    content: '';
     height: 30px;
     inset-inline-end: 4px; // Move the icon slightly to the left
     position: absolute;
@@ -81,6 +84,15 @@
     @include breakpoint($breakpoint-l) {
       height: 32px;
       width: 32px;
+    }
+  }
+
+  &::before,
+  &::after {
+    right: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      right: $spacing-and-half;
     }
   }
 
@@ -98,11 +110,11 @@
 .accordion-item__button--close {
   @include font('button');
   align-items: center;
-  bottom: $spacing;
   display: flex;
   inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
+  margin-block-start: $spacing-half;
+  margin-inline-start: auto;
   padding: $spacing-half;
-  position: absolute;
 
   &:focus {
     outline: 3px solid $color-black;
@@ -128,11 +140,37 @@
 
 .accordion-item__content {
   border: none;
+  display: grid!important; // Has to be important to battle the default hiding that blocks animation
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--js-accordion-open-time) linear;
+
+  .accordion-item__content__animator {
+    overflow: hidden;
+  }
+
+  .accordion-item__content__inner {
+    padding-inline: $spacing;
+    padding-top: $spacing;
+
+    @include breakpoint($breakpoint-l) {
+      padding-inline: $spacing-and-half;
+      padding-top: $spacing-and-half;
+    }
+  }
+
+  &.is-hidden {
+    grid-template-rows: 0fr; // This allows animation of height
+
+    .accordion-item__content__animator {
+      // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+      transition: visibility 0s linear var(--js-accordion-open-time);  // Delay visibility hidden right after animation
+      visibility: hidden;
+    }
+  }
 }
 
 .accordion-item__content__inner {
-  padding: 0 0 $spacing-quadruple;
-  position: relative;
+  padding-bottom: $spacing;
 
   > *:first-child {
     margin-top: 0;
@@ -166,36 +204,12 @@
     border-color: $color-white;
   }
 
-  .accordion-item__button--toggle {
-    padding: $spacing ($spacing-double + 50px) $spacing $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      padding: $spacing-and-half ($spacing-double + 50px) $spacing-and-half $spacing-and-half;
-    }
-
-    &::before,
-    &::after {
-      right: $spacing;
-
-      @include breakpoint($breakpoint-l) {
-        right: $spacing-and-half;
-      }
-    }
-  }
-
   .accordion__wrapper {
     border-color: $color-black-5;
   }
 
   .accordion-item__content {
     background-color: $color-black-5;
-    padding-left: $spacing;
-    padding-right: $spacing;
-
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-and-half;
-      padding-right: $spacing-and-half;
-    }
   }
 
   // Patch Siteimprove false positive color contrast issue to reduce noise
@@ -209,6 +223,7 @@
 .component--accordion-bg-grey + .component--accordion-bg-grey.component--no-header {
   margin-top: 0;
 }
+
 // White accordions following each other should have only a single border between them if the later one has no header.
 .component--accordion-bg-white + .component--accordion-bg-white.component--no-header .accordion-item__header {
   border-top: 0 none;
@@ -218,6 +233,7 @@
 .accordion--white + .accordion--white.accordion--no-header,
 .accordion--grey + .accordion--grey.accordion--no-header {
   margin-top: 0;
+
   > .container {
     padding-top: 0;
   }

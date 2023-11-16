@@ -1,6 +1,6 @@
 // Base font family and size.
 // stylelint-disable-next-line value-keyword-case
-@use "sass:math";
+@use 'sass:math';
 
 $base-font-family: HelsinkiGrotesk, Arial, sans-serif;
 $base-font-size: 16px; // We have to assume that this is the default size in browsers.
@@ -20,186 +20,186 @@ $config: deep-map-merge(
       h1: (
         font-size: remify(40px),
         font-weight: $font-weight-regular,
-        line-height: math.div(40, 40),
+        line-height: math.div(40, 40), // 1
         breakpoint_l: (
           font-size: remify(64px),
           font-weight: $font-weight-regular,
-          line-height: math.div(64, 64),
+          line-height: math.div(64, 64), // 1
         )
       ),
       h2: (
         font-size: remify(32px),
         font-weight: $font-weight-regular,
-        line-height: math.div(32, 32),
+        line-height: math.div(32, 32), // 1
         breakpoint_l: (
           font-size: remify(48px),
           font-weight: $font-weight-regular,
-          line-height: math.div(48, 48),
+          line-height: math.div(48, 48), // 1
         )
       ),
       h3: (
         font-size: remify(24px),
         font-weight: $font-weight-medium,
-        line-height: math.div(32, 24),
+        line-height: math.div(32, 24), // 1.333..
         breakpoint_l: (
           font-size: remify(32px),
           font-weight: $font-weight-regular,
-          line-height: math.div(32, 32),
+          line-height: math.div(32, 32), // 1
         )
       ),
       h4: (
         font-size: remify(20px),
         font-weight: $font-weight-medium,
-        line-height: 26 * 0.05,
+        line-height: math.div(26, 20), // 1.3
         breakpoint_l: (
           font-size: remify(24px),
           font-weight: $font-weight-medium,
-          line-height: math.div(28, 24),
+          line-height: math.div(28, 24), // 1.1666..
         )
       ),
       h5: (
         font-size: remify(18px),
         font-weight: $font-weight-medium,
-        line-height: math.div(22, 18),
+        line-height: math.div(22, 18), // 1.222..
         breakpoint_l: (
           font-size: remify(20px),
           font-weight: $font-weight-medium,
-          line-height: 30 * 0.05,
+          line-height: math.div(30, 20), // 1.5
         )
       ),
       h6: (
         font-size: remify(16px),
         font-weight: $font-weight-bold,
-        line-height: math.div(24, 16),
+        line-height: math.div(24, 16), // 1.5
         breakpoint_l: (
           font-size: remify(18px),
           font-weight: $font-weight-bold,
-          line-height: math.div(28, 18),
+          line-height: math.div(28, 18), // 1.555..
         )
       ),
       lead: (
         font-size: remify(20px),
         font-weight: $font-weight-regular,
-        line-height: 30 * 0.05,
+        line-height: math.div(30, 20), // 1.5
         breakpoint_l: (
           font-size: remify(22px),
           font-weight: $font-weight-regular,
-          line-height: math.div(33, 22),
+          line-height: math.div(33, 22), // 1.5
         )
       ),
       body: (
         font-size: remify(18px),
         font-weight: $font-weight-regular,
-        line-height: math.div(28, 18)
+        line-height: math.div(28, 18) // 1.555..
       ),
       small: (
         font-size: remify(16px),
         font-weight: $font-weight-regular,
-        line-height: math.div(24, 16)
+        line-height: math.div(24, 16) // 1.5
       ),
       button: (
         font-size: remify(16px),
         font-weight: $font-weight-medium,
-        line-height: math.div(24, 16)
+        line-height: math.div(24, 16) // 1.5
       ),
       special: (
         card_title: (
           font-size: remify(26px),
           font-weight: $font-weight-medium,
-          line-height: math.div(32, 26),
+          line-height: math.div(32, 26), // 1.2307..
           breakpoint_l: (
             font-size: remify(34px),
             font-weight: $font-weight-medium,
-            line-height: math.div(42, 34),
+            line-height: math.div(42, 34), // 1.2352..
           )
         ),
         helper_text: (
           font-size: remify(14px),
           font-weight: $font-weight-medium,
-          line-height: math.div(21, 14),
+          line-height: math.div(21, 14), // 1.5
         ),
         large_link: (
           font-size: remify(20px),
           font-weight: $font-weight-medium,
-          line-height: 30 * 0.05,
+          line-height: math.div(30, 20), // 1.5
         ),
         quote: (
           font-size: remify(24px),
           font-weight: $font-weight-medium,
-          line-height: math.div(36, 24),
+          line-height: math.div(36, 24), // 1.5
           breakpoint_l: (
             font-size: remify(32px),
             font-weight: $font-weight-regular,
-            line-height: math.div(48, 32),
+            line-height: math.div(48, 32), // 1.5
           )
         ),
         site_name: (
           font-size: remify(24px),
           font-weight: $font-weight-regular,
-          line-height: math.div(28, 24),
+          line-height: math.div(28, 24), // 1.666..
         ),
         breadcrumb: (
           parent: (
             font-size: remify(18px),
             font-weight: $font-weight-regular,
-            line-height: math.div(28, 18),
+            line-height: math.div(28, 18), // 1.555..
             breakpoint_m: (
               font-size: remify(14px),
               font-weight: $font-weight-regular,
-              line-height: math.div(21, 14),
+              line-height: math.div(21, 14), // 1.5
             )
           ),
           current: (
             font-size: remify(14px),
             font-weight: $font-weight-bold,
-            line-height: math.div(21, 14),
+            line-height: math.div(21, 14), // 1.5
           )
         ),
         navigation: (
           city_name: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
-            line-height: math.div(24, 16),
+            line-height: math.div(24, 16), // 1.5
             breakpoint_m: (
               font-size: remify(20px),
               font-weight: $font-weight-regular,
-              line-height: 30 * 0.05,
+              line-height: math.div(30, 20), // 1.5
             )
           ),
           icon_label: (
             font-size: remify(14px),
             font-weight: $font-weight-regular,
-            line-height: math.div(14, 14),
+            line-height: math.div(14, 14), // 1
           ),
           mobile_header: (
             font-size: remify(24px),
             font-weight: $font-weight-regular,
-            line-height: math.div(32, 24),
+            line-height: math.div(32, 24), // 1.333..
           ),
           main_nav: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
-            line-height: math.div(24, 16),
+            line-height: math.div(24, 16), // 1.5
           ),
           sub_nav: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
-            line-height: math.div(20, 16),
+            line-height: math.div(20, 16), // 1.25
           ),
           header_top: (
             font-size: remify(14px),
             font-weight: $font-weight-regular,
-            line-height: math.div(20, 14),
+            line-height: math.div(20, 14), // 1.4285..
           ),
           mobile_nav: (
             font-size: remify(20px),
             font-weight: $font-weight-regular,
-            line-height: 30 * 0.05,
+            line-height: math.div(30, 20), // 1.5
           ),
           mobile_subnav: (
             font-size: remify(16px),
             font-weight: $font-weight-regular,
-            line-height: math.div(24, 16),
+            line-height: math.div(24, 16), // 1.5
           ),
         )
       )

@@ -1600,9 +1600,12 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
   }
 
+  /** @var \Drupal\Core\Extension\ExtensionPathResolver $extensionPathResolver */
+  $extensionPathResolver = \Drupal::service('extension.path.resolver');
+
   // Render image placeholder for use in frontend.
   $variables['#attached']['drupalSettings']['helfi_events']['imagePlaceholder'] = twig_render_template(
-    drupal_get_path('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
+    $extensionPathResolver->getPath('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
     [
       'image_placeholder' => 'calendar-clock',
       'theme_hook_original' => '',
@@ -1704,7 +1707,6 @@ function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
   if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
     $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
   }
-
 }
 
 /**
