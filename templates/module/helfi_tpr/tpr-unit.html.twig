@@ -8,6 +8,7 @@
 #}
 {% set has_prices = content.price_info|render ? true : false %}
 {% set has_contacts = content.contacts|render ? true : false %}
+{% set has_ontologyword_details = content.field_ontologyword_details|render ? true : false %}
 {% set has_other_info = content.highlights|render or content.topical|render or content.other_info|render or content.links|render ?: false %}
 
 {% set supports_swedish %}
@@ -132,7 +133,26 @@
                 content: contacts_accordion_content,
               } %}
             {% endif %}
- 
+
+            {% if has_ontologyword_details %}
+              {% set ontologyword_details_accordion_content %}
+
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.field_ontologyword_details }}
+                  {% endblock component_content %}
+                {% endembed %}
+
+              {% endset %}
+
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Language program and weighted curriculum education'|t({}, {'context': 'TPR Ontologyword details schools'}),
+                content: ontologyword_details_accordion_content,
+              } %}
+
+            {% endif %}
+
             {% if has_other_info %}
               {% set other_info_accordion_content %}
 
