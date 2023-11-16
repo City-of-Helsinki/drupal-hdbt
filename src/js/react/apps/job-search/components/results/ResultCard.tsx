@@ -9,8 +9,6 @@ import { urlAtom } from '../../store';
 
 const getResultCard = ({
   title,
-  field_copied,
-  field_original_language,
   field_employment,
   field_employment_type,
   field_job_duration,
@@ -18,18 +16,15 @@ const getResultCard = ({
   field_organization_name,
   field_recruitment_id,
   unpublish_on,
-  url
+  url,
+  _language
 }: Job) => {
-  const customAtts: HTMLAttributes<HTMLHeadingElement | HTMLDivElement> = {};
-  if (field_copied?.length && field_original_language?.length) {
-    const [ lang ] = field_original_language;
-    customAtts.lang = lang;
-  }
+  const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
 
   const heading = title[0];
   const cardTitle = (
     <>
-      <span {...customAtts}>{heading}</span>
+      <span {...langAttribute}>{heading}</span>
       {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
     </>
   );
@@ -76,6 +71,7 @@ const getResultCard = ({
       dateLabel={Drupal.t('Application period ends')}
       daterange={field_job_duration?.[0].toString()}
       dateRangeLabel={Drupal.t('Employment contract')}
+      langAttribute={langAttribute}
     />
   );
 };

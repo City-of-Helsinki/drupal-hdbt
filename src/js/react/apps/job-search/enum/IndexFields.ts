@@ -1,6 +1,5 @@
 const IndexFields = {
   LANGUAGE: '_language',
-  COPIED: 'field_copied',
   EMPLOYMENT: 'field_employment',
   EMPLOYMENT_ID: 'employment_id',
   EMPLOYMENT_TYPE: 'field_employment_type',
