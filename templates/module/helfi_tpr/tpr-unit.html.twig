@@ -9,6 +9,7 @@
 {% set has_prices = content.price_info|render ? true : false %}
 {% set has_contacts = content.contacts|render ? true : false %}
 {% set has_ontologyword_details = content.field_ontologyword_details|render ? true : false %}
+{% set has_subgroup = content.subgroup|render ? true : false %}
 {% set has_other_info = content.highlights|render or content.topical|render or content.other_info|render or content.links|render ?: false %}
 
 {% set supports_swedish %}
@@ -86,7 +87,7 @@
 
       {{ content.field_content }}
 
-      {% if has_prices or has_contacts or has_other_info %}
+      {% if has_prices or has_contacts or has_other_info or has_subgroup %}
         {% embed "@hdbt/misc/component.twig" with
           {
             component_classes: [
@@ -134,16 +135,29 @@
               } %}
             {% endif %}
 
+            {% if has_subgroup %}
+              {% set subgroup_accordion_content %}
+
+                {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                  {% block component_content %}
+                    {{ content.subgroup }}
+                  {% endblock component_content %}
+                {% endembed %}
+
+              {% endset %}
+              {% include '@hdbt/component/accordion.twig' ignore missing with {
+                heading_level: 'h2',
+                heading: 'Contact details of daycare centre groups'|t({}, {'context': 'TPR Unit tpr data accordion heading'}) ,
+                content: subgroup_accordion_content,
+              } %}
+            {% endif %}
+
             {% if has_ontologyword_details %}
               {% set ontologyword_details_accordion_content %}
 
                 {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
                   {% block component_content %}
                     {{ content.field_ontologyword_details }}
-                  {% endblock component_content %}
-                {% endembed %}
-
-              {% endset %}
 
               {% include '@hdbt/component/accordion.twig' ignore missing with {
                 heading_level: 'h2',
@@ -152,7 +166,7 @@
               } %}
 
             {% endif %}
-
+ 
             {% if has_other_info %}
               {% set other_info_accordion_content %}
 
