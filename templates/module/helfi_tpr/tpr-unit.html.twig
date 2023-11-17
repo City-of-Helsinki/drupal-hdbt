@@ -135,7 +135,7 @@
               } %}
             {% endif %}
 
-            {% if has_subgroup %}
+            {% if is_daycare_unit and has_subgroup %}
               {% set subgroup_accordion_content %}
 
                 {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
