@@ -2,7 +2,6 @@ type Job = {
   _language: string;
   field_employment: string[];
   field_employment_type: string[];
-  field_copied: boolean[];
   field_job_duration: string[];
   field_jobs: number[];
   field_organization: string[];

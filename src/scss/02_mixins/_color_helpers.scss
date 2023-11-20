@@ -1,0 +1,71 @@
+@mixin button-palettes($theme: 'primary') {
+  @if $theme == 'on-light-bg' {
+    $theme: 'secondary';
+  }
+
+  @if $theme != 'primary' and $theme != 'secondary' {
+    $theme: 'primary';
+  }
+
+  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary styles
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
+  .hds-button--primary {
+    --background-color: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-hover: transparent;
+    --background-color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: var(--color-black-20);
+    --border-color: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-disabled: var(--color-black-20);
+    --color: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --color-focus: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --color-disabled: var(--color-black);
+    --focus-outline-color: var(--hdbt-color-palette-button--#{$theme});
+    --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--#{$theme});
+  }
+
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'],
+  .hds-button--secondary {
+    --background-color: transparent;
+    --background-color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-focus: transparent;
+    --background-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-disabled: transparent;
+    --border-color: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-disabled: var(--hdbt-color-palette-button--#{$theme});
+    --color: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover-focus: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --focus-outline-color: var(--hdbt-color-palette-button--#{$theme});
+  }
+
+  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
+  .hds-button--supplementary {
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    --background-color-focus: transparent;
+    --background-color-hover-focus: transparent;
+    --background-color-disabled: transparent;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-disabled: transparent;
+    --color: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --color-disabled: var(--hdbt-color-palette-button--#{$theme});
+    --focus-outline-color: transparent;
+    --submit-input-focus-gutter-color: transparent;
+  }
+}

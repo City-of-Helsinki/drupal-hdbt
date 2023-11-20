@@ -68,7 +68,7 @@
 
             {% set item_title = item.title %}
             {% if not item.is_nolink %}
-              {% spaceless %}
+              {% apply spaceless %}
 
                 {% set icon_name = (item.url.getOption('attributes')).icon %}
                 {% if icon_name %}
@@ -89,7 +89,7 @@
 
                 {{ link(item_title, item.url, link_attributes) }}
 
-              {% endspaceless %}
+              {% endapply %}
             {% else %}
               <span{{ create_attribute({'class': 'cssnav__item__nolink'} ) }}>{{ item.title }}</span>
             {% endif %}

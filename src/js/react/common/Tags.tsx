@@ -3,9 +3,10 @@ import type TagType from '@/types/TagType';
 interface TagsProps {
   tags: Array<TagType>;
   isInteractive?: boolean;
+  langAttribute?: any;
 }
 
-export function Tags({ tags, isInteractive, }: TagsProps): JSX.Element {
+export function Tags({ tags, isInteractive, langAttribute }: TagsProps): JSX.Element {
   const typeClass = isInteractive ? 'content-tags__tags--interactive' : 'content-tags__tags--static';
 
   return (
@@ -16,7 +17,7 @@ export function Tags({ tags, isInteractive, }: TagsProps): JSX.Element {
       }>
       <ul className={`content-tags__tags ${typeClass}`}>
         {tags.map((item: TagType, key: number) => (
-          <li key={`{item.tag}-${key}`} className={`content-tags__tags__tag ${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}>
+          <li key={`{item.tag}-${key}`} className={`content-tags__tags__tag ${item.color ? `content-tags__tags__tag--${item.color}` : ''}`} {...langAttribute}>
             <span>{item.tag}</span>
           </li>
         ),

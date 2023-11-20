@@ -738,3 +738,99 @@ msgstr "Lisätiedot"
 msgctxt "Table of contents, no javascript"
 msgid "Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
 msgstr "Sisällysluettelo käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
+
+msgctxt "HELfi Rekry job search keyword placeholder"
+msgid "Eg. title, location, department"
+msgstr "Esim. nimike, toimipiste tai yksikkö"
+
+msgctxt "Job search results statline"
+msgid "open positions (@listings job listings)"
+msgstr "avointa työpaikkaa (@listings ilmoitusta)"
+
+msgctxt "HELfi Rekry job search"
+msgid "Sort by"
+msgstr "Järjestys"
+
+msgctxt "Job search clear button aria label"
+msgid "Clear selection"
+msgstr "Tyhjennä kaikki valinnat"
+
+msgctxt "Job search remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
+
+msgctxt "Task areas filter label"
+msgid "Task area"
+msgstr "Ammattiala"
+
+msgctxt "Task areas filter placeholder"
+msgid "All fields"
+msgstr "Kaikki ammattialat"
+
+msgctxt "Employment filter label"
+msgid "Type of employment relationship"
+msgstr "Palvelussuhteen tyyppi"
+
+msgctxt "Employment filter placeholder"
+msgid "All employment relationship options"
+msgstr "Kaikki palvelussuhteen tyypit"
+
+msgctxt "Language filter label"
+msgid "Language"
+msgstr "Ilmoituksen kieli"
+
+msgctxt "Language placeholder"
+msgid "All languages"
+msgstr "Kaikki kielet"
+
+msgctxt "Organisation filter label"
+msgid "Organisation"
+msgstr "Organisaatio"
+
+msgctxt "Organisation placeholder"
+msgid "All organisations"
+msgstr "Kaikki organisaatiot"
+
+msgctxt "Location filter label"
+msgid "Location of the workplace"
+msgstr "Työpaikan sijainti"
+
+msgctxt "Location placeholder"
+msgid "All areas"
+msgstr "Kaikki alueet"
+
+msgctxt "Checkbox filters heading"
+msgid "Filters"
+msgstr "Näytä vain"
+
+msgctxt "Job search"
+msgid "Open-ended vacancies"
+msgstr "Jatkuvan haun tehtävät"
+
+msgctxt "Job search"
+msgid "Practical training"
+msgstr "Harjoittelut"
+
+msgctxt "Job search"
+msgid "Summer jobs"
+msgstr "Kesätyöt ja kesäsijaisuudet"
+
+msgctxt "Job search"
+msgid "Summer jobs for young people"
+msgstr "Nuorten kesätyöt"
+
+msgctxt "Job search"
+msgid "Newest first"
+msgstr "Uusin ensin"
+
+msgctxt "Job search"
+msgid "Closing date"
+msgstr "Sulkeutuvat"
+
+msgctxt "Job search clear selections"
+msgid "Clear selections"
+msgstr "Tyhjennä valinnat"
+
+msgctxt "Job search no results message"
+msgid "Jobs meeting search criteria was not found. Try different search criteria."
+msgstr "Hakuehtoja vastaavia työpaikkoja ei löytynyt. Kokeile muita hakuehtoja."
