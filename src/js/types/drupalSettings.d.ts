@@ -40,4 +40,7 @@ declare namespace drupalSettings {
     elastic_proxy_url: string;
     feed_base_url: string;
   };
+  const helfi_health_station_search: {
+    cookie_privacy_url: string;
+  };
 }

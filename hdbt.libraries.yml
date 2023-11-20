@@ -196,3 +196,11 @@ search-helper:
   version: 1.x
   js:
     dist/js/search-helper.min.js: {}
+
+health-station-search:
+  version: 1.x
+  js:
+    dist/js/health-station-search.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

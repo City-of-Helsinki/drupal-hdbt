@@ -98,3 +98,52 @@ fieldset .react-search__checkbox:not(:first-of-type) {
   }
   margin-top: $spacing-double;
 }
+
+.hdbt-search--react {
+  .react-search__form-container {
+    border-bottom: none;
+    @include breakpoint($breakpoint-l) {
+      max-width: 870px;
+    }    
+  }
+
+  .hdbt-search__submit-button {
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {      
+      padding-left: 130px;
+      padding-right: 130px;
+      width: auto;
+    }
+  }
+
+  .react-search__result-top-area > * {
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {  
+      width: auto;
+    }
+  }
+  
+  .react-search__results-title {
+
+    margin-bottom: $spacing;
+    margin-top: 0;
+
+    @include breakpoint($breakpoint-l) {
+      align-items: center;
+      display: flex;
+      margin-bottom: 0;
+
+
+      > * {
+        display: inline-flex;
+      }
+    }
+  }
+
+  .react-search__fieldset {
+    margin-bottom: $spacing-and-half;
+    margin-top: $spacing-and-half;
+  }
+}

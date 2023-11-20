@@ -834,3 +834,42 @@ msgstr "Tyhjennä valinnat"
 msgctxt "Job search no results message"
 msgid "Jobs meeting search criteria was not found. Try different search criteria."
 msgstr "Hakuehtoja vastaavia työpaikkoja ei löytynyt. Kokeile muita hakuehtoja."
+
+msgctxt "Health station search: local search title"
+msgid "Find your health station"
+msgstr "Etsi oma terveysasema"
+
+msgctxt "Health station search: local search description"
+msgid "Your primary health station is the health station in your area of residence. You can find your health station by entering your home address in the search box."
+msgstr "Ensisijainen terveysasemasi on oman asuinalueesi terveysasema. Löydät oman terveysasemasi, kun kirjoitat hakukenttään kotiosoitteesi."
+
+msgctxt "Health station search: input helper"
+msgid "Enter the street name and house number"
+msgstr "Kirjoita kadunnimi ja talonumero."
+
+msgctxt "Health station search: input placeholder"
+msgid "For example, Kotikatu 1"
+msgstr "Esim. Kotikatu 1"
+
+msgctxt "Health station search: input label"
+msgid "Home address"
+msgstr "Kotiosoite"
+
+msgctxt "Health station search: checkbox label"
+msgid "Show the nearest service location where service is available in Swedish."
+msgstr "Näytä lähin toimipiste, josta saa palvelua ruotsiksi."
+
+msgctxt "Health station search: result count"
+msgid "1 health station"
+msgid_plural "@count health stations"
+msgstr[0] "1 terveysasema"
+msgstr[1] "@count terveysasemaa"
+
+msgctxt "Health station search: result display"
+msgid "View as a list"
+msgstr "Näytä listana"
+
+msgctxt "Health station search: result display"
+msgid "View in a map"
+msgstr "Näytä kartalla"
+
