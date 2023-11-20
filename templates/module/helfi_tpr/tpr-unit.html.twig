@@ -87,7 +87,7 @@
 
       {{ content.field_content }}
 
-      {% if has_prices or has_contacts or has_other_info or has_subgroup %}
+      {% if has_prices or has_contacts or has_other_info or has_subgroup or has_ontologyword_details %}
         {% embed "@hdbt/misc/component.twig" with
           {
             component_classes: [
@@ -164,9 +164,8 @@
                 heading: 'Language program and weighted curriculum education'|t({}, {'context': 'TPR Ontologyword details schools'}),
                 content: ontologyword_details_accordion_content,
               } %}
-
             {% endif %}
- 
+
             {% if has_other_info %}
               {% set other_info_accordion_content %}
 
