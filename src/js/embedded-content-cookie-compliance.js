@@ -7,11 +7,17 @@
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
   function loadEmbeddedContent() {
-    if (typeof Drupal.eu_cookie_compliance === 'undefined') {
+    if (
+      typeof Drupal.eu_cookie_compliance === 'undefined' ||
+      !drupalSettings.embedded_media_attributes
+    ) {
       return;
     }
 
-    if (Drupal.eu_cookie_compliance.hasAgreed('preference') && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+    if (
+      Drupal.eu_cookie_compliance.hasAgreed('preference') &&
+      Drupal.eu_cookie_compliance.hasAgreed('statistics')
+    ) {
       // eslint-disable-next-line no-restricted-syntax
       for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
         const iframeElement = document.createElement('iframe');
@@ -59,7 +65,7 @@
           skipLinkAfter.text = Drupal.t('Continue above the journey planner', {}, { context: 'Skip link after the journey planner for the journey planner paragraph' });
           skipLinkBefore.text = Drupal.t('Continue below the journey planner', {}, { context: 'Skip link before the journey planner for the journey planner paragraph' });
           $(`.embedded-content-cookie-compliance.media-${id}`)
-            .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);   
+            .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
         }
       }
 

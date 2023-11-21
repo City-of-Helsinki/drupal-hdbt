@@ -262,6 +262,11 @@ function hdbt_preprocess_page(&$variables): void {
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
+
+  // Add the figcaption source order handler JS to current page.
+  // CKEditor creates a <table> markup with <figcaption> after the <tbody>.
+  // Fix the source order with JS.
+  $variables['#attached']['library'][] = 'hdbt/table-figcaption';
 }
 
 /**
