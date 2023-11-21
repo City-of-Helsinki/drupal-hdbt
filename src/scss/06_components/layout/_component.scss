@@ -4,26 +4,11 @@
   @include component-margin-top;
 }
 
-// When components are full width and do not contain liftup-with-img-bg,
+// When components are full width and do not contain liftup-with-img-bg or content-cards,
 // they should have padding that keeps them from touching side.
-.components--lower > .component:not(.component--liftup-with-image-bg),
-.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg) {
+.components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards),
+.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards) {
   @include component-side-padding;
-}
-
-// Koro should touch the sides
-.component--has-koro > .hds-koros {
-  margin-left: -$component-side-padding-mobile;
-  margin-right: -$component-side-padding-mobile;
-  width: calc(#{$component-side-padding-mobile} + 100% + #{$component-side-padding-mobile});
-
-  @if $component-side-padding-mobile != $component-side-padding-desktop {
-    @include breakpoint($component-side-padding-breakpoint) {
-      margin-left: -$component-side-padding-desktop;
-      margin-right: -$component-side-padding-desktop;
-      width: calc(#{$component-side-padding-desktop} + 100% + #{$component-side-padding-desktop});
-    }
-  }
 }
 
 .component__container {
@@ -90,12 +75,36 @@
 // need to be limited to content max-width to maintain readability.
 :not(.page-type--landing-page).no-sidebar .components--upper,
 :not(.page-type--landing-page).no-sidebar .components:not(.components--lower) {
+  @include components-container-max-width;
   margin-left: auto;
   margin-right: auto;
-  max-width: $content-area-wrapper-width-max;
+
+  @include breakpoint($breakpoint-m) {
+    @include component-side-padding;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .component {
     max-width: $content-width-max;
+  }
+
+  // All other components except the ones on this selectors :not-list need
+  // to have padding on smaller screens but have it removed on larger screens.
+  > .component:not(
+    .component--map,
+    .component--remote-video,
+    .component--content-cards-grey,
+    .component--service-list-search,
+    .component--unit-search,
+    .component--react-search
+  ) {
+    @include component-side-padding;
+
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 

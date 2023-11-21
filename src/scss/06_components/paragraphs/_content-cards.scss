@@ -1,9 +1,5 @@
 $-card-spacing: $spacing-and-half;
 
-.component-content-cards .component__container {
-  overflow: hidden;
-}
-
 .content-cards {
   display: flex;
   flex-direction: column;
@@ -126,30 +122,33 @@ $-card-spacing: $spacing-and-half;
 
 .component--content-cards-grey {
   background: $color-silver-light;
+  display: grid;
+  grid-template-columns: [full-width-start] $spacing [content-start] 1fr [content-end] $spacing [full-width-end] ;
+  grid-template-rows: [header-start] auto [header-end] auto;
+
+  @include breakpoint($breakpoint-m) {
+    grid-template-columns: [full-width-start] $spacing-double [content-start] 1fr [content-end] $spacing-double [full-width-end] ;
+  }
 
   .hds-koros {
     color: $color-white;
+    grid-column: full-width;
+    grid-row: header;
 
-    .has-sidebar .components--upper & {
-      display: none; // Koro should not be visible when the component is inside narrow column due to sidebar.
+    // Koro should not be visible unless the component is on the components lower region or landing page.
+    :not(.page-type--landing-page).no-sidebar .components--upper & {
+      display: none;
     }
   }
 
   .component__container {
+    grid-column: content;
     padding-bottom: $spacing-quadruple;
     padding-top: $spacing-triple;
 
     @include breakpoint($breakpoint-l) {
       padding-bottom: $spacing-sextuple;
       padding-top: $spacing-quadruple;
-    }
-
-    // Since the component is not "full width" next to a sidebar, we should uniform padding around
-    .has-sidebar .components--upper & {
-      padding-bottom: $spacing-double;
-      padding-left: $spacing-double;
-      padding-right: $spacing-double;
-      padding-top: $spacing-double;
     }
   }
 
