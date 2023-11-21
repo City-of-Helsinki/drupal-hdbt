@@ -677,6 +677,10 @@ msgctxt "React search open dropdown aria label"
 msgid "Open the combobox"
 msgstr "Avaa alasvetovalikko"
 
+msgctxt "React search all placeholder"
+msgid "All"
+msgstr "Kaikki"
+
 msgid "Unit homepage"
 msgstr "Toimipisteen kotisivut"
 
