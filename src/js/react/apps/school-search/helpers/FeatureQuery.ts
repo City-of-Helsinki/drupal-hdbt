@@ -1,6 +1,12 @@
-import GlobalSettings from '../enum/GlobalSettings';
 import BooleanQuery from '@/types/BooleanQuery';
+import GlobalSettings from '../enum/GlobalSettings';
+import IndexFields from '../enum/IndexFields';
 import SearchParams from '../types/SearchParams';
+
+// Filter by current language
+export const languageFilter: any = {
+  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+};
 
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
@@ -33,9 +39,27 @@ const getCheckBoxFilters = (params: SearchParams) => {
   return query;
 };
 
+// Base aggregations
+export const AGGREGATIONS = {
+  aggs: {
+    ontologywordIds: {
+      terms: {
+        field: 'ontologyword_ids',
+        size: 100,
+      },
+    },
+  },
+  query: {
+    bool: {
+      filter: [languageFilter],
+    },
+  },
+};
+
 const getQueryString = (params: SearchParams, page: number) => {
   const { size } = GlobalSettings;
-  const { keyword } = params;
+  const { keyword, a1 } = params;
+  console.log('query params', params);
 
   const query: BooleanQuery = {
     bool: {
@@ -96,6 +120,20 @@ const getQueryString = (params: SearchParams, page: number) => {
       }
     }];
   };
+
+  if (a1 && a1.length) {
+    a1.forEach((ontologyword_id: any) => {
+      console.log('jee', ontologyword_id);
+    });
+    // query.bool.must = [{
+    //   path: 'ontologyword_ids',
+    //   query: {
+    //     bool: {
+    //       must: a1
+    //     }
+    //   }
+    // }];
+  }
 
   const sort: any[] = [
     {

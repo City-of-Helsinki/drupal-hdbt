@@ -6,7 +6,7 @@ import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
 
 type SelectionsContainerProps = {
-  keys: Array<keyof Omit<SearchParams,'keyword'|'page'|'query'>>
+  keys: Array<keyof Omit<SearchParams,'keyword'|'page'|'query'|'a1'|'a2'|'b1'|'b2'|'weighted_education'|'bilingual_education'>>
 };
 
 const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
