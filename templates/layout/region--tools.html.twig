@@ -12,7 +12,7 @@
  * @see template_preprocess_region()
  */
 #}
-{% if content %}
+{% if content|render %}
   <div{{ attributes.addClass('tools__container') }}>
     {{ content }}
   </div>
