@@ -44,7 +44,7 @@ hdbt-icons:
       dist/css/hdbt-icons.css: {}
 
 embedded-content-cookie-compliance:
-  version: 1.x
+  version: 1.0
   js:
     dist/js/embedded-content-cookie-compliance.min.js: {}
   dependencies:
