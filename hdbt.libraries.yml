@@ -206,3 +206,11 @@ search-helper:
   version: 1.x
   js:
     dist/js/search-helper.min.js: {}
+
+table-figcaption:
+  version: 1.0.0
+  js:
+    dist/js/handle-figcaption-source-order.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
