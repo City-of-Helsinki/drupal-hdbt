@@ -141,18 +141,22 @@ nav-global:
     - hdbt/nav-toggle
 
 event-list:
-  version: 1.x
+  version: 1.0
   js:
-    dist/js/linkedevents.min.js: {}
+    dist/js/linkedevents.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/jquery
     - core/drupal
 
 school-search:
-  version: 1.x
+  version: 1.0
   js:
-    dist/js/school-search.min.js: {}
+    dist/js/school-search.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal
@@ -169,25 +173,31 @@ hyphenopoly:
     }
 
 job-search:
-  version: 1.x
+  version: 1.0
   js:
-    dist/js/job-search.min.js: {}
+    dist/js/job-search.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal
 
 district-and-project-search:
-  version: 1.x
+  version: 1.0
   js:
-    dist/js/district-and-project-search.min.js: {}
+    dist/js/district-and-project-search.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal
 
 news-archive:
-  version: 1.x
+  version: 1.0
   js:
-    dist/js/news-archive.min.js: {}
+    dist/js/news-archive.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal
