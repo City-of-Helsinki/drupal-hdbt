@@ -827,3 +827,7 @@ msgstr "Töm urvalet"
 msgctxt "Job search no results message"
 msgid "Jobs meeting search criteria was not found. Try different search criteria."
 msgstr "Lediga jobb som uppfyller kriterierna finns inte. Prova andra kriterierna för sök."
+
+msgctxt "TPR Unit tpr data accordion heading"
+msgid "Contact details of daycare centre groups"
+msgstr "Barngruppernas kontaktuppgifter"
