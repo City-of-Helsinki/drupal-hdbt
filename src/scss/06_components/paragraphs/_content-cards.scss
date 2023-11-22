@@ -136,7 +136,7 @@ $-card-spacing: $spacing-and-half;
     grid-row: header;
 
     // Koro should not be visible unless the component is on the components lower region or landing page.
-    :not(.page-type--landing-page).no-sidebar .components--upper & {
+    :not(.page-type--landing-page).wrapper .components--upper & {
       display: none;
     }
   }

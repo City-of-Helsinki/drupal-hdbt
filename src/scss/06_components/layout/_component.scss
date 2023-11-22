@@ -73,8 +73,8 @@
 
 // Components on other pages than landing-page
 // need to be limited to content max-width to maintain readability.
-:not(.page-type--landing-page).no-sidebar .components--upper,
-:not(.page-type--landing-page).no-sidebar .components:not(.components--lower) {
+:not(.page-type--landing-page).wrapper .components--upper,
+:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
   @include components-container-max-width;
   margin-left: auto;
   margin-right: auto;

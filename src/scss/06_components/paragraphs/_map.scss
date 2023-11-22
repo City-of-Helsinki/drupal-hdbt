@@ -29,13 +29,6 @@
   }
 }
 
-.has-sidebar .components--upper .component--map,
-.has-sidebar .unit .component--map {
-  @include breakpoint(max-width $breakpoint-l) {
-    @include component-negative-side-margin;
-  }
-}
-
 .map {
   margin: $spacing 0;
   position: relative;
