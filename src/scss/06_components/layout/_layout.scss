@@ -92,5 +92,6 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
 }
 
 .layout-sidebar-second {
+  @include component-side-padding;
   grid-area: sidebar;
 }
