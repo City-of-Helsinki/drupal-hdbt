@@ -37,6 +37,13 @@
         {% endset %}
         {{ link(feedback_link_title, maintenance_page_feedback_link, link_attributes) }}
 
+        <br>
+
+        {% set copy_link_title %}
+          {{ 'If the problem persist, go to the copy of the pages.'|t({}, {'context': 'Copy of site link for error pages'}) }}
+        {% endset %}
+        {{ link(copy_link_title, maintenance_page_copy_link, link_attributes) }}
+
       </main>
     </div>
     <div class="maintenance-page__illustration-container">

@@ -831,3 +831,7 @@ msgstr "Lediga jobb som uppfyller kriterierna finns inte. Prova andra kriteriern
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
 msgstr "Barngruppernas kontaktuppgifter"
+
+msgctxt "Copy of site link for error pages"
+msgid "If the problem persist, go to the copy of the pages."
+msgstr "Om problemet kvarstår, gå till den kopian av sidorna."
