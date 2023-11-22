@@ -1338,6 +1338,17 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
       'unit_picture_caption'
     );
   }
+
+  // Check if the unit is a daycare unit.
+  $variables['is_daycare_unit'] = FALSE;
+  if ($entity->hasField('field_unit_type')) {
+    $types = $entity->get('field_unit_type')->referencedEntities();
+    foreach ($types as $type) {
+      if ($type->id() == 1) {
+        $variables['is_daycare_unit'] = TRUE;
+      }
+    }
+  }
 }
 
 /**
