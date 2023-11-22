@@ -85,8 +85,6 @@
         {% endblock component_content %}
       {% endembed %}
 
-      {{ content.field_content }}
-
       {% if has_prices or has_contacts or has_other_info or has_subgroup or has_ontologyword_details %}
         {% embed "@hdbt/misc/component.twig" with
           {
@@ -192,6 +190,8 @@
           {% endblock component_content %}
         {% endembed %}
       {% endif %}
+
+      {{ content.field_content }}
 
       {% if content.service_map_embed|render %}
         {% set map_title %}
