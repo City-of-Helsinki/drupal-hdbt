@@ -7,8 +7,10 @@
     $theme: 'primary';
   }
 
-  [data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary styles
-  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'],
+  [data-hds-component='button']:not(a,[class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary button styles
+  a[href][data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary link styles
+  [data-hds-component='button']:not(a,[class*='hds-button'])[data-hds-variant='primary'], // Primary button styles
+  a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'], // Primary link styles (enforces href)
   .hds-button--primary {
     --background-color: var(--hdbt-color-palette-button--#{$theme});
     --background-color-hover: transparent;
@@ -29,7 +31,8 @@
     --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--#{$theme});
   }
 
-  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'],
+  [data-hds-component='button']:not(a,[class*='hds-button'])[data-hds-variant='secondary'], // Secondary button styles
+  a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'], // Secondary link styles (enforces href)
   .hds-button--secondary {
     --background-color: transparent;
     --background-color-hover: var(--hdbt-color-palette-button--#{$theme});
@@ -48,7 +51,8 @@
     --focus-outline-color: var(--hdbt-color-palette-button--#{$theme});
   }
 
-  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
+  [data-hds-component='button']:not(a,[class*='hds-button'])[data-hds-variant='supplementary'], // Supplementary button styles
+  a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'], // Supplementary link styles (enforces href)
   .hds-button--supplementary {
     --background-color: transparent;
     --background-color-hover: transparent;
