@@ -44,6 +44,12 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
   }
 }
 
+.has-sidebar .main-content {
+  @include breakpoint($breakpoint-m) {
+    @include components-container-max-width;
+  }
+}
+
 // stylelint-disable no-descending-specificity
 // Set proper width for all generic page components
 .has-sidebar,
@@ -62,6 +68,14 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
   }
 }
 // stylelint-enable no-descending-specificity
+
+// TODO: UHF-9355 For pages that for some reason include the page title inside enriched content container we
+// need to remover the double padding. This should be fixed by removing the page-title away from enriched
+// content container and then remove these lines. For example news archive has this kind of setup.
+.enriched-content > .page-title {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .layout-sidebar-first {
   display: none;
