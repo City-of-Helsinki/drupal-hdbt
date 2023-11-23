@@ -97,7 +97,8 @@
     .component--content-cards-grey,
     .component--service-list-search,
     .component--unit-search,
-    .component--react-search
+    .component--react-search,
+    .component--project-list,
   ) {
     @include component-side-padding;
 
