@@ -22,6 +22,11 @@ $news-archive-background: #f2f2f2;
   background: $news-archive-background;
 }
 
+.news-wrapper .layout-sidebar-second {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .hdbt__loading-wrapper {
   position: relative;
 }
