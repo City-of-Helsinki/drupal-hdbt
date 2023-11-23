@@ -14,16 +14,6 @@
   padding-bottom: 55px; // Leave enough room between the last card and footer.
 }
 
-.component--unit-search .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
-}
-
 .views--unit-search {
   margin-top: $spacing-double;
 

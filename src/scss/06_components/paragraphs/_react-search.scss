@@ -1,15 +1,5 @@
 .component--react-search {
   background-color: $color-silver-light;
-
-  .component__container {
-    padding-bottom: $spacing-double;
-    padding-top: $spacing-double;
-
-    @include breakpoint($breakpoint-m) {
-      padding-bottom: $spacing-quadruple;
-      padding-top: $spacing-quadruple;
-    }
-  }
 }
 
 // If the event search search is just before footer it needs to function the same way as unit search.
