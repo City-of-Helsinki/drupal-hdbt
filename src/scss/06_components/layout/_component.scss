@@ -118,7 +118,8 @@
     .component--service-list-search,
     .component--unit-search,
     .component--react-search,
-    .component--project-list
+    .component--project-list,
+    .component--list-of-plans
   ) {
     @include component-side-padding;
 
