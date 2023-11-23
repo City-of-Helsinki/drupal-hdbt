@@ -125,6 +125,7 @@ $-card-spacing: $spacing-and-half;
   display: grid;
   grid-template-columns: [full-width-start] $spacing [content-start] 1fr [content-end] $spacing [full-width-end] ;
   grid-template-rows: [header-start] auto [header-end] auto;
+  padding-top: 0;
 
   @include breakpoint($breakpoint-m) {
     grid-template-columns: [full-width-start] $spacing-double [content-start] 1fr [content-end] $spacing-double [full-width-end] ;
@@ -143,18 +144,24 @@ $-card-spacing: $spacing-and-half;
 
   .component__container {
     grid-column: content;
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-triple;
+    padding-top: $spacing;
 
-    @include breakpoint($breakpoint-l) {
-      padding-bottom: $spacing-sextuple;
-      padding-top: $spacing-quadruple;
+    @include breakpoint($breakpoint-m) {
+      padding-top: $spacing-double;
     }
   }
 
   .content-card__link {
     background-color: $color-white;
     padding: $spacing;
+  }
+}
+
+// The koro is not visible on these occasions so the padding needs to be removed as well.
+:not(.page-type--landing-page).wrapper .components--upper,
+:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
+  .component--content-cards-grey .component__container {
+    padding-top: 0;
   }
 }
 

@@ -11,6 +11,16 @@
   @include component-side-padding;
 }
 
+.component--full-width {
+  padding-bottom: $spacing-triple;
+  padding-top: $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
 .component__container {
   margin-left: auto;
   margin-right: auto;
