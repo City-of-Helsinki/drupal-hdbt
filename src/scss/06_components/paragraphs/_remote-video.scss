@@ -2,18 +2,6 @@
   @include hds-button-colors-on-dark-bg;
   @include component-side-padding;
   background-color: $color-black;
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-triple;
-    padding-top: $spacing-triple;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
 }
 
 .component--remote-video,
