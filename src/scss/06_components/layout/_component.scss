@@ -89,6 +89,16 @@
     max-width: $content-width-max;
   }
 
+  .component--full-width {
+    padding-bottom: $component-side-padding-mobile;
+    padding-top: $component-side-padding-mobile;
+
+    @include breakpoint($component-side-padding-breakpoint) {
+      padding-bottom: $component-side-padding-desktop;
+      padding-top: $component-side-padding-desktop;
+    }
+  }
+
   // All other components except the ones on this selectors :not-list need
   // to have padding on smaller screens but have it removed on larger screens.
   > .component:not(
@@ -97,7 +107,8 @@
     .component--content-cards-grey,
     .component--service-list-search,
     .component--unit-search,
-    .component--react-search
+    .component--react-search,
+    .component--project-list
   ) {
     @include component-side-padding;
 

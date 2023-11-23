@@ -8,29 +8,8 @@
   background-color: $color-silver-light;
 }
 
-.unit .component--map {
-  margin-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-triple;
-  }
-}
-
-.component--map .component__container {
-  padding: $spacing-triple 0;
-}
-
-.unit .component--map .component__container,
-.has-sidebar .component--map .component__container {
-  padding-top: $spacing-and-half;
-
-  @include breakpoint($breakpoint-m) {
-    padding-top: $spacing-double;
-  }
-}
-
 .map {
-  margin: $spacing 0;
+  margin: $spacing 0 0;
   position: relative;
 
   .responsive-map-container {
@@ -54,12 +33,8 @@
 
   .map__external-link {
     @include font('button');
-    align-items: center;
-    bottom: -40px;
     display: inline-flex;
-    left: 0;
-    position: absolute;
-    text-decoration: underline;
+    margin-top: $spacing;
   }
 }
 
