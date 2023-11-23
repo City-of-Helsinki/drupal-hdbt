@@ -57,10 +57,13 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
   .page-title,
   .lead-in,
   .page-divider,
+  .content-date,
   .main-image,
   .long-desc,
   .enriched-content:not(.components),
-  .content-tags {
+  .content-links,
+  .content-tags,
+  .social-media__items {
     @include components-container-max-width;
     @include component-side-padding;
     margin-left: auto;
