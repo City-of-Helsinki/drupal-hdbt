@@ -1,5 +1,4 @@
 import { SyntheticEvent, createRef, useState } from 'react';
-import { Tabs } from 'hds-react';
 import { useAtomValue } from 'jotai';
 
 import Result from '@/types/Result';
@@ -61,53 +60,48 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
-  const tabsTheme = {
-    '--tab-color': 'var(--color-black)',
-    '--tab-active-border-color': 'var(--color-black)',
-  };
-
   return (
     <div className='react-search__results'>
       <div className='react-search__result-top-area'>
         {!Number.isNaN(total) &&
-          <h3 className='react-search__results-title' ref={scrollTarget}>
+          <h3 className='react-search__results--title' ref={scrollTarget}>
             { Drupal.formatPlural(total, '1 health station', '@count health stations', {}, {context: 'Health station search: result count'}) }
           </h3>
         }
-        <Tabs theme={tabsTheme}>
-            <Tabs.TabList>
-              <Tabs.Tab onClick={() => setUseMap(false)}>
-                { Drupal.t('View as a list', {}, {context: 'Health station search: result display'}) }
-              </Tabs.Tab>
-              <Tabs.Tab onClick={() => setUseMap(true)}>
-                { Drupal.t('View in a map', {}, {context: 'Health station search: result display'}) }
-              </Tabs.Tab>
-            </Tabs.TabList>
-          </Tabs>
+        <div className='react-search__results--tablist' role='tablist'>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='react-search__results--tabpanel' onClick={() => setUseMap(false)}>
+            { Drupal.t('View as a list', {}, {context: 'Health station search: result display'}) }
+          </button>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='react-search__results--tabpanel' onClick={() => setUseMap(true)}>
+            { Drupal.t('View in a map', {}, {context: 'Health station search: result display'}) }
+          </button>
+        </div>
       </div>
-      {
-        useMap ?
-          <ResultsMap ids={data?.aggregations?.ids?.buckets} />
-        :
-          <>
-            {results.map((hit: Result<HealthStation>) => (
-                <ResultCard key={hit._id} {...hit._source} />
-              ))
-            }
-          </>
-      }
-      {
-        showPagination &&
-        <Pagination
-          currentPage={page || 1}
-          pages={5}
-          totalPages={addLastPage ? pages + 1 : pages}
-          updatePage={(e: SyntheticEvent, nextPage: number) => {
-            e.preventDefault();
-            updatePage(nextPage);
-          }}
-        />
-      }
+      <div id='react-search__results--tabpanel' role="tabpanel">
+        {
+          useMap ?
+            <ResultsMap ids={data?.aggregations?.ids?.buckets} />
+          :
+            <>
+              {results.map((hit: Result<HealthStation>) => (
+                  <ResultCard key={hit._id} {...hit._source} />
+                ))
+              }
+            </>
+        }
+        {
+          showPagination &&
+          <Pagination
+            currentPage={page || 1}
+            pages={5}
+            totalPages={addLastPage ? pages + 1 : pages}
+            updatePage={(e: SyntheticEvent, nextPage: number) => {
+              e.preventDefault();
+              updatePage(nextPage);
+            }}
+          />
+        }
+      </div>
     </div>
   );
 };
