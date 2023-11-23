@@ -31,7 +31,8 @@ const ResultCard = ({ address, name, name_override, picture_url, provided_langua
       cardTitle={title}
       cardUrl={url?.[0] || ''}      
       location={address?.[0]}
-      cardCategoryTag={provided_languages.includes('sv') ? {'tag': 'Ruotsinkielistä palvelua'} : undefined}
+      locationLabel={Drupal.t('Address', {}, {context: 'Health station search: Location label'})}
+      cardCategoryTag={provided_languages.includes('sv') ? {'tag': Drupal.t('Service in Swedish', {}, {'context': 'Health station search: Service in Swedish tag'})} : undefined}
     />
   );
 };

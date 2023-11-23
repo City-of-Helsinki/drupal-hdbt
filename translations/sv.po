@@ -865,3 +865,11 @@ msgstr "Visa som lista"
 msgctxt "Health station search: result display"
 msgid "View in a map"
 msgstr "Visa på kartan"
+
+msgctxt "Health station search: Service in Swedish tag"
+msgid "Service in Swedish"
+msgstr "Service på svenska"
+
+msgctxt "Health station search: Location label"
+msgid "Address"
+msgstr "Adress"

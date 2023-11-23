@@ -873,3 +873,10 @@ msgctxt "Health station search: result display"
 msgid "View in a map"
 msgstr "Näytä kartalla"
 
+msgctxt "Health station search: Service in Swedish tag"
+msgid "Service in Swedish"
+msgstr "Ruotsinkielistä palvelua"
+
+msgctxt "Health station search: Location label"
+msgid "Address"
+msgstr "Osoite"
