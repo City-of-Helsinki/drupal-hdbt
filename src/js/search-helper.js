@@ -1,3 +1,4 @@
+// eslint-disable-next-line func-names
 (function ($) {
 
   // Set focus on search result count
@@ -6,7 +7,7 @@
     const viewDomId = settings.extraData.view_dom_id;
     const resultsContainerEl = $(`[data-id-number=${  viewDomId  }]`);
     const resultCountEl = $('[class$="__count-container"]', resultsContainerEl[0])[0];
-    
+
     if (!resultCountEl) return;
     resultCountEl.setAttribute('tabindex', '-1');
     resultCountEl.focus();
