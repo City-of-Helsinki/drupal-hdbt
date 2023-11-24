@@ -38,8 +38,8 @@ const Entries = () => {
   const pattern = './src/js/**/*.js';
   const ignore = [];
 
-  glob.globSync(pattern, {ignore: ignore}).map((item) => {
-    entries[path.parse(item).name] = './' + item; }
+  glob.sync(pattern, {ignore: ignore}).map((item) => {
+    entries[path.parse(item).name] = `./${item}` }
   );
   return entries;
 };
