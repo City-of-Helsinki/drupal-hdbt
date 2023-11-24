@@ -10,6 +10,7 @@ import GlobalSettings from '../enum/GlobalSettings';
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
+  console.log('params', params);
 
   const fetcher = async () => {
     const { index } = GlobalSettings;

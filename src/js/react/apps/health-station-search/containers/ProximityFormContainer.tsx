@@ -27,15 +27,6 @@ const ProximityFormContainer = () => {
     setParams(params);
   };
 
-  const onChange = (event: React.FormEvent<HTMLFormElement>) => {
-    const { sv_only } = event.target as SubmitFormType;
-    const params: SearchParams = {};
-    console.log(params);
-    params.sv_only = sv_only.value;
-
-    setParams(params);
-  };
-
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
       <h3>
@@ -61,8 +52,9 @@ const ProximityFormContainer = () => {
           <Checkbox 
             className='react-search__checkbox'
             checked={stagedParams?.sv_only || false}
-            id="sv_only"
-            name="sv_only"
+            id='sv_only'
+            name='sv_only'
+            value='true'
             onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
             label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, {context: 'Health station search: checkbox label'})} 
           />

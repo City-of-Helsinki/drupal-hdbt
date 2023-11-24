@@ -108,12 +108,10 @@ fieldset .react-search__checkbox:not(:first-of-type) {
   }
 
   .hdbt-search__submit-button {
-    width: 100%;
+    min-width: 100%;
 
     @include breakpoint($breakpoint-l) {      
-      padding-left: 130px;
-      padding-right: 130px;
-      width: auto;
+      min-width: 290px;
     }
   }
 
@@ -126,7 +124,6 @@ fieldset .react-search__checkbox:not(:first-of-type) {
   }
   
   .react-search__results--title {
-
     margin-bottom: $spacing;
     margin-top: 0;
 
@@ -134,7 +131,6 @@ fieldset .react-search__checkbox:not(:first-of-type) {
       align-items: center;
       display: flex;
       margin-bottom: 0;
-
 
       > * {
         display: inline-flex;
