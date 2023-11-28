@@ -1,6 +1,6 @@
 {#
-  This twig is called only for certain links
-  see conditions in \Drupal\helfi_api_base\Link\LinkProcessor::preRenderLink
+This twig is called only for certain links
+see conditions in \Drupal\helfi_api_base\Link\LinkProcessor::preRenderLink
 #}
 {% apply spaceless %}
 
@@ -19,35 +19,35 @@
   {% endif %}
 
   {% if 'data-selected-icon' in url.options.attributes|keys %}
-      {% if render_old_link %}
-        {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
-      {% endif %}
+    {% if render_old_link %}
+      {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
+    {% endif %}
   {% endif %}
 
   {% if 'data-is-external' in attributes|keys %}
-    {% set attribute_icon %}
+    {%- set attribute_icon -%}
       {%- if render_old_link -%}
         <span class="link__type link__type--external"></span>
       {%- endif -%}
       <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>
-    {% endset %}
+    {%- endset -%}
   {% endif %}
 
   {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
     {% if attributes['data-protocol'] == 'tel' %}
-      {% set attribute_icon %}
-        {% if render_old_link %}
+      {%- set attribute_icon -%}
+        {%- if render_old_link -%}
           <span class="link__type link__type--tel"></span>
-        {% endif %}
+        {%- endif -%}
         <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
-      {% endset %}
+      {%- endset -%}
     {% elseif attributes['data-protocol'] == 'mailto' %}
-      {% set attribute_icon %}
-        {% if render_old_link %}
+      {%- set attribute_icon -%}
+        {%- if render_old_link -%}
           <span class="link__type link__type--mailto"></span>
-        {% endif %}
+        {%- endif -%}
         <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
-      {% endset %}
+      {%- endset -%}
     {% endif %}
   {% endif %}
 
