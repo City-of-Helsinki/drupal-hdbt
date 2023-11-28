@@ -1338,6 +1338,17 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
       'unit_picture_caption'
     );
   }
+
+  // Check if the unit is a daycare unit.
+  $variables['is_daycare_unit'] = FALSE;
+  if ($entity->hasField('field_unit_type')) {
+    $types = $entity->get('field_unit_type')->referencedEntities();
+    foreach ($types as $type) {
+      if ($type->id() == 1) {
+        $variables['is_daycare_unit'] = TRUE;
+      }
+    }
+  }
 }
 
 /**
@@ -1488,16 +1499,19 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
     case 'fi':
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
+      $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/fi.html';
       break;
 
     case 'sv':
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/sv';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback';
+      $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/sv.html';
       break;
 
     default:
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/en';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
+      $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/en.html';
       break;
   }
 }
