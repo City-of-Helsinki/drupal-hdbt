@@ -12,4 +12,4 @@ parameters:
   checkMissingIterableValueType: false
   treatPhpDocTypesAsCertain: false
   scanFiles:
-    -
+    - ../../../core/themes/engines/twig/twig.engine
