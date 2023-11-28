@@ -54,7 +54,7 @@ const ProximityFormContainer = () => {
             checked={stagedParams?.sv_only || false}
             id='sv_only'
             name='sv_only'
-            value='true'
+            value='sv_only'
             onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
             label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, {context: 'Health station search: checkbox label'})} 
           />
