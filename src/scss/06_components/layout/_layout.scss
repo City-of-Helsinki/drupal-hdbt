@@ -62,7 +62,7 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
   .long-desc,
   .enriched-content:not(.components),
   .content-links,
-  .content-tags,
+  .content-tags:not(.content-tags--card),
   .social-media__items {
     @include components-container-max-width;
     @include component-side-padding;
