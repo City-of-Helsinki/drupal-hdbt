@@ -218,7 +218,9 @@ table-figcaption:
 health-station-search:
   version: 1.0
   js:
-    dist/js/health-station-search.min.js: {}
+    dist/js/health-station-search.min.js: {
+      preprocess: false
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal
