@@ -6,7 +6,7 @@
 
 {% set content_tags_id = 'hdbt-content_tags_id-' ~ random() %}
 
-<section class="content-tags {{ tag_container_class }}"  aria-labelledby="{{ content_tags_id }}">
+<section class="content-tags{{ tag_container_class }}"  aria-labelledby="{{ content_tags_id }}">
   <span id="{{ content_tags_id }}" class="is-hidden" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
     {{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}
   </span>
