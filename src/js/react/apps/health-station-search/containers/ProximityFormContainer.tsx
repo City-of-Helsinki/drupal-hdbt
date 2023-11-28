@@ -28,7 +28,7 @@ const ProximityFormContainer = () => {
   };
 
   return (
-    <form className='react-search__form-container' onSubmit={onSubmit}>
+    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
       <h3>
         {Drupal.t('Find your health station', {}, {context: 'Health station search: local search title'})}
       </h3>
@@ -48,7 +48,7 @@ const ProximityFormContainer = () => {
         type='search'
       />
       <div className='react-search__checkbox-filter-container'>
-        <fieldset className='react-search__fieldset'>
+        <fieldset className='hdbt-search--react__fieldset'>
           <Checkbox 
             className='react-search__checkbox'
             checked={stagedParams?.sv_only || false}
@@ -60,7 +60,7 @@ const ProximityFormContainer = () => {
           />
         </fieldset>
       </div>
-      <Button className='hdbt-search__submit-button' type='submit'>{Drupal.t('Search')}</Button>
+      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search')}</Button>
     </form>
   );
 };

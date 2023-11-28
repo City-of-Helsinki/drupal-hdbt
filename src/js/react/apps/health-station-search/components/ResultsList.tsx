@@ -62,22 +62,22 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
 
   return (
     <div className='react-search__results'>
-      <div className='react-search__result-top-area'>
+      <div className='hdbt-search--react__result-top-area'>
         {!Number.isNaN(total) &&
-          <h3 className='react-search__results--title' ref={scrollTarget}>
+          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
             { Drupal.formatPlural(total, '1 health station', '@count health stations', {}, {context: 'Health station search: result count'}) }
           </h3>
         }
-        <div className='react-search__results--tablist' role='tablist'>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='react-search__results--tabpanel' onClick={() => setUseMap(false)}>
+        <div className='hdbt-search--react__results--tablist' role='tablist'>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
             { Drupal.t('View as a list', {}, {context: 'Health station search: result display'}) }
           </button>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='react-search__results--tabpanel' onClick={() => setUseMap(true)}>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
             { Drupal.t('View in a map', {}, {context: 'Health station search: result display'}) }
           </button>
         </div>
       </div>
-      <div id='react-search__results--tabpanel' role="tabpanel">
+      <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
         {
           useMap ?
             <ResultsMap ids={data?.aggregations?.ids?.buckets} />
