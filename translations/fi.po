@@ -838,3 +838,7 @@ msgstr "Hakuehtoja vastaavia työpaikkoja ei löytynyt. Kokeile muita hakuehtoja
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
 msgstr "Päiväkotiryhmien yhteystiedot"
+
+msgctxt "Copy of site link for error pages"
+msgid "If the problem persist, go to the copy of the pages."
+msgstr "Jos ongelma jatkuu siirry sivun kopioon."
