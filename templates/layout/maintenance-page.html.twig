@@ -13,7 +13,7 @@
   {% block container_content %}
     <div class="maintenance-page__text-container">
       <header role="banner">
-        <h1 class="maintenance-page__title">{{ 'The site is currently under maintenance'|t }}</h1>
+        <h1 class="maintenance-page__title" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'The site is currently under maintenance'|t }}</h1>
       </header>
       <main role="main">
         <p class="maintenance-page__description">
@@ -28,6 +28,13 @@
             'maintenance-page__link',
           ],
         } %}
+        {% if alternative_language %}
+          {% set link_attributes = link_attributes|merge({
+              'dir': lang_attributes.fallback_dir,
+              'lang': lang_attributes.fallback_lang
+            })
+          %}
+        {% endif %}
         {{ link(link_title, maintenance_page_home_link, link_attributes) }}
 
         <br>
@@ -36,6 +43,13 @@
           {{ 'Give feedback'|t({}, {'context': 'Feedback link for error pages'}) }}
         {% endset %}
         {{ link(feedback_link_title, maintenance_page_feedback_link, link_attributes) }}
+
+        <br>
+
+        {% set copy_link_title %}
+          {{ 'If the problem persist, go to the copy of the pages.'|t({}, {'context': 'Copy of site link for error pages'}) }}
+        {% endset %}
+        {{ link(copy_link_title, maintenance_page_copy_link, link_attributes) }}
 
       </main>
     </div>

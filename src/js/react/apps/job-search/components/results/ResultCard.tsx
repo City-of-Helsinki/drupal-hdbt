@@ -1,4 +1,3 @@
-import { HTMLAttributes } from 'react';
 import { useAtomValue } from 'jotai';
 
 import CardItem from '@/react/common/Card';
