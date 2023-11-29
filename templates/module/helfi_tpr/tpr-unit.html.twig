@@ -65,9 +65,13 @@
   {% endif %}
   {# End of Main image #}
 
-  {% if content.description|render and hide_description == false %}
+  {% if (content.description|render or content.description_override) and hide_description == false %}
     <div class="long-desc user-edited-content">
-      {{ content.description }}
+      {% if content.description_override|render %}
+        {{ content.description_override }}
+      {% else %}
+        {{ content.description }}
+      {% endif %}
     </div>
   {% endif %}
 
