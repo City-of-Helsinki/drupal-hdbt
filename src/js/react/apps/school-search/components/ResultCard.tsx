@@ -33,7 +33,7 @@ const ResultCard = ({ additional_filters, address, summary_processed, name, name
 
   if (additionalFilters.swedish_education) {
     const swedish = Drupal.t('Swedish');
-    language = language?.length ? `${language  }, ${  swedish.toLowerCase()}` : swedish;
+    language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
   }
 
   return (
