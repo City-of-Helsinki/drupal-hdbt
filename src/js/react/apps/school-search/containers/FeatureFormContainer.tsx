@@ -8,7 +8,15 @@ import {
   a1Atom,
   a1SelectionAtom,
   a2Atom,
-  a2SelectionAtom
+  a2SelectionAtom,
+  b1Atom,
+  b1SelectionAtom,
+  b2Atom,
+  b2SelectionAtom,
+  weightedEducationAtom,
+  weightedEducationSelectionAtom,
+  bilingualEducationAtom,
+  bilingualEducationSelectionAtom
 } from '../store';
 import type SearchParams from '../types/SearchParams';
 import SelectionsContainer from './SelectionsContainer';
@@ -18,8 +26,8 @@ import OptionType from '../types/OptionType';
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
   finnish_education: HTMLInputElement;
-  grades_1_6: HTMLInputElement;
   swedish_education: HTMLInputElement;
+  grades_1_6: HTMLInputElement;
   grades_7_9: HTMLInputElement;
 };
 
@@ -32,6 +40,14 @@ const FeatureFormContainer = () => {
   const [a1Selection, setA1Filter] = useAtom(a1SelectionAtom);
   const a2Options = useAtomValue(a2Atom);
   const [a2Selection, setA2Filter] = useAtom(a2SelectionAtom);
+  const b1Options = useAtomValue(b1Atom);
+  const [b1Selection, setB1Filter] = useAtom(b1SelectionAtom);
+  const b2Options = useAtomValue(b2Atom);
+  const [b2Selection, setB2Filter] = useAtom(b2SelectionAtom);
+  const weightedOptions = useAtomValue(weightedEducationAtom);
+  const [weightedSelection, setWeightedFilter] = useAtom(weightedEducationSelectionAtom);
+  const bilingualOptions = useAtomValue(bilingualEducationAtom);
+  const [bilingualSelection, setBilingualFilter] = useAtom(bilingualEducationSelectionAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,17 +70,21 @@ const FeatureFormContainer = () => {
 
     params.a1 = a1Selection.map((selection: OptionType) => selection.value);
     params.a2 = a2Selection.map((selection: OptionType) => selection.value);
+    params.b1 = b1Selection.map((selection: OptionType) => selection.value);
+    params.b2 = b2Selection.map((selection: OptionType) => selection.value);
+    params.weighted_education = weightedSelection.map((selection: OptionType) => selection.value);
+    params.bilingual_education = bilingualSelection.map((selection: OptionType) => selection.value);
 
     setParams(params);
   };
 
   const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'|'a1'|'a2'|'b1'|'b2'|'weighted_education'|'bilingual_education'>> = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];
-  const A1Label: string = Drupal.t('Foreign language starting in 1st grade (A1)', {}, { context: 'TPR Ontologyword details schools' });
-  const A2Label: string = Drupal.t('Optional foreign language starting in 3rd grade (A2)', {}, { context: 'TPR Ontologyword details schools' });
-  const B1Label: string = Drupal.t('Second national language starting in 6th grade (B1)', {}, { context: 'TPR Ontologyword details schools' });
-  const B2Label: string = Drupal.t('Optional foreign language starting in 8th grade (B2)', {}, { context: 'TPR Ontologyword details schools' });
-  const WeightedEducationLabel: string = Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' });
-  const BilingualEducationLabel: string = Drupal.t('Bilingual education', {}, { context: 'TPR Ontologyword details schools' });
+  const a1Label: string = Drupal.t('Foreign language starting in 1st grade (A1)', {}, { context: 'TPR Ontologyword details schools' });
+  const a2Label: string = Drupal.t('Optional foreign language starting in 3rd grade (A2)', {}, { context: 'TPR Ontologyword details schools' });
+  const b1Label: string = Drupal.t('Second national language starting in 6th grade (B1)', {}, { context: 'TPR Ontologyword details schools' });
+  const b2Label: string = Drupal.t('Optional foreign language starting in 8th grade (B2)', {}, { context: 'TPR Ontologyword details schools' });
+  const weightedEducationLabel: string = Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' });
+  const bilingualEducationLabel: string = Drupal.t('Bilingual education', {}, { context: 'TPR Ontologyword details schools' });
 
   return (
     <form className='react-search__form-container' onSubmit={onSubmit}>
@@ -148,7 +168,7 @@ const FeatureFormContainer = () => {
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': A1Label}, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': a1Label}, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -157,7 +177,7 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All languages')}
           multiselect
-          label={A1Label}
+          label={a1Label}
           options={a1Options}
           value={a1Selection}
           id={SearchComponents.A1}
@@ -166,7 +186,7 @@ const FeatureFormContainer = () => {
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': A2Label}, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -175,7 +195,7 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All languages')}
           multiselect
-          label={A2Label}
+          label={a2Label}
           options={a2Options}
           value={a2Selection}
           id={SearchComponents.A2}
@@ -184,7 +204,7 @@ const FeatureFormContainer = () => {
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': B1Label}, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -193,16 +213,16 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All languages')}
           multiselect
-          label={B1Label}
-          // options={taskAreasOptions}
-          // value={taskAreaSelection}
+          label={b1Label}
+          options={b1Options}
+          value={b1Selection}
           id={SearchComponents.B1}
-          // onChange={setTaskAreaFilter}
+          onChange={setB1Filter}
         />
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': B2Label}, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -211,16 +231,16 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All languages')}
           multiselect
-          label={B2Label}
-          // options={taskAreasOptions}
-          // value={taskAreaSelection}
+          label={b2Label}
+          options={b2Options}
+          value={b2Selection}
           id={SearchComponents.B2}
-          // onChange={setTaskAreaFilter}
+          onChange={setB2Filter}
         />
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': WeightedEducationLabel }, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -229,16 +249,16 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All', {}, {context: 'React search all placeholder'})}
           multiselect
-          label={WeightedEducationLabel}
-          // options={taskAreasOptions}
-          // value={taskAreaSelection}
+          label={weightedEducationLabel}
+          options={weightedOptions}
+          value={weightedSelection}
           id={SearchComponents.WeightedEducation}
-          // onChange={setTaskAreaFilter}
+          onChange={setWeightedFilter}
         />
         {/* @ts-ignore */}
         <Select
           clearable
-          clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': BilingualEducationLabel }, { context: 'React search clear selection label' })}
+          clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' })}
           className='hdbt-search--react__dropdown'
           selectedItemRemoveButtonAriaLabel={Drupal.t(
             'Remove item',
@@ -247,11 +267,11 @@ const FeatureFormContainer = () => {
           )}
           placeholder={Drupal.t('All', {}, {context: 'React search all placeholder'})}
           multiselect
-          label={BilingualEducationLabel}
-          // options={taskAreasOptions}
-          // value={taskAreaSelection}
+          label={bilingualEducationLabel}
+          options={bilingualOptions}
+          value={bilingualSelection}
           id={SearchComponents.BilingualEducation}
-          // onChange={setTaskAreaFilter}
+          onChange={setBilingualFilter}
         />
       </div>
       <div className='hdbt-search--react__submit'>
