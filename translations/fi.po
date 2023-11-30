@@ -846,3 +846,7 @@ msgstr "Päiväkotiryhmien yhteystiedot"
 msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Jos ongelma jatkuu siirry sivun kopioon."
+
+msgctxt "React search: location label"
+msgid "Address"
+msgstr "Osoite"

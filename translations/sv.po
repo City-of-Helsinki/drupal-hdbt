@@ -839,3 +839,7 @@ msgstr "Barngruppernas kontaktuppgifter"
 msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Om problemet kvarstår, gå till den kopian av sidorna."
+
+msgctxt "React search: location label"
+msgid "Address"
+msgstr "Adress"
