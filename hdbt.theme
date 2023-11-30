@@ -641,7 +641,7 @@ function hdbt_preprocess_block(&$variables): void {
             ->getStorage($entity_type)
             ->load($params[$entity_type]);
 
-          $node = $node->getTranslation($variables['current_langcode']);
+          $node = $node->hasTranslation($variables['current_langcode']) ? $node->getTranslation($variables['current_langcode']) : $node;
           $menu_link_title = $node->getTitle();
           $menu_link_url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
         }
