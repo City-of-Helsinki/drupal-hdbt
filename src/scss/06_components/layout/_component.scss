@@ -111,16 +111,7 @@
 
   // All other components except the ones on this selectors :not-list need
   // to have padding on smaller screens but have it removed on larger screens.
-  > .component:not(
-    .component--map,
-    .component--remote-video,
-    .component--content-cards-grey,
-    .component--service-list-search,
-    .component--unit-search,
-    .component--react-search,
-    .component--project-list,
-    .component--list-of-plans
-  ) {
+  > .component:not(.component--full-width) {
     @include component-side-padding;
 
     @include breakpoint($breakpoint-m) {
