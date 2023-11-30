@@ -23,6 +23,8 @@ export type School = {
   longitude: string[],
   name: string[],
   name_override?: string[],
+  ontologyword_details_clarifications?: string[],
+  ontologyword_ids?: string[],
   picture_url?: string[],
   media_as_objects?: ImageOverride[],
   summary_processed?: string[],

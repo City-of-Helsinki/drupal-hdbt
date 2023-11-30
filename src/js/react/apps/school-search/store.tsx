@@ -4,6 +4,7 @@ import { AGGREGATIONS } from './helpers/FeatureQuery';
 import SearchParams from './types/SearchParams';
 import type OptionType from './types/OptionType';
 import GlobalSettings from './enum/GlobalSettings';
+import ontologyDetailsIdsToLang from './enum/LanguageEducationMap';
 
 type configurations = {
   error: Error|null,
@@ -59,27 +60,11 @@ export const a1Atom = atom(async (get) => {
     return [];
   }
 
-  const context = 'TPR Ontologyword details schools';
-
-  const a1IdsToLang: any = {
-    15: Drupal.t('English', {}, { context }),
-    16: Drupal.t('Spanish', {}, { context }),
-    17: Drupal.t('Hebrew', {}, { context }),
-    18: Drupal.t('Italian', {}, { context }),
-    19: Drupal.t('Chinese', {}, { context }),
-    20: Drupal.t('Latin', {}, { context }),
-    21: Drupal.t('French', {}, { context }),
-    22: Drupal.t('Swedish', {}, { context }),
-    23: Drupal.t('German', {}, { context }),
-    24: Drupal.t('Finnish', {}, { context }),
-    25: Drupal.t('Russian', {}, { context }),
-    26: Drupal.t('Estonian', {}, { context })
-  };
-
   const a1options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if (a1IdsToLang[currentItem.key]) {
-      acc.push({ label: a1IdsToLang[currentItem.key], value: currentItem.key });
+    if ((currentItem.key >= 15 && currentItem.key <= 26) && ontologyDetailsIdsToLang[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
+
     return acc;
   }, []);
 
@@ -94,26 +79,9 @@ export const a2Atom = atom(async (get) => {
     return [];
   }
 
-  const context = 'TPR Ontologyword details schools';
-
-  const a2IdsToLang: any = {
-    27: Drupal.t('English', {}, { context }),
-    28: Drupal.t('Spanish', {}, { context }),
-    29: Drupal.t('Hebrew', {}, { context }),
-    30: Drupal.t('Italian', {}, { context }),
-    31: Drupal.t('Chinese', {}, { context }),
-    32: Drupal.t('Latin', {}, { context }),
-    33: Drupal.t('French', {}, { context }),
-    34: Drupal.t('Swedish', {}, { context }),
-    35: Drupal.t('German', {}, { context }),
-    36: Drupal.t('Finnish', {}, { context }),
-    37: Drupal.t('Russian', {}, { context }),
-    38: Drupal.t('Estonian', {}, { context }),
-  };
-
   const a2options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if (a2IdsToLang[currentItem.key]) {
-      acc.push({ label: a2IdsToLang[currentItem.key], value: currentItem.key });
+    if ((currentItem.key >= 27 && currentItem.key <= 38) && ontologyDetailsIdsToLang[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -129,26 +97,9 @@ export const b1Atom = atom(async (get) => {
     return [];
   }
 
-  const context = 'TPR Ontologyword details schools';
-
-  const b1IdsToLang: any = {
-    101: Drupal.t('English', {}, { context }),
-    102: Drupal.t('Spanish', {}, { context }),
-    103: Drupal.t('Hebrew', {}, { context }),
-    104: Drupal.t('Italian', {}, { context }),
-    105: Drupal.t('Chinese', {}, { context }),
-    106: Drupal.t('Latin', {}, { context }),
-    107: Drupal.t('French', {}, { context }),
-    108: Drupal.t('Swedish', {}, { context }),
-    109: Drupal.t('German', {}, { context }),
-    110: Drupal.t('Finnish', {}, { context }),
-    111: Drupal.t('Russian', {}, { context }),
-    112: Drupal.t('Estonian', {}, { context })
-  };
-
   const b1options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if (b1IdsToLang[currentItem.key]) {
-      acc.push({ label: b1IdsToLang[currentItem.key], value: currentItem.key });
+    if ((currentItem.key >= 101 && currentItem.key <= 112) && ontologyDetailsIdsToLang[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -164,26 +115,9 @@ export const b2Atom = atom(async (get) => {
     return [];
   }
 
-  const context = 'TPR Ontologyword details schools';
-
-  const b2IdsToLang: any = {
-    113: Drupal.t('English', {}, { context }),
-    114: Drupal.t('Spanish', {}, { context }),
-    115: Drupal.t('Hebrew', {}, { context }),
-    116: Drupal.t('Italian', {}, { context }),
-    117: Drupal.t('Chinese', {}, { context }),
-    118: Drupal.t('Latin', {}, { context }),
-    119: Drupal.t('French', {}, { context }),
-    120: Drupal.t('Swedish', {}, { context }),
-    121: Drupal.t('German', {}, { context }),
-    122: Drupal.t('Finnish', {}, { context }),
-    123: Drupal.t('Russian', {}, { context }),
-    124: Drupal.t('Estonian', {}, { context })
-  };
-
   const b2options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if (b2IdsToLang[currentItem.key]) {
-      acc.push({ label: b2IdsToLang[currentItem.key], value: currentItem.key });
+    if ((currentItem.key >= 113 && currentItem.key <= 124) && ontologyDetailsIdsToLang[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -199,12 +133,12 @@ export const weightedEducationAtom = atom(async (get) => {
     return [];
   }
 
-  const woptions = ontologywordClarifications?.buckets.reduce((acc: any, currentItem: any) => {
+  const weightedOptions = ontologywordClarifications?.buckets.reduce((acc: any, currentItem: any) => {
     acc.push({ label: currentItem.key, value: currentItem.key });
     return acc;
   }, []);
 
-  return woptions;
+  return weightedOptions;
 });
 export const weightedEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -215,25 +149,9 @@ export const bilingualEducationAtom = atom(async (get) => {
     return [];
   }
 
-  const context = 'TPR Ontologyword details schools';
-
-  const bilingualIdsToLang: any = {
-    293: Drupal.t('Language immersion (English)', {}, { context }),
-    295: Drupal.t('Language immersion (Swedish)', {}, { context }),
-    297: Drupal.t('Language immersion (German)', {}, { context }),
-    904: Drupal.t('Finnish-English', {}, { context }),
-    905: Drupal.t('Finnish-Chinese', {}, { context }),
-    906: Drupal.t('Finnish-Spanish', {}, { context }),
-    907: Drupal.t('Finnish-Northern Sami', {}, { context }),
-    908: Drupal.t('Finnish-Estonian', {}, { context }),
-    909: Drupal.t('Finnish-Russian', {}, { context }),
-    910: Drupal.t('Language-enriched education (Finnish-English)', {}, { context }),
-    911: Drupal.t('Language-enriched education (Finnish-Russian)', {}, { context })
-  };
-
   const bilingualOptions = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if (bilingualIdsToLang[currentItem.key]) {
-      acc.push({ label: bilingualIdsToLang[currentItem.key], value: currentItem.key });
+    if ((currentItem.key >= 293 && currentItem.key <= 911) && ontologyDetailsIdsToLang[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);

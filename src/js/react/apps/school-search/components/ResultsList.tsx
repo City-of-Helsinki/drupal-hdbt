@@ -93,9 +93,8 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         :
           <>
             {results.map((hit: Result<School>) => (
-                <ResultCard key={hit._id} {...hit._source} />
-              ))
-            }
+              <ResultCard key={hit._id} {...hit._source} />
+            ))}
           </>
       }
       {

@@ -39,6 +39,8 @@ export type CardItemProps = {
   languageLabel?: string;
   time?: string;
   timeLabel?: string;
+  weightedEducation?: string;
+  languageEducation?: string;
 };
 
 function CardItem({
@@ -67,6 +69,8 @@ function CardItem({
   languageLabel,
   time,
   timeLabel,
+  weightedEducation,
+  languageEducation,
 }: CardItemProps): JSX.Element {
   const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
@@ -130,6 +134,12 @@ function CardItem({
           }
           {theme &&
             <Metarow icon="locate" label={themeLabel || Drupal.t('Theme')} content={theme} />
+          }
+          {weightedEducation &&
+            <Metarow icon="layers" label={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })} content={weightedEducation} />
+          }
+          {languageEducation &&
+            <Metarow icon="group" label={Drupal.t('Language offering', {}, { context: 'TPR Ontologyword details schools' })} content={languageEducation} />
           }
           {language &&
             <Metarow icon="globe" label={languageLabel || Drupal.t('Language')} content={language} />

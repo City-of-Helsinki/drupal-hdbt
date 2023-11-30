@@ -1,8 +1,20 @@
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
 import { School } from '../types/School';
+import ontologyDetailsIdsToLang from '../enum/LanguageEducationMap';
 
-const ResultCard = ({ additional_filters, address, summary_processed, name, name_override, picture_url, media_as_objects, url }: School) => {
+const ResultCard = ({
+  additional_filters,
+  address,
+  summary_processed,
+  name,
+  name_override,
+  ontologyword_details_clarifications,
+  ontologyword_ids,
+  picture_url,
+  media_as_objects,
+  url
+}: School) => {
   const title = name_override?.[0] || name?.[0];
   const imageOverride = media_as_objects?.[0].picture_url_override;
   const additionalFilters = additional_filters[0];
@@ -36,6 +48,23 @@ const ResultCard = ({ additional_filters, address, summary_processed, name, name
     language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
   }
 
+  let languageEducation = ontologyword_ids?.reduce((acc: any, currentItem: any) => {
+    if ((currentItem >= 15 && currentItem <= 124) && ontologyDetailsIdsToLang[currentItem]) {
+      acc.push(ontologyDetailsIdsToLang[currentItem]);
+    }
+    return acc;
+  }, []);
+
+  // Remove duplicates.
+  languageEducation = [...new Set(languageEducation)];
+
+  const bilingualEducation = ontologyword_ids?.reduce((acc: any, currentItem: any) => {
+    if ((currentItem >= 293 && currentItem <= 911) && ontologyDetailsIdsToLang[currentItem]) {
+      acc.push(ontologyDetailsIdsToLang[currentItem]);
+    }
+    return acc;
+  }, []);
+
   return (
     <CardItem
       cardDescription={summary_processed?.[0]}
@@ -44,9 +73,12 @@ const ResultCard = ({ additional_filters, address, summary_processed, name, name
       cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
-      language={language}
+      language={bilingualEducation && bilingualEducation.length ? `${language}, ${bilingualEducation.join(', ')}` : language}
       languageLabel={Drupal.t('Language of instruction', {}, {context: 'School search: language options'})}
       location={address?.[0]}
+      locationLabel={Drupal.t('Address', {}, {context: 'React search: location label'})}
+      weightedEducation={ontologyword_details_clarifications && ontologyword_details_clarifications.length ? ontologyword_details_clarifications.join(', ') : ''}
+      languageEducation={languageEducation && languageEducation.length ? languageEducation.join(', ') : ''}
     />
   );
 };
