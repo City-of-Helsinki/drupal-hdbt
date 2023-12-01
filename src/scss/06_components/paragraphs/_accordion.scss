@@ -171,6 +171,7 @@
 
 .accordion-item__content__inner {
   padding-bottom: $spacing;
+  transform: translateY(0); // This trick fixes long accordion reserving space below footer when they're closed.
 
   > *:first-child {
     margin-top: 0;

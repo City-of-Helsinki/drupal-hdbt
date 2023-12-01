@@ -123,12 +123,12 @@ $-card-spacing: $spacing-and-half;
 .component--content-cards-grey {
   background: $color-silver-light;
   display: grid;
-  grid-template-columns: [full-width-start] $spacing [content-start] 1fr [content-end] $spacing [full-width-end] ;
+  grid-template-columns: [full-width-start] var(--component-gap, #{$spacing}) [content-start] 1fr [content-end] var(--component-gap, #{$spacing}) [full-width-end] ;
   grid-template-rows: [header-start] auto [header-end] auto;
   padding-top: 0;
 
   @include breakpoint($breakpoint-m) {
-    grid-template-columns: [full-width-start] $spacing-double [content-start] 1fr [content-end] $spacing-double [full-width-end] ;
+    --component-gap: #{$spacing-double};
   }
 
   .hds-koros {
@@ -158,7 +158,6 @@ $-card-spacing: $spacing-and-half;
 }
 
 // The koro is not visible on these occasions so the padding needs to be removed as well.
-:not(.page-type--landing-page).wrapper .components--upper,
 :not(.page-type--landing-page).wrapper .components:not(.components--lower) {
   .component--content-cards-grey .component__container {
     padding-top: 0;

@@ -115,7 +115,13 @@
 }
 
 // Patch Siteimprove false positive color contrast issue to reduce noise
-.eu-cookie-compliance-block-form .hds-checkbox__label,
-.eu-cookie-compliance-block-form .description > p {
-  background-color: $color-white;
+.eu-cookie-compliance-block-form {
+  .hds-checkbox .hds-checkbox__input {
+    z-index: 1; // make sure that the checkbox is above the following label to show focus-ring properly
+  }
+
+  .hds-checkbox__label,
+  .description > p {
+    background-color: $color-white;
+  }
 }
