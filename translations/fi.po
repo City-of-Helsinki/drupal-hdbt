@@ -404,18 +404,6 @@ msgctxt "School search: input label"
 msgid "The child's home address"
 msgstr "Lapsen kotiosoite"
 
-msgctxt "School search: results statline"
-msgid "schools"
-msgstr "koulua"
-
-msgctxt "School search: result display"
-msgid "Show the schools on a map"
-msgstr "Näytä koulut kartalla"
-
-msgctxt "School search: result display"
-msgid "Show schools as a list"
-msgstr "Näytä koulut listana"
-
 msgctxt "School search: language options"
 msgid "Language of instruction"
 msgstr "Opetuskieli"
@@ -850,3 +838,17 @@ msgstr "Jos ongelma jatkuu siirry sivun kopioon."
 msgctxt "React search: location label"
 msgid "Address"
 msgstr "Osoite"
+
+msgctxt "React search: schools result count"
+msgid "1 school"
+msgid_plural "@count school"
+msgstr[0] "1 koulu"
+msgstr[1] "@count koulua"
+
+msgctxt "React search: result display"
+msgid "View as a list"
+msgstr "Näytä listana"
+
+msgctxt "React search: result display"
+msgid "View in a map"
+msgstr "Näytä kartalla"
