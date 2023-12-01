@@ -108,7 +108,7 @@
     }
   }
 
-  // All other components except the ones on this selectors :not-list need
+  // All other components except the full-width ones need
   // to have padding on smaller screens but have it removed on larger screens.
   > .component:not(.component--full-width) {
     @include component-side-padding;
