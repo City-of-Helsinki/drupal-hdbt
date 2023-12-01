@@ -106,6 +106,7 @@ const FeatureFormContainer = () => {
         onChange={({target: { value }}: { target: { value: string }}) => setKeywordValue(value)}
         type='search'
         value={keywordValue}
+        placeholder={Drupal.t('E.g. Aurinkolahti Comprehensive School or 00990', {}, {context: 'School search: text input placeholder'})}
       />
       <div className='hdbt-search--react__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>

@@ -845,3 +845,7 @@ msgstr "Visa som lista"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Visa på kartan"
+
+msgctxt "School search: text input placeholder"
+msgid "E.g. Aurinkolahti Comprehensive School or 00990"
+msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
