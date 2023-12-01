@@ -22,6 +22,20 @@ $news-archive-background: #f2f2f2;
   background: $news-archive-background;
 }
 
+// Override layout padding behaviour on news archive and use column gap
+// to avoid long and confusing spacing for all news archive items.
+.has-sidebar .news-wrapper {
+  @include breakpoint($breakpoint-l) {
+    column-gap: $spacing-quadruple;
+    grid-template-columns: auto 340px;
+  }
+
+  .layout-sidebar-second {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .hdbt__loading-wrapper {
   position: relative;
 }

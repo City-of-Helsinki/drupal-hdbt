@@ -8,6 +8,10 @@ $event-list-image-mobile-height: 264px;
 $tag-horizontal-padding: 12px;
 $tag-vertical-padding: 5px;
 
+.component--event-list {
+  @include component-side-padding;
+}
+
 .events-list__empty-subtext {
   margin-bottom: $spacing-and-half;
 }

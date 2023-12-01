@@ -3,7 +3,10 @@
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--service-list-search' ],
+      component_classes: [
+        'component--full-width',
+        'component--service-list-search'
+      ],
       component_title: content.field_service_list_title,
       component_description: content.field_service_list_description,
     }

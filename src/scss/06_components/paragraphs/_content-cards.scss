@@ -1,9 +1,5 @@
 $-card-spacing: $spacing-and-half;
 
-.component-content-cards .component__container {
-  overflow: hidden;
-}
-
 .content-cards {
   display: flex;
   flex-direction: column;
@@ -126,29 +122,31 @@ $-card-spacing: $spacing-and-half;
 
 .component--content-cards-grey {
   background: $color-silver-light;
+  display: grid;
+  grid-template-columns: [full-width-start] var(--component-gap, #{$spacing}) [content-start] 1fr [content-end] var(--component-gap, #{$spacing}) [full-width-end] ;
+  grid-template-rows: [header-start] auto [header-end] auto;
+  padding-top: 0;
+
+  @include breakpoint($breakpoint-m) {
+    --component-gap: #{$spacing-double};
+  }
 
   .hds-koros {
     color: $color-white;
+    grid-column: full-width;
+    grid-row: header;
 
-    .has-sidebar .components--upper & {
-      display: none; // Koro should not be visible when the component is inside narrow column due to sidebar.
+    // Koro should not be visible unless the component is on the components lower region or landing page.
+    :not(.page-type--landing-page).wrapper .components--upper & {
+      display: none;
     }
   }
 
   .component__container {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-triple;
+    grid-column: content;
+    padding-top: $spacing;
 
-    @include breakpoint($breakpoint-l) {
-      padding-bottom: $spacing-sextuple;
-      padding-top: $spacing-quadruple;
-    }
-
-    // Since the component is not "full width" next to a sidebar, we should uniform padding around
-    .has-sidebar .components--upper & {
-      padding-bottom: $spacing-double;
-      padding-left: $spacing-double;
-      padding-right: $spacing-double;
+    @include breakpoint($breakpoint-m) {
       padding-top: $spacing-double;
     }
   }
@@ -156,6 +154,13 @@ $-card-spacing: $spacing-and-half;
   .content-card__link {
     background-color: $color-white;
     padding: $spacing;
+  }
+}
+
+// The koro is not visible on these occasions so the padding needs to be removed as well.
+:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
+  .component--content-cards-grey .component__container {
+    padding-top: 0;
   }
 }
 
