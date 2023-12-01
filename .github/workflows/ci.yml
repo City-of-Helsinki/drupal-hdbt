@@ -38,4 +38,8 @@ jobs:
       - name: Run PHPCS
         run: |
           cd $DRUPAL_ROOT
-          vendor/bin/phpcs public/themes/contrib/$THEME_NAME --extensions=php,theme,module --standard=Drupal
+          vendor/bin/phpcs public/themes/contrib/$THEME_NAME --extensions=php,theme,module --standard=Drupal,DrupalPractice
+
+      - name: Run phpstan
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
