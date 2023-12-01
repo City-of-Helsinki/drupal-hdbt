@@ -41,38 +41,29 @@
   margin-bottom: $spacing-double;
 }
 
-.react-search__result-top-area {
-  margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
 .react-search__results-stats {
   margin-bottom: $spacing;
 }
 
-.react-search__tabs {
+.hdbt-search--react__tabs {
   margin-bottom: $spacing-triple;
 }
 
-.react-search__tab {
+.hdbt-search--react__tab {
   --tab-active-border-color: var(--hdbt-color-black);
   --tab-color: var(--hdbt-color-black);
 }
 
-.react-search__form-description {
+.hdbt-search--react__form-description {
   margin-bottom: $spacing;
 }
 
 // Override some fieldset default styles here
-.react-search__fieldset {
+.hdbt-search--react__fieldset {
   @include breakpoint($breakpoint-l) {
     display: flex;
-    flex: wrap;
   }
+
   border: none;
   margin-bottom: $spacing-double;
   padding-bottom: 0;
@@ -81,20 +72,58 @@
   padding-top: 0;
 }
 
-.react-search__legend {
+.hdbt-search--react__legend {
   font-weight: $font-weight-medium;
   margin-bottom: $spacing;
 }
 
 // Use specific selectors here to override HDS styles
-fieldset .react-search__checkbox {
+fieldset .hdbt-search--react__checkbox {
   --background-selected: var(--hdbt-color-black);
 }
 
-fieldset .react-search__checkbox:not(:first-of-type) {
+fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   @include breakpoint($breakpoint-l) {
     margin-left: $spacing;
     margin-top: 0;
   }
+
   margin-top: $spacing-double;
+}
+
+.hdbt-search--react__result-top-area {
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  margin-bottom: $spacing;
+}
+
+.hdbt-search--react__results--title {
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: 0;
+  }
+
+  align-items: center;
+  display: flex;
+  margin-bottom: $spacing-three-quarters;
+  margin-top: 0;
+}
+
+.hdbt-search--react__results--tablist {
+  .tablist-tab {
+    background-color: transparent;
+    border: none;
+    color: $color-black-90;
+    padding: $spacing;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &[aria-selected='true'] {
+      border-bottom: $spacing-quarter solid $color-black-90;
+    }
+  }
 }

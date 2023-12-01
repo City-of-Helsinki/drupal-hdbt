@@ -1,5 +1,4 @@
 import { SyntheticEvent, createRef, useState } from 'react';
-import { Button, IconMap, IconMenuHamburger } from 'hds-react';
 import { useAtomValue } from 'jotai';
 
 import Result from '@/types/Result';
@@ -63,52 +62,45 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
 
   return (
     <div className='react-search__results'>
-      <div className='react-search__result-top-area'>
-        <div className='react-search__results-stats'>
-          <div className='react-search__count-container' ref={scrollTarget}>
-            {!Number.isNaN(total) &&
-              <>
-                <span className='react-search__count'>{total}</span>
-                <span> {Drupal.t('schools', {}, {context: 'School search: results statline'})}</span>
-              </>
-            }
-          </div>
+      <div className='hdbt-search--react__result-top-area'>
+        {!Number.isNaN(total) &&
+          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
+            { Drupal.formatPlural(total, '1 school', '@count schools', {}, {context: 'React search: schools result count'}) }
+          </h3>
+        }
+        <div className='hdbt-search--react__results--tablist' role='tablist'>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
+            { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
+          </button>
+          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
+            { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
+          </button>
         </div>
-        <Button
-          onClick={() => setUseMap(!useMap)}
-          iconRight={useMap ? <IconMenuHamburger /> : <IconMap />}
-          theme='black'
-          type='button'
-          variant='secondary'
-        >
-          {useMap ?
-            Drupal.t('Show schools as a list', {}, {context: 'School search: result display'}) :
-            Drupal.t('Show the schools on a map', {}, {context: 'School search: result display'})
-          }
-        </Button>
       </div>
-      {
-        useMap ?
-          <ResultsMap ids={data?.aggregations?.ids?.buckets} />
-        :
-          <>
-            {results.map((hit: Result<School>) => (
-              <ResultCard key={hit._id} {...hit._source} />
-            ))}
-          </>
-      }
-      {
-        showPagination &&
-        <Pagination
-          currentPage={page || 1}
-          pages={5}
-          totalPages={addLastPage ? pages + 1 : pages}
-          updatePage={(e: SyntheticEvent, nextPage: number) => {
-            e.preventDefault();
-            updatePage(nextPage);
-          }}
-        />
-      }
+      <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
+        {
+          useMap ?
+            <ResultsMap ids={data?.aggregations?.ids?.buckets} />
+          :
+            <>
+              {results.map((hit: Result<School>) => (
+                <ResultCard key={hit._id} {...hit._source} />
+              ))}
+            </>
+        }
+        {
+          showPagination &&
+          <Pagination
+            currentPage={page || 1}
+            pages={5}
+            totalPages={addLastPage ? pages + 1 : pages}
+            updatePage={(e: SyntheticEvent, nextPage: number) => {
+              e.preventDefault();
+              updatePage(nextPage);
+            }}
+          />
+        }
+      </div>
     </div>
   );
 };
