@@ -1,4 +1,6 @@
-$-sidebar-width: calc(340px + $spacing-double + $spacing-double);
+// Calculate the sidebar width which consists of the designed content width of 340px
+// and padding of $spacing-double for each side on desktop and larger screen sizes.
+$-sidebar-width: calc($spacing-double + 340px + $spacing-double);
 
 .layout-main-wrapper * {
   scroll-margin-top: 113px; // Mobile header + language switcher.
@@ -50,7 +52,8 @@ $-sidebar-width: calc(340px + $spacing-double + $spacing-double);
   }
 }
 
-// Set proper width for all generic page components
+// Set proper width for all generic page components.
+// TODO: UHF-9391 Create a helper-class that can be used here instead of this long list of selectors.
 .page-title,
 .lead-in,
 .page-divider,

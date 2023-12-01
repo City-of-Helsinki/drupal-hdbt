@@ -83,7 +83,6 @@
 
 // Components on other pages than landing-page
 // need to be limited to content max-width to maintain readability.
-:not(.page-type--landing-page).wrapper .components--upper,
 :not(.page-type--landing-page).wrapper .components:not(.components--lower) {
   @include components-container-max-width;
   margin-left: auto;
@@ -121,14 +120,14 @@
   }
 }
 
-// Unit needs also these following fixed elements max-width. This should/could be fixed
-// by changing the elements dom to use component classes.
+// TODO: UHF-9389 Unit needs also these following fixed elements max-width.
+// This should/could be fixed by changing the elements dom to use component classes.
 .no-sidebar .unit--full .main-image picture {
   max-width: $content-width-max
 }
 
-// Service needs also these following fixed elements max-width.  This should/could be fixed
-// by changing the elements dom to use component classes.
+// TODO: UHF-9389 Service needs also these following fixed elements max-width.
+// This should/could be fixed by changing the elements dom to use component classes.
 .no-sidebar .service--full .service__errand-services {
   margin-left: auto;
   margin-right: auto;
