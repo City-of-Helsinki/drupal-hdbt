@@ -402,18 +402,6 @@ msgctxt "School search: input label"
 msgid "The child's home address"
 msgstr "Barnets hemadress"
 
-msgctxt "School search: results statline"
-msgid "schools"
-msgstr "skolor"
-
-msgctxt "School search: result display"
-msgid "Show the schools on a map"
-msgstr "Visa skolorna på kartan"
-
-msgctxt "School search: result display"
-msgid "Show schools as a list"
-msgstr "Visa skolorna som en lista"
-
 msgctxt "School search: language options"
 msgid "Language of instruction"
 msgstr "Undervisningsspråk"
@@ -670,6 +658,10 @@ msgctxt "React search open dropdown aria label"
 msgid "Open the combobox"
 msgstr "öppna rullgardinsmenyn"
 
+msgctxt "React search all placeholder"
+msgid "All"
+msgstr "Alla"
+
 msgid "Unit homepage"
 msgstr "Enhetens hemsida"
 
@@ -835,3 +827,27 @@ msgstr "Barngruppernas kontaktuppgifter"
 msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Om problemet kvarstår, gå till den kopian av sidorna."
+
+msgctxt "React search: location label"
+msgid "Address"
+msgstr "Adress"
+
+msgctxt "React search: schools result count"
+msgid "@schools schools"
+msgstr "@schools skolor"
+
+msgctxt "React search: schools result count"
+msgid "@schools school"
+msgstr "@schools skola"
+
+msgctxt "React search: result display"
+msgid "View as a list"
+msgstr "Visa som lista"
+
+msgctxt "React search: result display"
+msgid "View in a map"
+msgstr "Visa på kartan"
+
+msgctxt "School search: text input placeholder"
+msgid "E.g. Aurinkolahti Comprehensive School or 00990"
+msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"

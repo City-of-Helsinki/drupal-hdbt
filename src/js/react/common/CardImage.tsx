@@ -5,11 +5,11 @@ type CardImageProps = {
 } & ImgHTMLAttributes<HTMLImageElement>;
 
 const CardImage = (props: CardImageProps) => {
-  const {alt, photographer, ...rest} = props;
+  const { alt, photographer, ...rest } = props;
 
   return (
     <img
-      alt={alt}
+      alt={alt && alt !== '""' ? alt : ''}
       data-photographer={photographer}
       {...rest}
     />

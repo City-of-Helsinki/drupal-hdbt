@@ -1,5 +1,6 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
+
 import configurationsAtom from '../store';
 import GlobalSettings from '../enum/GlobalSettings';
 import getQueryString from '../helpers/FeatureQuery';
