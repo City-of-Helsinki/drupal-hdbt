@@ -1,6 +1,12 @@
-import GlobalSettings from '../enum/GlobalSettings';
 import BooleanQuery from '@/types/BooleanQuery';
+import GlobalSettings from '../enum/GlobalSettings';
+import IndexFields from '../enum/IndexFields';
 import SearchParams from '../types/SearchParams';
+
+// Filter by current language
+export const languageFilter: any = {
+  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+};
 
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
@@ -33,9 +39,47 @@ const getCheckBoxFilters = (params: SearchParams) => {
   return query;
 };
 
+const getDropdownFilters = (filterValues: any, indexField: string) => {
+  const filters: any = [{
+    bool: {
+      minimum_should_match: 1,
+      should: [],
+    }
+  }];
+
+  filterValues.forEach((ontologywordId: string) => {
+    filters[0].bool.should.push({ term: { [indexField]: ontologywordId }});
+  });
+
+  return filters;
+};
+
+// Base aggregations
+export const AGGREGATIONS = {
+  aggs: {
+    ontologywordIds: {
+      terms: {
+        field: 'ontologyword_ids',
+        size: 100,
+      },
+    },
+    ontologywordClarifications: {
+      terms: {
+        field: 'ontologyword_details_clarifications',
+        size: 100,
+      },
+    },
+  },
+  query: {
+    bool: {
+      filter: [languageFilter],
+    },
+  },
+};
+
 const getQueryString = (params: SearchParams, page: number) => {
   const { size } = GlobalSettings;
-  const { keyword } = params;
+  const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } = params;
 
   const query: BooleanQuery = {
     bool: {
@@ -46,6 +90,7 @@ const getQueryString = (params: SearchParams, page: number) => {
           }
         }
       ],
+      must: [],
     }
   };
 
@@ -96,6 +141,36 @@ const getQueryString = (params: SearchParams, page: number) => {
       }
     }];
   };
+
+  if (a1 && a1.length) {
+    const dropdownFilters: any = getDropdownFilters(a1, 'ontologyword_ids');
+    query.bool.must?.push(...dropdownFilters);
+  }
+
+  if (a2 && a2.length) {
+    const dropdownFilters: any = getDropdownFilters(a2, 'ontologyword_ids');
+    query.bool.must?.push(...dropdownFilters);
+  }
+
+  if (b1 && b1.length) {
+    const dropdownFilters: any = getDropdownFilters(b1, 'ontologyword_ids');
+    query.bool.must?.push(...dropdownFilters);
+  }
+
+  if (b2 && b2.length) {
+    const dropdownFilters: any = getDropdownFilters(b2, 'ontologyword_ids');
+    query.bool.must?.push(...dropdownFilters);
+  }
+
+  if (weighted_education && weighted_education.length) {
+    const dropdownFilters: any = getDropdownFilters(weighted_education, 'ontologyword_details_clarifications');
+    query.bool.must?.push(...dropdownFilters);
+  }
+
+  if (bilingual_education && bilingual_education.length) {
+    const dropdownFilters: any = getDropdownFilters(bilingual_education, 'ontologyword_ids');
+    query.bool.must?.push(...dropdownFilters);
+  }
 
   const sort: any[] = [
     {
