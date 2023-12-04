@@ -142,6 +142,9 @@ button.hdbt-search__remove-selection-button:not(:disabled) {
   padding-top: 0;
 }
 
+.hdbt-search__selections-wrapper {
+  margin-bottom: $spacing-double;
+}
 // Negate HDS-defined margin for icon inside remove button
 .hdbt-search__selections-wrapper button.hdbt-search__remove-selection-button > div {
   margin-right: 0;
