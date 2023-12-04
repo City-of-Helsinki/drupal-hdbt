@@ -11,7 +11,7 @@ export function Tags({ tags, isInteractive, langAttribute }: TagsProps): JSX.Ele
 
   return (
     <section
-      className="content-tags"
+      className="content-tags content-tags--card"
       aria-label={
         Drupal.t('Tags', {}, { context: 'Label for screen reader software users explaining that this is a list of tags related to this page.' })
       }>
