@@ -160,7 +160,6 @@ export const bilingualEducationAtom = atom(async (get) => {
 });
 export const bilingualEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
-
 export const paramsAtom = atom<SearchParams>({});
 export const stagedParamsAtom = atom<SearchParams>({});
 export const updateParamsAtom = atom(null, (get, set, params: SearchParams) => {

@@ -65,7 +65,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
       <div className='hdbt-search--react__result-top-area'>
         {!Number.isNaN(total) &&
           <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
-            { Drupal.formatPlural(total, '1 school', '@count schools', {}, {context: 'React search: schools result count'}) }
+            { total > 1 ?
+              Drupal.t('@schools schools', { '@schools': total }, { context: 'React search: schools result count'})
+            :
+              Drupal.t('@schools school', { '@schools': total }, { context: 'React search: schools result count'})
+            }
           </h3>
         }
         <div className='hdbt-search--react__results--tablist' role='tablist'>

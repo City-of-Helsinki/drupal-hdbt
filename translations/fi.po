@@ -840,10 +840,12 @@ msgid "Address"
 msgstr "Osoite"
 
 msgctxt "React search: schools result count"
-msgid "1 school"
-msgid_plural "@count school"
-msgstr[0] "1 koulu"
-msgstr[1] "@count koulua"
+msgid "@schools schools"
+msgstr "@schools koulua"
+
+msgctxt "React search: schools result count"
+msgid "@schools school"
+msgstr "@schools koulu"
 
 msgctxt "React search: result display"
 msgid "View as a list"
