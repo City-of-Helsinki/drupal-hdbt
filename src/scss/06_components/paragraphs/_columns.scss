@@ -1,17 +1,9 @@
+$column-gap: $spacing-and-half;
+
 .columns {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
   @include breakpoint($breakpoint-m) {
-    flex-direction: row;
-    margin-left: -$spacing-and-half;
-    margin-right: -$spacing-and-half;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-left: -$spacing-double;
-    margin-right: -$spacing-double;
+    grid-gap: calc($column-gap * 2);
+    display: grid;
   }
 
   // Overrides for image paragraph styles.
@@ -30,92 +22,32 @@
   }
 }
 
-.columns__column {
-  align-self: stretch;
-
+.columns--30-70 {
   @include breakpoint($breakpoint-m) {
-    margin-left: $spacing-and-half;
-    margin-right: $spacing-and-half;
+    grid-template-columns: calc(30% - $column-gap) calc(70% - $column-gap);
   }
+}
 
-  @include breakpoint($breakpoint-l) {
-    margin-left: $spacing-double;
-    margin-right: $spacing-double;
+.columns--70-30 {
+  @include breakpoint($breakpoint-m) {
+    grid-template-columns: calc(70% - $column-gap) calc(30% - $column-gap);
   }
+}
 
-  &.column--50 {
-    @include breakpoint($breakpoint-m) {
-      width: 50%;
-    }
+.columns--50-50 {
+  @include breakpoint($breakpoint-m) {
+    grid-template-columns: calc(50% - $column-gap) calc(50% - $column-gap);
   }
+}
 
-  &.column--30 {
-    @include breakpoint($breakpoint-m) {
-      width: 30%;
-    }
-  }
-
-  &.column--70 {
-    @include breakpoint($breakpoint-m) {
-      width: 70%;
-    }
-  }
+.columns__column {
+  width: 100%;
 
   + .columns__column {
     margin-top: $spacing-double;
 
     @include breakpoint($breakpoint-m) {
       margin-top: 0;
-    }
-  }
-}
-
-// Sidebar layout.
-.has-sidebar .main-content {
-  // Columns in content area and inside accordion.
-  .columns {
-    @include breakpoint($breakpoint-l) {
-      flex-direction: column;
-    }
-
-    @include breakpoint($breakpoint-xl) {
-      flex-direction: row;
-    }
-  }
-
-  .columns__column {
-    @include breakpoint($breakpoint-l) {
-      width: auto;
-
-      &:not(:first-of-type) {
-        margin-top: $spacing-double;
-      }
-    }
-
-    @include breakpoint($breakpoint-xl) {
-      margin-top: 0;
-
-      &:not(:first-of-type) {
-        margin-top: 0;
-      }
-    }
-  }
-
-  .columns__column.column--50 {
-    @include breakpoint($breakpoint-xl) {
-      width: 50%;
-    }
-  }
-
-  .columns__column.column--30 {
-    @include breakpoint($breakpoint-xl) {
-      width: 30%;
-    }
-  }
-
-  .columns__column.column--70 {
-    @include breakpoint($breakpoint-xl) {
-      width: 70%;
     }
   }
 }

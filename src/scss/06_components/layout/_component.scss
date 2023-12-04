@@ -4,25 +4,20 @@
   @include component-margin-top;
 }
 
-// When components are full width and do not contain liftup-with-img-bg,
+// When components are full width and do not contain liftup-with-img-bg or content-cards,
 // they should have padding that keeps them from touching side.
-.components--lower > .component:not(.component--liftup-with-image-bg),
-.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg) {
+.components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards),
+.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards) {
   @include component-side-padding;
 }
 
-// Koro should touch the sides
-.component--has-koro > .hds-koros {
-  margin-left: -$component-side-padding-mobile;
-  margin-right: -$component-side-padding-mobile;
-  width: calc(#{$component-side-padding-mobile} + 100% + #{$component-side-padding-mobile});
+.component--full-width {
+  padding-bottom: $spacing-triple;
+  padding-top: $spacing-triple;
 
-  @if $component-side-padding-mobile != $component-side-padding-desktop {
-    @include breakpoint($component-side-padding-breakpoint) {
-      margin-left: -$component-side-padding-desktop;
-      margin-right: -$component-side-padding-desktop;
-      width: calc(#{$component-side-padding-desktop} + 100% + #{$component-side-padding-desktop});
-    }
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
   }
 }
 
@@ -84,4 +79,61 @@
 
 .component__tags {
   margin-top: $spacing-and-half;
+}
+
+// Components on other pages than landing-page
+// need to be limited to content max-width to maintain readability.
+:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
+  @include components-container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint($breakpoint-m) {
+    @include component-side-padding;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .component {
+    max-width: $content-width-max;
+  }
+
+  .component--full-width {
+    padding-bottom: $component-side-padding-mobile;
+    padding-top: $component-side-padding-mobile;
+
+    @include breakpoint($component-side-padding-breakpoint) {
+      padding-bottom: $component-side-padding-desktop;
+      padding-top: $component-side-padding-desktop;
+    }
+  }
+
+  // All other components except the full-width ones need
+  // to have padding on smaller screens but have it removed on larger screens.
+  > .component:not(.component--full-width) {
+    @include component-side-padding;
+
+    @include breakpoint($breakpoint-m) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+// TODO: UHF-9389 Unit needs also these following fixed elements max-width.
+// This should/could be fixed by changing the elements dom to use component classes.
+.no-sidebar .unit--full .main-image picture {
+  max-width: $content-width-max
+}
+
+// TODO: UHF-9389 Service needs also these following fixed elements max-width.
+// This should/could be fixed by changing the elements dom to use component classes.
+.no-sidebar .service--full .service__errand-services {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-area-wrapper-width-max;
+
+  .errand-service {
+    max-width: $content-width-max;
+  }
 }

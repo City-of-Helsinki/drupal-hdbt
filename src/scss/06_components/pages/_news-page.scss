@@ -11,6 +11,8 @@
 .news-listing__item {
   list-style: none;
   margin-top: $spacing-and-half;
+  padding-left: 0; // Remove card paddings from news listing
+  padding-right: 0; // Remove card paddings from news listing
   position: relative;
 }
 

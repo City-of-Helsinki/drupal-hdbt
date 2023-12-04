@@ -1,4 +1,6 @@
-$-sidebar-width: 340px;
+// Calculate the sidebar width which consists of the designed content width of 340px
+// and padding of $spacing-double for each side on desktop and larger screen sizes.
+$-sidebar-width: calc($spacing-double + 340px + $spacing-double);
 
 .layout-main-wrapper * {
   scroll-margin-top: 113px; // Mobile header + language switcher.
@@ -30,7 +32,6 @@ $-sidebar-width: 340px;
 
   @include breakpoint($breakpoint-l) {
     .has-sidebar & {
-      column-gap: $spacing-quadruple;
       grid-template-areas: 'content sidebar';
       grid-template-columns: auto $-sidebar-width;
     }
@@ -43,15 +44,38 @@ $-sidebar-width: 340px;
       grid-template-rows: auto 1fr;
     }
   }
-
-  @include breakpoint($breakpoint-xl) {
-    column-gap: $spacing-triple;
-  }
 }
 
 .has-sidebar .main-content {
+  @include breakpoint($breakpoint-m) {
+    @include components-container-max-width;
+  }
+}
+
+// Set proper width for all generic page components.
+// TODO: UHF-9391 Create a helper-class that can be used here instead of this long list of selectors.
+.page-title,
+.lead-in,
+.page-divider,
+.content-date,
+.main-image,
+.long-desc,
+.enriched-content:not(.components),
+.content-links,
+.content-tags:not(.content-tags--card),
+.social-media__items {
   @include components-container-max-width;
   @include component-side-padding;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// TODO: UHF-9355 For pages that for some reason include the page title inside enriched content container we
+// need to remover the double padding. This should be fixed by removing the page-title away from enriched
+// content container and then remove these lines. For example news archive has this kind of setup.
+.enriched-content > .page-title {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .layout-sidebar-first {
@@ -61,6 +85,8 @@ $-sidebar-width: 340px;
 
   @include breakpoint($breakpoint-l) {
     display: block;
+    padding-left: $spacing-double;
+    padding-right: $spacing-double;
 
     .no-sidebar-second & {
       margin-bottom: 0;
@@ -81,5 +107,6 @@ $-sidebar-width: 340px;
 }
 
 .layout-sidebar-second {
+  @include component-side-padding;
   grid-area: sidebar;
 }

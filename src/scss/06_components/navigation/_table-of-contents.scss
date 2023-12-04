@@ -10,10 +10,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
-  .has-sidebar & {
-    @include component-negative-side-margin;
-  }
 }
 
 // Add extra margin to the following element if table of contents is enabled.
@@ -99,14 +95,14 @@
     display: inline-flex;
     margin-bottom: $spacing-and-half;
     margin-inline-end: $spacing;
-  
+
     @include breakpoint($breakpoint-m) {
       margin-inline-end: $spacing-and-half;
     }
 
     .hel-icon {
       --icon-size: #{$spacing-quadruple};
-  
+
       @include breakpoint($breakpoint-m) {
         --icon-size: #{remify(100px)};
       }
@@ -121,11 +117,11 @@
   .nojs__desc {
     @include font('body');
     margin-top: $spacing;
-  
+
     @include breakpoint($breakpoint-l) {
       margin-top: $spacing-and-half;
     }
-  
+
     p:first-child {
       margin: 0;
     }

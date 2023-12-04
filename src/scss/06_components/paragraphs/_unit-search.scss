@@ -1,4 +1,5 @@
 .component--unit-search {
+  @include component-side-padding;
   background-color: $color-silver-light;
 }
 
@@ -11,16 +12,6 @@
 .layout-main-wrapper > *:last-child .component--unit-search:last-child {
   margin-bottom: -115px; // Enough to get the block under the footer.
   padding-bottom: 55px; // Leave enough room between the last card and footer.
-}
-
-.component--unit-search .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
 }
 
 .views--unit-search {
