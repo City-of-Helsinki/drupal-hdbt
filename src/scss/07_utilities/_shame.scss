@@ -1,0 +1,15 @@
+// This file contains temporary CSS hacks and fixes for solving issues hastily
+// ---------------------------------------------------------------------------
+// All codes here will have:
+// * Explanation why the hack exists
+// * Explanation what the hack does
+// * TODO label on them with a reference to relevant issue with more details
+// * Conditions on when the hack can be removed
+
+
+// Siteimprove has problems checking the contrast on absolutely positioned elements.
+// This temporary hack sets dropdown placeholder background to what ever the parent has.
+// TODO: UHF-9357 Remove this patch when we have updated HDS component to use the patched version.
+button[class*='Select-module_button__'][class*='Select-module_placeholder__'] {
+  background-color: inherit;
+}
