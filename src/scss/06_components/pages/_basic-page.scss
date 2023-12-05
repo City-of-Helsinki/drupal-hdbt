@@ -61,10 +61,6 @@
   }
 }
 
-.main-image img {
-  @include image-defaults($width: 100%, $max-width: null);
-}
-
 .long-desc {
   @include font('body');
 

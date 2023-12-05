@@ -1,5 +1,6 @@
 .errand-service {
   margin-top: $spacing-triple;
+  max-width: $content-width-max;
 
   @include breakpoint($breakpoint-l) {
     margin-top: $spacing-quadruple;
