@@ -98,9 +98,13 @@ const ResultsContainer = (): JSX.Element => {
       </div>
 
       <div className='district-project-search__container'>
-        <ul className='district-project-search__listing'>
+        {/* Safari requires role='list' for lists that have no bullet points */}
+        {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+        <ul className='district-project-search__listing' role='list'>
           {results.map((hit: Result) => (
-            <ResultCard key={hit._id} {...hit._source} />
+            <li>
+              <ResultCard key={hit._id} {...hit._source} />
+            </li>
           ))}
         </ul>
         <Pagination
