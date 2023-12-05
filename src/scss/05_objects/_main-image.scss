@@ -1,0 +1,7 @@
+.main-image img {
+  @include image-defaults($width: 100%, $max-width: null);
+}
+
+.unit--full .main-image picture {
+  max-width: $content-width-max
+}
