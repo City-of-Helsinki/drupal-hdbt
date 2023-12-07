@@ -1,4 +1,3 @@
-
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import { paramsAtom, updateParamsAtom } from '../store';

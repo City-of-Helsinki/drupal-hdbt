@@ -72,7 +72,7 @@
   {% endif %}
 
   {% block main_content %}
-    <div class="enriched-content components components--unit">
+    <div class="enriched-content components components--upper components--unit">
       {% embed "@hdbt/misc/component.twig" with {
           component_classes: [ 'component--unit-contact-information' ],
           component_title: 'Contact information'|t({}, {'context': 'TPR unit contact information title'})
@@ -84,8 +84,6 @@
           %}
         {% endblock component_content %}
       {% endembed %}
-
-      {{ content.field_content }}
 
       {% if has_prices or has_contacts or has_other_info or has_subgroup or has_ontologyword_details %}
         {% embed "@hdbt/misc/component.twig" with
@@ -192,57 +190,59 @@
           {% endblock component_content %}
         {% endembed %}
       {% endif %}
-    </div>
-  {% endblock main_content %}
 
-  {% if content.service_map_embed|render %}
-    {% set map_title %}
-      {{ 'Location'|t }}
-    {% endset %}
-    {% include '@hdbt/component/map.twig' with {
-      title: map_title,
-      map: content.service_map_embed,
-      description: content.address,
-    } %}
-  {% endif %}
+      {{ content.field_content }}
 
-  {% if content.accessibility_sentences|render %}
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [
-        'component--accordion',
-        'component--accordion-bg-grey',
-        'component--hardcoded'
-      ],
-        component_content_class: 'accordion',
-      }
-    %}
-    {% block component_content %}
+      {% if content.service_map_embed|render %}
+        {% set map_title %}
+          {{ 'Location'|t }}
+        {% endset %}
+        {% include '@hdbt/component/map.twig' with {
+          title: map_title,
+          map: content.service_map_embed,
+          description: content.address,
+        } %}
+      {% endif %}
 
-      {% set accordion_content %}
-
-        {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+      {% if content.accessibility_sentences|render %}
+        {% embed "@hdbt/misc/component.twig" with
+          {
+            component_classes: [
+            'component--accordion',
+            'component--accordion-bg-grey',
+            'component--hardcoded'
+          ],
+            component_content_class: 'accordion',
+          }
+        %}
           {% block component_content %}
-            {{ content.accessibility_sentences }}
+
+            {% set accordion_content %}
+
+              {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
+                {% block component_content %}
+                  {{ content.accessibility_sentences }}
+                {% endblock component_content %}
+              {% endembed %}
+
+            {% endset %}
+
+            {% include '@hdbt/component/accordion.twig' ignore missing with {
+              heading_level: 'h2',
+              heading_icon: 'person-wheelchair',
+              heading: 'Accessibility information'|t,
+              content: accordion_content,
+            } %}
+
           {% endblock component_content %}
         {% endembed %}
+      {% endif %}
 
-      {% endset %}
+      {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
 
-      {% include '@hdbt/component/accordion.twig' ignore missing with {
-        heading_level: 'h2',
-        heading_icon: 'person-wheelchair',
-        heading: 'Accessibility information'|t,
-        content: accordion_content,
-      } %}
-
-      {% endblock component_content %}
-    {% endembed %}
-  {% endif %}
-
-  {% set services_view = drupal_view_result('unit_services', 'unit_services')|length %}
-
-  {% if services_view > 0 %}
-    {{ drupal_view('unit_services', 'unit_services') }}
-  {% endif %}
+      {% if services_view > 0 %}
+        {{ drupal_view('unit_services', 'unit_services') }}
+      {% endif %}
+    </div>
+  {% endblock main_content %}
 </article>

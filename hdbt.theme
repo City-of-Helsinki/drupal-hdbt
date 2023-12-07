@@ -20,6 +20,7 @@ use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -635,10 +636,12 @@ function hdbt_preprocess_block(&$variables): void {
 
         if (!empty($params)) {
           $entity_type = key($params);
+          /** @var \Drupal\node\NodeInterface $node */
           $node = Drupal::entityTypeManager()
             ->getStorage($entity_type)
-            ->load($params[$entity_type])
-            ->getTranslation($variables['current_langcode']);
+            ->load($params[$entity_type]);
+
+          $node = $node->hasTranslation($variables['current_langcode']) ? $node->getTranslation($variables['current_langcode']) : $node;
           $menu_link_title = $node->getTitle();
           $menu_link_url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
         }
@@ -727,7 +730,6 @@ function hdbt_preprocess_paragraph__image(&$variables) {
  */
 function hdbt_preprocess_paragraph__hero(&$variables) {
   $paragraph = $variables['paragraph'];
-  $paragraph_type = $paragraph->getType();
   // Check if the paragraph is a type of hero, and it has image field available.
   if (
     $paragraph->hasField('field_hero_image')
@@ -1100,6 +1102,7 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
     }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
+    // @phpstan-ignore-next-line
     $file->field_media_image->first()->altered_image_style = $image_style;
   }
 }
@@ -1544,7 +1547,9 @@ function hdbt_preprocess_social_media_links(&$variables): void {
 
       // Add lang and dir attributes if the link text is not translated.
       if ($key === 'email' && $variables['alternative_language']) {
-        if (!isset(\Drupal::languageManager()->getLanguageConfigOverride($variables['current_langcode'], 'social_media.settings')->get('social_media')['email']['text'])) {
+        $languageManager = \Drupal::languageManager();
+        assert($languageManager instanceof ConfigurableLanguageManagerInterface);
+        if (!isset($languageManager->getLanguageConfigOverride($variables['current_langcode'], 'social_media.settings')->get('social_media')['email']['text'])) {
           /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
           $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
           $attributes = $defaultLanguageResolver->getFallbackLangAttributes();

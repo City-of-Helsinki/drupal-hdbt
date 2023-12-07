@@ -7,9 +7,9 @@
     }
   %}
     {% block component_tags %}
-      {% include "@hdbt/misc/news-tags.twig" with 
+      {% include "@hdbt/misc/news-tags.twig" with
         {
-          tag_container_class: 'component__tags',
+          tag_container_class: 'content-tags--card component__tags',
           tags: content.field_helfi_news_groups,
           neighbourhoods: content.field_helfi_news_tags,
           groups: content.field_helfi_news_neighbourhoods

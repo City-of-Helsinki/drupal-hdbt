@@ -1,29 +1,26 @@
 {% set design = content.field_columns_design[0]['#markup'] %}
 
+{# // Set the correct classes for the columns. #}
+{% if design == "30-70" %}
+  {% set design_class = 'columns--30-70' %}
+{% elseif design == "70-30" %}
+  {% set design_class = 'columns--70-30' %}
+{% else %}
+  {% set design_class = 'columns--50-50' %}
+{% endif %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--columns' ],
       component_title: content.field_columns_title,
-      component_content_class: 'columns',
+      component_content_class: ['columns', design_class],
     }
   %}
     {% block component_content %}
 
       {% set left_column_classes = ['columns__column'] %}
       {% set right_column_classes = ['columns__column'] %}
-
-      {# // Set the correct classes for the columns. #}
-      {% if design == "30-70" %}
-        {% set left_column_classes = left_column_classes|merge(['column--30'])%}
-        {% set right_column_classes = right_column_classes|merge(['column--70']) %}
-      {% elseif design == "70-30" %}
-        {% set left_column_classes = left_column_classes|merge(['column--70'])%}
-        {% set right_column_classes = right_column_classes|merge(['column--30']) %}
-      {% else %}
-        {% set left_column_classes = left_column_classes|merge(['column--50'])%}
-        {% set right_column_classes = right_column_classes|merge(['column--50']) %}
-      {% endif %}
 
       <div class="{{ left_column_classes|join(' ') }}">
         {{ content.field_columns_left_column }}

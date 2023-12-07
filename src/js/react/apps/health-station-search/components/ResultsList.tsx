@@ -70,10 +70,10 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         }
         <div className='hdbt-search--react__results--tablist' role='tablist'>
           <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
-            { Drupal.t('View as a list', {}, {context: 'Health station search: result display'}) }
+            { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
           </button>
           <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
-            { Drupal.t('View in a map', {}, {context: 'Health station search: result display'}) }
+            { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
           </button>
         </div>
       </div>

@@ -4,7 +4,10 @@
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--unit-search' ],
+      component_classes: [
+        'component--full-width',
+        'component--unit-search'
+      ],
       component_title: content.field_unit_search_title,
       component_description: content.field_unit_search_description,
       component_content_class: 'unit-search',

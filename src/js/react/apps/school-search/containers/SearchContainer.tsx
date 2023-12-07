@@ -32,16 +32,16 @@ const SearchContainer = () => {
   return (
     <>
       <Tabs>
-        <TabList className='react-search__tabs'>
+        <TabList className='hdbt-search--react__tabs'>
           <Tab
-            className='react-search__tab'
+            className='hdbt-search--react__tab'
             index={0}
             onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}
           >
             {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
           </Tab>
           <Tab
-            className='react-search__tab'
+            className='hdbt-search--react__tab'
             index={1}
             onClick={() => changeSearchMode(MODE_OPTIONS.feature)}
           >

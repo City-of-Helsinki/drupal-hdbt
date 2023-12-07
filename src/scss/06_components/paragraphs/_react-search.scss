@@ -2,77 +2,39 @@
   background-color: $color-silver-light;
 }
 
-// Since the component is not "full width" next to a sidebar, we should uniform padding around
-.has-sidebar .components--upper .component--react-search .component__container {
-  padding-bottom: $spacing-double;
-  padding-left: $spacing-double;
-  padding-right: $spacing-double;
-  padding-top: $spacing-double;
-}
-
-.has-sidebar .components--upper .component--react-search {
-  @include breakpoint(max-width $breakpoint-l) {
-    @include component-negative-side-margin;
-  }
-}
-
 // If the event search search is just before footer it needs to function the same way as unit search.
 .layout-main-wrapper > *:last-child .component--react-search:last-child .component__container {
   margin-bottom: -115px; // Enough to get the block under the footer.
   padding-bottom: 115px; // Leave enough room between the last card and footer.
 }
 
-.component--react-search .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
-}
-
-.react-search__form-container {
-  border-bottom: 1px solid $color-black-20;
-  margin-bottom: $spacing-double;
-}
-
 .react-search__list-container {
   margin-bottom: $spacing-double;
-}
-
-.react-search__result-top-area {
-  margin-bottom: $spacing;
-
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-    justify-content: space-between;
-  }
 }
 
 .react-search__results-stats {
   margin-bottom: $spacing;
 }
 
-.react-search__tabs {
+.hdbt-search--react__tabs {
   margin-bottom: $spacing-triple;
 }
 
-.react-search__tab {
+.hdbt-search--react__tab {
   --tab-active-border-color: var(--hdbt-color-black);
   --tab-color: var(--hdbt-color-black);
 }
 
-.react-search__form-description {
+.hdbt-search--react__form-description {
   margin-bottom: $spacing;
 }
 
 // Override some fieldset default styles here
-.react-search__fieldset {
+.hdbt-search--react__fieldset {
   @include breakpoint($breakpoint-l) {
     display: flex;
-    flex: wrap;
   }
+
   border: none;
   margin-bottom: $spacing-double;
   padding-bottom: 0;
@@ -81,68 +43,43 @@
   padding-top: 0;
 }
 
-.react-search__legend {
+.hdbt-search--react__legend {
   font-weight: $font-weight-medium;
   margin-bottom: $spacing;
 }
 
 // Use specific selectors here to override HDS styles
-fieldset .react-search__checkbox {
+fieldset .hdbt-search--react__checkbox {
   --background-selected: var(--hdbt-color-black);
 }
 
-fieldset .react-search__checkbox:not(:first-of-type) {
+fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   @include breakpoint($breakpoint-l) {
     margin-left: $spacing;
     margin-top: 0;
   }
+
   margin-top: $spacing-double;
 }
 
-/*
- * New unified React Search classes
- */
-.hdbt-search--react__form-container {
-  border-bottom: none;
+.hdbt-search--react__result-top-area {
   @include breakpoint($breakpoint-l) {
-    max-width: 870px;
-  }    
-}
-
-.hdbt-search--react__fieldset {
-  margin-bottom: $spacing-and-half;
-  margin-top: $spacing-and-half;
-}
-
-.hdbt-search--react__submit-button {
-  min-width: 100%;
-
-  @include breakpoint($breakpoint-l) {      
-    min-width: 290px;
+    display: flex;
+    justify-content: space-between;
   }
-}
 
-.hdbt-search--react__result-top-area > * {
-  width: 100%;
-
-  @include breakpoint($breakpoint-l) {  
-    width: auto;
-  }
+  margin-bottom: $spacing;
 }
 
 .hdbt-search--react__results--title {
-  margin-bottom: $spacing;
-  margin-top: 0;
-
   @include breakpoint($breakpoint-l) {
-    align-items: center;
-    display: flex;
     margin-bottom: 0;
-
-    > * {
-      display: inline-flex;
-    }
   }
+
+  align-items: center;
+  display: flex;
+  margin-bottom: $spacing-three-quarters;
+  margin-top: 0;
 }
 
 .hdbt-search--react__results--tablist {
@@ -157,7 +94,7 @@ fieldset .react-search__checkbox:not(:first-of-type) {
     }
 
     &[aria-selected='true'] {
-      border-bottom: 4px solid $color-black-90;
+      border-bottom: $spacing-quarter solid $color-black-90;
     }
   }
 }

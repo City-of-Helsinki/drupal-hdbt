@@ -61,10 +61,6 @@
   }
 }
 
-.main-image img {
-  @include image-defaults($width: 100%, $max-width: null);
-}
-
 .long-desc {
   @include font('body');
 
@@ -80,24 +76,6 @@
     margin-top: $spacing-quadruple;
   }
 }
-
-// stylelint-disable no-descending-specificity
-// Set proper width for all generic page components
-.no-sidebar {
-  .page-title,
-  .lead-in,
-  .page-divider,
-  .main-image,
-  .long-desc,
-  .enriched-content:not(.components),
-  .content-tags {
-    @include components-container-max-width;
-    @include component-side-padding;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-// stylelint-enable no-descending-specificity
 
 .content-date {
   @include font('small');
