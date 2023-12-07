@@ -28,6 +28,10 @@
         {% if content.accessibility_sentences|render %}
           {% include '@hdbt/misc/accessibility-link.twig' %}
         {% endif %}
+        <br />
+        {% if content.service_map_embed|render %}
+          {% include '@hdbt/misc/location-link.twig' %}
+        {% endif %}
       </div>
     {% endif %}
     {% if unit_email_link and content.email|render %}
