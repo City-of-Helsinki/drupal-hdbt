@@ -34,9 +34,13 @@
       margin-top: 0;
     }
   }
+  .unit__contact-row--address {
+    overflow: hidden;
+  }
 
   .unit__contact-row--address a {
-    display: block;
+    clear: both;
+    float: left;
   }
 
   .unit__contact-row--email a {
