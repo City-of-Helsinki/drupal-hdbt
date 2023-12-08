@@ -1,6 +1,6 @@
 {# The map on the TPR unit page has hardcoded header which is used as the element id #}
 {% set map_id = 'Location'|t|replace({'ä': 'a', 'ö': 'o', 'å': 'a'})|clean_class %}
-{% set link_title = 'View location on service map'|t({}, {'context': 'TPR unit contact information view location on service map link'}) %}
+{% set link_title = 'View location on service map'|t({}, {'context': 'TPR unit service map link'}) %}
 {% set link_url = drupal_url('<current>', {'fragment': map_id}) %}
 {% set link_attributes = {'class': ['link']} %}
 
