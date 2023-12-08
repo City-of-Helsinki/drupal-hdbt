@@ -36,11 +36,11 @@
   }
   .unit__contact-row--address {
     overflow: hidden;
-  }
 
-  .unit__contact-row--address a {
-    clear: both;
-    float: left;
+    a {
+      clear: both;
+      float: left;
+    }
   }
 
   .unit__contact-row--email a {
