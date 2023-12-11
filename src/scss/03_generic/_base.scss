@@ -16,6 +16,8 @@ body {
   // stylelint-disable order/properties-alphabetical-order
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+
+  --line-height: #{$base-line-height}; // This line sets the default inline icon-size compared to 1em
   background-color: $body-bg-color;
   color: $color-black-90;
   display: flex;

@@ -852,6 +852,10 @@ msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
 
+msgctxt "TPR unit service map link"
+msgid "View location on service map"
+msgstr "Visa plats på servicekartan"
+
 msgctxt "Ploughing schedule: Form title"
 msgid "See the ploughing schedule"
 msgstr "Se tidsplanen för plogning"
