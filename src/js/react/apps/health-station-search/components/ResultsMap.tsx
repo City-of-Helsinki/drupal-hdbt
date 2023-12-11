@@ -17,10 +17,10 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     if (!ids) {
       return multipleBaseUrl;
     }
-  
+
     const idMap = bucketToMap(ids);
     const idArray = Array.from(idMap, (item) => item[0]);
-  
+
     if (idArray.length === 1) {
       return `${singleBaseUrl}/${idArray[0]}`;
     }
@@ -37,9 +37,8 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     }
 
     params.set('units', idArray.join(','));
-  
     mapUrl.search = params.toString();
-  
+
     return mapUrl.toString();
   };
 

@@ -1,4 +1,3 @@
-
 type SearchParams = {
   keyword?: string;
   page?: number;

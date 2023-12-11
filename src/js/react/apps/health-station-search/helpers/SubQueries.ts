@@ -4,7 +4,7 @@ export const getAddressUrls = (address: string) => {
   const { addressBaseUrl } = GlobalSettings;
   const languages = ['fi', 'sv'];
 
-  // Servicemap's search API works only with one language, distinct urls is needed to get both lang data
+  // Servicemap's search endpoint works only with one language, distinct urls is needed to get both lang data
   const urls = languages.map((language: string) => {
     const url = new URL(addressBaseUrl);
     const params = new URLSearchParams(url.search);
