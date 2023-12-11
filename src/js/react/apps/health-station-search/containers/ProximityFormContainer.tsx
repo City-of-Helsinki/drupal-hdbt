@@ -11,7 +11,7 @@ type SubmitFormType = HTMLFormElement & {
 const ProximityFormContainer = () => {
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
-  const setStagedParams = useSetAtom(stagedParamsAtom);  
+  const setStagedParams = useSetAtom(stagedParamsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ const ProximityFormContainer = () => {
     const params: SearchParams = {};
 
     if (keyword.value && keyword.value.length) {
-      params.keyword = keyword.value;      
+      params.keyword = keyword.value;
     };
 
     params.sv_only = sv_only.checked;
@@ -30,9 +30,9 @@ const ProximityFormContainer = () => {
   return (
     <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
       <h3>
-        {Drupal.t('Find your health station', {}, {context: 'Health station search: local search title'})}
+        {Drupal.t('Find your health station', {}, { context: 'Health station search: local search title'})}
       </h3>
-      <p className='react-search__form-description'>
+      <p className='hdbt-search--react__form-description'>
         {Drupal.t(
           'Your primary health station is the health station in your area of residence. You can find your health station by entering your home address in the search box.',
           {},
@@ -40,23 +40,23 @@ const ProximityFormContainer = () => {
         )}
       </p>
       <TextInput
-        className='hdbt-search__filter'
-        helperText={Drupal.t('Enter the street name and house number', {}, {context: 'Health station search: input helper'})}
-        placeholder={Drupal.t('For example, Kotikatu 1', {}, {context: 'Health station search: input placeholder'})}
+        className='hdbt-search__filter hdbt-search--react__text-field'
+        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'Health station search: input helper'})}
+        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Health station search: input placeholder'})}
         id='keyword'
-        label={Drupal.t('Home address', {}, {context: 'Health station search: input label'})}
+        label={Drupal.t('Home address', {}, { context: 'Health station search: input label'})}
         type='search'
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
-          <Checkbox 
+          <Checkbox
             className='react-search__checkbox'
             checked={stagedParams?.sv_only || false}
             id='sv_only'
             name='sv_only'
             value='sv_only'
             onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
-            label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, {context: 'Health station search: checkbox label'})} 
+            label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, { context: 'Health station search: checkbox label'})}
           />
         </fieldset>
       </div>
