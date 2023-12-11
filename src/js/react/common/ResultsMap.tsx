@@ -17,10 +17,10 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     if (!ids) {
       return multipleBaseUrl;
     }
-  
+
     const idMap = bucketToMap(ids);
     const idArray = Array.from(idMap, (item) => item[0]);
-  
+
     if (idArray.length === 1) {
       return `${singleBaseUrl}/${idArray[0]}`;
     }
@@ -37,9 +37,8 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     }
 
     params.set('units', idArray.join(','));
-  
     mapUrl.search = params.toString();
-  
+
     return mapUrl.toString();
   };
 
@@ -47,11 +46,11 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   if (Drupal.eu_cookie_compliance && Drupal.eu_cookie_compliance.hasAgreed('preference') && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
     return (
-      <div className='school-search__map-container'>
+      <div className='hdbt-search--react__map-container'>
         <div className='unit-search__result--map'>
           <iframe
-            title="Palvelukartta - Etusivu"
-            className="unit-search__map"
+            title='Palvelukartta - Etusivu'
+            className='unit-search__map'
             src={mapUrl}
           >
           </iframe>
@@ -68,7 +67,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
   return (
     <CookieComplianceStatement
       host={url.host}
-      policyUrl={drupalSettings.helfi_school_search.cookie_privacy_url}
+      policyUrl={drupalSettings.helfi_react_search.cookie_privacy_url}
       sourceUrl={mapUrl}
     />
   );

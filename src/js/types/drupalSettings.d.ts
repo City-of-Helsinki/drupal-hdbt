@@ -27,11 +27,9 @@ declare namespace drupalSettings {
     }
   };
   const helfi_react_search: {
+    cookie_privacy_url: string;
     elastic_proxy_url: string;
     sentry_dsn_react: string;
-  };
-  const helfi_school_search: {
-    cookie_privacy_url: string;
   };
   const helfi_rekry_job_search: {
     results_page_path: string;
@@ -39,8 +37,5 @@ declare namespace drupalSettings {
   const helfi_news_archive: {
     elastic_proxy_url: string;
     feed_base_url: string;
-  };
-  const helfi_health_station_search: {
-    cookie_privacy_url: string;
   };
 }

@@ -1650,7 +1650,7 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
 
   if ($privacyUrl instanceof Url) {
     $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_school_search']['cookie_privacy_url'] = $privacyUrl->toString();
+    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
 }
 
@@ -1664,7 +1664,7 @@ function hdbt_preprocess_paragraph__health_station_search(array &$variables): vo
 
   if ($privacyUrl instanceof Url) {
     $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_health_station_search']['cookie_privacy_url'] = $privacyUrl->toString();
+    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
 }
 

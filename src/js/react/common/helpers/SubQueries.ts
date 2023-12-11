@@ -1,4 +1,4 @@
-import GlobalSettings from '../enum/GlobalSettings';
+import GlobalSettings from '@/react/common/enum/GlobalSettings';
 
 export const getAddressUrls = (address: string) => {
   const { addressBaseUrl } = GlobalSettings;
@@ -30,9 +30,7 @@ export const parseCoordinates = (addressData: any) => {
   return [lat, lon];
 };
 
-export const getLocationsUrl = (lat: number|undefined, lon: number|undefined) => {
-  const { locationsBaseUrl } = GlobalSettings;
-
+export const getLocationsUrl = (locationsBaseUrl: string, lat: number|undefined, lon: number|undefined) => {
   const url = new URL(locationsBaseUrl);
   const params = new URLSearchParams(url.search);
 

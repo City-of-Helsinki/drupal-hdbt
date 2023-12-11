@@ -6,10 +6,10 @@ import Pagination from '@/react/common/Pagination';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
-import GlobalSettings from '../enum/GlobalSettings';
+import ResultsMap from '@/react/common/ResultsMap';
+import AppSettings from '../enum/AppSettings';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
-import ResultsMap from './ResultsMap';
 import { paramsAtom } from '../store';
 
 type ResultsListProps = {
@@ -23,7 +23,7 @@ type ResultsListProps = {
 
 const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
-  const { size } = GlobalSettings;
+  const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const choices = Boolean(Object.keys(params).length);

@@ -1,18 +1,19 @@
 import useSWR from 'swr';
 import { useAtomValue } from 'jotai';
 
+import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import SearchParams from '../types/SearchParams';
 import configurationsAtom from '../store';
-import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from '../helpers/SubQueries';
 import getQueryString from '../helpers/ProximityQuery';
-import GlobalSettings from '../enum/GlobalSettings';
+import AppSettings from '../enum/AppSettings';
 
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
+  const { locationsBaseUrl } = AppSettings;
 
   const fetcher = async () => {
-    const { index } = GlobalSettings;
+    const { index } = AppSettings;
     const { keyword } = params;
 
     let coordinates = null;
@@ -29,7 +30,7 @@ const UseProximityQuery = (params: SearchParams) => {
 
     if (coordinates && coordinates.length) {
       const [lat, lon] = coordinates;
-      const locationsResponse = await fetch(getLocationsUrl(lat, lon));
+      const locationsResponse = await fetch(getLocationsUrl(locationsBaseUrl, lat, lon));
       const locationsData = await locationsResponse.json();
 
       if (!locationsData || !locationsData.results) {
