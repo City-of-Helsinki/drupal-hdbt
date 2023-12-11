@@ -892,3 +892,7 @@ msgstr "Näytä kartalla"
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "Esim. Aurinkolahden peruskoulu tai 00990"
+
+msgctxt "TPR unit service map link"
+msgid "View location on service map"
+msgstr "Näytä sijainti palvelukartalla"
