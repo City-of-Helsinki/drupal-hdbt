@@ -26,6 +26,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const { size } = GlobalSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
+  const { sv_only, keyword } = params;
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
 
@@ -55,10 +56,12 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   const results = data.hits.hits;
-  const total = data.hits.total.value;
+  const total = keyword && sv_only ? data.hits.hits.length : data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
+  const sv_id = results?.[0]?._source?.id?.[0];
+  const mapIds = keyword && sv_only && sv_id ? data?.aggregations?.ids?.buckets?.filter((item: any) => item.key === sv_id) : data?.aggregations?.ids?.buckets;
 
   return (
     <div className='react-search__results'>
@@ -80,13 +83,12 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
       <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
         {
           useMap ?
-            <ResultsMap ids={data?.aggregations?.ids?.buckets} />
+            <ResultsMap ids={mapIds} />
           :
             <>
               {results.map((hit: Result<HealthStation>) => (
-                  <ResultCard key={hit._id} {...hit._source} />
-                ))
-              }
+                <ResultCard key={hit._id} {...hit._source} />
+              ))}
             </>
         }
         {
