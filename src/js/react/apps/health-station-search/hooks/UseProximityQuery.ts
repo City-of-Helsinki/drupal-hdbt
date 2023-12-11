@@ -7,6 +7,10 @@ import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from 
 import getQueryString from '../helpers/ProximityQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 
+type Unit = {
+  id?: number
+};
+
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
@@ -14,7 +18,7 @@ const UseProximityQuery = (params: SearchParams) => {
   const fetcher = async () => {
     const { index } = GlobalSettings;
     const { keyword, sv_only } = params;
-    
+
     let coordinates = null;
     let ids = null;
 
@@ -36,7 +40,7 @@ const UseProximityQuery = (params: SearchParams) => {
         return null;
       }
 
-      ids = locationsData.results.map((result: {service_point_id: string}) => result.service_point_id);
+      ids = locationsData.results.map((result: { unit: Unit }) => result.unit.id);
     }
 
     return fetch(`${baseUrl}/${index}/_search`, {
@@ -48,7 +52,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${  Object.values(params).toString()}`, fetcher, {
+  const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {
     revalidateOnFocus: false
   });
 
