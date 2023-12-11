@@ -1,0 +1,20 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--hdbt-search--react',
+        'component--hdbt-search--ploughing-schedule'
+      ],
+      component_title_level: 'h2',
+      component_title: content.field_comp_search_title,
+      component_description: content.field_comp_search_description,
+      component_content_class: 'ploughing-schedule',
+    }
+  %}
+    {% block component_content %}
+      {# Hook React app to this div #}
+      <div id="helfi-ploughing-schedule" data-paragraph-id="{{ paragraph.id() }}">    
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

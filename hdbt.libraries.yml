@@ -214,3 +214,13 @@ table-figcaption:
   dependencies:
     - core/drupal
     - core/once
+
+ploughing-schedule:
+  version: 1.0
+  js:
+    dist/js/ploughing-schedule.min.js: {
+      preprocess: false
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

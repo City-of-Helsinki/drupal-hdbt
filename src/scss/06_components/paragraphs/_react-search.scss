@@ -98,3 +98,72 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
     }
   }
 }
+
+.component--hdbt-search--react .component__container {
+  background-color: $color-silver-light;
+}
+
+.has-sidebar .components--upper .component--hdbt-search--react .component__container {
+  margin-left: $spacing;
+  margin-right: $spacing;  
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {    
+    margin-left: $spacing-double;
+    margin-right: $spacing-double;
+    padding: $spacing-double;  
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin: 0;
+  }
+}
+
+.has-sidebar .components--upper .component--hdbt-search--react {
+  @include breakpoint(max-width $breakpoint-l) {
+    @include component-negative-side-margin;
+  }
+}
+
+.hdbt-search--react__form-container {
+  border-bottom: none;
+}
+
+.hdbt-search--react__form-title {
+  margin-top: 0;
+}
+
+.hdbt-search--react__submit-button:not(disabled) {
+  --background-color: var(--hdbt-color-black);
+  --background-color-hover: var(--hdbt-text-color);
+  --background-color-focus: var(--hdbt-text-color);
+  --background-color-hover-focus: var(--hdbt-text-color);
+  --border-color: var(--hdbt-color-black);
+  --border-color-hover: var(--hdbt-color-black);
+  --border-color-focus: var(--hdbt-color-black);
+  --border-color-hover-focus: var(--hdbt-color-black);
+  --color: var(--hdbt-text-color);
+  --color-hover: var(--hdbt-color-black);
+  --color-focus: var(--hdbt-color-black);
+  --color-hover-focus: var(--hdbt-color-black);
+  --focus-outline-color: var(--hdbt-color-black);
+}
+
+.hdbt-search--react__result-card {
+  border-left: 8px solid $color-gold;
+  padding-left: $spacing-double;
+  padding-right: $spacing-double;
+
+  &.no-results {
+    border: none;
+  }
+}
+
+.hdbt-search--react__result-card--title {
+  margin-bottom: $spacing;
+}
+
+.layout-main-wrapper > *:last-child .component--react-search--ploughing-schedule:last-child .component__container {
+  margin-bottom: 0;
+  padding-bottom: $spacing-double;
+}
