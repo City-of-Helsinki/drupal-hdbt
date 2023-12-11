@@ -2,7 +2,7 @@ import BooleanQuery from '@/types/BooleanQuery';
 import GlobalSettings from '../enum/GlobalSettings';
 
 const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: number, svOnly?: boolean) => {
-  const { size } = GlobalSettings;
+  let { size } = GlobalSettings;
   const lang = drupalSettings.path.currentLanguage;
 
   const query: BooleanQuery = {
@@ -18,14 +18,15 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
   };
 
   if (svOnly) {
-    query.bool.filter?.push({        
-        term: {
-          provided_languages: 'sv'
-        }
+    query.bool.filter?.push({
+      term: {
+        provided_languages: 'sv'
+      }
     });
   }
 
-  if (ids && Array.isArray(ids)) {
+  // Don't query by id, when sv_only filter is set.
+  if (ids && Array.isArray(ids) && !svOnly) {
     query.bool.must = [
       {
         terms: {
@@ -35,10 +36,30 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
     ];
   }
 
-  let sort: any = [{'name.keyword':'asc'}];
+  let sort: any = [{ 'name_override': 'asc' }];
 
   if (coordinates && coordinates.length) {
-    sort = [{_score:'desc'}, ...sort];
+    sort = [{ _score: 'desc' }, ...sort];
+
+    // Show closest station with Service in Swedish.
+    if (svOnly) {
+      sort = [
+        {
+          _geo_distance: {
+            coordinates: {
+              lat: coordinates[0],
+              lon: coordinates[1]
+            },
+            order: 'asc',
+            mode: 'min',
+            distance_type: 'arc',
+            ignore_unmapped: true
+          }
+        }
+      ];
+
+      size = 1;
+    }
   }
 
   return JSON.stringify({
