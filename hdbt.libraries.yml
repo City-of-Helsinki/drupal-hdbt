@@ -152,7 +152,7 @@ event-list:
     - core/drupal
 
 school-search:
-  version: 1.0
+  version: 1.1
   js:
     dist/js/school-search.min.js: {
       preprocess: false
@@ -214,3 +214,13 @@ table-figcaption:
   dependencies:
     - core/drupal
     - core/once
+
+health-station-search:
+  version: 1.0
+  js:
+    dist/js/health-station-search.min.js: {
+      preprocess: false
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

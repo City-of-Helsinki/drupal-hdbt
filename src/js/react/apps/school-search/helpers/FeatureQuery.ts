@@ -1,5 +1,5 @@
 import BooleanQuery from '@/types/BooleanQuery';
-import GlobalSettings from '../enum/GlobalSettings';
+import AppSettings from '../enum/AppSettings';
 import IndexFields from '../enum/IndexFields';
 import SearchParams from '../types/SearchParams';
 
@@ -78,7 +78,7 @@ export const AGGREGATIONS = {
 };
 
 const getQueryString = (params: SearchParams, page: number) => {
-  const { size } = GlobalSettings;
+  const { size } = AppSettings;
   const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } = params;
 
   const query: BooleanQuery = {

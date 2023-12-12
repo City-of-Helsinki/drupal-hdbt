@@ -26,7 +26,11 @@
 }
 
 .hdbt-search--react__form-description {
-  margin-bottom: $spacing;
+  margin-bottom: $spacing-and-half;
+}
+
+.hdbt-search--react__text-field {
+  margin-bottom: $spacing-double;
 }
 
 // Override some fieldset default styles here
