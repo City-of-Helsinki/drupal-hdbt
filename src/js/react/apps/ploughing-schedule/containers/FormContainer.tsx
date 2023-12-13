@@ -54,7 +54,7 @@ const FormContainer = () => {
       </h2>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
-          'Enter the name of your street to see an estimate of the street’s ploughing schedule.',
+          'Enter the name of your street to see an estimate of the street\'s ploughing schedule.',
           {},
           {context: 'Ploughing schedule: Form description'}
         )}

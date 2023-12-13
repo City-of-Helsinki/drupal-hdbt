@@ -393,7 +393,7 @@ msgid "Search for your local school"
 msgstr "Etsi lähikoulua"
 
 msgctxt "School search: local search description"
-msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools."
+msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child\'s home address. You can search for Finnish- and Swedish-language comprehensive schools."
 msgstr "Lapsen ensisijainen peruskoulu, eli lähikoulu, määräytyy lapsen kotiosoitteen mukaan. Hausta löytyvät suomen- ja ruotsinkieliset peruskoulut."
 
 msgctxt "School search: input helper"
@@ -902,7 +902,7 @@ msgid "See the ploughing schedule"
 msgstr "Katso aurausaikataulu"
 
 msgctxt "Ploughing schedule: Form description"
-msgid "Enter the name of your street to see an estimate of the street’s ploughing schedule."
+msgid "Enter the name of your street to see an estimate of the street\'s ploughing schedule."
 msgstr "Kirjoita kadunnimi ja saat arvion kadun aurauksesta."
 
 msgctxt "Ploughing schedule: Input label"

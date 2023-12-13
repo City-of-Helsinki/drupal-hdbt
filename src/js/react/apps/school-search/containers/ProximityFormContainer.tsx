@@ -30,7 +30,7 @@ const ProximityFormContainer = () => {
       </h3>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
-          'Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools.',
+          'Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child\'s home address. You can search for Finnish- and Swedish-language comprehensive schools.',
           {},
           {context: 'School search: local search description'}
         )}
