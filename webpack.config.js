@@ -15,6 +15,7 @@ const REACT_SEARCHES = {
   linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
   'school-search': ['./src/js/react/apps/school-search/index.tsx'],
   'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
+  'health-station-search': ['./src/js/react/apps/health-station-search/index.tsx'],
   'ploughing-schedule': ['./src/js/react/apps/ploughing-schedule/index.tsx'],
 };
 

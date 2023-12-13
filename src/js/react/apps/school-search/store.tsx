@@ -3,7 +3,7 @@ import { atom } from 'jotai';
 import { AGGREGATIONS } from './helpers/FeatureQuery';
 import SearchParams from './types/SearchParams';
 import type OptionType from './types/OptionType';
-import GlobalSettings from './enum/GlobalSettings';
+import AppSettings from './enum/AppSettings';
 import ontologyDetailsIdsToLang from './enum/LanguageEducationMap';
 
 type configurations = {
@@ -14,7 +14,7 @@ type configurations = {
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
   const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
-  const { index } = GlobalSettings;
+  const { index } = AppSettings;
 
   const body = JSON.stringify(AGGREGATIONS);
 

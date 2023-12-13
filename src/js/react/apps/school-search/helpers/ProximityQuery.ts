@@ -1,8 +1,8 @@
 import BooleanQuery from '@/types/BooleanQuery';
-import GlobalSettings from '../enum/GlobalSettings';
+import AppSettings from '../enum/AppSettings';
 
 const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: number) => {
-  const { size } = GlobalSettings;
+  const { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 
   const query: BooleanQuery = {

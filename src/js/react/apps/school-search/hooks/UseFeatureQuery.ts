@@ -2,7 +2,7 @@ import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 
 import configurationsAtom from '../store';
-import GlobalSettings from '../enum/GlobalSettings';
+import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/FeatureQuery';
 import SearchParams from '../types/SearchParams';
 
@@ -12,7 +12,7 @@ const UseFeatureQuery = (params: SearchParams) => {
   const { query } = params;
 
   const fetcher = () => {
-    const { index } = GlobalSettings;
+    const { index } = AppSettings;
 
       return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
