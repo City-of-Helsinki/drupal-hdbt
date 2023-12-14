@@ -13,8 +13,8 @@ type Unit = {
 
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
   const { locationsBaseUrl } = AppSettings;
+  const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
   const fetcher = async () => {
     const { index } = AppSettings;
