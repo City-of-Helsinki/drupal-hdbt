@@ -17,7 +17,7 @@ const ProximityResultsContainer = () => {
   const { page } = params;
 
   return (
-    <ResultsList {...{data, error, isLoading, isValidating, page, updatePage}} />
+    <ResultsList {...{ data, error, isLoading, isValidating, page, updatePage }} />
   );
 };
 
