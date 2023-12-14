@@ -183,23 +183,13 @@ function getConfig(hostname, type) {
 
         // TPR Unit
         {
-          'label': 'DC: TPR Unit - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-sidebar`,
+          'label': 'DC: TPR Unit - subnav',
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav`,
           'removeSelectors': removeDefault
         },
         {
-          'label': 'DC: TPR Unit - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav-no-sidebar`,
-          'removeSelectors': removeDefault
-        },
-        {
-          'label': 'DC: TPR Unit - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-sidebar`,
-          'removeSelectors': removeDefault
-        },
-        {
-          'label': 'DC: TPR Unit - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav-no-sidebar`,
+          'label': 'DC: TPR Unit - no-subnav',
+          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav`,
           'removeSelectors': removeDefault
         },
 
