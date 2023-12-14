@@ -24,8 +24,12 @@ const UseProximityQuery = (params: SearchParams) => {
     let ids = null;
 
     if (keyword) {
-      const addresses = await getAddresses(getAddressUrls(keyword));
-      coordinates = parseCoordinates(addresses);
+      let addresses = await getAddresses(getAddressUrls(keyword));
+      addresses = addresses.filter((address: any) => address.results.length);
+
+      if (addresses.length) {
+        coordinates = parseCoordinates(addresses);
+      }
     }
 
     if (keyword && !coordinates) {
