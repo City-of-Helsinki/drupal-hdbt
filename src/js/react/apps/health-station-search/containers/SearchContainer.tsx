@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 
 import LoadingOverlay from '@/react/common/LoadingOverlay';
-import ProximityFormContainer from './ProximityFormContainer';
-import ProximityResultsContainer from './ProximityResultsContainer';
+import FormContainer from './FormContainer';
+import ResultsContainer from './ResultsContainer';
 
 const SearchContainer = () => (
   <Suspense fallback={
@@ -11,8 +11,8 @@ const SearchContainer = () => (
     </div>
   }>
     <div className='hdbt-search--react'>
-      <ProximityFormContainer />
-      <ProximityResultsContainer />
+      <FormContainer />
+      <ResultsContainer />
     </div>
   </Suspense>
 );

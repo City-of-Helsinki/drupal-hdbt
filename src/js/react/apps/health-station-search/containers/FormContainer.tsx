@@ -29,16 +29,6 @@ const ProximityFormContainer = () => {
 
   return (
     <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
-      <h3>
-        {Drupal.t('Find your health station', {}, { context: 'Health station search: local search title'})}
-      </h3>
-      <p className='hdbt-search--react__form-description'>
-        {Drupal.t(
-          'Your primary health station is the health station in your area of residence. You can find your health station by entering your home address in the search box.',
-          {},
-          {context: 'Health station search: local search description'}
-        )}
-      </p>
       <TextInput
         className='hdbt-search__filter hdbt-search--react__text-field'
         helperText={Drupal.t('Enter the street name and house number', {}, { context: 'Health station search: input helper'})}

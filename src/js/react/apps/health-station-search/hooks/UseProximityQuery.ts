@@ -13,8 +13,8 @@ type Unit = {
 
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
   const { locationsBaseUrl } = AppSettings;
+  const page = Number.isNaN(Number(params.page)) ? 1 : Number(params.page);
 
   const fetcher = async () => {
     const { index } = AppSettings;
@@ -24,8 +24,12 @@ const UseProximityQuery = (params: SearchParams) => {
     let ids = null;
 
     if (keyword) {
-      const addresses = await getAddresses(getAddressUrls(keyword));
-      coordinates = parseCoordinates(addresses);
+      let addresses = await getAddresses(getAddressUrls(keyword));
+      addresses = addresses.filter((address: any) => address.results.length);
+
+      if (addresses.length) {
+        coordinates = parseCoordinates(addresses);
+      }
     }
 
     if (keyword && !coordinates) {
