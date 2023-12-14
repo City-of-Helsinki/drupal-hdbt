@@ -835,14 +835,6 @@ msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Jos ongelma jatkuu siirry sivun kopioon."
 
-msgctxt "Health station search: local search title"
-msgid "Find your health station"
-msgstr "Etsi oma terveysasema"
-
-msgctxt "Health station search: local search description"
-msgid "Your primary health station is the health station in your area of residence. You can find your health station by entering your home address in the search box."
-msgstr "Ensisijainen terveysasemasi on oman asuinalueesi terveysasema. Löydät oman terveysasemasi, kun kirjoitat hakukenttään kotiosoitteesi."
-
 msgctxt "Health station search: input helper"
 msgid "Enter the street name and house number"
 msgstr "Kirjoita kadunnimi ja talonumero."
