@@ -426,6 +426,10 @@ msgctxt "No search results"
 msgid "No results"
 msgstr "Inga resultat"
 
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
+
 msgctxt "School search: education level option"
 msgid "School providing grades 1 to 6"
 msgstr "Skolor med årskurserna 1–6"

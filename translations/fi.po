@@ -428,6 +428,10 @@ msgctxt "No search results"
 msgid "No results"
 msgstr "Ei tuloksia"
 
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."
+
 msgctxt "School search: education level option"
 msgid "School providing grades 1 to 6"
 msgstr "Koulut, joissa vuosiluokat 1-6"
