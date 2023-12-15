@@ -905,16 +905,16 @@ msgstr "Skriv gatans namn och du får en uppskattning av när den plogas."
 # msgstr ""
 
 msgctxt "Ploughing schedule: Class 1"
-msgid "We will plough the street by 7.00, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "Vi plogar gatan före klockan 7 på morgonen, om det har snöat på kvällen eller tidigt på natten. Klockan 4–18 plogar vi gatan inom 3 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 4–18 plogar vi gatan inom 3 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
 
 msgctxt "Ploughing schedule: Class 2"
-msgid "We will plough the street by 7.00, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "Vi plogar gatan före klockan 7 på morgonen, om det har snöat på kvällen eller tidigt på natten. Klockan 3–17 plogar vi gatan inom 4 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 3–17 plogar vi gatan inom 4 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
 
 msgctxt "Ploughing schedule: Class 3"
-msgid "We will plough the street within three business days. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "Vi plogar gatan inom tre vardagsdygn. Plogningen kan försenas om det snöar mycket och länge."
+msgid "<strong>We will plough the street within three business days</strong>. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan inom tre vardagsdygn</strong>. Plogningen kan försenas om det snöar mycket och länge."
 
 msgctxt "Ploughing schedule: Multiple streets"
 msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
