@@ -66,6 +66,7 @@ const FormContainer = () => {
         suggestionLabelField='value'
         getSuggestions={getSuggestions}
         onSubmit={value => setKeyword(value)}
+        onChange={(value) => setKeyword(value)}
         visibleSuggestions={5}
         placeholder={Drupal.t('For example, Mannerheimintie', {}, {context: 'Ploughing schedule: Input placeholder'})}
       />
