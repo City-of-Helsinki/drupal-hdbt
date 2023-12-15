@@ -33,13 +33,17 @@ const FormContainer = () => {
     .then(res => res.json())
     .then(data => {
       const streetNames: any[] = data?.hits?.hits.map((hit: any) => ({ value: hit.fields.street_name[0] })); 
-
+      
       // Remove street name duplicates.
       return streetNames.filter((item, indx, self) =>
         indx === self.findIndex((curr) => curr.value === item.value)
       );
+    })
+    .catch(error => {
+      console.error(error);
+      return [];
     });
-
+    
     resolve(suggestions);    
   });
 
