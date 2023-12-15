@@ -139,9 +139,12 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 .hdbt-search--ploughing-schedule__result-card {
-  border-left: 8px solid $color-gold;
+  border-left: 8px solid $color-gold;  
+  margin-top: $spacing-double;
+  padding-bottom: $spacing-three-quarters;  
   padding-left: $spacing-double;
   padding-right: $spacing-double;
+  padding-top: $spacing-three-quarters;
 
   &.no-results {
     border: none;
@@ -149,7 +152,8 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 .hdbt-search--ploughing-schedule__result-card--title {
-  margin-bottom: $spacing;
+  margin-bottom: $spacing;  
+  margin-top: 0;  
 }
 
 .layout-main-wrapper > *:last-child .component--react-search--ploughing-schedule:last-child .component__container {
