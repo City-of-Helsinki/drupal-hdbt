@@ -886,7 +886,7 @@ msgctxt "TPR unit service map link"
 msgid "View location on service map"
 msgstr "Visa plats på servicekartan"
 
-msgctxt "Ploughing schedule: Form title"
+msgctxt "Ploughing schedule: Form title / submit"
 msgid "See the ploughing schedule"
 msgstr "Se tidsplanen för plogning"
 
@@ -902,11 +902,6 @@ msgstr "Skriv gatans namn och du får en uppskattning av när den plogas."
 ### Placeholder. No translation yet.
 # msgctxt "Ploughing schedule: Input placeholder"
 # msgid "For example, Mannerheimintie"
-# msgstr ""
-
-### Placeholder. No translation yet.
-# msgctxt "Ploughing schedule: Form submit"
-# msgid "See the ploughing schedule"
 # msgstr ""
 
 msgctxt "Ploughing schedule: Class 1"

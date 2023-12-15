@@ -4,14 +4,14 @@ const getQueryString = (keyword: string) => {
   const query: BooleanQuery = {
     bool: {
       must: [
-          {
-          match: {street_name: keyword}
+        {
+          match: { street_name: keyword }
         }
       ]
     }
   };
 
-  const sort = [{length:'desc'}];
+  const sort = [{ length:'desc' }];
 
   const queryString = JSON.stringify({
     query,

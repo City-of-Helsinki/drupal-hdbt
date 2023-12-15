@@ -1,7 +1,7 @@
 import { Button, SearchInput } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-
 import { useState } from 'react';
+
 import configurationsAtom, { paramsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
 import getSuggestionsQuery from '../helpers/GetSuggestionsQuery';
@@ -32,11 +32,7 @@ const FormContainer = () => {
     })
     .then(res => res.json())
     .then(data => {
-      let streetNames: any[] = [];
-      streetNames = data?.hits?.hits.map((hit: any) => {
-        const streetName = hit.fields.street_name[0];
-        return {value: streetName};
-      });
+      const streetNames: any[] = data?.hits?.hits.map((hit: any) => ({ value: hit.fields.street_name[0] })); 
 
       // Remove street name duplicates.
       return streetNames.filter((item, indx, self) =>
@@ -50,7 +46,7 @@ const FormContainer = () => {
   return (
     <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
       <h2 className='hdbt-search--react__form-title'>
-        {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form title'})}
+        {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form title / submit'})}
       </h2>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
@@ -69,8 +65,8 @@ const FormContainer = () => {
         visibleSuggestions={5}
         placeholder={Drupal.t('For example, Mannerheimintie', {}, {context: 'Ploughing schedule: Input placeholder'})}
       />
-      <Button className='hdbt-search--react__submit-button' type='submit' style={{marginBlock: 0}}>
-        {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form submit'})}
+      <Button className='hdbt-search--react__submit-button hdbt-search--ploughing-schedule__submit-button' type='submit'>
+        {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form title / submit'})}
       </Button>
     </form>
   );

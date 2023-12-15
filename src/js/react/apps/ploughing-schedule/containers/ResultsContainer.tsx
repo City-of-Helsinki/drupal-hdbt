@@ -4,7 +4,7 @@ import { paramsAtom } from '../store';
 import UseQuery from '../hooks/UseQuery';
 import ResultsList from '../components/ResultsList';
 
-const ProximityResultsContainer = () => {
+const ResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
   const { data, error, isLoading, isValidating } = UseQuery(params);
 
@@ -13,4 +13,4 @@ const ProximityResultsContainer = () => {
   );
 };
 
-export default ProximityResultsContainer;
+export default ResultsContainer;

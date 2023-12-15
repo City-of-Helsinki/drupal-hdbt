@@ -1,6 +1,6 @@
-import { Suspense, useState } from 'react';
-
+import { Suspense } from 'react';
 import { useAtomValue } from 'jotai';
+
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
@@ -11,15 +11,15 @@ const SearchContainer = () => {
 
   return (
     <Suspense fallback={
-        <div className='hdbt__loading-wrapper'>
-          <LoadingOverlay />
-        </div>
-      }>
-        <div>
-          <FormContainer />
-          { params.keyword ? <ResultsContainer /> : '' }
-        </div>
-      </Suspense>
+      <div className='hdbt__loading-wrapper'>
+        <LoadingOverlay />
+      </div>
+    }>
+      <div>
+        <FormContainer />
+        { params.keyword ? <ResultsContainer /> : '' }
+      </div>
+    </Suspense>
   );
 };
 

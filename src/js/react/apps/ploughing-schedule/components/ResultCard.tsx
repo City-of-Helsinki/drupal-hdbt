@@ -7,8 +7,8 @@ type CardProps = {
 }
 
 const ResultCard = forwardRef(({description, lead, title}: CardProps, ref: ForwardedRef<HTMLDivElement>) => (
-    <div className='hdbt-search--react__result-card' ref={ref}>
-      <h3 className='hdbt-search--react__result-card--title hdbt-search--title'>{ title }</h3>
+    <div className='hdbt-search--ploughing-schedule__result-card' ref={ref}>
+      <h3 className='hdbt-search--ploughing-schedule__result-card--title hdbt-search--title'>{ title }</h3>
       <div>
         { lead && 
           <p>{lead}</p>

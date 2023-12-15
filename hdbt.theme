@@ -1781,6 +1781,6 @@ function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void 
 
   if ($privacyUrl instanceof Url) {
     $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_ploughing_schedule']['cookie_privacy_url'] = $privacyUrl->toString();
+    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
 }

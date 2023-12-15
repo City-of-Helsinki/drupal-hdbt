@@ -42,7 +42,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const several = results.length > 1;
 
   return (
-    <div className='react-search__results'>
+    <div className='hdbt-search--react__results'>
       { results.length 
         ? <ResultCard {...getScheduleCard(results[0]._source.maintenance_class, several)} ref={scrollTarget} />
         : <ResultCard {...getScheduleCard(0)} ref={scrollTarget} />

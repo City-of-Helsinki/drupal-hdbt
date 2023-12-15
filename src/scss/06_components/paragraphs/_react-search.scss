@@ -103,11 +103,11 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
 }
 
-.component--hdbt-search--react .component__container {
+.component--hdbt-search--ploughing-schedule .component__container {
   background-color: $color-silver-light;
 }
 
-.components--upper .component--hdbt-search--react .component__container {
+.components--upper .component--hdbt-search--ploughing-schedule .component__container {
   margin-left: $spacing;
   margin-right: $spacing;  
   padding: $spacing-and-half;
@@ -123,37 +123,22 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
 }
 
-.has-sidebar .components--upper .component--hdbt-search--react {
+.has-sidebar .components--upper .component--hdbt-search--ploughing-schedule {
   @include breakpoint(max-width $breakpoint-l) {
     @include component-negative-side-margin;
   }
 }
 
-.hdbt-search--react__form-container {
-  border-bottom: none;
-}
-
-.hdbt-search--react__form-title {
+.component--hdbt-search--ploughing-schedule .hdbt-search--react__form-title {
   margin-top: 0;
 }
 
-.hdbt-search--react__submit-button:not(disabled) {
-  --background-color: var(--hdbt-color-black);
-  --background-color-hover: var(--hdbt-text-color);
-  --background-color-focus: var(--hdbt-text-color);
-  --background-color-hover-focus: var(--hdbt-text-color);
-  --border-color: var(--hdbt-color-black);
-  --border-color-hover: var(--hdbt-color-black);
-  --border-color-focus: var(--hdbt-color-black);
-  --border-color-hover-focus: var(--hdbt-color-black);
-  --color: var(--hdbt-text-color);
-  --color-hover: var(--hdbt-color-black);
-  --color-focus: var(--hdbt-color-black);
-  --color-hover-focus: var(--hdbt-color-black);
-  --focus-outline-color: var(--hdbt-color-black);
+.hdbt-search--ploughing-schedule__submit-button:not(:disabled) {
+  margin-bottom: 0;
+  margin-top: $spacing;
 }
 
-.hdbt-search--react__result-card {
+.hdbt-search--ploughing-schedule__result-card {
   border-left: 8px solid $color-gold;
   padding-left: $spacing-double;
   padding-right: $spacing-double;
@@ -163,7 +148,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
 }
 
-.hdbt-search--react__result-card--title {
+.hdbt-search--ploughing-schedule__result-card--title {
   margin-bottom: $spacing;
 }
 
