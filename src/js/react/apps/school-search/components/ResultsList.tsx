@@ -49,7 +49,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   if (!data?.hits?.hits.length) {
     return (
       <div ref={scrollTarget}>
-        {Drupal.t('No results', {}, {context: 'No search results'})}
+        {Drupal.t('No results were found for the criteria you entered. Try changing your search criteria.', {}, { context: 'React search: no search results' })}
       </div>
     );
   }

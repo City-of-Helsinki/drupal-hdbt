@@ -25,8 +25,7 @@ export const getAddresses = (urls: string[]) => {
 };
 
 export const parseCoordinates = (addressData: any) => {
-  const addresses = addressData.filter((address: any) => address.results.length);
-  const [lon, lat]: number[] = addresses[0].results[0].location.coordinates;
+  const [lon, lat]: number[] = addressData[0].results[0].location.coordinates;
   return [lat, lon];
 };
 
