@@ -32,19 +32,19 @@ const FormContainer = () => {
     })
     .then(res => res.json())
     .then(data => {
-      const streetNames: any[] = data?.hits?.hits.map((hit: any) => ({ value: hit.fields.street_name[0] })); 
-      
+      const streetNames: any[] = data?.hits?.hits.map((hit: any) => ({ value: hit.fields.street_name[0] }));
+
       // Remove street name duplicates.
       return streetNames.filter((item, indx, self) =>
         indx === self.findIndex((curr) => curr.value === item.value)
       );
     })
     .catch(error => {
-      console.error(error);
+      console.warn(error);
       return [];
     });
-    
-    resolve(suggestions);    
+
+    resolve(suggestions);
   });
 
   return (
@@ -59,7 +59,7 @@ const FormContainer = () => {
           {context: 'Ploughing schedule: Form description'}
         )}
       </p>
-      <SearchInput 
+      <SearchInput
         className='hdbt-search__filter'
         hideSearchButton
         label={Drupal.t('Street name', {}, {context: 'Ploughing schedule: Input label'})}
