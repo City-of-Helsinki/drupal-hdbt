@@ -928,7 +928,3 @@ msgstr "Kadun eri osuuksilla on erilaiset tavoiteaikataulut auraukselle. Alla on
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Arvioitu aurausaikataulu"
-
-msgctxt "Ploughing schedule: No search results description"
-msgid "No results were found for the criteria you entered. Try changing your search criteria."
-msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."

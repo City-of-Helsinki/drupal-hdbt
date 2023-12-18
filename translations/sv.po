@@ -894,15 +894,13 @@ msgctxt "Ploughing schedule: Form description"
 msgid "Enter the name of your street to see an estimate of the street\'s ploughing schedule."
 msgstr "Skriv gatans namn och du får en uppskattning av när den plogas."
 
-### Placeholder. No translation yet.
-# msgctxt "Ploughing schedule: Input label"
-# msgid "Street name"
-# msgstr ""
+msgctxt "Ploughing schedule: Input label"
+msgid "Street name"
+msgstr "Gatunamn"
 
-### Placeholder. No translation yet.
-# msgctxt "Ploughing schedule: Input placeholder"
-# msgid "For example, Mannerheimintie"
-# msgstr ""
+msgctxt "Ploughing schedule: Input placeholder"
+msgid "For example, Mannerheimintie"
+msgstr "T.ex. Mannerheimvägen"
 
 msgctxt "Ploughing schedule: Class 1"
 msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
@@ -923,8 +921,3 @@ msgstr "Vi har olika mål för när olika avsnitt av gatan ska vara plogade. Ned
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Uppskattad tidsplan för plogning"
-
-### Placeholder. No translation yet.
-# msgctxt "Ploughing schedule: No search results description"
-# msgid "No results were found for the criteria you entered. Try changing your search criteria."
-# msgstr ""
