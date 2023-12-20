@@ -15,6 +15,7 @@
     {% block component_content %}
       {# Hook React app to this div #}
       <div id="helfi-health-station-search" data-paragraph-id="{{ paragraph.id() }}">
+        {{ drupal_view('health_station_search', 'health_station_search') }}
       </div>
     {% endblock %}
   {% endembed %}
