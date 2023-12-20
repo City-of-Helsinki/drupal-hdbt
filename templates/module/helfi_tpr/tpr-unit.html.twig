@@ -65,12 +65,12 @@
   {% endif %}
   {# End of Main image #}
 
-  {% if (content.description|render or content.description_override|render) and hide_description == false %}
+  {% if (content.description|render or content.enrich_description|render) and hide_description == false %}
     <div class="long-desc user-edited-content">
-      {% if content.description_override|render %}
-        {{ content.description_override }}
-      {% else %}
+      {% if content.description|render %}
         {{ content.description }}
+      {% else %}
+        {{ content.enrich_description }}
       {% endif %}
     </div>
   {% endif %}
