@@ -921,9 +921,3 @@ msgstr "Vi har olika mål för när olika avsnitt av gatan ska vara plogade. Ned
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Uppskattad tidsplan för plogning"
-
-msgctxt "Health station search count"
-msgid "health station"
-msgid_plural "health stations"
-msgstr[0] "hälsostation"
-msgstr[1] "hälsostation"
