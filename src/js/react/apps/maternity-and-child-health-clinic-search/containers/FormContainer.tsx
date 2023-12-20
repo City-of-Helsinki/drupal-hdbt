@@ -1,0 +1,58 @@
+import { Button, Checkbox, TextInput } from 'hds-react';
+import { useAtomValue, useSetAtom } from 'jotai';
+
+import { paramsAtom, stagedParamsAtom } from '../store';
+import SearchParams from '../types/SearchParams';
+
+type SubmitFormType = HTMLFormElement & {
+  keyword: HTMLInputElement;
+};
+
+const ProximityFormContainer = () => {
+  const stagedParams = useAtomValue(stagedParamsAtom);
+  const setParams = useSetAtom(paramsAtom);
+  const setStagedParams = useSetAtom(stagedParamsAtom);
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { keyword, sv_only } = event.target as SubmitFormType;
+    const params: SearchParams = {};
+
+    if (keyword.value && keyword.value.length) {
+      params.keyword = keyword.value;
+    };
+
+    params.sv_only = sv_only.checked;
+
+    setParams(params);
+  };
+
+  return (
+    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
+      <TextInput
+        className='hdbt-search__filter hdbt-search--react__text-field'
+        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'Maternity and child health clinic search: input helper'})}
+        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Maternity and child health clinic search: input placeholder'})}
+        id='keyword'
+        label={Drupal.t('Home address', {}, { context: 'Maternity and child health clinic search: input label'})}
+        type='search'
+      />
+      <div className='react-search__checkbox-filter-container'>
+        <fieldset className='hdbt-search--react__fieldset'>
+          <Checkbox
+            className='react-search__checkbox'
+            checked={stagedParams?.sv_only || false}
+            id='sv_only'
+            name='sv_only'
+            value='sv_only'
+            onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
+            label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, { context: 'Maternity and child health clinic search: checkbox label'})}
+          />
+        </fieldset>
+      </div>
+      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search')}</Button>
+    </form>
+  );
+};
+
+export default ProximityFormContainer;

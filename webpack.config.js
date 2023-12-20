@@ -16,6 +16,7 @@ const REACT_SEARCHES = {
   'school-search': ['./src/js/react/apps/school-search/index.tsx'],
   'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
   'health-station-search': ['./src/js/react/apps/health-station-search/index.tsx'],
+  'maternity-and-child-health-clinic-search': ['./src/js/react/apps/maternity-and-child-health-clinic-search/index.tsx'],
   'ploughing-schedule': ['./src/js/react/apps/ploughing-schedule/index.tsx'],
 };
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="DEV: Maternity and Child Health Clinics search app"
+    />
+    <title>React App</title>
+    <link rel="preload" href="../../../../../dist/fonts/HelsinkiGrotesk-Regular.woff"/>
+    <link rel="preload" href="../../../../../dist/fonts/HelsinkiGrotesk-Bold.woff"/>
+    <link rel="preload" href="../../../../../dist/fonts/HelsinkiGrotesk-Medium.woff"/>
+    <link rel="stylesheet" href="../../../../../dist/css/styles.min.css" />
+    <link rel="stylesheet" href="../../../../../dist/css/hdbt-icons.css" />
+    <link rel="stylesheet" href="../../../../../dist/css/color-palette.min.css" />
+    <script>
+      // Mock Drupal.t & drupalSettings in development to prevent errors.
+      window.Drupal = {
+        t: function(str, args, options) {
+          return str;
+        },
+        theme: function(id) {
+          return '<div class="hds-loading-spinner"><div></div><div></div><div></div></div>';
+        }
+      };
+
+      window.drupalSettings = {
+        path: {
+          currentLanguage: 'fi'
+        }
+      }
+    </script>
+    <script src="../../../../../dist/js/maternity-and-child-health-clinic-search.min.js"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="no-sidebar">
+      <div class="main-content components components--upper">
+        <div class="component component--event-list">
+          <div class="component__container">
+            <div class="component__content maternity-and-child-health-clinic-search development-container">
+              <div id="helfi-maternity-and-child-health-clinic-search">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
