@@ -11,6 +11,8 @@
 {% set has_ontologyword_details = content.field_ontologyword_details|render ? true : false %}
 {% set has_subgroup = content.subgroup|render ? true : false %}
 {% set has_other_info = content.highlights|render or content.topical|render or content.other_info|render or content.links|render ?: false %}
+{% set description = content.description.0['#text'] ? content.description : content.enrich_description %}
+{% set show_description = description.0['#text'] and hide_description == false ?: false %}
 
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
@@ -65,9 +67,9 @@
   {% endif %}
   {# End of Main image #}
 
-  {% if content.description|render and hide_description == false %}
+  {% if show_description %}
     <div class="long-desc user-edited-content">
-      {{ content.description }}
+      {{ description }}
     </div>
   {% endif %}
 
