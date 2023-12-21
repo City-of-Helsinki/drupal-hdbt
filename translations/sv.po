@@ -885,3 +885,35 @@ msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
 msgctxt "TPR unit service map link"
 msgid "View location on service map"
 msgstr "Visa plats på servicekartan"
+
+msgctxt "Search filter option: Southern area"
+msgid "Southern area"
+msgstr "Södra området"
+
+msgctxt "Search filter option: Western area"
+msgid "Western area"
+msgstr "Västra området"
+
+msgctxt "Search filter option: Central area"
+msgid "Central area"
+msgstr "Mellersta området"
+
+msgctxt "Search filter option: Northern area"
+msgid "Northern area"
+msgstr "Norra området"
+
+msgctxt "Search filter option: North-Eastern area"
+msgid "North-Eastern area"
+msgstr "Nordöstra området"
+
+msgctxt "Search filter option: South-Eastern area"
+msgid "South-Eastern area"
+msgstr "Sydöstra området"
+
+msgctxt "Search filter option: Eastern District"
+msgid "Eastern District"
+msgstr "Östra stordistriktet"
+
+msgctxt "Job search: Job location label"
+msgid "Job location"
+msgstr "Arbetsplatsens läge"
