@@ -391,7 +391,7 @@ msgid "Search for your local school"
 msgstr "Hitta närskola"
 
 msgctxt "School search: local search description"
-msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools."
+msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child\'s home address. You can search for Finnish- and Swedish-language comprehensive schools."
 msgstr "Barnets primära grundskola, alltså närskolan, bestäms enligt barnets hemadress. I söktjänsten kan du söka efter svensk- och finskspråkiga grundskolor."
 
 msgctxt "School search: input helper"
@@ -885,6 +885,42 @@ msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
 msgctxt "TPR unit service map link"
 msgid "View location on service map"
 msgstr "Visa plats på servicekartan"
+
+msgctxt "Ploughing schedule: Form title / submit"
+msgid "See the ploughing schedule"
+msgstr "Se tidsplanen för plogning"
+
+msgctxt "Ploughing schedule: Form description"
+msgid "Enter the name of your street to see an estimate of the street\'s ploughing schedule."
+msgstr "Skriv gatans namn och du får en uppskattning av när den plogas."
+
+msgctxt "Ploughing schedule: Input label"
+msgid "Street name"
+msgstr "Gatunamn"
+
+msgctxt "Ploughing schedule: Input placeholder"
+msgid "For example, Mannerheimintie"
+msgstr "T.ex. Mannerheimvägen"
+
+msgctxt "Ploughing schedule: Class 1"
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 4–18 plogar vi gatan inom 3 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+
+msgctxt "Ploughing schedule: Class 2"
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 3–17 plogar vi gatan inom 4 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+
+msgctxt "Ploughing schedule: Class 3"
+msgid "<strong>We will plough the street within three business days</strong>. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Vi plogar gatan inom tre vardagsdygn</strong>. Plogningen kan försenas om det snöar mycket och länge."
+
+msgctxt "Ploughing schedule: Multiple streets"
+msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
+msgstr "Vi har olika mål för när olika avsnitt av gatan ska vara plogade. Nedan finns en tidsplan för plogning av gatans längsta avsnitt."
+
+msgctxt "Ploughing schedule: Result title"
+msgid "Estimated ploughing schedule"
+msgstr "Uppskattad tidsplan för plogning"
 
 msgctxt "Search filter option: Southern area"
 msgid "Southern area"

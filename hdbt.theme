@@ -1770,3 +1770,17 @@ function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$var
 function hdbt_preprocess_views_exposed_form(array &$variables) {
   $variables['#attached']['library'][] = 'hdbt/search-helper';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
+  $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+
+  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
+
+  if ($privacyUrl instanceof Url) {
+    $privacyUrl->setAbsolute();
+    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
+  }
+}

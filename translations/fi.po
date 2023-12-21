@@ -393,7 +393,7 @@ msgid "Search for your local school"
 msgstr "Etsi lähikoulua"
 
 msgctxt "School search: local search description"
-msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child’s home address. You can search for Finnish- and Swedish-language comprehensive schools."
+msgid "Your child\'s primary comprehensive school, i.e., the local school, is assigned based on the child\'s home address. You can search for Finnish- and Swedish-language comprehensive schools."
 msgstr "Lapsen ensisijainen peruskoulu, eli lähikoulu, määräytyy lapsen kotiosoitteen mukaan. Hausta löytyvät suomen- ja ruotsinkieliset peruskoulut."
 
 msgctxt "School search: input helper"
@@ -892,6 +892,42 @@ msgstr "Esim. Aurinkolahden peruskoulu tai 00990"
 msgctxt "TPR unit service map link"
 msgid "View location on service map"
 msgstr "Näytä sijainti palvelukartalla"
+
+msgctxt "Ploughing schedule: Form title / submit"
+msgid "See the ploughing schedule"
+msgstr "Katso aurausaikataulu"
+
+msgctxt "Ploughing schedule: Form description"
+msgid "Enter the name of your street to see an estimate of the street\'s ploughing schedule."
+msgstr "Kirjoita kadunnimi ja saat arvion kadun aurauksesta."
+
+msgctxt "Ploughing schedule: Input label"
+msgid "Street name"
+msgstr "Kadunnimi"
+
+msgctxt "Ploughing schedule: Input placeholder"
+msgid "For example, Mannerheimintie"
+msgstr "Esim. Mannerheimintie"
+
+msgctxt "Ploughing schedule: Class 1"
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Auraamme kadun kello 7 mennessä aamulla</strong>, jos lunta on satanut illalla tai alkuyöllä. Kello 4–18 auraamme kadun 3 tunnin kuluessa lumisateen päättymisestä. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+
+msgctxt "Ploughing schedule: Class 2"
+msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Auraamme kadun kello 7 mennessä aamulla</strong>, jos lunta on satanut illalla tai alkuyöllä. Kello 3–17 auraamme kadun 4 tunnin kuluessa lumisateen päättymisestä. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+
+msgctxt "Ploughing schedule: Class 3"
+msgid "<strong>We will plough the street within three business days</strong>. Ploughing may be delayed if it snows a lot and for an extended period."
+msgstr "<strong>Auraamme kadun kolmen arkivuorokauden kuluessa</strong>. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+
+msgctxt "Ploughing schedule: Multiple streets"
+msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
+msgstr "Kadun eri osuuksilla on erilaiset tavoiteaikataulut auraukselle. Alla on kadun pisimmän osuuden aurausaikataulu."
+
+msgctxt "Ploughing schedule: Result title"
+msgid "Estimated ploughing schedule"
+msgstr "Arvioitu aurausaikataulu"
 
 msgctxt "Search filter option: Southern area"
 msgid "Southern area"
