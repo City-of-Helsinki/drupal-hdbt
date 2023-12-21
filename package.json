@@ -31,8 +31,8 @@
     "classnames": "^2.3.1",
     "es6-promise": "^4.1.1",
     "glob": "^10.0.0",
-    "hds-design-tokens": "^2.13.0",
-    "hds-react": "^2.13.0",
+    "hds-design-tokens": "^3.3.0",
+    "hds-react": "^3.3.0",
     "html-react-parser": "^4.0.0",
     "husky": "^8.0.0",
     "hyphenopoly": "^5.0.0",
@@ -70,8 +70,10 @@
   ],
   "peerDependencies": {
     "@react-aria/visually-hidden": "3.8.4",
+    "crypto-browserify": "3.12.0",
     "react-popper": "2.3.0",
-    "react-virtual": "2.10.4"
+    "readable-stream": "4.5.1",
+    "stream-browserify": "3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -94,7 +96,6 @@
     "babel-loader": "^9.0.0",
     "babel-preset-react": "^6.5.0",
     "backstopjs": "^6.2.2",
-    "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-declaration-sorter": "^7.0.3",
     "css-loader": "^6.5.0",
@@ -111,7 +112,6 @@
     "husky": ">=4",
     "lint-staged": ">=10",
     "mini-css-extract-plugin": "^2.0.0",
-    "path-browserify": "^1.0.1",
     "postcss": "^8.4.27",
     "postcss-preset-env": "^9.1.1",
     "pre-commit": "^1.2.2",

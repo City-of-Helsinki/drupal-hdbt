@@ -136,7 +136,8 @@ module.exports = (env, argv) => {
     resolve: {
       fallback: {
         // Fix hds-react import bugs.
-        path: require.resolve('path-browserify')
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify')
       },
       modules: [
         path.join(__dirname, 'node_modules'),
@@ -148,11 +149,6 @@ module.exports = (env, argv) => {
       },
     },
     plugins: [
-      // Fix hds-react import bugs.
-      new webpack.ProvidePlugin({
-        process: 'process/browser',
-        Buffer: ['buffer', 'Buffer'],
-      }),
       new SvgToSprite(
         path.resolve(__dirname, 'src/icons/**/*.svg'),
         'icons/sprite.svg',
