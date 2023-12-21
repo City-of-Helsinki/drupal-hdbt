@@ -1,4 +1,5 @@
 const SearchComponents = {
+  AREA_FILTER: 'area_filter',
   EMPLOYMENT: 'employment',
   KEYWORD: 'keyword',
   TASK_AREAS: 'task_areas',

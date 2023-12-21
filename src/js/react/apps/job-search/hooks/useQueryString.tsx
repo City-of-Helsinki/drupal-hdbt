@@ -6,6 +6,7 @@ import IndexFields from '../enum/IndexFields';
 import { nodeFilter } from '../query/queries';
 import URLParams from '../types/URLParams';
 import { configurationsAtom } from '../store';
+import { getAreaInfo } from '../helpers/Areas';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
@@ -132,6 +133,14 @@ const useQueryString = (urlParams: URLParams): string => {
       term: {
         [IndexFields.LANGUAGE]: urlParams.language.toString(),
       },
+    });
+  }
+
+  if (urlParams.area_filter) {
+    query.bool.filter.push({
+      terms: {
+        [IndexFields.POSTAL_CODE]: getAreaInfo.find(area => area.key === urlParams.area_filter?.toString())?.postalCodes,
+      }
     });
   }
 
