@@ -219,6 +219,11 @@ Outside Drupal: Open React app index.html file in browser and run `npm run dev`.
 
 To build minified js file into the /dist folder run `npm run build`.
 
+Remember to update library version number when making changes to react search e.g. 1.1 => 1.2.
+
+React libraries should have a `preprocess: false` setting that it won't be merged to other JS files.
+In that way if there's an error in some JS file it won't break every JS functionality on the site.
+
 ## ESLint
 
 We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
