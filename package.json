@@ -29,7 +29,6 @@
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^3.5.1",
     "classnames": "^2.3.1",
-    "es6-promise": "^4.1.1",
     "glob": "^10.0.0",
     "hds-design-tokens": "^3.3.0",
     "hds-react": "^3.3.0",
