@@ -861,11 +861,13 @@ msgid_plural "@count health stations"
 msgstr[0] "1 terveysasema"
 msgstr[1] "@count terveysasemaa"
 
-msgctxt "Maternity and child health clinic search: result count"
-msgid "1 Maternity and child health clinic"
-msgid_plural "@count Maternity and child health clinics"
-msgstr[0] "1 neuvola"
-msgstr[1] "@count neuvolaa"
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinics"
+msgstr "@clinics neuvolaa"
+
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinic"
+msgstr "@clinics neuvola"
 
 msgctxt "React search: Service in Swedish tag"
 msgid "Service in Swedish"
