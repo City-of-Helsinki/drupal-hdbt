@@ -235,7 +235,6 @@ maternity-and-child-health-clinic-search:
     - core/drupalSettings
     - core/drupal
 
-
 ploughing-schedule:
   version: 1.0
   js:
