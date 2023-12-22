@@ -1,11 +1,4 @@
-type ImageOverride = {
-  picture_url_override: {
-    alt: string,
-    photographer: string,
-    title: string,
-    url: string
-  }
-};
+import { ImageOverride } from '@/types/ImageOverride';
 
 export type HealthStation = {
   _language: string,
