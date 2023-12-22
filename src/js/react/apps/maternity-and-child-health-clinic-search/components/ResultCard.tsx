@@ -32,7 +32,7 @@ const ResultCard = ({ address, name, name_override, picture_url, provided_langua
       cardUrl={url?.[0] || ''}
       location={address?.[0]}
       locationLabel={Drupal.t('Address', {}, {context: 'React search: location label'})}
-      cardCategoryTag={provided_languages.includes('sv') ? {'tag': Drupal.t('Service in Swedish', {}, {'context': 'Maternity and child health stations search: Service in Swedish tag'})} : undefined}
+      cardCategoryTag={provided_languages.includes('sv') ? {'tag': Drupal.t('Service in Swedish', {}, {'context': 'React search: Service in Swedish tag'})} : undefined}
     />
   );
 };

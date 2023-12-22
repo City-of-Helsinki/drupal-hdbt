@@ -31,10 +31,10 @@ const ProximityFormContainer = () => {
     <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
       <TextInput
         className='hdbt-search__filter hdbt-search--react__text-field'
-        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'Maternity and child health clinic search: input helper'})}
-        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Maternity and child health clinic search: input placeholder'})}
+        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}
+        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'React search: street input helper placeholder'})}
         id='keyword'
-        label={Drupal.t('Home address', {}, { context: 'Maternity and child health clinic search: input label'})}
+        label={Drupal.t('Home address', {}, { context: 'React search: home address'})}
         type='search'
       />
       <div className='react-search__checkbox-filter-container'>
@@ -46,7 +46,7 @@ const ProximityFormContainer = () => {
             name='sv_only'
             value='sv_only'
             onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
-            label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, { context: 'Maternity and child health clinic search: checkbox label'})}
+            label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, { context: 'React search: checkbox label swedish'})}
           />
         </fieldset>
       </div>
