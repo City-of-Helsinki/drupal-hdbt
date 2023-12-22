@@ -860,7 +860,7 @@ msgid_plural "@count Maternity and child health clinics"
 msgstr[0] "1 rådgivningsbyrå"
 msgstr[1] "@count rådgivningsbyråar"
 
-msgctxt "Health station search: Service in Swedish tag"
+msgctxt "React search: Service in Swedish tag"
 msgid "Service in Swedish"
 msgstr "Service på svenska"
 
