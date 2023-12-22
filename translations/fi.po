@@ -928,3 +928,9 @@ msgstr "Kadun eri osuuksilla on erilaiset tavoiteaikataulut auraukselle. Alla on
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Arvioitu aurausaikataulu"
+
+msgctxt "Service list search count"
+msgid "service"
+msgid_plural "services"
+msgstr[0] "palvelu"
+msgstr[1] "palvelua"
