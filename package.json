@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@nuxt/friendly-errors-webpack-plugin": "^2.5.1",
+    "@react-aria/visually-hidden": "^3.8.0",
     "@sentry/react": "^7.66.0",
     "@sideway/address": "^5.0.0",
     "@sideway/formula": "^3.0.0",
@@ -50,7 +51,10 @@
     "postcss-scss": "^4.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-popper": "^2.2.5",
+    "readable-stream": "^4.5.1",
     "sass": "^1.43.4",
+    "stream-browserify": "^3.0.0",
     "swr": "2.2.4"
   },
   "lint-staged": {
@@ -65,13 +69,6 @@
     "last 3 major versions",
     "not dead"
   ],
-  "peerDependencies": {
-    "@react-aria/visually-hidden": "3.8.8",
-    "crypto-browserify": "3.12.0",
-    "react-popper": "2.3.0",
-    "readable-stream": "4.5.1",
-    "stream-browserify": "3.0.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/eslint-parser": "^7.22.15",
@@ -94,6 +91,7 @@
     "babel-preset-react": "^6.5.0",
     "backstopjs": "^6.2.2",
     "copy-webpack-plugin": "^11.0.0",
+    "crypto-browserify": "^3.12.0",
     "css-declaration-sorter": "^7.0.3",
     "css-loader": "^6.5.0",
     "dotenv": "^16.3.1",
