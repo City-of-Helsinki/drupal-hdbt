@@ -1,8 +1,8 @@
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
-import { HealthStation } from '../types/HealthStation';
+import { MaternityAndChildHealthClinic } from '../types/MaternityAndChildHealthClinic';
 
-const ResultCard = ({ address, name, name_override, picture_url, provided_languages, media_as_objects, url }: HealthStation) => {
+const ResultCard = ({ address, name, name_override, picture_url, provided_languages, media_as_objects, url }: MaternityAndChildHealthClinic) => {
   const title = name_override?.[0] || name?.[0];
   const imageOverride = media_as_objects?.[0].picture_url_override;
 

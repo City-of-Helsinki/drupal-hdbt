@@ -832,19 +832,19 @@ msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Om problemet kvarstår, gå till den kopian av sidorna."
 
-msgctxt "Health station search: input helper"
+msgctxt "React search: street input helper"
 msgid "Enter the street name and house number"
 msgstr "Ange gatunamnet och husnumret"
 
-msgctxt "Health station search: input placeholder"
+msgctxt "React search: street input helper placeholder"
 msgid "For example, Kotikatu 1"
 msgstr "T.ex. Hemgatan 1"
 
-msgctxt "Health station search: input label"
+msgctxt "React search: home address"
 msgid "Home address"
 msgstr "Hemadress"
 
-msgctxt "Health station search: checkbox label"
+msgctxt "React search: checkbox label swedish"
 msgid "Show the nearest service location where service is available in Swedish."
 msgstr "Visa det närmaste verksamhetsställe där man får betjäning på svenska."
 
@@ -854,7 +854,15 @@ msgid_plural "@count health stations"
 msgstr[0] "1 hälsostation"
 msgstr[1] "@count hälsostation"
 
-msgctxt "Health station search: Service in Swedish tag"
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinics"
+msgstr "@clinics rådgivningsbyråar"
+
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinic"
+msgstr "@clinics rådgivningsbyrå"
+
+msgctxt "React search: Service in Swedish tag"
 msgid "Service in Swedish"
 msgstr "Service på svenska"
 
@@ -921,6 +929,12 @@ msgstr "Vi har olika mål för när olika avsnitt av gatan ska vara plogade. Ned
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Uppskattad tidsplan för plogning"
+
+msgctxt "Service list search count"
+msgid "service"
+msgid_plural "services"
+msgstr[0] "tjänst"
+msgstr[1] "tjänster"
 
 msgctxt "Search filter option: Southern area"
 msgid "Southern area"

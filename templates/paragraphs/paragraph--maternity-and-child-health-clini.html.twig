@@ -1,0 +1,21 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--full-width',
+        'component--react-search',
+        'component--react-search--maternity-and-child-health-clinic'
+      ],
+      component_title_level: 'h2',
+      component_title: content.field_comp_search_title,
+      component_description: content.field_comp_search_description,
+      component_content_class: 'maternity-and-child-health-clinic-search',
+    }
+  %}
+    {% block component_content %}
+      {# Hook React app to this div #}
+      <div id="helfi-maternity-and-child-health-clinic-search" data-paragraph-id="{{ paragraph.id() }}">
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

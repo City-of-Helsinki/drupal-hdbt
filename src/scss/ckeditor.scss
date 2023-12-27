@@ -192,7 +192,9 @@
 
 // CKEditor5 duplicates current anchor link when navigating with arrow keys.
 // This hides those anchor links, as they do not have href attribute set.
-a:not([href]) {
+a:not([href])[data-hds-component],
+a:not([href])[data-is-external],
+a:not([href])[data-protocol] {
   display: none;
 }
 

@@ -34,7 +34,8 @@
   set classes = [
   'views',
   'views--service-list',
-  'views--service-list--block-search',
+  'views--service-list--search',
+  'views--unit-search',
   dom_id ? 'js-view-dom-id-' ~ dom_id,
 ]
 %}
@@ -51,25 +52,25 @@
   {% endif %}
 
   {{ exposed }}
-  <div class="services-search__results" data-id-number="{{ dom_id }}">
-    <span class="service-list__count-container">
+  <div class="service-list-search__results unit-search__results" data-id-number="{{ dom_id }}">
+    <span class="service-list-search__count-container unit-search__count-container">
       {% if total_rows %}
-        <span class="service-list__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Service list count'}%}service{% plural total_rows %}services{% endtrans %}
+        <span class="service-list-search__count  unit-search__count">{{ total_rows }}</span>
+        {% trans with {'context': 'Service list search count'}%}service{% plural total_rows %}services{% endtrans %}
       {% endif %}
 
       {{ empty }}
     </span>
+    {{ attachment_before }}
+
+    {{ rows }}
+
+    {{ pager }}
+
+    {{ attachment_after }}
+    {{ more }}
+
   </div>
-  {{ attachment_before }}
-
-  {{ rows }}
-
-  
-  {{ pager }}
-
-  {{ attachment_after }}
-  {{ more }}
 
   {% if footer %}
     <footer>

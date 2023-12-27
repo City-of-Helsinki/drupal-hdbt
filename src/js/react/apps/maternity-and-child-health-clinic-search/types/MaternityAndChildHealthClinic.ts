@@ -1,6 +1,6 @@
 import { ImageOverride } from '@/types/ImageOverride';
 
-export type HealthStation = {
+export type MaternityAndChildHealthClinic = {
   _language: string,
   address: string[],
   id: string[],
