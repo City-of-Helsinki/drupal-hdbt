@@ -6,6 +6,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { getLanguageLabel } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
 import {
+  areaFilterSelectionAtom,
   continuousAtom,
   employmentAtom,
   employmentSelectionAtom,
@@ -20,6 +21,7 @@ import {
   youthSummerJobsAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
+import { getAreaInfo } from '../helpers/Areas';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -30,6 +32,7 @@ const SelectionsContainer = () => {
   const updateEmploymentOptions = useSetAtom(employmentSelectionAtom);
 
   const showClearButton =
+    urlParams?.area_filter ||
     urlParams?.task_areas?.length ||
     urlParams?.continuous ||
     urlParams?.internship ||
@@ -62,6 +65,13 @@ const SelectionsContainer = () => {
           label={getLanguageLabel(urlParams.language)}
           atom={languageSelectionAtom}
           valueKey={SearchComponents.LANGUAGE}
+        />
+      )}      
+      {urlParams.area_filter && (
+        <SingleFilter
+          label={getAreaInfo.find(area => area.key === urlParams.area_filter?.toString())?.label}
+          atom={areaFilterSelectionAtom}
+          valueKey={SearchComponents.AREA_FILTER}
         />
       )}
       {urlParams.continuous && (
@@ -156,21 +166,19 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
 
 type SingleFilterProps = {
   atom: any;
-  valueKey: string;
   label: string;
+  valueKey: string;
 };
 const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
   const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
 
-  const { language, ...updatedParams } = urlParams;
-
   return (
     <FilterButton
       value={label}
       clearSelection={() => {
-        setUrlParams(updatedParams);
+        setUrlParams({ ...urlParams, [valueKey]: undefined });
         setValue(null);
       }}
     />

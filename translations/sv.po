@@ -786,7 +786,7 @@ msgstr "Työpaikan sijainti"
 
 msgctxt "Location placeholder"
 msgid "All areas"
-msgstr "Kaikki alueet"
+msgstr "Alla områden"
 
 msgctxt "Checkbox filters heading"
 msgid "Filters"
@@ -935,3 +935,39 @@ msgid "service"
 msgid_plural "services"
 msgstr[0] "tjänst"
 msgstr[1] "tjänster"
+
+msgctxt "Search filter option: Southern area"
+msgid "Southern area"
+msgstr "Södra området"
+
+msgctxt "Search filter option: Western area"
+msgid "Western area"
+msgstr "Västra området"
+
+msgctxt "Search filter option: Central area"
+msgid "Central area"
+msgstr "Mellersta området"
+
+msgctxt "Search filter option: Northern area"
+msgid "Northern area"
+msgstr "Norra området"
+
+msgctxt "Search filter option: North-Eastern area"
+msgid "North-Eastern area"
+msgstr "Nordöstra området"
+
+msgctxt "Search filter option: South-Eastern area"
+msgid "South-Eastern area"
+msgstr "Sydöstra området"
+
+msgctxt "Search filter option: Eastern area"
+msgid "Eastern area"
+msgstr "Östra området"
+
+msgctxt "Search filter option: Eastern District"
+msgid "Eastern District"
+msgstr "Östra stordistriktet"
+
+msgctxt "Job search: Job location label"
+msgid "Job location"
+msgstr "Arbetsplatsens läge"

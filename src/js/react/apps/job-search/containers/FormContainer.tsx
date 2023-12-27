@@ -8,6 +8,8 @@ import SearchComponents from '../enum/SearchComponents';
 import { getInitialLanguage } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
 import {
+  areaFilterAtom,
+  areaFilterSelectionAtom,
   configurationsAtom,
   continuousAtom,
   employmentAtom,
@@ -25,6 +27,7 @@ import {
 } from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
+import { getInitialAreaFilter } from '../helpers/Areas';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -43,10 +46,13 @@ const FormContainer = () => {
   const [languageSelection, setLanguageFilter] = useAtom(languageSelectionAtom);
   const { employmentSearchIds } = useAtomValue(configurationsAtom);
   const employmentSearchIdMap = bucketToMap(employmentSearchIds);
+  const areaFilterOptions = useAtomValue(areaFilterAtom);
+  const [areaFilterSelection, setAreaFilter] = useAtom(areaFilterSelectionAtom);
 
   // Set form control values from url parameters on load
   useEffect(() => {
     setKeyword(urlParams?.keyword?.toString() || '');
+    setAreaFilter(getInitialAreaFilter(urlParams?.area_filter, areaFilterOptions));
     setTaskAreaFilter(transformDropdownsValues(urlParams?.task_areas, taskAreasOptions));
     setEmploymentFilter(transformDropdownsValues(urlParams?.employment, employmentOptions));
     setContinuous(!!urlParams?.continuous);
@@ -63,6 +69,7 @@ const FormContainer = () => {
 
     event.preventDefault();
     setUrlParams({
+      area_filter: areaFilterSelection?.value,
       employment: employmentSelection.reduce((acc: any, curr: any) => {
         const target = curr.additionalValue
           ? [curr.additionalValue.toString(), curr.value.toString()]
@@ -94,6 +101,7 @@ const FormContainer = () => {
     employmentSearchIdMap.get(CustomIds.YOUTH_SUMMER_JOBS) || employmentSearchIdMap.get(CustomIds.COOL_SUMMER_PROJECT);
   const showCheckboxes = showContinuous || showInternships || showSummerJobs || showYouthSummerJobs;
 
+  const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label'});
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
   const employmentRelationshipLabel: string = Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' });
   const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
@@ -189,7 +197,7 @@ const FormContainer = () => {
       </div>
       {isFullSearch && (
         <div className='job-search-form__dropdowns'>
-          <div className='job-search-form__dropdowns__lower'>
+          <div className='job-search-form__dropdowns__upper'>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
                 clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' })}
@@ -208,6 +216,25 @@ const FormContainer = () => {
                 id={SearchComponents.LANGUAGE}
                 onChange={setLanguageFilter}
               />
+            </div>
+            <div className='job-search-form__filter job-search-form__dropdown--upper'>
+              <Select
+                  clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
+                  className='job-search-form__dropdown'
+                  clearable
+                  selectedItemRemoveButtonAriaLabel={Drupal.t(
+                    'Remove item',
+                    {},
+                    { context: 'Job search remove item aria label' }
+                  )}
+                  placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
+                  label={areaFilterLabel}
+                  // @ts-ignore
+                  options={areaFilterOptions}
+                  value={areaFilterSelection}
+                  id={SearchComponents.AREA_FILTER}
+                  onChange={setAreaFilter}
+                />
             </div>
           </div>
         </div>

@@ -942,3 +942,35 @@ msgid "service"
 msgid_plural "services"
 msgstr[0] "palvelu"
 msgstr[1] "palvelua"
+
+msgctxt "Search filter option: Southern area"
+msgid "Southern area"
+msgstr "Eteläinen alue"
+
+msgctxt "Search filter option: Western area"
+msgid "Western area"
+msgstr "Läntinen alue"
+
+msgctxt "Search filter option: Central area"
+msgid "Central area"
+msgstr "Keskinen alue"
+
+msgctxt "Search filter option: Northern area"
+msgid "Northern area"
+msgstr "Pohjoinen alue"
+
+msgctxt "Search filter option: North-Eastern area"
+msgid "North-Eastern area"
+msgstr "Koillinen alue"
+
+msgctxt "Search filter option: South-Eastern area"
+msgid "South-Eastern area"
+msgstr "Kaakkoinen alue"
+
+msgctxt "Search filter option: Eastern area"
+msgid "Eastern area"
+msgstr "Itäinen alue"
+
+msgctxt "Job search: Job location label"
+msgid "Job location"
+msgstr "Työpaikan sijainti"
