@@ -37,7 +37,7 @@ const ProximityFormContainer = () => {
       </p>
       <TextInput
         className='hdbt-search__filter'
-        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'School search: input helper'})}
+        helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}
         id='keyword'
         label={Drupal.t('The child\'s home address', {}, { context: 'School search: input label'})}
         type='search'

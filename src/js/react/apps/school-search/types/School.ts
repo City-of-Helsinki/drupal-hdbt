@@ -1,17 +1,10 @@
+import { ImageOverride } from '@/types/ImageOverride';
+
 type AdditionalFilters = {
   grades_1_6: boolean;
   grades_7_9: boolean;
   finnish_education: boolean;
   swedish_education: boolean;
-};
-
-type ImageOverride = {
-  picture_url_override: {
-    alt: string,
-    photographer: string,
-    title: string,
-    url: string
-  }
 };
 
 export type School = {

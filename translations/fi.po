@@ -839,19 +839,19 @@ msgctxt "Copy of site link for error pages"
 msgid "If the problem persist, go to the copy of the pages."
 msgstr "Jos ongelma jatkuu siirry sivun kopioon."
 
-msgctxt "Health station search: input helper"
+msgctxt "React search: street input helper"
 msgid "Enter the street name and house number"
 msgstr "Kirjoita kadunnimi ja talonumero."
 
-msgctxt "Health station search: input placeholder"
+msgctxt "React search: street input helper placeholder"
 msgid "For example, Kotikatu 1"
 msgstr "Esim. Kotikatu 1"
 
-msgctxt "Health station search: input label"
+msgctxt "React search: home address"
 msgid "Home address"
 msgstr "Kotiosoite"
 
-msgctxt "Health station search: checkbox label"
+msgctxt "React search: checkbox label swedish"
 msgid "Show the nearest service location where service is available in Swedish."
 msgstr "Näytä lähin toimipiste, josta saa palvelua ruotsiksi."
 
@@ -861,7 +861,15 @@ msgid_plural "@count health stations"
 msgstr[0] "1 terveysasema"
 msgstr[1] "@count terveysasemaa"
 
-msgctxt "Health station search: Service in Swedish tag"
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinics"
+msgstr "@clinics neuvolaa"
+
+msgctxt "React search: Maternity and child health clinic result count"
+msgid "@clinics clinic"
+msgstr "@clinics neuvola"
+
+msgctxt "React search: Service in Swedish tag"
 msgid "Service in Swedish"
 msgstr "Ruotsinkielistä palvelua"
 
@@ -928,3 +936,41 @@ msgstr "Kadun eri osuuksilla on erilaiset tavoiteaikataulut auraukselle. Alla on
 msgctxt "Ploughing schedule: Result title"
 msgid "Estimated ploughing schedule"
 msgstr "Arvioitu aurausaikataulu"
+
+msgctxt "Service list search count"
+msgid "service"
+msgid_plural "services"
+msgstr[0] "palvelu"
+msgstr[1] "palvelua"
+
+msgctxt "Search filter option: Southern area"
+msgid "Southern area"
+msgstr "Eteläinen alue"
+
+msgctxt "Search filter option: Western area"
+msgid "Western area"
+msgstr "Läntinen alue"
+
+msgctxt "Search filter option: Central area"
+msgid "Central area"
+msgstr "Keskinen alue"
+
+msgctxt "Search filter option: Northern area"
+msgid "Northern area"
+msgstr "Pohjoinen alue"
+
+msgctxt "Search filter option: North-Eastern area"
+msgid "North-Eastern area"
+msgstr "Koillinen alue"
+
+msgctxt "Search filter option: South-Eastern area"
+msgid "South-Eastern area"
+msgstr "Kaakkoinen alue"
+
+msgctxt "Search filter option: Eastern area"
+msgid "Eastern area"
+msgstr "Itäinen alue"
+
+msgctxt "Job search: Job location label"
+msgid "Job location"
+msgstr "Työpaikan sijainti"

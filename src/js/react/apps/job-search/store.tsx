@@ -9,6 +9,7 @@ import type OptionType from './types/OptionType';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
+import { getAreaInfo } from './helpers/Areas';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
@@ -289,6 +290,7 @@ export const summerJobsAtom = atom<boolean>(false);
 export const youthSummerJobsAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
+  set(areaFilterSelectionAtom, null);
   set(taskAreasSelectionAtom, []);
   set(keywordAtom, '');
   set(continuousAtom, false);
@@ -299,3 +301,14 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(urlUpdateAtom, {});
   set(languageSelectionAtom, null);
 });
+
+export const areaFilterAtom = atom(
+  getAreaInfo.map((item: any) => (
+    {
+      label: item.label,
+      value: item.key,
+    } 
+  )
+));
+
+export const areaFilterSelectionAtom = atom<OptionType | null>(null);
