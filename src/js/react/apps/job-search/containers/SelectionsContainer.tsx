@@ -166,21 +166,19 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
 
 type SingleFilterProps = {
   atom: any;
-  valueKey: string;
   label: string;
+  valueKey: string;
 };
 const SingleFilter = ({ atom, valueKey, label }: SingleFilterProps) => {
   const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
 
-  const { language, ...updatedParams } = urlParams;
-
   return (
     <FilterButton
       value={label}
       clearSelection={() => {
-        setUrlParams(updatedParams);
+        setUrlParams({ ...urlParams, [valueKey]: undefined });
         setValue(null);
       }}
     />
