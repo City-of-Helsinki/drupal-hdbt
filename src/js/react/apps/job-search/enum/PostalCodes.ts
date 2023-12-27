@@ -1,4 +1,3 @@
-
 const PostalCodes = {
   'eastern': [
     '00880',

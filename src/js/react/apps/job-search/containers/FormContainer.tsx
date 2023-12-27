@@ -197,10 +197,29 @@ const FormContainer = () => {
       </div>
       {isFullSearch && (
         <div className='job-search-form__dropdowns'>
-            <div className='job-search-form__dropdowns__upper'>
-              <div className='job-search-form__filter job-search-form__dropdown--upper'>
-                <Select
-                  clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' })}
+          <div className='job-search-form__dropdowns__upper'>
+            <div className='job-search-form__filter job-search-form__dropdown--upper'>
+              <Select
+                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' })}
+                className='job-search-form__dropdown'
+                clearable
+                selectedItemRemoveButtonAriaLabel={Drupal.t(
+                  'Remove item',
+                  {},
+                  { context: 'Job search remove item aria label' }
+                )}
+                placeholder={Drupal.t('All languages', {}, { context: 'Language placeholder' })}
+                label={languageLabel}
+                // @ts-ignore
+                options={languagesOptions}
+                value={languageSelection}
+                id={SearchComponents.LANGUAGE}
+                onChange={setLanguageFilter}
+              />
+            </div>
+            <div className='job-search-form__filter job-search-form__dropdown--upper'>
+              <Select
+                  clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
                   className='job-search-form__dropdown'
                   clearable
                   selectedItemRemoveButtonAriaLabel={Drupal.t(
@@ -208,36 +227,17 @@ const FormContainer = () => {
                     {},
                     { context: 'Job search remove item aria label' }
                   )}
-                  placeholder={Drupal.t('All languages', {}, { context: 'Language placeholder' })}
-                  label={languageLabel}
+                  placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
+                  label={areaFilterLabel}
                   // @ts-ignore
-                  options={languagesOptions}
-                  value={languageSelection}
-                  id={SearchComponents.LANGUAGE}
-                  onChange={setLanguageFilter}
+                  options={areaFilterOptions}
+                  value={areaFilterSelection}
+                  id={SearchComponents.AREA_FILTER}
+                  onChange={setAreaFilter}
                 />
-              </div>
-              <div className='job-search-form__filter job-search-form__dropdown--upper'>
-                <Select
-                    clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
-                    className='job-search-form__dropdown'
-                    clearable
-                    selectedItemRemoveButtonAriaLabel={Drupal.t(
-                      'Remove item',
-                      {},
-                      { context: 'Job search remove item aria label' }
-                    )}
-                    placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
-                    label={areaFilterLabel}
-                    // @ts-ignore
-                    options={areaFilterOptions}
-                    value={areaFilterSelection}
-                    id={SearchComponents.AREA_FILTER}
-                    onChange={setAreaFilter}
-                  />
-              </div>
             </div>
           </div>
+        </div>
       )}
       {isFullSearch && showCheckboxes && (
         <fieldset className='job-search-form__checkboxes'>
