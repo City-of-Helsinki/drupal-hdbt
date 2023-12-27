@@ -302,12 +302,13 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(languageSelectionAtom, null);
 });
 
-export const areaFilterAtom = atom(async (get) => getAreaInfo.map((item: any) => (
+export const areaFilterAtom = atom(
+  getAreaInfo.map((item: any) => (
     {
       label: item.label,
-      simpleLabel: item.key,
       value: item.key,
     } 
-  )));
+  )
+));
 
 export const areaFilterSelectionAtom = atom<OptionType | null>(null);
