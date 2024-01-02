@@ -737,8 +737,8 @@ msgid "open positions (@listings job listings)"
 msgstr "lediga jobb (@listings annons)"
 
 msgctxt "HELfi Rekry job search"
-msgid "Sort by"
-msgstr "Ordning"
+msgid "Sort search results"
+msgstr "Ordna sökresultaten"
 
 msgctxt "Job search clear button aria label"
 msgid "Clear selection"
@@ -757,11 +757,11 @@ msgid "All fields"
 msgstr "Alla yrkesbranscher"
 
 msgctxt "Employment filter label"
-msgid "Type of employment relationship"
-msgstr "Typ av anställning"
+msgid "Type of employment"
+msgstr "Typ av anställningsförhållande"
 
 msgctxt "Employment filter placeholder"
-msgid "All employment relationship options"
+msgid "All types of employment"
 msgstr "Alla typer av anställningsförhållande"
 
 msgctxt "Language filter label"
@@ -813,7 +813,7 @@ msgid "Newest first"
 msgstr "Nyaste först"
 
 msgctxt "Job search"
-msgid "Closing date"
+msgid "Closing date first"
 msgstr "Kort tid kvar före stängning"
 
 msgctxt "Job search clear selections"
@@ -971,3 +971,7 @@ msgstr "Östra stordistriktet"
 msgctxt "Job search: Job location label"
 msgid "Job location"
 msgstr "Arbetsplatsens läge"
+
+msgctxt "Search keyword label"
+msgid "Search term"
+msgstr "Sökord"
