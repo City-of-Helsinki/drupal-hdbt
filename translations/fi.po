@@ -481,16 +481,16 @@ msgid "Name of residential area or project"
 msgstr "Asuinalueen tai hankkeen nimi"
 
 msgctxt "District and project search form label"
-msgid 'Use a search word such as "Pasila"'
-msgstr "Etsi hakusanalla, esim. Pasila"
+msgid 'For example, Pasila'
+msgstr "Esim. Pasila"
 
 msgctxt "District and project search form label"
-msgid "Select the residential area from the list"
-msgstr "Valitse asuinalue listasta"
+msgid "Residential area"
+msgstr "Asuinalue"
 
 msgctxt "District and project search form label"
-msgid "Select area"
-msgstr "Valitse alue"
+msgid "All areas"
+msgstr "Kaikki alueet"
 
 msgctxt "District and project search"
 msgid "All areas"

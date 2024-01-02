@@ -479,16 +479,16 @@ msgid "Name of residential area or project"
 msgstr "Namn på bostadsområdet eller projektet"
 
 msgctxt "District and project search form label"
-msgid 'Use a search word such as "Pasila"'
-msgstr "Sök med sökord, t.ex. Böle"
+msgid 'For example, Pasila'
+msgstr "T.ex. Böle"
 
 msgctxt "District and project search form label"
-msgid "Select the residential area from the list"
-msgstr "Välj bostadsområde på listan"
+msgid "Residential area"
+msgstr "Bostadsområde"
 
 msgctxt "District and project search form label"
-msgid "Select area"
-msgstr "Välj område"
+msgid "All areas"
+msgstr "Alla områden"
 
 msgctxt "District and project search"
 msgid "All areas"
