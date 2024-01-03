@@ -45,7 +45,7 @@
     "normalize.css": "^8.0.1",
     "postcss-cli": "^10.0.0",
     "postcss-easy-import": "^4.0.0",
-    "postcss-import": "^15.0.0",
+    "postcss-import": "^16.0.0",
     "postcss-import-ext-glob": "^2.0.1",
     "postcss-loader": "^7.0.0",
     "postcss-nested": "^6.0.0",
