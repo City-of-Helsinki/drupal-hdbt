@@ -40,6 +40,18 @@
 ]
 %}
 
+{% if results_term_singular is not empty %}
+  {% set results_term_singular_value = results_term_singular %}
+{% else %}
+  {% set results_term_singular_value = ' ' ~ 'result'|t({}, {'context' : 'Unit search count singular'}) %}
+{% endif %}
+
+{% if results_term_plural is not empty %}
+  {% set results_term_plural_value = results_term_plural %}
+{% else %}
+  {% set results_term_plural_value = ' ' ~ 'results'|t({}, {'context' : 'Unit search count plural'}) %}
+{% endif %}
+
 <div{{attributes.addClass(classes)}}>
   {{ title_prefix }}
   {{ title }}
@@ -55,17 +67,20 @@
   {{ attachment_before }}
 
   <div class="unit-search__results" data-id-number="{{ dom_id }}">
-      <span class="unit-search__count-container">
-        {% if total_rows %}
-          <span class="unit-search__count">{{ total_rows }}</span>
-          {% trans with {'context': 'Unit search count'}%}result{% plural total_rows %}results{% endtrans %}
+    <h3 class="unit-search__count-container">
+      {%- if total_rows -%}
+        {{ total_rows }}
+        {% if total_rows == '1' %}
+          {{ results_term_singular_value }}
+        {% else %}
+          {{ results_term_plural_value }}
         {% endif %}
-        
-        {{ empty }}
-      </span>
+      {%- endif -%}
+      {{ empty }}
+    </h3>
 
     {{ rows }}
-  
+
     {{ pager }}
   </div>
   {{ attachment_after }}

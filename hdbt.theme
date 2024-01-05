@@ -1293,6 +1293,12 @@ function hdbt_preprocess_views_view(&$variables): void {
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
+  if ($variables['view']->id() == 'unit_search' && $variables['view']->args[2] != NULL) {
+    $variables['results_term_singular'] = $variables['view']->args[2];
+  }
+  if ($variables['view']->id() == 'unit_search' && $variables['view']->args[3] != NULL) {
+    $variables['results_term_plural'] = $variables['view']->args[3];
+  }
 }
 
 /**
