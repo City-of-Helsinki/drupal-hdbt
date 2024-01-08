@@ -95,6 +95,11 @@
   }
 }
 
+.unit-search__count-container:focus {
+  outline: 3px solid $color-black;
+  outline-offset: 2px;
+}
+
 .unit-search__result-actions {
   @include breakpoint($breakpoint-m) {
     align-items: center;
