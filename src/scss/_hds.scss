@@ -15,3 +15,16 @@
 @import 'xx_external/hds-core/lib/components/text-input/text-input.min.css';
 @import 'xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css';
 @import 'xx_external/hds-core/lib/components/selection-group/selection-group.min.css';
+
+// There are some styles that get orphaned when HDS is updated to version 3
+// The following styles are from diff between old and new stylesheets
+:root {
+    --color-focus-outline: #0072c6;
+    --box-shadow-s: 0px 2px 10px 0px rgba(0,0,0,0.07);
+    --box-shadow-m: 0px 2px 10px 0px rgba(0,0,0,0.1);
+    --box-shadow-l: 0px 2px 20px 0px rgba(0,0,0,0.2);
+    --fontsize-heading-xxl: 4rem;
+    --fontsize-heading-xl: 3rem;
+    --fontsize-heading-xl-mobile: 2.5rem;
+    --fontsize-heading-l: 2rem;
+}
