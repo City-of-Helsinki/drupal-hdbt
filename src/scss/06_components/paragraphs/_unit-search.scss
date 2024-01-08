@@ -86,16 +86,9 @@
 }
 
 .unit-search__results {
-  border-top: 1px solid $color-black-10;
   display: block;
-  margin-top: $spacing-double;
-  padding-top: $spacing-double;
+  margin-top: $spacing-triple;
   width: 100%;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
 
   > .views-row + .views-row {
     margin-top: $spacing;
@@ -107,14 +100,6 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-  }
-}
-
-.unit-search__count-container {
-  @include font('lead');
-
-  .unit-search__count {
-    font-weight: $font-weight-bold;
   }
 }
 
