@@ -18,6 +18,10 @@
   list-style: none;
   text-decoration: none;
 
+  .link__type {
+    display: none; // Hide link type for social media links.
+  }
+
   .hel-icon {
     --icon-size: #{$spacing-double};
   }
