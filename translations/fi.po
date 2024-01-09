@@ -481,16 +481,16 @@ msgid "Name of residential area or project"
 msgstr "Asuinalueen tai hankkeen nimi"
 
 msgctxt "District and project search form label"
-msgid 'Use a search word such as "Pasila"'
-msgstr "Etsi hakusanalla, esim. Pasila"
+msgid 'For example, Pasila'
+msgstr "Esim. Pasila"
 
 msgctxt "District and project search form label"
-msgid "Select the residential area from the list"
-msgstr "Valitse asuinalue listasta"
+msgid "Residential area"
+msgstr "Asuinalue"
 
 msgctxt "District and project search form label"
-msgid "Select area"
-msgstr "Valitse alue"
+msgid "All areas"
+msgstr "Kaikki alueet"
 
 msgctxt "District and project search"
 msgid "All areas"
@@ -744,8 +744,8 @@ msgid "open positions (@listings job listings)"
 msgstr "avointa työpaikkaa (@listings ilmoitusta)"
 
 msgctxt "HELfi Rekry job search"
-msgid "Sort by"
-msgstr "Järjestys"
+msgid "Sort search results"
+msgstr "Järjestä hakutulokset"
 
 msgctxt "Job search clear button aria label"
 msgid "Clear selection"
@@ -764,12 +764,12 @@ msgid "All fields"
 msgstr "Kaikki ammattialat"
 
 msgctxt "Employment filter label"
-msgid "Type of employment relationship"
-msgstr "Palvelussuhteen tyyppi"
+msgid "Type of employment"
+msgstr "Työsuhteen tyyppi"
 
 msgctxt "Employment filter placeholder"
-msgid "All employment relationship options"
-msgstr "Kaikki palvelussuhteen tyypit"
+msgid "All types of employment"
+msgstr "Kaikki työsuhteen tyypit"
 
 msgctxt "Language filter label"
 msgid "Language"
@@ -817,11 +817,11 @@ msgstr "Nuorten kesätyöt"
 
 msgctxt "Job search"
 msgid "Newest first"
-msgstr "Uusin ensin"
+msgstr "Uusimmat ensin"
 
 msgctxt "Job search"
-msgid "Closing date"
-msgstr "Sulkeutuvat"
+msgid "Closing date first"
+msgstr "Sulkeutuvat ensin"
 
 msgctxt "Job search clear selections"
 msgid "Clear selections"
@@ -974,3 +974,7 @@ msgstr "Itäinen alue"
 msgctxt "Job search: Job location label"
 msgid "Job location"
 msgstr "Työpaikan sijainti"
+
+msgctxt "Search keyword label"
+msgid "Search term"
+msgstr "Hakusana"

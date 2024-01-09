@@ -13,7 +13,7 @@ const options: OptionType[] = [
     value: sortOptions.newestFirst,
   },
   {
-    label: Drupal.t('Closing date', {}, { context: 'Job search' }),
+    label: Drupal.t('Closing date first', {}, { context: 'Job search' }),
     value: sortOptions.closing,
   },
 ];
@@ -36,7 +36,7 @@ const ResultsSort = () => {
   return (
     <Select
       className='job-listing-search__sort'
-      label={Drupal.t('Sort by', {}, { context: 'HELfi Rekry job search' })}
+      label={Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' })}
       options={options}
       onChange={(option: OptionType) => {
         setSort(option);
