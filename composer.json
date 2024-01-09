@@ -9,6 +9,6 @@
     "drupal/twig_tweak": "^2.0 || ^3.0"
   },
   "conflict": {
-    "drupal/helfi_platform_config": "<4.3"
+    "drupal/helfi_platform_config": "<4.0"
   }
 }
