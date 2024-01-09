@@ -173,7 +173,7 @@ hyphenopoly:
     }
 
 job-search:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/job-search.min.js: {
       preprocess: false
@@ -183,7 +183,7 @@ job-search:
     - core/drupal
 
 district-and-project-search:
-  version: 1.0
+  version: 1.1
   js:
     dist/js/district-and-project-search.min.js: {
       preprocess: false
