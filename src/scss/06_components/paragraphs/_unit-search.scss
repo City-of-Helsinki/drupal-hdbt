@@ -95,9 +95,13 @@
   }
 }
 
-.unit-search__count-container:focus {
-  outline: 3px solid $color-black;
-  outline-offset: 2px;
+.unit-search__count-container {
+  margin-top: 0;
+
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: 2px;
+  }
 }
 
 .unit-search__result-actions {
@@ -136,10 +140,6 @@
 .unit-search__result--list,
 .unit-search__result--map {
   margin-top: $spacing;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-double;
-  }
 }
 
 .unit-search__result--map {
