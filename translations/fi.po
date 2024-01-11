@@ -986,3 +986,11 @@ msgstr "tulos"
 msgctxt "Unit search count plural"
 msgid "results"
 msgstr "tulosta"
+
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "Ei hakutuloksia"
+
+msgctxt "Unit search no results text"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."

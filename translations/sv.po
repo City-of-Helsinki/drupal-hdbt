@@ -983,3 +983,11 @@ msgstr "resultat"
 msgctxt "Unit search count plural"
 msgid "results"
 msgstr "resultat"
+
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "Inga sökresultat"
+
+msgctxt "Unit search no results text"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."

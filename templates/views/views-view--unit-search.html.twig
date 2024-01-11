@@ -76,8 +76,14 @@
           {{ results_term_plural_value }}
         {% endif %}
       {%- endif -%}
-      {{ empty }}
+      {%- if empty -%}
+        {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+      {%- endif -%}
     </h3>
+
+    {%- if empty -%}
+      <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Unit search no results text'}) }}</p>
+    {%- endif -%}
 
     {{ rows }}
 
