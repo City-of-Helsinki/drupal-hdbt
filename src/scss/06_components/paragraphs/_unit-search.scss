@@ -26,11 +26,7 @@
     [data-hds-variant='primary'],
   ),
   .form-actions .hds-button--primary {
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      margin-left: $spacing-and-half;
-    }
+    margin-top: $spacing;
   }
 
   .views-exposed-form {
@@ -42,8 +38,7 @@
 
     .form-item {
       @include breakpoint($breakpoint-m) {
-        margin-bottom: 0;
-        width: 70%;
+        width: 100%;
       }
     }
 
@@ -66,13 +61,6 @@
     [data-drupal-selector='edit-provided-languages-value'] {
       margin-top: $spacing-and-half;
       order: 1;
-    }
-
-    .form-actions {
-      @include breakpoint($breakpoint-m) {
-        display: flex;
-        width: 30%;
-      }
     }
   }
 
