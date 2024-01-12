@@ -190,6 +190,7 @@ $breakpoint-design-image-on-left-right: 830px;
     @include breakpoint($breakpoint-design-image-on-left-right) {
       // Same line-height as the one used in the caption.
       --line-height: 1.5;
+
       // Line-height of the caption + spacing above the caption + spacing under the caption.
       padding-bottom: calc((var(--line-height) * 1rem) + $spacing + $spacing);
       position: relative;
@@ -301,6 +302,7 @@ $breakpoint-design-image-on-left-right: 830px;
     @include breakpoint($breakpoint-l) {
       // Same line-height as the one used in the caption.
       --line-height: 1.5;
+
       // Line-height of the caption + spacing above the caption + spacing under the caption.
       padding-bottom: calc((var(--line-height) * 1rem) + $spacing + $spacing);
       position: relative;
