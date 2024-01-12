@@ -856,7 +856,7 @@ msgstr[1] "@count hälsostation"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinics"
-msgstr "@clinics rådgivningsbyråar"
+msgstr "@clinics rådgivningsbyråer"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinic"
@@ -885,6 +885,10 @@ msgstr "Visa som lista"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Visa på kartan"
+
+msgctxt "React search: result display"
+msgid "Open large version of the map"
+msgstr "Öppna kartan i större format"
 
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
