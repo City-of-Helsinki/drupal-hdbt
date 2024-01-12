@@ -194,6 +194,8 @@ drush locale:check && drush locale:update && drush cr
 ```
 And then flush all caches from top left drupal admin menu under "Druplicon".
 
+If the translation are still not showing, make sure that your `/public/sites/default/files/translations` has sufficient permissions.
+
 ### I have some php linter errors
 
 You can lint or fix php in instance root's shell
