@@ -53,17 +53,20 @@
 
   {{ exposed }}
   <div class="service-list-search__results unit-search__results" data-id-number="{{ dom_id }}">
-    <span class="service-list-search__count-container unit-search__count-container">
-      {% if total_rows %}
-        <span class="service-list-search__count  unit-search__count">{{ total_rows }}</span>
-        {% trans with {'context': 'Service list search count'}%}service{% plural total_rows %}services{% endtrans %}
-      {% endif %}
-
-      {{ empty }}
-    </span>
+    <h3 class="service-list-search__count-container unit-search__count-container">
+      {%- if total_rows -%}
+        {{ total_rows }} {% trans with {'context': 'Service list search count'}%}advisory service{% plural total_rows %}advisory services{% endtrans %}
+      {%- else -%}
+        {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+      {%- endif -%}
+    </h3>
     {{ attachment_before }}
 
     {{ rows }}
+
+    {%- if empty -%}
+      <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Unit search no results text'}) }}</p>
+    {%- endif -%}
 
     {{ pager }}
 
