@@ -75,8 +75,7 @@
         {% else %}
           {{ results_term_plural_value }}
         {% endif %}
-      {%- endif -%}
-      {%- if empty -%}
+      {%- else -%}
         {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
       {%- endif -%}
     </h3>
