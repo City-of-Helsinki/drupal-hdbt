@@ -1,0 +1,33 @@
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+name: CI
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set variables
+        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
+
+      - name: Parse $THEME_NAME from composer.json
+        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+
+      - name: Clone platform
+        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+
+      - name: Build project
+        run: |
+          cd $DRUPAL_ROOT
+          composer config repositories.5 path $GITHUB_WORKSPACE
+          composer require drupal/$THEME_NAME -W
+
+      - name: Start project
+        run: |
+          make up
+          curl https://yoursite.docker.so
