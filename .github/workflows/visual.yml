@@ -34,6 +34,15 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose up -d --wait
+
+      - name: Setup Drupal
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          docker compose up -d --wait
-          sleep 15 && curl https://mysite.docker.so
+          docker compose exec app bash -c "drush si minimal -y"
+          docker compose exec app bash -c "drush en helfi_test_content -y"
+
+      - name: Run tests
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: curl https://mysite.docker.so
+
