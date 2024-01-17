@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-name: CI
+name: Visual regression tests
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -36,4 +36,4 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           make up
-          curl https://yoursite.docker.so
+          curl https://mysite.docker.so
