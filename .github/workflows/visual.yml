@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+env:
+  SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
 name: Visual regression tests
 jobs:
   tests:
