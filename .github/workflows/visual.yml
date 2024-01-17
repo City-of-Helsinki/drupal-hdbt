@@ -35,5 +35,5 @@ jobs:
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          docker compose up -d
-          curl https://mysite.docker.so
+          docker compose up -d --wait
+          sleep 15 && curl https://mysite.docker.so
