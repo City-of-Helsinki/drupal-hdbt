@@ -22,12 +22,13 @@ jobs:
         run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
       - name: Build project
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          cd $DRUPAL_ROOT
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/$THEME_NAME -W
 
       - name: Start project
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           make up
           curl https://yoursite.docker.so
