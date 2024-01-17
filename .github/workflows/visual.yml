@@ -21,6 +21,11 @@ jobs:
       - name: Clone platform
         run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
+      - name: Install and start Stonehenge
+        run: |
+          git clone -b 4.x https://github.com/druidfi/stonehenge.git ~/stonehenge
+          cd ~/stonehenge && make up
+
       - name: Build project
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
