@@ -20,6 +20,9 @@ jobs:
       - name: Parse $THEME_NAME from composer.json
         run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
+      - name: Set module folder
+        run: echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
+
       - name: Clone platform
         run: |
           git clone --depth=1 https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
@@ -38,10 +41,9 @@ jobs:
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/$THEME_NAME -W
           # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
-          # instead of symlinking it to prevent code coverage issues with
-          # phpunit. Copy .git folder manually so codecov can generate line by
-          # line coverage.
-          cp -r $GITHUB_WORKSPACE/.git $THEME_FOLDER/
+          # instead of symlinking it to make sure the code is available inside
+          # the app container.
+          cp -r $GITHUB_WORKSPACE/.git public/themes/contrib/$THEME_NAME/
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
