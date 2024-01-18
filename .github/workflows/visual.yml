@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+env:
+  SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
 name: Visual regression tests
 jobs:
   tests:
@@ -34,9 +36,11 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose up -d --wait
+
+      - name: Wait for Database to wake up
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          docker compose up -d --wait
-          # Sleep until database is available
           counter=0
           until [ $counter -gt 5 ]
           do
