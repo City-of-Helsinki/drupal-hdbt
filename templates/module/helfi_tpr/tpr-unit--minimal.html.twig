@@ -16,16 +16,15 @@
 
 {%
   set card_tpr_classes = [
-  not content_entity_published ? 'card--unpublished',
-  'card--tpr-minimal',
-]
+    not content_entity_published ? 'card--unpublished', 'card--tpr-minimal',
+  ]
 %}
 
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: card_tpr_classes|join(' '),
-  card_title: entity.label,
-  card_url: unit_url,
-  card_tags: card_tags,
-  card_metas: card_metas,
+    card_modifier_class: card_tpr_classes|join(' '),
+    card_title: entity.label,
+    card_url: unit_url,
+    card_tags: card_tags,
+    card_metas: card_metas,
   } %}
 {% endembed %}
