@@ -32,11 +32,23 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           composer config repositories.5 path $GITHUB_WORKSPACE
+          composer install
           composer require drupal/$THEME_NAME -W
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose up -d --wait && sleep 10
+        run: |
+          docker compose up -d --wait
+          # Sleep until database is available
+          counter=0
+          until [ $counter -gt 5 ]
+          do
+            if [[ $(drush sql:connect) -e '\q' ]]; then
+              break
+            fi
+            ((counter++))
+            sleep 2
+          done
 
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
