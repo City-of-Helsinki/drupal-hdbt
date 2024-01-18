@@ -47,8 +47,11 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose up -d --wait
+
+      - name: Wait for project to start
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          docker compose up -d --wait
           counter=0
           until [ $counter -gt 5 ]
           do
@@ -56,6 +59,7 @@ jobs:
             if [ $? -eq 0 ]; then
               break
             fi
+            echo "Database is not up yet ..."
             ((counter++))
             sleep 2
           done
