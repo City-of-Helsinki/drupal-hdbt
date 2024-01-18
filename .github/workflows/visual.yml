@@ -41,7 +41,7 @@ jobs:
           counter=0
           until [ $counter -gt 5 ]
           do
-            if [ "$(drush sql:connect) -e '\q'" ]; then
+            if docker compose exec app bash -c "\$(drush sql:connect) -e '\q'"; then
               break
             fi
             ((counter++))
@@ -52,7 +52,7 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           mkdir public/sites/default/files -p && chmod 777 public/sites/default -R
-          docker compose exec app bash -c "ls -la public/themes/contrib"
+          docker compose exec app bash -c "ls -la public/themes/contrib/hdbt"
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
 
