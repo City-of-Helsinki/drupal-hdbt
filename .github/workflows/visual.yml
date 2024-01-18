@@ -36,15 +36,12 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose up -d --wait
-
-      - name: Wait for Database to wake up
-        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
+          docker compose up -d --wait
           counter=0
           until [ $counter -gt 5 ]
           do
-            if [[ $(drush sql:connect) -e '\q' ]]; then
+            if [ "$(drush sql:connect) -e '\q'" ]; then
               break
             fi
             ((counter++))
