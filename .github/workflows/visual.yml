@@ -28,13 +28,6 @@ jobs:
           git clone -b 4.x https://github.com/druidfi/stonehenge.git ~/stonehenge
           cd ~/stonehenge && make up
 
-      - name: Build project
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: |
-          composer config repositories.5 path $GITHUB_WORKSPACE
-          composer install
-          composer require drupal/$THEME_NAME -W
-
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
@@ -49,6 +42,12 @@ jobs:
             ((counter++))
             sleep 2
           done
+
+      - name: Build project
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: |
+          docker compose exec app bash -c "composer config repositories.5 path $GITHUB_WORKSPACE"
+          docker compose exec app bash -c "composer require drupal/$THEME_NAME -W"
 
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
