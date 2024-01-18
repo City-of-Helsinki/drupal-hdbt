@@ -9,8 +9,22 @@
 {% if content.distance|render %}
   {% set card_metas = card_metas|merge([{
       icon: 'locate',
-      label: 'Distance'|t({}, {'context': 'TPR unit daycare distance'}),
+      label: 'Distance from the address you have given'|t({}, {'context': 'TPR unit result card'}),
       content: content.distance,
+    }]) %}
+{% endif %}
+{% if content.provided_languages|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'globe',
+      label: 'Operating language'|t({}, {'context': 'TPR unit result card'}),
+      content: content.provided_languages,
+    }]) %}
+{% endif %}
+{% if content.opening_hours|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'clock',
+      label: 'Opening hours'|t({}, {'context': 'TPR unit result card'}),
+      content: content.opening_hours|render|striptags,
     }]) %}
 {% endif %}
 

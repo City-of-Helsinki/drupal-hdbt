@@ -350,9 +350,17 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
 
-msgctxt "TPR unit daycare distance"
-msgid "Distance"
-msgstr "Distans"
+msgctxt "TPR unit result card"
+msgid "Distance from the address you have given"
+msgstr "Avstånd från adressen du angett"
+
+msgctxt "TPR unit result card"
+msgid "Operating language"
+msgstr "Verksamhetsspråk"
+
+msgctxt "TPR unit result card"
+msgid "Opening hours"
+msgstr "Öppettid"
 
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
