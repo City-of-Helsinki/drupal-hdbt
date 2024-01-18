@@ -21,7 +21,9 @@ jobs:
         run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
       - name: Clone platform
-        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+        run: |
+          git clone --depth=1 https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+          rm -rf $DRUPAL_ROOT/.git
 
       - name: Install and start Stonehenge
         run: |
@@ -30,9 +32,16 @@ jobs:
 
       - name: Build project
         working-directory: ${{ env.DRUPAL_ROOT }}
+        env:
+          COMPOSER_MIRROR_PATH_REPOS: 1
         run: |
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/$THEME_NAME -W
+          # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
+          # instead of symlinking it to prevent code coverage issues with
+          # phpunit. Copy .git folder manually so codecov can generate line by
+          # line coverage.
+          cp -r $GITHUB_WORKSPACE/.git $THEME_FOLDER/
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
@@ -41,7 +50,7 @@ jobs:
           counter=0
           until [ $counter -gt 5 ]
           do
-            if docker compose exec app bash -c "\$(drush sql:connect) -e '\q'"; then
+            if docker compose exec app bash -c "\$(drush sql:connect) -e '\q'" 2> /dev/null; then
               break
             fi
             ((counter++))
