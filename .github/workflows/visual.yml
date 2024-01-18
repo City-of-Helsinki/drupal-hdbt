@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-env:
-  SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
 name: Visual regression tests
 jobs:
   tests:
@@ -28,6 +26,12 @@ jobs:
           git clone -b 4.x https://github.com/druidfi/stonehenge.git ~/stonehenge
           cd ~/stonehenge && make up
 
+      - name: Build project
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: |
+          composer config repositories.5 path $GITHUB_WORKSPACE
+          composer require drupal/$THEME_NAME -W
+
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
@@ -43,16 +47,11 @@ jobs:
             sleep 2
           done
 
-      - name: Build project
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: |
-          docker compose exec app bash -c "composer config repositories.5 path $GITHUB_WORKSPACE"
-          docker compose exec app bash -c "composer require drupal/$THEME_NAME -W"
-
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           mkdir public/sites/default/files -p && chmod 777 public/sites/default -R
+          docker compose exec app bash -c "ls -la public/themes/contrib"
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
 
