@@ -47,22 +47,7 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose up -d --wait
-
-      - name: Wait for project to start
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: |
-          counter=0
-          until [ $counter -gt 5 ]
-          do
-            docker compose exec app bash -c "\$(drush sql:connect) -e '\q'" 2> /dev/null
-            if [ $? -eq 0 ]; then
-              break
-            fi
-            echo "Database is not up yet ..."
-            ((counter++))
-            sleep 2
-          done
+        run: docker compose up -d --wait && sleep 5
 
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
