@@ -11,6 +11,8 @@ import AppSettings from '../enum/AppSettings';
 import { School } from '../types/School';
 import ResultCard from './ResultCard';
 import { paramsAtom } from '../store';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsSort from '../../district-and-project-search/components/results/ResultsSort';
 
 type ResultsListProps = {
   data: any;
@@ -62,6 +64,15 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
 
   return (
     <div className='react-search__results'>
+      <ResultsHeader
+        total={total}
+        singular="1 school"
+        plural="@count schools"
+        translationContext="React search: schools result count"
+        actions={<ResultsSort />}
+        actionsClass="hdbt-search--react__results--sort"
+        ref={scrollTarget}
+      />
       <div className='hdbt-search--react__result-top-area'>
         {!Number.isNaN(total) &&
           <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>

@@ -14,6 +14,7 @@ import useQueryString from '../hooks/useQueryString';
 import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
+import ResultsHeader from '@/react/common/ResultsHeader';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -85,16 +86,15 @@ const ResultsContainer = (): JSX.Element => {
 
   return (
     <div className="react-search__results">
-      <div className="hdbt-search--react__result-top-area">
-        {!Number.isNaN(total) &&
-          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
-            { Drupal.formatPlural(total, '1 search result', '@count search results', {}, {context: 'District and project search'}) }
-          </h3>
-        }
-        <div className="hdbt-search--react__results--sort">
-          <ResultsSort />
-        </div>
-      </div>
+      <ResultsHeader
+        total={total}
+        singular="1 search result"
+        plural="@count search results"
+        translationContext="District and project search"
+        actions={<ResultsSort />}
+        actionsClass="hdbt-search--react__results--sort"
+        ref={scrollTarget}
+      />
 
       <div className='hdbt-search--react__results--container'>
         {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
