@@ -350,9 +350,17 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
 
-msgctxt "TPR unit daycare distance"
-msgid "Distance"
-msgstr "Distans"
+msgctxt "TPR unit result card"
+msgid "Distance from the address you have given"
+msgstr "Avstånd från adressen du angett"
+
+msgctxt "TPR unit result card"
+msgid "Operating language"
+msgstr "Verksamhetsspråk"
+
+msgctxt "TPR unit result card"
+msgid "Opening hours"
+msgstr "Öppettid"
 
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
@@ -479,16 +487,16 @@ msgid "Name of residential area or project"
 msgstr "Namn på bostadsområdet eller projektet"
 
 msgctxt "District and project search form label"
-msgid 'Use a search word such as "Pasila"'
-msgstr "Sök med sökord, t.ex. Böle"
+msgid 'For example, Pasila'
+msgstr "T.ex. Böle"
 
 msgctxt "District and project search form label"
-msgid "Select the residential area from the list"
-msgstr "Välj bostadsområde på listan"
+msgid "Residential area"
+msgstr "Bostadsområde"
 
 msgctxt "District and project search form label"
-msgid "Select area"
-msgstr "Välj område"
+msgid "All areas"
+msgstr "Alla områden"
 
 msgctxt "District and project search"
 msgid "All areas"
@@ -737,8 +745,8 @@ msgid "open positions (@listings job listings)"
 msgstr "lediga jobb (@listings annons)"
 
 msgctxt "HELfi Rekry job search"
-msgid "Sort by"
-msgstr "Ordning"
+msgid "Sort search results"
+msgstr "Ordna sökresultaten"
 
 msgctxt "Job search clear button aria label"
 msgid "Clear selection"
@@ -757,11 +765,11 @@ msgid "All fields"
 msgstr "Alla yrkesbranscher"
 
 msgctxt "Employment filter label"
-msgid "Type of employment relationship"
-msgstr "Typ av anställning"
+msgid "Type of employment"
+msgstr "Typ av anställningsförhållande"
 
 msgctxt "Employment filter placeholder"
-msgid "All employment relationship options"
+msgid "All types of employment"
 msgstr "Alla typer av anställningsförhållande"
 
 msgctxt "Language filter label"
@@ -813,7 +821,7 @@ msgid "Newest first"
 msgstr "Nyaste först"
 
 msgctxt "Job search"
-msgid "Closing date"
+msgid "Closing date first"
 msgstr "Kort tid kvar före stängning"
 
 msgctxt "Job search clear selections"
@@ -856,7 +864,7 @@ msgstr[1] "@count hälsostation"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinics"
-msgstr "@clinics rådgivningsbyråar"
+msgstr "@clinics rådgivningsbyråer"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinic"
@@ -885,6 +893,10 @@ msgstr "Visa som lista"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Visa på kartan"
+
+msgctxt "React search: result display"
+msgid "Open large version of the map"
+msgstr "Öppna kartan i större format"
 
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
@@ -931,10 +943,10 @@ msgid "Estimated ploughing schedule"
 msgstr "Uppskattad tidsplan för plogning"
 
 msgctxt "Service list search count"
-msgid "service"
-msgid_plural "services"
-msgstr[0] "tjänst"
-msgstr[1] "tjänster"
+msgid "advisory service"
+msgid_plural "advisory services"
+msgstr[0] "rådgivningstjänst"
+msgstr[1] "rådgivningstjänster"
 
 msgctxt "Search filter option: Southern area"
 msgid "Southern area"
@@ -971,3 +983,23 @@ msgstr "Östra stordistriktet"
 msgctxt "Job search: Job location label"
 msgid "Job location"
 msgstr "Arbetsplatsens läge"
+
+msgctxt "Search keyword label"
+msgid "Search term"
+msgstr "Sökord"
+
+msgctxt "Unit search count singular"
+msgid "result"
+msgstr "resultat"
+
+msgctxt "Unit search count plural"
+msgid "results"
+msgstr "resultat"
+
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "Inga sökresultat"
+
+msgctxt "Unit search no results text"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."

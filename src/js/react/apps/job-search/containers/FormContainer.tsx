@@ -101,9 +101,9 @@ const FormContainer = () => {
     employmentSearchIdMap.get(CustomIds.YOUTH_SUMMER_JOBS) || employmentSearchIdMap.get(CustomIds.COOL_SUMMER_PROJECT);
   const showCheckboxes = showContinuous || showInternships || showSummerJobs || showYouthSummerJobs;
 
-  const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label'});
+  const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label' });
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
-  const employmentRelationshipLabel: string = Drupal.t('Type of employment relationship', {}, { context: 'Employment filter label' });
+  const employmentRelationshipLabel: string = Drupal.t('Type of employment', {}, { context: 'Employment filter label' });
   const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
   return (
@@ -111,7 +111,7 @@ const FormContainer = () => {
       <TextInput
         className='job-search-form__filter'
         id={SearchComponents.KEYWORD}
-        label={Drupal.t('Keyword', { context: 'Search keyword label' })}
+        label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
         name={SearchComponents.KEYWORD}
         onChange={handleKeywordChange}
         value={keyword}
@@ -154,7 +154,7 @@ const FormContainer = () => {
                 { context: 'Job search remove item aria label' }
               )}
               placeholder={Drupal.t(
-                'All employment relationship options',
+                'All types of employment',
                 {},
                 { context: 'Employment filter placeholder' }
               )}

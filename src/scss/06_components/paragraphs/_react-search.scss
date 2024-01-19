@@ -26,16 +26,16 @@
 
 // Override some fieldset default styles here
 .hdbt-search--react__fieldset {
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-  }
-
   border: none;
   margin-bottom: $spacing-double;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+  }
 }
 
 .hdbt-search--react__legend {
@@ -58,23 +58,23 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 .hdbt-search--react__result-top-area {
+  margin-bottom: $spacing;
+
   @include breakpoint($breakpoint-l) {
     display: flex;
     justify-content: space-between;
   }
-
-  margin-bottom: $spacing;
 }
 
 .hdbt-search--react__results--title {
-  @include breakpoint($breakpoint-l) {
-    margin-bottom: 0;
-  }
-
   align-items: center;
   display: flex;
   margin-bottom: $spacing-three-quarters;
   margin-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: 0;
+  }
 }
 
 .hdbt-search--react__results--tablist {
