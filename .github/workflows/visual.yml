@@ -59,7 +59,7 @@ jobs:
 
       - name: Run tests
         run: |
-          NODE_VERSION=$(cat.nvmrc 2>/dev/null)
+          NODE_VERSION=$(cat .nvmrc 2>/dev/null)
           docker run --rm --name helfi-node -v $(pwd):/app -w $(pwd) node:$NODE_VERSION npm install
           docker run --rm --name helfi-node -v $(pwd):/app -w $(pwd) node:$NODE_VERSION npm run fast-reference
           docker run --rm --name helfi-node -v $(pwd):/app -w $(pwd) node:$NODE_VERSION npm run fast-test
