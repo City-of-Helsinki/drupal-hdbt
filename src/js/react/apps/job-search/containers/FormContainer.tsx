@@ -52,7 +52,7 @@ const FormContainer = () => {
   // Set form control values from url parameters on load
   useEffect(() => {
     setKeyword(urlParams?.keyword?.toString() || '');
-    setAreaFilter(getInitialAreaFilter(urlParams?.area_filter, areaFilterOptions));
+    setAreaFilter(transformDropdownsValues(urlParams?.area_filter, areaFilterOptions));
     setTaskAreaFilter(transformDropdownsValues(urlParams?.task_areas, taskAreasOptions));
     setEmploymentFilter(transformDropdownsValues(urlParams?.employment, employmentOptions));
     setContinuous(!!urlParams?.continuous);
@@ -69,7 +69,7 @@ const FormContainer = () => {
 
     event.preventDefault();
     setUrlParams({
-      area_filter: areaFilterSelection?.value,
+      area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
       employment: employmentSelection.reduce((acc: any, curr: any) => {
         const target = curr.additionalValue
           ? [curr.additionalValue.toString(), curr.value.toString()]
@@ -222,6 +222,7 @@ const FormContainer = () => {
                   clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
                   className='job-search-form__dropdown'
                   clearable
+                  multiselect
                   selectedItemRemoveButtonAriaLabel={Drupal.t(
                     'Remove item',
                     {},

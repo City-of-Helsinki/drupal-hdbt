@@ -136,10 +136,15 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  if (urlParams.area_filter) {
+  if (urlParams?.area_filter?.length) {
+    const postalCodes: string[] = [];
+    urlParams.area_filter.forEach(areaCode => {
+      postalCodes.push(...getAreaInfo.find(area => area.key === areaCode)?.postalCodes || []);
+    });
+
     query.bool.filter.push({
       terms: {
-        [IndexFields.POSTAL_CODE]: getAreaInfo.find(area => area.key === urlParams.area_filter?.toString())?.postalCodes,
+        [IndexFields.POSTAL_CODE]: postalCodes
       }
     });
   }
