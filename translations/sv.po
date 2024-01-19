@@ -531,8 +531,10 @@ msgid "Clear selections"
 msgstr "Töm urvalet"
 
 msgctxt "District and project search"
-msgid "search results"
-msgstr "träffar"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 träff"
+msgstr[1] "@count träffar"
 
 msgctxt "District and project search form label"
 msgid "Sort search results"

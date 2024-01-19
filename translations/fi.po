@@ -533,8 +533,10 @@ msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
 msgctxt "District and project search"
-msgid "search results"
-msgstr "hakutulosta"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 hakutulos"
+msgstr[1] "@count hakutulosta"
 
 msgctxt "District and project search form label"
 msgid "Sort search results"
