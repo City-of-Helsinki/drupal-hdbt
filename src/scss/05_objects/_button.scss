@@ -33,7 +33,6 @@
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
-  -webkit-appearance: button;
   align-content: flex-start;
   align-items: center;
   background-color: var(--background-color, transparent);
@@ -78,6 +77,7 @@
 
  // Normalize.css rules
  // Correct the inability to style clickable types in iOS and Safari.
+button.hds-button,
 .hds-button[type='button'],
 .hds-button[type='reset'],
 .hds-button[type='submit'] {
@@ -569,7 +569,6 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
   // stylelint-disable-next-line property-no-vendor-prefix
-  -webkit-appearance: button;
   align-content: flex-start;
   align-items: center;
   background-color: var(--background-color, transparent);
