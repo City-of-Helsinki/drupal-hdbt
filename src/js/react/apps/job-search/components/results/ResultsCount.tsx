@@ -9,11 +9,11 @@ const ResultsCount = forwardRef((props: ResultsCountProps, ref: ForwardedRef<HTM
   const { jobs, total } = props;
 
   return (
-    <div className='job-listing-search__count-container' ref={ref}>
+    <h3 className='hdbt-search--react__results--title' ref={ref}>
       {!Number.isNaN(jobs) && !Number.isNaN(total) && (
         <>
-          <span className='job-listing-search__count'>{jobs}</span>
-          {` ${ 
+          {jobs}
+          {` ${
             Drupal.t(
               'open positions (@listings job listings)',
               { '@listings': total },
@@ -21,7 +21,7 @@ const ResultsCount = forwardRef((props: ResultsCountProps, ref: ForwardedRef<HTM
             )}`}
         </>
       )}
-    </div>
+    </h3>
   );
 });
 

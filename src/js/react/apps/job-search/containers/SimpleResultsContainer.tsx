@@ -43,7 +43,7 @@ const SimpleResultsContainer = () => {
       return (
         <ResultsError
           error={error || initializationError}
-          className='job-search__results'
+          className='react-search__results'
           ref={scrollTarget}
         />
       );
@@ -63,7 +63,7 @@ const SimpleResultsContainer = () => {
 
     return (
       <>
-        <div className='job-search__results-stats'>
+        <div className='hdbt-search--react__result-top-area'>
           <ResultsCount
             jobs={jobs}
             total={total}
@@ -88,7 +88,7 @@ const SimpleResultsContainer = () => {
   };
 
   return (
-    <div className='job-search__results'>
+    <div className='react-search__results'>
       <ResultWrapper loading={isLoading || isValidating}>
         {getResults()}
       </ResultWrapper>

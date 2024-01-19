@@ -49,7 +49,7 @@ const PromotedResultsContainer = () => {
       return (
         <ResultsError
           error={error || initializationError || data.error}
-          className='job-search__results'
+          className='react-search__results'
           ref={scrollTarget}
         />
       );
@@ -77,7 +77,7 @@ const PromotedResultsContainer = () => {
 
     return (
       <>
-        <div className='job-search__results-stats'>
+        <div className='hdbt-search--react__result-top-area'>
           <ResultsCount
             jobs={jobs}
             total={total}

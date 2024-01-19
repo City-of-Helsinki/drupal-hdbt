@@ -1,15 +1,15 @@
 import { ForwardedRef, forwardRef } from 'react';
 
 const NoResults = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => (
-    <div className='job-search__no-results' ref={ref}>
-      <div className='job-search__no-results__heading'>{Drupal.t('No results')}</div>
-      <div>
+    <div className='hdbt-search--react__results--container'>
+      <h3 className='hdbt-search--react__results--title' ref={ref}>{Drupal.t('No results')}</h3>
+      <p>
         {Drupal.t(
           'Jobs meeting search criteria was not found. Try different search criteria.',
           {},
           { context: 'Job search no results message' }
         )}
-      </div>
+      </p>
     </div>
   ));
 
