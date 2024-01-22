@@ -72,3 +72,11 @@ jobs:
           npm run fast-reference
           npm run fast-test
 
+      - name: Create an artifact from test report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: results
+          path: |
+            ${{ env.THEME_FOLDER }}/backstop_data/
+          retention-days: 1
