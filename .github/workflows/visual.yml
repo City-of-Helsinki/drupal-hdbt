@@ -66,7 +66,7 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           cd public/themes/contrib/$THEME_NAME
-          nvm use
+          nvm install
           npm install
           npm run fast-reference
           npm run fast-test
