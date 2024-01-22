@@ -68,6 +68,7 @@ jobs:
           cd public/themes/contrib/$THEME_NAME
           nvm install
           npm install
+          npx playwright install
           npm run fast-reference
           npm run fast-test
 
