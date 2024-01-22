@@ -63,12 +63,9 @@ jobs:
             docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION ${1}
           }
           NODE_VERSION=$(cat $THEME_FOLDER/.nvmrc 2>/dev/null)
-          THEME_CWD=/app/public/themes/contrib/$THEME_NAME
-          docker_run "ls -la"
-          docker_run "pwd"
-          docker_run "ls -la ../../../../"
-          docker_run "realpath ../../../../"
-          docker_run "npm install"
-          docker_run "npm run fast-reference"
-          docker_run "npm run fast-test"
+          cd public/themes/contrib/$THEME_NAME
+          nvm use
+          npm install
+          npm run fast-reference
+          npm run fast-test
 
