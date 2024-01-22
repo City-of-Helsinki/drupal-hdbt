@@ -63,6 +63,8 @@ jobs:
             docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION ${1}
           }
           NODE_VERSION=$(cat $THEME_FOLDER/.nvmrc 2>/dev/null)
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           cd public/themes/contrib/$THEME_NAME
           nvm use
           npm install
