@@ -41,6 +41,7 @@
       align-items: flex-end;
       display: flex;
       flex-wrap: wrap;
+      max-width: $content-width-max;
     }
 
     .form-item {
