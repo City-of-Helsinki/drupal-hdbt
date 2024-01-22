@@ -1,4 +1,3 @@
-import { Tab, TabList, Tabs } from 'hds-react';
 import { Suspense, useState } from 'react';
 import { useSetAtom } from 'jotai';
 
@@ -31,24 +30,14 @@ const SearchContainer = () => {
 
   return (
     <>
-      <Tabs>
-        <TabList className='hdbt-search--react__tabs'>
-          <Tab
-            className='hdbt-search--react__tab'
-            index={0}
-            onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}
-          >
-            {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
-          </Tab>
-          <Tab
-            className='hdbt-search--react__tab'
-            index={1}
-            onClick={() => changeSearchMode(MODE_OPTIONS.feature)}
-          >
-            {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
-          </Tab>
-        </TabList>
-      </Tabs>
+      <div className='hdbt-search--react__results--tablist' role='tablist'>
+        <button type='button' className='tablist-tab' role='tab' aria-selected={searchMode === MODE_OPTIONS.proximity} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}>
+          {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
+        </button>
+        <button type='button' className='tablist-tab' role='tab' aria-selected={searchMode === MODE_OPTIONS.feature} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => changeSearchMode(MODE_OPTIONS.feature)}>
+          {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
+        </button>
+      </div>
       <Suspense fallback={
         <div className='hdbt__loading-wrapper'>
           <LoadingOverlay />
