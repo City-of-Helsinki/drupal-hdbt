@@ -20,6 +20,10 @@
   margin-bottom: $spacing-and-half;
 }
 
+.hdbt-search--react__form-container {
+  max-width: $content-width-max;
+}
+
 .hdbt-search--react__text-field {
   margin-bottom: $spacing-double;
 }
