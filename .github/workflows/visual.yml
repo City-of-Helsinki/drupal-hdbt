@@ -67,7 +67,7 @@ jobs:
           docker_run "ls -la"
           docker_run "pwd"
           docker_run "ls -la ../../../../"
-          docker_run "cd ../../../../ && pwd"
+          docker_run "realpath ../../../../"
           docker_run "npm install"
           docker_run "npm run fast-reference"
           docker_run "npm run fast-test"
