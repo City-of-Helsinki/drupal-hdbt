@@ -6,6 +6,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { getLanguageLabel } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
 import {
+  areaFilterAtom,
   areaFilterSelectionAtom,
   continuousAtom,
   employmentAtom,
@@ -21,7 +22,6 @@ import {
   youthSummerJobsAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
-import { getAreaInfo } from '../helpers/Areas';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -30,9 +30,11 @@ const SelectionsContainer = () => {
   const updateTaskAreas = useSetAtom(taskAreasSelectionAtom);
   const employmentOptions = useAtomValue(employmentAtom);
   const updateEmploymentOptions = useSetAtom(employmentSelectionAtom);
+  const updateAreaFilter = useSetAtom(areaFilterSelectionAtom);
+  const areaFilterOptions = useAtomValue(areaFilterAtom);
 
   const showClearButton =
-    urlParams?.area_filter ||
+    urlParams?.area_filter?.length ||
     urlParams?.task_areas?.length ||
     urlParams?.continuous ||
     urlParams?.internship ||
@@ -68,10 +70,10 @@ const SelectionsContainer = () => {
         />
       )}      
       {urlParams.area_filter && (
-        <SingleFilter
-          label={getAreaInfo.find(area => area.key === urlParams.area_filter?.toString())?.label}
-          atom={areaFilterSelectionAtom}
+        <ListFilter
+          updater={updateAreaFilter}
           valueKey={SearchComponents.AREA_FILTER}
+          values={transformDropdownsValues(urlParams.area_filter, areaFilterOptions)}
         />
       )}
       {urlParams.continuous && (

@@ -1,5 +1,5 @@
 type URLParams = {
-  area_filter?: string;
+  area_filter?: string[];
   continuous?: boolean;
   employment?: string[];
   internship?: boolean;
