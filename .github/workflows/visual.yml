@@ -57,6 +57,7 @@ jobs:
           docker compose exec app bash -c "drush en helfi_test_content -y"
 
       - name: Node setup
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           function docker_run {
             docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION ${1}
