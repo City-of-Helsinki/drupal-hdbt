@@ -53,15 +53,19 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           mkdir public/sites/default/files -p && chmod 777 public/sites/default -R
-          docker compose exec app bash -c "ls -la public/themes/contrib/hdbt"
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
 
-      - name: Run tests
+      - name: Node setup
         run: |
+          function docker_run {
+            docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION ${1}
+          }
           NODE_VERSION=$(cat $THEME_FOLDER/.nvmrc 2>/dev/null)
           THEME_CWD=/app/public/themes/contrib/$THEME_NAME
-          docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION npm install
-          docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION npm run fast-reference
-          docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION npm run fast-test
+          docker_run "ls -la"
+          docker_run "ls -la ../../../../"
+          docker_run "npm install"
+          docker_run "npm run fast-reference"
+          docker_run "npm run fast-test"
 
