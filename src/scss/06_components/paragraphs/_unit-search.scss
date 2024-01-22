@@ -68,10 +68,8 @@
       }
     }
 
-    // Move language checkbox to a new row and set proper margin
     [data-drupal-selector='edit-provided-languages-value'] {
       margin-top: $spacing-and-half;
-      order: 1;
     }
   }
 
