@@ -41,7 +41,7 @@ jobs:
 
       - name: Read PR template
         id: pr_template
-        run: echo "template=$(cat .github/workflows/npm_audit_template.md)" >> $GITHUB_ENV
+        run: echo "template=$(curl -sL https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt/UHF-9380/.github/npm_audit_template.md)" >> $GITHUB_ENV
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
