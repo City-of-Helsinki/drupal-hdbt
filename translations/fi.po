@@ -352,9 +352,17 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
 
-msgctxt "TPR unit daycare distance"
-msgid "Distance"
-msgstr "Etäisyys"
+msgctxt "TPR unit result card"
+msgid "Distance from the address you have given"
+msgstr "Etäisyys kirjoittamastasi osoitteesta"
+
+msgctxt "TPR unit result card"
+msgid "Operating language"
+msgstr "Toimintakieli"
+
+msgctxt "TPR unit result card"
+msgid "Opening hours"
+msgstr "Aukioloaika"
 
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
@@ -894,6 +902,10 @@ msgstr "Näytä listana"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Näytä kartalla"
+
+msgctxt "React search: result display"
+msgid "Open large version of the map"
+msgstr "Avaa kartta suurempana"
 
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"

@@ -350,9 +350,17 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
 
-msgctxt "TPR unit daycare distance"
-msgid "Distance"
-msgstr "Distans"
+msgctxt "TPR unit result card"
+msgid "Distance from the address you have given"
+msgstr "Avstånd från adressen du angett"
+
+msgctxt "TPR unit result card"
+msgid "Operating language"
+msgstr "Verksamhetsspråk"
+
+msgctxt "TPR unit result card"
+msgid "Opening hours"
+msgstr "Öppettid"
 
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
@@ -858,7 +866,7 @@ msgstr[1] "@count hälsostation"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinics"
-msgstr "@clinics rådgivningsbyråar"
+msgstr "@clinics rådgivningsbyråer"
 
 msgctxt "React search: Maternity and child health clinic result count"
 msgid "@clinics clinic"
@@ -887,6 +895,10 @@ msgstr "Visa som lista"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Visa på kartan"
+
+msgctxt "React search: result display"
+msgid "Open large version of the map"
+msgstr "Öppna kartan i större format"
 
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"

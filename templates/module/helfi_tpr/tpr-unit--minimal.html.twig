@@ -9,23 +9,36 @@
 {% if content.distance|render %}
   {% set card_metas = card_metas|merge([{
       icon: 'locate',
-      label: 'Distance'|t({}, {'context': 'TPR unit daycare distance'}),
+      label: 'Distance from the address you have given'|t({}, {'context': 'TPR unit result card'}),
       content: content.distance,
+    }]) %}
+{% endif %}
+{% if content.provided_languages|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'globe',
+      label: 'Operating language'|t({}, {'context': 'TPR unit result card'}),
+      content: content.provided_languages,
+    }]) %}
+{% endif %}
+{% if content.opening_hours|render %}
+  {% set card_metas = card_metas|merge([{
+      icon: 'clock',
+      label: 'Opening hours'|t({}, {'context': 'TPR unit result card'}),
+      content: content.opening_hours|render|striptags,
     }]) %}
 {% endif %}
 
 {%
   set card_tpr_classes = [
-  not content_entity_published ? 'card--unpublished',
-  'card--tpr-minimal',
-]
+    not content_entity_published ? 'card--unpublished', 'card--tpr-minimal',
+  ]
 %}
 
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: card_tpr_classes|join(' '),
-  card_title: entity.label,
-  card_url: unit_url,
-  card_tags: card_tags,
-  card_metas: card_metas,
+    card_modifier_class: card_tpr_classes|join(' '),
+    card_title: entity.label,
+    card_url: unit_url,
+    card_tags: card_tags,
+    card_metas: card_metas,
   } %}
 {% endembed %}
