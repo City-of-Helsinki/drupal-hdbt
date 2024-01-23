@@ -56,5 +56,5 @@ jobs:
             });
 
             console.log(`Pull request created: ${pullRequest.html_url}`);
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
