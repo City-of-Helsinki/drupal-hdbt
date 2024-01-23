@@ -49,23 +49,54 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: docker compose --profile testing up -d --wait && sleep 5
 
+      - name: Download latest dump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh run download -n latest.sql
+
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
-          docker compose exec app bash -c "drush si minimal -y"
-          docker compose exec app bash -c "drush en helfi_test_content -y"
-          cd public
-          wget https://www.drupal.org/files/issues/2023-10-15/2969685-32.patch
-          patch -p1 < 2969685-32.patch
+          gh run download -n latest.sql -D /tmp || true
+
+          if [ ! -f "latest.sql" ]; then
+            docker compose exec app bash -c "drush si minimal -y"
+            docker compose exec app bash -c "drush en helfi_test_content -y"
+            drush sql-dump --result-file=/tmp/latest.sql
+          else
+            docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /tmp/latest.sql"
+            docker compose exec app bash -c "drush deploy"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: latest.sql
+          path: /tmp/latest.sql
 
       - name: Node setup
         working-directory: ${{ env.THEME_FOLDER }}
         run: |
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install && npm install && npx playwright install
-          npm run fast-reference
-          npm run fast-test
+
+      - name: Generate reference images
+        working-directory: ${{ env.THEME_FOLDER }}
+        run: |
+          gh run download -n bitmaps.zip -D /tmp || true
+
+          if [ ! -f "/tmp/bitmaps.zip" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+            npm run full-reference
+            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
+          else
+            unzip /tmp/bitmaps.zip -d backstop_data/
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          if: ${{ env.UPLOAD_BITMAP == '1' }}
+          name: bitmaps.zip
+          path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
 
       - name: Export container logs
         working-directory: ${{ env.DRUPAL_ROOT }}
