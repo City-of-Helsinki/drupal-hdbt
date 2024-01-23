@@ -468,7 +468,7 @@ function getConfig(hostname, type) {
         // 'browser': 'webkit',
         'args': ['--no-sandbox'],
       },
-      'asyncCaptureLimit': 10,
+      'asyncCaptureLimit': 1,
       'asyncCompareLimit': 100,
       'debug': false,
       'debugWindow': false,
