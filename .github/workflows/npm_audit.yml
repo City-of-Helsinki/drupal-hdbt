@@ -30,8 +30,8 @@ jobs:
         id: npm_audit
         run: |
           audit_output=$(npm audit)
-          if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false; else create_pr=true; fi 
-          echo should_create_pr=$create_pr >> $GITHUB_OUTPUT
+          if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false else create_pr=true fi 
+          echo "should_create_pr=$create_pr" >> $GITHUB_ENV
 
       - name: Run npm audit fix
         if: steps.npm_audit.outputs.should_create_pr == 'true'
