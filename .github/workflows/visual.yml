@@ -58,7 +58,7 @@ jobs:
           if [ ! -f "latest.sql" ]; then
             docker compose exec app bash -c "drush si minimal -y"
             docker compose exec app bash -c "drush en helfi_test_content -y"
-            drush sql-dump --result-file=/tmp/latest.sql
+            docker compose exec app bash -c "drush sql-dump --result-file=/tmp/latest.sql"
             echo "UPLOAD_SQL=1" >> $GITHUB_ENV
           else
             docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /tmp/latest.sql"
