@@ -47,7 +47,7 @@ jobs:
           commit-message: Updated NPM packages based on NPM audit fix
           title: Automatic NPM Audit Fix
           labels: auto-update
-          body-path: |
+          body: |
             # NPM Audit
             ## How to install
   
