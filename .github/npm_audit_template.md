@@ -1,5 +1,4 @@
 # NPM Audit
-<!-- What problem does this solve? -->
 
 ## How to install
 
@@ -8,7 +7,6 @@
 * In theme folder, run `nvm use && npm i`
 
 ## How to test
-<!-- Describe steps how to test the features, add as many steps as you want to be tested -->
 
 Run `npm run build && npm audit`
 
