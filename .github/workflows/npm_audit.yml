@@ -3,9 +3,6 @@ name: NPM Audit
 on:
   schedule:
     - cron: '0 11 * * 0'  # Run every fortnight on Sunday at 11 am
-  push:
-    branches:
-      - UHF-9380
 jobs:
   npm_audit:
     runs-on: ubuntu-latest
@@ -14,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js and install dependencies
         run: |
           node_version=$(cat .nvmrc)
           echo "Using Node.js version $node_version"
@@ -23,43 +20,32 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-
-      - name: Install dependencies
-        run: npm install
+          npm install
 
       - name: Run npm audit fix
-        run: npm audit fix
-
-      - name: Check for changes
-        id: git_changes
         run: |
-          git diff --exit-code || echo "Updates were detected"
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          audit_output=$(npm audit fix)
+          echo "$audit_output"
+
+      - name: Check for vulnerabilities
+        id: check_vulnerabilities
+        run: |
+          if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then
+            echo "No vulnerabilities found."
+            exit 0; 
+          fi
 
       - name: Read PR template
         id: pr_template
         run: echo "template=$(cat .github/workflows/npm_audit_template.md)" >> $GITHUB_ENV
 
       - name: Create Pull Request
-        if: steps.git_changes.outputs.stdout
-        uses: actions/github-script@v5
+        uses: peter-evans/create-pull-request@v4
         with:
-          script: |
-            const title = 'Automated NPM Audit Fix';
-            const body = core.getInput('template');
-            const head = 'automation/npm-audit';
-            const base = 'main';
-
-            const { data: pullRequest } = await github.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-              head,
-              base,
-            });
-
-            console.log(`Pull request created: ${pullRequest.html_url}`);
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          committer: GitHub <noreply@github.com>
+          author: actions-bot <actions-bot@users.noreply.github.com>
+          commit-message: Update NPM packages based on NPM audit fix
+          title: Automatic NPM Audit Fix
+          labels: auto-update
+          body: core.getInput('template');
+          branch: automation/npm-audit
