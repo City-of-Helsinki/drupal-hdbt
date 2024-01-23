@@ -1,6 +1,7 @@
 name: NPM Audit
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 11 * * 0'  # Run every fortnight on Sunday at 11 am
 jobs:
