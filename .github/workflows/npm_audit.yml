@@ -25,13 +25,7 @@ jobs:
           nvm install $node_version
           nvm use $node_version
           npm install
-
-      - name: Run npm audit
-        id: npm_audit
-        run: |
           audit_output=$(npm audit)
-          echo "npm audit output:"
-          echo "$audit_output"
           if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false else create_pr=true fi 
           echo "should_create_pr=$create_pr" >> $GITHUB_ENV
 
