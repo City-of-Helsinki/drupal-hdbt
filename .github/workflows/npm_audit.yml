@@ -30,18 +30,15 @@ jobs:
         id: npm_audit
         run: |
           audit_output=$(npm audit)
-          if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then
-            echo "create_pr=false" >> $GITHUB_OUTPUT
-          else
-            echo "create_pr=true" >> $GITHUB_OUTPUT
-          fi
+          if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false; else create_pr=true; fi 
+          echo should_create_pr=$create_pr >> $GITHUB_OUTPUT
 
       - name: Run npm audit fix
-        if: steps.npm_audit.outputs.create_pr == 'true'
+        if: steps.npm_audit.outputs.should_create_pr == 'true'
         run: npm audit fix
 
       - name: Create Pull Request
-        if: steps.npm_audit.outputs.create_pr == 'true'
+        if: steps.npm_audit.outputs.should_create_pr == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           committer: GitHub <noreply@github.com>
