@@ -57,20 +57,16 @@ jobs:
           docker compose exec app bash -c "drush en helfi_test_content -y"
 
       - name: Node setup
-        working-directory: ${{ env.DRUPAL_ROOT }}
+        working-directory: ${{ env.THEME_FOLDER }}
         run: |
-          function docker_run {
-            docker run --rm --name helfi-node -v $(pwd):/app -w $THEME_CWD node:$NODE_VERSION ${1}
-          }
-          NODE_VERSION=$(cat $THEME_FOLDER/.nvmrc 2>/dev/null)
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          cd public/themes/contrib/$THEME_NAME
-          nvm install
-          npm install
-          npx playwright install
+          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install && npm install && npx playwright install
           npm run fast-reference
           npm run fast-test
+
+      - name: Export container logs
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose logs app > /tmp/container.log
 
       - name: Create an artifact from test report
         uses: actions/upload-artifact@v3
@@ -79,4 +75,5 @@ jobs:
           name: results
           path: |
             ${{ env.THEME_FOLDER }}/backstop_data/
+            /tmp/container.log
           retention-days: 1
