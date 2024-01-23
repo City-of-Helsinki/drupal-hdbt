@@ -29,10 +29,11 @@ jobs:
       - name: Run npm audit fix
         id: npm_audit
         run: |
-          audit_output=$(npm audit fix)
+          audit_output=$(npm audit)
           if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then
             echo "create_pr=false" >> $GITHUB_ENV
           else
+            npm audit fix
             echo "create_pr=true" >> $GITHUB_ENV
           fi
 
