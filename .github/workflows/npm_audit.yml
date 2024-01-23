@@ -24,8 +24,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-          npm install
-          audit_output=$(npm audit)
+          audit_output=$(npm install)
           if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false else create_pr=true fi 
           echo "should_create_pr=$create_pr" >> $GITHUB_ENV
 
