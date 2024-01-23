@@ -39,10 +39,6 @@ jobs:
             exit 0; 
           fi
 
-      - name: Read PR template
-        id: pr_template
-        run: template=$(curl -sL https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt/a1e962efbb5915be4c33921164b8c48a59f9d965/.github/npm_audit_template.md)"
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
