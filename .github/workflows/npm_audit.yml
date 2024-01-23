@@ -1,0 +1,60 @@
+name: NPM Audit Fix and Create PR
+
+on:
+  schedule:
+    - cron: '0 11 * * 0'  # Run every fortnight on Sunday at 11 am
+  push:
+    branches:
+      - UHF-9380
+jobs:
+  npm_audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: $(cat .nvmrc)
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run npm audit fix
+        run: npm audit fix
+
+      - name: Check for changes
+        id: git_changes
+        run: |
+          git diff --exit-code || echo "Updates were detected"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Read PR template
+        id: pr_template
+        run: echo "::set-output name=template::$(cat ./.github/workflows/npm_audit_template.md)"
+
+      - name: Create Pull Request
+        if: steps.git_changes.outputs.stdout
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const title = 'Automated NPM Audit Fix';
+            const body = core.getInput('template');
+            const head = 'npm-audit';
+            const base = 'main';
+
+            const { data: pullRequest } = await github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              head,
+              base,
+            });
+
+            console.log(`Pull request created: ${pullRequest.html_url}`);
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
