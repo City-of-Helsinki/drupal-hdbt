@@ -12,12 +12,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: $(cat .nvmrc)
+        run: |
+          node_version=$(cat .nvmrc)
+          echo "Using Node.js version $node_version"
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install $node_version
+          nvm use $node_version
 
       - name: Install dependencies
         run: npm install
