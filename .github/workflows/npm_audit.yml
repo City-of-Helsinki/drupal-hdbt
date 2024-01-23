@@ -26,18 +26,12 @@ jobs:
           nvm use $node_version
           npm install
 
-      - name: Run npm audit
+      - name: Run npm audit fix
         id: npm_audit
         run: |
-          set -e
-          audit_output=$(npm audit)
-          echo "audit_output=${audit_output}"
-          if [[ "${audit_output}" == *"found 0 vulnerabilities"* ]]; then create_pr=false else create_pr=true fi
+          audit_output=$(npm audit fix --package-lock-only)
+          if [ $? -eq 0 ]; then create_pr=false else create_pr=true fi
           echo "should_create_pr=${create_pr}" >> $GITHUB_ENV
-
-      - name: Run npm audit fix
-        if: steps.npm_audit.outputs.should_create_pr == 'true'
-        run: npm audit fix
 
       - name: Create Pull Request
         if: steps.npm_audit.outputs.should_create_pr == 'true'
