@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js, install dependencies and run npm audit
+      - name: Set up Node.js, install dependencies
         run: |
           node_version=$(cat .nvmrc)
           echo "Using Node.js version $node_version"
@@ -24,7 +24,12 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-          audit_output=$(npm audit)
+          npm install
+
+      - name: Run npm audit
+        id: npm_audit
+        run: |
+          echo audit_output=$(npm audit)
           if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then create_pr=false else create_pr=true fi 
           echo "should_create_pr=$create_pr" >> $GITHUB_ENV
 
