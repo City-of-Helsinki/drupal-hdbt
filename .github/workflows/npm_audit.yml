@@ -41,7 +41,7 @@ jobs:
 
       - name: Read PR template
         id: pr_template
-        run: template=$(curl -sL https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt/UHF-9380/.github/npm_audit_template.md)"
+        run: template=$(curl -sL https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt/a1e962efbb5915be4c33921164b8c48a59f9d965/.github/npm_audit_template.md)"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
@@ -51,5 +51,18 @@ jobs:
           commit-message: Updated NPM packages based on NPM audit fix
           title: Automatic NPM Audit Fix
           labels: auto-update
-          body-path: ${{ steps.pr_template.outputs.template }};
+          body-path: |
+            # NPM Audit
+            ## How to install
+  
+            * Update the HDBT theme
+            * `git checkout automation/npm-audit && git pull origin automation/npm-audit`
+            * In theme folder, run `nvm use && npm i`
+  
+            ## How to test
+            Run `npm run build && npm audit`
+  
+            * [ ] Check that the changes for distributed files are sensible
+            * [ ] Check that the `npm audit` prints `found 0 vulnerabilities`
+
           branch: automation/npm-audit
