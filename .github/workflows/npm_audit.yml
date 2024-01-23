@@ -29,8 +29,11 @@ jobs:
       - name: Run npm audit fix
         id: npm_audit
         run: |
-          audit_output=$(npm audit fix --package-lock-only)
-          if [ $? -eq 0 ]; then create_pr=false else create_pr=true fi
+          npm audit fix --package-lock-only
+          
+          # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
+          if [ $? -eq 0 ]; then create_pr=true else create_pr=false fi 
+
           echo "should_create_pr=${create_pr}" >> $GITHUB_ENV
 
       - name: Create Pull Request
