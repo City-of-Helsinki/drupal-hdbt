@@ -31,9 +31,9 @@ jobs:
         run: |
           audit_output=$(npm audit fix)
           if [[ "$audit_output" == *"found 0 vulnerabilities"* ]]; then
-            echo "create_pr=false" >> $GITHUB_OUTPUT
+            echo "create_pr=false" >> $GITHUB_ENV
           else
-            echo "create_pr=true" >> $GITHUB_OUTPUT
+            echo "create_pr=true" >> $GITHUB_ENV
           fi
 
       - name: Create Pull Request
