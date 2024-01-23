@@ -1,4 +1,4 @@
-name: NPM Audit Fix and Create PR
+name: NPM Audit
 
 on:
   schedule:
@@ -39,7 +39,7 @@ jobs:
 
       - name: Read PR template
         id: pr_template
-        run: echo "::set-output name=template::$(cat .github/workflows/npm_audit_template.md)"
+        run: echo "template=$(cat .github/workflows/npm_audit_template.md)" >> $GITHUB_ENV
 
       - name: Create Pull Request
         if: steps.git_changes.outputs.stdout
