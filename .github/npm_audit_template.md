@@ -4,7 +4,7 @@
 ## How to install
 
 * Update the HDBT theme
-  * `git checkout npm-audit && git pull origin npm-audit`
+  * `git checkout automation/npm-audit && git pull origin automation/npm-audit`
 * In theme folder, run `nvm use && npm i`
 
 ## How to test

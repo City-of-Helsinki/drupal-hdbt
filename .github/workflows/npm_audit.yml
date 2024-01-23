@@ -43,7 +43,7 @@ jobs:
           script: |
             const title = 'Automated NPM Audit Fix';
             const body = core.getInput('template');
-            const head = 'npm-audit';
+            const head = 'automation/npm-audit';
             const base = 'main';
 
             const { data: pullRequest } = await github.pulls.create({
