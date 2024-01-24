@@ -1,4 +1,4 @@
-name: NPM Audit
+name: Npm audit
 
 on:
   schedule:
@@ -43,11 +43,11 @@ jobs:
         with:
           committer: GitHub <noreply@github.com>
           author: actions-bot <actions-bot@users.noreply.github.com>
-          commit-message: Updated NPM packages based on NPM audit fix
-          title: Automatic NPM Audit Fix
+          commit-message: Updated node modules based on npm audit fix
+          title: Automatic npm audit fix
           labels: auto-update
           body: |
-            # NPM Audit
+            # Npm audit
             ## How to install
   
             * Update the HDBT theme
