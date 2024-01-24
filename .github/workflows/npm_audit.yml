@@ -33,10 +33,9 @@ jobs:
         run: |
           set +e
           npm audit --package-lock-only --loglevel=error;
-          echo "Testing: $?"
           
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
-          if [ $? -eq 0 ]; then echo "CREATE_PR=false" >> $GITHUB_OUTPUT; else echo "CREATE_PR=true" >> $GITHUB_OUTPUT; fi;
+          if [ $? -eq 0 ]; then echo "CREATE_PR=false" >> $GITHUB_OUTPUT; echo "Variable should be 0: $? else echo "CREATE_PR=true" >> $GITHUB_OUTPUT; echo "Variable should be 1: $? fi;
           set -e
 
       - name: Debugging the variable
