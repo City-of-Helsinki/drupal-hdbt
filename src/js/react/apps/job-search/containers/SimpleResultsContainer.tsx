@@ -64,13 +64,16 @@ const SimpleResultsContainer = () => {
     return (
       <>
         <ResultsHeader
-          total={jobs}
-          otherTotal={total}
-          singular="1 open position"
-          plural="@count open positions"
-          otherSingular="1 job listing"
-          otherPlural="@count job listings"
-          translationContext="Job search results statline"
+          resultText={
+            <>
+              { Drupal.formatPlural(jobs, '1 open position', '@count open positions',{},{ context: 'Job search results statline' }) }
+            </>
+          }
+          optionalResultsText={
+            <>
+              { Drupal.formatPlural(total, '1 job listing', '@count job listings',{},{context: 'Job search results statline'}) }
+            </>
+          }
           actions={<ResultsSort />}
           actionsClass="hdbt-search--react__results--sort"
           ref={scrollTarget}

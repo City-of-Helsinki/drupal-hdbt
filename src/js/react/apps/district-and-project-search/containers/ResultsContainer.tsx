@@ -87,10 +87,11 @@ const ResultsContainer = (): JSX.Element => {
   return (
     <div className="react-search__results">
       <ResultsHeader
-        total={total}
-        singular="1 search result"
-        plural="@count search results"
-        translationContext="District and project search"
+        resultText={
+          <>
+            { Drupal.formatPlural(total, '1 search result', '@count search results',{},{ context: 'District and project search' }) }
+          </>
+        }
         actions={<ResultsSort />}
         actionsClass="hdbt-search--react__results--sort"
         ref={scrollTarget}

@@ -65,33 +65,24 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   return (
     <div className='react-search__results'>
       <ResultsHeader
-        total={total}
-        singular="1 school"
-        plural="@count schools"
-        translationContext="React search: schools result count"
-        actions={<ResultsSort />}
+        resultText={
+          <>
+            { Drupal.formatPlural(total, '1 school', '@count schools',{},{context: 'React search: schools result count'}) }
+          </>
+        }
+        actions={
+          <div className='hdbt-search--react__results--tablist' role='tablist'>
+            <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
+              { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
+            </button>
+            <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
+              { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
+            </button>
+          </div>
+        }
         actionsClass="hdbt-search--react__results--sort"
         ref={scrollTarget}
       />
-      <div className='hdbt-search--react__result-top-area'>
-        {!Number.isNaN(total) &&
-          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
-            { total > 1 ?
-              Drupal.t('@schools schools', { '@schools': total }, { context: 'React search: schools result count'})
-            :
-              Drupal.t('@schools school', { '@schools': total }, { context: 'React search: schools result count'})
-            }
-          </h3>
-        }
-        <div className='hdbt-search--react__results--tablist' role='tablist'>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
-            { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
-          </button>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
-            { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
-          </button>
-        </div>
-      </div>
       <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
         {
           useMap ?
