@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: UHF-X_npm_broken_branch
 
       - name: Set up Node.js, install dependencies
         run: |
