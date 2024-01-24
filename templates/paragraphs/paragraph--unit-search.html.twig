@@ -1,5 +1,7 @@
 {% set search_parent_paragraph = paragraph.getSearchParentParagraph() %}
 {% set units_list = paragraph.getUnitsList() %}
+{% set results_term_singular = paragraph.field_search_results_term.0.value %}
+{% set results_term_plural = paragraph.field_search_results_terms.0.value %}
 
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
@@ -15,7 +17,7 @@
   %}
     {% block component_content %}
 
-      {{ drupal_view('unit_search', 'block', units_list, search_parent_paragraph) }}
+      {{ drupal_view('unit_search', 'block', units_list, search_parent_paragraph, results_term_singular, results_term_plural) }}
 
     {% endblock component_content %}
   {% endembed %}

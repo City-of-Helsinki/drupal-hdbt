@@ -352,9 +352,17 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
 
-msgctxt "TPR unit daycare distance"
-msgid "Distance"
-msgstr "Etäisyys"
+msgctxt "TPR unit result card"
+msgid "Distance from the address you have given"
+msgstr "Etäisyys kirjoittamastasi osoitteesta"
+
+msgctxt "TPR unit result card"
+msgid "Operating language"
+msgstr "Toimintakieli"
+
+msgctxt "TPR unit result card"
+msgid "Opening hours"
+msgstr "Aukioloaika"
 
 msgctxt "When newslist component does not have any news to list"
 msgid "No related news."
@@ -481,16 +489,16 @@ msgid "Name of residential area or project"
 msgstr "Asuinalueen tai hankkeen nimi"
 
 msgctxt "District and project search form label"
-msgid 'Use a search word such as "Pasila"'
-msgstr "Etsi hakusanalla, esim. Pasila"
+msgid 'For example, Pasila'
+msgstr "Esim. Pasila"
 
 msgctxt "District and project search form label"
-msgid "Select the residential area from the list"
-msgstr "Valitse asuinalue listasta"
+msgid "Residential area"
+msgstr "Asuinalue"
 
 msgctxt "District and project search form label"
-msgid "Select area"
-msgstr "Valitse alue"
+msgid "All areas"
+msgstr "Kaikki alueet"
 
 msgctxt "District and project search"
 msgid "All areas"
@@ -744,8 +752,8 @@ msgid "open positions (@listings job listings)"
 msgstr "avointa työpaikkaa (@listings ilmoitusta)"
 
 msgctxt "HELfi Rekry job search"
-msgid "Sort by"
-msgstr "Järjestys"
+msgid "Sort search results"
+msgstr "Järjestä hakutulokset"
 
 msgctxt "Job search clear button aria label"
 msgid "Clear selection"
@@ -764,12 +772,12 @@ msgid "All fields"
 msgstr "Kaikki ammattialat"
 
 msgctxt "Employment filter label"
-msgid "Type of employment relationship"
-msgstr "Palvelussuhteen tyyppi"
+msgid "Type of employment"
+msgstr "Työsuhteen tyyppi"
 
 msgctxt "Employment filter placeholder"
-msgid "All employment relationship options"
-msgstr "Kaikki palvelussuhteen tyypit"
+msgid "All types of employment"
+msgstr "Kaikki työsuhteen tyypit"
 
 msgctxt "Language filter label"
 msgid "Language"
@@ -817,11 +825,11 @@ msgstr "Nuorten kesätyöt"
 
 msgctxt "Job search"
 msgid "Newest first"
-msgstr "Uusin ensin"
+msgstr "Uusimmat ensin"
 
 msgctxt "Job search"
-msgid "Closing date"
-msgstr "Sulkeutuvat"
+msgid "Closing date first"
+msgstr "Sulkeutuvat ensin"
 
 msgctxt "Job search clear selections"
 msgid "Clear selections"
@@ -893,6 +901,10 @@ msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Näytä kartalla"
 
+msgctxt "React search: result display"
+msgid "Open large version of the map"
+msgstr "Avaa kartta suurempana"
+
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "Esim. Aurinkolahden peruskoulu tai 00990"
@@ -938,10 +950,10 @@ msgid "Estimated ploughing schedule"
 msgstr "Arvioitu aurausaikataulu"
 
 msgctxt "Service list search count"
-msgid "service"
-msgid_plural "services"
-msgstr[0] "palvelu"
-msgstr[1] "palvelua"
+msgid "advisory service"
+msgid_plural "advisory services"
+msgstr[0] "neuvontapalvelu"
+msgstr[1] "neuvontapalvelua"
 
 msgctxt "Search filter option: Southern area"
 msgid "Southern area"
@@ -974,3 +986,23 @@ msgstr "Itäinen alue"
 msgctxt "Job search: Job location label"
 msgid "Job location"
 msgstr "Työpaikan sijainti"
+
+msgctxt "Search keyword label"
+msgid "Search term"
+msgstr "Hakusana"
+
+msgctxt "Unit search count singular"
+msgid "result"
+msgstr "tulos"
+
+msgctxt "Unit search count plural"
+msgid "results"
+msgstr "tulosta"
+
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "Ei hakutuloksia"
+
+msgctxt "Unit search no results text"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."

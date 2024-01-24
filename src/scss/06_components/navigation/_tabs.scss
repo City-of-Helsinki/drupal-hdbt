@@ -5,48 +5,19 @@
 .tab {
   background: transparent;
   border: none;
-  padding: 0;
-  text-decoration: underline;
+  display: inline-block;
+  padding: $spacing;
+  text-decoration: none;
 
   &[aria-selected='true'] {
-    font-weight: $font-weight-bold;
+    border-bottom: $spacing-quarter solid $color-black-90;
   }
 
   &:hover {
     cursor: pointer;
-    text-decoration: none;
-  }
-}
-
-.tab--map {
-  &::before {
-    @include pseudo-icon('map', 20px);
-    margin-right: $spacing-half;
-  }
-}
-
-.tab--list {
-  &::before {
-    @include pseudo-icon('menu-hamburger', 20px);
-    margin-right: $spacing-half;
   }
 }
 
 .tabs--unit-search {
-  margin-bottom: $spacing-double;
-  margin-top: $spacing-and-half;
-
-  @include breakpoint($breakpoint-m) {
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-
-  .tab {
-    display: block;
-
-    &[aria-selected='true'] {
-      display: none;
-      font-weight: $font-weight-regular;
-    }
-  }
+  margin-top: $spacing-three-quarters;
 }

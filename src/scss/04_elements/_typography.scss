@@ -6,6 +6,11 @@ h5,
 h6 {
   margin-bottom: 0;
   margin-top: $spacing-triple;
+
+  // Editors started using strong inside headings, but this is not wanted. This should disable the effect and discourage adding them.
+  strong {
+    font-weight: inherit;
+  }
 }
 
 // h1 hyphenation is handled separately

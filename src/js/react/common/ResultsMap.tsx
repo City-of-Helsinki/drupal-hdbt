@@ -56,7 +56,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
           </iframe>
         </div>
         <div className='unit-search__map-actions'>
-          <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map')}</span>} />
+          <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
         </div>
       </div>
     );

@@ -290,7 +290,7 @@ export const summerJobsAtom = atom<boolean>(false);
 export const youthSummerJobsAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
-  set(areaFilterSelectionAtom, null);
+  set(areaFilterSelectionAtom, []);
   set(taskAreasSelectionAtom, []);
   set(keywordAtom, '');
   set(continuousAtom, false);
@@ -311,4 +311,4 @@ export const areaFilterAtom = atom(
   )
 ));
 
-export const areaFilterSelectionAtom = atom<OptionType | null>(null);
+export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
