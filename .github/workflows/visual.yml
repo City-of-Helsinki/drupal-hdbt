@@ -67,7 +67,9 @@ jobs:
         run: |
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
-          docker compose exec app bash -c "drush sql-dump --result-file=latest.sql"
+          # Save database dump to files folder to prevent permission issues.
+          docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
+          mv public/sites/default/files/latest.sql .
 
       - name: Install Drupal from existing dump
         working-directory: ${{ env.DRUPAL_ROOT }}
