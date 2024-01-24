@@ -51,9 +51,11 @@ jobs:
 
       - name: Setup Drupal
         working-directory: ${{ env.DRUPAL_ROOT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
-          gh run download -n latest.sql -D /tmp || true
+          gh run download -n latest.sql || true
 
           if [ ! -f "latest.sql" ]; then
             docker compose exec app bash -c "drush si minimal -y"
@@ -61,7 +63,7 @@ jobs:
             docker compose exec app bash -c "drush sql-dump --result-file=/tmp/latest.sql"
             echo "UPLOAD_SQL=1" >> $GITHUB_ENV
           else
-            docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /tmp/latest.sql"
+            docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql"
             docker compose exec app bash -c "drush deploy"
           fi
 
@@ -80,20 +82,20 @@ jobs:
 
       - name: Generate reference images
         working-directory: ${{ env.THEME_FOLDER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh run download -n bitmaps.zip -D /tmp || true
+          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
 
-          if [ ! -f "/tmp/bitmaps.zip" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
             npm run full-reference
             echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
-          else
-            unzip /tmp/bitmaps.zip -d backstop_data/
           fi
 
       - uses: actions/upload-artifact@v4
+        if: ${{ env.UPLOAD_BITMAP == '1' }}
         with:
-          if: ${{ env.UPLOAD_BITMAP == '1' }}
-          name: bitmaps.zip
+          name: bitmaps
           path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
 
       - name: Export container logs
