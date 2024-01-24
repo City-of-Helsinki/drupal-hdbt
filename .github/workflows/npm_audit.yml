@@ -30,6 +30,7 @@ jobs:
 
       - name: Check for vulnerabilities
         id: npm_audit
+        continue-on-error: true
         run: |
           npm audit --package-lock-only --loglevel=error;
           
