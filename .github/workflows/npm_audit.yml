@@ -24,11 +24,12 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-          npm install --loglevel=error
+          npm install --silent
 
       - name: Run npm audit fix
         id: npm_audit
         run: |
+          set -e
           npm audit fix --package-lock-only --loglevel=error
           
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
