@@ -750,8 +750,16 @@ msgid "Eg. title, location, department"
 msgstr "Esim. nimike, toimipiste tai yksikkö"
 
 msgctxt "Job search results statline"
-msgid "open positions (@listings job listings)"
-msgstr "avointa työpaikkaa (@listings ilmoitusta)"
+msgid "1 open position"
+msgid_plural "@count open positions"
+msgstr[0] "1 avoin työpaikka"
+msgstr[1] "@count avointa työpaikkaa"
+
+msgctxt "Job search results statline"
+msgid "1 job listing"
+msgid_plural "@count job listings"
+msgstr[0] "1 ilmoitus"
+msgstr[1] "@count ilmoitusta"
 
 msgctxt "HELfi Rekry job search"
 msgid "Sort search results"

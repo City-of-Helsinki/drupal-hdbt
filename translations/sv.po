@@ -743,8 +743,16 @@ msgid "Eg. title, location, department"
 msgstr "T.ex. titel, verksamhetsställe, enhet"
 
 msgctxt "Job search results statline"
-msgid "open positions (@listings job listings)"
-msgstr "lediga jobb (@listings annons)"
+msgid "1 open position"
+msgid_plural "@count open positions"
+msgstr[0] "1 ledig jobb"
+msgstr[1] "@count lediga jobb"
+
+msgctxt "Job search results statline"
+msgid "1 job listing"
+msgid_plural "@count job listings"
+msgstr[0] "1 annons"
+msgstr[1] "@count annons"
 
 msgctxt "HELfi Rekry job search"
 msgid "Sort search results"

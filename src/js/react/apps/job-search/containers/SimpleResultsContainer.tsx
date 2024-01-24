@@ -9,12 +9,12 @@ import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import useIndexQuery from '../hooks/useIndexQuery';
-import ResultsCount from '../components/results/ResultsCount';
 import NoResults from '../components/results/NoResults';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsList from '../components/results/ResultsList';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
+import ResultsHeader from '@/react/common/ResultsHeader';
 
 const SimpleResultsContainer = () => {
   const { size } = Global;
@@ -59,18 +59,22 @@ const SimpleResultsContainer = () => {
     const addLastPage = total > size && total % size;
 
     // Total number of available jobs
-    const jobs: number = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+    const jobs = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
 
     return (
       <>
-        <div className='hdbt-search--react__result-top-area'>
-          <ResultsCount
-            jobs={jobs}
-            total={total}
-            ref={scrollTarget}
-          />
-          <ResultsSort />
-        </div>
+        <ResultsHeader
+          total={jobs}
+          otherTotal={total}
+          singular="1 open position"
+          plural="@count open positions"
+          otherSingular="1 job listing"
+          otherPlural="@count job listings"
+          translationContext="Job search results statline"
+          actions={<ResultsSort />}
+          actionsClass="hdbt-search--react__results--sort"
+          ref={scrollTarget}
+        />
         <ResultsList hits={results} />
         <Pagination
           currentPage={currentPage}

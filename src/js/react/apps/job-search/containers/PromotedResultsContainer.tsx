@@ -13,8 +13,8 @@ import useIndexQuery from '../hooks/useIndexQuery';
 import NoResults from '../components/results/NoResults';
 import IndexFields from '../enum/IndexFields';
 import ResultsSort from '../components/results/ResultsSort';
-import ResultsCount from '../components/results/ResultsCount';
 import ResultsList from '../components/results/ResultsList';
+import ResultsHeader from '@/react/common/ResultsHeader';
 
 const PromotedResultsContainer = () => {
   const { size } = Global;
@@ -60,31 +60,36 @@ const PromotedResultsContainer = () => {
     // Typecheck and combine totals from both queries
     const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
     const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
-    const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
+    const totalNumber = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
+    const total = totalNumber.toString();
 
-    if (total <= 0) {
+    if (totalNumber <= 0) {
       return <NoResults ref={scrollTarget} />;
     }
 
-    const pages = Math.floor(total / size);
-    const addLastPage = total > size && total % size;
+    const pages = Math.floor(totalNumber / size);
+    const addLastPage = totalNumber > size && totalNumber % size;
 
     // Typecheck and combine job totals (aggregated vacancies)
     const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
     const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-    const jobs = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
+    const jobs: string = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
     const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
 
     return (
       <>
-        <div className='hdbt-search--react__result-top-area'>
-          <ResultsCount
-            jobs={jobs}
-            total={total}
-            ref={scrollTarget}
-          />
-          <ResultsSort />
-        </div>
+        <ResultsHeader
+          total={jobs}
+          otherTotal={total}
+          singular="1 open position"
+          plural="@count open positions"
+          otherSingular="1 job listing"
+          otherPlural="@count job listings"
+          translationContext="Job search results statline"
+          actions={<ResultsSort />}
+          actionsClass="hdbt-search--react__results--sort"
+          ref={scrollTarget}
+        />
         <ResultsList hits={results} />
         <Pagination
           currentPage={currentPage}
