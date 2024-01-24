@@ -78,6 +78,7 @@ jobs:
           docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql"
           docker compose exec app bash -c "drush deploy"
 
+
 #      - name: Node setup
 #        working-directory: ${{ env.THEME_FOLDER }}
 #        run: |
