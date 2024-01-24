@@ -30,15 +30,14 @@ jobs:
 
       - name: Check for vulnerabilities
         id: npm_audit
+        continue-on-error: true
         run: |
-          set +e
           npm audit --package-lock-only --loglevel=error;
           
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
           if [ $? -eq 0 ]; then create_pr=true; else create_pr=false; fi;
 
-          echo "should_create_pr=${create_pr}" >> $GITHUB_ENV
-          set -e
+          echo "should_create_pr=${create_pr}" >> $GITHUB_OUTPUT
 
       - name: Run npm audit fix
         if: steps.npm_audit.outputs.should_create_pr == 'true'
