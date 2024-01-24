@@ -30,12 +30,14 @@ jobs:
 
       - name: Check for vulnerabilities
         id: npm_audit
-        continue-on-error: true
         run: |
+          set +e
           npm audit --package-lock-only --loglevel=error;
+          echo "Testing: $?"
           
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
           if [ $? -eq 0 ]; then echo "CREATE_PR=false" >> $GITHUB_OUTPUT; else echo "CREATE_PR=true" >> $GITHUB_OUTPUT; fi;
+          set -e
 
       - name: Debugging the variable
         run: echo "The variable is ${{ steps.npm_audit.outputs.CREATE_PR }}"
