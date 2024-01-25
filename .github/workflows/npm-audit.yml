@@ -38,8 +38,15 @@ jobs:
           set -e
 
       - name: Run npm audit fix
+        id: npm_audit_fix
         if: steps.npm_audit.outputs.CREATE_PR == 'true'
-        run: npm audit fix --package-lock-only --loglevel=error;
+        run: |
+          set +e
+          npm audit fix --package-lock-only --loglevel=error;
+          
+          # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
+          if [ $? -gt 0 ]; then echo "BC_BREAK=true" >> $GITHUB_OUTPUT; fi;
+          set -e
 
       - name: Create Pull Request
         if: steps.npm_audit.outputs.CREATE_PR == 'true'
@@ -52,6 +59,11 @@ jobs:
           labels: auto-update
           body: |
             # Npm audit
+            
+            if [ steps.npm_audit_fix.outputs.BC_BREAK == 'true' ]; then
+              :exclamation: NPM Audit fix couldn't fix all vulnerabilities. Fix them manually by running `npm audit fix --force` and test the functionalities thoroughly as there might be breaking changes. :exclamation:
+            fi
+            
             ## How to install
   
             * Update the HDBT theme
