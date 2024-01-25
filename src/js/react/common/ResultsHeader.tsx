@@ -12,9 +12,11 @@ const ResultsHeader = forwardRef(({ resultText, optionalResultsText, actions, ac
       <h3 className='hdbt-search--react__results--title' ref={ref} >
         {resultText} {optionalResultsText && `(${optionalResultsText})`}
       </h3>
-    <div className={actionsClass}>
-      {actions}
-    </div>
+    {actions && (
+      <div className={actionsClass}>
+        {actions}
+      </div>
+    )}
   </div>
 ));
 

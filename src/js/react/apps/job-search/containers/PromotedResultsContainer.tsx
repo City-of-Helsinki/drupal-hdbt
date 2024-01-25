@@ -10,11 +10,11 @@ import URLParams from '../types/URLParams';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import usePromotedQuery from '../hooks/usePromotedQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
-import NoResults from '../components/results/NoResults';
 import IndexFields from '../enum/IndexFields';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsList from '../components/results/ResultsList';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 const PromotedResultsContainer = () => {
   const { size } = Global;
@@ -64,7 +64,7 @@ const PromotedResultsContainer = () => {
     const total = totalNumber.toString();
 
     if (totalNumber <= 0) {
-      return <NoResults ref={scrollTarget} />;
+      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
     }
 
     const pages = Math.floor(totalNumber / size);

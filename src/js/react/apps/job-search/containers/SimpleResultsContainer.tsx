@@ -9,12 +9,12 @@ import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
 import useIndexQuery from '../hooks/useIndexQuery';
-import NoResults from '../components/results/NoResults';
 import ResultsSort from '../components/results/ResultsSort';
 import ResultsList from '../components/results/ResultsList';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 const SimpleResultsContainer = () => {
   const { size } = Global;
@@ -50,7 +50,7 @@ const SimpleResultsContainer = () => {
     }
 
     if (!data?.hits?.hits.length) {
-      return <NoResults ref={scrollTarget} />;
+      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
     }
 
     const results = data.hits.hits;

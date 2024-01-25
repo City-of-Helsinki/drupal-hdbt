@@ -560,14 +560,6 @@ msgctxt "District and project search sort option"
 msgid "Alphabetical @OA"
 msgstr "I bokstavsordning @OA"
 
-msgctxt "District and project search"
-msgid "Oh no! We did not find anything matching the search terms."
-msgstr "Vad synd! Vi hittade inga resultat med dessa sökvillkor."
-
-msgctxt "District and project search"
-msgid "Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over."
-msgstr "På vår webbplats finns för närvarande endast en del av Helsingfors projekt och bostadsområden. Du kan försöka på nytt genom att ta bort något av avgränsningsvillkoren eller genom att börja om från början."
-
 msgctxt "Hearing activity suffix singular"
 msgid "comment"
 msgstr "kommentar"
@@ -837,10 +829,6 @@ msgstr "Kort tid kvar före stängning"
 msgctxt "Job search clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
-
-msgctxt "Job search no results message"
-msgid "Jobs meeting search criteria was not found. Try different search criteria."
-msgstr "Lediga jobb som uppfyller kriterierna finns inte. Prova andra kriterierna för sök."
 
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"

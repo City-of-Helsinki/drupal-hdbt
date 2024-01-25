@@ -15,6 +15,7 @@ import Global from '../enum/Global';
 import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -64,14 +65,7 @@ const ResultsContainer = (): JSX.Element => {
   }
 
   if (!data?.hits?.hits.length) {
-    return (
-      <div className="react-search__results">
-        <div className='hdbt-search--react__results--container'>
-          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>{Drupal.t('Oh no! We did not find anything matching the search terms.', {}, { context: 'District and project search' })}</h3>
-          <p>{Drupal.t('Our website currently shows only some of the projects and residential areas of Helsinki. You can try again by removing some of the limiting search terms or by starting over.', {}, { context: 'District and project search' })}</p>
-        </div>
-      </div>
-    );
+    return <ResultsEmpty ref={scrollTarget} />;
   }
 
   const results = data.hits.hits;

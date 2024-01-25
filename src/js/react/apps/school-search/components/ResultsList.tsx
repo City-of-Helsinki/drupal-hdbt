@@ -12,7 +12,7 @@ import { School } from '../types/School';
 import ResultCard from './ResultCard';
 import { paramsAtom } from '../store';
 import ResultsHeader from '@/react/common/ResultsHeader';
-import ResultsSort from '../../district-and-project-search/components/results/ResultsSort';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 type ResultsListProps = {
   data: any;
@@ -49,11 +49,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   if (!data?.hits?.hits.length) {
-    return (
-      <div ref={scrollTarget}>
-        {Drupal.t('No results were found for the criteria you entered. Try changing your search criteria.', {}, { context: 'React search: no search results' })}
-      </div>
-    );
+    return <ResultsEmpty ref={scrollTarget} />;
   }
 
   const results = data.hits.hits;
