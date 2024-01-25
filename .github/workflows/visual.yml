@@ -78,55 +78,54 @@ jobs:
           docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql"
           docker compose exec app bash -c "drush updb -y"
 
+      - name: Node setup
+        working-directory: ${{ env.THEME_FOLDER }}
+        run: |
+          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install && npm install && npx playwright install
 
-#      - name: Node setup
-#        working-directory: ${{ env.THEME_FOLDER }}
-#        run: |
-#          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#          nvm install && npm install && npx playwright install
-#
-#      - name: Generate reference images
-#        working-directory: ${{ env.THEME_FOLDER }}
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        run: |
-#          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
-#
-#          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
-#            npm run full-reference
-#            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
-#          fi
-#
-#      - uses: actions/upload-artifact@v4
-#        if: ${{ env.UPLOAD_BITMAP == '1' }}
-#        with:
-#          name: bitmaps
-#          path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
-#          overwrite: true
-#          compression-level: 0
-#
-#      - name: Run tests
-#        working-directory: ${{ env.THEME_FOLDER }}
-#        run: npm run full-test
-#
-#      - name: Export container logs
-#        working-directory: ${{ env.DRUPAL_ROOT }}
-#        run: docker compose logs app > /tmp/container.log
-#
-#      - name: Upload test result
-#        uses: actions/upload-artifact@v3
-#        if: always()
-#        with:
-#          name: results
-#          path: ${{ env.THEME_FOLDER }}/backstop_data/
-#          retention-days: 1
-#          compression-level: 0
-#
-#      - name: Upload container logs
-#        uses: actions/upload-artifact@v3
-#        if: always()
-#        with:
-#          name: container-log
-#          path: /tmp/container.log
-#          retention-days: 1
-#
+      - name: Generate reference images
+        working-directory: ${{ env.THEME_FOLDER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
+
+          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+            npm run full-reference
+            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ env.UPLOAD_BITMAP == '1' }}
+        with:
+          name: bitmaps
+          path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
+          overwrite: true
+          compression-level: 0
+
+      - name: Run tests
+        working-directory: ${{ env.THEME_FOLDER }}
+        run: npm run full-test
+
+      - name: Export container logs
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose logs app > /tmp/container.log
+
+      #- name: Upload test result
+      #  uses: actions/upload-artifact@v3
+      #  if: always()
+      #  with:
+      #    name: results
+      #    path: ${{ env.THEME_FOLDER }}/backstop_data/
+      #    retention-days: 1
+      #    compression-level: 0
+
+      - name: Upload container logs
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: container-log
+          path: /tmp/container.log
+          retention-days: 1
+
