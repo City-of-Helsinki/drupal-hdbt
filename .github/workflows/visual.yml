@@ -117,7 +117,7 @@ jobs:
         if: github.ref != 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.THEME_FOLDER }}/backstop_data/full/html_report
+          publish_dir: ${{ env.THEME_FOLDER }}/backstop_data/full/
           destination_dir: pull/${{github.event.number}}
 
       - name: Upload container logs
