@@ -2,8 +2,7 @@ module.exports = async (page, scenario, vp, isReference, browserContext, config)
   // await page.emulateMedia({ reducedMotion: 'reduce' });
   const { hostname } = config;
 
-  // Add cookies to browser
-  page.setCookie([
+  const cookies = [
     {
       'name': 'cookie-agreed-version',
       'value': '1.1.0',
@@ -28,5 +27,9 @@ module.exports = async (page, scenario, vp, isReference, browserContext, config)
       'httpOnly': false,
       'secure': false
     }
-  ]);
+  ];
+
+  cookies.forEach(cookie => {
+    page.setCookie(cookie);
+  });
 };
