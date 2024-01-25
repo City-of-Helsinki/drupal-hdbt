@@ -3,7 +3,7 @@ module.exports = async (page, scenario, vp, isReference, browserContext, config)
   const { hostname } = config;
 
   // Add cookies to browser
-  browserContext.addCookies([
+  browserContext.setCookie([
     {
       'name': 'cookie-agreed-version',
       'value': '1.1.0',
