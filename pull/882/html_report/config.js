@@ -3,2828 +3,1928 @@ report({
   "tests": [
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 24.436383928571427,
-          "misMatchPercentage": "24.44",
-          "analysisTime": 141
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__1_Breakpoint_S.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.34612486897275,
-          "misMatchPercentage": "32.35",
-          "analysisTime": 381
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__2_Breakpoint_M.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.646739130434783,
-          "misMatchPercentage": "9.65",
-          "analysisTime": 373
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__3_Breakpoint_L.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 15.407783149718634,
-          "misMatchPercentage": "15.41",
-          "analysisTime": 363
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 16.461489898989896,
-          "misMatchPercentage": "16.46",
-          "analysisTime": 566
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_0__5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.510416666666667,
-          "misMatchPercentage": "6.51",
-          "analysisTime": 2765
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__0_Breakpoint_XS.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__1_Breakpoint_S.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__2_Breakpoint_M.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__3_Breakpoint_L.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__4_Breakpoint_XL.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_layout_landing_-_no-hero_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_layout_landing_-_no-hero_0__5_Breakpoint_XXL.png",
         "label": "DC: layout landing - no-hero",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_layout_landing_-_no-hero_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_without_image_align_left_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0__5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - without image, align left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 22.807291666666664,
-          "misMatchPercentage": "22.81",
-          "analysisTime": 492
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 30.889092217217218,
-          "misMatchPercentage": "30.89",
-          "analysisTime": 715
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.646739130434783,
-          "misMatchPercentage": "9.65",
-          "analysisTime": 630
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.155683390373552,
-          "misMatchPercentage": "14.16",
-          "analysisTime": 866
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 15.266393442622949,
-          "misMatchPercentage": "15.27",
-          "analysisTime": 797
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_left_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0__5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - image on the left",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.510416666666667,
-          "misMatchPercentage": "6.51",
-          "analysisTime": 2147
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 22.807291666666664,
-          "misMatchPercentage": "22.81",
-          "analysisTime": 446
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 30.889092217217218,
-          "misMatchPercentage": "30.89",
-          "analysisTime": 807
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 29.84757133152174,
-          "misMatchPercentage": "29.85",
-          "analysisTime": 932
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.721418406072104,
-          "misMatchPercentage": "36.72",
-          "analysisTime": 1590
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 37.925120983046554,
-          "misMatchPercentage": "37.93",
-          "analysisTime": 1814
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - image on the bottom",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.52715386284722,
-          "misMatchPercentage": "19.53",
-          "analysisTime": 3036
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.68022629310345,
-          "misMatchPercentage": "23.68",
-          "analysisTime": 436
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 31.00190033783784,
-          "misMatchPercentage": "31.00",
-          "analysisTime": 747
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 29.95612545289855,
-          "misMatchPercentage": "29.96",
-          "analysisTime": 975
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 27.5524242247156,
-          "misMatchPercentage": "27.55",
-          "analysisTime": 892
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 28.656588607097987,
-          "misMatchPercentage": "28.66",
-          "analysisTime": 911
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Landing_page_-_hero_-_diagonal_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0__5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - diagonal",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 12.83718532986111,
-          "misMatchPercentage": "12.84",
-          "analysisTime": 2215
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.329188481675391,
-          "misMatchPercentage": "14.33",
-          "analysisTime": 671
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.790414061247393,
-          "misMatchPercentage": "19.79",
-          "analysisTime": 1094
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.521186440677965,
-          "misMatchPercentage": "7.52",
-          "analysisTime": 800
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 5.860717515827555,
-          "misMatchPercentage": "5.86",
-          "analysisTime": 1359
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.0922897196261685,
-          "misMatchPercentage": "6.09",
-          "analysisTime": 1055
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 4.3004587155963305,
-          "misMatchPercentage": "4.30",
-          "analysisTime": 2215
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.329188481675391,
-          "misMatchPercentage": "14.33",
-          "analysisTime": 668
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.790414061247393,
-          "misMatchPercentage": "19.79",
-          "analysisTime": 1153
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.521186440677965,
-          "misMatchPercentage": "7.52",
-          "analysisTime": 835
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.19669551534225,
-          "misMatchPercentage": "10.20",
-          "analysisTime": 1257
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.59959349593496,
-          "misMatchPercentage": "10.60",
-          "analysisTime": 1129
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.510416666666667,
-          "misMatchPercentage": "6.51",
-          "analysisTime": 1763
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 16.02385831381733,
-          "misMatchPercentage": "16.02",
-          "analysisTime": 524
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.011337155108126,
-          "misMatchPercentage": "23.01",
-          "analysisTime": 1105
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.65009746588694,
-          "misMatchPercentage": "8.65",
-          "analysisTime": 678
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.434222532338575,
-          "misMatchPercentage": "10.43",
-          "analysisTime": 1076
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.846505823627288,
-          "misMatchPercentage": "10.85",
-          "analysisTime": 1352
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.510416666666667,
-          "misMatchPercentage": "6.51",
-          "analysisTime": 1606
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 16.02385831381733,
-          "misMatchPercentage": "16.02",
-          "analysisTime": 820
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.011337155108126,
-          "misMatchPercentage": "23.01",
-          "analysisTime": 1183
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.65009746588694,
-          "misMatchPercentage": "8.65",
-          "analysisTime": 555
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.434222532338575,
-          "misMatchPercentage": "10.43",
-          "analysisTime": 894
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.846505823627288,
-          "misMatchPercentage": "10.85",
-          "analysisTime": 1183
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.510416666666667,
-          "misMatchPercentage": "6.51",
-          "analysisTime": 1560
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.983348751156337,
-          "misMatchPercentage": "7.98",
-          "analysisTime": 607
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__1_Breakpoint_S.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 18.589707260307097,
-          "misMatchPercentage": "18.59",
-          "analysisTime": 785
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__2_Breakpoint_M.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 21.793422106950068,
-          "misMatchPercentage": "21.79",
-          "analysisTime": 1255
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__3_Breakpoint_L.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.4128277360436,
-          "misMatchPercentage": "8.41",
-          "analysisTime": 1070
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.032524043853746,
-          "misMatchPercentage": "9.03",
-          "analysisTime": 1129
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_subnav_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_subnav_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Unit - subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.6630482128634005,
-          "misMatchPercentage": "7.66",
-          "analysisTime": 4303
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_subnav_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.983348751156337,
-          "misMatchPercentage": "7.98",
-          "analysisTime": 440
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__1_Breakpoint_S.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 18.589707260307097,
-          "misMatchPercentage": "18.59",
-          "analysisTime": 836
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__2_Breakpoint_M.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 21.793422106950068,
-          "misMatchPercentage": "21.79",
-          "analysisTime": 1210
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__3_Breakpoint_L.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.77560829126039,
-          "misMatchPercentage": "19.78",
-          "analysisTime": 1306
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.157620532158504,
-          "misMatchPercentage": "19.16",
-          "analysisTime": 1261
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Unit_-_no-subnav_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Unit_-_no-subnav_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Unit - no-subnav",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.6630482128634005,
-          "misMatchPercentage": "7.66",
-          "analysisTime": 2164
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png"
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0__5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
-        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "selector": "document",
-        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
+        "selector": "",
+        "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
         "misMatchThreshold": 0.1,
         "url": "https://mysite.docker.so/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
+        "engineErrorMsg": "page.emulateMedia is not a function",
+        "error": "Reference file not found /home/runner/drupal/public/themes/contrib/hdbt/backstop_data/full/bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0__5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -2832,175 +1932,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -71
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 51.789093625498005,
+          "misMatchPercentage": "51.79",
+          "analysisTime": 117
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3008,175 +1958,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -7
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 38.631721628045156,
+          "misMatchPercentage": "38.63",
+          "analysisTime": 137
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3184,175 +1984,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -7
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 31.60245503159942,
+          "misMatchPercentage": "31.60",
+          "analysisTime": 189
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3360,175 +2010,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -143
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 24.577552997896625,
+          "misMatchPercentage": "24.58",
+          "analysisTime": 179
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3536,175 +2036,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -143
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 23.15076731184712,
+          "misMatchPercentage": "23.15",
+          "analysisTime": 124
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -3712,175 +2062,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -95
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 17.577167019027485,
+          "misMatchPercentage": "17.58",
+          "analysisTime": 154
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n1",
-        "fileName": "full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n2",
-        "fileName": "full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n3",
-        "fileName": "full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n4",
-        "fileName": "full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n5",
-        "fileName": "full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n6",
-        "fileName": "full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
-        "selector": ".component--accordion.__n7",
-        "fileName": "full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
-        "label": "DC: Accordion",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-accordion",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
         "label": "DC: Announcements",
@@ -3888,21 +2088,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 125
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
         "label": "DC: Announcements",
@@ -3910,21 +2114,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 287
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
         "label": "DC: Announcements",
@@ -3932,21 +2140,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 113
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
         "label": "DC: Announcements",
@@ -3954,21 +2166,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 285
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
         "label": "DC: Announcements",
@@ -3976,21 +2192,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 204
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
         "label": "DC: Announcements",
@@ -3998,21 +2218,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-announcements",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 184
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4020,483 +2244,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -268
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 29.116908482142854,
+          "misMatchPercentage": "29.12",
+          "analysisTime": 204
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -4504,483 +2270,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -188
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 19.69872810990338,
+          "misMatchPercentage": "19.70",
+          "analysisTime": 277
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -4988,483 +2296,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -80
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 22.813592657342657,
+          "misMatchPercentage": "22.81",
+          "analysisTime": 235
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -5472,483 +2322,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -168
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 22.89582784943406,
+          "misMatchPercentage": "22.90",
+          "analysisTime": 156
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -5956,483 +2348,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -140
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 23.466726618705035,
+          "misMatchPercentage": "23.47",
+          "analysisTime": 283
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -6440,483 +2374,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-banner",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -88
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 18.117841027421033,
+          "misMatchPercentage": "18.12",
+          "analysisTime": 207
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n1",
-        "fileName": "full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n2",
-        "fileName": "full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n3",
-        "fileName": "full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n4",
-        "fileName": "full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n5",
-        "fileName": "full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n6",
-        "fileName": "full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n7",
-        "fileName": "full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n8",
-        "fileName": "full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n9",
-        "fileName": "full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n10",
-        "fileName": "full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n11",
-        "fileName": "full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n12",
-        "fileName": "full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n13",
-        "fileName": "full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n14",
-        "fileName": "full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n15",
-        "fileName": "full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n16",
-        "fileName": "full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n17",
-        "fileName": "full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n18",
-        "fileName": "full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n19",
-        "fileName": "full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n20",
-        "fileName": "full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
-        "selector": ".component--banner.__n21",
-        "fileName": "full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
-        "label": "DC: Banner",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-banner",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
         "label": "DC: Calculator",
@@ -6924,21 +2400,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 143
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
         "label": "DC: Calculator",
@@ -6946,21 +2426,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 287
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
         "label": "DC: Calculator",
@@ -6968,21 +2452,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 275
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
         "label": "DC: Calculator",
@@ -6990,21 +2478,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 270
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
         "label": "DC: Calculator",
@@ -7012,21 +2504,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 186
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
         "label": "DC: Calculator",
@@ -7034,21 +2530,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-calculator",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 250
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
         "label": "DC: Chart",
@@ -7056,43 +2556,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -148
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 39.6265243902439,
+          "misMatchPercentage": "39.63",
+          "analysisTime": 241
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_0_Breakpoint_XS.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_0_Breakpoint_XS.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
         "label": "DC: Chart",
@@ -7100,43 +2582,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": 4
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 40.133101851851855,
+          "misMatchPercentage": "40.13",
+          "analysisTime": 230
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_1_Breakpoint_S.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_1_Breakpoint_S.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
         "label": "DC: Chart",
@@ -7144,43 +2608,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": 28
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 32.838541666666664,
+          "misMatchPercentage": "32.84",
+          "analysisTime": 311
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_2_Breakpoint_M.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_2_Breakpoint_M.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
         "label": "DC: Chart",
@@ -7188,43 +2634,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -108
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.572360050890588,
+          "misMatchPercentage": "27.57",
+          "analysisTime": 378
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_3_Breakpoint_L.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_3_Breakpoint_L.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
         "label": "DC: Chart",
@@ -7232,43 +2660,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -84
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 28.340282319598863,
+          "misMatchPercentage": "28.34",
+          "analysisTime": 305
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
         "label": "DC: Chart",
@@ -7276,43 +2686,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-chart",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -12
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 25.18955910852713,
+          "misMatchPercentage": "25.19",
+          "analysisTime": 259
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Chart_1_component--chart__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--chart.__n1",
-        "fileName": "full_DC_Chart_1_component--chart__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Chart",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-chart",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -7320,240 +2712,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -500
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.06355733082707,
-          "misMatchPercentage": "32.06",
-          "analysisTime": 217
+          "rawMisMatchPercentage": 19.120404411764707,
+          "misMatchPercentage": "19.12",
+          "analysisTime": 325
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.06355733082707,
-          "misMatchPercentage": "32.06",
-          "analysisTime": 208
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.06355733082707,
-          "misMatchPercentage": "32.06",
-          "analysisTime": 201
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 47.472792288557216,
-          "misMatchPercentage": "47.47",
-          "analysisTime": 271
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 47.472792288557216,
-          "misMatchPercentage": "47.47",
-          "analysisTime": 339
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 47.472792288557216,
-          "misMatchPercentage": "47.47",
-          "analysisTime": 363
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 43.97249423963134,
-          "misMatchPercentage": "43.97",
-          "analysisTime": 372
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -7561,240 +2738,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -276
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 57.076048129347626,
-          "misMatchPercentage": "57.08",
-          "analysisTime": 433
+          "rawMisMatchPercentage": 15.841633162768032,
+          "misMatchPercentage": "15.84",
+          "analysisTime": 358
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 57.23467757097199,
-          "misMatchPercentage": "57.23",
-          "analysisTime": 417
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 56.979635885885884,
-          "misMatchPercentage": "56.98",
-          "analysisTime": 448
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 72.40779505582137,
-          "misMatchPercentage": "72.41",
-          "analysisTime": 1015
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 72.40779505582137,
-          "misMatchPercentage": "72.41",
-          "analysisTime": 1103
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 72.40779505582137,
-          "misMatchPercentage": "72.41",
-          "analysisTime": 1132
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 69.73838325652841,
-          "misMatchPercentage": "69.74",
-          "analysisTime": 960
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -7802,240 +2764,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -172
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 35.94612418831169,
-          "misMatchPercentage": "35.95",
-          "analysisTime": 145
+          "rawMisMatchPercentage": 16.79122546487603,
+          "misMatchPercentage": "16.79",
+          "analysisTime": 284
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.623706371753247,
-          "misMatchPercentage": "14.62",
-          "analysisTime": 277
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 43.212554908326965,
-          "misMatchPercentage": "43.21",
-          "analysisTime": 527
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 40.98360655737705,
-          "misMatchPercentage": "40.98",
-          "analysisTime": 566
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 21.69008875739645,
-          "misMatchPercentage": "21.69",
-          "analysisTime": 369
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 60.49771979665072,
-          "misMatchPercentage": "60.50",
-          "analysisTime": 796
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.77911352513718,
-          "misMatchPercentage": "36.78",
-          "analysisTime": 502
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8043,240 +2790,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -296
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 17.627163479706752,
-          "misMatchPercentage": "17.63",
-          "analysisTime": 410
+          "rawMisMatchPercentage": 16.68764834177946,
+          "misMatchPercentage": "16.69",
+          "analysisTime": 264
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.963859732824427,
-          "misMatchPercentage": "6.96",
-          "analysisTime": 376
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 19.98452651124407,
-          "misMatchPercentage": "19.98",
-          "analysisTime": 427
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 31.800140177659948,
-          "misMatchPercentage": "31.80",
-          "analysisTime": 323
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 13.56984317955526,
-          "misMatchPercentage": "13.57",
-          "analysisTime": 226
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 41.91692176541248,
-          "misMatchPercentage": "41.92",
-          "analysisTime": 540
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 28.1973248665811,
-          "misMatchPercentage": "28.20",
-          "analysisTime": 575
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -8284,240 +2816,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -268
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 18.854174086473396,
-          "misMatchPercentage": "18.85",
-          "analysisTime": 293
+          "rawMisMatchPercentage": 16.707348406988697,
+          "misMatchPercentage": "16.71",
+          "analysisTime": 331
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.256750763772544,
-          "misMatchPercentage": "8.26",
-          "analysisTime": 276
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.979810054395507,
-          "misMatchPercentage": "23.98",
-          "analysisTime": 473
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.57622473449812,
-          "misMatchPercentage": "32.58",
-          "analysisTime": 381
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 15.08035911103986,
-          "misMatchPercentage": "15.08",
-          "analysisTime": 349
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 50.09847441195979,
-          "misMatchPercentage": "50.10",
-          "analysisTime": 513
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 28.987318619680526,
-          "misMatchPercentage": "28.99",
-          "analysisTime": 539
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -8525,240 +2842,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-columns",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -184
           },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n1",
-        "fileName": "full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n2",
-        "fileName": "full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n3",
-        "fileName": "full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 34.38090108358152,
-          "misMatchPercentage": "34.38",
-          "analysisTime": 398
+          "rawMisMatchPercentage": 13.291272680807564,
+          "misMatchPercentage": "13.29",
+          "analysisTime": 289
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n4",
-        "fileName": "full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 16.549774795477525,
-          "misMatchPercentage": "16.55",
-          "analysisTime": 393
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n5",
-        "fileName": "full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 52.81892309176879,
-          "misMatchPercentage": "52.82",
-          "analysisTime": 681
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n6",
-        "fileName": "full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 39.9881415112985,
-          "misMatchPercentage": "39.99",
-          "analysisTime": 769
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n7",
-        "fileName": "full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 20.88636835548173,
-          "misMatchPercentage": "20.89",
-          "analysisTime": 681
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n8",
-        "fileName": "full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 59.360826980604074,
-          "misMatchPercentage": "59.36",
-          "analysisTime": 997
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
-        "selector": ".component--columns.__n9",
-        "fileName": "full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
-        "label": "DC: Columns",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-columns",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.66445182724252,
-          "misMatchPercentage": "36.66",
-          "analysisTime": 543
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
         "label": "DC: Contact card listing",
@@ -8766,96 +2868,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 12.506138392857144,
-          "misMatchPercentage": "12.51",
-          "analysisTime": 433
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 70
+            "width": -88,
+            "height": -380
           },
-          "rawMisMatchPercentage": 15.507985342920355,
-          "misMatchPercentage": "15.51",
-          "analysisTime": 534
+          "rawMisMatchPercentage": 23.232142857142858,
+          "misMatchPercentage": "23.23",
+          "analysisTime": 279
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.649979440789473,
-          "misMatchPercentage": "9.65",
-          "analysisTime": 624
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
         "label": "DC: Contact card listing",
@@ -8863,96 +2894,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": -183
+            "width": -344,
+            "height": -555
           },
-          "rawMisMatchPercentage": 12.429138321995465,
-          "misMatchPercentage": "12.43",
-          "analysisTime": 512
+          "rawMisMatchPercentage": 9.82922335600907,
+          "misMatchPercentage": "9.83",
+          "analysisTime": 391
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 328
-          },
-          "rawMisMatchPercentage": 21.975929499868037,
-          "misMatchPercentage": "21.98",
-          "analysisTime": 717
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -63
-          },
-          "rawMisMatchPercentage": 10.143237159811745,
-          "misMatchPercentage": "10.14",
-          "analysisTime": 994
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
         "label": "DC: Contact card listing",
@@ -8960,96 +2920,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": -183
+            "width": -472,
+            "height": -555
           },
-          "rawMisMatchPercentage": 10.169294990723563,
-          "misMatchPercentage": "10.17",
-          "analysisTime": 532
+          "rawMisMatchPercentage": 8.042285095856524,
+          "misMatchPercentage": "8.04",
+          "analysisTime": 486
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -248
-          },
-          "rawMisMatchPercentage": 23.98181634601263,
-          "misMatchPercentage": "23.98",
-          "analysisTime": 812
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -87
-          },
-          "rawMisMatchPercentage": 8.652385359550168,
-          "misMatchPercentage": "8.65",
-          "analysisTime": 1267
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
         "label": "DC: Contact card listing",
@@ -9057,96 +2946,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": -183
+            "width": -292,
+            "height": -603
           },
-          "rawMisMatchPercentage": 12.936396517602097,
-          "misMatchPercentage": "12.94",
-          "analysisTime": 467
+          "rawMisMatchPercentage": 10.143995008433018,
+          "misMatchPercentage": "10.14",
+          "analysisTime": 452
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 344
-          },
-          "rawMisMatchPercentage": 22.83568980108221,
-          "misMatchPercentage": "22.84",
-          "analysisTime": 576
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -39
-          },
-          "rawMisMatchPercentage": 10.941090566930548,
-          "misMatchPercentage": "10.94",
-          "analysisTime": 1184
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
         "label": "DC: Contact card listing",
@@ -9154,96 +2972,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": -183
+            "width": -324,
+            "height": -603
           },
-          "rawMisMatchPercentage": 12.191855710833632,
-          "misMatchPercentage": "12.19",
-          "analysisTime": 401
+          "rawMisMatchPercentage": 9.553276918694928,
+          "misMatchPercentage": "9.55",
+          "analysisTime": 427
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 344
-          },
-          "rawMisMatchPercentage": 21.521405495983952,
-          "misMatchPercentage": "21.52",
-          "analysisTime": 546
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -63
-          },
-          "rawMisMatchPercentage": 10.303768500133323,
-          "misMatchPercentage": "10.30",
-          "analysisTime": 1231
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
         "label": "DC: Contact card listing",
@@ -9251,96 +2998,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": -183
+            "width": -628,
+            "height": -603
           },
-          "rawMisMatchPercentage": 7.881730969140753,
-          "misMatchPercentage": "7.88",
-          "analysisTime": 537
+          "rawMisMatchPercentage": 6.177492649024325,
+          "misMatchPercentage": "6.18",
+          "analysisTime": 654
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--contact-card-listing.__n1",
-        "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -218
-          },
-          "rawMisMatchPercentage": 18.911433808993205,
-          "misMatchPercentage": "18.91",
-          "analysisTime": 877
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--contact-card-listing.__n2",
-        "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--contact-card-listing.__n3",
-        "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Contact card listing",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-contact-card-listing",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": false,
-          "dimensionDifference": {
-            "width": 0,
-            "height": -111
-          },
-          "rawMisMatchPercentage": 7.1048177259181235,
-          "misMatchPercentage": "7.10",
-          "analysisTime": 2636
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -9348,131 +3024,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -1180
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 9.575827205882353,
+          "misMatchPercentage": "9.58",
+          "analysisTime": 518
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -9480,131 +3050,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -497
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 10.67336492696537,
+          "misMatchPercentage": "10.67",
+          "analysisTime": 471
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -9612,131 +3076,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -587
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 7.706197404290624,
+          "misMatchPercentage": "7.71",
+          "analysisTime": 405
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -9744,131 +3102,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -256
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 18.215561313817492,
+          "misMatchPercentage": "18.22",
+          "analysisTime": 363
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -9876,131 +3128,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -233
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 18.1188705210166,
+          "misMatchPercentage": "18.12",
+          "analysisTime": 297
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10008,131 +3154,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -219
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.128577257096229,
+          "misMatchPercentage": "12.13",
+          "analysisTime": 449
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--content-cards.__n1",
-        "fileName": "full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--content-cards.__n2",
-        "fileName": "full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--content-cards.__n3",
-        "fileName": "full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--content-cards.__n4",
-        "fileName": "full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--content-cards.__n5",
-        "fileName": "full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Content cards",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-content-cards",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
         "label": "DC: Content liftup",
@@ -10140,24 +3180,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -99
           },
-          "rawMisMatchPercentage": 39.72222222222222,
-          "misMatchPercentage": "39.72",
-          "analysisTime": 202
+          "rawMisMatchPercentage": 46.63418458781362,
+          "misMatchPercentage": "46.63",
+          "analysisTime": 364
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
         "label": "DC: Content liftup",
@@ -10165,24 +3206,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -178
           },
-          "rawMisMatchPercentage": 62.0262065487275,
-          "misMatchPercentage": "62.03",
-          "analysisTime": 287
+          "rawMisMatchPercentage": 20.24703212290503,
+          "misMatchPercentage": "20.25",
+          "analysisTime": 292
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
         "label": "DC: Content liftup",
@@ -10190,24 +3232,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -220
           },
-          "rawMisMatchPercentage": 28.069957386363637,
-          "misMatchPercentage": "28.07",
-          "analysisTime": 387
+          "rawMisMatchPercentage": 14.794389204545455,
+          "misMatchPercentage": "14.79",
+          "analysisTime": 477
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
         "label": "DC: Content liftup",
@@ -10215,24 +3258,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -220
           },
-          "rawMisMatchPercentage": 6.99952290076336,
-          "misMatchPercentage": "7.00",
-          "analysisTime": 157
+          "rawMisMatchPercentage": 19.858301526717558,
+          "misMatchPercentage": "19.86",
+          "analysisTime": 312
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
         "label": "DC: Content liftup",
@@ -10240,24 +3284,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -220
           },
-          "rawMisMatchPercentage": 7.410521582733813,
-          "misMatchPercentage": "7.41",
-          "analysisTime": 209
+          "rawMisMatchPercentage": 18.71088129496403,
+          "misMatchPercentage": "18.71",
+          "analysisTime": 379
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
         "label": "DC: Content liftup",
@@ -10265,24 +3310,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-content-liftup",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -220
           },
-          "rawMisMatchPercentage": 11.351162790697675,
-          "misMatchPercentage": "11.35",
-          "analysisTime": 306
+          "rawMisMatchPercentage": 12.11046511627907,
+          "misMatchPercentage": "12.11",
+          "analysisTime": 367
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
         "label": "DC: Events",
@@ -10290,7 +3336,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10305,7 +3351,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
         "label": "DC: Events",
@@ -10313,7 +3359,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10328,7 +3374,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
         "label": "DC: Events",
@@ -10336,7 +3382,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10351,7 +3397,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
         "label": "DC: Events",
@@ -10359,7 +3405,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10374,7 +3420,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
         "label": "DC: Events",
@@ -10382,7 +3428,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10397,7 +3443,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
         "label": "DC: Events",
@@ -10405,7 +3451,7 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-events",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
-        "engineErrorMsg": "page.waitForSelector: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for locator('.react-search__results-stats') to be visible\n============================================================",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
           "isSameDimensions": true,
           "dimensionDifference": {
@@ -10420,7 +3466,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -10428,174 +3474,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -76
           },
-          "rawMisMatchPercentage": 67.421875,
-          "misMatchPercentage": "67.42",
-          "analysisTime": 191
+          "rawMisMatchPercentage": 50.8544921875,
+          "misMatchPercentage": "50.85",
+          "analysisTime": 236
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 34.79838709677419,
-          "misMatchPercentage": "34.80",
-          "analysisTime": 310
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 74.39655172413792,
-          "misMatchPercentage": "74.40",
-          "analysisTime": 222
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 73.41325431034483,
-          "misMatchPercentage": "73.41",
-          "analysisTime": 292
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 80.84613347457628,
-          "misMatchPercentage": "80.85",
-          "analysisTime": 449
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 29.932650862068964,
-          "misMatchPercentage": "29.93",
-          "analysisTime": 263
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 74.4665948275862,
-          "misMatchPercentage": "74.47",
-          "analysisTime": 344
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_1_Breakpoint_S.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -10603,174 +3500,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -223
           },
-          "rawMisMatchPercentage": 84.78382616487455,
-          "misMatchPercentage": "84.78",
-          "analysisTime": 617
+          "rawMisMatchPercentage": 17.988351254480285,
+          "misMatchPercentage": "17.99",
+          "analysisTime": 510
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 62.63679412959577,
-          "misMatchPercentage": "62.64",
-          "analysisTime": 655
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 84.57396520902091,
-          "misMatchPercentage": "84.57",
-          "analysisTime": 694
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 83.9278329197684,
-          "misMatchPercentage": "83.93",
-          "analysisTime": 600
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 88.28661837158045,
-          "misMatchPercentage": "88.29",
-          "analysisTime": 1099
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 33.53616611661166,
-          "misMatchPercentage": "33.54",
-          "analysisTime": 361
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 85.02421078025917,
-          "misMatchPercentage": "85.02",
-          "analysisTime": 595
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_2_Breakpoint_M.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -10778,174 +3526,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -330
           },
-          "rawMisMatchPercentage": 92.11508467023172,
-          "misMatchPercentage": "92.12",
-          "analysisTime": 777
+          "rawMisMatchPercentage": 11.631016042780749,
+          "misMatchPercentage": "11.63",
+          "analysisTime": 296
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 77.22896697618691,
-          "misMatchPercentage": "77.23",
-          "analysisTime": 896
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 92.11508467023172,
-          "misMatchPercentage": "92.12",
-          "analysisTime": 958
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 90.53076632271838,
-          "misMatchPercentage": "90.53",
-          "analysisTime": 894
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 94.57067829617966,
-          "misMatchPercentage": "94.57",
-          "analysisTime": 2331
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.714441380537274,
-          "misMatchPercentage": "36.71",
-          "analysisTime": 473
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 92.09336007130125,
-          "misMatchPercentage": "92.09",
-          "analysisTime": 1187
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_3_Breakpoint_L.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -10953,174 +3552,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -210
           },
-          "rawMisMatchPercentage": 89.43384223918575,
-          "misMatchPercentage": "89.43",
-          "analysisTime": 564
+          "rawMisMatchPercentage": 20.434527304756312,
+          "misMatchPercentage": "20.43",
+          "analysisTime": 227
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 65.50661863510307,
-          "misMatchPercentage": "65.51",
-          "analysisTime": 678
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 89.43384223918575,
-          "misMatchPercentage": "89.43",
-          "analysisTime": 495
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 88.05079947677712,
-          "misMatchPercentage": "88.05",
-          "analysisTime": 456
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 93.3180723113987,
-          "misMatchPercentage": "93.32",
-          "analysisTime": 1552
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.077999608533965,
-          "misMatchPercentage": "36.08",
-          "analysisTime": 498
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 89.42405558817774,
-          "misMatchPercentage": "89.42",
-          "analysisTime": 508
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -11128,174 +3578,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -231
           },
-          "rawMisMatchPercentage": 90.21994083565265,
-          "misMatchPercentage": "90.22",
-          "analysisTime": 698
+          "rawMisMatchPercentage": 18.274431549650792,
+          "misMatchPercentage": "18.27",
+          "analysisTime": 294
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 66.51085606335076,
-          "misMatchPercentage": "66.51",
-          "analysisTime": 474
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 90.21994083565265,
-          "misMatchPercentage": "90.22",
-          "analysisTime": 757
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 88.83931689599777,
-          "misMatchPercentage": "88.84",
-          "analysisTime": 522
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 93.59362795477904,
-          "misMatchPercentage": "93.59",
-          "analysisTime": 1299
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 35.990867500174616,
-          "misMatchPercentage": "35.99",
-          "analysisTime": 538
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 90.20418701535122,
-          "misMatchPercentage": "90.20",
-          "analysisTime": 892
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -11303,174 +3604,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -434
           },
-          "rawMisMatchPercentage": 93.28706158624347,
-          "misMatchPercentage": "93.29",
-          "analysisTime": 1569
+          "rawMisMatchPercentage": 7.908491780925687,
+          "misMatchPercentage": "7.91",
+          "analysisTime": 495
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_0_component--image_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n1",
-        "fileName": "full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 83.64177232354736,
-          "misMatchPercentage": "83.64",
-          "analysisTime": 1592
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n2",
-        "fileName": "full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 93.28706158624347,
-          "misMatchPercentage": "93.29",
-          "analysisTime": 1294
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n3",
-        "fileName": "full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 91.91548496880317,
-          "misMatchPercentage": "91.92",
-          "analysisTime": 1340
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n4",
-        "fileName": "full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 95.09854454597871,
-          "misMatchPercentage": "95.10",
-          "analysisTime": 3020
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n5",
-        "fileName": "full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 37.22539959094008,
-          "misMatchPercentage": "37.23",
-          "analysisTime": 834
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--image.__n6",
-        "fileName": "full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
-        "label": "DC: Image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 93.22437694114082,
-          "misMatchPercentage": "93.22",
-          "analysisTime": 1477
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Image_0_component--image_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -11478,249 +3630,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -129
           },
-          "rawMisMatchPercentage": 37.851941747572816,
-          "misMatchPercentage": "37.85",
-          "analysisTime": 317
+          "rawMisMatchPercentage": 42.155137540453076,
+          "misMatchPercentage": "42.16",
+          "analysisTime": 344
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 37.72278225806452,
-          "misMatchPercentage": "37.72",
-          "analysisTime": 383
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 17.03125,
-          "misMatchPercentage": "17.03",
-          "analysisTime": 638
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 17.146719208211145,
-          "misMatchPercentage": "17.15",
-          "analysisTime": 350
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 2.7578990804055645,
-          "misMatchPercentage": "2.76",
-          "analysisTime": 1376
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 2.7567332626119754,
-          "misMatchPercentage": "2.76",
-          "analysisTime": 1088
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.031089193825043,
-          "misMatchPercentage": "10.03",
-          "analysisTime": 520
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 6.080170157068062,
-          "misMatchPercentage": "6.08",
-          "analysisTime": 689
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.586743273542602,
-          "misMatchPercentage": "9.59",
-          "analysisTime": 1144
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.53790340654415,
-          "misMatchPercentage": "9.54",
-          "analysisTime": 1205
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -11728,249 +3656,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -214
           },
-          "rawMisMatchPercentage": 51.52328327693175,
-          "misMatchPercentage": "51.52",
-          "analysisTime": 539
+          "rawMisMatchPercentage": 18.34946065989848,
+          "misMatchPercentage": "18.35",
+          "analysisTime": 351
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 51.59722222222223,
-          "misMatchPercentage": "51.60",
-          "analysisTime": 556
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.024743044479884,
-          "misMatchPercentage": "32.02",
-          "analysisTime": 672
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 32.02723506999823,
-          "misMatchPercentage": "32.03",
-          "analysisTime": 609
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.383930642542333,
-          "misMatchPercentage": "8.38",
-          "analysisTime": 1240
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.384583043377408,
-          "misMatchPercentage": "8.38",
-          "analysisTime": 1058
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 24.163073271827784,
-          "misMatchPercentage": "24.16",
-          "analysisTime": 804
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 16.97470531605147,
-          "misMatchPercentage": "16.97",
-          "analysisTime": 1031
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 25.501748834110593,
-          "misMatchPercentage": "25.50",
-          "analysisTime": 1259
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 25.568139758679397,
-          "misMatchPercentage": "25.57",
-          "analysisTime": 1537
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -11978,249 +3682,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -536,
+            "height": -300
           },
-          "rawMisMatchPercentage": 55.192599826388886,
-          "misMatchPercentage": "55.19",
-          "analysisTime": 853
+          "rawMisMatchPercentage": 11.289605034722221,
+          "misMatchPercentage": "11.29",
+          "analysisTime": 595
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 55.050242550242544,
-          "misMatchPercentage": "55.05",
-          "analysisTime": 919
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 39.56316302402863,
-          "misMatchPercentage": "39.56",
-          "analysisTime": 985
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 39.50496905308831,
-          "misMatchPercentage": "39.50",
-          "analysisTime": 831
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 13.224011889460154,
-          "misMatchPercentage": "13.22",
-          "analysisTime": 1342
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 13.269930448388203,
-          "misMatchPercentage": "13.27",
-          "analysisTime": 1802
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 31.951184006211182,
-          "misMatchPercentage": "31.95",
-          "analysisTime": 1053
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.430285914320315,
-          "misMatchPercentage": "23.43",
-          "analysisTime": 1061
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.42747256820878,
-          "misMatchPercentage": "36.43",
-          "analysisTime": 1957
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.49799822064057,
-          "misMatchPercentage": "36.50",
-          "analysisTime": 1767
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -12228,249 +3708,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -760,
+            "height": -310
           },
-          "rawMisMatchPercentage": 44.78254608294931,
-          "misMatchPercentage": "44.78",
-          "analysisTime": 871
+          "rawMisMatchPercentage": 8.582126398946675,
+          "misMatchPercentage": "8.58",
+          "analysisTime": 607
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 44.77020243581303,
-          "misMatchPercentage": "44.77",
-          "analysisTime": 889
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 44.78254608294931,
-          "misMatchPercentage": "44.78",
-          "analysisTime": 851
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 44.77020243581303,
-          "misMatchPercentage": "44.77",
-          "analysisTime": 708
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.145095187731359,
-          "misMatchPercentage": "10.15",
-          "analysisTime": 1286
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.14284169030335,
-          "misMatchPercentage": "10.14",
-          "analysisTime": 1110
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 34.43857776206278,
-          "misMatchPercentage": "34.44",
-          "analysisTime": 1037
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 22.26558377598762,
-          "misMatchPercentage": "22.27",
-          "analysisTime": 1003
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 55.333424702329424,
-          "misMatchPercentage": "55.33",
-          "analysisTime": 1911
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 55.33480725950718,
-          "misMatchPercentage": "55.33",
-          "analysisTime": 1805
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -12478,249 +3734,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -792,
+            "height": -324
           },
-          "rawMisMatchPercentage": 46.65624224950397,
-          "misMatchPercentage": "46.66",
-          "analysisTime": 971
+          "rawMisMatchPercentage": 8.079117063492063,
+          "misMatchPercentage": "8.08",
+          "analysisTime": 417
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 46.64461650545635,
-          "misMatchPercentage": "46.64",
-          "analysisTime": 712
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 46.65624224950397,
-          "misMatchPercentage": "46.66",
-          "analysisTime": 986
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 46.64461650545635,
-          "misMatchPercentage": "46.64",
-          "analysisTime": 930
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.869596871893638,
-          "misMatchPercentage": "10.87",
-          "analysisTime": 1342
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 10.867218563618291,
-          "misMatchPercentage": "10.87",
-          "analysisTime": 1122
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 36.941940720016895,
-          "misMatchPercentage": "36.94",
-          "analysisTime": 780
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 23.86991675764192,
-          "misMatchPercentage": "23.87",
-          "analysisTime": 911
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 56.65606587485084,
-          "misMatchPercentage": "56.66",
-          "analysisTime": 1882
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 56.65746429370525,
-          "misMatchPercentage": "56.66",
-          "analysisTime": 1808
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -12728,249 +3760,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -1688,
+            "height": -551
           },
-          "rawMisMatchPercentage": 42.12444425444596,
-          "misMatchPercentage": "42.12",
-          "analysisTime": 1511
+          "rawMisMatchPercentage": 2.9701037391700864,
+          "misMatchPercentage": "2.97",
+          "analysisTime": 691
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n1",
-        "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 42.11959929320565,
-          "misMatchPercentage": "42.12",
-          "analysisTime": 1455
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n2",
-        "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 42.12444425444596,
-          "misMatchPercentage": "42.12",
-          "analysisTime": 1241
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n3",
-        "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 42.190919972640216,
-          "misMatchPercentage": "42.19",
-          "analysisTime": 1517
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n4",
-        "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.038825757575758,
-          "misMatchPercentage": "14.04",
-          "analysisTime": 1530
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n5",
-        "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 14.036548890544791,
-          "misMatchPercentage": "14.04",
-          "analysisTime": 1799
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n6",
-        "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 40.636542407660734,
-          "misMatchPercentage": "40.64",
-          "analysisTime": 1396
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n7",
-        "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 30.76795937840785,
-          "misMatchPercentage": "30.77",
-          "analysisTime": 1875
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n8",
-        "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 75.2766907672431,
-          "misMatchPercentage": "75.28",
-          "analysisTime": 1913
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
-        "selector": ".component--liftup-with-image.__n9",
-        "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
-        "label": "DC: Liftup with image",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-liftup-with-image",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 75.27684605446233,
-          "misMatchPercentage": "75.28",
-          "analysisTime": 2078
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -12978,197 +3786,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -54
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 55.559561965811966,
+          "misMatchPercentage": "55.56",
+          "analysisTime": 354
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -13176,197 +3812,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -36
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 33.449074074074076,
+          "misMatchPercentage": "33.45",
+          "analysisTime": 273
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -13374,197 +3838,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -36
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.364136153198654,
+          "misMatchPercentage": "27.36",
+          "analysisTime": 356
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -13572,197 +3864,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -120
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 26.470101781170484,
+          "misMatchPercentage": "26.47",
+          "analysisTime": 431
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -13770,197 +3890,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -120
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 24.93884892086331,
+          "misMatchPercentage": "24.94",
+          "analysisTime": 292
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -13968,197 +3916,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -72
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 19.193890734588408,
+          "misMatchPercentage": "19.19",
+          "analysisTime": 428
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n1",
-        "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n2",
-        "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n3",
-        "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n4",
-        "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n5",
-        "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n6",
-        "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n7",
-        "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
-        "selector": ".component--list-of-links.__n8",
-        "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
-        "label": "DC: List of links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-list-of-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_0_Breakpoint_XS.png",
         "label": "DC: Map",
@@ -14166,43 +3942,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -292
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.465572033898304,
+          "misMatchPercentage": "27.47",
+          "analysisTime": 372
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_1_Breakpoint_S.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_1_Breakpoint_S.png",
         "label": "DC: Map",
@@ -14210,43 +3968,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -254
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 16.587861623143883,
+          "misMatchPercentage": "16.59",
+          "analysisTime": 451
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_2_Breakpoint_M.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_2_Breakpoint_M.png",
         "label": "DC: Map",
@@ -14254,43 +3994,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -340
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 11.3204763986014,
+          "misMatchPercentage": "11.32",
+          "analysisTime": 580
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_3_Breakpoint_L.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_3_Breakpoint_L.png",
         "label": "DC: Map",
@@ -14298,43 +4020,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -279
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 17.24043306890186,
+          "misMatchPercentage": "17.24",
+          "analysisTime": 459
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_4_Breakpoint_XL.png",
         "label": "DC: Map",
@@ -14342,43 +4046,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -297
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 15.627498001598722,
+          "misMatchPercentage": "15.63",
+          "analysisTime": 340
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
         "label": "DC: Map",
@@ -14386,43 +4072,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-map",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -468
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 7.438092161929371,
+          "misMatchPercentage": "7.44",
+          "analysisTime": 641
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Map_0_component--map_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--map.__n1",
-        "fileName": "full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Map",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-map",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
         "label": "DC: News list",
@@ -14430,21 +4098,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 146
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
         "label": "DC: News list",
@@ -14452,21 +4124,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 351
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
         "label": "DC: News list",
@@ -14474,21 +4150,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 247
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
         "label": "DC: News list",
@@ -14496,21 +4176,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 335
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
         "label": "DC: News list",
@@ -14518,21 +4202,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 310
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
         "label": "DC: News list",
@@ -14540,21 +4228,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-news-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -109,
+            "height": -86
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.860229753268804,
+          "misMatchPercentage": "12.86",
+          "analysisTime": 227
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_0_Breakpoint_XS.png",
         "label": "DC: Phasing",
@@ -14562,21 +4254,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -41904
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.3091881712764946,
+          "misMatchPercentage": "0.31",
+          "analysisTime": 368
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_1_Breakpoint_S.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_1_Breakpoint_S.png",
         "label": "DC: Phasing",
@@ -14584,21 +4280,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -19912
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.359535373393501,
+          "misMatchPercentage": "0.36",
+          "analysisTime": 464
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_2_Breakpoint_M.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_2_Breakpoint_M.png",
         "label": "DC: Phasing",
@@ -14606,21 +4306,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -536,
+            "height": -15964
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.3355864924017179,
+          "misMatchPercentage": "0.34",
+          "analysisTime": 485
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_3_Breakpoint_L.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_3_Breakpoint_L.png",
         "label": "DC: Phasing",
@@ -14628,21 +4332,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -760,
+            "height": -14190
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.29184765528542883,
+          "misMatchPercentage": "0.29",
+          "analysisTime": 433
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_4_Breakpoint_XL.png",
         "label": "DC: Phasing",
@@ -14650,21 +4358,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -792,
+            "height": -13902
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.28846111170288313,
+          "misMatchPercentage": "0.29",
+          "analysisTime": 447
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
         "label": "DC: Phasing",
@@ -14672,21 +4384,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-phasing",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -1688,
+            "height": -12534
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.17046087646164335,
+          "misMatchPercentage": "0.17",
+          "analysisTime": 352
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Phasing_0_components_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
         "label": "DC: Popular services",
@@ -14694,43 +4410,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -888
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.14741338951311,
+          "misMatchPercentage": "12.15",
+          "analysisTime": 363
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
         "label": "DC: Popular services",
@@ -14738,43 +4436,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -754
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 7.73201433499881,
+          "misMatchPercentage": "7.73",
+          "analysisTime": 433
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
         "label": "DC: Popular services",
@@ -14782,43 +4462,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -536,
+            "height": -418
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 9.060366151059087,
+          "misMatchPercentage": "9.06",
+          "analysisTime": 378
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
         "label": "DC: Popular services",
@@ -14826,43 +4488,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -760,
+            "height": -410
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 7.106854838709678,
+          "misMatchPercentage": "7.11",
+          "analysisTime": 491
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
         "label": "DC: Popular services",
@@ -14870,43 +4514,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -792,
+            "height": -410
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 6.885758739406779,
+          "misMatchPercentage": "6.89",
+          "analysisTime": 487
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
         "label": "DC: Popular services",
@@ -14914,43 +4540,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -1688,
+            "height": -410
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 3.672934322033898,
+          "misMatchPercentage": "3.67",
+          "analysisTime": 642
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--popular-services.__n1",
-        "fileName": "full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Popular services",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-popular-services",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
         "label": "DC: Remote video",
@@ -14958,87 +4566,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -528
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 18.407044491525422,
+          "misMatchPercentage": "18.41",
+          "analysisTime": 224
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
         "label": "DC: Remote video",
@@ -15046,87 +4592,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -472
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 11.097797375596455,
+          "misMatchPercentage": "11.10",
+          "analysisTime": 350
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
         "label": "DC: Remote video",
@@ -15134,87 +4618,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -518
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 8.483654597551446,
+          "misMatchPercentage": "8.48",
+          "analysisTime": 329
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
         "label": "DC: Remote video",
@@ -15222,87 +4644,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -579
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 10.478331271560611,
+          "misMatchPercentage": "10.48",
+          "analysisTime": 315
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
         "label": "DC: Remote video",
@@ -15310,87 +4670,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -573
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 9.956576571412192,
+          "misMatchPercentage": "9.96",
+          "analysisTime": 366
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
         "label": "DC: Remote video",
@@ -15398,87 +4696,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -624
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 6.03060279995372,
+          "misMatchPercentage": "6.03",
+          "analysisTime": 439
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--remote-video.__n1",
-        "fileName": "full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--remote-video.__n2",
-        "fileName": "full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--remote-video.__n3",
-        "fileName": "full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Remote video",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-remote-video",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
         "label": "DC: Service list",
@@ -15486,21 +4722,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -180
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 36.109375,
+          "misMatchPercentage": "36.11",
+          "analysisTime": 297
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
         "label": "DC: Service list",
@@ -15508,21 +4748,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -36
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 33.443447788065846,
+          "misMatchPercentage": "33.44",
+          "analysisTime": 282
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
         "label": "DC: Service list",
@@ -15530,21 +4774,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -536,
+            "height": -36
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 25.082585841049383,
+          "misMatchPercentage": "25.08",
+          "analysisTime": 280
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
         "label": "DC: Service list",
@@ -15552,21 +4800,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -760,
+            "height": -76
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 16.375929309475808,
+          "misMatchPercentage": "16.38",
+          "analysisTime": 318
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
         "label": "DC: Service list",
@@ -15574,21 +4826,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -792,
+            "height": -76
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 15.869140625,
+          "misMatchPercentage": "15.87",
+          "analysisTime": 262
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
         "label": "DC: Service list",
@@ -15596,21 +4852,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-service-list",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -1688,
+            "height": -76
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 8.465169270833334,
+          "misMatchPercentage": "8.47",
+          "analysisTime": 333
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
         "label": "DC: Sidebar text",
@@ -15618,43 +4878,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -56,
+            "height": -278
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 31.35083090732654,
+          "misMatchPercentage": "31.35",
+          "analysisTime": 288
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
         "label": "DC: Sidebar text",
@@ -15662,43 +4904,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -312,
+            "height": -206
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 19.758648277964035,
+          "misMatchPercentage": "19.76",
+          "analysisTime": 313
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
         "label": "DC: Sidebar text",
@@ -15706,43 +4930,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -206
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 15.311469618464438,
+          "misMatchPercentage": "15.31",
+          "analysisTime": 309
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
         "label": "DC: Sidebar text",
@@ -15750,43 +4956,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -108,
+            "height": -256
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.91891527253103,
+          "misMatchPercentage": "27.92",
+          "analysisTime": 348
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
         "label": "DC: Sidebar text",
@@ -15794,43 +4982,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -108,
+            "height": -256
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.91891527253103,
+          "misMatchPercentage": "27.92",
+          "analysisTime": 261
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
         "label": "DC: Sidebar text",
@@ -15838,43 +5008,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -108,
+            "height": -256
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 27.91891527253103,
+          "misMatchPercentage": "27.92",
+          "analysisTime": 306
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
-        "selector": ".sidebar-text.__n1",
-        "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Sidebar text",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-sidebar-text",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_0_Breakpoint_XS.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_0_Breakpoint_XS.png",
         "label": "DC: Text",
@@ -15882,21 +5034,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -14693
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.8738780004034157,
+          "misMatchPercentage": "0.87",
+          "analysisTime": 414
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_0_Breakpoint_XS.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_1_Breakpoint_S.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_1_Breakpoint_S.png",
         "label": "DC: Text",
@@ -15904,21 +5060,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -9029
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.784558583993919,
+          "misMatchPercentage": "0.78",
+          "analysisTime": 435
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_1_Breakpoint_S.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_2_Breakpoint_M.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_2_Breakpoint_M.png",
         "label": "DC: Text",
@@ -15926,21 +5086,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -536,
+            "height": -7685
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.6889038991311719,
+          "misMatchPercentage": "0.69",
+          "analysisTime": 443
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_2_Breakpoint_M.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_3_Breakpoint_L.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_3_Breakpoint_L.png",
         "label": "DC: Text",
@@ -15948,21 +5112,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -692,
+            "height": -7181
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.6116240323549114,
+          "misMatchPercentage": "0.61",
+          "analysisTime": 438
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_3_Breakpoint_L.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_4_Breakpoint_XL.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_4_Breakpoint_XL.png",
         "label": "DC: Text",
@@ -15970,21 +5138,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -692,
+            "height": -7181
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.6116240323549114,
+          "misMatchPercentage": "0.61",
+          "analysisTime": 492
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_4_Breakpoint_XL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Text_0_components_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Text_0_components_5_Breakpoint_XXL.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_5_Breakpoint_XXL.png",
         "label": "DC: Text",
@@ -15992,21 +5164,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-text",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -692,
+            "height": -7181
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.6116240323549114,
+          "misMatchPercentage": "0.61",
+          "analysisTime": 474
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Text_0_components_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -16014,109 +5190,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 88,
+            "height": -100
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 44.067708333333336,
+          "misMatchPercentage": "44.07",
+          "analysisTime": 251
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -16124,109 +5216,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 344,
+            "height": -100
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 39.99324845679013,
+          "misMatchPercentage": "39.99",
+          "analysisTime": 255
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -16234,109 +5242,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 536,
+            "height": -84
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 30.03544560185185,
+          "misMatchPercentage": "30.04",
+          "analysisTime": 375
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -16344,109 +5268,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 760,
+            "height": -84
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 23.261648745519715,
+          "misMatchPercentage": "23.26",
+          "analysisTime": 232
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -16454,109 +5294,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 792,
+            "height": -84
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 22.537434895833332,
+          "misMatchPercentage": "22.54",
+          "analysisTime": 348
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -16564,109 +5320,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": 1688,
+            "height": -84
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 12.023148148148149,
+          "misMatchPercentage": "12.02",
+          "analysisTime": 188
+        },
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png"
       },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--target-group-links.__n1",
-        "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
-        "selector": ".component--target-group-links.__n2",
-        "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
-        "selector": ".component--target-group-links.__n3",
-        "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
-        "selector": ".component--target-group-links.__n4",
-        "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
-        "label": "DC: Target group links",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-target-group-links",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "misMatchPercentage": "0.00"
-        }
-      },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
         "label": "DC: Unit search",
@@ -16674,49 +5346,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -88,
+            "height": -950
           },
-          "rawMisMatchPercentage": 23.512444690265486,
-          "misMatchPercentage": "23.51",
-          "analysisTime": 147
+          "rawMisMatchPercentage": 11.4695796460177,
+          "misMatchPercentage": "11.47",
+          "analysisTime": 200
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XS",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 22.186719400499584,
-          "misMatchPercentage": "22.19",
-          "analysisTime": 128
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
         "label": "DC: Unit search",
@@ -16724,49 +5372,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -344,
+            "height": -512
           },
-          "rawMisMatchPercentage": 7.72519267822736,
-          "misMatchPercentage": "7.73",
-          "analysisTime": 113
+          "rawMisMatchPercentage": 10.40487516056519,
+          "misMatchPercentage": "10.40",
+          "analysisTime": 163
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_S",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.006334643949323,
-          "misMatchPercentage": "7.01",
-          "analysisTime": 115
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
         "label": "DC: Unit search",
@@ -16774,49 +5398,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -472,
+            "height": -624
           },
-          "rawMisMatchPercentage": 7.237604590682949,
-          "misMatchPercentage": "7.24",
-          "analysisTime": 132
+          "rawMisMatchPercentage": 7.3217011533242875,
+          "misMatchPercentage": "7.32",
+          "analysisTime": 202
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_M",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 7.624842355452076,
-          "misMatchPercentage": "7.62",
-          "analysisTime": 181
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
         "label": "DC: Unit search",
@@ -16824,49 +5424,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -292,
+            "height": -768
           },
-          "rawMisMatchPercentage": 4.00199697233227,
-          "misMatchPercentage": "4.00",
-          "analysisTime": 125
+          "rawMisMatchPercentage": 8.346418333494379,
+          "misMatchPercentage": "8.35",
+          "analysisTime": 170
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_L",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.4100676648913,
-          "misMatchPercentage": "9.41",
-          "analysisTime": 198
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
         "label": "DC: Unit search",
@@ -16874,49 +5450,25 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -324,
+            "height": -768
           },
-          "rawMisMatchPercentage": 4.392055975472786,
-          "misMatchPercentage": "4.39",
-          "analysisTime": 167
+          "rawMisMatchPercentage": 7.865100324803448,
+          "misMatchPercentage": "7.87",
+          "analysisTime": 169
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 9.677474225153688,
-          "misMatchPercentage": "9.68",
-          "analysisTime": 222
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240125-085123/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
         "label": "DC: Unit search",
@@ -16924,42 +5476,18 @@ report({
         "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
+        "engineErrorMsg": "page.emulateMedia is not a function",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
-            "width": 0,
-            "height": 0
+            "width": -628,
+            "height": -676
           },
-          "rawMisMatchPercentage": 8.804336013910019,
-          "misMatchPercentage": "8.80",
-          "analysisTime": 217
+          "rawMisMatchPercentage": 5.630705281460552,
+          "misMatchPercentage": "5.63",
+          "analysisTime": 185
         },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png"
-      },
-      "status": "fail"
-    },
-    {
-      "pair": {
-        "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240125-081428/full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
-        "selector": ".component--unit-search.__n1",
-        "fileName": "full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
-        "label": "DC: Unit search",
-        "misMatchThreshold": 0.1,
-        "url": "https://mysite.docker.so/en/dc-components/dc-unit-search",
-        "expect": 0,
-        "viewportLabel": "Breakpoint_XXL",
-        "diff": {
-          "isSameDimensions": true,
-          "dimensionDifference": {
-            "width": 0,
-            "height": 0
-          },
-          "rawMisMatchPercentage": 8.066560412871889,
-          "misMatchPercentage": "8.07",
-          "analysisTime": 205
-        },
-        "diffImage": "../bitmaps_test/20240125-081428/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240125-085123/failed_diff_full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     }
