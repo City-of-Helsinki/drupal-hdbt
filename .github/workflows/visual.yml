@@ -112,15 +112,6 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: docker compose logs app > /tmp/container.log
 
-      #- name: Upload test result
-      #  uses: actions/upload-artifact@v4
-      #  if: always()
-      #  with:
-      #    name: results
-      #    path: ${{ env.THEME_FOLDER }}/backstop_data/
-      #    retention-days: 1
-      #    compression-level: 0
-
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref != 'refs/heads/main'
