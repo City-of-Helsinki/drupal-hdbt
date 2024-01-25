@@ -461,12 +461,11 @@ function getConfig(hostname, type) {
         'ci_report': `backstop_data/${type}/ci_report`
       },
       'report': ['browser'],
-      'engine': 'playwright',
+      'engine': 'puppeteer',
       'engineOptions': {
         'browser': 'chromium',
-        // 'browser': 'firefox',
-        // 'browser': 'webkit',
-        'args': ['--no-sandbox'],
+        'args': ['--no-sandbox', '--disable-setuid-sandbox'],
+        'gotoParameters': { 'waitUntil': 'networkidle0' },
       },
       'asyncCaptureLimit': 1,
       'asyncCompareLimit': 100,
