@@ -25,4 +25,12 @@ export default class HelfiAccordion {
 
   getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.getId() === id);
 
+  toggleAccordionItems = () => this.hasOpenAccordionItem() ? this.openAll() : this.closeAll();
+
+  openAll = () => this.accordionItems.forEach(item=> item.open());
+
+  closeAll = () => this.accordionItems.forEach(item => item.close());
+
+  hasOpenAccordionItem = () => !!this.accordionItems.find(item => item.isOpen);
+
 }

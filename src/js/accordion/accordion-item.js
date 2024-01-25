@@ -14,13 +14,16 @@ export default class AccordionItem {
 
   constructor(element, state) {
     this.element = element;
-    // Use header id as this objects id since header id is unique.
-    this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
-    this.isOpen = this.localState.loadItemState(this.id);
+
+    // Use header id as this objects id since header id is unique.
+    this._id = element.querySelector('.helfi-accordion__header').id;
+    this._isOpen = this.localState.loadItemState(this._id);
+
     this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
     this.setHidden();
     this.addEventListeners();
+
     // Open accordion element by anchor link.
     // TODO: UHF-8775 Figure out why javascript cannot find elements at this point (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8775).
     // Possibly due to other timeouts
@@ -33,14 +36,14 @@ export default class AccordionItem {
   }
 
   open = () => {
-    this.isOpen = true;
+    this._isOpen = true;
     this.setAriaOpen();
     this.setHidden();
     this.localState.saveItemState(this.id, this.isOpen);
   };
 
   close = () => {
-    this.isOpen = false;
+    this._isOpen = false;
     this.setAriaOpen();
     this.changeFocus();
     this.setHidden();
@@ -49,11 +52,7 @@ export default class AccordionItem {
 
   toggle = (event) => {
     if (!AccordionItem.isClick(event.which)) return;
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
-    }
+    this.isOpen ? this.close() : this.open();
   };
 
   handleLinkAnchor = () => {
@@ -74,17 +73,10 @@ export default class AccordionItem {
 
   setHidden = () => {
     const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
-    if (this.isOpen) {
-      contentElement.classList.remove('is-hidden');
-    }
-    else {
-      contentElement.classList.add('is-hidden');
-    }
+    this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
   };
 
-  changeFocus = () => {
-    this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
-  };
+  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
 
   addEventListeners = () => {
     this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mouseup', this.toggle);
@@ -98,6 +90,8 @@ export default class AccordionItem {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   };
 
-  getId = () => this.id;
+  get id() { return this._id; }
+
+  get isOpen() { return this._isOpen; }
 
 }
