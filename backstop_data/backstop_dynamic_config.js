@@ -464,6 +464,7 @@ function getConfig(hostname, type) {
       'engine': 'puppeteer',
       'engineOptions': {
         'browser': 'chromium',
+        'headless': 'new',
         'args': ['--no-sandbox', '--disable-setuid-sandbox'],
         'gotoParameters': { 'waitUntil': 'networkidle0' },
       },
