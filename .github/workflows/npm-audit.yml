@@ -1,12 +1,9 @@
 name: Npm audit
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 12 * * 0'  # Run every fortnight on Sunday at 12
-  workflow_dispatch:
-  push:
-    branches:
-      - UHF-9380
 
 jobs:
   npm_audit:
@@ -15,8 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: UHF-X_npm_broken_branch
 
       - name: Set up Node.js, install dependencies
         run: |
