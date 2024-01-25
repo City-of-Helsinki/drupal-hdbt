@@ -23,7 +23,7 @@ export default class HelfiAccordion {
     this.state = localStorage.getItem(HelfiAccordion.localStateKey);
   };
 
-  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.getId() === id);
+  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id() === id);
 
   toggleAccordionItems = () => this.hasOpenAccordionItem() ? this.openAll() : this.closeAll();
 
