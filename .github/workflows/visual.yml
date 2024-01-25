@@ -113,7 +113,7 @@ jobs:
         run: docker compose logs app > /tmp/container.log
 
       #- name: Upload test result
-      #  uses: actions/upload-artifact@v3
+      #  uses: actions/upload-artifact@v4
       #  if: always()
       #  with:
       #    name: results
@@ -121,8 +121,16 @@ jobs:
       #    retention-days: 1
       #    compression-level: 0
 
+      - name: Deploy to PR preview
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref != 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          destination_dir: pull/${{github.event.number}}
+
       - name: Upload container logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: container-log
