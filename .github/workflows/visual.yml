@@ -86,10 +86,15 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GENERATE_REFERENCES: 1
         run: |
           gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
 
           if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+            GENERATE_REFERENCES=1
+          fi
+
+          if [ "$GENERATE_REFERENCES" == "1" ]; then
             npm run full-reference
             echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
           fi
