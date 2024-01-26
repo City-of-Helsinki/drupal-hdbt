@@ -49,17 +49,17 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: docker compose --profile testing up -d --wait && sleep 5
 
-      - name: Prepare Drupal setup
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: |
-          mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
-
       - name: Restore files folder
         id: drupal-cache
         uses: actions/cache@v4
         with:
           path: ${{ env.DRUPAL_ROOT }}/public/sites/default/files
           key: drupal-cache
+
+      - name: Prepare Drupal setup
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: |
+          mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
 
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
