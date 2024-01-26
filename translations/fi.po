@@ -1006,3 +1006,11 @@ msgstr "Ei hakutuloksia"
 msgctxt "Unit search no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."
+
+msgctxt "Event additional information label"
+msgid "Additional information"
+msgstr "Lisätieto"
+
+msgctxt "Event additional information value"
+msgid "The event requires registration or a ticket."
+msgstr "Tapahtuma vaatii ilmoittautumisen tai pääsylipun."

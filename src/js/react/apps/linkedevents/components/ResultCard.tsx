@@ -23,7 +23,7 @@ const formatStartDate = (start: Date, end: Date) => {
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
 const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
 
-function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
+function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const url = `${baseUrl}/${currentLanguage}/events/${id}`;
@@ -69,6 +69,12 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return locationString;
   };
 
+  const getOffers = (): boolean => {
+    const offersInfoUrls = offers?.map(offer => offer.info_url[currentLanguage]);
+
+    return !!offersInfoUrls;
+  };
+
   const imageToElement = (image: EventImage): JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};
 
@@ -104,6 +110,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       cardUrlExternal
       location={isRemote ? 'Internet' : getLocation()}
       time={getDate()}
+      registrationRequired={getOffers()}
     />
   );
 }

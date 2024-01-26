@@ -17,6 +17,10 @@ export type EventKeyword = {
   name: MultilingualString
 };
 
+type EventOffers = {
+  info_url: MultilingualString
+}
+
 type EventLocation = {
   id: string,
   name?: MultilingualString
@@ -27,6 +31,7 @@ export type Event = {
   end_time: number,
   id: string,
   images?: EventImage[],
+  offers?: EventOffers[],
   keywords?: EventKeyword[],
   name: MultilingualString
   location?: EventLocation,
