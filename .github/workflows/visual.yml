@@ -49,17 +49,17 @@ jobs:
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: docker compose --profile testing up -d --wait && sleep 5
 
-      - name: Download latest database dump
-        id: database-dump
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.DRUPAL_ROOT }}/latest.sql
-          key: latest-sql-dump
-
       - name: Prepare Drupal setup
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
+
+      - name: Restore files folder
+        id: drupal-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.DRUPAL_ROOT }}/public/sites/default/files
+          key: drupal-cache
 
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
@@ -67,15 +67,13 @@ jobs:
         run: |
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
-          # Save database dump to files folder to prevent permission issues.
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
-          mv public/sites/default/files/latest.sql .
 
       - name: Install Drupal from existing dump
         working-directory: ${{ env.DRUPAL_ROOT }}
-        if: steps.database-dump.outputs.cache-hit == 'true'
+        if: steps.drupal-cache.outputs.cache-hit == 'true'
         run: |
-          docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql"
+          docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
           docker compose exec app bash -c "drush updb -y"
 
       - name: Node setup
