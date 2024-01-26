@@ -63,7 +63,7 @@ jobs:
 
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
-        if: steps.database-dump.outputs.cache-hit != 'true'
+        if: steps.drupal-cache.outputs.cache-hit != 'true'
         run: |
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
