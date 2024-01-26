@@ -1,5 +1,5 @@
 module.exports = async (page, scenario, vp, isReference, browserContext, config) => {
-  // await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.emulateMediaFeatures({ name: 'reducedMotion', value: 'reduce' });
   const { hostname } = config;
 
   const cookies = [
