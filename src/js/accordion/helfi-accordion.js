@@ -1,36 +1,53 @@
-import AccordionItem from './accordion-item';
+import AccordionItem from './accordion-item.js';
 
 export default class HelfiAccordion {
 
   static accordionWrapper = 'component--accordion';
 
-  constructor(accordion, state) {
+  static toggleAllElement = 'accordion__button--toggle-all';
+
+  constructor(accordion, state, hash) {
     this.accordion = accordion;
+
     this.localState = state;
     this.accordionItems = [];
-    this.getAccordionLocalState();
-    this.initializeAccordion();
+    this.initializeAccordion(hash);
+    this.addEventListeners();
+    this.updateToggleButtonLabel();
   }
 
-  initializeAccordion = () => {
-      Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
-        const item = new AccordionItem(element, this.localState);
-        this.accordionItems.push(item);
-      });
-  };
+  initializeAccordion = (hash) => {
+    Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
+      this.accordionItems.push(new AccordionItem(element, this.localState, this.updateToggleButtonLabel, hash));
+    });
+  }
 
-  getAccordionLocalState = () => {
-    this.state = localStorage.getItem(HelfiAccordion.localStateKey);
-  };
+  addEventListeners = () => {
+    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    toggleAllElement.addEventListener('mouseup', this.toggleItems);
+    toggleAllElement.addEventListener('keypress', this.toggleItems);
+  }
 
-  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id() === id);
+  /**
+   * Callback for single accordion item to invoke changes in whole accordion.
+   */
+  updateToggleButtonLabel = () => {
+    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    this.allItemsOpen() ? this.changeLabelToClose(toggleAllElement) : this.changeLabelToOpen(toggleAllElement);
+  }
 
-  toggleAccordionItems = () => this.hasOpenAccordionItem() ? this.openAll() : this.closeAll();
+  changeLabelToOpen = (element) => element.querySelector('span').textContent = 'Open all'
 
-  openAll = () => this.accordionItems.forEach(item=> item.open());
+  changeLabelToClose = (element) => element.querySelector('span').textContent = 'Close all'
 
-  closeAll = () => this.accordionItems.forEach(item => item.close());
+  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id)
 
-  hasOpenAccordionItem = () => !!this.accordionItems.find(item => item.isOpen);
+  toggleItems = () => this.allItemsOpen() ? this.closeAll() : this.openAll()
+
+  openAll = () => this.accordionItems.forEach(item=> item.open())
+
+  closeAll = () => this.accordionItems.forEach(item => item.close())
+
+  allItemsOpen = () => this.accordionItems.every(item => item.isOpen)
 
 }

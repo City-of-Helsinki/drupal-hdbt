@@ -1,49 +1,32 @@
-import HelfiAccordion from './helfi-accordion';
-import State from './state';
-import AccordionItem from './accordion-item';
+import HelfiAccordion from './helfi-accordion.js';
+import State from './state.js';
+import Events from "./events.js";
 
-// Listen to hash change.
-window.addEventListener('hashchange', () => {
-  const {hash} = window.location;
-
-  // Look for accordion headers for anchor links.
-  let accordionItemFound = false;
-  window.helfiAccordions.forEach((accordion) => {
-    const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
-    if (accordionItem) {
-      accordionItemFound = true;
-      accordionItem.handleLinkAnchor();
-    }
-  });
-
-  // If not found, look inside accordions for anchor links.
-  if (!accordionItemFound) {
-    const anchorElement = document.querySelector(`${hash}`);
-    if (!anchorElement) {
-      return;
-    }
-    const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
-    if (accordionItemToOpen) {
-      window.helfiAccordions.forEach((accordion) => {
-        const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
-        const accordionItem = accordion.getAccordionItemById(idToSearch);
-        if (accordionItem) {
-          accordionItem.handleLinkAnchor();
-        }
-      });
-    }
-  }
-});
-
-// Initialize the accordions
 window.helfiAccordions = [];
 
-const state = new State();
-setTimeout(()=>{
-  document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
-    const accordion = new HelfiAccordion(accordionElement, state);
-    window.helfiAccordions.push(accordion);
-  });
-}, 50);
+const targetNode = document.body
+const config = { attributes: true, childList: true, subtree: true };
 
+const state = new State();
+const events = new Events();
+let {hash} = window.location;
+
+const callback = (mutations, observer) => {
+  const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
+  if (items.length > window.helfiAccordions.length) {
+    try {
+      items.forEach((accordionElement) => {
+        const accordion = new HelfiAccordion(accordionElement, state, hash);
+        window.helfiAccordions.push(accordion);
+      });
+    }
+    catch(e) {
+      console.log(e);
+      observer.disconnect();
+    }
+  }
+}
+
+var observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
 
