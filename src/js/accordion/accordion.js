@@ -15,14 +15,12 @@ const callback = (mutations, observer) => {
   const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
   if (items.length > window.helfiAccordions.length) {
     try {
-
-      // component--no-header
       items.forEach((accordionElement, index) => {
         const headerless = accordionElement.classList.contains('component--no-header');
         const accordion = new HelfiAccordion(accordionElement, state, hash, headerless);
         window.helfiAccordions.push(accordion);
 
-        // Allow the first accordion to control the upcoming headerless accordion's toggle functionality.
+        // Allow the previous accordion to control the next headerless accordion's toggle functionality.
         if (headerless) {
           window.helfiAccordions[index-1].addChildAccordion(accordion);
         }
