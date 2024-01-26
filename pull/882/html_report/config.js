@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero",
@@ -13,23 +13,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 268
           },
-          "rawMisMatchPercentage": 30.278459821428573,
-          "misMatchPercentage": "30.28",
-          "analysisTime": 497
+          "rawMisMatchPercentage": 0.19474963976945245,
+          "misMatchPercentage": "0.19",
+          "analysisTime": 173
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png",
         "label": "DC: Landing page - hero",
@@ -43,18 +43,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 37.310215212264154,
-          "misMatchPercentage": "37.31",
-          "analysisTime": 566
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png",
         "label": "DC: Landing page - hero",
@@ -63,23 +60,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 87
+            "height": 0
           },
-          "rawMisMatchPercentage": 11.97852015061238,
-          "misMatchPercentage": "11.98",
-          "analysisTime": 920
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png",
         "label": "DC: Landing page - hero",
@@ -93,18 +87,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 19.089943132281842,
-          "misMatchPercentage": "19.09",
-          "analysisTime": 833
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero",
@@ -113,23 +104,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 20.21484375,
-          "misMatchPercentage": "20.21",
-          "analysisTime": 837
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 324
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero",
@@ -143,18 +134,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.344862196180555,
-          "misMatchPercentage": "7.34",
-          "analysisTime": 3955
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png",
         "label": "DC: layout landing - no-hero",
@@ -163,23 +151,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -268
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.814877717391304,
-          "misMatchPercentage": "4.81",
-          "analysisTime": 314
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png",
         "label": "DC: layout landing - no-hero",
@@ -188,23 +173,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 46
           },
-          "rawMisMatchPercentage": 4.822530864197531,
-          "misMatchPercentage": "4.82",
-          "analysisTime": 395
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 154
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_layout_landing_-_no-hero_0_document_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png",
         "label": "DC: layout landing - no-hero",
@@ -218,18 +203,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.514153079710145,
-          "misMatchPercentage": "2.51",
-          "analysisTime": 786
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png",
         "label": "DC: layout landing - no-hero",
@@ -243,18 +225,18 @@ report({
             "width": 0,
             "height": -150
           },
-          "rawMisMatchPercentage": 2.6568800403225805,
-          "misMatchPercentage": "2.66",
-          "analysisTime": 812
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 259
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_layout_landing_-_no-hero_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png",
         "label": "DC: layout landing - no-hero",
@@ -268,18 +250,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.5501414331896552,
-          "misMatchPercentage": "3.55",
-          "analysisTime": 722
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png",
         "label": "DC: layout landing - no-hero",
@@ -293,18 +272,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5719672309027778,
-          "misMatchPercentage": "0.57",
-          "analysisTime": 5211
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_layout_landing_-_no-hero_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -318,18 +294,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.20213849287169,
-          "misMatchPercentage": "7.20",
-          "analysisTime": 572
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -343,18 +316,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.7117537313432845,
-          "misMatchPercentage": "6.71",
-          "analysisTime": 495
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -363,23 +333,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -2
           },
-          "rawMisMatchPercentage": 4.000367980072464,
-          "misMatchPercentage": "4.00",
-          "analysisTime": 936
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 276
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -388,23 +358,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 5.202445777042551,
-          "misMatchPercentage": "5.20",
-          "analysisTime": 921
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 461
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -418,18 +388,18 @@ report({
             "width": 0,
             "height": -324
           },
-          "rawMisMatchPercentage": 3.62880407444668,
-          "misMatchPercentage": "3.63",
-          "analysisTime": 1336
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 468
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - without image, align left",
@@ -443,18 +413,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.0063205295138888,
-          "misMatchPercentage": "1.01",
-          "analysisTime": 5081
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_without_image_align_left_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -463,23 +430,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -268
           },
-          "rawMisMatchPercentage": 28.5578125,
-          "misMatchPercentage": "28.56",
-          "analysisTime": 573
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 239
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -493,18 +460,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 35.89057807807808,
-          "misMatchPercentage": "35.89",
-          "analysisTime": 1045
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -513,23 +477,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 98
           },
-          "rawMisMatchPercentage": 13.461135643115943,
-          "misMatchPercentage": "13.46",
-          "analysisTime": 1223
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 372
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -538,23 +502,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 17.89086962062186,
-          "misMatchPercentage": "17.89",
-          "analysisTime": 1553
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 638
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -566,20 +530,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": -324
           },
-          "rawMisMatchPercentage": 13.847623089983022,
-          "misMatchPercentage": "13.85",
-          "analysisTime": 2113
+          "rawMisMatchPercentage": 0.09624694927843803,
+          "misMatchPercentage": "0.10",
+          "analysisTime": 894
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - image on the left",
@@ -593,18 +557,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.426133897569444,
-          "misMatchPercentage": "7.43",
-          "analysisTime": 4230
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_left_0_document_5_Breakpoint_XXL.png"
+          "rawMisMatchPercentage": 0.039740668402777776,
+          "misMatchPercentage": "0.04",
+          "analysisTime": 2641
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -613,23 +576,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -268
           },
-          "rawMisMatchPercentage": 28.63854166666667,
-          "misMatchPercentage": "28.64",
-          "analysisTime": 763
+          "rawMisMatchPercentage": 0.1841365803814714,
+          "misMatchPercentage": "0.18",
+          "analysisTime": 354
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -643,18 +606,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 35.93456737987988,
-          "misMatchPercentage": "35.93",
-          "analysisTime": 1123
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -666,20 +626,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 220
+            "height": -220
           },
-          "rawMisMatchPercentage": 27.42004751461988,
-          "misMatchPercentage": "27.42",
-          "analysisTime": 1807
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 398
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -688,23 +648,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": 0
           },
-          "rawMisMatchPercentage": 30.44497347830261,
-          "misMatchPercentage": "30.44",
-          "analysisTime": 2774
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -718,18 +675,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 41.40397662575911,
-          "misMatchPercentage": "41.40",
-          "analysisTime": 2401
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - image on the bottom",
@@ -743,18 +697,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 20.487548828125,
-          "misMatchPercentage": "20.49",
-          "analysisTime": 6642
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_image_on_the_bottom_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -768,18 +719,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 29.48895474137931,
-          "misMatchPercentage": "29.49",
-          "analysisTime": 800
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -793,18 +741,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 35.86555305305305,
-          "misMatchPercentage": "35.87",
-          "analysisTime": 1074
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -818,18 +763,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 33.88884171195652,
-          "misMatchPercentage": "33.89",
-          "analysisTime": 1707
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -841,20 +783,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": -324
           },
-          "rawMisMatchPercentage": 22.530591957885303,
-          "misMatchPercentage": "22.53",
-          "analysisTime": 1649
+          "rawMisMatchPercentage": 0.08286780353942652,
+          "misMatchPercentage": "0.08",
+          "analysisTime": 898
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -863,23 +805,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 32.57056768216081,
-          "misMatchPercentage": "32.57",
-          "analysisTime": 1390
+          "rawMisMatchPercentage": 0.08597237723214285,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 846
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Landing page - hero - diagonal",
@@ -893,18 +835,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.71799045138889,
-          "misMatchPercentage": "13.72",
-          "analysisTime": 4245
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Landing_page_-_hero_-_diagonal_0_document_5_Breakpoint_XXL.png"
+          "rawMisMatchPercentage": 0.05384657118055556,
+          "misMatchPercentage": "0.05",
+          "analysisTime": 1948
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -913,23 +854,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 268
           },
-          "rawMisMatchPercentage": 20.641197643979055,
-          "misMatchPercentage": "20.64",
-          "analysisTime": 1323
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 299
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -938,23 +879,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 268
+            "height": 0
           },
-          "rawMisMatchPercentage": 21.35479645304313,
-          "misMatchPercentage": "21.35",
-          "analysisTime": 1797
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -968,18 +906,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.556938559322035,
-          "misMatchPercentage": "12.56",
-          "analysisTime": 1744
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+          "rawMisMatchPercentage": 0.0998631709039548,
+          "misMatchPercentage": "0.10",
+          "analysisTime": 641
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -993,18 +930,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.943331700331624,
-          "misMatchPercentage": "9.94",
-          "analysisTime": 3312
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -1013,23 +947,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 9.350859740070092,
-          "misMatchPercentage": "9.35",
-          "analysisTime": 3524
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 1176
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - subnav - sidebar",
@@ -1038,23 +972,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 5.587424741972477,
-          "misMatchPercentage": "5.59",
-          "analysisTime": 5148
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 1118
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1068,18 +1002,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 20.745582460732983,
-          "misMatchPercentage": "20.75",
-          "analysisTime": 1237
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1093,18 +1024,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 25.54074975949976,
-          "misMatchPercentage": "25.54",
-          "analysisTime": 1700
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1118,18 +1046,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.623035840395481,
-          "misMatchPercentage": "12.62",
-          "analysisTime": 1727
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+          "rawMisMatchPercentage": 0.0998631709039548,
+          "misMatchPercentage": "0.10",
+          "analysisTime": 623
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1138,23 +1065,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 352
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.585329921291953,
-          "misMatchPercentage": "14.59",
-          "analysisTime": 2650
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1163,23 +1087,22 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 377
+            "height": 0
           },
-          "rawMisMatchPercentage": 11.529028274735532,
-          "misMatchPercentage": "11.53",
-          "analysisTime": 2615
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+          "rawMisMatchPercentage": 0.09217797256097561,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 999
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - no-subnav - sidebar",
@@ -1188,23 +1111,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 126
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.267321200510855,
-          "misMatchPercentage": "7.27",
-          "analysisTime": 4187
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1218,18 +1138,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 22.41510538641686,
-          "misMatchPercentage": "22.42",
-          "analysisTime": 1215
+          "rawMisMatchPercentage": 0.15826258782201405,
+          "misMatchPercentage": "0.16",
+          "analysisTime": 427
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1243,18 +1163,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 29.0105331841909,
-          "misMatchPercentage": "29.01",
-          "analysisTime": 1643
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1268,18 +1185,18 @@ report({
             "width": 0,
             "height": 308
           },
-          "rawMisMatchPercentage": 10.690455553473264,
-          "misMatchPercentage": "10.69",
-          "analysisTime": 1644
+          "rawMisMatchPercentage": 0.08833473888055972,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 774
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1293,18 +1210,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.298917127368366,
-          "misMatchPercentage": "14.30",
-          "analysisTime": 2038
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+          "rawMisMatchPercentage": 0.09468426278782674,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 1184
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1313,23 +1229,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 15.078628717762063,
-          "misMatchPercentage": "15.08",
-          "analysisTime": 2189
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 908
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - no-subnav - no-sidebar",
@@ -1343,18 +1259,18 @@ report({
             "width": 0,
             "height": 126
           },
-          "rawMisMatchPercentage": 7.143348898467433,
-          "misMatchPercentage": "7.14",
-          "analysisTime": 3999
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 1235
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1363,23 +1279,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -268
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.915935672514619,
-          "misMatchPercentage": "5.92",
-          "analysisTime": 996
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1393,18 +1306,18 @@ report({
             "width": 0,
             "height": -268
           },
-          "rawMisMatchPercentage": 5.5614188632619435,
-          "misMatchPercentage": "5.56",
-          "analysisTime": 1293
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 405
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1418,18 +1331,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.684442934782609,
-          "misMatchPercentage": "5.68",
-          "analysisTime": 1354
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1438,23 +1348,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -324
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.250462683817371,
-          "misMatchPercentage": "4.25",
-          "analysisTime": 2909
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1468,18 +1375,18 @@ report({
             "width": 0,
             "height": -324
           },
-          "rawMisMatchPercentage": 3.3067237798546207,
-          "misMatchPercentage": "3.31",
-          "analysisTime": 2908
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 892
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - subnav - sidebar",
@@ -1488,23 +1395,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 1.6331148564294633,
-          "misMatchPercentage": "1.63",
-          "analysisTime": 5681
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 1392
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1518,18 +1425,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.079385080645162,
-          "misMatchPercentage": "7.08",
-          "analysisTime": 833
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1543,18 +1447,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.888223995271868,
-          "misMatchPercentage": "7.89",
-          "analysisTime": 1021
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1563,23 +1464,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -84
           },
-          "rawMisMatchPercentage": 5.006368885869565,
-          "misMatchPercentage": "5.01",
-          "analysisTime": 1223
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 525
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1593,18 +1494,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.611682859043185,
-          "misMatchPercentage": "5.61",
-          "analysisTime": 2000
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1613,23 +1511,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 4.3309612021354935,
-          "misMatchPercentage": "4.33",
-          "analysisTime": 2605
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 815
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - subnav - no-sidebar",
@@ -1643,18 +1541,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.6836480034722223,
-          "misMatchPercentage": "1.68",
-          "analysisTime": 4915
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1663,23 +1558,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -268
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.7664285714285715,
-          "misMatchPercentage": "5.77",
-          "analysisTime": 1075
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1693,18 +1585,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.148887127084802,
-          "misMatchPercentage": "7.15",
-          "analysisTime": 1291
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1716,20 +1605,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": -278
+            "height": 278
           },
-          "rawMisMatchPercentage": 4.345567264885921,
-          "misMatchPercentage": "4.35",
-          "analysisTime": 1487
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 474
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1741,20 +1630,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 324
           },
-          "rawMisMatchPercentage": 9.514190446650124,
-          "misMatchPercentage": "9.51",
-          "analysisTime": 1883
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 729
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1763,23 +1652,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 4.68307044435654,
-          "misMatchPercentage": "4.68",
-          "analysisTime": 1682
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 726
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - no-subnav - sidebar",
@@ -1793,18 +1682,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.2611490885416667,
-          "misMatchPercentage": "1.26",
-          "analysisTime": 4647
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1818,18 +1704,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.100050403225806,
-          "misMatchPercentage": "7.10",
-          "analysisTime": 803
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1843,18 +1726,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.984033318557919,
-          "misMatchPercentage": "7.98",
-          "analysisTime": 756
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1863,23 +1743,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.572984105245684,
-          "misMatchPercentage": "4.57",
-          "analysisTime": 1268
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1888,23 +1765,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -324
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.54300505740842,
-          "misMatchPercentage": "3.54",
-          "analysisTime": 1672
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1913,23 +1787,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 324
           },
-          "rawMisMatchPercentage": 4.731422495619158,
-          "misMatchPercentage": "4.73",
-          "analysisTime": 1402
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 784
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - no-hero - no-subnav - no-sidebar",
@@ -1943,18 +1817,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.1250271267361112,
-          "misMatchPercentage": "1.13",
-          "analysisTime": 5043
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_no-hero_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -1963,23 +1834,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 268
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.368832236842103,
-          "misMatchPercentage": "19.37",
-          "analysisTime": 1467
+          "rawMisMatchPercentage": 0.15826258782201405,
+          "misMatchPercentage": "0.16",
+          "analysisTime": 519
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -1988,23 +1859,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 268
+            "height": 0
           },
-          "rawMisMatchPercentage": 23.68531202435312,
-          "misMatchPercentage": "23.69",
-          "analysisTime": 1676
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -2018,18 +1886,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.899676128979857,
-          "misMatchPercentage": "13.90",
-          "analysisTime": 1650
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+          "rawMisMatchPercentage": 0.08833473888055972,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 1073
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -2043,18 +1910,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.298917127368366,
-          "misMatchPercentage": "14.30",
-          "analysisTime": 2048
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -2068,18 +1932,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 15.078628717762063,
-          "misMatchPercentage": "15.08",
-          "analysisTime": 2192
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: Standard page - hero - subnav - no-sidebar",
@@ -2088,23 +1949,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 126
           },
-          "rawMisMatchPercentage": 7.768391927083333,
-          "misMatchPercentage": "7.77",
-          "analysisTime": 3678
+          "rawMisMatchPercentage": 0.036543143358876116,
+          "misMatchPercentage": "0.04",
+          "analysisTime": 1834
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_Standard_page_-_hero_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Unit - subnav",
@@ -2113,23 +1974,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 268
           },
-          "rawMisMatchPercentage": 12.565622109158186,
-          "misMatchPercentage": "12.57",
-          "analysisTime": 1286
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 528
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Unit - subnav",
@@ -2143,18 +2004,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 22.18859569580462,
-          "misMatchPercentage": "22.19",
-          "analysisTime": 2246
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Unit - subnav",
@@ -2163,23 +2021,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 308
           },
-          "rawMisMatchPercentage": 24.33881051788124,
-          "misMatchPercentage": "24.34",
-          "analysisTime": 3082
+          "rawMisMatchPercentage": 0.0940646891418564,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 1270
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Unit - subnav",
@@ -2191,20 +2049,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 352
+            "height": -324
           },
-          "rawMisMatchPercentage": 11.744824052689019,
-          "misMatchPercentage": "11.74",
-          "analysisTime": 4047
+          "rawMisMatchPercentage": 0.0511566965305449,
+          "misMatchPercentage": "0.05",
+          "analysisTime": 1264
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Unit - subnav",
@@ -2218,18 +2076,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.274630930349932,
-          "misMatchPercentage": "11.27",
-          "analysisTime": 3765
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Unit - subnav",
@@ -2238,23 +2093,22 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.508129409171076,
-          "misMatchPercentage": "7.51",
-          "analysisTime": 11715
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_subnav_0_document_5_Breakpoint_XXL.png"
+          "rawMisMatchPercentage": 0.03052195340501792,
+          "misMatchPercentage": "0.03",
+          "analysisTime": 2031
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2268,18 +2122,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.55911771507863,
-          "misMatchPercentage": "12.56",
-          "analysisTime": 1256
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2293,18 +2144,18 @@ report({
             "width": 0,
             "height": 268
           },
-          "rawMisMatchPercentage": 19.40726561675636,
-          "misMatchPercentage": "19.41",
-          "analysisTime": 2357
+          "rawMisMatchPercentage": 0.10964044528859343,
+          "misMatchPercentage": "0.11",
+          "analysisTime": 1074
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_1_Breakpoint_S.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2313,23 +2164,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -308
           },
-          "rawMisMatchPercentage": 24.372614604419702,
-          "misMatchPercentage": "24.37",
-          "analysisTime": 3081
+          "rawMisMatchPercentage": 0.0940646891418564,
+          "misMatchPercentage": "0.09",
+          "analysisTime": 1356
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2338,23 +2189,22 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.18227655458838,
-          "misMatchPercentage": "19.18",
-          "analysisTime": 4779
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_3_Breakpoint_L.png"
+          "rawMisMatchPercentage": 0.07876633136778818,
+          "misMatchPercentage": "0.08",
+          "analysisTime": 1461
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2368,18 +2218,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 20.980614981581045,
-          "misMatchPercentage": "20.98",
-          "analysisTime": 4441
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Unit - no-subnav",
@@ -2388,23 +2235,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 324
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.433132164902998,
-          "misMatchPercentage": "7.43",
-          "analysisTime": 11094
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Unit_-_no-subnav_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2413,23 +2257,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 268
           },
-          "rawMisMatchPercentage": 6.536654135338346,
-          "misMatchPercentage": "6.54",
-          "analysisTime": 861
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 330
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2438,23 +2282,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -268
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.233695652173913,
-          "misMatchPercentage": "5.23",
-          "analysisTime": 1048
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2466,20 +2307,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": -166
+            "height": 166
           },
-          "rawMisMatchPercentage": 4.3516680095150395,
-          "misMatchPercentage": "4.35",
-          "analysisTime": 1405
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 476
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2488,23 +2329,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -324
           },
-          "rawMisMatchPercentage": 6.641548227403385,
-          "misMatchPercentage": "6.64",
-          "analysisTime": 1569
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 722
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2518,18 +2359,18 @@ report({
             "width": 0,
             "height": -324
           },
-          "rawMisMatchPercentage": 3.754055589392804,
-          "misMatchPercentage": "3.75",
-          "analysisTime": 1991
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 794
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - subnav - sidebar",
@@ -2543,18 +2384,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.4002549913194444,
-          "misMatchPercentage": "1.40",
-          "analysisTime": 4542
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2568,18 +2406,18 @@ report({
             "width": 0,
             "height": -84
           },
-          "rawMisMatchPercentage": 2.640449438202247,
-          "misMatchPercentage": "2.64",
-          "analysisTime": 511
+          "rawMisMatchPercentage": 4.7027153558052435,
+          "misMatchPercentage": "4.70",
+          "analysisTime": 308
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2593,18 +2431,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.5561618165784834,
-          "misMatchPercentage": "1.56",
-          "analysisTime": 639
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2618,18 +2453,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.9750056612318839,
-          "misMatchPercentage": "0.98",
-          "analysisTime": 1130
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2638,23 +2470,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -320
+            "height": 0
           },
-          "rawMisMatchPercentage": 1.8261556368473562,
-          "misMatchPercentage": "1.83",
-          "analysisTime": 1327
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2666,20 +2495,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": -324
+            "height": 324
           },
-          "rawMisMatchPercentage": 1.8397632087628866,
-          "misMatchPercentage": "1.84",
-          "analysisTime": 1303
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 649
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - subnav - no-sidebar",
@@ -2693,18 +2522,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5089518229166667,
-          "misMatchPercentage": "0.51",
-          "analysisTime": 4821
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2718,18 +2544,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.694548872180452,
-          "misMatchPercentage": "6.69",
-          "analysisTime": 882
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2743,18 +2566,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.950349584278155,
-          "misMatchPercentage": "6.95",
-          "analysisTime": 910
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2768,18 +2588,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.247961956521739,
-          "misMatchPercentage": "5.25",
-          "analysisTime": 1346
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2791,20 +2608,20 @@ report({
           "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": -352
+            "height": -324
           },
-          "rawMisMatchPercentage": 6.813403378077634,
-          "misMatchPercentage": "6.81",
-          "analysisTime": 2058
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 674
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2818,18 +2635,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.102985171696149,
-          "misMatchPercentage": "4.10",
-          "analysisTime": 1448
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - no-subnav - sidebar",
@@ -2843,18 +2657,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.1214735243055556,
-          "misMatchPercentage": "1.12",
-          "analysisTime": 4764
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2868,18 +2679,18 @@ report({
             "width": 0,
             "height": -268
           },
-          "rawMisMatchPercentage": 6.2582661290322585,
-          "misMatchPercentage": "6.26",
-          "analysisTime": 1029
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 315
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_0_Breakpoint_XS.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2893,18 +2704,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.388464228617106,
-          "misMatchPercentage": "7.39",
-          "analysisTime": 1038
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2913,23 +2721,23 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": -158
           },
-          "rawMisMatchPercentage": 5.15525928442029,
-          "misMatchPercentage": "5.16",
-          "analysisTime": 1273
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 426
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_2_Breakpoint_M.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2943,18 +2751,18 @@ report({
             "width": 0,
             "height": -324
           },
-          "rawMisMatchPercentage": 3.3452985859830116,
-          "misMatchPercentage": "3.35",
-          "analysisTime": 1819
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 461
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_3_Breakpoint_L.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2968,18 +2776,18 @@ report({
             "width": 0,
             "height": -324
           },
-          "rawMisMatchPercentage": 3.240758005171042,
-          "misMatchPercentage": "3.24",
-          "analysisTime": 1984
+          "rawMisMatchPercentage": 0,
+          "misMatchPercentage": "0.00",
+          "analysisTime": 414
         },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
+        "diffImage": "../bitmaps_test/20240126-050118/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_4_Breakpoint_XL.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "selector": "document",
         "fileName": "full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png",
         "label": "DC: TPR Service - no-subnav - no-sidebar",
@@ -2993,18 +2801,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.1315646701388888,
-          "misMatchPercentage": "1.13",
-          "analysisTime": 5611
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_TPR_Service_-_no-subnav_-_no-sidebar_0_document_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3018,18 +2823,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.367529880478087,
-          "misMatchPercentage": "4.37",
-          "analysisTime": 287
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3043,18 +2845,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.604414682539683,
-          "misMatchPercentage": "4.60",
-          "analysisTime": 253
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3068,18 +2867,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.953841743119265,
-          "misMatchPercentage": "6.95",
-          "analysisTime": 205
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3093,18 +2889,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.911684782608695,
-          "misMatchPercentage": "7.91",
-          "analysisTime": 267
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3118,18 +2911,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.8396739130434785,
-          "misMatchPercentage": "5.84",
-          "analysisTime": 480
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3143,18 +2933,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.170584862385321,
-          "misMatchPercentage": "5.17",
-          "analysisTime": 246
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3168,18 +2955,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.589095744680851,
-          "misMatchPercentage": "6.59",
-          "analysisTime": 165
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png",
         "label": "DC: Accordion",
@@ -3193,18 +2977,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.3042763157894735,
-          "misMatchPercentage": "5.30",
-          "analysisTime": 419
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3218,18 +2999,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.651403743315508,
-          "misMatchPercentage": "3.65",
-          "analysisTime": 479
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3243,18 +3021,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.8591533687943262,
-          "misMatchPercentage": "3.86",
-          "analysisTime": 261
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3268,18 +3043,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.5690386002886,
-          "misMatchPercentage": "6.57",
-          "analysisTime": 372
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3293,18 +3065,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.93591030789826,
-          "misMatchPercentage": "7.94",
-          "analysisTime": 260
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3318,18 +3087,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.1936914323962515,
-          "misMatchPercentage": "5.19",
-          "analysisTime": 419
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3343,18 +3109,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.375,
-          "misMatchPercentage": "4.38",
-          "analysisTime": 400
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3368,18 +3131,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.619613603988604,
-          "misMatchPercentage": "4.62",
-          "analysisTime": 342
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png",
         "label": "DC: Accordion",
@@ -3393,18 +3153,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.7667018284106892,
-          "misMatchPercentage": "3.77",
-          "analysisTime": 523
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3418,18 +3175,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.9875121536217795,
-          "misMatchPercentage": "2.99",
-          "analysisTime": 306
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3443,18 +3197,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.1574891199226305,
-          "misMatchPercentage": "3.16",
-          "analysisTime": 382
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3468,18 +3219,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.384035022354694,
-          "misMatchPercentage": "7.38",
-          "analysisTime": 505
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3493,18 +3241,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.4930175246440305,
-          "misMatchPercentage": "6.49",
-          "analysisTime": 316
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3518,18 +3263,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.249383899233297,
-          "misMatchPercentage": "4.25",
-          "analysisTime": 311
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3543,18 +3285,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.5795454545454546,
-          "misMatchPercentage": "3.58",
-          "analysisTime": 447
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3568,18 +3307,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.7796838578088576,
-          "misMatchPercentage": "3.78",
-          "analysisTime": 356
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png",
         "label": "DC: Accordion",
@@ -3593,18 +3329,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.0818469505178365,
-          "misMatchPercentage": "3.08",
-          "analysisTime": 380
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3618,18 +3351,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.177203223595585,
-          "misMatchPercentage": "4.18",
-          "analysisTime": 483
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3643,18 +3373,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.958156629912355,
-          "misMatchPercentage": "3.96",
-          "analysisTime": 510
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3668,18 +3395,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.158648440736139,
-          "misMatchPercentage": "6.16",
-          "analysisTime": 425
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3693,18 +3417,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.063047780605032,
-          "misMatchPercentage": "6.06",
-          "analysisTime": 234
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3718,18 +3439,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.128288742310827,
-          "misMatchPercentage": "8.13",
-          "analysisTime": 360
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3743,18 +3461,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.855566472677802,
-          "misMatchPercentage": "5.86",
-          "analysisTime": 236
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3768,18 +3483,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.940315820984883,
-          "misMatchPercentage": "4.94",
-          "analysisTime": 381
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png",
         "label": "DC: Accordion",
@@ -3793,18 +3505,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.88247298012244,
-          "misMatchPercentage": "4.88",
-          "analysisTime": 286
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3818,18 +3527,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.9367886495756954,
-          "misMatchPercentage": "3.94",
-          "analysisTime": 375
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3843,18 +3549,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.7303490540900612,
-          "misMatchPercentage": "3.73",
-          "analysisTime": 426
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3868,18 +3571,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.190396519993308,
-          "misMatchPercentage": "6.19",
-          "analysisTime": 271
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3893,18 +3593,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.714095390354383,
-          "misMatchPercentage": "5.71",
-          "analysisTime": 390
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3918,18 +3615,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.660473562897255,
-          "misMatchPercentage": "7.66",
-          "analysisTime": 373
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3943,18 +3637,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.518555452667568,
-          "misMatchPercentage": "5.52",
-          "analysisTime": 254
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3968,18 +3659,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.655981097474961,
-          "misMatchPercentage": "4.66",
-          "analysisTime": 264
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png",
         "label": "DC: Accordion",
@@ -3993,18 +3681,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.601467340978703,
-          "misMatchPercentage": "4.60",
-          "analysisTime": 298
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
         "selector": ".component--accordion",
         "fileName": "full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4018,18 +3703,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.0503171247357295,
-          "misMatchPercentage": "3.05",
-          "analysisTime": 541
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_0_component--accordion_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n1",
         "fileName": "full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4043,18 +3725,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.8311425682507583,
-          "misMatchPercentage": "2.83",
-          "analysisTime": 419
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_1_component--accordion__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n2",
         "fileName": "full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4068,18 +3747,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.325581395348838,
-          "misMatchPercentage": "7.33",
-          "analysisTime": 402
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_2_component--accordion__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n3",
         "fileName": "full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4093,18 +3769,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.676304211187932,
-          "misMatchPercentage": "4.68",
-          "analysisTime": 468
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_3_component--accordion__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n4",
         "fileName": "full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4118,18 +3791,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.952585233687063,
-          "misMatchPercentage": "4.95",
-          "analysisTime": 534
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_4_component--accordion__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n5",
         "fileName": "full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4143,18 +3813,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.5678102693990326,
-          "misMatchPercentage": "3.57",
-          "analysisTime": 458
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_5_component--accordion__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n6",
         "fileName": "full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4168,18 +3835,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.0101459188326496,
-          "misMatchPercentage": "3.01",
-          "analysisTime": 438
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_6_component--accordion__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
         "selector": ".component--accordion.__n7",
         "fileName": "full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png",
         "label": "DC: Accordion",
@@ -4193,18 +3857,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.974902141376928,
-          "misMatchPercentage": "2.97",
-          "analysisTime": 398
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Accordion_7_component--accordion__n7_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_0_Breakpoint_XS.png",
         "label": "DC: Announcements",
@@ -4226,7 +3887,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_1_Breakpoint_S.png",
         "label": "DC: Announcements",
@@ -4248,7 +3909,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_2_Breakpoint_M.png",
         "label": "DC: Announcements",
@@ -4270,7 +3931,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_3_Breakpoint_L.png",
         "label": "DC: Announcements",
@@ -4292,7 +3953,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_4_Breakpoint_XL.png",
         "label": "DC: Announcements",
@@ -4314,7 +3975,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
         "selector": "#block-hdbt-subtheme-announcements",
         "fileName": "full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_Breakpoint_XXL.png",
         "label": "DC: Announcements",
@@ -4336,7 +3997,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4350,18 +4011,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.023018973214286,
-          "misMatchPercentage": "5.02",
-          "analysisTime": 427
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4375,18 +4033,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.100694444444445,
-          "misMatchPercentage": "6.10",
-          "analysisTime": 317
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4400,18 +4055,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.951869419642857,
-          "misMatchPercentage": "4.95",
-          "analysisTime": 293
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4425,18 +4077,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.016493055555556,
-          "misMatchPercentage": "6.02",
-          "analysisTime": 412
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4450,18 +4099,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.879111842105264,
-          "misMatchPercentage": "11.88",
-          "analysisTime": 5693
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4475,18 +4121,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.841807745825603,
-          "misMatchPercentage": "11.84",
-          "analysisTime": 6053
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4500,18 +4143,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.642379002576371,
-          "misMatchPercentage": "11.64",
-          "analysisTime": 5952
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4525,18 +4165,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.661931818181818,
-          "misMatchPercentage": "11.66",
-          "analysisTime": 6260
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4550,18 +4187,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.279296875,
-          "misMatchPercentage": "1.28",
-          "analysisTime": 279
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4575,18 +4209,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.9502314814814816,
-          "misMatchPercentage": "1.95",
-          "analysisTime": 344
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4600,18 +4231,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.703125,
-          "misMatchPercentage": "0.70",
-          "analysisTime": 141
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4625,18 +4253,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.036969866071429,
-          "misMatchPercentage": "5.04",
-          "analysisTime": 437
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4650,18 +4275,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.100694444444445,
-          "misMatchPercentage": "6.10",
-          "analysisTime": 216
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4675,18 +4297,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.944196428571428,
-          "misMatchPercentage": "4.94",
-          "analysisTime": 407
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4700,18 +4319,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.016493055555556,
-          "misMatchPercentage": "6.02",
-          "analysisTime": 237
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4725,18 +4341,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.87899682554288,
-          "misMatchPercentage": "11.88",
-          "analysisTime": 6035
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4750,18 +4363,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.841807745825603,
-          "misMatchPercentage": "11.84",
-          "analysisTime": 6490
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4775,18 +4385,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.642379002576371,
-          "misMatchPercentage": "11.64",
-          "analysisTime": 6948
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4800,18 +4407,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.661931818181818,
-          "misMatchPercentage": "11.66",
-          "analysisTime": 4789
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4825,18 +4429,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.279296875,
-          "misMatchPercentage": "1.28",
-          "analysisTime": 191
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4850,18 +4451,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.9502314814814816,
-          "misMatchPercentage": "1.95",
-          "analysisTime": 239
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png",
         "label": "DC: Banner",
@@ -4875,18 +4473,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.703125,
-          "misMatchPercentage": "0.70",
-          "analysisTime": 223
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -4900,18 +4495,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.121376811594203,
-          "misMatchPercentage": "4.12",
-          "analysisTime": 483
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -4925,18 +4517,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.056423611111112,
-          "misMatchPercentage": "5.06",
-          "analysisTime": 359
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -4950,18 +4539,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.085994112318841,
-          "misMatchPercentage": "4.09",
-          "analysisTime": 353
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -4975,18 +4561,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.005580357142858,
-          "misMatchPercentage": "5.01",
-          "analysisTime": 401
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5000,18 +4583,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.988715277777777,
-          "misMatchPercentage": "13.99",
-          "analysisTime": 6054
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5025,18 +4605,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.39993405868777,
-          "misMatchPercentage": "14.40",
-          "analysisTime": 5691
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5050,18 +4627,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.738753294809408,
-          "misMatchPercentage": "13.74",
-          "analysisTime": 5924
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5075,18 +4649,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.149949513682822,
-          "misMatchPercentage": "14.15",
-          "analysisTime": 5342
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5100,18 +4671,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.710720486111111,
-          "misMatchPercentage": "0.71",
-          "analysisTime": 345
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5125,18 +4693,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.0834619341563787,
-          "misMatchPercentage": "1.08",
-          "analysisTime": 268
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5150,18 +4715,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.390625,
-          "misMatchPercentage": "0.39",
-          "analysisTime": 265
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5175,18 +4737,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.130812198067633,
-          "misMatchPercentage": "4.13",
-          "analysisTime": 414
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5200,18 +4759,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.056423611111112,
-          "misMatchPercentage": "5.06",
-          "analysisTime": 433
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5225,18 +4781,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.085994112318841,
-          "misMatchPercentage": "4.09",
-          "analysisTime": 423
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5250,18 +4803,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.005580357142858,
-          "misMatchPercentage": "5.01",
-          "analysisTime": 373
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5275,18 +4825,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.988715277777777,
-          "misMatchPercentage": "13.99",
-          "analysisTime": 6162
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5300,18 +4847,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.39993405868777,
-          "misMatchPercentage": "14.40",
-          "analysisTime": 5653
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5325,18 +4869,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.738753294809408,
-          "misMatchPercentage": "13.74",
-          "analysisTime": 6073
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5350,18 +4891,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.149949513682822,
-          "misMatchPercentage": "14.15",
-          "analysisTime": 5295
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5375,18 +4913,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.710720486111111,
-          "misMatchPercentage": "0.71",
-          "analysisTime": 222
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5400,18 +4935,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.0834619341563787,
-          "misMatchPercentage": "1.08",
-          "analysisTime": 177
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png",
         "label": "DC: Banner",
@@ -5425,18 +4957,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.390625,
-          "misMatchPercentage": "0.39",
-          "analysisTime": 386
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5450,18 +4979,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.116914335664335,
-          "misMatchPercentage": "5.12",
-          "analysisTime": 390
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5475,18 +5001,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.255058811802233,
-          "misMatchPercentage": "5.26",
-          "analysisTime": 399
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5500,18 +5023,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.0819493006993,
-          "misMatchPercentage": "5.08",
-          "analysisTime": 616
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5525,18 +5045,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.197119218500798,
-          "misMatchPercentage": "5.20",
-          "analysisTime": 503
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5550,18 +5067,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.735653409090908,
-          "misMatchPercentage": "12.74",
-          "analysisTime": 6627
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5575,18 +5089,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.042912875476796,
-          "misMatchPercentage": "14.04",
-          "analysisTime": 5994
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5600,18 +5111,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.507499999999999,
-          "misMatchPercentage": "12.51",
-          "analysisTime": 6956
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5625,18 +5133,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.796351021137953,
-          "misMatchPercentage": "13.80",
-          "analysisTime": 5983
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5650,18 +5155,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5814985795454545,
-          "misMatchPercentage": "0.58",
-          "analysisTime": 502
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5675,18 +5177,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8864688552188552,
-          "misMatchPercentage": "0.89",
-          "analysisTime": 371
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5700,18 +5199,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.31960227272727276,
-          "misMatchPercentage": "0.32",
-          "analysisTime": 441
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5725,18 +5221,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.690004006410256,
-          "misMatchPercentage": "4.69",
-          "analysisTime": 663
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5750,18 +5243,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.817137244152047,
-          "misMatchPercentage": "4.82",
-          "analysisTime": 509
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5775,18 +5265,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.6584535256410255,
-          "misMatchPercentage": "4.66",
-          "analysisTime": 515
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5800,18 +5287,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.764025950292398,
-          "misMatchPercentage": "4.76",
-          "analysisTime": 518
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5825,18 +5309,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.674713541666666,
-          "misMatchPercentage": "11.67",
-          "analysisTime": 5570
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5850,18 +5331,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.872670135853731,
-          "misMatchPercentage": "12.87",
-          "analysisTime": 6778
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5875,18 +5353,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.465364583333333,
-          "misMatchPercentage": "11.47",
-          "analysisTime": 6739
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5900,18 +5375,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.646655102709788,
-          "misMatchPercentage": "12.65",
-          "analysisTime": 6358
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5925,18 +5397,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5330403645833333,
-          "misMatchPercentage": "0.53",
-          "analysisTime": 331
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5950,18 +5419,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8125964506172839,
-          "misMatchPercentage": "0.81",
-          "analysisTime": 309
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png",
         "label": "DC: Banner",
@@ -5975,18 +5441,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.29296875,
-          "misMatchPercentage": "0.29",
-          "analysisTime": 330
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6000,18 +5463,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.063284197595858,
-          "misMatchPercentage": "5.06",
-          "analysisTime": 540
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6025,18 +5485,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.096851145038167,
-          "misMatchPercentage": "7.10",
-          "analysisTime": 472
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6050,18 +5507,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.996929016407827,
-          "misMatchPercentage": "5.00",
-          "analysisTime": 485
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6075,18 +5529,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.028599448685327,
-          "misMatchPercentage": "7.03",
-          "analysisTime": 276
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6100,18 +5551,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.775964242667738,
-          "misMatchPercentage": "10.78",
-          "analysisTime": 7165
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6125,18 +5573,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.660397392548955,
-          "misMatchPercentage": "14.66",
-          "analysisTime": 5357
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6150,18 +5595,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.560415829650461,
-          "misMatchPercentage": "10.56",
-          "analysisTime": 5494
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6175,18 +5617,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.419676194822436,
-          "misMatchPercentage": "14.42",
-          "analysisTime": 5411
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6200,18 +5639,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.9760655216284987,
-          "misMatchPercentage": "0.98",
-          "analysisTime": 200
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6225,18 +5661,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.1088444327454594,
-          "misMatchPercentage": "1.11",
-          "analysisTime": 268
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6250,18 +5683,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.42938931297709926,
-          "misMatchPercentage": "0.43",
-          "analysisTime": 249
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6275,18 +5705,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.476107366393838,
-          "misMatchPercentage": "4.48",
-          "analysisTime": 772
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6300,18 +5727,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.005551877708233,
-          "misMatchPercentage": "4.01",
-          "analysisTime": 505
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6325,18 +5749,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.435483870967742,
-          "misMatchPercentage": "4.44",
-          "analysisTime": 628
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6350,18 +5771,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.9634238083774678,
-          "misMatchPercentage": "3.96",
-          "analysisTime": 636
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6375,18 +5793,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.513248696814813,
-          "misMatchPercentage": "12.51",
-          "analysisTime": 6916
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6395,23 +5810,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.418641560683906,
-          "misMatchPercentage": "13.42",
-          "analysisTime": 8099
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6425,18 +5837,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.291749526114478,
-          "misMatchPercentage": "12.29",
-          "analysisTime": 7170
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6445,23 +5854,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.189063421207784,
-          "misMatchPercentage": "13.19",
-          "analysisTime": 7121
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6475,18 +5881,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5155829973118279,
-          "misMatchPercentage": "0.52",
-          "analysisTime": 365
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6500,18 +5903,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5857202447163515,
-          "misMatchPercentage": "0.59",
-          "analysisTime": 364
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png",
         "label": "DC: Banner",
@@ -6525,18 +5925,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.22681451612903228,
-          "misMatchPercentage": "0.23",
-          "analysisTime": 425
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6550,18 +5947,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.267535971223022,
-          "misMatchPercentage": "5.27",
-          "analysisTime": 488
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6575,18 +5969,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.688399280575539,
-          "misMatchPercentage": "6.69",
-          "analysisTime": 482
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6600,18 +5991,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.202338129496402,
-          "misMatchPercentage": "5.20",
-          "analysisTime": 482
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6625,18 +6013,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.6240757394084735,
-          "misMatchPercentage": "6.62",
-          "analysisTime": 576
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6645,23 +6030,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.486522365767152,
-          "misMatchPercentage": "15.49",
-          "analysisTime": 7310
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6670,23 +6052,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 21.065318316357164,
-          "misMatchPercentage": "21.07",
-          "analysisTime": 6191
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6695,23 +6074,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.215933017436079,
-          "misMatchPercentage": "15.22",
-          "analysisTime": 6930
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6720,23 +6096,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.752446359164498,
-          "misMatchPercentage": "20.75",
-          "analysisTime": 6108
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6750,18 +6123,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.9198890887290168,
-          "misMatchPercentage": "0.92",
-          "analysisTime": 309
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6775,18 +6145,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.0450260481270157,
-          "misMatchPercentage": "1.05",
-          "analysisTime": 357
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6800,18 +6167,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.40467625899280574,
-          "misMatchPercentage": "0.40",
-          "analysisTime": 323
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6825,18 +6189,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.336229011194029,
-          "misMatchPercentage": "4.34",
-          "analysisTime": 652
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6850,18 +6211,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.880378381529851,
-          "misMatchPercentage": "3.88",
-          "analysisTime": 721
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6875,18 +6233,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.2848501632462686,
-          "misMatchPercentage": "4.28",
-          "analysisTime": 646
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6900,18 +6255,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.839566814365672,
-          "misMatchPercentage": "3.84",
-          "analysisTime": 638
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6920,23 +6272,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -32
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.161933122376706,
-          "misMatchPercentage": "17.16",
-          "analysisTime": 5210
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6945,23 +6294,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.999309011912533,
-          "misMatchPercentage": "13.00",
-          "analysisTime": 7946
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6970,23 +6316,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -32
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.89291730882739,
-          "misMatchPercentage": "16.89",
-          "analysisTime": 7655
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -6995,23 +6338,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.77690518929504,
-          "misMatchPercentage": "12.78",
-          "analysisTime": 7628
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -7025,18 +6365,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.4994710286458333,
-          "misMatchPercentage": "0.50",
-          "analysisTime": 370
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -7050,18 +6387,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.5674164870689655,
-          "misMatchPercentage": "0.57",
-          "analysisTime": 292
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png",
         "label": "DC: Banner",
@@ -7075,18 +6409,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.2197265625,
-          "misMatchPercentage": "0.22",
-          "analysisTime": 411
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
         "selector": ".component--banner",
         "fileName": "full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7100,18 +6431,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.539309267615411,
-          "misMatchPercentage": "5.54",
-          "analysisTime": 587
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_0_component--banner_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n1",
         "fileName": "full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7125,18 +6453,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.620357514751823,
-          "misMatchPercentage": "4.62",
-          "analysisTime": 530
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_1_component--banner__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n2",
         "fileName": "full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7150,18 +6475,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.493318292259632,
-          "misMatchPercentage": "5.49",
-          "analysisTime": 775
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_2_component--banner__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n3",
         "fileName": "full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7175,18 +6497,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.5717632766400556,
-          "misMatchPercentage": "4.57",
-          "analysisTime": 652
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_3_component--banner__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n4",
         "fileName": "full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7200,18 +6519,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.234324083631874,
-          "misMatchPercentage": "12.23",
-          "analysisTime": 7247
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_4_component--banner__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n5",
         "fileName": "full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7220,23 +6536,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.47824700953306,
-          "misMatchPercentage": "15.48",
-          "analysisTime": 7041
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_5_component--banner__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n6",
         "fileName": "full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7250,18 +6563,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.021171089116926,
-          "misMatchPercentage": "12.02",
-          "analysisTime": 7088
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_6_component--banner__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n7",
         "fileName": "full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7270,23 +6580,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.213431295160603,
-          "misMatchPercentage": "15.21",
-          "analysisTime": 6323
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_7_component--banner__n7_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n8",
         "fileName": "full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7300,18 +6607,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.594718992248062,
-          "misMatchPercentage": "0.59",
-          "analysisTime": 243
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_8_component--banner__n8_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n9",
         "fileName": "full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7325,18 +6629,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.6756214915797915,
-          "misMatchPercentage": "0.68",
-          "analysisTime": 402
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_9_component--banner__n9_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n10",
         "fileName": "full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7350,18 +6651,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.2616279069767442,
-          "misMatchPercentage": "0.26",
-          "analysisTime": 476
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_10_component--banner__n10_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n11",
         "fileName": "full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7375,18 +6673,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.818458686440678,
-          "misMatchPercentage": "2.82",
-          "analysisTime": 1026
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_11_component--banner__n11_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n12",
         "fileName": "full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7400,18 +6695,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.0695351368159205,
-          "misMatchPercentage": "2.07",
-          "analysisTime": 1100
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_12_component--banner__n12_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n13",
         "fileName": "full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7425,18 +6717,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.794623940677966,
-          "misMatchPercentage": "2.79",
-          "analysisTime": 794
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_13_component--banner__n13_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n14",
         "fileName": "full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7450,18 +6739,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.0477689676616917,
-          "misMatchPercentage": "2.05",
-          "analysisTime": 836
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_14_component--banner__n14_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n15",
         "fileName": "full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7470,23 +6756,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 9.93983102403655,
-          "misMatchPercentage": "9.94",
-          "analysisTime": 10026
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_15_component--banner__n15_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n16",
         "fileName": "full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7495,23 +6778,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 6.93296480635335,
-          "misMatchPercentage": "6.93",
-          "analysisTime": 12480
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_16_component--banner__n16_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n17",
         "fileName": "full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7520,23 +6800,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -392
+            "height": 0
           },
-          "rawMisMatchPercentage": 9.783674140842272,
-          "misMatchPercentage": "9.78",
-          "analysisTime": 10479
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_17_component--banner__n17_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n18",
         "fileName": "full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7545,23 +6822,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -784
+            "height": 0
           },
-          "rawMisMatchPercentage": 6.814349434290688,
-          "misMatchPercentage": "6.81",
-          "analysisTime": 12431
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_18_component--banner__n18_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n19",
         "fileName": "full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7575,18 +6849,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.2663845486111111,
-          "misMatchPercentage": "0.27",
-          "analysisTime": 354
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_19_component--banner__n19_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n20",
         "fileName": "full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7600,18 +6871,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.3026221264367816,
-          "misMatchPercentage": "0.30",
-          "analysisTime": 678
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_20_component--banner__n20_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
         "selector": ".component--banner.__n21",
         "fileName": "full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png",
         "label": "DC: Banner",
@@ -7625,18 +6893,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.1171875,
-          "misMatchPercentage": "0.12",
-          "analysisTime": 537
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Banner_21_component--banner__n21_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_0_Breakpoint_XS.png",
         "label": "DC: Calculator",
@@ -7658,7 +6923,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_1_Breakpoint_S.png",
         "label": "DC: Calculator",
@@ -7680,7 +6945,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_2_Breakpoint_M.png",
         "label": "DC: Calculator",
@@ -7702,7 +6967,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_3_Breakpoint_L.png",
         "label": "DC: Calculator",
@@ -7724,7 +6989,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_4_Breakpoint_XL.png",
         "label": "DC: Calculator",
@@ -7746,7 +7011,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
         "selector": ".component--helfi-calculator",
         "fileName": "full_DC_Calculator_0_component--helfi-calculator_5_Breakpoint_XXL.png",
         "label": "DC: Calculator",
@@ -7768,7 +7033,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_0_Breakpoint_XS.png",
         "label": "DC: Chart",
@@ -7778,23 +7043,20 @@ report({
         "viewportLabel": "Breakpoint_XS",
         "engineErrorMsg": "Navigation timeout of 60000 ms exceeded",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": -88,
-            "height": -148
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 39.6265243902439,
-          "misMatchPercentage": "39.63",
-          "analysisTime": 435
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_1_Breakpoint_S.png",
         "label": "DC: Chart",
@@ -7804,23 +7066,20 @@ report({
         "viewportLabel": "Breakpoint_S",
         "engineErrorMsg": "Navigation timeout of 60000 ms exceeded",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": -344,
-            "height": 4
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 40.133101851851855,
-          "misMatchPercentage": "40.13",
-          "analysisTime": 492
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_2_Breakpoint_M.png",
         "label": "DC: Chart",
@@ -7830,23 +7089,20 @@ report({
         "viewportLabel": "Breakpoint_M",
         "engineErrorMsg": "Navigation timeout of 60000 ms exceeded",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": -472,
-            "height": 28
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 32.838541666666664,
-          "misMatchPercentage": "32.84",
-          "analysisTime": 490
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_3_Breakpoint_L.png",
         "label": "DC: Chart",
@@ -7856,23 +7112,20 @@ report({
         "viewportLabel": "Breakpoint_L",
         "engineErrorMsg": "Navigation timeout of 60000 ms exceeded",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": -292,
-            "height": -108
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 27.572360050890588,
-          "misMatchPercentage": "27.57",
-          "analysisTime": 343
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_4_Breakpoint_XL.png",
         "label": "DC: Chart",
@@ -7886,18 +7139,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 13.37134837584478,
-          "misMatchPercentage": "13.37",
-          "analysisTime": 499
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
         "selector": ".component--chart.__n1",
         "fileName": "full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png",
         "label": "DC: Chart",
@@ -7906,23 +7156,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 18.450089928057555,
-          "misMatchPercentage": "18.45",
-          "analysisTime": 749
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_1_component--chart__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
         "selector": ".component--chart",
         "fileName": "full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png",
         "label": "DC: Chart",
@@ -7932,23 +7179,20 @@ report({
         "viewportLabel": "Breakpoint_XXL",
         "engineErrorMsg": "Navigation timeout of 60000 ms exceeded",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": -628,
-            "height": -12
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 25.18955910852713,
-          "misMatchPercentage": "25.19",
-          "analysisTime": 530
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Chart_0_component--chart_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -7957,23 +7201,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.009533898305085,
-          "misMatchPercentage": "14.01",
-          "analysisTime": 745
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -7982,23 +7223,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.985699152542372,
-          "misMatchPercentage": "13.99",
-          "analysisTime": 617
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8007,23 +7245,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.018361581920905,
-          "misMatchPercentage": "14.02",
-          "analysisTime": 685
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8037,18 +7272,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 40.9515977443609,
-          "misMatchPercentage": "40.95",
-          "analysisTime": 683
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8062,18 +7294,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 40.91987781954887,
-          "misMatchPercentage": "40.92",
-          "analysisTime": 713
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8087,18 +7316,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 40.963345864661655,
-          "misMatchPercentage": "40.96",
-          "analysisTime": 616
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8112,18 +7338,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 54.04462064676617,
-          "misMatchPercentage": "54.04",
-          "analysisTime": 833
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8137,18 +7360,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 54.0321828358209,
-          "misMatchPercentage": "54.03",
-          "analysisTime": 837
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8162,18 +7382,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 54.060945273631845,
-          "misMatchPercentage": "54.06",
-          "analysisTime": 860
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png",
         "label": "DC: Columns",
@@ -8187,18 +7404,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 50.77080933179724,
-          "misMatchPercentage": "50.77",
-          "analysisTime": 927
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8212,18 +7426,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.418737816764132,
-          "misMatchPercentage": "11.42",
-          "analysisTime": 629
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8237,18 +7448,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.398178606237817,
-          "misMatchPercentage": "11.40",
-          "analysisTime": 684
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8262,18 +7470,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.426352339181287,
-          "misMatchPercentage": "11.43",
-          "analysisTime": 582
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8282,23 +7487,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 62.01529892837,
-          "misMatchPercentage": "62.02",
-          "analysisTime": 1345
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8312,18 +7514,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 62.158359184057154,
-          "misMatchPercentage": "62.16",
-          "analysisTime": 1327
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8332,23 +7531,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 62.415833802552555,
-          "misMatchPercentage": "62.42",
-          "analysisTime": 1047
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8357,23 +7553,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 75.590942317916,
-          "misMatchPercentage": "75.59",
-          "analysisTime": 2051
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8382,23 +7575,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 75.5690124933546,
-          "misMatchPercentage": "75.57",
-          "analysisTime": 1942
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8407,23 +7597,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 75.58130648591175,
-          "misMatchPercentage": "75.58",
-          "analysisTime": 1553
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png",
         "label": "DC: Columns",
@@ -8432,23 +7619,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 73.10819892473118,
-          "misMatchPercentage": "73.11",
-          "analysisTime": 1961
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8462,18 +7646,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.649744963842975,
-          "misMatchPercentage": "11.65",
-          "analysisTime": 782
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8487,18 +7668,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.56191222570533,
-          "misMatchPercentage": "8.56",
-          "analysisTime": 837
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8512,18 +7690,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.591510052447552,
-          "misMatchPercentage": "7.59",
-          "analysisTime": 939
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8537,18 +7712,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 43.311688311688314,
-          "misMatchPercentage": "43.31",
-          "analysisTime": 714
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8562,18 +7734,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 24.68166599025974,
-          "misMatchPercentage": "24.68",
-          "analysisTime": 469
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8587,18 +7756,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 47.13670979755539,
-          "misMatchPercentage": "47.14",
-          "analysisTime": 589
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8607,23 +7773,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 45.34406565656566,
-          "misMatchPercentage": "45.34",
-          "analysisTime": 783
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8632,23 +7795,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 29.31053321678322,
-          "misMatchPercentage": "29.31",
-          "analysisTime": 925
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8657,23 +7817,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 63.377878289473685,
-          "misMatchPercentage": "63.38",
-          "analysisTime": 1834
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png",
         "label": "DC: Columns",
@@ -8687,18 +7844,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 41.10373720895743,
-          "misMatchPercentage": "41.10",
-          "analysisTime": 1231
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8712,18 +7866,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.111905831034704,
-          "misMatchPercentage": "12.11",
-          "analysisTime": 676
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8737,18 +7888,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.343636404943657,
-          "misMatchPercentage": "7.34",
-          "analysisTime": 705
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8762,18 +7910,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.248990266165839,
-          "misMatchPercentage": "6.25",
-          "analysisTime": 1046
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8782,23 +7927,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 28
+            "height": 0
           },
-          "rawMisMatchPercentage": 23.105739327113373,
-          "misMatchPercentage": "23.11",
-          "analysisTime": 610
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8812,18 +7954,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 16.510019083969464,
-          "misMatchPercentage": "16.51",
-          "analysisTime": 616
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8837,18 +7976,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 22.81230658139055,
-          "misMatchPercentage": "22.81",
-          "analysisTime": 948
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8862,18 +7998,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 39.44972650119608,
-          "misMatchPercentage": "39.45",
-          "analysisTime": 840
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8887,18 +8020,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 24.430073846664456,
-          "misMatchPercentage": "24.43",
-          "analysisTime": 515
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8912,18 +8042,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 45.768589917464254,
-          "misMatchPercentage": "45.77",
-          "analysisTime": 1205
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png",
         "label": "DC: Columns",
@@ -8937,18 +8064,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 35.16753360805242,
-          "misMatchPercentage": "35.17",
-          "analysisTime": 879
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -8962,18 +8086,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.966806911613567,
-          "misMatchPercentage": "10.97",
-          "analysisTime": 638
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -8987,18 +8108,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.988962401507366,
-          "misMatchPercentage": "6.99",
-          "analysisTime": 820
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9012,18 +8130,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.07502569373073,
-          "misMatchPercentage": "7.08",
-          "analysisTime": 740
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9037,18 +8152,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 25.43762020086901,
-          "misMatchPercentage": "25.44",
-          "analysisTime": 739
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9062,18 +8174,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 18.907066127919585,
-          "misMatchPercentage": "18.91",
-          "analysisTime": 617
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9087,18 +8196,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 27.840684769257763,
-          "misMatchPercentage": "27.84",
-          "analysisTime": 1101
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9112,18 +8218,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 39.26892771497088,
-          "misMatchPercentage": "39.27",
-          "analysisTime": 560
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9132,23 +8235,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 26.22091741648464,
-          "misMatchPercentage": "26.22",
-          "analysisTime": 656
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9157,23 +8257,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 54.95050767896321,
-          "misMatchPercentage": "54.95",
-          "analysisTime": 1361
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png",
         "label": "DC: Columns",
@@ -9182,23 +8279,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 35.11157175954152,
-          "misMatchPercentage": "35.11",
-          "analysisTime": 1007
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
         "selector": ".component--columns",
         "fileName": "full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9212,18 +8306,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.382507027855864,
-          "misMatchPercentage": "9.38",
-          "analysisTime": 651
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_0_component--columns_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n1",
         "fileName": "full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9237,18 +8328,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.277304817275748,
-          "misMatchPercentage": "7.28",
-          "analysisTime": 612
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_1_component--columns__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n2",
         "fileName": "full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9262,18 +8350,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.912986124682432,
-          "misMatchPercentage": "6.91",
-          "analysisTime": 876
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_2_component--columns__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n3",
         "fileName": "full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9287,18 +8372,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 39.70977758063494,
-          "misMatchPercentage": "39.71",
-          "analysisTime": 1005
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_3_component--columns__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n4",
         "fileName": "full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9307,23 +8389,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 24.90026656861844,
-          "misMatchPercentage": "24.90",
-          "analysisTime": 789
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_4_component--columns__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n5",
         "fileName": "full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9332,23 +8411,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 57.26309948856508,
-          "misMatchPercentage": "57.26",
-          "analysisTime": 1159
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_5_component--columns__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n6",
         "fileName": "full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9357,23 +8433,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 43.99482838131629,
-          "misMatchPercentage": "43.99",
-          "analysisTime": 1640
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_6_component--columns__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n7",
         "fileName": "full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9382,23 +8455,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 27.309748754152825,
-          "misMatchPercentage": "27.31",
-          "analysisTime": 1025
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_7_component--columns__n7_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n8",
         "fileName": "full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9407,23 +8477,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 62.278297790215184,
-          "misMatchPercentage": "62.28",
-          "analysisTime": 2326
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_8_component--columns__n8_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
         "selector": ".component--columns.__n9",
         "fileName": "full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png",
         "label": "DC: Columns",
@@ -9432,23 +8499,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 40.536846874056174,
-          "misMatchPercentage": "40.54",
-          "analysisTime": 1502
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Columns_9_component--columns__n9_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png",
         "label": "DC: Contact card listing",
@@ -9457,23 +8521,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -24
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.45703125,
-          "misMatchPercentage": "14.46",
-          "analysisTime": 515
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png",
         "label": "DC: Contact card listing",
@@ -9487,18 +8548,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.73424913693901,
-          "misMatchPercentage": "14.73",
-          "analysisTime": 948
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png",
         "label": "DC: Contact card listing",
@@ -9512,18 +8570,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.935267857142857,
-          "misMatchPercentage": "2.94",
-          "analysisTime": 228
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png",
         "label": "DC: Contact card listing",
@@ -9532,23 +8587,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 48
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.18832236842105,
-          "misMatchPercentage": "16.19",
-          "analysisTime": 2029
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png",
         "label": "DC: Contact card listing",
@@ -9557,23 +8609,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -207
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.636999244142103,
-          "misMatchPercentage": "12.64",
-          "analysisTime": 665
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png",
         "label": "DC: Contact card listing",
@@ -9582,23 +8631,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 304
+            "height": 0
           },
-          "rawMisMatchPercentage": 22.554279618473895,
-          "misMatchPercentage": "22.55",
-          "analysisTime": 1896
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png",
         "label": "DC: Contact card listing",
@@ -9612,18 +8658,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.6307043650793651,
-          "misMatchPercentage": "1.63",
-          "analysisTime": 252
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png",
         "label": "DC: Contact card listing",
@@ -9632,23 +8675,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 87
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.494065889093513,
-          "misMatchPercentage": "14.49",
-          "analysisTime": 2692
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png",
         "label": "DC: Contact card listing",
@@ -9657,23 +8697,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -207
+            "height": 0
           },
-          "rawMisMatchPercentage": 10.339363017934447,
-          "misMatchPercentage": "10.34",
-          "analysisTime": 878
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png",
         "label": "DC: Contact card listing",
@@ -9682,23 +8719,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -272
+            "height": 0
           },
-          "rawMisMatchPercentage": 24.291379057130268,
-          "misMatchPercentage": "24.29",
-          "analysisTime": 1796
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png",
         "label": "DC: Contact card listing",
@@ -9712,18 +8746,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.3342126623376624,
-          "misMatchPercentage": "1.33",
-          "analysisTime": 237
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png",
         "label": "DC: Contact card listing",
@@ -9732,23 +8763,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 111
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.156700747389376,
-          "misMatchPercentage": "12.16",
-          "analysisTime": 3074
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png",
         "label": "DC: Contact card listing",
@@ -9757,23 +8785,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -207
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.351466760258548,
-          "misMatchPercentage": "13.35",
-          "analysisTime": 935
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png",
         "label": "DC: Contact card listing",
@@ -9782,23 +8807,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 320
+            "height": 0
           },
-          "rawMisMatchPercentage": 23.541841765516285,
-          "misMatchPercentage": "23.54",
-          "analysisTime": 1811
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png",
         "label": "DC: Contact card listing",
@@ -9812,18 +8834,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.8305544395339495,
-          "misMatchPercentage": "1.83",
-          "analysisTime": 235
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png",
         "label": "DC: Contact card listing",
@@ -9832,23 +8851,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 63
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.572913408953081,
-          "misMatchPercentage": "15.57",
-          "analysisTime": 2572
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png",
         "label": "DC: Contact card listing",
@@ -9857,23 +8873,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -207
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.583037018660933,
-          "misMatchPercentage": "12.58",
-          "analysisTime": 1057
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png",
         "label": "DC: Contact card listing",
@@ -9882,23 +8895,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 320
+            "height": 0
           },
-          "rawMisMatchPercentage": 22.18691562073837,
-          "misMatchPercentage": "22.19",
-          "analysisTime": 1710
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png",
         "label": "DC: Contact card listing",
@@ -9912,18 +8922,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.725198788337751,
-          "misMatchPercentage": "1.73",
-          "analysisTime": 413
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png",
         "label": "DC: Contact card listing",
@@ -9932,23 +8939,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 87
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.400721236612727,
-          "misMatchPercentage": "14.40",
-          "analysisTime": 2761
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
         "selector": ".component--contact-card-listing",
         "fileName": "full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png",
         "label": "DC: Contact card listing",
@@ -9957,23 +8961,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -207
+            "height": 0
           },
-          "rawMisMatchPercentage": 8.13478273783005,
-          "misMatchPercentage": "8.13",
-          "analysisTime": 1217
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_0_component--contact-card-listing_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
         "selector": ".component--contact-card-listing.__n1",
         "fileName": "full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png",
         "label": "DC: Contact card listing",
@@ -9982,23 +8983,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -242
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.141026562668486,
-          "misMatchPercentage": "19.14",
-          "analysisTime": 1864
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_1_component--contact-card-listing__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
         "selector": ".component--contact-card-listing.__n2",
         "fileName": "full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png",
         "label": "DC: Contact card listing",
@@ -10012,18 +9010,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.115361077111383,
-          "misMatchPercentage": "1.12",
-          "analysisTime": 337
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_2_component--contact-card-listing__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
         "selector": ".component--contact-card-listing.__n3",
         "fileName": "full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png",
         "label": "DC: Contact card listing",
@@ -10032,23 +9027,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 135
+            "height": 0
           },
-          "rawMisMatchPercentage": 10.159045278160422,
-          "misMatchPercentage": "10.16",
-          "analysisTime": 3486
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Contact_card_listing_3_component--contact-card-listing__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10062,18 +9054,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.2277113970588234,
-          "misMatchPercentage": "2.23",
-          "analysisTime": 756
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10087,18 +9076,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.2886029411764706,
-          "misMatchPercentage": "2.29",
-          "analysisTime": 928
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10112,18 +9098,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.204212306701031,
-          "misMatchPercentage": "2.20",
-          "analysisTime": 925
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10137,18 +9120,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.2626047036082473,
-          "misMatchPercentage": "2.26",
-          "analysisTime": 888
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10162,18 +9142,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8134920634920636,
-          "misMatchPercentage": "0.81",
-          "analysisTime": 239
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png",
         "label": "DC: Content cards",
@@ -10182,23 +9159,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -32
+            "height": 0
           },
-          "rawMisMatchPercentage": 23.19051875337291,
-          "misMatchPercentage": "23.19",
-          "analysisTime": 2374
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10212,18 +9186,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.468765386509109,
-          "misMatchPercentage": "2.47",
-          "analysisTime": 723
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10232,23 +9203,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.452086410635156,
-          "misMatchPercentage": "4.45",
-          "analysisTime": 745
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10262,18 +9230,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.09176009774328,
-          "misMatchPercentage": "3.09",
-          "analysisTime": 902
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10282,23 +9247,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.7759900100618085,
-          "misMatchPercentage": "4.78",
-          "analysisTime": 782
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10307,23 +9269,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.4892676767676768,
-          "misMatchPercentage": "0.49",
-          "analysisTime": 527
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png",
         "label": "DC: Content cards",
@@ -10337,18 +9296,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.656511553857351,
-          "misMatchPercentage": "4.66",
-          "analysisTime": 1729
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10362,18 +9318,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.8286268815929831,
-          "misMatchPercentage": "1.83",
-          "analysisTime": 951
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10382,23 +9335,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.5144675240014225,
-          "misMatchPercentage": "3.51",
-          "analysisTime": 955
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10412,18 +9362,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.1358080220129114,
-          "misMatchPercentage": "2.14",
-          "analysisTime": 1185
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10432,23 +9379,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.582720393692454,
-          "misMatchPercentage": "3.58",
-          "analysisTime": 989
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10457,23 +9401,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.3446270591824283,
-          "misMatchPercentage": "0.34",
-          "analysisTime": 452
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png",
         "label": "DC: Content cards",
@@ -10487,18 +9428,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.396464646464646,
-          "misMatchPercentage": "3.40",
-          "analysisTime": 2028
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10512,18 +9450,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.3634883395195745,
-          "misMatchPercentage": "4.36",
-          "analysisTime": 723
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10532,23 +9467,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.120513685631142,
-          "misMatchPercentage": "5.12",
-          "analysisTime": 695
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10562,18 +9494,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.2232970106637144,
-          "misMatchPercentage": "3.22",
-          "analysisTime": 652
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10582,23 +9511,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.109439802849072,
-          "misMatchPercentage": "4.11",
-          "analysisTime": 946
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10612,18 +9538,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8311570912012857,
-          "misMatchPercentage": "0.83",
-          "analysisTime": 220
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png",
         "label": "DC: Content cards",
@@ -10632,23 +9555,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.866889312977099,
-          "misMatchPercentage": "7.87",
-          "analysisTime": 1389
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10657,23 +9577,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.706307593150661,
-          "misMatchPercentage": "4.71",
-          "analysisTime": 386
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10687,18 +9604,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.9670141437870114,
-          "misMatchPercentage": "2.97",
-          "analysisTime": 839
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10707,23 +9621,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.3839655548288645,
-          "misMatchPercentage": "5.38",
-          "analysisTime": 733
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10732,23 +9643,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.862769784172662,
-          "misMatchPercentage": "3.86",
-          "analysisTime": 1003
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10757,23 +9665,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.7649674252014697,
-          "misMatchPercentage": "0.76",
-          "analysisTime": 361
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png",
         "label": "DC: Content cards",
@@ -10782,23 +9687,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.373037554052186,
-          "misMatchPercentage": "5.37",
-          "analysisTime": 1422
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards",
         "fileName": "full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10812,18 +9714,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.3656816459754038,
-          "misMatchPercentage": "3.37",
-          "analysisTime": 717
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_0_component--content-cards_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards.__n1",
         "fileName": "full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10832,23 +9731,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.523192790067436,
-          "misMatchPercentage": "3.52",
-          "analysisTime": 948
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_1_component--content-cards__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards.__n2",
         "fileName": "full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10857,23 +9753,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.699918819540614,
-          "misMatchPercentage": "3.70",
-          "analysisTime": 885
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_2_component--content-cards__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards.__n3",
         "fileName": "full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10887,18 +9780,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.362396619221695,
-          "misMatchPercentage": "2.36",
-          "analysisTime": 1221
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_3_component--content-cards__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards.__n4",
         "fileName": "full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10907,23 +9797,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 1.2970401691331923,
-          "misMatchPercentage": "1.30",
-          "analysisTime": 406
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_4_component--content-cards__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
         "selector": ".component--content-cards.__n5",
         "fileName": "full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png",
         "label": "DC: Content cards",
@@ -10937,18 +9824,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.188503729706011,
-          "misMatchPercentage": "4.19",
-          "analysisTime": 1588
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_cards_5_component--content-cards__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png",
         "label": "DC: Content liftup",
@@ -10957,23 +9841,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 42.049731182795696,
-          "misMatchPercentage": "42.05",
-          "analysisTime": 263
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png",
         "label": "DC: Content liftup",
@@ -10987,18 +9868,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 63.34574798261949,
-          "misMatchPercentage": "63.35",
-          "analysisTime": 491
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png",
         "label": "DC: Content liftup",
@@ -11012,18 +9890,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 28.98544034090909,
-          "misMatchPercentage": "28.99",
-          "analysisTime": 531
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png",
         "label": "DC: Content liftup",
@@ -11037,18 +9912,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.373568702290077,
-          "misMatchPercentage": "8.37",
-          "analysisTime": 404
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png",
         "label": "DC: Content liftup",
@@ -11062,18 +9934,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.489658273381295,
-          "misMatchPercentage": "8.49",
-          "analysisTime": 330
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
         "selector": ".component--content-liftup",
         "fileName": "full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png",
         "label": "DC: Content liftup",
@@ -11087,18 +9956,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.303197674418605,
-          "misMatchPercentage": "12.30",
-          "analysisTime": 614
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Content_liftup_0_component--content-liftup_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_0_Breakpoint_XS.png",
         "label": "DC: Events",
@@ -11121,7 +9987,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_1_Breakpoint_S.png",
         "label": "DC: Events",
@@ -11144,7 +10010,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_2_Breakpoint_M.png",
         "label": "DC: Events",
@@ -11167,7 +10033,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_3_Breakpoint_L.png",
         "label": "DC: Events",
@@ -11190,7 +10056,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_4_Breakpoint_XL.png",
         "label": "DC: Events",
@@ -11213,7 +10079,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
         "selector": ".component--event-list",
         "fileName": "full_DC_Events_0_component--event-list_5_Breakpoint_XXL.png",
         "label": "DC: Events",
@@ -11236,7 +10102,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_0_Breakpoint_XS.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11250,18 +10116,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 69.84130859375,
-          "misMatchPercentage": "69.84",
-          "analysisTime": 333
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11275,18 +10138,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 47.111265120967744,
-          "misMatchPercentage": "47.11",
-          "analysisTime": 521
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11300,18 +10160,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 75.50511853448276,
-          "misMatchPercentage": "75.51",
-          "analysisTime": 302
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11325,18 +10182,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 74.13927801724138,
-          "misMatchPercentage": "74.14",
-          "analysisTime": 399
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11350,18 +10204,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 81.37314618644068,
-          "misMatchPercentage": "81.37",
-          "analysisTime": 584
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11375,18 +10226,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 30.76508620689655,
-          "misMatchPercentage": "30.77",
-          "analysisTime": 343
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png",
         "label": "DC: Image",
@@ -11400,18 +10248,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 75.3380926724138,
-          "misMatchPercentage": "75.34",
-          "analysisTime": 423
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_1_Breakpoint_S.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11420,23 +10265,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 85.62904948993658,
-          "misMatchPercentage": "85.63",
-          "analysisTime": 756
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11450,18 +10292,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 69.26607251675807,
-          "misMatchPercentage": "69.27",
-          "analysisTime": 803
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11470,23 +10309,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 85.19965277777779,
-          "misMatchPercentage": "85.20",
-          "analysisTime": 797
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11500,18 +10336,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 84.17123311276538,
-          "misMatchPercentage": "84.17",
-          "analysisTime": 889
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11520,23 +10353,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 88.57164851549332,
-          "misMatchPercentage": "88.57",
-          "analysisTime": 1541
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11545,23 +10375,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 34.093096809680965,
-          "misMatchPercentage": "34.09",
-          "analysisTime": 739
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_1_Breakpoint_S.png",
         "label": "DC: Image",
@@ -11575,18 +10402,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 85.30250551419907,
-          "misMatchPercentage": "85.30",
-          "analysisTime": 853
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_2_Breakpoint_M.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11600,18 +10424,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 92.66154188948306,
-          "misMatchPercentage": "92.66",
-          "analysisTime": 1231
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11620,23 +10441,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 82.60095289800809,
-          "misMatchPercentage": "82.60",
-          "analysisTime": 1436
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11650,18 +10468,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 92.34430704099822,
-          "misMatchPercentage": "92.34",
-          "analysisTime": 1115
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11670,23 +10485,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 90.93105096957837,
-          "misMatchPercentage": "90.93",
-          "analysisTime": 1240
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11700,18 +10512,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 94.67348968260545,
-          "misMatchPercentage": "94.67",
-          "analysisTime": 2083
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11720,23 +10529,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 37.116949830990926,
-          "misMatchPercentage": "37.12",
-          "analysisTime": 966
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_2_Breakpoint_M.png",
         "label": "DC: Image",
@@ -11750,18 +10556,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 92.27328431372548,
-          "misMatchPercentage": "92.27",
-          "analysisTime": 1259
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_3_Breakpoint_L.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11770,23 +10573,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 90.39391270307301,
-          "misMatchPercentage": "90.39",
-          "analysisTime": 648
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11800,18 +10600,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 72.68669411327444,
-          "misMatchPercentage": "72.69",
-          "analysisTime": 982
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11820,23 +10617,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 90.13260912115874,
-          "misMatchPercentage": "90.13",
-          "analysisTime": 940
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11845,23 +10639,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 88.67749555846235,
-          "misMatchPercentage": "88.68",
-          "analysisTime": 822
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11870,23 +10661,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 93.50291220912523,
-          "misMatchPercentage": "93.50",
-          "analysisTime": 1543
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11900,18 +10688,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 36.36425915051869,
-          "misMatchPercentage": "36.36",
-          "analysisTime": 630
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_3_Breakpoint_L.png",
         "label": "DC: Image",
@@ -11920,23 +10705,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 90.04501859463691,
-          "misMatchPercentage": "90.05",
-          "analysisTime": 699
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_4_Breakpoint_XL.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -11950,18 +10732,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 91.0785240420802,
-          "misMatchPercentage": "91.08",
-          "analysisTime": 875
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -11970,23 +10749,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -26
+            "height": 0
           },
-          "rawMisMatchPercentage": 73.7426246053517,
-          "misMatchPercentage": "73.74",
-          "analysisTime": 952
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -12000,18 +10776,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 90.58009067198796,
-          "misMatchPercentage": "90.58",
-          "analysisTime": 871
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -12020,23 +10793,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 89.41555493469302,
-          "misMatchPercentage": "89.42",
-          "analysisTime": 829
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -12045,23 +10815,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 93.88550873586846,
-          "misMatchPercentage": "93.89",
-          "analysisTime": 1572
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -12070,23 +10837,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 36.56535936299504,
-          "misMatchPercentage": "36.57",
-          "analysisTime": 695
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png",
         "label": "DC: Image",
@@ -12100,18 +10864,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 90.48688056853787,
-          "misMatchPercentage": "90.49",
-          "analysisTime": 904
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
         "selector": ".component--image",
         "fileName": "full_DC_Image_0_component--image_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12120,23 +10881,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 93.65862434664041,
-          "misMatchPercentage": "93.66",
-          "analysisTime": 1590
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_0_component--image_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n1",
         "fileName": "full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12150,18 +10908,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 87.19913214455217,
-          "misMatchPercentage": "87.20",
-          "analysisTime": 1677
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_1_component--image__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n2",
         "fileName": "full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12170,23 +10925,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 93.62207408529657,
-          "misMatchPercentage": "93.62",
-          "analysisTime": 1622
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_2_component--image__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n3",
         "fileName": "full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12195,23 +10947,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 92.21818869351485,
-          "misMatchPercentage": "92.22",
-          "analysisTime": 1617
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_3_component--image__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n4",
         "fileName": "full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12220,23 +10969,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 95.16834693271365,
-          "misMatchPercentage": "95.17",
-          "analysisTime": 3825
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_4_component--image__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n5",
         "fileName": "full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12250,18 +10996,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 37.338080448450874,
-          "misMatchPercentage": "37.34",
-          "analysisTime": 1089
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_5_component--image__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
         "selector": ".component--image.__n6",
         "fileName": "full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png",
         "label": "DC: Image",
@@ -12270,23 +11013,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 93.52852056662374,
-          "misMatchPercentage": "93.53",
-          "analysisTime": 1306
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Image_6_component--image__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12300,18 +11040,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 40.182038834951456,
-          "misMatchPercentage": "40.18",
-          "analysisTime": 269
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12320,23 +11057,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 41.230846774193544,
-          "misMatchPercentage": "41.23",
-          "analysisTime": 347
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12345,23 +11079,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 24.22241568914956,
-          "misMatchPercentage": "24.22",
-          "analysisTime": 564
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12370,23 +11101,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 22.771719208211145,
-          "misMatchPercentage": "22.77",
-          "analysisTime": 563
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12395,23 +11123,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -56
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.195339771933908,
-          "misMatchPercentage": "15.20",
-          "analysisTime": 2389
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12420,23 +11145,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -55
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.984262276006517,
-          "misMatchPercentage": "15.98",
-          "analysisTime": 2454
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12445,23 +11167,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.944789879931392,
-          "misMatchPercentage": "19.94",
-          "analysisTime": 773
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12470,23 +11189,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.214005235602095,
-          "misMatchPercentage": "16.21",
-          "analysisTime": 1121
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12495,23 +11211,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 27.12798937112489,
-          "misMatchPercentage": "27.13",
-          "analysisTime": 1477
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png",
         "label": "DC: Liftup with image",
@@ -12520,23 +11233,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -26
+            "height": 0
           },
-          "rawMisMatchPercentage": 28.21942844483828,
-          "misMatchPercentage": "28.22",
-          "analysisTime": 1699
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12550,18 +11260,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 52.92098491257755,
-          "misMatchPercentage": "52.92",
-          "analysisTime": 841
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12570,23 +11277,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 53.968442334739805,
-          "misMatchPercentage": "53.97",
-          "analysisTime": 675
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12595,23 +11299,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 36.863425925925924,
-          "misMatchPercentage": "36.86",
-          "analysisTime": 1093
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12620,23 +11321,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 36.876162945241894,
-          "misMatchPercentage": "36.88",
-          "analysisTime": 1085
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12645,23 +11343,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -27
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.71219263235159,
-          "misMatchPercentage": "20.71",
-          "analysisTime": 2829
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12670,23 +11365,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -27
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.66982922745206,
-          "misMatchPercentage": "20.67",
-          "analysisTime": 2995
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12695,23 +11387,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 32.54320430538842,
-          "misMatchPercentage": "32.54",
-          "analysisTime": 1173
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12720,23 +11409,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 27.539447731755423,
-          "misMatchPercentage": "27.54",
-          "analysisTime": 1635
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12745,23 +11431,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 41.03791916500111,
-          "misMatchPercentage": "41.04",
-          "analysisTime": 1997
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png",
         "label": "DC: Liftup with image",
@@ -12770,23 +11453,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 40.04876378710489,
-          "misMatchPercentage": "40.05",
-          "analysisTime": 2065
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12800,18 +11480,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 56.053059895833336,
-          "misMatchPercentage": "56.05",
-          "analysisTime": 1031
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12820,23 +11497,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 56.451132623007624,
-          "misMatchPercentage": "56.45",
-          "analysisTime": 1041
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12850,18 +11524,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 42.575928233640084,
-          "misMatchPercentage": "42.58",
-          "analysisTime": 1275
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12870,23 +11541,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 43.10115173557938,
-          "misMatchPercentage": "43.10",
-          "analysisTime": 1403
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12895,23 +11563,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 26
+            "height": 0
           },
-          "rawMisMatchPercentage": 25.209548875359378,
-          "misMatchPercentage": "25.21",
-          "analysisTime": 3260
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12920,23 +11585,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 28
+            "height": 0
           },
-          "rawMisMatchPercentage": 24.488212580290735,
-          "misMatchPercentage": "24.49",
-          "analysisTime": 3190
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12945,23 +11607,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -2
+            "height": 0
           },
-          "rawMisMatchPercentage": 38.53956392339545,
-          "misMatchPercentage": "38.54",
-          "analysisTime": 1682
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12970,23 +11629,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 30.757313427187405,
-          "misMatchPercentage": "30.76",
-          "analysisTime": 1830
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -12995,23 +11651,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 47.77746886120997,
-          "misMatchPercentage": "47.78",
-          "analysisTime": 2724
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png",
         "label": "DC: Liftup with image",
@@ -13025,18 +11678,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 47.875611654804274,
-          "misMatchPercentage": "47.88",
-          "analysisTime": 2769
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13045,23 +11695,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 45.40240289664253,
-          "misMatchPercentage": "45.40",
-          "analysisTime": 1046
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13070,23 +11717,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 45.29789335088874,
-          "misMatchPercentage": "45.30",
-          "analysisTime": 1072
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13095,23 +11739,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 48.00711816984858,
-          "misMatchPercentage": "48.01",
-          "analysisTime": 1188
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13120,23 +11761,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 47.905694535878865,
-          "misMatchPercentage": "47.91",
-          "analysisTime": 1088
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13145,23 +11783,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.812026190179072,
-          "misMatchPercentage": "19.81",
-          "analysisTime": 3705
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13170,23 +11805,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.78599589754789,
-          "misMatchPercentage": "19.79",
-          "analysisTime": 3498
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13195,23 +11827,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 41.13260213240494,
-          "misMatchPercentage": "41.13",
-          "analysisTime": 1372
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13220,23 +11849,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 27
+            "height": 0
           },
-          "rawMisMatchPercentage": 30.391116217878622,
-          "misMatchPercentage": "30.39",
-          "analysisTime": 2287
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13245,23 +11871,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 61.1874208448186,
-          "misMatchPercentage": "61.19",
-          "analysisTime": 3675
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png",
         "label": "DC: Liftup with image",
@@ -13270,23 +11893,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 61.193532090441785,
-          "misMatchPercentage": "61.19",
-          "analysisTime": 3588
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13300,18 +11920,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 47.24004836309524,
-          "misMatchPercentage": "47.24",
-          "analysisTime": 1282
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13325,18 +11942,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 47.14161706349206,
-          "misMatchPercentage": "47.14",
-          "analysisTime": 1143
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13350,18 +11964,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 49.69327411954365,
-          "misMatchPercentage": "49.69",
-          "analysisTime": 1172
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13375,18 +11986,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 49.59774925595239,
-          "misMatchPercentage": "49.60",
-          "analysisTime": 1189
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13395,23 +12003,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 56
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.202943665377177,
-          "misMatchPercentage": "20.20",
-          "analysisTime": 3857
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13420,23 +12025,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 56
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.177915709622823,
-          "misMatchPercentage": "20.18",
-          "analysisTime": 3754
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13450,18 +12052,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 43.43773094383446,
-          "misMatchPercentage": "43.44",
-          "analysisTime": 1660
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13470,23 +12069,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 28
+            "height": 0
           },
-          "rawMisMatchPercentage": 31.64724576271186,
-          "misMatchPercentage": "31.65",
-          "analysisTime": 2259
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13495,23 +12091,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 56
+            "height": 0
           },
-          "rawMisMatchPercentage": 62.19936309180139,
-          "misMatchPercentage": "62.20",
-          "analysisTime": 3642
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png",
         "label": "DC: Liftup with image",
@@ -13520,23 +12113,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 56
+            "height": 0
           },
-          "rawMisMatchPercentage": 62.20460675880485,
-          "misMatchPercentage": "62.20",
-          "analysisTime": 3813
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image",
         "fileName": "full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13545,23 +12135,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 42.3391187870497,
-          "misMatchPercentage": "42.34",
-          "analysisTime": 2427
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_0_component--liftup-with-image_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n1",
         "fileName": "full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13570,23 +12157,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 42.30235408116735,
-          "misMatchPercentage": "42.30",
-          "analysisTime": 2622
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_1_component--liftup-with-image__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n2",
         "fileName": "full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13595,23 +12179,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 43.241207820337436,
-          "misMatchPercentage": "43.24",
-          "analysisTime": 2577
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_2_component--liftup-with-image__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n3",
         "fileName": "full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13625,18 +12206,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 43.276832535339715,
-          "misMatchPercentage": "43.28",
-          "analysisTime": 2544
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_3_component--liftup-with-image__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n4",
         "fileName": "full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13645,23 +12223,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.039002055125724,
-          "misMatchPercentage": "19.04",
-          "analysisTime": 6986
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_4_component--liftup-with-image__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n5",
         "fileName": "full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13670,23 +12245,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.023739724371374,
-          "misMatchPercentage": "19.02",
-          "analysisTime": 6517
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_5_component--liftup-with-image__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n6",
         "fileName": "full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13695,23 +12267,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 43.78655095759234,
-          "misMatchPercentage": "43.79",
-          "analysisTime": 2387
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_6_component--liftup-with-image__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n7",
         "fileName": "full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13720,23 +12289,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 27
+            "height": 0
           },
-          "rawMisMatchPercentage": 34.71585893361582,
-          "misMatchPercentage": "34.72",
-          "analysisTime": 3881
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_7_component--liftup-with-image__n7_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n8",
         "fileName": "full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13745,23 +12311,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 77.12786879330254,
-          "misMatchPercentage": "77.13",
-          "analysisTime": 7457
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_8_component--liftup-with-image__n8_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
         "selector": ".component--liftup-with-image.__n9",
         "fileName": "full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png",
         "label": "DC: Liftup with image",
@@ -13770,23 +12333,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 55
+            "height": 0
           },
-          "rawMisMatchPercentage": 77.13652930138568,
-          "misMatchPercentage": "77.14",
-          "analysisTime": 6842
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Liftup_with_image_9_component--liftup-with-image__n9_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13800,18 +12360,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.51469017094017,
-          "misMatchPercentage": "7.51",
-          "analysisTime": 266
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13825,18 +12382,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.000309405940594,
-          "misMatchPercentage": "7.00",
-          "analysisTime": 367
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13850,18 +12404,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.703773041474653,
-          "misMatchPercentage": "12.70",
-          "analysisTime": 448
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13875,18 +12426,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.5496794871794872,
-          "misMatchPercentage": "3.55",
-          "analysisTime": 247
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13900,18 +12448,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.65625,
-          "misMatchPercentage": "5.66",
-          "analysisTime": 270
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13925,18 +12470,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.3600898692810457,
-          "misMatchPercentage": "2.36",
-          "analysisTime": 477
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13950,18 +12492,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.6698042168674698,
-          "misMatchPercentage": "1.67",
-          "analysisTime": 697
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -13975,18 +12514,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.421491228070176,
-          "misMatchPercentage": "10.42",
-          "analysisTime": 1793
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png",
         "label": "DC: List of links",
@@ -14000,18 +12536,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 14.070964247020584,
-          "misMatchPercentage": "14.07",
-          "analysisTime": 1154
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14025,18 +12558,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.242091049382716,
-          "misMatchPercentage": "5.24",
-          "analysisTime": 422
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14050,18 +12580,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.33004981884058,
-          "misMatchPercentage": "5.33",
-          "analysisTime": 209
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14075,18 +12602,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.5338776276276285,
-          "misMatchPercentage": "6.53",
-          "analysisTime": 470
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14100,18 +12624,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.2663179542203147,
-          "misMatchPercentage": "1.27",
-          "analysisTime": 693
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14125,18 +12646,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.536732456140351,
-          "misMatchPercentage": "4.54",
-          "analysisTime": 399
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14150,18 +12668,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.405604005167959,
-          "misMatchPercentage": "3.41",
-          "analysisTime": 632
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14175,18 +12690,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8207669448659586,
-          "misMatchPercentage": "0.82",
-          "analysisTime": 1168
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14195,23 +12707,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 78
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.63129236839318,
-          "misMatchPercentage": "17.63",
-          "analysisTime": 2200
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png",
         "label": "DC: List of links",
@@ -14225,18 +12734,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.015724832476234,
-          "misMatchPercentage": "9.02",
-          "analysisTime": 1359
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14250,18 +12756,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.3133154461279455,
-          "misMatchPercentage": "4.31",
-          "analysisTime": 482
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14275,18 +12778,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.373355263157894,
-          "misMatchPercentage": "6.37",
-          "analysisTime": 483
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14300,18 +12800,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.691601762002042,
-          "misMatchPercentage": "7.69",
-          "analysisTime": 503
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14325,18 +12822,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.190685057223062,
-          "misMatchPercentage": "1.19",
-          "analysisTime": 651
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14345,23 +12839,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 4.21215834818776,
-          "misMatchPercentage": "4.21",
-          "analysisTime": 240
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14370,23 +12861,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 5.188937568455641,
-          "misMatchPercentage": "5.19",
-          "analysisTime": 493
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14395,23 +12883,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 2.9621097510658783,
-          "misMatchPercentage": "2.96",
-          "analysisTime": 927
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14420,23 +12905,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.466033677805173,
-          "misMatchPercentage": "7.47",
-          "analysisTime": 1945
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png",
         "label": "DC: List of links",
@@ -14445,23 +12927,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 53
+            "height": 0
           },
-          "rawMisMatchPercentage": 15.573607244890484,
-          "misMatchPercentage": "15.57",
-          "analysisTime": 1673
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14475,18 +12954,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.782442748091603,
-          "misMatchPercentage": "4.78",
-          "analysisTime": 433
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14500,18 +12976,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.552639949109415,
-          "misMatchPercentage": "5.55",
-          "analysisTime": 489
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14525,18 +12998,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.4688829322300565,
-          "misMatchPercentage": "6.47",
-          "analysisTime": 744
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14550,18 +13020,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.96894448021092,
-          "misMatchPercentage": "1.97",
-          "analysisTime": 550
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14575,18 +13042,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.950381679389313,
-          "misMatchPercentage": "3.95",
-          "analysisTime": 379
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14600,18 +13064,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.557039864291773,
-          "misMatchPercentage": "3.56",
-          "analysisTime": 539
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14625,18 +13086,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.166525303929884,
-          "misMatchPercentage": "1.17",
-          "analysisTime": 1110
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14650,18 +13108,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.448697357419138,
-          "misMatchPercentage": "6.45",
-          "analysisTime": 2024
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png",
         "label": "DC: List of links",
@@ -14675,18 +13130,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.650027830788805,
-          "misMatchPercentage": "9.65",
-          "analysisTime": 1810
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14700,18 +13152,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.5071942446043165,
-          "misMatchPercentage": "4.51",
-          "analysisTime": 479
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14725,18 +13174,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.233063549160671,
-          "misMatchPercentage": "5.23",
-          "analysisTime": 426
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14750,18 +13196,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.719584010211185,
-          "misMatchPercentage": "6.72",
-          "analysisTime": 543
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14775,18 +13218,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.7978613218374715,
-          "misMatchPercentage": "1.80",
-          "analysisTime": 473
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14800,18 +13240,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.7230215827338133,
-          "misMatchPercentage": "3.72",
-          "analysisTime": 279
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14825,18 +13262,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.3523181454836135,
-          "misMatchPercentage": "3.35",
-          "analysisTime": 571
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14850,18 +13284,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.0616399584195306,
-          "misMatchPercentage": "1.06",
-          "analysisTime": 1148
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14870,23 +13301,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.688295406839995,
-          "misMatchPercentage": "17.69",
-          "analysisTime": 2445
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png",
         "label": "DC: List of links",
@@ -14895,23 +13323,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.975094434256516,
-          "misMatchPercentage": "13.98",
-          "analysisTime": 1945
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links",
         "fileName": "full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -14925,18 +13350,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.036083425618309,
-          "misMatchPercentage": "4.04",
-          "analysisTime": 577
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_0_component--list-of-links_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n1",
         "fileName": "full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -14950,18 +13372,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.162306201550388,
-          "misMatchPercentage": "4.16",
-          "analysisTime": 487
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_1_component--list-of-links__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n2",
         "fileName": "full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -14975,18 +13394,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.924023481598555,
-          "misMatchPercentage": "5.92",
-          "analysisTime": 690
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_2_component--list-of-links__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n3",
         "fileName": "full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15000,18 +13416,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8970598505482227,
-          "misMatchPercentage": "0.90",
-          "analysisTime": 1041
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_3_component--list-of-links__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n4",
         "fileName": "full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15025,18 +13438,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.64280523255814,
-          "misMatchPercentage": "3.64",
-          "analysisTime": 488
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_4_component--list-of-links__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n5",
         "fileName": "full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15050,18 +13460,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.274890988372093,
-          "misMatchPercentage": "3.27",
-          "analysisTime": 718
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_5_component--list-of-links__n5_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n6",
         "fileName": "full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15075,18 +13482,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.7285791547554663,
-          "misMatchPercentage": "0.73",
-          "analysisTime": 2327
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_6_component--list-of-links__n6_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n7",
         "fileName": "full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15095,23 +13499,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.008609031864847,
-          "misMatchPercentage": "16.01",
-          "analysisTime": 3649
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_7_component--list-of-links__n7_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
         "selector": ".component--list-of-links.__n8",
         "fileName": "full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png",
         "label": "DC: List of links",
@@ -15125,18 +13526,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.98379932061667,
-          "misMatchPercentage": "10.98",
-          "analysisTime": 1544
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_List_of_links_8_component--list-of-links__n8_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_0_Breakpoint_XS.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_0_Breakpoint_XS.png",
         "label": "DC: Map",
@@ -15150,18 +13548,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.0094014830508473,
-          "misMatchPercentage": "2.01",
-          "analysisTime": 450
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png",
         "label": "DC: Map",
@@ -15175,18 +13570,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.383548460144928,
-          "misMatchPercentage": "10.38",
-          "analysisTime": 785
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_1_Breakpoint_S.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_1_Breakpoint_S.png",
         "label": "DC: Map",
@@ -15200,18 +13592,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.2156778033794164,
-          "misMatchPercentage": "1.22",
-          "analysisTime": 500
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_1_Breakpoint_S.png",
         "label": "DC: Map",
@@ -15225,18 +13614,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.429511140428026,
-          "misMatchPercentage": "9.43",
-          "analysisTime": 933
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_2_Breakpoint_M.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_2_Breakpoint_M.png",
         "label": "DC: Map",
@@ -15250,18 +13636,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.8301464160839161,
-          "misMatchPercentage": "0.83",
-          "analysisTime": 782
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_2_Breakpoint_M.png",
         "label": "DC: Map",
@@ -15275,18 +13658,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.3178645592985685,
-          "misMatchPercentage": "7.32",
-          "analysisTime": 1024
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_3_Breakpoint_L.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_3_Breakpoint_L.png",
         "label": "DC: Map",
@@ -15300,18 +13680,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.6252557002444743,
-          "misMatchPercentage": "1.63",
-          "analysisTime": 594
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_3_Breakpoint_L.png",
         "label": "DC: Map",
@@ -15320,23 +13697,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 10.043153840863765,
-          "misMatchPercentage": "10.04",
-          "analysisTime": 874
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_4_Breakpoint_XL.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_4_Breakpoint_XL.png",
         "label": "DC: Map",
@@ -15350,18 +13724,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.4739152074566761,
-          "misMatchPercentage": "1.47",
-          "analysisTime": 623
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png",
         "label": "DC: Map",
@@ -15370,23 +13741,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 10.204559244170929,
-          "misMatchPercentage": "10.20",
-          "analysisTime": 966
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
         "selector": ".component--map",
         "fileName": "full_DC_Map_0_component--map_5_Breakpoint_XXL.png",
         "label": "DC: Map",
@@ -15400,18 +13768,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.701442721791559,
-          "misMatchPercentage": "0.70",
-          "analysisTime": 892
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_0_component--map_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
         "selector": ".component--map.__n1",
         "fileName": "full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png",
         "label": "DC: Map",
@@ -15420,23 +13785,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 6.18515708792215,
-          "misMatchPercentage": "6.19",
-          "analysisTime": 1282
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Map_1_component--map__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_0_Breakpoint_XS.png",
         "label": "DC: News list",
@@ -15458,7 +13820,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_1_Breakpoint_S.png",
         "label": "DC: News list",
@@ -15480,7 +13842,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_2_Breakpoint_M.png",
         "label": "DC: News list",
@@ -15502,7 +13864,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_3_Breakpoint_L.png",
         "label": "DC: News list",
@@ -15524,7 +13886,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_4_Breakpoint_XL.png",
         "label": "DC: News list",
@@ -15546,7 +13908,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
         "selector": ".component--news-list",
         "fileName": "full_DC_News_list_0_component--news-list_5_Breakpoint_XXL.png",
         "label": "DC: News list",
@@ -15568,7 +13930,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_0_Breakpoint_XS.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_0_Breakpoint_XS.png",
         "label": "DC: Phasing",
@@ -15577,23 +13939,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 196
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.075052276399582,
-          "misMatchPercentage": "16.08",
-          "analysisTime": 2076
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_1_Breakpoint_S.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_1_Breakpoint_S.png",
         "label": "DC: Phasing",
@@ -15602,23 +13961,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -44
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.464162790248533,
-          "misMatchPercentage": "19.46",
-          "analysisTime": 2031
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_2_Breakpoint_M.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_2_Breakpoint_M.png",
         "label": "DC: Phasing",
@@ -15627,23 +13983,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 88
+            "height": 0
           },
-          "rawMisMatchPercentage": 18.89187094792699,
-          "misMatchPercentage": "18.89",
-          "analysisTime": 2111
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_3_Breakpoint_L.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_3_Breakpoint_L.png",
         "label": "DC: Phasing",
@@ -15652,23 +14005,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 96
+            "height": 0
           },
-          "rawMisMatchPercentage": 14.66865052641031,
-          "misMatchPercentage": "14.67",
-          "analysisTime": 2228
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_4_Breakpoint_XL.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_4_Breakpoint_XL.png",
         "label": "DC: Phasing",
@@ -15682,18 +14032,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.616727027410878,
-          "misMatchPercentage": "12.62",
-          "analysisTime": 2123
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
         "selector": ".components",
         "fileName": "full_DC_Phasing_0_components_5_Breakpoint_XXL.png",
         "label": "DC: Phasing",
@@ -15702,23 +14049,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 48
+            "height": 0
           },
-          "rawMisMatchPercentage": 8.295551000209743,
-          "misMatchPercentage": "8.30",
-          "analysisTime": 1791
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Phasing_0_components_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png",
         "label": "DC: Popular services",
@@ -15732,18 +14076,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.27873361423221,
-          "misMatchPercentage": "4.28",
-          "analysisTime": 752
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png",
         "label": "DC: Popular services",
@@ -15757,18 +14098,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.40929203539823,
-          "misMatchPercentage": "5.41",
-          "analysisTime": 338
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png",
         "label": "DC: Popular services",
@@ -15782,18 +14120,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.9525041636926006,
-          "misMatchPercentage": "2.95",
-          "analysisTime": 1034
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png",
         "label": "DC: Popular services",
@@ -15807,18 +14142,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.6423611111111107,
-          "misMatchPercentage": "3.64",
-          "analysisTime": 410
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png",
         "label": "DC: Popular services",
@@ -15827,23 +14159,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 26
+            "height": 0
           },
-          "rawMisMatchPercentage": 3.769727215719063,
-          "misMatchPercentage": "3.77",
-          "analysisTime": 876
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png",
         "label": "DC: Popular services",
@@ -15857,18 +14186,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.027313468992248,
-          "misMatchPercentage": "2.03",
-          "analysisTime": 610
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png",
         "label": "DC: Popular services",
@@ -15882,18 +14208,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.8297566976489885,
-          "misMatchPercentage": "2.83",
-          "analysisTime": 1003
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png",
         "label": "DC: Popular services",
@@ -15907,18 +14230,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.122086178478926,
-          "misMatchPercentage": "2.12",
-          "analysisTime": 680
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png",
         "label": "DC: Popular services",
@@ -15932,18 +14252,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.78419623940678,
-          "misMatchPercentage": "2.78",
-          "analysisTime": 1156
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png",
         "label": "DC: Popular services",
@@ -15957,18 +14274,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.05577098540146,
-          "misMatchPercentage": "2.06",
-          "analysisTime": 611
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
         "selector": ".component--popular-services",
         "fileName": "full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png",
         "label": "DC: Popular services",
@@ -15982,18 +14296,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.4849046610169492,
-          "misMatchPercentage": "1.48",
-          "analysisTime": 1496
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_0_component--popular-services_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
         "selector": ".component--popular-services.__n1",
         "fileName": "full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png",
         "label": "DC: Popular services",
@@ -16007,18 +14318,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.096411192214112,
-          "misMatchPercentage": "1.10",
-          "analysisTime": 877
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Popular_services_1_component--popular-services__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png",
         "label": "DC: Remote video",
@@ -16032,18 +14340,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 12.599752824858756,
-          "misMatchPercentage": "12.60",
-          "analysisTime": 575
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png",
         "label": "DC: Remote video",
@@ -16057,18 +14362,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 15.142572944297083,
-          "misMatchPercentage": "15.14",
-          "analysisTime": 1058
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_0_Breakpoint_XS.png",
         "label": "DC: Remote video",
@@ -16082,9 +14384,7 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.006913716814159292,
-          "misMatchPercentage": "0.01",
-          "analysisTime": 252
+          "misMatchPercentage": "0.00"
         }
       },
       "status": "pass"
@@ -16092,7 +14392,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png",
         "label": "DC: Remote video",
@@ -16101,23 +14401,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -60
+            "height": 0
           },
-          "rawMisMatchPercentage": 26.53154560810811,
-          "misMatchPercentage": "26.53",
-          "analysisTime": 2280
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png",
         "label": "DC: Remote video",
@@ -16126,23 +14423,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 24
+            "height": 0
           },
-          "rawMisMatchPercentage": 8.031111537150649,
-          "misMatchPercentage": "8.03",
-          "analysisTime": 801
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png",
         "label": "DC: Remote video",
@@ -16151,23 +14445,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 24
+            "height": 0
           },
-          "rawMisMatchPercentage": 12.839882046568626,
-          "misMatchPercentage": "12.84",
-          "analysisTime": 1243
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_1_Breakpoint_S.png",
         "label": "DC: Remote video",
@@ -16181,9 +14472,7 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.002346096096096096,
-          "misMatchPercentage": "0.00",
-          "analysisTime": 318
+          "misMatchPercentage": "0.00"
         }
       },
       "status": "pass"
@@ -16191,7 +14480,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png",
         "label": "DC: Remote video",
@@ -16200,23 +14489,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -32
+            "height": 0
           },
-          "rawMisMatchPercentage": 26.629569497404937,
-          "misMatchPercentage": "26.63",
-          "analysisTime": 2610
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png",
         "label": "DC: Remote video",
@@ -16230,18 +14516,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.330790896066683,
-          "misMatchPercentage": "6.33",
-          "analysisTime": 891
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png",
         "label": "DC: Remote video",
@@ -16255,18 +14538,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.736554435823917,
-          "misMatchPercentage": "10.74",
-          "analysisTime": 1582
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_2_Breakpoint_M.png",
         "label": "DC: Remote video",
@@ -16280,9 +14560,7 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.0015575159489633172,
-          "misMatchPercentage": "0.00",
-          "analysisTime": 485
+          "misMatchPercentage": "0.00"
         }
       },
       "status": "pass"
@@ -16290,7 +14568,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png",
         "label": "DC: Remote video",
@@ -16299,23 +14577,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 24
+            "height": 0
           },
-          "rawMisMatchPercentage": 18.548429658849646,
-          "misMatchPercentage": "18.55",
-          "analysisTime": 2287
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png",
         "label": "DC: Remote video",
@@ -16329,18 +14604,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.121875911454405,
-          "misMatchPercentage": "8.12",
-          "analysisTime": 874
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png",
         "label": "DC: Remote video",
@@ -16349,23 +14621,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -27
+            "height": 0
           },
-          "rawMisMatchPercentage": 18.03830521220658,
-          "misMatchPercentage": "18.04",
-          "analysisTime": 1056
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png",
         "label": "DC: Remote video",
@@ -16374,23 +14643,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.7794407753666696,
-          "misMatchPercentage": "0.78",
-          "analysisTime": 252
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_2_component--remote-video__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png",
         "label": "DC: Remote video",
@@ -16399,23 +14665,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -28
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.510455940533852,
-          "misMatchPercentage": "20.51",
-          "analysisTime": 2030
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png",
         "label": "DC: Remote video",
@@ -16429,18 +14692,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.793048429782071,
-          "misMatchPercentage": "7.79",
-          "analysisTime": 893
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png",
         "label": "DC: Remote video",
@@ -16449,23 +14709,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 13.691805176548415,
-          "misMatchPercentage": "13.69",
-          "analysisTime": 819
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png",
         "label": "DC: Remote video",
@@ -16474,23 +14731,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.7453929904204978,
-          "misMatchPercentage": "0.75",
-          "analysisTime": 392
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_2_component--remote-video__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png",
         "label": "DC: Remote video",
@@ -16499,23 +14753,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -4
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.610491715126994,
-          "misMatchPercentage": "20.61",
-          "analysisTime": 1983
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
         "selector": ".component--remote-video",
         "fileName": "full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png",
         "label": "DC: Remote video",
@@ -16529,18 +14780,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.773371514520421,
-          "misMatchPercentage": "4.77",
-          "analysisTime": 1309
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_0_component--remote-video_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
         "selector": ".component--remote-video.__n1",
         "fileName": "full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png",
         "label": "DC: Remote video",
@@ -16549,23 +14797,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 1
+            "height": 0
           },
-          "rawMisMatchPercentage": 9.893648480239952,
-          "misMatchPercentage": "9.89",
-          "analysisTime": 1215
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_1_component--remote-video__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
         "selector": ".component--remote-video.__n2",
         "fileName": "full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png",
         "label": "DC: Remote video",
@@ -16574,23 +14819,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 2
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.5252826968209943,
-          "misMatchPercentage": "0.53",
-          "analysisTime": 640
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_2_component--remote-video__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
         "selector": ".component--remote-video.__n3",
         "fileName": "full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png",
         "label": "DC: Remote video",
@@ -16599,23 +14841,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": 24
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.278276053655052,
-          "misMatchPercentage": "16.28",
-          "analysisTime": 2131
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Remote_video_3_component--remote-video__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png",
         "label": "DC: Service list",
@@ -16629,18 +14868,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 8.18142361111111,
-          "misMatchPercentage": "8.18",
-          "analysisTime": 305
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png",
         "label": "DC: Service list",
@@ -16654,18 +14890,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.387860082304526,
-          "misMatchPercentage": "9.39",
-          "analysisTime": 377
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png",
         "label": "DC: Service list",
@@ -16679,18 +14912,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 7.040895061728395,
-          "misMatchPercentage": "7.04",
-          "analysisTime": 517
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png",
         "label": "DC: Service list",
@@ -16704,18 +14934,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.921796244959677,
-          "misMatchPercentage": "4.92",
-          "analysisTime": 580
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png",
         "label": "DC: Service list",
@@ -16729,18 +14956,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.7679901123046875,
-          "misMatchPercentage": "4.77",
-          "analysisTime": 596
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
         "selector": ".component--service-list",
         "fileName": "full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png",
         "label": "DC: Service list",
@@ -16754,18 +14978,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.5429280598958335,
-          "misMatchPercentage": "2.54",
-          "analysisTime": 983
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Service_list_0_component--service-list_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png",
         "label": "DC: Sidebar text",
@@ -16779,18 +15000,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.701904415332363,
-          "misMatchPercentage": "4.70",
-          "analysisTime": 360
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png",
         "label": "DC: Sidebar text",
@@ -16804,18 +15022,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.186010523057877,
-          "misMatchPercentage": "4.19",
-          "analysisTime": 428
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png",
         "label": "DC: Sidebar text",
@@ -16829,18 +15044,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.913079091740323,
-          "misMatchPercentage": "2.91",
-          "analysisTime": 545
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png",
         "label": "DC: Sidebar text",
@@ -16854,18 +15066,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.354038630377524,
-          "misMatchPercentage": "2.35",
-          "analysisTime": 738
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png",
         "label": "DC: Sidebar text",
@@ -16879,18 +15088,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.2510156617993404,
-          "misMatchPercentage": "2.25",
-          "analysisTime": 657
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png",
         "label": "DC: Sidebar text",
@@ -16904,18 +15110,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.8947456374894454,
-          "misMatchPercentage": "1.89",
-          "analysisTime": 936
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png",
         "label": "DC: Sidebar text",
@@ -16929,18 +15132,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.278872099298435,
-          "misMatchPercentage": "4.28",
-          "analysisTime": 456
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png",
         "label": "DC: Sidebar text",
@@ -16954,18 +15154,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.4170751633986924,
-          "misMatchPercentage": "3.42",
-          "analysisTime": 572
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png",
         "label": "DC: Sidebar text",
@@ -16979,18 +15176,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.278872099298435,
-          "misMatchPercentage": "4.28",
-          "analysisTime": 439
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png",
         "label": "DC: Sidebar text",
@@ -17004,18 +15198,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.4170751633986924,
-          "misMatchPercentage": "3.42",
-          "analysisTime": 547
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
         "selector": ".sidebar-text",
         "fileName": "full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png",
         "label": "DC: Sidebar text",
@@ -17029,18 +15220,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.278872099298435,
-          "misMatchPercentage": "4.28",
-          "analysisTime": 275
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_0_sidebar-text_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
         "selector": ".sidebar-text.__n1",
         "fileName": "full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png",
         "label": "DC: Sidebar text",
@@ -17054,18 +15242,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.4170751633986924,
-          "misMatchPercentage": "3.42",
-          "analysisTime": 442
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Sidebar_text_1_sidebar-text__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_0_Breakpoint_XS.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_0_Breakpoint_XS.png",
         "label": "DC: Text",
@@ -17074,23 +15259,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -224
+            "height": 0
           },
-          "rawMisMatchPercentage": 20.101365337484268,
-          "misMatchPercentage": "20.10",
-          "analysisTime": 1506
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_1_Breakpoint_S.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_1_Breakpoint_S.png",
         "label": "DC: Text",
@@ -17099,23 +15281,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_S",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -56
+            "height": 0
           },
-          "rawMisMatchPercentage": 19.068365113629547,
-          "misMatchPercentage": "19.07",
-          "analysisTime": 1592
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_2_Breakpoint_M.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_2_Breakpoint_M.png",
         "label": "DC: Text",
@@ -17124,23 +15303,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_M",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -56
+            "height": 0
           },
-          "rawMisMatchPercentage": 16.85981752093591,
-          "misMatchPercentage": "16.86",
-          "analysisTime": 1525
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_3_Breakpoint_L.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_3_Breakpoint_L.png",
         "label": "DC: Text",
@@ -17149,23 +15325,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_L",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.41319459586753,
-          "misMatchPercentage": "17.41",
-          "analysisTime": 1547
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_4_Breakpoint_XL.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_4_Breakpoint_XL.png",
         "label": "DC: Text",
@@ -17174,23 +15347,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.41319459586753,
-          "misMatchPercentage": "17.41",
-          "analysisTime": 1539
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Text_0_components_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Text_0_components_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Text_0_components_5_Breakpoint_XXL.png",
         "selector": ".components",
         "fileName": "full_DC_Text_0_components_5_Breakpoint_XXL.png",
         "label": "DC: Text",
@@ -17199,23 +15369,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -84
+            "height": 0
           },
-          "rawMisMatchPercentage": 17.41319459586753,
-          "misMatchPercentage": "17.41",
-          "analysisTime": 1496
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Text_0_components_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -17229,18 +15396,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.21484375,
-          "misMatchPercentage": "2.21",
-          "analysisTime": 229
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -17254,18 +15418,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.286917892156863,
-          "misMatchPercentage": "4.29",
-          "analysisTime": 452
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -17279,18 +15440,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.897484756097561,
-          "misMatchPercentage": "5.90",
-          "analysisTime": 343
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -17304,18 +15462,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.106481481481482,
-          "misMatchPercentage": "6.11",
-          "analysisTime": 256
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png",
         "label": "DC: Target group links",
@@ -17329,18 +15484,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.1358173076923075,
-          "misMatchPercentage": "5.14",
-          "analysisTime": 649
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -17354,18 +15506,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.23046875,
-          "misMatchPercentage": "1.23",
-          "analysisTime": 201
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -17379,18 +15528,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.096372635933806,
-          "misMatchPercentage": "3.10",
-          "analysisTime": 485
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -17404,18 +15550,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.276380420054201,
-          "misMatchPercentage": "3.28",
-          "analysisTime": 340
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -17429,18 +15572,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 5.302509171907756,
-          "misMatchPercentage": "5.30",
-          "analysisTime": 401
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png",
         "label": "DC: Target group links",
@@ -17454,18 +15594,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.220625371360666,
-          "misMatchPercentage": "3.22",
-          "analysisTime": 617
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -17479,18 +15616,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.7853190104166666,
-          "misMatchPercentage": "0.79",
-          "analysisTime": 274
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -17504,18 +15638,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.594478546626984,
-          "misMatchPercentage": "2.59",
-          "analysisTime": 411
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -17529,18 +15660,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.251880787037037,
-          "misMatchPercentage": "2.25",
-          "analysisTime": 353
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -17554,18 +15682,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.6943759137426904,
-          "misMatchPercentage": "3.69",
-          "analysisTime": 387
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png",
         "label": "DC: Target group links",
@@ -17579,18 +15704,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.6109375,
-          "misMatchPercentage": "3.61",
-          "analysisTime": 551
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -17604,18 +15726,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.6898941532258065,
-          "misMatchPercentage": "0.69",
-          "analysisTime": 262
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -17629,18 +15748,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.8558253260123543,
-          "misMatchPercentage": "2.86",
-          "analysisTime": 659
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -17654,18 +15770,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.9286646110056926,
-          "misMatchPercentage": "1.93",
-          "analysisTime": 343
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -17679,18 +15792,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.4492356764564276,
-          "misMatchPercentage": "3.45",
-          "analysisTime": 427
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png",
         "label": "DC: Target group links",
@@ -17704,18 +15814,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.067540322580645,
-          "misMatchPercentage": "4.07",
-          "analysisTime": 607
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -17729,18 +15836,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.6683349609375,
-          "misMatchPercentage": "0.67",
-          "analysisTime": 266
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -17754,18 +15858,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.766580784574468,
-          "misMatchPercentage": "2.77",
-          "analysisTime": 451
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -17779,18 +15880,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.8683938419117647,
-          "misMatchPercentage": "1.87",
-          "analysisTime": 404
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -17804,18 +15902,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.341447061567164,
-          "misMatchPercentage": "3.34",
-          "analysisTime": 395
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png",
         "label": "DC: Target group links",
@@ -17829,18 +15924,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 3.9404296875,
-          "misMatchPercentage": "3.94",
-          "analysisTime": 634
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links",
         "fileName": "full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -17854,18 +15946,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.3564453125,
-          "misMatchPercentage": "0.36",
-          "analysisTime": 288
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_0_component--target-group-links_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links.__n1",
         "fileName": "full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -17879,18 +15968,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.4755097517730495,
-          "misMatchPercentage": "1.48",
-          "analysisTime": 671
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_1_component--target-group-links__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links.__n2",
         "fileName": "full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -17904,18 +15990,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 0.9964767156862744,
-          "misMatchPercentage": "1.00",
-          "analysisTime": 447
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_2_component--target-group-links__n2_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links.__n3",
         "fileName": "full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -17929,18 +16012,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 1.7821050995024876,
-          "misMatchPercentage": "1.78",
-          "analysisTime": 530
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_3_component--target-group-links__n3_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
         "selector": ".component--target-group-links.__n4",
         "fileName": "full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png",
         "label": "DC: Target group links",
@@ -17954,18 +16034,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.1015625,
-          "misMatchPercentage": "2.10",
-          "analysisTime": 668
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Target_group_links_4_component--target-group-links__n4_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png",
         "label": "DC: Unit search",
@@ -17974,23 +16051,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XS",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 25.925055309734514,
-          "misMatchPercentage": "25.93",
-          "analysisTime": 425
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png",
         "label": "DC: Unit search",
@@ -18004,18 +16078,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 24.43068276436303,
-          "misMatchPercentage": "24.43",
-          "analysisTime": 471
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_0_Breakpoint_XS.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png",
         "label": "DC: Unit search",
@@ -18029,18 +16100,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.33211905908799,
-          "misMatchPercentage": "10.33",
-          "analysisTime": 433
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png",
         "label": "DC: Unit search",
@@ -18054,18 +16122,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.187509101499927,
-          "misMatchPercentage": "9.19",
-          "analysisTime": 412
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_1_Breakpoint_S.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png",
         "label": "DC: Unit search",
@@ -18079,18 +16144,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.088258989145183,
-          "misMatchPercentage": "9.09",
-          "analysisTime": 486
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png",
         "label": "DC: Unit search",
@@ -18104,18 +16166,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.090633488552582,
-          "misMatchPercentage": "9.09",
-          "analysisTime": 465
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_2_Breakpoint_M.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png",
         "label": "DC: Unit search",
@@ -18129,18 +16188,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.417890617450961,
-          "misMatchPercentage": "6.42",
-          "analysisTime": 561
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png",
         "label": "DC: Unit search",
@@ -18154,18 +16210,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 10.884584463872978,
-          "misMatchPercentage": "10.88",
-          "analysisTime": 707
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_3_Breakpoint_L.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png",
         "label": "DC: Unit search",
@@ -18179,18 +16232,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.668905382023495,
-          "misMatchPercentage": "6.67",
-          "analysisTime": 434
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png",
         "label": "DC: Unit search",
@@ -18204,18 +16254,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 11.085085008965164,
-          "misMatchPercentage": "11.09",
-          "analysisTime": 603
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_4_Breakpoint_XL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
         "selector": ".component--unit-search",
         "fileName": "full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png",
         "label": "DC: Unit search",
@@ -18224,23 +16271,20 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 10.751059552271245,
-          "misMatchPercentage": "10.75",
-          "analysisTime": 586
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_0_component--unit-search_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
-        "test": "../bitmaps_test/20240126-040143/full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
+        "test": "../bitmaps_test/20240126-050118/full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
         "selector": ".component--unit-search.__n1",
         "fileName": "full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png",
         "label": "DC: Unit search",
@@ -18249,18 +16293,15 @@ report({
         "expect": 0,
         "viewportLabel": "Breakpoint_XXL",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -1
+            "height": 0
           },
-          "rawMisMatchPercentage": 8.734346539162113,
-          "misMatchPercentage": "8.73",
-          "analysisTime": 913
-        },
-        "diffImage": "../bitmaps_test/20240126-040143/failed_diff_full_DC_Unit_search_1_component--unit-search__n1_5_Breakpoint_XXL.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "id": "full"
