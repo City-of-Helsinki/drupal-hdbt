@@ -27,6 +27,13 @@
     }
   %}
     {% block component_content %}
+      <!-- TODO class accordion-item__button -->
+      <button type="button" class="accordion-item__button accordion__button--toggle-all accordion__button--is-open" aria-controls="" aria-labelledby="">
+        <!--
+        <span class="is-hidden" id=""><span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Open element: '|t({}, {'context': 'The helper text for close accordion visibility button'}) }}</span>{{ heading|default('Missing heading'|t) }}</span>
+        -->
+        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Open all'|t({}, {'context': 'The text for close accordion visibility button'}) }}</span>
+      </button>
 
       {{ content.field_accordion_items }}
 
