@@ -147,10 +147,10 @@ function CardItem({
             <Metarow icon="globe" label={languageLabel || Drupal.t('Language')} content={language} />
           }
           {time &&
-            <Metarow icon="calendar" label={timeLabel || Drupal.t('Time', { context: 'Time of event' })} content={time} />
+            <Metarow icon="calendar" label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })} content={time} />
           }
           {registrationRequired &&
-            <Metarow icon="info-circle" label={Drupal.t('Additional information', { context: 'Event additional information label' })} content={Drupal.t('The event requires registration or a ticket.', { context: 'Event additional information value' })} />
+            <Metarow icon="info-circle" label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })} content={Drupal.t('The event requires registration or a ticket.', {}, { context: 'Event additional information value' })} />
           }
         </div>
 

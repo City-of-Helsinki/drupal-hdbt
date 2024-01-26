@@ -1011,3 +1011,7 @@ msgstr "Ytterligare information"
 msgctxt "Event additional information value"
 msgid "The event requires registration or a ticket."
 msgstr "Evenemanget kräver registrering eller en biljett."
+
+msgctxt "Time of event"
+msgid "Time"
+msgstr "Tid"
