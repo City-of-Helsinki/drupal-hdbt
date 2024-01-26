@@ -89,12 +89,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
-
-          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
-            npm run full-reference
-            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
-          fi
+          npm run full-reference
+          #gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
+          #if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+          #  npm run full-reference
+          #  echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
+          #fi
 
       - uses: actions/upload-artifact@v4
         if: ${{ env.UPLOAD_BITMAP == '1' }}
