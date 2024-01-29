@@ -1,10 +1,10 @@
 module.exports = async (page, scenario, vp, isReference, browserContext, config) => {
-  await page.emulateMediaFeatures([
-    { name: 'prefers-reduced-motion', value: 'reduce' }
-  ]);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.waitForLoadState('networkidle');
+
   const { hostname } = config;
 
-  const cookies = [
+  browserContext.addCookies([
     {
       'name': 'cookie-agreed-version',
       'value': '1.1.0',
@@ -29,9 +29,5 @@ module.exports = async (page, scenario, vp, isReference, browserContext, config)
       'httpOnly': false,
       'secure': false
     }
-  ];
-
-  cookies.forEach(cookie => {
-    page.setCookie(cookie);
-  });
+  ]);
 };
