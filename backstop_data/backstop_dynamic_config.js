@@ -504,10 +504,12 @@ if (process.env.DRUPAL_HOSTNAME) {
       }
 
     }).catch((e) => {
+      process.exitCode = 255;
       patchReport(type);
       console.error('\n\n📕 ', e, `\n\nCheck the report:\n🖼️  ${reportUrl}`);
     });
 
 } else {
+  process.exitCode = 1;
   console.error(`📕 Environment not found, are you sure the instance .env file can be found in ${envPath}?`);
 }
