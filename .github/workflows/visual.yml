@@ -112,12 +112,21 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         if: github.ref != 'refs/heads/main'
         run: |
-          REPORT_URL="https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/"
+          echo "TEST_STATUS=1" >> $GITHUB_ACTIONS
+
           if ! npm run full-test; then
-            echo COMMENT="Tests failed. You can check the results here: $REPORT_URL" >> $GITHUB_ACTIONS
-          else
-            echo COMMENT="Tests passed. You can check the results here: $REPORT_URL" >> $GITHUB_ACTIONS
+            echo "TEST_STATUS=0" >> $GITHUB_ACTIONS
           fi
+
+      - name: Create comment body
+        run: |
+          REPORT_URL=https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/
+          COMMENT="Tests passed! You can check the output here: $REPORT_URL"
+
+          if [ "$TEST_STATUS" == "0" ]; then
+            COMMENT="Tests failed! You can check the output here: $REPORT_URL"
+          fi
+          echo "COMMENT=$COMMENT" >> $GITHUB_ACTIONS
 
       - name: Find Comment
         uses: peter-evans/find-comment@v3
@@ -131,14 +140,14 @@ jobs:
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body: ${{ env.COMMENT }}
+          body: "${{ env.COMMENT }}"
 
       - name: Update comment
         if: steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
-          body: ${{ env.COMMENT }}
+          body: "${{ env.COMMENT }}"
 
       - name: Export container logs
         working-directory: ${{ env.DRUPAL_ROOT }}
