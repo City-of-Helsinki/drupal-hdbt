@@ -80,7 +80,7 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         run: |
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install && npm install
+          nvm install && npm install && npx playwright install
 
       - name: Generate reference images
         working-directory: ${{ env.THEME_FOLDER }}
