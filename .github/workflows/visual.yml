@@ -86,7 +86,7 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GENERATE_REFERENCES: 1
+          #GENERATE_REFERENCES: 1
         run: |
           gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
 
