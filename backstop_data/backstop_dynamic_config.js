@@ -466,7 +466,7 @@ function getConfig(hostname, type) {
         'browser': 'chromium',
         'args': ['--no-sandbox'],
       },
-      'asyncCaptureLimit': 1,
+      'asyncCaptureLimit': 10,
       'asyncCompareLimit': 100,
       'debug': false,
       'debugWindow': false,
