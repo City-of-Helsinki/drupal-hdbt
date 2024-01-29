@@ -114,11 +114,11 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: |
           if ! npm run full-test; then
-            echo "Tests failed!\n" >> $GITHUB_OUTPUT
+            echo "result='Tests failed! '" >> $GITHUB_OUTPUT
           else
-            echo "Tests passed!\n" >> $GITHUB_OUTPUT
+            echo "result='Tests passed! '" >> $GITHUB_OUTPUT
           fi
-          echo "You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/\n" >> $GITHUB_OUTPUT
+          echo "output_url='You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/'" >> $GITHUB_OUTPUT
 
       - name: Find Comment
         uses: peter-evans/find-comment@v3
