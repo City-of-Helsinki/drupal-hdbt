@@ -141,7 +141,7 @@ jobs:
           number: ${{ github.event.number }}
           id: deploy-preview
           recreate: true
-          message: "${{join(steps.run-tests.outputs.*, '\')}}"
+          message: "${{join(steps.run-tests.outputs.*, '  ')}}"
 
       - name: Upload container logs
         uses: actions/upload-artifact@v4
