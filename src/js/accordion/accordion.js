@@ -26,7 +26,10 @@ const callback = (mutations, observer) => {
       items.forEach((accordionElement, index) => {
         const type = getAccordionType(Array.from(accordionElement.classList));
         const isHeaderless = HelfiAccordion.isHeaderless(type);
-        const accordion = new HelfiAccordion(accordionElement, state, hash, type);
+
+        // Special case.
+        const actualType = (index === 0 && type !== 'hardcoded') ? 'default' : type;
+        const accordion = new HelfiAccordion(accordionElement, state, hash, actualType);
         window.helfiAccordions.push(accordion);
 
         // Allow the previous accordion to control the next headerless accordion's toggle functionality.
