@@ -21,9 +21,7 @@ jobs:
         run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
       - name: Set variables
-        run: |
-          echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
-          echo "REPORT_URL=https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_ENV
+        run: echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
 
       - name: Clone platform
         run: |
@@ -115,12 +113,12 @@ jobs:
         id: run-tests
         if: github.ref != 'refs/heads/main'
         run: |
-          COMMENT="Tests passed!"
           if ! npm run full-test; then
-            COMMENT="Tests failed!"
+            echo "result=Tests failed!" >> $GITHUB_OUTPUT
+          else
+            echo "result=Tests passed!" >> $GITHUB_OUTPUT
           fi
-          COMMENT+="\nYou can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/"
-          echo "comment=$COMMENT" >> $GITHUB_OUTPUT
+          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/"" >> $GITHUB_OUTPUT
 
       - name: Export container logs
         working-directory: ${{ env.DRUPAL_ROOT }}
@@ -143,7 +141,7 @@ jobs:
           number: ${{ github.event.number }}
           id: deploy-preview
           recreate: true
-          message: "${{ steps.run-tests.outputs.comment }}"
+          message: "${{join(steps.run-tests.outputs.*, '\')}}"
 
       - name: Upload container logs
         uses: actions/upload-artifact@v4
