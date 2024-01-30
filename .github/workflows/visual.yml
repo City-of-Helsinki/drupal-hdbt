@@ -118,6 +118,7 @@ jobs:
           COMMENT="Tests passed!"
           if ! npm run full-test; then
             COMMENT="Tests failed!"
+          fi
           COMMENT+="\nYou can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/"
           echo "comment=$COMMENT" >> $GITHUB_OUTPUT
 
