@@ -43,4 +43,3 @@ jobs:
       - name: Run phpstan
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
-
