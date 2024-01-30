@@ -148,8 +148,12 @@
     cursor: pointer;
   }
 
-  &::after {
+  &.accordion__button--is-open::after {
     @include pseudo-icon('angle-up', $spacing-and-half, currentColor, inline-block);
+  }
+
+  &.accordion__button--is-closed::after {
+    @include pseudo-icon('angle-down', $spacing-and-half, currentColor, inline-block);
   }
 }
 

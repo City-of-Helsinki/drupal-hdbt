@@ -8,6 +8,10 @@ export default class HelfiAccordion {
 
   static toggleAllElement = 'js-accordion__button--toggle-all';
 
+  static toggleAllOpen = 'accordion__button--is-open';
+
+  static toggleAllClosed = 'accordion__button--is-closed';
+
   static headerlessTypes = ['headerless', 'hardcoded'];
 
   constructor(accordion, state, urlHash, type = 'default') {
@@ -66,6 +70,8 @@ export default class HelfiAccordion {
     this.areAllItemsOpen() ?
       toggleAllElement.querySelector('span').textContent = Translations.close_all?.[this.currentLanguage] ?? Translations.close_all.en :
       toggleAllElement.querySelector('span').textContent = Translations.open_all?.[this.currentLanguage] ?? Translations.open_all.en;
+
+    this.toggleAllLabelUpdate();
   };
 
   getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id);
@@ -79,6 +85,7 @@ export default class HelfiAccordion {
     this.accordionItems.forEach(item=> item.open());
     this.childAccordion?.openAll();
     this.updateToggleButtonLabel();
+    this.toggleAllLabelUpdate();
   };
 
   /**
@@ -88,6 +95,19 @@ export default class HelfiAccordion {
     this.accordionItems.forEach(item => item.close());
     this.childAccordion?.closeAll();
     this.updateToggleButtonLabel();
+    this.toggleAllLabelUpdate();
+  };
+
+  toggleAllLabelUpdate = () => {
+    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+
+    if (toggleAllElement && this.areAllItemsOpen()) {
+      toggleAllElement.classList.remove(HelfiAccordion.toggleAllClosed);
+      toggleAllElement.classList.add(HelfiAccordion.toggleAllOpen);
+    } else {
+      toggleAllElement.classList.remove(HelfiAccordion.toggleAllOpen);
+      toggleAllElement.classList.add(HelfiAccordion.toggleAllClosed);
+    }
   };
 
   areAllItemsOpen = () => (this.accordionItems?.every(item => item.isOpen)) && this.areChildItemsOpen();
