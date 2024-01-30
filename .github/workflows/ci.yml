@@ -1,46 +1,46 @@
-#on:
-#  pull_request:
-#  push:
-#    branches:
-#      - main
-#name: CI
-#jobs:
-#  tests:
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        php-versions: ['8.1']
-#    container:
-#      image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 1
-#
-#      - name: Set variables
-#        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
-#
-#      - name: Parse $THEME_NAME from composer.json
-#        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
-#
-#      - name: Clone platform
-#        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
-#
-#      - name: Build project
-#        run: |
-#          cd $DRUPAL_ROOT
-#          composer config repositories.5 path $GITHUB_WORKSPACE
-#          composer require drupal/$THEME_NAME -W
-#
-#      - name: Check that theme is not built with dev mode
-#        run: if grep -q 'sourceMappingURL=' -R public/themes/contrib/$THEME_NAME/dist/css; then exit 1; fi
-#
-#      - name: Run PHPCS
-#        run: |
-#          cd $DRUPAL_ROOT
-#          vendor/bin/phpcs public/themes/contrib/$THEME_NAME --extensions=php,theme,module --standard=Drupal,DrupalPractice
-#
-#      - name: Run phpstan
-#        working-directory: ${{ env.DRUPAL_ROOT }}
-#        run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
-#
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+name: CI
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.1']
+    container:
+      image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set variables
+        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
+
+      - name: Parse $THEME_NAME from composer.json
+        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+
+      - name: Clone platform
+        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+
+      - name: Build project
+        run: |
+          cd $DRUPAL_ROOT
+          composer config repositories.5 path $GITHUB_WORKSPACE
+          composer require drupal/$THEME_NAME -W
+
+      - name: Check that theme is not built with dev mode
+        run: if grep -q 'sourceMappingURL=' -R public/themes/contrib/$THEME_NAME/dist/css; then exit 1; fi
+
+      - name: Run PHPCS
+        run: |
+          cd $DRUPAL_ROOT
+          vendor/bin/phpcs public/themes/contrib/$THEME_NAME --extensions=php,theme,module --standard=Drupal,DrupalPractice
+
+      - name: Run phpstan
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
+
