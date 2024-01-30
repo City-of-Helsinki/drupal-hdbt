@@ -9,15 +9,17 @@ import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
 import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 type ResultsContainerProps = {
-  count: number;
+  countNumber: number;
   events: Event[];
   loading: boolean;
   error?: Error;
 };
 
-function ResultsContainer({ count, events, loading, error }: ResultsContainerProps) {
+function ResultsContainer({ countNumber, events, loading, error }: ResultsContainerProps) {
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const url = useAtomValue(urlAtom);
@@ -43,30 +45,27 @@ function ResultsContainer({ count, events, loading, error }: ResultsContainerPro
   }
 
   const size = settings.eventCount;
-  const pages = Math.floor(count / size);
-  const addLastPage = count > size && count % size;
-  const showCount = !Number.isNaN(count) && !loading;
+  const pages = Math.floor(countNumber / size);
+  const addLastPage = countNumber > size && countNumber % size;
+  const count = countNumber.toString();
 
   return (
     <div className='react-search__list-container'>
-      <div className='react-search__results-stats' ref={scrollTarget}>
-        {Boolean(showCount) &&
-          <>
-            <span className='react-search__count'>{count} </span>
-            <span>{Drupal.t('events')}</span>
-          </>
-        }
-      </div>
       {events?.length > 0 ?
         <>
+          <ResultsHeader
+            resultText={
+              <>
+                { Drupal.formatPlural(count, '1 event', '@count events',{},{context: 'Event search: result count'}) }
+              </>
+            }
+            ref={scrollTarget}
+          />
           {events.map(event => <ResultCard key={event.id} {...event} />)}
           <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
         </>
         :
-        <div className='event-list__no-results' ref={scrollTarget}>
-          <h3>{Drupal.t('This event list is empty.')}</h3>
-          <p className='events-list__empty-subtext'>{Drupal.t('No worries though, this city does not run out of things to do.')}</p>
-        </div>
+        <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />
       }
       <SeeAllButton />
     </div>
