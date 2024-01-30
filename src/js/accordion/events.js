@@ -17,7 +17,7 @@ export default class Events {
         const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
         if (accordionItem) {
           accordionItemFound = true;
-          accordionItem.handleLinkAnchor();
+          accordionItem.handleLinkAnchor(hash);
         }
       });
 
