@@ -20,7 +20,7 @@ jobs:
       - name: Parse $THEME_NAME from composer.json
         run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
-      - name: Set variables
+      - name: Set theme folder
         run: echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
 
       - name: Clone platform
@@ -61,6 +61,13 @@ jobs:
         run: |
           mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
 
+      - name: Install Drupal from existing dump
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        if: steps.drupal-cache.outputs.cache-hit == 'true'
+        run: |
+          docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
+          docker compose exec app bash -c "drush updb -y"
+
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
         if: steps.drupal-cache.outputs.cache-hit != 'true'
@@ -68,13 +75,6 @@ jobs:
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
-
-      - name: Install Drupal from existing dump
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        if: steps.drupal-cache.outputs.cache-hit == 'true'
-        run: |
-          docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
-          docker compose exec app bash -c "drush updb -y"
 
       - name: Node setup
         working-directory: ${{ env.THEME_FOLDER }}
@@ -91,6 +91,7 @@ jobs:
         run: |
           gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
 
+          # Always update reference images when the pull request is merged to main branch.
           if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
             GENERATE_REFERENCES=1
           fi
@@ -111,12 +112,14 @@ jobs:
       - name: Run tests
         working-directory: ${{ env.THEME_FOLDER }}
         id: run-tests
+        # Skip tests when run against the 'main' branch since we're generating
+        # reference images and tests should never fail.
         if: github.ref != 'refs/heads/main'
         run: |
           if ! npm run full-test; then
-            echo "result=Tests failed!" >> $GITHUB_OUTPUT
+            echo "result=❌ Tests failed!" >> $GITHUB_OUTPUT
           else
-            echo "result=Tests passed!" >> $GITHUB_OUTPUT
+            echo "result=✅ Tests passed!" >> $GITHUB_OUTPUT
           fi
           echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
 
