@@ -96,6 +96,8 @@ export default class HelfiAccordion {
     this.childAccordion?.closeAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();
+    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    toggleAllElement.focus();
   };
 
   toggleAllLabelUpdate = () => {
