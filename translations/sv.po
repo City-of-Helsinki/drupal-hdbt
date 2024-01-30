@@ -998,6 +998,18 @@ msgctxt "Unit search no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
 
+msgctxt "Event additional information label"
+msgid "Additional information"
+msgstr "Ytterligare information"
+
+msgctxt "Event additional information value"
+msgid "The event requires registration or a ticket."
+msgstr "Evenemanget kräver registrering eller en biljett."
+
+msgctxt "Time of event"
+msgid "Time"
+msgstr "Tid"
+
 msgctxt "Event search: result count"
 msgid "1 event"
 msgid_plural "@count events"
