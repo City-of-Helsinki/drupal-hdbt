@@ -47,6 +47,14 @@ export default class AccordionItem {
     this.localState.saveItemState(this.id, this.isOpen);
   };
 
+  closeWithoutFocus = () => {
+    this._isOpen = false;
+    this.setAriaOpen();
+    this.setHidden();
+    this.parentCallback();
+    this.localState.saveItemState(this.id, this.isOpen);
+  };
+
   toggle = (event) => {
     if (!AccordionItem.isClick(event.which)) {
       return;

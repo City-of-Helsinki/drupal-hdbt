@@ -23,7 +23,7 @@ const callback = (mutations, observer) => {
   const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
   if (items.length > window.helfiAccordions.length) {
     try {
-      items.forEach((accordionElement, index) => {
+        items.forEach((accordionElement, index) => {
         const type = getAccordionType(Array.from(accordionElement.classList));
         const isHeaderless = HelfiAccordion.isHeaderless(type);
 

@@ -18,6 +18,7 @@ export default class HelfiAccordion {
     // Headerless accordion doesn't have toggle-all functionality.
     this.type = type;
 
+    this.isSingleItemAccordion = false;
     this.currentLanguage = State.getCurrentLanguage();
     this.accordion = accordion;
     this.localState = state;
@@ -34,13 +35,16 @@ export default class HelfiAccordion {
    * Create the accordion items.
    */
   initializeAccordion = () => {
-    Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
+    const accordionItems = this.accordion.getElementsByClassName(AccordionItem.accordionItemElement);
+    this.isSingleItemAccordion = accordionItems.length === 1;
+
+    Array.from(accordionItems).forEach((element) => {
       this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
     });
   };
 
   addEventListeners = () => {
-    if (HelfiAccordion.isHeaderless(this.type)) { return; }
+    if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) { return; }
 
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
     toggleAllElement.addEventListener('mouseup', this.toggleItems);
@@ -52,7 +56,7 @@ export default class HelfiAccordion {
   };
 
   showToggleButton = () => {
-    if (HelfiAccordion.isHeaderless(this.type)) {
+    if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) {
       this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.add('is-hidden');
     } else {
       this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.remove('is-hidden');
@@ -92,7 +96,7 @@ export default class HelfiAccordion {
    * Close all own and child accordion's items.
    */
   closeAll = () => {
-    this.accordionItems.forEach(item => item.close());
+    this.accordionItems.forEach(item => item.closeWithoutFocus());
     this.childAccordion?.closeAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();
