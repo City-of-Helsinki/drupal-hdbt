@@ -31,7 +31,7 @@ const callback = (mutations, observer) => {
 
         // Allow the previous accordion to control the next headerless accordion's toggle functionality.
         // Should skip hardcoded accordions.
-        if (!accordion.isHardcoded(type) && isHeaderless) {
+        if (!accordion.isHardcoded(type) && isHeaderless && index > 0) {
           window.helfiAccordions[index-1].addChildAccordion(accordion);
         }
       });
