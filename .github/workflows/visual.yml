@@ -132,14 +132,15 @@ jobs:
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body: ${{join(steps.run-tests.outputs.*, '\n')}}
+          body: ${{join(steps.run-tests.outputs.*, "\n")}}
 
       - name: Update comment
         if: steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
-          body: ${{join(steps.run-tests.outputs.*, '\n')}}
+          body: ${{join(steps.run-tests.outputs.*, "\n")}}
+          edit-mode: replace
 
       - name: Export container logs
         working-directory: ${{ env.DRUPAL_ROOT }}
