@@ -1003,3 +1003,11 @@ msgstr "Inga sökresultat"
 msgctxt "Unit search no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
+
+msgctxt "Accordion open all"
+msgid "Open all"
+msgstr "Öppna alla"
+
+msgctxt "Accordion close all"
+msgid "Close all"
+msgstr "Stäng alla"

@@ -1006,3 +1006,11 @@ msgstr "Ei hakutuloksia"
 msgctxt "Unit search no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Antamillasi valinnoilla ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."
+
+msgctxt "Accordion open all"
+msgid "Open all"
+msgstr "Avaa kaikki"
+
+msgctxt "Accordion close all"
+msgid "Close all"
+msgstr "Sulje kaikki"

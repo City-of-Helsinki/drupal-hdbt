@@ -1,12 +1,12 @@
-import AccordionItem from './accordion-item.js';
+import AccordionItem from './accordion-item';
 
 export default class Events {
 
   constructor() {
-    this.handleTableOfContentsHash();
+    Events.handleTableOfContentsHash();
   }
 
-  handleTableOfContentsHash = () => {
+  static handleTableOfContentsHash = () => {
     window.addEventListener('hashchange', () => {
       const {hash} = window.location;
 
@@ -39,6 +39,6 @@ export default class Events {
         }
       }
     });
-  }
+  };
 
 }

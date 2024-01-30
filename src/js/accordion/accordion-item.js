@@ -12,12 +12,11 @@ export default class AccordionItem {
 
   static contentElement = 'accordion-item__content';
 
-  constructor(element, state, parentCallback, hash) {
+  constructor(element, state, urlHash, parentCallback) {
     this.element = element;
     this.localState = state;
     // Allow updating the accordion state when the item's state changes.
     this.parentCallback = parentCallback;
-    this.hash = this.localState.hash;
 
     // Use header id as this objects id since header id is unique.
     this._id = element.querySelector('.helfi-accordion__header').id;
@@ -26,7 +25,7 @@ export default class AccordionItem {
     this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
     this.setHidden();
     this.addEventListeners();
-    this.handleLinkAnchor(hash);
+    this.handleLinkAnchor(urlHash);
     this.setAriaOpen();
     this.element.style = null; // allow animating accordions after pageload
   }
@@ -37,7 +36,7 @@ export default class AccordionItem {
     this.setHidden();
     this.parentCallback();
     this.localState.saveItemState(this.id, this.isOpen);
-  }
+  };
 
   close = () => {
     this._isOpen = false;
@@ -46,34 +45,38 @@ export default class AccordionItem {
     this.setHidden();
     this.parentCallback();
     this.localState.saveItemState(this.id, this.isOpen);
-  }
+  };
 
   toggle = (event) => {
-    if (!AccordionItem.isClick(event.which)) return;
+    if (!AccordionItem.isClick(event.which)) {
+      return;
+    }
+    // eslint-disable-next-line no-unused-expressions
     this.isOpen ? this.close() : this.open();
-  }
+  };
 
-  handleLinkAnchor = (hash) => {
-    if (!hash) return;
-    const item = this.element.querySelector(hash);
+  handleLinkAnchor = (urlHash) => {
+    if (!urlHash) return;
+    const item = this.element.querySelector(urlHash);
     if (item) {
       this.open();
       item.scrollIntoView();
     }
-  }
+  };
 
   setAriaOpen = () => {
     AccordionItem.ariaExpandedElements.forEach((className) => {
       this.element.getElementsByClassName(className)[0].setAttribute('aria-expanded', this.isOpen);
     });
-  }
+  };
 
   setHidden = () => {
     const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
+    // eslint-disable-next-line no-unused-expressions
     this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
-  }
+  };
 
-  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus()
+  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
 
   addEventListeners = () => {
     const toggleElement = this.element.getElementsByClassName(AccordionItem.toggleElement)[0];
@@ -83,7 +86,7 @@ export default class AccordionItem {
     const closeElement = this.element.getElementsByClassName(AccordionItem.closeElement)[0];
     closeElement.addEventListener('mouseup', this.close);
     closeElement.addEventListener('keypress', this.close);
-  }
+  };
 
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;

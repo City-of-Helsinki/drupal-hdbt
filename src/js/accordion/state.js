@@ -35,5 +35,7 @@ export default class State {
     return this.pageAccordionStates[accordionItemId] === undefined ? false : this.pageAccordionStates[accordionItemId];
   };
 
+  static getCurrentLanguage = () => window.drupalSettings.path.currentLanguage;
+
 }
 

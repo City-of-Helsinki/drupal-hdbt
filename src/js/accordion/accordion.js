@@ -1,39 +1,52 @@
-import HelfiAccordion from './helfi-accordion.js';
-import State from './state.js';
-import Events from "./events.js";
+import HelfiAccordion from './helfi-accordion';
+import State from './state';
+import Events from './events';
 
 window.helfiAccordions = [];
 
-const targetNode = document.body
-const config = { attributes: true, childList: true, subtree: true };
-
 const state = new State();
+// eslint-disable-next-line no-unused-vars
 const events = new Events();
-let {hash} = window.location;
+const {hash} = window.location;
+
+const getAccordionType = (classes) => {
+  if (classes.includes('component--no-header')) {
+    return 'headerless';
+  }
+  if (classes.includes('component--hardcoded')) {
+    return 'hardcoded';
+  }
+  return 'default';
+};
 
 const callback = (mutations, observer) => {
   const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
   if (items.length > window.helfiAccordions.length) {
     try {
       items.forEach((accordionElement, index) => {
-        const headerless = accordionElement.classList.contains('component--no-header');
-        const accordion = new HelfiAccordion(accordionElement, state, hash, headerless);
+        const type = getAccordionType(Array.from(accordionElement.classList));
+        const isHeaderless = HelfiAccordion.isHeaderless(type);
+        const accordion = new HelfiAccordion(accordionElement, state, hash, type);
         window.helfiAccordions.push(accordion);
 
         // Allow the previous accordion to control the next headerless accordion's toggle functionality.
-        if (headerless) {
+        // Should skip hardcoded accordions.
+        if (!accordion.isHardcoded(type) && isHeaderless) {
           window.helfiAccordions[index-1].addChildAccordion(accordion);
         }
       });
-
     }
     catch(e) {
+      // eslint-disable-next-line no-console
       console.log(e);
       observer.disconnect();
     }
   }
-}
+};
 
-var observer = new MutationObserver(callback);
+const targetNode = document.body;
+const config = { attributes: true, childList: true, subtree: true };
+
+const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
 

@@ -4,7 +4,7 @@ desktop-menu-toggle:
     dist/js/desktop-menu-toggle.min.js: {}
 
 accordion:
-  version: 1.3
+  version: 1.4
   js:
     dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
   dependencies:

@@ -1,66 +1,101 @@
-import AccordionItem from './accordion-item.js';
+import AccordionItem from './accordion-item';
+import Translations from './translations';
+import State from './state';
 
 export default class HelfiAccordion {
 
   static accordionWrapper = 'component--accordion';
 
-  static toggleAllElement = 'accordion__button--toggle-all';
+  static toggleAllElement = 'js-accordion__button--toggle-all';
 
-  constructor(accordion, state, hash, headerless = false) {
+  static headerlessTypes = ['headerless', 'hardcoded'];
+
+  constructor(accordion, state, urlHash, type = 'default') {
+    // Headerless accordion doesn't have toggle-all functionality.
+    this.type = type;
+
+    this.currentLanguage = State.getCurrentLanguage();
     this.accordion = accordion;
-
-    this.headerless = headerless;
     this.localState = state;
     this.accordionItems = [];
-    this.childAccordions = [];
-    this.initializeAccordion(hash);
+    this.childAccordion = null;
+    this.urlHash = urlHash;
+    this.initializeAccordion(urlHash);
     this.addEventListeners();
-
-    if (headerless) {this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0].classList.add('is-hidden')}
+    this.showToggleButton();
     this.updateToggleButtonLabel();
   }
 
-  initializeAccordion = (hash) => {
+  /**
+   * Create the accordion items.
+   */
+  initializeAccordion = () => {
     Array.from(this.accordion.getElementsByClassName(AccordionItem.accordionItemElement)).forEach((element) => {
-      this.accordionItems.push(new AccordionItem(element, this.localState, this.updateToggleButtonLabel, hash));
+      this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
     });
-  }
+  };
 
   addEventListeners = () => {
+    if (HelfiAccordion.isHeaderless(this.type)) { return; }
+
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
     toggleAllElement.addEventListener('mouseup', this.toggleItems);
     toggleAllElement.addEventListener('keypress', this.toggleItems);
-  }
+  };
 
   addChildAccordion =  (accordion) => {
-    this.childAccordions.push(accordion);
-  }
+    this.childAccordion = accordion;
+  };
+
+  showToggleButton = () => {
+    if (HelfiAccordion.isHeaderless(this.type)) {
+      this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.add('is-hidden');
+    } else {
+      this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.remove('is-hidden');
+    }
+  };
 
   /**
-   * Callback for single accordion item to invoke changes in whole accordion.
+   * Callback for accordionItem to invoke changes in accordion.
    */
   updateToggleButtonLabel = () => {
-    if (!this.headerless) { return }
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
-    this.allItemsOpen() ?
-      toggleAllElement.querySelector('span').textContent = 'Close all' :
-      toggleAllElement.querySelector('span').textContent = 'Open all';
-  }
+    if (!toggleAllElement) { return; }
 
-  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id)
+    // eslint-disable-next-line no-unused-expressions
+    this.areAllItemsOpen() ?
+      toggleAllElement.querySelector('span').textContent = Translations.close_all?.[this.currentLanguage] ?? Translations.close_all.en :
+      toggleAllElement.querySelector('span').textContent = Translations.open_all?.[this.currentLanguage] ?? Translations.open_all.en;
+  };
 
-  toggleItems = () => this.allItemsOpen() ? this.closeAll() : this.openAll()
+  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id);
 
+  toggleItems = () => this.areAllItemsOpen() ? this.closeAll() : this.openAll();
+
+  /**
+   * Open all own and child accordion's items.
+   */
   openAll = () => {
-    this.accordionItems.forEach(item=> item.open())
-    this.childAccordions.forEach(accordion => accordion.openAll())
-  }
+    this.accordionItems.forEach(item=> item.open());
+    this.childAccordion?.openAll();
+    this.updateToggleButtonLabel();
+  };
 
+  /**
+   * Close all own and child accordion's items.
+   */
   closeAll = () => {
-    this.accordionItems.forEach(item => item.close())
-    this.childAccordions.forEach(accordion => accordion.closeAll())
-  }
+    this.accordionItems.forEach(item => item.close());
+    this.childAccordion?.closeAll();
+    this.updateToggleButtonLabel();
+  };
 
-  allItemsOpen = () => this.accordionItems.every(item => item.isOpen)
+  areAllItemsOpen = () => (this.accordionItems?.every(item => item.isOpen)) && this.areChildItemsOpen();
+
+  areChildItemsOpen = () => this.childAccordion?.areAllItemsOpen() ?? this.accordionItems?.every(item => item.isOpen);
+
+  static isHeaderless = type => HelfiAccordion.headerlessTypes.includes(type);
+
+  isHardcoded = () => this.type === 'hardcoded';
 
 }
