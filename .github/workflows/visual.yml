@@ -118,7 +118,7 @@ jobs:
           else
             echo "result=Tests passed!" >> $GITHUB_OUTPUT
           fi
-          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/"" >> $GITHUB_OUTPUT
+          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
 
       - name: Export container logs
         working-directory: ${{ env.DRUPAL_ROOT }}
