@@ -53,7 +53,7 @@ const SearchContainer = () => {
   return (
     <>
       <FormContainer />
-      <ResultsContainer error={error} count={data?.meta.count || 0} loading={loading} events={data?.data || []} />
+      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={loading} events={data?.data || []} />
     </>
   );
 };
