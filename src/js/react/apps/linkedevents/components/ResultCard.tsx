@@ -69,11 +69,14 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return locationString;
   };
 
-  const getOffers = (): boolean => {
-    const offersInfoUrls = offers?.map(offer => offer.info_url[currentLanguage]);
+  // Function to check if the url is valid that can be found in the info_url field.
+  function isValidUrl(urlToCheck: string | undefined | null) {
+    if (!urlToCheck) return false;
+    const urlPattern = /^(http|https):\/\/[^ "]+$/; // Regex because the eslint rules tell me not to use new.
+    return urlPattern.test(urlToCheck);
+  }
 
-    return !!offersInfoUrls;
-  };
+  const getOffers = (): boolean => offers?.some(({ info_url }) => isValidUrl(info_url[currentLanguage])) ?? false;
 
   const imageToElement = (image: EventImage): JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};
