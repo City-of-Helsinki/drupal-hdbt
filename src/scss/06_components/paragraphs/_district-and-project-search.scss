@@ -11,12 +11,12 @@
     gap: $spacing-and-half;
     justify-content: space-between;
 
-    >div {
+    > div {
       flex-basis: 100%;
     }
 
     @include breakpoint($breakpoint-m) {
-      >div {
+      > div {
         flex-basis: 48%;
       }
     }
@@ -40,7 +40,7 @@
       }
     }
 
-    >div:last-child {
+    > div:last-child {
       margin-bottom: $spacing;
     }
   }
@@ -49,47 +49,5 @@
     margin-block: $spacing-double;
     max-width: 280px;
     width: 100%;
-  }
-}
-
-.district-project-search__results_heading {
-  border-bottom: 1px solid var(--color-black-20);
-  margin-bottom: $spacing-triple;
-  margin-top: $spacing;
-
-  >div:last-of-type {
-    margin-bottom: $spacing-and-half;
-    margin-top: $spacing-and-half;
-  }
-
-  .district-project-search__count {
-    @include font('lead');
-
-    .district-project-search__count-total {
-      font-weight: $font-weight-bold;
-    }
-  }
-
-  @include breakpoint($breakpoint-m) {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-    >div:last-of-type {
-      margin-left: $spacing-and-half;
-      margin-top: 0;
-    }
-  }
-}
-
-.district-project-search__listing {
-  list-style-type: none;
-  margin-top: 0;
-  padding-left: 0;
-}
-
-.district-project-search__listing__no-results {
-  p {
-    @include font('lead');
   }
 }

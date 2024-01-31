@@ -23,7 +23,7 @@ const formatStartDate = (start: Date, end: Date) => {
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
 const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
 
-function ResultCard({ end_time, id, location, name, keywords=[], start_time, images }: Event) {
+function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers }: Event) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const url = `${baseUrl}/${currentLanguage}/events/${id}`;
@@ -69,6 +69,15 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return locationString;
   };
 
+  // Function to check if the url is valid that can be found in the info_url field.
+  function isValidUrl(urlToCheck: string | undefined | null) {
+    if (!urlToCheck) return false;
+    const urlPattern = /^(http|https):\/\/[^ "]+$/; // Regex because the eslint rules tell me not to use new.
+    return urlPattern.test(urlToCheck);
+  }
+
+  const getOffers = (): boolean => offers?.some(({ info_url }) => isValidUrl(info_url[currentLanguage])) ?? false;
+
   const imageToElement = (image: EventImage): JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};
 
@@ -104,6 +113,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       cardUrlExternal
       location={isRemote ? 'Internet' : getLocation()}
       time={getDate()}
+      registrationRequired={getOffers()}
     />
   );
 }

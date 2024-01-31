@@ -24,7 +24,7 @@
   {% set card_metas = card_metas|merge([{
       icon: 'clock',
       label: 'Opening hours'|t({}, {'context': 'TPR unit result card'}),
-      content: content.opening_hours|render|striptags,
+      content: content.opening_hours|render|striptags|replace({'\n-': ' '}),
     }]) %}
 {% endif %}
 

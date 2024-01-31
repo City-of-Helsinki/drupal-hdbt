@@ -73,20 +73,20 @@
       margin-top: $spacing-and-half;
     }
   }
-
-  .unit-search__results > .views-row:first-of-type {
-    margin-top: $spacing;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-double;
-    }
-  }
 }
 
 .unit-search__results {
   display: block;
   margin-top: $spacing-triple;
   width: 100%;
+
+  > .views-row:first-of-type {
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-double;
+    }
+  }
 
   > .views-row + .views-row {
     margin-top: $spacing;

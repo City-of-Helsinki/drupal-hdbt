@@ -38,7 +38,7 @@ const translations = {
   },
   child_info_paragraph: {
     fi: 'Täytä tiedot kaikista perheen lapsista, jotka ovat varhaiskasvatuksessa. Täytä ensin nuorimman lapsen tiedot, sen jälkeen muut lapset ikäjärjestyksessä. Nuorimman lapsen maksu on korkein, seuraavat lapset saavat sisarusalennuksen.',
-    sv: 'Fyll i uppgifterna om alla barn i familjen som deltar i småbarnspedagogik. Fyll först i uppgifterna om det yngsta barnet, sedan de andra barnen i ålderföljden. Avgiften för det yngsta barnet är högst, nästa barn får syskonrabatt.',
+    sv: 'Fyll i uppgifterna om alla barn i familjen som deltar i småbarnspedagogik. Fyll först i uppgifterna om det yngsta barnet och sedan om de följande barnen i åldersordning. Avgiften för det yngsta barnet är högst, nästa barn får syskonrabatt.',
     en: 'Fill in information about all children in the family who are in early childhood education. First, fill in the details of the youngest child, then the other children in order of age. The fee for the youngest child is the highest, the next children receive a sibling discount.',
   },
   add_next_child: {

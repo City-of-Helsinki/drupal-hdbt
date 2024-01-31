@@ -11,6 +11,8 @@ import AppSettings from '../enum/AppSettings';
 import { HealthStation } from '../types/HealthStation';
 import ResultCard from './ResultCard';
 import { paramsAtom } from '../store';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 type ResultsListProps = {
   data: any;
@@ -48,11 +50,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   if (!data?.hits?.hits.length) {
-    return (
-      <div ref={scrollTarget}>
-        {Drupal.t('No results were found for the criteria you entered. Try changing your search criteria.', {}, { context: 'React search: no search results' })}
-      </div>
-    );
+    return <ResultsEmpty ref={scrollTarget} />;
   }
 
   const results = data.hits.hits;
@@ -65,21 +63,25 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
 
   return (
     <div className='react-search__results'>
-      <div className='hdbt-search--react__result-top-area'>
-        {!Number.isNaN(total) &&
-          <h3 className='hdbt-search--react__results--title' ref={scrollTarget}>
-            { Drupal.formatPlural(total, '1 health station', '@count health stations', {}, {context: 'Health station search: result count'}) }
-          </h3>
+      <ResultsHeader
+        resultText={
+          <>
+            { Drupal.formatPlural(total, '1 health station', '@count health stations',{},{context: 'Health station search: result count'}) }
+          </>
         }
-        <div className='hdbt-search--react__results--tablist' role='tablist'>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
-            { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
-          </button>
-          <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
-            { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
-          </button>
-        </div>
-      </div>
+        actions={
+          <div className='hdbt-search--react__results--tablist' role='tablist'>
+            <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
+              { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
+            </button>
+            <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
+              { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
+            </button>
+          </div>
+        }
+        actionsClass="hdbt-search--react__results--sort"
+        ref={scrollTarget}
+      />
       <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
         {
           useMap ?
