@@ -27,6 +27,9 @@
     }
   %}
     {% block component_content %}
+      <button type="button" class="accordion-item__button js-accordion__button--toggle-all accordion__button--is-open is-hidden">
+        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Open all'|t({}, {'context': 'Accordion open all'}) }}</span>
+      </button>
 
       {{ content.field_accordion_items }}
 
