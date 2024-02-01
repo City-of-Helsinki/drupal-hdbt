@@ -39,7 +39,17 @@ const Entries = () => {
 
   // Take all root level js files and create entries with matching names.
   const pattern = './src/js/**/*.js';
-  const ignore = [];
+  const ignore = [
+    // #UHF-9614 Ignore all files starting with underscore.
+    // 'src/js/**/_*.js',
+
+    // Ignore these files:
+    'src/js/accordion/accordion-item.js',
+    'src/js/accordion/events.js',
+    'src/js/helfi-accordion.js',
+    'src/js/accordion/state.js',
+    'src/js/accordion/translations.js',
+  ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {
     entries[path.parse(item).name] = `./${item}` }

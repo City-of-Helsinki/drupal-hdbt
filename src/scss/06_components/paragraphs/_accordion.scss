@@ -130,6 +130,33 @@
   }
 }
 
+.js-accordion__button--toggle-all {
+  @include font('button');
+  align-items: center;
+  display: flex;
+  inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
+  margin-block-start: $spacing-half;
+  margin-inline-start: auto;
+  padding: $spacing-half;
+
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.accordion__button--is-open::after {
+    @include pseudo-icon('angle-up', $spacing-and-half, currentColor, inline-block);
+  }
+
+  &.accordion__button--is-closed::after {
+    @include pseudo-icon('angle-down', $spacing-and-half, currentColor, inline-block);
+  }
+}
+
 .accordion-item__button--toggle[aria-expanded='true'] {
   background-color: transparent;
 
