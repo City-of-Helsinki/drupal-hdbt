@@ -76,7 +76,9 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return urlPattern.test(urlToCheck);
   }
 
-  const getOffers = (): boolean => offers?.some(({ info_url }) => isValidUrl(info_url[currentLanguage])) ?? false;
+  const getOffers = (): boolean => offers?.some(({ info_url }) =>
+    info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage])
+  ) ?? false;
 
   const imageToElement = (image: EventImage): JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};

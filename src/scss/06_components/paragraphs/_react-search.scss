@@ -24,6 +24,12 @@
   max-width: $content-width-max;
 }
 
+.hdbt-search__submit-button {
+  max-width: 280px; // Max-width for button from hds/designs.
+  min-width: 44px; // Min-width for button from hds/designs.
+  width: 100%;
+}
+
 .hdbt-search--react__text-field {
   margin-bottom: $spacing-double;
 }
