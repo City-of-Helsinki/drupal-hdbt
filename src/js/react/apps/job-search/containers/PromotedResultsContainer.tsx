@@ -10,11 +10,11 @@ import URLParams from '../types/URLParams';
 import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import usePromotedQuery from '../hooks/usePromotedQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
-import NoResults from '../components/results/NoResults';
 import IndexFields from '../enum/IndexFields';
 import ResultsSort from '../components/results/ResultsSort';
-import ResultsCount from '../components/results/ResultsCount';
 import ResultsList from '../components/results/ResultsList';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 const PromotedResultsContainer = () => {
   const { size } = Global;
@@ -49,7 +49,7 @@ const PromotedResultsContainer = () => {
       return (
         <ResultsError
           error={error || initializationError || data.error}
-          className='job-search__results'
+          className='react-search__results'
           ref={scrollTarget}
         />
       );
@@ -60,31 +60,39 @@ const PromotedResultsContainer = () => {
     // Typecheck and combine totals from both queries
     const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
     const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
-    const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
+    const totalNumber = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal)  ? 0 : baseTotal);
+    const total = totalNumber.toString();
 
-    if (total <= 0) {
-      return <NoResults ref={scrollTarget} />;
+    if (totalNumber <= 0) {
+      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
     }
 
-    const pages = Math.floor(total / size);
-    const addLastPage = total > size && total % size;
+    const pages = Math.floor(totalNumber / size);
+    const addLastPage = totalNumber > size && totalNumber % size;
 
     // Typecheck and combine job totals (aggregated vacancies)
     const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
     const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-    const jobs = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
+    const jobs: string = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs)  ? 0 : baseJobs);
     const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
 
     return (
       <>
-        <div className='job-search__results-stats'>
-          <ResultsCount
-            jobs={jobs}
-            total={total}
-            ref={scrollTarget}
-          />
-          <ResultsSort />
-        </div>
+        <ResultsHeader
+          resultText={
+            <>
+              { Drupal.formatPlural(jobs, '1 open position', '@count open positions',{},{ context: 'Job search results statline' }) }
+            </>
+          }
+          optionalResultsText={
+            <>
+              { Drupal.formatPlural(total, '1 job listing', '@count job listings',{},{context: 'Job search results statline'}) }
+            </>
+          }
+          actions={<ResultsSort />}
+          actionsClass="hdbt-search--react__results--sort"
+          ref={scrollTarget}
+        />
         <ResultsList hits={results} />
         <Pagination
           currentPage={currentPage}

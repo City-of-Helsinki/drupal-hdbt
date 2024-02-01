@@ -16,17 +16,12 @@
   margin-bottom: $spacing;
 }
 
-.hdbt-search--react__tabs {
-  margin-bottom: $spacing-triple;
-}
-
-.hdbt-search--react__tab {
-  --tab-active-border-color: var(--hdbt-color-black);
-  --tab-color: var(--hdbt-color-black);
-}
-
 .hdbt-search--react__form-description {
   margin-bottom: $spacing-and-half;
+}
+
+.hdbt-search--react__form-container {
+  max-width: $content-width-max;
 }
 
 .hdbt-search--react__text-field {
@@ -35,16 +30,16 @@
 
 // Override some fieldset default styles here
 .hdbt-search--react__fieldset {
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-  }
-
   border: none;
   margin-bottom: $spacing-double;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+  }
 }
 
 .hdbt-search--react__legend {
@@ -58,32 +53,32 @@ fieldset .hdbt-search--react__checkbox {
 }
 
 fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
+  margin-top: $spacing-double;
+
   @include breakpoint($breakpoint-l) {
     margin-left: $spacing;
     margin-top: 0;
   }
-
-  margin-top: $spacing-double;
 }
 
 .hdbt-search--react__result-top-area {
+  margin-bottom: $spacing-and-half;
+
   @include breakpoint($breakpoint-l) {
     display: flex;
     justify-content: space-between;
   }
-
-  margin-bottom: $spacing;
 }
 
 .hdbt-search--react__results--title {
-  @include breakpoint($breakpoint-l) {
-    margin-bottom: 0;
-  }
-
   align-items: center;
   display: flex;
   margin-bottom: $spacing-three-quarters;
   margin-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: 0;
+  }
 }
 
 .hdbt-search--react__results--tablist {
@@ -109,13 +104,13 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 
 .components--upper .component--hdbt-search--ploughing-schedule .component__container {
   margin-left: $spacing;
-  margin-right: $spacing;  
+  margin-right: $spacing;
   padding: $spacing-and-half;
 
-  @include breakpoint($breakpoint-m) {    
+  @include breakpoint($breakpoint-m) {
     margin-left: $spacing-double;
     margin-right: $spacing-double;
-    padding: $spacing-double;  
+    padding: $spacing-double;
   }
 
   @include breakpoint($breakpoint-l) {
@@ -139,9 +134,9 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 .hdbt-search--ploughing-schedule__result-card {
-  border-left: 8px solid $color-gold;  
+  border-left: 8px solid $color-gold;
   margin-top: $spacing-double;
-  padding-bottom: $spacing-three-quarters;  
+  padding-bottom: $spacing-three-quarters;
   padding-left: $spacing-double;
   padding-right: $spacing-double;
   padding-top: $spacing-three-quarters;
@@ -152,8 +147,8 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 .hdbt-search--ploughing-schedule__result-card--title {
-  margin-bottom: $spacing;  
-  margin-top: 0;  
+  margin-bottom: $spacing;
+  margin-top: 0;
 }
 
 .layout-main-wrapper > *:last-child .component--react-search--ploughing-schedule:last-child .component__container {

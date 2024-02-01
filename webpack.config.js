@@ -39,7 +39,17 @@ const Entries = () => {
 
   // Take all root level js files and create entries with matching names.
   const pattern = './src/js/**/*.js';
-  const ignore = [];
+  const ignore = [
+    // #UHF-9614 Ignore all files starting with underscore.
+    // 'src/js/**/_*.js',
+
+    // Ignore these files:
+    'src/js/accordion/accordion-item.js',
+    'src/js/accordion/events.js',
+    'src/js/helfi-accordion.js',
+    'src/js/accordion/state.js',
+    'src/js/accordion/translations.js',
+  ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {
     entries[path.parse(item).name] = `./${item}` }
@@ -137,7 +147,8 @@ module.exports = (env, argv) => {
     resolve: {
       fallback: {
         // Fix hds-react import bugs.
-        path: require.resolve('path-browserify')
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify')
       },
       modules: [
         path.join(__dirname, 'node_modules'),
@@ -149,11 +160,6 @@ module.exports = (env, argv) => {
       },
     },
     plugins: [
-      // Fix hds-react import bugs.
-      new webpack.ProvidePlugin({
-        process: 'process/browser',
-        Buffer: ['buffer', 'Buffer'],
-      }),
       new SvgToSprite(
         path.resolve(__dirname, 'src/icons/**/*.svg'),
         'icons/sprite.svg',

@@ -12,54 +12,60 @@ export default class AccordionItem {
 
   static contentElement = 'accordion-item__content';
 
-  constructor(element, state) {
+  constructor(element, state, urlHash, parentCallback) {
     this.element = element;
-    // Use header id as this objects id since header id is unique.
-    this.id = element.querySelector('.helfi-accordion__header').id;
     this.localState = state;
-    this.isOpen = this.localState.loadItemState(this.id);
+    // Allow updating the accordion state when the item's state changes.
+    this.parentCallback = parentCallback;
+
+    // Use header id as this objects id since header id is unique.
+    this._id = element.querySelector('.helfi-accordion__header').id;
+    this._isOpen = this.localState.loadItemState(this._id);
+
     this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
     this.setHidden();
     this.addEventListeners();
-    // Open accordion element by anchor link.
-    // TODO: UHF-8775 Figure out why javascript cannot find elements at this point (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8775).
-    // Possibly due to other timeouts
-    setTimeout(()=>{
-      this.handleLinkAnchor();
-      // Update element aria-expanded.
-      this.setAriaOpen();
-      this.element.style = null; // allow animating accordions after pageload
-    }, 100);
+    this.handleLinkAnchor(urlHash);
+    this.setAriaOpen();
+    this.element.style = null; // allow animating accordions after pageload
   }
 
   open = () => {
-    this.isOpen = true;
+    this._isOpen = true;
     this.setAriaOpen();
     this.setHidden();
+    this.parentCallback();
     this.localState.saveItemState(this.id, this.isOpen);
   };
 
   close = () => {
-    this.isOpen = false;
+    this._isOpen = false;
     this.setAriaOpen();
     this.changeFocus();
     this.setHidden();
+    this.parentCallback();
+    this.localState.saveItemState(this.id, this.isOpen);
+  };
+
+  closeWithoutFocus = () => {
+    this._isOpen = false;
+    this.setAriaOpen();
+    this.setHidden();
+    this.parentCallback();
     this.localState.saveItemState(this.id, this.isOpen);
   };
 
   toggle = (event) => {
-    if (!AccordionItem.isClick(event.which)) return;
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
+    if (!AccordionItem.isClick(event.which)) {
+      return;
     }
+    // eslint-disable-next-line no-unused-expressions
+    this.isOpen ? this.close() : this.open();
   };
 
-  handleLinkAnchor = () => {
-    const {hash} = window.location;
-    if (!hash) return;
-    const item = this.element.querySelector(hash);
+  handleLinkAnchor = (urlHash) => {
+    if (!urlHash) return;
+    const item = this.element.querySelector(urlHash);
     if (item) {
       this.open();
       item.scrollIntoView();
@@ -74,30 +80,28 @@ export default class AccordionItem {
 
   setHidden = () => {
     const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
-    if (this.isOpen) {
-      contentElement.classList.remove('is-hidden');
-    }
-    else {
-      contentElement.classList.add('is-hidden');
-    }
+    // eslint-disable-next-line no-unused-expressions
+    this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
   };
 
-  changeFocus = () => {
-    this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
-  };
+  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
 
   addEventListeners = () => {
-    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('mouseup', this.toggle);
-    this.element.getElementsByClassName(AccordionItem.toggleElement)[0].addEventListener('keypress', this.toggle);
+    const toggleElement = this.element.getElementsByClassName(AccordionItem.toggleElement)[0];
+    toggleElement.addEventListener('mouseup', this.toggle);
+    toggleElement.addEventListener('keypress', this.toggle);
 
-    this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('mouseup', this.close);
-    this.element.getElementsByClassName(AccordionItem.closeElement)[0].addEventListener('keypress', this.close);
+    const closeElement = this.element.getElementsByClassName(AccordionItem.closeElement)[0];
+    closeElement.addEventListener('mouseup', this.close);
+    closeElement.addEventListener('keypress', this.close);
   };
 
   static isClick(buttonKey) {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
-  };
+  }
 
-  getId = () => this.id;
+  get id() { return this._id; }
+
+  get isOpen() { return this._isOpen; }
 
 }

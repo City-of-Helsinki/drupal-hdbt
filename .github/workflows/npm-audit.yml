@@ -1,0 +1,65 @@
+name: Npm audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * 0'  # Run every fortnight on Sunday at 12
+
+jobs:
+  npm_audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run npm audit
+        id: npm_audit
+        run: |
+          node_version=$(cat .nvmrc)
+          echo "Using Node.js version $node_version"
+          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install $node_version
+          nvm use $node_version
+          npm install --silent
+          set +e
+          npm audit --package-lock-only --loglevel=error;
+          # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
+          if [ $? -gt 0 ]; then
+            npm audit fix --package-lock-only --loglevel=error;
+            if [ $? -gt 0 ]; then
+              echo "BC_BREAK=:exclamation: NPM Audit fix could not fix all vulnerabilities. Fix them manually by running \`npm audit fix --force\` and test the functionalities thoroughly as there might be breaking changes. :exclamation:" >> $GITHUB_ENV;
+            fi;
+            echo "CREATE_PR=true" >> $GITHUB_OUTPUT;
+          fi;
+          set -e
+
+      - name: Create Pull Request
+        if: steps.npm_audit.outputs.CREATE_PR == 'true'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          committer: GitHub <noreply@github.com>
+          author: actions-bot <actions-bot@users.noreply.github.com>
+          commit-message: Updated node modules based on npm audit fix
+          title: Automatic npm audit fix
+          labels: auto-update
+          body: |
+            # Npm audit
+            
+            ${{ env.BC_BREAK }}
+
+            ## How to install
+  
+            * Update the HDBT theme
+               * `git fetch --all`
+               * `git checkout automation/npm-audit`
+               * `git pull origin automation/npm-audit`
+            * In theme folder, run `nvm use && npm i && npm run build`
+  
+            ## How to test
+            Run `npm audit`
+  
+            * [ ] Check that the `npm audit` prints `found 0 vulnerabilities`
+            * [ ] Check that the changes for distributed files are sensible
+
+          branch: automation/npm-audit
