@@ -6,7 +6,7 @@ type SubmitButtonProps =  {
 
 function SubmitButton({ disabled }: SubmitButtonProps) {
   return (
-    <Button type="submit" disabled={disabled} className='hdbt-search__submit-button event-list__submit-button'>{Drupal.t('Search', {}, { context: 'React search' })}</Button>
+    <Button type="submit" disabled={disabled} className='hdbt-search--react__submit-button event-list__submit-button'>{Drupal.t('Search', {}, { context: 'React search' })}</Button>
   );
 }
 
