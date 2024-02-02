@@ -1018,3 +1018,11 @@ msgid "1 event"
 msgid_plural "@count events"
 msgstr[0] "1 tapahtuma"
 msgstr[1] "@count tapahtumaa"
+
+msgctxt "Accordion open all"
+msgid "Open all"
+msgstr "Avaa kaikki"
+
+msgctxt "Accordion close all"
+msgid "Close all"
+msgstr "Sulje kaikki"
