@@ -54,19 +54,9 @@
       white-space: normal;
     }
 
-    .hds-text-input__input-wrapper {
-      &::after {
-        @include pseudo-icon('search', 20px, $color-black, block);
-        position: absolute;
-        right: $spacing;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .hds-text-input__input {
-        border-radius: 0;
-        padding-right: $spacing-triple;
-      }
+    .hds-text-input__input-wrapper .hds-text-input__input {
+      border-radius: 0;
+      padding-right: $spacing-triple;
     }
 
     [data-drupal-selector='edit-provided-languages-value'] {
