@@ -1,0 +1,156 @@
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+env:
+  SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
+name: Visual regression tests
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set variables
+        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
+
+      - name: Parse $THEME_NAME from composer.json
+        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+
+      - name: Set theme folder
+        run: echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
+
+      - name: Clone platform
+        run: |
+          git clone --depth=1 https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
+          rm -rf $DRUPAL_ROOT/.git
+
+      - name: Install and start Stonehenge
+        run: |
+          git clone -b 4.x https://github.com/druidfi/stonehenge.git ~/stonehenge
+          cd ~/stonehenge && make up
+
+      - name: Build project
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        env:
+          COMPOSER_MIRROR_PATH_REPOS: 1
+        run: |
+          composer config repositories.5 path $GITHUB_WORKSPACE
+          composer require drupal/$THEME_NAME -W
+          # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
+          # instead of symlinking it to make sure the code is available inside
+          # the app container.
+          cp -r $GITHUB_WORKSPACE/.git $THEME_FOLDER/
+
+      - name: Start project
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose --profile testing up -d --wait && sleep 5
+
+      - name: Restore files folder
+        id: drupal-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.DRUPAL_ROOT }}/public/sites/default/files
+          key: drupal-cache
+
+      - name: Prepare Drupal setup
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: |
+          mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
+
+      - name: Install Drupal from existing dump
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        if: steps.drupal-cache.outputs.cache-hit == 'true'
+        run: |
+          docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
+          docker compose exec app bash -c "drush updb -y"
+
+      - name: Install Drupal from scratch
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        if: steps.drupal-cache.outputs.cache-hit != 'true'
+        run: |
+          docker compose exec app bash -c "drush si minimal -y"
+          docker compose exec app bash -c "drush en helfi_test_content -y"
+          docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
+
+      - name: Node setup
+        working-directory: ${{ env.THEME_FOLDER }}
+        run: |
+          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install && npm install && npx playwright install
+
+      - name: Generate reference images
+        working-directory: ${{ env.THEME_FOLDER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Uncomment this to force update reference images.
+          #GENERATE_REFERENCES: 1
+        run: |
+          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
+
+          # Always update reference images when the pull request is merged to main branch.
+          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
+            GENERATE_REFERENCES=1
+          fi
+
+          if [ "$GENERATE_REFERENCES" == "1" ]; then
+            npm run full-reference
+            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ env.UPLOAD_BITMAP == '1' }}
+        with:
+          name: bitmaps
+          path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
+          overwrite: true
+          compression-level: 0
+
+      - name: Run tests
+        working-directory: ${{ env.THEME_FOLDER }}
+        id: run-tests
+        # Skip tests when run against the 'main' branch since we're generating
+        # reference images and tests should never fail.
+        if: github.ref != 'refs/heads/main'
+        run: |
+          if ! npm run full-test; then
+            echo "result=❌ Tests failed!" >> $GITHUB_OUTPUT
+          else
+            echo "result=✅ Tests passed!" >> $GITHUB_OUTPUT
+          fi
+          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
+
+      - name: Export container logs
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose logs app > /tmp/container.log
+
+      - name: Deploy to PR preview
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref != 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.THEME_FOLDER }}/backstop_data/full/
+          destination_dir: pull/${{github.event.number}}
+
+      - name: Update comment
+        uses: hasura/comment-progress@v2.2.0
+        if: github.ref != 'refs/heads/main'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          id: deploy-preview
+          recreate: true
+          message: "${{join(steps.run-tests.outputs.*, '  ')}}"
+
+      - name: Upload container logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: container-log
+          path: /tmp/container.log
+          retention-days: 1
+

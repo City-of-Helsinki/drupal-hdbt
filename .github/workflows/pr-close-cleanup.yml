@@ -1,0 +1,27 @@
+name: Delete BackstopJS preview
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete_folder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Setup Git user
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+      - name: Remove the folder
+        run: |
+          rm -r pull/${{ github.event.pull_request.number }}
+          if [[ $(git status --porcelain) ]]; then
+            git add .
+            git commit -m 'Automated commit'
+            git push
+          fi
+
