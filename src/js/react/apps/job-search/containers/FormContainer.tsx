@@ -113,6 +113,7 @@ const FormContainer = () => {
         id={SearchComponents.KEYWORD}
         label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
         name={SearchComponents.KEYWORD}
+        type='search'
         onChange={handleKeywordChange}
         value={keyword}
         placeholder={Drupal.t(
