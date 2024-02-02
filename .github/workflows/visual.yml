@@ -117,7 +117,7 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: |
           if ! npm run full-test; then
-            echo "result=:warning: Visual regression found! Please check if this change is wanted or accidental at:" >> $GITHUB_OUTPUT
+            echo "result=:warning: Visual regression found! Please check if this change is wanted or accidental. " >> $GITHUB_OUTPUT
           else
             echo "result=✅ Tests passed!" >> $GITHUB_OUTPUT
           fi
