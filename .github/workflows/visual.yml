@@ -82,12 +82,14 @@ jobs:
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install && npm install && npx playwright install
 
+      - name: Check if we should re-create reference images
+        if: contains( github.event.pull_request.labels.*.name, 'recreate-reference-images')
+        run: echo "GENERATE_REFERENCES=1" >> $GITHUB_ENV
+
       - name: Generate reference images
         working-directory: ${{ env.THEME_FOLDER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Uncomment this to force update reference images.
-          #GENERATE_REFERENCES: 1
         run: |
           gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
 
