@@ -1577,7 +1577,7 @@ function hdbt_preprocess_pager(&$variables): void {
   $pager_manager = \Drupal::service('pager.manager');
   $pager = $pager_manager->getPager($element);
   // Get the total pages in the pager.
-  $total_pages = $pager->getTotalPages();
+  $total_pages = isset($pager) ? $pager->getTotalPages() : 0;
 
   $variables['total_pages'] = $total_pages;
 }
