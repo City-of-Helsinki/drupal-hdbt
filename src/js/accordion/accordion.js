@@ -1,49 +1,54 @@
 import HelfiAccordion from './helfi-accordion';
 import State from './state';
-import AccordionItem from './accordion-item';
+import Events from './events';
 
-// Listen to hash change.
-window.addEventListener('hashchange', () => {
-  const {hash} = window.location;
-
-  // Look for accordion headers for anchor links.
-  let accordionItemFound = false;
-  window.helfiAccordions.forEach((accordion) => {
-    const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
-    if (accordionItem) {
-      accordionItemFound = true;
-      accordionItem.handleLinkAnchor();
-    }
-  });
-
-  // If not found, look inside accordions for anchor links.
-  if (!accordionItemFound) {
-    const anchorElement = document.querySelector(`${hash}`);
-    if (!anchorElement) {
-      return;
-    }
-    const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
-    if (accordionItemToOpen) {
-      window.helfiAccordions.forEach((accordion) => {
-        const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
-        const accordionItem = accordion.getAccordionItemById(idToSearch);
-        if (accordionItem) {
-          accordionItem.handleLinkAnchor();
-        }
-      });
-    }
-  }
-});
-
-// Initialize the accordions
 window.helfiAccordions = [];
 
 const state = new State();
-setTimeout(()=>{
-  document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`).forEach((accordionElement) => {
-    const accordion = new HelfiAccordion(accordionElement, state);
-    window.helfiAccordions.push(accordion);
-  });
-}, 50);
+// eslint-disable-next-line no-unused-vars
+const events = new Events();
+const {hash} = window.location;
 
+const getAccordionType = (classes) => {
+  if (classes.includes('component--no-header')) {
+    return 'headerless';
+  }
+  if (classes.includes('component--hardcoded')) {
+    return 'hardcoded';
+  }
+  return 'default';
+};
+
+const callback = (mutations, observer) => {
+  const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
+  if (items.length > window.helfiAccordions.length) {
+    try {
+        items.forEach((accordionElement, index) => {
+        const type = getAccordionType(Array.from(accordionElement.classList));
+        const isHeaderless = HelfiAccordion.isHeaderless(type);
+
+        // Special case.
+        const actualType = (index === 0 && type !== 'hardcoded') ? 'default' : type;
+        const accordion = new HelfiAccordion(accordionElement, state, hash, actualType);
+        window.helfiAccordions.push(accordion);
+
+        // Allow the previous accordion to control the next headerless accordion's toggle functionality.
+        // Should skip hardcoded accordions.
+        if (!accordion.isHardcoded(type) && isHeaderless && index > 0) {
+          window.helfiAccordions[index-1].addChildAccordion(accordion);
+        }
+      });
+    }
+    catch(e) {
+      console.error(e);
+      observer.disconnect();
+    }
+  }
+};
+
+const targetNode = document.body;
+const config = { attributes: true, childList: true, subtree: true };
+
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
 
