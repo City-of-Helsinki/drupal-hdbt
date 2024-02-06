@@ -299,7 +299,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Events',
-          'url': `https://${hostname}/en/dc-components/dc-events`,
+          'url': `https://${hostname}/en/dc-components/dc-event-list`,
           'removeSelectors': removeDefault,
           // 'hideSelectors': [
           //   '.event-list__event-image',
