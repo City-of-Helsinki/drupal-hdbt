@@ -73,6 +73,7 @@ const FormContainer = () => {
             placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             onChange={handleTitleChange}
             value={title}
+            type='search'
           />
           <Combobox
             multiselect
