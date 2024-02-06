@@ -297,20 +297,20 @@ function getConfig(hostname, type) {
           ],
           'selectorExpansion': expandComponents,
         },
-        {
-          'label': 'DC: Events',
-          'url': `https://${hostname}/en/dc-components/dc-events`,
-          'removeSelectors': removeDefault,
-          // 'hideSelectors': [
-          //   '.event-list__event-image',
-          // ],
-          'delay': 1000, // The images are slow to load
-          'readySelector': '.react-search__results-stats',
-          'selectors': [
-            '.component--event-list'
-          ],
-          'selectorExpansion': expandComponents,
-        },
+        //{
+        //  'label': 'DC: Event list',
+        //  'url': `https://${hostname}/en/dc-components/dc-event-list`,
+        //  'removeSelectors': removeDefault,
+        //  // 'hideSelectors': [
+        //  //   '.event-list__event-image',
+        //  // ],
+        //  'delay': 1000, // The images are slow to load
+        //  'readySelector': '.react-search__results-stats',
+        //  'selectors': [
+        //    '.component--event-list'
+        //  ],
+        //  'selectorExpansion': expandComponents,
+        //},
         {
           'label': 'DC: Image',
           'url': `https://${hostname}/en/dc-components/dc-image`,
