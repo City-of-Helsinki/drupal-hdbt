@@ -1,12 +1,27 @@
 // eslint-disable-next-line func-names
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
+    // Check if the user qualifies for Matomo
+    let followUser = false;
+    // Currently limited to anonymous users, might need some role
+    // based ID fetching later on
+    const followedUserIds = [0];
+
+    try {
+      followUser = followedUserIds.includes(drupalSettings.user.uid);
+    } catch (err) {
+      console.log('user settings not available');
+    }
+
     if (typeof Drupal.eu_cookie_compliance === 'undefined') {
       return;
     }
 
     // Load Matomo only if statistics cookies are allowed.
-    if (Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+    if (
+      Drupal.eu_cookie_compliance.hasAgreed('statistics') &&
+      followUser
+    ) {
       // Matomo Tag Manager
       // eslint-disable-next-line no-multi-assign
       const _mtm = (window._mtm = window._mtm || []);
