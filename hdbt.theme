@@ -141,8 +141,20 @@ function hdbt_preprocess_html(&$variables): void {
 
   $variables['#attached']['library'][] = 'hdbt/cssmenu';
 
-  // Add Matomo analytics.
-  $variables['#attached']['library'][] = 'hdbt/matomo';
+  // Add Matomo analytics for certain users (now anonymous only)
+  // Possibly some other roles on future.
+  $user_roles = Drupal::currentUser()->getAccount()->getRoles();
+  $allowed_roles = ['anonymous'];
+  $add_matomo = FALSE;
+  foreach ($user_roles as $role) {
+    if (in_array($role, $allowed_roles)) {
+      $add_matomo = TRUE;
+      break;
+    }
+  }
+  if ($add_matomo) {
+    $variables['#attached']['library'][] = 'hdbt/matomo';
+  }
 
   // Disable Genesys button if the chat element does not exist.
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
