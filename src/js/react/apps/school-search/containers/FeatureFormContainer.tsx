@@ -87,7 +87,7 @@ const FeatureFormContainer = () => {
   const bilingualEducationLabel: string = Drupal.t('Bilingual education', {}, { context: 'TPR Ontologyword details schools' });
 
   return (
-    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <h3>
         {Drupal.t('Search with school details', {}, {context: 'School search: Feature form title'})}
       </h3>

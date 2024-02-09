@@ -64,7 +64,7 @@ const FormContainer = () => {
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} role='search'>
       <div className="district-project-search-form__filters-container">
         <div className="district-project-search-form__filters">
           <TextInput
@@ -73,6 +73,7 @@ const FormContainer = () => {
             placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             onChange={handleTitleChange}
             value={title}
+            type='search'
           />
           <Combobox
             multiselect

@@ -50,7 +50,7 @@ function FormContainer() {
   }
 
   return (
-    <form className='hdbt-search--react__form-container' onSubmit={handleSubmit}>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
       <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Event search: search form title' })}</HeadingTag>
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>

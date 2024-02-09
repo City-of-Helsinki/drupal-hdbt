@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ * @see claro_preprocess_input()
+ */
+#}
+{% apply spaceless %}
+  <div class="hds-text-input__input-wrapper">
+    <input {{ attributes.setAttribute('type', 'search').addClass('hds-text-input__input') }} />
+  </div>
+  {{ children }}
+{% endapply %}
