@@ -985,6 +985,10 @@ msgctxt "Search keyword label"
 msgid "Search term"
 msgstr "Hakusana"
 
+msgctxt "Unit search paragraps search input default label"
+msgid "Name, address or postal code"
+msgstr "Nimi, osoite tai postinumero"
+
 msgctxt "Unit search count singular"
 msgid "result"
 msgstr "tulos"

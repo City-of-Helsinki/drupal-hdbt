@@ -982,6 +982,10 @@ msgctxt "Search keyword label"
 msgid "Search term"
 msgstr "Sökord"
 
+msgctxt "Unit search paragraps search input default label"
+msgid "Name, address or postal code"
+msgstr "Namn, adress eller postnummer"
+
 msgctxt "Unit search count singular"
 msgid "result"
 msgstr "resultat"
