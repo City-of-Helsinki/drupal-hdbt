@@ -48,7 +48,7 @@ const FormContainer = () => {
   });
 
   return (
-    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <h2 className='hdbt-search--react__form-title'>
         {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form title / submit'})}
       </h2>

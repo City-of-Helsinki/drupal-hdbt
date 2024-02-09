@@ -400,8 +400,30 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
+function hdbt_theme_suggestions_input_alter(array &$suggestions, array $variables): void {
+  if (isset($variables['element']['#name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . str_replace('-', '_', $variables['element']['#name']);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $variables): void {
   $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#type'];
+
+  if (isset($variables['element']['#name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#type'] . '__' . str_replace('-', '_', $variables['element']['#name']);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hdbt_theme_suggestions_form_element_label_alter(array &$suggestions, array $variables): void {
+  if (isset($variables['element']['#id']) && strpos($variables['element']['#id'], 'edit-unit-search') === 0) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . 'unit_search';
+  }
 }
 
 /**
@@ -411,6 +433,10 @@ function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $v
  */
 function hdbt_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
   $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+
+  if (isset($variables['element']['unit_search']) && $variables['element']['unit_search']) {
+    $suggestions[] = 'form__unit_search';
+  }
 }
 
 /**
@@ -1577,7 +1603,7 @@ function hdbt_preprocess_pager(&$variables): void {
   $pager_manager = \Drupal::service('pager.manager');
   $pager = $pager_manager->getPager($element);
   // Get the total pages in the pager.
-  $total_pages = $pager->getTotalPages();
+  $total_pages = isset($pager) ? $pager->getTotalPages() : 0;
 
   $variables['total_pages'] = $total_pages;
 }

@@ -107,12 +107,13 @@ const FormContainer = () => {
   const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
   return (
-    <form className='job-search-form' onSubmit={handleSubmit} action={formAction}>
+    <form className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
       <TextInput
         className='job-search-form__filter'
         id={SearchComponents.KEYWORD}
         label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
         name={SearchComponents.KEYWORD}
+        type='search'
         onChange={handleKeywordChange}
         value={keyword}
         placeholder={Drupal.t(

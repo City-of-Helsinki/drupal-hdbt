@@ -297,20 +297,20 @@ function getConfig(hostname, type) {
           ],
           'selectorExpansion': expandComponents,
         },
-        {
-          'label': 'DC: Events',
-          'url': `https://${hostname}/en/dc-components/dc-events`,
-          'removeSelectors': removeDefault,
-          // 'hideSelectors': [
-          //   '.event-list__event-image',
-          // ],
-          'delay': 1000, // The images are slow to load
-          'readySelector': '.react-search__results-stats',
-          'selectors': [
-            '.component--event-list'
-          ],
-          'selectorExpansion': expandComponents,
-        },
+        //{
+        //  'label': 'DC: Event list',
+        //  'url': `https://${hostname}/en/dc-components/dc-event-list`,
+        //  'removeSelectors': removeDefault,
+        //  // 'hideSelectors': [
+        //  //   '.event-list__event-image',
+        //  // ],
+        //  'delay': 1000, // The images are slow to load
+        //  'readySelector': '.react-search__results-stats',
+        //  'selectors': [
+        //    '.component--event-list'
+        //  ],
+        //  'selectorExpansion': expandComponents,
+        //},
         {
           'label': 'DC: Image',
           'url': `https://${hostname}/en/dc-components/dc-image`,
@@ -464,8 +464,6 @@ function getConfig(hostname, type) {
       'engine': 'playwright',
       'engineOptions': {
         'browser': 'chromium',
-        // 'browser': 'firefox',
-        // 'browser': 'webkit',
         'args': ['--no-sandbox'],
       },
       'asyncCaptureLimit': 10,
@@ -506,10 +504,12 @@ if (process.env.DRUPAL_HOSTNAME) {
       }
 
     }).catch((e) => {
+      process.exitCode = 255;
       patchReport(type);
       console.error('\n\n📕 ', e, `\n\nCheck the report:\n🖼️  ${reportUrl}`);
     });
 
 } else {
+  process.exitCode = 1;
   console.error(`📕 Environment not found, are you sure the instance .env file can be found in ${envPath}?`);
 }

@@ -28,7 +28,7 @@ const ProximityFormContainer = () => {
   };
 
   return (
-    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <TextInput
         className='hdbt-search__filter hdbt-search--react__text-field'
         helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}

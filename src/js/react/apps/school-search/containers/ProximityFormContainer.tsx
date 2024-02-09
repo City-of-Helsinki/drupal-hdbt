@@ -24,7 +24,7 @@ const ProximityFormContainer = () => {
   };
 
   return (
-    <form className='hdbt-search--react__form-container' onSubmit={onSubmit}>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <h3>
         {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
       </h3>

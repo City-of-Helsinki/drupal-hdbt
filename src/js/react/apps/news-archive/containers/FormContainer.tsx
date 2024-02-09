@@ -74,7 +74,7 @@ const FormContainer = () => {
   return (
     <div className='news-form-wrapper'>
       <div className='news-form-container'>
-        <form className='news-form' onSubmit={onSubmit}>
+        <form className='news-form' role='search' onSubmit={onSubmit}>
           <h2>{Drupal.t('Filter news items', {}, {context: 'News archive filter results heading'})}</h2>
           <div className='news-form__filters-container'>
             {topicOptions && <Filter
