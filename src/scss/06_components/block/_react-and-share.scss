@@ -39,6 +39,11 @@
         margin-bottom: 0;
       }
 
+      // Hide "created with..." text.
+      .rns-footer {
+        display: none;
+      }
+
       .reactions {
         margin-top: $spacing-and-half;
 
