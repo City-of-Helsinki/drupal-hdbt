@@ -40,9 +40,8 @@
 {% set link = content.field_banner_link.0['#url'] %}
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
-{% set open_in_a_new_window = content.field_banner_link.0['#options']['target_new'] %}
-{% set icon = content.field_banner_link.0['#options']['icon'] %}
-
+{% set open_in_a_new_window = link.options.target_new %}
+{% set icon = link.options.icon %}
 {% block paragraph %}
   {% if has_content %}
     {% embed "@hdbt/misc/component.twig" with
