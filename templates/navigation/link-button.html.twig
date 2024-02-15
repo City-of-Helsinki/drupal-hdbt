@@ -4,11 +4,9 @@
  * - label: String for the label visible in link.
  * - url: String for the url to link to.
  * - type: primary, secondary or supplementary type of button.
- * - size: small or unset.
  * - open_in_a_new_window: Boolean for opening in a new window and showing explanation.
  * - icon: Boolean if first icon is enabled
  * - icon_type: String for first icon type
- * - class: Optional String to be added to the class list
  *
  * Usage example:
  * {% include '@hdbt/navigation/link-button.html.twig' with {
@@ -21,44 +19,18 @@
  *
  * TODO: UHF-8793 Refactor hds-button (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8793).
  */
- #}
-
-{% if type == 'primary' %}
-  {% set type_class = 'hds-button--primary' %}
-{% elseif type == 'secondary' %}
-  {% set type_class = 'hds-button--secondary' %}
-{% elseif type == 'supplementary' %}
-  {% set type_class = 'hds-button--supplementary' %}
-{% endif %}
-
-{% set classes = [
-  'hds-button',
-  'hds-button--link',
-  type_class,
-  size == 'small' ? 'hds-button--small',
-  class,
-] %}
-
-
-{% set explain = null %}
-{% set link_options = {class: classes|join(' ')} %}
+#}
+{% set link_options = {
+  'data-hds-component':'button',
+  'data-hds-variant': type,
+} %}
 
 {% if open_in_a_new_window %}
-  {%- set explain -%}
-    <span class="hds-button__target-blank">({{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.)</span>
-  {%- endset -%}
-  {% set link_options = link_options|merge({target: '_blank'}) %}
+  {% set link_options = link_options|merge({target: '_blank', 'data-open-in-new-tab': true}) %}
 {% endif %}
 
 {% if icon == true %}
-  {% set link_options = link_options|merge({'data-selected-icon': icon_type}) %}
+  {% set link_options = link_options|merge({'data-hds-icon-start': icon_type}) %}
 {% endif %}
 
-{% set title %}
-  <span class="hds-button__label">
-    {{ label }}
-    {{ explain }}
-  </span>
-{% endset %}
-
-{{ link(title, url, link_options) }}
+{{ link(label, url, link_options) }}
