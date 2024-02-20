@@ -45,7 +45,7 @@
   padding-top: $spacing-double;
 }
 
-.component--banner .banner a[data-hds-component='button'] {
+.component--banner .banner__content-wrapper > a[data-hds-component='button'] {
   margin: $spacing-double auto 0;
 }
 
