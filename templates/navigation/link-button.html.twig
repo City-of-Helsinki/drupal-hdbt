@@ -29,7 +29,7 @@
   {% set link_options = link_options|merge({target: '_blank', 'data-open-in-new-tab': true}) %}
 {% endif %}
 
-{% if icon == true %}
+{% if icon and icon_type %}
   {% set link_options = link_options|merge({'data-hds-icon-start': icon_type}) %}
 {% endif %}
 
