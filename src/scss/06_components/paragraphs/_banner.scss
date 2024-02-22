@@ -45,7 +45,7 @@
   padding-top: $spacing-double;
 }
 
-a.banner__button {
+.component--banner .banner__content-wrapper > a[data-hds-component='button'] {
   margin: $spacing-double auto 0;
 }
 
@@ -76,7 +76,7 @@ a.banner__button {
   }
 
   &.component--banner-has-icon {
-    .banner__button {
+    a {
       @include breakpoint($breakpoint-l) {
         margin-left: auto;
         margin-right: 0;

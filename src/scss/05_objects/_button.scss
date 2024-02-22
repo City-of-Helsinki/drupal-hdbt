@@ -539,11 +539,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
   --outline-width: 3px;
 }
 
-// Hide target blank explanation text from others than screen-readers
-.hds-button__target-blank {
-  @include visually-hidden;
-}
-
 // Combat ckeditor leaking spans from inside buttons and hds setting these spans stupid paddings and margins
 :not(.hds-button) > .hds-button__label {
   margin: 0;
