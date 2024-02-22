@@ -14,7 +14,11 @@
 
   {# Check if we want to render old link icons, the new links with data-hds="button" use pseudo elements instead #}
   {% set render_old_link = false %}
-  {% if 'data-hds-component' not in attributes|keys or attributes['data-hds-component'] != 'button' %}
+
+  {% if
+    ('data-hds-component' not in attributes|keys or attributes['data-hds-component'] != 'button') and
+    ('data-hds-component' not in url.options.attributes|keys or url.options.attributes['data-hds-component'] != 'button')
+  %}
     {% set render_old_link = true %}
   {% endif %}
 
@@ -22,6 +26,10 @@
     {% if render_old_link %}
       {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
     {% endif %}
+  {% endif %}
+
+  {% if 'data-open-in-new-tab' in url.options.attributes|keys %}
+    <span class="visually-hidden">({{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.)</span>
   {% endif %}
 
   {% if 'data-is-external' in attributes|keys %}

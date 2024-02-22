@@ -25,8 +25,6 @@
           type: 'primary',
           label: 'See all hearings'|t({},{'context': 'See all hearings link text'}),
           url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
-          class: 'hearings__link',
-          is_external: true,
         } %}
       {% else %}
         <section class="hearings__results">
@@ -36,8 +34,6 @@
           type: 'primary',
           label: 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}),
           url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
-          class: 'hearings__link',
-          is_external: true,
         } %}
       {% endif %}
     {% endblock component_content %}
