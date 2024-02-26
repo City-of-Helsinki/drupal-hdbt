@@ -1,22 +1,25 @@
+$contact-card-max-width: 200px;
+$contact-card-gap: $spacing-and-half;
+// The width when two cards don't fit next to each other anymore.
+$contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-mobile * 2) + $contact-card-gap);
+
 .contact-card-listing--container {
   align-items: flex-start;
+  column-gap: $contact-card-gap;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-
-  @include breakpoint($breakpoint-s) {
-    flex-direction: row;
-  }
 
   .contact-card {
     margin-bottom: $spacing-triple;
 
-    &:not(:last-of-type) {
-      padding-right: $spacing-and-half;
+    @include breakpoint($contact-card-bp) {
+      max-width: $contact-card-max-width;
     }
 
     @include breakpoint($breakpoint-s) {
-      min-width: fit-content;
+      max-width: none;
+      min-width: min-content;
       width: 25%;
     }
   }

@@ -1,26 +1,58 @@
-$contact-card-image-size-desktop: 200px;
-$contact-card-image-size-mobile: 100px;
-$contact-card-information-container-width: $contact-card-image-size-desktop;
+$contact-card-image-size: 200px;
 $contact-card-color-line-width: 4px;
+$contact-card-max-width: $contact-card-image-size;
 
 .contact-card {
   display: flex;
 }
 
 .contact-card--with-image {
-  @include breakpoint($breakpoint-s) {
-    flex-direction: column;
+  flex-direction: column;
+}
+
+.contact-card__image-container {
+  margin-bottom: $spacing;
+  margin-right: 0;
+
+  img {
+    height: $contact-card-image-size;
+    width: $contact-card-image-size;
   }
 }
 
-.contact-card--information-container {
-  @include breakpoint($breakpoint-s) {
-    max-width: $contact-card-information-container-width;
-  }
+.contact-card__person-phone-number a:not(:last-of-type)::after {
+  content: ',';
+  margin-right: 2px;
 }
 
-.contact-card--person-social-media {
+.contact-card__person-information {
+  @include font(small);
+  word-wrap: break-word;
+  hyphens: auto;
+  margin-bottom: $spacing-half;
+  overflow-wrap: break-word;
+
+  @include breakpoint($breakpoint-s) {
+    min-width: $contact-card-max-width;
+  }
+}
+.contact-card--color-line .contact-card__person-information {
+  min-width: calc($contact-card-image-size - $spacing-and-half - $spacing-quarter);
+}
+
+.contact-card__person-name {
+  @include font('h5');
+  margin-top: 0;
+}
+
+.contact-card__person-email {
+  word-break: break-all;
+}
+
+.contact-card__person-social-media {
   display: flex;
+  margin-bottom: $spacing;
+  margin-top: $spacing;
 
   .hel-icon {
     height: $spacing-and-half;
@@ -29,50 +61,16 @@ $contact-card-color-line-width: 4px;
   }
 }
 
-.contact-card--image-container {
-  margin-bottom: $spacing;
-  margin-right: $spacing;
-
-  @include breakpoint($breakpoint-s) {
-    margin-right: 0;
-  }
-
-  img {
-    height: $contact-card-image-size-mobile;
-    width: $contact-card-image-size-mobile;
-
-    @include breakpoint($breakpoint-s) {
-      height: $contact-card-image-size-desktop;
-      width: $contact-card-image-size-desktop;
-    }
-  }
+* + .contact-card__person-description {
+  margin-top: $spacing;
 }
 
-.contact-card--person-name {
-  margin-top: 0;
-
-  @include font('h5');
-}
-
-.contact-card--person-phone-number a:not(:last-of-type)::after {
-  content: ',';
-  margin-right: 2px;
-}
-
-.contact-card--person-email {
-  word-break: break-all;
-}
-
-.contact-card--person-information {
-  margin-bottom: $spacing-half;
-}
-
-.contact-card--color-line {
+.contact-card__color-line {
   background-color: var(--hdbt-color-palette--primary);
   margin-right: $spacing-and-half;
   min-width: $contact-card-color-line-width;
 }
 
-.contact-card--person-description {
+.contact-card__person-description {
   color: var(--color-black-60);
 }
