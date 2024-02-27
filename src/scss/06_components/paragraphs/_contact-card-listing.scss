@@ -28,7 +28,7 @@ $contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-
 
 // The components upper region has a max-width limitation that makes it impossible to include
 // four 200px (contact card min-width) wide elements with 24px gap on same row so we need to adjust
-// tge column gap on the listing when displayed on region.
+// the column gap on the listing when displayed on region.
 .components--upper .contact-card-listing--container {
   column-gap: calc($contact-card-gap - $spacing-quarter);
 
