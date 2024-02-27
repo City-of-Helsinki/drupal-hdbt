@@ -20,7 +20,21 @@ $contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-
     @include breakpoint($breakpoint-s) {
       max-width: none;
       min-width: min-content;
-      width: 25%;
+      // Substract the gaps between the cards so that exactly 4 cards fit side by side.
+      width: calc(25% - ($contact-card-gap * 0.75));
+    }
+  }
+}
+
+// The components upper region has a max-width limitation that makes it impossible to include
+// four 200px (contact card min-width) wide elements with 24px gap on same row so we need to adjust
+// tge column gap on the listing when displayed on region.
+.components--upper .contact-card-listing--container {
+  column-gap: calc($contact-card-gap - $spacing-quarter);
+
+  .contact-card {
+    @include breakpoint($breakpoint-s) {
+      width: calc(25% - (($contact-card-gap - $spacing-quarter) * 0.75));
     }
   }
 }
