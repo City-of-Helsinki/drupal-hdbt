@@ -1165,6 +1165,7 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
 
   // Override alt text if alteration exists.
   if (!empty($variables['item']->altered_alt_text)) {
+    $variables['responsive_image']['#attributes']['data-original-alt'] = $variables['responsive_image']['#attributes']['alt'];
     $variables['responsive_image']['#attributes']['alt'] = $variables['item']->altered_alt_text;
   }
 
