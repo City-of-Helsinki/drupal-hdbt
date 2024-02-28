@@ -30,6 +30,11 @@
     padding-bottom: 80px;
     padding-top: 80px;
 
+    // Hide "created with..." text.
+    .rns-footer {
+      display: none;
+    }
+
     // Reactions
     .rns-reactions {
       max-width: 688px; // Abstract width from the designs.
