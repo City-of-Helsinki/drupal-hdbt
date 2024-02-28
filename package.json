@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
     "build": "webpack --progress --mode=production --config webpack.config.js",
-    "preinstall": "npx browserslist@latest --update-db",
+    "preinstall": "npx update-browserslist-db@latest",
     "postinstall": "husky install",
     "lint": "lint-staged --allow-empty",
     "lint:js": "eslint src/",
