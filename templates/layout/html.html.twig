@@ -61,6 +61,7 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
   <body{{ attributes }}>
+    {% embed '@hdbt/misc/cookie-container.html.twig' %}{% endembed %}
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
