@@ -446,6 +446,7 @@ html {
 .hds-cc__accordion-button--details {
   .hds-cc--minimized:not(:focus-within) & {
     @include visually-hidden;
+    margin-top: -100%; // Battles a weird scrolling bug in chrome
   }
 
   .hds-icon {
