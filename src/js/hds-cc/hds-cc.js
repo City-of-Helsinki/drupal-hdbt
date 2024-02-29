@@ -203,12 +203,16 @@ const chatUserConsent = {
 */
 async function createShadowRoot() {
 
-  const bannerContainer = document.getElementById('hds-cc__target');
+  const targetSelector = window.hdsCcSettings.targetSelector || 'body';
+  const bannerTarget = document.querySelector(targetSelector);
+  const bannerContainer = document.createElement('div');
+  bannerContainer.classList.add('hds-cc__target');
+  bannerTarget.prepend(bannerContainer);
   const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
 
   // Fetch the external CSS file
   try {
-    const response = await fetch('/kasko-assets/themes/contrib/hdbt/dist/css/cookie-consent.min.css');
+    const response = await fetch(window.hdsCcSettings.tempCssPath);
     const cssText = await response.text();
 
     // Create and inject the style
@@ -235,7 +239,7 @@ async function createShadowRoot() {
 const init = async () => {
   await createShadowRoot();
   window.chat_user_consent = chatUserConsent;
-  const lists = document.querySelector('#hds-cc__target').shadowRoot.getElementById('lists');
+  const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 
   const cookieData = await getCookieData();
   window.cookieData = cookieData;
