@@ -1,18 +1,12 @@
 import { parse, serialize } from 'cookie/index';
 import getCookieBannerHTML from './template';
 
+const templateContents = { test: 'test string' };
 
 const cookieState = {
   'cookie-agreed-categories': [], // list of accepted categories ['essential']
   'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
 };
-
-// function readSetCookies(cookies = false) {
-//   if (cookies === false) {
-//       cookies = parse(document.cookie);
-//   }
-//   // let objectifiedCookies = JSON.parse(cookies['city-of-helsinki-cookie-consents']);
-// }
 
 function setCookies() {
   document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieState['city-of-helsinki-cookie-consents']));
@@ -34,32 +28,17 @@ function getTranslation(field, lang) {
   return field;
 }
 
-function buildRow(cookie) {
-  const tableRow = document.createElement('tr');
-  const cookieName = document.createElement('td');
-  const cookieHost = document.createElement('td');
-  const cookieDescription = document.createElement('td');
-  const cookieExpiration = document.createElement('td');
-  const cookieType = document.createElement('td');
-
-  // typeof check kaannoksille
-  cookieName.textContent = cookie.id;
-  cookieHost.textContent = cookie.host;
-  // cookieDescription.textContent = cookie.description[window.hdsCcSettings.language];
-  cookieDescription.textContent = getTranslation(cookie.description, window.hdsCcSettings.language);
-  cookieExpiration.textContent = cookie.expiration;
-  cookieType.textContent = cookie.type;
-
-  tableRow.appendChild(cookieName);
-  tableRow.appendChild(cookieHost);
-  tableRow.appendChild(cookieDescription);
-  tableRow.appendChild(cookieExpiration);
-  tableRow.appendChild(cookieType);
-
-  return tableRow;
+function buildRow(cookie, lang) {
+return `<tr>
+  <td>${cookie.id}</td>
+  <td>${cookie.host}</td>
+  <td>${cookie.description[lang]}</td>
+  <td>${cookie.expiration}</td>
+  <td>${cookie.type}</td>
+</tr>`;
 }
 
-function buildLists(listsElement, translations, cookielist, status = 'requiredCookies') {
+function buildLists(listsElement, translations, lang, cookielist, status = 'requiredCookies') {
   const categoryContainer = document.createElement('div');
 
   // Cookie category one by one
@@ -113,8 +92,10 @@ function buildLists(listsElement, translations, cookielist, status = 'requiredCo
     // Body
     const tableBody = document.createElement('tbody');
 
+    templateContents[category] = '';
     category.cookies.forEach(cookie => {
-      tableBody.appendChild(buildRow(cookie));
+      // tableBody.appendChild(buildRow(cookie, lang));
+      templateContents[category.commonGroup] += buildRow(cookie, lang);
     });
 
     // Cookie table complete, add to listing
@@ -122,7 +103,7 @@ function buildLists(listsElement, translations, cookielist, status = 'requiredCo
     categoryContainer.appendChild(categoryElem);
   });
 
-  listsElement.appendChild(categoryContainer);
+  // listsElement.appendChild(categoryContainer);
 }
 
 function userHasGivenConsent(category) {
@@ -229,22 +210,27 @@ async function createShadowRoot() {
 
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
-  shadowRoot.innerHTML += getCookieBannerHTML();
+  shadowRoot.innerHTML += getCookieBannerHTML(templateContents);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
 
 const init = async () => {
-  await createShadowRoot();
+  console.clear();
+  const lang = window.hdsCcSettings.language;
   window.chat_user_consent = chatUserConsent;
-  const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 
   const cookieData = await getCookieData();
   window.cookieData = cookieData;
   const { translations } = cookieData;
-  buildLists(lists, translations, cookieData.requiredCookies, 'requiredCookies');
-  buildLists(lists, translations, cookieData.optionalCookies, 'optionalCookies');
+
+  const lists = null;
+  buildLists(lists, translations, lang, cookieData.requiredCookies, 'requiredCookies');
+  buildLists(lists, translations, lang, cookieData.optionalCookies, 'optionalCookies');
   resetCookieState();
+
+  await createShadowRoot();
+  // const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 };
 
 function updateCookieConsents() {
@@ -261,7 +247,7 @@ function updateCookieConsents() {
   listCategoryCookies(acceptedCategories);
 }
 
-document.addEventListener('DOMContentLoaded', () => init());
+// document.addEventListener('DOMContentLoaded', () => init());
 window.addEventListener('keydown', e => {
   if (e.code === 'Space') {
     setCookies();
@@ -272,6 +258,9 @@ window.addEventListener('keydown', e => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(init, 5000);
+});
 
 
 
