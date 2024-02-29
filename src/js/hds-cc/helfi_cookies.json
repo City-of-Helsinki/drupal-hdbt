@@ -1,0 +1,540 @@
+{
+  "siteName": "Sivuston nimi",
+  "requiredCookies": {
+    "groups": [
+      {
+        "commonGroup": "essential",
+        "cookies": [
+          {
+            "id": "cookiehub_v1",
+            "name": "cookiehub",
+            "host": "Cookiehub",
+            "description": {
+              "fi": "Mahdollistaa evästehallinnan hel.fi sivuilla.",
+              "sv": "Cookie möjliggör hantering av cookies på hel.fi webbplatsen.",
+              "en": "Used by CookieHub to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
+            },
+            "expiration": "365 päivää",
+            "type": ""
+          },
+          {
+            "id": "cookie-agreed_v1",
+            "name": "cookie-agreed",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Sivusto käyttää tätä evästettä tietojen tallentamiseen siitä, ovatko kävijät antaneet hyväksyntänsä tai kieltäytyneet evästeiden käytöstä.",
+              "sv": "Cookie möjliggör hantering av cookies på webbplatsen.",
+              "en": "Used by hel.fi Drupal to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
+            },
+            "expiration": "100 päivää",
+            "type": ""
+          },
+          {
+            "id": "cookie-agreed-version_v1",
+            "name": "cookie-agreed-version",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Tähän evästeeseen tallennetaan käyttäjän hyväksymän evästeselosteen versio.",
+              "sv": "Används för att lagra information om versionen av cookies samtycke som användaren har godkänt.",
+              "en": "Used by hel.fi Drupal to store information about what version of the cookie consent the user has agreed to."
+            },
+            "expiration": "100 päivää",
+            "type": ""
+          },
+          {
+            "id": "cookie-agreed-categories_v1",
+            "name": "cookie-agreed-categories",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Tähän evästeeseen on tallennettu käyttäjän hyväksymät evästekategoriat.",
+              "sv": "Används för att lagra information om vilka cookie -kategorier användaren har godkänt.",
+              "en": "Used by hel.fi Drupal to store information about what cookie categories the user has agreed to."
+            },
+            "expiration": "100 päivää",
+            "type": ""
+          },
+          {
+            "id": "SSESS*_v1",
+            "name": "SSESS*",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Sisällönhallintajärjestelmän toimintaan liittyvä eväste.",
+              "sv": "En cookie relaterad till driften av innehållshanteringssystemet.",
+              "en": "A cookie related to the operation of the content management system."
+            },
+            "expiration": "23 päivää",
+            "type": ""
+          },
+          {
+            "id": "AWSELBCORS_v1",
+            "name": "AWSELBCORS",
+            "host": "siteimproveanalytics.io",
+            "description": {
+              "fi": "Eväste liittyy palvelinten kuormanjakotoiminnallisuuteen, jolla ohjataan pyynnöt vähimmällä käytöllä olevalle palvelimille.",
+              "sv": "Cookie är kopplad till funktionen för lastfördelning som styr begäran till en server med mindre belastning.",
+              "en": "The cookie is related to a load distribution function used to direct requests to servers with the least traffic."
+            },
+            "expiration": "Istunto",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "mtm_cookie_consent_v1",
+            "name": "mtm_cookie_consent",
+            "host": "kartta.hel.fi",
+            "description": {
+              "fi": "Tekninen eväste johon talletetaan tieto valinnastasi evästeiden käytöstä kertovan bannerin kohdalla",
+              "sv": "A technical cookie that stores information about how you responded to the notice in the cookie banner about the use of cookies.",
+              "en": "A technical cookie that stores information about how you responded to the notice in the cookie banner about the use of cookies."
+            },
+            "expiration": "10950 päivää",
+            "type": ""
+          },
+          {
+            "id": "JSESSIONID_v1",
+            "name": "JSESSIONID",
+            "host": "helsinkikanava.fi, coh-chat-app-prod.eu-de.mybluemix.net",
+            "description": {
+              "fi": "Sivuston pakollinen eväste mahdollistaa kävijän vierailun sivustolla.",
+              "sv": "Kakan är en obligatorisk kaka som gör det möjligt för besökaren att besöka webbplatsen.",
+              "en": "The cookie is an obligatory cookie that facilitates visiting the website."
+            },
+            "expiration": "Istunto",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "COOKIE_SUPPORT_v1",
+            "name": "COOKIE_SUPPORT",
+            "host": "helsinkikanava.fi",
+            "description": {
+              "fi": "Mahdollistaa evästeiden hallinnan sivustolla.",
+              "sv": "Kakan möjliggör hanteringen av kakor på webbplatsen.",
+              "en": "The cookie facilitates managing cookies on the website."
+            },
+            "expiration": "365 päivää",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "GUEST_LANGUAGE_ID_v1",
+            "name": "GUEST_LANGUAGE_ID",
+            "host": "helsinkikanava.fi",
+            "description": {
+              "fi": "Tämän evästeen on luonut Liferay, se tallentaa kieliasetukset.",
+              "sv": "Denna cookie genereras av Liferay, dess funktion är att lagra språkinställningarna.",
+              "en": "This cookie is generated by the Liferay, its function is to store the language preferences."
+            },
+            "expiration": "365 päivää",
+            "type": "Kolmas osapuoli"
+          }
+        ]
+      }
+    ]
+  },
+  "optionalCookies": {
+    "groups": [
+      {
+        "commonGroup": "preferences",
+        "cookies": [
+          {
+            "id": "httpskartta.hel.fi.SWCulture_v1",
+            "name": "httpskartta.hel.fi.SWCulture",
+            "host": "kartta.hel.fi",
+            "description": {
+              "fi": "Kaupungin karttapalvelun evästeeseen tallennetaan kieli, jolla palvelua käytetään.",
+              "sv": "I kakan på stadens kaktjänst sparas det språk som användaren använder i tjänsten.",
+              "en": "The City's map service cookie saves the language in which the service is used."
+            },
+            "expiration": "1826 päivää",
+            "type": ""
+          },
+          {
+            "id": "icareus-device_v1",
+            "name": "icareus-device",
+            "host": "helsinkikanava.fi",
+            "description": {
+              "fi": "Helsinki-kanavan videopalvelimen eväste.",
+              "sv": "Helsinki-kanavas kaka gör det möjligt att göra videor till en del av innehållet på webbplatsen.",
+              "en": "The Helsinki Channel video server cookie facilitates including videos as part of the website's content."
+            },
+            "expiration": "365 päivää",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "VISITOR_INFO1_LIVE_v1",
+            "name": "VISITOR_INFO1_LIVE",
+            "host": "youtube.com",
+            "description": {
+              "fi": "YouTuben eväste valitsee yhteyden nopeuden mukaan, joko vanhan tai uuden videosoittimen.",
+              "sv": "YouTubes kaka väljer antingen den nya eller gamla videospelaren enligt förbindelsens hastighet.",
+              "en": "The YouTube cookie selects the old or new video player depending on the connection speed."
+            },
+            "expiration": "180 päivää",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "CONSENT_v1",
+            "name": "CONSENT",
+            "host": "youtube.com",
+            "description": {
+              "fi": "Googlen eväste tallentaa kävijän evästehyväskynnän.",
+              "sv": "Används av Google för att lagra inställningar för användarens samtycke",
+              "en": "Used by Google to store user consent preferences"
+            },
+            "expiration": "5947 päivää, 15 tuntia",
+            "type": "Kolmas osapuoli"
+          }
+        ]
+      },
+      {
+        "commonGroup": "statistics",
+        "cookies": [
+          {
+            "id": "nmstat_v1",
+            "name": "nmstat",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Siteimproven tilastointieväste kerää tietoa kävijän sivujen käytöstä.",
+              "sv": "Siteimproves kaka samlar information om hur webbplatsen används.",
+              "en": "The Siteimprove statistics cookie collects information about the use of the website."
+            },
+            "expiration": "1000 päivää",
+            "type": ""
+          },
+          {
+            "id": "_pk_id.*_v1",
+            "name": "_pk_id.*",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Matomo-tilastointijärjestelmän eväste.",
+              "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
+              "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
+            },
+            "expiration": "393 päivää",
+            "type": ""
+          },
+          {
+            "id": "_pk_ses.141.89f6_v1",
+            "name": "_pk_ses.141.89f6",
+            "host": "hel.fi",
+            "description": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "expiration": "1 tunti",
+            "type": ""
+          },
+          {
+            "id": "_pk_id.*_v1",
+            "name": "_pk_id.*",
+            "host": "kartta.hel.fi",
+            "description": {
+              "fi": "Matomo-tilastointijärjestelmän eväste.",
+              "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
+              "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
+            },
+            "expiration": "393 päivää",
+            "type": ""
+          },
+          {
+            "id": "_pk_ses.*_v1",
+            "name": "_pk_ses.*",
+            "host": "kartta.hel.fi",
+            "description": {
+              "fi": "Matomo-tilastointijärjestelmän eväste.",
+              "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
+              "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
+            },
+            "expiration": "1 tunti",
+            "type": ""
+          },
+          {
+            "id": "_pk_id.*_v1",
+            "name": "_pk_id.*",
+            "host": "palvelukartta.hel.fi",
+            "description": {
+              "fi": "Matomo-tilastointijärjestelmän eväste.",
+              "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
+              "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
+            },
+            "expiration": "393 päivää",
+            "type": ""
+          },
+          {
+            "id": "_pk_ses.*_v1",
+            "name": "_pk_ses.*",
+            "host": "palvelukartta.hel.fi",
+            "description": {
+              "fi": "Matomo-tilastointijärjestelmän eväste.",
+              "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
+              "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
+            },
+            "expiration": "1 tunti",
+            "type": ""
+          },
+          {
+            "id": "rnsbid_v1",
+            "name": "rnsbid",
+            "host": "reactandshare.com",
+            "description": {
+              "fi": "Askem-reaktionappien toimintaan liittyvä tietue.",
+              "sv": "En post relaterad till driften av reaktionsknappen Askem",
+              "en": "A record related to the operation of the Askem react buttons."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "rnsbid_ts_v1",
+            "name": "rnsbid_ts",
+            "host": "reactandshare.com",
+            "description": {
+              "fi": "Askem-reaktionappien toimintaan liittyvä tietue.",
+              "sv": "En post relaterad till driften av reaktionsknappen Askem",
+              "en": "A record related to the operation of the Askem react buttons."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "rns_reaction_*_v1",
+            "name": "rns_reaction_*",
+            "host": "reactandshare.com",
+            "description": {
+              "fi": "Askem-reaktionappien toimintaan liittyvä tietue.",
+              "sv": "En post relaterad till driften av reaktionsknappen Askem",
+              "en": "A record related to the operation of the Askem react buttons."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "YSC_v1",
+            "name": "YSC",
+            "host": "youtube.com",
+            "description": {
+              "fi": "YouTuben eväste mahdollistaa videoiden upottamisen sivustolle.",
+              "sv": "YouTubes kaka gör det möjligt att göra videor till en del av innehållet på webbplatsen.",
+              "en": "The YouTube cookie facilitates including videos as part of the website's content."
+            },
+            "expiration": "Istunto",
+            "type": "Kolmas osapuoli"
+          },
+          {
+            "id": "null_active_survey_v1",
+            "name": "null_active_survey",
+            "host": "Norstat",
+            "description": {
+              "fi": "Käynnissä olevan kyselyn tunnus",
+              "sv": "Id för undersökningen som är live.",
+              "en": "The id of the survey that is live."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "null_page_view_count_v1",
+            "name": "null_page_view_count",
+            "host": "Norstat",
+            "description": {
+              "fi": "Kuinka monella Helsingin kaupungin sivulla käyttäjä on vieraillut ennen kyselyn näkymistä.",
+              "sv": "Hur många Helsingfors stads sidor har du tittat på innan du såg undersökningen.",
+              "en": "How many City of Helsinki pages have you viewed before seeing the survey"
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "null_active_scenario_v1",
+            "name": "null_active_scenario",
+            "host": "Norstat",
+            "description": {
+              "fi": "Mikä kyselymoduulin versio on käytössä.",
+              "sv": "Mikä kyselymoduulin versio on käytössä.",
+              "en": "What version of the survey module is live."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "wsLanguage_p933511862344_v1",
+            "name": "wsLanguage_p933511862344",
+            "host": "Norstat",
+            "description": {
+              "fi": "Kielitunniste, joka kertoo minkä kielinen kysely käyttäjälle näkyy",
+              "sv": "Kielitunniste, joka kertoo minkä kielinen kysely käyttäjälle näkyy",
+              "en": "Language identifier used to select which language of the survey you see."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "p933511862344_status_v1",
+            "name": "p933511862344_status",
+            "host": "Norstat",
+            "description": {
+              "fi": "Oletko jo vastannut kyselyyn",
+              "sv": "Oletko jo vastannut kyselyyn",
+              "en": "Have you already completed the survey."
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          },
+          {
+            "id": "p933511862344_complete_date_v1",
+            "name": "p933511862344_complete_date",
+            "host": "Norstat",
+            "description": {
+              "fi": "Päivämäärä ja aika, jolloin kyselylomake lähetettiin.",
+              "sv": "Päivämäärä ja aika, jolloin kyselylomake lähetettiin.",
+              "en": "Date and time when the survey was submitted"
+            },
+            "expiration": "-",
+            "type": "Paikallinen muisti"
+          }
+        ]
+      },
+      {
+        "commonGroup": "chat",
+        "cookies": [
+          {
+            "id": "_genesys.widgets.*_v1",
+            "name": "_genesys.widgets.*",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Käytetään chatin tarvitseman datan tallentamiseen.",
+              "sv": "Käytetään chatin tarvitseman datan tallentamiseen.",
+              "en": "Used for storing data required by the chat functionality."
+            },
+            "expiration": "Istunto",
+            "type": ""
+          },
+          {
+            "id": "leijuke.*_v1",
+            "name": "leijuke.*",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Käytetään chatin tarvitseman datan tallentamiseen.",
+              "sv": "Käytetään chatin tarvitseman datan tallentamiseen.",
+              "en": "Used for storing data required by the chat functionality."
+            },
+            "expiration": "Istunto",
+            "type": ""
+          }
+        ]
+      }
+    ]
+  },
+  "translations": {
+    "fi": {
+      "requiredCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "essential": {
+            "title": "Välttämättömät toiminnalliset evästeet",
+            "description": "Välttämättömät evästeet auttavat tekemään verkkosivustosta käyttökelpoisen sallimalla perustoimintoja, kuten sivulla siirtymisen ja sivuston suojattujen alueiden käytön. Verkkosivusto ei toimi kunnolla ilman näitä evästeitä eikä niihin tarvita suostumusta."
+          }
+        }
+      },
+      "optionalCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "preferences": {
+            "title": "Personointi",
+            "description": "Mieltymysevästeet mukauttavat sivuston ulkoasua ja toimintaa käyttäjän aiemman käytön perusteella."
+          },
+          "statistics": {
+            "title": "Tilastointi",
+            "description": "Tilastointievästeiden keräämää tietoa käytetään verkkosivuston kehittämiseen."
+          },
+          "chat": {
+            "title": "Toimnnalliset chat-evästeet",
+            "description": "Toiminnallisten chat-evästeiden avulla mahdollistetaan helfi-sivujen chattien toiminta. Jos aloitat chatin, hyväksyt sen käyttöön liittyvät toiminnalliset evästeet automaattisesti.  Evästeiden hyväksymiseen ei tällöin tarvita erillistä suostumusta. Toiminnallisia chat-evästeitä ladataan laitteellesi vain, jos käynnistät chatin."
+          }
+        }
+      },
+      "tableHeadings": {
+        "name": "Nimi",
+        "host": "Tarjoaja",
+        "description": "Tarkoitus",
+        "expiration": "Voimassa",
+        "type": "Tyyppi"
+      }
+    },
+    "en": {
+      "requiredCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "essential": {
+            "title": "Essential cookies",
+            "description": "Essential cookies help to make the website usable by allowing basic functions, navigating the page and using the protected areas of the site. The website will not work properly without these cookies and their consent is not required."
+          }
+        }
+      },
+      "optionalCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "preferences": {
+            "title": "Preference",
+            "description": "Preference cookies modify the visuals and functions of the website based on the user's previous sessions."
+          },
+          "statistics": {
+            "title": "Statistics",
+            "description": "The information collected by statistics cookies is used for developing the website."
+          },
+          "chat": {
+            "title": "Functional chat cookies",
+            "description": "The chats on the hel.fi  website require functional chat cookies to function. By using a chat, you automatically accept the functional cookies it requires.  No separate cookie consent is needed. Functional chat cookies are only downloaded to your device if you start a chat."
+          }
+        }
+      },
+      "tableHeadings": {
+        "name": "Name",
+        "host": "Provider",
+        "description": "Purpose of the cookie",
+        "expiration": "Validity",
+        "type": "Type"
+      }
+    },
+    "sv": {
+      "requiredCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "essential": {
+            "title": "Nödvändiga funktionella cookies",
+            "description": "Nödvändiga cookies hjälper till att göra webbplatsen användbar genom att tillåta grundläggande funktioner som att navigera på sidan och använda de skyddade områdena på webbplatsen. Webbplatsen fungerar inte korrekt utan dessa cookies och kräver inte samtycke."
+          }
+        }
+      },
+      "optionalCookies": {
+        "title": "",
+        "description": "",
+        "categories": {
+          "preferences": {
+            "title": "Preferens",
+            "description": "Preferenscookies ändrar webbplatsens utseende och funktioner enligt användarens tidigare användning."
+          },
+          "statistics": {
+            "title": "Statistik",
+            "description": "De uppgifter statistikkakorna samlar in används för att utveckla webbplatsen."
+          },
+          "chat": {
+            "title": "Funktionella chattkakor",
+            "description": "Chattarna på webbplatsen hel.fi  fungerar med hjälp av funktionella chattkakor. Om du inleder en chatt godkänner du automatiskt de nödvändiga funktionella kakorna.  Då behövs inget separat samtycke till kakor. Funktionella chattkakor laddas endast ner på din enhet om du inleder en chatt."
+          }
+        }
+      },
+      "tableHeadings": {
+        "name": "Namn",
+        "host": "Tjänsteleverantör",
+        "description": "Cookie syfte",
+        "expiration": "Giltighet",
+        "type": "Typ"
+      }
+    }
+  }
+}
