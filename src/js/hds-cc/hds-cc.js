@@ -24,16 +24,14 @@ async function getCookieData() {
   return (await fetch(window.hdsCcSettings.jsonUrl)).json();
 }
 
-function getTranslation(field) {
+function getTranslation(field, lang) {
   if (typeof (field) === 'object') {
-    if (field[window.hdsCcSettings.language] === undefined) {
-      // fallback to finnish translation
-      return field.fi;
+    if (field[lang] === undefined) {
+      return field.en; // fallback to English translation
     }
-    return field[window.hdsCcSettings.language];
+    return field[lang];
   }
   return field;
-
 }
 
 function buildRow(cookie) {
@@ -48,7 +46,7 @@ function buildRow(cookie) {
   cookieName.textContent = cookie.id;
   cookieHost.textContent = cookie.host;
   // cookieDescription.textContent = cookie.description[window.hdsCcSettings.language];
-  cookieDescription.textContent = getTranslation(cookie.description);
+  cookieDescription.textContent = getTranslation(cookie.description, window.hdsCcSettings.language);
   cookieExpiration.textContent = cookie.expiration;
   cookieType.textContent = cookie.type;
 
