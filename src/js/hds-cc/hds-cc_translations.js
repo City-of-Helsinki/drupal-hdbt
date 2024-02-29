@@ -16,15 +16,15 @@ const translations = {
     sv: 'Läs mer',
     en: 'Read more',
   },
-  showSettings: {
-    fi: 'Näytä evästeasetukset',
-    sv: 'Visa kakinställningarna',
-    en: 'Show cookie settings',
+  showDetails: {
+    fi: 'Näytä yksityiskohdat',
+    sv: 'Visa detaljer',
+    en: 'Show details',
   },
-  hideSettings: {
-    fi: 'Piilota evästeasetukset',
-    sv: 'Stänga kakinställningarna',
-    en: 'Hide cookie settings',
+  hideDetails: {
+    fi: 'Piilota yksityiskohdat',
+    sv: 'Stänga detaljer',
+    en: 'Hide details',
   },
   form_heading: {
     fi: 'Tietoa sivustolla käytetyistä evästeistä',
@@ -36,26 +36,16 @@ const translations = {
     sv: 'Kakorna som används på webbplatsen har klassificerats enligt användningsändamål. Du kan läsa om de olika klasserna och acceptera eller förbjuda användningen av kakor.',
     en: 'The cookies used on the website have been classified according to their intended use. Below, you can read about the various categories and accept or reject the use of cookies.',
   },
-  approveAllConsents: {
-    fi: 'Hyväksy kaikki evästeet',
-    sv: 'Acceptera alla kakor',
-    en: 'Accept all cookies',
+  showCookieSettings: {
+    fi: 'Näytä evästeasetukset',
+    sv: 'Visa kakinställningarna',
+    en: 'Show cookie settings',
   },
-  approveRequiredAndSelectedConsents: {
-    fi: 'Hyväksy valitut evästeet',
-    sv: 'Acceptera valda kakor',
-    en: 'Accept selected cookies',
+  hideCookieSettings: {
+    fi: 'Piilota evästeasetukset',
+    sv: 'Stänga kakinställningarna',
+    en: 'Hide cookie settings',
   },
-  approveOnlyRequiredConsents: {
-    fi: 'Hyväksy vain välttämättömät evästeet',
-    sv: 'Acceptera endast nödvändiga',
-    en: 'Accept required cookies only',
-  },
-  // settingsSaved: {
-  //   fi: 'Asetukset tallennettu!',
-  //   sv: 'Inställningar sparade!',
-  //   en: 'Settings saved!',
-  // },
   tableHeadingsName: {
     fi: 'Nimi',
     sv: 'Namn',
@@ -81,6 +71,26 @@ const translations = {
     sv: 'Typ',
     en: 'Type',
   },
+  approveAllConsents: {
+    fi: 'Hyväksy kaikki evästeet',
+    sv: 'Acceptera alla kakor',
+    en: 'Accept all cookies',
+  },
+  approveRequiredAndSelectedConsents: {
+    fi: 'Hyväksy valitut evästeet',
+    sv: 'Acceptera valda kakor',
+    en: 'Accept selected cookies',
+  },
+  approveOnlyRequiredConsents: {
+    fi: 'Hyväksy vain välttämättömät evästeet',
+    sv: 'Acceptera endast nödvändiga',
+    en: 'Accept required cookies only',
+  },
+  // settingsSaved: {
+  //   fi: 'Asetukset tallennettu!',
+  //   sv: 'Inställningar sparade!',
+  //   en: 'Settings saved!',
+  // },
 };
 
 export function getTranslation(key, lang, parameters) {
