@@ -18,16 +18,6 @@ async function getCookieData() {
   return (await fetch(window.hdsCcSettings.jsonUrl)).json();
 }
 
-function getTranslation(field, lang) {
-  if (typeof (field) === 'object') {
-    if (field[lang] === undefined) {
-      return field.en; // fallback to English translation
-    }
-    return field[lang];
-  }
-  return field;
-}
-
 function buildRow(cookie, lang) {
 return `<tr>
   <td>${cookie.id}</td>
@@ -216,7 +206,6 @@ async function createShadowRoot() {
 }
 
 const init = async () => {
-  console.clear();
   const lang = window.hdsCcSettings.language;
   window.chat_user_consent = chatUserConsent;
 
@@ -247,7 +236,7 @@ function updateCookieConsents() {
   listCategoryCookies(acceptedCategories);
 }
 
-// document.addEventListener('DOMContentLoaded', () => init());
+document.addEventListener('DOMContentLoaded', () => init());
 window.addEventListener('keydown', e => {
   if (e.code === 'Space') {
     setCookies();
@@ -256,11 +245,3 @@ window.addEventListener('keydown', e => {
     updateCookieConsents();
   }
 });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(init, 5000);
-});
-
-
-
