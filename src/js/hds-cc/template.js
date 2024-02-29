@@ -27,8 +27,8 @@ export default function getCookieBannerHTML(contents = {}) {
         aria-controls="hds-cc-form"
         aria-expanded="false"
         aria-polite="true">
-        <span class="hds-cc__accordion-button-show hds-button__label">${contents.showSettings}</span>
-        <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideSettings}</span>
+        <span class="hds-cc__accordion-button-show hds-button__label">${contents.showDetails}</span>
+        <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideDetails}</span>
         <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
       </button>
 
@@ -56,8 +56,8 @@ export default function getCookieBannerHTML(contents = {}) {
                 aria-controls="hds-cc-group-details-1"
                 aria-expanded="false"
                 aria-polite="true">
-                <span class="hds-cc__accordion-button-show hds-button__label">Show cookie settings</span>
-                <span class="hds-cc__accordion-button-hide hds-button__label">Hide cookie settings</span>
+                <span class="hds-cc__accordion-button-show hds-button__label">${contents.showCookieSettings}</span>
+                <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideCookieSettings}</span>
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-1">
@@ -65,7 +65,7 @@ export default function getCookieBannerHTML(contents = {}) {
                   <table class="hds-table hds-table--dark">
                     <thead>
                       <tr class="hds-table__header-row">
-                        <th scope="col">${contents.Name}</th>
+                        <th scope="col">${contents.tableHeadingsName}</th>
                         <th scope="col">${contents.tableHeadingsHostName}</th>
                         <th scope="col">${contents.tableHeadingsDescription}</th>
                         <th scope="col">${contents.tableHeadingsExpiration}</th>
@@ -99,8 +99,8 @@ export default function getCookieBannerHTML(contents = {}) {
                 aria-controls="hds-cc-group-details-2"
                 aria-expanded="false"
                 aria-polite="true">
-                <span class="hds-cc__accordion-button-show hds-button__label">Show cookie settings</span>
-                <span class="hds-cc__accordion-button-hide hds-button__label">Hide cookie settings</span>
+                <span class="hds-cc__accordion-button-show hds-button__label">${contents.showCookieSettings}</span>
+                <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideCookieSettings}</span>
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-2">
@@ -108,10 +108,11 @@ export default function getCookieBannerHTML(contents = {}) {
                   <table class="hds-table hds-table--dark">
                     <thead>
                       <tr class="hds-table__header-row">
-                        <th scope="col">Name</th>
-                        <th scope="col">Cookie set by</th>
-                        <th scope="col">Purpose of use</th>
-                        <th scope="col">Period of validity</th>
+                        <th scope="col">${contents.tableHeadingsName}</th>
+                        <th scope="col">${contents.tableHeadingsHostName}</th>
+                        <th scope="col">${contents.tableHeadingsDescription}</th>
+                        <th scope="col">${contents.tableHeadingsExpiration}</th>
+                        <th scope="col">${contents.tableHeadingsType}</th>
                       </tr>
                     </thead>
                     <tbody class="hds-table__content">
@@ -189,8 +190,8 @@ export function getGroupHtml(contents = {}) {
                 aria-controls="hds-cc-group-details-1"
                 aria-expanded="false"
                 aria-polite="true">
-                <span class="hds-cc__accordion-button-show hds-button__label">Show cookie settings</span>
-                <span class="hds-cc__accordion-button-hide hds-button__label">Hide cookie settings</span>
+                <span class="hds-cc__accordion-button-show hds-button__label">${contents.showCookieSettings}</span>
+                <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideCookieSettings}</span>
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-1">
