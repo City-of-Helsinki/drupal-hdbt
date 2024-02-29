@@ -1,5 +1,6 @@
 import { parse, serialize } from 'cookie/index';
 import getCookieBannerHTML from './template';
+import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const templateContents = { test: 'test string' };
 
@@ -170,7 +171,7 @@ const chatUserConsent = {
 * =====                                                   ========
 * ================================================================
 */
-async function createShadowRoot() {
+async function createShadowRoot(lang, cookieData) {
 
   const targetSelector = window.hdsCcSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
@@ -198,6 +199,11 @@ async function createShadowRoot() {
   // const templateContent = template.content;
 
 
+  const translationKeys = getTranslationKeys();
+  translationKeys.forEach(key => {
+    templateContents[key] = getTranslation(key, lang, cookieData);
+  });
+
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
   shadowRoot.innerHTML += getCookieBannerHTML(templateContents);
@@ -218,7 +224,7 @@ const init = async () => {
   buildLists(lists, translations, lang, cookieData.optionalCookies, 'optionalCookies');
   resetCookieState();
 
-  await createShadowRoot();
+  await createShadowRoot(lang, cookieData);
   // const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 };
 
