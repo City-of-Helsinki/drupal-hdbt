@@ -1,4 +1,4 @@
-export function getCookieBannerHtml(contents) {
+export function getCookieBannerHtml(translations, groupsHtml) {
   return `
 <div id="hds-cc" class="hds-cc hds-cc--minimized" tabindex="-1">
   <div class="hds-cc__container">
@@ -6,18 +6,18 @@ export function getCookieBannerHtml(contents) {
 
       <div class="hds-cc__main-content">
         <h2 class="hds-cc__heading">
-          ${contents.heading}
+          ${translations.heading}
         </h2>
         <div class="hds-cc__description">
           <p class="hds-cc__description__animator">
-            ${contents.description}
+            ${translations.description}
           </p>
         </div>
 
         <span
           class="hds-cc__accordion-button hds-cc__accordion-button--read-more"
           aria-hidden="true"
-          >${contents.readMore}</span>
+          >${translations.readMore}</span>
       </div>
 
       <button
@@ -27,18 +27,18 @@ export function getCookieBannerHtml(contents) {
         aria-controls="hds-cc-form"
         aria-expanded="false"
         aria-polite="true">
-        <span class="hds-cc__accordion-button-show hds-button__label">${contents.showDetails}</span>
-        <span class="hds-cc__accordion-button-hide hds-button__label">${contents.hideDetails}</span>
+        <span class="hds-cc__accordion-button-show hds-button__label">${translations.showDetails}</span>
+        <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideDetails}</span>
         <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
       </button>
 
       <form action="" class="hds-cc__form" id="hds-cc-form">
         <div class="hds-cc__form__animator">
-          <h3>${contents.form_heading}</h3>
-          <p>${contents.form_text}</p>
+          <h3>${translations.form_heading}</h3>
+          <p>${translations.form_text}</p>
 
           <div class="hds-cc__groups">
-            ${contents.groups}
+            ${groupsHtml}
           </div>
         </div>
       </form>
@@ -46,13 +46,13 @@ export function getCookieBannerHtml(contents) {
         <div class="hds-cc__buttons__animator">
           <div class="hds-cc__buttons__container">
             <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button">
-              <span class="hds-button__label">${contents.approveAllConsents}</span>
+              <span class="hds-button__label">${translations.approveAllConsents}</span>
             </button>
             <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button">
-              <span class="hds-button__label">${contents.approveRequiredAndSelectedConsents}</span>
+              <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
             </button>
             <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button">
-              <span class="hds-button__label">${contents.approveOnlyRequiredConsents}</span>
+              <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>
             </button>
           </div>
         </div>
@@ -62,12 +62,12 @@ export function getCookieBannerHtml(contents) {
 </div>`;
 };
 
-export function getGroupHtml(contents) {
+export function getGroupHtml(translations, groupId, tableRowsHtml) {
   return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
-                <input type="checkbox" id="${contents.groupId}-cookies" class="hds-checkbox__input" />
-                <label for="${contents.groupId}-cookies" class="hds-checkbox__label">Necessary cookies</label>
+                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input" />
+                <label for="${groupId}-cookies" class="hds-checkbox__label">Necessary cookies</label>
               </div>
               <p aria-hidden="true">Necessary cookies cannot be rejected. They enable the proper functioning of the website and affect the usability.</p>
               <p class="visually-hidden">Necessary cookies cannot be rejected. They enable the proper functioning of the website and affect the usability.</p>
@@ -79,8 +79,8 @@ export function getGroupHtml(contents) {
                 aria-controls="hds-cc-group-details-1"
                 aria-expanded="false"
                 aria-polite="true">
-                <span class="hds-cc__accordion-button-show hds-button__label">${contents.translations.showCookieSettings}</span>
-                <span class="hds-cc__accordion-button-hide hds-button__label">${contents.translations.hideCookieSettings}</span>
+                <span class="hds-cc__accordion-button-show hds-button__label">${translations.showCookieSettings}</span>
+                <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideCookieSettings}</span>
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-1">
@@ -88,15 +88,15 @@ export function getGroupHtml(contents) {
                   <table class="hds-table hds-table--dark">
                     <thead>
                       <tr class="hds-table__header-row">
-                      <th scope="col">${contents.translations.tableHeadingsName}</th>
-                      <th scope="col">${contents.translations.tableHeadingsHostName}</th>
-                      <th scope="col">${contents.translations.tableHeadingsDescription}</th>
-                      <th scope="col">${contents.translations.tableHeadingsExpiration}</th>
-                      <th scope="col">${contents.translations.tableHeadingsType}</th>
+                      <th scope="col">${translations.tableHeadingsName}</th>
+                      <th scope="col">${translations.tableHeadingsHostName}</th>
+                      <th scope="col">${translations.tableHeadingsDescription}</th>
+                      <th scope="col">${translations.tableHeadingsExpiration}</th>
+                      <th scope="col">${translations.tableHeadingsType}</th>
                       </tr>
                     </thead>
                     <tbody class="hds-table__content">
-                      ${contents.tableRows}
+                      ${tableRowsHtml}
                     </tbody>
                   </table>
                 </div>
@@ -104,14 +104,14 @@ export function getGroupHtml(contents) {
             </div>`;
 };
 
-export function getTableRowHtml(contents) {
+export function getTableRowHtml(rowData) {
   return `
                     <tr>
-                      <td>${contents.name}</td>
-                      <td>${contents.host}</td>
-                      <td>${contents.description}</td>
-                      <td>${contents.expiration}</td>
-                      <td>${contents.type}</td>
+                      <td>${rowData.name}</td>
+                      <td>${rowData.host}</td>
+                      <td>${rowData.description}</td>
+                      <td>${rowData.expiration}</td>
+                      <td>${rowData.type}</td>
                     </tr>
                     `;
 };
