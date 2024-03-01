@@ -1,5 +1,5 @@
-export function getCookieBannerHTML(contents = {}) {
-  const html = `
+export function getCookieBannerHtml(contents) {
+  return `
 <div id="hds-cc" class="hds-cc hds-cc--minimized" tabindex="-1">
   <div class="hds-cc__container">
     <div class="hds-cc__aligner">
@@ -60,11 +60,10 @@ export function getCookieBannerHTML(contents = {}) {
     </div>
   </div>
 </div>`;
-  return html;
-}
+};
 
-export function getGroupHtml(contents = {}) {
-  const html = `
+export function getGroupHtml(contents) {
+  return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
                 <input type="checkbox" id="${contents.groupId}-cookies" class="hds-checkbox__input" />
@@ -97,12 +96,22 @@ export function getGroupHtml(contents = {}) {
                       </tr>
                     </thead>
                     <tbody class="hds-table__content">
-                      ${contents.table}
+                      ${contents.tableRows}
                     </tbody>
                   </table>
                 </div>
               </div>
-            </div>
-`;
-  return html;
-}
+            </div>`;
+};
+
+export function getTableRowHtml(contents) {
+  return `
+                    <tr>
+                      <td>${contents.name}</td>
+                      <td>${contents.host}</td>
+                      <td>${contents.description}</td>
+                      <td>${contents.expiration}</td>
+                      <td>${contents.type}</td>
+                    </tr>
+                    `;
+};

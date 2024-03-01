@@ -59,9 +59,9 @@
     <link rel="manifest" href="{{ theme_path }}/src/images/favicon/manifest.webmanifest">
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
+    {% embed '@hdbt/misc/cookie-container.html.twig' %}{% endembed %}
   </head>
   <body{{ attributes }}>
-    {% embed '@hdbt/misc/cookie-container.html.twig' %}{% endembed %}
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
