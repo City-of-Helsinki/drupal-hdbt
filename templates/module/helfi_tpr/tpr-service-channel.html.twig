@@ -19,6 +19,10 @@
     </{{ service_channel_heading_level }}>
   {% endif %}
 
+  {% if content.information|render %}
+    <div class="service-channel__information">{{ content.information }}</div>
+  {% endif %}
+
   {% if content.availability_summary|render %}
     <div class="service-channel__availabilities">{{ content.availability_summary }}</div>
   {% endif %}
@@ -67,12 +71,12 @@
     <div class="service-channel__address">{{ content.address }}</div>
   {% endif %}
 
-  {% if entity.requires_authentication.value == 1 or service_channel_eservice_links_new_tab %}
+  {% if entity.requires_authentication.value == 1 or (content.links and service_channel_eservice_links_new_tab and entity.type.value|lower == 'eservice') %}
     <div class="service-channel__extra-information">
       {% if entity.requires_authentication.value == 1 %}
         {{ 'Requires authentication'|t }}.
       {% endif %}
-      {% if content.links and service_channel_eservice_links_new_tab and  entity.type.value|lower == 'eservice' %}
+      {% if content.links and service_channel_eservice_links_new_tab and entity.type.value|lower == 'eservice' %}
         {{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.
       {% endif %}
     </div>
