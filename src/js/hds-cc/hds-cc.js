@@ -59,29 +59,16 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function buildGroup(cookieGroup, lang) {
-  const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
-  const groupId = cookieGroup.commonGroup;
-  const groupContent = {
-    tableRowsHtml,
-    groupId: cookieGroup.commonGroup,
-    translations: templateContents.translations
-  };
-  const groupHtml = getGroupHtml(templateContents.translations, groupId, tableRowsHtml);
-  templateContents.groups += groupHtml;
+function cookiesGroups(cookieGroupList, lang, translations, groupRequired) {
+  let groupsHtml = '';
+  cookieGroupList.forEach(cookieGroup => {
+    const groupId = cookieGroup.commonGroup;
+    const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
+    groupsHtml += getGroupHtml(translations, groupId, tableRowsHtml);
+  });
+  return groupsHtml;
 }
 
-function requiredCookiesGroups(cookieGroupList, lang) {
-  cookieGroupList.forEach(cookieGroup => {
-    buildGroup(cookieGroup, lang);
-  });
-}
-
-function optionalCookiesGroups(cookieGroupList, lang) {
-  cookieGroupList.forEach(cookieGroup => {
-    buildGroup(cookieGroup, lang);
-  });
-}
 
 function userHasGivenConsent(category) {
   const browserCookieState = parse(document.cookie);
@@ -191,8 +178,9 @@ async function createShadowRoot(lang, cookieData) {
   });
 
   // Allow the translations to be built before HTML templating
-  requiredCookiesGroups(cookieData.requiredCookies.groups, lang);
-  optionalCookiesGroups(cookieData.optionalCookies.groups, lang);
+  templateContents.groups += cookiesGroups(cookieData.requiredCookies.groups, lang, templateContents.translations, true);
+  templateContents.groups += cookiesGroups(cookieData.optionalCookies.groups, lang, templateContents.translations, false);
+
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
   shadowRoot.innerHTML += getCookieBannerHtml(templateContents.translations, templateContents.groups);
