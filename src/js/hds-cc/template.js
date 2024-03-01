@@ -62,15 +62,16 @@ export function getCookieBannerHtml(translations, groupsHtml) {
 </div>`;
 };
 
+// TODO: consider screenreader description parametrization (translations.screenreader.descriptions)
 export function getGroupHtml(translations, groupId, tableRowsHtml) {
   return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
                 <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input" />
-                <label for="${groupId}-cookies" class="hds-checkbox__label">Necessary cookies</label>
+                <label for="${groupId}-cookies" class="hds-checkbox__label">${translations.title}</label>
               </div>
-              <p aria-hidden="true">Necessary cookies cannot be rejected. They enable the proper functioning of the website and affect the usability.</p>
-              <p class="visually-hidden">Necessary cookies cannot be rejected. They enable the proper functioning of the website and affect the usability.</p>
+              <p aria-hidden="true">${translations.description}</p>
+              <p class="visually-hidden">${translations.description}</p>
 
               <button
                 type="button"

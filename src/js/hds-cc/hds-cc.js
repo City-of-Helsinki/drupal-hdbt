@@ -54,12 +54,14 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function cookiesGroups(cookieGroupList, lang, translations, groupRequired) {
+function cookiesGroups(cookieGroupList, lang, translations, groupRequired = false) {
   let groupsHtml = '';
   cookieGroupList.forEach(cookieGroup => {
+    const title = getCookieTranslation(cookieGroup.title, lang);
+    const description = getCookieTranslation(cookieGroup.description, lang);
     const groupId = cookieGroup.commonGroup;
     const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
-    groupsHtml += getGroupHtml(translations, groupId, tableRowsHtml);
+    groupsHtml += getGroupHtml({...translations, title, description }, groupId, tableRowsHtml);
   });
   return groupsHtml;
 }
