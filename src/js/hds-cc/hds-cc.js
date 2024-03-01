@@ -2,11 +2,6 @@ import { parse, serialize } from 'cookie/index';
 import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
-const templateContents = {
-  translations: {},
-  groups: ''
-};
-
 const cookieState = {
   'cookie-agreed-categories': [], // list of accepted categories ['essential']
   'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
@@ -167,23 +162,18 @@ async function createShadowRoot(lang, cookieData) {
     console.error('Failed to load the CSS file:', error);
   }
 
-  // Access the template
-  // const template = document.getElementById('hds-cookie-consent-template');
-  // const templateContent = template.content;
-
+  const translations = {};
   const translationKeys = getTranslationKeys();
   translationKeys.forEach(key => {
     // TODO: consider the following
-    templateContents.translations[key] = getTranslation(key, lang, cookieData);
+    translations[key] = getTranslation(key, lang, cookieData);
   });
 
-  // Allow the translations to be built before HTML templating
-  templateContents.groups += cookiesGroups(cookieData.requiredCookies.groups, lang, templateContents.translations, true);
-  templateContents.groups += cookiesGroups(cookieData.optionalCookies.groups, lang, templateContents.translations, false);
+  let groupsHtml = '';
+  groupsHtml += cookiesGroups(cookieData.requiredCookies.groups, lang, translations, true);
+  groupsHtml += cookiesGroups(cookieData.optionalCookies.groups, lang, translations, false);
 
-  // Clone the template content and append it to the shadow root
-  // shadowRoot.appendChild(templateContent.cloneNode(true));
-  shadowRoot.innerHTML += getCookieBannerHtml(templateContents.translations, templateContents.groups);
+  shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
