@@ -137,6 +137,6 @@ export function getTranslation(key, lang, parameters) {
 }
 
 export function getTranslationKeys() {
-  console.log('getTranslationKeys', Object.keys(translations));
+  // console.log('getTranslationKeys', Object.keys(translations));
   return Object.keys(translations);
 }

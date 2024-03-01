@@ -453,13 +453,6 @@
             "description": "Toiminnallisten chat-evästeiden avulla mahdollistetaan helfi-sivujen chattien toiminta. Jos aloitat chatin, hyväksyt sen käyttöön liittyvät toiminnalliset evästeet automaattisesti.  Evästeiden hyväksymiseen ei tällöin tarvita erillistä suostumusta. Toiminnallisia chat-evästeitä ladataan laitteellesi vain, jos käynnistät chatin."
           }
         }
-      },
-      "tableHeadings": {
-        "name": "Nimi",
-        "host": "Tarjoaja",
-        "description": "Tarkoitus",
-        "expiration": "Voimassa",
-        "type": "Tyyppi"
       }
     },
     "en": {
@@ -490,13 +483,6 @@
             "description": "The chats on the hel.fi  website require functional chat cookies to function. By using a chat, you automatically accept the functional cookies it requires.  No separate cookie consent is needed. Functional chat cookies are only downloaded to your device if you start a chat."
           }
         }
-      },
-      "tableHeadings": {
-        "name": "Name",
-        "host": "Provider",
-        "description": "Purpose of the cookie",
-        "expiration": "Validity",
-        "type": "Type"
       }
     },
     "sv": {
@@ -527,13 +513,6 @@
             "description": "Chattarna på webbplatsen hel.fi  fungerar med hjälp av funktionella chattkakor. Om du inleder en chatt godkänner du automatiskt de nödvändiga funktionella kakorna.  Då behövs inget separat samtycke till kakor. Funktionella chattkakor laddas endast ner på din enhet om du inleder en chatt."
           }
         }
-      },
-      "tableHeadings": {
-        "name": "Namn",
-        "host": "Tjänsteleverantör",
-        "description": "Cookie syfte",
-        "expiration": "Giltighet",
-        "type": "Typ"
       }
     }
   }

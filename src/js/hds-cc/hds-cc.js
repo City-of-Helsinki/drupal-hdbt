@@ -1,8 +1,11 @@
 import { parse, serialize } from 'cookie/index';
-import getCookieBannerHTML from './template';
+import { getCookieBannerHTML, getGroupHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
-const templateContents = { test: 'test string' };
+const templateContents = {
+  translations: {},
+  groups: ''
+};
 
 const cookieState = {
   'cookie-agreed-categories': [], // list of accepted categories ['essential']
@@ -19,82 +22,68 @@ async function getCookieData() {
   return (await fetch(window.hdsCcSettings.jsonUrl)).json();
 }
 
+function getCookieTranslation(field, lang) {
+  if (typeof(field) === 'object') {
+      if (field[lang] === undefined) {
+          // fallback to English translation
+          return field.en;
+      }
+      return field[lang];
+  }
+
+  return field;
+}
+
+/**
+ * Builder template functions
+ *
+ * - group
+ * - table
+ * - rows
+ */
+
 function buildRow(cookie, lang) {
+  // TODO: move to template file
 return `<tr>
-  <td>${cookie.id}</td>
+  <td>${cookie.name}</td>
   <td>${cookie.host}</td>
-  <td>${cookie.description[lang]}</td>
-  <td>${cookie.expiration}</td>
-  <td>${cookie.type}</td>
+  <td>${getCookieTranslation(cookie.description, lang)}</td>
+  <td>${getCookieTranslation(cookie.expiration, lang)}</td>
+  <td>${getCookieTranslation(cookie.type, lang)}</td>
 </tr>`;
 }
 
-function buildLists(listsElement, translations, lang, cookielist, status = 'requiredCookies') {
-  const categoryContainer = document.createElement('div');
+function buildTable(cookies, lang) {
+  let rows = '';
 
-  // Cookie category one by one
-  cookielist.groups.forEach(category => {
-    const categoryElem = document.createElement('div');
-
-    const catHeading = document.createElement('h3');
-    catHeading.textContent = translations[window.hdsCcSettings.language][status].categories[category.commonGroup].title;
-    categoryElem.appendChild(catHeading);
-
-    const catDescription = document.createElement('p');
-    catDescription.textContent = translations[window.hdsCcSettings.language][status].categories[category.commonGroup].description;
-    categoryElem.appendChild(catDescription);
-
-    // Create the table
-    const cookieTable = document.createElement('table');
-    categoryElem.appendChild(cookieTable);
-
-    // Head
-    const tableHead = document.createElement('thead');
-    const thRow = document.createElement('tr');
-
-    const thName = document.createElement('th');
-    thName.textContent = translations[window.hdsCcSettings.language].tableHeadings.name;
-
-    const thHost = document.createElement('th');
-    thHost.textContent = translations[window.hdsCcSettings.language].tableHeadings.host;
-
-    const thDescription = document.createElement('th');
-    thDescription.textContent = translations[window.hdsCcSettings.language].tableHeadings.description;
-
-    const thExpiration = document.createElement('th');
-    thExpiration.textContent = translations[window.hdsCcSettings.language].tableHeadings.expiration;
-
-    const thType = document.createElement('th');
-    thType.textContent = translations[window.hdsCcSettings.language].tableHeadings.type;
-
-    thRow.appendChild(thName);
-    thRow.appendChild(thHost);
-    thRow.appendChild(thDescription);
-    thRow.appendChild(thExpiration);
-    thRow.appendChild(thType);
-
-    // Compile table head
-    tableHead.appendChild(thRow);
-    cookieTable.appendChild(tableHead);
-
-    // Table to div
-    categoryElem.appendChild(cookieTable);
-
-    // Body
-    const tableBody = document.createElement('tbody');
-
-    templateContents[category] = '';
-    category.cookies.forEach(cookie => {
-      // tableBody.appendChild(buildRow(cookie, lang));
-      templateContents[category.commonGroup] += buildRow(cookie, lang);
+    cookies.forEach(cookie => {
+      rows += buildRow(cookie, lang);
     });
 
-    // Cookie table complete, add to listing
-    cookieTable.appendChild(tableBody);
-    categoryContainer.appendChild(categoryElem);
-  });
+    return rows;
+}
 
-  // listsElement.appendChild(categoryContainer);
+function buildGroup(cookieGroup, lang) {
+  const table = buildTable(cookieGroup.cookies, lang);
+  const groupContent = {
+    table,
+    groupId: cookieGroup.commonGroup,
+    translations: templateContents.translations
+  };
+  const groupHtml = getGroupHtml(groupContent);
+  templateContents.groups += groupHtml;
+}
+
+function requiredCookiesGroups(cookieGroupList, lang) {
+  cookieGroupList.forEach(cookieGroup => {
+    buildGroup(cookieGroup, lang);
+  });
+}
+
+function optionalCookiesGroups(cookieGroupList, lang) {
+  cookieGroupList.forEach(cookieGroup => {
+    buildGroup(cookieGroup, lang);
+  });
 }
 
 function userHasGivenConsent(category) {
@@ -202,8 +191,13 @@ async function createShadowRoot(lang, cookieData) {
   const translationKeys = getTranslationKeys();
   translationKeys.forEach(key => {
     templateContents[key] = getTranslation(key, lang, cookieData);
+    // TODO: consider the following
+    templateContents.translations[key] = getTranslation(key, lang, cookieData);
   });
 
+  // Allow the translations to be built before HTML templating
+  requiredCookiesGroups(cookieData.requiredCookies.groups, lang);
+  optionalCookiesGroups(cookieData.optionalCookies.groups, lang);
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
   shadowRoot.innerHTML += getCookieBannerHTML(templateContents);
@@ -216,12 +210,9 @@ const init = async () => {
   window.chat_user_consent = chatUserConsent;
 
   const cookieData = await getCookieData();
+  // TODO: consider the need of scoping
   window.cookieData = cookieData;
-  const { translations } = cookieData;
 
-  const lists = null;
-  buildLists(lists, translations, lang, cookieData.requiredCookies, 'requiredCookies');
-  buildLists(lists, translations, lang, cookieData.optionalCookies, 'optionalCookies');
   resetCookieState();
 
   await createShadowRoot(lang, cookieData);
@@ -243,6 +234,7 @@ function updateCookieConsents() {
 }
 
 document.addEventListener('DOMContentLoaded', () => init());
+// Debug helper key bindings
 window.addEventListener('keydown', e => {
   if (e.code === 'Space') {
     setCookies();
