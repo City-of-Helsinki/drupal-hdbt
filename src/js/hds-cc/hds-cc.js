@@ -1,5 +1,5 @@
 import { parse, serialize } from 'cookie/index';
-import { getCookieBannerHTML, getGroupHtml } from './template';
+import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const templateContents = {
@@ -38,35 +38,31 @@ function getCookieTranslation(field, lang) {
  * Builder template functions
  *
  * - group
- * - table
- * - rows
+ * - tableRows
  */
 
-function buildRow(cookie, lang) {
-  // TODO: move to template file
-return `<tr>
-  <td>${cookie.name}</td>
-  <td>${cookie.host}</td>
-  <td>${getCookieTranslation(cookie.description, lang)}</td>
-  <td>${getCookieTranslation(cookie.expiration, lang)}</td>
-  <td>${getCookieTranslation(cookie.type, lang)}</td>
-</tr>`;
-}
+function buildTableRows(cookies, lang) {
+  let tableRows = '';
 
-function buildTable(cookies, lang) {
-  let rows = '';
+  cookies.forEach(cookie => {
+    tableRows += getTableRowHtml(
+      {
+        name: getCookieTranslation(cookie.name, lang),
+        host: getCookieTranslation(cookie.host, lang),
+        description: getCookieTranslation(cookie.description, lang),
+        expiration: getCookieTranslation(cookie.expiration, lang),
+        type: getCookieTranslation(cookie.type, lang),
+      }
+    );
+  });
 
-    cookies.forEach(cookie => {
-      rows += buildRow(cookie, lang);
-    });
-
-    return rows;
+  return tableRows;
 }
 
 function buildGroup(cookieGroup, lang) {
-  const table = buildTable(cookieGroup.cookies, lang);
+  const tableRows = buildTableRows(cookieGroup.cookies, lang);
   const groupContent = {
-    table,
+    tableRows,
     groupId: cookieGroup.commonGroup,
     translations: templateContents.translations
   };
@@ -153,7 +149,7 @@ const chatUserConsent = {
   }
 };
 
-/**
+/*
 * ================================================================
 * =====                                                   ========
 * =====                   INIT SEQUENCE                   ========
@@ -200,7 +196,7 @@ async function createShadowRoot(lang, cookieData) {
   optionalCookiesGroups(cookieData.optionalCookies.groups, lang);
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
-  shadowRoot.innerHTML += getCookieBannerHTML(templateContents);
+  shadowRoot.innerHTML += getCookieBannerHtml(templateContents);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
