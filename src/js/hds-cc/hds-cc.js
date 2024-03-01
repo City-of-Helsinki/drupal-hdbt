@@ -1,3 +1,52 @@
+/**
+ * MEMO
+ *
+ * fetch cookie settings from JSON
+ *   get and refactor names etc.
+ *   refactor filenames (hdsCcSettings -> pageCookieSettings etc.)
+ * 
+ * fetch page settings from inline JS
+ *   language, jsonUrl
+ * 
+ * update helfi_cookies.json missing translations
+ * 
+ * eliminate global scope
+ * 
+ * set required cookies HTML to disabled and checked
+ *   template changes
+ * 
+ * logic for cookie banner spawn
+ *   compare cookieSettings and browser cookie state
+ *   check 1. if cookie exists 2. essentials approved 3. id list identicale - show banner
+ *   else show banner
+ * 
+ * cookie writing
+ *   ONLY from one of buttons
+ *   disallow chat elements until essentials are accepted (banner is closed)
+ * 
+ * cookie reading (from browser) logic refactor
+ *   check categorically
+ * 
+ * plan how version handling happens
+ * 
+ * build HTML with templates
+ *   properties and translations on place
+ *   check ARIA-attributes
+ *   check screenreader only texts
+ *   add checkbox list
+ * 
+ * check files for FIXME and TODO notes
+ * 
+ * -------------------------------------------------
+ * INCOMING FEATURES 
+ * -------------------------------------------------
+ * monitor cookie- local- and sessionstorage
+ *   create console error or some sentry log request
+ *   should the unwanted cookie be removed?
+ * handle revoked permission
+ *   should remove unapproved cookies 
+ */
+
 import { parse, serialize } from 'cookie/index';
 import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
