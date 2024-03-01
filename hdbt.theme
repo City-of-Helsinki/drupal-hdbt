@@ -1329,9 +1329,8 @@ function hdbt_preprocess_views_view(&$variables): void {
     $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
   }
   // Add total rows as a variable.
-  if ($variables['view']->total_rows != NULL) {
-    $variables['total_rows'] = $variables['view']->total_rows;
-  }
+  $variables['total_rows'] = $variables['view']->total_rows ?: 0;
+
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
