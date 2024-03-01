@@ -17,16 +17,21 @@ async function getCookieData() {
   return (await fetch(window.hdsCcSettings.jsonUrl)).json();
 }
 
-function getCookieTranslation(field, lang) {
-  if (typeof(field) === 'object') {
-      if (field[lang] === undefined) {
-          // fallback to English translation
-          return field.en;
-      }
-      return field[lang];
+/**
+ * Picks the proper translation from a given object of possible translations or returns the input string if not an object.
+ * Defaults to English ('en') if the specified translation is not found.
+ * @param {string|Object} translationObj - Either a string or an object containing language key to translation value pairs.
+ * @param {string} lang - Language key, e.g., 'fi' for Finnish.
+ * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
+ */
+function translate(translationObj, lang) {
+  if (typeof (translationObj) === 'object') {
+    if (translationObj[lang] === undefined) {
+      return translationObj.en; // fallback to English translation
+    }
+    return translationObj[lang];
   }
-
-  return field;
+  return translationObj;
 }
 
 /**
@@ -42,11 +47,11 @@ function buildTableRows(cookies, lang) {
   cookies.forEach(cookie => {
     tableRows += getTableRowHtml(
       {
-        name: getCookieTranslation(cookie.name, lang),
-        host: getCookieTranslation(cookie.host, lang),
-        description: getCookieTranslation(cookie.description, lang),
-        expiration: getCookieTranslation(cookie.expiration, lang),
-        type: getCookieTranslation(cookie.type, lang),
+        name: translate(cookie.name, lang),
+        host: translate(cookie.host, lang),
+        description: translate(cookie.description, lang),
+        expiration: translate(cookie.expiration, lang),
+        type: translate(cookie.type, lang),
       }
     );
   });
@@ -54,11 +59,11 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function cookiesGroups(cookieGroupList, lang, translations, groupRequired = false) {
+function cookieGroups(cookieGroupList, lang, translations, groupRequired = false) {
   let groupsHtml = '';
   cookieGroupList.forEach(cookieGroup => {
-    const title = getCookieTranslation(cookieGroup.title, lang);
-    const description = getCookieTranslation(cookieGroup.description, lang);
+    const title = translate(cookieGroup.title, lang);
+    const description = translate(cookieGroup.description, lang);
     const groupId = cookieGroup.commonGroup;
     const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
     groupsHtml += getGroupHtml({...translations, title, description }, groupId, tableRowsHtml);
@@ -172,8 +177,8 @@ async function createShadowRoot(lang, cookieData) {
   });
 
   let groupsHtml = '';
-  groupsHtml += cookiesGroups(cookieData.requiredCookies.groups, lang, translations, true);
-  groupsHtml += cookiesGroups(cookieData.optionalCookies.groups, lang, translations, false);
+  groupsHtml += cookieGroups(cookieData.requiredCookies.groups, lang, translations, true);
+  groupsHtml += cookieGroups(cookieData.optionalCookies.groups, lang, translations, false);
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
@@ -209,6 +214,8 @@ function updateCookieConsents() {
 }
 
 document.addEventListener('DOMContentLoaded', () => init());
+
+// TODO: Remove this
 // Debug helper key bindings
 window.addEventListener('keydown', e => {
   if (e.code === 'Space') {
