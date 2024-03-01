@@ -60,13 +60,14 @@ function buildTableRows(cookies, lang) {
 }
 
 function buildGroup(cookieGroup, lang) {
-  const tableRows = buildTableRows(cookieGroup.cookies, lang);
+  const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
+  const groupId = cookieGroup.commonGroup;
   const groupContent = {
-    tableRows,
+    tableRowsHtml,
     groupId: cookieGroup.commonGroup,
     translations: templateContents.translations
   };
-  const groupHtml = getGroupHtml(groupContent);
+  const groupHtml = getGroupHtml(templateContents.translations, groupId, tableRowsHtml);
   templateContents.groups += groupHtml;
 }
 
@@ -183,10 +184,8 @@ async function createShadowRoot(lang, cookieData) {
   // const template = document.getElementById('hds-cookie-consent-template');
   // const templateContent = template.content;
 
-
   const translationKeys = getTranslationKeys();
   translationKeys.forEach(key => {
-    templateContents[key] = getTranslation(key, lang, cookieData);
     // TODO: consider the following
     templateContents.translations[key] = getTranslation(key, lang, cookieData);
   });
@@ -196,7 +195,7 @@ async function createShadowRoot(lang, cookieData) {
   optionalCookiesGroups(cookieData.optionalCookies.groups, lang);
   // Clone the template content and append it to the shadow root
   // shadowRoot.appendChild(templateContent.cloneNode(true));
-  shadowRoot.innerHTML += getCookieBannerHtml(templateContents);
+  shadowRoot.innerHTML += getCookieBannerHtml(templateContents.translations, templateContents.groups);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
