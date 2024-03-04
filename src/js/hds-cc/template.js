@@ -63,11 +63,12 @@ export function getCookieBannerHtml(translations, groupsHtml) {
 };
 
 // TODO: consider screenreader description parametrization (translations.screenreader.descriptions)
-export function getGroupHtml(translations, groupId, tableRowsHtml) {
+export function getGroupHtml(translations, groupId, tableRowsHtml, groupRequired) {
+  const required = groupRequired ? ' checked disabled' : '';
   return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
-                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input" />
+                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required} />
                 <label for="${groupId}-cookies" class="hds-checkbox__label">${translations.title}</label>
               </div>
               <p aria-hidden="true">${translations.description}</p>
@@ -85,7 +86,7 @@ export function getGroupHtml(translations, groupId, tableRowsHtml) {
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-1">
-                <div class="hds-cc__group-details__animator hds-table-container" tabindex="0" role="region" aria-label="FIXME Cookies related to necessary cookies">
+                <div class="hds-cc__group-details__animator hds-table-container" tabindex="0" role="region" aria-label="FIXME - is this needed? Cookies related to necessary cookies">
                   <table class="hds-table hds-table--dark">
                     <thead>
                       <tr class="hds-table__header-row">

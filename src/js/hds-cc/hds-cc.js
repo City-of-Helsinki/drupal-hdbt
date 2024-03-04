@@ -8,11 +8,11 @@
  * fetch page settings from inline JS
  *   language, jsonUrl
  * 
- * update helfi_cookies.json missing translations
+ * DONE update helfi_cookies.json missing translations
  * 
  * eliminate global scope
  * 
- * set required cookies HTML to disabled and checked
+ * DONE set required cookies HTML to disabled and checked
  *   template changes
  * 
  * logic for cookie banner spawn
@@ -30,7 +30,7 @@
  * plan how version handling happens
  * 
  * build HTML with templates
- *   properties and translations on place
+ *   DONE properties and translations on place
  *   check ARIA-attributes
  *   check screenreader only texts
  *   add checkbox list
@@ -56,70 +56,29 @@ const cookieState = {
   'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
 };
 
+/**
+ * Cookie section
+ */
 function setCookies() {
   document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieState['city-of-helsinki-cookie-consents']));
   document.cookie = serialize('cookie-agreed-categories', JSON.stringify(cookieState['cookie-agreed-categories']));
 }
 
-async function getCookieData() {
+async function getCookieSettings() {
   // TODO: Add error handling for missing settings and wrong url
-  return (await fetch(window.hdsCcSettings.jsonUrl)).json();
-}
-
-/**
- * Picks the proper translation from a given object of possible translations or returns the input string if not an object.
- * Defaults to English ('en') if the specified translation is not found.
- * @param {string|Object} translationObj - Either a string or an object containing language key to translation value pairs.
- * @param {string} lang - Language key, e.g., 'fi' for Finnish.
- * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
- */
-function translate(translationObj, lang) {
-  if (typeof (translationObj) === 'object') {
-    if (translationObj[lang] === undefined) {
-      return translationObj.en; // fallback to English translation
+  try {
+    const cookieSettings = await fetch(window.hdsCcSettings.jsonUrl).then((response) => response.json());
+    return cookieSettings;
+  } catch (err) {
+    if (err.message.includes('undefined')) {
+      console.log('Cookie settings not found');
     }
-    return translationObj[lang];
+    if (err.message.includes('Failed to fetch')) {
+      console.log(err.message, 'failure');
+    }
+    return false;
   }
-  return translationObj;
 }
-
-/**
- * Builder template functions
- *
- * - group
- * - tableRows
- */
-
-function buildTableRows(cookies, lang) {
-  let tableRows = '';
-
-  cookies.forEach(cookie => {
-    tableRows += getTableRowHtml(
-      {
-        name: translate(cookie.name, lang),
-        host: translate(cookie.host, lang),
-        description: translate(cookie.description, lang),
-        expiration: translate(cookie.expiration, lang),
-        type: translate(cookie.type, lang),
-      }
-    );
-  });
-
-  return tableRows;
-}
-
-function cookieGroups(cookieGroupList, lang, translations, groupRequired = false) {
-  let groupsHtml = '';
-  cookieGroupList.forEach(cookieGroup => {
-    const title = translate(cookieGroup.title, lang);
-    const description = translate(cookieGroup.description, lang);
-    const groupId = cookieGroup.commonGroup;
-    const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
-    groupsHtml += getGroupHtml({...translations, title, description }, groupId, tableRowsHtml);
-  });
-  return groupsHtml;
-}
-
 
 function userHasGivenConsent(category) {
   const browserCookieState = parse(document.cookie);
@@ -177,6 +136,92 @@ function listCategoryCookies(categories = []) {
   setCookies();
 }
 
+function updateCookieConsents() {
+  const checkboxes = document.querySelectorAll('input[type=checkbox]');
+  const acceptedCategories = [];
+  checkboxes.forEach(box => {
+    if (box.checked) {
+      acceptedCategories.push(box.id.replaceAll('-cookies', ''));
+    }
+  });
+
+  const stateCategories = cookieState['cookie-agreed-categories'];
+  stateCategories.splice(0, stateCategories.length, ...acceptedCategories);
+  listCategoryCookies(acceptedCategories);
+}
+
+/**
+ * logic for cookie banner spawn
+ *   compare cookieSettings and browser cookie state
+ *   check 1. if cookie exists 2. essentials approved 3. id list identicale - show banner
+ *   else show banner
+ */
+
+function checkBannerNeed() {
+  const essentialsApproved = userHasGivenConsent('essential');
+  if (essentialsApproved) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Template building section
+ */
+
+/**
+ * Picks the proper translation from a given object of possible translations or returns the input string if not an object.
+ * Defaults to English ('en') if the specified translation is not found.
+ * @param {string|Object} translationObj - Either a string or an object containing language key to translation value pairs.
+ * @param {string} lang - Language key, e.g., 'fi' for Finnish.
+ * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
+ */
+function translate(translationObj, lang) {
+  if (typeof (translationObj) === 'object') {
+    if (translationObj[lang] === undefined) {
+      return translationObj.en; // fallback to English translation
+    }
+    return translationObj[lang];
+  }
+  return translationObj;
+}
+
+/**
+ * Builder template functions
+ *
+ * - group
+ * - tableRows
+ */
+
+function buildTableRows(cookies, lang) {
+  let tableRows = '';
+
+  cookies.forEach(cookie => {
+    tableRows += getTableRowHtml(
+      {
+        name: translate(cookie.name, lang),
+        host: translate(cookie.host, lang),
+        description: translate(cookie.description, lang),
+        expiration: translate(cookie.expiration, lang),
+        type: translate(cookie.type, lang),
+      }
+    );
+  });
+
+  return tableRows;
+}
+
+function cookieGroups(cookieGroupList, lang, translations, groupRequired = false) {
+  let groupsHtml = '';
+  cookieGroupList.forEach(cookieGroup => {
+    const title = translate(cookieGroup.title, lang);
+    const description = translate(cookieGroup.description, lang);
+    const groupId = cookieGroup.commonGroup;
+    const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
+    groupsHtml += getGroupHtml({...translations, title, description }, groupId, tableRowsHtml, groupRequired);
+  });
+  return groupsHtml;
+}
 // Add chat cookie functions to window
 const chatUserConsent = {
   retrieveUserConsent() {
@@ -238,7 +283,19 @@ const init = async () => {
   const lang = window.hdsCcSettings.language;
   window.chat_user_consent = chatUserConsent;
 
-  const cookieData = await getCookieData();
+  // TODO: consider naming
+  const showBanner = checkBannerNeed();
+  if (!showBanner) {
+    console.log('cookies handled');
+    return;
+  }
+
+  // If cookie settings can't be loaded, do not show banner
+  const cookieData = await getCookieSettings();
+  if (cookieData === false) {
+    console.log('Cookie settings not available');
+    return;
+  }
   // TODO: consider the need of scoping
   window.cookieData = cookieData;
 
@@ -247,20 +304,6 @@ const init = async () => {
   await createShadowRoot(lang, cookieData);
   // const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 };
-
-function updateCookieConsents() {
-  const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  const acceptedCategories = [];
-  checkboxes.forEach(box => {
-    if (box.checked) {
-      acceptedCategories.push(box.id.replaceAll('-cookies', ''));
-    }
-  });
-
-  const stateCategories = cookieState['cookie-agreed-categories'];
-  stateCategories.splice(0, stateCategories.length, ...acceptedCategories);
-  listCategoryCookies(acceptedCategories);
-}
 
 document.addEventListener('DOMContentLoaded', () => init());
 
@@ -272,5 +315,8 @@ window.addEventListener('keydown', e => {
   }
   if (e.code === 'ArrowUp') {
     updateCookieConsents();
+  }
+  if (e.code === 'ArrowDown') {
+    resetCookieState();
   }
 });
