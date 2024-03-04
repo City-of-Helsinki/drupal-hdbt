@@ -24,8 +24,16 @@
               "sv": "Cookie möjliggör hantering av cookies på hel.fi webbplatsen.",
               "en": "Used by CookieHub to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
             },
-            "expiration": "365 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "365 päivää",
+              "sv": "365 dagar",
+              "en": "365 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "cookie-agreed_v1",
@@ -36,8 +44,16 @@
               "sv": "Cookie möjliggör hantering av cookies på webbplatsen.",
               "en": "Used by hel.fi Drupal to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
             },
-            "expiration": "100 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "100 päivää",
+              "sv": "100 dagar",
+              "en": "100 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "cookie-agreed-version_v1",
@@ -48,8 +64,16 @@
               "sv": "Används för att lagra information om versionen av cookies samtycke som användaren har godkänt.",
               "en": "Used by hel.fi Drupal to store information about what version of the cookie consent the user has agreed to."
             },
-            "expiration": "100 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "100 päivää",
+              "sv": "100 dagar",
+              "en": "100 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "cookie-agreed-categories_v1",
@@ -60,8 +84,16 @@
               "sv": "Används för att lagra information om vilka cookie -kategorier användaren har godkänt.",
               "en": "Used by hel.fi Drupal to store information about what cookie categories the user has agreed to."
             },
-            "expiration": "100 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "100 päivää",
+              "sv": "100 dagar",
+              "en": "100 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "SSESS*_v1",
@@ -72,8 +104,16 @@
               "sv": "En cookie relaterad till driften av innehållshanteringssystemet.",
               "en": "A cookie related to the operation of the content management system."
             },
-            "expiration": "23 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "23 päivää",
+              "sv": "23 dagar",
+              "en": "23 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "AWSELBCORS_v1",
@@ -84,8 +124,16 @@
               "sv": "Cookie är kopplad till funktionen för lastfördelning som styr begäran till en server med mindre belastning.",
               "en": "The cookie is related to a load distribution function used to direct requests to servers with the least traffic."
             },
-            "expiration": "Istunto",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "Istunto",
+              "sv": "Session",
+              "en": "Session"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "mtm_cookie_consent_v1",
@@ -96,8 +144,16 @@
               "sv": "A technical cookie that stores information about how you responded to the notice in the cookie banner about the use of cookies.",
               "en": "A technical cookie that stores information about how you responded to the notice in the cookie banner about the use of cookies."
             },
-            "expiration": "10950 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "10950 päivää",
+              "sv": "10950 dagar",
+              "en": "10950 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "JSESSIONID_v1",
@@ -108,8 +164,16 @@
               "sv": "Kakan är en obligatorisk kaka som gör det möjligt för besökaren att besöka webbplatsen.",
               "en": "The cookie is an obligatory cookie that facilitates visiting the website."
             },
-            "expiration": "Istunto",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "Istunto",
+              "sv": "Session",
+              "en": "Session"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "COOKIE_SUPPORT_v1",
@@ -120,8 +184,16 @@
               "sv": "Kakan möjliggör hanteringen av kakor på webbplatsen.",
               "en": "The cookie facilitates managing cookies on the website."
             },
-            "expiration": "365 päivää",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "365 päivää",
+              "sv": "365 dagar",
+              "en": "365 days"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "GUEST_LANGUAGE_ID_v1",
@@ -132,8 +204,16 @@
               "sv": "Denna cookie genereras av Liferay, dess funktion är att lagra språkinställningarna.",
               "en": "This cookie is generated by the Liferay, its function is to store the language preferences."
             },
-            "expiration": "365 päivää",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "365 päivää",
+              "sv": "365 dagar",
+              "en": "365 days"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           }
         ]
       }
@@ -163,8 +243,16 @@
               "sv": "I kakan på stadens kaktjänst sparas det språk som användaren använder i tjänsten.",
               "en": "The City's map service cookie saves the language in which the service is used."
             },
-            "expiration": "1826 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "1826 päivää",
+              "sv": "1826 dagar",
+              "en": "1826 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "icareus-device_v1",
@@ -175,8 +263,16 @@
               "sv": "Helsinki-kanavas kaka gör det möjligt att göra videor till en del av innehållet på webbplatsen.",
               "en": "The Helsinki Channel video server cookie facilitates including videos as part of the website's content."
             },
-            "expiration": "365 päivää",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "365 päivää",
+              "sv": "365 dagar",
+              "en": "365 days"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "VISITOR_INFO1_LIVE_v1",
@@ -187,8 +283,16 @@
               "sv": "YouTubes kaka väljer antingen den nya eller gamla videospelaren enligt förbindelsens hastighet.",
               "en": "The YouTube cookie selects the old or new video player depending on the connection speed."
             },
-            "expiration": "180 päivää",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "180 päivää",
+              "sv": "180 dagar",
+              "en": "180 days"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "CONSENT_v1",
@@ -199,8 +303,16 @@
               "sv": "Används av Google för att lagra inställningar för användarens samtycke",
               "en": "Used by Google to store user consent preferences"
             },
-            "expiration": "5947 päivää, 15 tuntia",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "5947 päivää, 15 tuntia",
+              "sv": "5947 dagar, 15 timmar",
+              "en": "5947 days, 15 hours"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           }
         ]
       },
@@ -226,8 +338,16 @@
               "sv": "Siteimproves kaka samlar information om hur webbplatsen används.",
               "en": "The Siteimprove statistics cookie collects information about the use of the website."
             },
-            "expiration": "1000 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "1000 päivää",
+              "sv": "1000 dagar",
+              "en": "1000 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_id.*_v1",
@@ -238,8 +358,16 @@
               "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
               "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
             },
-            "expiration": "393 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "393 päivää",
+              "sv": "393 dagar",
+              "en": "393 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_ses.141.89f6_v1",
@@ -250,8 +378,16 @@
               "sv": "-",
               "en": "-"
             },
-            "expiration": "1 tunti",
-            "type": ""
+            "expiration": {
+              "fi": "1 tunti",
+              "sv": "1 timme",
+              "en": "1 hour"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_id.*_v1",
@@ -262,8 +398,16 @@
               "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
               "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
             },
-            "expiration": "393 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "393 päivää",
+              "sv": "393 dagar",
+              "en": "393 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_ses.*_v1",
@@ -274,8 +418,16 @@
               "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
               "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
             },
-            "expiration": "1 tunti",
-            "type": ""
+            "expiration": {
+              "fi": "1 tunti",
+              "sv": "1 timme",
+              "en": "1 hour"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_id.*_v1",
@@ -286,8 +438,16 @@
               "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
               "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
             },
-            "expiration": "393 päivää",
-            "type": ""
+            "expiration": {
+              "fi": "393 päivää",
+              "sv": "393 dagar",
+              "en": "393 days"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "_pk_ses.*_v1",
@@ -298,8 +458,16 @@
               "sv": "Matomo-statistiksystemets kaka samlar information om hur webbplatsen används.",
               "en": "Matomo Analytics - used to store a few details about the user such as the unique visitor ID"
             },
-            "expiration": "1 tunti",
-            "type": ""
+            "expiration": {
+              "fi": "1 tunti",
+              "sv": "1 timme",
+              "en": "1 hour"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "rnsbid_v1",
@@ -310,8 +478,16 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "rnsbid_ts_v1",
@@ -322,8 +498,16 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "rns_reaction_*_v1",
@@ -334,8 +518,16 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "YSC_v1",
@@ -346,8 +538,16 @@
               "sv": "YouTubes kaka gör det möjligt att göra videor till en del av innehållet på webbplatsen.",
               "en": "The YouTube cookie facilitates including videos as part of the website's content."
             },
-            "expiration": "Istunto",
-            "type": "Kolmas osapuoli"
+            "expiration": {
+              "fi": "Istunto",
+              "sv": "Session",
+              "en": "Session"
+            },
+            "type": {
+              "fi": "Kolmas osapuoli",
+              "sv": "Tredje part",
+              "en": "Third party"
+            }
           },
           {
             "id": "null_active_survey_v1",
@@ -358,8 +558,16 @@
               "sv": "Id för undersökningen som är live.",
               "en": "The id of the survey that is live."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "null_page_view_count_v1",
@@ -370,8 +578,16 @@
               "sv": "Hur många Helsingfors stads sidor har du tittat på innan du såg undersökningen.",
               "en": "How many City of Helsinki pages have you viewed before seeing the survey"
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "null_active_scenario_v1",
@@ -382,8 +598,16 @@
               "sv": "Mikä kyselymoduulin versio on käytössä.",
               "en": "What version of the survey module is live."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "wsLanguage_p933511862344_v1",
@@ -394,8 +618,16 @@
               "sv": "Kielitunniste, joka kertoo minkä kielinen kysely käyttäjälle näkyy",
               "en": "Language identifier used to select which language of the survey you see."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "p933511862344_status_v1",
@@ -406,8 +638,16 @@
               "sv": "Oletko jo vastannut kyselyyn",
               "en": "Have you already completed the survey."
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           },
           {
             "id": "p933511862344_complete_date_v1",
@@ -418,8 +658,16 @@
               "sv": "Päivämäärä ja aika, jolloin kyselylomake lähetettiin.",
               "en": "Date and time when the survey was submitted"
             },
-            "expiration": "-",
-            "type": "Paikallinen muisti"
+            "expiration": {
+              "fi": "-",
+              "sv": "-",
+              "en": "-"
+            },
+            "type": {
+              "fi": "Paikallinen muisti",
+              "sv": "Lokalt minne",
+              "en": "Local storage"
+            }
           }
         ]
       },
@@ -445,8 +693,16 @@
               "sv": "Käytetään chatin tarvitseman datan tallentamiseen.",
               "en": "Used for storing data required by the chat functionality."
             },
-            "expiration": "Istunto",
-            "type": ""
+            "expiration": {
+              "fi": "Istunto",
+              "sv": "Session",
+              "en": "Session"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           },
           {
             "id": "leijuke.*_v1",
@@ -457,8 +713,16 @@
               "sv": "Käytetään chatin tarvitseman datan tallentamiseen.",
               "en": "Used for storing data required by the chat functionality."
             },
-            "expiration": "Istunto",
-            "type": ""
+            "expiration": {
+              "fi": "Istunto",
+              "sv": "Session",
+              "en": "Session"
+            },
+            "type": {
+              "fi": "",
+              "sv": "",
+              "en": ""
+            }
           }
         ]
       }
