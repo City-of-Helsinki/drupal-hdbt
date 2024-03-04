@@ -100,41 +100,44 @@ function resetCookieState() {
   });
 }
 
+// Commented out until other things are working, then most likely rework for this
 function listCategoryCookies(categories = []) {
-  if (categories.length === 0) {
-    resetCookieState();
-    setCookies();
-    return;
-  }
-  const acceptedCookies = [];
-
-  // Handle required cookies
-  if (categories.includes('essential')) {
-    window.cookieData.requiredCookies.groups.forEach(group => {
-      group.cookies.forEach(cookie => {
-        acceptedCookies.push(cookie.id);
-      });
-    });
-  }
-
-  // Handle optional cookies
-  categories.forEach(() => {
-    window.cookieData.optionalCookies.groups.forEach(group => {
-      if (categories.includes(group.commonGroup)) {
-        group.cookies.forEach(cookie => {
-          acceptedCookies.push(cookie.id);
-        });
-      }
-    });
-  });
-
-  resetCookieState();
-  acceptedCookies.forEach(cookie => {
-    cookieState['city-of-helsinki-cookie-consents'][cookie] = true;
-  });
-
-  setCookies();
+  console.log('listing categories', categories);
 }
+//   if (categories.length === 0) {
+//     resetCookieState();
+//     setCookies();
+//     return;
+//   }
+//   const acceptedCookies = [];
+
+//   // Handle required cookies
+//   if (categories.includes('essential')) {
+//     window.cookieData.requiredCookies.groups.forEach(group => {
+//       group.cookies.forEach(cookie => {
+//         acceptedCookies.push(cookie.id);
+//       });
+//     });
+//   }
+
+//   // Handle optional cookies
+//   categories.forEach(() => {
+//     window.cookieData.optionalCookies.groups.forEach(group => {
+//       if (categories.includes(group.commonGroup)) {
+//         group.cookies.forEach(cookie => {
+//           acceptedCookies.push(cookie.id);
+//         });
+//       }
+//     });
+//   });
+
+//   resetCookieState();
+//   acceptedCookies.forEach(cookie => {
+//     cookieState['city-of-helsinki-cookie-consents'][cookie] = true;
+//   });
+
+//   setCookies();
+// }
 
 function updateCookieConsents() {
   const checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -148,6 +151,36 @@ function updateCookieConsents() {
   const stateCategories = cookieState['cookie-agreed-categories'];
   stateCategories.splice(0, stateCategories.length, ...acceptedCategories);
   listCategoryCookies(acceptedCategories);
+}
+
+function readGroupSelections(form) {
+  const groupSelections = [];
+  const formCheckboxes = form.querySelectorAll('input');
+  formCheckboxes.forEach(check => {
+    if(check.checked) {
+      groupSelections.push(check.dataset.group);
+    }
+  });
+
+  console.log('these are selected: ', groupSelections);
+}
+
+function handleButtonEvents(selection, formReference) {
+  switch (selection) {
+    case 'required':
+      console.log('required cookies only');
+      break;
+    case 'all':
+      console.log('set all OK');
+      break;
+    case 'selected':
+      console.log('check form');
+      readGroupSelections(formReference);
+      break;
+    default:
+      console.log('required');
+      break;
+  }
 }
 
 /**
@@ -275,6 +308,12 @@ async function createShadowRoot(lang, cookieData) {
   groupsHtml += cookieGroups(cookieData.optionalCookies.groups, lang, translations, false);
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
+
+  const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
+  cookieButtons.forEach(b => b.addEventListener('click', e => {
+    const shadowRootForm = e.target.closest('#hds-cc').querySelector('form');
+    handleButtonEvents(e.target.dataset.approved, shadowRootForm);
+  }));
 
   shadowRoot.querySelector('.hds-cc').focus();
 }

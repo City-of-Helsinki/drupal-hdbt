@@ -45,13 +45,13 @@ export function getCookieBannerHtml(translations, groupsHtml) {
       <div class="hds-cc__buttons">
         <div class="hds-cc__buttons__animator">
           <div class="hds-cc__buttons__container">
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button">
+            <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button" data-approved="all">
               <span class="hds-button__label">${translations.approveAllConsents}</span>
             </button>
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button">
+            <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
               <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
             </button>
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button">
+            <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button" data-approved="required">
               <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>
             </button>
           </div>
@@ -68,7 +68,7 @@ export function getGroupHtml(translations, groupId, tableRowsHtml, groupRequired
   return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
-                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required} />
+                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required} data-group="${groupId}" />
                 <label for="${groupId}-cookies" class="hds-checkbox__label">${translations.title}</label>
               </div>
               <p aria-hidden="true">${translations.description}</p>
