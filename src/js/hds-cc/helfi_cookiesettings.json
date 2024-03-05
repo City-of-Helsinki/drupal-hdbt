@@ -56,28 +56,8 @@
             }
           },
           {
-            "id": "cookie-agreed-version_v1",
-            "name": "cookie-agreed-version",
-            "host": "hel.fi",
-            "description": {
-              "fi": "Tähän evästeeseen tallennetaan käyttäjän hyväksymän evästeselosteen versio.",
-              "sv": "Används för att lagra information om versionen av cookies samtycke som användaren har godkänt.",
-              "en": "Used by hel.fi Drupal to store information about what version of the cookie consent the user has agreed to."
-            },
-            "expiration": {
-              "fi": "100 päivää",
-              "sv": "100 dagar",
-              "en": "100 days"
-            },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
-          },
-          {
-            "id": "cookie-agreed-categories_v1",
-            "name": "cookie-agreed-categories",
+            "id": "city-of-helsinki-cookie-agreed-groups_v1",
+            "name": "city-of-helsinki-cookie-agreed-groups",
             "host": "hel.fi",
             "description": {
               "fi": "Tähän evästeeseen on tallennettu käyttäjän hyväksymät evästekategoriat.",
