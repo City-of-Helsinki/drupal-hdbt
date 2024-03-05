@@ -1027,3 +1027,7 @@ msgstr "Öppna alla"
 msgctxt "Accordion close all"
 msgid "Close all"
 msgstr "Stäng alla"
+
+msgctxt "Event search"
+msgid "Search"
+msgstr "Sök"

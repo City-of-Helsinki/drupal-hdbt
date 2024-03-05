@@ -534,7 +534,7 @@ msgstr "Kaikki tyypit"
 
 msgctxt "District and project search"
 msgid "Search"
-msgstr "Hae"
+msgstr "Etsi"
 
 msgctxt "District and project search"
 msgid "Clear selections"
@@ -1030,3 +1030,7 @@ msgstr "Avaa kaikki"
 msgctxt "Accordion close all"
 msgid "Close all"
 msgstr "Sulje kaikki"
+
+msgctxt "Event search"
+msgid "Search"
+msgstr "Etsi"
