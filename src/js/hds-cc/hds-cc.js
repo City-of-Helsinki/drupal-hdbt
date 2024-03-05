@@ -178,7 +178,14 @@ function handleButtonEvents(selection, formReference, cookieData) {
 function userHasGivenConsent(cookieData, category) {
   // Increment after ID has it's matching cookie set as true.
   let consentGivenCount = 0;
-  const browserCookieState = JSON.parse(parse(document.cookie)['city-of-helsinki-cookie-consents']);
+  let browserCookieState = null;
+  // Check if our cookie exists
+  try {
+    browserCookieState = JSON.parse(parse(document.cookie)['city-of-helsinki-cookie-consents']);
+  } catch (err) {
+    // If cookie parsing fails, show banner
+    return false;
+  }
   const ids = findCategoryCookieIds(cookieData, [category]);
   // Compare state and ids
   // TODO: optimize looping
