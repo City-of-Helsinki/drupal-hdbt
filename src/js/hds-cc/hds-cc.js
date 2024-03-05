@@ -83,6 +83,11 @@ async function getCookieSettings() {
     return false;
   }
 }
+
+/**
+ * Turn list of allowed ID's into key-value pairs suitable for
+ * cookie serialization
+ */
 function formatCookieList(cookieData, acceptedCookieIds = []) {
   const formattedListing = {};
   // Required come in every case
@@ -102,6 +107,9 @@ function formatCookieList(cookieData, acceptedCookieIds = []) {
   setCookies(formattedListing);
 }
 
+/**
+ * Return list of cookie ID's belonging to given categories
+ */
 function findCategoryCookieIds(cookieData, categories = ['essential']) {
   const foundCookies = [];
 
@@ -167,15 +175,23 @@ function handleButtonEvents(selection, formReference, cookieData) {
  * given category, see if they are all set 'true' in browser
  * and then return boolean
  */
-// TODO
 function userHasGivenConsent(cookieData, category) {
-  const browserCookieState = parse(document.cookie);
+  // Increment after ID has it's matching cookie set as true.
+  let consentGivenCount = 0;
+  const browserCookieState = JSON.parse(parse(document.cookie)['city-of-helsinki-cookie-consents']);
   const ids = findCategoryCookieIds(cookieData, [category]);
   // Compare state and ids
-  console.log(browserCookieState);
-  console.log(ids);
-  if (browserCookieState['cookie-agreed-categories'] === undefined) return false;
-  // return browserCookieState['cookie-agreed-categories'].includes(category);
+  // TODO: optimize looping
+  ids.forEach(id => {
+    Object.entries(browserCookieState).forEach(cookie => {
+      if(cookie[0] === id && cookie[1] === true) {
+        consentGivenCount += 1;
+        return;
+      };
+    });
+  });
+
+  return ids.length === consentGivenCount;
 }
 
 /**
@@ -250,18 +266,6 @@ function cookieGroups(cookieGroupList, lang, translations, groupRequired = false
   });
   return groupsHtml;
 }
-// Add chat cookie functions to window
-const chatUserConsent = {
-  // TODO: both of these are dependent on categories array, should use ID list instead
-  retrieveUserConsent() {
-    return userHasGivenConsent('chat');
-  },
-  confirmUserConsent() {
-    // Add chat cookies to allowed id list
-    // cookieState['cookie-agreed-categories'].push('chat');
-    // findCategoryCookieIds(cookieState['cookie-agreed-categories']);
-  }
-};
 
 /*
 * ================================================================
@@ -316,9 +320,50 @@ async function createShadowRoot(lang, cookieData) {
   shadowRoot.querySelector('.hds-cc').focus();
 }
 
+// TODO: Remove this
+// Debug helper key bindings
+function createDebugEvents(cookieData) {
+  console.log('Hotkeys: left and right arrows');
+  // Check if selected category is allowed
+  window.addEventListener('keydown', e => {
+    if (e.code === 'ArrowLeft') {
+      const cat = prompt('Which category to check?\n1 = Preferences\n2 = Statistics\n3 = chat\n4 = essentials');
+      const options = {
+        1: 'preferences',
+        2: 'statistics',
+        3: 'chat'
+      };
+      console.log(`Category ${options[cat]} allowed: `, userHasGivenConsent(cookieData, options[cat]));
+    }
+  // Check cookielisting
+    if (e.code === 'ArrowRight') {
+      console.log('Currently accepted cookies:');
+      const browserCookieState = parse(document.cookie);
+      const noCurly = /{|}/gi;
+      console.log(browserCookieState['city-of-helsinki-cookie-consents'].replaceAll(noCurly, '').replaceAll(',', '\n'));
+    }
+  });
+}
+
+// Add chat cookie functions to window
+function createChatConsentAPI(cookieData) {
+  const chatUserConsent = {
+    // TODO: both of these are dependent on categories array, should use ID list instead
+    retrieveUserConsent() {
+      return userHasGivenConsent(cookieData, 'chat');
+    },
+    confirmUserConsent() {
+      // Add chat cookies to allowed id list
+      // cookieState['cookie-agreed-categories'].push('chat');
+      // findCategoryCookieIds(cookieState['cookie-agreed-categories']);
+    }
+  };
+
+  window.chat_user_consent = chatUserConsent;
+}
+
 const init = async () => {
   const lang = window.hdsCcSettings.language;
-  window.chat_user_consent = chatUserConsent;
 
   // If cookie settings can't be loaded, do not show banner
   const cookieData = await getCookieSettings();
@@ -327,28 +372,21 @@ const init = async () => {
     return;
   }
 
+  // Create chat consent functions
+  createChatConsentAPI(cookieData);
+
+  // Debug hotkeys
+  createDebugEvents(cookieData);
+
   // TODO: consider naming
   const showBanner = checkBannerNeed(cookieData);
   if (!showBanner) {
-    console.log('cookies handled');
-    return;
+    console.log('Cookies are handled, showing banner for development');
+    // TODO: uncomment return statement
+    // return;
   }
 
   await createShadowRoot(lang, cookieData);
 };
 
 document.addEventListener('DOMContentLoaded', () => init());
-
-// TODO: Remove this
-// Debug helper key bindings
-window.addEventListener('keydown', e => {
-  if (e.code === 'Space') {
-    setCookies();
-  }
-  if (e.code === 'ArrowDown') {
-    console.log('Currently accepted cookies:');
-    const browserCookieState = parse(document.cookie);
-    const noCurly = /{|}/gi;
-    console.log(browserCookieState['city-of-helsinki-cookie-consents'].replaceAll(noCurly, '').replaceAll(',', '\n'));
-  }
-});
