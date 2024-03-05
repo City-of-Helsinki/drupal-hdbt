@@ -3,33 +3,36 @@
 /**
  * MEMO
  *
- * fetch cookie settings from JSON
+ * DONE fetch cookie settings from JSON
  *   get and refactor names etc.
  *   refactor filenames (hdsCookieConsentPageSettings -> pageCookieSettings etc.)
  *
- * fetch page settings from inline JS
+ * DONE fetch page settings from inline JS
  *   language, jsonUrl
  *
  * DONE update helfi_cookies.json missing translations
  *
- * eliminate global scope
+ * DONE eliminate global scope
  *
  * DONE set required cookies HTML to disabled and checked
  *   template changes
  *
  * logic for cookie banner spawn
  *   compare cookieSettings and browser cookie state
- *   check 1. if cookie exists 2. essentials approved 3. id list identicale - show banner
+ *   check
+ *   1. if cookie exists
+ *   2. essentials approved
+ *   3. category hashes match
  *   else show banner
  *
- * cookie writing
+ * DONE cookie writing
  *   ONLY from one of buttons
  *   disallow chat elements until essentials are accepted (banner is closed)
  *
- * cookie reading (from browser) logic refactor
+ * DONE cookie reading (from browser) logic refactor
  *   check categorically
  *
- * plan how version handling happens
+ * DONE plan how version handling happens
  *
  * build HTML with templates
  *   DONE properties and translations on place
@@ -53,15 +56,7 @@ import { parse, serialize } from 'cookie/index';
 import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
-/**
- * Cookie is structured like this:
- *
- * cookieState = {
- *   'cookie-agreed-categories': [], // list of accepted categories ['essential']
- *   'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
- * };
- */
-
+const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
 
 /**
  * Get checksum from string
@@ -106,7 +101,7 @@ function getCookieIdsInCategory(cookieSettings, categories = ['essential']) {
  * Cookie section
  */
 function setCookies(cookieList, acceptedCategories, cookieSettings)  {
-  document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieList));
+  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieList));
 
   // Create checksum for accepted categories for quick comparison for cookie id changes
   const categoryChecksums = {};
@@ -119,18 +114,22 @@ function setCookies(cookieList, acceptedCategories, cookieSettings)  {
 }
 
 async function getCookieSettings() {
-  // TODO: Add error handling for missing settings and wrong url
   try {
     const cookieSettings = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.json());
+    const essentialFound = cookieSettings.requiredCookies.groups[0].cookies[1].name === COOKIE_NAME;
+    if (essentialFound) {
+      // TODO remove after refactor
+      console.log('Site specific settins are valid');
+    } else {
+      throw new Error('Cookie settings invalid, check documentation');
+    }
     return cookieSettings;
   } catch (err) {
     if (err.message.includes('undefined')) {
-      console.log('Cookie settings not found');
+      throw new Error('Cookie settings not found');
     }
-    if (err.message.includes('Failed to fetch')) {
-      console.log(err.message, 'failure');
-    }
-    return false;
+
+    throw new Error(err.message);
   }
 }
 
@@ -210,7 +209,7 @@ function isCategoryAccepted(cookieSettings, category) {
   let browserCookieState = null;
   // Check if our cookie exists
   try {
-    browserCookieState = JSON.parse(parse(document.cookie)['city-of-helsinki-cookie-consents']);
+    browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
   } catch (err) {
     // If cookie parsing fails, show banner
     return false;
@@ -336,7 +335,6 @@ async function createShadowRoot(lang, cookieSettings) {
   const translations = {};
   const translationKeys = getTranslationKeys();
   translationKeys.forEach(key => {
-    // TODO: consider the following
     translations[key] = getTranslation(key, lang, cookieSettings);
   });
 
@@ -356,34 +354,6 @@ async function createShadowRoot(lang, cookieSettings) {
   shadowRoot.querySelector('.hds-cc').focus();
 }
 
-// TODO: Remove this
-// Debug helper key bindings
-function createDebugEvents(cookieSettings) {
-  console.log('Hotkeys: left promt, right list cookies');
-  // Check if selected category is allowed
-  window.addEventListener('keydown', e => {
-    if (e.code === 'ArrowLeft') {
-      // eslint-disable-next-line no-alert
-      const cat = prompt('Which category to check?\n1 = Preferences\n2 = Statistics\n3 = chat\n4 = essentials');
-      const options = {
-        1: 'preferences',
-        2: 'statistics',
-        3: 'chat'
-      };
-      console.log(`Category ${options[cat]} allowed: `, isCategoryAccepted(cookieSettings, options[cat]));
-    }
-  // Check cookielisting
-    if (e.code === 'ArrowRight') {
-      const browserCookieState = parse(document.cookie);
-      console.log('Currently accepted categories:', JSON.parse(browserCookieState['DEBUG-cookie-agreed-categories']));
-
-      console.log('Currently accepted cookies:');
-      const noCurly = /{|}/gi;
-      console.log(browserCookieState['city-of-helsinki-cookie-consents'].replaceAll(noCurly, '').replaceAll(',', '\n'));
-    }
-  });
-}
-
 // Add chat cookie functions to window
 function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
@@ -392,9 +362,9 @@ function createChatConsentAPI(cookieSettings) {
       return isCategoryAccepted(cookieSettings, 'chat');
     },
     confirmUserConsent() {
-      // Add chat cookies to allowed id list
-      // cookieState['cookie-agreed-categories'].push('chat');
-      // getCookieIdsInCategory(cookieState['cookie-agreed-categories']);
+      // TODO accept chat
+      const acceptedCookies = getCookieIdsInCategory(cookieSettings, ['chat']);
+      formatCookieList(cookieSettings, acceptedCookies, ['chat']);
     }
   };
 
@@ -405,16 +375,15 @@ const init = async () => {
   const lang = window.hdsCookieConsentPageSettings.language;
 
   // If cookie settings can't be loaded, do not show banner
-  const cookieSettings = await getCookieSettings();
-  if (cookieSettings === false) {
-    throw new Error('Cookie settings not available');
+  let cookieSettings;
+  try {
+    cookieSettings = await getCookieSettings();
+  } catch (err) {
+    throw new Error('Cookie settings not available, cookie banner won\'t render');
   }
 
   // Create chat consent functions
   createChatConsentAPI(cookieSettings);
-
-  // Debug hotkeys
-  createDebugEvents(cookieSettings);
 
   // TODO: consider naming
   const showBanner = checkBannerNeed(cookieSettings);

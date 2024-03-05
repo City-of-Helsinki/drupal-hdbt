@@ -15,7 +15,7 @@
           "en": "Essential cookies help to make the website usable by allowing basic functions, navigating the page and using the protected areas of the site. The website will not work properly without these cookies and their consent is not required."
         },
         "cookies": [
-          {
+            {
             "id": "cookiehub_v1",
             "name": "cookiehub",
             "host": "Cookiehub",
@@ -36,8 +36,8 @@
             }
           },
           {
-            "id": "cookie-agreed_v1",
-            "name": "cookie-agreed",
+            "id": "city-of-helsinki-cookie-consents_v1",
+            "name": "city-of-helsinki-cookie-consents",
             "host": "hel.fi",
             "description": {
               "fi": "Sivusto käyttää tätä evästettä tietojen tallentamiseen siitä, ovatko kävijät antaneet hyväksyntänsä tai kieltäytyneet evästeiden käytöstä.",
