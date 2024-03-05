@@ -62,51 +62,21 @@ import { getTranslation, getTranslationKeys } from './hds-cc_translations';
  * };
  */
 
-/**
- * Cookie section
- */
-function setCookies(cookieList, categoryList) {
-  document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieList));
-  document.cookie = serialize('DEBUG-cookie-agreed-categories', JSON.stringify(categoryList));
-}
 
-async function getCookieSettings() {
-  // TODO: Add error handling for missing settings and wrong url
-  try {
-    const cookieSettings = await fetch(window.hdsCcSettings.jsonUrl).then((response) => response.json());
-    return cookieSettings;
-  } catch (err) {
-    if (err.message.includes('undefined')) {
-      console.log('Cookie settings not found');
-    }
-    if (err.message.includes('Failed to fetch')) {
-      console.log(err.message, 'failure');
-    }
-    return false;
+/**
+ * Get checksum from string
+ * @param {Sring} str to be hashed
+ * @return {String} Hash in base16 from the string
+ */
+function getChecksum(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    // eslint-disable-next-line no-bitwise
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    // eslint-disable-next-line no-bitwise
+    hash |= 0; // Convert to 32-bit integer
   }
-}
-
-/**
- * Turn list of allowed ID's into key-value pairs suitable for
- * cookie serialization
- */
-function formatCookieList(cookieSettings, acceptedCookieIds = []) {
-  const formattedListing = {};
-  // Required come in every case
-  cookieSettings.requiredCookies.groups.forEach(category => {
-    category.cookies.forEach(cookie => {
-      formattedListing[cookie.id] = true;
-    });
-  });
-
-  // Accepted ID's get value 'true', others get 'false'
-  cookieSettings.optionalCookies.groups.forEach(category => {
-    category.cookies.forEach(cookie => {
-      formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
-    });
-  });
-
-  setCookies(formattedListing);
+  return Math.abs(hash).toString(16);
 }
 
 /**
@@ -133,6 +103,62 @@ function getCookieIdsInCategory(cookieSettings, categories = ['essential']) {
 }
 
 /**
+ * Cookie section
+ */
+function setCookies(cookieList, acceptedCategories, cookieSettings)  {
+  document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieList));
+
+  // Create checksum for accepted categories for quick comparison for cookie id changes
+  const categoryChecksums = {};
+  acceptedCategories.forEach(category => {
+    const cookieIds = getCookieIdsInCategory(cookieSettings, [category]);;
+    categoryChecksums[category] = getChecksum(cookieIds.join(','));
+  });
+
+  document.cookie = serialize('DEBUG-cookie-agreed-categories', JSON.stringify(categoryChecksums));
+}
+
+async function getCookieSettings() {
+  // TODO: Add error handling for missing settings and wrong url
+  try {
+    const cookieSettings = await fetch(window.hdsCcSettings.jsonUrl).then((response) => response.json());
+    return cookieSettings;
+  } catch (err) {
+    if (err.message.includes('undefined')) {
+      console.log('Cookie settings not found');
+    }
+    if (err.message.includes('Failed to fetch')) {
+      console.log(err.message, 'failure');
+    }
+    return false;
+  }
+}
+
+/**
+ * Turn list of allowed ID's into key-value pairs suitable for
+ * cookie serialization
+ */
+function formatCookieList(cookieSettings, acceptedCookieIds = [], acceptedCategories = []) {
+  console.log('Accepting cookies from categories:', acceptedCategories);
+  const formattedListing = {};
+  // Required come in every case
+  cookieSettings.requiredCookies.groups.forEach(category => {
+    category.cookies.forEach(cookie => {
+      formattedListing[cookie.id] = true;
+    });
+  });
+
+  // Accepted ID's get value 'true', others get 'false'
+  cookieSettings.optionalCookies.groups.forEach(category => {
+    category.cookies.forEach(cookie => {
+      formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
+    });
+  });
+
+  setCookies(formattedListing, acceptedCategories, cookieSettings);
+}
+
+/**
  * Go through form and get accepted categories. Return a list of group ID's.
  */
 function readGroupSelections(form, all = false) {
@@ -150,20 +176,21 @@ function readGroupSelections(form, all = false) {
 function handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
-      const acceptedCookies = getCookieIdsInCategory(cookieSettings, ['essential']);
-      formatCookieList(cookieSettings, acceptedCookies);
+      const acceptedCategories = ['essential'];
+      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
       break;
     }
     case 'all': {
       const acceptedCategories = readGroupSelections(formReference, true);
       const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
-      formatCookieList(cookieSettings, acceptedCookies);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
       break;
     }
     case 'selected': {
       const acceptedCategories = readGroupSelections(formReference);
       const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
-      formatCookieList(cookieSettings, acceptedCookies);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
       break;
     }
     default:
@@ -336,6 +363,7 @@ function createDebugEvents(cookieSettings) {
   // Check if selected category is allowed
   window.addEventListener('keydown', e => {
     if (e.code === 'ArrowLeft') {
+      // eslint-disable-next-line no-alert
       const cat = prompt('Which category to check?\n1 = Preferences\n2 = Statistics\n3 = chat\n4 = essentials');
       const options = {
         1: 'preferences',
@@ -346,8 +374,10 @@ function createDebugEvents(cookieSettings) {
     }
   // Check cookielisting
     if (e.code === 'ArrowRight') {
-      console.log('Currently accepted cookies:');
       const browserCookieState = parse(document.cookie);
+      console.log('Currently accepted categories:', JSON.parse(browserCookieState['DEBUG-cookie-agreed-categories']));
+
+      console.log('Currently accepted cookies:');
       const noCurly = /{|}/gi;
       console.log(browserCookieState['city-of-helsinki-cookie-consents'].replaceAll(noCurly, '').replaceAll(',', '\n'));
     }
