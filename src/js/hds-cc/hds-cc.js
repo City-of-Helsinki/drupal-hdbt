@@ -90,17 +90,17 @@ async function getCookieSettings() {
  * Turn list of allowed ID's into key-value pairs suitable for
  * cookie serialization
  */
-function formatCookieList(cookieData, acceptedCookieIds = []) {
+function formatCookieList(cookieSettings, acceptedCookieIds = []) {
   const formattedListing = {};
   // Required come in every case
-  cookieData.requiredCookies.groups.forEach(category => {
+  cookieSettings.requiredCookies.groups.forEach(category => {
     category.cookies.forEach(cookie => {
       formattedListing[cookie.id] = true;
     });
   });
 
   // Accepted ID's get value 'true', others get 'false'
-  cookieData.optionalCookies.groups.forEach(category => {
+  cookieSettings.optionalCookies.groups.forEach(category => {
     category.cookies.forEach(cookie => {
       formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
     });
@@ -112,11 +112,11 @@ function formatCookieList(cookieData, acceptedCookieIds = []) {
 /**
  * Return list of cookie ID's belonging to given categories
  */
-function findCategoryCookieIds(cookieData, categories = ['essential']) {
+function findCategoryCookieIds(cookieSettings, categories = ['essential']) {
   const foundCookies = [];
 
   // Merge required and optional cookies
-  const allGroups = [...cookieData.requiredCookies.groups, ...cookieData.optionalCookies.groups];
+  const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
 
   // Find id's
   categories.forEach(() => {
@@ -147,23 +147,23 @@ function readGroupSelections(form, all = false) {
   return groupSelections;
 }
 
-function handleButtonEvents(selection, formReference, cookieData) {
+function handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
-      const acceptedCookies = findCategoryCookieIds(cookieData, ['essential']);
-      formatCookieList(cookieData, acceptedCookies);
+      const acceptedCookies = findCategoryCookieIds(cookieSettings, ['essential']);
+      formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
     case 'all': {
       const acceptedCategories = readGroupSelections(formReference, true);
-      const acceptedCookies = findCategoryCookieIds(cookieData, acceptedCategories);
-      formatCookieList(cookieData, acceptedCookies);
+      const acceptedCookies = findCategoryCookieIds(cookieSettings, acceptedCategories);
+      formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
     case 'selected': {
       const acceptedCategories = readGroupSelections(formReference);
-      const acceptedCookies = findCategoryCookieIds(cookieData, acceptedCategories);
-      formatCookieList(cookieData, acceptedCookies);
+      const acceptedCookies = findCategoryCookieIds(cookieSettings, acceptedCategories);
+      formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
     default:
@@ -173,11 +173,11 @@ function handleButtonEvents(selection, formReference, cookieData) {
 }
 
 /**
- * Go through cookieData and figure out which cookies belong to
+ * Go through cookieSettings and figure out which cookies belong to
  * given category, see if they are all set 'true' in browser
  * and then return boolean
  */
-function userHasGivenConsent(cookieData, category) {
+function userHasGivenConsent(cookieSettings, category) {
   // Increment after ID has it's matching cookie set as true.
   let consentGivenCount = 0;
   let browserCookieState = null;
@@ -188,7 +188,7 @@ function userHasGivenConsent(cookieData, category) {
     // If cookie parsing fails, show banner
     return false;
   }
-  const ids = findCategoryCookieIds(cookieData, [category]);
+  const ids = findCategoryCookieIds(cookieSettings, [category]);
   // Compare state and ids
   // TODO: optimize looping
   ids.forEach(id => {
@@ -210,8 +210,8 @@ function userHasGivenConsent(cookieData, category) {
  *   else show banner
  */
 
-function checkBannerNeed(cookieData) {
-  const essentialsApproved = userHasGivenConsent(cookieData, 'essential');
+function checkBannerNeed(cookieSettings) {
+  const essentialsApproved = userHasGivenConsent(cookieSettings, 'essential');
   if (essentialsApproved) {
     return false;
   }
@@ -283,7 +283,7 @@ function cookieGroups(cookieGroupList, lang, translations, groupRequired = false
 * =====                                                   ========
 * ================================================================
 */
-async function createShadowRoot(lang, cookieData) {
+async function createShadowRoot(lang, cookieSettings) {
 
   const targetSelector = window.hdsCcSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
@@ -310,12 +310,12 @@ async function createShadowRoot(lang, cookieData) {
   const translationKeys = getTranslationKeys();
   translationKeys.forEach(key => {
     // TODO: consider the following
-    translations[key] = getTranslation(key, lang, cookieData);
+    translations[key] = getTranslation(key, lang, cookieSettings);
   });
 
   let groupsHtml = '';
-  groupsHtml += cookieGroups(cookieData.requiredCookies.groups, lang, translations, true);
-  groupsHtml += cookieGroups(cookieData.optionalCookies.groups, lang, translations, false);
+  groupsHtml += cookieGroups(cookieSettings.requiredCookies.groups, lang, translations, true);
+  groupsHtml += cookieGroups(cookieSettings.optionalCookies.groups, lang, translations, false);
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
@@ -323,7 +323,7 @@ async function createShadowRoot(lang, cookieData) {
   const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
   cookieButtons.forEach(button => button.addEventListener('click', e => {
     const shadowRootForm = e.target.closest('#hds-cc').querySelector('form');
-    handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieData);
+    handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
   }));
 
   shadowRoot.querySelector('.hds-cc').focus();
@@ -331,8 +331,8 @@ async function createShadowRoot(lang, cookieData) {
 
 // TODO: Remove this
 // Debug helper key bindings
-function createDebugEvents(cookieData) {
-  console.log('Hotkeys: left and right arrows');
+function createDebugEvents(cookieSettings) {
+  console.log('Hotkeys: left promt, right list cookies');
   // Check if selected category is allowed
   window.addEventListener('keydown', e => {
     if (e.code === 'ArrowLeft') {
@@ -342,7 +342,7 @@ function createDebugEvents(cookieData) {
         2: 'statistics',
         3: 'chat'
       };
-      console.log(`Category ${options[cat]} allowed: `, userHasGivenConsent(cookieData, options[cat]));
+      console.log(`Category ${options[cat]} allowed: `, userHasGivenConsent(cookieSettings, options[cat]));
     }
   // Check cookielisting
     if (e.code === 'ArrowRight') {
@@ -355,11 +355,11 @@ function createDebugEvents(cookieData) {
 }
 
 // Add chat cookie functions to window
-function createChatConsentAPI(cookieData) {
+function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
     // TODO: both of these are dependent on categories array, should use ID list instead
     retrieveUserConsent() {
-      return userHasGivenConsent(cookieData, 'chat');
+      return userHasGivenConsent(cookieSettings, 'chat');
     },
     confirmUserConsent() {
       // Add chat cookies to allowed id list
@@ -375,26 +375,26 @@ const init = async () => {
   const lang = window.hdsCcSettings.language;
 
   // If cookie settings can't be loaded, do not show banner
-  const cookieData = await getCookieSettings();
-  if (cookieData === false) {
+  const cookieSettings = await getCookieSettings();
+  if (cookieSettings === false) {
     throw new Error('Cookie settings not available');
   }
 
   // Create chat consent functions
-  createChatConsentAPI(cookieData);
+  createChatConsentAPI(cookieSettings);
 
   // Debug hotkeys
-  createDebugEvents(cookieData);
+  createDebugEvents(cookieSettings);
 
   // TODO: consider naming
-  const showBanner = checkBannerNeed(cookieData);
+  const showBanner = checkBannerNeed(cookieSettings);
   if (!showBanner) {
     console.log('Cookies are handled, showing banner for development');
     // TODO: uncomment return statement
     // return;
   }
 
-  await createShadowRoot(lang, cookieData);
+  await createShadowRoot(lang, cookieSettings);
 };
 
 document.addEventListener('DOMContentLoaded', () => init());
