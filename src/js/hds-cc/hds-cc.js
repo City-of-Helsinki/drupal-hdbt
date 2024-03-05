@@ -1,50 +1,52 @@
+/* eslint-disable no-console */
+/* eslint-disable valid-jsdoc */
 /**
  * MEMO
  *
  * fetch cookie settings from JSON
  *   get and refactor names etc.
  *   refactor filenames (hdsCcSettings -> pageCookieSettings etc.)
- * 
+ *
  * fetch page settings from inline JS
  *   language, jsonUrl
- * 
+ *
  * DONE update helfi_cookies.json missing translations
- * 
+ *
  * eliminate global scope
- * 
+ *
  * DONE set required cookies HTML to disabled and checked
  *   template changes
- * 
+ *
  * logic for cookie banner spawn
  *   compare cookieSettings and browser cookie state
  *   check 1. if cookie exists 2. essentials approved 3. id list identicale - show banner
  *   else show banner
- * 
+ *
  * cookie writing
  *   ONLY from one of buttons
  *   disallow chat elements until essentials are accepted (banner is closed)
- * 
+ *
  * cookie reading (from browser) logic refactor
  *   check categorically
- * 
+ *
  * plan how version handling happens
- * 
+ *
  * build HTML with templates
  *   DONE properties and translations on place
  *   check ARIA-attributes
  *   check screenreader only texts
  *   add checkbox list
- * 
+ *
  * check files for FIXME and TODO notes
- * 
+ *
  * -------------------------------------------------
- * INCOMING FEATURES 
+ * INCOMING FEATURES
  * -------------------------------------------------
  * monitor cookie- local- and sessionstorage
  *   create console error or some sentry log request
  *   should the unwanted cookie be removed?
  * handle revoked permission
- *   should remove unapproved cookies 
+ *   should remove unapproved cookies
  */
 
 import { parse, serialize } from 'cookie/index';
@@ -65,7 +67,7 @@ import { getTranslation, getTranslationKeys } from './hds-cc_translations';
  */
 function setCookies(cookieList, categoryList) {
   document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieList));
-  // document.cookie = serialize('cookie-agreed-categories', JSON.stringify(categoryList));
+  document.cookie = serialize('DEBUG-cookie-agreed-categories', JSON.stringify(categoryList));
 }
 
 async function getCookieSettings() {
@@ -375,8 +377,7 @@ const init = async () => {
   // If cookie settings can't be loaded, do not show banner
   const cookieData = await getCookieSettings();
   if (cookieData === false) {
-    console.log('Cookie settings not available');
-    return;
+    throw new Error('Cookie settings not available');
   }
 
   // Create chat consent functions
