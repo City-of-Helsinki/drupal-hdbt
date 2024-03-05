@@ -51,17 +51,21 @@ import { parse, serialize } from 'cookie/index';
 import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
-const cookieState = {
-  'cookie-agreed-categories': [], // list of accepted categories ['essential']
-  'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
-};
+/**
+ * Cookie is structured like this:
+ *
+ * cookieState = {
+ *   'cookie-agreed-categories': [], // list of accepted categories ['essential']
+ *   'city-of-helsinki-cookie-consents': {} // object of key-value pairs: { 'cookieid1': true, 'cookieid2': true}
+ * };
+ */
 
 /**
  * Cookie section
  */
-function setCookies() {
-  document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieState['city-of-helsinki-cookie-consents']));
-  document.cookie = serialize('cookie-agreed-categories', JSON.stringify(cookieState['cookie-agreed-categories']));
+function setCookies(cookieList, categoryList) {
+  document.cookie = serialize('city-of-helsinki-cookie-consents', JSON.stringify(cookieList));
+  // document.cookie = serialize('cookie-agreed-categories', JSON.stringify(categoryList));
 }
 
 async function getCookieSettings() {
@@ -79,108 +83,99 @@ async function getCookieSettings() {
     return false;
   }
 }
-
-function userHasGivenConsent(category) {
-  const browserCookieState = parse(document.cookie);
-  if (browserCookieState['cookie-agreed-categories'] === undefined) return false;
-  return browserCookieState['cookie-agreed-categories'].includes(category);
-}
-
-function resetCookieState() {
-  // reset cookie state
-  window.cookieData.requiredCookies.groups.forEach(category => {
+function formatCookieList(cookieData, acceptedCookieIds = []) {
+  const formattedListing = {};
+  // Required come in every case
+  cookieData.requiredCookies.groups.forEach(category => {
     category.cookies.forEach(cookie => {
-      cookieState['city-of-helsinki-cookie-consents'][cookie.id] = false;
+      formattedListing[cookie.id] = true;
     });
   });
-  window.cookieData.optionalCookies.groups.forEach(category => {
+
+  // Accepted ID's get value 'true', others get 'false'
+  cookieData.optionalCookies.groups.forEach(category => {
     category.cookies.forEach(cookie => {
-      cookieState['city-of-helsinki-cookie-consents'][cookie.id] = false;
+      formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
     });
   });
+
+  setCookies(formattedListing);
 }
 
-// Commented out until other things are working, then most likely rework for this
-function listCategoryCookies(categories = []) {
-  console.log('listing categories', categories);
-}
-//   if (categories.length === 0) {
-//     resetCookieState();
-//     setCookies();
-//     return;
-//   }
-//   const acceptedCookies = [];
+function findCategoryCookieIds(cookieData, categories = ['essential']) {
+  const foundCookies = [];
 
-//   // Handle required cookies
-//   if (categories.includes('essential')) {
-//     window.cookieData.requiredCookies.groups.forEach(group => {
-//       group.cookies.forEach(cookie => {
-//         acceptedCookies.push(cookie.id);
-//       });
-//     });
-//   }
+  // Merge required and optional cookies
+  const allGroups = [...cookieData.requiredCookies.groups, ...cookieData.optionalCookies.groups];
 
-//   // Handle optional cookies
-//   categories.forEach(() => {
-//     window.cookieData.optionalCookies.groups.forEach(group => {
-//       if (categories.includes(group.commonGroup)) {
-//         group.cookies.forEach(cookie => {
-//           acceptedCookies.push(cookie.id);
-//         });
-//       }
-//     });
-//   });
-
-//   resetCookieState();
-//   acceptedCookies.forEach(cookie => {
-//     cookieState['city-of-helsinki-cookie-consents'][cookie] = true;
-//   });
-
-//   setCookies();
-// }
-
-function updateCookieConsents() {
-  const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  const acceptedCategories = [];
-  checkboxes.forEach(box => {
-    if (box.checked) {
-      acceptedCategories.push(box.id.replaceAll('-cookies', ''));
-    }
+  // Find id's
+  categories.forEach(() => {
+    allGroups.forEach(group => {
+      if (categories.includes(group.commonGroup)) {
+        group.cookies.forEach(cookie => {
+          foundCookies.push(cookie.id);
+        });
+      }
+    });
   });
 
-  const stateCategories = cookieState['cookie-agreed-categories'];
-  stateCategories.splice(0, stateCategories.length, ...acceptedCategories);
-  listCategoryCookies(acceptedCategories);
+  return foundCookies;
 }
 
-function readGroupSelections(form) {
+/**
+ * Go through form and get accepted categories. Return a list of group ID's.
+ */
+function readGroupSelections(form, all = false) {
   const groupSelections = [];
   const formCheckboxes = form.querySelectorAll('input');
   formCheckboxes.forEach(check => {
-    if(check.checked) {
+    if(check.checked || all) {
       groupSelections.push(check.dataset.group);
     }
   });
 
-  console.log('these are selected: ', groupSelections);
+  return groupSelections;
 }
 
-function handleButtonEvents(selection, formReference) {
+function handleButtonEvents(selection, formReference, cookieData) {
   switch (selection) {
-    case 'required':
-      console.log('required cookies only');
+    case 'required': {
+      const acceptedCookies = findCategoryCookieIds(cookieData, ['essential']);
+      formatCookieList(cookieData, acceptedCookies);
       break;
-    case 'all':
-      console.log('set all OK');
+    }
+    case 'all': {
+      const acceptedCategories = readGroupSelections(formReference, true);
+      const acceptedCookies = findCategoryCookieIds(cookieData, acceptedCategories);
+      formatCookieList(cookieData, acceptedCookies);
       break;
-    case 'selected':
-      console.log('check form');
-      readGroupSelections(formReference);
+    }
+    case 'selected': {
+      const acceptedCategories = readGroupSelections(formReference);
+      const acceptedCookies = findCategoryCookieIds(cookieData, acceptedCategories);
+      formatCookieList(cookieData, acceptedCookies);
       break;
+    }
     default:
-      console.log('required');
+      // We should not be here, better do nothing
       break;
   }
+}
+
+/**
+ * Go through cookieData and figure out which cookies belong to
+ * given category, see if they are all set 'true' in browser
+ * and then return boolean
+ */
+// TODO
+function userHasGivenConsent(cookieData, category) {
+  const browserCookieState = parse(document.cookie);
+  const ids = findCategoryCookieIds(cookieData, [category]);
+  // Compare state and ids
+  console.log(browserCookieState);
+  console.log(ids);
+  if (browserCookieState['cookie-agreed-categories'] === undefined) return false;
+  // return browserCookieState['cookie-agreed-categories'].includes(category);
 }
 
 /**
@@ -190,8 +185,8 @@ function handleButtonEvents(selection, formReference) {
  *   else show banner
  */
 
-function checkBannerNeed() {
-  const essentialsApproved = userHasGivenConsent('essential');
+function checkBannerNeed(cookieData) {
+  const essentialsApproved = userHasGivenConsent(cookieData, 'essential');
   if (essentialsApproved) {
     return false;
   }
@@ -257,12 +252,14 @@ function cookieGroups(cookieGroupList, lang, translations, groupRequired = false
 }
 // Add chat cookie functions to window
 const chatUserConsent = {
+  // TODO: both of these are dependent on categories array, should use ID list instead
   retrieveUserConsent() {
     return userHasGivenConsent('chat');
   },
   confirmUserConsent() {
-    cookieState['cookie-agreed-categories'].push('chat');
-    listCategoryCookies(cookieState['cookie-agreed-categories']);
+    // Add chat cookies to allowed id list
+    // cookieState['cookie-agreed-categories'].push('chat');
+    // findCategoryCookieIds(cookieState['cookie-agreed-categories']);
   }
 };
 
@@ -309,10 +306,11 @@ async function createShadowRoot(lang, cookieData) {
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
+  // Add button events
   const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
-  cookieButtons.forEach(b => b.addEventListener('click', e => {
+  cookieButtons.forEach(button => button.addEventListener('click', e => {
     const shadowRootForm = e.target.closest('#hds-cc').querySelector('form');
-    handleButtonEvents(e.target.dataset.approved, shadowRootForm);
+    handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieData);
   }));
 
   shadowRoot.querySelector('.hds-cc').focus();
@@ -322,26 +320,21 @@ const init = async () => {
   const lang = window.hdsCcSettings.language;
   window.chat_user_consent = chatUserConsent;
 
-  // TODO: consider naming
-  const showBanner = checkBannerNeed();
-  if (!showBanner) {
-    console.log('cookies handled');
-    return;
-  }
-
   // If cookie settings can't be loaded, do not show banner
   const cookieData = await getCookieSettings();
   if (cookieData === false) {
     console.log('Cookie settings not available');
     return;
   }
-  // TODO: consider the need of scoping
-  window.cookieData = cookieData;
 
-  resetCookieState();
+  // TODO: consider naming
+  const showBanner = checkBannerNeed(cookieData);
+  if (!showBanner) {
+    console.log('cookies handled');
+    return;
+  }
 
   await createShadowRoot(lang, cookieData);
-  // const lists = document.querySelector('.hds-cc__target').shadowRoot.getElementById('lists');
 };
 
 document.addEventListener('DOMContentLoaded', () => init());
@@ -352,10 +345,10 @@ window.addEventListener('keydown', e => {
   if (e.code === 'Space') {
     setCookies();
   }
-  if (e.code === 'ArrowUp') {
-    updateCookieConsents();
-  }
   if (e.code === 'ArrowDown') {
-    resetCookieState();
+    console.log('Currently accepted cookies:');
+    const browserCookieState = parse(document.cookie);
+    const noCurly = /{|}/gi;
+    console.log(browserCookieState['city-of-helsinki-cookie-consents'].replaceAll(noCurly, '').replaceAll(',', '\n'));
   }
 });
