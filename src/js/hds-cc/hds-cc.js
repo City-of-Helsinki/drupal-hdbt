@@ -22,7 +22,7 @@
  *   check
  *   1. if cookie exists
  *   2. essentials approved
- *   3. category hashes match
+ *   3. group hashes match
  *   else show banner
  *
  * DONE cookie writing
@@ -57,6 +57,7 @@ import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
+const COOKIE_GROUP_NAME = 'city-of-helsinki-cookie-agreed-groups';
 
 /**
  * Get checksum from string
@@ -75,18 +76,18 @@ function getChecksum(str) {
 }
 
 /**
- * Return list of cookie ID's belonging to given categories
+ * Return list of cookie ID's belonging to given groups
  */
-function getCookieIdsInCategory(cookieSettings, categories = ['essential']) {
+function getCookieIdsInGroup(cookieSettings, groups = ['essential']) {
   const foundCookies = [];
 
   // Merge required and optional cookies
   const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
 
   // Find id's
-  categories.forEach(() => {
+  groups.forEach(() => {
     allGroups.forEach(group => {
-      if (categories.includes(group.commonGroup)) {
+      if (groups.includes(group.commonGroup)) {
         group.cookies.forEach(cookie => {
           foundCookies.push(cookie.id);
         });
@@ -100,17 +101,17 @@ function getCookieIdsInCategory(cookieSettings, categories = ['essential']) {
 /**
  * Cookie section
  */
-function setCookies(cookieList, acceptedCategories, cookieSettings)  {
+function setCookies(cookieList, acceptedGroups, cookieSettings)  {
   document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieList));
 
-  // Create checksum for accepted categories for quick comparison for cookie id changes
-  const categoryChecksums = {};
-  acceptedCategories.forEach(category => {
-    const cookieIds = getCookieIdsInCategory(cookieSettings, [category]);;
-    categoryChecksums[category] = getChecksum(cookieIds.join(','));
+  // Create checksum for accepted groups for quick comparison for cookie id changes
+  const groupChecksums = {};
+  acceptedGroups.forEach(group => {
+    const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
+    groupChecksums[group] = getChecksum(cookieIds.join(','));
   });
 
-  document.cookie = serialize('DEBUG-cookie-agreed-categories', JSON.stringify(categoryChecksums));
+  document.cookie = serialize(COOKIE_GROUP_NAME, JSON.stringify(groupChecksums));
 }
 
 async function getCookieSettings() {
@@ -137,28 +138,28 @@ async function getCookieSettings() {
  * Turn list of allowed ID's into key-value pairs suitable for
  * cookie serialization
  */
-function formatCookieList(cookieSettings, acceptedCookieIds = [], acceptedCategories = []) {
-  console.log('Accepting cookies from categories:', acceptedCategories);
+function formatCookieList(cookieSettings, acceptedCookieIds = [], acceptedGroups = []) {
+  console.log('Accepting cookies from groups:', acceptedGroups);
   const formattedListing = {};
   // Required come in every case
-  cookieSettings.requiredCookies.groups.forEach(category => {
-    category.cookies.forEach(cookie => {
+  cookieSettings.requiredCookies.groups.forEach(group => {
+    group.cookies.forEach(cookie => {
       formattedListing[cookie.id] = true;
     });
   });
 
   // Accepted ID's get value 'true', others get 'false'
-  cookieSettings.optionalCookies.groups.forEach(category => {
-    category.cookies.forEach(cookie => {
+  cookieSettings.optionalCookies.groups.forEach(group => {
+    group.cookies.forEach(cookie => {
       formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
     });
   });
 
-  setCookies(formattedListing, acceptedCategories, cookieSettings);
+  setCookies(formattedListing, acceptedGroups, cookieSettings);
 }
 
 /**
- * Go through form and get accepted categories. Return a list of group ID's.
+ * Go through form and get accepted groups. Return a list of group ID's.
  */
 function readGroupSelections(form, all = false) {
   const groupSelections = [];
@@ -175,21 +176,21 @@ function readGroupSelections(form, all = false) {
 function handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
-      const acceptedCategories = ['essential'];
-      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
+      const acceptedGroups = ['essential'];
+      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
       break;
     }
     case 'all': {
-      const acceptedCategories = readGroupSelections(formReference, true);
-      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
+      const acceptedGroups = readGroupSelections(formReference, true);
+      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
       break;
     }
     case 'selected': {
-      const acceptedCategories = readGroupSelections(formReference);
-      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedCategories);
+      const acceptedGroups = readGroupSelections(formReference);
+      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
+      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
       break;
     }
     default:
@@ -200,10 +201,10 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
 
 /**
  * Go through cookieSettings and figure out which cookies belong to
- * given category, see if they are all set 'true' in browser
+ * given group, see if they are all set 'true' in browser
  * and then return boolean
  */
-function isCategoryAccepted(cookieSettings, category) {
+function isGroupAccepted(cookieSettings, group) {
   // Increment after ID has it's matching cookie set as true.
   let consentGivenCount = 0;
   let browserCookieState = null;
@@ -214,7 +215,7 @@ function isCategoryAccepted(cookieSettings, category) {
     // If cookie parsing fails, show banner
     return false;
   }
-  const ids = getCookieIdsInCategory(cookieSettings, [category]);
+  const ids = getCookieIdsInGroup(cookieSettings, [group]);
   // Compare state and ids
   // TODO: optimize looping
   ids.forEach(id => {
@@ -237,7 +238,7 @@ function isCategoryAccepted(cookieSettings, category) {
  */
 
 function checkBannerNeed(cookieSettings) {
-  const essentialsApproved = isCategoryAccepted(cookieSettings, 'essential');
+  const essentialsApproved = isGroupAccepted(cookieSettings, 'essential');
   if (essentialsApproved) {
     return false;
   }
@@ -357,13 +358,13 @@ async function createShadowRoot(lang, cookieSettings) {
 // Add chat cookie functions to window
 function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
-    // TODO: both of these are dependent on categories array, should use ID list instead
+    // TODO: both of these are dependent on groups array, should use ID list instead
     retrieveUserConsent() {
-      return isCategoryAccepted(cookieSettings, 'chat');
+      return isGroupAccepted(cookieSettings, 'chat');
     },
     confirmUserConsent() {
       // TODO accept chat
-      const acceptedCookies = getCookieIdsInCategory(cookieSettings, ['chat']);
+      const acceptedCookies = getCookieIdsInGroup(cookieSettings, ['chat']);
       formatCookieList(cookieSettings, acceptedCookies, ['chat']);
     }
   };
