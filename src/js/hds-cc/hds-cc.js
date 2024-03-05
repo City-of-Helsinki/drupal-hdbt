@@ -5,7 +5,7 @@
  *
  * fetch cookie settings from JSON
  *   get and refactor names etc.
- *   refactor filenames (hdsCcSettings -> pageCookieSettings etc.)
+ *   refactor filenames (hdsCookieConsentPageSettings -> pageCookieSettings etc.)
  *
  * fetch page settings from inline JS
  *   language, jsonUrl
@@ -121,7 +121,7 @@ function setCookies(cookieList, acceptedCategories, cookieSettings)  {
 async function getCookieSettings() {
   // TODO: Add error handling for missing settings and wrong url
   try {
-    const cookieSettings = await fetch(window.hdsCcSettings.jsonUrl).then((response) => response.json());
+    const cookieSettings = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.json());
     return cookieSettings;
   } catch (err) {
     if (err.message.includes('undefined')) {
@@ -312,7 +312,7 @@ function cookieGroups(cookieGroupList, lang, translations, groupRequired = false
 */
 async function createShadowRoot(lang, cookieSettings) {
 
-  const targetSelector = window.hdsCcSettings.targetSelector || 'body';
+  const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
   const bannerContainer = document.createElement('div');
   bannerContainer.classList.add('hds-cc__target');
@@ -321,7 +321,7 @@ async function createShadowRoot(lang, cookieSettings) {
 
   // Fetch the external CSS file
   try {
-    const response = await fetch(window.hdsCcSettings.tempCssPath);
+    const response = await fetch(window.hdsCookieConsentPageSettings.tempCssPath);
     const cssText = await response.text();
 
     // Create and inject the style
@@ -402,7 +402,7 @@ function createChatConsentAPI(cookieSettings) {
 }
 
 const init = async () => {
-  const lang = window.hdsCcSettings.language;
+  const lang = window.hdsCookieConsentPageSettings.language;
 
   // If cookie settings can't be loaded, do not show banner
   const cookieSettings = await getCookieSettings();
