@@ -112,7 +112,7 @@ function formatCookieList(cookieSettings, acceptedCookieIds = []) {
 /**
  * Return list of cookie ID's belonging to given categories
  */
-function findCategoryCookieIds(cookieSettings, categories = ['essential']) {
+function getCookieIdsInCategory(cookieSettings, categories = ['essential']) {
   const foundCookies = [];
 
   // Merge required and optional cookies
@@ -150,19 +150,19 @@ function readGroupSelections(form, all = false) {
 function handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
-      const acceptedCookies = findCategoryCookieIds(cookieSettings, ['essential']);
+      const acceptedCookies = getCookieIdsInCategory(cookieSettings, ['essential']);
       formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
     case 'all': {
       const acceptedCategories = readGroupSelections(formReference, true);
-      const acceptedCookies = findCategoryCookieIds(cookieSettings, acceptedCategories);
+      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
       formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
     case 'selected': {
       const acceptedCategories = readGroupSelections(formReference);
-      const acceptedCookies = findCategoryCookieIds(cookieSettings, acceptedCategories);
+      const acceptedCookies = getCookieIdsInCategory(cookieSettings, acceptedCategories);
       formatCookieList(cookieSettings, acceptedCookies);
       break;
     }
@@ -188,7 +188,7 @@ function isCategoryAccepted(cookieSettings, category) {
     // If cookie parsing fails, show banner
     return false;
   }
-  const ids = findCategoryCookieIds(cookieSettings, [category]);
+  const ids = getCookieIdsInCategory(cookieSettings, [category]);
   // Compare state and ids
   // TODO: optimize looping
   ids.forEach(id => {
@@ -364,7 +364,7 @@ function createChatConsentAPI(cookieSettings) {
     confirmUserConsent() {
       // Add chat cookies to allowed id list
       // cookieState['cookie-agreed-categories'].push('chat');
-      // findCategoryCookieIds(cookieState['cookie-agreed-categories']);
+      // getCookieIdsInCategory(cookieState['cookie-agreed-categories']);
     }
   };
 
