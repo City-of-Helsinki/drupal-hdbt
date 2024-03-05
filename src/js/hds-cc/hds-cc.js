@@ -177,7 +177,7 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
  * given category, see if they are all set 'true' in browser
  * and then return boolean
  */
-function userHasGivenConsent(cookieSettings, category) {
+function isCategoryAccepted(cookieSettings, category) {
   // Increment after ID has it's matching cookie set as true.
   let consentGivenCount = 0;
   let browserCookieState = null;
@@ -211,7 +211,7 @@ function userHasGivenConsent(cookieSettings, category) {
  */
 
 function checkBannerNeed(cookieSettings) {
-  const essentialsApproved = userHasGivenConsent(cookieSettings, 'essential');
+  const essentialsApproved = isCategoryAccepted(cookieSettings, 'essential');
   if (essentialsApproved) {
     return false;
   }
@@ -342,7 +342,7 @@ function createDebugEvents(cookieSettings) {
         2: 'statistics',
         3: 'chat'
       };
-      console.log(`Category ${options[cat]} allowed: `, userHasGivenConsent(cookieSettings, options[cat]));
+      console.log(`Category ${options[cat]} allowed: `, isCategoryAccepted(cookieSettings, options[cat]));
     }
   // Check cookielisting
     if (e.code === 'ArrowRight') {
@@ -359,7 +359,7 @@ function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
     // TODO: both of these are dependent on categories array, should use ID list instead
     retrieveUserConsent() {
-      return userHasGivenConsent(cookieSettings, 'chat');
+      return isCategoryAccepted(cookieSettings, 'chat');
     },
     confirmUserConsent() {
       // Add chat cookies to allowed id list
