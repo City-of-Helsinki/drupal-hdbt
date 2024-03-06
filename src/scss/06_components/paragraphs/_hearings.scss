@@ -1,26 +1,25 @@
 .component--hearings {
+  @include component-side-padding;
   background: $color-silver-light;
 }
 
-.component--hearings .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
-}
-
 .hearings__count-container {
-  @include font('small');
-  margin-bottom: $spacing;
+  @include font('lead');
+  margin-bottom: $spacing-and-half;
 
   .hearings__count {
     font-weight: $font-weight-bold;
   }
 }
 
-.hearings__results {
-  margin-bottom: $spacing-double;
+.hearings__list {
+  margin-top: $spacing-and-half;
+}
+
+.hearings__link-wrapper {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
 }

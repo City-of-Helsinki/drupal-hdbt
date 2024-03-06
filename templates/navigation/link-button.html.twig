@@ -7,23 +7,31 @@
  * - open_in_a_new_window: Boolean for opening in a new window and showing explanation.
  * - icon: Boolean if first icon is enabled
  * - icon_type: String for first icon type
+ * - link_options: array of attributes for the link such as class or data-attributes.
  *
  * Usage example:
  * {% include '@hdbt/navigation/link-button.html.twig' with {
  *   type: 'primary',
  *   label: item.content['#title'],
  *   url: item.content['#url'],
- *   class: 'service-channel__link--example',
+ *   link_options: {'class': ['service-channel__link--example']},
  *   open_in_a_new_window: true,
  * } %}
  *
  * TODO: UHF-8793 Refactor hds-button (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8793).
  */
 #}
-{% set link_options = {
-  'data-hds-component':'button',
-  'data-hds-variant': type,
-} %}
+{% if link_options %}
+  {% set link_options = link_options|merge({
+    'data-hds-component':'button',
+    'data-hds-variant': type,
+  }) %}
+{% else %}
+  {% set link_options = {
+    'data-hds-component':'button',
+    'data-hds-variant': type,
+  } %}
+{% endif %}
 
 {% if open_in_a_new_window %}
   {% set link_options = link_options|merge({target: '_blank', 'data-open-in-new-tab': true}) %}
