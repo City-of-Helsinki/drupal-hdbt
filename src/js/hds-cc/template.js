@@ -26,7 +26,7 @@ export function getCookieBannerHtml(translations, groupsHtml) {
         onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');"
         aria-controls="hds-cc-form"
         aria-expanded="false"
-        aria-polite="true">
+        aria-live="polite">
         <span class="hds-cc__accordion-button-show hds-button__label">${translations.showDetails}</span>
         <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideDetails}</span>
         <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
@@ -63,7 +63,7 @@ export function getCookieBannerHtml(translations, groupsHtml) {
 };
 
 // TODO: consider screenreader description parametrization (translations.screenreader.descriptions)
-export function getGroupHtml(translations, groupId, tableRowsHtml, groupRequired) {
+export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml, groupRequired) {
   const required = groupRequired ? ' checked disabled' : '';
   return `
             <div class="hds-cc__group">
@@ -78,14 +78,14 @@ export function getGroupHtml(translations, groupId, tableRowsHtml, groupRequired
                 type="button"
                 class="hds-cc__accordion-button hds-cc__accordion-button--group-details hds-button hds-button--small hds-button--supplementary"
                 onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');"
-                aria-controls="hds-cc-group-details-1"
+                aria-controls="hds-cc-group-details-${groupUniqueId}"
                 aria-expanded="false"
-                aria-polite="true">
+                aria-live="polite">
                 <span class="hds-cc__accordion-button-show hds-button__label">${translations.showCookieSettings}</span>
                 <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideCookieSettings}</span>
                 <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
-              <div class="hds-cc__group-details" id="hds-cc-group-details-1">
+              <div class="hds-cc__group-details" id="hds-cc-group-details-${groupUniqueId}">
                 <div class="hds-cc__group-details__animator hds-table-container" tabindex="0" role="region">
                   <table class="hds-table hds-table--dark">
                     <thead>

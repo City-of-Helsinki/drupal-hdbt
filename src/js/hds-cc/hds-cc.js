@@ -291,14 +291,16 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function cookieGroups(cookieGroupList, lang, translations, groupRequired = false) {
+function cookieGroups(cookieGroupList, lang, translations, groupRequired, groupName) {
   let groupsHtml = '';
+  let groupNumber = 0;
   cookieGroupList.forEach(cookieGroup => {
     const title = translate(cookieGroup.title, lang);
     const description = translate(cookieGroup.description, lang);
     const groupId = cookieGroup.commonGroup;
     const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
-    groupsHtml += getGroupHtml({...translations, title, description }, groupId, tableRowsHtml, groupRequired);
+    groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired);
+    groupNumber += 1;
   });
   return groupsHtml;
 }
@@ -340,8 +342,8 @@ async function createShadowRoot(lang, cookieSettings) {
   });
 
   let groupsHtml = '';
-  groupsHtml += cookieGroups(cookieSettings.requiredCookies.groups, lang, translations, true);
-  groupsHtml += cookieGroups(cookieSettings.optionalCookies.groups, lang, translations, false);
+  groupsHtml += cookieGroups(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
+  groupsHtml += cookieGroups(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
