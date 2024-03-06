@@ -132,6 +132,9 @@ msgstr "Siirry hel.fin etusivulle"
 msgid "See content on external site"
 msgstr "Siirry ulkoiselle sivustolle"
 
+msgid "Service points"
+msgstr "Palvelupisteet"
+
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Julkaisematon"

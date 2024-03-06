@@ -128,6 +128,9 @@ msgstr "Inledande paragraf"
 msgid "See content on external site"
 msgstr "Gå till extern webbplats"
 
+msgid "Service points"
+msgstr "Serviceställen"
+
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Opublicerad"
