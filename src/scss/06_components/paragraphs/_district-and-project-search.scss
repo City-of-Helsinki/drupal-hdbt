@@ -5,6 +5,8 @@
 }
 
 .district-project-search-form__filters-container {
+  margin-bottom: $spacing-double;
+
   .district-project-search-form__filters {
     display: flex;
     flex-wrap: wrap;
