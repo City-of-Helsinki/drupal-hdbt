@@ -63,16 +63,16 @@ const COOKIE_GROUP_NAME = 'city-of-helsinki-cookie-agreed-groups';
  * Get checksum from string
  * @param {Sring} str to be hashed
  * @return {String} Hash in base16 from the string
+ *
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
  */
-function getChecksum(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    // eslint-disable-next-line no-bitwise
-    hash = (hash << 5) - hash + str.charCodeAt(i);
-    // eslint-disable-next-line no-bitwise
-    hash |= 0; // Convert to 32-bit integer
-  }
-  return Math.abs(hash).toString(16);
+async function getChecksum(message, length = 8) {
+  const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           // hash the message
+  const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+  // Return only length number of hash
+  return hashHex.substring(0, length);
 }
 
 /**
@@ -101,15 +101,23 @@ function getCookieIdsInGroup(cookieSettings, groups = ['essential']) {
 /**
  * Cookie section
  */
-function setCookies(cookieList, acceptedGroups, cookieSettings)  {
+async function setCookies(cookieList, acceptedGroups, cookieSettings)  {
   document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieList));
 
   // Create checksum for accepted groups for quick comparison for cookie id changes
   const groupChecksums = {};
-  acceptedGroups.forEach(group => {
+
+  // acceptedGroups.forEach(group => {
+  //   const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
+  //   groupChecksums[group] = await getChecksum(cookieIds.join(','));
+  // });
+
+  /* eslint-disable */
+  for(let group of acceptedGroups) {
     const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
-    groupChecksums[group] = getChecksum(cookieIds.join(','));
-  });
+    groupChecksums[group] = await getChecksum(cookieIds.join(','));
+  }
+  /* eslint-enable */
 
   document.cookie = serialize(COOKIE_GROUP_NAME, JSON.stringify(groupChecksums));
 }
