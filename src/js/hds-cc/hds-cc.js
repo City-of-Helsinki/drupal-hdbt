@@ -57,7 +57,6 @@ import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
-const COOKIE_GROUP_NAME = 'city-of-helsinki-cookie-agreed-groups';
 const UNCHANGED = 'unchanged';
 
 /**
@@ -106,25 +105,9 @@ function getCookieIdsInGroup(cookieSettings, groups = ['essential']) {
 /**
  * Cookie section
  */
-async function setCookies(cookieList, acceptedGroups, cookieSettings)  {
-  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieList));
-
-  // Create checksum for accepted groups for quick comparison for cookie id changes
-  const groupChecksums = {};
-
-  // acceptedGroups.forEach(group => {
-  //   const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
-  //   groupChecksums[group] = await getChecksum(cookieIds.join(','));
-  // });
-
-  // eslint-disable-next-line no-restricted-syntax
-  for(const group of acceptedGroups) {
-    const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);
-    // eslint-disable-next-line no-await-in-loop
-    groupChecksums[group] = await getChecksum(cookieIds.join(','));
-  }
-
-  document.cookie = serialize(COOKIE_GROUP_NAME, JSON.stringify({ checksum: cookieSettings.checksum, groups: groupChecksums }));
+async function setCookie(cookieData) {
+  console.log('setCookie', cookieData);
+  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieData));
 }
 
 async function getCookieSettings() {
@@ -133,9 +116,9 @@ async function getCookieSettings() {
     const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
-    if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_GROUP_NAME]) {
+    if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
       try {
-        const browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_GROUP_NAME]);
+        const browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
         if (cookieSettingsChecksum === browserCookieState.checksum) {
           console.log('Cookie settings file has not changed, banner is not needed');
           return UNCHANGED;
@@ -159,10 +142,8 @@ async function getCookieSettings() {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const group of [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups]) {
-      console.log(group);
       // eslint-disable-next-line no-await-in-loop
       const groupChecksum = await getChecksum(group);
-      console.log(groupChecksum);
       group.checksum = groupChecksum;
     }
 
@@ -176,28 +157,22 @@ async function getCookieSettings() {
   }
 }
 
-/**
- * Turn list of allowed ID's into key-value pairs suitable for
- * cookie serialization
- */
-function formatCookieList(cookieSettings, acceptedCookieIds = [], acceptedGroups = []) {
-  console.log('Accepting cookies from groups:', acceptedGroups);
-  const formattedListing = {};
+function saveAcceptedGroups(cookieSettings, acceptedGroupNames = []) {
+  console.log('Accepting cookies from groups:', acceptedGroupNames);
+
+  const groups = {};
   // Required come in every case
   cookieSettings.requiredCookies.groups.forEach(group => {
-    group.cookies.forEach(cookie => {
-      formattedListing[cookie.id] = true;
-    });
+    groups[group.commonGroup] = group.checksum;
   });
 
-  // Accepted ID's get value 'true', others get 'false'
   cookieSettings.optionalCookies.groups.forEach(group => {
-    group.cookies.forEach(cookie => {
-      formattedListing[cookie.id] = acceptedCookieIds.includes(cookie.id) ?? false;
-    });
+    if (acceptedGroupNames.includes(group.commonGroup)) {
+      groups[group.commonGroup] = group.checksum;
+    }
   });
 
-  setCookies(formattedListing, acceptedGroups, cookieSettings);
+  setCookie({ checksum: cookieSettings.checksum, groups });
 }
 
 /**
@@ -219,20 +194,17 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
       const acceptedGroups = ['essential'];
-      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
+      saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     case 'all': {
       const acceptedGroups = readGroupSelections(formReference, true);
-      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
+      saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     case 'selected': {
       const acceptedGroups = readGroupSelections(formReference);
-      const acceptedCookies = getCookieIdsInGroup(cookieSettings, acceptedGroups);
-      formatCookieList(cookieSettings, acceptedCookies, acceptedGroups);
+      saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     default:
@@ -409,8 +381,10 @@ function createChatConsentAPI(cookieSettings) {
     },
     confirmUserConsent() {
       // TODO accept chat
-      const acceptedCookies = getCookieIdsInGroup(cookieSettings, ['chat']);
-      formatCookieList(cookieSettings, acceptedCookies, ['chat']);
+      // const acceptedCookies = getCookieIdsInGroup(cookieSettings, ['chat']);
+      // TODO: FIX THIS
+      // formatCookieList(cookieSettings, acceptedCookies, ['chat']);
+      saveAcceptedGroups(cookieSettings, ['chat']);
     }
   };
 
