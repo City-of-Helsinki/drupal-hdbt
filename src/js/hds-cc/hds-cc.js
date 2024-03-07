@@ -57,6 +57,7 @@ import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
 import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
+const COOKIE_DAYS = 100;
 const UNCHANGED = 'unchanged';
 
 /**
@@ -107,7 +108,9 @@ function getCookieIdsInGroup(cookieSettings, groups = ['essential']) {
  */
 async function setCookie(cookieData) {
   console.log('setCookie', cookieData);
-  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieData));
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + COOKIE_DAYS);
+  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieData), {expires: expiryDate});
 }
 
 async function getCookieSettings() {
