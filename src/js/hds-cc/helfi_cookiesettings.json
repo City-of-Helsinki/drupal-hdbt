@@ -15,7 +15,7 @@
           "en": "Essential cookies help to make the website usable by allowing basic functions, navigating the page and using the protected areas of the site. The website will not work properly without these cookies and their consent is not required."
         },
         "cookies": [
-            {
+          {
             "id": "cookiehub_v1",
             "name": "cookiehub",
             "host": "Cookiehub",
