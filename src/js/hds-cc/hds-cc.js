@@ -68,7 +68,11 @@ const UNCHANGED = 'unchanged';
  * Reference: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
  */
 async function getChecksum(message, length = 8) {
-  const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
+  let messageString = message;
+  if (typeof message !== 'string') {
+    messageString = JSON.stringify(message);
+  }
+  const msgUint8 = new TextEncoder().encode(messageString);                     // encode as (utf-8) Uint8Array
   const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);             // hash the message
   const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
@@ -115,7 +119,7 @@ async function setCookies(cookieList, acceptedGroups, cookieSettings)  {
 
   // eslint-disable-next-line no-restricted-syntax
   for(const group of acceptedGroups) {
-    const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
+    const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);
     // eslint-disable-next-line no-await-in-loop
     groupChecksums[group] = await getChecksum(cookieIds.join(','));
   }
@@ -143,6 +147,8 @@ async function getCookieSettings() {
 
     const cookieSettings = JSON.parse(cookieSettingsRaw);
     cookieSettings.checksum = cookieSettingsChecksum;
+
+    // TODO: Check that cookieSettings contain the COOKIE_NAME cookie in them.
     const essentialFound = cookieSettings.requiredCookies.groups[0].cookies[1].name === COOKIE_NAME;
     if (essentialFound) {
       // TODO remove after refactor
@@ -150,6 +156,16 @@ async function getCookieSettings() {
     } else {
       throw new Error('Cookie settings invalid, check documentation');
     }
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const group of [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups]) {
+      console.log(group);
+      // eslint-disable-next-line no-await-in-loop
+      const groupChecksum = await getChecksum(group);
+      console.log(groupChecksum);
+      group.checksum = groupChecksum;
+    }
+
     return cookieSettings;
   } catch (err) {
     if (err.message.includes('undefined')) {
