@@ -58,6 +58,7 @@ import { getTranslation, getTranslationKeys } from './hds-cc_translations';
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
 const COOKIE_GROUP_NAME = 'city-of-helsinki-cookie-agreed-groups';
+const UNCHANGED = 'unchanged';
 
 /**
  * Get checksum from string
@@ -112,19 +113,36 @@ async function setCookies(cookieList, acceptedGroups, cookieSettings)  {
   //   groupChecksums[group] = await getChecksum(cookieIds.join(','));
   // });
 
-  /* eslint-disable */
-  for(let group of acceptedGroups) {
+  // eslint-disable-next-line no-restricted-syntax
+  for(const group of acceptedGroups) {
     const cookieIds = getCookieIdsInGroup(cookieSettings, [group]);;
+    // eslint-disable-next-line no-await-in-loop
     groupChecksums[group] = await getChecksum(cookieIds.join(','));
   }
-  /* eslint-enable */
 
-  document.cookie = serialize(COOKIE_GROUP_NAME, JSON.stringify(groupChecksums));
+  document.cookie = serialize(COOKIE_GROUP_NAME, JSON.stringify({ checksum: cookieSettings.checksum, groups: groupChecksums }));
 }
 
 async function getCookieSettings() {
   try {
-    const cookieSettings = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.json());
+    const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
+    const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+
+    // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
+    if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_GROUP_NAME]) {
+      try {
+        const browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_GROUP_NAME]);
+        if (cookieSettingsChecksum === browserCookieState.checksum) {
+          console.log('Cookie settings file has not changed, banner is not needed');
+          return UNCHANGED;
+        }
+      } catch (err) {
+        console.log(`Parsing cookie json failed: ${err}`);
+      }
+    }
+
+    const cookieSettings = JSON.parse(cookieSettingsRaw);
+    cookieSettings.checksum = cookieSettingsChecksum;
     const essentialFound = cookieSettings.requiredCookies.groups[0].cookies[1].name === COOKIE_NAME;
     if (essentialFound) {
       // TODO remove after refactor
@@ -205,6 +223,7 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
       // We should not be here, better do nothing
       break;
   }
+  window.location.reload();
 }
 
 /**
@@ -397,13 +416,12 @@ const init = async () => {
   createChatConsentAPI(cookieSettings);
 
   // TODO: consider naming
-  const showBanner = checkBannerNeed(cookieSettings);
+  // If cookie settings have not changed, do not show banner, otherwise, check
+  const showBanner = (cookieSettings === UNCHANGED) ? false : checkBannerNeed(cookieSettings);
   if (!showBanner) {
     console.log('Cookies are handled, showing banner for development');
-    // TODO: uncomment return statement
-    // return;
+    return;
   }
-
   await createShadowRoot(lang, cookieSettings);
 };
 
