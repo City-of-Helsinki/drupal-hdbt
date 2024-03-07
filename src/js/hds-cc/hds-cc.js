@@ -113,15 +113,90 @@ async function setCookie(cookieData) {
   document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieData), {expires: expiryDate});
 }
 
+async function clearCookie() {
+  console.log('clearCookie');
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() - COOKIE_DAYS);
+  document.cookie = serialize(COOKIE_NAME, '', {expires: expiryDate});
+}
+
+function saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
+  console.log('Accepting cookies from groups:', acceptedGroupNames);
+
+  const acceptedGroups = {};
+  // Required come in every case
+  cookieSettings.requiredCookies.groups.forEach(group => {
+    acceptedGroups[group.commonGroup] = group.checksum;
+  });
+
+  // Add accepted group names to acceptedGroups, assume others to be declined (overrides previous selections)
+  cookieSettings.optionalCookies.groups.forEach(group => {
+    if (acceptedGroupNames.includes(group.commonGroup)) {
+      acceptedGroups[group.commonGroup] = group.checksum;
+    }
+  });
+
+  setCookie({
+    show_banner: showBanner,
+    checksum: cookieSettings.checksum,
+    groups: acceptedGroups,
+  });
+}
+
+async function removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
+  console.log('removeInvalidGroupsFromBrowserCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
+
+  const newCookieGroups = [];
+
+  // If browser cookie has groups
+  if (browserCookieState.groups) {
+
+    // Loop through groups in cookie settings
+    cookieSettingsGroups.forEach(cookieSettingsGroup => {
+      const browserGroupName = cookieSettingsGroup.commonGroup;
+      const matchedBrowserGroup = browserCookieState.groups[browserGroupName];
+      if (matchedBrowserGroup) {
+
+        // If group names match
+        if (browserGroupName === cookieSettingsGroup.commonGroup) {
+
+          // If checksums match, add to new cookie groups
+          if (browserCookieState[browserGroupName] === cookieSettingsGroup.checksum) {
+            newCookieGroups.push(cookieSettingsGroup.commonGroup);
+          } else {
+            console.log('Checksums do not match for group', cookieSettingsGroup.commonGroup);
+          }
+        }
+      }
+    });
+  };
+
+  console.log('newCookieGroups', newCookieGroups);
+
+  if (newCookieGroups.length === 0) {
+    console.log('No remaining groups found, erasing cookie');
+    clearCookie();
+  } else {
+    // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
+    const showBanner = true;
+    saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+  }
+
+
+  return cookieSettings;
+}
+
 async function getCookieSettings() {
+
   try {
     const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
     const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+    let browserCookieState = null;
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
     if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
       try {
-        const browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+        browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
         if (cookieSettingsChecksum === browserCookieState.checksum) {
           console.log('Cookie settings file has not changed, banner is not needed');
           return UNCHANGED;
@@ -143,14 +218,21 @@ async function getCookieSettings() {
       throw new Error('Cookie settings invalid, check documentation');
     }
 
+    const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+
     // eslint-disable-next-line no-restricted-syntax
-    for (const group of [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups]) {
+    for (const group of cookieSettingsGroups) {
       // eslint-disable-next-line no-await-in-loop
       const groupChecksum = await getChecksum(group);
       group.checksum = groupChecksum;
     }
 
-    return cookieSettings;
+    if (browserCookieState === null) {
+      return cookieSettings;
+    }
+
+    return await removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookieState, cookieSettings);
+
   } catch (err) {
     if (err.message.includes('undefined')) {
       throw new Error('Cookie settings not found');
@@ -158,24 +240,6 @@ async function getCookieSettings() {
 
     throw new Error(err.message);
   }
-}
-
-function saveAcceptedGroups(cookieSettings, acceptedGroupNames = []) {
-  console.log('Accepting cookies from groups:', acceptedGroupNames);
-
-  const groups = {};
-  // Required come in every case
-  cookieSettings.requiredCookies.groups.forEach(group => {
-    groups[group.commonGroup] = group.checksum;
-  });
-
-  cookieSettings.optionalCookies.groups.forEach(group => {
-    if (acceptedGroupNames.includes(group.commonGroup)) {
-      groups[group.commonGroup] = group.checksum;
-    }
-  });
-
-  setCookie({ checksum: cookieSettings.checksum, groups });
 }
 
 /**
@@ -223,6 +287,7 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
  * and then return boolean
  */
 function isGroupAccepted(cookieSettings, group) {
+  // TODO: Refactor this, use new group data structure
   // Increment after ID has it's matching cookie set as true.
   let consentGivenCount = 0;
   let browserCookieState = null;
@@ -256,6 +321,7 @@ function isGroupAccepted(cookieSettings, group) {
  */
 
 function checkBannerNeed(cookieSettings) {
+  // TODO: use also cookies show_banner to check if banner is needed
   const essentialsApproved = isGroupAccepted(cookieSettings, 'essential');
   if (essentialsApproved) {
     return false;
@@ -309,7 +375,7 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function cookieGroups(cookieGroupList, lang, translations, groupRequired, groupName) {
+function getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName) {
   let groupsHtml = '';
   let groupNumber = 0;
   cookieGroupList.forEach(cookieGroup => {
@@ -360,8 +426,8 @@ async function createShadowRoot(lang, cookieSettings) {
   });
 
   let groupsHtml = '';
-  groupsHtml += cookieGroups(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
-  groupsHtml += cookieGroups(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
+  groupsHtml += getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
+  groupsHtml += getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
 
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
@@ -378,16 +444,13 @@ async function createShadowRoot(lang, cookieSettings) {
 // Add chat cookie functions to window
 function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
-    // TODO: both of these are dependent on groups array, should use ID list instead
     retrieveUserConsent() {
       return isGroupAccepted(cookieSettings, 'chat');
     },
     confirmUserConsent() {
-      // TODO accept chat
-      // const acceptedCookies = getCookieIdsInGroup(cookieSettings, ['chat']);
-      // TODO: FIX THIS
-      // formatCookieList(cookieSettings, acceptedCookies, ['chat']);
-      saveAcceptedGroups(cookieSettings, ['chat']);
+      // TODO: Do not erase other groups, only add chat to the list
+      const showBanner = true;
+      saveAcceptedGroups(cookieSettings, ['chat'], showBanner);
     }
   };
 
@@ -402,7 +465,7 @@ const init = async () => {
   try {
     cookieSettings = await getCookieSettings();
   } catch (err) {
-    throw new Error('Cookie settings not available, cookie banner won\'t render');
+    throw new Error('Cookie settings not available, cookie banner won\'t render', err);
   }
 
   // Create chat consent functions
