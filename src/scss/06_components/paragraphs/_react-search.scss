@@ -154,3 +154,15 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   margin-bottom: 0;
   padding-bottom: $spacing-double;
 }
+
+.school-search,
+.health-station-search,
+.maternity-and-child-health-clinic-search {
+  .hdbt-search--react__form-container {
+    margin-bottom: $spacing-double;
+  }
+}
+
+.school-search .hdbt-search--react__dropdown-filters {
+  margin-bottom: $spacing;
+}
