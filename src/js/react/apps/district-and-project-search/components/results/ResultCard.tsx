@@ -77,14 +77,14 @@ const ResultCard = ({
       <>
         { project_plan_schedule &&
           <span className="metadata__item--schedule metadata__item--schedule--plan-schedule">
-            {Drupal.t('planning')}
+            {Drupal.t('planning', {}, { context: 'District and project search' })}
             {getTimeItem(project_plan_schedule)}
           </span>
         }
         {project_plan_schedule && project_execution_schedule && ' ' }
         {project_execution_schedule &&
           <span className="metadata__item--schedule">
-            {Drupal.t('execution')}
+            {Drupal.t('execution', {}, { context: 'District and project search' })}
             {getTimeItem(project_execution_schedule)}
           </span>
         }

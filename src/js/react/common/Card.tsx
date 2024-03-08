@@ -126,16 +126,16 @@ function CardItem({
 
         <div className="card__metas">
           {location &&
-            <Metarow icon="location" label={locationLabel || Drupal.t('Location')} content={location} />
+            <Metarow icon="location" label={locationLabel || Drupal.t('Location', {}, { context: 'React search'})} content={location} />
           }
           {date &&
-            <Metarow icon="clock" label={dateLabel || Drupal.t('Date')} content={date} />
+            <Metarow icon="clock" label={dateLabel || Drupal.t('Date', {}, { context: 'React search'})} content={date} />
           }
           {daterange &&
-            <Metarow icon="calendar" label={dateRangeLabel|| Drupal.t('Estimated schedule')} content={daterange} langAttribute={langAttribute} />
+            <Metarow icon="calendar" label={dateRangeLabel|| Drupal.t('Estimated schedule', {}, { context: 'React search'})} content={daterange} langAttribute={langAttribute} />
           }
           {theme &&
-            <Metarow icon="locate" label={themeLabel || Drupal.t('Theme')} content={theme} />
+            <Metarow icon="locate" label={themeLabel || Drupal.t('Theme', {}, { context: 'React search'})} content={theme} />
           }
           {weightedEducation &&
             <Metarow icon="layers" label={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })} content={weightedEducation} />
@@ -144,7 +144,7 @@ function CardItem({
             <Metarow icon="group" label={Drupal.t('Language offering', {}, { context: 'TPR Ontologyword details schools' })} content={languageEducation} />
           }
           {language &&
-            <Metarow icon="globe" label={languageLabel || Drupal.t('Language')} content={language} />
+            <Metarow icon="globe" label={languageLabel || Drupal.t('Language', {}, { context: 'React search'})} content={language} />
           }
           {time &&
             <Metarow icon="calendar" label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })} content={time} />

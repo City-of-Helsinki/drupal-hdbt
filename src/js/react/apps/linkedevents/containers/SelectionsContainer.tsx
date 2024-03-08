@@ -51,14 +51,14 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
         url={url}
       />
       <CheckboxFilterPill
-        label={Drupal.t('Remote events')}
+        label={Drupal.t('Remote events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.REMOTE}
         atom={remoteFilterAtom}
         url={url}
         value={remoteFilter}
       />
       <CheckboxFilterPill
-        label={Drupal.t('Free-of-charge events')}
+        label={Drupal.t('Free-of-charge events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.FREE}
         atom={freeFilterAtom}
         url={url}

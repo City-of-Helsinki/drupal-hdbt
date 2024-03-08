@@ -2,6 +2,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+msgctxt "Cookie compliance"
 msgid "Change cookie settings"
 msgstr "Muokkaa evästeasetuksia"
 
@@ -14,6 +15,11 @@ msgstr "Helsingin kaupunki"
 msgid "Close announcement"
 msgstr "Sulje poikkeustiedote"
 
+msgctxt "Cookie compliance"
+msgid "Content cannot be displayed"
+msgstr "Sisältöä ei voida näyttää"
+
+msgctxt "No JS"
 msgid "Content cannot be displayed"
 msgstr "Sisältöä ei voida näyttää"
 
@@ -129,6 +135,7 @@ msgctxt "Return to homepage link for error pages"
 msgid "Go back to the hel.fi homepage"
 msgstr "Siirry hel.fin etusivulle"
 
+msgctxt "Cookie compliance"
 msgid "See content on external site"
 msgstr "Siirry ulkoiselle sivustolle"
 
@@ -166,6 +173,7 @@ msgstr "Päivitetty"
 msgid "The page you are trying to access has restricted access. You need to log in and have sufficient permissions to view the content."
 msgstr "Sivu on nähtävillä vain kirjautuneille käyttäjille. Voit nähdä sivun sisällön jos kirjaudut sisään ja sinulla on riittävän laajat käyttöoikeudet."
 
+msgctxt "Cookie compliance"
 msgid ""
 "This content is hosted by @media_service_url. To see the content, "
 "switch over to the external site or modify your cookie settings to "
@@ -416,6 +424,18 @@ msgctxt "School search: language options"
 msgid "Language of instruction"
 msgstr "Opetuskieli"
 
+msgctxt "School search: language option"
+msgid "Finnish"
+msgstr "Suomi"
+
+msgctxt "School search: language option"
+msgid "Swedish"
+msgstr "Ruotsi"
+
+msgctxt "School search: language placeholder"
+msgid "All languages"
+msgstr "Kaikki kielet"
+
 msgctxt "School search: Feature form title"
 msgid "Search with school details"
 msgstr "Etsi koulun tiedoilla"
@@ -484,6 +504,14 @@ msgctxt "District and project search"
 msgid "Project"
 msgstr "Hanke"
 
+msgctxt "District and project search"
+msgid "planning"
+msgstr "suunnittelu"
+
+msgctxt "District and project search"
+msgid "execution"
+msgstr "toteutus"
+
 msgctxt "District and project search form label"
 msgid "Name of residential area or project"
 msgstr "Asuinalueen tai hankkeen nimi"
@@ -531,10 +559,6 @@ msgstr "Hankkeen tyyppi"
 msgctxt "District and project search form label"
 msgid "All types"
 msgstr "Kaikki tyypit"
-
-msgctxt "District and project search"
-msgid "Search"
-msgstr "Etsi"
 
 msgctxt "District and project search"
 msgid "Clear selections"
@@ -1031,6 +1055,126 @@ msgctxt "Accordion close all"
 msgid "Close all"
 msgstr "Sulje kaikki"
 
-msgctxt "Event search"
+msgctxt "Job search languages"
+msgid "Finnish"
+msgstr "Suomi"
+
+msgctxt "Job search languages"
+msgid "Swedish"
+msgstr "Ruotsi"
+
+msgctxt "Job search languages"
+msgid "English"
+msgstr "Englanti"
+
+msgctxt "Job search"
+msgid "jobs"
+msgstr "tehtävää"
+
+msgctxt "Job search"
+msgid "Application period ends"
+msgstr "Haku päättyy"
+
+msgctxt "Job search"
+msgid "Employment contract"
+msgstr "Palvelussuhde"
+
+msgctxt "Job search"
 msgid "Search"
 msgstr "Etsi"
+
+msgctxt "Events search"
+msgid "Use the format D.M.YYYY"
+msgstr "Käytä muotoa P.K.VVVV"
+
+msgctxt "Events search"
+msgid "Invalid start date"
+msgstr "Virheellinen aloituspäivämäärä"
+
+msgctxt "Events search"
+msgid "Invalid end date"
+msgstr "Virheellinen lopetuspäivämäärä"
+
+msgctxt "Events search"
+msgid "Selected start date is out of range with end date, setting end date to next day after start date."
+msgstr "Valittu aloituspäivämäärä on myöhemmin kuin lopetuspäivmäärä, vaihdetaan lopetuspäivämäärä aloituspäivämärää seuraavaksi päiväksi."
+
+msgctxt "Events search"
+msgid "Selected end date is out of range, setting end date to next day after start date."
+msgstr "Valittu lopetuspäivämäärä on aiemmin kuin aloituspäivmäärä, vaihdetaan lopetuspäivämäärä aloituspäivämärää seuraavaksi päiväksi."
+
+msgctxt "Events search"
+msgid "Select a time period in which the event takes place"
+msgstr "Valitse ajankohta, johon tapahtuma sijoittuu"
+
+msgctxt "Events search"
+msgid "The last day of the time period is the same as the first day"
+msgstr "Aikavälin viimeinen päivä on sama kuin ensimmäinen"
+
+msgctxt "Events search"
+msgid "First day of the time period"
+msgstr "Alkaen"
+
+msgctxt "Events search"
+msgid "Last day of the time period"
+msgstr "Asti"
+
+msgctxt "Events search"
+msgid "If you want to search for remote events, select only the option 'Internet (remote events)'"
+msgstr "Jos haluat etsiä etätapahtumia, valitse vaihtoehto 'Internet (etätapahtumat)"
+
+msgctxt "Events search"
+msgid "Select a venue"
+msgstr "Valitse tapahtumapaikka"
+
+msgctxt "Events search"
+msgid "Free-of-charge events"
+msgstr "Maksuttomat tapahtumat"
+
+msgctxt "Events search"
+msgid "Remote events"
+msgstr "Etätapahtumat"
+
+msgctxt "Events search"
+msgid "All"
+msgstr "Kaikki"
+
+msgctxt "Events search"
+msgid "Refine search in tapahtumat.hel.fi"
+msgstr "Tarkenna hakua tapahtumat.hel.fi:ssä"
+
+msgctxt "React search: submit button label"
+msgid "Search"
+msgstr "Etsi"
+
+msgctxt "React search"
+msgid "Location"
+msgstr "Sijainti"
+
+msgctxt "React search"
+msgid "Date"
+msgstr "Ajankohta"
+
+msgctxt "React search"
+msgid "Estimated schedule"
+msgstr "Arvioitu aikataulu"
+
+msgctxt "React search"
+msgid "Theme"
+msgstr "Teema"
+
+msgctxt "React search"
+msgid "Language"
+msgstr "Kieli"
+
+msgctxt "React search pager"
+msgid "Go to page @key"
+msgstr "Siirry sivulle @key"
+
+msgctxt "News search"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "News search"
+msgid "Filter"
+msgstr "Suodata"

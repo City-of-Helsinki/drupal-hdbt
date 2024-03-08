@@ -117,7 +117,7 @@ const FeatureFormContainer = () => {
             className='hdbt-search--react__checkbox'
             checked={stagedParams?.finnish_education || false}
             id='finnish_education'
-            label={Drupal.t('Finnish')}
+            label={Drupal.t('Finnish', {}, {context: 'School search: language option'})}
             name='finnish_education'
             onClick={() => setStagedParams({...stagedParams, finnish_education: !stagedParams?.finnish_education})}
             value={stagedParams?.finnish_education?.toString() || 'false'}
@@ -126,7 +126,7 @@ const FeatureFormContainer = () => {
             className='hdbt-search--react__checkbox'
             checked={stagedParams?.swedish_education || false}
             id='swedish_education'
-            label={Drupal.t('Swedish')}
+            label={Drupal.t('Swedish', {}, {context: 'School search: language option'})}
             name='swedish_education'
             onClick={() => setStagedParams({...stagedParams, swedish_education: !stagedParams?.swedish_education})}
             value={stagedParams?.swedish_education?.toString() || 'false'}
@@ -176,7 +176,7 @@ const FeatureFormContainer = () => {
             {},
             { context: 'React search remove item aria label' }
           )}
-          placeholder={Drupal.t('All languages')}
+          placeholder={Drupal.t('All languages', {}, {context: 'School search: language placeholder'})}
           multiselect
           label={a1Label}
           options={a1Options}
@@ -194,7 +194,7 @@ const FeatureFormContainer = () => {
             {},
             { context: 'React search remove item aria label' }
           )}
-          placeholder={Drupal.t('All languages')}
+          placeholder={Drupal.t('All languages', {}, {context: 'School search: language placeholder'})}
           multiselect
           label={a2Label}
           options={a2Options}
@@ -212,7 +212,7 @@ const FeatureFormContainer = () => {
             {},
             { context: 'React search remove item aria label' }
           )}
-          placeholder={Drupal.t('All languages')}
+          placeholder={Drupal.t('All languages', {}, {context: 'School search: language placeholder'})}
           multiselect
           label={b1Label}
           options={b1Options}
@@ -230,7 +230,7 @@ const FeatureFormContainer = () => {
             {},
             { context: 'React search remove item aria label' }
           )}
-          placeholder={Drupal.t('All languages')}
+          placeholder={Drupal.t('All languages', {}, {context: 'School search: language placeholder'})}
           multiselect
           label={b2Label}
           options={b2Options}
@@ -282,7 +282,7 @@ const FeatureFormContainer = () => {
           variant='primary'
           theme='black'
         >
-          {Drupal.t('Search')}
+          {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
         </Button>
         </div>
       <SelectionsContainer keys={keys} />

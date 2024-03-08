@@ -1,7 +1,7 @@
 <div class="embedded-content-cookie-compliance media-{{ media_id }}">
   <div class="message" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>
     {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
-    <h2>{{ 'Content cannot be displayed'|t }}</h2>
+    <h2>{{ 'Content cannot be displayed'|t({}, {'context': 'Cookie compliance'}) }}</h2>
     <noscript class="js-remove">
       <p>
         {% trans with {'context': 'Generic javascript required message'} %}
@@ -10,7 +10,7 @@
       </p>
     </noscript>
     <p>
-      {% trans %}
+      {% trans with {'context': 'Cookie compliance'}%}
         This content is hosted by {{ media_service_url }}. To see the content, switch over to the external site or modify your cookie settings to allow for preference and statistics cookies.
       {% endtrans %}
     </p>
@@ -28,14 +28,14 @@
           {{- media_iframe_title -}}
         </span>
         <span class="hds-button__label" aria-labelledby="{{ button_labelled_by_id }}">
-          {{- 'See content on external site'|t -}}
+          {{- 'See content on external site'|t({}, {'context': 'Cookie compliance'}) -}}
         </span>
       {% endset %}
 
       {{ link(external_link_title, media_url, external_link_attributes) }}
 
       {% set link_title %}
-        <span class="hds-button__label">{{ 'Change cookie settings'|t }}</span>
+        <span class="hds-button__label">{{ 'Change cookie settings'|t({}, {'context': 'Cookie compliance'}) }}</span>
       {% endset %}
       {% set link_attributes = {
         'class': [

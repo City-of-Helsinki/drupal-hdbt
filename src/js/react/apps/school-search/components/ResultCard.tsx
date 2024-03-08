@@ -40,11 +40,11 @@ const ResultCard = ({
   let language;
 
   if (additionalFilters.finnish_education) {
-    language = Drupal.t('Finnish');
+    language = Drupal.t('Finnish', {}, {context: 'School search: language option'});
   }
 
   if (additionalFilters.swedish_education) {
-    const swedish = Drupal.t('Swedish');
+    const swedish = Drupal.t('Swedish', {}, {context: 'School search: language option'});
     language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
   }
 

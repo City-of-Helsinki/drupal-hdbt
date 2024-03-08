@@ -37,8 +37,8 @@ function FormContainer() {
 
   const bothCheckboxes = showFreeFilter && showRemoteFilter;
   const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Event search: event type prefix' });
-  const freeTranslation = Drupal.t('Free-of-charge events');
-  const remoteTranslation = Drupal.t('Remote events');
+  const freeTranslation = Drupal.t('Free-of-charge events', {}, { context: 'Event search' });
+  const remoteTranslation = Drupal.t('Remote events', {}, { context: 'Event search' });
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 

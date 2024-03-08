@@ -12,7 +12,7 @@ function SeeAllButton() {
         className="hds-button hds-button--link hds-button--secondary"
         data-is-external="true"
       >
-        <span className="hds-button__label">{Drupal.t('Refine search in tapahtumat.hel.fi')}</span>
+        <span className="hds-button__label">{Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })}</span>
         <span className="link__type link__type--external" aria-label={`(${Drupal.t(
             'Link leads to external service',
             {},
