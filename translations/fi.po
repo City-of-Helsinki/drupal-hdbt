@@ -611,7 +611,7 @@ msgid "Activity"
 msgstr "Aktiivisuus"
 
 msgctxt "Hearings count"
-msgid "plan open for commenting"
+msgid "hearing open for commenting"
 msgid_plural "hearings open for commenting"
 msgstr[0] "kuuleminen avoinna kommentoitavaksi"
 msgstr[1] "kuulemiset avoinna kommentoitavaksi"
