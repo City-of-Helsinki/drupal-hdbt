@@ -468,8 +468,9 @@ const init = async () => {
     throw new Error('Cookie settings not available, cookie banner won\'t render', err);
   }
 
-  // Create chat consent functions
-  createChatConsentAPI(cookieSettings);
+  if (window.hdsCookieConsentPageSettings.exposeChatFunctions) {
+    createChatConsentAPI(cookieSettings); // Create chat consent functions
+  }
 
   // TODO: consider naming
   // If cookie settings have not changed, do not show banner, otherwise, check
