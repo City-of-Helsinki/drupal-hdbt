@@ -161,7 +161,7 @@ async function removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browse
         if (browserGroupName === cookieSettingsGroup.commonGroup) {
 
           // If checksums match, add to new cookie groups
-          if (browserCookieState[browserGroupName] === cookieSettingsGroup.checksum) {
+          if (browserCookieState.groups[browserGroupName] === cookieSettingsGroup.checksum) {
             newCookieGroups.push(cookieSettingsGroup.commonGroup);
           } else {
             console.log('Checksums do not match for group', cookieSettingsGroup.commonGroup);
