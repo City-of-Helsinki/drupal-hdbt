@@ -407,15 +407,39 @@ async function createShadowRoot(lang, cookieSettings) {
 }
 
 // Add chat cookie functions to window
-function createChatConsentAPI(cookieSettings) {
+async function createChatConsentAPI() {
   const chatUserConsent = {
     retrieveUserConsent() {
       return isGroupAccepted('chat');
     },
-    confirmUserConsent() {
-      // TODO: Do not erase other groups, only add chat to the list
+    async confirmUserConsent() {
       const showBanner = true;
-      saveAcceptedGroups(cookieSettings, ['chat'], showBanner);
+      let browserCookieState = null;
+      // Check if our cookie exists
+      try {
+        browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+
+      // This is duplicate code from getCookieSettings
+      // TODO: refactor the function return values, refactor showBanner logic
+      const currentlyAccepted = Object.keys(browserCookieState.groups);
+      const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
+      const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+      const cookieSettings = JSON.parse(cookieSettingsRaw);
+      cookieSettings.checksum = cookieSettingsChecksum;
+      const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const group of cookieSettingsGroups) {
+        // eslint-disable-next-line no-await-in-loop
+        const groupChecksum = await getChecksum(group);
+        group.checksum = groupChecksum;
+      }
+      saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
+      } catch (err) {
+        // If consent setting fails for some reason
+        console.log('Consent failed.\n', err);
+        return false;
+      }
     }
   };
 
@@ -434,7 +458,7 @@ const init = async () => {
   }
 
   if (window.hdsCookieConsentPageSettings.exposeChatFunctions) {
-    createChatConsentAPI(cookieSettings); // Create chat consent functions
+    createChatConsentAPI(); // Create chat consent functions
   }
 
   // TODO: consider naming
