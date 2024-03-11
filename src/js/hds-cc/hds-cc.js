@@ -81,29 +81,6 @@ async function getChecksum(message, length = 8) {
 }
 
 /**
- * Return list of cookie ID's belonging to given groups
- */
-function getCookieIdsInGroup(cookieSettings, groups = ['essential']) {
-  const foundCookies = [];
-
-  // Merge required and optional cookies
-  const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
-
-  // Find id's
-  groups.forEach(() => {
-    allGroups.forEach(group => {
-      if (groups.includes(group.commonGroup)) {
-        group.cookies.forEach(cookie => {
-          foundCookies.push(cookie.id);
-        });
-      }
-    });
-  });
-
-  return foundCookies;
-}
-
-/**
  * Cookie section
  */
 async function setCookie(cookieData) {
@@ -282,14 +259,10 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
 }
 
 /**
- * Go through cookieSettings and figure out which cookies belong to
- * given group, see if they are all set 'true' in browser
- * and then return boolean
+ * Go through cookie group object and check if it has
+ * property with given key
  */
-function isGroupAccepted(cookieSettings, group) {
-  // TODO: Refactor this, use new group data structure
-  // Increment after ID has it's matching cookie set as true.
-  let consentGivenCount = 0;
+function isGroupAccepted(groupName) {
   let browserCookieState = null;
   // Check if our cookie exists
   try {
@@ -298,19 +271,10 @@ function isGroupAccepted(cookieSettings, group) {
     // If cookie parsing fails, show banner
     return false;
   }
-  const ids = getCookieIdsInGroup(cookieSettings, [group]);
-  // Compare state and ids
-  // TODO: optimize looping
-  ids.forEach(id => {
-    Object.entries(browserCookieState).forEach(cookie => {
-      if(cookie[0] === id && cookie[1] === true) {
-        consentGivenCount += 1;
-        return;
-      };
-    });
-  });
 
-  return ids.length === consentGivenCount;
+  // If the cookie group is accepted, the cookie group object contains
+  // property with such key
+  return !!browserCookieState.groups[groupName];
 }
 
 /**
@@ -320,9 +284,10 @@ function isGroupAccepted(cookieSettings, group) {
  *   else show banner
  */
 
-function checkBannerNeed(cookieSettings) {
+// TODO: move wanted logic here
+function checkBannerNeed() {
   // TODO: use also cookies show_banner to check if banner is needed
-  const essentialsApproved = isGroupAccepted(cookieSettings, 'essential');
+  const essentialsApproved = isGroupAccepted('essential');
   if (essentialsApproved) {
     return false;
   }
@@ -445,7 +410,7 @@ async function createShadowRoot(lang, cookieSettings) {
 function createChatConsentAPI(cookieSettings) {
   const chatUserConsent = {
     retrieveUserConsent() {
-      return isGroupAccepted(cookieSettings, 'chat');
+      return isGroupAccepted('chat');
     },
     confirmUserConsent() {
       // TODO: Do not erase other groups, only add chat to the list
