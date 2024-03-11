@@ -16,8 +16,8 @@ function LocationFilter() {
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
   };
 
-  const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'');
-  const selectVenueLabel: string = Drupal.t('Select a venue');
+  const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'', {}, {context: 'Events search'});
+  const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>

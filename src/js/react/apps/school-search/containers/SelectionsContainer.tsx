@@ -47,8 +47,8 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
     grades_1_6: Drupal.t('School providing grades 1 to 6', {}, {context: 'School search: education level option'}),
     grades_1_9: Drupal.t('School providing grades 1 to 9', {}, {context: 'School search: education level option'}),
     grades_7_9: Drupal.t('School providing grades 7 to 9', {}, {context: 'School search: education level option'}),
-    finnish_education: Drupal.t('Finnish'),
-    swedish_education: Drupal.t('Swedish'),
+    finnish_education: Drupal.t('Finnish', {}, {context: 'School search: language option'}),
+    swedish_education: Drupal.t('Swedish', {}, {context: 'School search: language option'}),
   };
   const checkBoxKeys = Object.keys(checkBoxFilters);
 
@@ -63,7 +63,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
       pills.push(
         <FilterButton
           key={key}
-          value={key === 'finnish_education' || key === 'swedish_education' ? `${Drupal.t('Language of instruction')}: ${checkBoxFilters[key]}` : checkBoxFilters[key]}
+          value={key === 'finnish_education' || key === 'swedish_education' ? `${Drupal.t('Language of instruction', {}, {context: 'School search: language options'})}: ${checkBoxFilters[key]}` : checkBoxFilters[key]}
           clearSelection={() => {
             const newParams = {...searchParams};
             newParams[key] = false;

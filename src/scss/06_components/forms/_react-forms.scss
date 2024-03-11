@@ -105,10 +105,6 @@
   text-align: center;
 }
 
-.hdbt-search__selections-container {
-  list-style-type: none;
-}
-
 // Use a very specific selector here to override hds styles
 button.hdbt-search__remove-selection-button:not(:disabled) {
   @include tag('interactive--deletable');
@@ -125,16 +121,23 @@ button.hdbt-search__remove-selection-button:not(:disabled) {
   padding-top: 0;
 }
 
-.hdbt-search__selections-wrapper {
-  margin-bottom: $spacing-double;
-}
 // Negate HDS-defined margin for icon inside remove button
 .hdbt-search__selections-wrapper button.hdbt-search__remove-selection-button > div {
   margin-right: 0;
 }
 
+.hdbt-search__selections-container {
+  list-style-type: none;
+}
+
 .hdbt-search__clear-all {
   margin-top: 0;
+
+  &:only-child {
+    // Hide the clear all container when there is no content tags on the selections container
+    // so that it doesn't take up empty space under the search button.
+    display: none;
+  }
 }
 
 // Need a specific selector to override hds styles

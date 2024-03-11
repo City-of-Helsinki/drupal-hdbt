@@ -19,7 +19,7 @@ import {
   updateParamsAtom,
 } from '../store';
 
-const dateHelperText = Drupal.t('Use the format D.M.YYYY');
+const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, {context: 'Events search'});
 
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
@@ -55,8 +55,8 @@ function DateSelect() {
   };
 
   const title = getDateString({ startDate, endDate });
-  const startDateErrorText = errors.invalidStartDate ? Drupal.t('Invalid start date') : '';
-  const endDateErrorText = errors.invalidEndDate ? Drupal.t('Invalid end date') : '';
+  const startDateErrorText = errors.invalidStartDate ? Drupal.t('Invalid start date', {}, {context: 'Events search'}) : '';
+  const endDateErrorText = errors.invalidEndDate ? Drupal.t('Invalid end date', {}, {context: 'Events search'}) : '';
 
   const setStart = (d: string) => {
     const start = getDateTimeFromHDSFormat(d);
@@ -135,7 +135,7 @@ function DateSelect() {
       <Collapsible
         id='event-search__date-select'
         label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
-        helper={Drupal.t('Select a time period in which in which the event takes place')}
+        helper={Drupal.t('Select a time period in which the event takes place', {}, {context: 'Events search'})}
         title={title}
       >
         <div className='event-form__date-container'>
@@ -143,7 +143,7 @@ function DateSelect() {
             className='hdbt-search__filter hdbt-search__date-input'
             helperText={dateHelperText}
             id='start-date'
-            label={Drupal.t('First day of the time period')}
+            label={Drupal.t('First day of the time period', {}, {context: 'Events search'})}
             language={currentLanguage}
             invalid={errors.invalidStartDate}
             errorText={startDateErrorText}
@@ -152,7 +152,7 @@ function DateSelect() {
           />
           <CheckboxFilter
             id='end-disabled'
-            label={Drupal.t('The last day of the time period is the same as the first day')}
+            label={Drupal.t('The last day of the time period is the same as the first day', {}, {context: 'Events search'})}
             atom={endDisabledAtom}
             valueKey={SearchComponents.END_DISABLED}
           />
@@ -162,7 +162,7 @@ function DateSelect() {
             disabled={endDisabled}
             helperText={dateHelperText}
             id='end-date'
-            label={Drupal.t('Last day of the time period')}
+            label={Drupal.t('Last day of the time period', {}, {context: 'Events search'})}
             language={currentLanguage}
             invalid={errors.invalidEndDate}
             errorText={endDateErrorText}

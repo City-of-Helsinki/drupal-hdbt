@@ -3,7 +3,7 @@ import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 
 const getDateString = ({ startDate, endDate }: DateSelectDateTimes): string => {
   if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
-    return Drupal.t('All', {}, { context: '' });
+    return Drupal.t('All', {}, { context: 'Event search' });
   }
 
   if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
