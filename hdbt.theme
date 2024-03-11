@@ -1629,6 +1629,7 @@ function hdbt_preprocess_pager(&$variables): void {
 function hdbt_preprocess_paragraph__event_list(&$variables): void {
   // Expose event list variables to frontend.
   if (isset($variables['paragraph'])) {
+    /** @var \Drupal\helfi_react_search\Entity\EventList $paragraph */
     $paragraph = $variables['paragraph'];
     $settings = [];
 
@@ -1642,6 +1643,11 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     else {
       $settings['field_event_count'] = '3';
     }
+
+    $settings['field_filter_keywords'] = array_map(static fn ($term) => [
+      'id' => $term->get('field_keyword_id')->getString(),
+      'name' => $term->getName(),
+    ], $paragraph->getFilterKeywords());
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $linkedEvents = Drupal::service('helfi_react_search_linked_events');
