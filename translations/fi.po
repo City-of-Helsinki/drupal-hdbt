@@ -1041,7 +1041,7 @@ msgctxt "Time of event"
 msgid "Time"
 msgstr "Aika"
 
-msgctxt "Event search: result count"
+msgctxt "Events search: result count"
 msgid "1 event"
 msgid_plural "@count events"
 msgstr[0] "1 tapahtuma"
@@ -1134,6 +1134,14 @@ msgstr "Kaikki"
 msgctxt "Events search"
 msgid "Refine search in tapahtumat.hel.fi"
 msgstr "Tarkenna hakua tapahtumat.hel.fi:ssä"
+
+msgctxt "Events search: event type prefix"
+msgid "Show only"
+msgstr "Näytä vain"
+
+msgctxt "Events search: search form title"
+msgid "Filter events"
+msgstr "Etsi tapahtumia"
 
 msgctxt "React search: submit button label"
 msgid "Search"
