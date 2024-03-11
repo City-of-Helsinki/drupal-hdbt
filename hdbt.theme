@@ -1644,10 +1644,14 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       $settings['field_event_count'] = '3';
     }
 
+    $langcode = \Drupal::languageManager()
+      ->getCurrentLanguage()
+      ->getId();
+
     $settings['field_filter_keywords'] = array_map(static fn ($term) => [
       'id' => $term->get('field_keyword_id')->getString(),
       'name' => $term->getName(),
-    ], $paragraph->getFilterKeywords());
+    ], $paragraph->getFilterKeywords($langcode));
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $linkedEvents = Drupal::service('helfi_react_search_linked_events');
