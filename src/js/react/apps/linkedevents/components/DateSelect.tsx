@@ -71,7 +71,7 @@ function DateSelect() {
       }
     } else {
       if (isOutOfRange({ startDate: start, endDate })) {
-        console.warn('Selected start date is out of range with end date, setting end date to next day after start date.', {}, {context: 'Events search'});
+        console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
         setEndDate(start?.plus({ 'days': 1 }));
       }
       setStartDate(start);
@@ -92,7 +92,7 @@ function DateSelect() {
       }
     } else {
       if (isOutOfRange({ startDate, endDate: end })) {
-        console.warn('Selected end date is out of range, setting end date to next day after start date.', {}, {context: 'Events search'});
+        console.warn('Selected end date is out of range, setting end date to next day after start date.');
         setEndDate(startDate?.plus({ 'days': 1 }));
       } else {
         setEndDate(end);

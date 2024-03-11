@@ -1098,14 +1098,6 @@ msgid "Invalid end date"
 msgstr "Ogiltigt slutdatum"
 
 msgctxt "Events search"
-msgid "Selected start date is out of range with end date, setting end date to next day after start date."
-msgstr "Det valda startdatumet ligger utanför intervallet med slutdatum, slutdatumet ställs in till nästa dag efter startdatum."
-
-msgctxt "Events search"
-msgid "Selected end date is out of range, setting end date to next day after start date."
-msgstr "Det valda slutdatumet ligger utanför intervallet, slutdatumet ställs in till nästa dag efter startdatumet."
-
-msgctxt "Events search"
 msgid "Select a time period in which the event takes place"
 msgstr "Välj tidsperiod då evenemanget äger rum"
 
