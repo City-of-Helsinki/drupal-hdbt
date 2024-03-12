@@ -361,6 +361,30 @@ function getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired,
 * =====                                                   ========
 * ================================================================
 */
+
+/**
+ * Control form checkbox states
+ */
+function controlForm(form) {
+  const checkGroupBox = (groups) => {
+    const formCheckboxes = form.querySelectorAll('input');
+
+    formCheckboxes.forEach(check => {
+      if (groups.includes(check.dataset.group)) {
+        check.checked = true;
+      }
+    });
+  };
+
+  window.addEventListener('CONSENTS_CHANGED', e => {
+    console.log('Oh dear, looks like something consented for group and it was not the end user!');
+    checkGroupBox(e.detail.groups);
+  });
+}
+
+// Debug helper. Open banner and run on console to see the box updated.
+window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
+
 async function createShadowRoot(lang, cookieSettings) {
 
   const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
@@ -398,10 +422,13 @@ async function createShadowRoot(lang, cookieSettings) {
 
   // Add button events
   const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
+  const shadowRootForm = shadowRoot.querySelector('form');
   cookieButtons.forEach(button => button.addEventListener('click', e => {
-    const shadowRootForm = e.target.closest('#hds-cc').querySelector('form');
     handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
   }));
+
+  // Add eventHandler for form
+  controlForm(shadowRootForm);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
@@ -417,29 +444,37 @@ async function createChatConsentAPI() {
       let browserCookieState = null;
       // Check if our cookie exists
       try {
-        browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+        try {
+          browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+        } catch (err) {
+          // Doesn't handle the state where form is open but cookie doesn't exist
+          console.log('no cookie:D');
+        }
 
-      // This is duplicate code from getCookieSettings
-      // TODO: refactor the function return values, refactor showBanner logic
-      const currentlyAccepted = Object.keys(browserCookieState.groups);
-      const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
-      const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
-      const cookieSettings = JSON.parse(cookieSettingsRaw);
-      cookieSettings.checksum = cookieSettingsChecksum;
-      const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+        // This is duplicate code from getCookieSettings
+        // TODO: refactor the function return values, refactor showBanner logic
+        const currentlyAccepted = Object.keys(browserCookieState.groups);
+        const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
+        const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+        const cookieSettings = JSON.parse(cookieSettingsRaw);
+        cookieSettings.checksum = cookieSettingsChecksum;
+        const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
 
-      // eslint-disable-next-line no-restricted-syntax
-      for (const group of cookieSettingsGroups) {
-        // eslint-disable-next-line no-await-in-loop
-        const groupChecksum = await getChecksum(group);
-        group.checksum = groupChecksum;
-      }
-      saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const group of cookieSettingsGroups) {
+          // eslint-disable-next-line no-await-in-loop
+          const groupChecksum = await getChecksum(group);
+          group.checksum = groupChecksum;
+        }
+        saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
       } catch (err) {
         // If consent setting fails for some reason
         console.log('Consent failed.\n', err);
         return false;
       }
+
+      // Doesn't handle the state where form is open but cookie doesn't exist
+      dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
     }
   };
 
