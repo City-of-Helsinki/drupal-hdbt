@@ -27,9 +27,9 @@ export function getCookieBannerHtml(translations, groupsHtml) {
         aria-controls="hds-cc-form"
         aria-expanded="false"
         aria-live="polite">
+        <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
         <span class="hds-cc__accordion-button-show hds-button__label">${translations.showDetails}</span>
         <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideDetails}</span>
-        <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
       </button>
 
       <form action="" class="hds-cc__form" id="hds-cc-form">
@@ -81,9 +81,9 @@ export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml
                 aria-controls="hds-cc-group-details-${groupUniqueId}"
                 aria-expanded="false"
                 aria-live="polite">
+                <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
                 <span class="hds-cc__accordion-button-show hds-button__label">${translations.showCookieSettings}</span>
                 <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideCookieSettings}</span>
-                <span aria-hidden="true" class="hds-icon hds-icon--angle-down"></span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-${groupUniqueId}">
                 <div class="hds-cc__group-details__animator hds-table-container" tabindex="0" role="region">
