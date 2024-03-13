@@ -52,9 +52,19 @@
  *   should remove unapproved cookies
  */
 
-import { parse, serialize } from 'cookie/index';
-import { getCookieBannerHtml, getGroupHtml, getTableRowHtml } from './template';
-import { getTranslation, getTranslationKeys } from './hds-cc_translations';
+import {
+  parse,
+  serialize,
+} from 'cookie/index';
+import {
+  getCookieBannerHtml,
+   getGroupHtml,
+   getTableRowHtml,
+} from './template';
+import {
+  getTranslation,
+  getTranslationKeys,
+} from './hds-cc_translations';
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
 const COOKIE_DAYS = 100;

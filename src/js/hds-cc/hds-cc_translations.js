@@ -1,6 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
+  bannerAriaLabel: {
+    fi: 'Evästeasetukset',
+    sv: 'Inställningar för kakor',
+    en: 'Cookie settings'
+  },
   heading: {
     fi: '${siteName} käyttää evästeitä',
     sv: '${siteName} använder kakor',

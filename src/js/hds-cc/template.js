@@ -1,6 +1,6 @@
 export function getCookieBannerHtml(translations, groupsHtml) {
   return `
-<div id="hds-cc" class="hds-cc hds-cc--minimized" tabindex="-1">
+<div id="hds-cc" class="hds-cc hds-cc--minimized" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
   <div class="hds-cc__container">
     <div class="hds-cc__aligner">
 
@@ -71,8 +71,7 @@ export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml
                 <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required} data-group="${groupId}" />
                 <label for="${groupId}-cookies" class="hds-checkbox__label">${translations.title}</label>
               </div>
-              <p aria-hidden="true">${translations.description}</p>
-              <p class="visually-hidden">${translations.description}</p>
+              <p>${translations.description}</p>
 
               <button
                 type="button"
