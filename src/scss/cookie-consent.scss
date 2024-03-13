@@ -1,4 +1,4 @@
-/* stylelint-disable media-feature-range-notation */
+// stylelint-disable media-feature-range-notation
 // Use Dart Sass math module to perform calculations.
 // https://sass-lang.com/documentation/modules/math
 @use 'sass:math';
@@ -8,6 +8,38 @@
 @import 'zz_cookie-consent/angle-down';
 @import 'zz_cookie-consent/table';
 
+// Include only used button styles
+@include hds-button(
+  $all: false,
+  $base: true,
+  $secondary: true,
+  $supplementary: true,
+  $small: true,
+  $icon: true
+);
+
+// Include only used checkbox styles (no indeterminate)
+@include hds-checkbox(
+  $all: false,
+  $base: true,
+  $error-text: true,
+  $disabled: true
+);
+
+// Include only used icon styles (no sizes needed at the moment)
+@include hds-icon(
+  $all: false,
+  $base: true
+);
+
+// Angle down icon is included without mixin
+
+// Include only used table styles
+@include hds-table(
+  $all: false,
+  $base: true,
+  $dark: true
+);
 
 /* stylelint-disable order/properties-alphabetical-order */
 $font-weight-regular: 400;
