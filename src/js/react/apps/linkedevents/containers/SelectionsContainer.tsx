@@ -7,6 +7,7 @@ import FilterButton from '@/react/common/FilterButton';
 import {
   resetFormAtom,
   locationSelectionAtom,
+  topicSelectionAtom,
   freeFilterAtom,
   remoteFilterAtom,
   startDateAtom,
@@ -29,9 +30,10 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const startDate = useAtomValue(startDateAtom);
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
+  const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
   const resetForm = useSetAtom(resetFormAtom);
 
-  const showClearButton = locationSelection.length || startDate || endDate || freeFilter || remoteFilter;
+  const showClearButton = locationSelection.length || topicsSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
   if (!url) {
     return null;
@@ -39,6 +41,12 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
 
   return (
     <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={url}>
+      <ListFilterPills
+        updater={setTopicsSelection}
+        valueKey={ApiKeys.KEYWORDS}
+        values={topicsSelection}
+        url={url}
+      />
       <ListFilterPills
         updater={setLocationSelection}
         valueKey={ApiKeys.LOCATION}
