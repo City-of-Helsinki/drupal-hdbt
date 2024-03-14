@@ -21,6 +21,7 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\language\ConfigurableLanguageManagerInterface;
+use Drupal\link\LinkItemInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -1655,7 +1656,9 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       $linkedEvents = Drupal::service('helfi_react_search_linked_events');
-      $events_public_url = $paragraph->get('field_api_url')->first()->getUrl()->toString();
+      $link_field = $events_public_url = $paragraph->get('field_api_url')->first();
+      assert($link_field instanceof LinkItemInterface);
+      $events_public_url = $link_field->getUrl()->toString();
       $settings['events_public_url'] = $events_public_url;
       $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
