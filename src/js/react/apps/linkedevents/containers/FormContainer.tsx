@@ -16,6 +16,7 @@ import {
   formErrorsAtom,
   updateUrlAtom,
 } from '../store';
+import TopicsFilter from '../components/TopicsFilter';
 
 
 function FormContainer() {
@@ -24,7 +25,13 @@ function FormContainer() {
   const errors = useAtomValue(formErrorsAtom);
   const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
-  const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
+  const {
+    showLocation,
+    showFreeFilter,
+    showRemoteFilter,
+    showTimeFilter,
+    showTopicsFilter,
+  } = filterSettings;
 
   const onSubmit = () => {
     updateUrl();
@@ -32,7 +39,8 @@ function FormContainer() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(); return false;
+    onSubmit();
+    return false;
   };
 
   const bothCheckboxes = showFreeFilter && showRemoteFilter;
@@ -42,7 +50,7 @@ function FormContainer() {
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
-  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
+  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter || showTopicsFilter;
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
   if (!showForm) {
@@ -55,13 +63,16 @@ function FormContainer() {
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>
           {
+            showTopicsFilter &&
+            <TopicsFilter />
+          }
+          {
             showLocation &&
               <LocationFilter />
           }
           {
             showTimeFilter &&
-              <DateSelect
-              />
+              <DateSelect />
           }
         </div>
         {
