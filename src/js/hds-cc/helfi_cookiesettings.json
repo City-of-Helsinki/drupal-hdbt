@@ -1,5 +1,6 @@
 {
   "siteName": "Hel.fi",
+  "cookieName": "city-of-helsinki-cookie-consents",
   "requiredCookies": {
     "groups": [
       {
