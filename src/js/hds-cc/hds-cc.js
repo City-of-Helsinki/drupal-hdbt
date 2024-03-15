@@ -399,6 +399,19 @@ async function createShadowRoot(lang, cookieSettings) {
 
   const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
+  if (!bannerTarget) {
+    throw new Error('targetSelector element was not found');
+  }
+  const spacerParentSelector = window.hdsCookieConsentPageSettings.spacerParentSelector || 'body';
+  const spacerParent = document.querySelector(spacerParentSelector);
+  if (!spacerParent) {
+    throw new Error('spacerParentSelector element was not found');
+  }
+  const contentSelector = window.hdsCookieConsentPageSettings.pageContentSelector || 'body';
+  if (!document.querySelector(contentSelector)) {
+    throw new Error('contentSelector element was not found');
+  }
+
   const bannerContainer = document.createElement('div');
   bannerContainer.classList.add('hds-cc__target');
   bannerTarget.prepend(bannerContainer);
@@ -428,7 +441,29 @@ async function createShadowRoot(lang, cookieSettings) {
   groupsHtml += getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
   groupsHtml += getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
 
+  // Create banner HTML
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
+
+  // Add scroll-margin-bottom to all elements inside the contentSelector
+  const style = document.createElement('style');
+  style.innerHTML = `${contentSelector} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
+  document.head.appendChild(style);
+
+  // Add spacer inside spacerParent (to the bottom of the page)
+  const spacer = document.createElement('div');
+  spacer.id = 'hds-cc__spacer';
+  spacerParent.appendChild(spacer);
+  spacer.style.height = 'var(--hds-cc-height, 0)';
+
+  // Update spacer and scroll-margin-bottom on banner resize
+  const resizeObserver = new ResizeObserver(entries => {
+    entries.forEach(entry => {
+      document.documentElement.style.setProperty('--hds-cc-height', `${parseInt(entry.contentRect.height, 10) + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`);
+      // spacer.style.height = `${entry.contentRect.height + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`;
+    });
+  });
+  const bannerHeightElement = shadowRoot.querySelector('.hds-cc__container');
+  resizeObserver.observe(bannerHeightElement);
 
   // Add button events
   const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
