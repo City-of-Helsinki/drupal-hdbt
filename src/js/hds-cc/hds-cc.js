@@ -1,56 +1,6 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-console */
 /* eslint-disable valid-jsdoc */
-/**
- * MEMO
- *
- * DONE fetch cookie settings from JSON
- *   get and refactor names etc.
- *   refactor filenames (hdsCookieConsentPageSettings -> pageCookieSettings etc.)
- *
- * DONE fetch page settings from inline JS
- *   language, jsonUrl
- *
- * DONE update helfi_cookies.json missing translations
- *
- * DONE eliminate global scope
- *
- * DONE set required cookies HTML to disabled and checked
- *   template changes
- *
- * logic for cookie banner spawn
- *   compare cookieSettings and browser cookie state
- *   check
- *   1. if cookie exists
- *   2. essentials approved
- *   3. group hashes match
- *   else show banner
- *
- * DONE cookie writing
- *   ONLY from one of buttons
- *   disallow chat elements until essentials are accepted (banner is closed)
- *
- * DONE cookie reading (from browser) logic refactor
- *   check categorically
- *
- * DONE plan how version handling happens
- *
- * build HTML with templates
- *   DONE properties and translations on place
- *   check ARIA-attributes
- *   check screenreader only texts
- *   add checkbox list
- *
- * check files for FIXME and TODO notes
- *
- * -------------------------------------------------
- * INCOMING FEATURES
- * -------------------------------------------------
- * monitor cookie- local- and sessionstorage
- *   create console error or some sentry log request
- *   should the unwanted cookie be removed?
- * handle revoked permission
- *   should remove unapproved cookies
- */
 
 import {
   parse,
@@ -66,19 +16,25 @@ import {
   getTranslationKeys,
 } from './hds-cc_translations';
 
-const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
-const COOKIE_DAYS = 100;
-// TODO: deal with this
-const UNCHANGED = 'unchanged';
+class HdsCc {
+  constructor() {
+    this.COOKIE_NAME = 'city-of-helsinki-cookie-consents';
+    this.COOKIE_DAYS = 100;
+    this.UNCHANGED = 'unchanged';
+    document.addEventListener('DOMContentLoaded', () => this.init());
+
+    // Debug helper. Open banner and run on console to see the box updated.
+    window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
+  }
 
 /**
  * Get checksum from string
- * @param {Sring} str to be hashed
+ * @param {String} str to be hashed
  * @return {String} Hash in base16 from the string
  *
  * Reference: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
  */
-async function getChecksum(message, length = 8) {
+async getChecksum(message, length = 8) {
   let messageString = message;
   if (typeof message !== 'string') {
     messageString = JSON.stringify(message);
@@ -99,34 +55,34 @@ async function getChecksum(message, length = 8) {
  * Centralized browser cookie reading. Returns false if the cookie
  * with specified name doesn't exist.
  */
-async function readCookie() {
+async readCookie() {
   let cookie;
   try {
-    cookie = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+    cookie = JSON.parse(parse(document.cookie)[this.COOKIE_NAME]);
   } catch (err) {
     // If cookie parsing fails, show banner
-    console.log('Cookie read unsuccessfull');
+    console.log(`Cookie read unsuccessful:\n${err}`);
     return false;
   }
 
   return cookie;
 }
 
-async function setCookie(cookieData) {
+async setCookie(cookieData) {
   console.log('setCookie', cookieData);
   const expiryDate = new Date();
-  expiryDate.setDate(expiryDate.getDate() + COOKIE_DAYS);
-  document.cookie = serialize(COOKIE_NAME, JSON.stringify(cookieData), {expires: expiryDate});
+  expiryDate.setDate(expiryDate.getDate() + this.COOKIE_DAYS);
+  document.cookie = serialize(this.COOKIE_NAME, JSON.stringify(cookieData), {expires: expiryDate});
 }
 
-async function clearCookie() {
+async clearCookie() {
   console.log('clearCookie');
   const expiryDate = new Date();
-  expiryDate.setDate(expiryDate.getDate() - COOKIE_DAYS);
-  document.cookie = serialize(COOKIE_NAME, '', {expires: expiryDate});
+  expiryDate.setDate(expiryDate.getDate() - this.COOKIE_DAYS);
+  document.cookie = serialize(this.COOKIE_NAME, '', {expires: expiryDate});
 }
 
-function saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
+saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
   console.log('Accepting cookies from groups:', acceptedGroupNames);
 
   const acceptedGroups = {};
@@ -144,14 +100,14 @@ function saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner 
     }
   });
 
-  setCookie({
+  this.setCookie({
     showBanner,
     checksum: cookieSettings.checksum,
     groups: acceptedGroups,
   });
 }
 
-async function removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
+async removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
   console.log('removeInvalidGroupsFromBrowserCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
 
   const newCookieGroups = [];
@@ -183,31 +139,31 @@ async function removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browse
 
   if (newCookieGroups.length === 0) {
     console.log('No remaining groups found, erasing cookie');
-    clearCookie();
+    this.clearCookie();
   } else {
     // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
     const showBanner = true;
-    saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    this.saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
   }
 
   return cookieSettings;
 }
 
-async function getCookieSettings() {
+async getCookieSettings() {
 
   try {
     const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
-    const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+    const cookieSettingsChecksum = await this.getChecksum(cookieSettingsRaw);
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
-    const browserCookie = await readCookie();
+    const browserCookie = await this.readCookie();
     // if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
     if (browserCookie) {
       try {
         // This means that browser cookie doesn't have 'showBanner' set true
         if (!browserCookie.showBanner && (cookieSettingsChecksum === browserCookie.checksum)) {
           console.log('This means that browser cookie doesn\'t have \'showBanner\' set true', browserCookie.showBanner);
-          return UNCHANGED;
+          return this.UNCHANGED;
         }
       } catch (err) {
         console.log(`Parsing cookie json failed: ${err}`);
@@ -218,7 +174,7 @@ async function getCookieSettings() {
     cookieSettings.checksum = cookieSettingsChecksum;
 
     // TODO: Check that cookieSettings contain the COOKIE_NAME cookie in them.
-    const essentialFound = cookieSettings.cookieName === COOKIE_NAME;
+    const essentialFound = cookieSettings.cookieName === this.COOKIE_NAME;
     if (essentialFound) {
       // TODO remove after refactor
       console.log('Site specific settins are valid');
@@ -231,11 +187,11 @@ async function getCookieSettings() {
     // eslint-disable-next-line no-restricted-syntax
     for (const group of cookieSettingsGroups) {
       // eslint-disable-next-line no-await-in-loop
-      const groupChecksum = await getChecksum(group);
+      const groupChecksum = await this.getChecksum(group);
       group.checksum = groupChecksum;
     }
 
-    return await removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookie, cookieSettings);
+    return await this.removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookie, cookieSettings);
 
   } catch (err) {
     if (err.message.includes('undefined')) {
@@ -249,7 +205,7 @@ async function getCookieSettings() {
 /**
  * Go through form and get accepted groups. Return a list of group ID's.
  */
-function readGroupSelections(form, all = false) {
+readGroupSelections(form, all = false) {
   const groupSelections = [];
   const formCheckboxes = form.querySelectorAll('input');
   formCheckboxes.forEach(check => {
@@ -261,21 +217,21 @@ function readGroupSelections(form, all = false) {
   return groupSelections;
 }
 
-function handleButtonEvents(selection, formReference, cookieSettings) {
+handleButtonEvents(selection, formReference, cookieSettings) {
   switch (selection) {
     case 'required': {
       const acceptedGroups = ['essential'];
-      saveAcceptedGroups(cookieSettings, acceptedGroups);
+      this.saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     case 'all': {
-      const acceptedGroups = readGroupSelections(formReference, true);
-      saveAcceptedGroups(cookieSettings, acceptedGroups);
+      const acceptedGroups = this.readGroupSelections(formReference, true);
+      this.saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     case 'selected': {
-      const acceptedGroups = readGroupSelections(formReference);
-      saveAcceptedGroups(cookieSettings, acceptedGroups);
+      const acceptedGroups = this.readGroupSelections(formReference);
+      this.saveAcceptedGroups(cookieSettings, acceptedGroups);
       break;
     }
     default:
@@ -289,11 +245,11 @@ function handleButtonEvents(selection, formReference, cookieSettings) {
  * Go through cookie group object and check if it has
  * property with given key
  */
-function isGroupAccepted(groupName) {
+isGroupAccepted(groupName) {
   let browserCookieState = null;
   // Check if our cookie exists
   try {
-    browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+    browserCookieState = JSON.parse(parse(document.cookie)[this.COOKIE_NAME]);
   } catch (err) {
     // If cookie parsing fails, show banner
     console.log('group accepted parse failure');
@@ -311,11 +267,11 @@ function isGroupAccepted(groupName) {
  *   check 1. if cookie exists 2. essentials approved 3. hash match - show banner
  *   else show banner
  */
-async function checkBannerNeed(cookieSettings) {
+async checkBannerNeed(cookieSettings) {
   // Check if cookie has been set to show banner
   let cookieWantsToShow = false;
   try {
-    const browserCookieState = await readCookie();
+    const browserCookieState = await this.readCookie();
     cookieWantsToShow = browserCookieState.showBanner;
     if (cookieWantsToShow) {
       return true;
@@ -325,9 +281,9 @@ async function checkBannerNeed(cookieSettings) {
     console.log('Cookie doesn\'t exist');
     return true;
   }
-  const essentialsApproved = isGroupAccepted('essential');
+  const essentialsApproved = this.isGroupAccepted('essential');
 
-  const cookieSettingsUnchanged = cookieSettings === UNCHANGED;
+  const cookieSettingsUnchanged = cookieSettings === this.UNCHANGED;
   if (cookieSettingsUnchanged && essentialsApproved) {
     return false;
   }
@@ -346,7 +302,7 @@ async function checkBannerNeed(cookieSettings) {
  * @param {string} lang - Language key, e.g., 'fi' for Finnish.
  * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
  */
-function translate(translationObj, lang) {
+translate(translationObj, lang) {
   if (typeof (translationObj) === 'object') {
     if (translationObj[lang] === undefined) {
       return translationObj.en; // fallback to English translation
@@ -363,17 +319,17 @@ function translate(translationObj, lang) {
  * - tableRows
  */
 
-function buildTableRows(cookies, lang) {
+buildTableRows(cookies, lang) {
   let tableRows = '';
 
   cookies.forEach(cookie => {
     tableRows += getTableRowHtml(
       {
-        name: translate(cookie.name, lang),
-        host: translate(cookie.host, lang),
-        description: translate(cookie.description, lang),
-        expiration: translate(cookie.expiration, lang),
-        type: translate(cookie.type, lang),
+        name: this.translate(cookie.name, lang),
+        host: this.translate(cookie.host, lang),
+        description: this.translate(cookie.description, lang),
+        expiration: this.translate(cookie.expiration, lang),
+        type: this.translate(cookie.type, lang),
       }
     );
   });
@@ -381,14 +337,14 @@ function buildTableRows(cookies, lang) {
   return tableRows;
 }
 
-function getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName) {
+getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName) {
   let groupsHtml = '';
   let groupNumber = 0;
   cookieGroupList.forEach(cookieGroup => {
-    const title = translate(cookieGroup.title, lang);
-    const description = translate(cookieGroup.description, lang);
+    const title = this.translate(cookieGroup.title, lang);
+    const description = this.translate(cookieGroup.description, lang);
     const groupId = cookieGroup.commonGroup;
-    const tableRowsHtml = buildTableRows(cookieGroup.cookies, lang);
+    const tableRowsHtml = this.buildTableRows(cookieGroup.cookies, lang);
     groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired);
     groupNumber += 1;
   });
@@ -411,7 +367,7 @@ function getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired,
  * and user gives chat consent from chat window instead of the
  * form checkboxes. The form reference is passed here on init phase.
  */
-function controlForm(form) {
+controlForm(form) {
   const checkGroupBox = (groups) => {
     const formCheckboxes = form.querySelectorAll('input');
 
@@ -428,10 +384,7 @@ function controlForm(form) {
   });
 }
 
-// Debug helper. Open banner and run on console to see the box updated.
-window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
-
-async function createShadowRoot(lang, cookieSettings) {
+async createShadowRoot(lang, cookieSettings) {
   const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
   if (!bannerTarget) {
@@ -473,8 +426,8 @@ async function createShadowRoot(lang, cookieSettings) {
   });
 
   let groupsHtml = '';
-  groupsHtml += getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
-  groupsHtml += getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
+  groupsHtml += this.getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
+  groupsHtml += this.getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
 
   // Create banner HTML
   shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
@@ -504,20 +457,20 @@ async function createShadowRoot(lang, cookieSettings) {
   const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
   const shadowRootForm = shadowRoot.querySelector('form');
   cookieButtons.forEach(button => button.addEventListener('click', e => {
-    handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
+    this.handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
   }));
 
   // Add eventHandler for form
-  controlForm(shadowRootForm);
+  this.controlForm(shadowRootForm);
 
   shadowRoot.querySelector('.hds-cc').focus();
 }
 
 // Add chat cookie functions to window
-async function createChatConsentAPI() {
+async createChatConsentAPI() {
   const chatUserConsent = {
     retrieveUserConsent() {
-      return isGroupAccepted('chat');
+      return this.isGroupAccepted('chat');
     },
     async confirmUserConsent() {
       const showBanner = true;
@@ -525,7 +478,7 @@ async function createChatConsentAPI() {
       // Check if our cookie exists
       try {
         try {
-          browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+          browserCookieState = JSON.parse(parse(document.cookie)[this.COOKIE_NAME]);
         } catch (err) {
           // Doesn't handle the state where form is open but cookie doesn't exist
           console.log('no cookie:D');
@@ -535,7 +488,7 @@ async function createChatConsentAPI() {
         // TODO: refactor the function return values, refactor showBanner logic
         const currentlyAccepted = Object.keys(browserCookieState.groups);
         const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
-        const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
+        const cookieSettingsChecksum = await this.getChecksum(cookieSettingsRaw);
         const cookieSettings = JSON.parse(cookieSettingsRaw);
         cookieSettings.checksum = cookieSettingsChecksum;
         const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
@@ -543,10 +496,10 @@ async function createChatConsentAPI() {
         // eslint-disable-next-line no-restricted-syntax
         for (const group of cookieSettingsGroups) {
           // eslint-disable-next-line no-await-in-loop
-          const groupChecksum = await getChecksum(group);
+          const groupChecksum = await this.getChecksum(group);
           group.checksum = groupChecksum;
         }
-        saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
+        this.saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
       } catch (err) {
         // If consent setting fails for some reason
         console.log('Consent failed.\n', err);
@@ -562,29 +515,34 @@ async function createChatConsentAPI() {
   window.chat_user_consent = chatUserConsent;
 }
 
-const init = async () => {
+async init() {
+
   const lang = window.hdsCookieConsentPageSettings.language;
   // If cookie settings can't be loaded, do not show banner
   let cookieSettings;
   try {
-    cookieSettings = await getCookieSettings();
+    cookieSettings = await this.getCookieSettings();
   } catch (err) {
-    throw new Error('Cookie settings not available, cookie banner won\'t render', err);
+    throw new Error(`Cookie settings not available, cookie banner won't render: \n${err}`);
   }
 
   if (window.hdsCookieConsentPageSettings.exposeChatFunctions) {
-    createChatConsentAPI(); // Create chat consent functions
+    this.createChatConsentAPI(); // Create chat consent functions
   }
 
   // TODO: consider naming
   // If cookie settings have not changed, do not show banner, otherwise, check
-  const showBanner = await checkBannerNeed(cookieSettings);
+  const showBanner = await this.checkBannerNeed(cookieSettings);
   console.log('Create shadowroot?', showBanner);
   if (!showBanner) {
     // No need for banner, do not create shadowRoot
     return;
   }
-  await createShadowRoot(lang, cookieSettings);
+  await this.createShadowRoot(lang, cookieSettings);
 };
+}
 
-document.addEventListener('DOMContentLoaded', () => init());
+// eslint-disable-next-line no-unused-vars
+const hdsCc = new HdsCc();
+
+
