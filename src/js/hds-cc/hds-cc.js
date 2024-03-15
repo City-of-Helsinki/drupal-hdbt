@@ -68,6 +68,7 @@ import {
 
 const COOKIE_NAME = 'city-of-helsinki-cookie-consents';
 const COOKIE_DAYS = 100;
+// TODO: deal with this
 const UNCHANGED = 'unchanged';
 
 /**
@@ -93,6 +94,24 @@ async function getChecksum(message, length = 8) {
 /**
  * Cookie section
  */
+
+/**
+ * Centralized browser cookie reading. Returns false if the cookie
+ * with specified name doesn't exist.
+ */
+async function readCookie() {
+  let cookie;
+  try {
+    cookie = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
+  } catch (err) {
+    // If cookie parsing fails, show banner
+    console.log('Cookie read unsuccessfull');
+    return false;
+  }
+
+  return cookie;
+}
+
 async function setCookie(cookieData) {
   console.log('setCookie', cookieData);
   const expiryDate = new Date();
@@ -111,9 +130,11 @@ function saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner 
   console.log('Accepting cookies from groups:', acceptedGroupNames);
 
   const acceptedGroups = {};
-  // Required come in every case
+  // Required should not come in every case; the category hash might have changed
   cookieSettings.requiredCookies.groups.forEach(group => {
-    acceptedGroups[group.commonGroup] = group.checksum;
+    if (acceptedGroupNames.includes(group.commonGroup)) {
+      acceptedGroups[group.commonGroup] = group.checksum;
+    }
   });
 
   // Add accepted group names to acceptedGroups, assume others to be declined (overrides previous selections)
@@ -124,7 +145,7 @@ function saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner 
   });
 
   setCookie({
-    show_banner: showBanner,
+    showBanner,
     checksum: cookieSettings.checksum,
     groups: acceptedGroups,
   });
@@ -169,7 +190,6 @@ async function removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browse
     saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
   }
 
-
   return cookieSettings;
 }
 
@@ -178,14 +198,15 @@ async function getCookieSettings() {
   try {
     const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
     const cookieSettingsChecksum = await getChecksum(cookieSettingsRaw);
-    let browserCookieState = null;
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
-    if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
+    const browserCookie = await readCookie();
+    // if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
+    if (browserCookie) {
       try {
-        browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
-        if (cookieSettingsChecksum === browserCookieState.checksum) {
-          console.log('Cookie settings file has not changed, banner is not needed');
+        // This means that browser cookie doesn't have 'showBanner' set true
+        if (!browserCookie.showBanner && (cookieSettingsChecksum === browserCookie.checksum)) {
+          console.log('This means that browser cookie doesn\'t have \'showBanner\' set true', browserCookie.showBanner);
           return UNCHANGED;
         }
       } catch (err) {
@@ -197,7 +218,7 @@ async function getCookieSettings() {
     cookieSettings.checksum = cookieSettingsChecksum;
 
     // TODO: Check that cookieSettings contain the COOKIE_NAME cookie in them.
-    const essentialFound = cookieSettings.requiredCookies.groups[0].cookies[1].name === COOKIE_NAME;
+    const essentialFound = cookieSettings.cookieName === COOKIE_NAME;
     if (essentialFound) {
       // TODO remove after refactor
       console.log('Site specific settins are valid');
@@ -214,11 +235,7 @@ async function getCookieSettings() {
       group.checksum = groupChecksum;
     }
 
-    if (browserCookieState === null) {
-      return cookieSettings;
-    }
-
-    return await removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookieState, cookieSettings);
+    return await removeInvalidGroupsFromBrowserCookie(cookieSettingsGroups, browserCookie, cookieSettings);
 
   } catch (err) {
     if (err.message.includes('undefined')) {
@@ -279,6 +296,7 @@ function isGroupAccepted(groupName) {
     browserCookieState = JSON.parse(parse(document.cookie)[COOKIE_NAME]);
   } catch (err) {
     // If cookie parsing fails, show banner
+    console.log('group accepted parse failure');
     return false;
   }
 
@@ -290,17 +308,30 @@ function isGroupAccepted(groupName) {
 /**
  * logic for cookie banner spawn
  *   compare cookieSettings and browser cookie state
- *   check 1. if cookie exists 2. essentials approved 3. id list identicale - show banner
+ *   check 1. if cookie exists 2. essentials approved 3. hash match - show banner
  *   else show banner
  */
-
-// TODO: move wanted logic here
-function checkBannerNeed() {
-  // TODO: use also cookies show_banner to check if banner is needed
+async function checkBannerNeed(cookieSettings) {
+  // Check if cookie has been set to show banner
+  let cookieWantsToShow = false;
+  try {
+    const browserCookieState = await readCookie();
+    cookieWantsToShow = browserCookieState.showBanner;
+    if (cookieWantsToShow) {
+      return true;
+    }
+  } catch (err) {
+    // If cookie parsing fails, show banner
+    console.log('Cookie doesn\'t exist');
+    return true;
+  }
   const essentialsApproved = isGroupAccepted('essential');
-  if (essentialsApproved) {
+
+  const cookieSettingsUnchanged = cookieSettings === UNCHANGED;
+  if (cookieSettingsUnchanged && essentialsApproved) {
     return false;
   }
+
   return true;
 }
 
@@ -374,6 +405,11 @@ function getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired,
 
 /**
  * Control form checkbox states
+ *
+ * Due to shadowroot approach we use window scoped custom events
+ * to trigger the form checking in cases where the form is open
+ * and user gives chat consent from chat window instead of the
+ * form checkboxes. The form reference is passed here on init phase.
  */
 function controlForm(form) {
   const checkGroupBox = (groups) => {
@@ -396,7 +432,6 @@ function controlForm(form) {
 window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
 
 async function createShadowRoot(lang, cookieSettings) {
-
   const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
   const bannerTarget = document.querySelector(targetSelector);
   if (!bannerTarget) {
@@ -519,6 +554,7 @@ async function createChatConsentAPI() {
       }
 
       // Doesn't handle the state where form is open but cookie doesn't exist
+      // See controlForm-function for more information about this
       dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
     }
   };
@@ -528,7 +564,6 @@ async function createChatConsentAPI() {
 
 const init = async () => {
   const lang = window.hdsCookieConsentPageSettings.language;
-
   // If cookie settings can't be loaded, do not show banner
   let cookieSettings;
   try {
@@ -543,9 +578,10 @@ const init = async () => {
 
   // TODO: consider naming
   // If cookie settings have not changed, do not show banner, otherwise, check
-  const showBanner = (cookieSettings === UNCHANGED) ? false : checkBannerNeed(cookieSettings);
+  const showBanner = await checkBannerNeed(cookieSettings);
+  console.log('Create shadowroot?', showBanner);
   if (!showBanner) {
-    console.log('Cookies are handled, showing banner for development');
+    // No need for banner, do not create shadowRoot
     return;
   }
   await createShadowRoot(lang, cookieSettings);
