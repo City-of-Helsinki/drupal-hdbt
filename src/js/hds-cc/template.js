@@ -85,21 +85,23 @@ export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml
                 <span class="hds-cc__accordion-button-hide hds-button__label">${translations.hideCookieSettings}</span>
               </button>
               <div class="hds-cc__group-details" id="hds-cc-group-details-${groupUniqueId}">
-                <div class="hds-cc__group-details__animator hds-table-container" tabindex="0" role="region">
-                  <table class="hds-table hds-table--dark">
-                    <thead>
-                      <tr class="hds-table__header-row">
-                      <th scope="col">${translations.tableHeadingsName}</th>
-                      <th scope="col">${translations.tableHeadingsHostName}</th>
-                      <th scope="col">${translations.tableHeadingsDescription}</th>
-                      <th scope="col">${translations.tableHeadingsExpiration}</th>
-                      <th scope="col">${translations.tableHeadingsType}</th>
-                      </tr>
-                    </thead>
-                    <tbody class="hds-table__content">
-                      ${tableRowsHtml}
-                    </tbody>
-                  </table>
+                <div class="hds-cc__group-details__animator">
+                  <div class="hds-table-container" tabindex="0" role="region">
+                    <table class="hds-table hds-table--dark">
+                      <thead>
+                        <tr class="hds-table__header-row">
+                        <th scope="col">${translations.tableHeadingsName}</th>
+                        <th scope="col">${translations.tableHeadingsHostName}</th>
+                        <th scope="col">${translations.tableHeadingsDescription}</th>
+                        <th scope="col">${translations.tableHeadingsExpiration}</th>
+                        <th scope="col">${translations.tableHeadingsType}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="hds-table__content">
+                        ${tableRowsHtml}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>`;

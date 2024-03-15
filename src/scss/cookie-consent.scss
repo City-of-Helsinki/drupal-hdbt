@@ -531,8 +531,12 @@ html {
 
 @include animateheight( '.hds-cc__group-details', ':not([aria-expanded='true']) + .hds-cc__group-details', '.hds-cc__group-details__animator' );
 
+.hds-cc__group-details__animator .hds-table-container {
+  margin-block: 5px;
+}
+
 // Animate buttons open / close
-@include animateheight( '.hds-cc__buttons', '.hds-cc--minimized:not(:focus-within) .hds-cc__buttons', '.hds-cc__buttons__animator' );
+@include animateheight( '.hds-cc__buttons', '.hds-cc--minimized:not(:focus-within) .hds-cc__buttons', '.hds-cc__buttons__animator', false );
 
 :not([aria-expanded='true']) > .hds-cc__accordion-button-hide,
 [aria-expanded='true'] > .hds-cc__accordion-button-show,
@@ -542,33 +546,19 @@ html {
   display: none;
 }
 
-
-// .hds-cc__form {
-//   .hds-cc--minimized:not(:focus-within) & {
-//     display: none;
-//   }
-// }
-
-// .hds-cc__buttons {
-//   .hds-cc--minimized:not(:focus-within) & {
-//     display: none;
-//   }
-// }
+.hds-cc__form {
+  --autoheight-open-time: 0.2s;
+}
 
 .hds-cc__buttons {
-  margin-bottom: -5px;
-  margin-inline: -5px;
+  margin: -5px;
 }
 
 .hds-cc__buttons__container {
   column-gap: 32px;
-
-  // test
   display: flex;
   flex-direction: column;
-  padding-bottom: 5px;
-  padding-inline: 5px;
-  // padding-top: var(--spacing-layout-xs);
+  padding: 5px;
   row-gap: 16px;
 
   @media (min-width: 768px) {
