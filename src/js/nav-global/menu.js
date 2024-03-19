@@ -45,13 +45,13 @@ function button() {
  * @return {boolean} current object has url and url pathname matches current location pathname
  */
 function isCurrentPath() {
-  let {url} = this;
+  let url;
 
   try {
     url = new URL(this.url).pathname;
   }
   catch (e) {
-    // eslint-disable-next-line
+    url = this.url;
   }
   return !this.external && this.url && url === window.location.pathname;
 }
