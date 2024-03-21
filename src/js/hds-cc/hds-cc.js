@@ -18,7 +18,7 @@ import {
 
 class HdsCc {
   constructor() {
-    this.COOKIE_NAME = 'city-of-helsinki-cookie-consents';
+    this.COOKIE_NAME = '';
     this.COOKIE_DAYS = 100;
     this.UNCHANGED = 'unchanged';
     document.addEventListener('DOMContentLoaded', () => this.init());
@@ -58,10 +58,15 @@ class HdsCc {
   async readCookie() {
     let cookie;
     try {
-      cookie = JSON.parse(parse(document.cookie)[this.COOKIE_NAME]);
+      const cookieString = parse(document.cookie)[this.COOKIE_NAME];
+      if (!cookieString) {
+        console.log('Cookie is not set');
+        return false;
+      }
+      cookie = JSON.parse(cookieString);
     } catch (err) {
       // If cookie parsing fails, show banner
-      console.log(`Cookie read unsuccessful:\n${err}`);
+      console.log(`Cookie parsing unsuccessful:\n${err}`);
       return false;
     }
 
@@ -155,6 +160,9 @@ class HdsCc {
       const cookieSettingsRaw = await fetch(window.hdsCookieConsentPageSettings.jsonUrl).then((response) => response.text());
       const cookieSettingsChecksum = await this.getChecksum(cookieSettingsRaw);
 
+      const cookieSettings = JSON.parse(cookieSettingsRaw);
+      this.COOKIE_NAME = cookieSettings.cookieName;
+
       // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
       const browserCookie = await this.readCookie();
       // if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
@@ -170,16 +178,17 @@ class HdsCc {
         }
       }
 
-      const cookieSettings = JSON.parse(cookieSettingsRaw);
       cookieSettings.checksum = cookieSettingsChecksum;
 
-      // TODO: Check that cookieSettings contain the COOKIE_NAME cookie in them.
-      const essentialFound = cookieSettings.cookieName === this.COOKIE_NAME;
-      if (essentialFound) {
-        // TODO remove after refactor
-        console.log('Site specific settins are valid');
-      } else {
-        throw new Error('Cookie settings invalid, check documentation');
+      const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.commonGroup === 'essential');
+      if (!essentialGroup) {
+        // The site cookie settings must have required group named 'essential'
+        throw new Error('Cookie consent error: essential group missing');
+      }
+      const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.COOKIE_NAME);
+      if (!requiredCookieFound) {
+        // The required group 'essential' must have cookie with name matching the root level 'cookieName'
+        throw new Error('Cookie consent error: cookieName mismatch');
       }
 
       const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
