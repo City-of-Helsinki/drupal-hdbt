@@ -1183,3 +1183,35 @@ msgstr "Publicerad"
 msgctxt "News search"
 msgid "Filter"
 msgstr "Filtrera"
+
+msgctxt "Indication that events take place in a certain timeframe"
+msgid "at"
+msgstr "klockan"
+
+msgctxt "React search: all available options"
+msgid "All"
+msgstr "Alla"
+
+msgctxt "React search: topics filter"
+msgid "Event topic"
+msgstr "Evenemangets ämne"
+
+msgctxt "React search: topics filter"
+msgid "All topics"
+msgstr "Alla ämnen"
+
+msgctxt "React search: remove item aria label"
+msgid "Remove item"
+msgstr "Töm valda"
+
+msgctxt "React search: clear selections"
+msgid "Clear selections"
+msgstr "Rensa alla"
+
+msgctxt "React search: date selection label"
+msgid "Date"
+msgstr "Tidsperiod"
+
+msgctxt "Event search: event type prefix"
+msgid "Show only"
+msgstr "Visa endast"
