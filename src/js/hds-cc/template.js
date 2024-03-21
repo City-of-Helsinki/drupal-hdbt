@@ -63,12 +63,13 @@ export function getCookieBannerHtml(translations, groupsHtml) {
 };
 
 // TODO: consider screenreader description parametrization (translations.screenreader.descriptions)
-export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml, groupRequired) {
+export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml, groupRequired, isAccepted) {
   const required = groupRequired ? ' checked disabled' : '';
+  const accepted = isAccepted ? 'checked' : '';
   return `
             <div class="hds-cc__group">
               <div class="hds-checkbox">
-                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required} data-group="${groupId}" />
+                <input type="checkbox" id="${groupId}-cookies" class="hds-checkbox__input"${required}${accepted} data-group="${groupId}" />
                 <label for="${groupId}-cookies" class="hds-checkbox__label">${translations.title}</label>
               </div>
               <p>${translations.description}</p>
