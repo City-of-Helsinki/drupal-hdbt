@@ -50,7 +50,7 @@ const ProximityFormContainer = () => {
           />
         </fieldset>
       </div>
-      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search')}</Button>
+      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search', {}, { context: 'React search: submit button label' })}</Button>
     </form>
   );
 };

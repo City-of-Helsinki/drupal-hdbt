@@ -12,7 +12,7 @@ const SubmitButton = ({ disabled }: SubmitButtonProps) => (
         type='submit'
         variant='primary'
       >
-        {Drupal.t('Filter')}
+        {Drupal.t('Filter', {}, { context: 'News search' })}
       </Button>
     </div>
   );

@@ -292,8 +292,8 @@ const FormContainer = () => {
           )}
         </fieldset>
       )}
-      <Button className='hds-button hds-button--primary job-search-form__submit-button' type='submit'>
-        {Drupal.t('Search')}
+      <Button className='hdbt-search--react__submit-button job-search-form__submit-button' type='submit'>
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
       <SelectionsContainer />
     </form>

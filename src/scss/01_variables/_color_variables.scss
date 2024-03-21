@@ -1,6 +1,8 @@
 // Color variables from HDS.
 @import '~hds-design-tokens/lib/color/all'; // Notice, SCSS format
+$color-black-60: #595959; // This color was discussed with HDS and Hel.fi Brand team. We're finetuning it to be a bit more darker to get AAA contrast ratio. HDS will update this probably at 4.0.0 release.
 
+// HDBT color variables
 $hdbt-color-black: var(--hdbt-color-black);
 $hdbt-color-white: #ffffff;
 $body-bg-color: $color-white;

@@ -171,7 +171,7 @@ const FormContainer = () => {
             variant='primary'
             theme='black'
           >
-            {Drupal.t('Search', {}, { context: 'District and project search' })}
+            {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
           </Button>
         </div>
         <SelectionsContainer />

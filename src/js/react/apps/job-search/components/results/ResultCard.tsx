@@ -24,7 +24,7 @@ const getResultCard = ({
   const cardTitle = (
     <>
       <span {...langAttribute}>{heading}</span>
-      {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs')})`}</span>}
+      {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs', {}, {context: 'Job search'})})`}</span>}
     </>
   );
 
@@ -67,9 +67,9 @@ const getResultCard = ({
       cardTitle={cardTitle}
       cardUrl={url?.[0]}
       date={getDate()}
-      dateLabel={Drupal.t('Application period ends')}
+      dateLabel={Drupal.t('Application period ends', {}, {context: 'Job search'})}
       daterange={field_job_duration?.[0].toString()}
-      dateRangeLabel={Drupal.t('Employment contract')}
+      dateRangeLabel={Drupal.t('Employment contract', {}, {context: 'Job search'})}
       langAttribute={langAttribute}
     />
   );

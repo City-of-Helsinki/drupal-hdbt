@@ -15,6 +15,10 @@ declare namespace drupalSettings {
         field_free_events: boolean,
         field_remote_events: boolean,
         field_event_count: string,
+        field_filter_keywords: {
+          id: string,
+          name: string,
+        }[],
         places: {
           [key:string]: {
             id: string,

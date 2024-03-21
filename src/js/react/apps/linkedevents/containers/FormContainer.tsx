@@ -16,6 +16,7 @@ import {
   formErrorsAtom,
   updateUrlAtom,
 } from '../store';
+import TopicsFilter from '../components/TopicsFilter';
 
 
 function FormContainer() {
@@ -24,7 +25,13 @@ function FormContainer() {
   const errors = useAtomValue(formErrorsAtom);
   const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
-  const { showLocation, showFreeFilter, showRemoteFilter, showTimeFilter } = filterSettings;
+  const {
+    showLocation,
+    showFreeFilter,
+    showRemoteFilter,
+    showTimeFilter,
+    showTopicsFilter,
+  } = filterSettings;
 
   const onSubmit = () => {
     updateUrl();
@@ -32,17 +39,18 @@ function FormContainer() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(); return false;
+    onSubmit();
+    return false;
   };
 
   const bothCheckboxes = showFreeFilter && showRemoteFilter;
-  const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Event search: event type prefix' });
-  const freeTranslation = Drupal.t('Free-of-charge events');
-  const remoteTranslation = Drupal.t('Remote events');
+  const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Events search: event type prefix' });
+  const freeTranslation = Drupal.t('Free-of-charge events', {}, { context: 'Events search' });
+  const remoteTranslation = Drupal.t('Remote events', {}, { context: 'Events search' });
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
-  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter;
+  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter || showTopicsFilter;
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
   if (!showForm) {
@@ -51,17 +59,20 @@ function FormContainer() {
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
-      <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Event search: search form title' })}</HeadingTag>
+      <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>
+          {
+            showTopicsFilter &&
+            <TopicsFilter />
+          }
           {
             showLocation &&
               <LocationFilter />
           }
           {
             showTimeFilter &&
-              <DateSelect
-              />
+              <DateSelect />
           }
         </div>
         {

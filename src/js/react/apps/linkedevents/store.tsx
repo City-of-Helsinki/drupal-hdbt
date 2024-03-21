@@ -7,6 +7,7 @@ import Location from './types/Location';
 import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
+import Topic from './types/Topic';
 
 interface Options {
   [key: string]: string
@@ -54,9 +55,14 @@ const createBaseAtom = () => {
     showTimeFilter: settings?.field_event_time,
     showFreeFilter: settings?.field_free_events,
     showRemoteFilter: settings?.field_remote_events,
+    showTopicsFilter: settings?.field_filter_keywords.length > 0,
     eventCount: Number(settings?.field_event_count)
   };
   const locations = transformLocations(settings?.places);
+  const topics: Topic[] = settings?.field_filter_keywords.map(topic => ({
+    value: topic.id,
+    label: topic.name.charAt(0).toUpperCase() + topic.name.slice(1),
+  }));
 
   let baseUrl;
   let initialParams;
@@ -76,6 +82,7 @@ const createBaseAtom = () => {
     initialUrl: eventsApiUrl,
     initialParams,
     locations,
+    topics,
     eventListTitle,
     eventsPublicUrl,
   };
@@ -101,6 +108,10 @@ export const locationAtom = atom(
   (get) => get(baseAtom)?.locations
 );
 
+export const topicsAtom = atom(
+  (get) => get(baseAtom)?.topics
+);
+
 export const titleAtom = atom(
   (get) => get(baseAtom)?.eventListTitle
 );
@@ -115,6 +126,8 @@ export const settingsAtom = atom(
     showLocation: false,
     showRemoteFilter: false,
     showTimeFilter: false,
+    showTopicsFilter: false,
+    topics: [],
     eventCount: 3
   }
 );
@@ -126,6 +139,8 @@ export const urlAtom = atom<string|undefined>(undefined);
 export const paramsAtom = atom(new URLSearchParams());
 
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+
+export const topicSelectionAtom = atom<Topic[]>([]);
 
 export const startDateAtom = atom<DateTime|undefined>(undefined);
 
@@ -146,6 +161,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   const initialParams = get(initialParamsAtom);
 
   set(locationSelectionAtom, []);
+  set(topicSelectionAtom, []);
   set(startDateAtom, undefined);
   set(endDateAtom, undefined);
   set(endDisabledAtom, false);

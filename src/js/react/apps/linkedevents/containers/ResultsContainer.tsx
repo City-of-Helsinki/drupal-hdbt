@@ -56,7 +56,7 @@ function ResultsContainer({ countNumber, events, loading, error }: ResultsContai
           <ResultsHeader
             resultText={
               <>
-                { Drupal.formatPlural(count, '1 event', '@count events',{},{context: 'Event search: result count'}) }
+                { Drupal.formatPlural(count, '1 event', '@count events',{},{context: 'Events search: result count'}) }
               </>
             }
             ref={scrollTarget}

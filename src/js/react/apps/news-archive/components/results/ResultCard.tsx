@@ -59,7 +59,7 @@ const ResultCard = ({
       cardModifierClass='news-listing__item'
       cardUrl={url.toString()}
       date={getDate()}
-      dateLabel={Drupal.t('Published')}
+      dateLabel={Drupal.t('Published', {}, { context: 'News search' })}
     />
   );
 };

@@ -106,7 +106,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           {prevPages.map((pageIndex, i) => (
             <li className='pager__item' key={i}>
               <a
-                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex })}
+                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager'})}
                 href={`?page=${pageIndex}`}
                 className='hds-pagination__item-link'
                 onClick={(e) => updatePage(e, pageIndex)}
@@ -127,7 +127,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           {nextPages.map((pageIndex, i) => (
             <li className='pager__item' key={i}>
               <a
-                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex })}
+                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager'})}
                 href={`?page=${pageIndex}`}
                 className='hds-pagination__item-link'
                 onClick={(e) => updatePage(e, pageIndex)}
