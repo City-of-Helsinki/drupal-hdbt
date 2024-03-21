@@ -58,7 +58,7 @@
   }
 }
 .service-channel__address,
-.service-channel__email,
+.service-channel__link--email,
 .service-channel__phone {
   margin-top: $spacing-and-half;
 }
@@ -78,7 +78,7 @@
 }
 
 .service-channel--no-title {
-  .service-channel__email,
+  .service-channel__link--email,
   .service-channel__phone {
     margin-top: 0;
   }
