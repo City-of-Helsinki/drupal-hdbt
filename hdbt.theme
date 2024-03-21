@@ -13,7 +13,6 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_react_search\LinkedEvents;
-use Drupal\helfi_tpr\Entity\Channel;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\helfi_tpr\Entity\Service;
 use Drupal\helfi_tpr\Entity\TprEntityBase;
