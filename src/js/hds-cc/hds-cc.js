@@ -193,6 +193,15 @@ class HdsCc {
 
       const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
 
+      const cookieNames = [];
+      cookieSettingsGroups.forEach(cookie => {
+        if (cookieNames.includes(cookie.commonGroup)) {
+          // The cookie settings must not contain cookie groups that have identical names
+          throw new Error('Cookie consent error: group name collision');
+        }
+        cookieNames.push(cookie.commonGroup);
+      });
+
       // eslint-disable-next-line no-restricted-syntax
       for (const group of cookieSettingsGroups) {
         // eslint-disable-next-line no-await-in-loop
