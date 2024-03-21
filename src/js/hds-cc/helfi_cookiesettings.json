@@ -1,6 +1,6 @@
 {
   "siteName": "Hel.fi",
-  "cookieName": "city-of-helsinki-cookie-consents",
+  "cookieName": "helfi-cookie-consents",
   "requiredCookies": {
     "groups": [
       {
@@ -17,7 +17,6 @@
         },
         "cookies": [
           {
-            "id": "cookiehub_v1",
             "name": "cookiehub",
             "host": "Cookiehub",
             "description": {
@@ -37,8 +36,7 @@
             }
           },
           {
-            "id": "city-of-helsinki-cookie-consents_v1",
-            "name": "city-of-helsinki-cookie-consents",
+            "name": "helfi-cookie-consents",
             "host": "hel.fi",
             "description": {
               "fi": "Sivusto käyttää tätä evästettä tietojen tallentamiseen siitä, ovatko kävijät antaneet hyväksyntänsä tai kieltäytyneet evästeiden käytöstä.",
@@ -57,7 +55,6 @@
             }
           },
           {
-            "id": "city-of-helsinki-cookie-agreed-groups_v1",
             "name": "city-of-helsinki-cookie-agreed-groups",
             "host": "hel.fi",
             "description": {
@@ -77,7 +74,6 @@
             }
           },
           {
-            "id": "SSESS*_v1",
             "name": "SSESS*",
             "host": "hel.fi",
             "description": {
@@ -97,7 +93,6 @@
             }
           },
           {
-            "id": "AWSELBCORS_v1",
             "name": "AWSELBCORS",
             "host": "siteimproveanalytics.io",
             "description": {
@@ -117,7 +112,6 @@
             }
           },
           {
-            "id": "mtm_cookie_consent_v1",
             "name": "mtm_cookie_consent",
             "host": "kartta.hel.fi",
             "description": {
@@ -137,7 +131,6 @@
             }
           },
           {
-            "id": "JSESSIONID_v1",
             "name": "JSESSIONID",
             "host": "helsinkikanava.fi, coh-chat-app-prod.eu-de.mybluemix.net",
             "description": {
@@ -157,7 +150,6 @@
             }
           },
           {
-            "id": "COOKIE_SUPPORT_v1",
             "name": "COOKIE_SUPPORT",
             "host": "helsinkikanava.fi",
             "description": {
@@ -177,7 +169,6 @@
             }
           },
           {
-            "id": "GUEST_LANGUAGE_ID_v1",
             "name": "GUEST_LANGUAGE_ID",
             "host": "helsinkikanava.fi",
             "description": {
@@ -216,7 +207,6 @@
         },
         "cookies": [
           {
-            "id": "httpskartta.hel.fi.SWCulture_v1",
             "name": "httpskartta.hel.fi.SWCulture",
             "host": "kartta.hel.fi",
             "description": {
@@ -236,7 +226,6 @@
             }
           },
           {
-            "id": "icareus-device_v1",
             "name": "icareus-device",
             "host": "helsinkikanava.fi",
             "description": {
@@ -256,7 +245,6 @@
             }
           },
           {
-            "id": "VISITOR_INFO1_LIVE_v1",
             "name": "VISITOR_INFO1_LIVE",
             "host": "youtube.com",
             "description": {
@@ -276,7 +264,6 @@
             }
           },
           {
-            "id": "CONSENT_v1",
             "name": "CONSENT",
             "host": "youtube.com",
             "description": {
@@ -311,7 +298,6 @@
         },
         "cookies": [
           {
-            "id": "nmstat_v1",
             "name": "nmstat",
             "host": "hel.fi",
             "description": {
@@ -331,7 +317,6 @@
             }
           },
           {
-            "id": "_pk_id.*_v1",
             "name": "_pk_id.*",
             "host": "hel.fi",
             "description": {
@@ -351,7 +336,6 @@
             }
           },
           {
-            "id": "_pk_ses.141.89f6_v1",
             "name": "_pk_ses.141.89f6",
             "host": "hel.fi",
             "description": {
@@ -371,7 +355,6 @@
             }
           },
           {
-            "id": "_pk_id.*_v1",
             "name": "_pk_id.*",
             "host": "kartta.hel.fi",
             "description": {
@@ -391,7 +374,6 @@
             }
           },
           {
-            "id": "_pk_ses.*_v1",
             "name": "_pk_ses.*",
             "host": "kartta.hel.fi",
             "description": {
@@ -411,7 +393,6 @@
             }
           },
           {
-            "id": "_pk_id.*_v1",
             "name": "_pk_id.*",
             "host": "palvelukartta.hel.fi",
             "description": {
@@ -431,7 +412,6 @@
             }
           },
           {
-            "id": "_pk_ses.*_v1",
             "name": "_pk_ses.*",
             "host": "palvelukartta.hel.fi",
             "description": {
@@ -451,7 +431,6 @@
             }
           },
           {
-            "id": "rnsbid_v1",
             "name": "rnsbid",
             "host": "reactandshare.com",
             "description": {
@@ -471,7 +450,6 @@
             }
           },
           {
-            "id": "rnsbid_ts_v1",
             "name": "rnsbid_ts",
             "host": "reactandshare.com",
             "description": {
@@ -491,7 +469,6 @@
             }
           },
           {
-            "id": "rns_reaction_*_v1",
             "name": "rns_reaction_*",
             "host": "reactandshare.com",
             "description": {
@@ -511,7 +488,6 @@
             }
           },
           {
-            "id": "YSC_v1",
             "name": "YSC",
             "host": "youtube.com",
             "description": {
@@ -531,7 +507,6 @@
             }
           },
           {
-            "id": "null_active_survey_v1",
             "name": "null_active_survey",
             "host": "Norstat",
             "description": {
@@ -551,7 +526,6 @@
             }
           },
           {
-            "id": "null_page_view_count_v1",
             "name": "null_page_view_count",
             "host": "Norstat",
             "description": {
@@ -571,7 +545,6 @@
             }
           },
           {
-            "id": "null_active_scenario_v1",
             "name": "null_active_scenario",
             "host": "Norstat",
             "description": {
@@ -591,7 +564,6 @@
             }
           },
           {
-            "id": "wsLanguage_p933511862344_v1",
             "name": "wsLanguage_p933511862344",
             "host": "Norstat",
             "description": {
@@ -611,7 +583,6 @@
             }
           },
           {
-            "id": "p933511862344_status_v1",
             "name": "p933511862344_status",
             "host": "Norstat",
             "description": {
@@ -631,7 +602,6 @@
             }
           },
           {
-            "id": "p933511862344_complete_date_v1",
             "name": "p933511862344_complete_date",
             "host": "Norstat",
             "description": {
@@ -666,7 +636,6 @@
         },
         "cookies": [
           {
-            "id": "_genesys.widgets.*_v1",
             "name": "_genesys.widgets.*",
             "host": "hel.fi",
             "description": {
@@ -686,7 +655,6 @@
             }
           },
           {
-            "id": "leijuke.*_v1",
             "name": "leijuke.*",
             "host": "hel.fi",
             "description": {
