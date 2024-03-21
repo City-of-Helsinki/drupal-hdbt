@@ -28,14 +28,8 @@
   {% endif %}
 
 
-  {% if service_channel_email_link and content.email|render %}
-    {% set link_attributes = {
-      'class': [
-        'service-channel__link',
-        'service-channel__link--email',
-      ],
-    } %}
-    <div class="service-channel__email">{{ link(content.email, service_channel_email_link, link_attributes) }}</div>
+  {% if content.email|render %}
+    <div class="service-channel__link service-channel__link--email">{{ content.email }}</div>
   {% endif %}
 
   {% if content.call_charge_info|render %}

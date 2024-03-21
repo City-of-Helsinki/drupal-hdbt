@@ -1526,22 +1526,6 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_tpr_service_channel(&$variables): void {
-  if (!isset($variables['entity']) || !$variables['entity'] instanceof Channel) {
-    return;
-  }
-  $entity = $variables['entity'];
-
-  // @todo UHF-8908 Remove this
-  // (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8908)
-  if (!$entity->email->isEmpty()) {
-    $variables['service_channel_email_link'] = Url::fromUri('mailto:' . $entity->email->value);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_maintenance_page(&$variables): void {
   // This same preprocess needs to be done separately for maintenance page.
   // We check what language is set and provide links to homepage and feedback
