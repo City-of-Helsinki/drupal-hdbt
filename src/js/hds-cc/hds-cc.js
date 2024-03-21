@@ -337,7 +337,7 @@ class HdsCc {
     return tableRows;
   }
 
-  getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName) {
+  getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName, acceptedGroups) {
     let groupsHtml = '';
     let groupNumber = 0;
     cookieGroupList.forEach(cookieGroup => {
@@ -345,7 +345,8 @@ class HdsCc {
       const description = this.translate(cookieGroup.description, lang);
       const groupId = cookieGroup.commonGroup;
       const tableRowsHtml = this.buildTableRows(cookieGroup.cookies, lang);
-      groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired);
+      const isAccepted = acceptedGroups.includes(cookieGroup.commonGroup);
+      groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired, isAccepted);
       groupNumber += 1;
     });
     return groupsHtml;
@@ -425,9 +426,19 @@ class HdsCc {
       translations[key] = getTranslation(key, lang, cookieSettings);
     });
 
+    let browserCookie = false;
+    let listOfAcceptedGroups = [];
+    try {
+      // Check which cookies are accepted at this point to check boxes on form render.
+      browserCookie = await this.readCookie();
+      listOfAcceptedGroups = [...Object.keys(browserCookie.groups)];
+    } catch (err) {
+      // There was no cookie, the list stays empty.
+    }
+
     let groupsHtml = '';
-    groupsHtml += this.getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required');
-    groupsHtml += this.getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional');
+    groupsHtml += this.getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required', listOfAcceptedGroups);
+    groupsHtml += this.getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional', listOfAcceptedGroups);
 
     // Create banner HTML
     shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
