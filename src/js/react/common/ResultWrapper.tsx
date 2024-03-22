@@ -7,14 +7,9 @@ type ResultWrapperProps = {
   loading: boolean;
 };
 
-const insertClass = (className: string | undefined) => {
-  if (!className) return '';
-  return ` ${className}`;
-};
-
 const ResultWrapper = ({ className, children, loading }: ResultWrapperProps) => (
     <div
-      className={`hdbt__loading-wrapper${insertClass(className)}`}
+      className={`hdbt__loading-wrapper${className ? ` ${className}` : ''}`}
     >
       {loading && <LoadingOverlay />}
       {children}
