@@ -9,9 +9,7 @@ type ResultWrapperProps = {
 
 const ResultWrapper = ({ className, children, loading }: ResultWrapperProps) => (
     <div
-      aria-live='polite'
-      className={`hdbt__loading-wrapper ${className}`}
-      role='region'
+      className={`hdbt__loading-wrapper${className ? ` ${className}` : ''}`}
     >
       {loading && <LoadingOverlay />}
       {children}
