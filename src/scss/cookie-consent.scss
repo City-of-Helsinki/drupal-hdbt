@@ -41,7 +41,6 @@
   $dark: true
 );
 
-/* stylelint-disable order/properties-alphabetical-order */
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
@@ -175,7 +174,7 @@ $base-font-size: 16px;
   --color-black-60: #666666;
   // --color-black-70: #4d4d4d;
   // --color-black-80: #333333;
-  // --color-black-90: #1a1a1a;
+  --color-black-90: #1a1a1a;
   // --color-error: #b01038;
   // --color-error-light: #f6e2e6;
   // --color-error-dark: #8d0d2d;
@@ -219,7 +218,7 @@ $base-font-size: 16px;
   // --fontsize-heading-xs: 1.125rem;
   // --fontsize-heading-xxs: 1rem;
   // --fontsize-body-s: 0.875rem;
-  // --fontsize-body-m: 1rem;
+  --fontsize-body-m: 1rem;
   // --fontsize-body-l: 1.125rem;
   // --fontsize-body-xl: 1.25rem;
   --font-default: HelsinkiGrotesk, Arial, sans-serif;
@@ -362,7 +361,11 @@ html {
   --common-spacing: var(--spacing-s);
   --focus-outline-color: var(--color-coat-of-arms);
   --outline-width: 3px;
+  // all: initial;
   bottom: 0;
+  color: var(--color-black-90);
+  font-family: var(--font-default);
+  font-size: var(--fontsize-body-m);
   left: 0;
   overscroll-behavior: contain;
   position: fixed;
@@ -397,39 +400,15 @@ html {
   @include visually-hidden;
 }
 
-.hds-cc__main-content {
-  // display: grid;
-  // grid-template-columns: 1fr;
-  // grid-template-rows: 1fr auto auto;
-  // grid-template-areas: 'heading'
-  //                     'description description';
-
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-areas: 'heading readmore'
-                        'description description';
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
-  }
-}
-
 .hds-cc__heading {
   font-size: remify(32px);
   font-weight: 400;
-  grid-area: heading;
   line-height: 1; // 32px
   margin: 0;
-  /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
-  // transition: font-size linear var(--autoheight-open-time), line-height linear var(--autoheight-open-time);
 
   &:focus{
     outline: var(--outline-width, 3px) solid var(--focus-outline-color, #000000);
     outline-offset: var(--outline-gutter, 2px);
-  }
-
-  .hds-cc--minimized:not(:focus-within) & {
-    font-size: remify(20px);
-    line-height: 1.6; // 32px
   }
 }
 
@@ -439,18 +418,11 @@ html {
 }
 
 .hds-cc__description {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  grid-area: description;
   line-height: 1.5; // 24px
   margin-bottom: var(--spacing-layout-2-xs);
-
-  .hds-cc--minimized:not(:focus-within) & {
-    @include visually-hidden;
-  }
 }
-
-@include animateheight( '.hds-cc__description', '.hds-cc--minimized:not(:focus-within) .hds-cc__description', '.hds-cc__description__animator', false );
 
 // .hds-cc__accordion-button {
 //   background: transparent;
@@ -491,29 +463,10 @@ html {
   font-size: 1rem;
   grid-area: readmore;
   line-height: 2; // 32px
-
-  .hds-cc--minimized:not(:focus-within) & {
-    display: inline-block;
-  }
 }
-
-.hds-cc__accordion-button--details {
-  .hds-cc--minimized:not(:focus-within) & {
-    @include visually-hidden;
-    margin-top: -100%; // Battles a weird scrolling bug in chrome
-  }
-}
-
-// // Animate form open / close
-// @include animateheight(
-//   '.hds-cc__form, .hds-cc__buttons',
-//   ':not([aria-expanded='true']) + .hds-cc__form, .hds-cc--minimized:not(:focus-within) .hds-cc__form, .hds-cc--minimized:not(:focus-within) .hds-cc__buttons',
-//   '.hds-cc__form__animator, .hds-cc__buttons__animator'
-// );
 
 // Animate form open / close
 @include animateheight( '.hds-cc__form', ':not([aria-expanded='true']) + .hds-cc__form', '.hds-cc__form__animator' );
-@include animateheight( '.hds-cc__form', '.hds-cc--minimized:not(:focus-within) .hds-cc__form', '.hds-cc__form__animator' );
 
 .hds-cc__groups{
   padding-bottom: var(--spacing-layout-xs);
@@ -535,9 +488,6 @@ html {
   margin-block: 5px;
 }
 
-// Animate buttons open / close
-@include animateheight( '.hds-cc__buttons', '.hds-cc--minimized:not(:focus-within) .hds-cc__buttons', '.hds-cc__buttons__animator', false );
-
 :not([aria-expanded='true']) > .hds-cc__accordion-button-hide,
 [aria-expanded='true'] > .hds-cc__accordion-button-show,
 [aria-controls='hds-cc-form'][aria-expanded='true'] ~ .hds-cc__buttons .hds-cc__all-cookies-button,
@@ -551,14 +501,9 @@ html {
 }
 
 .hds-cc__buttons {
-  margin: -5px;
-}
-
-.hds-cc__buttons__container {
   column-gap: 32px;
   display: flex;
   flex-direction: column;
-  padding: 5px;
   row-gap: 16px;
 
   @media (min-width: 768px) {

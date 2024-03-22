@@ -1,24 +1,15 @@
 export function getCookieBannerHtml(translations, groupsHtml) {
   return `
-<div id="hds-cc" class="hds-cc hds-cc--minimized" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
+<div id="hds-cc" class="hds-cc" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
   <div class="hds-cc__container">
     <div class="hds-cc__aligner">
 
-      <div class="hds-cc__main-content">
-        <h2 class="hds-cc__heading">
-          ${translations.heading}
-        </h2>
-        <div class="hds-cc__description">
-          <p class="hds-cc__description__animator">
-            ${translations.description}
-          </p>
-        </div>
-
-        <span
-          class="hds-cc__accordion-button hds-cc__accordion-button--read-more"
-          aria-hidden="true"
-          >${translations.readMore}</span>
-      </div>
+      <h2 class="hds-cc__heading">
+        ${translations.heading}
+      </h2>
+      <p class="hds-cc__description">
+        ${translations.description}
+      </p>
 
       <button
         type="button"
@@ -43,19 +34,15 @@ export function getCookieBannerHtml(translations, groupsHtml) {
         </div>
       </form>
       <div class="hds-cc__buttons">
-        <div class="hds-cc__buttons__animator">
-          <div class="hds-cc__buttons__container">
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button" data-approved="all">
-              <span class="hds-button__label">${translations.approveAllConsents}</span>
-            </button>
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
-              <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
-            </button>
-            <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button" data-approved="required">
-              <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>
-            </button>
-          </div>
-        </div>
+        <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button" data-approved="all">
+          <span class="hds-button__label">${translations.approveAllConsents}</span>
+        </button>
+        <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
+          <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
+        </button>
+        <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button" data-approved="required">
+          <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>
+        </button>
       </div>
     </div>
   </div>
