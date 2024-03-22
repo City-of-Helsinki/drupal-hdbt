@@ -7,8 +7,8 @@ import configurationsAtom from '../store';
 import getQueryString from '../helpers/ProximityQuery';
 import AppSettings from '../enum/AppSettings';
 
-type Unit = {
-  id?: number
+type Result = {
+  units?: number[]
 };
 
 const UseProximityQuery = (params: SearchParams) => {
@@ -45,7 +45,7 @@ const UseProximityQuery = (params: SearchParams) => {
         return null;
       }
 
-      ids = locationsData.results.map((result: { unit: Unit }) => result.unit.id);
+      ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
     return fetch(`${baseUrl}/${index}/_search`, {
