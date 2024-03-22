@@ -16,11 +16,6 @@ const translations = {
     sv: 'Denna webbplats använder obligatoriska kakor för att säkerställa de grundläggande funktionerna och prestandan. Dessutom använder vi inriktningskakor för bättre användarupplevelse, analytik och individualiserat innehåll.',
     en: 'This website uses required cookies to ensure the basic functionality and performance. In addition, we use targeting cookies to improve the user experience, perform analytics and display personalised content.',
   },
-  readMore: {
-    fi: 'Lue lisää',
-    sv: 'Läs mer',
-    en: 'Read more',
-  },
   showDetails: {
     fi: 'Näytä yksityiskohdat',
     sv: 'Visa detaljer',

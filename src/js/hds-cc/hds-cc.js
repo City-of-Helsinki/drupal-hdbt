@@ -421,6 +421,7 @@ class HdsCc {
 
     const bannerContainer = document.createElement('div');
     bannerContainer.classList.add('hds-cc__target');
+    bannerContainer.style.all = 'initial';
     bannerTarget.prepend(bannerContainer);
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
 
