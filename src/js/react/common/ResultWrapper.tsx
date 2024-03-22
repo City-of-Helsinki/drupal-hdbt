@@ -9,7 +9,7 @@ type ResultWrapperProps = {
 
 const ResultWrapper = ({ className, children, loading }: ResultWrapperProps) => (
     <div
-      className={`hdbt__loading-wrapper ${className}`}
+      className={`hdbt__loading-wrapper ${className || ''}`}
     >
       {loading && <LoadingOverlay />}
       {children}
