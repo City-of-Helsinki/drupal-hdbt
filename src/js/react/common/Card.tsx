@@ -154,7 +154,7 @@ function CardItem({
           }
         </div>
 
-        {cardTags &&
+        {cardTags && cardTags.length > 0 &&
           <div className="card__tags">
             <Tags tags={cardTags} langAttribute={langAttribute} />
           </div>
