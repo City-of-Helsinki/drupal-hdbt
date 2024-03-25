@@ -8,8 +8,8 @@ import {
 } from 'cookie/index';
 import {
   getCookieBannerHtml,
-   getGroupHtml,
-   getTableRowHtml,
+  getGroupHtml,
+  getTableRowHtml,
 } from './template';
 import {
   getTranslation,
@@ -347,7 +347,7 @@ class HdsCc {
           host: this.translate(cookie.host, lang),
           description: this.translate(cookie.description, lang),
           expiration: this.translate(cookie.expiration, lang),
-          type: this.translate(cookie.type, lang),
+          type: getTranslation(`type_${cookie.type}`, lang),
         }
       );
     });

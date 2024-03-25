@@ -91,6 +91,21 @@ const translations = {
   //   sv: 'Inställningar sparade!',
   //   en: 'Settings saved!',
   // },
+  type_1: {
+    fi: 'Eväste',
+    sv: 'Kakan',
+    en: 'Cookie',
+  },
+  type_2: {
+    fi: 'Paikallinen tallennustila (localStorage)',
+    sv: 'Lokalt lagring (localStorage)',
+    en: 'Local storage (localStorage)',
+  },
+  type_3: {
+    fi: 'Istuntokohtainen tallennustila (sessionStorage)',
+    sv: 'Sessionsspecifik lagring (sessionStorage)',
+    en: 'Session-specific storage (sessionStorage)',
+  },
 };
 
 export function getTranslation(key, lang, parameters) {
