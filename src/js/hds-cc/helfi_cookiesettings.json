@@ -4,7 +4,7 @@
   "requiredCookies": {
     "groups": [
       {
-        "commonGroup": "essential",
+        "groupId": "essential",
         "title": {
           "fi": "Välttämättömät toiminnalliset evästeet",
           "sv": "Nödvändiga funktionella cookies",
@@ -194,7 +194,7 @@
   "optionalCookies": {
     "groups": [
       {
-        "commonGroup": "preferences",
+        "groupId": "preferences",
         "title": {
           "fi": "Personointi",
           "sv": "Preferens",
@@ -285,7 +285,7 @@
         ]
       },
       {
-        "commonGroup": "statistics",
+        "groupId": "statistics",
         "title": {
           "fi": "Tilastointi",
           "sv": "Statistik",
@@ -623,7 +623,7 @@
         ]
       },
       {
-        "commonGroup": "chat",
+        "groupId": "chat",
         "title": {
           "fi": "Toiminnalliset chat-evästeet",
           "sv": "Funktionella chattkakor",
