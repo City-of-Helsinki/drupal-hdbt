@@ -17,21 +17,6 @@
         },
         "cookies": [
           {
-            "name": "cookiehub",
-            "host": "Cookiehub",
-            "description": {
-              "fi": "Mahdollistaa evästehallinnan hel.fi sivuilla.",
-              "sv": "Cookie möjliggör hantering av cookies på hel.fi webbplatsen.",
-              "en": "Used by CookieHub to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
-            },
-            "expiration": {
-              "fi": "365 päivää",
-              "sv": "365 dagar",
-              "en": "365 days"
-            },
-            "type": 1
-          },
-          {
             "name": "helfi-cookie-consents",
             "host": "hel.fi",
             "description": {
@@ -43,6 +28,21 @@
               "fi": "100 päivää",
               "sv": "100 dagar",
               "en": "100 days"
+            },
+            "type": 1
+          },
+          {
+            "name": "cookiehub",
+            "host": "Cookiehub",
+            "description": {
+              "fi": "Mahdollistaa evästehallinnan hel.fi sivuilla.",
+              "sv": "Cookie möjliggör hantering av cookies på hel.fi webbplatsen.",
+              "en": "Used by CookieHub to store information about whether visitors have given or declined the use of cookie categories used on the hel.fi site."
+            },
+            "expiration": {
+              "fi": "365 päivää",
+              "sv": "365 dagar",
+              "en": "365 days"
             },
             "type": 1
           },
