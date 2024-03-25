@@ -29,11 +29,7 @@
               "sv": "365 dagar",
               "en": "365 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "helfi-cookie-consents",
@@ -48,30 +44,7 @@
               "sv": "100 dagar",
               "en": "100 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
-          },
-          {
-            "name": "city-of-helsinki-cookie-agreed-groups",
-            "host": "hel.fi",
-            "description": {
-              "fi": "Tähän evästeeseen on tallennettu käyttäjän hyväksymät evästekategoriat.",
-              "sv": "Används för att lagra information om vilka cookie -kategorier användaren har godkänt.",
-              "en": "Used by hel.fi Drupal to store information about what cookie categories the user has agreed to."
-            },
-            "expiration": {
-              "fi": "100 päivää",
-              "sv": "100 dagar",
-              "en": "100 days"
-            },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "SSESS*",
@@ -86,11 +59,7 @@
               "sv": "23 dagar",
               "en": "23 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "AWSELBCORS",
@@ -105,11 +74,7 @@
               "sv": "Session",
               "en": "Session"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "mtm_cookie_consent",
@@ -124,11 +89,7 @@
               "sv": "10950 dagar",
               "en": "10950 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "JSESSIONID",
@@ -143,11 +104,7 @@
               "sv": "Session",
               "en": "Session"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "COOKIE_SUPPORT",
@@ -162,11 +119,7 @@
               "sv": "365 dagar",
               "en": "365 days"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "GUEST_LANGUAGE_ID",
@@ -181,11 +134,7 @@
               "sv": "365 dagar",
               "en": "365 days"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           }
         ]
       }
@@ -219,11 +168,7 @@
               "sv": "1826 dagar",
               "en": "1826 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "icareus-device",
@@ -238,11 +183,7 @@
               "sv": "365 dagar",
               "en": "365 days"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "VISITOR_INFO1_LIVE",
@@ -257,11 +198,7 @@
               "sv": "180 dagar",
               "en": "180 days"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "CONSENT",
@@ -276,11 +213,7 @@
               "sv": "5947 dagar, 15 timmar",
               "en": "5947 days, 15 hours"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           }
         ]
       },
@@ -310,11 +243,7 @@
               "sv": "1000 dagar",
               "en": "1000 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_id.*",
@@ -329,11 +258,7 @@
               "sv": "393 dagar",
               "en": "393 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_ses.141.89f6",
@@ -348,11 +273,7 @@
               "sv": "1 timme",
               "en": "1 hour"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_id.*",
@@ -367,11 +288,7 @@
               "sv": "393 dagar",
               "en": "393 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_ses.*",
@@ -386,11 +303,7 @@
               "sv": "1 timme",
               "en": "1 hour"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_id.*",
@@ -405,11 +318,7 @@
               "sv": "393 dagar",
               "en": "393 days"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "_pk_ses.*",
@@ -424,11 +333,7 @@
               "sv": "1 timme",
               "en": "1 hour"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "rnsbid",
@@ -443,11 +348,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "rnsbid_ts",
@@ -462,11 +363,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "rns_reaction_*",
@@ -481,11 +378,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "YSC",
@@ -500,11 +393,7 @@
               "sv": "Session",
               "en": "Session"
             },
-            "type": {
-              "fi": "Kolmas osapuoli",
-              "sv": "Tredje part",
-              "en": "Third party"
-            }
+            "type": 1
           },
           {
             "name": "null_active_survey",
@@ -519,11 +408,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "null_page_view_count",
@@ -538,11 +423,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "null_active_scenario",
@@ -557,11 +438,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "wsLanguage_p933511862344",
@@ -576,11 +453,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "p933511862344_status",
@@ -595,11 +468,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           },
           {
             "name": "p933511862344_complete_date",
@@ -614,11 +483,7 @@
               "sv": "-",
               "en": "-"
             },
-            "type": {
-              "fi": "Paikallinen muisti",
-              "sv": "Lokalt minne",
-              "en": "Local storage"
-            }
+            "type": 2
           }
         ]
       },
@@ -648,11 +513,7 @@
               "sv": "Session",
               "en": "Session"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           },
           {
             "name": "leijuke.*",
@@ -667,11 +528,7 @@
               "sv": "Session",
               "en": "Session"
             },
-            "type": {
-              "fi": "",
-              "sv": "",
-              "en": ""
-            }
+            "type": 1
           }
         ]
       }
