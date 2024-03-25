@@ -18,9 +18,10 @@ import {
 
 class HdsCc {
   constructor() {
-    this.COOKIE_NAME = '';
+    this.COOKIE_NAME = 'city-of-helsinki-cookie-consents'; // Overridable default value
     this.COOKIE_DAYS = 100;
     this.UNCHANGED = 'unchanged';
+    this.ESSENTIAL_GROUP_NAME = 'essential';
     document.addEventListener('DOMContentLoaded', () => this.init());
 
     // Debug helper. Open banner and run on console to see the box updated.
@@ -161,34 +162,29 @@ class HdsCc {
       const cookieSettingsChecksum = await this.getChecksum(cookieSettingsRaw);
 
       const cookieSettings = JSON.parse(cookieSettingsRaw);
-      this.COOKIE_NAME = cookieSettings.cookieName;
+      this.COOKIE_NAME = cookieSettings.cookieName || this.COOKIE_NAME; // Optional override for cookie name
 
       // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
       const browserCookie = await this.getCookie();
-      // if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
       if (browserCookie) {
-        try {
-          // This means that browser cookie doesn't have 'showBanner' set true
-          if (!browserCookie.showBanner && (cookieSettingsChecksum === browserCookie.checksum)) {
-            console.log('This means that browser cookie doesn\'t have \'showBanner\' set true', browserCookie.showBanner);
-            return this.UNCHANGED;
-          }
-        } catch (err) {
-          console.log(`Parsing cookie json failed: ${err}`);
+        // Check if settings have not changed and browser cookie has 'showBanner' set to false
+        if (!browserCookie.showBanner && (cookieSettingsChecksum === browserCookie.checksum)) {
+          console.log('Settings were unchanged');
+          return this.UNCHANGED;
         }
       }
 
       cookieSettings.checksum = cookieSettingsChecksum;
 
-      const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.groupId === 'essential');
+      const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.groupId === this.ESSENTIAL_GROUP_NAME);
       if (!essentialGroup) {
-        // The site cookie settings must have required group named 'essential'
-        throw new Error('Cookie consent error: essential group missing');
+        // The site cookie settings must have required group named by ESSENTIAL_GROUP_NAME
+        throw new Error(`Cookie consent error: '${this.ESSENTIAL_GROUP_NAME}' group missing`);
       }
       const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.COOKIE_NAME);
       if (!requiredCookieFound) {
-        // The required group 'essential' must have cookie with name matching the root level 'cookieName'
-        throw new Error('Cookie consent error: cookieName mismatch');
+        // The required "essential" group must have cookie with name matching the root level 'cookieName'
+        throw new Error(`Cookie consent error: Missing cookie entry for '${this.COOKIE_NAME}' in group '${this.ESSENTIAL_GROUP_NAME}'`);
       }
 
       const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
@@ -197,7 +193,7 @@ class HdsCc {
       cookieSettingsGroups.forEach(cookie => {
         if (cookieNames.includes(cookie.groupId)) {
           // The cookie settings must not contain cookie groups that have identical names
-          throw new Error('Cookie consent error: group name collision');
+          throw new Error(`Cookie consent error: Group '${cookie.groupId}' found multiple times in settings.`);
         }
         cookieNames.push(cookie.groupId);
       });
@@ -213,7 +209,7 @@ class HdsCc {
 
     } catch (err) {
       if (err.message.includes('undefined')) {
-        throw new Error('Cookie settings not found');
+        throw new Error(`Cookie settings not found: ${err}`);
       }
 
       throw new Error(err.message);
@@ -238,7 +234,7 @@ class HdsCc {
   handleButtonEvents(selection, formReference, cookieSettings) {
     switch (selection) {
       case 'required': {
-        const acceptedGroups = ['essential'];
+        const acceptedGroups = [this.ESSENTIAL_GROUP_NAME];
         this.saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
@@ -263,19 +259,15 @@ class HdsCc {
    * Go through cookie group object and check if it has
    * property with given key
    */
-  isGroupAccepted(groupName) {
-    let browserCookieState = null;
-    // Check if our cookie exists
-    try {
-      browserCookieState = JSON.parse(parse(document.cookie)[this.COOKIE_NAME]);
-    } catch (err) {
-      // If cookie parsing fails, show banner
-      console.log('group accepted parse failure');
+  isGroupAccepted(groupName, browserCookie = null) {
+    const browserCookieState = browserCookie || this.getCookie();
+
+    // Check if our cookie exists and has groups set
+    if (!browserCookieState || !browserCookieState.groups) {
       return false;
     }
 
-    // If the cookie group is accepted, the cookie group object contains
-    // property with such key
+    // Return true if group is in accepted groups
     return !!browserCookieState.groups[groupName];
   }
 
@@ -286,27 +278,29 @@ class HdsCc {
    *   else show banner
    */
   async checkBannerNeed(cookieSettings) {
-    // Check if cookie has been set to show banner
-    let cookieWantsToShow = false;
-    try {
-      const browserCookieState = await this.getCookie();
-      cookieWantsToShow = browserCookieState.showBanner;
-      if (cookieWantsToShow) {
-        return true;
-      }
-    } catch (err) {
-      // If cookie parsing fails, show banner
-      console.log('Cookie doesn\'t exist');
+    if (cookieSettings !== this.UNCHANGED) {
+      console.log('Cookie settings changed since approval, show banner');
       return true;
     }
-    const essentialsApproved = this.isGroupAccepted('essential');
 
-    const cookieSettingsUnchanged = cookieSettings === this.UNCHANGED;
-    if (cookieSettingsUnchanged && essentialsApproved) {
-      return false;
+    const browserCookieState = await this.getCookie();
+    if (!browserCookieState) {
+      console.log('Cookie doesn\'t exist, show banner');
+      return true;
     }
 
-    return true;
+    if (browserCookieState.showBanner) {
+      console.log('Cookie wants to show banner');
+      return true;
+    }
+
+    if (!this.isGroupAccepted(this.ESSENTIAL_GROUP_NAME, browserCookieState)) {
+      console.log('Cookie settings essentials not yet approved, show banner');
+      return true;
+    }
+
+    console.log('All checks passed, no need for banner');
+    return false;
   }
 
   /**
@@ -435,8 +429,7 @@ class HdsCc {
       style.textContent = cssText;
       shadowRoot.appendChild(style);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to load the CSS file:', error);
+      throw new Error('Failed to load the CSS file:', error);
     }
 
     const translations = {};
@@ -563,12 +556,9 @@ class HdsCc {
     // TODO: consider naming
     // If cookie settings have not changed, do not show banner, otherwise, check
     const showBanner = await this.checkBannerNeed(cookieSettings);
-    console.log('Create shadowroot?', showBanner);
-    if (!showBanner) {
-      // No need for banner, do not create shadowRoot
-      return;
+    if (showBanner) {
+      await this.createShadowRoot(lang, cookieSettings);
     }
-    await this.createShadowRoot(lang, cookieSettings);
   };
 }
 
