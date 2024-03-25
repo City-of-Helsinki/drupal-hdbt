@@ -55,7 +55,7 @@ class HdsCc {
    * Centralized browser cookie reading. Returns false if the cookie
    * with specified name doesn't exist.
    */
-  async readCookie() {
+  async getCookie() {
     let cookie;
     try {
       const cookieString = parse(document.cookie)[this.COOKIE_NAME];
@@ -164,7 +164,7 @@ class HdsCc {
       this.COOKIE_NAME = cookieSettings.cookieName;
 
       // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
-      const browserCookie = await this.readCookie();
+      const browserCookie = await this.getCookie();
       // if (document.cookie && parse(document.cookie) && parse(document.cookie)[COOKIE_NAME]) {
       if (browserCookie) {
         try {
@@ -289,7 +289,7 @@ class HdsCc {
     // Check if cookie has been set to show banner
     let cookieWantsToShow = false;
     try {
-      const browserCookieState = await this.readCookie();
+      const browserCookieState = await this.getCookie();
       cookieWantsToShow = browserCookieState.showBanner;
       if (cookieWantsToShow) {
         return true;
@@ -449,7 +449,7 @@ class HdsCc {
     let listOfAcceptedGroups = [];
     try {
       // Check which cookies are accepted at this point to check boxes on form render.
-      browserCookie = await this.readCookie();
+      browserCookie = await this.getCookie();
       listOfAcceptedGroups = [...Object.keys(browserCookie.groups)];
     } catch (err) {
       // There was no cookie, the list stays empty.
