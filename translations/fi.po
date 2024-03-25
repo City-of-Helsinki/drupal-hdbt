@@ -139,6 +139,9 @@ msgctxt "Cookie compliance"
 msgid "See content on external site"
 msgstr "Siirry ulkoiselle sivustolle"
 
+msgid "Service points"
+msgstr "Palvelupisteet"
+
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Julkaisematon"
@@ -613,8 +616,8 @@ msgstr "Aktiivisuus"
 msgctxt "Hearings count"
 msgid "hearing open for commenting"
 msgid_plural "hearings open for commenting"
-msgstr[0] "kuuleminen avoinna kommentoitavaksi"
-msgstr[1] "kuulemiset avoinna kommentoitavaksi"
+msgstr[0] "kuuleminen avoinna"
+msgstr[1] "kuulemista avoinna"
 
 msgctxt "See all hearings link text"
 msgid "See all hearings"
@@ -1178,3 +1181,35 @@ msgstr "Julkaistu"
 msgctxt "News search"
 msgid "Filter"
 msgstr "Suodata"
+
+msgctxt "Indication that events take place in a certain timeframe"
+msgid "at"
+msgstr "klo"
+
+msgctxt "React search: all available options"
+msgid "All"
+msgstr "Kaikki"
+
+msgctxt "React search: topics filter"
+msgid "Event topic"
+msgstr "Tapahtuman aihe"
+
+msgctxt "React search: topics filter"
+msgid "All topics"
+msgstr "Kaikki aiheet"
+
+msgctxt "React search: remove item aria label"
+msgid "Remove item"
+msgstr "Poista valinta"
+
+msgctxt "React search: clear selections"
+msgid "Clear selections"
+msgstr "Tyhjennä kaikki valinnat"
+
+msgctxt "React search: date selection label"
+msgid "Date"
+msgstr "Ajankohta"
+
+msgctxt "Event search: event type prefix"
+msgid "Show only"
+msgstr "Näytä vain"
