@@ -81,13 +81,6 @@ class HdsCc {
     document.cookie = serialize(this.COOKIE_NAME, JSON.stringify(cookieData), {expires: expiryDate});
   }
 
-  async clearCookie() {
-    console.log('clearCookie');
-    const expiryDate = new Date();
-    expiryDate.setDate(expiryDate.getDate() - this.COOKIE_DAYS);
-    document.cookie = serialize(this.COOKIE_NAME, '', {expires: expiryDate});
-  }
-
   saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
     console.log('Accepting cookies from groups:', acceptedGroupNames);
 
@@ -143,14 +136,10 @@ class HdsCc {
 
     console.log('newCookieGroups', newCookieGroups);
 
-    if (newCookieGroups.length === 0) {
-      console.log('No remaining groups found, erasing cookie');
-      this.clearCookie();
-    } else {
-      // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
-      const showBanner = true;
-      this.saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
-    }
+    // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
+    const showBanner = true;
+    this.saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+
 
     return cookieSettings;
   }
