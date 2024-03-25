@@ -263,11 +263,7 @@
           {
             "name": "_pk_ses.141.89f6",
             "host": "hel.fi",
-            "description": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "description": "-",
             "expiration": {
               "fi": "1 tunti",
               "sv": "1 timme",
@@ -343,11 +339,7 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -358,11 +350,7 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -373,11 +361,7 @@
               "sv": "En post relaterad till driften av reaktionsknappen Askem",
               "en": "A record related to the operation of the Askem react buttons."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -403,11 +387,7 @@
               "sv": "Id för undersökningen som är live.",
               "en": "The id of the survey that is live."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -418,11 +398,7 @@
               "sv": "Hur många Helsingfors stads sidor har du tittat på innan du såg undersökningen.",
               "en": "How many City of Helsinki pages have you viewed before seeing the survey"
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -433,11 +409,7 @@
               "sv": "Mikä kyselymoduulin versio on käytössä.",
               "en": "What version of the survey module is live."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -448,11 +420,7 @@
               "sv": "Kielitunniste, joka kertoo minkä kielinen kysely käyttäjälle näkyy",
               "en": "Language identifier used to select which language of the survey you see."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -463,11 +431,7 @@
               "sv": "Oletko jo vastannut kyselyyn",
               "en": "Have you already completed the survey."
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           },
           {
@@ -478,11 +442,7 @@
               "sv": "Päivämäärä ja aika, jolloin kyselylomake lähetettiin.",
               "en": "Date and time when the survey was submitted"
             },
-            "expiration": {
-              "fi": "-",
-              "sv": "-",
-              "en": "-"
-            },
+            "expiration": "-",
             "type": 2
           }
         ]
