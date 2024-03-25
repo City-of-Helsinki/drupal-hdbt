@@ -93,15 +93,15 @@ class HdsCc {
     const acceptedGroups = {};
     // Required should not come in every case; the category hash might have changed
     cookieSettings.requiredCookies.groups.forEach(group => {
-      if (acceptedGroupNames.includes(group.commonGroup)) {
-        acceptedGroups[group.commonGroup] = group.checksum;
+      if (acceptedGroupNames.includes(group.groupId)) {
+        acceptedGroups[group.groupId] = group.checksum;
       }
     });
 
     // Add accepted group names to acceptedGroups, assume others to be declined (overrides previous selections)
     cookieSettings.optionalCookies.groups.forEach(group => {
-      if (acceptedGroupNames.includes(group.commonGroup)) {
-        acceptedGroups[group.commonGroup] = group.checksum;
+      if (acceptedGroupNames.includes(group.groupId)) {
+        acceptedGroups[group.groupId] = group.checksum;
       }
     });
 
@@ -122,18 +122,18 @@ class HdsCc {
 
       // Loop through groups in cookie settings
       cookieSettingsGroups.forEach(cookieSettingsGroup => {
-        const browserGroupName = cookieSettingsGroup.commonGroup;
+        const browserGroupName = cookieSettingsGroup.groupId;
         const matchedBrowserGroup = browserCookieState.groups[browserGroupName];
         if (matchedBrowserGroup) {
 
           // If group names match
-          if (browserGroupName === cookieSettingsGroup.commonGroup) {
+          if (browserGroupName === cookieSettingsGroup.groupId) {
 
             // If checksums match, add to new cookie groups
             if (browserCookieState.groups[browserGroupName] === cookieSettingsGroup.checksum) {
-              newCookieGroups.push(cookieSettingsGroup.commonGroup);
+              newCookieGroups.push(cookieSettingsGroup.groupId);
             } else {
-              console.log('Checksums do not match for group', cookieSettingsGroup.commonGroup);
+              console.log('Checksums do not match for group', cookieSettingsGroup.groupId);
             }
           }
         }
@@ -180,7 +180,7 @@ class HdsCc {
 
       cookieSettings.checksum = cookieSettingsChecksum;
 
-      const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.commonGroup === 'essential');
+      const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.groupId === 'essential');
       if (!essentialGroup) {
         // The site cookie settings must have required group named 'essential'
         throw new Error('Cookie consent error: essential group missing');
@@ -195,11 +195,11 @@ class HdsCc {
 
       const cookieNames = [];
       cookieSettingsGroups.forEach(cookie => {
-        if (cookieNames.includes(cookie.commonGroup)) {
+        if (cookieNames.includes(cookie.groupId)) {
           // The cookie settings must not contain cookie groups that have identical names
           throw new Error('Cookie consent error: group name collision');
         }
-        cookieNames.push(cookie.commonGroup);
+        cookieNames.push(cookie.groupId);
       });
 
       // eslint-disable-next-line no-restricted-syntax
@@ -361,9 +361,9 @@ class HdsCc {
     cookieGroupList.forEach(cookieGroup => {
       const title = this.translate(cookieGroup.title, lang);
       const description = this.translate(cookieGroup.description, lang);
-      const groupId = cookieGroup.commonGroup;
+      const {groupId} = cookieGroup;
       const tableRowsHtml = this.buildTableRows(cookieGroup.cookies, lang);
-      const isAccepted = acceptedGroups.includes(cookieGroup.commonGroup);
+      const isAccepted = acceptedGroups.includes(cookieGroup.groupId);
       groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired, isAccepted);
       groupNumber += 1;
     });
