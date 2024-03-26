@@ -17,3 +17,27 @@
 @import '05_objects/_index';
 @import '06_components/_index';
 @import '07_utilities/_index';
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Temporary patches for HDBT theme to get cookie banner going
+body{
+  display: block;
+}
+
+.dialog-off-canvas-main-canvas {
+  height: auto;
+  min-height: calc(100% - var(--hds-cc-height, 0));
+}
+
+.nav-toggle-dropdown--menu {
+  max-height: calc(100dvh - 134px); // This is not a good fix, it breaks meganav on smaller screens
+}
+
+.skip-link {
+  z-index: 101;
+}
+
+/* stylelint-disable-next-line selector-id-pattern */
+#hds-cc__spacer {
+  flex-shrink:0;
+}
