@@ -58,8 +58,8 @@ $base-font-size: 16px;
 }
 
 @mixin visually-hidden() {
-  clip: rect(0, 0, 0, 0);
   border: 0;
+  clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
   height: 1px;
   margin: -1px;
