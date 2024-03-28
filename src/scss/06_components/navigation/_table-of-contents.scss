@@ -127,3 +127,9 @@
     }
   }
 }
+
+.toc-focusable:focus,
+.toc-focusable:active {
+  outline: 3px solid $color-black;
+  outline-offset: 2px;
+}
