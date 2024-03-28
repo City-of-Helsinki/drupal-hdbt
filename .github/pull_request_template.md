@@ -28,10 +28,9 @@
 * [ ] This change doesn't require updates to the documentation
 
 ## Translations
-<!-- One of the checkboxes below needs to be checked like this: `[x]` (or click when not in edit mode) -->
+<!-- The checkbox below needs to be checked like this: `[x]` (or click when not in edit mode). Not needed if the translations were not affected. -->
 
 * [ ] Translations have been added to .po -files and included in this PR
-* [ ] The config files include `langcode: en`
 
 ## Other PRs
 <!-- For example an related PR in another repository -->
