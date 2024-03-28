@@ -21,11 +21,16 @@
 * [ ] Check that this feature works
 * [ ] Check that code follows our standards
 
-## Designers review
+## Continuous documentation
 <!-- One of the checkboxes below needs to be checked like this: `[x]` (or click when not in edit mode) -->
 
-* [ ] This PR does not need designers review
-* [ ] This PR has been visually reviewed by a designer (Name of the designer)
+* [ ] This feature has been documented/the documentation has been updated
+* [ ] This change doesn't require updates to the documentation
+
+## Translations
+<!-- The checkbox below needs to be checked like this: `[x]` (or click when not in edit mode). Not needed if the translations were not affected. -->
+
+* [ ] Translations have been added to .po -files and included in this PR
 
 ## Other PRs
 <!-- For example an related PR in another repository -->
