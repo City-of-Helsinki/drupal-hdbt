@@ -73,7 +73,7 @@ const FeatureFormContainer = () => {
     params.b1 = b1Selection.map((selection: OptionType) => selection.value);
     params.b2 = b2Selection.map((selection: OptionType) => selection.value);
     params.weighted_education = weightedSelection.map((selection: OptionType) => selection.value);
-    params.bilingual_education = bilingualSelection.map((selection: OptionType) => selection.value);
+    params.bilingual_education = bilingualSelection.flatMap((selection: OptionType) => selection.value.split(','));
 
     setParams(params);
   };

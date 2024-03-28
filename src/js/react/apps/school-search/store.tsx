@@ -60,15 +60,14 @@ export const a1Atom = atom(async (get) => {
     return [];
   }
 
-  const a1options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
+  // A1 options.
+  return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if ((currentItem.key >= 15 && currentItem.key <= 26) && ontologyDetailsIdsToLang[currentItem.key]) {
       acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
 
     return acc;
   }, []);
-
-  return a1options;
 });
 export const a1SelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -79,14 +78,13 @@ export const a2Atom = atom(async (get) => {
     return [];
   }
 
-  const a2options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
+  // A2 options.
+  return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if ((currentItem.key >= 27 && currentItem.key <= 38) && ontologyDetailsIdsToLang[currentItem.key]) {
       acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
-
-  return a2options;
 });
 export const a2SelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -97,14 +95,13 @@ export const b1Atom = atom(async (get) => {
     return [];
   }
 
-  const b1options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
+  // B1 options.
+  return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if ((currentItem.key >= 101 && currentItem.key <= 112) && ontologyDetailsIdsToLang[currentItem.key]) {
       acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
-
-  return b1options;
 });
 export const b1SelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -115,14 +112,13 @@ export const b2Atom = atom(async (get) => {
     return [];
   }
 
-  const b2options = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
+  // B2 options.
+  return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if ((currentItem.key >= 113 && currentItem.key <= 124) && ontologyDetailsIdsToLang[currentItem.key]) {
       acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
-
-  return b2options;
 });
 export const b2SelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -133,12 +129,11 @@ export const weightedEducationAtom = atom(async (get) => {
     return [];
   }
 
-  const weightedOptions = ontologywordClarifications?.buckets.reduce((acc: any, currentItem: any) => {
+  // Weighted options.
+  return ontologywordClarifications?.buckets.reduce((acc: any, currentItem: any) => {
     acc.push({ label: currentItem.key, value: currentItem.key });
     return acc;
   }, []);
-
-  return weightedOptions;
 });
 export const weightedEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
@@ -149,14 +144,31 @@ export const bilingualEducationAtom = atom(async (get) => {
     return [];
   }
 
-  const bilingualOptions = ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 293 && currentItem.key <= 911) && ontologyDetailsIdsToLang[currentItem.key]) {
-      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
+  // Bilingual education options.
+  return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
+    if ((currentItem.key >= 293 && currentItem.key <= 911) || (currentItem.key >= 149 && currentItem.key <= 150) &&
+        ontologyDetailsIdsToLang[currentItem.key]) {
+
+      const label = ontologyDetailsIdsToLang[currentItem.key];
+
+      // Deduplicate options.
+      if (!acc.some((item: any) => item.label === label)) {
+        const option: OptionType = {
+          label,
+          value: currentItem.key,
+        };
+
+        // Combined keys.
+        if ((currentItem.key >= 149 && currentItem.key <= 150)) {
+          option.value = '149,150';
+        }
+
+        acc.push(option);
+      }
     }
+
     return acc;
   }, []);
-
-  return bilingualOptions;
 });
 export const bilingualEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
