@@ -128,7 +128,7 @@ export function getTranslation(key, lang, parameters) {
   }
 
   // Find translation based on key, fallback to English
-  const translation = translations[key] ? translations[key][lang] || translations[key].en : null;
+  const translation = translations[key]?.[lang] || translations[key]?.en || null;
 
   if (translation) {
 
@@ -138,12 +138,15 @@ export function getTranslation(key, lang, parameters) {
       const parameter = index(parameters, stripDollarAndParenthesis);
 
       // Parameters may be either string or an language object
-      if (typeof parameter === 'object' && parameter[lang]) {
-        return parameter[lang];
-      }
-      // Use English as fallback language where possible
-      if (typeof parameter === 'object' && parameter.en) {
-        return parameter.en;
+      if (typeof parameter === 'object') {
+        if (parameter[lang]) {
+          return parameter[lang];
+        }
+
+        // Use English as fallback language where possible
+        if (parameter.en) {
+          return parameter.en;
+        }
       }
       return parameter;
     });
