@@ -24,7 +24,14 @@ class HDSCookieConsent {
     this.COOKIE_DAYS = 100;
     this.UNCHANGED = 'unchanged';
     this.ESSENTIAL_GROUP_NAME = 'essential';
-    document.addEventListener('DOMContentLoaded', () => this.init());
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.init();
+      });
+    } else {
+      this.init();
+    }
   }
 
   /**
