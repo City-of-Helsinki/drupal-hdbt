@@ -1,12 +1,21 @@
-<link href="{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json" id="hdsCookieConsentSiteSettings" rel="prefetch">
 <script>
-  window.hdsCookieConsentPageSettings = {
-    language: '{{current_langcode}}', // Lang code defaults to 'en'
-    //targetSelector: 'body', // Defaults to 'body'
-    //spacerParentSelector: 'body', // Defaults to 'body'
-    //pageContentSelector: 'body', // Defaults to 'body'
-    exposeChatFunctions: true, // Defaults to false
-    tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
-  };
+  (function() {
+    const conf = {
+      src: '{{ theme_path }}/dist/js/hds-cc.min.js',
+      options: {
+        siteSettingsJsonUrl: '{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json',
+        language: '{{current_langcode}}', // Lang code defaults to 'en'
+        //targetSelector: 'body', // Defaults to 'body'
+        //spacerParentSelector: 'body', // Defaults to 'body'
+        //pageContentSelector: 'body', // Defaults to 'body'
+        exposeChatFunctions: true, // Defaults to false
+        tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
+      }
+    };
+    const script = document.createElement('script');
+    script.src = conf.src;
+    script.onerror = console.error;
+    script.onload = () => new window.HDSCookieConsent(conf.options);
+    document.head.appendChild(script);
+  })();
 </script>
-<script src="{{ theme_path }}/dist/js/hds-cc.min.js"></script>

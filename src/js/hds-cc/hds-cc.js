@@ -19,11 +19,33 @@ import {
 } from './hds-cc_translations';
 
 class HDSCookieConsent {
-  constructor() {
-    this.COOKIE_NAME = 'city-of-helsinki-cookie-consents'; // Overridable default value
+  constructor(
+    {
+      siteSettingsJsonUrl, // Path to JSON file with cookie settings
+      language = 'en', // Page language
+      targetSelector = 'body', // Where to inject the banner
+      spacerParentSelector = 'body', // Where to inject the spacer
+      pageContentSelector = 'body', // Where to add scroll-margin-bottom
+      exposeChatFunctions = false, // Expose chat consent functions to window object
+      tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
+    }
+  ) {
+    if (!siteSettingsJsonUrl) {
+      throw new Error('Cookie consent: siteSettingsJsonUrl is required');
+    }
+    this.SITE_SETTINGS_JSON_URL = siteSettingsJsonUrl;
+    this.LANGUAGE = language;
+    this.TARGET_SELECTOR = targetSelector;
+    this.SPACER_PARENT_SELECTOR = spacerParentSelector;
+    this.PAGE_CONTENT_SELECTOR = pageContentSelector;
+    this.EXPOSE_CHAT_FUNCTIONS = exposeChatFunctions;
+    this.TEMP_CSS_PATH = tempCssPath;
+
     this.COOKIE_DAYS = 100;
     this.UNCHANGED = 'unchanged';
     this.ESSENTIAL_GROUP_NAME = 'essential';
+
+    this.cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
@@ -64,7 +86,7 @@ class HDSCookieConsent {
    */
   async getCookie() {
     try {
-      const cookieString = parse(document.cookie)[this.COOKIE_NAME];
+      const cookieString = parse(document.cookie)[this.cookie_name];
       if (!cookieString) {
         console.log('Cookie is not set');
         return false;
@@ -80,7 +102,7 @@ class HDSCookieConsent {
     // console.log('setCookie', cookieData);
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + this.COOKIE_DAYS);
-    document.cookie = serialize(this.COOKIE_NAME, JSON.stringify(cookieData), { expires: expiryDate });
+    document.cookie = serialize(this.cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
   }
 
   saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
@@ -141,16 +163,10 @@ class HDSCookieConsent {
   }
 
   async getCookieSettingsFromJsonFile() {
-    // Get the site settings (prefetch) link element
-    const siteSettingsElem = document.querySelector('link#hdsCookieConsentSiteSettings');
-    if (!siteSettingsElem) {
-      throw new Error('Cookie consent: Site settings link not found');
-    }
-
-    // Use prefetch link elements href to fetch the site settings string
+    // Fetch the site settings JSON file
     let cookieSettingsRaw;
     try {
-      cookieSettingsRaw = await fetch(siteSettingsElem.href).then((response) => response.text());
+      cookieSettingsRaw = await fetch(this.SITE_SETTINGS_JSON_URL).then((response) => response.text());
     } catch (error) {
       throw new Error(`Cookie consent: Unable to fetch cookie consent settings: ${error}`);
     }
@@ -174,7 +190,7 @@ class HDSCookieConsent {
   async getCookieSettings() {
     const cookieSettings = await this.getCookieSettingsFromJsonFile();
 
-    this.COOKIE_NAME = cookieSettings.cookieName || this.COOKIE_NAME; // Optional override for cookie name
+    this.cookie_name = cookieSettings.cookieName || this.cookie_name; // Optional override for cookie name
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
     const browserCookie = await this.getCookie();
@@ -191,10 +207,10 @@ class HDSCookieConsent {
       // The site cookie settings must have required group named by ESSENTIAL_GROUP_NAME
       throw new Error(`Cookie consent error: '${this.ESSENTIAL_GROUP_NAME}' group missing`);
     }
-    const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.COOKIE_NAME);
+    const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.cookie_name);
     if (!requiredCookieFound) {
       // The required "essential" group must have cookie with name matching the root level 'cookieName'
-      throw new Error(`Cookie consent error: Missing cookie entry for '${this.COOKIE_NAME}' in group '${this.ESSENTIAL_GROUP_NAME}'`);
+      throw new Error(`Cookie consent error: Missing cookie entry for '${this.cookie_name}' in group '${this.ESSENTIAL_GROUP_NAME}'`);
     }
 
     const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
@@ -375,25 +391,23 @@ class HDSCookieConsent {
     };
 
     window.addEventListener('CONSENTS_CHANGED', e => {
-      console.log('Oh dear, looks like something consented for group and it was not the end user!');
+      // TODO: Remove this console.log
+      console.log(`CONSENTS_CHANGED event received. Groups: '${ e.detail.groups }'`);
       checkGroupBox(e.detail.groups);
     });
   }
 
   async renderBanner(lang, cookieSettings) {
-    const targetSelector = window.hdsCookieConsentPageSettings.targetSelector || 'body';
-    const bannerTarget = document.querySelector(targetSelector);
+    const bannerTarget = document.querySelector(this.TARGET_SELECTOR);
     if (!bannerTarget) {
-      throw new Error('targetSelector element was not found');
+      throw new Error(`Cookie consent: targetSelector element '${this.TARGET_SELECTOR}'  was not found`);
     }
-    const spacerParentSelector = window.hdsCookieConsentPageSettings.spacerParentSelector || 'body';
-    const spacerParent = document.querySelector(spacerParentSelector);
+    const spacerParent = document.querySelector(this.SPACER_PARENT_SELECTOR);
     if (!spacerParent) {
-      throw new Error('spacerParentSelector element was not found');
+      throw new Error(`Cookie consent: The spacerParentSelector element '${this.SPACER_PARENT_SELECTOR}' was not found`);
     }
-    const contentSelector = window.hdsCookieConsentPageSettings.pageContentSelector || 'body';
-    if (!document.querySelector(contentSelector)) {
-      throw new Error('contentSelector element was not found');
+    if (!document.querySelector(this.PAGE_CONTENT_SELECTOR)) {
+      throw new Error(`Cookie consent: contentSelector element '${this.PAGE_CONTENT_SELECTOR}' was not found`);
     }
 
     const bannerContainer = document.createElement('div');
@@ -402,9 +416,10 @@ class HDSCookieConsent {
     bannerTarget.prepend(bannerContainer);
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
 
+    // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
     // Fetch the external CSS file
     try {
-      const response = await fetch(window.hdsCookieConsentPageSettings.tempCssPath);
+      const response = await fetch(this.TEMP_CSS_PATH);
       const cssText = await response.text();
 
       // Create and inject the style
@@ -412,7 +427,7 @@ class HDSCookieConsent {
       style.textContent = cssText;
       shadowRoot.appendChild(style);
     } catch (error) {
-      throw new Error('Failed to load the CSS file:', error);
+      throw new Error(`Cookie consent: Failed to load the temporary CSS file solution: '${error}'`);
     }
 
     const translations = {};
@@ -440,7 +455,7 @@ class HDSCookieConsent {
 
     // Add scroll-margin-bottom to all elements inside the contentSelector
     const style = document.createElement('style');
-    style.innerHTML = `${contentSelector} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
+    style.innerHTML = `${this.PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
     document.head.appendChild(style);
 
     // Add spacer inside spacerParent (to the bottom of the page)
@@ -519,23 +534,23 @@ class HDSCookieConsent {
 
   async init() {
 
-    const lang = window.hdsCookieConsentPageSettings.language;
     const cookieSettings = await this.getCookieSettings();
 
-    if (window.hdsCookieConsentPageSettings.exposeChatFunctions) {
+    if (this.EXPOSE_CHAT_FUNCTIONS) {
       this.createChatConsentAPI(); // Create chat consent functions
     }
 
     // If cookie settings have not changed, do not show banner, otherwise, check
     const shouldDisplayBanner = await this.shouldDisplayBanner(cookieSettings);
     if (shouldDisplayBanner) {
-      await this.renderBanner(lang, cookieSettings);
+      await this.renderBanner(this.LANGUAGE, cookieSettings);
     }
   };
 }
 
-window.hdsCookieConsents = new HDSCookieConsent();
+window.HDSCookieConsent = HDSCookieConsent;
 
+// TODO: Remove this debug tool
 // Debug helper. Open banner and run on console to see the box updated.
 window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
 
