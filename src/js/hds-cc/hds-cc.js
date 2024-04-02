@@ -45,6 +45,7 @@ class HDSCookieConsent {
     this.UNCHANGED = 'unchanged';
     this.ESSENTIAL_GROUP_NAME = 'essential';
 
+    this.shadowRoot = null;
     this.cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
     if (document.readyState === 'loading') {
@@ -125,6 +126,20 @@ class HDSCookieConsent {
     };
 
     this.setCookie(data);
+
+    // Update the checkboxes to reflect the new state (if called outside)
+    if (this.shadowRoot) {
+      const form = this.shadowRoot.querySelector('form');
+      if (form) {
+        const formCheckboxes = form.querySelectorAll('input');
+
+        formCheckboxes.forEach(check => {
+          if (acceptedGroupNames.includes(check.dataset.group)) {
+            check.checked = true;
+          }
+        });
+      }
+    }
   }
 
   async removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
@@ -363,40 +378,6 @@ class HDSCookieConsent {
     return groupsHtml;
   }
 
-  /*
-  * ================================================================
-  * =====                                                   ========
-  * =====                   INIT SEQUENCE                   ========
-  * =====                                                   ========
-  * ================================================================
-  */
-
-  /**
-   * Control form checkbox states
-   *
-   * Due to shadowroot approach we use window scoped custom events
-   * to trigger the form checking in cases where the form is open
-   * and user gives chat consent from chat window instead of the
-   * form checkboxes. The form reference is passed here on init phase.
-   */
-  controlForm(form) {
-    const checkGroupBox = (groups) => {
-      const formCheckboxes = form.querySelectorAll('input');
-
-      formCheckboxes.forEach(check => {
-        if (groups.includes(check.dataset.group)) {
-          check.checked = true;
-        }
-      });
-    };
-
-    window.addEventListener('CONSENTS_CHANGED', e => {
-      // TODO: Remove this console.log
-      console.log(`CONSENTS_CHANGED event received. Groups: '${ e.detail.groups }'`);
-      checkGroupBox(e.detail.groups);
-    });
-  }
-
   async renderBanner(lang, cookieSettings) {
     const bannerTarget = document.querySelector(this.TARGET_SELECTOR);
     if (!bannerTarget) {
@@ -415,6 +396,7 @@ class HDSCookieConsent {
     bannerContainer.style.all = 'initial';
     bannerTarget.prepend(bannerContainer);
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
+    this.shadowRoot = shadowRoot;
 
     // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
     // Fetch the external CSS file
@@ -481,59 +463,55 @@ class HDSCookieConsent {
       this.handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
     }));
 
-    // Add eventHandler for form
-    this.controlForm(shadowRootForm);
-
     shadowRoot.querySelector('.hds-cc').focus();
   }
 
-  // Add chat cookie functions to window
+  // Add chat cookie functions to window scope
   async createChatConsentAPI() {
-    const chatUserConsent = {
+    const that = this;
 
+    async function asyncConfirmUserConsent() {
+      const browserCookie = await that.getCookie();
+      const showBanner = browserCookie?.showBanner || false;
+
+      // If cookie is set, get the accepted groups
+      let currentlyAccepted = [];
+      if (browserCookie) {
+        currentlyAccepted = Object.keys(browserCookie.groups);
+      }
+
+      // Try to fetch the cookie settings from the JSON file
+      let cookieSettings = null;
+      try {
+        cookieSettings = await that.getCookieSettingsFromJsonFile();
+      } catch (err) {
+        console.error(`Cookie consent: Unable to fetch cookie consent settings: ${err}`);
+        return false;
+      }
+
+      const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+
+      // Checksums for all groups calculated in parallel without waiting for each
+      await Promise.all(cookieSettingsGroups.map(async (group) => {
+        group.checksum = await that.getChecksum(group);
+      }));
+
+      // Save chat group to accepted groups and update checkbox state
+      that.saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
+    }
+
+    window.chat_user_consent = {
       retrieveUserConsent() {
         return this.isGroupAccepted('chat');
       },
 
-      async confirmUserConsent() {
-        const showBanner = true;
-
-        // Check if our cookie exists
-        try {
-          const browserCookie = this.getCookie();
-
-          let currentlyAccepted = [];
-
-          if (browserCookie) {
-            currentlyAccepted = Object.keys(browserCookie.groups);
-          }
-
-          const cookieSettings = await this.getCookieSettingsFromJsonFile();
-          const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
-
-          // Checksums for all groups calculated in parallel without waiting for each
-          await Promise.all(cookieSettingsGroups.map(async (group) => {
-            group.checksum = await this.getChecksum(group);
-          }));
-
-          this.saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
-        } catch (err) {
-          // If consent setting fails for some reason
-          console.log('Consent failed.\n', err);
-          return false;
-        }
-
-        // Doesn't handle the state where form is open but cookie doesn't exist
-        // See controlForm-function for more information about this
-        dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
-      }
+      confirmUserConsent() {
+        asyncConfirmUserConsent();
+      },
     };
-
-    window.chat_user_consent = chatUserConsent;
   }
 
   async init() {
-
     const cookieSettings = await this.getCookieSettings();
 
     if (this.EXPOSE_CHAT_FUNCTIONS) {
@@ -549,8 +527,4 @@ class HDSCookieConsent {
 }
 
 window.HDSCookieConsent = HDSCookieConsent;
-
-// TODO: Remove this debug tool
-// Debug helper. Open banner and run on console to see the box updated.
-window.aaa_chatcheck = () => dispatchEvent(new CustomEvent('CONSENTS_CHANGED', { detail: { groups: ['chat'] } }));
 
