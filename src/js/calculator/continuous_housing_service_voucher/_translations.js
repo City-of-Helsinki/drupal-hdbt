@@ -2,14 +2,14 @@
 
 const translations = {
   net_income_per_month: {
-    fi: 'Nettotulot kuukaudessa',
-    sv: 'Nettoinkomster per månad',
-    en: 'Net income per month',
+    fi: 'Hakijan nettotulot kuukaudessa',
+    sv: 'Den sökandes nettoinkomster per månad',
+    en: 'Applicant’s net income per month',
   },
   net_income_per_month_explanation: {
-    fi: 'Nettotulot tarkoittavat tuloja verojen vähentämisen jälkeen. Tuloihin lasketaan eläkkeet, elatusavut, elinkorot, elatustuki sekä muut jatkuvat henkilökohtaiset tulot ja pääomasta tai omaisuudesta(kuten korko-, osinko- ja vuokratulot).  Eläkkeen saajan hoitotukea, asumistukea, rintamalisää tai sotavammalain mukaista elinkorkoa ei huomioida.',
-    sv: 'Med nettoinkomster avses inkomster efter skatteavdrag. Inkomsterna inkluderar pensioner, underhållsbidrag, livräntor samt andra kontinuerliga personliga inkomster och inkomster från kapital eller egendom (såsom ränte-, utdelnings- och hyresintäkter).  Vårdbidraget för pensionstagare, bostadsbidraget, fronttillägget eller livräntan enligt krigsskadelagen beaktas inte. ',
-    en: 'Net income refers to income after tax deduction. Income includes pensions, child support, annuities, child maintenance allowance and other continuing personal income and income from capital or property (such as interest, dividend and rental income).  Pensioner’s care allowance, housing allowance, frontal supplement or annuity under the Act on military injuries are not taken into account.',
+    fi: 'Nettotulot tarkoittavat hakijan tuloja verojen vähentämisen jälkeen. Tuloihin lasketaan eläkkeet, elatusavut, elinkorot, elatustuki sekä muut jatkuvat henkilökohtaiset tulot ja pääomasta tai omaisuudesta (kuten korko-, osinko- ja vuokratulot). Eläkkeen saajan hoitotukea, asumistukea, rintamalisää tai sotavammalain mukaista elinkorkoa ei huomioida. Hakijan puolison tulot eivät vaikuta palvelusetelin arvoon.',
+    sv: 'Med nettoinkomster avses den sökandes inkomster efter skatteavdrag. Inkomsterna inkluderar pensioner, underhållsbidrag, livräntor samt andra kontinuerliga personliga inkomster och inkomster från kapital eller egendom (såsom ränte-, utdelnings- och hyresintäkter). Vårdbidraget för pensionstagare, bostadsbidraget, fronttillägget eller livräntan enligt krigsskadelagen beaktas inte. Den sökandes makes inkomster påverkar inte servicesedelns värde.',
+    en: 'Net income refers to applicant’s income after tax deduction. Income includes pensions, child support, annuities, child maintenance allowance and other continuing personal income and income from capital or property (such as interest, dividend and rental income). Pensioner’s care allowance, housing allowance, frontal supplement or annuity under the Act on military injuries are not taken into account. The income of the applicant’s spouse does not affect the value of the service voucher.',
   },
   service_provider_price: {
     fi: 'Palveluasumisen vuorokausihinta',
