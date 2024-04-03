@@ -59,13 +59,13 @@ export const AGGREGATIONS = {
   aggs: {
     ontologywordIds: {
       terms: {
-        field: 'ontologyword_ids.keyword',
+        field: 'ontologyword_ids',
         size: 100,
       },
     },
     ontologywordClarifications: {
       terms: {
-        field: 'ontologyword_details_clarifications.keyword',
+        field: 'ontologyword_details_clarifications',
         size: 100,
       },
     },
@@ -188,7 +188,7 @@ const getQueryString = (params: SearchParams, page: number) => {
     aggs: {
       ids: {
         terms: {
-          field: 'id.keyword',
+          field: 'id',
           size: 1000
         },
       },
