@@ -8,14 +8,21 @@
         //targetSelector: 'body', // Defaults to 'body'
         //spacerParentSelector: 'body', // Defaults to 'body'
         //pageContentSelector: 'body', // Defaults to 'body'
-        exposeChatFunctions: true, // Defaults to false
         tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
       }
     };
     const script = document.createElement('script');
     script.src = conf.src;
     script.onerror = console.error;
-    script.onload = () => new window.HDSCookieConsent(conf.options);
+    script.onload = () => new window.hds.CookieConsentClass(conf.options);
     document.head.appendChild(script);
   })();
+</script>
+
+{# HDBT specific stuff #}
+<script>
+window.chat_user_consent = {
+  retrieveUserConsent: () => window.hds.cookieConsent.getConsentStatus(['chat']),
+  confirmUserConsent: () => window.hds.cookieConsent.setGroupsStatusToAccepted(['chat']),
+}
 </script>

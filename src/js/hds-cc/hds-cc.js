@@ -18,7 +18,17 @@ import {
   getTranslationKeys,
 } from './hds-cc_translations';
 
-class HDSCookieConsent {
+class HdsCookieConsentClass {
+  #SITE_SETTINGS_JSON_URL;
+  #LANGUAGE;
+  #TARGET_SELECTOR;
+  #SPACER_PARENT_SELECTOR;
+  #PAGE_CONTENT_SELECTOR;
+  #TEMP_CSS_PATH;
+  #COOKIE_DAYS;
+  #UNCHANGED;
+  #ESSENTIAL_GROUP_NAME;
+
   constructor(
     {
       siteSettingsJsonUrl, // Path to JSON file with cookie settings
@@ -26,35 +36,92 @@ class HDSCookieConsent {
       targetSelector = 'body', // Where to inject the banner
       spacerParentSelector = 'body', // Where to inject the spacer
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
-      exposeChatFunctions = false, // Expose chat consent functions to window object
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
     if (!siteSettingsJsonUrl) {
       throw new Error('Cookie consent: siteSettingsJsonUrl is required');
     }
-    this.SITE_SETTINGS_JSON_URL = siteSettingsJsonUrl;
-    this.LANGUAGE = language;
-    this.TARGET_SELECTOR = targetSelector;
-    this.SPACER_PARENT_SELECTOR = spacerParentSelector;
-    this.PAGE_CONTENT_SELECTOR = pageContentSelector;
-    this.EXPOSE_CHAT_FUNCTIONS = exposeChatFunctions;
-    this.TEMP_CSS_PATH = tempCssPath;
+    this.#SITE_SETTINGS_JSON_URL = siteSettingsJsonUrl;
+    this.#LANGUAGE = language;
+    this.#TARGET_SELECTOR = targetSelector;
+    this.#SPACER_PARENT_SELECTOR = spacerParentSelector;
+    this.#PAGE_CONTENT_SELECTOR = pageContentSelector;
+    this.#TEMP_CSS_PATH = tempCssPath;
 
-    this.COOKIE_DAYS = 100;
-    this.UNCHANGED = 'unchanged';
-    this.ESSENTIAL_GROUP_NAME = 'essential';
+    this.#COOKIE_DAYS = 100;
+    this.#UNCHANGED = 'unchanged';
+    this.#ESSENTIAL_GROUP_NAME = 'essential';
 
     this.shadowRoot = null;
     this.cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
+    window.hds = window.hds || {};
+    window.hds.cookieConsent = this;
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
-        this.init();
+        this.#init();
       });
     } else {
-      this.init();
+      this.#init();
     }
+  }
+
+  /**
+   * Get the consent status for the specified cookie group names.
+   * @param {string[]} groupNamesArray - An array of group names.
+   * @returns {Promise<boolean>} A promise that resolves to true if all the groups are accepted, otherwise false.
+   */
+  getConsentStatus(groupNamesArray) {
+
+    // Check if group names are provided as an array and not empty
+    if (!Array.isArray(groupNamesArray) || groupNamesArray.length === 0) {
+      console.error('Cookie consent: Group names must be provided as an non-empty array.');
+      return false;
+    }
+
+    const browserCookieState = this.#getCookie();
+
+    // Check if our cookie exists and has groups set
+    if (!browserCookieState || !browserCookieState.groups) {
+      // console.log('Cookie is not set properly', browserCookieState, browserCookieState.groups);
+      return false;
+    }
+
+    // Check if all groups are in accepted groups
+    return groupNamesArray.every(groupName => !!browserCookieState.groups[groupName]);
+  }
+
+  async setGroupsStatusToAccepted(acceptedGroupsArray) {
+    const browserCookie = this.#getCookie();
+    const showBanner = browserCookie?.showBanner || false;
+
+    // If cookie is set, get the accepted groups
+    let currentlyAccepted = [];
+    if (browserCookie) {
+      currentlyAccepted = Object.keys(browserCookie.groups);
+    }
+
+    // Try to fetch the cookie settings from the JSON file
+    let cookieSettings = null;
+    try {
+      cookieSettings = await this.#getCookieSettingsFromJsonFile();
+    } catch (err) {
+      console.error(`Cookie consent: Unable to fetch cookie consent settings: ${err}`);
+      return false;
+    }
+
+    const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+
+    // Checksums for all groups calculated in parallel without waiting for each
+    await Promise.all(cookieSettingsGroups.map(async (group) => {
+      group.checksum = await this.#getChecksum(group);
+    }));
+
+    // Save chat group to accepted groups and update checkbox state
+    this.#saveAcceptedGroups(cookieSettings, [...currentlyAccepted, ...acceptedGroupsArray], showBanner);
+    return true;
   }
 
   /**
@@ -64,7 +131,7 @@ class HDSCookieConsent {
    *
    * Reference: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
    */
-  async getChecksum(message, length = 8) {
+  async #getChecksum(message, length = 8) {
     let messageString = message;
     if (typeof message !== 'string') {
       messageString = JSON.stringify(message);
@@ -78,14 +145,10 @@ class HDSCookieConsent {
   }
 
   /**
-   * Cookie section
-   */
-
-  /**
    * Centralized browser cookie reading. Returns false if the cookie
    * with specified name doesn't exist.
    */
-  async getCookie() {
+  #getCookie() {
     try {
       const cookieString = parse(document.cookie)[this.cookie_name];
       if (!cookieString) {
@@ -99,15 +162,30 @@ class HDSCookieConsent {
     }
   }
 
-  async setCookie(cookieData) {
-    // console.log('setCookie', cookieData);
+
+  /**
+   * Sets a cookie with the provided data.
+   *
+   * @private
+   * @param {Object} cookieData - The data to be stored in the cookie.
+   */
+  #setCookie(cookieData) {
+    // console.log('#setCookie', cookieData);
     const expiryDate = new Date();
-    expiryDate.setDate(expiryDate.getDate() + this.COOKIE_DAYS);
+    expiryDate.setDate(expiryDate.getDate() + this.#COOKIE_DAYS);
     document.cookie = serialize(this.cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
   }
 
-  saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
-    // console.log('Accepting cookies from groups:', acceptedGroupNames);
+
+  /**
+   * Saves the accepted cookie groups to cookie, unsets others.
+   *
+   * @param {Object} cookieSettings - Site specific settings
+   * @param {Array} acceptedGroupNames - The names of the accepted cookie groups.
+   * @param {boolean} showBanner - Whether to show the banner or not.
+   */
+  #saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
+    // console.log('Saving accepted cookie groups:', acceptedGroupNames);
 
     const acceptedGroups = {};
 
@@ -125,7 +203,7 @@ class HDSCookieConsent {
       ...(showBanner && { showBanner: true }), // Only add showBanner if it's true
     };
 
-    this.setCookie(data);
+    this.#setCookie(data);
 
     // Update the checkboxes to reflect the new state (if called outside)
     if (this.shadowRoot) {
@@ -142,8 +220,8 @@ class HDSCookieConsent {
     }
   }
 
-  async removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
-    // console.log('removeInvalidGroupsFromCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
+  async #removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
+    // console.log('#removeInvalidGroupsFromCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
 
     const newCookieGroups = [];
 
@@ -172,22 +250,22 @@ class HDSCookieConsent {
 
     // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
     const showBanner = true;
-    this.saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    this.#saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
 
     return cookieSettings;
   }
 
-  async getCookieSettingsFromJsonFile() {
+  async #getCookieSettingsFromJsonFile() {
     // Fetch the site settings JSON file
     let cookieSettingsRaw;
     try {
-      cookieSettingsRaw = await fetch(this.SITE_SETTINGS_JSON_URL).then((response) => response.text());
+      cookieSettingsRaw = await fetch(this.#SITE_SETTINGS_JSON_URL).then((response) => response.text());
     } catch (error) {
       throw new Error(`Cookie consent: Unable to fetch cookie consent settings: ${error}`);
     }
 
     // Calculate checksum for the site settings string
-    const cookieSettingsChecksum = await this.getChecksum(cookieSettingsRaw);
+    const cookieSettingsChecksum = await this.#getChecksum(cookieSettingsRaw);
 
     // Parse the fetched site settings string to JSON
     let cookieSettings;
@@ -202,30 +280,30 @@ class HDSCookieConsent {
     return cookieSettings;
   }
 
-  async getCookieSettings() {
-    const cookieSettings = await this.getCookieSettingsFromJsonFile();
+  async #getCookieSettings() {
+    const cookieSettings = await this.#getCookieSettingsFromJsonFile();
 
     this.cookie_name = cookieSettings.cookieName || this.cookie_name; // Optional override for cookie name
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
-    const browserCookie = await this.getCookie();
+    const browserCookie = this.#getCookie();
     if (browserCookie) {
       // Check if settings have not changed and browser cookie has 'showBanner' set to false
       if (!browserCookie.showBanner && (cookieSettings.checksum === browserCookie.checksum)) {
         console.log('Settings were unchanged');
-        return this.UNCHANGED;
+        return this.#UNCHANGED;
       }
     }
 
-    const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.groupId === this.ESSENTIAL_GROUP_NAME);
+    const essentialGroup = cookieSettings.requiredCookies.groups.find(group => group.groupId === this.#ESSENTIAL_GROUP_NAME);
     if (!essentialGroup) {
       // The site cookie settings must have required group named by ESSENTIAL_GROUP_NAME
-      throw new Error(`Cookie consent error: '${this.ESSENTIAL_GROUP_NAME}' group missing`);
+      throw new Error(`Cookie consent error: '${this.#ESSENTIAL_GROUP_NAME}' group missing`);
     }
     const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.cookie_name);
     if (!requiredCookieFound) {
       // The required "essential" group must have cookie with name matching the root level 'cookieName'
-      throw new Error(`Cookie consent error: Missing cookie entry for '${this.cookie_name}' in group '${this.ESSENTIAL_GROUP_NAME}'`);
+      throw new Error(`Cookie consent error: Missing cookie entry for '${this.cookie_name}' in group '${this.#ESSENTIAL_GROUP_NAME}'`);
     }
 
     const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
@@ -241,44 +319,43 @@ class HDSCookieConsent {
 
     // Checksums for all groups calculated in parallel without waiting for each
     await Promise.all(cookieSettingsGroups.map(async (group) => {
-      group.checksum = await this.getChecksum(group); // This await is needed to ensure that all checksums are calculated before continuing
+      group.checksum = await this.#getChecksum(group); // This await is needed to ensure that all checksums are calculated before continuing
     }));
 
-    return this.removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookie, cookieSettings);
+    return this.#removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookie, cookieSettings);
   }
 
 
-  handleButtonEvents(selection, formReference, cookieSettings) {
+  /**
+   * Go through form and get accepted groups. Return a list of group ID's.
+   */
+  #readGroupSelections(form, all = false) {
+    const groupSelections = [];
+    const formCheckboxes = form.querySelectorAll('input');
+    formCheckboxes.forEach(check => {
+      if(check.checked || all) {
+        groupSelections.push(check.dataset.group);
+      }
+    });
 
-    /**
-     * Go through form and get accepted groups. Return a list of group ID's.
-     */
-    function readGroupSelections(form, all = false) {
-      const groupSelections = [];
-      const formCheckboxes = form.querySelectorAll('input');
-      formCheckboxes.forEach(check => {
-        if(check.checked || all) {
-          groupSelections.push(check.dataset.group);
-        }
-      });
+    return groupSelections;
+  }
 
-      return groupSelections;
-    }
-
+  #handleButtonEvents(selection, formReference, cookieSettings) {
     switch (selection) {
       case 'required': {
-        const acceptedGroups = [this.ESSENTIAL_GROUP_NAME];
-        this.saveAcceptedGroups(cookieSettings, acceptedGroups);
+        const acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
       case 'all': {
-        const acceptedGroups = readGroupSelections(formReference, true);
-        this.saveAcceptedGroups(cookieSettings, acceptedGroups);
+        const acceptedGroups = this.#readGroupSelections(formReference, true);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
       case 'selected': {
-        const acceptedGroups = readGroupSelections(formReference);
-        this.saveAcceptedGroups(cookieSettings, acceptedGroups);
+        const acceptedGroups = this.#readGroupSelections(formReference);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
       default:
@@ -288,32 +365,19 @@ class HDSCookieConsent {
     window.location.reload();
   }
 
-  async areTheseGroupsAccepted(groupNamesArray) {
-    const browserCookieState = await this.getCookie();
-
-    // Check if our cookie exists and has groups set
-    if (!browserCookieState || !browserCookieState.groups) {
-      console.log('Cookie is not set properly', browserCookieState, browserCookieState.groups);
-      return false;
-    }
-
-    // Check if all groups are in accepted groups
-    return groupNamesArray.every(groupName => !!browserCookieState.groups[groupName]);
-  }
-
   /**
    * logic for cookie banner spawn
    *   compare cookieSettings and browser cookie state
    *   check 1. if cookie exists 2. essentials approved 3. hash match - show banner
    *   else show banner
    */
-  async shouldDisplayBanner(cookieSettings) {
-    if (cookieSettings !== this.UNCHANGED) {
+  #shouldDisplayBanner(cookieSettings) {
+    if (cookieSettings !== this.#UNCHANGED) {
       console.log('Cookie settings changed since approval, show banner');
       return true;
     }
 
-    const browserCookie = await this.getCookie();
+    const browserCookie = this.#getCookie();
     if (!browserCookie) {
       console.log('Cookie doesn\'t exist, show banner');
       return true;
@@ -339,7 +403,7 @@ class HDSCookieConsent {
    * @param {string} lang - Language key, e.g., 'fi' for Finnish.
    * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
    */
-  translateSetting(translationObj, lang) {
+  #translateSetting(translationObj, lang) {
     if (typeof (translationObj) === 'object') {
       if (translationObj[lang] === undefined) {
         return translationObj.en; // fallback to English translation
@@ -349,12 +413,12 @@ class HDSCookieConsent {
     return translationObj;
   }
 
-  getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName, acceptedGroups) {
+  #getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName, acceptedGroups) {
     let groupsHtml = '';
     let groupNumber = 0;
     cookieGroupList.forEach(cookieGroup => {
-      const title = this.translateSetting(cookieGroup.title, lang);
-      const description = this.translateSetting(cookieGroup.description, lang);
+      const title = this.#translateSetting(cookieGroup.title, lang);
+      const description = this.#translateSetting(cookieGroup.description, lang);
       const {groupId} = cookieGroup;
 
       // Build table rows
@@ -362,10 +426,10 @@ class HDSCookieConsent {
       cookieGroup.cookies.forEach(cookie => {
         tableRowsHtml += getTableRowHtml(
           {
-            name: this.translateSetting(cookie.name, lang),
-            host: this.translateSetting(cookie.host, lang),
-            description: this.translateSetting(cookie.description, lang),
-            expiration: this.translateSetting(cookie.expiration, lang),
+            name: this.#translateSetting(cookie.name, lang),
+            host: this.#translateSetting(cookie.host, lang),
+            description: this.#translateSetting(cookie.description, lang),
+            expiration: this.#translateSetting(cookie.expiration, lang),
             type: getTranslation(`type_${cookie.type}`, lang),
           }
         );
@@ -378,17 +442,17 @@ class HDSCookieConsent {
     return groupsHtml;
   }
 
-  async renderBanner(lang, cookieSettings) {
-    const bannerTarget = document.querySelector(this.TARGET_SELECTOR);
+  async #renderBanner(lang, cookieSettings) {
+    const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
     if (!bannerTarget) {
-      throw new Error(`Cookie consent: targetSelector element '${this.TARGET_SELECTOR}'  was not found`);
+      throw new Error(`Cookie consent: targetSelector element '${this.#TARGET_SELECTOR}'  was not found`);
     }
-    const spacerParent = document.querySelector(this.SPACER_PARENT_SELECTOR);
+    const spacerParent = document.querySelector(this.#SPACER_PARENT_SELECTOR);
     if (!spacerParent) {
-      throw new Error(`Cookie consent: The spacerParentSelector element '${this.SPACER_PARENT_SELECTOR}' was not found`);
+      throw new Error(`Cookie consent: The spacerParentSelector element '${this.#SPACER_PARENT_SELECTOR}' was not found`);
     }
-    if (!document.querySelector(this.PAGE_CONTENT_SELECTOR)) {
-      throw new Error(`Cookie consent: contentSelector element '${this.PAGE_CONTENT_SELECTOR}' was not found`);
+    if (!document.querySelector(this.#PAGE_CONTENT_SELECTOR)) {
+      throw new Error(`Cookie consent: contentSelector element '${this.#PAGE_CONTENT_SELECTOR}' was not found`);
     }
 
     const bannerContainer = document.createElement('div');
@@ -401,7 +465,7 @@ class HDSCookieConsent {
     // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
     // Fetch the external CSS file
     try {
-      const response = await fetch(this.TEMP_CSS_PATH);
+      const response = await fetch(this.#TEMP_CSS_PATH);
       const cssText = await response.text();
 
       // Create and inject the style
@@ -422,22 +486,22 @@ class HDSCookieConsent {
     let listOfAcceptedGroups = [];
     try {
       // Check which cookies are accepted at this point to check boxes on form render.
-      browserCookie = await this.getCookie();
+      browserCookie = this.#getCookie();
       listOfAcceptedGroups = [...Object.keys(browserCookie.groups)];
     } catch (err) {
       // There was no cookie, the list stays empty.
     }
 
     let groupsHtml = '';
-    groupsHtml += this.getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required', listOfAcceptedGroups);
-    groupsHtml += this.getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional', listOfAcceptedGroups);
+    groupsHtml += this.#getCookieGroupsHtml(cookieSettings.requiredCookies.groups, lang, translations, true, 'required', listOfAcceptedGroups);
+    groupsHtml += this.#getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional', listOfAcceptedGroups);
 
     // Create banner HTML
     shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
     // Add scroll-margin-bottom to all elements inside the contentSelector
     const style = document.createElement('style');
-    style.innerHTML = `${this.PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
+    style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
     document.head.appendChild(style);
 
     // Add spacer inside spacerParent (to the bottom of the page)
@@ -460,71 +524,37 @@ class HDSCookieConsent {
     const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
     const shadowRootForm = shadowRoot.querySelector('form');
     cookieButtons.forEach(button => button.addEventListener('click', e => {
-      this.handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
+      this.#handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
     }));
 
     shadowRoot.querySelector('.hds-cc').focus();
   }
 
   // Add chat cookie functions to window scope
-  async createChatConsentAPI() {
-    const that = this;
-
-    async function asyncConfirmUserConsent() {
-      const browserCookie = await that.getCookie();
-      const showBanner = browserCookie?.showBanner || false;
-
-      // If cookie is set, get the accepted groups
-      let currentlyAccepted = [];
-      if (browserCookie) {
-        currentlyAccepted = Object.keys(browserCookie.groups);
-      }
-
-      // Try to fetch the cookie settings from the JSON file
-      let cookieSettings = null;
-      try {
-        cookieSettings = await that.getCookieSettingsFromJsonFile();
-      } catch (err) {
-        console.error(`Cookie consent: Unable to fetch cookie consent settings: ${err}`);
-        return false;
-      }
-
-      const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
-
-      // Checksums for all groups calculated in parallel without waiting for each
-      await Promise.all(cookieSettingsGroups.map(async (group) => {
-        group.checksum = await that.getChecksum(group);
-      }));
-
-      // Save chat group to accepted groups and update checkbox state
-      that.saveAcceptedGroups(cookieSettings, [...currentlyAccepted, 'chat'], showBanner);
-    }
+  async #createChatConsentAPI() {
+    const cookieConsentReference = this;
 
     window.chat_user_consent = {
       retrieveUserConsent() {
-        return this.isGroupAccepted('chat');
+        return this.getConsentStatus(['chat']);
       },
 
-      confirmUserConsent() {
-        asyncConfirmUserConsent();
+      async confirmUserConsent() {
+        return cookieConsentReference.setGroupsStatusToAccepted(['chat']);
       },
     };
   }
 
-  async init() {
-    const cookieSettings = await this.getCookieSettings();
-
-    if (this.EXPOSE_CHAT_FUNCTIONS) {
-      this.createChatConsentAPI(); // Create chat consent functions
-    }
+  async #init() {
+    const cookieSettings = await this.#getCookieSettings();
 
     // If cookie settings have not changed, do not show banner, otherwise, check
-    const shouldDisplayBanner = await this.shouldDisplayBanner(cookieSettings);
+    const shouldDisplayBanner = this.#shouldDisplayBanner(cookieSettings);
     if (shouldDisplayBanner) {
-      await this.renderBanner(this.LANGUAGE, cookieSettings);
+      await this.#renderBanner(this.#LANGUAGE, cookieSettings);
     }
   };
 }
-
-window.HDSCookieConsent = HDSCookieConsent;
+window.hds = window.hds || {};
+window.hds.CookieConsentClass = HdsCookieConsentClass;
 
