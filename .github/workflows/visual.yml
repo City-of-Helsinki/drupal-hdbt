@@ -48,7 +48,7 @@ jobs:
 
       - name: Start project
         working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose --profile testing up -d --wait && sleep 5
+        run: docker compose --profile testing up -d --wait && sleep 10
 
       - name: Restore files folder
         id: drupal-cache
