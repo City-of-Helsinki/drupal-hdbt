@@ -463,6 +463,28 @@ class HdsCookieConsentClass {
     } else {
       window.dispatchEvent(new CustomEvent(this.#SUBMIT_EVENT, { detail: { acceptedGroups } }));
       this.#removeBanner();
+
+      // Announce settings saved to screen readers
+      const ARIA_LIVE_ID = 'hds-cc-aria-live';
+      const SHOW_ARIA_LIVE_FOR_MS = 5000;
+      const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
+      if (!bannerTarget) {
+        throw new Error(`Cookie consent: targetSelector element '${this.#TARGET_SELECTOR}'  was not found`);
+      }
+      const ariaLive = document.createElement('div');
+      ariaLive.id = ARIA_LIVE_ID;
+      ariaLive.setAttribute('aria-live', 'polite');
+      ariaLive.style = 'position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;';
+      ariaLive.textContent = getTranslation('settingsSaved', this.#LANGUAGE);
+      bannerTarget.appendChild(ariaLive);
+
+      // Remove ariaLive after 5 seconds
+      setTimeout(() => {
+        const ariaLiveElem = document.getElementById(ARIA_LIVE_ID);
+        if (ariaLiveElem) {
+          ariaLiveElem.remove();
+        }
+      }, SHOW_ARIA_LIVE_FOR_MS);
     }
   }
 
