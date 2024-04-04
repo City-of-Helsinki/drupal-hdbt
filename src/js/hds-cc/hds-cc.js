@@ -28,6 +28,7 @@ class HdsCookieConsentClass {
   #COOKIE_DAYS;
   #UNCHANGED;
   #ESSENTIAL_GROUP_NAME;
+  #SUBMIT_EVENT = false;
 
   constructor(
     {
@@ -36,6 +37,7 @@ class HdsCookieConsentClass {
       targetSelector = 'body', // Where to inject the banner
       spacerParentSelector = 'body', // Where to inject the spacer
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
+      submitEvent = false, // if string, do not reload page, but submit the string as event after consent
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
@@ -48,12 +50,21 @@ class HdsCookieConsentClass {
     this.#SPACER_PARENT_SELECTOR = spacerParentSelector;
     this.#PAGE_CONTENT_SELECTOR = pageContentSelector;
     this.#TEMP_CSS_PATH = tempCssPath;
+    this.#SUBMIT_EVENT = submitEvent;
 
     this.#COOKIE_DAYS = 100;
     this.#UNCHANGED = 'unchanged';
     this.#ESSENTIAL_GROUP_NAME = 'essential';
 
     this.shadowRoot = null;
+    this.bannerElements = {
+      bannerContainer: null,
+      spacer: null,
+    };
+    this.resizeReference = {
+      resizeObserver: null,
+      bannerHeightElement: null,
+    };
     this.cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
     window.hds = window.hds || {};
@@ -160,6 +171,26 @@ class HdsCookieConsentClass {
       console.log(`Cookie parsing unsuccessful:\n${err}`);
       return false;
     }
+  }
+
+
+  /**
+   * Removes the banner elements from DOM like the shadow root and spacer.
+   */
+  #removeBanner() {
+    // Remove banner size observer
+    if (this.resizeReference.resizeObserver && this.resizeReference.bannerHeightElement) {
+      this.resizeReference.resizeObserver.unobserve(this.resizeReference.bannerHeightElement);
+    }
+    // Remove banner elements
+    if (this.bannerElements.bannerContainer) {
+      this.bannerElements.bannerContainer.remove();
+    }
+    if (this.bannerElements.spacer) {
+      this.bannerElements.spacer.remove();
+    }
+    // Remove scroll-margin-bottom variable from all elements inside the contentSelector
+    document.documentElement.style.removeProperty('--hds-cookie-consent-height');
   }
 
 
@@ -342,19 +373,20 @@ class HdsCookieConsentClass {
   }
 
   #handleButtonEvents(selection, formReference, cookieSettings) {
+    let acceptedGroups = [];
     switch (selection) {
       case 'required': {
-        const acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
+        acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
         this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
       case 'all': {
-        const acceptedGroups = this.#readGroupSelections(formReference, true);
+        acceptedGroups = this.#readGroupSelections(formReference, true);
         this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
       case 'selected': {
-        const acceptedGroups = this.#readGroupSelections(formReference);
+        acceptedGroups = this.#readGroupSelections(formReference);
         this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
         break;
       }
@@ -362,7 +394,13 @@ class HdsCookieConsentClass {
         // We should not be here, better do nothing
         break;
     }
-    window.location.reload();
+    if (!this.#SUBMIT_EVENT) {
+      window.location.reload();
+    } else {
+      window.dispatchEvent(new CustomEvent(this.#SUBMIT_EVENT, { detail: { acceptedGroups } }));
+      this.#removeBanner();
+    }
+
   }
 
   /**
@@ -459,6 +497,7 @@ class HdsCookieConsentClass {
     bannerContainer.classList.add('hds-cc__target');
     bannerContainer.style.all = 'initial';
     bannerTarget.prepend(bannerContainer);
+    this.bannerElements.bannerContainer = bannerContainer;
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
     this.shadowRoot = shadowRoot;
 
@@ -501,24 +540,27 @@ class HdsCookieConsentClass {
 
     // Add scroll-margin-bottom to all elements inside the contentSelector
     const style = document.createElement('style');
-    style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cc-height, -8px) + 8px);}`;
+    style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cookie-consent-height, -8px) + 8px);}`;
     document.head.appendChild(style);
 
     // Add spacer inside spacerParent (to the bottom of the page)
     const spacer = document.createElement('div');
+    this.bannerElements.spacer = spacer;
     spacer.id = 'hds-cc__spacer';
     spacerParent.appendChild(spacer);
-    spacer.style.height = 'var(--hds-cc-height, 0)';
+    spacer.style.height = 'var(--hds-cookie-consent-height, 0)';
 
     // Update spacer and scroll-margin-bottom on banner resize
     const resizeObserver = new ResizeObserver(entries => {
       entries.forEach(entry => {
-        document.documentElement.style.setProperty('--hds-cc-height', `${parseInt(entry.contentRect.height, 10) + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`);
+        document.documentElement.style.setProperty('--hds-cookie-consent-height', `${parseInt(entry.contentRect.height, 10) + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`);
         // spacer.style.height = `${entry.contentRect.height + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`;
       });
     });
     const bannerHeightElement = shadowRoot.querySelector('.hds-cc__container');
     resizeObserver.observe(bannerHeightElement);
+    this.resizeReference.resizeObserver = resizeObserver;
+    this.resizeReference.bannerHeightElement = bannerHeightElement;
 
     // Add button events
     const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
@@ -530,22 +572,8 @@ class HdsCookieConsentClass {
     shadowRoot.querySelector('.hds-cc').focus();
   }
 
-  // Add chat cookie functions to window scope
-  async #createChatConsentAPI() {
-    const cookieConsentReference = this;
-
-    window.chat_user_consent = {
-      retrieveUserConsent() {
-        return this.getConsentStatus(['chat']);
-      },
-
-      async confirmUserConsent() {
-        return cookieConsentReference.setGroupsStatusToAccepted(['chat']);
-      },
-    };
-  }
-
   async #init() {
+    this.#removeBanner();
     const cookieSettings = await this.#getCookieSettings();
 
     // If cookie settings have not changed, do not show banner, otherwise, check

@@ -1,4 +1,11 @@
 <script>
+/* Example listener for cookie consent change events */
+window.addEventListener('cookie-consent-changed', function(event) {
+  console.log('Got cookie-consent-changed event with accepted groups:',event.detail.acceptedGroups);
+});
+</script>
+
+<script>
   (function() {
     const conf = {
       src: '{{ theme_path }}/dist/js/hds-cc.min.js',
@@ -8,6 +15,7 @@
         //targetSelector: 'body', // Defaults to 'body'
         //spacerParentSelector: 'body', // Defaults to 'body'
         //pageContentSelector: 'body', // Defaults to 'body'
+        //submitEvent: 'cookie-consent-changed', // If this string is set, triggers a window level event with that string and detail.acceptedGroups before closing banner. If not set, reloads page instead
         tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
       }
     };
@@ -19,7 +27,7 @@
   })();
 </script>
 
-{# HDBT specific stuff #}
+<!-- HDBT specific stuff -->
 <script>
 window.chat_user_consent = {
   retrieveUserConsent: () => window.hds.cookieConsent.getConsentStatus(['chat']),
