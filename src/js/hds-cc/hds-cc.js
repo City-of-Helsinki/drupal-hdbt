@@ -494,7 +494,7 @@ class HdsCookieConsentClass {
    * 2. If cookie doesn't exist, show banner
    * 3. If cookie wants to show banner, show banner
    * 4. Otherwise, do not show banner
-   *
+   * @private
    * @param {any} cookieSettings - The cookie settings.
    * @return {boolean} - Returns true if the banner should be displayed, false otherwise.
    */
@@ -518,6 +518,7 @@ class HdsCookieConsentClass {
   /**
    * Picks the proper translation from a given object of possible translations or returns the input string if not an object.
    * Defaults to English ('en') if the specified translation is not found.
+   * @private
    * @param {string|Object} translationObj - Either a string or an object containing language key to translation value pairs.
    * @param {string} lang - Language key, e.g., 'fi' for Finnish.
    * @return {string} - Translated string based on the provided language key, or the original string if `translationObj` is not an object.
@@ -534,7 +535,7 @@ class HdsCookieConsentClass {
 
   /**
    * Retrieves the HTML representation of cookie groups.
-   *
+   * @private
    * @param {Array} cookieGroupList - The list of cookie groups.
    * @param {string} lang - The language code.
    * @param {Object} translations - The translations object.
@@ -574,7 +575,7 @@ class HdsCookieConsentClass {
 
   /**
    * Renders the cookie consent banner.
-   *
+   * @private
    * @param {string} lang - The language for translations.
    * @param {Object} cookieSettings - The cookie settings object.
    * @throws {Error} If the targetSelector element is not found.

@@ -96,16 +96,8 @@ const translations = {
     sv: 'Kakan',
     en: 'Cookie',
   },
-  type_2: {
-    fi: 'Paikallinen tallennustila (localStorage)',
-    sv: 'Lokalt lagring (localStorage)',
-    en: 'Local storage (localStorage)',
-  },
-  type_3: {
-    fi: 'Istuntokohtainen tallennustila (sessionStorage)',
-    sv: 'Sessionsspecifik lagring (sessionStorage)',
-    en: 'Session-specific storage (sessionStorage)',
-  },
+  type_2: 'localStorage',
+  type_3: 'sessionStorage',
 };
 
 export function getTranslation(key, lang, parameters) {
@@ -128,7 +120,14 @@ export function getTranslation(key, lang, parameters) {
   }
 
   // Find translation based on key, fallback to English
-  const translation = translations[key]?.[lang] || translations[key]?.en || null;
+  let translation = null;
+  if (translations[key]) {
+    if (typeof translations[key] === 'string') {
+      translation = translations[key];
+    } else if (typeof translations[key] === 'object') {
+      translation = translations[key][lang] || translations[key].en || null;
+    }
+  }
 
   if (translation) {
 
