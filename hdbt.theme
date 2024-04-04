@@ -1399,6 +1399,11 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
       }
     }
   }
+
+  $variables['show_phone_with_contacts'] = FALSE;
+  if ($entity->hasField('field_phone_with_contacts')) {
+    $variables['show_phone_with_contacts'] = (bool) $entity->get('field_phone_with_contacts')->value;
+  }
 }
 
 /**
