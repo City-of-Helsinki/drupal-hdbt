@@ -100,6 +100,15 @@ const translations = {
   type_3: 'sessionStorage',
 };
 
+/**
+ * Retrieves a translation based on the provided key, language, and parameters.
+ *
+ * @param {string} key - The translation key.
+ * @param {string} lang - The language code.
+ * @param {object} parameters - The parameters used to replace placeholders in the translation.
+ * @return {string} - The translated string.
+ * @throws {Error} - If the translation is missing for the provided key and language.
+ */
 export function getTranslation(key, lang, parameters) {
   // Normal strings as template strings, use like:
   // index({ a: 1, b: 2 }, "${a} is smaller than ${b}")
@@ -153,6 +162,10 @@ export function getTranslation(key, lang, parameters) {
   throw new Error(`Missing translation: ${key}:${lang}`);
 }
 
+/**
+ * Retrieves the translation keys from the translations object.
+ * @return {string[]} An array of translation keys.
+ */
 export function getTranslationKeys() {
   // console.log('getTranslationKeys', Object.keys(translations));
   return Object.keys(translations);
