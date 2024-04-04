@@ -32,7 +32,10 @@ class HdsCookieConsentClass {
   #UNCHANGED;
   #ESSENTIAL_GROUP_NAME;
   #SUBMIT_EVENT = false;
-
+  #shadowRoot;
+  #bannerElements;
+  #resizeReference;
+  #cookie_name;
 
   /**
    * Creates a new instance of the CookieConsent class.
@@ -73,16 +76,16 @@ class HdsCookieConsentClass {
     this.#UNCHANGED = 'unchanged';
     this.#ESSENTIAL_GROUP_NAME = 'essential';
 
-    this.shadowRoot = null;
-    this.bannerElements = {
+    this.#shadowRoot = null;
+    this.#bannerElements = {
       bannerContainer: null,
       spacer: null,
     };
-    this.resizeReference = {
+    this.#resizeReference = {
       resizeObserver: null,
       bannerHeightElement: null,
     };
-    this.cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
+    this.#cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
@@ -188,9 +191,9 @@ class HdsCookieConsentClass {
    */
   #getCookie() {
     try {
-      const cookieString = parse(document.cookie)[this.cookie_name];
+      const cookieString = parse(document.cookie)[this.#cookie_name];
       if (!cookieString) {
-        console.error('Cookie is not set');
+        // console.error('Cookie is not set');
         return false;
       }
       return JSON.parse(cookieString);
@@ -210,15 +213,15 @@ class HdsCookieConsentClass {
    */
   #removeBanner() {
     // Remove banner size observer
-    if (this.resizeReference.resizeObserver && this.resizeReference.bannerHeightElement) {
-      this.resizeReference.resizeObserver.unobserve(this.resizeReference.bannerHeightElement);
+    if (this.#resizeReference.resizeObserver && this.#resizeReference.bannerHeightElement) {
+      this.#resizeReference.resizeObserver.unobserve(this.#resizeReference.bannerHeightElement);
     }
     // Remove banner elements
-    if (this.bannerElements.bannerContainer) {
-      this.bannerElements.bannerContainer.remove();
+    if (this.#bannerElements.bannerContainer) {
+      this.#bannerElements.bannerContainer.remove();
     }
-    if (this.bannerElements.spacer) {
-      this.bannerElements.spacer.remove();
+    if (this.#bannerElements.spacer) {
+      this.#bannerElements.spacer.remove();
     }
     // Remove scroll-margin-bottom variable from all elements inside the contentSelector
     document.documentElement.style.removeProperty('--hds-cookie-consent-height');
@@ -234,7 +237,7 @@ class HdsCookieConsentClass {
     // console.log('#setCookie', cookieData);
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + this.#COOKIE_DAYS);
-    document.cookie = serialize(this.cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
+    document.cookie = serialize(this.#cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
   }
 
 
@@ -267,8 +270,8 @@ class HdsCookieConsentClass {
     this.#setCookie(data);
 
     // Update the checkboxes to reflect the new state (if called outside)
-    if (this.shadowRoot) {
-      const form = this.shadowRoot.querySelector('form');
+    if (this.#shadowRoot) {
+      const form = this.#shadowRoot.querySelector('form');
       if (form) {
         const formCheckboxes = form.querySelectorAll('input');
 
@@ -366,7 +369,7 @@ class HdsCookieConsentClass {
   async #getCookieSettings() {
     const cookieSettings = await this.#getCookieSettingsFromJsonFile();
 
-    this.cookie_name = cookieSettings.cookieName || this.cookie_name; // Optional override for cookie name
+    this.#cookie_name = cookieSettings.cookieName || this.#cookie_name; // Optional override for cookie name
 
     // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
     const browserCookie = this.#getCookie();
@@ -383,10 +386,10 @@ class HdsCookieConsentClass {
       // The site cookie settings must have required group named by ESSENTIAL_GROUP_NAME
       throw new Error(`Cookie consent error: '${this.#ESSENTIAL_GROUP_NAME}' group missing`);
     }
-    const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.cookie_name);
+    const requiredCookieFound = essentialGroup.cookies.find(cookie => cookie.name === this.#cookie_name);
     if (!requiredCookieFound) {
       // The required "essential" group must have cookie with name matching the root level 'cookieName'
-      throw new Error(`Cookie consent error: Missing cookie entry for '${this.cookie_name}' in group '${this.#ESSENTIAL_GROUP_NAME}'`);
+      throw new Error(`Cookie consent error: Missing cookie entry for '${this.#cookie_name}' in group '${this.#ESSENTIAL_GROUP_NAME}'`);
     }
 
     const cookieSettingsGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
@@ -600,9 +603,9 @@ class HdsCookieConsentClass {
     bannerContainer.classList.add('hds-cc__target');
     bannerContainer.style.all = 'initial';
     bannerTarget.prepend(bannerContainer);
-    this.bannerElements.bannerContainer = bannerContainer;
+    this.#bannerElements.bannerContainer = bannerContainer;
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
-    this.shadowRoot = shadowRoot;
+    this.#shadowRoot = shadowRoot;
 
     // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
     // Fetch the external CSS file
@@ -648,7 +651,7 @@ class HdsCookieConsentClass {
 
     // Add spacer inside spacerParent (to the bottom of the page)
     const spacer = document.createElement('div');
-    this.bannerElements.spacer = spacer;
+    this.#bannerElements.spacer = spacer;
     spacer.id = 'hds-cc__spacer';
     spacerParent.appendChild(spacer);
     spacer.style.height = 'var(--hds-cookie-consent-height, 0)';
@@ -662,8 +665,8 @@ class HdsCookieConsentClass {
     });
     const bannerHeightElement = shadowRoot.querySelector('.hds-cc__container');
     resizeObserver.observe(bannerHeightElement);
-    this.resizeReference.resizeObserver = resizeObserver;
-    this.resizeReference.bannerHeightElement = bannerHeightElement;
+    this.#resizeReference.resizeObserver = resizeObserver;
+    this.#resizeReference.bannerHeightElement = bannerHeightElement;
 
     // Add button events
     const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
