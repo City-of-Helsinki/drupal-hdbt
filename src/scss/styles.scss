@@ -26,7 +26,7 @@ body{
 
 .dialog-off-canvas-main-canvas {
   height: auto;
-  min-height: calc(100% - var(--hds-cc-height, 0));
+  min-height: calc(100% - var(--hds-cookie-consent-height, 0));
 }
 
 .nav-toggle-dropdown--menu {
