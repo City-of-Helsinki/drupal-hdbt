@@ -27,15 +27,24 @@ class HdsCookieConsentClass {
   #TARGET_SELECTOR;
   #SPACER_PARENT_SELECTOR;
   #PAGE_CONTENT_SELECTOR;
-  #TEMP_CSS_PATH;
-  #COOKIE_DAYS;
-  #UNCHANGED;
-  #ESSENTIAL_GROUP_NAME;
   #SUBMIT_EVENT = false;
-  #shadowRoot;
-  #bannerElements;
-  #resizeReference;
-  #cookie_name;
+  #TEMP_CSS_PATH;
+
+  #COOKIE_DAYS = 100;
+  #UNCHANGED = 'unchanged';
+  #ESSENTIAL_GROUP_NAME = 'essential';
+  #shadowRoot = null;
+  #bannerElements = {
+    bannerContainer: null,
+    spacer: null,
+  };
+
+  #resizeReference = {
+    resizeObserver: null,
+    bannerHeightElement: null,
+  };
+
+  #cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
   /**
    * Creates a new instance of the CookieConsent class.
@@ -69,23 +78,8 @@ class HdsCookieConsentClass {
     this.#TARGET_SELECTOR = targetSelector;
     this.#SPACER_PARENT_SELECTOR = spacerParentSelector;
     this.#PAGE_CONTENT_SELECTOR = pageContentSelector;
-    this.#TEMP_CSS_PATH = tempCssPath;
     this.#SUBMIT_EVENT = submitEvent;
-
-    this.#COOKIE_DAYS = 100;
-    this.#UNCHANGED = 'unchanged';
-    this.#ESSENTIAL_GROUP_NAME = 'essential';
-
-    this.#shadowRoot = null;
-    this.#bannerElements = {
-      bannerContainer: null,
-      spacer: null,
-    };
-    this.#resizeReference = {
-      resizeObserver: null,
-      bannerHeightElement: null,
-    };
-    this.#cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
+    this.#TEMP_CSS_PATH = tempCssPath;
 
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
