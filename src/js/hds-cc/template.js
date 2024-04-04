@@ -1,3 +1,20 @@
+/**
+ * Generates the HTML for the cookie banner.
+ *
+ * @param {Object} translations - The translations object containing the text for the banner.
+ * @param {string} translations.bannerAriaLabel - The aria-label for the banner.
+ * @param {string} translations.heading - The heading text for the banner.
+ * @param {string} translations.description - The description text for the banner.
+ * @param {string} translations.showDetails - The text for the "Show Details" button.
+ * @param {string} translations.hideDetails - The text for the "Hide Details" button.
+ * @param {string} translations.form_heading - The heading text for the form.
+ * @param {string} translations.form_text - The text for the form.
+ * @param {string} translations.approveAllConsents - The text for the "Approve All Consents" button.
+ * @param {string} translations.approveRequiredAndSelectedConsents - The text for the "Approve Required and Selected Consents" button.
+ * @param {string} translations.approveOnlyRequiredConsents - The text for the "Approve Only Required Consents" button.
+ * @param {string} groupsHtml - The HTML for the consent groups.
+ * @return {string} The HTML for the cookie banner.
+ */
 export function getCookieBannerHtml(translations, groupsHtml) {
   return `
 <div id="hds-cc" class="hds-cc" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
@@ -49,7 +66,18 @@ export function getCookieBannerHtml(translations, groupsHtml) {
 </div>`;
 };
 
-// TODO: consider screenreader description parametrization (translations.screenreader.descriptions)
+
+/**
+ * Generates the HTML for a cookie group.
+ *
+ * @param {Object} translations - The translations object containing the text for the group.
+ * @param {string} groupId - The ID of the cookie group.
+ * @param {string} groupUniqueId - The unique ID of the cookie group.
+ * @param {string} tableRowsHtml - The HTML for the table rows.
+ * @param {boolean} groupRequired - Indicates if the group is required.
+ * @param {boolean} isAccepted - Indicates if the group is accepted.
+ * @return {string} The generated HTML for the cookie group.
+ */
 export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml, groupRequired, isAccepted) {
   const required = groupRequired ? ' checked disabled' : '';
   const accepted = isAccepted ? 'checked' : '';
@@ -95,6 +123,17 @@ export function getGroupHtml(translations, groupId, groupUniqueId, tableRowsHtml
             </div>`;
 };
 
+/**
+ * Generates HTML for a table row based on the provided row data.
+ *
+ * @param {Object} rowData - The data for the table row.
+ * @param {string} rowData.name - Cookie key string
+ * @param {string} rowData.host - The host of the cookie.
+ * @param {string} rowData.description - The description of the cookie.
+ * @param {string} rowData.expiration - The expiration of the cookie.
+ * @param {string} rowData.type - The type of the cookie/storage item.
+ * @return {string} The HTML for the table row.
+ */
 export function getTableRowHtml(rowData) {
   return `
                     <tr>
