@@ -47,6 +47,8 @@ const ontologyDetailsIdsToLang: any = {
   122: Drupal.t('Finnish', {}, { context: 'TPR Ontologyword details schools' }),
   123: Drupal.t('Russian', {}, { context: 'TPR Ontologyword details schools' }),
   124: Drupal.t('Estonian', {}, { context: 'TPR Ontologyword details schools' }),
+  149: Drupal.t('Teaching in English', {}, { context: 'TPR Ontologyword details schools' }),
+  150: Drupal.t('Teaching in English', {}, { context: 'TPR Ontologyword details schools' }),
   293: Drupal.t('Language immersion (English)', {}, { context: 'TPR Ontologyword details schools' }),
   295: Drupal.t('Language immersion (Swedish)', {}, { context: 'TPR Ontologyword details schools' }),
   297: Drupal.t('Language immersion (German)', {}, { context: 'TPR Ontologyword details schools' }),
