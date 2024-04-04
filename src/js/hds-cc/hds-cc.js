@@ -1,6 +1,5 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-console */
-/* eslint-disable valid-jsdoc */
 
 import {
   parse,
@@ -18,6 +17,10 @@ import {
   getTranslationKeys,
 } from './hds-cc_translations';
 
+/**
+ * Represents a class for managing cookie consent.
+ * @class
+ */
 class HdsCookieConsentClass {
   #SITE_SETTINGS_JSON_URL;
   #LANGUAGE;
@@ -30,6 +33,20 @@ class HdsCookieConsentClass {
   #ESSENTIAL_GROUP_NAME;
   #SUBMIT_EVENT = false;
 
+
+  /**
+   * Creates a new instance of the CookieConsent class.
+   * @constructor
+   * @param {Object} options - The options for configuring the CookieConsent instance.
+   * @param {string} options.siteSettingsJsonUrl - The path to the JSON file with cookie settings.
+   * @param {string} [options.language='en'] - The page language.
+   * @param {string} [options.targetSelector='body'] - The selector for where to inject the banner.
+   * @param {string} [options.spacerParentSelector='body'] - The selector for where to inject the spacer.
+   * @param {string} [options.pageContentSelector='body'] - The selector for where to add scroll-margin-bottom.
+   * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
+   * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
+   * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
+   */
   constructor(
     {
       siteSettingsJsonUrl, // Path to JSON file with cookie settings
@@ -82,7 +99,7 @@ class HdsCookieConsentClass {
   /**
    * Get the consent status for the specified cookie group names.
    * @param {string[]} groupNamesArray - An array of group names.
-   * @returns {Promise<boolean>} A promise that resolves to true if all the groups are accepted, otherwise false.
+   * @return {Promise<boolean>} A promise that resolves to true if all the groups are accepted, otherwise false.
    */
   getConsentStatus(groupNamesArray) {
 
@@ -104,6 +121,12 @@ class HdsCookieConsentClass {
     return groupNamesArray.every(groupName => !!browserCookieState.groups[groupName]);
   }
 
+  /**
+   * Sets the status of given cookie groups to accepted.
+   *
+   * @param {Array} acceptedGroupsArray - An array of cookie group names to be set as accepted.
+   * @return {Promise<boolean>} - A promise that resolves to true if the groups' status is successfully set to accepted, otherwise false.
+   */
   async setGroupsStatusToAccepted(acceptedGroupsArray) {
     const browserCookie = this.#getCookie();
     const showBanner = browserCookie?.showBanner || false;
@@ -137,8 +160,10 @@ class HdsCookieConsentClass {
 
   /**
    * Get checksum from string
-   * @param {String} str to be hashed
-   * @return {String} Hash in base16 from the string
+   * @private
+   * @param {string} message - The string to be hashed.
+   * @param {number} [length=8] - The length of the hash (default is 8).
+   * @return {string} - The hash in base16 from the string.
    *
    * Reference: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
    */
@@ -155,27 +180,33 @@ class HdsCookieConsentClass {
     return hashHex.substring(0, length);
   }
 
+
   /**
-   * Centralized browser cookie reading. Returns false if the cookie
-   * with specified name doesn't exist.
+   * Retrieves and parses the cookie consent cookie.
+   * @private
+   * @return {Object|boolean} The parsed cookie object, or false if the cookie is not set or parsing is unsuccessful.
    */
   #getCookie() {
     try {
       const cookieString = parse(document.cookie)[this.cookie_name];
       if (!cookieString) {
-        console.log('Cookie is not set');
+        console.error('Cookie is not set');
         return false;
       }
       return JSON.parse(cookieString);
     } catch (err) {
-      console.log(`Cookie parsing unsuccessful:\n${err}`);
+      console.error(`Cookie parsing unsuccessful:\n${err}`);
       return false;
     }
   }
 
 
+
   /**
-   * Removes the banner elements from DOM like the shadow root and spacer.
+   * Removes the banner and related elements.
+   * @private
+   * @memberof ClassName
+   * @function #removeBanner
    */
   #removeBanner() {
     // Remove banner size observer
@@ -196,7 +227,6 @@ class HdsCookieConsentClass {
 
   /**
    * Sets a cookie with the provided data.
-   *
    * @private
    * @param {Object} cookieData - The data to be stored in the cookie.
    */
@@ -210,7 +240,7 @@ class HdsCookieConsentClass {
 
   /**
    * Saves the accepted cookie groups to cookie, unsets others.
-   *
+   * @private
    * @param {Object} cookieSettings - Site specific settings
    * @param {Array} acceptedGroupNames - The names of the accepted cookie groups.
    * @param {boolean} showBanner - Whether to show the banner or not.
@@ -251,6 +281,15 @@ class HdsCookieConsentClass {
     }
   }
 
+  /**
+   * Removes invalid groups from the cookie based on the browser cookie state and cookie settings.
+   *
+   * @private
+   * @param {Array} cookieSettingsGroups - Required and optional cookie groups combined array from cookie settings.
+   * @param {Object} browserCookieState - The browser cookie state object.
+   * @param {Object} cookieSettings - The cookie settings object.
+   * @return {Object} - The updated cookie settings object.
+   */
   async #removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
     // console.log('#removeInvalidGroupsFromCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
 
@@ -286,6 +325,12 @@ class HdsCookieConsentClass {
     return cookieSettings;
   }
 
+  /**
+   * Fetches the cookie settings from a JSON file and returns them as an object.
+   * @private
+   * @return {Promise<Object>} A promise that resolves to the cookie settings object.
+   * @throws {Error} If there is an error fetching the cookie consent settings or parsing the JSON.
+   */
   async #getCookieSettingsFromJsonFile() {
     // Fetch the site settings JSON file
     let cookieSettingsRaw;
@@ -311,6 +356,13 @@ class HdsCookieConsentClass {
     return cookieSettings;
   }
 
+  /**
+   * Retrieves the cookie settings and performs necessary checks.
+   * @private
+   * @return {Promise<unknown>} A promise that resolves to the result of removing invalid groups from the cookie settings.
+   * @throws {Error} If the required group or cookie is missing in the cookie settings.
+   * @throws {Error} If there are multiple cookie groups with identical names in the cookie settings.
+   */
   async #getCookieSettings() {
     const cookieSettings = await this.#getCookieSettingsFromJsonFile();
 
@@ -321,7 +373,7 @@ class HdsCookieConsentClass {
     if (browserCookie) {
       // Check if settings have not changed and browser cookie has 'showBanner' set to false
       if (!browserCookie.showBanner && (cookieSettings.checksum === browserCookie.checksum)) {
-        console.log('Settings were unchanged');
+        // console.log('Settings were unchanged');
         return this.#UNCHANGED;
       }
     }
@@ -358,7 +410,11 @@ class HdsCookieConsentClass {
 
 
   /**
-   * Go through form and get accepted groups. Return a list of group ID's.
+   * Reads the group selections from the given form.
+   * @private
+   * @param {HTMLFormElement} form - The form element to read the group selections from.
+   * @param {boolean} [all=false] - Optional parameter to include all selections, regardless of their checked state.
+   * @return {Array<string>} - An array of selected groups.
    */
   #readGroupSelections(form, all = false) {
     const groupSelections = [];
@@ -372,6 +428,14 @@ class HdsCookieConsentClass {
     return groupSelections;
   }
 
+  /**
+   * Handles button events based on the selection.
+   * @private
+   * @param {string} selection - The selection type ('required', 'all', 'selected').
+   * @param {object} formReference - The reference to the form.
+   * @param {object} cookieSettings - The cookie settings object.
+   * @return {void}
+   */
   #handleButtonEvents(selection, formReference, cookieSettings) {
     let acceptedGroups = [];
     switch (selection) {
@@ -400,39 +464,34 @@ class HdsCookieConsentClass {
       window.dispatchEvent(new CustomEvent(this.#SUBMIT_EVENT, { detail: { acceptedGroups } }));
       this.#removeBanner();
     }
-
   }
 
   /**
-   * logic for cookie banner spawn
-   *   compare cookieSettings and browser cookie state
-   *   check 1. if cookie exists 2. essentials approved 3. hash match - show banner
-   *   else show banner
+   * Determines whether to display the banner.
+   * 1. If cookie settings have changed since approval, show banner
+   * 2. If cookie doesn't exist, show banner
+   * 3. If cookie wants to show banner, show banner
+   * 4. Otherwise, do not show banner
+   *
+   * @param {any} cookieSettings - The cookie settings.
+   * @return {boolean} - Returns true if the banner should be displayed, false otherwise.
    */
   #shouldDisplayBanner(cookieSettings) {
     if (cookieSettings !== this.#UNCHANGED) {
-      console.log('Cookie settings changed since approval, show banner');
-      return true;
+      return true; // Cookie settings changed since approval, show banner
     }
 
     const browserCookie = this.#getCookie();
     if (!browserCookie) {
-      console.log('Cookie doesn\'t exist, show banner');
-      return true;
+      return true; // Cookie doesn't exist, show banner
     }
 
     if (browserCookie.showBanner) {
-      console.log('Cookie wants to show banner');
-      return true;
+      return true; // Cookie wants to show banner
     }
 
-    console.log('All checks passed, no need for banner');
-    return false;
+    return false; // All checks passed, no need for banner
   }
-
-  /**
-   * Template building section
-   */
 
   /**
    * Picks the proper translation from a given object of possible translations or returns the input string if not an object.
@@ -451,7 +510,18 @@ class HdsCookieConsentClass {
     return translationObj;
   }
 
-  #getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, groupName, acceptedGroups) {
+  /**
+   * Retrieves the HTML representation of cookie groups.
+   *
+   * @param {Array} cookieGroupList - The list of cookie groups.
+   * @param {string} lang - The language code.
+   * @param {Object} translations - The translations object.
+   * @param {boolean} groupRequired - Indicates if the group is required.
+   * @param {string} cookieGroupCategoryName - The name of the category for these groups (ie. 'required' or 'optional').
+   * @param {Array} acceptedGroups - The list of accepted group IDs.
+   * @return {string} - The HTML representation of cookie groups.
+   */
+  #getCookieGroupsHtml(cookieGroupList, lang, translations, groupRequired, cookieGroupCategoryName, acceptedGroups) {
     let groupsHtml = '';
     let groupNumber = 0;
     cookieGroupList.forEach(cookieGroup => {
@@ -474,12 +544,22 @@ class HdsCookieConsentClass {
       });
 
       const isAccepted = acceptedGroups.includes(cookieGroup.groupId);
-      groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${groupName}_${groupNumber}`, tableRowsHtml, groupRequired, isAccepted);
+      groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${cookieGroupCategoryName}_${groupNumber}`, tableRowsHtml, groupRequired, isAccepted);
       groupNumber += 1;
     });
     return groupsHtml;
   }
 
+  /**
+   * Renders the cookie consent banner.
+   *
+   * @param {string} lang - The language for translations.
+   * @param {Object} cookieSettings - The cookie settings object.
+   * @throws {Error} If the targetSelector element is not found.
+   * @throws {Error} If the spacerParentSelector element is not found.
+   * @throws {Error} If the contentSelector element is not found.
+   * @throws {Error} If failed to load the temporary CSS file solution.
+   */
   async #renderBanner(lang, cookieSettings) {
     const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
     if (!bannerTarget) {
@@ -572,6 +652,13 @@ class HdsCookieConsentClass {
     shadowRoot.querySelector('.hds-cc').focus();
   }
 
+  /**
+   * Initializes the component by removing the banner, retrieving cookie settings,
+   * and rendering the banner if necessary.
+   *
+   * @private
+   * @return {Promise<void>} A promise that resolves when the initialization is complete.
+   */
   async #init() {
     this.#removeBanner();
     const cookieSettings = await this.#getCookieSettings();
@@ -583,6 +670,7 @@ class HdsCookieConsentClass {
     }
   };
 }
+
 window.hds = window.hds || {};
 window.hds.CookieConsentClass = HdsCookieConsentClass;
 
