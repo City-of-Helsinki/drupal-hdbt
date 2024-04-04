@@ -150,7 +150,7 @@ class HdsCookieConsentClass {
       group.checksum = await this.#getChecksum(group);
     }));
 
-    // Save chat group to accepted groups and update checkbox state
+    // Save accepted groups and update checkbox state
     this.#saveAcceptedGroups(cookieSettings, [...currentlyAccepted, ...acceptedGroupsArray], showBanner);
     return true;
   }
@@ -202,7 +202,6 @@ class HdsCookieConsentClass {
   /**
    * Removes the banner and related elements.
    * @private
-   * @memberof ClassName
    * @function #removeBanner
    */
   #removeBanner() {
@@ -248,8 +247,8 @@ class HdsCookieConsentClass {
     const acceptedGroups = {};
 
     // Find group checksums for accepted groups
-    const bothGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
-    bothGroups.forEach(group => {
+    const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+    allGroups.forEach(group => {
       if (acceptedGroupNames.includes(group.groupId)) {
         acceptedGroups[group.groupId] = group.checksum;
       }
