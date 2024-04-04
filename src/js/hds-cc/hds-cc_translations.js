@@ -86,11 +86,11 @@ const translations = {
     sv: 'Acceptera endast nödvändiga',
     en: 'Accept required cookies only',
   },
-  // settingsSaved: {
-  //   fi: 'Asetukset tallennettu!',
-  //   sv: 'Inställningar sparade!',
-  //   en: 'Settings saved!',
-  // },
+  settingsSaved: {
+    fi: 'Asetukset tallennettu!',
+    sv: 'Inställningar sparade!',
+    en: 'Settings saved!',
+  },
   type_1: {
     fi: 'Eväste',
     sv: 'Kakan',
