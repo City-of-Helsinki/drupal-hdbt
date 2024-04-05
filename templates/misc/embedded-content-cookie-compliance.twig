@@ -23,13 +23,19 @@
         ]
       } %}
       {% set external_link_title %}
-        {% set button_labelled_by_id = 'button__external-aria-label--' ~ random()|clean_id %}
-        <span class="is-hidden" id="{{ button_labelled_by_id }}">
-          {{- media_iframe_title -}}
-        </span>
-        <span class="hds-button__label" aria-labelledby="{{ button_labelled_by_id }}">
+
+        {# Add alternative screenreader only text to button if it's available #}
+        {% if media_iframe_title %}
+          <span class="visually-hidden">
+            {{- media_iframe_title -}}
+          </span>
+        {% endif %}
+
+        {# If screenreader only text is available, hide default button text from screenreaders #}
+        <span class="hds-button__label" {% if media_iframe_title %}aria-hidden="true"{% endif %}>
           {{- 'See content on external site'|t({}, {'context': 'Cookie compliance'}) -}}
         </span>
+
       {% endset %}
 
       {{ link(external_link_title, media_url, external_link_attributes) }}
