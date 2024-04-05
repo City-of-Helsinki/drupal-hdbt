@@ -72,5 +72,5 @@ $contact-card-max-width: $contact-card-image-size;
 }
 
 .contact-card__person-description {
-  color: var(--color-black-60);
+  color: #{$color-black-60};
 }
