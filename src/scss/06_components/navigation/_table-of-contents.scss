@@ -128,8 +128,8 @@
   }
 }
 
-.toc-focusable:focus,
-.toc-focusable:active {
+[data-once='table-of-contents']:focus,
+[data-once='table-of-contents']:active {
   outline: 3px solid $color-black;
   outline-offset: 2px;
 }
