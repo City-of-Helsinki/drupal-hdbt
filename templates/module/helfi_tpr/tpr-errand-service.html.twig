@@ -75,7 +75,7 @@
                 } %}
 
               {% endif %}
-              {% if errand_service_additional_info|render %}
+              {% if errand_service_additional_info|render|striptags|trim is not empty %}
 
                 {% include '@hdbt/component/accordion.twig' with {
                   heading_level: 'h3',
