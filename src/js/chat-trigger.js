@@ -39,26 +39,12 @@
   }
 
   /**
-   * A temporary fix function until CKEditor allows <chat-trigger data-chat-trigger="#aca-wbc-chat-app-button button">
-   * Replaces a placeholder element with a chat trigger element.
-   */
-  function temporaryFix() {
-    const placeholder = document.querySelector('a[href^="https://www.hel.fi/chat-trigger?click="]');
-    if (placeholder) {
-      const chatTrigger = document.createElement('chat-trigger');
-      chatTrigger.dataset.chatTrigger = decodeURIComponent(placeholder.getAttribute('href').split('?click=')[1]);;
-      placeholder.replaceWith(chatTrigger);
-    }
-  }
-
-  /**
    * Try to find the chat trigger placeholder element and replace it with a button that opens the chat.
    */
   function init() {
-    temporaryFix(); // TODO: Remove this temporary fix once CKEditor allows <chat-trigger data-chat-trigger="#aca-wbc-chat-app-button button">
 
     // Find the chat trigger placeholder element.
-    let placeholder = document.querySelector('chat-trigger');
+    let placeholder = document.querySelector('p[data-chat-trigger]');
 
     // If the chat trigger placeholder is not found, do nothing.
     if (!placeholder) {
@@ -84,6 +70,7 @@
       const triggerButton = document.createElement('button');
       triggerButton.textContent = triggerTranslations.openChat[lang];
       triggerButton.setAttribute('data-hds-component', 'button');
+      triggerButton.setAttribute('data-hds-variant', 'secondary');
       triggerButton.addEventListener('click', () => {
         chatButton.click();
       });
