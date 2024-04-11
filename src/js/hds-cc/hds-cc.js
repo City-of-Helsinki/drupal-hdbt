@@ -28,6 +28,8 @@ class HdsCookieConsentClass {
   #SPACER_PARENT_SELECTOR;
   #PAGE_CONTENT_SELECTOR;
   #SUBMIT_EVENT = false;
+  #MONITOR_INTERVAL;
+  #MONITOR_WITH_OVERRIDE;
   #TEMP_CSS_PATH;
 
   #COOKIE_DAYS = 100;
@@ -46,6 +48,19 @@ class HdsCookieConsentClass {
 
   #cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
+  #INITIAL_STORED_KEYS = {
+    cookieNameString: null,
+    localStorageKeys: [],
+    sessionStorageKeys: [],
+  };
+
+  #reportedKeys = {
+    cookies: [],
+    localStorageKeys: [],
+    sessionStorageKeys: [],
+  };
+
+
   /**
    * Creates a new instance of the CookieConsent class.
    * @constructor
@@ -56,6 +71,8 @@ class HdsCookieConsentClass {
    * @param {string} [options.spacerParentSelector='body'] - The selector for where to inject the spacer.
    * @param {string} [options.pageContentSelector='body'] - The selector for where to add scroll-margin-bottom.
    * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
+   * @param {number} [options.monitorInterval=500] - Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable.
+   * @param {boolean} [options.monitorWithOverride=false] - If true, overrides native writing to cookie and storage for monitoring. Defaults to false.
    * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
    * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
    */
@@ -67,6 +84,8 @@ class HdsCookieConsentClass {
       spacerParentSelector = 'body', // Where to inject the spacer
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
       submitEvent = false, // if string, do not reload page, but submit the string as event after consent
+      monitorInterval = 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable
+      monitorWithOverride = false, // If true, overrides native writing to cookie and storage for monitoring. Defaults to false
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
@@ -79,7 +98,13 @@ class HdsCookieConsentClass {
     this.#SPACER_PARENT_SELECTOR = spacerParentSelector;
     this.#PAGE_CONTENT_SELECTOR = pageContentSelector;
     this.#SUBMIT_EVENT = submitEvent;
+    this.#MONITOR_INTERVAL = monitorInterval;
+    this.#MONITOR_WITH_OVERRIDE = monitorWithOverride;
     this.#TEMP_CSS_PATH = tempCssPath;
+
+    this.#INITIAL_STORED_KEYS.cookieNameString = this.#getCookieNamesString();
+    this.#INITIAL_STORED_KEYS.localStorageKeys = Object.keys(localStorage).join(';');
+    this.#INITIAL_STORED_KEYS.sessionStorageKeys = Object.keys(sessionStorage).join(';');
 
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
@@ -233,6 +258,28 @@ class HdsCookieConsentClass {
     document.cookie = serialize(this.#cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
   }
 
+  /**
+   * Retrieves the keys in accepted groups based on the provided parameters.
+   * @private
+   * @param {Object} cookieSettings - The cookie settings object.
+   * @param {Array} acceptedGroupNames - An array of accepted group names.
+   * @param {string} type - The type of cookies to filter.
+   * @return {Array} - An array of accepted cookie keys.
+   */
+  #getCookieKeysInAcceptedGroups(cookieSettings, acceptedGroupNames, type) {
+    const acceptedCookies = new Set();
+    const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
+    allGroups.forEach(group => {
+      if (acceptedGroupNames.includes(group.groupId)) {
+        group.cookies.forEach(cookie => {
+          if (cookie.type === type) {
+            acceptedCookies.add(cookie.name);
+          }
+        });
+      }
+    });
+    return Array.from(acceptedCookies);
+  }
 
   /**
    * Saves the accepted cookie groups to cookie, unsets others.
@@ -254,10 +301,17 @@ class HdsCookieConsentClass {
       }
     });
 
+    const cookiesKeys = this.#getCookieKeysInAcceptedGroups(cookieSettings, acceptedGroupNames, 1).join(';');
+    const localStorageKeys = this.#getCookieKeysInAcceptedGroups(cookieSettings, acceptedGroupNames, 2).join(';');
+    const sessionStorageKeys = this.#getCookieKeysInAcceptedGroups(cookieSettings, acceptedGroupNames, 3).join(';');
+
     const data = {
       checksum: cookieSettings.checksum,
       groups: acceptedGroups,
       ...(showBanner && { showBanner: true }), // Only add showBanner if it's true
+      ...(cookiesKeys && { cookies: cookiesKeys }), // Only add cookies if keys are present
+      ...(localStorageKeys && { localStorage: localStorageKeys }), // Only add localStorage if keys are present
+      ...(sessionStorageKeys && { sessionStorage: sessionStorageKeys }), // Only add sessionStorage if keys are present
     };
 
     this.#setCookie(data);
@@ -672,6 +726,206 @@ class HdsCookieConsentClass {
   }
 
   /**
+   * Returns a string containing the names of all cookies.
+   * @private
+   * @return {string} A string containing the names of all cookies seprated with a semicolon.
+   */
+  #getCookieNamesString() {
+    const cookies = document.cookie.split(';');
+    const cookieNames = cookies.map(cookie => cookie.split('=')[0].trim());
+    return cookieNames.join(';');
+  }
+
+  #isKeyConsented(key, consentedKeys) {
+    // If no keys are consented, return false
+    if (!Array.isArray(consentedKeys) || consentedKeys.length === 0) {
+      console.log(consentedKeys);
+      return false;
+    }
+    // Check if the key is directly consented
+    if (consentedKeys.includes(key)) {
+      return true;
+    }
+
+    // Check if the key matches a wildcard pattern in consentedKeys that have * in them
+    const consentedKeysWithWildcard = consentedKeys.filter(consentedKey => consentedKey.includes('*'));
+    const consentedKeysRegexp = consentedKeysWithWildcard.map(consentedKey => new RegExp(`^${consentedKey.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*')}$`));
+
+    // Check if the key matches any of the wildcard patterns
+    return consentedKeysRegexp.some(regexp => regexp.test(key));
+  }
+
+  /**
+   * Monitors the consented keys and reports any unapproved keys. (cookies or localStorage or sessionStorage)
+   * Reports found unapproved keys to console and dispatches an event based on type.
+   * @private
+   * @param {string} typeString - The type of keys being monitored.
+   * @param {string[]} consentedKeysArray - An array of consented keys.
+   * @param {string} initialStoredKeys - The initial stored keys.
+   * @param {string[]} reportedKeysArray - An array of reported keys.
+   * @param {string} currentStoredKeys - The current stored keys.
+   */
+  #monitor(
+    typeString,
+    consentedKeysArray,
+    initialStoredKeys,
+    reportedKeysArray,
+    currentStoredKeys,
+    consentedGroups,
+  ) {
+    if (currentStoredKeys !== initialStoredKeys) {
+      const currentStoredKeysArray = currentStoredKeys.split(';');
+      const initialStoredKeyArray = initialStoredKeys.split(';');
+
+      // Find items that appear only in currentStoredKeys and filter out the ones that are already in consentedKeysArray
+      const unapprovedKeys = currentStoredKeysArray.filter((key) => {
+        if (
+          initialStoredKeyArray.includes(key) || // If key is not new, filter it out
+          reportedKeysArray.includes(key) || // If key is already reported, filter it out
+          this.#isKeyConsented(key, consentedKeysArray) // If key is consented (with possible wildcards), filter it out
+        ) {
+          return false;
+        }
+        return true;
+      });
+
+      if (unapprovedKeys.length > 0) {
+        console.log(`Cookie consent found unapproved ${typeString}(s): '${unapprovedKeys.join('\', \'')}'`);
+
+        const event = new CustomEvent(`hds-cookie-consent-unapproved-${typeString}-found`, { detail: { keys: unapprovedKeys, consentedGroups } });
+        window.dispatchEvent(event);
+
+        reportedKeysArray.push(...unapprovedKeys);
+      }
+    }
+  }
+
+  /**
+   * Monitors cookies, local storage, and session storage for unconsented new keys.
+   * @private
+   */
+  #monitorLoop() {
+    // console.log('monitoring', JSON.stringify(this.#reportedKeys));
+    const consentCookie = this.#getCookie();
+    const acceptedGroups = Object.keys(consentCookie.groups).join(';');
+
+    const consentedCookies = consentCookie?.cookies?.split(';') || [];
+    consentedCookies.push(this.#cookie_name);
+    this.#monitor(
+      'cookie',
+      consentedCookies,
+      this.#INITIAL_STORED_KEYS.cookieNameString,
+      this.#reportedKeys.cookies,
+      this.#getCookieNamesString(),
+      acceptedGroups,
+    );
+
+    const consentedLocalStorage = consentCookie?.localStorageKeys || [];
+    this.#monitor(
+      'localStorage',
+      consentedLocalStorage,
+      this.#INITIAL_STORED_KEYS.localStorageKeys,
+      this.#reportedKeys.localStorageKeys,
+      Object.keys(localStorage).join(';'),
+      acceptedGroups,
+    );
+
+    const consentedSessionStorage = consentCookie?.sessionStorageKeys || [];
+    this.#monitor(
+      'sessionStorage',
+      consentedSessionStorage,
+      this.#INITIAL_STORED_KEYS.sessionStorageKeys,
+      this.#reportedKeys.sessionStorageKeys,
+      Object.keys(sessionStorage).join(';'),
+      acceptedGroups,
+    );
+  }
+
+  /**
+   * Monitors cookies and storage at a specified interval.
+   * @private
+   */
+  #monitorCookiesAndStorage() {
+    const interval = Math.max(this.#MONITOR_INTERVAL, 50);
+
+    this.#monitorLoop();
+    setInterval(() => { this.#monitorLoop(); }, interval);
+  }
+
+  #blockUnapprovedCookies() {
+    const cookieDesc = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie') || Object.getOwnPropertyDescriptor(HTMLDocument.prototype, 'cookie');
+    if (cookieDesc && cookieDesc.configurable) {
+      Object.defineProperty(document, 'cookie', {
+        get: () => cookieDesc.get.call(document),
+        set: (val) => {
+          console.log('Setting cookie:', val);
+          const consentCookie = this.#getCookie();
+          const consentedCookies = consentCookie?.cookies?.split(';') || [];
+          consentedCookies.push(this.#cookie_name);
+          const consentedGroups = consentCookie?.groups || {};
+          const cookieName = val.split('=')[0].trim();
+          if (!this.#isKeyConsented(cookieName, consentedCookies)) {
+            const acceptedGroups = Object.keys(consentedGroups).join(';');
+            console.log(`Cookie consent: Blocked attempt to set unapproved cookie: '${cookieName}', accepted groups:'${acceptedGroups}'`);
+
+            const event = new CustomEvent('hds-cookie-consent-unapproved-cookie-was-set', { detail: { keys: [cookieName], acceptedGroups } });
+            window.dispatchEvent(event);
+
+            // TODO: Should we return here or throw an error?
+            throw new Error(`Cookie consent: Blocked attempt to set unapproved cookie: '${cookieName}', accepted groups:'${acceptedGroups}'`);
+            // return;
+          }
+
+          cookieDesc.set.call(document, val);
+        }
+      });
+    }
+  }
+
+  #blockUnapprovedLocalStorage() {
+    const getCookie = this.#getCookie;
+    const isKeyConsented = this.#isKeyConsented;
+    Storage.prototype.setItem = new Proxy(Storage.prototype.setItem, {
+      apply(target, thisArg, argumentList) {
+        console.log('Setting localStorage', argumentList[0]);
+        // const event = new CustomEvent('localstorage', {
+        //   detail: {
+        //     key: argumentList[0],
+        //     oldValue: thisArg.getItem(argumentList[0]),
+        //     newValue: argumentList[1],
+        //   },
+        // });
+        // window.dispatchEvent(event);
+        const consentCookie = getCookie();
+        const consentedLocalStorage = consentCookie?.localStorageKeys?.split(';') || [];
+        const consentedGroups = consentCookie?.groups || {};
+        const key = argumentList[0];
+        if (!isKeyConsented(key, consentedLocalStorage)) {
+          const acceptedGroups = Object.keys(consentedGroups).join(';');
+          console.log(`Cookie consent: Blocked attempt to set unapproved localStorage: '${key}', accepted groups:'${acceptedGroups}'`);
+
+          const event = new CustomEvent('hds-cookie-consent-unapproved-localStorage-was-set', { detail: { keys: [key], acceptedGroups } });
+          window.dispatchEvent(event);
+
+          // TODO: Should we return here or throw an error?
+          throw new Error(`Cookie consent: Blocked attempt to set unapproved localStorage: '${key}', accepted groups:'${acceptedGroups}'`);
+          // return;
+        }
+        return Reflect.apply(target, thisArg, argumentList);
+      },
+    });
+  }
+
+
+// helfi-cookie-consents=; path=/; domain=.helfi-kasko.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; path=/; domain=helfi-kasko.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; path=/; domain=.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; path=/; domain=docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; path=/; domain=.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; path=/; domain=so; expires=Mon, 08 Apr 2024 05:39:19 GMT
+// helfi-cookie-consents=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;
+
+  /**
    * Initializes the component by removing the banner, retrieving cookie settings,
    * and rendering the banner if necessary.
    *
@@ -681,6 +935,15 @@ class HdsCookieConsentClass {
   async #init() {
     this.#removeBanner();
     const cookieSettings = await this.#getCookieSettings();
+
+    if (this.#MONITOR_WITH_OVERRIDE) {
+      // this.#blockUnapprovedCookies();
+      this.#blockUnapprovedLocalStorage();
+    }
+
+    if (this.#MONITOR_INTERVAL > 0) {
+      this.#monitorCookiesAndStorage();
+    }
 
     // If cookie settings have not changed, do not show banner, otherwise, check
     const shouldDisplayBanner = this.#shouldDisplayBanner(cookieSettings);

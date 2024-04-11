@@ -3,6 +3,21 @@
 window.addEventListener('cookie-consent-changed', function(event) {
   console.log('Got cookie-consent-changed event with accepted groups:',event.detail.acceptedGroups);
 });
+
+const test = window.addEventListener('hds-cookie-consent-unapproved-cookie-found', function(event) {
+  console.log('Emulating sending to Sentry: Unapproved cookie: ',event.detail.keys, event.detail.consentedGroups);
+});
+
+window.addEventListener('hds-cookie-consent-unapproved-localStorage-found', function(event) {
+  console.log('Emulating sending to Sentry: Unapproved localStorage: ',event.detail.keys, event.detail.consentedGroups);
+});
+
+window.addEventListener('hds-cookie-consent-unapproved-sessionStorage-found', function(event) {
+  console.log('Emulating sending to Sentry: Unapproved sessionStorage: ',event.detail.keys, event.detail.consentedGroups);
+});
+
+// Write a new cookie
+{# document.cookie = 'test=1; path=/; SameSite=Lax; Secure'; #}
 </script>
 
 <script>
@@ -15,7 +30,11 @@ window.addEventListener('cookie-consent-changed', function(event) {
         //targetSelector: 'body', // Defaults to 'body'
         //spacerParentSelector: 'body', // Defaults to 'body'
         //pageContentSelector: 'body', // Defaults to 'body'
-        //submitEvent: 'cookie-consent-changed', // If this string is set, triggers a window level event with that string and detail.acceptedGroups before closing banner. If not set, reloads page instead
+        submitEvent: 'cookie-consent-changed', // If this string is set, triggers a window level event with that string and detail.acceptedGroups before closing banner. If not set, reloads page instead
+        monitorInterval: 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable monitoring
+        remove: true, // If true, will remove unallowed cookies and storage. Defaults to false
+        monitorWithOverride: true, // If true, will override native writing to cookies and storage to monitor them. Defaults to false
+        block: true, // If true, will block setting unallowed cookies and storage. Defaults to false
         tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
       }
     };
