@@ -1,4 +1,4 @@
-// This script replaces a chat trigger placeholder element with a button that opens the chat.
+// This script replaces chat trigger placeholder elements with buttons that open the chat.
 (function chatTriggerWrapper() {
   const triggerTranslations = {
     fallback: {
@@ -39,42 +39,45 @@
   }
 
   /**
-   * Try to find the chat trigger placeholder element and replace it with a button that opens the chat.
+   * Try to find the chat trigger placeholder elements and replace them with buttons that open the chat.
    */
   function init() {
 
-    // Find the chat trigger placeholder element.
-    let placeholder = document.querySelector('p[data-chat-trigger]');
-
-    // If the chat trigger placeholder is not found, do nothing.
-    if (!placeholder) {
-      return;
-    }
-
-    // Get target selector from attribute
-    const targetSelector = placeholder.dataset.chatTrigger;
+    // Find all chat trigger placeholder elements.
+    const placeholders = document.querySelectorAll('p[data-chat-trigger]');
 
     // Get the language, fallback to english.
     const lang = window?.drupalSettings?.path?.currentLanguage || 'en';
 
-    // The trigger is present but the chat is not available, show fallback until chat is available.
-    if (!document.querySelector(targetSelector)) {
-      const fallback = document.createElement('span');
-      fallback.textContent = triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
-      placeholder.replaceWith(fallback);
-      placeholder = fallback;
-    }
+    // Iterate over each placeholder.
+    placeholders.forEach(placeholder => {
+      // Get target selector from attribute
+      const targetSelector = placeholder.dataset.chatTrigger;
 
-    // Wait for the target element to appear in the DOM and replace the trigger with a button that opens the chat.
-    waitForElement(targetSelector).then((chatButton) => {
-      const triggerButton = document.createElement('button');
-      triggerButton.textContent = triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
-      triggerButton.setAttribute('data-hds-component', 'button');
-      triggerButton.setAttribute('data-hds-variant', 'secondary');
-      triggerButton.addEventListener('click', () => {
-        chatButton.click();
+      // The trigger is present but the chat is not available, show fallback until chat is available.
+      if (!document.querySelector(targetSelector)) {
+        const content = triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
+        placeholder.textContent = content;
+      }
+
+      // Wait for the target element to appear in the DOM and replace the trigger with a button that opens the chat.
+      waitForElement(targetSelector).then(() => {
+        const triggerButton = document.createElement('button');
+        triggerButton.textContent = triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
+        triggerButton.dataset.hdsComponent = 'button';
+        triggerButton.dataset.hdsVariant = 'secondary';
+        triggerButton.dataset.clickSelector = targetSelector;
+        triggerButton.addEventListener('click', (event) => {
+          const selector = event.target?.dataset?.clickSelector;
+          if (selector) {
+            const clickTarget = document.querySelector(selector);
+            if (clickTarget) {
+              clickTarget.click();
+            }
+          }
+        });
+        placeholder.replaceWith(triggerButton);
       });
-      placeholder.replaceWith(triggerButton);
     });
   }
 
