@@ -1,0 +1,86 @@
+{#
+{% embed '@hdbt/component/hero.twig' with {
+    design: content.field_hero_design[0]['#markup'],
+    title: content.field_hero_title,
+    description: content.field_hero_desc,
+    image: content.field_hero_image,
+  } %}
+{% endembed %}
+#}
+
+{% if design == "background-image" %}
+  {% set design_class = "hero--with-image-bottom" %}
+{% elseif design == "diagonal" %}
+  {% set design_class = "hero--diagonal" %}
+{% elseif design == "with-image-bottom" %}
+  {% set design_class = "hero--with-image-bottom" %}
+{% elseif design == "with-image-left" %}
+  {% set design_class = "hero--with-image-left" %}
+{% elseif design == "with-image-right" %}
+  {% set design_class = "hero--with-image-right" %}
+{% elseif design == "without-image-center" %}
+  {% set design_class = "hero--without-image-left" %}
+{% elseif design == "without-image-left" %}
+  {% set design_class = "hero--without-image-left" %}
+{% elseif design == "with-search" %}
+  {% set design_class = "hero--with-search" %}
+{% endif %}
+
+
+{% set hero_wrapper_attributes = {
+  'class': [
+    'hero',
+    design_class ? design_class,
+  ]
+} %}
+
+<div{{ create_attribute(hero_wrapper_attributes) }}>
+  {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
+    {% block container_content %}
+      <div class="hero__text-content">
+        {# Hyphenate the visible title, but share to screen readers unhyphenated version as for example NVDA reads hyphenated text poorly #}
+        <h1 class="hero__title hyphenate" aria-labelledby="page_title">{{ title }}</h1>
+        <span class="is-hidden" id="page_title">{{ title }}</span>
+
+        {% if design == "with-search"%}
+          {% include "@hdbt/component/helfi-search-form.twig" with {
+            label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
+            search_id: 'hero',
+          } %}
+        {% endif %}
+
+        {% if description|render|striptags|trim is not empty %}
+          {% if
+            design == "without-image-left" or
+            design == "without-image-center" or
+            design == "with-image-right" or
+            design == "with-image-left" or
+            design == "with-image-bottom" or
+            design == "diagonal"
+          %}
+            <div class="hero__description user-edited-content">
+              {{ description }}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+      <span class="hero__arrow" aria-hidden="true"></span>
+    {% endblock %}
+  {% endembed %}
+
+  {% if
+    design == "with-image-right" or
+    design == "with-image-left" or
+    design == "with-image-bottom" or
+    design == "diagonal" or
+    design == "with-search"
+  %}
+    {% if image|render %}
+      <div class="hero__image-container">
+        {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: true } %}
+        {{ image }}
+      </div>
+    {% endif %}
+  {% endif %}
+  {% include '@hdbt/misc/koro.twig' with {koro: koro, flip: false } %}
+</div>
