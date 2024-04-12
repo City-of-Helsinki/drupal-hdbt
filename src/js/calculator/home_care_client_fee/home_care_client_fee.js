@@ -343,7 +343,9 @@ class HomeCareClientFee {
       const shoppingServicePerWeek = 1;
 
       if (shoppingService === '1') {
-        // Since there is only one shopping service, use the price for the first service
+        // Since shopping service has only one delivery per week we use the first_per_week value.
+        // There used to be possibility in the calculator to have multiple deliveries per week,
+        // but it was fixed to one. This is why there is a bit misleading term first_per_week.
         shoppingPaymentPerWeek = parsedSettings.shopping_service_prices.first_per_week;
         shoppingPaymentPerMonth = shoppingPaymentPerWeek * 4;
 

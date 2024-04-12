@@ -73,8 +73,8 @@ const translations = {
   },
   shopping_service_paragraph: {
     fi: 'Kauppapalvelussa tilaamasi ruokaostokset toimitetaan kotiovellesi. Kauppapalvelun hintaan kuuluu yksi ruokaostosten keräily ja toimitus viikossa.',
-    sv: 'I butiksservicen levereras de livsmedelsinköp som du beställer till din dörr. I priset för butiksservicen ingår en insamling och leverans av livsmedel per vecka.',
-    en: 'The grocery delivery service delivers the groceries that you order through the service to your door. The price of the grocery delivery service includes one collection and delivery of the groceries per week.',
+    sv: 'Butiksservicen levererar de livsmedelsinköp som du beställer till din dörr. I priset för butiksservicen ingår samling och leverans av livsmedelsinköp en gång i veckan.',
+    en: 'The grocery delivery service delivers the groceries that you order through the service to your door. The price of the grocery delivery service includes the collection and delivery of the groceries once a week.',
   },
   shopping_service: {
     fi: 'Laske arvioon kauppapalvelu',
