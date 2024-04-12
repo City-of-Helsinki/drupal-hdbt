@@ -705,6 +705,19 @@ function hdbt_preprocess_block(&$variables): void {
   if ($variables['plugin_id'] == 'profile_block') {
     $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = TRUE;
   }
+
+  $chat_blocks = [
+    'ibm_chat_app',
+    'telia_ace_widget',
+    'chat_leijuke',
+  ];
+
+  // Add the chat trigger handler JS to chat blocks.
+  // It tracks the data-chat-trigger attribute and opens
+  // a corresponding chat if clicked.
+  if (in_array($variables['plugin_id'], $chat_blocks)) {
+    $variables['#attached']['library'][] = 'hdbt/chat-trigger';
+  }
 }
 
 /**
