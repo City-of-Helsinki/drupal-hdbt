@@ -24,6 +24,9 @@ jobs:
       - name: Set theme folder
         run: echo "THEME_FOLDER=$DRUPAL_ROOT/public/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
 
+      - name: Update
+        run:  sudo apt update
+
       - name: Clone platform
         run: |
           git clone --depth=1 https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
