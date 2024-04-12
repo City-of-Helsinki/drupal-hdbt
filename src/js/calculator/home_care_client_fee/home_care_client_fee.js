@@ -25,7 +25,7 @@ class HomeCareClientFee {
         }
       }
       throw new Error(`Minimum range not found for ${value} from ${range}`);
-    };
+    }
 
     // 1. Get proper limits based on given values and the parsed settings.
     const maximumPayment = getMinimumRange(monthlyUsage, calculatorSettings.monthly_usage_max_payment);
@@ -201,8 +201,7 @@ class HomeCareClientFee {
         },
       },
       shopping_service_prices: {
-        first_per_week: 9.37,
-        others_per_week: 11.35,
+        first_per_week: 9.37
       },
       meal_service_prices: {
         lunch: 3.9,
@@ -217,19 +216,10 @@ class HomeCareClientFee {
     // */
     // Form content
     const getFormData = () => form.getFormData(this.id, this.t, {
-      firstPerWeekPrice: parsedSettings.shopping_service_prices.first_per_week,
-      othersPerWeekPrice: parsedSettings.shopping_service_prices.others_per_week,
+      firstPerWeekPrice: parsedSettings.shopping_service_prices.first_per_week
     });
 
     const update = () => {
-      const shoppingService = this.calculator.getFieldValue('shopping_service');
-
-      if (shoppingService === '1') {
-        this.calculator.showGroup('shopping_service_group');
-      } else {
-        this.calculator.hideGroup('shopping_service_group');
-      }
-
       const mealService = this.calculator.getFieldValue('meal_service');
 
       if (mealService === '1') {
@@ -248,12 +238,7 @@ class HomeCareClientFee {
       errorMessages.push(...this.calculator.validateBasics('gross_income_per_month'));
       errorMessages.push(...this.calculator.validateBasics('monthly_usage'));
       errorMessages.push(...this.calculator.validateBasics('safetyphone'));
-
       errorMessages.push(...this.calculator.validateBasics('shopping_service'));
-      const shoppingService = this.calculator.getFieldValue('shopping_service');
-      if (shoppingService === '1') {
-        errorMessages.push(...this.calculator.validateBasics('shopping_service_per_week'));
-      }
 
       errorMessages.push(...this.calculator.validateBasics('meal_service'));
       const mealService = this.calculator.getFieldValue('meal_service');
@@ -278,8 +263,7 @@ class HomeCareClientFee {
       const grossIncomePerMonthRaw = this.calculator.getFieldValue('gross_income_per_month');
       const monthlyUsage = Number(this.calculator.getFieldValue('monthly_usage'));
       const safetyphone = this.calculator.getFieldValue('safetyphone');
-      // Shopping service is set earlier
-      const shoppingServicePerWeek = Number(this.calculator.getFieldValue('shopping_service_per_week'));
+      const shoppingService = this.calculator.getFieldValue('shopping_service');
       // Meal service is set earlier
       const mealServicePerWeek = Number(this.calculator.getFieldValue('meal_service_per_week'));
 
@@ -355,39 +339,30 @@ class HomeCareClientFee {
       // 6. If shopping service is selected, calculate value for it.
       let shoppingPaymentPerWeek = 0;
       let shoppingPaymentPerMonth = 0;
+
+      const shoppingServicePerWeek = 1;
+
       if (shoppingService === '1') {
-        // First shopping service per week has cheaper price
+        // Since there is only one shopping service, use the price for the first service
         shoppingPaymentPerWeek = parsedSettings.shopping_service_prices.first_per_week;
-        // Others have higher price
-        shoppingPaymentPerWeek += (shoppingServicePerWeek - 1) * parsedSettings.shopping_service_prices.others_per_week;
         shoppingPaymentPerMonth = shoppingPaymentPerWeek * 4;
 
         // Add details to receipt
-        subtotals.push(
-          {
-            title: this.t('shopping_service_heading'),
-            has_details: true,
-            details: [
-              this.t(
-                (shoppingServicePerWeek === 1) ? 'receipt_shopping_service_math_single' : 'receipt_shopping_service_math_multiple',
-                {
-                  delivery_count_per_week: shoppingServicePerWeek,
-                  delivery_count_per_month: shoppingServicePerWeek * 4,
-                }
-              ),
-              this.t(
-                'receipt_shopping_service_explanation',
-                {
-                  first_per_week: this.calculator.formatFinnishEuroCents(parsedSettings.shopping_service_prices.first_per_week),
-                  others_per_week: this.calculator.formatFinnishEuroCents(parsedSettings.shopping_service_prices.others_per_week),
-                },
-              ),
-              this.t('receipt_shopping_service_algorithm')
-            ],
-            sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(shoppingPaymentPerMonth) }),
-            sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(shoppingPaymentPerMonth) }),
-          }
-        );
+        subtotals.push({
+          title: this.t('shopping_service_heading'),
+          has_details: true,
+          details: [
+            this.t('receipt_shopping_service_math_single', {
+              delivery_count_per_week: shoppingServicePerWeek,
+              delivery_count_per_month: shoppingServicePerWeek * 4,
+            }),
+            this.t('receipt_shopping_service_explanation', {
+              first_per_week: this.calculator.formatFinnishEuroCents(parsedSettings.shopping_service_prices.first_per_week),
+            })
+          ],
+          sum: this.t('receipt_subtotal_euros_per_month', { value: this.calculator.formatFinnishEuroCents(shoppingPaymentPerMonth) }),
+          sum_screenreader: this.t('receipt_subtotal_euros_per_month_screenreader', { value: this.calculator.formatEuroCents(shoppingPaymentPerMonth) }),
+        });
       }
 
       // 7. If meal service is selected, calculate value for it.

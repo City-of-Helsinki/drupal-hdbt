@@ -1,4 +1,4 @@
-function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
+function getFormData(id, t, { firstPerWeekPrice }) {
   return {
     form_id: id,
     has_required_fields: true,
@@ -97,6 +97,7 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
           id: 'shopping_service',
           label: t('shopping_service'),
           required: true,
+          helper_text: t('shopping_service_per_week_explanation', { first_per_week_price: firstPerWeekPrice }),
           radio_items: [
             {
               name: 'shopping_service',
@@ -109,25 +110,6 @@ function getFormData(id, t, { firstPerWeekPrice, othersPerWeekPrice }) {
               item_id: 'shopping_service_2',
               label: t('no'),
               value: 2,
-            },
-          ],
-        },
-      },
-      {
-        group: {
-          id: 'shopping_service_group',
-          hide_group: true,
-          items: [
-            {
-              input_integer: {
-                id: 'shopping_service_per_week',
-                label: t('shopping_service_per_week'),
-                unit: t('unit_amount'),
-                min: 1,
-                size: 2,
-                required: true,
-                helper_text: t('shopping_service_per_week_explanation', { first_per_week_price: firstPerWeekPrice, others_per_week_price: othersPerWeekPrice }),
-              },
             },
           ],
         },
