@@ -57,12 +57,12 @@ const FeatureFormContainer = () => {
 
     if (keyword.value && keyword.value.length) {
       params.keyword = keyword.value;
-    };
+    }
 
     [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education].forEach(element => {
       if (!element || !element.checked || !element.name) {
         return;
-      };
+      }
 
       const name = element.name as keyof Omit<SearchParams, 'keyword'|'page'|'query'|'a1'|'a2'|'b1'|'b2'|'weighted_education'|'bilingual_education'>;
       params[name] = true;

@@ -18,7 +18,7 @@ const ProximityFormContainer = () => {
 
     if (keyword.value && keyword.value.length) {
       params.keyword = keyword.value;
-    };
+    }
 
     setParams(params);
   };
