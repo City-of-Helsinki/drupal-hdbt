@@ -76,7 +76,9 @@
             }
           }
         });
-        placeholder.replaceWith(triggerButton);
+        placeholder.removeAttribute('data-chat-trigger');
+        placeholder.innerHTML = '';
+        placeholder.appendChild(triggerButton);
       });
     });
   }
