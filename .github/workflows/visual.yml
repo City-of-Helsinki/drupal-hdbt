@@ -142,7 +142,7 @@ jobs:
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        uses: hasura/comment-progress@v2.2.0
+        uses: hasura/comment-progress@v2.3.0
         if: github.ref != 'refs/heads/main'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
