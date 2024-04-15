@@ -201,7 +201,7 @@ class HomeCareClientFee {
         },
       },
       shopping_service_prices: {
-        first_per_week: 9.37
+        first_per_week: 9.37,
       },
       meal_service_prices: {
         lunch: 3.9,
@@ -216,7 +216,7 @@ class HomeCareClientFee {
     // */
     // Form content
     const getFormData = () => form.getFormData(this.id, this.t, {
-      firstPerWeekPrice: parsedSettings.shopping_service_prices.first_per_week
+      firstPerWeekPrice: parsedSettings.shopping_service_prices.first_per_week,
     });
 
     const update = () => {

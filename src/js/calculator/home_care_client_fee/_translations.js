@@ -172,14 +172,9 @@ const translations = {
     en: 'If both spouses are clients of continuous and regular home care with a monthly fee, the fee is divided between them in accordance with their service and care plans.',
   },
   receipt_shopping_service_math_single: {
-    fi: '1 kauppatoimitus viikossa, kuukausihintaan on laskettu 4 toimitusta.',
-    sv: '1 butiksleverans per vecka, 4 leveranser ingår i månadspriset.',
-    en: '1 grocery delivery per week; the monthly fee includes 4 deliveries.',
-  },
-  receipt_shopping_service_math_multiple: {
-    fi: '1 kauppatoimitus viikossa, kuukausihintaan on laskettu 4 toimitusta.',
-    sv: '1 butiksleveranser per vecka, i månadspriset ingår 4 leveranser.',
-    en: '1 grocery deliveries per week; the monthly fee includes 4 deliveries.',
+    fi: '1 kauppatoimitus viikossa, kuukausihintaan on laskettu 4 toimitusta.',
+    sv: '1 butiksleverans per vecka, 4 leveranser ingår i månadspriset.',
+    en: '1 grocery delivery per week; the monthly fee includes 4 deliveries.',
   },
   receipt_shopping_service_explanation: {
     fi: 'Kunkin viikon toimitus maksaa ${first_per_week} euroa.',
