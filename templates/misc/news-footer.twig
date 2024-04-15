@@ -1,0 +1,36 @@
+{# Links and links title #}
+{% if content.field_news_item_links_link|render %}
+  <div class="content-links">
+
+    {% if content.field_news_item_links_title|render %}
+      <div class="content-links__title">
+        {{ content.field_news_item_links_title }}
+      </div>
+    {% endif %}
+
+    <ul class="content-links__links">
+      {% for key in content.field_news_item_links_link['#items']|keys %}
+        <li class="content-links__links__link">{{ content.field_news_item_links_link[key] }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{# Social media share links #}
+{{ drupal_block('helfi_platform_config_social_sharing_block') }}
+
+{# Tags #}
+{% include "@hdbt/misc/news-tags.twig" with
+  {
+    tags: content.field_news_item_tags,
+    neighbourhoods: content.field_news_neighbourhoods,
+    groups: content.field_news_groups,
+  }
+%}
+
+{# Radioactivity #}
+{% if content.field_radioactivity|render %}
+  <section class="content-radioactive">
+    {{ content.field_radioactivity }}
+  </section>
+{% endif %}
