@@ -9,10 +9,10 @@
   {% endblock %}
 <script>
 {# Using inline javascript to hide announcements with as little flashing as possible and considering server cache #}
-!function(){let e=JSON.parse(window.localStorage.getItem("hidden-helfi-announcements")),n=document.querySelectorAll(".js-announcement");e&&n&&n.forEach(n=>{let{uuid:t}=n.dataset;e.includes(t)&&n.remove()})}();
+!function(){const e=JSON.parse(window.localStorage.getItem("helfi-settings")),t=document.querySelectorAll(".js-announcement");e&&t&&t.forEach(t=>{const{uuid:n}=t.dataset;e["hidden-helfi-announcements"].includes(n)&&t.remove()})}();
 {# Above snippet is minimized from source:
 (function(){
-  const uuidsToHide = JSON.parse(window.localStorage.getItem('hidden-helfi-announcements'));
+  const uuidsToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
   const elements = document.querySelectorAll('.js-announcement');
 
   if (!uuidsToHide || !elements) {
@@ -21,7 +21,7 @@
 
   elements.forEach((element)=>{
     const { uuid } = element.dataset;
-    if (uuidsToHide.includes(uuid)) {
+    if (uuidsToHide['hidden-helfi-announcements'].includes(uuid)) {
       element.remove();
     }
   });

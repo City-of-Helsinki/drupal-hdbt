@@ -1,12 +1,15 @@
+import LocalStorageManager from '../localStorageManager';
+
 export default class State {
 
   constructor() {
+    this.storageManager = new LocalStorageManager('helfi-settings');
+
     if (window.drupalSettings.helfi_instance_name !== undefined) {
       this.site = window.drupalSettings.helfi_instance_name;
     }
     this.page = window.drupalSettings.path.currentPath;
-
-    const siteAccordions = JSON.parse(localStorage.getItem(this.getStorageKey()));
+    const siteAccordions = JSON.parse(this.storageManager.getValues(this.getStorageKey()));
     if (siteAccordions === null) {
       this.siteAccordionStates = {};
       this.siteAccordionStates[this.page] = {};
@@ -42,7 +45,7 @@ export default class State {
       return false;
     }
     this.siteAccordionStates[this.page][accordionItemId] = isOpen;
-    localStorage.setItem(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
+    this.storageManager.addValue(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
   };
 
   loadItemState = accordionItemId => {

@@ -1,3 +1,5 @@
+import LocalStorageManager from './localStorageManager';
+
 // eslint-disable-next-line func-names
 (function (Drupal) {
   Drupal.behaviors.closable_announcements = {
@@ -6,24 +8,13 @@
       const ANNOUCEMENT_HIDE = 'js-announcement--hide';
       const DISABLED = 'js-announcement__close--disabled';
       const KEYNAME = 'hidden-helfi-announcements';
+      const storageManager = new LocalStorageManager('helfi-settings');
 
       function addToAnnouncementStorage(announcement) {
         const { uuid } = announcement.dataset;
         if (uuid) {
-          const item = window.localStorage.getItem(KEYNAME);
-          let itemArray = [];
-          if (item) {
-            try {
-              itemArray = JSON.parse(item);
-            } catch (error) {
-              // eslint-disable-next-line no-console
-              console.error(error);
-            }
-          }
-          itemArray.push(uuid);
-
           // console.log('Hiding uuid', uuid);
-          window.localStorage.setItem(KEYNAME, JSON.stringify(itemArray));
+          storageManager.addValue(KEYNAME, uuid);
         }
       }
 
@@ -81,9 +72,9 @@
         }
       }
 
-      // This can be called from addressbar using `javascript:unhideAnnouncements();`
+      // This can be called from address bar using `javascript:unhideAnnouncements();`
       window.unhideAnnouncements = function unhideAnnouncements() {
-        window.localStorage.removeItem(KEYNAME);
+        storageManager.removeValue(KEYNAME);
         window.location.reload();
       };
 
