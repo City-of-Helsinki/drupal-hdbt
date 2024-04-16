@@ -5,20 +5,10 @@ export default class State {
   constructor() {
     this.storageManager = new LocalStorageManager('helfi-settings');
 
-    if (window.drupalSettings.helfi_instance_name !== undefined) {
-      this.site = window.drupalSettings.helfi_instance_name;
-    }
+    this.site = window.drupalSettings.helfi_instance_name || '';
     this.page = window.drupalSettings.path.currentPath;
-    const siteAccordions = JSON.parse(this.storageManager.getValues(this.getStorageKey()));
-    if (siteAccordions === null) {
-      this.siteAccordionStates = {};
-      this.siteAccordionStates[this.page] = {};
-      this.pageAccordionStates = {};
-    } else {
-      this.siteAccordionStates = siteAccordions;
-      this.siteAccordionStates[this.page] = this.siteAccordionStates[this.page] === undefined ? {} : this.siteAccordionStates[this.page];
-      this.pageAccordionStates = this.siteAccordionStates[this.page];
-    }
+    this.siteAccordionStates = JSON.parse(this.storageManager.getValue(this.getStorageKey())) || {};
+    this.pageAccordionStates = this.siteAccordionStates[this.page] || {};
 
     // Initialize the cookie check
     this.AccordionsOpen = State.isCookieSet('helfi_accordions_open');
@@ -41,23 +31,15 @@ export default class State {
   getStorageKey = () => `${this.site}-accordion`;
 
   saveItemState = (accordionItemId, isOpen) => {
-    if (this.site === undefined) {
-      return false;
-    }
+    if (!this.site) return false;
+    if (!this.siteAccordionStates[this.page]) this.siteAccordionStates[this.page] = {};
     this.siteAccordionStates[this.page][accordionItemId] = isOpen;
-    this.storageManager.addValue(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
+    this.storageManager.setValue(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
   };
 
   loadItemState = accordionItemId => {
-    // Use the cached cookie check result
-    if (this.AccordionsOpen) {
-      return true;
-    }
-
-    if (this.site === undefined) {
-      return false;
-    }
-    return this.pageAccordionStates[accordionItemId] === undefined ? false : this.pageAccordionStates[accordionItemId];
+    if (!this.site) return false;
+    return !!this.pageAccordionStates[accordionItemId];
   };
 
   static getCurrentLanguage = () => window.drupalSettings.path.currentLanguage;

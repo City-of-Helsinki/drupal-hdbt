@@ -49,6 +49,7 @@ const Entries = () => {
     'src/js/helfi-accordion.js',
     'src/js/accordion/state.js',
     'src/js/accordion/translations.js',
+    'src/js/localStorageManager.js',
   ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {

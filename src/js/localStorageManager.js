@@ -17,6 +17,17 @@ class LocalStorageManager {
     localStorage.setItem(this.storageKey, JSON.stringify(this.data));
   }
 
+  setValue(key, value) {
+    // Directly set the value, assumes handling of objects
+    this.data[key] = value;
+    this.saveData();
+  }
+
+  getValue(key) {
+    // Returns the value which could be an object
+    return this.data[key] || null;
+  }
+
   addValue(key, value) {
     if (!this.data[key]) {
       this.data[key] = [];
