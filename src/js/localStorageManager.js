@@ -2,7 +2,7 @@
  * General purpose local storage manager.
  * Use this class if you need to update for example helfi-settings.
  */
-class LocalStorageManager {
+export default class LocalStorageManager {
   constructor(storageKey) {
     this.storageKey = storageKey;
     this.loadData();
@@ -53,5 +53,3 @@ class LocalStorageManager {
     }
   }
 }
-
-export default LocalStorageManager;
