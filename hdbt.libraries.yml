@@ -249,3 +249,12 @@ ploughing-schedule:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+# TODO: UHF-9969 Remove this temporary library and its code after it has been here for about a month (https://helsinkisolutionoffice.atlassian.net/browse/UHF-9969)
+local-storage-cleanup:
+  version: 1.0
+  js:
+    dist/js/localStorageCleanup.min.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
