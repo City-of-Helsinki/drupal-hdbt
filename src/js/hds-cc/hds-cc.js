@@ -653,6 +653,13 @@ class HdsCookieConsentClass {
     // Create banner HTML
     shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
 
+    // Add button events
+    const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
+    const shadowRootForm = shadowRoot.querySelector('form');
+    cookieButtons.forEach(button => button.addEventListener('click', e => {
+      this.#handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
+    }));
+
     // Add scroll-margin-bottom to all elements inside the contentSelector
     const style = document.createElement('style');
     style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cookie-consent-height, -8px) + 8px);}`;
@@ -676,13 +683,6 @@ class HdsCookieConsentClass {
     resizeObserver.observe(bannerHeightElement);
     this.#resizeReference.resizeObserver = resizeObserver;
     this.#resizeReference.bannerHeightElement = bannerHeightElement;
-
-    // Add button events
-    const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
-    const shadowRootForm = shadowRoot.querySelector('form');
-    cookieButtons.forEach(button => button.addEventListener('click', e => {
-      this.#handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
-    }));
 
     shadowRoot.querySelector('.hds-cc').focus();
   }
