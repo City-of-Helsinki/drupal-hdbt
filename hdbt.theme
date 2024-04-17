@@ -509,6 +509,11 @@ function hdbt_preprocess_input__submit(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_menu(&$variables): void {
+  if (isset($variables['attributes']['block_id'])) {
+    if (str_starts_with('external_menu_', $variables['attributes']['block_id'])) {
+      return;
+    }
+  }
   $apply_lang_attribute = array_key_exists('menu_type', $variables);
 
   if (
