@@ -230,7 +230,13 @@ class HdsCookieConsentClass {
     // console.log('#setCookie', cookieData);
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + this.#COOKIE_DAYS);
-    document.cookie = serialize(this.#cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
+    document.cookie = serialize(
+      this.#cookie_name,
+      JSON.stringify(cookieData),
+      {
+        expires: expiryDate,
+        path: '/',
+      });
   }
 
 
