@@ -78,6 +78,14 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
 
   const resetForm = () => {
     setSearchParams({});
+
+    // Reset individual selection atoms to their default states
+    updateA1([]);
+    updateA2([]);
+    updateB1([]);
+    updateB2([]);
+    updateWeighted([]);
+    updateBilingual([]);
   };
 
   const showClearButton =
