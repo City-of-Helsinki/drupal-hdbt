@@ -4,7 +4,7 @@ desktop-menu-toggle:
     dist/js/desktop-menu-toggle.min.js: {}
 
 accordion:
-  version: 1.4
+  version: 1.5
   js:
     dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
   dependencies:
@@ -86,7 +86,7 @@ matomo:
   - eu_cookie_compliance/eu_cookie_compliance
 
 closable_announcements:
-  version: 1.x
+  version: 1.1
   js:
     dist/js/closable-announcements.min.js: {}
   dependencies:
@@ -246,6 +246,15 @@ ploughing-schedule:
     dist/js/ploughing-schedule.min.js: {
       preprocess: false
     }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+
+# TODO: UHF-9969 Remove this temporary library and its code after it has been here for about a month (https://helsinkisolutionoffice.atlassian.net/browse/UHF-9969)
+local-storage-cleanup:
+  version: 1.0
+  js:
+    dist/js/localStorageCleanup.min.js: {}
   dependencies:
     - core/drupalSettings
     - core/drupal

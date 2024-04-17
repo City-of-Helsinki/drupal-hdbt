@@ -29,6 +29,7 @@ libraries:
   - hdbt/global-styling
   - hdbt/global-scripting
   - hdbt/hyphenopoly
+  - hdbt/local-storage-cleanup
 
 # Libraries extend
 libraries-extend:
