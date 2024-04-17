@@ -574,6 +574,29 @@ class HdsCookieConsentClass {
   }
 
   /**
+   * Temporary solition to inject CSS styles into the shadow root.
+   * @private
+   * @param {ShadowRoot} shadowRoot - The shadow root element to inject the styles into.
+   * @return {Promise<void>} - A promise that resolves when the styles are injected successfully.
+   * @throws {Error} - If there is an error fetching or injecting the styles.
+   */
+  async #injectCssStyles(shadowRoot) {
+    // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
+    // Fetch the external CSS file
+    try {
+      const response = await fetch(this.#TEMP_CSS_PATH);
+      const cssText = await response.text();
+
+      // Create and inject the style
+      const style = document.createElement('style');
+      style.textContent = cssText;
+      shadowRoot.appendChild(style);
+    } catch (error) {
+      throw new Error(`Cookie consent: Failed to load the temporary CSS file solution: '${error}'`);
+    }
+  }
+
+  /**
    * Renders the cookie consent banner.
    * @private
    * @param {string} lang - The language for translations.
@@ -604,19 +627,8 @@ class HdsCookieConsentClass {
     const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
     this.#shadowRoot = shadowRoot;
 
-    // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
-    // Fetch the external CSS file
-    try {
-      const response = await fetch(this.#TEMP_CSS_PATH);
-      const cssText = await response.text();
-
-      // Create and inject the style
-      const style = document.createElement('style');
-      style.textContent = cssText;
-      shadowRoot.appendChild(style);
-    } catch (error) {
-      throw new Error(`Cookie consent: Failed to load the temporary CSS file solution: '${error}'`);
-    }
+    // Inject CSS styles
+    await this.#injectCssStyles(shadowRoot);
 
     const translations = {};
     const translationKeys = getTranslationKeys();
