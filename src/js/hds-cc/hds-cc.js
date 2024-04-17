@@ -275,9 +275,7 @@ class HdsCookieConsentClass {
         const formCheckboxes = form.querySelectorAll('input');
 
         formCheckboxes.forEach(check => {
-          if (acceptedGroupNames.includes(check.dataset.group)) {
-            check.checked = true;
-          }
+          check.checked = acceptedGroupNames.includes(check.dataset.group);
         });
       }
     }
