@@ -40,6 +40,7 @@ const callback = (mutations, observer) => {
       });
     }
     catch(e) {
+      // eslint-disable-next-line no-console
       console.error(e);
       observer.disconnect();
     }

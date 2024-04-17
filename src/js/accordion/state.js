@@ -10,7 +10,8 @@ export default class State {
     this.siteAccordionStates = JSON.parse(this.storageManager.getValue(this.getStorageKey())) || {};
     this.pageAccordionStates = this.siteAccordionStates[this.page] || {};
 
-    // Initialize the cookie check
+    // Initialize the cookie check. This check is for Siteimprove so that it can
+    // have all the accordions open always so that it can read the contents.
     this.AccordionsOpen = State.isCookieSet('helfi_accordions_open');
   }
 
@@ -33,11 +34,21 @@ export default class State {
   saveItemState = (accordionItemId, isOpen) => {
     if (!this.site) return false;
     if (!this.siteAccordionStates[this.page]) this.siteAccordionStates[this.page] = {};
-    this.siteAccordionStates[this.page][accordionItemId] = isOpen;
+    // Save only the open accordion items to the local storage.
+    if (isOpen === false) {
+      delete this.siteAccordionStates[this.page][accordionItemId];
+    } else {
+      this.siteAccordionStates[this.page][accordionItemId] = isOpen;
+    }
     this.storageManager.setValue(this.getStorageKey(), JSON.stringify(this.siteAccordionStates));
   };
 
   loadItemState = accordionItemId => {
+    // Use the cached cookie check result
+    if (this.AccordionsOpen) {
+      return true;
+    }
+
     if (!this.site) return false;
     return !!this.pageAccordionStates[accordionItemId];
   };
