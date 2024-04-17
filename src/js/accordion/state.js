@@ -45,10 +45,7 @@ export default class State {
 
   loadItemState = accordionItemId => {
     // Use the cached cookie check result
-    if (this.AccordionsOpen) {
-      return true;
-    }
-
+    if (this.AccordionsOpen) return true;
     if (!this.site) return false;
     return !!this.pageAccordionStates[accordionItemId];
   };
