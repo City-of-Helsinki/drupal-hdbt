@@ -142,14 +142,11 @@ jobs:
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        uses: hasura/comment-progress@v2.3.0
         if: github.ref != 'refs/heads/main'
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: ${{ github.event.number }}
-          id: deploy-preview
-          recreate: true
+          comment_tag: status
+          pr_number: ${{ github.event.number }}
           message: "${{join(steps.run-tests.outputs.*, '  ')}}"
 
       - name: Upload container logs
