@@ -1,13 +1,14 @@
-name: Delete BackstopJS preview
+name: Delete old BackstopJS preview pages
 on:
-  pull_request:
-    types: [closed]
+  workflow_dispatch:
+  schedule:
+    - cron: '5 4 * * *'
 
 concurrency:
   group: visual-regression
 
 jobs:
-  delete_folder:
+  visual-regression-cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,7 +22,15 @@ jobs:
 
       - name: Remove the folder
         run: |
-          rm -r pull/${{ github.event.pull_request.number }}
+          for d in pull/*; do
+            id=$(echo $d | cut -d / -f2)
+            state=$(gh pr view $id --json state --jq .state)
+
+            if [ "$state" != "OPEN" ]; then
+              rm -r pull/$id
+            fi
+          done
+
           if [[ $(git status --porcelain) ]]; then
             git add .
             git commit -m 'Automated commit'

@@ -248,7 +248,7 @@ Extend as necessary.
 - only override eslint rules inline for readability
 
 ## Visual regression testing
-BackstopJS is used for testing visual regressions. By default the testing runs with Chromium as the browser engine.
+BackstopJS is used for testing visual regressions. By default, the testing runs with Chromium as the browser engine.
 The tests run against the content from the `helfi_test_content` module, so it should be installed and the test content imported.
 
 ### Fast test
@@ -287,6 +287,26 @@ On a Windows + WSL2 setup with Chromium as the engine, the test might get stuck 
   ...
 },
 ```
+
+### GitHub Actions
+
+The visual regression tests are run against every "Ready to review" pull request by default.
+
+#### Preview changes
+
+Each test run will result in a preview site hosted as GitHub Pages where you can compare the test results against the latest reference images.
+
+There should be a comment by `github-actions` user with the test results when the preview is ready.
+
+#### Approve changes
+
+Visual regressions can be approved by merging the pull request. New reference images will be generated automatically on commit to the `main` branch.
+
+#### Limitations
+
+Due to limitations of GitHub Actions, only one test suite can be queued and run at a time; any additional run will be canceled automatically and must be re-started manually.
+
+You can skip the visual regression testing by marking your pull request as "Draft" until it's actually ready for review.
 
 ## Contact
 
