@@ -1,19 +1,26 @@
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches-ignore:
+      - 'renovate/**'
   push:
     branches:
       - main
 env:
   SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
 name: Visual regression tests
+
+concurrency:
+  group: visual-regression
+
 jobs:
   tests:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set variables
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
@@ -43,7 +50,7 @@ jobs:
           COMPOSER_MIRROR_PATH_REPOS: 1
         run: |
           composer config repositories.5 path $GITHUB_WORKSPACE
-          composer require drupal/$THEME_NAME -W
+          composer require drupal/redis drupal/$THEME_NAME -W
           # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
           # instead of symlinking it to make sure the code is available inside
           # the app container.
@@ -77,6 +84,7 @@ jobs:
         if: steps.drupal-cache.outputs.cache-hit != 'true'
         run: |
           docker compose exec app bash -c "drush si minimal -y"
+          docker compose exec app bash -c "drush en redis -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
 
@@ -134,7 +142,7 @@ jobs:
         run: docker compose logs app > /tmp/container.log
 
       - name: Deploy to PR preview
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: github.ref != 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -142,14 +150,11 @@ jobs:
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        uses: hasura/comment-progress@v2.3.0
         if: github.ref != 'refs/heads/main'
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: ${{ github.event.number }}
-          id: deploy-preview
-          recreate: true
+          comment_tag: status
+          pr_number: ${{ github.event.number }}
           message: "${{join(steps.run-tests.outputs.*, '  ')}}"
 
       - name: Upload container logs
