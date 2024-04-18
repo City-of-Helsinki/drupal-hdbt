@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, ready_for_review]
     branches-ignore:
       - 'renovate/**'
   push:
@@ -9,7 +9,12 @@ on:
 env:
   SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
 name: Visual regression tests
+
+concurrency:
+  group: visual-regression
+
 jobs:
+  if: github.event.pull_request.draft == false
   tests:
     runs-on: ubuntu-latest
     steps:
