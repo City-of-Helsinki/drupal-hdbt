@@ -642,6 +642,9 @@ class HdsCookieConsentClass {
     const container = document.createElement('div');
     container.classList.add('hds-cc__target');
     container.style.all = 'initial';
+    if (!isBanner) {
+      renderTarget.innerHTML = '';
+    }
     renderTarget.prepend(container);
     const shadowRoot = container.attachShadow({ mode: 'open' });
     this.#shadowRoot = shadowRoot;
