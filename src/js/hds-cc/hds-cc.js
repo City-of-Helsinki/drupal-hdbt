@@ -132,7 +132,8 @@ class HdsCookieConsentClass {
    */
   async setGroupsStatusToAccepted(acceptedGroupsArray) {
     const browserCookie = this.#getCookie();
-    const showBanner = browserCookie?.showBanner || false;
+    // If cookie is not set, or it has a showBanner set to true, we need to set the banner to be shown
+    const showBanner = !browserCookie || browserCookie.showBanner || false;
 
     // If cookie is set, get the accepted groups
     let currentlyAccepted = [];
@@ -254,7 +255,7 @@ class HdsCookieConsentClass {
    * @param {boolean} showBanner - Whether to show the banner or not.
    */
   #saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
-    // console.log('Saving accepted cookie groups:', acceptedGroupNames);
+    // console.log('Saving accepted cookie groups:', acceptedGroupNames, showBanner);
 
     const acceptedGroups = {};
 
@@ -298,35 +299,32 @@ class HdsCookieConsentClass {
    */
   async #removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
     // console.log('#removeInvalidGroupsFromCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
-
+    let invalidGroupsFound = false;
     const newCookieGroups = [];
 
-    // If browser cookie has groups
+    // Loop through all groups in cookie settings and store each groups name and checksum
+    const cookieSettingsGroupsChecksums = {};
+    cookieSettingsGroups.forEach(group => {
+      cookieSettingsGroupsChecksums[group.groupId] = group.checksum;
+    });
+
+    // Loop through browser cookie groups and check if they are in cookie settings, store valid groups to be saved
     if (browserCookieState.groups) {
-
-      // Loop through groups in cookie settings
-      cookieSettingsGroups.forEach(cookieSettingsGroup => {
-        const browserGroupName = cookieSettingsGroup.groupId;
-        const matchedBrowserGroup = browserCookieState.groups[browserGroupName];
-        if (matchedBrowserGroup) {
-
-          // If group names match
-          if (browserGroupName === cookieSettingsGroup.groupId) {
-
-            // If checksums match, add to new cookie groups
-            if (browserCookieState.groups[browserGroupName] === cookieSettingsGroup.checksum) {
-              newCookieGroups.push(cookieSettingsGroup.groupId);
-            } else {
-              console.log(`Checksums do not match for group: '${cookieSettingsGroup.groupId}', removing from cookie accepted.`);
-            }
-          }
+      Object.keys(browserCookieState.groups).forEach(groupName => {
+        const group = browserCookieState.groups[groupName];
+        if (cookieSettingsGroupsChecksums[groupName] && cookieSettingsGroupsChecksums[groupName] === group) {
+          newCookieGroups.push(group.groupId);
+        } else {
+          invalidGroupsFound = true;
+          console.log(`Invalid group found in browser cookie: '${group.groupId}', removing from cookie.`);
         }
       });
-    };
+    }
 
-    // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
-    const showBanner = true;
-    this.#saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    if (invalidGroupsFound) {
+      const showBanner = true;
+      this.#saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    }
 
     return cookieSettings;
   }
@@ -448,17 +446,17 @@ class HdsCookieConsentClass {
     switch (selection) {
       case 'required': {
         acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       case 'all': {
         acceptedGroups = this.#readGroupSelections(formReference, true);
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       case 'selected': {
         acceptedGroups = this.#readGroupSelections(formReference);
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       default:
@@ -729,7 +727,7 @@ class HdsCookieConsentClass {
     }
 
     if (settingsPageElement) {
-      const cookieSettings = await this.#getCookieSettings(true);
+      const cookieSettings = await this.#getCookieSettings(false);
       this.#settingsPageElement = settingsPageElement;
       // If settings page element is found, render cookie settings in page instead of banner
       await this.#render(this.#LANGUAGE, cookieSettings, false, settingsPageElement);
