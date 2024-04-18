@@ -509,6 +509,15 @@ function hdbt_preprocess_input__submit(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_menu(&$variables): void {
+  // Menu, mobile menu, fallback menu and sidebar menu tree depth.
+  // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
+  $menu_depth = 5;
+  $variables['menu_depth'] = $menu_depth;
+  $variables['#attached']['drupalSettings']['menu_depth'] = $menu_depth;
+
+  if (isset($variables['attributes']['block_id']) && str_starts_with('external_menu_', $variables['attributes']['block_id'])) {
+    return;
+  }
   $apply_lang_attribute = array_key_exists('menu_type', $variables);
 
   if (
@@ -521,12 +530,6 @@ function hdbt_preprocess_menu(&$variables): void {
   foreach ($variables['items'] as &$item) {
     _hdbt_menu_item_apply_attributes($item, $apply_lang_attribute);
   }
-
-  // Menu, mobile menu, fallback menu and sidebar menu tree depth.
-  // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
-  $menu_depth = 5;
-  $variables['menu_depth'] = $menu_depth;
-  $variables['#attached']['drupalSettings']['menu_depth'] = $menu_depth;
 }
 
 /**
@@ -569,25 +572,15 @@ function _hdbt_menu_item_apply_attributes(array &$item, bool $apply_lang_attribu
     array_key_exists('original_link', $item) &&
     $item['original_link'] instanceof MenuLinkContent
   ) {
-    // MenuLinkContent::getEntity() has protected visibility and cannot be used
-    // to directly fetch the entity.
-    $metadata = $item['original_link']->getMetaData();
+    $menu_link_content = $item['original_link']->getEntity();
 
-    if (!empty($metadata['entity_id'])) {
-      $entity_type_manager = Drupal::entityTypeManager();
-      $menu_link_content = $entity_type_manager
-        ->getStorage('menu_link_content')
-        ->load($metadata['entity_id']);
-
-      // Add the possible lang attribute to menu item attributes.
-      if (
-        !empty($menu_link_content) &&
-        $menu_link_content->hasField('lang_attribute') &&
-        !$menu_link_content->get('lang_attribute')->isEmpty()
-      ) {
-        $lang_attribute = $menu_link_content->get('lang_attribute')->value;
-        $item['attributes']->setAttribute('lang', $lang_attribute);
-      }
+    // Add the possible lang attribute to menu item attributes.
+    if (
+      $menu_link_content->hasField('lang_attribute') &&
+      !$menu_link_content->get('lang_attribute')->isEmpty()
+    ) {
+      $lang_attribute = $menu_link_content->get('lang_attribute')->value;
+      $item['attributes']->setAttribute('lang', $lang_attribute);
     }
   }
 }
