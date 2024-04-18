@@ -39,6 +39,11 @@ $-card-spacing: $spacing-and-half;
     @include image-defaults($width: 100%, $max-width: null);
     @include loading-image-background;
   }
+
+  .image-placeholder {
+    // Change the image placeholder aspect ratio from the the default 16/9 to ratio used by the paragraphs images.
+    aspect-ratio: 6 / 4;
+  }
 }
 
 .content-card__title {
