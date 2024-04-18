@@ -45,7 +45,7 @@ jobs:
           COMPOSER_MIRROR_PATH_REPOS: 1
         run: |
           composer config repositories.5 path $GITHUB_WORKSPACE
-          composer require drupal/$THEME_NAME -W
+          composer require drupal/redis drupal/$THEME_NAME -W
           # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
           # instead of symlinking it to make sure the code is available inside
           # the app container.
@@ -79,6 +79,7 @@ jobs:
         if: steps.drupal-cache.outputs.cache-hit != 'true'
         run: |
           docker compose exec app bash -c "drush si minimal -y"
+          docker compose exec app bash -c "drush en redis -y"
           docker compose exec app bash -c "drush en helfi_test_content -y"
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
 
