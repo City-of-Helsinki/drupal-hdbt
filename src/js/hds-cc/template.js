@@ -52,11 +52,11 @@ export function getCookieBannerHtml(translations, groupsHtml, isBanner = true) {
         </div>
       </form>
       <div class="hds-cc__buttons">
+        <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
+        <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
+        </button>
         <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button" data-approved="all">
           <span class="hds-button__label">${translations.approveAllConsents}</span>
-        </button>
-        <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
-          <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
         </button>
         <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button" data-approved="required">
           <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>
