@@ -1,5 +1,6 @@
 name: Delete old BackstopJS preview pages
 on:
+  workflow_dispatch:
   schedule:
     - cron: '5 4 * * *'
 
@@ -7,7 +8,7 @@ concurrency:
   group: visual-regression
 
 jobs:
-  delete_folder:
+  visual-regression-cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
