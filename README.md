@@ -292,9 +292,17 @@ On a Windows + WSL2 setup with Chromium as the engine, the test might get stuck 
 
 The visual regression tests are run against every "Ready to review" pull request by default.
 
-Each test run will result in a preview site hosted as GitHub Pages where you can compare the test results against latest reference images.
+#### Preview changes
 
-New reference images will be generated on commit to the `main` branch.
+Each test run will result in a preview site hosted as GitHub Pages where you can compare the test results against the latest reference images.
+
+There should be a comment by `github-actions` user with the test results when the preview is ready.
+
+#### Approve changes
+
+Visual regressions can be approved by merging the pull request. New reference images will be generated automatically on commit to the `main` branch.
+
+#### Limitations
 
 Due to limitations of GitHub Actions, only one test suite can be queued and run at a time; any additional run will be canceled automatically and must be re-started manually.
 
