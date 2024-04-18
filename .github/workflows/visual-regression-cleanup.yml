@@ -21,6 +21,8 @@ jobs:
           git config --global user.email github-actions@github.com
 
       - name: Remove the folder
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           for d in pull/*; do
             id=$(echo $d | cut -d / -f2)
