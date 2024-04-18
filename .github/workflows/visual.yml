@@ -14,8 +14,8 @@ concurrency:
   group: visual-regression
 
 jobs:
-  if: github.event.pull_request.draft == false
   tests:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
