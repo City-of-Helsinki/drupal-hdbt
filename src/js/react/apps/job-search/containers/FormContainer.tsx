@@ -27,7 +27,6 @@ import {
 } from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
-import { getInitialAreaFilter } from '../helpers/Areas';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -177,9 +176,10 @@ const FormContainer = () => {
               value={taskAreaInputValue}
               name={SearchComponents.TASK_AREAS}
               style={{ display: 'none' }}
+              onChange={() => {}}
             >
               {taskAreaInputValue.map((value: string) => (
-                <option aria-hidden key={value} value={value} selected />
+                <option aria-hidden key={value} value={value} />
               ))}
             </select>
             <select
@@ -188,9 +188,10 @@ const FormContainer = () => {
               value={employmentInputValue}
               name={SearchComponents.EMPLOYMENT}
               style={{ display: 'none' }}
+              onChange={() => {}}
             >
               {employmentInputValue.map((value: string) => (
-                <option aria-hidden key={value} value={value} selected />
+                <option aria-hidden key={value} value={value} />
               ))}
             </select>
           </>
@@ -220,23 +221,23 @@ const FormContainer = () => {
             </div>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
-                  clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
-                  className='job-search-form__dropdown'
-                  clearable
-                  multiselect
-                  selectedItemRemoveButtonAriaLabel={Drupal.t(
-                    'Remove item',
-                    {},
-                    { context: 'Job search remove item aria label' }
-                  )}
-                  placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
-                  label={areaFilterLabel}
-                  // @ts-ignore
-                  options={areaFilterOptions}
-                  value={areaFilterSelection}
-                  id={SearchComponents.AREA_FILTER}
-                  onChange={setAreaFilter}
-                />
+                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
+                className='job-search-form__dropdown'
+                clearable
+                multiselect
+                selectedItemRemoveButtonAriaLabel={Drupal.t(
+                  'Remove item',
+                  {},
+                  { context: 'Job search remove item aria label' }
+                )}
+                placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
+                label={areaFilterLabel}
+                // @ts-ignore
+                options={areaFilterOptions}
+                value={areaFilterSelection}
+                id={SearchComponents.AREA_FILTER}
+                onChange={setAreaFilter}
+              />
             </div>
           </div>
         </div>
