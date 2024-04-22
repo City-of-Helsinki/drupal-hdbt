@@ -131,7 +131,7 @@ jobs:
           contains( github.event.pull_request.labels.*.name, 'recreate-reference-images') ||
           hashFiles('backstop/full/bitmaps_reference/') != '' ||
           github.ref == 'refs/heads/main'
-        run: echo 'generate-references=true >> $GITHUB_ENV
+        run: echo "generate-references=true" >> $GITHUB_OUTPUT
 
       - name: Generate new reference images
         working-directory: ${{ env.THEME_FOLDER }}
