@@ -248,6 +248,9 @@ Extend as necessary.
 - only override eslint rules inline for readability
 
 ## Visual regression testing
+
+See [Testing documentation](https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/testing.md).
+
 BackstopJS is used for testing visual regressions. By default, the testing runs with Chromium as the browser engine.
 The tests run against the content from the `helfi_test_content` module, so it should be installed and the test content imported.
 
@@ -291,6 +294,14 @@ On a Windows + WSL2 setup with Chromium as the engine, the test might get stuck 
 ### GitHub Actions
 
 The visual regression tests are run against every "Ready to review" pull request by default.
+
+#### Known issues
+
+Image styles fail to load after Actions cache flush.
+
+Tests are run with `asyncCaptureLimit` configuration, meaning multiple tests are run in parallel, causing image styles to return a `503: Retry after` response.
+
+This can be fixed by running the tests again.
 
 #### Preview changes
 
