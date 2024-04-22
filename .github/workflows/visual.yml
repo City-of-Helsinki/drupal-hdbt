@@ -161,7 +161,7 @@ jobs:
 
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v4
-        if: github.ref != 'refs/heads/main'
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ env.THEME_FOLDER }}/backstop/full/
