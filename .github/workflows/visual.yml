@@ -52,9 +52,15 @@ jobs:
 
       - name: Build project
         working-directory: ${{ env.DRUPAL_ROOT }}
+        env:
+          COMPOSER_MIRROR_PATH_REPOS: 1
         run: |
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/redis drupal/$THEME_NAME -W
+          # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
+          # instead of symlinking it to make sure the code is available inside
+          # the app container.
+          cp -r $GITHUB_WORKSPACE/.git $THEME_FOLDER/
 
         # Store the files folder in cache, so we don't have to install Drupal from
         # scratch every time.
