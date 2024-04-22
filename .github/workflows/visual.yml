@@ -168,7 +168,7 @@ jobs:
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        if: github.ref != 'refs/heads/main'
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: status
