@@ -3,7 +3,6 @@ const processArgs = process.argv.slice(2);
 const envPath = '../../../../.env';
 require('dotenv').config({ path: envPath }); // Get environment from instance .env file
 const backstop = require('backstopjs');
-const fs = require('fs');
 
 const TYPE = {
   FULL: 'full',
@@ -16,29 +15,7 @@ const COMMAND = {
   APPROVE: 'approve',
 };
 
-function patchReport(type) {
-  const reportFile = `backstop_data/${type}/html_report/index.html`;
-  // eslint-disable-next-line func-names
-  fs.readFile(reportFile, 'utf8', function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    const result = data.replace(/<script src="config.js">/g, `
-      <style>
-        [data-reactroot] div > img {
-          outline: 1px dashed rebeccapurple;
-        }
-      </style>
-      <script src="config.js?cachebust=${new Date().getTime()}">`);
-
-    // eslint-disable-next-line func-names
-    fs.writeFile(reportFile, result, 'utf8', function (error) {
-      if (error) return console.log(error);
-    });
-  });
-}
-
-function getConfig(hostname, type) {
+function getConfig(hostname, protocol, type) {
   const removeDefault = [
     '.header',
     '.breadcrumb__container',
@@ -102,123 +79,120 @@ function getConfig(hostname, type) {
 
   return {
     filter: processArgs[2] ?? null, // Add filter for label string here if you want to debug a single component, like the events component.
+    docker: true,
     config: {
       'id': type,
       'viewports': viewports,
+      'dockerCommandTemplate': 'docker run --rm --network=stonehenge-network -i --user $(id -u):$(id -g) --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
       'scenarios': [
-
         // Layout landing
         {
           'label': 'DC: Landing page - hero',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-right`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: layout landing - no-hero',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-no-hero`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Landing page - hero - without image, align left',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-without-image-align-left`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Landing page - hero - image on the left',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-left`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Landing page - hero - image on the bottom',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-image-on-the-bottom`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Landing page - hero - diagonal',
-          'url': `https://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-landing-page/dc-landing-page-hero-diagonal`,
           'removeSelectors': removeDefault
         },
-
         // Standard page
         {
           'label': 'DC: Standard page - hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - no-hero - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - no-hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - no-hero - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - no-hero - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-no-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: Standard page - hero - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-standard-page/dc-standard-page-hero-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
-
         // TPR Unit
         {
           'label': 'DC: TPR Unit - subnav',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-subnav`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: TPR Unit - no-subnav',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav`,
           'removeSelectors': removeDefault
         },
-
         // TPR Service
         {
           'label': 'DC: TPR Service - subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: TPR Service - subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: TPR Service - no-subnav - sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-sidebar`,
           'removeSelectors': removeDefault
         },
         {
           'label': 'DC: TPR Service - no-subnav - no-sidebar',
-          'url': `https://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
+          'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
-
         // Components
         {
           'label': 'DC: Accordion',
-          'url': `https://${hostname}/en/dc-components/dc-accordion`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-accordion`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--accordion'
@@ -227,7 +201,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Announcements',
-          'url': `https://${hostname}/en/dc-components/dc-announcements`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-announcements`,
           'removeSelectors': removeDefault,
           'selectors': [
             '#block-hdbt-subtheme-announcements'
@@ -236,7 +210,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Banner',
-          'url': `https://${hostname}/en/dc-components/dc-banner`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-banner`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--banner'
@@ -245,7 +219,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Calculator',
-          'url': `https://${hostname}/en/dc-components/dc-calculator`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-calculator`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--helfi-calculator'
@@ -254,7 +228,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Chart',
-          'url': `https://${hostname}/en/dc-components/dc-chart`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-chart`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--chart'
@@ -263,7 +237,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Columns',
-          'url': `https://${hostname}/en/dc-components/dc-columns`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-columns`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--columns'
@@ -272,7 +246,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Contact card listing',
-          'url': `https://${hostname}/en/dc-components/dc-contact-card-listing`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-contact-card-listing`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--contact-card-listing'
@@ -281,7 +255,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Content cards',
-          'url': `https://${hostname}/en/dc-components/dc-content-cards`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-content-cards`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--content-cards'
@@ -290,30 +264,16 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Content liftup',
-          'url': `https://${hostname}/en/dc-components/dc-content-liftup`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-content-liftup`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--content-liftup'
           ],
           'selectorExpansion': expandComponents,
         },
-        //{
-        //  'label': 'DC: Event list',
-        //  'url': `https://${hostname}/en/dc-components/dc-event-list`,
-        //  'removeSelectors': removeDefault,
-        //  // 'hideSelectors': [
-        //  //   '.event-list__event-image',
-        //  // ],
-        //  'delay': 1000, // The images are slow to load
-        //  'readySelector': '.react-search__results-stats',
-        //  'selectors': [
-        //    '.component--event-list'
-        //  ],
-        //  'selectorExpansion': expandComponents,
-        //},
         {
           'label': 'DC: Image',
-          'url': `https://${hostname}/en/dc-components/dc-image`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-image`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--image'
@@ -322,7 +282,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Liftup with image',
-          'url': `https://${hostname}/en/dc-components/dc-liftup-with-image`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-liftup-with-image`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--liftup-with-image'
@@ -331,7 +291,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: List of links',
-          'url': `https://${hostname}/en/dc-components/dc-list-of-links`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-list-of-links`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--list-of-links'
@@ -340,7 +300,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Map',
-          'url': `https://${hostname}/en/dc-components/dc-map`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-map`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--map'
@@ -349,7 +309,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: News list',
-          'url': `https://${hostname}/en/dc-components/dc-news-list`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-news-list`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--news-list'
@@ -358,7 +318,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Phasing',
-          'url': `https://${hostname}/en/dc-components/dc-phasing`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-phasing`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.components'
@@ -367,7 +327,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Popular services',
-          'url': `https://${hostname}/en/dc-components/dc-popular-services`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-popular-services`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--popular-services'
@@ -376,7 +336,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Remote video',
-          'url': `https://${hostname}/en/dc-components/dc-remote-video`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-remote-video`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--remote-video'
@@ -385,7 +345,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Service list',
-          'url': `https://${hostname}/en/dc-components/dc-service-list`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-service-list`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--service-list'
@@ -394,7 +354,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Sidebar text',
-          'url': `https://${hostname}/en/dc-components/dc-sidebar-text`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-sidebar-text`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.sidebar-text'
@@ -403,7 +363,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Text',
-          'url': `https://${hostname}/en/dc-components/dc-text`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-text`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.components'
@@ -412,7 +372,7 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Target group links',
-          'url': `https://${hostname}/en/dc-components/dc-target-group-links`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-target-group-links`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--target-group-links'
@@ -421,50 +381,27 @@ function getConfig(hostname, type) {
         },
         {
           'label': 'DC: Unit search',
-          'url': `https://${hostname}/en/dc-components/dc-unit-search`,
+          'url': `${protocol}://${hostname}/en/dc-components/dc-unit-search`,
           'removeSelectors': removeDefault,
           'selectors': [
             '.component--unit-search'
           ],
           'selectorExpansion': expandComponents,
         },
-        // {
-        //   'label': 'Component Banner',
-        //   'cookiePath': 'backstop_data/engine_scripts/cookies.json',
-        //   'url': `https://${hostname}/en/dc-components/dc-banner`,
-        //   'referenceUrl': '',
-        //   'readyEvent': '',
-        //   'readySelector': '',
-        //   'delay': 0,
-        //   'hideSelectors': [],
-        //   'removeSelectors': removeDefault,
-        //   'hoverSelector': '',
-        //   'clickSelector': '',
-        //   'postInteractionWait': 0,
-        //   'selectors': [
-        //     '.component--banner'
-        //   ],
-        //   'selectorExpansion': true,
-        //   'expect': 0,
-        //   'misMatchThreshold': 0.1,
-        //   'requireSameDimensions': true
-        // }
       ],
       'mergeImgHack': true,
       'onBeforeScript': 'onBefore.js',
-      // 'onReadyScript': 'onReady.js',
       'paths': {
-        'bitmaps_reference': `backstop_data/${type}/bitmaps_reference`,
-        'bitmaps_test': `backstop_data/${type}/bitmaps_test`,
-        'engine_scripts': `backstop_data/${type}/engine_scripts`,
-        'html_report': `backstop_data/${type}/html_report`,
-        'ci_report': `backstop_data/${type}/ci_report`
+        'bitmaps_reference': `backstop/${type}/bitmaps_reference`,
+        'bitmaps_test': `backstop/${type}/bitmaps_test`,
+        'engine_scripts': 'backstop/',
+        'html_report': `backstop/${type}/html_report`,
+        'ci_report': `backstop/${type}/ci_report`
       },
       'report': ['browser'],
       'engine': 'playwright',
       'engineOptions': {
         'browser': 'chromium',
-        'args': ['--no-sandbox'],
       },
       'asyncCaptureLimit': 10,
       'asyncCompareLimit': 100,
@@ -475,41 +412,33 @@ function getConfig(hostname, type) {
   };
 }
 
-if (process.env.DRUPAL_HOSTNAME) {
-  const hostname = process.env.DRUPAL_HOSTNAME;
-  const type = (processArgs.includes(TYPE.FAST)) ? TYPE.FAST : TYPE.FULL;
-  let command;
-
-  if (processArgs.includes(COMMAND.REFERENCE)) {
-    command = COMMAND.REFERENCE;
-  } else if (processArgs.includes(COMMAND.TEST)) {
-    command = COMMAND.TEST;
-  } else if (processArgs.includes(COMMAND.APPROVE)) {
-    command = COMMAND.APPROVE;
-  } else {
-    throw new Error('Missing a known command');
-  }
-
-  const reportUrl = `https://${hostname}/themes/contrib/hdbt/backstop_data/${type}/html_report/index.html`;
-
-  backstop(command, getConfig(hostname, type))
-    .then(() => {
-      patchReport(type);
-      if(command === COMMAND.REFERENCE) {
-        console.log(`\n\n📗 Created reference\n\nNext, do some changes and run 'test' command or check the report:\n🖼️  ${reportUrl}`);
-      } else if (command === COMMAND.TEST) {
-        console.log(`\n\n📗 Test passed\n\nYou can now check the report:\n🖼️  ${reportUrl}`);
-      } else if (command === COMMAND.APPROVE) {
-        console.log(`\n\n📗 Approved changes, you can verify by checking the report:\n\nYou can now check the report:\n🖼️  ${reportUrl}`);
-      }
-
-    }).catch((e) => {
-      process.exitCode = 255;
-      patchReport(type);
-      console.error('\n\n📕 ', e, `\n\nCheck the report:\n🖼️  ${reportUrl}`);
-    });
-
-} else {
+if (!process.env.DRUPAL_HOSTNAME || !process.env.COMPOSE_PROJECT_NAME) {
   process.exitCode = 1;
   console.error(`📕 Environment not found, are you sure the instance .env file can be found in ${envPath}?`);
 }
+
+const hostname = `${process.env.COMPOSE_PROJECT_NAME}:8080`;
+const protocol = 'http';
+const drupalHostname = process.env.DRUPAL_HOSTNAME;
+const type = (processArgs.includes(TYPE.FAST)) ? TYPE.FAST : TYPE.FULL;
+let command;
+
+if (processArgs.includes(COMMAND.REFERENCE)) {
+  command = COMMAND.REFERENCE;
+} else if (processArgs.includes(COMMAND.TEST)) {
+  command = COMMAND.TEST;
+} else if (processArgs.includes(COMMAND.APPROVE)) {
+  command = COMMAND.APPROVE;
+} else {
+  throw new Error('Missing a known command');
+}
+
+const reportUrl = `https://${drupalHostname}/themes/contrib/hdbt/backstop/${type}/html_report/index.html`;
+
+backstop(command, getConfig(hostname, protocol, type))
+  .then(() => {
+    console.log(`The ${command} command was successful! Check the report here: ${reportUrl}`);
+  }).catch((e) => {
+  process.exitCode = 255;
+  console.error('\n\n📕 ', e, `\n\nCheck the report:\n🖼️  ${reportUrl}`);
+});

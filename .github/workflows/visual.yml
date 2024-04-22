@@ -8,21 +8,25 @@ on:
   push:
     branches:
       - main
-env:
-  SIMPLETEST_DB: mysql://drupal:drupal@db:3306/drupal
+
 name: Visual regression tests
 
+# The concurrency group is used to make sure only one visual regression test
+# can be run at a time. Running multiple tests in parallel can cause a race
+# condition with GitHub Pages deployments.
+# Due to GitHub's limitation, only one test suite can be queued and run at
+# a time; any additional run will be canceled automatically and must be
+# re-started manually.
 concurrency:
   group: visual-regression
 
 jobs:
   tests:
+    # Don't run tests against Draft pull requests.
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set variables
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
@@ -58,10 +62,9 @@ jobs:
           # the app container.
           cp -r $GITHUB_WORKSPACE/.git $THEME_FOLDER/
 
-      - name: Start project
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose --profile testing up -d --wait && sleep 10
-
+        # Store the files folder in cache, so we don't have to install Drupal from
+        # scratch every time.
+        # You can force new re-installation by manually deleting the Actions cache.
       - name: Restore files folder
         id: drupal-cache
         uses: actions/cache@v4
@@ -72,15 +75,29 @@ jobs:
       - name: Prepare Drupal setup
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          mkdir public/sites/default/files/styles -p && chmod 777 public/sites/default -R
+          mkdir public/sites/default/files/styles -p && \
+          chmod 777 public/sites/default -R
 
+        # Start the project using Docker compose and wait until the database server
+        # is up.
+      - name: Start the project
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: |
+          docker compose up -d --wait
+          for i in {1..5}; do docker compose exec app bash \
+            -c "drush sqlq 'SHOW TABLES;' -q" && break || sleep 5; done
+
+        # Install the site from existing dump if the cache restoration was successful.
       - name: Install Drupal from existing dump
         working-directory: ${{ env.DRUPAL_ROOT }}
         if: steps.drupal-cache.outputs.cache-hit == 'true'
         run: |
           docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
-          docker compose exec app bash -c "drush updb -y"
+          docker compose exec app bash -c "drush updb -y && drush cr"
 
+        # Install the site from scratch if we failed to restore the cache.
+        # Dump the database into the files folder, so we can speed up the
+        # installation process and install Drupal using that dump from now on.
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
         if: steps.drupal-cache.outputs.cache-hit != 'true'
@@ -94,43 +111,46 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         run: |
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install && npm install && npx playwright install
+          nvm install && npm install
 
-      - name: Check if we should re-create reference images
-        if: contains( github.event.pull_request.labels.*.name, 'recreate-reference-images')
-        run: echo "GENERATE_REFERENCES=1" >> $GITHUB_ENV
-
-      - name: Generate reference images
-        working-directory: ${{ env.THEME_FOLDER }}
+        # Reference images are stored as Actions artifact, attempt to restore
+        # the images.
+      - name: Restore bitmaps
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run download -n bitmaps -D backstop_data/full/bitmaps_reference || true
+        working-directory: ${{ env.THEME_FOLDER }}
+        run: gh run download -n bitmaps -D backstop/full/bitmaps_reference || true
 
-          # Always update reference images when the pull request is merged to main branch.
-          if [ ! -d "backstop_data/full/bitmaps_reference" ] || [ "$GITHUB_REF" == "refs/heads/main" ]; then
-            GENERATE_REFERENCES=1
-          fi
+        # Generate new reference images if:
+        # - Something is merged into the main branch.
+        # - Reference images do not exist yet
+        # - Pull request has 'recreate-reference-images' label.
+      - name: Evaluate if we should re-create reference images
+        id: evaluate-reference-images
+        if: |
+          contains( github.event.pull_request.labels.*.name, 'recreate-reference-images') ||
+          hashFiles('backstop/full/bitmaps_reference/') != '' ||
+          github.ref == 'refs/heads/main'
+        run: echo 'generate-references=true >> $GITHUB_ENV
 
-          if [ "$GENERATE_REFERENCES" == "1" ]; then
-            npm run full-reference
-            echo "UPLOAD_BITMAP=1" >> $GITHUB_ENV
-          fi
+      - name: Generate new reference images
+        working-directory: ${{ env.THEME_FOLDER }}
+        if: steps.evaluate-reference-images.outputs.generate-references == true
+        run: npm run full-reference
 
       - uses: actions/upload-artifact@v4
-        if: ${{ env.UPLOAD_BITMAP == '1' }}
+        if: steps.evaluate-reference-images.outputs.generate-references == true
         with:
           name: bitmaps
-          path: ${{ env.THEME_FOLDER }}/backstop_data/full/bitmaps_reference
+          path: ${{ env.THEME_FOLDER }}/backstop/full/bitmaps_reference
           overwrite: true
           compression-level: 0
 
       - name: Run tests
         working-directory: ${{ env.THEME_FOLDER }}
         id: run-tests
-        # Skip tests when run against the 'main' branch since we're generating
-        # reference images and tests should never fail.
-        if: github.ref != 'refs/heads/main'
+        # Skip tests if we generated reference images since the tests should never fail.
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         run: |
           if ! npm run full-test; then
             echo "result=:warning: Visual regression found! Please check if this change is wanted or accidental. " >> $GITHUB_OUTPUT
@@ -139,25 +159,25 @@ jobs:
           fi
           echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
 
-      - name: Export container logs
-        working-directory: ${{ env.DRUPAL_ROOT }}
-        run: docker compose logs app > /tmp/container.log
-
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v4
-        if: github.ref != 'refs/heads/main'
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.THEME_FOLDER }}/backstop_data/full/
+          publish_dir: ${{ env.THEME_FOLDER }}/backstop/full/
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        if: github.ref != 'refs/heads/main'
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: status
           pr_number: ${{ github.event.number }}
           message: "${{join(steps.run-tests.outputs.*, '  ')}}"
+
+      - name: Export container logs
+        working-directory: ${{ env.DRUPAL_ROOT }}
+        run: docker compose logs app > /tmp/container.log
 
       - name: Upload container logs
         uses: actions/upload-artifact@v4
