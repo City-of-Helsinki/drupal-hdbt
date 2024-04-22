@@ -9,6 +9,6 @@ dist/**/*.map
 yarn.lock
 
 # BackstopJS
-backstop_data/*/bitmaps_reference
-backstop_data/*/bitmaps_test
-backstop_data/*/html_report
+backstop/*/bitmaps_reference
+backstop/*/bitmaps_test
+backstop/*/html_report
