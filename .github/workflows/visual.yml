@@ -75,9 +75,9 @@ jobs:
         # Start the project using Docker compose and wait until the database server
         # is up.
       - name: Start the project
+        working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
           docker compose up -d --wait
-          # Wait for Drupal to respond.
           for i in {1..5}; do docker compose exec app bash \
             -c "drush sqlq 'SHOW TABLES;' -q" && break || sleep 5; done
 
@@ -143,9 +143,8 @@ jobs:
       - name: Run tests
         working-directory: ${{ env.THEME_FOLDER }}
         id: run-tests
-        # Skip tests when run against the 'main' branch since we're generating
-        # reference images and tests should never fail.
-        if: github.ref != 'refs/heads/main'
+        # Skip tests if we generated reference images since the tests should never fail.
+        if: steps.evaluate-reference-images.outputs.generate-references != true
         run: |
           if ! npm run full-test; then
             echo "result=:warning: Visual regression found! Please check if this change is wanted or accidental. " >> $GITHUB_OUTPUT
