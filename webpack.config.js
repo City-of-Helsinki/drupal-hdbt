@@ -200,7 +200,20 @@ module.exports = (env, argv) => {
       hints: false,
       maxEntrypointSize: 512000,
       maxAssetSize: 512000
-    }
+    },
+    // Suppress the ResizeObserver loop limit exceeded error.
+    devServer: {
+      client: {
+        overlay: {
+          runtimeErrors: (error) => {
+            if (error.message === 'ResizeObserver loop limit exceeded') {
+              return false;
+            }
+            return true;
+          },
+        },
+      },
+    },
   };
 
   if (argv.mode === 'production') {
