@@ -53,8 +53,8 @@ jobs:
       - name: Build project
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: |
-          - composer config repositories.5 path $GITHUB_WORKSPACE
-          - composer require drupal/redis drupal/$THEME_NAME -W
+          composer config repositories.5 path $GITHUB_WORKSPACE
+          composer require drupal/redis drupal/$THEME_NAME -W
 
         # Store the files folder in cache, so we don't have to install Drupal from
         # scratch every time.
@@ -89,9 +89,7 @@ jobs:
           docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
           docker compose exec app bash -c "drush updb -y"
 
-        # Install the site from scratch using existing configuration if we failed
-        # to restore the cache.
-        #
+        # Install the site from scratch using if we failed to restore the cache.
         # Dump the database into the files folder, so we can speed up the
         # installation process and install Drupal using that dump from now on.
       - name: Install Drupal from scratch
