@@ -13,11 +13,12 @@
  * @param {string} translations.approveRequiredAndSelectedConsents - The text for the "Approve Required and Selected Consents" button.
  * @param {string} translations.approveOnlyRequiredConsents - The text for the "Approve Only Required Consents" button.
  * @param {string} groupsHtml - The HTML for the consent groups.
+ * @param {boolean} isBanner - Indicates if the code is rendered as banner or part of a page.
  * @return {string} The HTML for the cookie banner.
  */
-export function getCookieBannerHtml(translations, groupsHtml) {
+export function getCookieBannerHtml(translations, groupsHtml, isBanner = true) {
   return `
-<div id="hds-cc" class="hds-cc" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
+<div id="hds-cc" class="hds-cc ${isBanner?'hds-cc--banner':'hds-cc--page'}" tabindex="-1" role="region" aria-label="${translations.bannerAriaLabel}">
   <div class="hds-cc__container">
     <div class="hds-cc__aligner">
 
@@ -51,11 +52,11 @@ export function getCookieBannerHtml(translations, groupsHtml) {
         </div>
       </form>
       <div class="hds-cc__buttons">
+        <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
+        <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
+        </button>
         <button type="submit" class="hds-button hds-button--secondary hds-cc__all-cookies-button" data-approved="all">
           <span class="hds-button__label">${translations.approveAllConsents}</span>
-        </button>
-        <button type="submit" class="hds-button hds-button--secondary hds-cc__selected-cookies-button" data-approved="selected">
-          <span class="hds-button__label">${translations.approveRequiredAndSelectedConsents}</span>
         </button>
         <button type="submit" class="hds-button hds-button--secondary hds-cc__required-cookies-button" data-approved="required">
           <span class="hds-button__label">${translations.approveOnlyRequiredConsents}</span>

@@ -28,6 +28,7 @@ class HdsCookieConsentClass {
   #SPACER_PARENT_SELECTOR;
   #PAGE_CONTENT_SELECTOR;
   #SUBMIT_EVENT = false;
+  #SETTINGS_PAGE_SELECTOR;
   #TEMP_CSS_PATH;
 
   #COOKIE_DAYS = 100;
@@ -38,6 +39,8 @@ class HdsCookieConsentClass {
     bannerContainer: null,
     spacer: null,
   };
+
+  #settingsPageElement = null;
 
   #resizeReference = {
     resizeObserver: null,
@@ -56,6 +59,7 @@ class HdsCookieConsentClass {
    * @param {string} [options.spacerParentSelector='body'] - The selector for where to inject the spacer.
    * @param {string} [options.pageContentSelector='body'] - The selector for where to add scroll-margin-bottom.
    * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
+   * @param {string} [options.settingsPageSelector=null] - If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
    * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
    * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
    */
@@ -67,6 +71,7 @@ class HdsCookieConsentClass {
       spacerParentSelector = 'body', // Where to inject the spacer
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
       submitEvent = false, // if string, do not reload page, but submit the string as event after consent
+      settingsPageSelector = null, // If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
@@ -79,6 +84,7 @@ class HdsCookieConsentClass {
     this.#SPACER_PARENT_SELECTOR = spacerParentSelector;
     this.#PAGE_CONTENT_SELECTOR = pageContentSelector;
     this.#SUBMIT_EVENT = submitEvent;
+    this.#SETTINGS_PAGE_SELECTOR = settingsPageSelector;
     this.#TEMP_CSS_PATH = tempCssPath;
 
     window.hds = window.hds || {};
@@ -126,7 +132,8 @@ class HdsCookieConsentClass {
    */
   async setGroupsStatusToAccepted(acceptedGroupsArray) {
     const browserCookie = this.#getCookie();
-    const showBanner = browserCookie?.showBanner || false;
+    // If cookie is not set, or it has a showBanner set to true, we need to set the banner to be shown
+    const showBanner = !browserCookie || browserCookie.showBanner || false;
 
     // If cookie is set, get the accepted groups
     let currentlyAccepted = [];
@@ -230,7 +237,13 @@ class HdsCookieConsentClass {
     // console.log('#setCookie', cookieData);
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + this.#COOKIE_DAYS);
-    document.cookie = serialize(this.#cookie_name, JSON.stringify(cookieData), { expires: expiryDate });
+    document.cookie = serialize(
+      this.#cookie_name,
+      JSON.stringify(cookieData),
+      {
+        expires: expiryDate,
+        path: '/',
+      });
   }
 
 
@@ -242,7 +255,7 @@ class HdsCookieConsentClass {
    * @param {boolean} showBanner - Whether to show the banner or not.
    */
   #saveAcceptedGroups(cookieSettings, acceptedGroupNames = [], showBanner = false) {
-    // console.log('Saving accepted cookie groups:', acceptedGroupNames);
+    // console.log('Saving accepted cookie groups:', acceptedGroupNames, showBanner);
 
     const acceptedGroups = {};
 
@@ -269,9 +282,7 @@ class HdsCookieConsentClass {
         const formCheckboxes = form.querySelectorAll('input');
 
         formCheckboxes.forEach(check => {
-          if (acceptedGroupNames.includes(check.dataset.group)) {
-            check.checked = true;
-          }
+          check.checked = acceptedGroupNames.includes(check.dataset.group);
         });
       }
     }
@@ -288,35 +299,32 @@ class HdsCookieConsentClass {
    */
   async #removeInvalidGroupsFromCookie(cookieSettingsGroups, browserCookieState, cookieSettings) {
     // console.log('#removeInvalidGroupsFromCookie', cookieSettingsGroups, browserCookieState, cookieSettings);
-
+    let invalidGroupsFound = false;
     const newCookieGroups = [];
 
-    // If browser cookie has groups
+    // Loop through all groups in cookie settings and store each groups name and checksum
+    const cookieSettingsGroupsChecksums = {};
+    cookieSettingsGroups.forEach(group => {
+      cookieSettingsGroupsChecksums[group.groupId] = group.checksum;
+    });
+
+    // Loop through browser cookie groups and check if they are in cookie settings, store valid groups to be saved
     if (browserCookieState.groups) {
-
-      // Loop through groups in cookie settings
-      cookieSettingsGroups.forEach(cookieSettingsGroup => {
-        const browserGroupName = cookieSettingsGroup.groupId;
-        const matchedBrowserGroup = browserCookieState.groups[browserGroupName];
-        if (matchedBrowserGroup) {
-
-          // If group names match
-          if (browserGroupName === cookieSettingsGroup.groupId) {
-
-            // If checksums match, add to new cookie groups
-            if (browserCookieState.groups[browserGroupName] === cookieSettingsGroup.checksum) {
-              newCookieGroups.push(cookieSettingsGroup.groupId);
-            } else {
-              console.log(`Checksums do not match for group: '${cookieSettingsGroup.groupId}', removing from cookie accepted.`);
-            }
-          }
+      Object.keys(browserCookieState.groups).forEach(groupName => {
+        const group = browserCookieState.groups[groupName];
+        if (cookieSettingsGroupsChecksums[groupName] && cookieSettingsGroupsChecksums[groupName] === group) {
+          newCookieGroups.push(group.groupId);
+        } else {
+          invalidGroupsFound = true;
+          console.log(`Invalid group found in browser cookie: '${group.groupId}', removing from cookie.`);
         }
       });
-    };
+    }
 
-    // Because global checksum did not match, group checksums were checked and non-matching groups were removed, save the cleaned cookie
-    const showBanner = true;
-    this.#saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    if (invalidGroupsFound) {
+      const showBanner = true;
+      this.#saveAcceptedGroups(cookieSettings, newCookieGroups, showBanner);
+    }
 
     return cookieSettings;
   }
@@ -355,11 +363,12 @@ class HdsCookieConsentClass {
   /**
    * Retrieves the cookie settings and performs necessary checks.
    * @private
+   * @param {boolean} [isBanner=true] - Optional parameter to bypass certain checks when settings page is being rendered.
    * @return {Promise<unknown>} A promise that resolves to the result of removing invalid groups from the cookie settings.
    * @throws {Error} If the required group or cookie is missing in the cookie settings.
    * @throws {Error} If there are multiple cookie groups with identical names in the cookie settings.
    */
-  async #getCookieSettings() {
+  async #getCookieSettings(isBanner = true) {
     const cookieSettings = await this.#getCookieSettingsFromJsonFile();
 
     this.#cookie_name = cookieSettings.cookieName || this.#cookie_name; // Optional override for cookie name
@@ -368,7 +377,7 @@ class HdsCookieConsentClass {
     const browserCookie = this.#getCookie();
     if (browserCookie) {
       // Check if settings have not changed and browser cookie has 'showBanner' set to false
-      if (!browserCookie.showBanner && (cookieSettings.checksum === browserCookie.checksum)) {
+      if (isBanner && !browserCookie.showBanner && (cookieSettings.checksum === browserCookie.checksum)) {
         // console.log('Settings were unchanged');
         return this.#UNCHANGED;
       }
@@ -437,17 +446,17 @@ class HdsCookieConsentClass {
     switch (selection) {
       case 'required': {
         acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       case 'all': {
         acceptedGroups = this.#readGroupSelections(formReference, true);
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       case 'selected': {
         acceptedGroups = this.#readGroupSelections(formReference);
-        this.#saveAcceptedGroups(cookieSettings, acceptedGroups);
+        this.#saveAcceptedGroups(cookieSettings, acceptedGroups, false);
         break;
       }
       default:
@@ -458,21 +467,30 @@ class HdsCookieConsentClass {
       window.location.reload();
     } else {
       window.dispatchEvent(new CustomEvent(this.#SUBMIT_EVENT, { detail: { acceptedGroups } }));
-      this.#removeBanner();
+
+      // Handle selector and removal of banner depending on rendering mode: banner or page.
+      let ariaSelector = this.#TARGET_SELECTOR;
+      let ariaParentElement;
+      if (this.#settingsPageElement) {
+        ariaSelector = this.#SETTINGS_PAGE_SELECTOR;
+        ariaParentElement = this.#settingsPageElement;
+      } else {
+        ariaParentElement = document.querySelector(this.#TARGET_SELECTOR);
+        this.#removeBanner();
+      }
 
       // Announce settings saved to screen readers
       const ARIA_LIVE_ID = 'hds-cc-aria-live';
       const SHOW_ARIA_LIVE_FOR_MS = 5000;
-      const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
-      if (!bannerTarget) {
-        throw new Error(`Cookie consent: targetSelector element '${this.#TARGET_SELECTOR}'  was not found`);
+      if (!ariaParentElement) {
+        throw new Error(`Cookie consent: Aria notification parent element '${ariaSelector}'  was not found`);
       }
       const ariaLive = document.createElement('div');
       ariaLive.id = ARIA_LIVE_ID;
       ariaLive.setAttribute('aria-live', 'polite');
       ariaLive.style = 'position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;';
       ariaLive.textContent = getTranslation('settingsSaved', this.#LANGUAGE);
-      bannerTarget.appendChild(ariaLive);
+      ariaParentElement.appendChild(ariaLive);
 
       // Remove ariaLive after 5 seconds
       setTimeout(() => {
@@ -570,36 +588,13 @@ class HdsCookieConsentClass {
   }
 
   /**
-   * Renders the cookie consent banner.
+   * Temporary solition to inject CSS styles into the shadow root.
    * @private
-   * @param {string} lang - The language for translations.
-   * @param {Object} cookieSettings - The cookie settings object.
-   * @throws {Error} If the targetSelector element is not found.
-   * @throws {Error} If the spacerParentSelector element is not found.
-   * @throws {Error} If the contentSelector element is not found.
-   * @throws {Error} If failed to load the temporary CSS file solution.
+   * @param {ShadowRoot} shadowRoot - The shadow root element to inject the styles into.
+   * @return {Promise<void>} - A promise that resolves when the styles are injected successfully.
+   * @throws {Error} - If there is an error fetching or injecting the styles.
    */
-  async #renderBanner(lang, cookieSettings) {
-    const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
-    if (!bannerTarget) {
-      throw new Error(`Cookie consent: targetSelector element '${this.#TARGET_SELECTOR}'  was not found`);
-    }
-    const spacerParent = document.querySelector(this.#SPACER_PARENT_SELECTOR);
-    if (!spacerParent) {
-      throw new Error(`Cookie consent: The spacerParentSelector element '${this.#SPACER_PARENT_SELECTOR}' was not found`);
-    }
-    if (!document.querySelector(this.#PAGE_CONTENT_SELECTOR)) {
-      throw new Error(`Cookie consent: contentSelector element '${this.#PAGE_CONTENT_SELECTOR}' was not found`);
-    }
-
-    const bannerContainer = document.createElement('div');
-    bannerContainer.classList.add('hds-cc__target');
-    bannerContainer.style.all = 'initial';
-    bannerTarget.prepend(bannerContainer);
-    this.#bannerElements.bannerContainer = bannerContainer;
-    const shadowRoot = bannerContainer.attachShadow({ mode: 'open' });
-    this.#shadowRoot = shadowRoot;
-
+  async #injectCssStyles(shadowRoot) {
     // TODO: Replace this temporary CSS file hack with proper preprocess CSS inlining
     // Fetch the external CSS file
     try {
@@ -613,6 +608,49 @@ class HdsCookieConsentClass {
     } catch (error) {
       throw new Error(`Cookie consent: Failed to load the temporary CSS file solution: '${error}'`);
     }
+  }
+
+  /**
+   * Renders the cookie consent banner or page element.
+   * @private
+   * @param {string} lang - The language for translations.
+   * @param {Object} cookieSettings - The cookie settings object.
+   * @param {boolean} isBanner - Indicates if rendering banner or page element.
+   * @param {HTMLElement} renderTarget - The target element for rendering the page element, unset otherwise.
+   * @throws {Error} If the targetSelector element is not found.
+   * @throws {Error} If the spacerParentSelector element is not found.
+   * @throws {Error} If the contentSelector element is not found.
+   * @throws {Error} If failed to load the temporary CSS file solution.
+   */
+  async #render(lang, cookieSettings, isBanner, renderTarget = null) {
+    let spacerParent;
+    if (isBanner) {
+      const bannerTarget = document.querySelector(this.#TARGET_SELECTOR);
+      if (!bannerTarget) {
+        throw new Error(`Cookie consent: targetSelector element '${this.#TARGET_SELECTOR}'  was not found`);
+      }
+      spacerParent = document.querySelector(this.#SPACER_PARENT_SELECTOR);
+      if (!spacerParent) {
+        throw new Error(`Cookie consent: The spacerParentSelector element '${this.#SPACER_PARENT_SELECTOR}' was not found`);
+      }
+      if (!document.querySelector(this.#PAGE_CONTENT_SELECTOR)) {
+        throw new Error(`Cookie consent: contentSelector element '${this.#PAGE_CONTENT_SELECTOR}' was not found`);
+      }
+      renderTarget = bannerTarget;
+    }
+
+    const container = document.createElement('div');
+    container.classList.add('hds-cc__target');
+    container.style.all = 'initial';
+    if (!isBanner) {
+      renderTarget.innerHTML = '';
+    }
+    renderTarget.prepend(container);
+    const shadowRoot = container.attachShadow({ mode: 'open' });
+    this.#shadowRoot = shadowRoot;
+
+    // Inject CSS styles
+    await this.#injectCssStyles(shadowRoot);
 
     const translations = {};
     const translationKeys = getTranslationKeys();
@@ -635,31 +673,7 @@ class HdsCookieConsentClass {
     groupsHtml += this.#getCookieGroupsHtml(cookieSettings.optionalCookies.groups, lang, translations, false, 'optional', listOfAcceptedGroups);
 
     // Create banner HTML
-    shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml);
-
-    // Add scroll-margin-bottom to all elements inside the contentSelector
-    const style = document.createElement('style');
-    style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cookie-consent-height, -8px) + 8px);}`;
-    document.head.appendChild(style);
-
-    // Add spacer inside spacerParent (to the bottom of the page)
-    const spacer = document.createElement('div');
-    this.#bannerElements.spacer = spacer;
-    spacer.id = 'hds-cc__spacer';
-    spacerParent.appendChild(spacer);
-    spacer.style.height = 'var(--hds-cookie-consent-height, 0)';
-
-    // Update spacer and scroll-margin-bottom on banner resize
-    const resizeObserver = new ResizeObserver(entries => {
-      entries.forEach(entry => {
-        document.documentElement.style.setProperty('--hds-cookie-consent-height', `${parseInt(entry.contentRect.height, 10) + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`);
-        // spacer.style.height = `${entry.contentRect.height + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`;
-      });
-    });
-    const bannerHeightElement = shadowRoot.querySelector('.hds-cc__container');
-    resizeObserver.observe(bannerHeightElement);
-    this.#resizeReference.resizeObserver = resizeObserver;
-    this.#resizeReference.bannerHeightElement = bannerHeightElement;
+    shadowRoot.innerHTML += getCookieBannerHtml(translations, groupsHtml, isBanner);
 
     // Add button events
     const cookieButtons = shadowRoot.querySelectorAll('button[type=submit]');
@@ -668,7 +682,35 @@ class HdsCookieConsentClass {
       this.#handleButtonEvents(e.target.dataset.approved, shadowRootForm, cookieSettings);
     }));
 
-    shadowRoot.querySelector('.hds-cc').focus();
+    if (isBanner) {
+      this.#bannerElements.bannerContainer = container;
+
+      // Add scroll-margin-bottom to all elements inside the contentSelector
+      const style = document.createElement('style');
+      style.innerHTML = `${this.#PAGE_CONTENT_SELECTOR} * {scroll-margin-bottom: calc(var(--hds-cookie-consent-height, -8px) + 8px);}`;
+      document.head.appendChild(style);
+
+      // Add spacer inside spacerParent (to the bottom of the page)
+      const spacer = document.createElement('div');
+      this.#bannerElements.spacer = spacer;
+      spacer.id = 'hds-cc__spacer';
+      spacerParent.appendChild(spacer);
+      spacer.style.height = 'var(--hds-cookie-consent-height, 0)';
+
+      // Update spacer and scroll-margin-bottom on banner resize
+      const resizeObserver = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+          document.documentElement.style.setProperty('--hds-cookie-consent-height', `${parseInt(entry.contentRect.height, 10) + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`);
+          // spacer.style.height = `${entry.contentRect.height + parseInt(getComputedStyle(entry.target).borderTopWidth, 10)}px`;
+        });
+      });
+      const bannerHeightElement = shadowRoot.querySelector('.hds-cc__container');
+      resizeObserver.observe(bannerHeightElement);
+      this.#resizeReference.resizeObserver = resizeObserver;
+      this.#resizeReference.bannerHeightElement = bannerHeightElement;
+
+      shadowRoot.querySelector('.hds-cc').focus();
+    }
   }
 
   /**
@@ -680,12 +722,25 @@ class HdsCookieConsentClass {
    */
   async #init() {
     this.#removeBanner();
-    const cookieSettings = await this.#getCookieSettings();
 
-    // If cookie settings have not changed, do not show banner, otherwise, check
-    const shouldDisplayBanner = this.#shouldDisplayBanner(cookieSettings);
-    if (shouldDisplayBanner) {
-      await this.#renderBanner(this.#LANGUAGE, cookieSettings);
+    let settingsPageElement = null;
+    // If settings page selector is enabled, check if the element exists
+    if (this.#SETTINGS_PAGE_SELECTOR) {
+      settingsPageElement = document.querySelector(this.#SETTINGS_PAGE_SELECTOR);
+    }
+
+    if (settingsPageElement) {
+      const cookieSettings = await this.#getCookieSettings(false);
+      this.#settingsPageElement = settingsPageElement;
+      // If settings page element is found, render cookie settings in page instead of banner
+      await this.#render(this.#LANGUAGE, cookieSettings, false, settingsPageElement);
+    } else {
+      const cookieSettings = await this.#getCookieSettings();
+      // Check if banner is needed or not
+      const shouldDisplayBanner = this.#shouldDisplayBanner(cookieSettings);
+      if (shouldDisplayBanner) {
+        await this.#render(this.#LANGUAGE, cookieSettings, true);
+      }
     }
   };
 }
