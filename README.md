@@ -265,7 +265,7 @@ Fast test is for a quicker check covering only two breakpoints, mobile and deskt
 ### Full test
 Full test is a more comprehensive test that covers multiple variants, edge cases and breakpoints.
 
-1. Before any changes, run `npm run full-reference` for creating reference images.
+1. Before any changes, run `npm run full-reference` for creating reference images, or copy existing reference images from GitHub Actions: `gh run download -n bitmaps -D backstop/full/bitmaps_reference`
 2. Make the changes and run `npm run build`.
 2. To generate the test images and comparison report, run `npm run full-test`.
 3. Check the results from the link given at the end of the test.
