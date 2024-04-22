@@ -135,11 +135,11 @@ jobs:
 
       - name: Generate new reference images
         working-directory: ${{ env.THEME_FOLDER }}
-        if: steps.evaluate-reference-images.outputs.generate-references == true
+        if: steps.evaluate-reference-images.outputs.generate-references == 'true'
         run: npm run full-reference
 
       - uses: actions/upload-artifact@v4
-        if: steps.evaluate-reference-images.outputs.generate-references == true
+        if: steps.evaluate-reference-images.outputs.generate-references == 'true'
         with:
           name: bitmaps
           path: ${{ env.THEME_FOLDER }}/backstop/full/bitmaps_reference
@@ -150,7 +150,7 @@ jobs:
         working-directory: ${{ env.THEME_FOLDER }}
         id: run-tests
         # Skip tests if we generated reference images since the tests should never fail.
-        if: steps.evaluate-reference-images.outputs.generate-references != true
+        if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         run: |
           if ! npm run full-test; then
             echo "result=:warning: Visual regression found! Please check if this change is wanted or accidental. " >> $GITHUB_OUTPUT
@@ -161,14 +161,14 @@ jobs:
 
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v4
-        if: steps.evaluate-reference-images.outputs.generate-references != true
+        if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ env.THEME_FOLDER }}/backstop/full/
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
-        if: steps.evaluate-reference-images.outputs.generate-references != true
+        if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: status
