@@ -55,7 +55,7 @@
     "readable-stream": "^4.5.1",
     "sass": "^1.43.4",
     "stream-browserify": "^3.0.0",
-    "swr": "2.2.4"
+    "swr": "2.2.5"
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
