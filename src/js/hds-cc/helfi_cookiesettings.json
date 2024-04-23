@@ -32,6 +32,17 @@
             "type": 1
           },
           {
+            "name": "helfi-settings",
+            "host": "hel.fi",
+            "description": {
+              "fi": "Sivusto käyttää tätä tietuetta tietojen tallentamiseen siitä, mitä poikkeusilmoituksia on suljettu ja mikä on avattavien sisältöalueiden tila.",
+              "sv": "Används av hel.fi Drupal för att lagra information om stängda meddelanden och accordions' tillstånd.",
+              "en": "Used by hel.fi Drupal to store information about closed announcements and accordions' state."
+            },
+            "expiration": "-",
+            "type": 2
+          },
+          {
             "name": "cookiehub",
             "host": "Cookiehub",
             "description": {
