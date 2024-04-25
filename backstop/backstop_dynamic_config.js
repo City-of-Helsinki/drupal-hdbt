@@ -189,6 +189,59 @@ function getConfig(hostname, protocol, type) {
           'url': `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
           'removeSelectors': removeDefault
         },
+
+        // Colors
+        {
+          'label': 'DC: Suomenlinna',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-suomenlinna`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Copper',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-copper`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Gold',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-gold`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Coat of Arms',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-coat-of-arms`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Tram',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-tram`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Silver',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-silver`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Engel',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-engel`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Summer',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-summer`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Bus',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-bus`,
+          'removeSelectors': removeDefault
+        },
+        {
+          'label': 'DC: Metro',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-metro`,
+          'removeSelectors': removeDefault
+        },
+
         // Components
         {
           'label': 'DC: Accordion',
