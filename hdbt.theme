@@ -65,12 +65,13 @@ function hdbt_preprocess(&$variables): void {
   // Add helfi-environment name.
   if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
     try {
-      $id = \Drupal::service('helfi_api_base.environment_resolver')
-        ->getActiveEnvironment()
-        ->getId();
-      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $id;
+      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
+      $service = \Drupal::service('helfi_api_base.environment_resolver');
+
+      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
+        ->getName();
     }
-    catch (\Exception $exception) {
+    catch (\InvalidArgumentException) {
     }
   }
 
