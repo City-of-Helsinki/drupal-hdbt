@@ -23,7 +23,6 @@ use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\link\LinkItemInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
@@ -602,22 +601,10 @@ function hdbt_preprocess_block(&$variables): void {
   if ($variables['plugin_id'] == 'page_title_block') {
     $page_entity = hdbt_admin_tools_get_page_entity();
 
-    if ($page_entity instanceof ContentEntityInterface) {
-      // Retrieve possible overridden value for page title block.
-      if ($page_entity instanceof TprEntityBase) {
-        $variables['content']['#title'] = $page_entity->label();
-      }
-
-      // Hide page title block if current node has hero set.
-      if (
-        $page_entity instanceof NodeInterface &&
-        $page_entity->hasField('field_hero') &&
-        $page_entity->hasField('field_has_hero') &&
-        $page_entity->get('field_has_hero')->value &&
-        !$page_entity->get('field_hero')->isEmpty()
-      ) {
-        $variables['hide_block'] = TRUE;
-      }
+    // Retrieve possible overridden value for page title block.
+    if ($page_entity instanceof TprEntityBase) {
+      // @todo figure out if this is needed.
+      $variables['content']['#title'] = $page_entity->label();
     }
   }
 
