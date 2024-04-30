@@ -603,6 +603,7 @@ function hdbt_preprocess_block(&$variables): void {
 
     // Retrieve possible overridden value for page title block.
     if ($page_entity instanceof TprEntityBase) {
+      // @todo figure out if this is needed.
       $variables['content']['#title'] = $page_entity->label();
     }
   }
