@@ -22,6 +22,7 @@ import {
  * @class
  */
 class HdsCookieConsentClass {
+  // MARK: Private properties
   #SITE_SETTINGS_JSON_URL;
   #LANGUAGE;
   #TARGET_SELECTOR;
@@ -64,6 +65,7 @@ class HdsCookieConsentClass {
     sessionStorageKeys: [],
   };
 
+  // MARK: Public methods
   /**
    * Creates a new instance of the CookieConsent class.
    * @constructor
@@ -189,6 +191,8 @@ class HdsCookieConsentClass {
     this.#saveAcceptedGroups(cookieSettings, [...currentlyAccepted, ...acceptedGroupsArray], showBanner);
     return true;
   }
+
+  // MARK: Private methods
 
   /**
    * Get checksum from string
@@ -566,6 +570,7 @@ class HdsCookieConsentClass {
     }
   }
 
+  // MARK: Rendering
   /**
    * Determines whether to display the banner.
    * 1. If cookie settings have changed since approval, show banner
@@ -777,6 +782,8 @@ class HdsCookieConsentClass {
     }
   }
 
+  // MARK: Monitoring
+
   /**
    * Returns a string containing the names of all cookies.
    * @private
@@ -910,6 +917,7 @@ class HdsCookieConsentClass {
     setInterval(() => { this.#monitorLoop(); }, interval);
   }
 
+  // MARK: Blocking
   #blockUnapprovedCookies() {
     const cookieDesc = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie') || Object.getOwnPropertyDescriptor(HTMLDocument.prototype, 'cookie');
     if (cookieDesc && cookieDesc.configurable) {
@@ -976,14 +984,7 @@ class HdsCookieConsentClass {
     });
   }
 
-
-// helfi-cookie-consents=; path=/; domain=.helfi-kasko.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; path=/; domain=helfi-kasko.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; path=/; domain=.docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; path=/; domain=docker.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; path=/; domain=.so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; path=/; domain=so; expires=Mon, 08 Apr 2024 05:39:19 GMT
-// helfi-cookie-consents=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;
+  // MARK: Initializer
 
   /**
    * Initializes the component by removing the banner, retrieving cookie settings,
