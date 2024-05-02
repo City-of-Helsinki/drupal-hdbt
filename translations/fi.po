@@ -1213,3 +1213,7 @@ msgstr "Ajankohta"
 msgctxt "Event search: event type prefix"
 msgid "Show only"
 msgstr "Näytä vain"
+
+msgctxt "Label for news card published time"
+msgid "Published"
+msgstr "Julkaistu"

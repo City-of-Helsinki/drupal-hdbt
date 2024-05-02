@@ -1215,3 +1215,7 @@ msgstr "Tidsperiod"
 msgctxt "Event search: event type prefix"
 msgid "Show only"
 msgstr "Visa endast"
+
+msgctxt "Label for news card published time"
+msgid "Published"
+msgstr "Publicerad"
