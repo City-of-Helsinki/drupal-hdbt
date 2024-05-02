@@ -8,7 +8,7 @@
   padding-top: 0;
 }
 
-.news-listing__item {
+:not(.latest-news-list) > .news-listing__item {
   list-style: none;
   margin-top: $spacing-and-half;
   padding-left: 0; // Remove card paddings from news listing

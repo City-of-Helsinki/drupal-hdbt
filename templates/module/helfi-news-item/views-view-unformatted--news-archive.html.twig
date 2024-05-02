@@ -1,8 +1,8 @@
-<h2 class="news-archive__heading">{{ 'All news items'|t({}, {'context': 'News archive heading'}) }}</h2>
-<ul class="news-listing news-listing--teasers">
-  {% for row in rows %}
-    <li class="news-listing__item">
-      {{- row.content -}}
-    </li>
-  {% endfor %}
-</ul>
+<div class="news-archive__heading">
+  <h2 class="news-archive__title">
+    {{ 'All news items'|t({}, {'context': 'News archive heading'}) }}
+  </h2>
+</div>
+{% for row in rows %}
+  {{- row.content -}}
+{% endfor %}
