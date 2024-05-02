@@ -65,23 +65,26 @@ class HdsCookieConsentClass {
 
   #cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
 
+  // Initial keys found when script is initialized
   #INITIAL_STORED_KEYS = {
-    cookieNameString: null,
-    localStorageKeys: [],
-    sessionStorageKeys: [],
-    indexedDBKeys: [],
-    cacheStorageKeys: [],
+    cookie: [],
+    localStorage: [],
+    sessionStorage: [],
+    indexedDB: [],
+    cacheStorage: [],
   };
 
+  // Keys already reported via event
   #reportedKeys = {
-    cookies: [],
-    localStorageKeys: [],
-    sessionStorageKeys: [],
-    indexedDBKeys: [],
-    cacheStorageKeys: [],
+    cookie: [],
+    localStorage: [],
+    sessionStorage: [],
+    indexedDB: [],
+    cacheStorage: [],
   };
 
-  #removeBlacklistKeys = {
+  // If key removal was not successfull, add it to this list to prevent multiple tries
+  #removalFailedKeys = {
     cookie: [],
     localStorage: [],
     sessionStorage: [],
@@ -134,11 +137,13 @@ class HdsCookieConsentClass {
     this.#REMOVE = remove;
     this.#TEMP_CSS_PATH = tempCssPath;
 
-    this.#INITIAL_STORED_KEYS.cookieNameString = this.#getCookieNamesString();
-    this.#INITIAL_STORED_KEYS.localStorageKeys = Object.keys(localStorage).join(';');
-    this.#INITIAL_STORED_KEYS.sessionStorageKeys = Object.keys(sessionStorage).join(';');
-    this.#INITIAL_STORED_KEYS.indexedDBKeys = this.#getIndexedDBNamesString();
-    this.#INITIAL_STORED_KEYS.cacheStorageKeys = this.#getCacheStorageNamesString();
+    this.#INITIAL_STORED_KEYS = {
+      cookie: this.#getCookieNamesArray(),
+      localStorage: Object.keys(localStorage),
+      sessionStorage: Object.keys(sessionStorage),
+      indexedDB: this.#getIndexedDBNamesArray(),
+      cacheStorage: this.#getCacheStorageNamesString(),
+    };
 
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
@@ -907,40 +912,40 @@ class HdsCookieConsentClass {
   /**
    * Returns a string containing the names of all cookies.
    * @private
-   * @return {string} A string containing the names of all cookies seprated with a semicolon.
+   * @return {array} An array containing the names of all cookies.
    */
-  #getCookieNamesString() {
+  #getCookieNamesArray() {
     const cookies = document.cookie.split(';');
     const cookieNames = cookies.map(cookie => cookie.split('=')[0].trim());
-    return cookieNames.join(';');
+    return cookieNames;
   }
 
 
   /**
    * Retrieves the names of all indexedDB databases as a string.
    * @private
-   * @return {Promise<string>} A promise that resolves to a string containing the names of all indexedDB databases, separated by ';'. If there are no indexedDB databases, an empty string is returned.
+   * @return {Promise<array>} A promise that resolves to an array containing the names of all indexedDB databases. If there are no indexedDB databases, an empty array is returned.
    */
-  async #getIndexedDBNamesString() {
+  async #getIndexedDBNamesArray() {
     if (indexedDB && indexedDB.databases) {
       const databases = await indexedDB.databases();
       const databaseNames = databases.map(db => db.name);
-      return databaseNames.join(';');
+      return databaseNames;
     }
-    return '';
+    return [];
   }
 
   /**
    * Retrieves the names of all cache storages as a string.
    * @private
-   * @return {Promise<string>} A promise that resolves to a string containing the names of all cache storages, separated by ';'. If there are no cache storages, an empty string is returned.
+   * @return {Promise<array>} A promise that resolves to an array containing the names of all cache storages. If there are no cache storages, an empty array is returned.
    */
   async #getCacheStorageNamesString() {
     if (caches) {
       const cacheNames = await caches.keys();
-      return cacheNames.join(';');
+      return cacheNames;
     }
-    return '';
+    return [];
   }
 
   /**
@@ -974,29 +979,26 @@ class HdsCookieConsentClass {
    * @private
    * @param {string} typeString - The type of keys being monitored.
    * @param {string[]} consentedKeysArray - An array of consented keys.
-   * @param {string} initialStoredKeys - The initial stored keys.
+   * @param {string[]} initialStoredKeysArray - The initial stored keys.
    * @param {string[]} reportedKeysArray - An array of reported keys.
-   * @param {string} currentStoredKeys - The current stored keys.
+   * @param {string[]} currentStoredKeysArray - An array of current stored keys.
    * @param {string} consentedGroups - The consented groups.
    */
   #monitor(
     typeString,
     consentedKeysArray,
-    initialStoredKeys,
+    initialStoredKeysArray,
     reportedKeysArray,
-    currentStoredKeys,
+    currentStoredKeysArray,
     consentedGroups,
   ) {
-    const currentStoredKeysArray = currentStoredKeys.split(';');
+    if (currentStoredKeysArray.join(';') !== initialStoredKeysArray.join(';')) {
 
-    if (currentStoredKeys !== initialStoredKeys) {
-      const initialStoredKeyArray = initialStoredKeys.split(';');
-
-      // Find items that appear only in currentStoredKeys and filter out the ones that are already in consentedKeysArray
+      // Find items that appear only in currentStoredKeysArray and filter out the ones that are already in consentedKeysArray
       const unapprovedKeys = currentStoredKeysArray.filter((key) => {
         if (
           key === '' || // If the key is empty, filter it out
-          initialStoredKeyArray.includes(key) || // If key is not new, filter it out
+          initialStoredKeysArray.includes(key) || // If key is not new, filter it out
           reportedKeysArray.includes(key) || // If key is already reported, filter it out
           this.#isKeyConsented(key, consentedKeysArray) // If key is consented (with possible wildcards), filter it out
         ) {
@@ -1035,15 +1037,15 @@ class HdsCookieConsentClass {
       if(deleteKeys.length > 0) {
         // console.log('deleteKeys', deleteKeys, deleteKeys.length);
         deleteKeys.forEach(key => {
-          // console.log('typeString', typeString, this.#removeBlacklistKeys, this.#removeBlacklistKeys[typeString]);
-          if (!this.#removeBlacklistKeys[typeString].includes(key)) {
+          // console.log('typeString', typeString, this.#removalFailedKeys, this.#removalFailedKeys[typeString]);
+          if (!this.#removalFailedKeys[typeString].includes(key)) {
             console.log(`Cookie consent will delete unapproved ${typeString}(s): '${deleteKeys.join('\', \'')}'`);
 
             if (typeString === 'cookie') {
               this.#deleteCookie(key);
               if (this.#getCookie(key)) {
                 console.error(`Error deleting cookie '${key}' will ignore it for now`);
-                this.#removeBlacklistKeys.cookie.push(key);
+                this.#removalFailedKeys.cookie.push(key);
               }
             } else if (typeString === 'localStorage') {
               localStorage.removeItem(key);
@@ -1054,15 +1056,15 @@ class HdsCookieConsentClass {
               request.onsuccess = () => {
                 // console.log(`IndexedDB database '${key}' deleted successfully.`);
                 // Remove the key from the blacklist as the deletion was successful
-                this.#removeBlacklistKeys.indexedDB = this.#removeBlacklistKeys.indexedDB.filter(item => item !== key);
+                this.#removalFailedKeys.indexedDB = this.#removalFailedKeys.indexedDB.filter(item => item !== key);
               };
               request.onerror = () => {
                 // console.error(`Error deleting IndexedDB database '${key}'`);
-                this.#removeBlacklistKeys.indexedDB.push(key);
+                this.#removalFailedKeys.indexedDB.push(key);
               };
               request.onblocked = () => {
                 // console.warn(`IndexedDB database '${key}' deletion blocked.`);
-                this.#removeBlacklistKeys.indexedDB.push(key);
+                this.#removalFailedKeys.indexedDB.push(key);
               };
             } else if (typeString === 'cacheStorage') {
               caches.delete(key).then((response) => {
@@ -1098,9 +1100,9 @@ class HdsCookieConsentClass {
     this.#monitor(
       'cookie',
       consentedCookies,
-      this.#INITIAL_STORED_KEYS.cookieNameString,
-      this.#reportedKeys.cookies,
-      this.#getCookieNamesString(),
+      this.#INITIAL_STORED_KEYS.cookie,
+      this.#reportedKeys.cookie,
+      this.#getCookieNamesArray(),
       acceptedGroups,
     );
 
@@ -1108,9 +1110,9 @@ class HdsCookieConsentClass {
     this.#monitor(
       'localStorage',
       consentedLocalStorage,
-      this.#INITIAL_STORED_KEYS.localStorageKeys,
-      this.#reportedKeys.localStorageKeys,
-      Object.keys(localStorage).join(';'),
+      this.#INITIAL_STORED_KEYS.localStorage,
+      this.#reportedKeys.localStorage,
+      Object.keys(localStorage),
       acceptedGroups,
     );
 
@@ -1118,9 +1120,9 @@ class HdsCookieConsentClass {
     this.#monitor(
       'sessionStorage',
       consentedSessionStorage,
-      this.#INITIAL_STORED_KEYS.sessionStorageKeys,
-      this.#reportedKeys.sessionStorageKeys,
-      Object.keys(sessionStorage).join(';'),
+      this.#INITIAL_STORED_KEYS.sessionStorage,
+      this.#reportedKeys.sessionStorage,
+      Object.keys(sessionStorage),
       acceptedGroups,
     );
 
@@ -1129,9 +1131,9 @@ class HdsCookieConsentClass {
       this.#monitor(
         'indexedDB',
         consentedIndexedDB,
-        await this.#INITIAL_STORED_KEYS.indexedDBKeys,
-        this.#reportedKeys.indexedDBKeys,
-        await this.#getIndexedDBNamesString(),
+        (await this.#INITIAL_STORED_KEYS.indexedDB),
+        this.#reportedKeys.indexedDB,
+        (await this.#getIndexedDBNamesArray()),
         acceptedGroups,
       );
     }
@@ -1141,9 +1143,9 @@ class HdsCookieConsentClass {
       this.#monitor(
         'cacheStorage',
         consentedCacheStorage,
-        await this.#INITIAL_STORED_KEYS.cacheStorageKeys,
-        this.#reportedKeys.cacheStorageKeys,
-        await this.#getCacheStorageNamesString(),
+        (await this.#INITIAL_STORED_KEYS.cacheStorage),
+        this.#reportedKeys.cacheStorage,
+        (await this.#getCacheStorageNamesString()),
         acceptedGroups,
       );
     }
