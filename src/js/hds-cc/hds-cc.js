@@ -24,21 +24,39 @@ import {
 class HdsCookieConsentClass {
   // MARK: Private properties
   #SITE_SETTINGS_JSON_URL;
+
   #LANGUAGE;
+
   #TARGET_SELECTOR;
+
   #SPACER_PARENT_SELECTOR;
+
   #PAGE_CONTENT_SELECTOR;
+
   #SUBMIT_EVENT = false;
+
   #SETTINGS_PAGE_SELECTOR;
+
   #MONITOR_INTERVAL;
+
+  #REMOVE;
+
   #MONITOR_WITH_OVERRIDE;
+
+  #BLOCK;
+
   #BLOCK_WITH_ERRORS;
+
   #TEMP_CSS_PATH;
 
   #COOKIE_DAYS = 100;
+
   #UNCHANGED = 'unchanged';
+
   #ESSENTIAL_GROUP_NAME = 'essential';
+
   #shadowRoot = null;
+
   #bannerElements = {
     bannerContainer: null,
     spacer: null,
@@ -571,6 +589,7 @@ class HdsCookieConsentClass {
   }
 
   // MARK: Rendering
+
   /**
    * Determines whether to display the banner.
    * 1. If cookie settings have changed since approval, show banner
