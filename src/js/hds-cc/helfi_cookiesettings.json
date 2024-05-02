@@ -43,6 +43,27 @@
             "type": 2
           },
           {
+            "name": "cookie-agreed-version",
+            "host": "hel.fi",
+            "description": "Temporary EU Cookie Consent Module cookie",
+            "expiration": "-",
+            "type": 1
+          },
+          {
+            "name": "cookie-agreed-categories",
+            "host": "hel.fi",
+            "description": "Temporary EU Cookie Consent Module cookie",
+            "expiration": "-",
+            "type": 1
+          },
+          {
+            "name": "cookie-agreed",
+            "host": "hel.fi",
+            "description": "Temporary EU Cookie Consent Module cookie",
+            "expiration": "-",
+            "type": 1
+          },
+          {
             "name": "cookiehub",
             "host": "Cookiehub",
             "description": {
@@ -504,5 +525,11 @@
         ]
       }
     ]
-  }
+  },
+  "robotCookies": [
+    {
+      "name": "helfi_accordions_open",
+      "type": 1
+    }
+  ]
 }

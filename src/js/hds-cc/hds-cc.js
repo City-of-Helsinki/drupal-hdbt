@@ -75,12 +75,24 @@ class HdsCookieConsentClass {
     cookieNameString: null,
     localStorageKeys: [],
     sessionStorageKeys: [],
+    indexedDBKeys: [],
+    cacheStorageKeys: [],
   };
 
   #reportedKeys = {
     cookies: [],
     localStorageKeys: [],
     sessionStorageKeys: [],
+    indexedDBKeys: [],
+    cacheStorageKeys: [],
+  };
+
+  #removeBlacklistKeys = {
+    cookie: [],
+    localStorage: [],
+    sessionStorage: [],
+    indexedDB: [],
+    cacheStorage: [],
   };
 
   // MARK: Public methods
@@ -96,7 +108,9 @@ class HdsCookieConsentClass {
    * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
    * @param {string} [options.settingsPageSelector=null] - If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
    * @param {number} [options.monitorInterval=500] - Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable.
+   * @param {boolean} [options.remove=false] - If true, deletes any unapproved cookies. Defaults to false.
    * @param {boolean} [options.monitorWithOverride=false] - If true, overrides native writing to cookie and storage for monitoring. Defaults to false.
+   * @param {boolean} [options.block=false] - If true, blocks unapproved cookies by throwing an error. Defaults to false.
    * @param {boolean} [options.blockWithErrors=false] - If true, blocks unapporved cookies by throwing an error. Defaults to false.
    * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
    * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
@@ -111,7 +125,9 @@ class HdsCookieConsentClass {
       submitEvent = false, // if string, do not reload page, but submit the string as event after consent
       settingsPageSelector = null, // If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
       monitorInterval = 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable
+      remove = false, // If true, deletes any unaproved cookies
       monitorWithOverride = false, // If true, overrides native writing to cookie and storage for monitoring. Defaults to false
+      block = false, // If true, blocks unapporved cookies by throwing an error. Defaults to false
       blockWithErrors = false, // If true, blocks unapporved cookies by throwing an error. Defaults to false
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
@@ -127,13 +143,17 @@ class HdsCookieConsentClass {
     this.#SUBMIT_EVENT = submitEvent;
     this.#SETTINGS_PAGE_SELECTOR = settingsPageSelector;
     this.#MONITOR_INTERVAL = monitorInterval;
+    this.#REMOVE = remove;
     this.#MONITOR_WITH_OVERRIDE = monitorWithOverride;
+    this.#BLOCK = block;
     this.#BLOCK_WITH_ERRORS = blockWithErrors;
     this.#TEMP_CSS_PATH = tempCssPath;
 
     this.#INITIAL_STORED_KEYS.cookieNameString = this.#getCookieNamesString();
     this.#INITIAL_STORED_KEYS.localStorageKeys = Object.keys(localStorage).join(';');
     this.#INITIAL_STORED_KEYS.sessionStorageKeys = Object.keys(sessionStorage).join(';');
+    this.#INITIAL_STORED_KEYS.indexedDBKeys = this.#getIndexedDBNamesString();
+    this.#INITIAL_STORED_KEYS.cacheStorageKeys = this.#getCacheStorageNamesString();
 
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
@@ -243,7 +263,7 @@ class HdsCookieConsentClass {
    */
   #getCookie(cookieName = undefined) {
     try {
-      if (this && this.#cookie_name) {
+      if (this && this.#cookie_name && !cookieName) {
         cookieName = this.#cookie_name;
       } else if (!cookieName) {
         // `this` is not set, and cookieName is not provided
@@ -298,6 +318,7 @@ class HdsCookieConsentClass {
       this.#cookie_name,
       JSON.stringify(cookieData),
       {
+        sameSite: 'strict',
         expires: expiryDate,
         path: '/',
       });
@@ -313,6 +334,14 @@ class HdsCookieConsentClass {
    */
   #getCookieKeysInAcceptedGroups(cookieSettings, acceptedGroupNames, type) {
     const acceptedCookies = new Set();
+
+    // Add relevant robotCookies to accepted cookies
+    cookieSettings.robotCookies?.forEach(cookie => {
+      if (cookie.type === type) {
+        acceptedCookies.add(cookie.name);
+      }
+    });
+
     const allGroups = [...cookieSettings.requiredCookies.groups, ...cookieSettings.optionalCookies.groups];
     allGroups.forEach(group => {
       if (acceptedGroupNames.includes(group.groupId)) {
@@ -801,6 +830,93 @@ class HdsCookieConsentClass {
     }
   }
 
+  // MARK: Deletion
+
+  /**
+   * Deletes a cookie with the specified name in all contexts like subdomains.
+   * @private
+   * @param {string} cookieName - The name of the cookie to delete.
+   */
+  #deleteCookie(cookieName) {
+
+    /**
+     * Retrieves the value of a cookie by its name.
+     *
+     * @param {string} name - The name of the cookie.
+     * @return {string|null} The value of the cookie, or null if the cookie does not exist.
+     */
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    /**
+     * Deletes a cookie by setting it to expire in the past.
+     *
+     * @param {string} name - The name of the cookie to delete.
+     * @param {string} path - The path of the cookie.
+     * @param {string} domain - The domain of the cookie.
+     */
+    function setDeletionCookie(name, path, domain) {
+      // console.log('Deleting cookie:', name, path, domain);
+      const cookieOptions = {
+        expires: new Date(0),  // Set to a past date to expire the cookie
+        path,
+        domain
+      };
+      // Using 'cookie' library to serialize the cookie string
+      const serializedCookie = serialize(name, '', cookieOptions);
+      // console.log('Deleting cookie:', name, serializedCookie);
+      document.cookie = serializedCookie;
+    }
+
+    // Get the current hostname and pathname
+    const { hostname, pathname } = window.location;
+
+    // Only proceed if the cookie is still set
+    if (getCookie(cookieName) !== null) {
+
+      setDeletionCookie(cookieName, '/', undefined);
+      if (getCookie(cookieName) !== null) {
+
+        // Break down the hostname into parts for domain variations
+        const domains = hostname.split('.');
+        while (domains.length > 1) {
+          const domain = `${domains.join('.')}`;
+          const paths = pathname.split('/');
+          let currentPath = '';
+
+          // Set cookies on all path levels
+          paths.forEach((segment, index) => {
+            if (segment || index === 0) {  // Include root path
+              currentPath += segment + (index < paths.length - 1 ? '/' : '');  // Append '/' if it's not the last segment
+              if (getCookie(cookieName) !== null) {
+                setDeletionCookie(cookieName, currentPath, domain);
+                setDeletionCookie(cookieName, currentPath, `.${domain}`);
+              }
+            }
+          });
+
+          // Also set cookie at the root '/' for each domain level
+          if (getCookie(cookieName) !== null) {
+            setDeletionCookie(cookieName, '/', domain);
+            setDeletionCookie(cookieName, '/', `.${domain}`);
+          }
+
+          domains.shift();  // Remove the leading part to move up one subdomain level
+        }
+
+        // Also attempt to delete at the highest level domain without subdomain prefix
+        if (getCookie(cookieName) !== null) {
+          setDeletionCookie(cookieName, '/', `${domains.join('.')}`);
+          setDeletionCookie(cookieName, '/', `.${domains.join('.')}`);
+        }
+      }
+    }
+  }
+
   // MARK: Monitoring
 
   /**
@@ -814,6 +930,41 @@ class HdsCookieConsentClass {
     return cookieNames.join(';');
   }
 
+
+  /**
+   * Retrieves the names of all indexedDB databases as a string.
+   * @private
+   * @return {Promise<string>} A promise that resolves to a string containing the names of all indexedDB databases, separated by ';'. If there are no indexedDB databases, an empty string is returned.
+   */
+  async #getIndexedDBNamesString() {
+    if (indexedDB && indexedDB.databases) {
+      const databases = await indexedDB.databases();
+      const databaseNames = databases.map(db => db.name);
+      return databaseNames.join(';');
+    }
+    return '';
+  }
+
+  /**
+   * Retrieves the names of all cache storages as a string.
+   * @private
+   * @return {Promise<string>} A promise that resolves to a string containing the names of all cache storages, separated by ';'. If there are no cache storages, an empty string is returned.
+   */
+  async #getCacheStorageNamesString() {
+    if (caches) {
+      const cacheNames = await caches.keys();
+      return cacheNames.join(';');
+    }
+    return '';
+  }
+
+  /**
+   * Checks if a given key is consented based on the provided consented keys with wildcards.
+   *
+   * @param {string} key - The key to check consent for.
+   * @param {Array<string>} consentedKeys - The array of consented keys.
+   * @return {boolean} - Returns true if the key is consented, false otherwise.
+   */
   #isKeyConsented(key, consentedKeys) {
     // If no keys are consented, return false
     if (!Array.isArray(consentedKeys) || consentedKeys.length === 0) {
@@ -851,8 +1002,9 @@ class HdsCookieConsentClass {
     currentStoredKeys,
     consentedGroups,
   ) {
+    const currentStoredKeysArray = currentStoredKeys.split(';');
+
     if (currentStoredKeys !== initialStoredKeys) {
-      const currentStoredKeysArray = currentStoredKeys.split(';');
       const initialStoredKeyArray = initialStoredKeys.split(';');
 
       // Find items that appear only in currentStoredKeys and filter out the ones that are already in consentedKeysArray
@@ -869,22 +1021,85 @@ class HdsCookieConsentClass {
       });
 
       if (unapprovedKeys.length > 0) {
-        console.log('unapprovedKeys', unapprovedKeys, unapprovedKeys.length);
         console.log(`Cookie consent found unapproved ${typeString}(s): '${unapprovedKeys.join('\', \'')}'`);
 
-        const event = new CustomEvent(`hds-cookie-consent-unapproved-${typeString}-found`, { detail: { keys: unapprovedKeys, consentedGroups } });
+        const event = new CustomEvent('hds-cookie-consent-unapproved-item-found', {
+          detail: {
+            type: typeString,
+            keys: unapprovedKeys,
+            consentedGroups
+          }
+        });
         window.dispatchEvent(event);
 
         reportedKeysArray.push(...unapprovedKeys);
       }
     }
+
+    if (this.#REMOVE) {
+      const deleteKeys = currentStoredKeysArray.filter((key) => {
+        if (
+          key === '' || // If the key is empty, filter it out
+          this.#isKeyConsented(key, consentedKeysArray) // If key is consented (with possible wildcards), filter it out
+        ) {
+          return false;
+        }
+        return true;
+      });
+
+      if(deleteKeys.length > 0) {
+        // console.log('deleteKeys', deleteKeys, deleteKeys.length);
+        deleteKeys.forEach(key => {
+          // console.log('typeString', typeString, this.#removeBlacklistKeys, this.#removeBlacklistKeys[typeString]);
+          if (!this.#removeBlacklistKeys[typeString].includes(key)) {
+            console.log(`Cookie consent will delete unapproved ${typeString}(s): '${deleteKeys.join('\', \'')}'`);
+
+            if (typeString === 'cookie') {
+              this.#deleteCookie(key);
+              if (this.#getCookie(key)) {
+                console.error(`Error deleting cookie '${key}' will ignore it for now`);
+                this.#removeBlacklistKeys.cookie.push(key);
+              }
+            } else if (typeString === 'localStorage') {
+              localStorage.removeItem(key);
+            } else if (typeString === 'sessionStorage') {
+              sessionStorage.removeItem(key);
+            } else if (typeString === 'indexedDB') {
+              const request = indexedDB.deleteDatabase(key);
+              request.onsuccess = () => {
+                // console.log(`IndexedDB database '${key}' deleted successfully.`);
+                // Remove the key from the blacklist as the deletion was successful
+                this.#removeBlacklistKeys.indexedDB = this.#removeBlacklistKeys.indexedDB.filter(item => item !== key);
+              };
+              request.onerror = () => {
+                // console.error(`Error deleting IndexedDB database '${key}'`);
+                this.#removeBlacklistKeys.indexedDB.push(key);
+              };
+              request.onblocked = () => {
+                // console.warn(`IndexedDB database '${key}' deletion blocked.`);
+                this.#removeBlacklistKeys.indexedDB.push(key);
+              };
+            } else if (typeString === 'cacheStorage') {
+              caches.delete(key).then((response) => {
+                if(response) {
+                  console.log(`Cache '${key}' has been deleted`);
+                } else {
+                  console.log(`Cache '${key}' not found`);
+                }
+              });
+            }
+          }
+        });
+      }
+      }
+
   }
 
   /**
    * Monitors cookies, local storage, and session storage for unconsented new keys.
    * @private
    */
-  #monitorLoop() {
+  async #monitorLoop() {
     // console.log('monitoring', JSON.stringify(this.#reportedKeys));
 
     const consentCookie = this.#getCookie();
@@ -923,6 +1138,30 @@ class HdsCookieConsentClass {
       Object.keys(sessionStorage).join(';'),
       acceptedGroups,
     );
+
+    if (indexedDB) {
+      const consentedIndexedDB = consentCookie?.indexedDB || [];
+      this.#monitor(
+        'indexedDB',
+        consentedIndexedDB,
+        await this.#INITIAL_STORED_KEYS.indexedDBKeys,
+        this.#reportedKeys.indexedDBKeys,
+        await this.#getIndexedDBNamesString(),
+        acceptedGroups,
+      );
+    }
+
+    if (caches) {
+      const consentedCacheStorage = consentCookie?.cacheStorage || [];
+      this.#monitor(
+        'cacheStorage',
+        consentedCacheStorage,
+        await this.#INITIAL_STORED_KEYS.cacheStorageKeys,
+        this.#reportedKeys.cacheStorageKeys,
+        await this.#getCacheStorageNamesString(),
+        acceptedGroups,
+      );
+    }
   }
 
   /**
@@ -937,6 +1176,12 @@ class HdsCookieConsentClass {
   }
 
   // MARK: Blocking
+
+  /**
+   * Blocks attempts to set unapproved cookies and dispatches an event to notify about the unapproved cookie.
+   *
+   * @private
+   */
   #blockUnapprovedCookies() {
     const cookieDesc = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie') || Object.getOwnPropertyDescriptor(HTMLDocument.prototype, 'cookie');
     if (cookieDesc && cookieDesc.configurable) {
@@ -949,7 +1194,28 @@ class HdsCookieConsentClass {
           consentedCookies.push(this.#cookie_name);
           const consentedGroups = consentCookie?.groups || {};
           const cookieName = val.split('=')[0].trim();
-          if (!this.#isKeyConsented(cookieName, consentedCookies)) {
+
+          // Check if the code is trying to delete the cookie instead of setting it
+          const cookieParts = val.split(';');
+          const expiryPart = cookieParts.find(part => part.trim().toLowerCase().startsWith('expires='));
+          let deletingMode = false;
+          if (expiryPart) {
+            const expiryTime = new Date(expiryPart.split('=')[1].trim());
+            const currentTime = new Date();
+            if (expiryTime <= currentTime) {
+              deletingMode = true;
+            }
+          }
+          // console.log( 'cookieParts', cookieParts, 'expiryPart', expiryPart, 'deletingMode', deletingMode );
+
+          // Block attempts to delete the consent cookie
+          if (deletingMode && cookieName === this.#cookie_name) {
+            console.log(`Cookie consent: Blocked attempt to delete the consent cookie: '${cookieName}'`);
+            return;
+          }
+
+          // If the code is not deleting a cookie and the cookie is not consented, block the attempt and dispatch an event
+          if (this.#BLOCK && !deletingMode && !this.#isKeyConsented(cookieName, consentedCookies)) {
             const acceptedGroups = Object.keys(consentedGroups).join(';');
             console.log(`Cookie consent: Blocked attempt to set unapproved cookie: '${cookieName}', accepted groups:'${acceptedGroups}'`);
 
@@ -968,6 +1234,13 @@ class HdsCookieConsentClass {
     }
   }
 
+  /**
+   * Blocks attempts to set unapproved items in localStorage or sessionStorage.
+   * If an unapproved item is detected, it logs a message and optionally throws an error.
+   * It also dispatches a custom event to notify about the unapproved item.
+   *
+   * @private
+   */
   #blockUnapprovedLocalStorage() {
     const getCookie = this.#getCookie;
     const isKeyConsented = this.#isKeyConsented;
@@ -1015,15 +1288,6 @@ class HdsCookieConsentClass {
   async #init() {
     this.#removeBanner();
 
-    if (this.#MONITOR_WITH_OVERRIDE) {
-      this.#blockUnapprovedCookies();
-      this.#blockUnapprovedLocalStorage();
-    }
-
-    if (this.#MONITOR_INTERVAL > 0) {
-      this.#monitorCookiesAndStorage();
-    }
-
     let settingsPageElement = null;
     // If settings page selector is enabled, check if the element exists
     if (this.#SETTINGS_PAGE_SELECTOR) {
@@ -1042,6 +1306,15 @@ class HdsCookieConsentClass {
       if (shouldDisplayBanner) {
         await this.#render(this.#LANGUAGE, cookieSettings, true);
       }
+    }
+
+    if (this.#MONITOR_WITH_OVERRIDE) {
+      this.#blockUnapprovedCookies();
+      this.#blockUnapprovedLocalStorage();
+    }
+
+    if (this.#MONITOR_INTERVAL > 0) {
+      this.#monitorCookiesAndStorage();
     }
   };
 }
