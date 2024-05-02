@@ -41,12 +41,6 @@ class HdsCookieConsentClass {
 
   #REMOVE;
 
-  #MONITOR_WITH_OVERRIDE;
-
-  #BLOCK;
-
-  #BLOCK_WITH_ERRORS;
-
   #TEMP_CSS_PATH;
 
   #COOKIE_DAYS = 100;
@@ -108,10 +102,7 @@ class HdsCookieConsentClass {
    * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
    * @param {string} [options.settingsPageSelector=null] - If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
    * @param {number} [options.monitorInterval=500] - Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable.
-   * @param {boolean} [options.remove=false] - If true, deletes any unapproved cookies. Defaults to false.
-   * @param {boolean} [options.monitorWithOverride=false] - If true, overrides native writing to cookie and storage for monitoring. Defaults to false.
-   * @param {boolean} [options.block=false] - If true, blocks unapproved cookies by throwing an error. Defaults to false.
-   * @param {boolean} [options.blockWithErrors=false] - If true, blocks unapporved cookies by throwing an error. Defaults to false.
+   * @param {boolean} [options.remove=false] - If true, deletes any unapproved cookies and other stored items. Defaults to false.
    * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
    * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
    */
@@ -124,11 +115,8 @@ class HdsCookieConsentClass {
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
       submitEvent = false, // if string, do not reload page, but submit the string as event after consent
       settingsPageSelector = null, // If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
-      monitorInterval = 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable
-      remove = false, // If true, deletes any unaproved cookies
-      monitorWithOverride = false, // If true, overrides native writing to cookie and storage for monitoring. Defaults to false
-      block = false, // If true, blocks unapporved cookies by throwing an error. Defaults to false
-      blockWithErrors = false, // If true, blocks unapporved cookies by throwing an error. Defaults to false
+      monitorInterval = 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable, minimum 50ms.
+      remove = false, // If true, deletes any unaproved cookies and other stored items
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
@@ -144,9 +132,6 @@ class HdsCookieConsentClass {
     this.#SETTINGS_PAGE_SELECTOR = settingsPageSelector;
     this.#MONITOR_INTERVAL = monitorInterval;
     this.#REMOVE = remove;
-    this.#MONITOR_WITH_OVERRIDE = monitorWithOverride;
-    this.#BLOCK = block;
-    this.#BLOCK_WITH_ERRORS = blockWithErrors;
     this.#TEMP_CSS_PATH = tempCssPath;
 
     this.#INITIAL_STORED_KEYS.cookieNameString = this.#getCookieNamesString();
@@ -1175,107 +1160,6 @@ class HdsCookieConsentClass {
     setInterval(() => { this.#monitorLoop(); }, interval);
   }
 
-  // MARK: Blocking
-
-  /**
-   * Blocks attempts to set unapproved cookies and dispatches an event to notify about the unapproved cookie.
-   *
-   * @private
-   */
-  #blockUnapprovedCookies() {
-    const cookieDesc = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie') || Object.getOwnPropertyDescriptor(HTMLDocument.prototype, 'cookie');
-    if (cookieDesc && cookieDesc.configurable) {
-      Object.defineProperty(document, 'cookie', {
-        get: () => cookieDesc.get.call(document),
-        set: (val) => {
-          // console.log('Setting cookie:', val);
-          const consentCookie = this.#getCookie();
-          const consentedCookies = consentCookie?.cookies?.split(';') || [];
-          consentedCookies.push(this.#cookie_name);
-          const consentedGroups = consentCookie?.groups || {};
-          const cookieName = val.split('=')[0].trim();
-
-          // Check if the code is trying to delete the cookie instead of setting it
-          const cookieParts = val.split(';');
-          const expiryPart = cookieParts.find(part => part.trim().toLowerCase().startsWith('expires='));
-          let deletingMode = false;
-          if (expiryPart) {
-            const expiryTime = new Date(expiryPart.split('=')[1].trim());
-            const currentTime = new Date();
-            if (expiryTime <= currentTime) {
-              deletingMode = true;
-            }
-          }
-          // console.log( 'cookieParts', cookieParts, 'expiryPart', expiryPart, 'deletingMode', deletingMode );
-
-          // Block attempts to delete the consent cookie
-          if (deletingMode && cookieName === this.#cookie_name) {
-            console.log(`Cookie consent: Blocked attempt to delete the consent cookie: '${cookieName}'`);
-            return;
-          }
-
-          // If the code is not deleting a cookie and the cookie is not consented, block the attempt and dispatch an event
-          if (this.#BLOCK && !deletingMode && !this.#isKeyConsented(cookieName, consentedCookies)) {
-            const acceptedGroups = Object.keys(consentedGroups).join(';');
-            console.log(`Cookie consent: Blocked attempt to set unapproved cookie: '${cookieName}', accepted groups:'${acceptedGroups}'`);
-
-            const event = new CustomEvent('hds-cookie-consent-unapproved-cookie-was-set', { detail: { keys: [cookieName], acceptedGroups } });
-            window.dispatchEvent(event);
-
-            if (this.#BLOCK_WITH_ERRORS) {
-              throw new Error(`Cookie consent: Blocked attempt to set unapproved cookie: '${cookieName}', accepted groups:'${acceptedGroups}'`);
-            }
-            return;
-          }
-
-          cookieDesc.set.call(document, val);
-        }
-      });
-    }
-  }
-
-  /**
-   * Blocks attempts to set unapproved items in localStorage or sessionStorage.
-   * If an unapproved item is detected, it logs a message and optionally throws an error.
-   * It also dispatches a custom event to notify about the unapproved item.
-   *
-   * @private
-   */
-  #blockUnapprovedLocalStorage() {
-    const getCookie = this.#getCookie;
-    const isKeyConsented = this.#isKeyConsented;
-    const blockWithErrors = this.#BLOCK_WITH_ERRORS;
-    Storage.prototype.setItem = new Proxy(Storage.prototype.setItem, {
-      apply(target, thisArg, argumentList) {
-        // console.log('storage:', '\n\ttarget:', target, '\n\tthisArg:', thisArg, '\n\targumentList:', argumentList);
-
-        let storageType = 'localStorage';
-        if (thisArg === sessionStorage) {
-          storageType = 'sessionStorage';
-        }
-
-        const consentCookie = getCookie(window.hds.cookieConsent.#cookie_name);
-        const consentedStorage = consentCookie?.[storageType]?.split(';') || [];
-        const consentedGroups = consentCookie?.groups || {};
-
-        const key = argumentList[0];
-        if (!isKeyConsented(key, consentedStorage)) {
-          const acceptedGroups = Object.keys(consentedGroups).join(';');
-          console.log(`Cookie consent: Blocked attempt to set unapproved ${storageType}: '${key}', accepted groups:'${acceptedGroups}'`);
-
-          const event = new CustomEvent(`hds-cookie-consent-unapproved-${storageType}-was-set`, { detail: { keys: [key], acceptedGroups } });
-          window.dispatchEvent(event);
-
-          if (blockWithErrors) {
-            throw new Error(`Cookie consent: Blocked attempt to set unapproved ${storageType}: '${key}', accepted groups:'${acceptedGroups}'`);
-          }
-          return;
-        }
-        return Reflect.apply(target, thisArg, argumentList);
-      },
-    });
-  }
-
   // MARK: Initializer
 
   /**
@@ -1306,11 +1190,6 @@ class HdsCookieConsentClass {
       if (shouldDisplayBanner) {
         await this.#render(this.#LANGUAGE, cookieSettings, true);
       }
-    }
-
-    if (this.#MONITOR_WITH_OVERRIDE) {
-      this.#blockUnapprovedCookies();
-      this.#blockUnapprovedLocalStorage();
     }
 
     if (this.#MONITOR_INTERVAL > 0) {
