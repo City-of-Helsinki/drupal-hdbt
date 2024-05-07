@@ -1,10 +1,27 @@
-{% set has_image = false %}
-{% if content.field_main_image|render %}
-  {% set has_image = true %}
+{# Created date and modified date #}
+{% if published_at is not empty %}
+  {% set html_published_at  %}
+    <time datetime="{{ published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+      <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+      {{ published_at|format_date('publication_date_format') }}
+    </time>
+  {% endset %}
+{% else %}
+  {% set html_published_at = '-' %}
 {% endif %}
 
-{% include '@hdbt/module/helfi-news-item/news-teaser-generic.twig' with {
-  class: has_image ? 'news-listing__content--with-image',
-  heading_level: 'h2',
-  show_image: true
-}%}
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: 'news-listing__item',
+  card_image: content.field_main_image,
+  card_title_level: 'h3',
+  card_title: short_title,
+  card_url: node_url,
+  card_metas: [
+    {
+      icon: 'clock',
+      label: 'Published'|t({}, {'context': 'Label for news card published time'}),
+      content: html_published_at
+    },
+  ],
+} %}
+{% endembed %}
