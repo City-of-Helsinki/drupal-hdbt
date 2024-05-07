@@ -58,6 +58,11 @@
       {{ content.field_content }}
     {% endif %}
 
+    {# Updating news #}
+    {% if content.field_news_item_updating_news|render %}
+      {{ content.field_news_item_updating_news }}
+    {% endif %}
+
     {% include '@hdbt/misc/news-footer.twig' %}
 
   {% endblock main_content %}
