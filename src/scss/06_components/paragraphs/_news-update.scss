@@ -1,0 +1,30 @@
+.component--news-update {
+  border-bottom: 1px solid $color-black-20;
+  padding-bottom: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-bottom: $spacing-triple;
+  }
+
+  .component__date {
+    @include font('body');
+    margin-top: $spacing;
+  }
+
+  .component__content {
+    margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-triple;
+    }
+  }
+}
+
+* ~ .component--news-update,
+.component--news-update ~ .component--news-update {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-triple;
+  }
+}

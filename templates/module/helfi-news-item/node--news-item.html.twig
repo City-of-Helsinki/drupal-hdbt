@@ -54,12 +54,12 @@
     {# End of Main image #}
 
     {# Content region #}
-    {% if content.field_content|render %}
+    {% if content.field_content|render|striptags|trim is not empty %}
       {{ content.field_content }}
     {% endif %}
 
     {# Updating news #}
-    {% if content.field_news_item_updating_news|render %}
+    {% if content.field_news_item_updating_news|render|striptags|trim is not empty %}
       {{ content.field_news_item_updating_news }}
     {% endif %}
 
