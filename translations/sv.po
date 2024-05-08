@@ -1219,3 +1219,7 @@ msgstr "Visa endast"
 msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Publicerad"
+
+msgctxt "Updating news table of contents title"
+msgid "Latest updates"
+msgstr "Senaste uppdateringarna"
