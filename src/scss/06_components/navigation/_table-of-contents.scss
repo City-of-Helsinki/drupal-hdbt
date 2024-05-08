@@ -133,3 +133,86 @@
   outline: 3px solid $color-black;
   outline-offset: 2px;
 }
+
+$-item-gap: $spacing-double;
+$-item-padding: $spacing;
+$-item-padding-left: $spacing;
+$-circle-size: $spacing;
+
+.table-of-contents--news-update {
+  @include component-side-padding;
+  --item-title-lineheight: #{1.5 * get-font-size('h4')};
+
+  .table-of-contents__container {
+    border-inline-start: none;
+  }
+
+  .table-of-contents__item {
+    @include font('special.large_link');
+    --circle-size: #{$-circle-size};
+    --p-left: #{$-item-padding-left};
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-block: $-item-padding;
+    padding-inline: var(--p-left) $-item-padding;
+    position: relative;
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      inset-inline-start: calc(var(--p-left) * 0.5);
+      position: absolute;
+    }
+
+    &::after {
+      background-color: $color-black;
+      height: calc(100% + $-item-gap + $spacing-half); // Height of the line should overlap 16px with the one below it.
+      top: -16px;
+      transform: translateX(calc(var(--lang-direction) * -50%));
+      width: 2px;
+      z-index: 0;
+    }
+
+    &:first-of-type::after {
+      height: 100%;
+      top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+    }
+
+    &:last-of-type::after {
+      height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+    }
+
+    &:only-child::after {
+      display: none;
+    }
+
+    &::before {
+      background-color: $color-white;
+      border: 3px solid $color-black;
+      border-radius: 50%;
+      height: var(--circle-size);
+      top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+      transform: translate(calc(var(--lang-direction) * -50%), -50%);
+      width: var(--circle-size);
+      z-index: 1;
+    }
+  }
+
+  time {
+    margin-left: $spacing;
+  }
+
+  .table-of-contents__link {
+    margin-left: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing-double;
+    }
+  }
+}

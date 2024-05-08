@@ -44,6 +44,47 @@
 ]
 %}
 
+<div class="table-of-contents table-of-contents--news-update">
+  <div id="helfi-toc-table-of-contents-news-updates" class="table-of-contents__container table-of-contents__js">
+    {% set title_attributes = {
+      'class': [
+        'table-of-contents__title',
+      ]
+    }
+    %}
+    {% if alternative_language %}
+      {% set title_attributes = title_attributes|merge({
+        'dir': lang_attributes.fallback_dir,
+        'lang': lang_attributes.fallback_lang
+      })
+      %}
+    {% endif %}
+    <h2 {{ create_attribute(title_attributes) }}>{{ 'Latest updates'|t({}, {'context': 'Updating news table of contents title'}) }}</h2>
+    <nav id="helfi-toc-table-of-contents-list" class="table-of-contents__content">
+      <ul class="table-of-contents__list">
+        <li class="js-remove table-of-contents__item">{{ 'Loading table of contents'|t }}</li>
+      </ul>
+    </nav>
+  </div>
+  <noscript class="table-of-contents__nojs js-remove">
+    <div class="nojs__icon">
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+    </div>
+    <div class="nojs__content-wrapper">
+      <div class="nojs__content">
+        <h2 class="nojs__title"> {{ 'Content cannot be displayed'|t({}, {'context': 'No JS'}) }}</h2>
+        <div class="nojs__desc">
+          <p>
+            {% trans with {'context': 'Table of contents, no javascript'} %}
+              Table of contents requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+            {% endtrans %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </noscript>
+</div>
+
 <div{{ attributes.addClass(classes) }}>
   {% for item in items %}
     {{ item.content }}

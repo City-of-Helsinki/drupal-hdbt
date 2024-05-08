@@ -6,8 +6,9 @@
     padding-bottom: $spacing-triple;
   }
 
-  .component__date {
+  time {
     @include font('body');
+    display: inline-block;
     margin-top: $spacing;
   }
 
