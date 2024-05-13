@@ -1222,4 +1222,4 @@ msgstr "Publicerad"
 
 msgctxt "Updating news table of contents title"
 msgid "Latest updates"
-msgstr "Senaste uppdateringarna"
+msgstr "Senaste uppdateringar"
