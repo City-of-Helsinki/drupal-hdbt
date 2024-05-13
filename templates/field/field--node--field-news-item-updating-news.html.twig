@@ -44,6 +44,7 @@
 ]
 %}
 
+{% if items|length > 1 %}
 <div class="table-of-contents table-of-contents--news-update">
   <div id="helfi-toc-table-of-contents-news-updates" class="table-of-contents__container table-of-contents__js">
     {% set title_attributes = {
@@ -84,9 +85,10 @@
     </div>
   </noscript>
 </div>
+{% endif %}
 
 <div{{ attributes.addClass(classes) }}>
-  {% for item in items %}
+  {% for item in items|reverse %}
     {{ item.content }}
   {% endfor %}
 </div>
