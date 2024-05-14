@@ -5,7 +5,7 @@ window.addEventListener('cookie-consent-changed', function(event) {
 });
 
 window.addEventListener('hds-cookie-consent-unapproved-item-found', function(event) {
-  console.warn(`Emulating sending to Sentry: Unapproved ${event.detail.type}: `,event.detail.keys, event.detail.consentedGroups);
+  console.warn(`Emulating sending to Sentry: Unapproved ${event.detail.type}: `,event.detail.keys.join(','), event.detail.consentedGroups);
 });
 </script>
 
