@@ -1,13 +1,11 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 
-import {Accordion, Button, Checkbox, TextInput} from 'hds-react';
+import { Accordion, Button, Checkbox, TextInput, Notification } from 'hds-react';
 import React from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
-import {
-  urlAtom,
-} from '../store';
+import { urlAtom } from '../store';
 
 const SearchMonitorContainer = () => {
   const urlParams: URLParams = useAtomValue(urlAtom);
@@ -17,7 +15,7 @@ const SearchMonitorContainer = () => {
   const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
   const [email, setEmail] = useAtom(emailAtom);
   const [submitted, setSubmitted] = useAtom(submittedAtom);
-  const [errorEmail, setErrorEmail] = useAtom(errorAtom);
+  const [errorMessage, seterrorMessage] = useAtom(errorAtom);
 
   // ElasticSearch query base64 encoded
   const queryEncoded = Buffer.from(query, 'binary').toString('base64');
@@ -45,17 +43,17 @@ const SearchMonitorContainer = () => {
 
     // Validate stuff to submit form
     if (!termsAgreed) {
-      setErrorEmail('Terms of use must be agreed.');
+      seterrorMessage(Drupal.t('The choice is mandatory: Terms of service', {}, { context: 'Search monitor error terms' }));
       return;
     }
 
     if (!email) {
-      setErrorEmail('Email is required.');
+      seterrorMessage(Drupal.t('This field is mandatory: Email address', {}, { context: 'Search monitor error email' }));
       return;
     }
 
     // Make submit button disabled after submitting to prevent double submits
-    const submitButton = document.getElementById('hakuvahti-submit');
+    const submitButton = document.getElementById('job-search-form__search-monitor__submit-button');
     if (submitButton) {
       submitButton.setAttribute('disabled', 'true');
     }
@@ -68,7 +66,7 @@ const SearchMonitorContainer = () => {
       });
 
       if (!response.ok) {
-        setErrorEmail(
+        seterrorMessage(
           `Error getting session token: ${response.statusText}`,
         );
         if (submitButton) {
@@ -79,7 +77,7 @@ const SearchMonitorContainer = () => {
 
       sessionToken = await response.text();
     } catch (error) {
-      setErrorEmail(`Error getting session token: ${error}`);
+      seterrorMessage(`Error getting session token: ${error}`);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
@@ -99,7 +97,7 @@ const SearchMonitorContainer = () => {
 
     // Oops, error from backend
     if (!response.ok) {
-      setErrorEmail(
+      seterrorMessage(
         `Error submitting form: ${response.statusText}`,
       );
       if (submitButton) {
@@ -110,62 +108,97 @@ const SearchMonitorContainer = () => {
 
     // Release submit locks and show success page
     setSubmitted(true);
-    setErrorEmail('');
+    seterrorMessage('');
     if (submitButton) {
       submitButton.removeAttribute('disabled');
     }
   };
 
+  const formHeader: string = Drupal.t('Receive search results by email', {}, { context: 'Search monitor header' });
+  const accordionHeader: string = Drupal.t('Open', {}, { context: 'Search monitor accordion title' });
+  const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
+  const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
+  const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
+  const searchCriteriaHeader: string = Drupal.t('Search criteria', {}, { context: 'Search monitor search criteria title' });
+  const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
+  const acceptTermsLabel: string = Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' });
+  const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
+  const thankYouHeader: string = Drupal.t('Your search has been saved', {}, { context: 'Search monitor thank you header' });
+  const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
+  const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
+
   return (
     <form onSubmit={onSubmit} className="job-search-form__search-monitor">
       {!submitted && (
-        <Accordion
-          className='job-search-form__search-monitor__accordion'
-          size='s'
-          headingLevel={3}
-          heading={Drupal.t('Receive search results by email', {}, { context: 'Search monitor title' })}
-          language={window.drupalSettings.path.currentLanguage || 'fi'}
-          theme={{
-            '--header-font-size': 'var(--fontsize-heading-xxs)',
-            '--header-line-height': 'var(--lineheight-s)',
-            '--border-color': 'transparent',
-          }}
-        >
-          <h4>{Drupal.t('Saved search', {}, { context: 'Search monitor content title' })}</h4>
-          <p>{Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' })}</p>
-          <p>{Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' })}</p>
+        <>
+          <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
+          <Accordion
+            className='job-search-form__search-monitor__accordion'
+            closeButton={false}
+            size='s'
+            headingLevel={3}
+            heading={accordionHeader}
+            language={window.drupalSettings.path.currentLanguage || 'fi'}
+            theme={{
+              '--header-font-size': 'var(--fontsize-heading-xxs)',
+              '--header-line-height': 'var(--lineheight-s)',
+              '--border-color': 'transparent',
+            }}
+          >
+            <h4>{descriptionHeader}</h4>
+            <p>{descriptionFirstPart}</p>
+            <p>{descriptionSecondPart}</p>
 
-          <p>Hakuehdot:</p>
-          <span>{searchDescription}</span>
+            {errorMessage &&
+              <Notification
+                type='error'
+                size='default'
+                label={errorLabel}
+              >
+                {errorMessage}
+              </Notification>
+            }
 
-          <TextInput
-            className='job-search-form__search-monitor__email'
-            id='job-search-form__search_monitor__email'
-            label={Drupal.t('Email address', {}, { context: 'Search monitor email label' })}
-            name='job-search-form__search_monitor__email'
-            type='email'
-            onChange={(event) => setEmail(event.target.value)}
-            value={email}
-          />
+            <p className='job-search-form__search-monitor__search-criteria'>
+              <b>{searchCriteriaHeader}:</b><br/>
+              {searchDescription}
+            </p>
 
-          <Checkbox
-            className='job-search-form__search-monitor__terms'
-            label={Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' })}
-            id='job-search-form__search_monitor__terms'
-            onChange={(event) => setTermsAgreed(event.target.checked)}
-            checked={termsAgreed}
-            name='job-search-form__search_monitor__terms'
-          />
 
-          {errorEmail && <p>{errorEmail}</p>}
+            <TextInput
+              className='job-search-form__search-monitor__email'
+              id='job-search-form__search_monitor__email'
+              label={emailLabel}
+              name='job-search-form__search_monitor__email'
+              type='email'
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              required
+            />
 
-          <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit'>
-            {Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' })}
-          </Button>
-        </Accordion>
+            <Checkbox
+              className='job-search-form__search-monitor__terms'
+              label={acceptTermsLabel}
+              id='job-search-form__search_monitor__terms'
+              onChange={(event) => setTermsAgreed(event.target.checked)}
+              checked={termsAgreed}
+              name='job-search-form__search_monitor__terms'
+              required
+            />
+
+            <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit' id='job-search-form__search-monitor__submit-button'>
+              {buttonLabel}
+            </Button>
+          </Accordion>
+        </>
       )}
 
-      {submitted && <p>Thank you for subscribing.</p>}
+      {submitted &&
+        <>
+          <h3 className='job-search-form__search-monitor__heading'>{thankYouHeader}</h3>
+          <p>{thankYouMessage}</p>
+        </>
+      }
     </form>
   );
 };
