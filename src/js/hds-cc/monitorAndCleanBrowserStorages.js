@@ -56,16 +56,14 @@ class MonitorAncCleanBrowserStorages {
   ) {
     this.#MONITOR_INTERVAL = monitorInterval;
     this.#REMOVE = remove;
-    this.#INITIAL_STORED_KEYS = {
-      cookie: this.#getCookieNamesArray(),
-      localStorage: Object.keys(localStorage),
-      sessionStorage: Object.keys(sessionStorage),
-      indexedDB: this.#getIndexedDBNamesArray(),
-      cacheStorage: this.#getCacheStorageNamesString(),
-    };
+    this.#initializeStoredKeys();
   }
 
 
+  /**
+   * Retrieves the status of various browser storages.
+   * @return {Promise<Object>} The status object containing information about the initial, current, reported, and removalFailed keys.
+   */
   async getStatus() {
     const status = {
       initial: this.#INITIAL_STORED_KEYS,
@@ -76,14 +74,33 @@ class MonitorAncCleanBrowserStorages {
         indexedDB: await this.#getIndexedDBNamesArray(),
         cacheStorage: await this.#getCacheStorageNamesString(),
       },
-      reported: this.#reportedKeys,
-      removalFailed: this.#removalFailedKeys,
+      reported: await this.#reportedKeys,
+      removalFailed: await this.#removalFailedKeys,
     };
 
     return status;
   }
 
   // MARK: Private methods
+
+  /**
+   * Initializes the stored keys for the browser storages.
+   * @private
+   */
+  async #initializeStoredKeys() {
+    this.#INITIAL_STORED_KEYS.localStorage = Object.keys(localStorage);
+    this.#INITIAL_STORED_KEYS.sessionStorage = Object.keys(sessionStorage);
+
+    const [cookie, indexedDB, cacheStorage] = await Promise.all([
+      this.#getCookieNamesArray(),
+      this.#getIndexedDBNamesArray(),
+      this.#getCacheStorageNamesString()
+    ]);
+
+    this.#INITIAL_STORED_KEYS.cookie = cookie;
+    this.#INITIAL_STORED_KEYS.indexedDB = indexedDB;
+    this.#INITIAL_STORED_KEYS.cacheStorage = cacheStorage;
+  }
 
   /**
    * Returns a string containing the names of all cookies.
@@ -362,7 +379,13 @@ class MonitorAncCleanBrowserStorages {
     setInterval(() => { this.#monitorLoop(); }, interval);
   }
 
+  // MARK: Initializer
 
+  /**
+   * Initializes the browser storage monitoring and cleaning when the cookie name has been read from the site settings.
+   *
+   * @param {string} cookieName - The name of the consent cookie.
+   */
   init(cookieName) {
     this.#cookie_name = cookieName;
 

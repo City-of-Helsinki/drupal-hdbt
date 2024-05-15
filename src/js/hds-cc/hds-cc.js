@@ -187,6 +187,28 @@ class HdsCookieConsentClass {
     return true;
   }
 
+  /**
+   * Retrieves the status of the component.
+   * @return {Promise<{ cookie: string, monitor: string }>} The status object containing the cookie and monitor status.
+   */
+  async getStatus() {
+    const status = {
+      cookie: 'unset',
+      monitor: 'unset'
+    };
+
+    const cookie = await this.#getCookie();
+    if (cookie) {
+      status.cookie = cookie;
+    }
+
+    if (this.#MONITOR) {
+      status.monitor = await this.#MONITOR.getStatus();
+    }
+
+    return status;
+  }
+
   // MARK: Private methods
 
   /**
