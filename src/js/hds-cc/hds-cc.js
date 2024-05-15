@@ -17,7 +17,7 @@ import {
   getTranslationKeys,
 } from './hds-cc_translations';
 
-import MonitorAncCleanBrowserStorages from './monitorAndCleanBrowserStorages';
+import MonitorAndCleanBrowserStorages from './monitorAndCleanBrowserStorages';
 
 /**
  * Represents a class for managing cookie consent.
@@ -112,7 +112,7 @@ class HdsCookieConsentClass {
     window.hds.cookieConsent = this;
 
     if (monitorInterval > 0) {
-      this.#MONITOR = new MonitorAncCleanBrowserStorages(monitorInterval, remove);
+      this.#MONITOR = new MonitorAndCleanBrowserStorages(monitorInterval, remove);
     }
 
     if (document.readyState === 'loading') {
