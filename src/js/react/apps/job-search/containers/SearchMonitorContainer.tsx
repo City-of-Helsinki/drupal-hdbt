@@ -1,6 +1,7 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 
-import { Accordion } from 'hds-react';
+import {Accordion, Button, Checkbox, TextInput} from 'hds-react';
+import React from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
@@ -130,40 +131,37 @@ const SearchMonitorContainer = () => {
             '--border-color': 'transparent',
           }}
         >
-          <div>
-            <h3>Hakuvahti</h3>
-            <p>Tallenna tekemäsi haku hakuvahdiksi, niin saat sähköpostiisi tiedon uusista osumista.</p>
-            <p>Voit luoda niin monta hakuvahtia kuin haluat ja poistaa hakuvahdin sähköpostien mukana tulevasta linkistä.</p>
-          </div>
+          <h4>{Drupal.t('Saved search', {}, { context: 'Search monitor content title' })}</h4>
+          <p>{Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' })}</p>
+          <p>{Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' })}</p>
 
-          <div>
-            <p>
-              <p>Hakuehdot:</p>
-              <span>{searchDescription}</span>
-            </p>
+          <p>Hakuehdot:</p>
+          <span>{searchDescription}</span>
 
-            <p>
-              <span>Sähköposti:</span>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </p>
-            <p>
-              <input
-                type="checkbox"
-                checked={termsAgreed}
-                onChange={(event) => setTermsAgreed(event.target.checked)}
-              />
-              Hyväksy <a href="/pages/terms-and-conditions" target="_blank" rel="noreferrer">käyttöehdot.</a>
-            </p>
-            {errorEmail && <p>{errorEmail}</p>}
-            <p>
-              <button id="hakuvahti-submit" type="submit">Tilaa hakuvahti</button>
-            </p>
-          </div>
+          <TextInput
+            className='job-search-form__search-monitor__email'
+            id='job-search-form__search_monitor__email'
+            label={Drupal.t('Email address', {}, { context: 'Search monitor email label' })}
+            name='job-search-form__search_monitor__email'
+            type='email'
+            onChange={(event) => setEmail(event.target.value)}
+            value={email}
+          />
+
+          <Checkbox
+            className='job-search-form__search-monitor__terms'
+            label={Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' })}
+            id='job-search-form__search_monitor__terms'
+            onChange={(event) => setTermsAgreed(event.target.checked)}
+            checked={termsAgreed}
+            name='job-search-form__search_monitor__terms'
+          />
+
+          {errorEmail && <p>{errorEmail}</p>}
+
+          <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit'>
+            {Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' })}
+          </Button>
         </Accordion>
       )}
 
