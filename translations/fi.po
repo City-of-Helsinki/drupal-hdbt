@@ -1238,10 +1238,6 @@ msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
 msgstr "Voit luoda niin monta hakuvahtia kuin haluat ja poistaa hakuvahdin sähköpostien mukana tulevasta linkistä."
 
-msgctxt "Search monitor search criteria title"
-msgid "Search criteria"
-msgstr "Hakuehdot"
-
 msgctxt "Search monitor email label"
 msgid "Email address"
 msgstr "Sähköpostiosoite"
