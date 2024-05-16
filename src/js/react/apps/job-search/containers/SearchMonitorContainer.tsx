@@ -18,7 +18,7 @@ const SearchMonitorContainer = () => {
   const [errorMessage, seterrorMessage] = useAtom(errorAtom);
 
   // ElasticSearch query base64 encoded
-  const queryEncoded = Buffer.from(query, 'binary').toString('base64');
+  const queryEncoded = Buffer.from(query).toString('base64');
   const searchDescription = '-';
   const lang = '';
 
@@ -119,7 +119,6 @@ const SearchMonitorContainer = () => {
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
   const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
-  const searchCriteriaHeader: string = Drupal.t('Search criteria', {}, { context: 'Search monitor search criteria title' });
   const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
   const acceptTermsLabel: string = Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
@@ -158,12 +157,6 @@ const SearchMonitorContainer = () => {
                 {errorMessage}
               </Notification>
             }
-
-            <p className='job-search-form__search-monitor__search-criteria'>
-              <b>{searchCriteriaHeader}:</b><br/>
-              {searchDescription}
-            </p>
-
 
             <TextInput
               className='job-search-form__search-monitor__email'
