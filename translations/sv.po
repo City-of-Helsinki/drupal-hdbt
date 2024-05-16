@@ -1224,9 +1224,13 @@ msgctxt "Search monitor header"
 msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
 
-msgctxt "Search monitor accordion title"
+msgctxt "Search monitor open label"
 msgid "Open"
 msgstr "Öppna"
+
+msgctxt "Search monitor close label"
+msgid "Close"
+msgstr "Stäng"
 
 msgctxt "Search monitor content title"
 msgid "Saved search"

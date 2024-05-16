@@ -1,6 +1,6 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 
-import { Accordion, Button, Checkbox, TextInput, Notification } from 'hds-react';
+import { Button, Checkbox, TextInput, Notification, IconAngleUp, IconAngleDown } from 'hds-react';
 import React from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
@@ -16,6 +16,7 @@ const SearchMonitorContainer = () => {
   const [email, setEmail] = useAtom(emailAtom);
   const [submitted, setSubmitted] = useAtom(submittedAtom);
   const [errorMessage, seterrorMessage] = useAtom(errorAtom);
+  const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
 
   // ElasticSearch query base64 encoded
   const queryEncoded = Buffer.from(query).toString('base64');
@@ -115,7 +116,8 @@ const SearchMonitorContainer = () => {
   };
 
   const formHeader: string = Drupal.t('Receive search results by email', {}, { context: 'Search monitor header' });
-  const accordionHeader: string = Drupal.t('Open', {}, { context: 'Search monitor accordion title' });
+  const openLabel: string = Drupal.t('Open', {}, { context: 'Search monitor open label' });
+  const closeLabel: string = Drupal.t('Close', {}, { context: 'Search monitor close label' });
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
   const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
@@ -131,58 +133,59 @@ const SearchMonitorContainer = () => {
       {!submitted && (
         <>
           <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
-          <Accordion
-            className='job-search-form__search-monitor__accordion'
-            closeButton={false}
-            size='s'
-            headingLevel={3}
-            heading={accordionHeader}
-            language={window.drupalSettings.path.currentLanguage || 'fi'}
-            theme={{
-              '--header-font-size': 'var(--fontsize-heading-xxs)',
-              '--header-line-height': 'var(--lineheight-s)',
-              '--border-color': 'transparent',
-            }}
+          <Button type="button"
+                  aria-controls='job-search-form__search-monitor__content'
+                  variant="supplementary"
+                  theme="black"
+                  iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
+                  onClick={(event: React.MouseEvent) => {
+                    event.preventDefault();
+                    setIsFormVisible(!isFormVisible);
+                  }}
           >
-            <h4>{descriptionHeader}</h4>
-            <p>{descriptionFirstPart}</p>
-            <p>{descriptionSecondPart}</p>
+            {isFormVisible ? closeLabel : openLabel}
+          </Button>
 
-            {errorMessage &&
-              <Notification
-                type='error'
-                size='default'
-                label={errorLabel}
-              >
-                {errorMessage}
-              </Notification>
-            }
+          <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
+              <h4>{descriptionHeader}</h4>
+              <p>{descriptionFirstPart}</p>
+              <p>{descriptionSecondPart}</p>
 
-            <TextInput
-              className='job-search-form__search-monitor__email'
-              id='job-search-form__search_monitor__email'
-              label={emailLabel}
-              name='job-search-form__search_monitor__email'
-              type='email'
-              onChange={(event) => setEmail(event.target.value)}
-              value={email}
-              required
-            />
+              {errorMessage &&
+                <Notification
+                  type='error'
+                  size='default'
+                  label={errorLabel}
+                >
+                  {errorMessage}
+                </Notification>
+              }
 
-            <Checkbox
-              className='job-search-form__search-monitor__terms'
-              label={acceptTermsLabel}
-              id='job-search-form__search_monitor__terms'
-              onChange={(event) => setTermsAgreed(event.target.checked)}
-              checked={termsAgreed}
-              name='job-search-form__search_monitor__terms'
-              required
-            />
+              <TextInput
+                className='job-search-form__search-monitor__email'
+                id='job-search-form__search_monitor__email'
+                label={emailLabel}
+                name='job-search-form__search_monitor__email'
+                type='email'
+                onChange={(event) => setEmail(event.target.value)}
+                value={email}
+                required
+              />
 
-            <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit' id='job-search-form__search-monitor__submit-button'>
-              {buttonLabel}
-            </Button>
-          </Accordion>
+              <Checkbox
+                className='job-search-form__search-monitor__terms'
+                label={acceptTermsLabel}
+                id='job-search-form__search_monitor__terms'
+                onChange={(event) => setTermsAgreed(event.target.checked)}
+                checked={termsAgreed}
+                name='job-search-form__search_monitor__terms'
+                required
+              />
+
+              <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit' id='job-search-form__search-monitor__submit-button'>
+                {buttonLabel}
+              </Button>
+            </div>
         </>
       )}
 
@@ -199,6 +202,7 @@ const SearchMonitorContainer = () => {
 const emailAtom = atom('');
 const receiveNewsletterAtom = atom(false);
 const submittedAtom = atom(false);
+const isFormVisibleAtom = atom(false);
 const errorAtom = atom('');
 
 export default SearchMonitorContainer;

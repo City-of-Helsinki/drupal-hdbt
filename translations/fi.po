@@ -1222,9 +1222,13 @@ msgctxt "Search monitor header"
 msgid "Receive search results by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"
 
-msgctxt "Search monitor accordion title"
+msgctxt "Search monitor open label"
 msgid "Open"
 msgstr "Avaa"
+
+msgctxt "Search monitor close label"
+msgid "Close"
+msgstr "Sulje"
 
 msgctxt "Search monitor content title"
 msgid "Saved search"
