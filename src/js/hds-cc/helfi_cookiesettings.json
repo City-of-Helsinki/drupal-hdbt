@@ -169,6 +169,69 @@
               "en": "365 days"
             },
             "type": 1
+          },
+          {
+            "name": "Drupal.gin.darkmode",
+            "host": "www.hel.fi",
+            "description": "Drupal settings",
+            "expiration": "-",
+            "type": 2
+          },
+          {
+            "name": "Drupal.toolbar.toolbarState",
+            "host": "www.hel.fi",
+            "description": "Drupal settings",
+            "expiration": "-",
+            "type": 3
+          },
+          {
+            "name": "escapeAdminPath",
+            "host": "www.hel.fi",
+            "description": "Drupal settings",
+            "expiration": "-",
+            "type": 3
+          },
+          {
+            "name": "editoria11yResultCount",
+            "host": "www.hel.fi",
+            "description": "Drupal accessibility extension",
+            "expiration": "-",
+            "type": 2
+          },
+          {
+            "name": "cookie_essential",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 1
+          },
+          {
+            "name": "localStorage_essential",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 2
+          },
+          {
+            "name": "sessionStorage_essential",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 3
+          },
+          {
+            "name": "indexedDB_essential",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 4
+          },
+          {
+            "name": "cacheStorage_essential",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 5
           }
         ]
       }
@@ -525,6 +588,48 @@
             "type": 1
           }
         ]
+      },
+      {
+        "groupId": "test_optional",
+        "title": "Test optional cookies",
+        "description": "These should be reported and maybe deleted if optional cookies are not accepted",
+        "cookies": [
+          {
+            "name": "cookie_optional",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 1
+          },
+          {
+            "name": "localStorage_optional",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 2
+          },
+          {
+            "name": "sessionStorage_optional",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 3
+          },
+          {
+            "name": "indexedDB_optional",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 4
+          },
+          {
+            "name": "cacheStorage_optional",
+            "host": "-",
+            "description": "-",
+            "expiration": "-",
+            "type": 5
+          }
+        ]
       }
     ]
   },
@@ -532,6 +637,26 @@
     {
       "name": "helfi_accordions_open",
       "type": 1
+    },
+    {
+      "name": "cookie_robot",
+      "type": 1
+    },
+    {
+      "name": "localStorage_robot",
+      "type": 2
+    },
+    {
+      "name": "sessionStorage_robot",
+      "type": 3
+    },
+    {
+      "name": "indexedDB_robot",
+      "type": 4
+    },
+    {
+      "name": "cacheStorage_robot",
+      "type": 5
     }
   ]
 }
