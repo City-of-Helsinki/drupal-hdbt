@@ -77,8 +77,6 @@ class HdsCookieConsentClass {
    * @param {string} [options.pageContentSelector='body'] - The selector for where to add scroll-margin-bottom.
    * @param {boolean|string} [options.submitEvent=false] - If a string, do not reload the page, but submit the string as an event after consent.
    * @param {string} [options.settingsPageSelector=null] - If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
-   * @param {number} [options.monitorInterval=500] - Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable.
-   * @param {boolean} [options.remove=false] - If true, deletes any unapproved cookies and other stored items. Defaults to false.
    * @param {string} [options.tempCssPath='/path/to/external.css'] - The temporary path to the external CSS file.
    * @throws {Error} Throws an error if siteSettingsJsonUrl is not provided.
    */
@@ -91,8 +89,6 @@ class HdsCookieConsentClass {
       pageContentSelector = 'body', // Where to add scroll-margin-bottom
       submitEvent = false, // if string, do not reload page, but submit the string as event after consent
       settingsPageSelector = null, // If this string is set and a matching element is found on the page, show cookie settings in a page replacing the matched element.
-      monitorInterval = 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable, minimum 50ms.
-      remove = false, // If true, deletes any unaproved cookies and other stored items
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
@@ -111,9 +107,7 @@ class HdsCookieConsentClass {
     window.hds = window.hds || {};
     window.hds.cookieConsent = this;
 
-    if (monitorInterval > 0) {
-      this.#MONITOR = new MonitorAndCleanBrowserStorages(monitorInterval, remove);
-    }
+    this.#MONITOR = new MonitorAndCleanBrowserStorages();
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
@@ -183,7 +177,7 @@ class HdsCookieConsentClass {
     }));
 
     // Save accepted groups and update checkbox state
-    this.#saveAcceptedGroups(siteSettings, [...currentlyAccepted, ...acceptedGroupsArray], showBanner);
+    this.#saveConsentedGroups(siteSettings, [...currentlyAccepted, ...acceptedGroupsArray], showBanner);
     return true;
   }
 
@@ -202,9 +196,7 @@ class HdsCookieConsentClass {
       status.cookie = cookie;
     }
 
-    if (this.#MONITOR) {
-      status.monitor = await this.#MONITOR.getStatus();
-    }
+    status.monitor = await this.#MONITOR.getStatus();
 
     return status;
   }
@@ -304,70 +296,84 @@ class HdsCookieConsentClass {
   }
 
   /**
-   * Retrieves the keys in accepted groups based on the provided parameters.
+   * Retrieves the keys in consented groups based on the provided parameters.
    * @private
    * @param {Object} siteSettings - The site settings object.
-   * @param {Array} acceptedGroupNames - An array of accepted group names.
+   * @param {Array} consentedGroupNames - An array of consented group names.
    * @param {string} type - The type of cookies to filter.
-   * @return {Array} - An array of accepted cookie keys.
+   * @return {Array} - An array of consented cookie keys.
    */
-  #getCookieKeysInAcceptedGroups(siteSettings, acceptedGroupNames, type) {
-    const acceptedCookies = new Set();
+  #getKeysInConsentedGroups(siteSettings, consentedGroupNames, type) {
+    const consentedKeys = new Set();
 
     // Add relevant robotCookies to accepted cookies
     siteSettings.robotCookies?.forEach(cookie => {
       if (cookie.type === type) {
-        acceptedCookies.add(cookie.name);
+        consentedKeys.add(cookie.name);
       }
     });
 
     const allGroups = [...siteSettings.requiredCookies.groups, ...siteSettings.optionalCookies.groups];
     allGroups.forEach(group => {
-      if (acceptedGroupNames.includes(group.groupId)) {
+      if (consentedGroupNames.includes(group.groupId)) {
         group.cookies.forEach(cookie => {
           if (cookie.type === type) {
-            acceptedCookies.add(cookie.name);
+            consentedKeys.add(cookie.name);
           }
         });
       }
     });
-    return Array.from(acceptedCookies);
+    return Array.from(consentedKeys);
+  }
+
+  #getAllKeysInConsentedGroups(siteSettings, consentedGroupNames) {
+    const consentedKeys = {};
+    consentedKeys.cookie = this.#getKeysInConsentedGroups(siteSettings, consentedGroupNames, 1);
+    consentedKeys.localStorage = this.#getKeysInConsentedGroups(siteSettings, consentedGroupNames, 2);
+    consentedKeys.sessionStorage = this.#getKeysInConsentedGroups(siteSettings, consentedGroupNames, 3);
+    consentedKeys.indexedDB = this.#getKeysInConsentedGroups(siteSettings, consentedGroupNames, 4);
+    consentedKeys.cacheStorage = this.#getKeysInConsentedGroups(siteSettings, consentedGroupNames, 5);
+    return consentedKeys;
+  }
+
+  #getConsentedGroupNames() {
+    const browserCookie = this.#getCookie();
+    if (browserCookie) {
+      return Object.keys(browserCookie.groups);
+    }
+    return [this.#ESSENTIAL_GROUP_NAME];
   }
 
   /**
-   * Saves the accepted cookie groups to cookie, unsets others.
+   * Saves the consented cookie groups to cookie, unsets others.
    * @private
    * @param {Object} siteSettings - Site specific settings
-   * @param {Array} acceptedGroupNames - The names of the accepted cookie groups.
+   * @param {Array} consentedGroupNames - The names of the consented cookie groups.
    * @param {boolean} showBanner - Whether to show the banner or not.
    */
-  #saveAcceptedGroups(siteSettings, acceptedGroupNames = [], showBanner = false) {
-    // console.log('Saving accepted cookie groups:', acceptedGroupNames, showBanner);
+  #saveConsentedGroups(siteSettings, consentedGroupNames = [], showBanner = false) {
+    // console.log('Saving consented cookie groups:', consentedGroupNames, showBanner);
 
-    const acceptedGroups = {};
+    const consentedGroups = {};
 
-    // Find group checksums for accepted groups
+    // Find group checksums for consented groups
     const allGroups = [...siteSettings.requiredCookies.groups, ...siteSettings.optionalCookies.groups];
     allGroups.forEach(group => {
-      if (acceptedGroupNames.includes(group.groupId)) {
-        acceptedGroups[group.groupId] = group.checksum;
+      if (consentedGroupNames.includes(group.groupId)) {
+        consentedGroups[group.groupId] = group.checksum;
       }
     });
 
-    const cookiesKeys = this.#getCookieKeysInAcceptedGroups(siteSettings, acceptedGroupNames, 1).join(';');
-    const localStorageKeys = this.#getCookieKeysInAcceptedGroups(siteSettings, acceptedGroupNames, 2).join(';');
-    const sessionStorageKeys = this.#getCookieKeysInAcceptedGroups(siteSettings, acceptedGroupNames, 3).join(';');
-
     const data = {
-      checksum: siteSettings.checksum,
-      groups: acceptedGroups,
+      groups: consentedGroups,
       ...(showBanner && { showBanner: true }), // Only add showBanner if it's true
-      ...(cookiesKeys && { cookies: cookiesKeys }), // Only add cookies if keys are present
-      ...(localStorageKeys && { localStorage: localStorageKeys }), // Only add localStorage if keys are present
-      ...(sessionStorageKeys && { sessionStorage: sessionStorageKeys }), // Only add sessionStorage if keys are present
     };
 
     this.#setCookie(data);
+
+    // Update monitoring with new accepted groups
+    const consentedKeys = this.#getAllKeysInConsentedGroups(siteSettings, consentedGroupNames);
+    this.#MONITOR.updateConsentedKeys(consentedKeys);
 
     // Update the checkboxes to reflect the new state (if called outside)
     if (this.#shadowRoot) {
@@ -376,7 +382,7 @@ class HdsCookieConsentClass {
         const formCheckboxes = form.querySelectorAll('input');
 
         formCheckboxes.forEach(check => {
-          check.checked = acceptedGroupNames.includes(check.dataset.group);
+          check.checked = consentedGroupNames.includes(check.dataset.group);
         });
       }
     }
@@ -417,7 +423,7 @@ class HdsCookieConsentClass {
 
     if (invalidGroupsFound) {
       const showBanner = true;
-      this.#saveAcceptedGroups(siteSettings, newCookieGroups, showBanner);
+      this.#saveConsentedGroups(siteSettings, newCookieGroups, showBanner);
     }
 
     return siteSettings;
@@ -438,9 +444,6 @@ class HdsCookieConsentClass {
       throw new Error(`Cookie consent: Unable to fetch cookie consent settings: ${error}`);
     }
 
-    // Calculate checksum for the site settings string
-    const siteSettingsChecksum = await this.#getChecksum(siteSettingsRaw);
-
     // Parse the fetched site settings string to JSON
     let siteSettings;
     try {
@@ -449,33 +452,22 @@ class HdsCookieConsentClass {
       throw new Error(`Cookie consent settings parsing failed: ${error}`);
     }
 
-    // Add checksum to the settings object, so that we do not need to recalculate it when saving the cookie
-    siteSettings.checksum = siteSettingsChecksum;
     return siteSettings;
   }
 
   /**
    * Retrieves the site settings and performs necessary checks.
    * @private
-   * @param {boolean} [isBanner=true] - Optional parameter to bypass certain checks when settings page is being rendered.
    * @return {Promise<unknown>} A promise that resolves to the result of removing invalid groups from the site settings.
    * @throws {Error} If the required group or cookie is missing in the site settings.
    * @throws {Error} If there are multiple cookie groups with identical names in the site settings.
    */
-  async #getSiteSettings(isBanner = true) {
+  async #getSiteSettings() {
     const siteSettings = await this.#getSiteSettingsFromJsonFile();
 
     this.#cookie_name = siteSettings.cookieName || this.#cookie_name; // Optional override for cookie name
 
-    // Compare file checksum with browser cookie checksum if the file has not changed and return false for no change (no banner needed)
     const browserCookie = this.#getCookie();
-    if (browserCookie) {
-      // Check if settings have not changed and browser cookie has 'showBanner' set to false
-      if (isBanner && !browserCookie.showBanner && (siteSettings.checksum === browserCookie.checksum)) {
-        // console.log('Settings were unchanged');
-        return this.#UNCHANGED;
-      }
-    }
 
     const essentialGroup = siteSettings.requiredCookies.groups.find(group => group.groupId === this.#ESSENTIAL_GROUP_NAME);
     if (!essentialGroup) {
@@ -540,17 +532,17 @@ class HdsCookieConsentClass {
     switch (selection) {
       case 'required': {
         acceptedGroups = [this.#ESSENTIAL_GROUP_NAME];
-        this.#saveAcceptedGroups(siteSettings, acceptedGroups, false);
+        this.#saveConsentedGroups(siteSettings, acceptedGroups, false);
         break;
       }
       case 'all': {
         acceptedGroups = this.#readGroupSelections(formReference, true);
-        this.#saveAcceptedGroups(siteSettings, acceptedGroups, false);
+        this.#saveConsentedGroups(siteSettings, acceptedGroups, false);
         break;
       }
       case 'selected': {
         acceptedGroups = this.#readGroupSelections(formReference);
-        this.#saveAcceptedGroups(siteSettings, acceptedGroups, false);
+        this.#saveConsentedGroups(siteSettings, acceptedGroups, false);
         break;
       }
       default:
@@ -600,19 +592,13 @@ class HdsCookieConsentClass {
 
   /**
    * Determines whether to display the banner.
-   * 1. If site settings have changed since approval, show banner
-   * 2. If cookie doesn't exist, show banner
-   * 3. If cookie wants to show banner, show banner
-   * 4. Otherwise, do not show banner
+   * 1. If cookie doesn't exist, show banner
+   * 2. If cookie wants to show banner, show banner
+   * 3. Otherwise, do not show banner
    * @private
-   * @param {any} siteSettings - The site settings.
    * @return {boolean} - Returns true if the banner should be displayed, false otherwise.
    */
-  #shouldDisplayBanner(siteSettings) {
-    if (siteSettings !== this.#UNCHANGED) {
-      return true; // Site settings changed since approval, show banner
-    }
-
+  #shouldDisplayBanner() {
     const browserCookie = this.#getCookie();
     if (!browserCookie) {
       return true; // Cookie doesn't exist, show banner
@@ -827,23 +813,30 @@ class HdsCookieConsentClass {
       settingsPageElement = document.querySelector(this.#SETTINGS_PAGE_SELECTOR);
     }
 
+    const siteSettings = await this.#getSiteSettings();
     if (settingsPageElement) {
-      const siteSettings = await this.#getSiteSettings(false);
       this.#settingsPageElement = settingsPageElement;
       // If settings page element is found, render site settings in page instead of banner
       await this.#render(this.#LANGUAGE, siteSettings, false, settingsPageElement);
     } else {
-      const siteSettings = await this.#getSiteSettings();
       // Check if banner is needed or not
-      const shouldDisplayBanner = this.#shouldDisplayBanner(siteSettings);
+      const shouldDisplayBanner = this.#shouldDisplayBanner();
       if (shouldDisplayBanner) {
         await this.#render(this.#LANGUAGE, siteSettings, true);
       }
     }
 
-    if (this.#MONITOR) {
-      this.#MONITOR.init(this.#cookie_name);
-    }
+    const monitorInterval = siteSettings.monitorInterval || 500;
+    const remove = siteSettings.remove || false;
+    const consentedGroups = this.#getConsentedGroupNames();
+    const consentedKeys = this.#getAllKeysInConsentedGroups(siteSettings, consentedGroups);
+    this.#MONITOR.init(
+      this.#cookie_name,
+      consentedKeys,
+      this.#ESSENTIAL_GROUP_NAME,
+      monitorInterval,
+      remove,
+    );
   };
 }
 

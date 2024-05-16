@@ -11,27 +11,27 @@ window.addEventListener('hds-cookie-consent-unapproved-item-found', function(eve
 
 <script>
 
-function createCookieForDeletion(){
-  document.cookie = 'testCookieForDeletion=1; path=/; SameSite=Lax; Secure';
+function createCookie(key){
+  document.cookie = `${key}=1; path=/; SameSite=Lax; Secure`;
 }
 
-function createLocalStorageForDeletion(){
-  localStorage.setItem('testLocalStorageForDeletion', 'testLocalStorageForDeletion');
+function createLocalStorage(key){
+  localStorage.setItem(key, `${key}_value`);
 }
 
-function createSessionStorageForDeletion(){
-  sessionStorage.setItem('testSessionStorageForDeletion', 'testSessionStorageForDeletion');
+function createSessionStorage(key){
+  sessionStorage.setItem(key, `${key}_value`);
 }
 
-function createIndexedDbForDeletion(){
+function createIndexedDb(key){
   // Open (or create) the database
-  let openRequest = indexedDB.open("testDatabaseForDeletion", 1);
+  let openRequest = indexedDB.open(key, 1);
   let db;
 
   openRequest.onupgradeneeded = function(event) {
     // The database did not previously exist, so create object stores and indexes here
     db = event.target.result;
-    db.createObjectStore("testObjectStoreForDeletion", {autoIncrement: true});
+    db.createObjectStore(`${key}_testObjectStore`, {autoIncrement: true});
   };
 
   openRequest.onsuccess = function(event) {
@@ -48,16 +48,22 @@ function createIndexedDbForDeletion(){
 }
 
 // create cache storage for deletion
-function createCacheStorageForDeletion(){
-  caches.open('testCacheStorageForDeletion');
+function createCacheStorage(key){
+  caches.open(key);
 }
 
-function createAllForDeletion(){
-  createCookieForDeletion();
-  createLocalStorageForDeletion();
-  createSessionStorageForDeletion();
-  createIndexedDbForDeletion();
-  createCacheStorageForDeletion();
+function createAll(key){
+  createCookie(`cookie_${key}`);
+  createLocalStorage(`localStorage_${key}`);
+  createSessionStorage(`sessionStorage_${key}`);
+  createIndexedDb(`indexedDB_${key}`);
+  createCacheStorage(`cacheStorage_${key}`);
+}
+
+function testAll(){
+  createAll('essential');
+  createAll('optional');
+  createAll('delete');
 }
 
 </script>
@@ -74,8 +80,6 @@ function createAllForDeletion(){
         //pageContentSelector: 'body', // Defaults to 'body'
         // submitEvent: 'cookie-consent-changed', // If this string is set, triggers a window level event with that string and detail.acceptedGroups before closing banner. If not set, reloads page instead
         settingsPageSelector: '#hds-cookie-consent-full-page', // If this string is set and matching element is found on page, instead of banner, show a full page cookie settings replacing the matched element.
-        monitorInterval: 500, // Monitors cookies that JS can see (same domain, not hidden from js) for misconfiguration. Defaults to 500ms, set to 0 to disable monitoring
-        remove: true, // If true, will remove unallowed cookies and storage. Defaults to false
         tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
       }
     };
