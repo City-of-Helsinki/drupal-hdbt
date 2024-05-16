@@ -164,7 +164,6 @@ const SearchMonitorContainer = () => {
               {searchDescription}
             </p>
 
-
             <TextInput
               className='job-search-form__search-monitor__email'
               id='job-search-form__search_monitor__email'
