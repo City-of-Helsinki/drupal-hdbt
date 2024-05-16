@@ -98,6 +98,8 @@ const translations = {
   },
   type_2: 'localStorage',
   type_3: 'sessionStorage',
+  type_4: 'IndexedDB',
+  type_5: 'Cache Storage',
 };
 
 /**
