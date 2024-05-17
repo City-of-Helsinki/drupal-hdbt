@@ -8,25 +8,32 @@ import {
 
 class CookieHandler {
   #SITE_SETTINGS_JSON_URL;
-
+  #SITE_SETTINGS_OBJ;
   #COOKIE_DAYS = 100;
-
   #ESSENTIAL_GROUP_NAME = 'essential';
-
   #shadowDomUpdateCallback;
-
   #siteSettings;
-
   #cookie_name;
 
+  /**
+   * Represents a CookieHandler object.
+   * @constructor
+   * @param {Object} options - The options for the CookieHandler.
+   * @param {string} options.siteSettingsJsonUrl - Path to JSON file with site settings.
+   * @param {Object} options.siteSettingsObj - Site settings object.
+   * @param {Function} options.shadowDomUpdateCallback - Callback function to update shadow DOM.
+   * @param {Object} options.backReference - Reference to the back reference object.
+   */
   constructor(
     {
       siteSettingsJsonUrl, // Path to JSON file with site settings
-      shadowDomUpdateCallback, // Callback function to update shadow DOM
+      siteSettingsObj, // Site settings object
+      shadowDomUpdateCallback, // Callback function to update shadow DOM checkboxes
       backReference, // Reference to the back reference object
     }
   ) {
     this.#SITE_SETTINGS_JSON_URL = siteSettingsJsonUrl;
+    this.#SITE_SETTINGS_OBJ = siteSettingsObj;
     this.#shadowDomUpdateCallback = (consentedGroupNames) => shadowDomUpdateCallback(consentedGroupNames, backReference);
   }
 
@@ -77,7 +84,7 @@ class CookieHandler {
     // Try to fetch the site settings from the JSON file
     let siteSettings = null;
     try {
-      siteSettings = await this.#getSiteSettingsFromJsonFile();
+      siteSettings = await this.#getSiteSettings();
     } catch (err) {
       console.error(`Cookie consent: Unable to fetch cookie consent settings: ${err}`);
       return false;
@@ -331,8 +338,8 @@ class CookieHandler {
    * @throws {Error} If the required group or cookie is missing in the site settings.
    * @throws {Error} If there are multiple cookie groups with identical names in the site settings.
    */
-  async #getSiteSettings() {
-    const siteSettings = await this.#getSiteSettingsFromJsonFile();
+  async #getAndVerifySiteSettings() {
+    const siteSettings = await this.#getSiteSettings();
 
     this.#cookie_name = siteSettings.cookieName || this.#cookie_name; // Optional override for cookie name
 
@@ -372,12 +379,18 @@ class CookieHandler {
   }
 
   /**
-   * Fetches the site settings from a JSON file and returns them as an object.
+   * Fetches the site settings from Object or a JSON file and returns them as an object.
    * @private
    * @return {Promise<Object>} A promise that resolves to the site settings object.
    * @throws {Error} If there is an error fetching the cookie consent settings or parsing the JSON.
    */
-  async #getSiteSettingsFromJsonFile() {
+  async #getSiteSettings() {
+
+    // If site settings object is available, return it
+    if(this.#SITE_SETTINGS_OBJ) {
+      return this.#SITE_SETTINGS_OBJ;
+    };
+
     // Fetch the site settings JSON file
     let siteSettingsRaw;
     try {
@@ -397,9 +410,15 @@ class CookieHandler {
     return siteSettings;
   }
 
+  /**
+   * Initializes the cookie handler.
+   *
+   * @param {string} cookieName - The name of the consent cookie.
+   * @return {Promise<Object>} - A promise that resolves to the site settings.
+   */
   async init(cookieName) {
     this.#cookie_name = cookieName;
-    this.#siteSettings = await this.#getSiteSettings();
+    this.#siteSettings = await this.#getAndVerifySiteSettings();
     return this.#siteSettings;
   }
 }

@@ -65,6 +65,7 @@ class HdsCookieConsentClass {
   constructor(
     {
       siteSettingsJsonUrl, // Path to JSON file with site settings
+      siteSettingsObj, // Object with site settings to use instead of the url
       language = 'en', // Page language
       targetSelector = 'body', // Where to inject the banner
       spacerParentSelector = 'body', // Where to inject the spacer
@@ -74,8 +75,8 @@ class HdsCookieConsentClass {
       tempCssPath = '/path/to/external.css', // TODO: Remove this tempoarry path to external CSS file
     }
   ) {
-    if (!siteSettingsJsonUrl) {
-      throw new Error('Cookie consent: siteSettingsJsonUrl is required');
+    if (!siteSettingsJsonUrl && !siteSettingsObj) {
+      throw new Error('Cookie consent: siteSettingsJsonUrl or siteSettingsObj is required');
     }
 
     this.#LANGUAGE = language;
@@ -109,13 +110,17 @@ class HdsCookieConsentClass {
       }
     };
 
-    this.#COOKIE_HANDLER = new CookieHandler(
-      {
-        siteSettingsJsonUrl,
-        shadowDomUpdateCallback,
-        backReference: this,
-      }
-    );
+    const cookieHandlerOptions = {
+      shadowDomUpdateCallback,
+      backReference: this,
+    };
+    // Prefer siteSettingsObj over siteSettingsJsonUrl to avoid extra network traffic
+    if (siteSettingsObj) {
+      cookieHandlerOptions.siteSettingsObj = siteSettingsObj;
+    } else {
+      cookieHandlerOptions.siteSettingsJsonUrl = siteSettingsJsonUrl;
+    }
+    this.#COOKIE_HANDLER = new CookieHandler(cookieHandlerOptions);
     this.#MONITOR = new MonitorAndCleanBrowserStorages();
 
     if (document.readyState === 'loading') {

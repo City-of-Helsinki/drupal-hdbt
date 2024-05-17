@@ -69,14 +69,22 @@ function testAll(){
   createAll('delete');
 }
 
+// Fetch site settings from a json file to simulate giving them as an object instead of a url
+const siteSettingsObj = fetch('{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json')
+  .then(response => response.json())
+  .then(data => { return data; })
+  .catch(error => { console.error('Error fetching site settings:', error); });
+
 </script>
 
 <script>
+
   (function() {
     const conf = {
       src: '{{ theme_path }}/dist/js/hds-cc.min.js',
       options: {
-        siteSettingsJsonUrl: '{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json',
+        //siteSettingsJsonUrl: '{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json',
+        siteSettingsObj: siteSettingsObj,
         language: '{{current_langcode}}', // Lang code defaults to 'en'
         //targetSelector: 'body', // Defaults to 'body'
         //spacerParentSelector: 'body', // Defaults to 'body'
