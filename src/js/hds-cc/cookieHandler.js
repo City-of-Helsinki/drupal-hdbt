@@ -83,7 +83,7 @@ class CookieHandler {
       return false;
     }
 
-    const siteSettingsGroups = [...siteSettings.requiredCookies.groups, ...siteSettings.optionalCookies.groups];
+    const siteSettingsGroups = [...siteSettings.requiredGroups, ...siteSettings.optionalGroups];
 
     // Checksums for all groups calculated in parallel without waiting for each
     await Promise.all(siteSettingsGroups.map(async (group) => {
@@ -167,7 +167,7 @@ class CookieHandler {
     const consentedGroups = {};
 
     // Find group checksums for consented groups
-    const allGroups = [...this.#siteSettings.requiredCookies.groups, ...this.#siteSettings.optionalCookies.groups];
+    const allGroups = [...this.#siteSettings.requiredGroups, ...this.#siteSettings.optionalGroups];
     allGroups.forEach(group => {
       if (consentedGroupNames.includes(group.groupId)) {
         consentedGroups[group.groupId] = group.checksum;
@@ -191,7 +191,7 @@ class CookieHandler {
    * @return {string[]} An array of required cookie group names.
    */
   getRequiredGroupNames() {
-    return this.#siteSettings.requiredCookies.groups.map(group => group.groupId);
+    return this.#siteSettings.requiredGroups.map(group => group.groupId);
   }
 
   /**
@@ -268,8 +268,8 @@ class CookieHandler {
     });
 
     const allGroups = [
-      ...this.#siteSettings.requiredCookies.groups,
-      ...this.#siteSettings.optionalCookies.groups,
+      ...this.#siteSettings.requiredGroups,
+      ...this.#siteSettings.optionalGroups,
     ];
     allGroups.forEach(group => {
       if (consentedGroupNames.includes(group.groupId)) {
@@ -338,7 +338,7 @@ class CookieHandler {
 
     const browserCookie = this.getCookie();
 
-    const essentialGroup = siteSettings.requiredCookies.groups.find(group => group.groupId === this.#ESSENTIAL_GROUP_NAME);
+    const essentialGroup = siteSettings.requiredGroups.find(group => group.groupId === this.#ESSENTIAL_GROUP_NAME);
     if (!essentialGroup) {
       // The site site settings must have required group named by ESSENTIAL_GROUP_NAME
       throw new Error(`Cookie consent error: '${this.#ESSENTIAL_GROUP_NAME}' group missing`);
@@ -349,7 +349,7 @@ class CookieHandler {
       throw new Error(`Cookie consent error: Missing cookie entry for '${this.#cookie_name}' in group '${this.#ESSENTIAL_GROUP_NAME}'`);
     }
 
-    const siteSettingsGroups = [...siteSettings.requiredCookies.groups, ...siteSettings.optionalCookies.groups];
+    const siteSettingsGroups = [...siteSettings.requiredGroups, ...siteSettings.optionalGroups];
 
     const cookieNames = [];
     siteSettingsGroups.forEach(cookie => {

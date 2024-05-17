@@ -309,7 +309,7 @@ class HdsCookieConsentClass {
     cookieGroupList.forEach(cookieGroup => {
       const title = this.#translateSetting(cookieGroup.title, lang);
       const description = this.#translateSetting(cookieGroup.description, lang);
-      const {groupId} = cookieGroup;
+      const isAccepted = acceptedGroups.includes(cookieGroup.groupId);
 
       // Build table rows
       let tableRowsHtml = '';
@@ -325,8 +325,14 @@ class HdsCookieConsentClass {
         );
       });
 
-      const isAccepted = acceptedGroups.includes(cookieGroup.groupId);
-      groupsHtml += getGroupHtml({...translations, title, description }, groupId, `${cookieGroupCategoryName}_${groupNumber}`, tableRowsHtml, groupRequired, isAccepted);
+      groupsHtml += getGroupHtml(
+        { ...translations, title, description },
+        cookieGroup.groupId,
+        `${cookieGroupCategoryName}_${groupNumber}`,
+        tableRowsHtml,
+        groupRequired,
+        isAccepted
+      );
       groupNumber += 1;
     });
     return groupsHtml;
@@ -408,8 +414,8 @@ class HdsCookieConsentClass {
     const listOfAcceptedGroups = browserCookie ? Object.keys(browserCookie.groups) : [];
 
     const groupsHtml = [
-      this.#getCookieGroupsHtml(siteSettings.requiredCookies.groups, lang, translations, true, 'required', listOfAcceptedGroups),
-      this.#getCookieGroupsHtml(siteSettings.optionalCookies.groups, lang, translations, false, 'optional', listOfAcceptedGroups),
+      this.#getCookieGroupsHtml(siteSettings.requiredGroups, lang, translations, true, 'required', listOfAcceptedGroups),
+      this.#getCookieGroupsHtml(siteSettings.optionalGroups, lang, translations, false, 'optional', listOfAcceptedGroups),
     ].join('');
 
     // Create banner HTML
