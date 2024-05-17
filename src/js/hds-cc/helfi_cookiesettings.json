@@ -197,7 +197,14 @@
             "description": "Drupal accessibility extension",
             "expiration": "-",
             "type": 2
-          },
+          }
+        ]
+      },
+      {
+        "groupId": "test_essential",
+        "title": "Testing essential cookies",
+        "description": "These cookies should not be deleted",
+        "cookies": [
           {
             "name": "cookie_essential",
             "host": "-",

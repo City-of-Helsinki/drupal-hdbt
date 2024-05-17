@@ -15,11 +15,7 @@ class MonitorAncCleanBrowserStorages {
 
   #REMOVE;
 
-  #ESSENTIAL_GROUP_NAME;
-
-  #consentedKeys;
-
-  #cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
+  #COOKIE_HANDLER;
 
   // Initial keys found when script is initialized
   #INITIAL_STORED_KEYS = {
@@ -58,16 +54,6 @@ class MonitorAncCleanBrowserStorages {
     this.#initializeStoredKeys();
   }
 
-
-  /**
-   * Updates the consented keys.
-   *
-   * @param {Array} consentedKeys - The new consented keys.
-   */
-  updateConsentedKeys(consentedKeys) {
-    this.#consentedKeys = consentedKeys;
-  }
-
   /**
    * Retrieves the status of various browser storages.
    * @return {Promise<Object>} The status object containing information about the initial, current, reported, and removalFailed keys.
@@ -84,7 +70,7 @@ class MonitorAncCleanBrowserStorages {
       },
       reported: await this.#reportedKeys,
       removalFailed: await this.#removalFailedKeys,
-      consentedKeys: this.#consentedKeys,
+      consentedKeys: this.#COOKIE_HANDLER.getAllKeysInConsentedGroups(),
     };
 
     return status;
@@ -307,39 +293,18 @@ class MonitorAncCleanBrowserStorages {
 
 
   /**
-   * Retrieves the consented groups from the consent cookie.
-   * @private
-   * @return {Array} An array of consented group names.
-   */
-  #getConsentedGroups() {
-    let consentedGroups = [];
-    const consentCookie = this.#getCookie(this.#cookie_name);
-
-    // If cookie exists and has groups
-    if (consentCookie && consentCookie.groups) {
-      consentedGroups = Object.keys(consentCookie.groups);
-    }
-
-    // If "essential" group is not consented, add it to the list
-    if (!consentedGroups.includes(this.#ESSENTIAL_GROUP_NAME)) {
-      consentedGroups.push(this.#ESSENTIAL_GROUP_NAME);
-    }
-    return consentedGroups;
-  }
-
-
-  /**
    * Monitors cookies, local storage, and session storage for unconsented new keys.
    * @private
    */
   async #monitorLoop() {
     // console.log('monitoring', JSON.stringify(this.#reportedKeys));
 
-    const consentedGroups = this.#getConsentedGroups();
+    const consentedGroups = this.#COOKIE_HANDLER.getConsentedGroupNames();
+    const consentedKeys = this.#COOKIE_HANDLER.getAllKeysInConsentedGroups();
 
     this.#monitor(
       'cookie',
-      [...this.#consentedKeys.cookie, this.#cookie_name],
+      consentedKeys.cookie,
       this.#INITIAL_STORED_KEYS.cookie,
       this.#reportedKeys.cookie,
       this.#getCookieNamesArray(),
@@ -348,7 +313,7 @@ class MonitorAncCleanBrowserStorages {
 
     this.#monitor(
       'localStorage',
-      this.#consentedKeys.localStorage,
+      consentedKeys.localStorage,
       this.#INITIAL_STORED_KEYS.localStorage,
       this.#reportedKeys.localStorage,
       Object.keys(localStorage),
@@ -357,7 +322,7 @@ class MonitorAncCleanBrowserStorages {
 
     this.#monitor(
       'sessionStorage',
-      this.#consentedKeys.sessionStorage,
+      consentedKeys.sessionStorage,
       this.#INITIAL_STORED_KEYS.sessionStorage,
       this.#reportedKeys.sessionStorage,
       Object.keys(sessionStorage),
@@ -367,7 +332,7 @@ class MonitorAncCleanBrowserStorages {
     if (indexedDB) {
       this.#monitor(
         'indexedDB',
-        this.#consentedKeys.indexedDB,
+        consentedKeys.indexedDB,
         (await this.#INITIAL_STORED_KEYS.indexedDB),
         this.#reportedKeys.indexedDB,
         (await this.#getIndexedDBNamesArray()),
@@ -378,7 +343,7 @@ class MonitorAncCleanBrowserStorages {
     if (caches) {
       this.#monitor(
         'cacheStorage',
-        this.#consentedKeys.cacheStorage,
+        consentedKeys.cacheStorage,
         (await this.#INITIAL_STORED_KEYS.cacheStorage),
         this.#reportedKeys.cacheStorage,
         (await this.#getCacheStorageNamesString()),
@@ -401,22 +366,18 @@ class MonitorAncCleanBrowserStorages {
   /**
    * Initializes the browser storage monitoring and cleaning when the cookie name has been read from the site settings.
    * @param {string} cookieName - The name of the consent cookie.
-   * @param {Array<string>} consentedKeys - The cookie/storage keys that are accepted.
-   * @param {string} essentialGroupName - The name of the essential group.
+   * @param {Object} cookieHandler - The cookie handler reference.
    * @param {number} [monitorInterval=500] - The interval in milliseconds at which to monitor the stored keys.
    * @param {boolean} [remove=false] - Indicates whether to remove the stored keys or not.
    */
   init(
     cookieName,
-    consentedKeys,
-    essentialGroupName,
+    cookieHandler,
     monitorInterval = 500,
     remove = false,
   ) {
-    this.#cookie_name = cookieName;
-    this.#consentedKeys = consentedKeys;
-    this.#ESSENTIAL_GROUP_NAME = essentialGroupName;
-    this.#MONITOR_INTERVAL =  Math.max(monitorInterval, 50);
+    this.#COOKIE_HANDLER = cookieHandler;
+    this.#MONITOR_INTERVAL = Math.max(monitorInterval, 50);
     this.#REMOVE = remove;
     if (monitorInterval > 0) {
       this.#monitorCookiesAndStorage();
