@@ -133,15 +133,19 @@ const SearchMonitorContainer = () => {
       {!submitted && (
         <>
           <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
-          <Button type="button"
-                  aria-controls='job-search-form__search-monitor__content'
-                  variant="supplementary"
-                  theme="black"
-                  iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
-                  onClick={(event: React.MouseEvent) => {
-                    event.preventDefault();
-                    setIsFormVisible(!isFormVisible);
-                  }}
+          <Button
+            type="button"
+            aria-controls='job-search-form__search-monitor__content'
+            variant="supplementary"
+            theme="black"
+            iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
+            onClick={(event: React.MouseEvent) => {
+            event.preventDefault();
+              setIsFormVisible(!isFormVisible);
+            }}
+            style={{
+              backgroundColor: 'transparent'
+            }}
           >
             {isFormVisible ? closeLabel : openLabel}
           </Button>
@@ -182,7 +186,11 @@ const SearchMonitorContainer = () => {
                 required
               />
 
-              <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit' id='job-search-form__search-monitor__submit-button'>
+              <Button
+                className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
+                type='submit'
+                id='job-search-form__search-monitor__submit-button'
+              >
                 {buttonLabel}
               </Button>
             </div>
