@@ -11,7 +11,7 @@ const ResultsContainer = () => {
   return promoted?.length ?
   <PromotedResultsContainer /> :
   <>
-    <SearchMonitorContainer />
+    {drupalSettings?.helfi_react_search?.hakuvahti_url_set && <SearchMonitorContainer />}
     <SimpleResultsContainer />
   </>;
 };
