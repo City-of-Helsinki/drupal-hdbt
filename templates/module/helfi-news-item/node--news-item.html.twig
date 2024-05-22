@@ -1,65 +1,66 @@
-{% embed '@hdbt/content/node.html.twig' %}
+{% extends '@hdbt/content/node.html.twig' %}
 
-  {% block main_content %}
+{% block main_content %}
 
-    {# Lead-in text, if any #}
-    {{ content.field_lead_in }}
+  {# Lead-in text, if any #}
+  {{ content.field_lead_in }}
 
-    {# Page divider, normally it comes from table of contents, but news does not have that #}
-    <div class="page-divider"></div>
+  {# Page divider, normally it comes from table of contents, but news does not have that #}
+  <div class="page-divider"></div>
 
-    {# Created date and modified date #}
-    {% if published_at is not empty %}
-      {% if date(published_at) < date('-365days') %}
-        {% set tag_content %}
-          <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Published over a year ago'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
-        {% endset %}
-        {% embed '@hdbt/misc/tag-list.twig'%}
-          {% block content %}
-            {% include '@hdbt/misc/tag.twig' with {
-              tag: tag_content,
-              color: 'alert'
-            }%}
-            {% endblock content %}
-        {% endembed %}
-      {% endif %}
-      <div class="content-date" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
-        {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
-        <time datetime="{{ html_published_at }}" class="content-date__datetime content-date__datetime--published">
-          <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
-          {{ published_at|format_date('publication_date_format') }}
+  {# Created date and modified date #}
+  {% if published_at is not empty %}
+    {% if date(published_at) < date('-365days') %}
+      {% set tag_content %}
+        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Published over a year ago'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+      {% endset %}
+      {% embed '@hdbt/misc/tag-list.twig'%}
+        {% block content %}
+          {% include '@hdbt/misc/tag.twig' with {
+            tag: tag_content,
+            color: 'alert'
+          }%}
+          {% endblock content %}
+      {% endembed %}
+    {% endif %}
+    <div class="content-date" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+      {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+      <time datetime="{{ html_published_at }}" class="content-date__datetime content-date__datetime--published">
+        <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+        {{ published_at|format_date('publication_date_format') }}
+      </time>
+
+      {% if modified_at is not empty %}
+        {% set html_modified_at = modified_at|format_date('custom', 'Y-m-d') ~ 'T' ~ modified_at|format_date('custom', 'H:i') %}
+        <time datetime="{{ html_modified_at }}" class="content-date__datetime content-date__datetime--updated">
+          {% if date(modified_at) < date('-365days') %}
+            {{ 'Updated over a year ago'|t({}, {'context': 'The helper text before the node changed timestamp'}) }}
+          {% else %}
+            {{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }} {{ modified_at|format_date('publication_date_format') }}
+          {% endif %}
         </time>
+      {% endif %}
+    </div>
+  {% endif %}
 
-        {% if modified_at is not empty %}
-          {% set html_modified_at = modified_at|format_date('custom', 'Y-m-d') ~ 'T' ~ modified_at|format_date('custom', 'H:i') %}
-          <time datetime="{{ html_modified_at }}" class="content-date__datetime content-date__datetime--updated">
-            {% if date(modified_at) < date('-365days') %}
-              {{ 'Updated over a year ago'|t({}, {'context': 'The helper text before the node changed timestamp'}) }}
-            {% else %}
-              {{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }} {{ modified_at|format_date('publication_date_format') }}
-            {% endif %}
-          </time>
-        {% endif %}
-      </div>
-    {% endif %}
+  {# Main image #}
+  {% if content.field_main_image|render %}
+    {% include '@hdbt/misc/image-with-caption.twig' with {
+      figure_class: 'main-image',
+      image: content.field_main_image,
+      image_caption: main_image_caption
+    } %}
+  {% endif %}
+  {# End of Main image #}
 
-    {# Main image #}
-    {% if content.field_main_image|render %}
-      {% include '@hdbt/misc/image-with-caption.twig' with {
-        figure_class: 'main-image',
-        image: content.field_main_image,
-        image_caption: main_image_caption
-      } %}
-    {% endif %}
-    {# End of Main image #}
+  {# Content region #}
+  {% if content.field_content|render|striptags|trim is not empty %}
+    {{ content.field_content }}
+  {% endif %}
 
-    {# Content region #}
-    {% if content.field_content|render %}
-      {{ content.field_content }}
-    {% endif %}
+  {# Content after the content region #}
+  {% block after_content %}{% endblock after_content %}
 
-    {% include '@hdbt/misc/news-footer.twig' %}
+  {% include '@hdbt/misc/news-footer.twig' %}
 
-  {% endblock main_content %}
-
-{% endembed %}
+{% endblock main_content %}
