@@ -133,59 +133,64 @@ const SearchMonitorContainer = () => {
       {!submitted && (
         <>
           <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
-          <Button type="button"
-                  aria-controls='job-search-form__search-monitor__content'
-                  variant="supplementary"
-                  theme="black"
-                  iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
-                  onClick={(event: React.MouseEvent) => {
-                    event.preventDefault();
-                    setIsFormVisible(!isFormVisible);
-                  }}
+          <Button
+            type="button"
+            aria-controls='job-search-form__search-monitor__content'
+            variant="supplementary"
+            theme="black"
+            iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
+            onClick={(event: React.MouseEvent) => {
+              event.preventDefault();
+              setIsFormVisible(!isFormVisible);
+            }}
           >
             {isFormVisible ? closeLabel : openLabel}
           </Button>
 
           <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
-              <h4>{descriptionHeader}</h4>
-              <p>{descriptionFirstPart}</p>
-              <p>{descriptionSecondPart}</p>
+            <h4>{descriptionHeader}</h4>
+            <p>{descriptionFirstPart}</p>
+            <p>{descriptionSecondPart}</p>
 
-              {errorMessage &&
-                <Notification
-                  type='error'
-                  size='default'
-                  label={errorLabel}
-                >
-                  {errorMessage}
-                </Notification>
-              }
+            {errorMessage &&
+              <Notification
+                type='error'
+                size='default'
+                label={errorLabel}
+              >
+                {errorMessage}
+              </Notification>
+            }
 
-              <TextInput
-                className='job-search-form__search-monitor__email'
-                id='job-search-form__search_monitor__email'
-                label={emailLabel}
-                name='job-search-form__search_monitor__email'
-                type='email'
-                onChange={(event) => setEmail(event.target.value)}
-                value={email}
-                required
-              />
+            <TextInput
+              className='job-search-form__search-monitor__email'
+              id='job-search-form__search_monitor__email'
+              label={emailLabel}
+              name='job-search-form__search_monitor__email'
+              type='email'
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              required
+            />
 
-              <Checkbox
-                className='job-search-form__search-monitor__terms'
-                label={acceptTermsLabel}
-                id='job-search-form__search_monitor__terms'
-                onChange={(event) => setTermsAgreed(event.target.checked)}
-                checked={termsAgreed}
-                name='job-search-form__search_monitor__terms'
-                required
-              />
+            <Checkbox
+              className='job-search-form__search-monitor__terms'
+              label={acceptTermsLabel}
+              id='job-search-form__search_monitor__terms'
+              onChange={(event) => setTermsAgreed(event.target.checked)}
+              checked={termsAgreed}
+              name='job-search-form__search_monitor__terms'
+              required
+            />
 
-              <Button className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button' type='submit' id='job-search-form__search-monitor__submit-button'>
-                {buttonLabel}
-              </Button>
-            </div>
+            <Button
+              className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
+              type='submit'
+              id='job-search-form__search-monitor__submit-button'
+            >
+              {buttonLabel}
+            </Button>
+          </div>
         </>
       )}
 
