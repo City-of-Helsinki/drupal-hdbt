@@ -146,7 +146,7 @@ const SearchMonitorContainer = () => {
             theme="black"
             iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
             onClick={(event: React.MouseEvent) => {
-            event.preventDefault();
+              event.preventDefault();
               setIsFormVisible(!isFormVisible);
             }}
             style={{
@@ -157,57 +157,57 @@ const SearchMonitorContainer = () => {
           </Button>
 
           <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
-              <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
-              <p>{descriptionFirstPart}</p>
-              <p>{descriptionSecondPart}</p>
+            <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
+            <p>{descriptionFirstPart}</p>
+            <p>{descriptionSecondPart}</p>
 
-              {errorMessage &&
-                <Notification
-                  type='error'
-                  size='default'
-                  label={errorLabel}
-                >
-                  {errorMessage}
-                </Notification>
-              }
-
-              <TextInput
-                className='job-search-form__search-monitor__email'
-                id='job-search-form__search_monitor__email'
-                label={emailLabel}
-                name='job-search-form__search_monitor__email'
-                type='email'
-                onChange={(event) => setEmail(event.target.value)}
-                value={email}
-                required
-                style={{
-                  marginTop: 'var(--spacing-m)',
-                }}
-              />
-
-              <Checkbox
-                className='job-search-form__search-monitor__terms'
-                label={acceptTermsLabel}
-                id='job-search-form__search_monitor__terms'
-                onChange={(event) => setTermsAgreed(event.target.checked)}
-                checked={termsAgreed}
-                name='job-search-form__search_monitor__terms'
-                required
-                style={customCheckboxStyles}
-              />
-
-              <Button
-                className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
-                type='submit'
-                id='job-search-form__search-monitor__submit-button'
-                style={{
-                  marginBottom: '0',
-                  marginTop: 'var(--spacing-l)',
-                }}
+            {errorMessage &&
+              <Notification
+                type='error'
+                size='default'
+                label={errorLabel}
               >
-                {buttonLabel}
-              </Button>
-            </div>
+                {errorMessage}
+              </Notification>
+            }
+
+            <TextInput
+              className='job-search-form__search-monitor__email'
+              id='job-search-form__search_monitor__email'
+              label={emailLabel}
+              name='job-search-form__search_monitor__email'
+              type='email'
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              required
+              style={{
+                marginTop: 'var(--spacing-m)',
+              }}
+            />
+
+            <Checkbox
+              className='job-search-form__search-monitor__terms'
+              label={acceptTermsLabel}
+              id='job-search-form__search_monitor__terms'
+              onChange={(event) => setTermsAgreed(event.target.checked)}
+              checked={termsAgreed}
+              name='job-search-form__search_monitor__terms'
+              required
+              style={customCheckboxStyles}
+            />
+
+            <Button
+              className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
+              type='submit'
+              id='job-search-form__search-monitor__submit-button'
+              style={{
+                marginBottom: '0',
+                marginTop: 'var(--spacing-l)',
+              }}
+            >
+              {buttonLabel}
+            </Button>
+          </div>
         </>
       )}
 
