@@ -166,6 +166,7 @@ const SearchMonitorContainer = () => {
                 type='error'
                 size='default'
                 label={errorLabel}
+                className='job-search-form__search-monitor__error'
               >
                 {errorMessage}
               </Notification>
