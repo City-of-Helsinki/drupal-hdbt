@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable no-console */
 
 import {
   parse,
@@ -47,6 +46,7 @@ class CookieHandler {
 
     // Check if group names are provided as an array and not empty
     if (!Array.isArray(groupNamesArray) || groupNamesArray.length === 0) {
+      // eslint-disable-next-line no-console
       console.error('Cookie consent: Group names must be provided as an non-empty array.');
       return false;
     }
@@ -86,6 +86,7 @@ class CookieHandler {
     try {
       siteSettings = await this.#getSiteSettings();
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(`Cookie consent: Unable to fetch cookie consent settings: ${err}`);
       return false;
     }
@@ -138,6 +139,7 @@ class CookieHandler {
       }
       return JSON.parse(cookieString);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(`Cookie parsing unsuccessful:\n${err}`);
       return false;
     }
@@ -318,7 +320,8 @@ class CookieHandler {
           newCookieGroups.push(group.groupId);
         } else {
           invalidGroupsFound = true;
-          console.log(`Invalid group found in browser cookie: '${group.groupId}', removing from cookie.`);
+          // eslint-disable-next-line no-console
+          console.info(`Invalid group found in browser cookie: '${group.groupId}', removing from cookie.`);
         }
       });
     }
