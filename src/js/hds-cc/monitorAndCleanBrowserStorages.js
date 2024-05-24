@@ -15,7 +15,7 @@ class MonitorAncCleanBrowserStorages {
 
   #REMOVE;
 
-  #cookie_name = 'city-of-helsinki-cookie-consents'; // Overridable default value
+  #COOKIE_HANDLER;
 
   // Initial keys found when script is initialized
   #INITIAL_STORED_KEYS = {
@@ -50,15 +50,9 @@ class MonitorAncCleanBrowserStorages {
    * @param {number} [monitorInterval=500] - The interval in milliseconds at which to monitor the stored keys.
    * @param {boolean} [remove=false] - Indicates whether to remove the stored keys or not.
    */
-  constructor(
-    monitorInterval = 500,
-    remove = false,
-  ) {
-    this.#MONITOR_INTERVAL = monitorInterval;
-    this.#REMOVE = remove;
+  constructor() {
     this.#initializeStoredKeys();
   }
-
 
   /**
    * Retrieves the status of various browser storages.
@@ -76,6 +70,7 @@ class MonitorAncCleanBrowserStorages {
       },
       reported: await this.#reportedKeys,
       removalFailed: await this.#removalFailedKeys,
+      consentedKeys: this.#COOKIE_HANDLER.getAllKeysInConsentedGroups(),
     };
 
     return status;
@@ -209,35 +204,32 @@ class MonitorAncCleanBrowserStorages {
     currentStoredKeysArray,
     consentedGroups,
   ) {
-    if (currentStoredKeysArray.join(';') !== initialStoredKeysArray.join(';')) {
 
-      // Find items that appear only in currentStoredKeysArray and filter out the ones that are already in consentedKeysArray
-      const unapprovedKeys = currentStoredKeysArray.filter((key) => {
-        if (
-          key === '' || // If the key is empty, filter it out
-          initialStoredKeysArray.includes(key) || // If key is not new, filter it out
-          reportedKeysArray.includes(key) || // If key is already reported, filter it out
-          this.#isKeyConsented(key, consentedKeysArray) // If key is consented (with possible wildcards), filter it out
-        ) {
-          return false;
-        }
-        return true;
-      });
-
-      if (unapprovedKeys.length > 0) {
-        console.log(`Cookie consent found unapproved ${typeString}(s): '${unapprovedKeys.join('\', \'')}'`);
-
-        const event = new CustomEvent('hds-cookie-consent-unapproved-item-found', {
-          detail: {
-            type: typeString,
-            keys: unapprovedKeys,
-            consentedGroups
-          }
-        });
-        window.dispatchEvent(event);
-
-        reportedKeysArray.push(...unapprovedKeys);
+    // Find items that appear only in currentStoredKeysArray and filter out the ones that are already in consentedKeysArray
+    const unapprovedKeys = currentStoredKeysArray.filter((key) => {
+      if (
+        key === '' || // If the key is empty, filter it out
+        reportedKeysArray.includes(key) || // If key is already reported, filter it out
+        this.#isKeyConsented(key, consentedKeysArray) // If key is consented (with possible wildcards), filter it out
+      ) {
+        return false;
       }
+      return true;
+    });
+
+    if (unapprovedKeys.length > 0) {
+      console.log(`Cookie consent found unapproved ${typeString}(s): '${unapprovedKeys.join('\', \'')}'`);
+
+      const event = new CustomEvent('hds-cookie-consent-unapproved-item-found', {
+        detail: {
+          type: typeString,
+          keys: unapprovedKeys,
+          consentedGroups
+        }
+      });
+      window.dispatchEvent(event);
+
+      reportedKeysArray.push(...unapprovedKeys);
     }
 
     if (this.#REMOVE) {
@@ -299,6 +291,7 @@ class MonitorAncCleanBrowserStorages {
 
   }
 
+
   /**
    * Monitors cookies, local storage, and session storage for unconsented new keys.
    * @private
@@ -306,64 +299,55 @@ class MonitorAncCleanBrowserStorages {
   async #monitorLoop() {
     // console.log('monitoring', JSON.stringify(this.#reportedKeys));
 
-    const consentCookie = this.#getCookie(this.#cookie_name);
-    let acceptedGroups = '';
-    if (consentCookie && consentCookie.groups) {
-      acceptedGroups = Object.keys(consentCookie.groups).join(';');
-    }
+    const consentedGroups = this.#COOKIE_HANDLER.getConsentedGroupNames();
+    const consentedKeys = this.#COOKIE_HANDLER.getAllKeysInConsentedGroups();
 
-    const consentedCookies = consentCookie?.cookies?.split(';') || [];
-    consentedCookies.push(this.#cookie_name);
     this.#monitor(
       'cookie',
-      consentedCookies,
+      consentedKeys.cookie,
       this.#INITIAL_STORED_KEYS.cookie,
       this.#reportedKeys.cookie,
       this.#getCookieNamesArray(),
-      acceptedGroups,
+      consentedGroups,
     );
 
-    const consentedLocalStorage = consentCookie?.localStorage || [];
     this.#monitor(
       'localStorage',
-      consentedLocalStorage,
+      consentedKeys.localStorage,
       this.#INITIAL_STORED_KEYS.localStorage,
       this.#reportedKeys.localStorage,
       Object.keys(localStorage),
-      acceptedGroups,
+      consentedGroups,
     );
 
-    const consentedSessionStorage = consentCookie?.sessionStorage || [];
     this.#monitor(
       'sessionStorage',
-      consentedSessionStorage,
+      consentedKeys.sessionStorage,
       this.#INITIAL_STORED_KEYS.sessionStorage,
       this.#reportedKeys.sessionStorage,
       Object.keys(sessionStorage),
-      acceptedGroups,
+      consentedGroups,
     );
 
     if (indexedDB) {
-      const consentedIndexedDB = consentCookie?.indexedDB || [];
       this.#monitor(
         'indexedDB',
-        consentedIndexedDB,
+        consentedKeys.indexedDB,
         (await this.#INITIAL_STORED_KEYS.indexedDB),
         this.#reportedKeys.indexedDB,
         (await this.#getIndexedDBNamesArray()),
-        acceptedGroups,
+        consentedGroups,
       );
     }
 
     if (caches) {
-      const consentedCacheStorage = consentCookie?.cacheStorage || [];
       this.#monitor(
         'cacheStorage',
-        consentedCacheStorage,
+        consentedKeys.cacheStorage,
         (await this.#INITIAL_STORED_KEYS.cacheStorage),
         this.#reportedKeys.cacheStorage,
         (await this.#getCacheStorageNamesString()),
-        acceptedGroups,
+        consentedGroups,
       );
     }
   }
@@ -373,23 +357,29 @@ class MonitorAncCleanBrowserStorages {
    * @private
    */
   #monitorCookiesAndStorage() {
-    const interval = Math.max(this.#MONITOR_INTERVAL, 50);
-
     this.#monitorLoop();
-    setInterval(() => { this.#monitorLoop(); }, interval);
+    setInterval(() => { this.#monitorLoop(); }, this.#MONITOR_INTERVAL);
   }
 
   // MARK: Initializer
 
   /**
    * Initializes the browser storage monitoring and cleaning when the cookie name has been read from the site settings.
-   *
    * @param {string} cookieName - The name of the consent cookie.
+   * @param {Object} cookieHandler - The cookie handler reference.
+   * @param {number} [monitorInterval=500] - The interval in milliseconds at which to monitor the stored keys.
+   * @param {boolean} [remove=false] - Indicates whether to remove the stored keys or not.
    */
-  init(cookieName) {
-    this.#cookie_name = cookieName;
-
-    if (this.#MONITOR_INTERVAL > 0) {
+  init(
+    cookieName,
+    cookieHandler,
+    monitorInterval = 500,
+    remove = false,
+  ) {
+    this.#COOKIE_HANDLER = cookieHandler;
+    this.#MONITOR_INTERVAL = Math.max(monitorInterval, 50);
+    this.#REMOVE = remove;
+    if (monitorInterval > 0) {
       this.#monitorCookiesAndStorage();
     }
   }
