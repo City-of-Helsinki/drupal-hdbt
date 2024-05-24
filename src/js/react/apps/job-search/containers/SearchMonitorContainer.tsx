@@ -128,6 +128,12 @@ const SearchMonitorContainer = () => {
   const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
   const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
 
+  const customCheckboxStyles = {
+    '--background-unselected': 'var(--color-white)',
+    '--background-selected': 'var(--color-black)',
+    marginTop: 'var(--spacing-m)',
+  };
+
   return (
     <form onSubmit={onSubmit} className="job-search-form__search-monitor">
       {!submitted && (
@@ -143,12 +149,15 @@ const SearchMonitorContainer = () => {
               event.preventDefault();
               setIsFormVisible(!isFormVisible);
             }}
+            style={{
+              backgroundColor: 'transparent',
+            }}
           >
             {isFormVisible ? closeLabel : openLabel}
           </Button>
 
           <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
-            <h4>{descriptionHeader}</h4>
+            <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
 
@@ -157,6 +166,7 @@ const SearchMonitorContainer = () => {
                 type='error'
                 size='default'
                 label={errorLabel}
+                className='job-search-form__search-monitor__error'
               >
                 {errorMessage}
               </Notification>
@@ -171,6 +181,9 @@ const SearchMonitorContainer = () => {
               onChange={(event) => setEmail(event.target.value)}
               value={email}
               required
+              style={{
+                marginTop: 'var(--spacing-m)',
+              }}
             />
 
             <Checkbox
@@ -181,12 +194,17 @@ const SearchMonitorContainer = () => {
               checked={termsAgreed}
               name='job-search-form__search_monitor__terms'
               required
+              style={customCheckboxStyles}
             />
 
             <Button
               className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
               type='submit'
               id='job-search-form__search-monitor__submit-button'
+              style={{
+                marginBottom: '0',
+                marginTop: 'var(--spacing-l)',
+              }}
             >
               {buttonLabel}
             </Button>
