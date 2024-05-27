@@ -247,14 +247,7 @@
   }
 
   .news-listing__title {
-    @include font('h5');
-
-    // The card style changes already on breakpoint-m so we need to switch to larger
-    // h5-style earlier.
-    @include breakpoint($breakpoint-m) {
-      font-size: remify(20px);
-      line-height: 30 / 20;
-    }
+    @include font('h4');
   }
 
   .news-listing__img {
@@ -280,11 +273,11 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-inline-start: $spacing;
+    padding-left: $spacing;
     width: 60%;
 
     @include breakpoint($breakpoint-m) {
-      padding: $spacing;
+      padding: $spacing 0 0 0;
       width: unset;
     }
   }
