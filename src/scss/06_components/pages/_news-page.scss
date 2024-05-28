@@ -8,7 +8,7 @@
   padding-top: 0;
 }
 
-:not(.latest-news-list) > .news-listing__item {
+:not(.latest-news-list, .component--top-news .news-listing) > .news-listing__item {
   list-style: none;
   margin-top: $spacing-and-half;
   padding-left: 0; // Remove card paddings from news listing
@@ -75,6 +75,19 @@
 }
 
 // News listings using medium teasers.
+.news-listing--medium-teasers {
+  list-style: none;
+
+  .news-listing__item + .news-listing__item {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: 0;
+    }
+  }
+}
+
+// Latest news block variant.
 .news-listing--latest-medium-teasers {
   padding-inline-start: 0; // User agent stylesheet override
 
@@ -201,34 +214,28 @@
 }
 
 .news-listing--card-teasers {
-  padding-inline-start: 0; // User agent stylesheet override
+  grid-gap: 0;
+  display: grid;
+  list-style: none;
+  padding-left: 0;
 
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-inline-end: -#{$spacing-and-half};
+    grid-column-gap: $spacing-and-half;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .news-listing__item {
+  .news-listing__item + .news-listing__item {
+    margin-top: $spacing-double;
+
     @include breakpoint($breakpoint-m) {
-      width: 50%;
+      margin-top: 0;
     }
-
-    @include breakpoint($breakpoint-l) {
-      width: 25%;
-    }
-  }
-
-  .news-listing__card-teaser {
-    height: 100%;
   }
 }
 
 .news-listing__card-teaser {
-  border-bottom: 1px solid var(--color-black-5);
   display: flex;
-  padding-bottom: $spacing;
+  height: 100%;
   position: relative;
 
   &:hover .hel-icon--arrow-right {
@@ -240,9 +247,7 @@
   }
 
   @include breakpoint($breakpoint-m) {
-    border: 1px solid var(--color-black);
     flex-direction: column;
-    margin-inline-end: $spacing-and-half;
     padding-bottom: 0;
   }
 
@@ -273,13 +278,17 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-left: $spacing;
+    padding-inline-start: $spacing;
     width: 60%;
 
     @include breakpoint($breakpoint-m) {
       padding: $spacing 0 0 0;
       width: unset;
     }
+  }
+
+  .news-listing__link {
+    text-decoration: underline;
   }
 
   .news-listing__title,
