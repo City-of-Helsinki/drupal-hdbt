@@ -26,7 +26,8 @@ declare namespace drupalSettings {
               [key: string]: string
             }
           }
-        }
+        },
+        use_fixtures: boolean
       }
     }
   };
