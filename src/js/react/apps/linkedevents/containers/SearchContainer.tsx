@@ -4,7 +4,7 @@ import { useAtomValue, useAtom } from 'jotai';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
-import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom } from '../store';
+import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom } from '../store';
 
 type ResponseType = {
   data: Event[];
@@ -29,6 +29,17 @@ const SearchContainer = () => {
   const initialParams = useAtomValue(initialParamsAtom);
   const [params, setParams] = useAtom(paramsAtom);
   const url = useAtomValue(urlAtom) || initialUrl;
+  const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
+
+  // If we have fixture data set, return that instead of an API call.
+  if (fixtureData) {
+    return (
+      <>
+        <FormContainer />
+        <ResultsContainer countNumber={fixtureData?.meta.count || 0} loading={false} events={fixtureData?.data || []} />
+      </>
+    );
+  }
 
   if (!params.toString()) {
     setParams(new URLSearchParams(initialParams.toString()));
