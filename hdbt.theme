@@ -74,6 +74,10 @@ function hdbt_preprocess(&$variables): void {
     }
   }
 
+  // Hakuvahti server url, expose to react if it's enabled or not.
+  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
+  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
+
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
