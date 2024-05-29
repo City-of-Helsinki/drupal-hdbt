@@ -1646,8 +1646,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
-      // @todo Remove this once the UHF-9214 has been merged to platform config.
-      // @phpstan-ignore-next-line
       $settings['use_fixtures'] = $linkedEvents->getFixture();
       if (!empty($paragraph->get('field_event_location')->getValue()) && $paragraph->get('field_event_location')->first()->getValue()['value']) {
         $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
