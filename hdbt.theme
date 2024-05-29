@@ -74,6 +74,10 @@ function hdbt_preprocess(&$variables): void {
     }
   }
 
+  // Hakuvahti server url, expose to react if it's enabled or not.
+  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
+  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
+
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
@@ -1637,7 +1641,8 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     ], $paragraph->getFilterKeywords($langcode));
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
-      $linkedEvents = Drupal::service('helfi_react_search_linked_events');
+      /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
+      $linkedEvents = Drupal::service(LinkedEvents::class);
       $link_field = $events_public_url = $paragraph->get('field_api_url')->first();
       assert($link_field instanceof LinkItemInterface);
       $events_public_url = $link_field->getUrl()->toString();
@@ -1645,6 +1650,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
+      $settings['use_fixtures'] = $linkedEvents->getFixture();
       if (!empty($paragraph->get('field_event_location')->getValue()) && $paragraph->get('field_event_location')->first()->getValue()['value']) {
         $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
       }

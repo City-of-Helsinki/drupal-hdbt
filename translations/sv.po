@@ -1219,3 +1219,59 @@ msgstr "Visa endast"
 msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Publicerad"
+
+msgctxt "Search monitor header"
+msgid "Receive search results by email"
+msgstr "Beställ sökvakten till din e-post"
+
+msgctxt "Search monitor open label"
+msgid "Open"
+msgstr "Öppna"
+
+msgctxt "Search monitor close label"
+msgid "Close"
+msgstr "Stäng"
+
+msgctxt "Search monitor content title"
+msgid "Saved search"
+msgstr "Sökvakten"
+
+msgctxt "Search monitor content"
+msgid "Save the search you make so that you can receive an email notification of new results matching your search criteria."
+msgstr "Spara din sökning som en sökvakt, så får du information om nya träffar till din e-post."
+
+msgctxt "Search monitor content"
+msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
+msgstr "Du kan skapa så många sökvakter du vill och ta bort sökvakten via länken som finns i e-postmeddelandena. "
+
+msgctxt "Search monitor email label"
+msgid "Email address"
+msgstr "E-postadress"
+
+msgctxt "Search monitor terms label"
+msgid "Accept the terms and conditions."
+msgstr "Godkänn användarvillkoren."
+
+msgctxt "Search monitor submit button label"
+msgid "Save your search"
+msgstr "Beställ sökvakten"
+
+msgctxt "Search monitor thank you header"
+msgid "Your search has been saved"
+msgstr "Sökvakten har skapats"
+
+msgctxt "Search monitor thank you message"
+msgid "You will receive a confirmation link by email. You can activate the saved search via the link."
+msgstr "Du får ännu en bekräftelselänk till din e-post genom vilken du kan aktivera sökvakten."
+
+msgctxt "Search monitor error label"
+msgid "Please check these selections"
+msgstr "Kontrollera ännu dessa punkter"
+
+msgctxt "Search monitor error terms"
+msgid "The choice is mandatory: Terms of service"
+msgstr "Valet är obligatoriskt: Användningsvillkor"
+
+msgctxt "Search monitor error email"
+msgid "This field is mandatory: Email address"
+msgstr "Fältet är obligatoriskt: E-postadress"

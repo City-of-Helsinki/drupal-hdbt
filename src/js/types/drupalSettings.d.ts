@@ -26,7 +26,8 @@ declare namespace drupalSettings {
               [key: string]: string
             }
           }
-        }
+        },
+        use_fixtures: boolean
       }
     }
   };
@@ -34,6 +35,7 @@ declare namespace drupalSettings {
     cookie_privacy_url: string;
     elastic_proxy_url: string;
     sentry_dsn_react: string;
+    hakuvahti_url_set: boolean;
   };
   const helfi_rekry_job_search: {
     results_page_path: string;
