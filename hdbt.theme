@@ -1641,7 +1641,8 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     ], $paragraph->getFilterKeywords($langcode));
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
-      $linkedEvents = Drupal::service('helfi_react_search_linked_events');
+      /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
+      $linkedEvents = Drupal::service(LinkedEvents::class);
       $link_field = $events_public_url = $paragraph->get('field_api_url')->first();
       assert($link_field instanceof LinkItemInterface);
       $events_public_url = $link_field->getUrl()->toString();
@@ -1649,6 +1650,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       $params = $linkedEvents->parseParams($events_public_url);
       $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
       $settings['events_api_url'] = $eventUrl;
+      $settings['use_fixtures'] = $linkedEvents->getFixture();
       if (!empty($paragraph->get('field_event_location')->getValue()) && $paragraph->get('field_event_location')->first()->getValue()['value']) {
         $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
       }
