@@ -166,6 +166,8 @@ school-search:
     - core/drupalSettings
     - core/drupal
 
+# Load the Hyphenopoly library loader javascript separately to make sure
+# the global hyphenopoly object is defined before trying to configure it.
 hyphenopoly-loader:
   version: 5.3.0
   js:
