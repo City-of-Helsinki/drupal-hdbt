@@ -325,6 +325,15 @@ function getConfig(hostname, protocol, type) {
           'selectorExpansion': expandComponents,
         },
         {
+          'label': 'DC: Event list',
+          'url': `${protocol}://${hostname}/en/dc-components/dc-event-list`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--event-list'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
           'label': 'DC: Image',
           'url': `${protocol}://${hostname}/en/dc-components/dc-image`,
           'removeSelectors': removeDefault,

@@ -8,6 +8,7 @@ import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
+import type Event from './types/Event';
 
 interface Options {
   [key: string]: string
@@ -46,6 +47,7 @@ const createBaseAtom = () => {
   }
 
   const settings = drupalSettings.helfi_events?.data?.[paragraphId];
+  const useFixtures = settings?.use_fixtures;
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
   const eventsPublicUrl = settings?.events_public_url;
@@ -85,6 +87,7 @@ const createBaseAtom = () => {
     topics,
     eventListTitle,
     eventsPublicUrl,
+    useFixtures,
   };
 };
 
@@ -130,6 +133,10 @@ export const settingsAtom = atom(
     topics: [],
     eventCount: 3
   }
+);
+
+export const useFixturesAtom = atom<object|false>(
+  (get) => get(baseAtom)?.useFixtures
 );
 
 export const pageAtom = atom<number>(1);
