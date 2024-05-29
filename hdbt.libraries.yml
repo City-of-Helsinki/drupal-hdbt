@@ -167,7 +167,7 @@ school-search:
     - core/drupal
 
 hyphenopoly:
-  version: 5.x
+  version: 5.3.0
   header: true
   js:
     dist/js/hyphenopoly_settings.min.js: {
@@ -176,6 +176,8 @@ hyphenopoly:
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
       preprocess: false
     }
+  dependencies:
+    - core/drupal
 
 job-search:
   version: 1.4
