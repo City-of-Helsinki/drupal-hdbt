@@ -8,7 +8,7 @@
   padding-top: 0;
 }
 
-:not(.latest-news-list, .component--top-news .news-listing) > .news-listing__item {
+:not(.component--latest-news .news-listing, .component--top-news .news-listing) > .news-listing__item {
   list-style: none;
   margin-top: $spacing-and-half;
   padding-left: 0; // Remove card paddings from news listing
@@ -89,28 +89,24 @@
 
 // Latest news block variant.
 .news-listing--latest-medium-teasers {
+  margin-bottom: 0;
   padding-inline-start: 0; // User agent stylesheet override
+  padding-right: 0;
 
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    flex-wrap: wrap;
+    grid-column-gap: $spacing-and-half;
+    grid-row-gap: $spacing-double;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .news-listing__item {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:nth-child(2) {
-      @include breakpoint($breakpoint-m) {
-        margin-top: 0;
-      }
-    }
+    list-style: none;
+    margin-top: $spacing-and-half;
+    position: relative;
 
     @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-double;
-      padding-inline-end: $spacing-and-half;
-      width: 50%;
+      margin-top: 0;
     }
   }
 }
@@ -131,6 +127,21 @@
     position: absolute;
     top: 0;
     width: $spacing-quarter;
+  }
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: $spacing + $spacing-quarter;
+
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
+      padding-right: $spacing-and-half + $spacing-quarter;
+    }
+
+    &::before {
+      left: auto;
+      right: 0;
+    }
   }
 
   .news-listing__title {
