@@ -3,6 +3,7 @@
     {
       component_classes: [ 'component--popular-services' ],
       component_title: content.field_popular_services_title|render ? content.field_popular_services_title : 'Popular services'|t({}, {'context': 'Popular services paragraph title'}),
+      use_component_title_lang_fallback: alternative_language ?? false,
       component_content_class: 'popular-services',
     }
   %}
