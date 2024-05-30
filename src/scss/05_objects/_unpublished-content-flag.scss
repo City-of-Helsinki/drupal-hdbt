@@ -1,0 +1,29 @@
+[data-unpublished]::before {
+  @include font('small');
+
+  --line-height: 1;
+  background: $color-error;
+  color: $color-white;
+  content: attr(data-unpublished);
+  display: block;
+  padding-left: $spacing-half;
+  padding-right: $spacing-half;
+  position: fixed;
+  transform: rotate(-90deg) translateX(calc(-50% - 50vh));
+  transform-origin: top left;
+  z-index: 2;
+
+  [dir='rtl'] & {
+    right: 27px;
+    transform: rotate(-90deg) translateX(calc(0% - 44vh));
+    transform-origin: top right;
+  }
+
+  @include breakpoint($component-side-padding-breakpoint) {
+    content: attr(data-unpublished-long);
+
+    @include font('body');
+
+    --line-height: 1.5;
+  }
+}
