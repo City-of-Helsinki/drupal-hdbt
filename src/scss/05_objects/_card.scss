@@ -167,6 +167,11 @@ $item-gap: $spacing-half;
   @include font('body');
   padding-left: $spacing-double; // icon-size + gap
 
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: $spacing-double; // icon-size + gap
+  }
+
   & + & {
     margin-top: $item-gap;
   }
@@ -177,6 +182,11 @@ $item-gap: $spacing-half;
   display: inline-block;
   margin-left: - $spacing-double;
   margin-right: $spacing-half;
+
+  [dir='rtl'] & {
+    margin-left: $spacing-half;
+    margin-right: - $spacing-double;
+  }
 }
 
 .card__meta__label {

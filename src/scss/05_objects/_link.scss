@@ -39,4 +39,14 @@ a:hover .link__type {
     margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
     transform: scaleX(var(--lang-direction, 1));
   }
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: calc(var(--line-height) * 1em + $spacing-half);
+
+    &::before {
+      margin-left: $spacing-half;
+      margin-right: calc(var(--line-height) * -1em - $spacing-half);
+    }
+  }
 }
