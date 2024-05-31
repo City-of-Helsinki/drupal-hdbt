@@ -7,6 +7,12 @@
 ((Drupal) => {
   Drupal.behaviors.hyphenopoly = {
     attach: () => {
+
+      // eslint-disable-next-line no-undef
+      if (typeof Hyphenopoly === 'undefined' || !Hyphenopoly) {
+        return;
+      }
+
       // eslint-disable-next-line no-undef
       Hyphenopoly.config({
         require: {
