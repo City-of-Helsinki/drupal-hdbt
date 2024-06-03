@@ -87,7 +87,12 @@ const SearchMonitorContainer = () => {
 
     // Send form to Hakuvahti subscribe service
     const body = JSON.stringify(requestBody);
-    const response = await fetch('/hakuvahti/subscribe', {
+    const { host, pathname } = window.location;
+    let apiPath = `${pathname}/hakuvahti/subscribe`;
+    if (host.includes('docker.so')) {
+      apiPath = '/hakuvahti/subscribe';
+    }
+    const response = await fetch(apiPath, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
