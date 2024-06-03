@@ -187,7 +187,7 @@ hyphenopoly:
     - hdbt/hyphenopoly-loader
 
 job-search:
-  version: 1.5
+  version: 1.6
   js:
     dist/js/job-search.min.js: {
       preprocess: false
