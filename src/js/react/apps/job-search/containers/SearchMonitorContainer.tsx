@@ -87,8 +87,13 @@ const SearchMonitorContainer = () => {
 
     // Send form to Hakuvahti subscribe service
     const body = JSON.stringify(requestBody);
+
+    // In production this runs under a non-root /path/structure.
     const { host, pathname } = window.location;
-    let apiPath = `${pathname}/hakuvahti/subscribe`;
+    const pathParts = pathname.split('/').slice(0, -1);
+    const basePath = pathParts.join('/');
+
+    let apiPath = `${basePath}/hakuvahti/subscribe`;
     if (host.includes('docker.so')) {
       apiPath = '/hakuvahti/subscribe';
     }
