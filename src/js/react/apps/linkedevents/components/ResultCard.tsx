@@ -11,10 +11,10 @@ const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.to
 const formatStartDate = (start: Date, end: Date) => {
   if (start.getFullYear() === end.getFullYear()) {
     if (start.getMonth() === end.getMonth()) {
-      return start.getDay();
+      return start.getDate();
     }
 
-    return `${start.getDay()}.${start.getMonth()}`;
+    return `${start.getDate()}.${start.getMonth()}`;
   }
 
   return start.toLocaleDateString('fi-FI');
