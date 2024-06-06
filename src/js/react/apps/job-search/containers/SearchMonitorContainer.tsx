@@ -33,8 +33,7 @@ const SearchMonitorContainer = () => {
     query: currentRelativeUrl,
     email,
     search_description: searchDescription,
-    // lang is filled by Drupal module
-    lang
+    lang: window.drupalSettings.path.currentLanguage || 'fi'
   };
 
   const onSubmit = async (
