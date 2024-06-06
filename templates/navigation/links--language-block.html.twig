@@ -39,6 +39,7 @@
         {% set language_link = '' %}
         {% set lang = item.link['#options']['#abbreviation'] %}
         {% set untranslated = item.link['#options']['#untranslated'] %}
+        {% set nolink = item.link['#options']['#nolink'] %}
         {% set alternative_language = not item.link['#options']['#primary_language'] %}
         {% set classes = ['language-link'] %}
         {% set ariaCurrent = null %}
@@ -50,7 +51,7 @@
         {% if not untranslated and not alternative_language and lang != current_langcode %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
-        {% elseif lang == current_langcode %}
+        {% elseif lang == current_langcode and not nolink %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
