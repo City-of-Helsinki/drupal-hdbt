@@ -1,0 +1,111 @@
+<script>
+/* Example listener for cookie consent change events */
+window.addEventListener('cookie-consent-changed', function(event) {
+  console.log('Got cookie-consent-changed event with accepted groups:',event.detail.acceptedGroups);
+});
+
+window.addEventListener('hds-cookie-consent-unapproved-item-found', function(event) {
+  event.detail.keys.forEach(function(key) {
+    console.warn(`Emulating sending to Sentry: Unapproved ${event.detail.type}: ${key}`, event.detail.consentedGroups);
+  });
+});
+</script>
+
+<script>
+
+function createCookie(key){
+  document.cookie = `${key}=1; path=/; SameSite=Lax; Secure`;
+}
+
+function createLocalStorage(key){
+  localStorage.setItem(key, `${key}_value`);
+}
+
+function createSessionStorage(key){
+  sessionStorage.setItem(key, `${key}_value`);
+}
+
+function createIndexedDb(key){
+  // Open (or create) the database
+  let openRequest = indexedDB.open(key, 1);
+  let db;
+
+  openRequest.onupgradeneeded = function(event) {
+    // The database did not previously exist, so create object stores and indexes here
+    db = event.target.result;
+    db.createObjectStore(`${key}_testObjectStore`, {autoIncrement: true});
+  };
+
+  openRequest.onsuccess = function(event) {
+    // The database has been opened (or created)
+    db = event.target.result;
+
+    // Close the database connection, so that it can be deleted
+    db.close();
+  };
+
+  openRequest.onerror = function(event) {
+    console.log("Error opening/creating database: ", event.target.errorCode);
+  };
+}
+
+// create cache storage for deletion
+function createCacheStorage(key){
+  caches.open(key);
+}
+
+function createAll(key){
+  createCookie(`cookie_${key}`);
+  createLocalStorage(`localStorage_${key}`);
+  createSessionStorage(`sessionStorage_${key}`);
+  createIndexedDb(`indexedDB_${key}`);
+  createCacheStorage(`cacheStorage_${key}`);
+}
+
+function testAll(){
+  createAll('essential');
+  createAll('robot');
+  createAll('optional');
+  createAll('delete');
+}
+
+// Fetch site settings from a json file to simulate giving them as an object instead of a url
+const siteSettingsObj = fetch('{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json')
+  .then(response => response.json())
+  .then(data => { return data; })
+  .catch(error => { console.error('Error fetching site settings:', error); });
+
+</script>
+
+<script>
+
+  (function() {
+    const conf = {
+      src: '{{ theme_path }}/dist/js/hds-cc.min.js',
+      options: {
+        //siteSettingsJsonUrl: '{{ theme_path }}/src/js/hds-cc/helfi_cookiesettings.json',
+        siteSettingsObj: siteSettingsObj,
+        language: '{{current_langcode}}', // Lang code defaults to 'en'
+        //targetSelector: 'body', // Defaults to 'body'
+        //spacerParentSelector: 'body', // Defaults to 'body'
+        //pageContentSelector: 'body', // Defaults to 'body'
+        // submitEvent: 'cookie-consent-changed', // If this string is set, triggers a window level event with that string and detail.acceptedGroups before closing banner. If not set, reloads page instead
+        settingsPageSelector: '#hds-cookie-consent-full-page', // If this string is set and matching element is found on page, instead of banner, show a full page cookie settings replacing the matched element.
+        tempCssPath: '{{ theme_path }}/dist/css/cookie-consent.min.css', // TODO: Remove this when the real build process can include css files
+      }
+    };
+    const script = document.createElement('script');
+    script.src = conf.src;
+    script.onerror = console.error;
+    script.onload = () => new window.hds.CookieConsentClass(conf.options);
+    document.head.appendChild(script);
+  })();
+</script>
+
+<!-- HDBT specific stuff -->
+<script>
+window.chat_user_consent = {
+  retrieveUserConsent: () => window.hds.cookieConsent.getConsentStatus(['chat']),
+  confirmUserConsent: () => window.hds.cookieConsent.setGroupsStatusToAccepted(['chat']),
+}
+</script>
