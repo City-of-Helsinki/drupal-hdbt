@@ -135,6 +135,14 @@ const SearchMonitorContainer = () => {
   const thankYouHeader: string = Drupal.t('Your search has been saved', {}, { context: 'Search monitor thank you header' });
   const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
   const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
+  const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_title;
+  const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_title;
+  const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_url;
+
+  console.log('Extrabonanza');
+  console.log(tosCheckboxLabel);
+  console.log(tosLinkLabel);
+  console.log(tosLinkUrl);
 
   const customCheckboxStyles = {
     '--background-unselected': 'var(--color-white)',
@@ -196,7 +204,7 @@ const SearchMonitorContainer = () => {
 
             <Checkbox
               className='job-search-form__search-monitor__terms'
-              label={acceptTermsLabel}
+              label={tosCheckboxLabel}
               id='job-search-form__search_monitor__terms'
               onChange={(event) => setTermsAgreed(event.target.checked)}
               checked={termsAgreed}
@@ -204,6 +212,8 @@ const SearchMonitorContainer = () => {
               required
               style={customCheckboxStyles}
             />
+
+            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer">{tosLinkLabel}</a></p>
 
             <Button
               className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
