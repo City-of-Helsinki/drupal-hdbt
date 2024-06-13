@@ -33,8 +33,7 @@ const SearchMonitorContainer = () => {
     query: currentRelativeUrl,
     email,
     search_description: searchDescription,
-    // lang is filled by Drupal module
-    lang
+    lang: window.drupalSettings.path.currentLanguage || 'fi'
   };
 
   const onSubmit = async (
@@ -108,9 +107,8 @@ const SearchMonitorContainer = () => {
 
     // Oops, error from backend
     if (!response.ok) {
-      seterrorMessage(
-        `Error submitting form: ${response.statusText}`,
-      );
+      console.log(response.statusText);
+      seterrorMessage(Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }));
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
