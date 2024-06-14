@@ -39,9 +39,9 @@ declare namespace drupalSettings {
   };
   const helfi_rekry_job_search: {
     results_page_path: string;
-    hakuvahti_tos_checkbox_title: string;
-    hakuvahti_tos_title: string;
-    hakuvahti_tos_url: string;
+    hakuvahti_tos_checkbox_label: string;
+    hakuvahti_tos_link_text: string;
+    hakuvahti_tos_link_url: string;
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;

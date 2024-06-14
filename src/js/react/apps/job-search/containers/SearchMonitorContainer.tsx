@@ -134,9 +134,10 @@ const SearchMonitorContainer = () => {
   const thankYouHeader: string = Drupal.t('Your search has been saved', {}, { context: 'Search monitor thank you header' });
   const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
   const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
-  const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_title;
-  const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_title;
-  const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_url;
+  const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
+  const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
+  const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
+  const tosLinkSuffix: string = Drupal.t('The link opens in a new tab', {}, {context: 'Explanation for users that the link opens in a new tab instead of the expected current tab'});
 
   const customCheckboxStyles = {
     '--background-unselected': 'var(--color-white)',
@@ -197,7 +198,7 @@ const SearchMonitorContainer = () => {
               }}
             />
 
-            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer"  className='job-search-form__search-monitor__terms-link'>{tosLinkLabel}</a></p>
+            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer"  className='job-search-form__search-monitor__terms-link'>{tosLinkLabel} ({tosLinkSuffix})</a></p>
             <Checkbox
               className='job-search-form__search-monitor__terms'
               label={tosCheckboxLabel}

@@ -80,9 +80,9 @@ function hdbt_preprocess(&$variables): void {
 
   // Hakuvahti TOS settings.
   $config = \Drupal::config('helfi_rekry_content.job_listings');
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_checkbox_title'] = $config->get('hakuvahti_tos_checkbox_title') ?: 'undefined';
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_title'] = $config->get('hakuvahti_tos_title') ?: 'undefined';
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_url'] = $config->get('hakuvahti_tos_url') ?: 'undefined';
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_checkbox_label'] = $config->get('hakuvahti_tos_checkbox_label') ?: 'undefined';
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_text'] = $config->get('hakuvahti_tos_link_text') ?: 'undefined';
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_url'] = $config->get('hakuvahti_tos_link_url') ?: 'undefined';
 
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
