@@ -1,4 +1,5 @@
 const Global = {
+  index: 'job_listings',
   size: 30,
   sortOptions: {
     closing: 'closing',

@@ -1273,3 +1273,7 @@ msgstr "Valinta on pakollinen: Käyttöehdot"
 msgctxt "Search monitor error email"
 msgid "This field is mandatory: Email address"
 msgstr "Kenttä on pakollinen: Sähköpostiosoite"
+
+msgctxt "Search monitor error submitting"
+msgid "Saving search failed. Please try again."
+msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
