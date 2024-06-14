@@ -130,7 +130,6 @@ const SearchMonitorContainer = () => {
   const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
   const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
-  const acceptTermsLabel: string = Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
   const thankYouHeader: string = Drupal.t('Your search has been saved', {}, { context: 'Search monitor thank you header' });
   const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
@@ -139,15 +138,10 @@ const SearchMonitorContainer = () => {
   const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_title;
   const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_url;
 
-  console.log('Extrabonanza');
-  console.log(tosCheckboxLabel);
-  console.log(tosLinkLabel);
-  console.log(tosLinkUrl);
-
   const customCheckboxStyles = {
     '--background-unselected': 'var(--color-white)',
     '--background-selected': 'var(--color-black)',
-    marginTop: 'var(--spacing-m)',
+    marginTop: 'var(--spacing-2-xs)',
   };
 
   return (
@@ -172,7 +166,8 @@ const SearchMonitorContainer = () => {
             {isFormVisible ? closeLabel : openLabel}
           </Button>
 
-          <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
+          <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content'
+               aria-hidden={!isFormVisible}>
             <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
@@ -202,6 +197,7 @@ const SearchMonitorContainer = () => {
               }}
             />
 
+            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer"  className='job-search-form__search-monitor__terms-link'>{tosLinkLabel}</a></p>
             <Checkbox
               className='job-search-form__search-monitor__terms'
               label={tosCheckboxLabel}
@@ -212,8 +208,6 @@ const SearchMonitorContainer = () => {
               required
               style={customCheckboxStyles}
             />
-
-            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer">{tosLinkLabel}</a></p>
 
             <Button
               className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
