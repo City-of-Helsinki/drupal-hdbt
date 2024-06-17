@@ -78,6 +78,12 @@ function hdbt_preprocess(&$variables): void {
   $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
 
+  // Hakuvahti TOS settings.
+  $config = \Drupal::config('helfi_rekry_content.job_listings');
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_checkbox_label'] = $config->get('hakuvahti_tos_checkbox_label') ?: 'undefined';
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_text'] = $config->get('hakuvahti_tos_link_text') ?: 'undefined';
+  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_url'] = $config->get('hakuvahti_tos_link_url') ?: 'undefined';
+
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
