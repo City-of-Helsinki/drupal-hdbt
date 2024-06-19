@@ -79,10 +79,13 @@ function hdbt_preprocess(&$variables): void {
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
 
   // Hakuvahti TOS settings.
-  $config = \Drupal::config('helfi_rekry_content.job_listings');
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_checkbox_label'] = $config->get('hakuvahti_tos_checkbox_label') ?: 'undefined';
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_text'] = $config->get('hakuvahti_tos_link_text') ?: 'undefined';
-  $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['hakuvahti_tos_link_url'] = $config->get('hakuvahti_tos_link_url') ?: 'undefined';
+  foreach ([
+    'hakuvahti_tos_checkbox_label',
+    'hakuvahti_tos_link_text',
+    'hakuvahti_tos_link_url',
+  ] as $configuration) {
+    $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$configuration] = Drupal::languageManager()->getLanguageConfigOverride($language, "helfi_rekry_content.job_listings:$configuration") ?: 'undefined';
+  }
 
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
