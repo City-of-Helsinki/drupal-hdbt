@@ -142,7 +142,7 @@ const SearchMonitorContainer = () => {
   const customCheckboxStyles = {
     '--background-unselected': 'var(--color-white)',
     '--background-selected': 'var(--color-black)',
-    marginTop: 'var(--spacing-2-xs)',
+    marginTop: 'var(--spacing-m)',
   };
 
   return (
