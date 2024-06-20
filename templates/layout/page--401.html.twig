@@ -1,5 +1,6 @@
 {% embed 'page.html.twig' %}
   {% block page_content %}
+    {{ optional_messages }}
     {% embed '@hdbt/misc/container.twig' with {container_element: 'error-page-content'} %}
       {% block container_content %}
         <div class="error-page__text-container">
@@ -26,6 +27,7 @@
           {% if user_not_logged_in %}
             <h2 class="error-page__login-title">{{ 'Log in'|t({}, {'context': 'Log in block title on error pages'}) }}</h2>
           {% endif %}
+          {{ optional_login_block_description }}
           <div class="error-page__login-form">
             {{ drupal_block('user_login_block') }}
           </div>
