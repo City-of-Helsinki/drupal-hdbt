@@ -23,6 +23,8 @@ $koro-height: 50px;
 .hero__image-container {
   color: var(--hdbt-color-palette--primary);
   outline: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero__text-content {
