@@ -9,7 +9,6 @@
     "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
     "build": "webpack --progress --mode=production --config webpack.config.js",
     "preinstall": "npx update-browserslist-db@latest",
-    "postinstall": "husky install",
     "lint": "lint-staged --allow-empty",
     "lint:js": "eslint src/",
     "format:js": "eslint --fix src/",
@@ -18,7 +17,8 @@
     "full-approve": "node backstop/backstop_dynamic_config full approve",
     "fast-reference": "node backstop/backstop_dynamic_config fast reference",
     "fast-test": "node backstop/backstop_dynamic_config fast test",
-    "fast-approve": "node backstop/backstop_dynamic_config fast approve"
+    "fast-approve": "node backstop/backstop_dynamic_config fast approve",
+    "prepare": "husky"
   },
   "dependencies": {
     "@nuxt/friendly-errors-webpack-plugin": "^2.5.1",
