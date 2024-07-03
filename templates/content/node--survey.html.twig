@@ -11,7 +11,7 @@
   })
   %}
 {% endif %}
-<div class="survey__container">
+<div class="survey__container" id="survey__container" data-uuid="{{ node.uuid.value }}" style="display: none">
   <div class="survey__overlay" tabindex="-1"></div>
   <dialog {{ create_attribute(dialog_attributes) }}>
     <h2 class="survey__title">{{ label }}</h2>
@@ -25,7 +25,7 @@
         url: content.field_survey_link.0['#url'],
         link_options: {'class': ['survey__link', 'survey__link--participate']},
       } %}
-      <button class="survey__link survey__link--close" data-hds-component="button" data-hds-variant="secondary">
+      <button class="survey__link survey__link--close" data-hds-component="button" data-hds-variant="secondary" id="survey__close-button">
         {{ 'Close the dialog'|t({}, {'context': 'Survey'}) }}
       </button>
     </div>

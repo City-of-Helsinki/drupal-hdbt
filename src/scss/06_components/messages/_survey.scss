@@ -1,11 +1,13 @@
 .survey__container {
   align-items: center;
-  display: flex;
+  display: none; // Hide the survey before it is opened using a timer.
   flex-direction: column;
   inset: 0;
   justify-content: center;
   overflow: auto;
+  overscroll-behavior: none;
   position: fixed;
+  touch-action: none;
   z-index: 100;
 }
 

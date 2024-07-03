@@ -94,6 +94,14 @@ closable_announcements:
   - core/drupal
   - core/drupalSettings
 
+closable_surveys:
+  version: 1.0
+  js:
+    dist/js/closable-surveys.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
 tabs:
   version: 1.x
   js:
