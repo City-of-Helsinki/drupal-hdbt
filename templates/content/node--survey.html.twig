@@ -1,31 +1,33 @@
-{% set announcement_attributes = {
+{% set dialog_attributes = {
   'class': [
-    'announcement__container',
+    'survey',
   ]
 } %}
+
 {% if current_langcode != node_langcode %}
-  {% set announcement_attributes = announcement_attributes|merge({
+  {% set dialog_attributes = dialog_attributes|merge({
     'dir': lang_attributes.fallback_dir,
     'lang': lang_attributes.fallback_lang
   })
   %}
 {% endif %}
-
-{% set link = content.field_survey_link[0] %}
-
-<section aria-label="{{ type_label }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
-  <div {{ create_attribute(announcement_attributes) }}>
-    <div class="announcement__content">
-      {% if content.body|render != null %}
-        <div class="announcenemnt__content-body">
-          {{ content.body }}
-        </div>
-      {% endif %}
-      {% if link != null %}
-        <div class="announcement__link">
-          {{ link }}
-        </div>
-      {% endif %}
+<div class="survey__container">
+  <div class="survey__overlay" tabindex="-1"></div>
+  <dialog {{ create_attribute(dialog_attributes) }}>
+    <h2 class="survey__title">{{ label }}</h2>
+    <div class="survey__content">
+      {{ content.body }}
     </div>
-  </div>
-</section>
+    <div class="survey__links">
+      {% include '@hdbt/navigation/link-button.html.twig' with {
+        type: 'primary',
+        label: 'Participate'|t({}, {'context': 'Survey'}),
+        url: content.field_survey_link.0['#url'],
+        link_options: {'class': ['survey__link', 'survey__link--participate']},
+      } %}
+      <button class="survey__link survey__link--close" data-hds-component="button" data-hds-variant="secondary">
+        {{ 'Close the dialog'|t({}, {'context': 'Survey'}) }}
+      </button>
+    </div>
+  </dialog>
+</div>
