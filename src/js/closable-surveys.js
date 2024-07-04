@@ -34,7 +34,6 @@ import LocalStorageManager from './localStorageManager';
 
       function toggleNoScroll(enable) {
         root.classList.toggle('noscroll', enable);
-        document.body.classList.toggle('noscroll', enable);
       }
 
       function setBodyPaddingRight(enable) {
