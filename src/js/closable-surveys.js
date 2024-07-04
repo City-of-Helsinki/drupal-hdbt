@@ -4,15 +4,17 @@ import LocalStorageManager from './localStorageManager';
 (function (Drupal) {
   Drupal.behaviors.closable_surveys = {
     attach: function attach() {
-      const survey = document.getElementById('survey__container');
+      const survey = document.getElementById('helfi-survey__container');
       if (!survey) return;
 
       const root = document.documentElement;
       const surveyDelay = 2000;
-      const surveyCloseButton = document.getElementById('survey__close-button');
+      const surveyCloseButton = document.getElementById('helfi-survey__close-button');
       const surveyKey = 'hidden-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveysToHide = null;
+      let surveyFocusTrap = null;
+
       try {
         surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
       } catch (e) {
@@ -26,17 +28,34 @@ import LocalStorageManager from './localStorageManager';
         }
       }
 
+      function addFocusTrap() {
+        surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey').activate();
+      }
+
+      function toggleNoScroll(enable) {
+        root.classList.toggle('noscroll', enable);
+        document.body.classList.toggle('noscroll', enable);
+      }
+
+      function setBodyPaddingRight(enable) {
+        if (enable) {
+          const scrollBarWidth = `${window.innerWidth - document.documentElement.clientWidth}px`;
+          document.body.style.paddingRight = scrollBarWidth;
+        } else {
+          document.body.style.removeProperty('padding-right');
+        }
+      }
+
       function showSurvey() {
-        const scrollBarWidth = `${window.innerWidth - document.documentElement.clientWidth}px`;
         const { uuid } = survey.dataset;
         const hiddenSurveys = surveysToHide?.[surveyKey] || [];
         const shouldShowSurvey = !uuid || !hiddenSurveys.includes(uuid);
 
         if (shouldShowSurvey) {
           survey.style.display = 'flex';
-          root.classList.toggle('noscroll');
-          document.body.classList.toggle('noscroll');
-          document.body.style.paddingRight = scrollBarWidth;
+          toggleNoScroll(true);
+          setBodyPaddingRight(true);
+          addFocusTrap();
         } else {
           survey.remove();
         }
@@ -45,10 +64,10 @@ import LocalStorageManager from './localStorageManager';
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
         addToSurveyStorage();
+        surveyFocusTrap.deactivate();
         survey.remove();
-        root.classList.toggle('noscroll');
-        document.body.classList.toggle('noscroll');
-        document.body.style.removeProperty('padding-right');
+        toggleNoScroll(false);
+        setBodyPaddingRight(false);
       }
 
       if (surveyCloseButton) {
