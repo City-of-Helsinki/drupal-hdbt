@@ -1,11 +1,15 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 
 import { Button, Checkbox, TextInput, Notification, IconAngleUp, IconAngleDown } from 'hds-react';
-import React from 'react';
+import React, { createRef, useEffect } from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
 import { urlAtom } from '../store';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+
+// Define new atom for scroll state
+const shouldScrollAtom = atom(false);
 
 const SearchMonitorContainer = () => {
   const urlParams: URLParams = useAtomValue(urlAtom);
@@ -18,6 +22,9 @@ const SearchMonitorContainer = () => {
   const [errorMessage, seterrorMessage] = useAtom(errorAtom);
   const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
 
+  // Scroll state
+  const [shouldScroll, setShouldScroll] = useAtom(shouldScrollAtom);
+
   // ElasticSearch query base64 encoded
   const queryEncoded = Buffer.from(query).toString('base64');
   const searchDescription = '-';
@@ -27,6 +34,8 @@ const SearchMonitorContainer = () => {
   const currentPath = window.location.pathname;
   const currentParams = window.location.search;
   const currentRelativeUrl = currentPath + currentParams;
+
+  const scrollTarget = createRef<HTMLDivElement>();
 
   const requestBody = {
     elastic_query: queryEncoded,
@@ -112,34 +121,62 @@ const SearchMonitorContainer = () => {
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
+      // Move focus to error message.
+      setShouldScroll(true);
       return;
     }
 
     // Release submit locks and show success page
     setSubmitted(true);
     seterrorMessage('');
+
+    // Move focus to successful message.
+    setShouldScroll(true);
+
     if (submitButton) {
       submitButton.removeAttribute('disabled');
     }
   };
 
+  // Scroll to results when they change.
+  useScrollToResults(scrollTarget, shouldScroll);
+
+  // This tackles the issue that focus moves constantly to the error message for example.
+  useEffect(() => {
+    if (shouldScroll) {
+      setShouldScroll(false); // Reset the scroll state after scrolling
+    }
+  }, [shouldScroll, setShouldScroll]);
+
   const formHeader: string = Drupal.t('Receive search results by email', {}, { context: 'Search monitor header' });
-  const openLabel: string = Drupal.t('Open', {}, { context: 'Search monitor open label' });
-  const closeLabel: string = Drupal.t('Close', {}, { context: 'Search monitor close label' });
+  const openLabel: string = Drupal.t('Open the order form', {}, { context: 'Search monitor open label' });
+  const closeLabel: string = Drupal.t('Close the order form', {}, { context: 'Search monitor close label' });
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
   const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
   const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
-  const acceptTermsLabel: string = Drupal.t('Accept the terms and conditions.', {}, { context: 'Search monitor terms label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
   const thankYouHeader: string = Drupal.t('Your search has been saved', {}, { context: 'Search monitor thank you header' });
   const thankYouMessage: string = Drupal.t('You will receive a confirmation link by email. You can activate the saved search via the link.', {}, { context: 'Search monitor thank you message' });
   const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
+  const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
+  const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
+  const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
+  const tosLinkSuffix: string = Drupal.t('The link opens in a new tab', {}, {context: 'Explanation for users that the link opens in a new tab instead of the expected current tab'});
+
+  const customEmailStyles = {
+    marginTop: 'var(--spacing-m)',
+  };
 
   const customCheckboxStyles = {
     '--background-unselected': 'var(--color-white)',
     '--background-selected': 'var(--color-black)',
     marginTop: 'var(--spacing-m)',
+  };
+
+  const customButtonStyles = {
+    '--border-color-focus': 'var(--color-black)',
+    backgroundColor: 'transparent',
   };
 
   return (
@@ -150,6 +187,7 @@ const SearchMonitorContainer = () => {
           <Button
             type="button"
             aria-controls='job-search-form__search-monitor__content'
+            aria-expanded={isFormVisible}
             variant="supplementary"
             theme="black"
             iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
@@ -157,14 +195,13 @@ const SearchMonitorContainer = () => {
               event.preventDefault();
               setIsFormVisible(!isFormVisible);
             }}
-            style={{
-              backgroundColor: 'transparent',
-            }}
+            style={customButtonStyles}
           >
             {isFormVisible ? closeLabel : openLabel}
           </Button>
 
-          <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content' aria-hidden={!isFormVisible}>
+          <div id='job-search-form__search-monitor__content' className='job-search-form__search-monitor__content'
+               aria-hidden={!isFormVisible}>
             <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
@@ -175,6 +212,7 @@ const SearchMonitorContainer = () => {
                 size='default'
                 label={errorLabel}
                 className='job-search-form__search-monitor__error'
+                ref={scrollTarget}
               >
                 {errorMessage}
               </Notification>
@@ -189,14 +227,13 @@ const SearchMonitorContainer = () => {
               onChange={(event) => setEmail(event.target.value)}
               value={email}
               required
-              style={{
-                marginTop: 'var(--spacing-m)',
-              }}
+              style={customEmailStyles}
             />
 
+            <p><a href={tosLinkUrl} target='_blank' rel="noreferrer"  className='job-search-form__search-monitor__terms-link'>{tosLinkLabel} ({tosLinkSuffix})</a></p>
             <Checkbox
               className='job-search-form__search-monitor__terms'
-              label={acceptTermsLabel}
+              label={tosCheckboxLabel}
               id='job-search-form__search_monitor__terms'
               onChange={(event) => setTermsAgreed(event.target.checked)}
               checked={termsAgreed}
@@ -222,7 +259,7 @@ const SearchMonitorContainer = () => {
 
       {submitted &&
         <>
-          <h3 className='job-search-form__search-monitor__heading'>{thankYouHeader}</h3>
+          <h3 className='job-search-form__search-monitor__heading' ref={scrollTarget}>{thankYouHeader}</h3>
           <p>{thankYouMessage}</p>
         </>
       }

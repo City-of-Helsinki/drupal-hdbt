@@ -18,12 +18,8 @@ rules:
   color-named:
     - never
     - message: "HELFI: Instead of color values, please use tokens like $color-black instead"
-  string-quotes:
-    - single
-    - message: "HELFI: We use single quotes in SCSS"
   declaration-block-no-redundant-longhand-properties: null # We prefer longhand properties for clarity in SCSS
   selector-class-pattern: null # We're not too stict about selector class pattern
-  max-line-length: null # Lets not limit line length at this point
   declaration-empty-line-before:
     - never
     - message: "HELFI: No need for empty line before declaration"

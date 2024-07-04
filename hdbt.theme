@@ -74,10 +74,6 @@ function hdbt_preprocess(&$variables): void {
     }
   }
 
-  // Hakuvahti server url, expose to react if it's enabled or not.
-  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
-  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
-
   // Required for allowing subtheming for HDBT theme.
   $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
@@ -1760,16 +1756,17 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
+  $language_manager = \Drupal::languageManager();
+  $langcode = $language_manager
+    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+    ->getId();
 
   if ($paragraph_type == 'job_search') {
     if ($search_result_page_nid = $paragraph->get('field_job_search_result_page')->getString()) {
       $entity = Node::load($search_result_page_nid);
-      $language = \Drupal::languageManager()
-        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-        ->getId();
 
-      if ($entity->hasTranslation($language)) {
-        $entity = $entity->getTranslation($language);
+      if ($entity->hasTranslation($langcode)) {
+        $entity = $entity->getTranslation($langcode);
       }
 
       $url = $entity->toUrl()->toString();
@@ -1777,7 +1774,34 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     }
   }
 
+  // Attach job search library.
   $variables['#attached']['library'][] = 'hdbt/job-search';
+
+  // Hakuvahti server url, expose to react if it's enabled or not.
+  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
+  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
+
+  // Hakuvahti TOS settings.
+  if (!empty($hakuvahtiUrl)) {
+    $tos_variables = [
+      'hakuvahti_tos_checkbox_label',
+      'hakuvahti_tos_link_text',
+      'hakuvahti_tos_link_url',
+    ];
+
+    // Attempt to get the translated configuration.
+    $language = $language_manager->getLanguage($langcode);
+    $original_language = $language_manager->getConfigOverrideLanguage();
+    $language_manager->setConfigOverrideLanguage($language);
+    $config = \Drupal::config('helfi_rekry_content.job_listings');
+
+    foreach ($tos_variables as $tos_variable) {
+      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$tos_variable] = $config->get($tos_variable) ?: 'undefined';
+    }
+
+    // Set the config back to the original language.
+    $language_manager->setConfigOverrideLanguage($original_language);
+  }
 }
 
 /**

@@ -1223,12 +1223,12 @@ msgid "Receive search results by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"
 
 msgctxt "Search monitor open label"
-msgid "Open"
-msgstr "Avaa"
+msgid "Open the order form"
+msgstr "Avaa hakuvahti"
 
 msgctxt "Search monitor close label"
-msgid "Close"
-msgstr "Sulje"
+msgid "Close the order form"
+msgstr "Sulje hakuvahti"
 
 msgctxt "Search monitor content title"
 msgid "Saved search"

@@ -1225,12 +1225,12 @@ msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
 
 msgctxt "Search monitor open label"
-msgid "Open"
-msgstr "Öppna"
+msgid "Open the order form"
+msgstr "Öppna sökvakten"
 
 msgctxt "Search monitor close label"
-msgid "Close"
-msgstr "Stäng"
+msgid "Close the order form"
+msgstr "Stäng sökvakten"
 
 msgctxt "Search monitor content title"
 msgid "Saved search"
