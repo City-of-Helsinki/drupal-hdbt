@@ -1282,7 +1282,7 @@ msgstr "Sparad sökning misslyckades. Var god att försök igen."
 
 msgctxt "Survey"
 msgid "Answer the survey"
-msgstr "Svara på enkäten"
+msgstr "Delta i enkäten"
 
 msgctxt "Survey"
 msgid "Don't answer in the survey"
