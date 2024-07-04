@@ -15,7 +15,7 @@
 <div class="survey__container" id="helfi-survey__container" data-uuid="{{ node.uuid.value }}" style="display: none">
   <div class="survey__overlay" tabindex="-1"></div>
   <dialog {{ create_attribute(dialog_attributes) }}>
-    <h2 class="survey__title">{{ label }}</h2>
+    <h2 class="survey__title" id="helfi-survey__title">{{ label }}</h2>
     <div class="survey__content">
       {{ content.body }}
     </div>

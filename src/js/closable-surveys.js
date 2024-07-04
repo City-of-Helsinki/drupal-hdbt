@@ -29,7 +29,10 @@ import LocalStorageManager from './localStorageManager';
       }
 
       function addFocusTrap() {
-        surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey').activate();
+        surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey', {
+          initialFocus: () => '#helfi-survey__title'
+        });
+        surveyFocusTrap.activate();
       }
 
       function toggleNoScroll(enable) {
