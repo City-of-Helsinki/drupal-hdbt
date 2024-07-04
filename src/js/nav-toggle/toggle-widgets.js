@@ -8,6 +8,8 @@ const HIDE_SELECTORS = [
   '.si-toggle-container', // Siteimprove accessibility tool
   '.cx-theme-helsinki-blue', // Genesys chat in sote
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop, #aca--widget-button-close', // Watson chatbot in asuminen
+  '#telia-ace-leijuke', // Telia ACE chat leijuke
+  '.humany-trigger, .humany-widget', // Telia ACE chat button and widget
   '#ed11y-panel', // Editoria11y accessibility tool
   '#sliding-popup', // Cookie banner
 ];
