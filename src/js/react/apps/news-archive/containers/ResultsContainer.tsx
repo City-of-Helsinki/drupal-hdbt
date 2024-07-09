@@ -7,7 +7,6 @@ import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import ResultsError from '@/react/common/ResultsError';
 import { setPageAtom, urlAtom } from '../store';
 import useQueryString from '../hooks/useQueryString';
-import NoResults from '../components/results/NoResults';
 import type NewsItem from '../types/NewsItem';
 import ResultCard from '../components/results/ResultCard';
 import Global from '../enum/Global';
@@ -15,6 +14,7 @@ import ResultsHeader from '@/react/common/ResultsHeader';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 
 const ResultsContainer = (): JSX.Element => {
   const size = Global.SIZE;
@@ -59,7 +59,7 @@ const ResultsContainer = (): JSX.Element => {
   }
 
   if (!results?.length) {
-    return <NoResults ref={scrollTarget}/>;
+    return <ResultsEmpty ref={scrollTarget} />;
   }
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
