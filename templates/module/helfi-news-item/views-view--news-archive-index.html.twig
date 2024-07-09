@@ -1,13 +1,13 @@
 {% if results_term_singular is not empty %}
   {% set results_term_singular_value = results_term_singular %}
 {% else %}
-  {% set results_term_singular_value = ' ' ~ 'result'|t({}, {'context' : 'Unit search count singular'}) %}
+  {% set results_term_singular_value = ' ' ~ 'item'|t({}, {'context' : 'News archive fallback count singular'}) %}
 {% endif %}
 
 {% if results_term_plural is not empty %}
   {% set results_term_plural_value = results_term_plural %}
 {% else %}
-  {% set results_term_plural_value = ' ' ~ 'results'|t({}, {'context' : 'Unit search count plural'}) %}
+  {% set results_term_plural_value = ' ' ~ 'items'|t({}, {'context' : 'News archive fallback count plural'}) %}
 {% endif %}
 
 <div class="unit-search__results">
@@ -20,7 +20,7 @@
         {{ results_term_plural_value }}
       {% endif %}
     {%- else -%}
-      {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+      {{ 'No results'|t({}, {'context' : 'News archive fallback no results title'}) }}
     {%- endif -%}
   </h3>
   {{ rows }}

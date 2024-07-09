@@ -289,10 +289,6 @@ msgctxt "News list paragraph see all related news link"
 msgid "See all related news"
 msgstr "Katso kaikki aiheen uutiset"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "Kaikki uutiset"
-
 msgctxt "Header search, search for events"
 msgid "Search for events"
 msgstr "Hae tapahtumia"
@@ -681,9 +677,29 @@ msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
 
+msgctxt "News archive fallback title"
+msgid "News archive"
+msgstr "Uutisarkisto"
+
+msgctxt "News archive fallback no results title"
+msgid "No results"
+msgstr "Ei tuloksia"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "post"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "poster"
+
 msgctxt "Default feed link text"
 msgid "Subscribe to @title as RSS feed"
 msgstr "Tilaa @title RSS-syöte"
+
+msgctxt "Feed icon altered title"
+msgid "all news"
+msgstr "kaikki uutiset"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "Tällä hetkellä ei ole avoimia kuulemisia kommentoitavaksi."
