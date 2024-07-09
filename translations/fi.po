@@ -687,11 +687,11 @@ msgstr "Ei tuloksia"
 
 msgctxt "News archive fallback count singular"
 msgid "item"
-msgstr "post"
+msgstr "uutinen tai artikkeli"
 
 msgctxt "News archive fallback count plural"
 msgid "items"
-msgstr "poster"
+msgstr "uutista ja artikkelia"
 
 msgctxt "Default feed link text"
 msgid "Subscribe to @title as RSS feed"

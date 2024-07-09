@@ -685,11 +685,11 @@ msgstr "Inga resultat"
 
 msgctxt "News archive fallback count singular"
 msgid "item"
-msgstr "tulos"
+msgstr "post"
 
 msgctxt "News archive fallback count plural"
 msgid "items"
-msgstr "tulosta"
+msgstr "poster"
 
 msgctxt "Default feed link text"
 msgid "Subscribe to @title as RSS feed"
