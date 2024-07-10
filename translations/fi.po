@@ -1235,8 +1235,8 @@ msgid "Saved search"
 msgstr "Hakuvahti"
 
 msgctxt "Search monitor content"
-msgid "Save the search you make so that you can receive an email notification of new results matching your search criteria."
-msgstr "Tallenna tekemäsi haku hakuvahdiksi, niin saat sähköpostiisi tiedon uusista osumista."
+msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi. Saat sähköpostiisi tiedon uusista osumista."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
