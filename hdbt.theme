@@ -476,7 +476,7 @@ function hdbt_preprocess_feed_icon(&$variables): void {
   }
 
   $variables['title'] = match(strtolower($variables['title'])) {
-    'news', 'nyheter', 'uutiset' => t('all news',[], ['context' => 'Feed icon altered title'])
+    'news', 'nyheter', 'uutiset' => t('all news', [], ['context' => 'Feed icon altered title'])
   };
 }
 
