@@ -55,6 +55,7 @@
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
+          {% set classes = classes|merge(['is-disabled']) %}
         {% else %}
           {% set element = 'span' %}
           {% set classes = classes|merge(['is-disabled']) %}
