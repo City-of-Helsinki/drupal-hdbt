@@ -94,6 +94,33 @@ closable_announcements:
   - core/drupal
   - core/drupalSettings
 
+closable_surveys:
+  version: 1.0
+  js:
+    dist/js/closable-surveys.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - hdbt/focus-trap
+
+tabbable:
+  version: 6.2.0
+  header: true
+  js:
+    dist/js/tabbable/tabbable.min.js: {
+      preprocess: false
+    }
+
+focus-trap:
+  version: 7.5.4
+  header: true
+  js:
+    dist/js/focus-trap/focus-trap.min.js: {
+      preprocess: false
+    }
+  dependencies:
+    - hdbt/tabbable
+
 tabs:
   version: 1.x
   js:
