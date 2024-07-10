@@ -1279,9 +1279,9 @@ msgid "Saving search failed. Please try again."
 msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
 
 msgctxt "Survey"
-msgid "Answer the survey"
+msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"
 
 msgctxt "Survey"
-msgid "Don't answer in the survey"
+msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"

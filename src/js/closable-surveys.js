@@ -55,8 +55,8 @@ import LocalStorageManager from './localStorageManager';
 
         if (shouldShowSurvey) {
           survey.style.display = 'flex';
-          toggleNoScroll(true);
           setBodyPaddingRight(true);
+          toggleNoScroll(true);
           addFocusTrap();
         } else {
           survey.remove();

@@ -22,12 +22,12 @@
     <div class="survey__links">
       {% include '@hdbt/navigation/link-button.html.twig' with {
         type: 'primary',
-        label: 'Answer the survey'|t({}, {'context': 'Survey'}),
+        label: 'Respond to the survey'|t({}, {'context': 'Survey'}),
         url: content.field_survey_link.0['#url'],
         link_options: {'class': ['survey__link', 'survey__link--participate']},
       } %}
       <button class="survey__link survey__link--close" data-hds-component="button" data-hds-variant="secondary" id="helfi-survey__close-button">
-        {{ "Don't answer in the survey"|t({}, {'context': 'Survey'}) }}
+        {{ "Skip the survey"|t({}, {'context': 'Survey'}) }}
       </button>
     </div>
   </dialog>
