@@ -1,8 +1,5 @@
 module.exports = async (page, scenario, vp, isReference, browserContext, config) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  // Wait until all assets have been loaded. Image style generation
-  // can sometimes take a long time, causing random failures.
-  // await page.waitForLoadState('networkidle');
 
   const { hostname } = config;
 

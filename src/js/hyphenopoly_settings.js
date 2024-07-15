@@ -8,14 +8,17 @@ document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
   // eslint-disable-next-line no-undef
   Hyphenopoly.config({
     require: {
-      'fi': 'yhdyssanahirviö',
+      'fi': 'arvopaperimarkkinalainsäädäntö',
       'sv': 'informationssäkerhetskampanj',
       'en': 'supercalifragilisticexpialidocious'
+    },
+    fallbacks: {
+      'en': 'en-us'
     },
     setup: {
       selectors: {
         '.hyphenate': {}
-      }
+      },
     },
     handleEvent: {
       error (e) {
