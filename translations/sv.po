@@ -287,10 +287,6 @@ msgctxt "News list paragraph see all related news link"
 msgid "See all related news"
 msgstr "Se alla nyheter i ämnet"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "All nyheter"
-
 msgctxt "Header search, search for events"
 msgid "Search for events"
 msgstr "Sök evenemang"
@@ -637,13 +633,11 @@ msgctxt "Hearing available in languages"
 msgid "Hearing only available in English and Finnish"
 msgstr "Hörandet finns endast på engelska och finska"
 
-msgctxt "News archive filter results heading"
-msgid "Filter news items"
-msgstr "Filtera nyheter"
-
-msgctxt "News archive heading"
-msgid "News based on your choices"
-msgstr "Nyheter baserat på dina val"
+msgctxt "News archive"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 träff"
+msgstr[1] "@count träffar"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -680,6 +674,30 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgctxt "News archive fallback title"
+msgid "News archive"
+msgstr "Nyhetsarkiv"
+
+msgctxt "News archive fallback no results title"
+msgid "No results"
+msgstr "Inga resultat"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "post"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "poster"
+
+msgctxt "Default feed link text"
+msgid "Subscribe to @title as RSS feed"
+msgstr "Prenumerera på @title som RSS-flöde"
+
+msgctxt "Feed icon altered title"
+msgid "all news"
+msgstr "alla nyheter"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
