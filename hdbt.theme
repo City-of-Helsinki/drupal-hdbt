@@ -47,15 +47,6 @@ function hdbt_preprocess(&$variables): void {
     $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
   }
 
-  // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-
-  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
@@ -164,6 +155,14 @@ function hdbt_preprocess_html(&$variables): void {
     catch (\InvalidArgumentException) {
     }
   }
+
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 }
 
 /**
@@ -249,12 +248,15 @@ function hdbt_preprocess_page(&$variables): void {
     $variables[$key] = $value;
   }
 
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  if ($variables['use_global_navigation']) {
-    $variables['use_search_block'] = TRUE;
-  }
+  $variables['use_search_block'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
@@ -518,6 +520,10 @@ function hdbt_preprocess_input__submit(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_menu(&$variables): void {
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
   // Menu, mobile menu, fallback menu and sidebar menu tree depth.
   // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
   $menu_depth = 5;
@@ -616,6 +622,10 @@ function hdbt_preprocess_block(&$variables): void {
       $variables['content']['#title'] = $page_entity->label();
     }
   }
+
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 
   // Handle Sidebar menu block.
   if (
