@@ -31,7 +31,6 @@ use Drupal\views\ViewExecutable;
  */
 function hdbt_preprocess(&$variables): void {
   $variables['koro'] = hdbt_get_settings('koro');
-  $variables['theme_color'] = hdbt_get_settings('theme_color');
   $variables['image_placeholder'] = hdbt_get_settings('default_icon');
   $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
@@ -163,6 +162,9 @@ function hdbt_preprocess_html(&$variables): void {
     ->moduleExists('helfi_navigation');
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
+
+  // Add selected theme color as a variable for html.html.twig template.
+  $variables['theme_color'] = hdbt_get_settings('theme_color');
 }
 
 /**
