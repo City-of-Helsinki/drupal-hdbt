@@ -73,11 +73,6 @@ function hdbt_preprocess(&$variables): void {
     catch (\InvalidArgumentException) {
     }
   }
-
-  // Required for allowing subtheming for HDBT theme.
-  $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
-  $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
-  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -273,7 +268,8 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['use_profile_block'] = TRUE;
   }
 
-  // Set theme path variable.
+  // Set active theme and theme path variables.
+  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_path'] = _hdbt_get_theme_path();
 
   // Add the figcaption source order handler JS to current page.
@@ -929,6 +925,13 @@ function hdbt_preprocess_paragraph__chart(&$variables) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__type().
+ */
+function hdbt_preprocess_paragraph__calculator(&$variables) {
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
