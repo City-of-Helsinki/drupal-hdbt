@@ -31,7 +31,6 @@ use Drupal\views\ViewExecutable;
  */
 function hdbt_preprocess(&$variables): void {
   $variables['koro'] = hdbt_get_settings('koro');
-  $variables['image_placeholder'] = hdbt_get_settings('default_icon');
   $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
