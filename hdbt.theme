@@ -60,19 +60,6 @@ function hdbt_preprocess(&$variables): void {
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
     $variables['theme_color'] = $theme_color;
   }
-
-  // Add helfi-environment name.
-  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
-    try {
-      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
-      $service = \Drupal::service('helfi_api_base.environment_resolver');
-
-      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
-        ->getName();
-    }
-    catch (\InvalidArgumentException) {
-    }
-  }
 }
 
 /**
@@ -164,6 +151,19 @@ function hdbt_preprocess_html(&$variables): void {
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
+
+  // Add helfi-environment as a JS variable.
+  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
+    try {
+      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
+      $service = \Drupal::service('helfi_api_base.environment_resolver');
+
+      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
+        ->getName();
+    }
+    catch (\InvalidArgumentException) {
+    }
+  }
 }
 
 /**
