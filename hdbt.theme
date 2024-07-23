@@ -824,8 +824,8 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       'image-on-right',
       'image-on-left',
       'image-on-right-secondary',
-      'image-on-left-secondary' => 'image__3_2',
-      default => 'hero__background',
+      'image-on-left-secondary' => 'liftup_left_right',
+      default => 'liftup_bg',
     };
 
     _hdbt_set_image_style(
