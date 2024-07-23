@@ -43,11 +43,6 @@ function hdbt_preprocess(&$variables): void {
     $variables['lang_attributes']['fallback_lang'] = $attributes['lang'];
     $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
   }
-
-  // Apply override for the theme color.
-  if (!empty($theme_color = hdbt_get_theme_color_override())) {
-    $variables['theme_color'] = $theme_color;
-  }
 }
 
 /**
@@ -161,8 +156,10 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
     ->moduleExists('helfi_navigation');
 
-  // Add selected theme color as a variable for html.html.twig template.
-  $variables['theme_color'] = hdbt_get_settings('theme_color');
+  // Apply override for the theme color.
+  if (!empty($theme_color = hdbt_get_theme_color_override())) {
+    $variables['theme_color'] = $theme_color;
+  }
 }
 
 /**
