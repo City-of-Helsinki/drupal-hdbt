@@ -754,11 +754,11 @@ function hdbt_preprocess_paragraph__image(&$variables) {
     );
 
     // Check if the image should be printed in original aspect ratio and
-    // set variable accordingly. If not, use image 3:2 responsive style.
+    // set variable accordingly. If not, use image_fixed responsive style.
     if ($paragraph->hasField('field_original_aspect_ratio')) {
       $image_style = $paragraph->field_original_aspect_ratio->value
-        ? 'original'
-        : 'image__3_2';
+        ? 'image_orig'
+        : 'image_fixed';
 
       _hdbt_set_image_style(
         $variables,
@@ -787,8 +787,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
       $image_style = match ($paragraph->get('field_hero_design')->value) {
         'with-image-right', 'with-image-left' => 'hero__left_right',
         'with-image-bottom' => 'hero__bottom',
-        'diagonal', 'with-search' => 'hero__diagonal',
-        default => 'hero__background',
+        default => 'hero__diagonal',
       };
 
       _hdbt_set_image_style(
