@@ -88,6 +88,9 @@ function hdbt_preprocess_html(&$variables): void {
   // See if the page we are has exception.
   $page_status = Drupal::requestStack()
     ->getCurrentRequest()?->attributes->get('exception');
+  // Check if navigation is enabled.
+  $navigation_enabled = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
 
   // Check if the page is error-page and add class error-page for the body.
   if (
@@ -125,12 +128,7 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  if (\Drupal::moduleHandler()->moduleExists('helfi_navigation')) {
-    $variables['#attached']['library'][] = 'hdbt/nav-global';
-  }
-  else {
-    $variables['#attached']['library'][] = 'hdbt/nav-local';
-  }
+  $variables['#attached']['library'][] = $navigation_enabled ? 'hdbt/nav-global' : 'hdbt/nav-local';
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
@@ -149,12 +147,9 @@ function hdbt_preprocess_html(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
@@ -246,14 +241,13 @@ function hdbt_preprocess_page(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = $navigation_enabled;
 
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  $variables['use_search_block'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_search_block'] = $navigation_enabled;
 
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
