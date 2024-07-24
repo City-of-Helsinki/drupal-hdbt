@@ -6,8 +6,8 @@
 
 // When components are full width and do not contain liftup-with-img-bg or content-cards,
 // they should have padding that keeps them from touching side.
-.components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards),
-.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards) {
+.components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey),
+.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey) {
   @include component-side-padding;
 }
 

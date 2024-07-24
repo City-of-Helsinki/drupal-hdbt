@@ -976,45 +976,45 @@ function hdbt_preprocess_paragraph__unit_contact_card(&$variables) {
 
     // Get title from paragraph settings.
     if (!empty($paragraph_title = $paragraph->get('field_unit_contact_title')
-      ?->view('full'))) {
+      ?->view('unit_contact_card'))) {
       $variables['unit_contact_card']['title'] = $paragraph_title;
     }
     else {
       $variables['unit_contact_card']['title'] = $unit_translation?->get('name')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show address if chosen from paragraph settings.
     if ($paragraph->get('field_unit_contact_use_address')->value === '1') {
       $variables['unit_contact_card']['address'] = $unit_translation?->get('address')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show postal address if chosen from paragraph settings.
     if ($paragraph->get('field_unit_contact_use_postal')->value === '1') {
       $variables['unit_contact_card']['address_postal'] = $unit_translation?->get('address_postal')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show phone number if chosen from paragraph settings.
     if ($paragraph->get('field_unit_contact_use_phone')->value === '1') {
       $variables['unit_contact_card']['phone'] = $unit_translation?->get('phone')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show opening hours if chosen from paragraph settings.
     if ($paragraph->get('field_unit_contact_use_opening')->value === '1') {
       $variables['unit_contact_card']['opening_hours'] = $unit_translation?->get('opening_hours')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show picture if chosen from paragraph settings.
     if ($paragraph->get('field_unit_contact_use_picture')->value === '1') {
       $variables['unit_contact_card']['picture_url'] = $unit_translation?->get('picture_url')
-        ?->view('full');
+        ?->view('unit_contact_card');
       if ($paragraph->get('field_unit_contact_use_override')->value === '1') {
         $variables['unit_contact_card']['picture_url_override'] = $unit_translation?->get('picture_url_override')
-          ?->view('full');
+          ?->view('unit_contact_card');
       }
     }
 
@@ -1025,7 +1025,7 @@ function hdbt_preprocess_paragraph__unit_contact_card(&$variables) {
       $unit_translation->hasField('highlights')
     ) {
       $variables['unit_contact_card']['details'] = $unit_translation->get('highlights')
-        ?->view('full');
+        ?->view('unit_contact_card');
     }
 
     // Show link to unit page if chosen from paragraph settings and unit is
