@@ -30,18 +30,30 @@ use Drupal\views\ViewExecutable;
  * Implements hook_preprocess().
  */
 function hdbt_preprocess(&$variables): void {
-  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-  $variables['current_langcode'] = $language->getId();
-  $variables['current_language'] = $language->getName();
-  $variables['current_language_dir'] = $language->getDirection();
+  // Set current language variables for twig templates.
+  if (!isset($variables['content_language'])) {
+    $variables['content_language'] = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+    $variables['current_langcode'] = $variables['language']->getId();
+    $variables['current_language'] = $variables['language']->getName();
+    $variables['current_language_dir'] = $variables['language']->getDirection();
+  }
 
-  $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
-  $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($language->getId());
+  // Check if helfi_navigation is enabled and set the variable accordingly.
+  if (!array_key_exists('navigation_enabled', $variables)) {
+    $variables['navigation_enabled'] = \Drupal::moduleHandler()
+      ->moduleExists('helfi_navigation');
+  }
 
-  if ($variables['alternative_language']) {
-    $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
-    $variables['lang_attributes']['fallback_lang'] = $attributes['lang'];
-    $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
+  // Set alternative language fallback attributes.
+  if (!array_key_exists('alternative_language', $variables)) {
+    $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
+    $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($variables['language']->getId());
+
+    if ($variables['alternative_language']) {
+      $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
+      $variables['lang_attributes']['fallback_lang'] = $attributes['lang'];
+      $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
+    }
   }
 }
 
@@ -88,9 +100,6 @@ function hdbt_preprocess_html(&$variables): void {
   // See if the page we are has exception.
   $page_status = Drupal::requestStack()
     ->getCurrentRequest()?->attributes->get('exception');
-  // Check if navigation is enabled.
-  $navigation_enabled = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
 
   // Check if the page is error-page and add class error-page for the body.
   if (
@@ -128,7 +137,7 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  $variables['#attached']['library'][] = $navigation_enabled ? 'hdbt/nav-global' : 'hdbt/nav-local';
+  $variables['#attached']['library'][] = $variables['navigation_enabled'] ? 'hdbt/nav-global' : 'hdbt/nav-local';
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
@@ -147,9 +156,9 @@ function hdbt_preprocess_html(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = $navigation_enabled;
-  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
-  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
+  $variables['use_global_navigation'] = $variables['navigation_enabled'];
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $variables['navigation_enabled'];
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $variables['navigation_enabled'];
 
   // Apply override for the theme color.
   if (!empty($theme_color = hdbt_get_theme_color_override())) {
@@ -241,13 +250,12 @@ function hdbt_preprocess_page(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
-  $variables['use_global_navigation'] = $navigation_enabled;
+  $variables['use_global_navigation'] = $variables['navigation_enabled'];
 
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  $variables['use_search_block'] = $navigation_enabled;
+  $variables['use_search_block'] = $variables['navigation_enabled'];
 
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
@@ -512,8 +520,7 @@ function hdbt_preprocess_input__submit(&$variables): void {
  */
 function hdbt_preprocess_menu(&$variables): void {
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = $variables['navigation_enabled'];
 
   // Menu, mobile menu, fallback menu and sidebar menu tree depth.
   // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
@@ -615,8 +622,7 @@ function hdbt_preprocess_block(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = $variables['navigation_enabled'];
 
   // Handle Sidebar menu block.
   if (
