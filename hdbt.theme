@@ -47,7 +47,7 @@ function hdbt_preprocess(&$variables): void {
   // Set alternative language fallback attributes.
   if (!array_key_exists('alternative_language', $variables)) {
     $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
-    $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($variables['language']->getId());
+    $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($variables['content_language']->getId());
 
     if ($variables['alternative_language']) {
       $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
