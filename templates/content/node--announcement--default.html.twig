@@ -11,7 +11,7 @@
     'announcement__container',
   ]
 } %}
-{% if current_langcode != node_langcode %}
+{% if language.id != node_langcode %}
   {% set announcement_attributes = announcement_attributes|merge({
     'dir': lang_attributes.fallback_dir,
     'lang': lang_attributes.fallback_lang

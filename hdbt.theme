@@ -1397,6 +1397,9 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Unit) {
     return;
   }
+  // Add language variable for the template.
+  hdbt_add_current_language($variables);
+
   $entity = $variables['entity'];
 
   // Add unit publish state to variable.
@@ -1769,6 +1772,9 @@ function hdbt_preprocess_paragraph__maternity_and_child_health_clini(array &$var
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_node__announcement(array &$variables) {
+  // Add language variable for the template.
+  hdbt_add_current_language($variables);
+
   $type = $variables['node']->get('field_announcement_type')->value;
 
   $type_label = match($type) {
@@ -1908,4 +1914,21 @@ function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void 
     $privacyUrl->setAbsolute();
     $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_helfi_link(array &$variables): void {
+  // Add language variable for the template.
+  hdbt_add_current_language($variables);
+  hdbt_add_alternative_language_attributes($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_links__language_block(array &$variables): void {
+  // Add language variable for the template.
+  hdbt_add_current_language($variables);
 }
