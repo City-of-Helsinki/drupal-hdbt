@@ -26,15 +26,49 @@ const ResultCard = ({
   let cardImage;
 
   if (imageOverride) {
-   cardImage = <CardImage
+    const sources = [
+      {
+        srcSet: `${imageOverride.variants['1248']} 1x, ${imageOverride.variants['1248_2x']} 2x`,
+        media: 'all and (min-width: 1248px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['992']} 1x, ${imageOverride.variants['992_2x']} 2x`,
+        media: 'all and (min-width: 992px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['768']} 1x, ${imageOverride.variants['768_2x']} 2x`,
+        media: 'all and (min-width: 768px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['576']} 1x, ${imageOverride.variants['575_2x']} 2x`,
+        media: 'all and (min-width: 576px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['320']} 1x, ${imageOverride.variants['320_2x']} 2x`,
+        media: 'all and (min-width: 320px)',
+        type: 'image/jpeg'
+      },
+    ];
+
+    cardImage = <CardImage
       alt={imageOverride.alt}
       photographer={imageOverride.photographer}
-      src={imageOverride.url}
+      src={imageOverride.variants['1248']}
+      sources={sources}
       title={imageOverride.title}
     />;
   }
   else if (picture_url?.[0]) {
-    cardImage = <CardImage src={picture_url?.[0]} />;
+    cardImage = <CardImage
+      src={picture_url?.[0]}
+      sources={[
+        { srcSet: picture_url?.[0], media: '()' }
+      ]}
+    />;
   }
 
   let language;

@@ -46,6 +46,9 @@ const ResultCard = ({
     return (
       <CardImage
         src={main_image_url[0]}
+        sources={[
+          { srcSet: main_image_url[0], media: '()' }
+        ]}
         alt={getAlt()}
         data-photographer={field_photographer && field_photographer.length ? field_photographer[0] : null}
       />
