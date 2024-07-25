@@ -1,4 +1,5 @@
 import CardItem from '@/react/common/Card';
+import CardPicture from '@/react/common/CardPicture';
 import CardImage from '@/react/common/CardImage';
 import { School } from '../types/School';
 import ontologyDetailsIdsToLang from '../enum/LanguageEducationMap';
@@ -54,7 +55,7 @@ const ResultCard = ({
       },
     ];
 
-    cardImage = <CardImage
+    cardImage = <CardPicture
       alt={imageOverride.alt}
       photographer={imageOverride.photographer}
       src={imageOverride.variants['1248']}
@@ -63,12 +64,7 @@ const ResultCard = ({
     />;
   }
   else if (picture_url?.[0]) {
-    cardImage = <CardImage
-      src={picture_url?.[0]}
-      sources={[
-        { srcSet: picture_url?.[0], media: '()' }
-      ]}
-    />;
+    cardImage = <CardImage src={picture_url?.[0]} />;
   }
 
   let language;
