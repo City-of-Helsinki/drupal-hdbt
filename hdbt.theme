@@ -783,8 +783,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $paragraph->hasField('field_hero_design') &&
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
-    $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-    $search_urls = hdbt_get_global_url($language->getId());
+    $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
   }
 }
