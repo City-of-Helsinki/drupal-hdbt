@@ -215,10 +215,7 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  $language_id = Drupal::languageManager()
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-    ->getId();
-  foreach (hdbt_get_global_url($language_id) as $key => $value) {
+  foreach (hdbt_get_global_url($variables['language']->getId()) as $key => $value) {
     $variables[$key] = $value;
   }
 
@@ -338,13 +335,9 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
-      $language_id = Drupal::languageManager()
-        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-        ->getId();
-
       // Get translated photographer text if available.
-      if ($entity->{$image}->entity->hasTranslation($language_id)) {
-        $photographer = $entity->{$image}->entity->getTranslation($language_id)->field_photographer->value;
+      if ($entity->{$image}->entity->hasTranslation($variables['language']->getId())) {
+        $photographer = $entity->{$image}->entity->getTranslation($variables['language']->getId())->field_photographer->value;
       }
       else {
         $photographer = $entity->{$image}->entity->field_photographer->value;
@@ -656,11 +649,8 @@ function hdbt_preprocess_block(&$variables): void {
             ->getStorage($entity_type)
             ->load($params[$entity_type]);
 
-          $language_id = Drupal::languageManager()
-            ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-            ->getId();
-          $node = $node->hasTranslation($language_id)
-            ? $node->getTranslation($language_id)
+          $node = $node->hasTranslation($variables['language']->getId())
+            ? $node->getTranslation($variables['language']->getId())
             : $node;
           $menu_link_title = $node->getTitle();
           $menu_link_url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
@@ -827,13 +817,9 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 
   // Add the photographer to the image caption.
   if ($paragraph->hasField('field_liftup_with_image_image')) {
-    $language_id = Drupal::languageManager()
-      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-      ->getId();
-
     // Get translated photographer text if available.
-    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($language_id)) {
-      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($language_id)->field_photographer->value;
+    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($variables['language']->getId())) {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($variables['language']->getId())->field_photographer->value;
     }
     else {
       $photographer = $paragraph->field_liftup_with_image_image->entity->field_photographer->value;
@@ -1079,7 +1065,7 @@ function _hdbt_set_site_information(array &$variables) {
   static $values = [];
 
   if (!$values) {
-    $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $language_id = $variables['language']->getId();
 
     // Set site_name as variable.
     $site_config = \Drupal::config('system.site');
@@ -1146,15 +1132,12 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
   ) {
     /** @var \Drupal\file\FileInterface $file */
     $file = $entity->{$image}->entity;
-    $language_id = Drupal::languageManager()
-      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-      ->getId();
 
     // Make sure we load the correct file translation, otherwise
     // hdbt_preprocess_responsive_image_formatter() will receive an empty
     // 'altered_image_style' value for translated media entities.
-    if ($file->hasTranslation($language_id)) {
-      $file = $file->getTranslation($language_id);
+    if ($file->hasTranslation($variables['language']->getId())) {
+      $file = $file->getTranslation($variables['language']->getId());
     }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
@@ -1550,14 +1533,10 @@ function hdbt_preprocess_tpr_errand_service(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_maintenance_page(&$variables): void {
-  $language_id = Drupal::languageManager()
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-    ->getId();
-
   // This same preprocess needs to be done separately for maintenance page.
   // We check what language is set and provide links to homepage and feedback
   // accordingly.
-  switch ($language_id) {
+  switch ($variables['language']->getId()) {
     case 'fi':
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
@@ -1609,13 +1588,10 @@ function hdbt_preprocess_social_media_links(&$variables): void {
 
       $languageManager = \Drupal::languageManager();
       assert($languageManager instanceof ConfigurableLanguageManagerInterface);
-      $language_id = $languageManager
-        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-        ->getId();
 
       // Add lang and dir attributes if the link text is not translated.
-      if ($key === 'email' && $defaultLanguageResolver->isAltLanguage($language_id)) {
-        if (!isset($languageManager->getLanguageConfigOverride($language_id, 'social_media.settings')->get('social_media')['email']['text'])) {
+      if ($key === 'email' && $defaultLanguageResolver->isAltLanguage($variables['language']->getId())) {
+        if (!isset($languageManager->getLanguageConfigOverride($variables['language']->getId(), 'social_media.settings')->get('social_media')['email']['text'])) {
           $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
           $element['attr']['lang'] = $attributes['lang'];
           $element['attr']['dir'] = $attributes['dir'];
