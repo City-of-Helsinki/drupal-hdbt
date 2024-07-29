@@ -7,7 +7,7 @@ type Result = {
   field_news_neighbourhoods?: string[];
   field_photographer?: string[];
   highlight?: string[];
-  main_image_url?: string[];
+  main_image_url?: { [key: string]: string };
   published_at?: number[];
   title: string[];
   url: string[];

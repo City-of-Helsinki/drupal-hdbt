@@ -1,6 +1,10 @@
 import CardItem from '@/react/common/Card';
-import CardImage from '@/react/common/CardImage';
+import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
+
+type ImageUrls = {
+  [key: string]: string;
+};
 
 const ResultCard = ({
   alt,
@@ -39,15 +43,48 @@ const ResultCard = ({
   };
 
   const getImage = () => {
-    if (!main_image_url || !main_image_url.length) {
-      return undefined;
+    let imageUrls: ImageUrls = {};
+
+    try {
+      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
+    } catch (e) {
+      console.error('Failed to parse main_image_url', e);
     }
 
+    const sources = [
+      {
+        srcSet: `${imageUrls['1248'] || ''} 1x, ${imageUrls['1248_2x'] || ''} 2x`,
+        media: 'all and (min-width: 1248px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageUrls['992'] || ''} 1x, ${imageUrls['992_2x'] || ''} 2x`,
+        media: 'all and (min-width: 992px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageUrls['768'] || ''} 1x, ${imageUrls['768_2x'] || ''} 2x`,
+        media: 'all and (min-width: 768px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageUrls['576'] || ''} 1x, ${imageUrls['575_2x'] || ''} 2x`,
+        media: 'all and (min-width: 576px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageUrls['320'] || ''} 1x, ${imageUrls['320_2x'] || ''} 2x`,
+        media: 'all and (min-width: 320px)',
+        type: 'image/jpeg'
+      },
+    ];
+
     return (
-      <CardImage
-        src={main_image_url[0]}
+      <CardPicture
         alt={getAlt()}
-        data-photographer={field_photographer && field_photographer.length ? field_photographer[0] : null}
+        photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
+        src={imageUrls['1248'] || ''}
+        sources={sources}
       />
     );
   };

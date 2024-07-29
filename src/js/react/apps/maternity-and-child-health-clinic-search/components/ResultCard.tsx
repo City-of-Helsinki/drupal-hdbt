@@ -1,8 +1,17 @@
 import CardItem from '@/react/common/Card';
+import CardPicture from '@/react/common/CardPicture';
 import CardImage from '@/react/common/CardImage';
 import { MaternityAndChildHealthClinic } from '../types/MaternityAndChildHealthClinic';
 
-const ResultCard = ({ address, name, name_override, picture_url, provided_languages, media_as_objects, url }: MaternityAndChildHealthClinic) => {
+const ResultCard = ({
+  address,
+  name,
+  name_override,
+  picture_url,
+  provided_languages,
+  media_as_objects,
+  url
+}: MaternityAndChildHealthClinic) => {
   const title = name_override?.[0] || name?.[0];
   const imageOverride = media_as_objects?.[0].picture_url_override;
 
@@ -13,10 +22,39 @@ const ResultCard = ({ address, name, name_override, picture_url, provided_langua
   let cardImage;
 
   if (imageOverride) {
-   cardImage = <CardImage
+    const sources = [
+      {
+        srcSet: `${imageOverride.variants['1248']} 1x, ${imageOverride.variants['1248_2x']} 2x`,
+        media: 'all and (min-width: 1248px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['992']} 1x, ${imageOverride.variants['992_2x']} 2x`,
+        media: 'all and (min-width: 992px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['768']} 1x, ${imageOverride.variants['768_2x']} 2x`,
+        media: 'all and (min-width: 768px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['576']} 1x, ${imageOverride.variants['575_2x']} 2x`,
+        media: 'all and (min-width: 576px)',
+        type: 'image/jpeg'
+      },
+      {
+        srcSet: `${imageOverride.variants['320']} 1x, ${imageOverride.variants['320_2x']} 2x`,
+        media: 'all and (min-width: 320px)',
+        type: 'image/jpeg'
+      },
+    ];
+
+    cardImage = <CardPicture
       alt={imageOverride.alt}
       photographer={imageOverride.photographer}
-      src={imageOverride.url}
+      src={imageOverride.variants['1248']}
+      sources={sources}
       title={imageOverride.title}
     />;
   }
