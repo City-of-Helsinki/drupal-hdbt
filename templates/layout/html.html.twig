@@ -23,6 +23,9 @@
  * @see template_preprocess_html()
  */
 #}
+{% if not theme_color %}
+  {% set theme_color = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.theme_color')|default('bus') %}
+{% endif %}
 
 {# Available color themes, hardcoded to enable searching and to force thinking when adding these :) #}
 {% if theme_color == 'bus'  %}

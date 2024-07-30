@@ -1,3 +1,4 @@
+{% set default_icon = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.default_icon')|default('abstract-1') %}
 <div class="image-placeholder">
-  {% include "@hdbt/misc/icon.twig" with {icon: image_placeholder } only %}
+  {% include "@hdbt/misc/icon.twig" with {icon: image_placeholder|default(default_icon)} only %}
 </div>

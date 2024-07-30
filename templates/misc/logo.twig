@@ -2,19 +2,19 @@
 {% set logo_class = 'logo__icon logo__icon--fi' %}
 {% set logo_alt = 'Helsinki-kehystunnus' %}
 
-{% if current_langcode == 'en' %}
+{% if language.id == 'en' %}
   {% set logo = 'helsinki' %}
   {% set logo_class = 'logo__icon logo__icon--en' %}
   {% set logo_alt = 'Helsinki logo' %}
 {% endif %}
 
-{% if current_langcode == 'sv' %}
+{% if language.id == 'sv' %}
   {% set logo = 'helsinki-sv' %}
   {% set logo_class = 'logo__icon logo__icon--sv' %}
   {% set logo_alt = 'Helsingfors logo' %}
 {% endif %}
 
-{% if current_langcode == 'ru' %}
+{% if language.id == 'ru' %}
   {% set logo = 'helsinki-ru' %}
   {% set logo_class = 'logo__icon logo__icon--ru' %}
   {% set logo_alt = 'Логотип Хельсинки' %}

@@ -1,17 +1,17 @@
-{%  
+{%
   set routeTarget = [
-    content.address[0]['#address_line1'], 
+    content.address[0]['#address_line1'],
     content.address[0]['#locality']['code']
   ]|join(', ') ~ '::'  ~ content.latitude[0]['#context']['value'] ~ ',' ~ content.longitude[0]['#context']['value']
 %}
-{% 
+{%
   set link_attributes = {
     'class': [
       'external-link'
     ]
-  } 
+  }
 %}
 {% set link_title = 'Show the route in the HSL Journey Planner'|t({}, {'context': 'TPR unit contact information HSL Journey Planner link'}) %}
-{% set link_url = 'https://reittiopas.hsl.fi/reitti/POS/' ~ routeTarget|url_encode ~ '?lang=' ~ current_langcode %}
+{% set link_url = 'https://reittiopas.hsl.fi/reitti/POS/' ~ routeTarget|url_encode ~ '?lang=' ~ language.id %}
 
 {{ link(link_title, link_url, link_attributes) }}
