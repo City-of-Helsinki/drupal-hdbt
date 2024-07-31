@@ -8,7 +8,9 @@
   overscroll-behavior: none;
   position: fixed;
   touch-action: none;
-  z-index: 100;
+  // This high value is necessary because the cookie-consent banner has a z-index of 99999. The survey must appear
+  // above it, as it is a modal with a focus trap that requires user interaction before proceeding with the site.
+  z-index: 100000;
 }
 
 .survey__overlay {

@@ -4,6 +4,18 @@ import LocalStorageManager from './localStorageManager';
 (function (Drupal) {
   Drupal.behaviors.closable_surveys = {
     attach: function attach() {
+      // Move the DOM element with id 'block-surveys' right after the skip-to-main link if it is present.
+      // If not move it as first element inside the body element.
+      const blockSurveys = document.getElementById('block-surveys');
+      const skipToMainLink = document.getElementById('skip-to-main');
+      if (blockSurveys) {
+        if (skipToMainLink) {
+          skipToMainLink.parentNode.insertBefore(blockSurveys, skipToMainLink.nextSibling);
+        } else {
+          document.body.insertBefore(blockSurveys, document.body.firstChild);
+        }
+      }
+
       const survey = document.getElementById('helfi-survey__container');
       if (!survey) return;
 
