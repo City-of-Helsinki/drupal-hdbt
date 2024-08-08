@@ -11,9 +11,11 @@ class HomeCareServiceVoucher {
     // Expecting settings to follow this JSON format:
     /*
     const parsedSettings = {
+      increase_percentage: 20,
       voucher_limits: {
-        min: 7,
-        max: 34,
+        min: 8.4,
+        old_max: 34,
+        max: 40.8,
       },
       household_size: {
         '1': {
@@ -130,7 +132,7 @@ class HomeCareServiceVoucher {
           (grossIncomePerMonthRaw !== null) ?
             this.calculator.clamp(
               parsedSettings.voucher_limits.min,
-              parsedSettings.voucher_limits.max - (deductedIncome * (percent / 100) / parsedSettings.voucher_divisor),
+              (parsedSettings.voucher_limits.old_max - (deductedIncome * (percent / 100) / parsedSettings.voucher_divisor)) * ((100 + parsedSettings.increase_percentage) / 100),
               parsedSettings.voucher_limits.max
             ) :
             parsedSettings.voucher_limits.min
