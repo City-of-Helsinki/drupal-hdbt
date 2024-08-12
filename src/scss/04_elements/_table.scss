@@ -54,7 +54,7 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 
 .user-edited-content figure figcaption {
   @include font('h4');
-  background: $table-bg-color;
+  background: var(--user-edited-content-background-color, #{$table-bg-color});
   left: 0;
   margin-top: 0;
   padding-bottom: $spacing;
@@ -64,6 +64,11 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 
 .user-edited-content figure:not(:has(figcaption)) {
   margin-top: $spacing;
+}
+
+// wysiwyg editor generates these duplicate figures, so we need to remove the margin from the second figure
+.user-edited-content figure > figure {
+  margin-top: 0;
 }
 
 .user-edited-content figure figcaption + table {
