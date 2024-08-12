@@ -1,4 +1,4 @@
-import useLanguageQuery from '@/react/common/hooks/useLanguageQuery';
+import useLanguageQuery from '../hooks/useLanguageQuery';
 import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
 import Global from '../enum/Global';
@@ -8,6 +8,15 @@ const useQueryString = (urlParams: URLParams) => {
   const size = Global.SIZE;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [];
+
+  // Add entity type filteration to languageFilter so that only nodes are listed on results.
+  if (languageFilter?.bool?.filter) {
+    must.push({
+      term: {
+        entity_type: 'node'
+      }
+    });
+  }
 
   if (urlParams?.topic?.length) {
     must.push({

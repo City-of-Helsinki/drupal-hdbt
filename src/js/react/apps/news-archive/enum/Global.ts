@@ -1,6 +1,6 @@
 const Global = {
   INDEX: 'news',
-  SIZE: 10
+  SIZE: 15
 };
 
 export default Global;

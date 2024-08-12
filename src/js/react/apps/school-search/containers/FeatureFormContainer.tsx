@@ -284,7 +284,7 @@ const FeatureFormContainer = () => {
         >
           {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
         </Button>
-        </div>
+      </div>
       <SelectionsContainer keys={keys} />
     </form>
   );

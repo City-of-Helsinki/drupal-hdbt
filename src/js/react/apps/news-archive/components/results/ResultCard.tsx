@@ -56,7 +56,7 @@ const ResultCard = ({
     <CardItem
       cardImage={getImage()}
       cardTitle={title.toString()}
-      cardModifierClass='news-listing__item'
+      cardModifierClass='card--news-item'
       cardUrl={url.toString()}
       date={getDate()}
       dateLabel={Drupal.t('Published', {}, { context: 'News search' })}

@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override for a feed icon.
+ *
+ * Available variables:
+ * - url: An internal system path or a fully qualified external URL of the feed.
+ * - title: Title of the feed for describing the feed on the subscribe link.
+ * - attributes: Remaining HTML attributes for the feed link.
+ *   - title: A descriptive title of the feed link.
+ *   - class: HTML classes to be applied to the feed link.
+ */
+#}
+{% set link_title %}
+  {{ 'Subscribe to @title as RSS feed'|t({'@title': title|lower}, {'context': 'Default feed link text'}) }}
+{% endset %}
+{% set link_attributes = {
+  'class': [
+    'feed-link',
+  ],
+  'data-hds-variant': [
+    'supplementary'
+  ],
+  'data-hds-component': [
+    'button'
+  ],
+  'data-hds-icon-start': [
+    'rss'
+  ],
+} %}
+{% if alternative_language %}
+  {% set link_attributes = link_attributes|merge({
+    'dir': lang_attributes.fallback_dir,
+    'lang': lang_attributes.fallback_lang
+  })
+  %}
+{% endif %}
+
+{{ link(link_title, url, link_attributes) }}

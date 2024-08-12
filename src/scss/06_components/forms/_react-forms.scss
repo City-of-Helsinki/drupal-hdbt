@@ -40,14 +40,15 @@
   flex-wrap: wrap;
   gap: $spacing-and-half;
   justify-content: space-between;
+  margin-bottom: $spacing;
 
-  >div {
-    flex-basis: 100%;
+  > div {
+    width: 100%;
   }
 
   @include breakpoint($breakpoint-m) {
-    >div {
-      flex-basis: 48%;
+    > div {
+      width: calc(50% - $spacing-and-half);
     }
   }
 }
@@ -160,4 +161,50 @@ button.hdbt-search__remove-selection-button:not(:disabled) {
 [class*='button_hds-button'] [class*='button_hds-icon'] {
   // Use important to override hds styles
   margin: 0 !important;
+}
+
+.hdbt-search--react__form-description {
+  margin-bottom: $spacing-and-half;
+}
+
+.hdbt-search--react__form-container {
+  margin-bottom: $spacing-double;
+  max-width: $content-width-max;
+}
+
+.hdbt-search--react__text-field {
+  margin-bottom: $spacing-double;
+}
+
+// Override some fieldset default styles here
+.hdbt-search--react__fieldset {
+  border: none;
+  margin-bottom: $spacing-double;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+  }
+}
+
+.hdbt-search--react__legend {
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing;
+}
+
+// Use specific selectors here to override HDS styles
+fieldset .hdbt-search--react__checkbox {
+  --background-selected: var(--hdbt-color-black);
+}
+
+fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    margin-left: $spacing;
+    margin-top: 0;
+  }
 }

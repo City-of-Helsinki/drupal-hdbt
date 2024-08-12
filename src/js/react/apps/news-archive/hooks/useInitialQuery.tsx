@@ -1,4 +1,4 @@
-import useLanguageQuery from '@/react/common/hooks/useLanguageQuery';
+import useLanguageQuery from '../hooks/useLanguageQuery';
 import IndexFields from '../enum/IndexFields';
 
 const termFilter = {
@@ -7,7 +7,7 @@ const termFilter = {
 
 const useInitialQuery = () => {
   const languageFilter = useLanguageQuery();
-  
+
   const getAggQuery = (key: string, vid: string) => ({
     aggs: {
       [key]: {
@@ -42,7 +42,7 @@ const useInitialQuery = () => {
   };
 
   const queries: any[] = [];
-  
+
   // Aggregations for field options
   Object.keys(aggMap).forEach(key => {
     queries.push(getAggQuery(key, aggMap[key]));
@@ -53,7 +53,7 @@ const useInitialQuery = () => {
 
   queries.forEach(query => {
     body += `${ndjsonHeader}\n${JSON.stringify(query)}\n`;
-    
+
   });
 
   return body;

@@ -152,7 +152,7 @@ const SearchMonitorContainer = () => {
   const openLabel: string = Drupal.t('Open the order form', {}, { context: 'Search monitor open label' });
   const closeLabel: string = Drupal.t('Close the order form', {}, { context: 'Search monitor close label' });
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
-  const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
+  const descriptionFirstPart: string = Drupal.t('To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
   const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
