@@ -1,0 +1,61 @@
+@use 'sass:math';
+@use 'sass:color';
+
+/// Find alpha color
+/// Find the best color and smallest alpha value to simulate target color on top of background color.
+///
+/// @param {Color} $target - The target color to simulate.
+/// @param {Color} $background - The background color to simulate the target color on top of.
+/// @return {Color} - The best color with smallest alpha value to simulate target color on top of background color.
+@function find-alpha-color($target, $background) {
+  // Extract RGB components from the target color
+  $r1: color.red($target);
+  $g1: color.green($target);
+  $b1: color.blue($target);
+
+  // Extract RGB components from the background color
+  $r2: color.red($background);
+  $g2: color.green($background);
+  $b2: color.blue($background);
+
+  // Initialize variables
+  $best-alpha: 0;
+  $best-color: rgba(0 0 0 / 0%);
+  $min-difference: 255 * 3; // Maximum possible difference
+
+  @for $alpha from 1 through 1000 {
+    $a: math.div($alpha, 1000);
+
+    // Calculate the blended color
+    $r: math.round(math.div(($r1 - $r2 * (1 - $a)) , $a));
+    $g: math.round(math.div(($g1 - $g2 * (1 - $a)) , $a));
+    $b: math.round(math.div(($b1 - $b2 * (1 - $a)) , $a));
+
+    // Clamp the RGB values to [0, 255]
+    $r: if($r > 255, 255, if($r < 0, 0, $r));
+    $g: if($g > 255, 255, if($g < 0, 0, $g));
+    $b: if($b > 255, 255, if($b < 0, 0, $b));
+
+    // Calculate the resulting color blended color + background color
+    $r3: math.round($r * $a + $r2 * (1 - $a));
+    $g3: math.round($g * $a + $g2 * (1 - $a));
+    $b3: math.round($b * $a + $b2 * (1 - $a));
+
+    // Calculate the difference from the target color and the blended color
+    $difference: math.abs($r1 - $r3) + math.abs($g1 - $g3) + math.abs($b1 - $b3);
+
+    // If the colors have perfect match, return the color
+    @if $difference == 0 {
+      @return rgba($r, $g, $b, $a);
+    }
+
+    // Check if this alpha is better
+    @if $difference < $min-difference {
+      $min-difference: $difference;
+      $best-alpha: $a;
+      $best-color: rgba($r, $g, $b, $best-alpha);
+    }
+  }
+
+  @return $best-color;
+}
