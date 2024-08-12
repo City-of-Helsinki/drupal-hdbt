@@ -77,6 +77,7 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 
 .user-edited-content figure table {
   background: transparent;
+  box-shadow: 0 0 0 $content-width-max var(--user-edited-content-background-color, #{$table-bg-color}); // This handles the figure background color when narrow table is on grey background.
   margin-top: 0;
 }
 
