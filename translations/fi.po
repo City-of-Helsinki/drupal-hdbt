@@ -1295,3 +1295,11 @@ msgstr "Kenttä on pakollinen: Sähköpostiosoite"
 msgctxt "Search monitor error submitting"
 msgid "Saving search failed. Please try again."
 msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
+
+msgctxt "Survey"
+msgid "Respond to the survey"
+msgstr "Vastaa kyselyyn"
+
+msgctxt "Survey"
+msgid "Skip the survey"
+msgstr "En osallistu kyselyyn"
