@@ -237,7 +237,8 @@
   }
 
   .accordion-item__content {
-    background-color: $color-black-5;
+    --user-edited-content-background-color: #{$color-black-5}; // This allows passing the color to the child figcaption and other possible elements
+    background-color: var(--user-edited-content-background-color);
   }
 
   // Patch Siteimprove false positive color contrast issue to reduce noise

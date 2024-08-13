@@ -54,7 +54,7 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 
 .user-edited-content figure figcaption {
   @include font('h4');
-  background: $table-bg-color;
+  background: var(--user-edited-content-background-color, #{$table-bg-color});
   left: 0;
   margin-top: 0;
   padding-bottom: $spacing;
@@ -66,12 +66,18 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
   margin-top: $spacing;
 }
 
+// wysiwyg editor generates these duplicate figures, so we need to remove the margin from the second figure
+.user-edited-content figure > figure {
+  margin-top: 0;
+}
+
 .user-edited-content figure figcaption + table {
   margin-top: 0;
 }
 
 .user-edited-content figure table {
   background: transparent;
+  box-shadow: 0 0 0 $content-width-max var(--user-edited-content-background-color, #{$table-bg-color}); // This handles the figure background color when narrow table is on grey background.
   margin-top: 0;
 }
 
