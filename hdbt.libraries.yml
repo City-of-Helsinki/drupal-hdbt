@@ -1,19 +1,27 @@
 desktop-menu-toggle:
   version: 1.x
   js:
-    dist/js/desktop-menu-toggle.min.js: {}
+    dist/js/desktop-menu-toggle.min.js: {
+      minified: true
+    }
 
 accordion:
   version: 1.5
   js:
-    dist/js/accordion.min.js: { weight: -50, attributes: { defer: true } }
+    dist/js/accordion.min.js: {
+      weight: -50,
+      attributes: { defer: true },
+      minified: true
+    }
   dependencies:
     - helfi_toc/table_of_contents
 
 helfi_calculator:
   version: 1.x
   js:
-    dist/js/helfi_calculator.min.js: {}
+    dist/js/helfi_calculator.min.js: {
+      minified: true
+    }
   dependencies:
     - core/drupal
     - core/drupalSettings
@@ -21,7 +29,9 @@ helfi_calculator:
 throbber:
   version: 1.x
   js:
-    dist/js/throbber.min.js: {}
+    dist/js/throbber.min.js: {
+      minified: true
+    }
   dependencies:
     - core/jquery
     - core/drupal
@@ -29,18 +39,24 @@ throbber:
 sidebar-menu-toggle:
   version: 1.x
   js:
-    dist/js/sidebar-menu-toggle.min.js: {}
+    dist/js/sidebar-menu-toggle.min.js: {
+      minified: true
+    }
 
 chat-trigger:
   version: 1.0
   js:
-    dist/js/chat-trigger.min.js: {}
+    dist/js/chat-trigger.min.js: {
+      minified: true
+    }
 
 color-palette:
   version: 1.0
   css:
     theme:
-      dist/css/color-palette.min.css: {}
+      dist/css/color-palette.min.css: {
+        minified: true
+      }
 
 hdbt-icons:
   version: 1.1
@@ -51,7 +67,9 @@ hdbt-icons:
 embedded-content-cookie-compliance:
   version: 1.0
   js:
-    dist/js/embedded-content-cookie-compliance.min.js: {}
+    dist/js/embedded-content-cookie-compliance.min.js: {
+      minified: true
+    }
   dependencies:
     - core/jquery
     - core/drupal
@@ -62,7 +80,9 @@ global-styling:
   version: 1.x
   css:
     theme:
-      dist/css/styles.min.css: {}
+      dist/css/styles.min.css: {
+        minified: true
+      }
   dependencies:
     - hdbt/color-palette
     - hdbt/hdbt-icons
@@ -71,7 +91,9 @@ global-styling:
 global-scripting:
   version: 1.x
   js:
-    dist/js/branding-mobile.min.js: {}
+    dist/js/branding-mobile.min.js: {
+      minified: true
+    }
   dependencies:
     - core/drupal
 
@@ -79,7 +101,9 @@ matomo:
   version: 1.x
   header: true
   js:
-    dist/js/matomo.min.js: {}
+    dist/js/matomo.min.js: {
+      minified: true
+    }
   dependencies:
   - core/drupal
   - core/jquery
@@ -88,16 +112,49 @@ matomo:
 closable_announcements:
   version: 1.1
   js:
-    dist/js/closable-announcements.min.js: {}
+    dist/js/closable-announcements.min.js: {
+      minified: true
+    }
   dependencies:
   - core/jquery
   - core/drupal
   - core/drupalSettings
 
+closable_surveys:
+  version: 1.0
+  js:
+    dist/js/closable-surveys.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - hdbt/focus-trap
+
+tabbable:
+  version: 6.2.0
+  header: true
+  js:
+    dist/js/tabbable/tabbable.min.js: {
+      minified: true
+    }
+
+focus-trap:
+  version: 7.5.4
+  header: true
+  js:
+    dist/js/focus-trap/focus-trap.min.js: {
+      minified: true
+    }
+  dependencies:
+    - hdbt/tabbable
+
 tabs:
   version: 1.x
   js:
-    dist/js/tabs.min.js: {}
+    dist/js/tabs.min.js: {
+      minified: true
+    }
   dependencies:
     - core/jquery
     - core/drupalSettings
@@ -106,7 +163,9 @@ environment-indicator:
   version: 1.x
   css:
     theme:
-      dist/css/environment-indicator.min.css: {}
+      dist/css/environment-indicator.min.css: {
+        minified: true
+      }
 
 disable_genesys_button:
   version: 1.x
@@ -120,10 +179,15 @@ disable_genesys_button:
 nav-toggle:
   version: 1.x
   js:
-    dist/js/nav-toggle.min.js: { attributes: { defer: true } }
+    dist/js/nav-toggle.min.js: {
+      minified: true,
+      attributes: { defer: true }
+    }
   css:
     theme:
-      dist/css/nav_toggle.min.css: {}
+      dist/css/nav_toggle.min.css: {
+        minified: true
+      }
   dependencies:
     - core/drupalSettings
 
@@ -131,7 +195,9 @@ nav-local:
   version: 1.x
   css:
     theme:
-      dist/css/nav_local.min.css: {}
+      dist/css/nav_local.min.css: {
+        minified: true
+      }
   dependencies:
     - hdbt/global-styling
     - hdbt/nav-toggle
@@ -140,7 +206,9 @@ nav-global:
   version: 1.x
   css:
     theme:
-      dist/css/nav_global.min.css: {}
+      dist/css/nav_global.min.css: {
+        minified: true
+      }
   dependencies:
     - hdbt/global-styling
     - hdbt/nav-toggle
@@ -149,7 +217,8 @@ event-list:
   version: 1.3
   js:
     dist/js/linkedevents.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -160,7 +229,8 @@ school-search:
   version: 1.5
   js:
     dist/js/school-search.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -181,7 +251,8 @@ hyphenopoly:
   header: true
   js:
     dist/js/hyphenopoly_settings.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - hdbt/hyphenopoly-loader
@@ -190,7 +261,8 @@ job-search:
   version: 1.8.0
   js:
     dist/js/job-search.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -200,7 +272,8 @@ district-and-project-search:
   version: 1.3
   js:
     dist/js/district-and-project-search.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -210,7 +283,8 @@ news-archive:
   version: 1.3
   js:
     dist/js/news-archive.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -219,12 +293,16 @@ news-archive:
 search-helper:
   version: 1.x
   js:
-    dist/js/search-helper.min.js: {}
+    dist/js/search-helper.min.js: {
+      minified: true
+    }
 
 table-figcaption:
   version: 1.0.0
   js:
-    dist/js/handle-figcaption-source-order.min.js: {}
+    dist/js/handle-figcaption-source-order.min.js: {
+      minified: true
+    }
   dependencies:
     - core/drupal
     - core/once
@@ -233,7 +311,8 @@ health-station-search:
   version: 1.3
   js:
     dist/js/health-station-search.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -243,7 +322,8 @@ maternity-and-child-health-clinic-search:
   version: 1.2
   js:
     dist/js/maternity-and-child-health-clinic-search.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -253,7 +333,8 @@ ploughing-schedule:
   version: 1.0
   js:
     dist/js/ploughing-schedule.min.js: {
-      preprocess: false
+      preprocess: false,
+      minified: true
     }
   dependencies:
     - core/drupalSettings
@@ -263,7 +344,9 @@ ploughing-schedule:
 local-storage-cleanup:
   version: 1.0
   js:
-    dist/js/localStorageCleanup.min.js: {}
+    dist/js/localStorageCleanup.min.js: {
+      minified: true
+    }
   dependencies:
     - core/drupalSettings
     - core/drupal

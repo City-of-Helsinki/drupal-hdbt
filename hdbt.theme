@@ -691,6 +691,11 @@ function hdbt_preprocess_block(&$variables): void {
     $variables['#attached']['library'][] = 'hdbt/closable_announcements';
   }
 
+  // Attach "closable_surveys" library to "surveys" block.
+  if ($variables['plugin_id'] == 'surveys') {
+    $variables['#attached']['library'][] = 'hdbt/closable_surveys';
+  }
+
   if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
     $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
   }
