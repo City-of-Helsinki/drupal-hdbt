@@ -166,7 +166,7 @@ module.exports = (env, argv) => {
         'icons/sprite.svg',
         'icons.json'
       ),
-      new FriendlyErrorsWebpackPlugin(),
+      new FriendlyErrorsWebpackPlugin({clearConsole: false}),
       new RemoveEmptyScriptsPlugin(),
       new CopyPlugin({
         'patterns': [
