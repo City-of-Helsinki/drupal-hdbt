@@ -1,25 +1,18 @@
 import { useAtomValue} from 'jotai';
 import { eventsPublicUrl } from '../store';
-
+import ExternalLink from '../../../common/ExternalLink';
 
 function SeeAllButton() {
-  const eventsUrl = useAtomValue(eventsPublicUrl);
+  const eventsUrl = useAtomValue(eventsPublicUrl) || '';
 
   return (
     <div className="event-list__see-all-button">
-      <a
+      <ExternalLink
+        data-hds-component="button"
+        data-hds-variant="secondary"
         href={eventsUrl}
-        className="hds-button hds-button--link hds-button--secondary"
-        data-is-external="true"
-      >
-        <span className="hds-button__label">{Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })}</span>
-        <span className="link__type link__type--external" aria-label={`(${Drupal.t(
-            'Link leads to external service',
-            {},
-            { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' }
-          )})`}>
-        </span>
-      </a>
+        title={Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })} />
+      <ExternalLink href={eventsUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
     </div>
   );
 }
