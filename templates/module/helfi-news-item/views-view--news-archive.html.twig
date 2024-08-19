@@ -9,6 +9,7 @@
 {% else %}
   {% set results_term_plural_value = ' ' ~ 'items'|t({}, {'context' : 'News archive fallback count plural'}) %}
 {% endif %}
+
 <div class="unit-search__results">
   <h3 class="unit-search__count-container">
     {%- if total_rows -%}
