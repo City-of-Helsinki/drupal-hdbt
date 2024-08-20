@@ -33,6 +33,7 @@ $item-gap: $spacing-half;
 
   picture,
   img {
+    aspect-ratio: 1.5;
     background-color: $color-black-5;
     display: block;
     height: auto;
