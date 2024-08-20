@@ -43,12 +43,17 @@ const ResultCard = ({
   };
 
   const getImage = () => {
+    if (!main_image_url || !main_image_url.length || !main_image_url[0]) {
+      return undefined; // No image to display
+    }
+
     let imageUrls: ImageUrls = {};
 
     try {
       imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
     } catch (e) {
       console.error('Failed to parse main_image_url', e);
+      return undefined; // Return undefined if parsing fails
     }
 
     const sources = [
@@ -79,11 +84,15 @@ const ResultCard = ({
       },
     ];
 
+    if (!imageUrls['1248']) {
+      return undefined; // Return undefined if there's no primary image to display
+    }
+
     return (
       <CardPicture
         alt={getAlt()}
         photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
-        src={imageUrls['1248'] || ''}
+        src={imageUrls['1248']}
         sources={sources}
       />
     );
