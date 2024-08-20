@@ -30,12 +30,17 @@ const ResultCard = ({
   imageAlt = field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
 
   const getImage = () => {
+    if (!imageUrl || !imageUrl.length || !imageUrl[0]) {
+      return undefined; // No image to display
+    }
+
     let imageUrls: ImageUrls = {};
 
     try {
       imageUrls = JSON.parse(imageUrl);
     } catch (e) {
       console.error('Failed to parse imageUrl', e);
+      return undefined; // Return undefined if parsing fails
     }
 
     const sources = [
@@ -65,6 +70,10 @@ const ResultCard = ({
         type: 'image/jpeg'
       },
     ];
+
+    if (!imageUrls['1248']) {
+      return undefined; // Return undefined if there's no primary image to display
+    }
 
     return (
       <CardPicture
