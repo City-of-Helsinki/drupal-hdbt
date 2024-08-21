@@ -58,6 +58,7 @@ const ResultCard = ({
       title={imageOverride.title}
     />;
   }
+
   else if (picture_url?.[0]) {
     cardImage = <CardImage src={picture_url?.[0]} />;
   }
