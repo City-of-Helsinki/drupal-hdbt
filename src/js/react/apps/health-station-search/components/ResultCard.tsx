@@ -62,6 +62,10 @@ const ResultCard = ({
     cardImage = <CardImage src={picture_url?.[0]} />;
   }
 
+  else {
+    cardImage = undefined; // No image to display
+  }
+
   return (
     <CardItem
       cardImage={cardImage}
