@@ -70,7 +70,6 @@ const ResultCard = ({
   return (
     <CardItem
       cardImage={cardImage}
-      cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       location={address?.[0]}

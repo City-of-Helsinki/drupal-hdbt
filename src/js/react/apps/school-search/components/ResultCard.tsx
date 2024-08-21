@@ -105,7 +105,6 @@ const ResultCard = ({
       cardDescription={summary_processed?.[0]}
       cardDescriptionHtml
       cardImage={cardImage}
-      cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       language={bilingualEducation && bilingualEducation.length ? `${language}, ${bilingualEducation.join(', ')}` : language}
