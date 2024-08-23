@@ -205,7 +205,7 @@ function hdbt_get_global_url(string $langcode): array {
       'decisions_link_url' => 'https://www.hel.fi/fi/hae-paatoksia',
       'helfi_search_form_url' => 'https://www.hel.fi/haku',
       'error_page_home_link' => 'https://www.hel.fi/fi',
-      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute',
+      'error_page_feedback_link' => 'https://palautteet.hel.fi/fi/',
     ];
   }
   elseif ($langcode == 'sv') {
@@ -214,7 +214,7 @@ function hdbt_get_global_url(string $langcode): array {
       'decisions_link_url' => 'https://www.hel.fi/sv/sok-beslut',
       'helfi_search_form_url' => 'https://www.hel.fi/sok',
       'error_page_home_link' => 'https://www.hel.fi/sv',
-      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback',
+      'error_page_feedback_link' => 'https://palautteet.hel.fi/sv/',
     ];
   }
   else {
@@ -223,7 +223,7 @@ function hdbt_get_global_url(string $langcode): array {
       'decisions_link_url' => 'https://www.hel.fi/en/search-decisions',
       'helfi_search_form_url' => 'https://www.hel.fi/search',
       'error_page_home_link' => 'https://www.hel.fi/en',
-      'error_page_feedback_link' => 'https://www.hel.fi/helsinki/en/administration/participate/feedback',
+      'error_page_feedback_link' => 'https://palautteet.hel.fi/en/',
     ];
   }
   return $urls;
@@ -475,9 +475,9 @@ function hdbt_preprocess_feed_icon(&$variables): void {
     return;
   }
 
-  $variables['title'] = match(strtolower($variables['title'])) {
-    'news', 'nyheter', 'uutiset' => t('all news', [], ['context' => 'Feed icon altered title'])
-  };
+  if (in_array(strtolower($variables['title']), ['news', 'nyheter', 'uutiset'])) {
+    $variables['title'] = t('all news', [], ['context' => 'Feed icon altered title']);
+  }
 }
 
 /**
