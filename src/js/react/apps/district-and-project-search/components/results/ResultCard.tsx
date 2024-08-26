@@ -43,43 +43,10 @@ const ResultCard = ({
       return undefined; // Return undefined if parsing fails
     }
 
-    const sources = [
-      {
-        srcSet: `${imageUrls['1248'] || ''} 1x, ${imageUrls['1248_2x'] || ''} 2x`,
-        media: 'all and (min-width: 1248px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageUrls['992'] || ''} 1x, ${imageUrls['992_2x'] || ''} 2x`,
-        media: 'all and (min-width: 992px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageUrls['768'] || ''} 1x, ${imageUrls['768_2x'] || ''} 2x`,
-        media: 'all and (min-width: 768px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageUrls['576'] || ''} 1x, ${imageUrls['575_2x'] || ''} 2x`,
-        media: 'all and (min-width: 576px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageUrls['320'] || ''} 1x, ${imageUrls['320_2x'] || ''} 2x`,
-        media: 'all and (min-width: 320px)',
-        type: 'image/jpeg'
-      },
-    ];
-
-    if (!imageUrls['1248']) {
-      return undefined; // Return undefined if there's no primary image to display
-    }
-
     return (
       <CardPicture
         alt={imageAlt}
-        src={imageUrls['1248'] || ''}
-        sources={sources}
+        imageUrls={imageUrls}
       />
     );
   };

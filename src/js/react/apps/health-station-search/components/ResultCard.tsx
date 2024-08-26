@@ -22,39 +22,8 @@ const ResultCard = ({
   let cardImage;
 
   if (imageOverride) {
-    const sources = [
-      {
-        srcSet: `${imageOverride.variants['1248']} 1x, ${imageOverride.variants['1248_2x']} 2x`,
-        media: 'all and (min-width: 1248px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageOverride.variants['992']} 1x, ${imageOverride.variants['992_2x']} 2x`,
-        media: 'all and (min-width: 992px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageOverride.variants['768']} 1x, ${imageOverride.variants['768_2x']} 2x`,
-        media: 'all and (min-width: 768px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageOverride.variants['576']} 1x, ${imageOverride.variants['575_2x']} 2x`,
-        media: 'all and (min-width: 576px)',
-        type: 'image/jpeg'
-      },
-      {
-        srcSet: `${imageOverride.variants['320']} 1x, ${imageOverride.variants['320_2x']} 2x`,
-        media: 'all and (min-width: 320px)',
-        type: 'image/jpeg'
-      },
-    ];
-
     cardImage = <CardPicture
-      alt={imageOverride.alt}
-      photographer={imageOverride.photographer}
-      src={imageOverride.variants['1248']}
-      sources={sources}
+      imageOverride={imageOverride}
       title={imageOverride.title}
     />;
   }
