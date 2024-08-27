@@ -3,7 +3,7 @@ import { SyntheticEvent, createRef } from 'react';
 
 import Pagination from '@/react/common/Pagination';
 import ResultWrapper from '@/react/common/ResultWrapper';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useFocusAriaLive from '@/react/common/hooks/useFocusAriaLive';
 import ResultsError from '@/react/common/ResultsError';
 import URLParams from '../types/URLParams';
 import { urlAtom , configurationsAtom, pageAtom, setPageAtom } from '../store';
@@ -25,9 +25,9 @@ const SimpleResultsContainer = () => {
   const currentPage = useAtomValue(pageAtom);
   const scrollTarget = createRef<HTMLDivElement>();
 
-  // Scroll to results when they change.
+  // Announce results when they change.
   const choices = Boolean(Object.keys(urlParams).length);
-  useScrollToResults(scrollTarget, choices);
+  useFocusAriaLive(scrollTarget, choices);
 
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
