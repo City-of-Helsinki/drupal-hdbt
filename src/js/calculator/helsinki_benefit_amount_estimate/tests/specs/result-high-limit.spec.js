@@ -31,12 +31,12 @@ test('[Business] Fill in form and check correct calculations as business (high)'
   await page.getByText(translations.label_company_type_business.fi, {exact: true}).click({force: true});
 
   // With no pay subsidy (assuming state aid is 100%)
-  await page.getByText(translations.common_no.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_false.fi, {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.BUSINESS_ACTIVITIES.NONE);
 
   // With pay subsidy at 50% (state aid is 50%)
-  await page.getByText(translations.common_yes.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_true.fi, {exact: true}).click();
   await page.getByText(translations.label_pay_subsidy_percentage_1.fi.replace(replaceValue, PAY_SUBSIDY_PERCENTAGES[0]), {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.BUSINESS_ACTIVITIES['50']);
@@ -52,12 +52,12 @@ test('[Association: business] Fill in form and check correct calculations as ass
   await page.getByText(translations.label_association_has_business_activities.fi, {exact: true}).click();
   
   // With no pay subsidy (assuming state aid is 100%)
-  await page.getByText(translations.common_no.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_false.fi, {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.BUSINESS_ACTIVITIES.NONE);
 
   // With pay subsidy at 50% (state aid is 50%)
-  await page.getByText(translations.common_yes.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_true.fi, {exact: true}).click();
   await page.getByText(translations.label_pay_subsidy_percentage_1.fi.replace(replaceValue,  PAY_SUBSIDY_PERCENTAGES[0]), {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.BUSINESS_ACTIVITIES['50']);
@@ -72,12 +72,12 @@ test('[Association] Fill in form and check correct calculations as association (
   await page.getByText(translations.label_company_type_association.fi, {exact: true}).click();
 
   // With no pay subsidy (state aid is 100%)
-  await page.getByText(translations.common_no.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_false.fi, {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.ASSOCIATION.NONE);
   
   // With pay subsidy at 50% (state aid is 50%)
-  await page.getByText(translations.common_yes.fi, {exact: true}).click();
+  await page.getByText(translations.label_pay_subsidy_true.fi, {exact: true}).click();
   await page.getByText(translations.label_pay_subsidy_percentage_1.fi.replace(replaceValue,  PAY_SUBSIDY_PERCENTAGES[0]), {exact: true}).click();
   await page.getByRole('button', { name: 'Laske arvio' }).click({force: true});
   expect(await page.locator(resultSelector).textContent()).toBe(EXPECTED_RESULT.ASSOCIATION['50']);

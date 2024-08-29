@@ -1,16 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 
 const translations = {
-  common_no: {
-    fi: 'Ei',
-    sv: '',
-    en: '',
-  },
-  common_yes: {
-    fi: 'Kyllä',
-    sv: '',
-    en: '',
-  },
   heading_employer: {
     fi: 'Työnantajan tiedot',
     sv: '',
@@ -32,22 +22,22 @@ const translations = {
     en: '',
   },
   label_company_type: {
-    fi: 'Työnantaja on',
+    fi: 'Työnantajan muoto',
     sv: '',
     en: '',
   },
   label_company_type_business: {
-    fi: 'Yritys',
+    fi: 'Työnantaja on yritys',
     sv: '',
     en: '',
   },
   label_company_type_association: {
-    fi: 'Yhteisö',
+    fi: 'Työnantaja on yhteisö',
     sv: '',
     en: '',
   },
   label_association_has_business_activities: {
-    fi: 'Harjoittaako yhteisö taloudellista toimintaa?',
+    fi: 'Yhteisö harjoittaa taloudellista toimintaa',
     sv: '',
     en: '',
   },
@@ -62,7 +52,7 @@ const translations = {
     en: '',
   },
   monthly_pay_helper_text: {
-    fi: 'Euroa kuukaudessa. Arvioi bruttopalkan suuruus työsuhteeseen, johon Helsinki-lisää haetaan.',
+    fi: 'Euroa kuukaudessa. Arvioi bruttopalkan suuruus työsuhteeseen, johon Helsinki-lisää haetaan.',
     sv: '',
     en: '',
   },
@@ -72,27 +62,37 @@ const translations = {
     en: '',
   },
   vacation_money_helper_text: {
-    fi: 'Euroa kuukaudessa. Jos jätät kentän tyhjäksi, niin lomaraha jätetään huomioimatta laskelmassa.',
+    fi: 'Euroa kuukaudessa. Jos jätät kentän tyhjäksi, niin lomaraha jätetään huomioimatta laskelmassa.',
     sv: '',
     en: '',
   },
   label_pay_subsidy_granted: {
-    fi: 'Onko työsuhteeseen myönnetty tai haettu palkkatukea tai 55 vuotta täyttäneiden työllistämistukea?',
+    fi: 'Työsuhteeseen myönnetyt tai haetut muut tuet, kuten palkkatuki',
+    sv: '',
+    en: '',
+  },
+  label_pay_subsidy_false: {
+    fi: 'Työsuhteeseen ei ole myönnetty tai haettu muuta tukea',
+    sv: '',
+    en: '',
+  },
+  label_pay_subsidy_true: {
+    fi: 'Palkkatuki tai 55 vuotta täyttäneiden työllistämistuki',
     sv: '',
     en: '',
   },
   label_pay_subsidy_percentage: {
-    fi: 'Mikä on palkkatuen prosentti tai myöntämisperuste?',
+    fi: 'Palkkatuen prosentti tai myöntämisperuste',
     sv: '',
     en: '',
   },
   label_pay_subsidy_percentage_1: {
-    fi: 'Tuki kattaa ${value} % palkkauskustannuksista (tuen perusteena ammatillisen osaamisen parantaminen)',
+    fi: 'Tuki kattaa ${value} % palkkauskustannuksista (tuen perusteena ammatillisen osaamisen parantaminen)',
     sv: '',
     en: '',
   },
   label_pay_subsidy_percentage_2: {
-    fi: 'Tuki kattaa ${value} % palkkauskustannuksista (tuen perusteena alentunut työkyky tai 55 vuotta täyttäneiden työllistämistuki)',
+    fi: 'Tuki kattaa ${value} % palkkauskustannuksista (tuen perusteena alentunut työkyky tai 55 vuotta täyttäneiden työllistämistuki)',
     sv: '',
     en: '',
   },
@@ -117,7 +117,7 @@ const translations = {
     en: '',
   },
   total_explanation: {
-    fi: 'Arvio tuen määrästä on suuntaa antava eikä se takaa lopullista tuen määrää. Helsinki-lisää myönnetään työsuhteen ajaksi, kuitenkin enintään 12 kuukaudeksi. Tuen myöntäminen edellyttää, että työllistettävälle on myönnetty Helsinki-lisä-kortti, palkkatukea tai 55 vuotta täyttäneiden työllistämistukea.',
+    fi: 'Arvio tuen määrästä on suuntaa antava eikä se takaa lopullista tuen määrää. Helsinki-lisää myönnetään työsuhteen ajaksi, kuitenkin enintään 12 kuukaudeksi. Tuen myöntäminen edellyttää, että työllistettävälle on myönnetty Helsinki-lisä-kortti, palkkatukea tai 55 vuotta täyttäneiden työllistämistukea.',
     sv: '',
     en: '',
   },
@@ -132,22 +132,22 @@ const translations = {
     en: '',
   },
   subtotal_details_1: {
-    fi: 'Työllistettävän bruttopalkka: ${value} euroa kuukaudessa.',
+    fi: 'Työllistettävän bruttopalkka: ${value} euroa kuukaudessa.',
     sv: '',
     en: '',
   },
   subtotal_details_2: {
-    fi: 'Lomaraha: ${value} euroa kuukaudessa.',
+    fi: 'Lomaraha: ${value} euroa kuukaudessa.',
     sv: '',
     en: '',
   },
   subtotal_details_3: {
-    fi: 'Sivukulut: ${value} euroa bruttopalkasta. Arviossa on käytetty keskimääräistä arviota sivukuluista.',
+    fi: 'Sivukulut: ${value} euroa bruttopalkasta. Arviossa on käytetty keskimääräistä arviota sivukuluista.',
     sv: '',
     en: '',
   },
   subtotal_details_4: {
-    fi: 'Työsuhteeseen on myönnetty palkkatuki, joka kattaa ${value} % palkkakustannuksista.',
+    fi: 'Työsuhteeseen on myönnetty palkkatuki, joka kattaa ${value} % palkkakustannuksista.',
     sv: '',
     en: '',
   },
@@ -162,7 +162,7 @@ const translations = {
     en: '',
   },
   additional_details_text_2: {
-    fi: 'Laskuri ei tue tapausta, jossa palkkatuen määrä on 100 prosenttia työntekijän palkkakustannuksista 65 prosentin työajalla.',
+    fi: 'Laskuri ei tue tapausta, jossa palkkatuen määrä on 100 prosenttia työntekijän palkkakustannuksista 65 prosentin työajalla.',
     sv: '',
     en: '',
   },

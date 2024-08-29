@@ -118,13 +118,13 @@ function getFormData(id, t, config) {
             {
               name: 'pay_subsidy_granted',
               item_id: 'pay_subsidy_granted_false',
-              label: t('common_no'),
+              label: t('label_pay_subsidy_false'),
               value: 'pay_subsidy_granted_false',
             },
             {
               name: 'pay_subsidy_granted',
               item_id: 'pay_subsidy_granted_true',
-              label: t('common_yes'),
+              label: t('label_pay_subsidy_true'),
               value: 'pay_subsidy_granted_true',
             },
           ]
