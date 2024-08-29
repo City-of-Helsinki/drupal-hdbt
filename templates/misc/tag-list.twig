@@ -1,3 +1,10 @@
+{% set element = 'section' %}
+{% set role = '' %}
+{% if inside_card %}
+  {% set element = 'div' %}
+  {% set role = 'role="group"' %}
+{% endif %}
+
 {% if type == 'interactive' %}
   {% set type_class = 'content-tags__tags--interactive' %}
 {% else %}
@@ -6,7 +13,7 @@
 
 {% set content_tags_id = 'hdbt-content_tags_id-' ~ random() %}
 
-<section class="content-tags {{ tag_container_class }}"  aria-labelledby="{{ content_tags_id }}">
+<{{element}} {{role}} class="content-tags {{ tag_container_class }}"  aria-labelledby="{{ content_tags_id }}">
   <span id="{{ content_tags_id }}" class="is-hidden" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
     {{ 'Tags'|t({}, {'context': 'Label for screen reader software users explaining that this is a list of tags related to this page.'}) }}
   </span>
@@ -20,4 +27,4 @@
       {% endfor %}
     {% endblock %}
   </ul>
-</section>
+</{{element}}>

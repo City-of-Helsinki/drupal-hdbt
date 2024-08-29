@@ -100,7 +100,7 @@ function CardItem({
         </HeadingTag>
         {cardCategoryTag &&
           <div className="card__category">
-            <Tags tags={[cardCategoryTag]} />
+            <Tags tags={[cardCategoryTag]} insideCard />
           </div>
         }
 
@@ -156,7 +156,7 @@ function CardItem({
 
         {cardTags && cardTags.length > 0 &&
           <div className="card__tags">
-            <Tags tags={cardTags} langAttribute={langAttribute} />
+            <Tags tags={cardTags} langAttribute={langAttribute} insideCard />
           </div>
         }
       </div>

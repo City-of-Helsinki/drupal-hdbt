@@ -99,7 +99,7 @@
 
     {% if card_tags %}
       <div class="card__tags">
-        {% embed '@hdbt/misc/tag-list.twig' with { tags: card_tags, addSpan: true, tag_container_class: ' content-tags--card' } %}
+        {% embed '@hdbt/misc/tag-list.twig' with { tags: card_tags, addSpan: true, tag_container_class: ' content-tags--card', inside_card: true } %}
         {% endembed %}
       </div>
     {% endif %}
