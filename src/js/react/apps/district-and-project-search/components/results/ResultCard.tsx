@@ -1,7 +1,12 @@
+import CardItem from '@/react/common/Card';
+import CardPicture from '@/react/common/CardPicture';
 import Result from '../../types/Result';
 import { capitalize } from '../../helpers/helpers';
-import CardItem from '@/react/common/Card';
 import TagType from '../../types/TagType';
+
+type ImageUrls = {
+  [key: string]: string;
+};
 
 const ResultCard = ({
   content_type,
@@ -9,12 +14,8 @@ const ResultCard = ({
   url,
   project_image_absolute_url,
   field_project_image_alt,
-  field_project_image_width,
-  field_project_image_height,
   district_image_absolute_url,
   field_district_image_alt,
-  field_district_image_width,
-  field_district_image_height,
   project_execution_schedule,
   project_plan_schedule,
   field_project_district_title_for_ui,
@@ -27,19 +28,28 @@ const ResultCard = ({
   imageUrl = district_image_absolute_url ? district_image_absolute_url[0] : imageUrl;
   let imageAlt = field_project_image_alt && field_project_image_alt?.[0] !== '""' ? field_project_image_alt[0] : '';
   imageAlt = field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
-  let imageWidth = field_project_image_width ? field_project_image_width[0] : null;
-  imageWidth = field_district_image_width ? field_district_image_width[0] : imageWidth;
-  let imageHeight = field_project_image_height ? field_project_image_height[0] : null;
-  imageHeight = field_district_image_height ? field_district_image_height[0] : imageHeight;
 
-  const cardImage = imageUrl ? (
-    // eslint-disable-next-line react/no-unknown-property
-    <img src={imageUrl} alt={imageAlt} {...imageWidth && { 'width': imageWidth }} {...imageHeight && { 'height': imageHeight }} loading="lazy" typeof="foaf:Image" />
-  ) : (
-    <div className="image-placeholder">
-      <span className="hel-icon hel-icon--home-smoke"></span>
-    </div>
-  );
+  const getImage = () => {
+    if (!imageUrl || !imageUrl.length || !imageUrl[0]) {
+      return undefined; // No image to display
+    }
+
+    let imageUrls: ImageUrls = {};
+
+    try {
+      imageUrls = JSON.parse(imageUrl);
+    } catch (e) {
+      console.error('Failed to parse imageUrl', e);
+      return undefined; // Return undefined if parsing fails
+    }
+
+    return (
+      <CardPicture
+        alt={imageAlt}
+        imageUrls={imageUrls}
+      />
+    );
+  };
 
   const isProject = content_type[0] === 'project';
   const cardModifierClass = isProject ? 'card--project' : 'card--district';
@@ -104,7 +114,7 @@ const ResultCard = ({
   return (
     <CardItem
       cardModifierClass={cardModifierClass}
-      cardImage={cardImage}
+      cardImage={getImage()}
       cardTitle={title_for_ui[0]}
       cardUrl={linkUrl}
       cardUrlExternal={!!field_project_external_website}

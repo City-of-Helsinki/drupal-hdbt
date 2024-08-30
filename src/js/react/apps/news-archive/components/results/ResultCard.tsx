@@ -1,6 +1,10 @@
 import CardItem from '@/react/common/Card';
-import CardImage from '@/react/common/CardImage';
+import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
+
+type ImageUrls = {
+  [key: string]: string;
+};
 
 const ResultCard = ({
   alt,
@@ -39,15 +43,24 @@ const ResultCard = ({
   };
 
   const getImage = () => {
-    if (!main_image_url || !main_image_url.length) {
-      return undefined;
+    if (!main_image_url || !main_image_url.length || !main_image_url[0]) {
+      return undefined; // No image to display
+    }
+
+    let imageUrls: ImageUrls = {};
+
+    try {
+      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
+    } catch (e) {
+      console.error('Failed to parse main_image_url', e);
+      return undefined; // Return undefined if parsing fails
     }
 
     return (
-      <CardImage
-        src={main_image_url[0]}
+      <CardPicture
         alt={getAlt()}
-        data-photographer={field_photographer && field_photographer.length ? field_photographer[0] : null}
+        photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
+        imageUrls={imageUrls}
       />
     );
   };

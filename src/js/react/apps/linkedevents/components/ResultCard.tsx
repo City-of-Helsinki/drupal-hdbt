@@ -109,7 +109,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     <CardItem
       cardUrl={url}
       cardTitle={title}
-      cardModifierClass=""
       cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
       cardTags={cardTags}
       cardUrlExternal

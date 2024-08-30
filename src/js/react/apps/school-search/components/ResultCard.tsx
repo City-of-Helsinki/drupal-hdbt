@@ -1,4 +1,5 @@
 import CardItem from '@/react/common/Card';
+import CardPicture from '@/react/common/CardPicture';
 import CardImage from '@/react/common/CardImage';
 import { School } from '../types/School';
 import ontologyDetailsIdsToLang from '../enum/LanguageEducationMap';
@@ -26,15 +27,16 @@ const ResultCard = ({
   let cardImage;
 
   if (imageOverride) {
-   cardImage = <CardImage
-      alt={imageOverride.alt}
-      photographer={imageOverride.photographer}
-      src={imageOverride.url}
+    cardImage = <CardPicture
+      imageOverride={imageOverride}
       title={imageOverride.title}
     />;
   }
   else if (picture_url?.[0]) {
     cardImage = <CardImage src={picture_url?.[0]} />;
+  }
+  else {
+    cardImage = undefined; // No image to display
   }
 
   let language;
@@ -70,7 +72,6 @@ const ResultCard = ({
       cardDescription={summary_processed?.[0]}
       cardDescriptionHtml
       cardImage={cardImage}
-      cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       language={bilingualEducation && bilingualEducation.length ? `${language}, ${bilingualEducation.join(', ')}` : language}

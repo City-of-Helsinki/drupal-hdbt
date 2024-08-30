@@ -14,7 +14,7 @@ const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
 );
 
 export type CardItemProps = {
-  cardModifierClass: string;
+  cardModifierClass?: string;
   cardImage?: string | JSX.Element | JSX.Element[];
   cardTitle: string | JSX.Element;
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 3
@@ -74,7 +74,7 @@ function CardItem({
   languageEducation,
   registrationRequired,
 }: CardItemProps): JSX.Element {
-  const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
+  const cardClass = `card${cardModifierClass ? ` ${cardModifierClass}` : ''}${cardUrlExternal ? ' card--external' : ''}`;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
 
   return (
