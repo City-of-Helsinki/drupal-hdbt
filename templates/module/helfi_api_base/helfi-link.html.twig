@@ -8,8 +8,8 @@
     {% set descriptive_lang = lang_attributes.fallback_lang %}
     {% set descriptive_lang_dir = lang_attributes.fallback_dir %}
   {% else %}
-    {% set descriptive_lang = current_langcode %}
-    {% set descriptive_lang_dir = current_language_dir %}
+    {% set descriptive_lang = language.id %}
+    {% set descriptive_lang_dir = language.direction %}
   {% endif %}
 
   {# Check if we want to render old link icons, the new links with data-hds="button" use pseudo elements instead #}
