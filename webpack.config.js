@@ -166,7 +166,7 @@ module.exports = (env, argv) => {
         'icons/sprite.svg',
         'icons.json'
       ),
-      new FriendlyErrorsWebpackPlugin(),
+      new FriendlyErrorsWebpackPlugin({clearConsole: false}),
       new RemoveEmptyScriptsPlugin(),
       new CopyPlugin({
         'patterns': [
@@ -181,6 +181,14 @@ module.exports = (env, argv) => {
           }, {
             'from': 'node_modules/hyphenopoly/min/patterns/{fi,sv,en-us}.wasm',
             'to': path.resolve(__dirname, 'dist', 'js/hyphenopoly/patterns', '[name][ext]'),
+            'force': true,
+          }, {
+            'from': 'node_modules/focus-trap/dist/focus-trap.umd.min.js',
+            'to': path.resolve(__dirname, 'dist') + '/js/focus-trap/focus-trap.min.js',
+            'force': true,
+          }, {
+            'from': 'node_modules/tabbable/dist/index.umd.min.js',
+            'to': path.resolve(__dirname, 'dist') + '/js/tabbable/tabbable.min.js',
             'force': true,
           }
         ]

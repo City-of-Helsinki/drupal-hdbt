@@ -1297,3 +1297,11 @@ msgstr "Fältet är obligatoriskt: E-postadress"
 msgctxt "Search monitor error submitting"
 msgid "Saving search failed. Please try again."
 msgstr "Sparad sökning misslyckades. Var god att försök igen."
+
+msgctxt "Survey"
+msgid "Respond to the survey"
+msgstr "Delta i enkäten"
+
+msgctxt "Survey"
+msgid "Skip the survey"
+msgstr "Jag deltar inte i enkäten"
