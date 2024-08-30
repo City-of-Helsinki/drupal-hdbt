@@ -27,60 +27,6 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 
 /**
- * Implements hook_preprocess().
- */
-function hdbt_preprocess(&$variables): void {
-  $variables['koro'] = hdbt_get_settings('koro');
-  $variables['theme_color'] = hdbt_get_settings('theme_color');
-  $variables['image_placeholder'] = hdbt_get_settings('default_icon');
-  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-  $variables['current_langcode'] = $language->getId();
-  $variables['current_language'] = $language->getName();
-  $variables['current_language_dir'] = $language->getDirection();
-
-  $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
-  $variables['alternative_language'] = $defaultLanguageResolver->isAltLanguage($language->getId());
-
-  if ($variables['alternative_language']) {
-    $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
-    $variables['lang_attributes']['fallback_lang'] = $attributes['lang'];
-    $variables['lang_attributes']['fallback_dir'] = $attributes['dir'];
-  }
-
-  // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-
-  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
-
-  // Apply override for the theme color.
-  if (!empty($theme_color = hdbt_get_theme_color_override())) {
-    $variables['theme_color'] = $theme_color;
-  }
-
-  // Add helfi-environment name.
-  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
-    try {
-      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
-      $service = \Drupal::service('helfi_api_base.environment_resolver');
-
-      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
-        ->getName();
-    }
-    catch (\InvalidArgumentException) {
-    }
-  }
-
-  // Required for allowing subtheming for HDBT theme.
-  $variables['active_theme'] = $active_theme = \Drupal::theme()->getActiveTheme()->getName();
-  $variables['theme_prefix'] = $active_theme !== 'hdbt' ? $active_theme : '';
-  $variables['theme_path'] = _hdbt_get_theme_path();
-}
-
-/**
  * Retrieve possible theme color palette override.
  */
 function hdbt_get_theme_color_override(): string|FALSE {
@@ -160,15 +106,34 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  if (\Drupal::moduleHandler()->moduleExists('helfi_navigation')) {
-    $variables['#attached']['library'][] = 'hdbt/nav-global';
-  }
-  else {
-    $variables['#attached']['library'][] = 'hdbt/nav-local';
-  }
+  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
+  $variables['#attached']['library'][] = $navigation_enabled ? 'hdbt/nav-global' : 'hdbt/nav-local';
+
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
+
+  // Add helfi-environment as a JS variable.
+  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
+    try {
+      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
+      $service = \Drupal::service('helfi_api_base.environment_resolver');
+
+      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
+        ->getName();
+    }
+    catch (\InvalidArgumentException) {
+    }
+  }
+
+  // Apply override for the theme color.
+  if (!empty($theme_color = hdbt_get_theme_color_override())) {
+    $variables['theme_color'] = $theme_color;
+  }
 }
 
 /**
@@ -250,16 +215,18 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  foreach (hdbt_get_global_url($variables['current_langcode']) as $key => $value) {
+  foreach (hdbt_get_global_url($variables['language']->getId()) as $key => $value) {
     $variables[$key] = $value;
   }
+
+  // Toggle between global and local navigation in twig templates.
+  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = $navigation_enabled;
 
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  if ($variables['use_global_navigation']) {
-    $variables['use_search_block'] = TRUE;
-  }
+  $variables['use_search_block'] = $navigation_enabled;
 
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
@@ -273,7 +240,8 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['use_profile_block'] = TRUE;
   }
 
-  // Set theme path variable.
+  // Set active theme and theme path variables.
+  $variables['active_theme'] = \Drupal::theme()->getActiveTheme()->getName();
   $variables['theme_path'] = _hdbt_get_theme_path();
 
   // Add the figcaption source order handler JS to current page.
@@ -289,7 +257,7 @@ function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
-  // Add current langcode for easy access.
+  // Add current node langcode for easy access.
   $variables['node_langcode'] = $node->get('langcode')->value;
 
   // Add current node Url to variable.
@@ -368,8 +336,8 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
       // Get translated photographer text if available.
-      if ($entity->{$image}->entity->hasTranslation($variables['current_langcode'])) {
-        $photographer = $entity->{$image}->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+      if ($entity->{$image}->entity->hasTranslation($variables['language']->getId())) {
+        $photographer = $entity->{$image}->entity->getTranslation($variables['language']->getId())->field_photographer->value;
       }
       else {
         $photographer = $entity->{$image}->entity->field_photographer->value;
@@ -522,6 +490,10 @@ function hdbt_preprocess_input__submit(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_menu(&$variables): void {
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
   // Menu, mobile menu, fallback menu and sidebar menu tree depth.
   // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
   $menu_depth = 5;
@@ -621,6 +593,10 @@ function hdbt_preprocess_block(&$variables): void {
     }
   }
 
+  // Toggle between global and local navigation in twig templates.
+  $variables['use_global_navigation'] = \Drupal::moduleHandler()
+    ->moduleExists('helfi_navigation');
+
   // Handle Sidebar menu block.
   if (
     $variables['base_plugin_id'] === 'menu_block_current_language' &&
@@ -673,7 +649,9 @@ function hdbt_preprocess_block(&$variables): void {
             ->getStorage($entity_type)
             ->load($params[$entity_type]);
 
-          $node = $node->hasTranslation($variables['current_langcode']) ? $node->getTranslation($variables['current_langcode']) : $node;
+          $node = $node->hasTranslation($variables['language']->getId())
+            ? $node->getTranslation($variables['language']->getId())
+            : $node;
           $menu_link_title = $node->getTitle();
           $menu_link_url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
         }
@@ -810,8 +788,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $paragraph->hasField('field_hero_design') &&
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
-
-    $search_urls = hdbt_get_global_url($variables['current_langcode']);
+    $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
   }
 }
@@ -844,10 +821,9 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 
   // Add the photographer to the image caption.
   if ($paragraph->hasField('field_liftup_with_image_image')) {
-
     // Get translated photographer text if available.
-    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($variables['current_langcode'])) {
-      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($variables['current_langcode'])->field_photographer->value;
+    if ($paragraph->field_liftup_with_image_image->entity->hasTranslation($variables['language']->getId())) {
+      $photographer = $paragraph->field_liftup_with_image_image->entity->getTranslation($variables['language']->getId())->field_photographer->value;
     }
     else {
       $photographer = $paragraph->field_liftup_with_image_image->entity->field_photographer->value;
@@ -934,6 +910,13 @@ function hdbt_preprocess_paragraph__chart(&$variables) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__type().
+ */
+function hdbt_preprocess_paragraph__calculator(&$variables) {
+  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**
@@ -1086,7 +1069,7 @@ function _hdbt_set_site_information(array &$variables) {
   static $values = [];
 
   if (!$values) {
-    $language_id = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $language_id = $variables['language']->getId();
 
     // Set site_name as variable.
     $site_config = \Drupal::config('system.site');
@@ -1157,8 +1140,8 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
     // Make sure we load the correct file translation, otherwise
     // hdbt_preprocess_responsive_image_formatter() will receive an empty
     // 'altered_image_style' value for translated media entities.
-    if ($file->hasTranslation($variables['current_langcode'])) {
-      $file = $file->getTranslation($variables['current_langcode']);
+    if ($file->hasTranslation($variables['language']->getId())) {
+      $file = $file->getTranslation($variables['language']->getId());
     }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
@@ -1386,6 +1369,7 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   if (!isset($variables['entity']) || !$variables['entity'] instanceof Unit) {
     return;
   }
+
   $entity = $variables['entity'];
 
   // Add unit publish state to variable.
@@ -1556,7 +1540,7 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
   // This same preprocess needs to be done separately for maintenance page.
   // We check what language is set and provide links to homepage and feedback
   // accordingly.
-  switch ($variables['current_langcode']) {
+  switch ($variables['language']->getId()) {
     case 'fi':
       $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
       $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
@@ -1603,13 +1587,15 @@ function hdbt_preprocess_social_media_links(&$variables): void {
           ->__toString();
       }
 
+      /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
+      $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
+
+      $languageManager = \Drupal::languageManager();
+      assert($languageManager instanceof ConfigurableLanguageManagerInterface);
+
       // Add lang and dir attributes if the link text is not translated.
-      if ($key === 'email' && $variables['alternative_language']) {
-        $languageManager = \Drupal::languageManager();
-        assert($languageManager instanceof ConfigurableLanguageManagerInterface);
-        if (!isset($languageManager->getLanguageConfigOverride($variables['current_langcode'], 'social_media.settings')->get('social_media')['email']['text'])) {
-          /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
-          $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
+      if ($key === 'email' && $defaultLanguageResolver->isAltLanguage($variables['language']->getId())) {
+        if (!isset($languageManager->getLanguageConfigOverride($variables['language']->getId(), 'social_media.settings')->get('social_media')['email']['text'])) {
           $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
           $element['attr']['lang'] = $attributes['lang'];
           $element['attr']['dir'] = $attributes['dir'];
