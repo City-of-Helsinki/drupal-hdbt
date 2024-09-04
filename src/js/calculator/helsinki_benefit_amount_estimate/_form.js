@@ -45,7 +45,7 @@ function getFormData(id, t, config) {
               checkbox: {
                 id: 'association_has_business_activities',
                 label: t('label_association_has_business_activities'),
-                helper_text: t('association_has_business_activities_text'),
+                helper_text: t('helper_text_association_has_business_activities'),
 
               },
             },
@@ -68,7 +68,7 @@ function getFormData(id, t, config) {
           size: 12,
           required: true,
           strip: '[€eE ]',
-          helper_text: t('monthly_pay_helper_text'),
+          helper_text: t('helper_text_monthly_pay'),
           // value: 2000, // TODO: remove after debug
         },
       },
@@ -82,7 +82,7 @@ function getFormData(id, t, config) {
           size: 12,
           required: false,
           strip: '[€eE ]',
-          helper_text: t('vacation_money_helper_text'),
+          helper_text: t('helper_text_vacation_money'),
           // value: 40, // TODO: remove after debug
         },
       },
