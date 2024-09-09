@@ -4,6 +4,7 @@ import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 import Tags from './Tags';
 import Icon from './Icon';
+import ExternalLink from '@/react/common/ExternalLink';
 
 const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
   <div className="card__meta">
@@ -87,16 +88,11 @@ function CardItem({
 
       <div className="card__text">
         <HeadingTag className="card__title">
-          <a href={cardUrl} className="card__link" {...cardUrlExternal && { 'data-is-external': 'true' }} rel="bookmark">
-            <span>{ cardTitle }</span>
-            {cardUrlExternal &&
-              <span className="link__type link__type--external" aria-label={`(${Drupal.t(
-                'Link leads to external service',
-                {},
-                { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' },
-              )})`} />
-            }
-          </a>
+          {!cardUrlExternal ? (
+            <a href={cardUrl} className="card__link" rel="bookmark">{ cardTitle }</a>
+          ) : (
+            <ExternalLink href={cardUrl} title={cardTitle} className="card__link" rel="bookmark" />
+          )}
         </HeadingTag>
         {cardCategoryTag &&
           <div className="card__category">

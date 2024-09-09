@@ -4,9 +4,20 @@ type ExternalLinkProps = {
   title: string | JSX.Element;
   'data-hds-component'?: string;
   'data-hds-variant'?: string;
+  rel?: string;
 };
 
-const ExternalLink = ({ href, title, 'data-hds-component': dataHdsComponent, 'data-hds-variant': dataHdsVariant }: ExternalLinkProps) => {
+const ExternalLink = (
+  {
+    href,
+    title,
+    className,
+    'data-hds-component': dataHdsComponent,
+    'data-hds-variant': dataHdsVariant,
+    rel,
+  }: ExternalLinkProps
+) =>
+{
   const dataAttributes = {
     ...(dataHdsComponent && { 'data-hds-component': dataHdsComponent }),
     ...(dataHdsVariant && { 'data-hds-variant': dataHdsVariant }),
@@ -15,8 +26,10 @@ const ExternalLink = ({ href, title, 'data-hds-component': dataHdsComponent, 'da
   return (
     <a
       href={href}
+      className={className}
       data-is-external='true'
       {...dataAttributes}
+      rel={rel}
     >
       {title}
 
