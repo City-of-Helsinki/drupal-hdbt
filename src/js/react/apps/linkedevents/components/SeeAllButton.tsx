@@ -12,7 +12,6 @@ function SeeAllButton() {
         data-hds-variant="secondary"
         href={eventsUrl}
         title={Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })} />
-      <ExternalLink href={eventsUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
     </div>
   );
 }
