@@ -243,6 +243,7 @@ hyphenopoly-loader:
   header: true
   js:
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
+      minified: true,
       preprocess: false
     }
 
