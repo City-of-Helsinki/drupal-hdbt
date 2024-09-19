@@ -133,7 +133,6 @@ closable_surveys:
 
 tabbable:
   version: 6.2.0
-  header: true
   js:
     dist/js/tabbable/tabbable.min.js: {
       minified: true
@@ -141,7 +140,6 @@ tabbable:
 
 focus-trap:
   version: 7.5.4
-  header: true
   js:
     dist/js/focus-trap/focus-trap.min.js: {
       minified: true
