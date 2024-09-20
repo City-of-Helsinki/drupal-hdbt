@@ -5,7 +5,7 @@ import React, { createRef, useEffect } from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
-import { urlAtom } from '../store';
+import { urlAtom, monitorSubmittedAtom } from '../store';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 // Define new atom for scroll state
@@ -18,7 +18,7 @@ const SearchMonitorContainer = () => {
   // Form validation states
   const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
   const [email, setEmail] = useAtom(emailAtom);
-  const [submitted, setSubmitted] = useAtom(submittedAtom);
+  const [submitted, setSubmitted] = useAtom(monitorSubmittedAtom);
   const [errorMessage, seterrorMessage] = useAtom(errorAtom);
   const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
 
@@ -269,7 +269,6 @@ const SearchMonitorContainer = () => {
 
 const emailAtom = atom('');
 const receiveNewsletterAtom = atom(false);
-const submittedAtom = atom(false);
 const isFormVisibleAtom = atom(false);
 const errorAtom = atom('');
 

@@ -19,6 +19,7 @@ import {
   languageSelectionAtom,
   languagesAtom,
   summerJobsAtom,
+  monitorSubmittedAtom,
   taskAreasAtom,
   taskAreasSelectionAtom,
   urlUpdateAtom,
@@ -47,6 +48,7 @@ const FormContainer = () => {
   const employmentSearchIdMap = bucketToMap(employmentSearchIds);
   const areaFilterOptions = useAtomValue(areaFilterAtom);
   const [areaFilterSelection, setAreaFilter] = useAtom(areaFilterSelectionAtom);
+  const setSubmitted = useSetAtom(monitorSubmittedAtom);
 
   // Set form control values from url parameters on load
   useEffect(() => {
@@ -83,6 +85,7 @@ const FormContainer = () => {
       summer_jobs: summerJobs,
       youth_summer_jobs: youthSummerJobs,
     });
+    setSubmitted(false);
   };
 
   const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) => setKeyword(value);
