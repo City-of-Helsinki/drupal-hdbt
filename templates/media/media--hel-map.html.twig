@@ -41,34 +41,36 @@
 {% set after_map_id = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
 {% set before_map_id = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
 
-{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
-  media_url: media_url,
-  media_id: media.id,
-  media_iframe_title: iframe_title,
-  media_service_url: map_service_url,
-  privacy_policy_url: privacy_policy_url,
-} %}
+{% if media_url %}
+  {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+    media_url: media_url,
+    media_id: media.id,
+    media_iframe_title: iframe_title,
+    media_service_url: map_service_url,
+    privacy_policy_url: privacy_policy_url,
+  } %}
 
-{% if alternative_language %}
-  {% set link = link|merge({'#attributes': {'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir }}) %}
-{% endif %}
+  {% if alternative_language %}
+    {% set link = link|merge({'#attributes': {'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir }}) %}
+  {% endif %}
 
-{% set drupal_settings = {
-  '#attached': {
-    'drupalSettings': {
-      'embedded_media_attributes': {
-        (media_id): {
-          'src': media_url,
-          'title': media_attributes.value.0['title'],
-          'type': 'map',
-          'skipLinkAfterId' : after_map_id,
-          'skipLinkBeforeId' : before_map_id,
+  {% set drupal_settings = {
+    '#attached': {
+      'drupalSettings': {
+        'embedded_media_attributes': {
+          (media_id): {
+            'src': media_url,
+            'title': media_attributes.value.0['title'],
+            'type': 'map',
+            'skipLinkAfterId' : after_map_id,
+            'skipLinkBeforeId' : before_map_id,
+          }
         }
       }
     }
-  }
-} %}
-{{ drupal_settings }}
-{{ attach_library(media.getJsLibrary()) }}
+  } %}
+  {{ drupal_settings }}
+  {{ attach_library(media.getJsLibrary()) }}
 
-{{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
+  {{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
+{% endif %}
