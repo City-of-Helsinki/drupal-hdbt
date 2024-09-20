@@ -34,6 +34,11 @@
   ]
 } %}
 
+{# Open figure if image_author is set #}
+{% if image_author %}
+  <figure>
+{% endif %}
+
 <div{{ create_attribute(hero_wrapper_attributes) }}>
   {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
     {% block container_content %}
@@ -84,3 +89,20 @@
   {% endif %}
   {% include '@hdbt/misc/koro.twig' with { flip: false } %}
 </div>
+
+{# Add figcaption image_author is set #}
+{% if image_author %}
+  {% embed "@hdbt/misc/container.twig" with {container_element: 'hero__image-author'} %}
+    {% block container_content %}
+      <figcaption class="container hero__image-author">
+        {{ image_author }}
+      </figcaption>
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+
+
+{# Close figure if image_author is set #}
+{% if image_author %}
+  </figure>
+{% endif %}
