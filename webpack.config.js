@@ -29,6 +29,7 @@ const Entries = () => {
     nav_global: ['./src/scss/nav-global.scss'],
     nav_toggle: ['./src/scss/nav-toggle.scss'],
     ckeditor: ['./src/scss/ckeditor.scss'],
+    'cookie-consent': ['./src/scss/cookie-consent.scss'], // Temporary cookie consent compiler
     'color-palette': [
       './src/scss/color-palette.scss'
     ],
