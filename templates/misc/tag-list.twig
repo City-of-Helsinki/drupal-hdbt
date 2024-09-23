@@ -2,7 +2,7 @@
 {% set role = '' %}
 {% if inside_card %}
   {% set element = 'div' %}
-  {% set role = 'role="group"' %}
+  {% set role %}role="group"{% endset %}
 {% endif %}
 
 {% if type == 'interactive' %}
