@@ -94,13 +94,23 @@
 {% if image_author %}
   {% embed "@hdbt/misc/container.twig" with {container_element: 'hero__image-author'} %}
     {% block container_content %}
-      <figcaption class="container hero__image-author">
+      {% set figcaption_attributes = {
+        'class': [
+          'hero__image-author',
+        ]
+      }%}
+      {% if alternative_language %}
+        {% set figcaption_attributes = figcaption_attributes|merge({
+          'dir': lang_attributes.fallback_dir,
+          'lang': lang_attributes.fallback_lang
+        })%}
+      {% endif %}
+      <figcaption {{ create_attribute(figcaption_attributes) }}>
         {{ image_author }}
       </figcaption>
     {% endblock %}
   {% endembed %}
 {% endif %}
-
 
 {# Close figure if image_author is set #}
 {% if image_author %}
