@@ -80,19 +80,18 @@ $koro-height: 50px;
 }
 
 // Hero image author styles.
-.hero--image-author__container {
-  position: relative;
-}
-
 .hero__image-author {
-  position: absolute;
-  right: 0;
-  top: $spacing;
+  // Arrow element width.
+  margin-left: 100px;
+  margin-top: $spacing;
+  text-align: right;
 }
 
 [dir='rtl'] .hero__image-author {
-  left: 0;
-  right: auto;
+  margin-left: 0;
+  // Arrow element width.
+  margin-right: 100px;
+  text-align: left;
 }
 
 // Gray first block styles.
