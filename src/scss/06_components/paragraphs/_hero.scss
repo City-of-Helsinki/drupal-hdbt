@@ -81,16 +81,15 @@ $koro-height: 50px;
 
 // Hero image author styles.
 .hero__image-author {
-  // Arrow element width.
-  margin-left: 100px;
+  --arrow-element-width: 100px;
+  margin-left: var(--arrow-element-width);
   margin-top: $spacing;
-  text-align: end;
+  text-align: right;
 }
 
 [dir='rtl'] .hero__image-author {
   margin-left: 0;
-  // Arrow element width.
-  margin-right: 100px;
+  margin-right: var(--arrow-element-width);
   text-align: left;
 }
 
