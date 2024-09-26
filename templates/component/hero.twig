@@ -68,6 +68,10 @@
             </div>
           {% endif %}
         {% endif %}
+
+        {% if publish_information|render|striptags|trim is not empty %}
+          <div class="hero__publish-information">{{ publish_information }}</div>
+        {% endif %}
       </div>
       <span class="hero__arrow" aria-hidden="true"></span>
     {% endblock %}
