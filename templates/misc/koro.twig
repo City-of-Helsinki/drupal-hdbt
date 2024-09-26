@@ -1,6 +1,4 @@
-{% if not koro %}
-  {% set koro = 'basic' %}
-{% endif %}
+{% set koro = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.koro')|default('basic') %}
 {% set koros = ['basic', 'beat', 'pulse', 'vibration', 'wave', 'calm'] %}
 {% set koro_path = '@hdbt/misc/koros/koro-' ~ koro ~ '.twig' %}
 

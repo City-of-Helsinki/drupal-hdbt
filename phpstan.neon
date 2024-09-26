@@ -9,7 +9,6 @@ parameters:
   excludePaths:
     - vendor
   level: 3
-  checkMissingIterableValueType: false
   treatPhpDocTypesAsCertain: false
   scanFiles:
     - ../../../core/themes/engines/twig/twig.engine

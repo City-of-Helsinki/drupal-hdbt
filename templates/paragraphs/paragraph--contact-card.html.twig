@@ -1,4 +1,3 @@
-{% set contact_image = paragraph.getContactImage() %}
 {% set heading_level = paragraph.getHeadingLevel()|default('h2') %}
 
 {%
@@ -11,8 +10,8 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="{% if contact_image|render %}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
-      {{ contact_image }}
+    <div class="{% if content.field_contact_image|render %}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
+      {{ content.field_contact_image }}
     </div>
     <div class="contact-card__information-container">
     {% if content.field_contact_name|render|striptags|trim %}

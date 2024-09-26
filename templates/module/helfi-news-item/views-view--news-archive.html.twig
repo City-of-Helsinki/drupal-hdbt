@@ -1,0 +1,36 @@
+{% if results_term_singular is not empty %}
+  {% set results_term_singular_value = results_term_singular %}
+{% else %}
+  {% set results_term_singular_value = ' ' ~ 'item'|t({}, {'context' : 'News archive fallback count singular'}) %}
+{% endif %}
+
+{% if results_term_plural is not empty %}
+  {% set results_term_plural_value = results_term_plural %}
+{% else %}
+  {% set results_term_plural_value = ' ' ~ 'items'|t({}, {'context' : 'News archive fallback count plural'}) %}
+{% endif %}
+
+<div class="unit-search__results">
+  <h3 class="unit-search__count-container">
+    {%- if total_rows -%}
+      {{ total_rows }}
+      {% if total_rows == '1' %}
+        {{ results_term_singular_value }}
+      {% else %}
+        {{ results_term_plural_value }}
+      {% endif %}
+    {%- else -%}
+      {{ 'No results'|t({}, {'context' : 'News archive fallback no results title'}) }}
+    {%- endif -%}
+  </h3>
+  {{ rows }}
+  <div class="news-archive__rss-link__container">
+    {{ feed_icons }}
+  </div>
+  {{ pager }}
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+</div>

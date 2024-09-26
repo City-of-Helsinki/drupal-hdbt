@@ -1,0 +1,46 @@
+.component--hdbt-search--ploughing-schedule .component__container {
+  background-color: $color-silver-light;
+}
+
+.components--upper .component--hdbt-search--ploughing-schedule .component__container {
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    padding: $spacing-double;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    margin: 0;
+  }
+}
+
+.component--hdbt-search--ploughing-schedule .hdbt-search--react__form-title {
+  margin-top: 0;
+}
+
+.hdbt-search--ploughing-schedule__submit-button:not(:disabled) {
+  margin-bottom: 0;
+}
+
+.hdbt-search--ploughing-schedule__result-card {
+  border-left: 8px solid $color-gold;
+  margin-top: $spacing-double;
+  padding-bottom: $spacing-three-quarters;
+  padding-left: $spacing-double;
+  padding-right: $spacing-double;
+  padding-top: $spacing-three-quarters;
+
+  &.no-results {
+    border: none;
+  }
+}
+
+.hdbt-search--ploughing-schedule__result-card--title {
+  margin-bottom: $spacing;
+  margin-top: 0;
+}
+
+.layout-main-wrapper > *:last-child .component--react-search--ploughing-schedule:last-child .component__container {
+  margin-bottom: 0;
+  padding-bottom: $spacing-double;
+}

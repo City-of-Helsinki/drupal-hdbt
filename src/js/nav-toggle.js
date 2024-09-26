@@ -85,7 +85,7 @@
     let isOpen = false;
 
     keys.forEach((key) => {
-      if (AllElements[key].isOpen()) {
+      if (AllElements[key].dataset !== undefined && AllElements[key].isOpen()) {
         isOpen = true;
       }
     });

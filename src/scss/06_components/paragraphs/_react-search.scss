@@ -2,10 +2,14 @@
   background-color: $color-silver-light;
 }
 
-// If the event search search is just before footer it needs to function the same way as unit search.
-.layout-main-wrapper > *:last-child .component--react-search:last-child .component__container {
-  margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 115px; // Leave enough room between the last card and footer.
+// If the react search is just before footer it needs to function the same way as unit search.
+.layout-main-wrapper > *:last-child .component--react-search:last-child {
+  padding-bottom: 0;
+
+  .component__container {
+    margin-bottom: -115px; // Enough to get the block under the footer.
+    padding-bottom: 115px; // Leave enough room between the last card and footer.
+  }
 }
 
 .react-search__list-container {
@@ -16,49 +20,21 @@
   margin-bottom: $spacing;
 }
 
-.hdbt-search--react__form-description {
-  margin-bottom: $spacing-and-half;
+.hdbt__loading-wrapper {
+  position: relative;
 }
 
-.hdbt-search--react__form-container {
-  max-width: $content-width-max;
-}
-
-.hdbt-search--react__text-field {
-  margin-bottom: $spacing-double;
-}
-
-// Override some fieldset default styles here
-.hdbt-search--react__fieldset {
-  border: none;
-  margin-bottom: $spacing-double;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-  }
-}
-
-.hdbt-search--react__legend {
-  font-weight: $font-weight-medium;
-  margin-bottom: $spacing;
-}
-
-// Use specific selectors here to override HDS styles
-fieldset .hdbt-search--react__checkbox {
-  --background-selected: var(--hdbt-color-black);
-}
-
-fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
-  margin-top: $spacing-double;
-
-  @include breakpoint($breakpoint-l) {
-    margin-left: $spacing;
-    margin-top: 0;
-  }
+.hdbt__loading-overlay {
+  // Simple white overlay color
+  background: rgba(255, 255, 255, .5);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .hdbt-search--react__result-top-area {
@@ -96,73 +72,4 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
       border-bottom: $spacing-quarter solid $color-black-90;
     }
   }
-}
-
-.component--hdbt-search--ploughing-schedule .component__container {
-  background-color: $color-silver-light;
-}
-
-.components--upper .component--hdbt-search--ploughing-schedule .component__container {
-  margin-left: $spacing;
-  margin-right: $spacing;
-  padding: $spacing-and-half;
-
-  @include breakpoint($breakpoint-m) {
-    margin-left: $spacing-double;
-    margin-right: $spacing-double;
-    padding: $spacing-double;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin: 0;
-  }
-}
-
-.has-sidebar .components--upper .component--hdbt-search--ploughing-schedule {
-  @include breakpoint(max-width $breakpoint-l) {
-    @include component-negative-side-margin;
-  }
-}
-
-.component--hdbt-search--ploughing-schedule .hdbt-search--react__form-title {
-  margin-top: 0;
-}
-
-.hdbt-search--ploughing-schedule__submit-button:not(:disabled) {
-  margin-bottom: 0;
-}
-
-.hdbt-search--ploughing-schedule__result-card {
-  border-left: 8px solid $color-gold;
-  margin-top: $spacing-double;
-  padding-bottom: $spacing-three-quarters;
-  padding-left: $spacing-double;
-  padding-right: $spacing-double;
-  padding-top: $spacing-three-quarters;
-
-  &.no-results {
-    border: none;
-  }
-}
-
-.hdbt-search--ploughing-schedule__result-card--title {
-  margin-bottom: $spacing;
-  margin-top: 0;
-}
-
-.layout-main-wrapper > *:last-child .component--react-search--ploughing-schedule:last-child .component__container {
-  margin-bottom: 0;
-  padding-bottom: $spacing-double;
-}
-
-.school-search,
-.health-station-search,
-.maternity-and-child-health-clinic-search {
-  .hdbt-search--react__form-container {
-    margin-bottom: $spacing-double;
-  }
-}
-
-.school-search .hdbt-search--react__dropdown-filters {
-  margin-bottom: $spacing;
 }

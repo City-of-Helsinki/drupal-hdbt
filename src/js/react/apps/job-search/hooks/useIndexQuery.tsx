@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/_internal';
+import Global from '../enum/Global';
 
 type UseIndexQueryProps = {
   // Uses _mquery endpoint if true
@@ -14,10 +15,11 @@ const useIndexQuery = ({ query, multi, ...rest }: UseIndexQueryProps) => {
   const fetcher = () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string|undefined = proxyUrl;
+    const { index } = Global;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = `application/${multi ? 'x-ndjson' : 'json'}`;
 
-    return fetch(`${url}/${endpoint}`, {
+    return fetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': contentType,

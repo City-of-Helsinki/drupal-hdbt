@@ -22,6 +22,9 @@ $koro-height: 50px;
 
 .hero__image-container {
   color: var(--hdbt-color-palette--primary);
+  outline: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero__text-content {
@@ -65,6 +68,29 @@ $koro-height: 50px;
     mask-image: icon_url('hero-arrow-desktop');
     width: 94px;
   }
+}
+
+[dir='rtl'] .hero__arrow {
+  left: auto;
+  right: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    right: $spacing-double;
+  }
+}
+
+// Hero image author styles.
+.hero__image-author {
+  --arrow-element-width: 100px;
+  margin-left: var(--arrow-element-width);
+  margin-top: $spacing;
+  text-align: right;
+}
+
+[dir='rtl'] .hero__image-author {
+  margin-left: 0;
+  margin-right: var(--arrow-element-width);
+  text-align: left;
 }
 
 // Gray first block styles.

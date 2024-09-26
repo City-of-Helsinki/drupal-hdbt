@@ -6,6 +6,7 @@ import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
 import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, PROMOTED_IDS, TASK_AREA_OPTIONS } from './query/queries';
 import type OptionType from './types/OptionType';
+import Global from './enum/Global';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
@@ -105,6 +106,7 @@ type configurations = {
 
 export const configurationsAtom = atom(async(): Promise<configurations> => {
   const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
+  const { index } = Global;
   const url: string | undefined = proxyUrl;
   const ndjsonHeader = '{}';
 
@@ -130,7 +132,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
     JSON.stringify(PROMOTED_IDS)
     }\n`;
 
-  return fetch(`${url}/_msearch`, {
+  return fetch(`${url}/${index}/_msearch`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-ndjson',
@@ -307,8 +309,10 @@ export const areaFilterAtom = atom(
     {
       label: item.label,
       value: item.key,
-    } 
+    }
   )
 ));
 
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+
+export const monitorSubmittedAtom = atom(false);

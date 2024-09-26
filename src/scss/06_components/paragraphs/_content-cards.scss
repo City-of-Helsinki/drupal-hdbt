@@ -15,6 +15,7 @@ $-card-spacing: $spacing-and-half;
 }
 
 .content-card {
+  background-color: $color-white;
   margin-top: $spacing-quadruple;
   position: relative;
 
@@ -150,6 +151,7 @@ $-card-spacing: $spacing-and-half;
   .component__container {
     grid-column: content;
     padding-top: $spacing;
+    width: 100%;
 
     @include breakpoint($breakpoint-m) {
       padding-top: $spacing-double;
@@ -157,7 +159,6 @@ $-card-spacing: $spacing-and-half;
   }
 
   .content-card__link {
-    background-color: $color-white;
     padding: $spacing;
   }
 }
