@@ -1,3 +1,12 @@
+$table-bg-color: $color-white;
+$table-bg-color-transparent: rgba(255 255 255 / 0%);
+$table-shadow-color: rgb(0 0 0 / 40%);
+$table-shadow-color-transparent: rgb(0 0 0 / 0%);
+$table-color-black-5-alpha: find-alpha-color($color-black-5, $color-white); // Find matching alpha color for black-5 to allow shadow to show through
+$table-color-black-10-alpha: find-alpha-color($color-black-10, $color-white); // Find matching alpha color for black-10 to allow shadow to show through
+$table-shadow-width: 14px; // 14px is a nice shadow width agreed with design team
+$table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the ratio of 14px to 40px
+
 // Styles for table markup without figure and figcaption.
 .user-edited-content > table,
 .user-edited-content :not(figure) > table {
@@ -20,13 +29,64 @@
 
 // Styles for new table markup with figure and figcaption.
 .user-edited-content figure {
+  background:
+    linear-gradient(90deg, $table-bg-color 30%, $table-bg-color-transparent), // Covering gradient to hide shadow on the left
+    linear-gradient(90deg, $table-bg-color-transparent, $table-bg-color 70%) 100% 0, // Covering gradient to hide shadow on the right
+    linear-gradient(90deg, $table-shadow-color, $table-shadow-color-transparent), // Left shadow gradient
+    linear-gradient(90deg, $table-shadow-color-transparent, $table-shadow-color) 100% 0; // Right shadow gradient
+
+  // Opera doesn't support this in the shorthand
+  background-attachment:
+    local, // Covering background gradient should scroll with container, so that it can reveal left shadow there is hidden content on the left
+    local, // Covering background gradient should scroll with container, so that it can reveal right shadow there is hidden content on the right
+    scroll, // Left shadow gradient should stay fixed and not scroll
+    scroll; // Right shadow gradient should stay fixed and not scroll
+  background-color: $table-bg-color;
+  background-repeat: no-repeat;
+  background-size:
+    $table-shadow-mask-width 100%, // Covering gradient mask
+    $table-shadow-mask-width 100%, // Covering gradient mask
+    $table-shadow-width 100%, // Shadow gradient
+    $table-shadow-width 100%; // Shadow gradient
   margin: 0;
   overflow-x: auto;
 }
 
 .user-edited-content figure figcaption {
   @include font('h4');
-  margin-top: $spacing-quadruple;
+  background: var(--user-edited-content-background-color, #{$table-bg-color});
+  left: 0;
+  margin-top: 0;
+  padding-bottom: $spacing;
+  padding-top: $spacing-quadruple;
+  position: sticky; // Since we do not have other wrapper for tables than figure and we do not want figcaption to scroll away
+}
+
+.user-edited-content figure:not(:has(figcaption)) {
+  margin-top: $spacing;
+}
+
+// wysiwyg editor generates these duplicate figures, so we need to remove the margin from the second figure
+.user-edited-content figure > figure {
+  margin-top: 0;
+}
+
+.user-edited-content figure figcaption + table {
+  margin-top: 0;
+}
+
+.user-edited-content figure table {
+  background: transparent;
+  box-shadow: 0 0 0 $content-width-max var(--user-edited-content-background-color, #{$table-bg-color}); // This handles the figure background color when narrow table is on grey background.
+  margin-top: 0;
+}
+
+.user-edited-content figure table th {
+  background: $table-color-black-10-alpha;
+}
+
+.user-edited-content figure table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+  background: $table-color-black-5-alpha;
 }
 
 .user-edited-content table {

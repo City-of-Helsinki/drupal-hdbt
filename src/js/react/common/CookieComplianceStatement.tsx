@@ -19,10 +19,10 @@ const CookieComplianceStatement = ({ host, policyUrl, sourceUrl }: CookiCookieCo
       </p>
       <div className='buttons'>
           {sourceUrl &&
-            <ExternalLink className='hds-button hds-button--primary' href={sourceUrl} title={<span className='hds-button__label'>{Drupal.t('See content on external site', {}, { context: 'Cookie compliance' })}</span>} />
+            <ExternalLink data-hds-component='button' data-hds-variant='primary' href={sourceUrl} title={Drupal.t('See content on external site', {}, { context: 'Cookie compliance' })} />
           }
           {policyUrl &&
-            <ExternalLink className='hds-button hds-button--secondary' href={policyUrl} title={<span className='hds-button__label'>{Drupal.t('Change cookie settings', {}, { context: 'Cookie compliance' })}</span>} />
+            <ExternalLink  data-hds-component='button' data-hds-variant='secondary' href={policyUrl} title={Drupal.t('Change cookie settings', {}, { context: 'Cookie compliance' })} />
           }
       </div>
     </div>

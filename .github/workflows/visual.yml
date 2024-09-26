@@ -107,11 +107,13 @@ jobs:
           docker compose exec app bash -c "drush en helfi_test_content -y"
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
 
-      - name: Node setup
-        working-directory: ${{ env.THEME_FOLDER }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: NPM Install
         run: |
-          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install && npm install
+          npm install
 
         # Reference images are stored as Actions artifact, attempt to restore
         # the images.

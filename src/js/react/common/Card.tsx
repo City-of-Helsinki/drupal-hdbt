@@ -4,6 +4,7 @@ import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 import Tags from './Tags';
 import Icon from './Icon';
+import ExternalLink from '@/react/common/ExternalLink';
 
 const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
   <div className="card__meta">
@@ -14,7 +15,7 @@ const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
 );
 
 export type CardItemProps = {
-  cardModifierClass: string;
+  cardModifierClass?: string;
   cardImage?: string | JSX.Element | JSX.Element[];
   cardTitle: string | JSX.Element;
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 3
@@ -74,7 +75,7 @@ function CardItem({
   languageEducation,
   registrationRequired,
 }: CardItemProps): JSX.Element {
-  const cardClass = `card ${cardModifierClass} ${cardUrlExternal ? 'card--external' : ''}`;
+  const cardClass = `card${cardModifierClass ? ` ${cardModifierClass}` : ''}${cardUrlExternal ? ' card--external' : ''}`;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
 
   return (
@@ -87,20 +88,15 @@ function CardItem({
 
       <div className="card__text">
         <HeadingTag className="card__title">
-          <a href={cardUrl} className="card__link" {...cardUrlExternal && { 'data-is-external': 'true' }} rel="bookmark">
-            <span>{ cardTitle }</span>
-            {cardUrlExternal &&
-              <span className="link__type link__type--external" aria-label={`(${Drupal.t(
-                'Link leads to external service',
-                {},
-                { context: 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.' },
-              )})`} />
-            }
-          </a>
+          {!cardUrlExternal ? (
+            <a href={cardUrl} className="card__link" rel="bookmark">{ cardTitle }</a>
+          ) : (
+            <ExternalLink href={cardUrl} title={cardTitle} className="card__link" rel="bookmark" />
+          )}
         </HeadingTag>
         {cardCategoryTag &&
           <div className="card__category">
-            <Tags tags={[cardCategoryTag]} />
+            <Tags tags={[cardCategoryTag]} insideCard />
           </div>
         }
 
@@ -156,7 +152,7 @@ function CardItem({
 
         {cardTags && cardTags.length > 0 &&
           <div className="card__tags">
-            <Tags tags={cardTags} langAttribute={langAttribute} />
+            <Tags tags={cardTags} langAttribute={langAttribute} insideCard />
           </div>
         }
       </div>

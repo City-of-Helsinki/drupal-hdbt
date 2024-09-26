@@ -1,10 +1,6 @@
 // System messages.
 .hds-notification {
   margin-bottom: $spacing;
-
-  &:first-of-type {
-    margin-top: $spacing;
-  }
 }
 
 .hds-notification__label {

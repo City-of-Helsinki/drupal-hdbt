@@ -1,11 +1,11 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
+import {Button} from 'hds-react';
 import useInitialQuery from '../hooks/useInitialQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import IndexFields from '../enum/IndexFields';
 import AggregationItem from '../types/AggregationItem';
 import Filter from '../components/Filter';
-import SubmitButton from '../components/SubmitButton';
 import { stagedParamsAtom, urlUpdateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';
 
@@ -72,44 +72,49 @@ const FormContainer = () => {
   const groupLabel = Drupal.t('Target groups', {}, { context: 'News archive groups label' });
 
   return (
-    <div className='news-form-wrapper'>
-      <div className='news-form-container'>
-        <form className='news-form' role='search' onSubmit={onSubmit}>
-          <h2>{Drupal.t('Filter news items', {}, {context: 'News archive filter results heading'})}</h2>
-          <div className='news-form__filters-container'>
-            {topicOptions && <Filter
-                label={topicLabel}
-                placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
-                options={topicOptions}
-                stateKey='topic'
-            />}
-            {neighbourhoodOptions && <Filter
-              label={neighbourhoodLabel}
-              placeholder={Drupal.t(
-                'All city districts',
-                {},
-                { context: 'News archive neighbourhoods placeholder' }
-              )}
-              options={neighbourhoodOptions}
-              stateKey='neighbourhoods'
-            />}
-            {groupOptions && <Filter
-              label={groupLabel}
-              placeholder={Drupal.t('All target groups', {}, { context: 'News archive groups placeholder' })}
-              options={groupOptions}
-              stateKey='groups'
-            />}
-            <SubmitButton disabled={loading} />
-          </div>
-        </form>
-        <SelectionsContainer
-          topic={topicOptions}
-          neighbourhoods={neighbourhoodOptions}
-          groups={groupOptions}
-        />
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+      <div className='hdbt-search--react__dropdown-filters'>
+        {topicOptions && <Filter
+          label={topicLabel}
+          placeholder={Drupal.t('All topics', {}, {context: 'News archive topics placeholder'})}
+          options={topicOptions}
+          stateKey='topic'
+        />}
+        {neighbourhoodOptions && <Filter
+          label={neighbourhoodLabel}
+          placeholder={Drupal.t(
+            'All city districts',
+            {},
+            {context: 'News archive neighbourhoods placeholder'}
+          )}
+          options={neighbourhoodOptions}
+          stateKey='neighbourhoods'
+        />}
+        {groupOptions && <Filter
+          label={groupLabel}
+          placeholder={Drupal.t('All target groups', {}, {context: 'News archive groups placeholder'})}
+          options={groupOptions}
+          stateKey='groups'
+        />}
       </div>
-    </div>
-  );
+      <div className='hdbt-search--react__submit'>
+        <Button
+          className='hdbt-search--react__submit-button'
+          type='submit'
+          variant='primary'
+          theme='black'
+          disabled={loading}
+        >
+          {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
+        </Button>
+      </div>
+      <SelectionsContainer
+        topic={topicOptions}
+        neighbourhoods={neighbourhoodOptions}
+        groups={groupOptions}
+      />
+    </form>
+);
 };
 
 export default FormContainer;

@@ -3,6 +3,9 @@ export type ImageOverride = {
     alt: string,
     photographer: string,
     title: string,
-    url: string
+    url: string,
+    variants: {
+      [key: string]: string; // Keyed by breakpoint names, e.g., '320', '576', '320_2x', etc.
+    }
   }
 };

@@ -5,7 +5,7 @@ import React, { createRef, useEffect } from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
-import { urlAtom } from '../store';
+import { urlAtom, monitorSubmittedAtom } from '../store';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 
 // Define new atom for scroll state
@@ -18,7 +18,7 @@ const SearchMonitorContainer = () => {
   // Form validation states
   const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
   const [email, setEmail] = useAtom(emailAtom);
-  const [submitted, setSubmitted] = useAtom(submittedAtom);
+  const [submitted, setSubmitted] = useAtom(monitorSubmittedAtom);
   const [errorMessage, seterrorMessage] = useAtom(errorAtom);
   const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
 
@@ -152,7 +152,7 @@ const SearchMonitorContainer = () => {
   const openLabel: string = Drupal.t('Open the order form', {}, { context: 'Search monitor open label' });
   const closeLabel: string = Drupal.t('Close the order form', {}, { context: 'Search monitor close label' });
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
-  const descriptionFirstPart: string = Drupal.t('Save the search you make so that you can receive an email notification of new results matching your search criteria.', {}, { context: 'Search monitor content' });
+  const descriptionFirstPart: string = Drupal.t('To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.', {}, { context: 'Search monitor content' });
   const descriptionSecondPart: string = Drupal.t('You can save as many searches as you like. You can delete the saved search via the link in the email messages.', {}, { context: 'Search monitor content' });
   const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
@@ -269,7 +269,6 @@ const SearchMonitorContainer = () => {
 
 const emailAtom = atom('');
 const receiveNewsletterAtom = atom(false);
-const submittedAtom = atom(false);
 const isFormVisibleAtom = atom(false);
 const errorAtom = atom('');
 

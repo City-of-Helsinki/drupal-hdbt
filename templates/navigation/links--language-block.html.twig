@@ -1,37 +1,3 @@
-{#
-/**
- * @file
- * Theme override for a set of links.
- *
- * Available variables:
- * - attributes: Attributes for the UL containing the list of links.
- * - links: Links to be output.
- *   Each link will have the following elements:
- *   - title: The link text.
- *   - href: The link URL. If omitted, the 'title' is shown as a plain text
- *     item in the links list. If 'href' is supplied, the entire link is passed
- *     to l() as its $options parameter.
- *   - attributes: (optional) HTML attributes for the anchor, or for the <span>
- *     tag if no 'href' is supplied.
- * - heading: (optional) A heading to precede the links.
- *   - text: The heading text.
- *   - level: The heading level (e.g. 'h2', 'h3').
- *   - attributes: (optional) A keyed list of attributes for the heading.
- *   If the heading is a string, it will be used as the text of the heading and
- *   the level will default to 'h2'.
- *
- *   Headings should be used on navigation menus and any list of links that
- *   consistently appears on multiple pages. To make the heading invisible use
- *   the 'visually-hidden' CSS class. Do not use 'display:none', which
- *   removes it from screen readers and assistive technology. Headings allow
- *   screen reader and keyboard only users to navigate to or skip the links.
- *   See http://juicystudio.com/article/screen-readers-display-none.php and
- *   http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
- *
- * @see template_preprocess_links()
- */
-#}
-
 {% if links %}
   <div {{ attributes.addClass('language-switcher', 'js-language-switcher') }}>
     <div class="language-links">
@@ -48,13 +14,14 @@
         {# Check if link is part of alternative menu and set class accordingly. #}
         {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
-        {% if not untranslated and not alternative_language and lang != current_langcode %}
+        {% if not untranslated and not alternative_language and lang != language.id %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
-        {% elseif lang == current_langcode and not nolink %}
+        {% elseif lang == language.id and not nolink %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
+          {% set classes = classes|merge(['is-disabled']) %}
         {% else %}
           {% set element = 'span' %}
           {% set classes = classes|merge(['is-disabled']) %}

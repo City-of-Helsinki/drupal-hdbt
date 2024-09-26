@@ -314,3 +314,5 @@ export const areaFilterAtom = atom(
 ));
 
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+
+export const monitorSubmittedAtom = atom(false);

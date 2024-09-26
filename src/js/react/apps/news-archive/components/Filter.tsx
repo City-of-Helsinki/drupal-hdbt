@@ -42,7 +42,6 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
   return (
     /* @ts-ignore */
     <Select
-      className='news-form__filter'
       clearable
       clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': label }, { context: 'React search clear selection label' })}
       label={label}

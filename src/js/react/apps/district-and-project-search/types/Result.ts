@@ -1,35 +1,31 @@
-interface Result  {
+type Result = {
   _index: string;
   _type: string;
   _id: string;
   _score: number;
   _source: any;
   _language: string;
-  url: Array<string>;
-  nid: Array<number>;
-  content_type: Array<string>;
-  title: Array<string>;
-  title_for_ui: Array<string>;
-  field_project_district_title?: Array<string>;
-  field_project_district_title_for_ui?: Array<string>;
-  field_project_external_website?: Array<string>;
-  field_project_image_alt?: Array<string>;
-  field_project_image_height?: Array<number>
-  field_project_image_width?: Array<number>
-  field_project_phase_name?: Array<string>;
-  field_project_search_metatags?: Array<string>;
-  field_project_theme_name?: Array<string>;
-  field_project_type_name?: Array<string>;
-  project_execution_schedule?: Array<string>;
-  project_plan_schedule?: Array<string>;
-  project_image_absolute_url?: Array<string>;
-  district_image_absolute_url?: Array<string>;
-  field_district_image_alt?: Array<string>;
-  field_district_image_height?: Array<number>
-  field_district_image_width?: Array<number>
-  field_district_search_metatags?: Array<string>;
-  field_district_subdistricts_title?: Array<string>;
-  field_district_subdistricts_title_for_ui?: Array<string>;
+  url: string[];
+  nid: number[];
+  content_type: string[];
+  title: string[];
+  title_for_ui: string[];
+  field_project_district_title?: string[];
+  field_project_district_title_for_ui?: string[];
+  field_project_external_website?: string[];
+  field_project_image_alt?: string[];
+  field_project_phase_name?: string[];
+  field_project_search_metatags?: string[];
+  field_project_theme_name?: string[];
+  field_project_type_name?: string[];
+  project_execution_schedule?: string[];
+  project_plan_schedule?: string[];
+  project_image_absolute_url?: { [key: string]: string };
+  district_image_absolute_url?: { [key: string]: string };
+  field_district_image_alt?: string[];
+  field_district_search_metatags?: string[];
+  field_district_subdistricts_title?: string[];
+  field_district_subdistricts_title_for_ui?: string[];
 }
 
 export default Result;

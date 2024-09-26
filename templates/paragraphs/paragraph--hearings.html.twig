@@ -25,7 +25,7 @@
             {% include '@hdbt/navigation/link-button.html.twig' with {
               type: 'primary',
               label: 'See all hearings'|t({},{'context': 'See all hearings link text'}),
-              url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
+              url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ language.id,
               link_options: {'class': ['hearings__link']},
             } %}
           </div>
@@ -35,7 +35,7 @@
             {% include '@hdbt/navigation/link-button.html.twig' with {
               type: 'primary',
               label: 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}),
-              url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ current_langcode,
+              url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ language.id,
               link_options: {'class': ['hearings__link']},
             } %}
           </div>
