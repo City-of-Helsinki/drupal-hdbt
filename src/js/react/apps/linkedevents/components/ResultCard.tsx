@@ -11,10 +11,10 @@ const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.to
 const formatStartDate = (start: Date, end: Date) => {
   if (start.getFullYear() === end.getFullYear()) {
     if (start.getMonth() === end.getMonth()) {
-      return start.getDay();
+      return start.getDate();
     }
 
-    return `${start.getDay()}.${start.getMonth()}`;
+    return `${start.getDate()}.${start.getMonth()}`;
   }
 
   return start.toLocaleDateString('fi-FI');
@@ -109,7 +109,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     <CardItem
       cardUrl={url}
       cardTitle={title}
-      cardModifierClass=""
       cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
       cardTags={cardTags}
       cardUrlExternal

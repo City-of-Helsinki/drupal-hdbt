@@ -287,10 +287,6 @@ msgctxt "News list paragraph see all related news link"
 msgid "See all related news"
 msgstr "Se alla nyheter i ämnet"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "All nyheter"
-
 msgctxt "Header search, search for events"
 msgid "Search for events"
 msgstr "Sök evenemang"
@@ -637,13 +633,11 @@ msgctxt "Hearing available in languages"
 msgid "Hearing only available in English and Finnish"
 msgstr "Hörandet finns endast på engelska och finska"
 
-msgctxt "News archive filter results heading"
-msgid "Filter news items"
-msgstr "Filtera nyheter"
-
-msgctxt "News archive heading"
-msgid "News based on your choices"
-msgstr "Nyheter baserat på dina val"
+msgctxt "News archive"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 träff"
+msgstr[1] "@count träffar"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -680,6 +674,30 @@ msgstr "Prenumerera på alla nyheter som RSS-flöde"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Prenumerera på RSS-flöde med nyheter baserat på dina val"
+
+msgctxt "News archive fallback title"
+msgid "News archive"
+msgstr "Nyhetsarkiv"
+
+msgctxt "News archive fallback no results title"
+msgid "No results"
+msgstr "Inga resultat"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "post"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "poster"
+
+msgctxt "Default feed link text"
+msgid "Subscribe to @title as RSS feed"
+msgstr "Prenumerera på @title som RSS-flöde"
+
+msgctxt "Feed icon altered title"
+msgid "all news"
+msgstr "alla nyheter"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "För närvarande finns det inga öppna Hörandet för kommentarer."
@@ -1219,3 +1237,71 @@ msgstr "Visa endast"
 msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Publicerad"
+
+msgctxt "Search monitor header"
+msgid "Receive search results by email"
+msgstr "Beställ sökvakten till din e-post"
+
+msgctxt "Search monitor open label"
+msgid "Open the order form"
+msgstr "Öppna sökvakten"
+
+msgctxt "Search monitor close label"
+msgid "Close the order form"
+msgstr "Stäng sökvakten"
+
+msgctxt "Search monitor content title"
+msgid "Saved search"
+msgstr "Sökvakten"
+
+msgctxt "Search monitor content"
+msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
+msgstr "Gör en sökning enligt dina egna önskemål och spara den som sökvakt. Du kommer att få information om nya träffar i din e-post."
+
+msgctxt "Search monitor content"
+msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
+msgstr "Du kan skapa så många sökvakter du vill och ta bort sökvakten via länken som finns i e-postmeddelandena. "
+
+msgctxt "Search monitor email label"
+msgid "Email address"
+msgstr "E-postadress"
+
+msgctxt "Search monitor terms label"
+msgid "Accept the terms and conditions."
+msgstr "Godkänn användarvillkoren."
+
+msgctxt "Search monitor submit button label"
+msgid "Save your search"
+msgstr "Beställ sökvakten"
+
+msgctxt "Search monitor thank you header"
+msgid "Your search has been saved"
+msgstr "Sökvakten har skapats"
+
+msgctxt "Search monitor thank you message"
+msgid "You will receive a confirmation link by email. You can activate the saved search via the link."
+msgstr "Du får ännu en bekräftelselänk till din e-post genom vilken du kan aktivera sökvakten."
+
+msgctxt "Search monitor error label"
+msgid "Please check these selections"
+msgstr "Kontrollera ännu dessa punkter"
+
+msgctxt "Search monitor error terms"
+msgid "The choice is mandatory: Terms of service"
+msgstr "Valet är obligatoriskt: Användningsvillkor"
+
+msgctxt "Search monitor error email"
+msgid "This field is mandatory: Email address"
+msgstr "Fältet är obligatoriskt: E-postadress"
+
+msgctxt "Search monitor error submitting"
+msgid "Saving search failed. Please try again."
+msgstr "Sparad sökning misslyckades. Var god att försök igen."
+
+msgctxt "Survey"
+msgid "Respond to the survey"
+msgstr "Delta i enkäten"
+
+msgctxt "Survey"
+msgid "Skip the survey"
+msgstr "Jag deltar inte i enkäten"

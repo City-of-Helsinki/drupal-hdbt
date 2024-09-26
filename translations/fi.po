@@ -289,10 +289,6 @@ msgctxt "News list paragraph see all related news link"
 msgid "See all related news"
 msgstr "Katso kaikki aiheen uutiset"
 
-msgctxt "News archive heading"
-msgid "All news items"
-msgstr "Kaikki uutiset"
-
 msgctxt "Header search, search for events"
 msgid "Search for events"
 msgstr "Hae tapahtumia"
@@ -639,13 +635,11 @@ msgctxt "Hearing available in languages"
 msgid "Hearing only available in English and Swedish"
 msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
 
-msgctxt "News archive filter results heading"
-msgid "Filter news items"
-msgstr "Suodata uutisia"
-
-msgctxt "News archive heading"
-msgid "News based on your choices"
-msgstr "Uutiset valintojesi perusteella"
+msgctxt "News archive"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 hakutulos"
+msgstr[1] "@count hakutulosta"
 
 msgctxt "News archive topics label"
 msgid "Topics"
@@ -682,6 +676,30 @@ msgstr "Tilaa kaikkien uutisten RSS-syöte"
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to RSS feed of news based on your choices"
 msgstr "Tilaa uutisten RSS-syöte valintojesi perusteella"
+
+msgctxt "News archive fallback title"
+msgid "News archive"
+msgstr "Uutisarkisto"
+
+msgctxt "News archive fallback no results title"
+msgid "No results"
+msgstr "Ei tuloksia"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "uutinen tai artikkeli"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "uutista ja artikkelia"
+
+msgctxt "Default feed link text"
+msgid "Subscribe to @title as RSS feed"
+msgstr "Tilaa @title RSS-syöte"
+
+msgctxt "Feed icon altered title"
+msgid "all news"
+msgstr "kaikki uutiset"
 
 msgid "At the moment there is no open hearings for commenting."
 msgstr "Tällä hetkellä ei ole avoimia kuulemisia kommentoitavaksi."
@@ -1217,3 +1235,71 @@ msgstr "Näytä vain"
 msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Julkaistu"
+
+msgctxt "Search monitor header"
+msgid "Receive search results by email"
+msgstr "Tilaa hakuvahti sähköpostiisi"
+
+msgctxt "Search monitor open label"
+msgid "Open the order form"
+msgstr "Avaa hakuvahti"
+
+msgctxt "Search monitor close label"
+msgid "Close the order form"
+msgstr "Sulje hakuvahti"
+
+msgctxt "Search monitor content title"
+msgid "Saved search"
+msgstr "Hakuvahti"
+
+msgctxt "Search monitor content"
+msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi. Saat sähköpostiisi tiedon uusista osumista."
+
+msgctxt "Search monitor content"
+msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat ja poistaa hakuvahdin sähköpostien mukana tulevasta linkistä."
+
+msgctxt "Search monitor email label"
+msgid "Email address"
+msgstr "Sähköpostiosoite"
+
+msgctxt "Search monitor terms label"
+msgid "Accept the terms and conditions."
+msgstr "Hyväksy käyttöehdot."
+
+msgctxt "Search monitor submit button label"
+msgid "Save your search"
+msgstr "Tilaa hakuvahti"
+
+msgctxt "Search monitor thank you header"
+msgid "Your search has been saved"
+msgstr "Hakuvahti on luotu"
+
+msgctxt "Search monitor thank you message"
+msgid "You will receive a confirmation link by email. You can activate the saved search via the link."
+msgstr "Saat vielä sähköpostiisi vahvistuslinkin, jolla voit aktivoida hakuvahdin."
+
+msgctxt "Search monitor error label"
+msgid "Please check these selections"
+msgstr "Tarkistathan vielä nämä kohdat"
+
+msgctxt "Search monitor error terms"
+msgid "The choice is mandatory: Terms of service"
+msgstr "Valinta on pakollinen: Käyttöehdot"
+
+msgctxt "Search monitor error email"
+msgid "This field is mandatory: Email address"
+msgstr "Kenttä on pakollinen: Sähköpostiosoite"
+
+msgctxt "Search monitor error submitting"
+msgid "Saving search failed. Please try again."
+msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
+
+msgctxt "Survey"
+msgid "Respond to the survey"
+msgstr "Vastaa kyselyyn"
+
+msgctxt "Survey"
+msgid "Skip the survey"
+msgstr "En osallistu kyselyyn"

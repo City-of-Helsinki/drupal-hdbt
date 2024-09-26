@@ -81,14 +81,14 @@
   {% block main_content %}
     <div class="enriched-content components components--upper components--unit">
       {% embed "@hdbt/misc/component.twig" with {
-          component_classes: [ 'component--unit-contact-information' ],
-          component_title: 'Contact information'|t({}, {'context': 'TPR unit contact information title'})
-        }%}
+        component_classes: [ 'component--unit-contact-information' ],
+        component_title: 'Contact information'|t({}, {'context': 'TPR unit contact information title'})
+      } %}
         {% block component_content %}
           {% include "@hdbt/module/helfi_tpr/tpr-unit-contact-information.html.twig" with {
-              content: contact_information_content
-            }
-          %}
+            content: contact_information_content,
+            language: language
+          } %}
         {% endblock component_content %}
       {% endembed %}
 
@@ -96,10 +96,10 @@
         {% embed "@hdbt/misc/component.twig" with
           {
             component_classes: [
-            'component--accordion',
-            'component--accordion-bg-grey',
-            'component--hardcoded'
-          ],
+              'component--accordion',
+              'component--accordion-bg-grey',
+              'component--hardcoded'
+            ],
             component_content_class: 'accordion',
           }
         %}

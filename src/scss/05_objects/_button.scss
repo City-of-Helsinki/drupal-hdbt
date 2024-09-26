@@ -592,6 +592,7 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   padding-inline-end:  calc(var(--spacing-l) + var(--button-padding-end-adjust, 0px) + var(--button-padding-end-adjust-supplementary, 0px)); // Default padding + button with icon adjust + supplementary button adjust
   padding-inline-start:  calc(var(--spacing-l) + var(--button-padding-start-adjust, 0px) + var(--button-padding-start-adjust-supplementary, 0px)); // Default padding + button with icon adjust + supplementary button adjust
   position: relative;
+  text-align: center;
   text-decoration: none;
 
   // Normalize.css rule

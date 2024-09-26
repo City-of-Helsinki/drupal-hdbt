@@ -1,8 +1,17 @@
 import CardItem from '@/react/common/Card';
+import CardPicture from '@/react/common/CardPicture';
 import CardImage from '@/react/common/CardImage';
 import { HealthStation } from '../types/HealthStation';
 
-const ResultCard = ({ address, name, name_override, picture_url, provided_languages, media_as_objects, url }: HealthStation) => {
+const ResultCard = ({
+  address,
+  name,
+  name_override,
+  picture_url,
+  provided_languages,
+  media_as_objects,
+  url
+}: HealthStation) => {
   const title = name_override?.[0] || name?.[0];
   const imageOverride = media_as_objects?.[0].picture_url_override;
 
@@ -13,21 +22,23 @@ const ResultCard = ({ address, name, name_override, picture_url, provided_langua
   let cardImage;
 
   if (imageOverride) {
-   cardImage = <CardImage
-      alt={imageOverride.alt}
-      photographer={imageOverride.photographer}
-      src={imageOverride.url}
+    cardImage = <CardPicture
+      imageOverride={imageOverride}
       title={imageOverride.title}
     />;
   }
+
   else if (picture_url?.[0]) {
     cardImage = <CardImage src={picture_url?.[0]} />;
+  }
+
+  else {
+    cardImage = undefined; // No image to display
   }
 
   return (
     <CardItem
       cardImage={cardImage}
-      cardModifierClass=''
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       location={address?.[0]}

@@ -8,7 +8,7 @@
   padding-top: 0;
 }
 
-:not(.latest-news-list) > .news-listing__item {
+:not(.component--latest-news .news-listing, .component--top-news .news-listing, .component--news-of-interest .news-listing) > .news-listing__item {
   list-style: none;
   margin-top: $spacing-and-half;
   padding-left: 0; // Remove card paddings from news listing
@@ -75,29 +75,38 @@
 }
 
 // News listings using medium teasers.
+.news-listing--medium-teasers {
+  list-style: none;
+
+  .news-listing__item + .news-listing__item {
+    margin-top: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: 0;
+    }
+  }
+}
+
+// Latest news block variant.
 .news-listing--latest-medium-teasers {
+  margin-bottom: 0;
   padding-inline-start: 0; // User agent stylesheet override
+  padding-right: 0;
 
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    flex-wrap: wrap;
+    grid-column-gap: $spacing-and-half;
+    grid-row-gap: $spacing-double;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .news-listing__item {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:nth-child(2) {
-      @include breakpoint($breakpoint-m) {
-        margin-top: 0;
-      }
-    }
+    list-style: none;
+    margin-top: $spacing-and-half;
+    position: relative;
 
     @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-double;
-      padding-inline-end: $spacing-and-half;
-      width: 50%;
+      margin-top: 0;
     }
   }
 }
@@ -118,6 +127,21 @@
     position: absolute;
     top: 0;
     width: $spacing-quarter;
+  }
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: $spacing + $spacing-quarter;
+
+    @include breakpoint($breakpoint-l) {
+      padding-left: 0;
+      padding-right: $spacing-and-half + $spacing-quarter;
+    }
+
+    &::before {
+      left: auto;
+      right: 0;
+    }
   }
 
   .news-listing__title {
@@ -201,34 +225,28 @@
 }
 
 .news-listing--card-teasers {
-  padding-inline-start: 0; // User agent stylesheet override
+  grid-gap: 0;
+  display: grid;
+  list-style: none;
+  padding-left: 0;
 
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-inline-end: -#{$spacing-and-half};
+    grid-column-gap: $spacing-and-half;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .news-listing__item {
+  .news-listing__item + .news-listing__item {
+    margin-top: $spacing-double;
+
     @include breakpoint($breakpoint-m) {
-      width: 50%;
+      margin-top: 0;
     }
-
-    @include breakpoint($breakpoint-l) {
-      width: 25%;
-    }
-  }
-
-  .news-listing__card-teaser {
-    height: 100%;
   }
 }
 
 .news-listing__card-teaser {
-  border-bottom: 1px solid var(--color-black-5);
   display: flex;
-  padding-bottom: $spacing;
+  height: 100%;
   position: relative;
 
   &:hover .hel-icon--arrow-right {
@@ -240,21 +258,12 @@
   }
 
   @include breakpoint($breakpoint-m) {
-    border: 1px solid var(--color-black);
     flex-direction: column;
-    margin-inline-end: $spacing-and-half;
     padding-bottom: 0;
   }
 
   .news-listing__title {
-    @include font('h5');
-
-    // The card style changes already on breakpoint-m so we need to switch to larger
-    // h5-style earlier.
-    @include breakpoint($breakpoint-m) {
-      font-size: remify(20px);
-      line-height: 30 / 20;
-    }
+    @include font('h4');
   }
 
   .news-listing__img {
@@ -284,9 +293,23 @@
     width: 60%;
 
     @include breakpoint($breakpoint-m) {
-      padding: $spacing;
+      padding: $spacing 0 0 0;
       width: unset;
     }
+
+    [dir='rtl'] & {
+      padding-left: 0;
+      padding-right: $spacing;
+
+      @include breakpoint($breakpoint-m) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  .news-listing__link {
+    text-decoration: underline;
   }
 
   .news-listing__title,

@@ -1,27 +1,3 @@
-[data-unpublished]::before {
-  @include font('small');
-
-  --line-height: 1;
-  background: $color-error;
-  color: $color-white;
-  content: attr(data-unpublished);
-  display: block;
-  padding-left: $spacing-half;
-  padding-right: $spacing-half;
-  position: fixed;
-  transform: rotate(-90deg) translateX(calc(-50% - 50vh));
-  transform-origin: top left;
-  z-index: 2;
-
-  @include breakpoint($component-side-padding-breakpoint) {
-    content: attr(data-unpublished-long);
-
-    @include font('body');
-
-    --line-height: 1.5;
-  }
-}
-
 .lead-in .component__content {
   @include font('lead');
   max-width: $content-width-max;

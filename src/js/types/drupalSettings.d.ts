@@ -26,7 +26,8 @@ declare namespace drupalSettings {
               [key: string]: string
             }
           }
-        }
+        },
+        use_fixtures: boolean
       }
     }
   };
@@ -34,12 +35,17 @@ declare namespace drupalSettings {
     cookie_privacy_url: string;
     elastic_proxy_url: string;
     sentry_dsn_react: string;
+    hakuvahti_url_set: boolean;
   };
   const helfi_rekry_job_search: {
     results_page_path: string;
+    hakuvahti_tos_checkbox_label: string;
+    hakuvahti_tos_link_text: string;
+    hakuvahti_tos_link_url: string;
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;
     feed_base_url: string;
+    title: string;
   };
 }
