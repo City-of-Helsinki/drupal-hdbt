@@ -1303,3 +1303,11 @@ msgstr "Vastaa kyselyyn"
 msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"
+
+msgctxt "The helper text before the news article published timestamp"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "The helper text before the news article changed timestamp"
+msgid "updated"
+msgstr "päivitetty"
