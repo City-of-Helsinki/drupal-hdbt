@@ -62,6 +62,13 @@
     <link rel="manifest" href="{{ theme_path }}/src/images/favicon/manifest.webmanifest">
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
+    {% set cookieUrl = '/etusivu-assets/themes/contrib/hdbt/src/js/hds-cookie-consent/hds-cookie-consent.js' %}
+    {% set apiUrl = '/api/cookie-banner' %}
+    {% set lang = language.id %}
+    {% set theme = 'black' %}
+    {% set settingsPageSelector = '.components--cookie-compliance-block' %}
+    {% set forceDir = 'ltr' %}
+    <script src="{{cookieUrl}}" onload="window.hds.CookieConsentCore.create('{{apiUrl}}',{language:'{{lang}}',theme:'{{theme}}',settingsPageSelector:'{{settingsPageSelector}}'})"></script>
   </head>
   <body{{ attributes }}>
     {#
