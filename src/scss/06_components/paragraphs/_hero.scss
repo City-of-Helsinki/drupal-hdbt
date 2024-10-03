@@ -49,6 +49,10 @@ $koro-height: 50px;
   }
 }
 
+.hero__publish-information {
+  margin-top: $spacing;
+}
+
 .hero__arrow {
   background-color: var(--hdbt-color-palette--accent);
   bottom: -90px;

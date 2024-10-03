@@ -1305,3 +1305,11 @@ msgstr "Delta i enkäten"
 msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "Jag deltar inte i enkäten"
+
+msgctxt "The helper text before the news article published timestamp"
+msgid "Published"
+msgstr "Publicerad"
+
+msgctxt "The helper text before the news article changed timestamp"
+msgid "updated"
+msgstr "uppdaterad"
