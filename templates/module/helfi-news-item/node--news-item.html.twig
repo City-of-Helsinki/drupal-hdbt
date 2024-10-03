@@ -30,7 +30,15 @@
         {{ published_at|format_date('publication_date_format') }}
       </time>
 
-      {% if modified_at is not empty %}
+      {#
+        UHF-10745: Hide modified field if it is in between timestamps when we
+        updated all news articles. Data between these intervals is useless.
+      #}
+      {% if modified_at is not empty and (
+          modified_at < date('2024-09-25T14:30:00', 'Europe/Helsinki')|date('U') or
+          modified_at > date('2024-09-25T15:15:00', 'Europe/Helsinki')|date('U')
+        )
+      %}
         {% set html_modified_at = modified_at|format_date('custom', 'Y-m-d') ~ 'T' ~ modified_at|format_date('custom', 'H:i') %}
         <time datetime="{{ html_modified_at }}" class="content-date__datetime content-date__datetime--updated">
           {% if date(modified_at) < date('-365days') %}
