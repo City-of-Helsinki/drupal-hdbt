@@ -8,14 +8,6 @@
   padding-top: 0;
 }
 
-:not(.component--latest-news .news-listing, .component--top-news .news-listing, .component--news-of-interest .news-listing) > .news-listing__item {
-  list-style: none;
-  margin-top: $spacing-and-half;
-  padding-left: 0; // Remove card paddings from news listing
-  padding-right: 0; // Remove card paddings from news listing
-  position: relative;
-}
-
 .news-listing__link {
   display: block;
   text-decoration: none;
