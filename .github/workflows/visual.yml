@@ -112,6 +112,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: NPM Install
+        working-directory: ${{ env.THEME_FOLDER }}
         run: |
           npm install
 
