@@ -113,7 +113,7 @@ jobs:
 
       - name: NPM Install
         run: |
-          npm cache clean --force && npm install && ls node_modules
+          npm install
 
         # Reference images are stored as Actions artifact, attempt to restore
         # the images.
