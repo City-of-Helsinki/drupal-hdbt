@@ -69,7 +69,6 @@ function getFormData(id, t, config) {
           required: true,
           strip: '[€eE ]',
           helper_text: t('helper_text_monthly_pay'),
-          // value: 2000, // TODO: remove after debug
         },
       },
       {
@@ -83,21 +82,8 @@ function getFormData(id, t, config) {
           required: false,
           strip: '[€eE ]',
           helper_text: t('helper_text_vacation_money'),
-          // value: 40, // TODO: remove after debug
         },
       },
-      // {
-      //   input_integer: {
-      //     id: 'other_expenses',
-      //     label: t('label_other_expenses'),
-      //     unit: t('unit_euro'),
-      //     min: 0,
-      //     size: 12,
-      //     required: true,
-      //     strip: '[€eE ]',
-      //     helper_text: t('other_expenses_helper_text'),
-      //   },
-      // },
       {
         heading: {
           text: t('heading_pay_subsidy_information'),

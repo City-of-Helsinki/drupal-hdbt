@@ -179,11 +179,3 @@ const translations = {
 };
 
 export default translations;
-  
-/*
-key: {
-  fi: "",
-  sv: "",
-  en: "",
-},
-*/
