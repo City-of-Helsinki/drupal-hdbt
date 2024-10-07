@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hel.fi calculator testbed</title>
+  <link rel="stylesheet" media="all" href="../../../../dist/css/styles.min.css">
+  <link rel="stylesheet" media="all" href="../../../../dist/css/hdbt-icons.css">
+  <style>
+    body {
+      margin: 20px;
+    }
+  </style>
+  <script>
+    // Simulate Drupal environment
+    var drupalSettings = {};
+    drupalSettings.path = {};
+    drupalSettings.path.currentLanguage = window.sessionStorage.getItem('testLang') || 'fi'
+    console.log(drupalSettings.path);
+
+    drupalSettings.helsinki_benefit_amount_estimate = `
+{
+  "HELSINKI_BENEFIT_MAX_AMOUNT_WITH_PAY_SUBSIDY": 800,
+  "HELSINKI_BENEFIT_MAX_AMOUNT_WITHOUT_PAY_SUBSIDY": 800,
+  "PAY_SUBSIDY_PERCENTAGES": [0, 0.5, 0.7],
+  "PAY_SUBSIDY_AMOUNT_MAX_LIMIT": [999999, 1260, 1770],
+  "STATE_AID_PERCENTAGES": [1, 0.5, 1],
+  "SALARY_OTHER_EXPENSES_PERCENTAGE": 0.22
+}`;
+
+  </script>
+  <script src="../../../../dist/js/helfi_calculator.min.js"></script>
+</head>
+
+<body>
+  <div class="paragraph-content components components--upper">
+    <div class="component component--helfi-calculator">
+      <div class="component__container">
+        <header>
+          <a class="lang-select" href="?lang=fi">Fi</a>
+          <a class="lang-select" href="?lang=sv">Sv</a>
+          <a class="lang-select" href="?lang=en">En</a>
+          <script>
+          var langClick = (e) => {
+            e.preventDefault();
+            console.log(e)
+            window.sessionStorage.setItem('testLang', e.target.href.split('?lang=')[1]);
+            window.location.reload(true);
+          }
+          document.querySelectorAll('.lang-select').forEach((element) =>
+            element.addEventListener("click", langClick));
+          </script>
+          <hr>
+        </header>
+        <h2 class="component__title">Laske arvio Helsinki-lisästä</h2>
+        <div class="component__content helfi-calculator">
+          <div id="helfi_calc_1234567890"></div>
+          <noscript>          
+            <div class="component__needs-js">
+              <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
+            </div>
+          </noscript>
+          <script src="../../../../dist/js/helsinki_benefit_amount_estimate.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              const clean = window.helfi_calculator.helsinki_benefit_amount_estimate('helfi_calc_1234567890', drupalSettings.helsinki_benefit_amount_estimate);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
