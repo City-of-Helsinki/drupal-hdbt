@@ -21,6 +21,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.15.0",
     "@nuxt/friendly-errors-webpack-plugin": "^2.5.1",
     "@react-aria/visually-hidden": "^3.8.0",
     "@sentry/react": "^8.32.0",
@@ -30,7 +31,6 @@
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^4.0.0",
     "classnames": "^2.3.1",
-    "dotenv": "^16.4.5",
     "focus-trap": "^7.5.4",
     "glob": "^11.0.0",
     "hds-design-tokens": "^3.3.0",

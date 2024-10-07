@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const processArgs = process.argv.slice(2);
 const envPath = '../../../../.env';
-require('dotenv').config({ path: envPath }); // Get environment from instance .env file
+require('@dotenvx/dotenvx').config({ path: envPath }); // Get environment from instance .env file
 const backstop = require('backstopjs');
 
 const TYPE = {
