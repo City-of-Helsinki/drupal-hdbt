@@ -108,7 +108,6 @@ jobs:
           docker compose exec app bash -c "drush sql-dump --result-file=/app/public/sites/default/files/latest.sql"
 
       - uses: actions/setup-node@v4
-        working-directory: ${{ env.THEME_FOLDER }}
         with:
           node-version-file: .nvmrc
 
