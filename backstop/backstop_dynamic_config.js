@@ -316,15 +316,6 @@ function getConfig(hostname, protocol, type) {
           'selectorExpansion': expandComponents,
         },
         {
-          'label': 'DC: Content liftup',
-          'url': `${protocol}://${hostname}/en/dc-components/dc-content-liftup`,
-          'removeSelectors': removeDefault,
-          'selectors': [
-            '.component--content-liftup'
-          ],
-          'selectorExpansion': expandComponents,
-        },
-        {
           'label': 'DC: Event list',
           'url': `${protocol}://${hostname}/en/dc-components/dc-event-list`,
           'removeSelectors': removeDefault,
