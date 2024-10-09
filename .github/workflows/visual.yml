@@ -167,7 +167,7 @@ jobs:
         if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.THEME_FOLDER }}/backstop/full/
+          publish_dir: ${{ env.THEME_FOLDER }}/backstop/full
           destination_dir: pull/${{github.event.number}}
 
       - name: Update comment
