@@ -8,14 +8,6 @@
   padding-top: 0;
 }
 
-:not(.component--latest-news .news-listing, .component--top-news .news-listing, .component--news-of-interest .news-listing) > .news-listing__item {
-  list-style: none;
-  margin-top: $spacing-and-half;
-  padding-left: 0; // Remove card paddings from news listing
-  padding-right: 0; // Remove card paddings from news listing
-  position: relative;
-}
-
 .news-listing__link {
   display: block;
   text-decoration: none;
@@ -64,8 +56,10 @@
   .news-listing__item {
     border-bottom: 1px solid var(--color-black-10);
     display: flex;
-    margin-top: $spacing;
-    padding-bottom: $spacing-half;
+    margin-top: 0;
+    padding-bottom: $spacing;
+    padding-top: $spacing;
+    position: relative;
   }
 }
 
