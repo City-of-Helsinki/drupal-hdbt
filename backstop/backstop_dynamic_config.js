@@ -257,7 +257,7 @@ function getConfig(hostname, protocol, type) {
           'url': `${protocol}://${hostname}/en/dc-components/dc-announcements`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '#block-hdbt-subtheme-announcements'
+            '#block-announcements'
           ],
           'selectorExpansion': expandComponents,
         },
