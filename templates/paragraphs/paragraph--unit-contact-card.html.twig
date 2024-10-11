@@ -1,13 +1,3 @@
-{# This is shown twice in DOM, to move it between mobile and desktop versions maintaining logical tabbing order #}
-{% set unit_contact_card_details %}
-  {% if unit_contact_card.details|render %}
-    <div class="unit-contact-card__info-row unit-contact-card__info-row--details">
-      <div class="unit-contact-card__info-row__title">{{ 'Additional details'|t }}:</div>
-      <div class="unit-contact-card__info-row__content">{{ unit_contact_card.details }}</div>
-    </div>
-  {% endif %}
-{% endset %}
-
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
@@ -16,9 +6,7 @@
       ],
       component_title: unit_contact_card.title,
       component_content_class: [
-        'unit-contact-card',
-        unit_contact_card.left_column_empty ? 'unit-contact-card--left-column-empty',
-        unit_contact_card.details_on_left ? 'unit-contact-card--details-on-left',
+        'unit-contact-card'
       ],
     }
   %}
@@ -27,23 +15,6 @@
         <div class="unit-contact-card__info-row unit-contact-card__info-row--address">
           <div class="unit-contact-card__info-row__title">{{ 'Visiting address'|t }}:</div>
           <div class="unit-contact-card__info-row__content">{{ unit_contact_card.address }}</div>
-        </div>
-      {% endif %}
-
-      {% if unit_contact_card.picture_url_override|render or unit_contact_card.picture_url|render or unit_contact_card.details|render %}
-        <div class="unit-contact-card__image-with-details">
-          {% if unit_contact_card.picture_url_override|render or unit_contact_card.picture_url|render %}
-            {% set picture_classes = 'unit-contact-card__image' %}
-            {% set image_attributes = create_attribute() %}
-            <div{{ image_attributes.addClass(picture_classes) }}>
-              {% if unit_contact_card.picture_url_override|render %}
-                {{ unit_contact_card.picture_url_override }}
-              {% elseif unit_contact_card.picture_url|render %}
-                {{ unit_contact_card.picture_url }}
-              {% endif %}
-            </div>
-          {% endif %}
-          {{ unit_contact_card_details }}
         </div>
       {% endif %}
 
@@ -68,7 +39,13 @@
         </div>
       {% endif %}
 
-      {{ unit_contact_card_details }}
+      {% if unit_contact_card.details|render %}
+        <div class="unit-contact-card__info-row unit-contact-card__info-row--details">
+          <div class="unit-contact-card__info-row__title">{{ 'Additional details'|t }}:</div>
+          <div class="unit-contact-card__info-row__content">{{ unit_contact_card.details }}</div>
+        </div>
+      {% endif %}
+
 
       {% if unit_contact_card.unit_url %}
         <div class="unit-contact-card__info-row unit-contact-card__link-wrapper">
@@ -77,6 +54,21 @@
         </div>
       {% endif %}
 
+      {% if unit_contact_card.picture_url_override|render or unit_contact_card.picture_url|render or unit_contact_card.details|render %}
+        <div class="unit-contact-card__image-with-details">
+          {% if unit_contact_card.picture_url_override|render or unit_contact_card.picture_url|render %}
+            {% set picture_classes = 'unit-contact-card__image' %}
+            {% set image_attributes = create_attribute() %}
+            <div{{ image_attributes.addClass(picture_classes) }}>
+              {% if unit_contact_card.picture_url_override|render %}
+                {{ unit_contact_card.picture_url_override }}
+              {% elseif unit_contact_card.picture_url|render %}
+                {{ unit_contact_card.picture_url }}
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
