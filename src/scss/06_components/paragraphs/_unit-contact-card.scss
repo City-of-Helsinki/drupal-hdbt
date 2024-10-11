@@ -1,60 +1,41 @@
-// If the unit contact card is at the upper content area.
-.components--upper,
-.components--unit,
-.components--service {
-  > .component--unit-contact-card .component__container {
-    padding-bottom: $spacing-and-half;
-    padding-left: $spacing-and-half;
-    padding-right: $spacing-and-half;
-    padding-top: $spacing-and-half;
-    position: relative;
-
-    @include breakpoint($breakpoint-s) {
-      padding-bottom: $spacing-double;
-      padding-top: $spacing-double;
-    }
-
-    @include breakpoint($breakpoint-l) {
-      padding-left: $spacing-double;
-      padding-right: $spacing-double;
-    }
-
-    .component__title {
-      // The image is absolute positioned so this will
-      // set the heading under it. The formula is:
-      // (total width - margins - paddings + top margin) * aspect ratio
-      margin-top: calc((100vw - ($spacing * 2) - ($spacing-and-half * 2) + $spacing) * 2 / 3);
-      width: 100%;
-
-      @include breakpoint($breakpoint-s) {
-        margin-top: inherit;
-        width: calc(70% - $spacing-and-half);
-      }
-    }
-
-    .component__title + .component__content {
-      margin-top: $spacing-double;
-    }
-  }
-}
-
-.component--unit-contact-card .component__container {
+.unit-contact-card {
   background-color: $color-silver-light;
   display: flex;
   flex-direction: column;
+  gap: $spacing;
+  padding: $spacing-and-half;
 
-  // If the unit has fever than 3 content rows, the absolutely
-  // positioned image will overflow the card. Setting a min-height
-  // mitigates this issue.
-  @include breakpoint($breakpoint-xl) {
-    min-height: 320px;
+  @include breakpoint($breakpoint-s) {
+    padding-bottom: $spacing-double;
+    padding-top: $spacing-double;
   }
 }
 
-.unit-contact-card {
+.component--unit-contact-card--with-image .unit-contact-card {
+  @include breakpoint($breakpoint-s) {
+    flex-direction: row-reverse;
+    gap: $spacing-and-half;
+  }
+}
+
+.unit-contact-card__image {
+  flex-basis: 30%;
+  flex-shrink: 0;
+
+  picture,
+  img {
+    aspect-ratio: 1.5;
+    background-color: $color-black-5;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.unit-contact-card__info {
   display: flex;
   flex-direction: column;
-  margin-top: 0;
+  flex-grow: 1;
 }
 
 .unit-contact-card__info-row {
@@ -80,49 +61,6 @@
 
   .form-item {
     margin-bottom: 0;
-  }
-}
-
-.unit-contact-card__image {
-  margin-top: $spacing-and-half;
-
-  &-with-details {
-    left: 0;
-    padding-bottom: $spacing-and-half;
-    padding-left: $spacing-and-half;
-    padding-right: $spacing-and-half;
-    position: absolute;
-    top: 0;
-    width: 100%;
-
-    @include breakpoint($breakpoint-s) {
-      left: unset;
-      padding: 0;
-      right: $spacing-and-half;
-      top: $spacing-double;
-      width: 30%;
-    }
-
-    @include breakpoint($breakpoint-l) {
-      right: $spacing-double;
-    }
-  }
-
-  img {
-    display: block;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  + .unit-contact-card__info-row {
-    margin-top: $spacing-and-half;
-  }
-
-  &:first-child {
-    @include breakpoint($breakpoint-s) {
-      margin-top: 0;
-    }
   }
 }
 
