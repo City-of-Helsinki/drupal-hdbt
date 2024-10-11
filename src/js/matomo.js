@@ -1,8 +1,8 @@
 // eslint-disable-next-line func-names
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
-    /** 
-     * If the queryparameter is found, the script will be loaded 
+    /**
+     * If the queryparameter is found, the script will be loaded
      * regardless of cookie consents etc.
      */
     const useJSAPI = window.location.search === '?9mt5bfb2bGk=';
@@ -40,12 +40,8 @@
       })();
     }
 
-    if (!useJSAPI && typeof Drupal.eu_cookie_compliance === 'undefined') {
-      return;
-    }
-
     // Load Matomo only if statistics cookies are allowed.
-    if (!useJSAPI && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+    if (!useJSAPI && window && window.hds.cookieConsent && window.hds.cookieConsent.getConsentStatus(['statistics'])) {
       // Matomo Tag Manager
       // eslint-disable-next-line no-multi-assign
       const _mtm = (window._mtm = window._mtm || []);
@@ -63,11 +59,11 @@
     }
   }
 
-  // Load when cookie settings are changed.
-  $(document).on('eu_cookie_compliance.changeStatus', loadMatomoAnalytics());
-
-  // Load on page load.
-  $(document).ready(loadMatomoAnalytics);
+  if (window.hds.cookieConsent) {
+    loadMatomoAnalytics();
+  } else {
+    $(document).on('hds_cookieConsent_ready', loadMatomoAnalytics);
+  }
 })(jQuery, Drupal);
 
 // Clean/refactor this file when the testing phase is done
