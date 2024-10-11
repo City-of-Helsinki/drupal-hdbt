@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const processArgs = process.argv.slice(2);
 const envPath = '../../../../.env';
-require('dotenv').config({ path: envPath }); // Get environment from instance .env file
+require('@dotenvx/dotenvx').config({ path: envPath }); // Get environment from instance .env file
 const backstop = require('backstopjs');
 
 const TYPE = {
@@ -257,7 +257,7 @@ function getConfig(hostname, protocol, type) {
           'url': `${protocol}://${hostname}/en/dc-components/dc-announcements`,
           'removeSelectors': removeDefault,
           'selectors': [
-            '#block-hdbt-subtheme-announcements'
+            '#block-announcements'
           ],
           'selectorExpansion': expandComponents,
         },
