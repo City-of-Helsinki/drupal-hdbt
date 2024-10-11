@@ -1,9 +1,0 @@
-{% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--content-liftup' ] } %}
-    {% block component_content %}
-      {% block content %}
-        {{ content }}
-      {% endblock %}
-    {% endblock component_content %}
-  {% endembed %}
-{% endblock paragraph %}
