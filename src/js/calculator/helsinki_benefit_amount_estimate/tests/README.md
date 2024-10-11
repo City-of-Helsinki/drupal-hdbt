@@ -39,3 +39,13 @@ npm run test:debug
 ```
 
 ---
+
+## To run manual tests on local
+
+* Start a local server on **drupal-hdbt/**, for instance `python -m http.server 3001`
+* Open http://localhost:3001/src/js/calculator/helsinki_benefit_amount_estimate/helsinki-benefit-test.html on your browser.
+
+## To run automatic browser tests
+This requires test dependencies to be installed
+
+`cd src/js/calculator/helsinki_benefit_amount_estimate/tests && npm run test`
