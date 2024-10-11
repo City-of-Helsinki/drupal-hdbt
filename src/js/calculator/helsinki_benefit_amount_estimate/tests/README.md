@@ -4,13 +4,13 @@
 
 Needed:
 
-* node installed, tested to be working with at least v18
+* node installed
 * optionally, a display and a OS with GUI for headed tests
 
 To install playwright and it's dependencies:
 
 ```
-npm install
+nvm use && npm install
 npm run test:install
 ```
 
