@@ -64,11 +64,16 @@
           </div>
         {% endif %}
 
-
         {% if unit_contact_card.unit_url %}
           <div class="unit-contact-card__info-row unit-contact-card__link-wrapper">
-            {% set unit_link_attributes = { 'class': [ 'unit-contact-card__link', ], } %}
-            {{ link('Unit homepage'|t, unit_contact_card.unit_url, unit_link_attributes) }}
+            {% set link_title %}
+              <span class="visually-hidden">
+                {{- unit_contact_card.title.0['#context'].value ~ ':' -}}
+              </span>
+              {{- 'See details'|t({}, {'context': 'Unit contact card'}) -}}
+            {% endset %}
+            {% set unit_link_attributes = { 'class': [ 'unit-contact-card__link' ], } %}
+            {{ link(link_title, unit_contact_card.unit_url, unit_link_attributes) }}
           </div>
         {% endif %}
       </div>

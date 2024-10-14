@@ -1305,3 +1305,7 @@ msgstr "Delta i enkäten"
 msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "Jag deltar inte i enkäten"
+
+msgctxt "Unit contact card"
+msgid "See details"
+msgstr "Se detaljer"

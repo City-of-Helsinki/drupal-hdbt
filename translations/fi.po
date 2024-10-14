@@ -1303,3 +1303,7 @@ msgstr "Vastaa kyselyyn"
 msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"
+
+msgctxt "Unit contact card"
+msgid "See details"
+msgstr "Katso tarkemmat tiedot"
