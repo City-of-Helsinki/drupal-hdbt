@@ -23,10 +23,6 @@ msgctxt "No JS"
 msgid "Content cannot be displayed"
 msgstr "Innehållet kan inte visas"
 
-msgctxt "Content liftup card hit for seeing more information on content page"
-msgid "See details"
-msgstr "Se detaljer"
-
 msgctxt "Errand service accordion heading"
 msgid "Process"
 msgstr "Hur ärendet framskrider"
@@ -1309,3 +1305,11 @@ msgstr "Jag deltar inte i enkäten"
 msgctxt "Unit contact card"
 msgid "See details"
 msgstr "Se detaljer"
+
+msgctxt "The helper text before the news article published timestamp"
+msgid "Published"
+msgstr "Publicerad"
+
+msgctxt "The helper text before the news article changed timestamp"
+msgid "updated"
+msgstr "uppdaterad"

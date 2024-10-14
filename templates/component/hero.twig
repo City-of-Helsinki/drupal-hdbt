@@ -34,6 +34,8 @@
   ]
 } %}
 
+{% set updated_string = ', ' ~ 'updated'|t({}, {'context': 'The helper text before the news article changed timestamp'}) %}
+
 {# Open figure if image_author is set #}
 {% if image_author %}
   <figure>
@@ -68,6 +70,18 @@
             </div>
           {% endif %}
         {% endif %}
+
+        {% if published_time|render|striptags|trim is not empty and html_published_time|render|striptags|trim is not empty %}
+          <div class="hero__publish-information">
+            <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the news article published timestamp'}) }}</span>
+            <time datetime="{{ html_published_time }}" class="hero__publish-information__datetime hero__publish-information__datetime--published">{{ published_time }}</time>
+            {%- if updated_time|render|striptags|trim is not empty and html_updated_time|render|striptags|trim is not empty and html_updated_time > html_published_time -%}
+              {{- updated_string }}
+              <time datetime="{{ html_updated_time }}" class="hero__publish-information__datetime hero__publish-information__datetime--updated">{{ updated_time }}</time>
+            {%- endif -%}
+          </div>
+        {% endif %}
+
       </div>
       <span class="hero__arrow" aria-hidden="true"></span>
     {% endblock %}

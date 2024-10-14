@@ -50,6 +50,7 @@ const Entries = () => {
     'src/js/accordion/state.js',
     'src/js/accordion/translations.js',
     'src/js/localStorageManager.js',
+    'src/js/calculator/**/tests/**'
   ];
 
   glob.sync(pattern, {ignore: ignore}).map((item) => {
