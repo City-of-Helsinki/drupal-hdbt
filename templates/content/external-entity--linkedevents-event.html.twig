@@ -1,0 +1,41 @@
+<li class="linkedevents-event">
+  <div class="linkedevents-event__img">
+    {{ content.main_image }}
+  </div>
+  <div class="linkedevents-event__text-container">
+    <h3 class="linkedevents-event__title">
+      {{ content.external_link }}
+    </h3>
+    <div class="linkedevents-event__date-container">
+      {% set is_multidate = start_timestamp|date('Y-m-d') != end_timestamp|date('Y-m-d') %}
+      {% set same_year = start_timestamp|date('Y') == end_timestamp|date('Y') %}
+      {% set html_start = start_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ start_timestamp|format_date('custom', 'H:i') %}
+      {% set html_end = end_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ end_timestamp|format_date('custom', 'H:i') %}
+      {% if is_multidate and not same_year %}
+        <time datetime="{{ html_start }}">
+          {{ start_timestamp|date('d.m.Y') }}
+        </time>
+        –
+        <time datetime="{{ html_end }}">
+          {{ end_timestamp|date('d.m.Y') }}
+        </time>
+      {% elseif is_multidate %}
+        <time datetime="{{ html_start }}">
+          {{ start_timestamp|date('d.m.') }}
+        </time>
+        –
+        <time datetime="{{ html_end }}">
+          {{ end_timestamp|date('d.m.Y') }}
+        </time>
+      {% else %}
+        <time datetime="{{ html_start }}">
+          {{ start_timestamp|format_date('publication_date_format') }}
+        </time>
+        –
+        <time datetime="{{ html_end }}">
+          {{ end_timestamp|format_date('custom', 'H:i') }}
+        </time>
+      {% endif %}
+    </div>
+  </div>
+</li>

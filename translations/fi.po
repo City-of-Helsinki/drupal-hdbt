@@ -1311,3 +1311,11 @@ msgstr "Julkaistu"
 msgctxt "The helper text before the news article changed timestamp"
 msgid "updated"
 msgstr "päivitetty"
+
+msgctxt "Curated event list title"
+msgid "Recommended events"
+msgstr "Suositellut tapahtumat"
+
+msgctxt "Curated events list empty message"
+msgid "Recommended events were not found"
+msgstr "Suositeltuja tapahtumia ei löytynyt."

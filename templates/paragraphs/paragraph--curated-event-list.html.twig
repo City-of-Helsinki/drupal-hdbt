@@ -1,0 +1,24 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+      'component--full-width',
+      'component--curated-event-list',
+      ],
+      component_title_level: 'h2',
+      component_title: content['#title'],
+    }
+  %}
+    {% block component_content %}
+      <div class="curated-event-list">
+        {{ content.field_events }}
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          label: content.field_all_events_link.0['#title'],
+          open_in_a_new_window: content.field_all_events_link.0.options.target_new,
+          type: 'primary',
+          url: content.field_all_events_link.0['#url'],
+        } %}
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
