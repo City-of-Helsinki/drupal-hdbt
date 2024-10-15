@@ -1287,7 +1287,7 @@ function hdbt_preprocess_field(&$variables): void {
     case 'service_map_embed':
       $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
       $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-      $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
+      $variables['privacy_policy_url'] = _hdbt_get_cookie_settings_url(FALSE);
       break;
   }
 }
@@ -1702,13 +1702,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
  */
 function hdbt_preprocess_paragraph__school_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/school-search';
-
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+  $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = _hdbt_get_cookie_settings_url();
 }
 
 /**
@@ -1716,13 +1710,7 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
  */
 function hdbt_preprocess_paragraph__health_station_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/health-station-search';
-
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+  $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = _hdbt_get_cookie_settings_url();
 }
 
 /**
@@ -1730,13 +1718,15 @@ function hdbt_preprocess_paragraph__health_station_search(array &$variables): vo
  */
 function hdbt_preprocess_paragraph__maternity_and_child_health_clini(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/maternity-and-child-health-clinic-search';
+  $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = _hdbt_get_cookie_settings_url();
+}
 
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
+  $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+  $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = _hdbt_get_cookie_settings_url();
 }
 
 /**
@@ -1871,15 +1861,35 @@ function hdbt_preprocess_views_exposed_form(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * A helper function to retrieve the cookie banner URL.
+ *
+ * @param bool $to_string
+ *   Should the URL be returned as a string.
+ *
+ * @return \Drupal\Core\Url|string
+ *   Returns the URL as an Url object.
  */
-function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
-  $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+function _hdbt_get_cookie_settings_url(bool $to_string = TRUE): Url|string {
+  $url = &drupal_static(__FUNCTION__);
 
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
+  if ($url) {
+    return $url;
   }
+
+  if (\Drupal::moduleHandler()->moduleExists('hdbt_cookie_banner')) {
+    /** @var \Drupal\hdbt_cookie_banner\Services\CookieSettings $cookie_settings */
+    $cookie_settings = \Drupal::service('hdbt_cookie_banner.cookie_settings');
+    $url = $cookie_settings->getCookieSettingsPageUrl();
+    assert($url instanceof Url);
+  }
+  else {
+    $url = Url::fromUserInput('https://www.hel.fi');
+  }
+
+  // Should the URL be returned as a string?
+  if ($to_string) {
+    return $url->setAbsolute()->toString();
+  }
+
+  return $url;
 }
