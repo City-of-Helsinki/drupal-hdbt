@@ -1,0 +1,7 @@
+{% if not content['#in_past'] %}
+  {{ dump(content) }}
+  <div class="curated-event">
+    {{ content.main_image|render }}
+    {{ content.start_time|render }}
+  </div>
+{% endif %}

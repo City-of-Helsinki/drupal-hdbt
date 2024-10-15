@@ -1,0 +1,18 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+      'component--full-width',
+      'component--curated-event-list'
+      ],
+      component_title_level: 'h2',
+      component_title: content.field_event_list_title,
+      component_description: content.field_event_list_description,
+      component_content_class: 'curated-event-list',
+    }
+  %}
+    {% block component_content %}
+      {{ content }}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
