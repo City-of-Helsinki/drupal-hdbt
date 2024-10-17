@@ -31,10 +31,15 @@ declare namespace drupalSettings {
       }
     }
   };
+
+  const raven: {
+    options: {
+      dsn: string
+    }
+  };
   const helfi_react_search: {
     cookie_privacy_url: string;
     elastic_proxy_url: string;
-    sentry_dsn_react: string;
     hakuvahti_url_set: boolean;
   };
   const helfi_rekry_job_search: {

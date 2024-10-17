@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/react';
 import { ForwardedRef, forwardRef } from 'react';
+import { sentryEnabled } from '@/react/common/helpers/Sentry';
 
 type ResultsErrorProps = {
   error: string|Error;
@@ -9,7 +10,7 @@ type ResultsErrorProps = {
 const ResultsError = forwardRef(({ error, className }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
   console.warn(`Error loading data from Elastic: ${error}`);
 
-  if (drupalSettings?.helfi_react_search?.sentry_dsn_react) {
+  if (sentryEnabled()) {
     Sentry.captureException(error);
   }
 
