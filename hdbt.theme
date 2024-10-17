@@ -466,6 +466,9 @@ function hdbt_preprocess_form_element(&$variables): void {
       case 'password':
       case 'textarea':
       case 'textfield':
+      case 'select':
+        // Use the same label class for selects as well since there is no
+        // select specific class on hds core.
         $element_label_class = 'hds-text-input__label';
         break;
     }
