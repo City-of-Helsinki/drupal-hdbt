@@ -1302,6 +1302,10 @@ msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "Jag deltar inte i enkäten"
 
+msgctxt "Unit contact card"
+msgid "See details"
+msgstr "Se detaljer"
+
 msgctxt "The helper text before the news article published timestamp"
 msgid "Published"
 msgstr "Publicerad"

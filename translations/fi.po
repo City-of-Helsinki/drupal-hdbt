@@ -1300,6 +1300,10 @@ msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"
 
+msgctxt "Unit contact card"
+msgid "See details"
+msgstr "Katso tarkemmat tiedot"
+
 msgctxt "The helper text before the news article published timestamp"
 msgid "Published"
 msgstr "Julkaistu"
