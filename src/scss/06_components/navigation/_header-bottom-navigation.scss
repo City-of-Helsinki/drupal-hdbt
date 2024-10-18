@@ -1,6 +1,11 @@
 $-main-nav-spacing: 20px;
 $-main-nav-dropdown-padding: $-main-nav-spacing;
 
+// Site name padding math
+$-site-name-original-padding-top: $spacing-and-half; // This was the original design padding.
+$-site-name-padding-top: $wcag-touch-target-size-aaa - get-line-height('special.site_name', $unremify: true); // Line-height and padding should sum up to the touch target size.
+$-site-name-container-padding-top: $-site-name-original-padding-top - $-site-name-padding-top; // The remaining original padding should be added to the container.
+
 .header-bottom {
   background-color: $color-white;
 
@@ -31,7 +36,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
   .site-name__container {
     display: none;
-    padding-top: $spacing-and-half;
+    padding-top: $-site-name-container-padding-top;
 
     @include breakpoint($breakpoint-l) {
       display: flex;
@@ -40,6 +45,7 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
   .site-name__link {
     @include font('special.site_name');
+    padding-top: $-site-name-padding-top;
     text-decoration: none;
 
     &:hover,
