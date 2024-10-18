@@ -4,14 +4,14 @@
   display: flex;
   list-style: none;
   margin: 0;
-  padding: $spacing-half $spacing;
+  padding-inline: $spacing;
 
   @include breakpoint($breakpoint-m) {
-    padding: $spacing $spacing-and-half;
+    padding-inline: $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-l) {
-    padding: $spacing $spacing-double;
+    padding-inline: $spacing-double;
   }
 
   .hel-icon {
@@ -27,10 +27,12 @@
 
 .breadcrumb__link {
   display: none;
+  padding-block: $spacing-half;
   text-decoration: underline;
 
   @include breakpoint($breakpoint-m) {
     display: block;
+    padding-block: $spacing;
   }
 
   &:hover {
