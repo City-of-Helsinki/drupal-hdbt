@@ -1,6 +1,7 @@
 {% set dialog_attributes = {
   'class': [
-    'survey',
+    'dialog',
+    'dialog--survey',
   ],
   'id': 'helfi-survey'
 } %}
@@ -12,21 +13,23 @@
   })
   %}
 {% endif %}
-<div class="survey__container" id="helfi-survey__container" data-uuid="{{ node.uuid.value }}" style="display: none">
-  <div class="survey__overlay" tabindex="-1"></div>
+<div class="dialog__container dialog__container--survey" id="helfi-survey__container" data-uuid="{{ node.uuid.value }}" style="display: none">
+  <div class="dialog__overlay" tabindex="-1"></div>
   <dialog {{ create_attribute(dialog_attributes) }}>
-    <h2 class="survey__title" id="helfi-survey__title">{{ label }}</h2>
-    <div class="survey__content">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="helfi-survey__title">{{ label }}</h2>
+    </div>
+    <div class="dialog__content">
       {{ content.body }}
     </div>
-    <div class="survey__links">
+    <div class="dialog__actions">
       {% include '@hdbt/navigation/link-button.html.twig' with {
         type: 'primary',
         label: 'Respond to the survey'|t({}, {'context': 'Survey'}),
         url: content.field_survey_link.0['#url'],
-        link_options: {'class': ['survey__link', 'survey__link--participate']},
+        link_options: {'class': ['dialog__action-button']},
       } %}
-      <button class="survey__link survey__link--close" data-hds-component="button" data-hds-variant="secondary" id="helfi-survey__close-button">
+      <button class="dialog__action-button" data-hds-component="button" data-hds-variant="secondary" id="helfi-survey__close-button">
         {{ "Skip the survey"|t({}, {'context': 'Survey'}) }}
       </button>
     </div>
