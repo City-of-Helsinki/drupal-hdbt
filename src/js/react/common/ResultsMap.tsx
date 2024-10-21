@@ -64,7 +64,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const url = new URL(mapUrl);
 
-  // @todo Remove policyUrl fallback once the HDBT Cookie banner is in use.
+  // @todo UHF-10862 Remove policyUrl fallback once the HDBT cookie banner module is in use.
   return (
     <CookieComplianceStatement
       host={url.host}
