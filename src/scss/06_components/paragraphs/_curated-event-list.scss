@@ -1,11 +1,11 @@
 .curated-event-list__events {
-  grid-gap: 0;
   display: grid;
+  gap: 0;
   list-style: none;
   padding-left: 0;
 
   @include breakpoint($breakpoint-m) {
-    grid-column-gap: $spacing-and-half;
+    column-gap: $spacing-and-half;
     grid-template-columns: repeat(3, 1fr);
   }
 }
