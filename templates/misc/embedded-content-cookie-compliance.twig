@@ -49,8 +49,9 @@
           'hds-button--secondary',
         ],
       } %}
-      {{ link(link_title, privacy_policy_url, link_attributes) }}
-
+      {% if privacy_policy_url %}
+        {{ link(link_title, privacy_policy_url, link_attributes) }}
+      {% endif %}
     </div>
   </div>
 </div>
