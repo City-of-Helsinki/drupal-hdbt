@@ -1707,6 +1707,8 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
  */
 function hdbt_preprocess_paragraph__school_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/school-search';
+  // @todo UHF-10862 Remove once HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1714,6 +1716,8 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
  */
 function hdbt_preprocess_paragraph__health_station_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/health-station-search';
+  // @todo UHF-10862 Remove once HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1721,6 +1725,8 @@ function hdbt_preprocess_paragraph__health_station_search(array &$variables): vo
  */
 function hdbt_preprocess_paragraph__maternity_and_child_health_clini(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/maternity-and-child-health-clinic-search';
+  // @todo UHF-10862 Remove once HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1728,6 +1734,8 @@ function hdbt_preprocess_paragraph__maternity_and_child_health_clini(array &$var
  */
 function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+  // @todo UHF-10862 Remove once HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1859,4 +1867,23 @@ function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$var
  */
 function hdbt_preprocess_views_exposed_form(array &$variables) {
   $variables['#attached']['library'][] = 'hdbt/search-helper';
+}
+
+/**
+ * Get privacy policy url from helfi_eu_cookie_compliance module.
+ *
+ * @todo UHF-10862 Remove once HDBT cookie banner module is in use.
+ *
+ * @param array $variables
+ *   Variables array.
+ */
+function hdbt_set_legacy_privacy_policy_url(array &$variables): void {
+  if (Drupal::moduleHandler()->moduleExists('helfi_eu_cookie_compliance')) {
+    $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
+
+    if ($privacyUrl instanceof Url) {
+      $privacyUrl->setAbsolute();
+      $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
+    }
+  }
 }
