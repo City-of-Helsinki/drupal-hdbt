@@ -1,0 +1,31 @@
+.curated-event-list__events {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  padding-left: 0;
+
+  @include breakpoint($breakpoint-m) {
+    column-gap: $spacing-and-half;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.curated-event-list__event + .curated-event-list__event {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: 0;
+  }
+}
+
+.curated-event-list__empty-message__container {
+  margin-bottom: $spacing-and-half;
+}
+
+.curated-event-list__empty-message {
+  @include font(h4);
+}
+
+.curated-event-list__event {
+  position: relative;
+}
