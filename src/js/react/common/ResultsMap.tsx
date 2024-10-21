@@ -64,10 +64,11 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const url = new URL(mapUrl);
 
+  // @todo Remove policyUrl fallback once the HDBT Cookie banner is in use.
   return (
     <CookieComplianceStatement
       host={url.host}
-      policyUrl={drupalSettings.helfi_react_search.cookie_privacy_url}
+      policyUrl={drupalSettings.hdbt_cookie_banner.settingsPageUrl || drupalSettings.helfi_react_search.cookie_privacy_url}
       sourceUrl={mapUrl}
     />
   );
