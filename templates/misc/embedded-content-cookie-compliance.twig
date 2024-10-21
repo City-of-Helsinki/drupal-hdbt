@@ -48,6 +48,8 @@
           'hds-button',
           'hds-button--secondary',
         ],
+        'data-cookie-consent-groups': 'preferences, statistics',
+        'onclick': 'window.hdsCookieConsentClickEvent(event, this)',
       } %}
       {% if privacy_policy_url %}
         {{ link(link_title, privacy_policy_url, link_attributes) }}
