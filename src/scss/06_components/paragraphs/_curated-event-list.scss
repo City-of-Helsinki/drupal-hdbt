@@ -8,13 +8,13 @@
     grid-column-gap: $spacing-and-half;
     grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  .linkedevents-event + .linkedevents-event {
-    margin-top: $spacing-double;
+.curated-event-list__event + .curated-event-list__event {
+  margin-top: $spacing-double;
 
-    @include breakpoint($breakpoint-m) {
-      margin-top: 0;
-    }
+  @include breakpoint($breakpoint-m) {
+    margin-top: 0;
   }
 }
 
@@ -26,75 +26,6 @@
   @include font(h4);
 }
 
-.linkedevents-event {
-  display: flex;
-  height: 100%;
+.curated-event-list__event {
   position: relative;
-
-  @include breakpoint($breakpoint-m) {
-    flex-direction: column;
-    padding-bottom: 0;
-  }
-}
-
-.linkedevents-event__title {
-  @include font(h5);
-  margin-bottom: $spacing-half;
-  margin-top: 0;
-
-  @include breakpoint($breakpoint-l) {
-    @include font(h4);
-  }
-}
-
-.linkedevents-event__title a::after {
-  bottom: 0;
-  content: '';
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.linkedevents-event__text-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-inline-start: $spacing;
-  width: 60%;
-
-  @include breakpoint($breakpoint-m) {
-    padding: $spacing 0 0 0;
-    width: unset;
-  }
-
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: $spacing;
-
-    @include breakpoint($breakpoint-m) {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-}
-
-.linkedevents-event__img {
-  position: relative;
-  width: 40%;
-
-  @include breakpoint($breakpoint-m) {
-    width: unset;
-  }
-
-  img {
-    display: block;
-    height: auto;
-    width: 100%;
-  }
-}
-
-.linkedevents-event__date-container {
-  @include font(small);
-  color: $color-black-60
 }
