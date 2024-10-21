@@ -1289,8 +1289,7 @@ function hdbt_preprocess_field(&$variables): void {
       $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
 
       if (Drupal::moduleHandler()->moduleExists('hdbt_cookie_banner')) {
-        /** @var \Drupal\hdbt_cookie_banner\Services\CookieSettings $cookie_settings */
-        $cookie_settings = \Drupal::service('hdbt_cookie_banner.cookie_settings');
+        $cookie_settings = Drupal::service('hdbt_cookie_banner.cookie_settings');
         $variables['privacy_policy_url'] = $cookie_settings->getCookieSettingsPageUrl();
       }
       break;
