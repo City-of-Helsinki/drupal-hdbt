@@ -11,7 +11,19 @@
   %}
     {% block component_content %}
       <div class="curated-event-list">
-        {{ content.field_events }}
+        {% if future_or_ongoing is empty %}
+          <div class="curated-event-list__empty-message__container">
+            <span class="curated-event-list__empty-message">
+              {{ 'Recommended events were not found'|t({}, {'context': 'Curated events list empty message'}) }}
+            </span>
+          </div>
+        {% else %}
+          <ul class="curated-event-list__events">
+            {% for event in future_or_ongoing %}
+              {{ event.content }}
+            {% endfor %}
+          </ul>
+        {% endif %}
         {% include '@hdbt/navigation/link-button.html.twig' with {
           label: content.field_all_events_link.0['#title'],
           open_in_a_new_window: content.field_all_events_link.0.options.target_new,

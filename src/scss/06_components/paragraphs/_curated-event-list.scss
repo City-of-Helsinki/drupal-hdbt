@@ -98,9 +98,3 @@
   @include font(small);
   color: $color-black-60
 }
-
-.curated-event-list__past-events-notification {
-  background-color: $color-error-light;
-  margin-bottom: $spacing-and-half;
-  padding: $spacing;
-}
