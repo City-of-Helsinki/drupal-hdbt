@@ -82,6 +82,8 @@
 }
 
 // Latest news block variant.
+// @todo: move medium teaser styles to generic teaser
+// https://helsinkisolutionoffice.atlassian.net/browse/UHF-10868
 .news-listing--latest-medium-teasers {
   margin-bottom: 0;
   padding-inline-start: 0; // User agent stylesheet override
