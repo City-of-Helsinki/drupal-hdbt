@@ -1300,6 +1300,10 @@ msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"
 
+msgctxt "Unit contact card"
+msgid "See details"
+msgstr "Katso tarkemmat tiedot"
+
 msgctxt "The helper text before the news article published timestamp"
 msgid "Published"
 msgstr "Julkaistu"
@@ -1307,3 +1311,19 @@ msgstr "Julkaistu"
 msgctxt "The helper text before the news article changed timestamp"
 msgid "updated"
 msgstr "päivitetty"
+
+msgctxt "Curated event list title"
+msgid "Recommended events"
+msgstr "Suositellut tapahtumat"
+
+msgctxt "Curated events list empty message"
+msgid "Recommended events were not found"
+msgstr "Suositeltuja tapahtumia ei löytynyt."
+
+msgctxt "React & Share cookie compliance"
+msgid "Would you like to give feedback on this page?"
+msgstr "Haluatko antaa meille palautetta tästä sivusta?"
+
+msgctxt "React & Share cookie compliance"
+msgid "Enabling cookies that collect statistics will allow you to share your input."
+msgstr "Pääset antamaan palautetta, jos sallit evästeasetuksista tilastointiin liittyvät evästeet."

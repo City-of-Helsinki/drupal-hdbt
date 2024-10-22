@@ -1,0 +1,38 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+      'component--full-width',
+      'component--curated-event-list',
+      ],
+      component_title_level: 'h2',
+      component_title: 'Recommended events'|trans({}, {'context': 'Curated event list title'}),
+    }
+  %}
+    {% block component_content %}
+      <div class="curated-event-list">
+        {% if content.future_or_ongoing is empty %}
+          <div class="curated-event-list__empty-message__container">
+            <span class="curated-event-list__empty-message">
+              {{ 'Recommended events were not found'|t({}, {'context': 'Curated events list empty message'}) }}
+            </span>
+          </div>
+        {% else %}
+          <ul class="curated-event-list__events">
+            {% for event in content.future_or_ongoing %}
+              <li class="curated-event-list__event">
+                {{ event }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          label: content.field_all_events_link.0['#title'],
+          open_in_a_new_window: content.field_all_events_link.0.options.target_new,
+          type: 'primary',
+          url: content.field_all_events_link.0['#url'],
+        } %}
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

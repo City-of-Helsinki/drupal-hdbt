@@ -1,71 +1,51 @@
-.component--unit-contact-card {
-  background-color: $color-silver-light;
-}
-
-// If the unit contact card is just before footer.
-.layout-main-wrapper > *:last-child .component--unit-contact-card:last-child {
-  margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 55px; // Leave enough room between the last card and footer.
-}
-
-// If the unit contact card is at the upper content area.
-.components--upper,
-.components--unit,
-.components--service {
-  > .component--unit-contact-card .component__container {
-    padding-left: $spacing;
-    padding-right: $spacing;
-    @include breakpoint($breakpoint-m) {
-      padding-bottom: $spacing-triple;
-      padding-left: $spacing-double;
-      padding-right: $spacing-double;
-      padding-top: $spacing-triple;
-    }
-
-    .component__title + .component__content {
-      @include breakpoint($component-spacing-breakpoint) {
-        margin-top: 40px;
-      }
-    }
-  }
-}
-
-.component--unit-contact-card .component__container {
-  padding-bottom: $spacing-double;
-  padding-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    padding-bottom: $spacing-quadruple;
-    padding-top: $spacing-quadruple;
-  }
-}
-
 .unit-contact-card {
-  @include breakpoint($breakpoint-l) {
-    overflow: hidden; // Because of the floats.
+  background-color: $color-silver-light;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-s) {
+    padding-bottom: $spacing-double;
+    padding-top: $spacing-double;
   }
+}
+
+.component--unit-contact-card--with-image .unit-contact-card {
+  @include breakpoint($breakpoint-s) {
+    flex-direction: row-reverse;
+    gap: $spacing-and-half;
+  }
+}
+
+.unit-contact-card__image {
+  flex-basis: 30%;
+  flex-shrink: 0;
+
+  picture,
+  img {
+    aspect-ratio: 1.5;
+    background-color: $color-black-5;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.unit-contact-card__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .unit-contact-card__info-row {
-  margin-top: $spacing-double;
+  margin-top: $spacing-and-half;
   padding-left: calc(#{$spacing-and-half} + #{$spacing-half}); // Icon width + spacing between text and icon.
   position: relative;
   width: 100%;
 
-  @include breakpoint($breakpoint-l) {
-    // The float in here is because of the complex structure when switching between mobile and desktop layouts.
-    // The image needs to be printed on mobile after the visiting address but before other information so it is
-    // printed there in the DOM, but it needs to be on the "column" next to the values on the desktop view.
-    float: left;
-    margin-right: 50%;
-    padding-right: $spacing-and-half;
-    width: 50%;
-  }
-
   &:first-child {
-    @include breakpoint($breakpoint-l) {
-      margin-top: 0;
-    }
+    margin-top: 0;
   }
 
   // Icons container.
@@ -78,79 +58,9 @@
   p:first-child {
     margin-top: 0;
   }
-}
 
-// Additional details on the "left column".
-.unit-contact-card__info-row--details {
-  @include breakpoint($breakpoint-l) {
-    display: none; // This is shown only on mobile to make the print order correct.
-  }
-}
-
-// If the details should be visible on the left column on desktop.
-.unit-contact-card--details-on-left {
-  .unit-contact-card__info-row--details {
-    @include breakpoint($breakpoint-l) {
-      display: block;
-    }
-  }
-
-  .unit-contact-card__image-with-details .unit-contact-card__info-row--details {
-    @include breakpoint($breakpoint-l) {
-      display: none;
-    }
-  }
-}
-
-// Container for the image and possible details.
-.unit-contact-card__image-with-details {
-  @include breakpoint($breakpoint-l) {
-    float: right;
-    margin-left: -50%;
-    width: 50%;
-  }
-
-  .unit-contact-card__info-row--details {
-    display: none; // Additional details is shown on this column only on desktop view.
-
-    @include breakpoint($breakpoint-l) {
-      display: block;
-      float: none;
-      margin-right: 0;
-      padding-right: 0;
-      width: 100%;
-    }
-  }
-}
-
-// If the left column on desktop is empty.
-.unit-contact-card--left-column-empty .unit-contact-card__image-with-details {
-  float: none;
-  margin-left: 0;
-}
-
-.unit-contact-card__image {
-  margin-top: $spacing-and-half;
-
-  img {
-    display: block;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  + .unit-contact-card__info-row {
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-double;
-    }
-  }
-
-  &:first-child {
-    @include breakpoint($breakpoint-l) {
-      margin-top: 0;
-    }
+  .form-item {
+    margin-bottom: 0;
   }
 }
 
@@ -185,7 +95,7 @@
   padding-left: 0; // There is no icon on the link so this padding is not needed.
 
   &:first-child {
-    @include breakpoint($breakpoint-l) {
+    @include breakpoint($breakpoint-s) {
       margin-top: 0;
     }
   }

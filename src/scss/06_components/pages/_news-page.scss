@@ -82,16 +82,18 @@
 }
 
 // Latest news block variant.
+// @todo: move medium teaser styles to generic teaser
+// https://helsinkisolutionoffice.atlassian.net/browse/UHF-10868
 .news-listing--latest-medium-teasers {
   margin-bottom: 0;
   padding-inline-start: 0; // User agent stylesheet override
   padding-right: 0;
 
   @include breakpoint($breakpoint-m) {
-    grid-column-gap: $spacing-and-half;
-    grid-row-gap: $spacing-double;
+    column-gap: $spacing-and-half;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    row-gap: $spacing-double;
   }
 
   .news-listing__item {
@@ -219,13 +221,13 @@
 }
 
 .news-listing--card-teasers {
-  grid-gap: 0;
   display: grid;
+  gap: 0;
   list-style: none;
   padding-left: 0;
 
   @include breakpoint($breakpoint-m) {
-    grid-column-gap: $spacing-and-half;
+    column-gap: $spacing-and-half;
     grid-template-columns: repeat(3, 1fr);
   }
 
