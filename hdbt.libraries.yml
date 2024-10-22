@@ -102,6 +102,7 @@ matomo:
   header: true
   js:
     dist/js/matomo.min.js: {
+      weight: -10,
       minified: true
     }
   dependencies:
