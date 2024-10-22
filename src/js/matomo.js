@@ -41,7 +41,7 @@
     }
 
     // Load Matomo only if statistics cookies are allowed.
-    if (!useJSAPI && window && window.hds.cookieConsent && window.hds.cookieConsent.getConsentStatus(['statistics'])) {
+    if (!useJSAPI && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       // Matomo Tag Manager
       // eslint-disable-next-line no-multi-assign
       const _mtm = (window._mtm = window._mtm || []);

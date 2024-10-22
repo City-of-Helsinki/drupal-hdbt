@@ -19,7 +19,7 @@
       }
     };
 
-    if (window && window.hds.cookieConsent && window.hds.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
+    if (Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
       // eslint-disable-next-line no-restricted-syntax
       for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
         const iframeElement = document.createElement('iframe');
