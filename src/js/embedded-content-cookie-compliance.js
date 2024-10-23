@@ -1,8 +1,6 @@
 /**
  * @file
  * Load embedded content once the user has approved required cookie category.
- *
- * Depends on EU Cookie Compliance module.
  */
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
@@ -76,9 +74,9 @@
   // Remove noscript element.
   $('.embedded-content-cookie-compliance .js-remove').remove();
 
-  if (window.hds.cookieConsent) {
+  if (Drupal.cookieConsent.initialized()) {
     loadEmbeddedContent();
   } else {
-    $(document).on('hds_cookieConsent_ready', loadEmbeddedContent);
+    Drupal.cookieConsent.loadFunction(loadEmbeddedContent);
   }
 })(jQuery, Drupal, drupalSettings);

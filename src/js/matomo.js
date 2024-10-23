@@ -59,10 +59,10 @@
     }
   }
 
-  if (window.hds.cookieConsent) {
+  if (Drupal.cookieConsent.initialized()) {
     loadMatomoAnalytics();
   } else {
-    $(document).on('hds_cookieConsent_ready', loadMatomoAnalytics);
+    Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
   }
 })(jQuery, Drupal);
 
