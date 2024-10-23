@@ -75,6 +75,7 @@
   margin-top: $spacing-quadruple;
   width: 100%;
 
+  > .card:first-of-type,
   > .views-row:first-of-type {
     margin-top: $spacing;
 
