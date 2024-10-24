@@ -20,7 +20,7 @@ $-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-heig
     background-color: $color-black-5;
     display: flex;
     justify-content: flex-end;
-    padding: $-header-top-padding $spacing-double;
+    padding: 0 $spacing-double;
   }
 
   .menu {
@@ -31,7 +31,17 @@ $-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-heig
   }
 
   .menu__item + .menu__item {
-    margin-inline-start: $spacing;
+    margin-inline-start: $spacing-quarter; // Visual space between menu items is still $spacing, but we want a little of the space to be inside the padding. 6px + $spacing-quarter + 6px = 16px
+  }
+
+  .menu__link {
+    display: inline-block;
+    padding-block: $-header-top-padding; // This sets the link clickable area to be big enough for a11y.
+    padding-inline: 6px; // Visual space between menu items is still $spacing, but we want a little of the space to be inside the padding. 6px + $spacing-quarter + 6px = 16px
+  }
+
+  .menu__item:last-child .menu__link {
+    padding-inline-end: 0;
   }
 
   .link-to-site-frontpage {
