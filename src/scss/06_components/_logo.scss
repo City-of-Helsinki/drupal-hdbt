@@ -31,7 +31,10 @@ $-logo-sv-aspect-ratio: math.div(78, 28); // sv and ru logo size from svg file
 }
 
 .logo--footer {
-  margin-top: $spacing-half;
+  $logo-size: 40px;
+  $padding-size: 0.5 * ($wcag-touch-target-size-aaa - $logo-size);
+  margin-top: calc($spacing-half - #{$padding-size});
+  padding-block: $padding-size;
 
   @include breakpoint($breakpoint-m) {
     margin-right: $spacing;
@@ -39,6 +42,6 @@ $-logo-sv-aspect-ratio: math.div(78, 28); // sv and ru logo size from svg file
   }
 
   .logo__icon {
-    --height: 40px;
+    --height: #{$logo-size};
   }
 }
