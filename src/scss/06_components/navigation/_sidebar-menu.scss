@@ -1,5 +1,8 @@
-$inner-item-spacing: 5px;
+$-inner-item-spacing: 5px;
 $-outline-width: 3px;
+$-menu-item-font: 'body';
+$-menu-item-padding: 0.5 * ($wcag-touch-target-size-aaa - get-line-height($-menu-item-font, $unremify: true)); // Adjust padding to fit the touch target size
+$-menu-item-margin: (2 * $-inner-item-spacing - $-menu-item-padding); // Adjust margin from original $-inner-item-spacing to compensate for larger padding
 
 .layout-sidebar-first {
   display: none;
@@ -52,6 +55,7 @@ $-outline-width: 3px;
     &.sidebar-navigation__title-link--unpublished {
       color: var(--color-error);
 
+      /* stylelint-disable-next-line max-nesting-depth */
       &::before {
         background-color: var(--color-error);
       }
@@ -120,7 +124,7 @@ $-outline-width: 3px;
   }
 
   .menu__item {
-    @include font('body');
+    @include font($-menu-item-font);
 
     &.menu__item--active-trail {
       display: flex;
@@ -153,8 +157,8 @@ $-outline-width: 3px;
 
   .menu__item--nolink,
   .menu__link {
-    margin-block: $inner-item-spacing;
-    padding: $inner-item-spacing $spacing-quarter;
+    margin-block: $-menu-item-margin;
+    padding: $-menu-item-padding $spacing-quarter;
     position: relative;
     width: 100%;
 
@@ -185,11 +189,11 @@ $-outline-width: 3px;
     .menu__link[aria-current='page']::before {
       background-color: $color-black;
       content: '';
-      height: calc(100% + (2 * #{$inner-item-spacing}));
+      height: calc(100% + (2 * #{$-menu-item-margin}));
       inset: 0;
       left: calc(-1 * #{$spacing} - 1px);
       position: absolute;
-      top: -$inner-item-spacing;
+      top: -$-menu-item-margin;
       width: $-outline-width;
     }
   }
