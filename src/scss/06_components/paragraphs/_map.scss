@@ -32,9 +32,15 @@
   }
 
   .map__external-link {
-    @include font('button');
+    $-map-external-font: 'button';
+    $-map-external-padding: 0.5 * ($wcag-touch-target-size-aaa - get-line-height($-map-external-font, $unremify: true)); // Adjust padding to fit the touch target size
+    $-map-external-padding-start: max($-map-external-padding, $spacing); // Ensure most of the padding stays on top where previously was $spacing size margin
+    $-map-external-padding-end: $-map-external-padding * 2 - $-map-external-padding-start; // Add rest of the needed padding to the bottom
+
+    @include font($-map-external-font);
     display: inline-flex;
-    margin-top: $spacing;
+    padding-block-end: $-map-external-padding-end;
+    padding-block-start: $-map-external-padding-start;
   }
 }
 
