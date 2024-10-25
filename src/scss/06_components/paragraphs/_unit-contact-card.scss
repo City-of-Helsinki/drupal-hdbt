@@ -102,7 +102,17 @@
 }
 
 .unit-contact-card__link {
-  @include font(h6);
+  $-unit-contact-card-link-font: 'h6';
+  $-unit-contact-card-link-padding: 0.5 * ($wcag-touch-target-size-aaa - get-line-height($-unit-contact-card-link-font, $unremify: true)); // Adjust padding to fit the touch target size
+  $-unit-contact-card-link-padding-desktop: 0.5 * ($wcag-touch-target-size-aaa - get-line-height($-unit-contact-card-link-font + ".breakpoint_l", $unremify: true)); // Adjust padding to fit the touch target size on desktop
+
+  @include font($-unit-contact-card-link-font);
+  display: inline-block;
+  padding-block: $-unit-contact-card-link-padding;
+
+  @include breakpoint($breakpoint-l) {
+    padding-block: $-unit-contact-card-link-padding-desktop;
+  }
 
   &::after {
     @include pseudo-icon('arrow-right', $spacing-and-half, currentColor);
