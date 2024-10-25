@@ -4,19 +4,8 @@
  */
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
-  function loadEmbeddedContent() {
 
-    window.hdsCookieConsentClickEvent = function hdsCookieConsentClickEvent(event, element) {
-      const groups = element.getAttribute('data-cookie-consent-groups')
-        .split(',')
-        .map(group => group.trim());
-
-      if (window.hds && window.hds.cookieConsent && typeof window.hds.cookieConsent.openBanner === 'function') {
-        window.hds.cookieConsent.openBanner(groups);
-        event.preventDefault();
-      }
-    };
-
+  const loadEmbeddedContent = () => {
     if (Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
       // eslint-disable-next-line no-restricted-syntax
       for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
@@ -69,7 +58,7 @@
         }
       }
     }
-  }
+  };
 
   // Remove noscript element.
   $('.embedded-content-cookie-compliance .js-remove').remove();
