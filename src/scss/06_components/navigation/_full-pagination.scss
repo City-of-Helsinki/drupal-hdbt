@@ -1,3 +1,5 @@
+$-button-height: 2px + $spacing + get-font-size('button', $unremify: true) * 1.15 + $spacing + 2px; // border + padding + font-size * hds-button line-height + padding + border
+
 .hds-pagination-container {
   margin-top: $spacing-double;
   text-align: center;
@@ -9,7 +11,7 @@
 
 .hds-pagination {
   --active-page-background-color: var(--color-black);
-  --link-height: 40px;
+  --link-height: #{$wcag-touch-target-size-aaa};
 
   @include font('body');
   display: inline-block; // Allows centering.
@@ -22,11 +24,12 @@
   &::before {
     @include font('button');
     speak: never; // Removes this pseudo-element from screen readers where supported.
+    /* stylelint-disable-next-line order/properties-alphabetical-order */
     content: attr(data-next); // Trick to keep floating element same size as btn--next.
     content: attr(data-next) / ''; // Removes this pseudo-element from screen readers where supported.
     display: block;
     float: right; // Floated pseudo-element wraps the inline ul around it.
-    line-height: 60px;
+    line-height: $-button-height;
     padding-left: 34px; // 8px gap + 2px button border + 8px button padding + 16px span padding
     padding-right: 46px; // 4px gap + 24px icon + 8px icon margin + 8px button padding + 2px button border
     transform: scaleY(-1); // Helps debugging text position
@@ -72,19 +75,20 @@
   justify-content: center; // Center the li-elements.
   list-style: none;
   margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 0;
   padding: 0;
+  padding-bottom: 5px;
   transform: scaleY(-1); // Flip the element back from upside down.
 }
 
 .hds-pagination__item-link {
   align-items: center;
-  border-radius: 21px;
+  border-radius: calc(var(--link-height) / 2);
   color: var(--color-black-90);
   display: flex;
   height: var(--link-height);
   justify-content: center;
-  min-width: 40px; // This is different from hds-core since we are using border-box sizing and not content-box.
+  min-width: var(--link-height); // This is different from hds-core since we are using border-box sizing and not content-box.
   padding-left: var(--spacing-3-xs);
   padding-right: var(--spacing-3-xs);
   text-decoration: none;
