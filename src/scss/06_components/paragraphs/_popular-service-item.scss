@@ -1,3 +1,6 @@
+$-service-item-font: 'special.large_link';
+$-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5; // Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+
 .popular-service-item {
   background-color: $color-silver-light;
   margin-bottom: $spacing-and-half;
@@ -18,12 +21,35 @@
 }
 
 .popular-service-item__links {
-  @include font('special.large_link');
   display: flex;
   flex-direction: column;
-  margin-top: $spacing;
+  margin-top: $spacing - $-service-item-padding;
 
   @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-and-half;
+    margin-top: $spacing-and-half - $-service-item-padding;
+  }
+}
+
+.link__style--highlight {
+  @include font($-service-item-font);
+  margin-bottom: $spacing - 2 * $-service-item-padding;
+  padding-block: $-service-item-padding;
+  padding-inline-start: calc(var(--line-height) * 1em + $spacing-half);
+
+  &::before {
+    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
+    margin-inline-end: $spacing-half;
+    margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
+    transform: scaleX(var(--lang-direction, 1));
+  }
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: calc(var(--line-height) * 1em + $spacing-half);
+
+    &::before {
+      margin-left: $spacing-half;
+      margin-right: calc(var(--line-height) * -1em - $spacing-half);
+    }
   }
 }

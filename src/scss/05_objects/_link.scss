@@ -27,26 +27,3 @@ a:hover .link__type {
 
   --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(15deg);
 }
-
-.link__style--highlight {
-  @include font('special.large_link');
-  margin-bottom: $spacing;
-  padding-inline-start: calc(var(--line-height) * 1em + $spacing-half);
-
-  &::before {
-    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
-    margin-inline-end: $spacing-half;
-    margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
-    transform: scaleX(var(--lang-direction, 1));
-  }
-
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: calc(var(--line-height) * 1em + $spacing-half);
-
-    &::before {
-      margin-left: $spacing-half;
-      margin-right: calc(var(--line-height) * -1em - $spacing-half);
-    }
-  }
-}
