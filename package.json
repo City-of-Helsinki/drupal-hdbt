@@ -53,11 +53,13 @@
     "postcss-scss": "^4.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.53.1",
     "react-popper": "^2.2.5",
     "readable-stream": "^4.5.1",
     "sass": "^1.43.4",
     "stream-browserify": "^3.0.0",
-    "swr": "2.2.5"
+    "swr": "2.2.5",
+    "zod": "^3.23.8"
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
