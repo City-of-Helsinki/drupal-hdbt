@@ -64,7 +64,7 @@ export default class AccordionItem {
   };
 
   handleLinkAnchor = (urlHash) => {
-    if (!urlHash) return;
+    if (!urlHash || urlHash.length === 0) return;
     const item = this.element.querySelector(urlHash);
     if (item) {
       this.open();
