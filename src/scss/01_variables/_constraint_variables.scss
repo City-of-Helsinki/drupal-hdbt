@@ -23,3 +23,6 @@ $image-content-width-max: 996px;
 $content-width-max: 860px;
 
 $footer-koro-height: 50px;
+
+$wcag-touch-target-size-aa: 24px; // The minimum requirement for hel.fi is 24px, https://www.wcag.com/developers/2-5-8-target-size-minimum-level-aa
+$wcag-touch-target-size-aaa: 44px; // This is the recommended size for touch targets for AAA accessibility level.

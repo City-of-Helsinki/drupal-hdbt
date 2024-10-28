@@ -25,7 +25,7 @@
 
 {% set link = content.field_announcement_link[0] %}
 
-<section aria-label="{{ type_label }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
+<section aria-label="{{ announcement_title }} {{ type_label }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div {{ create_attribute(announcement_attributes) }}>
     {% set announcement_close_labelled_by = "announcement__close__aria-label--" ~ random() %}
     <button type="button" class="announcement__close js-announcement__close--disabled" aria-labelledby="{{announcement_close_labelled_by}}">

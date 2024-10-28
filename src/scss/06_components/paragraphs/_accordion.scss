@@ -131,13 +131,16 @@
 }
 
 .js-accordion__button--toggle-all {
-  @include font('button');
+  $-button-font: 'button';
+  $-button-padding-block: 0.5 * ($wcag-touch-target-size-aaa - get-line-height($-button-font, $unremify: true)); // Adjust padding to fit the touch target size
+
+  @include font($-button-font);
   align-items: center;
   display: flex;
   inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
   margin-block-start: $spacing-half;
   margin-inline-start: auto;
-  padding: $spacing-half;
+  padding: $-button-padding-block $spacing-half;
 
   &:focus {
     outline: 3px solid $color-black;
