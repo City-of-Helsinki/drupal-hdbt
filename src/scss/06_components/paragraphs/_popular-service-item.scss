@@ -24,6 +24,7 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
   display: flex;
   flex-direction: column;
   margin-top: $spacing - $-service-item-padding;
+  padding-left: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-and-half - $-service-item-padding;
@@ -33,23 +34,5 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 .link__style--highlight {
   @include font($-service-item-font);
   margin-bottom: $spacing - 2 * $-service-item-padding;
-  padding-block: $-service-item-padding;
-  padding-inline-start: calc(var(--line-height) * 1em + $spacing-half);
-
-  &::before {
-    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
-    margin-inline-end: $spacing-half;
-    margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
-    transform: scaleX(var(--lang-direction, 1));
-  }
-
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: calc(var(--line-height) * 1em + $spacing-half);
-
-    &::before {
-      margin-left: $spacing-half;
-      margin-right: calc(var(--line-height) * -1em - $spacing-half);
-    }
-  }
+  padding-left: $spacing-quarter;
 }
