@@ -321,16 +321,14 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
   // Check for image and image caption availability.
   if ($entity->hasField($image) && $entity->hasField($image_caption)) {
     $caption_variable = str_replace('field_', '', $image_caption);
-    $alt = '';
     $caption = '';
 
-    // If caption exists, set it as initial variable for the alt text and
-    // image caption.
+    // If caption exists, set it as initial variable for the image caption.
     if (!$entity->{$image_caption}->isEmpty()) {
-      $alt = $caption = $entity->{$image_caption}->value;
+      $caption = $entity->{$image_caption}->value;
     }
 
-    // Combine photographer field value with caption and alt text.
+    // Combine photographer field value with caption.
     if (
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
@@ -347,7 +345,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       // for the caption and photographer. Otherwise, set only photographer as
       // caption.
       if (!empty($caption)) {
-        $alt = $caption = t(
+        $caption = t(
           '@caption Photo: @photographer',
           ['@photographer' => $photographer, '@caption' => $caption],
           ['context' => 'Image caption and photographer']
@@ -364,16 +362,6 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 
     // Set image caption variable to render array for the templates.
     $variables[$caption_variable] = $caption;
-
-    if (
-      !empty($alt) &&
-      $entity->{$image}->entity?->hasField('field_media_image') &&
-      !$entity->{$image}->entity->field_media_image->first()->isEmpty()
-    ) {
-      // Set altered_alt_text variable based on modified alt text
-      // for the responsive image preprocesses.
-      $entity->{$image}->entity->field_media_image->first()->altered_alt_text = $alt;
-    }
   }
 }
 
@@ -466,6 +454,9 @@ function hdbt_preprocess_form_element(&$variables): void {
       case 'password':
       case 'textarea':
       case 'textfield':
+      case 'select':
+        // Use the same label class for selects as well since there is no
+        // select specific class on hds core.
         $element_label_class = 'hds-text-input__label';
         break;
     }
@@ -1575,20 +1566,20 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
   // accordingly.
   switch ($variables['language']->getId()) {
     case 'fi':
-      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/fi';
-      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/osallistu-ja-vaikuta/palaute';
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/fi';
+      $variables['maintenance_page_feedback_link'] = 'https://palautteet.hel.fi/fi';
       $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/fi.html';
       break;
 
     case 'sv':
-      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/sv';
-      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback';
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/sv';
+      $variables['maintenance_page_feedback_link'] = 'https://palautteet.hel.fi/sv';
       $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/sv.html';
       break;
 
     default:
-      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/helsinki/en';
-      $variables['maintenance_page_feedback_link'] = 'https://www.hel.fi/helsinki/en/administration/participate/feedback';
+      $variables['maintenance_page_home_link'] = 'https://www.hel.fi/en';
+      $variables['maintenance_page_feedback_link'] = 'https://palautteet.hel.fi/en';
       $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/en.html';
       break;
   }

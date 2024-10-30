@@ -58,6 +58,10 @@ $label-font: 'special.navigation.icon_label';
     grid-area: label;
   }
 
+  span[aria-hidden="true"]{
+    min-width: $wcag-touch-target-size-aaa; // We were already quite close to the minimum touch target size, so we just need to make sure it's at least this big
+  }
+
   &:hover,
   &:active,
   .nav-toggle__button:hover &,
@@ -65,7 +69,6 @@ $label-font: 'special.navigation.icon_label';
     text-decoration: underline;
   }
 
-  // stylelint-disable no-descending-specificity
   &:focus,
   &:active,
   .nav-toggle__button:focus &,
@@ -73,7 +76,6 @@ $label-font: 'special.navigation.icon_label';
     outline: 3px solid $color-black;
     outline-offset: -3px;
   }
-  // stylelint-enable no-descending-specificity
 
   &::before {
     // @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
@@ -87,7 +89,6 @@ $label-font: 'special.navigation.icon_label';
   grid-area: link;
 }
 
-// stylelint-disable-next-line no-descending-specificity
 .nav-toggle .nav-toggle__label--close {
   visibility: hidden;
 }

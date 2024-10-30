@@ -1,0 +1,93 @@
+.dialog__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  overflow: auto;
+  overscroll-behavior: none;
+  position: fixed;
+  touch-action: none;
+
+  // This high value is necessary because the cookie-consent banner has a z-index of 99999. The survey must appear
+  // above it, as it is a modal with a focus trap that requires user interaction before proceeding with the site.
+  z-index: 100000;
+}
+
+.dialog__overlay {
+  background-color: rgba($color-black, 0.3);
+  inset: 0;
+  position: fixed;
+  z-index: 100;
+}
+
+.dialog {
+  --survey-border-color: var(--color-bus);
+  --survey-width: 558px;
+  border-color: var(--survey-border-color);
+  border-width: $spacing-half 0 0 0;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - $spacing-double);
+  padding: $spacing-and-half $spacing;
+  position: relative;
+  width: var(--survey-width);
+  z-index: 101;
+
+  @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-double;
+    padding-right: $spacing-double;
+  }
+}
+
+.dialog__header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.dialog__content {
+  @include font('body');
+  margin-top: $spacing;
+
+  > p:first-child {
+    margin-top: 0;
+  }
+}
+
+.dialog__actions {
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-and-half;
+  row-gap: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    column-gap: $spacing;
+    flex-direction: row;
+  }
+}
+
+.dialog__title {
+  @include font('h3');
+  margin-top: 0;
+}
+
+.dialog__close-button {
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+  height: $spacing-triple;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: -$spacing-half;
+  margin-top: -$spacing-half;
+  padding: 0;
+  width: $spacing-triple;
+
+  &::after {
+    --icon-size: #{$spacing-double};
+
+    @include pseudo-icon('cross');
+    margin: $spacing-half;
+  }
+}

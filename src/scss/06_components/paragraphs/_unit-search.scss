@@ -12,6 +12,11 @@
   background-color: $color-silver-light;
 }
 
+// Give the checkboxes white background color. The hds-styles have the checkboxes bg transparent for some reason.
+.component--unit-search .hds-checkbox__label::after {
+  background-color: $color-white;
+}
+
 // If the unit-search is just before footer.
 .layout-main-wrapper > *:last-child .component--unit-search:last-child {
   margin-bottom: -115px; // Enough to get the block under the footer.
@@ -70,6 +75,7 @@
   margin-top: $spacing-quadruple;
   width: 100%;
 
+  > .card:first-of-type,
   > .views-row:first-of-type {
     margin-top: $spacing;
 
