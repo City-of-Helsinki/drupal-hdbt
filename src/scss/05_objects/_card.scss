@@ -121,7 +121,6 @@ $item-gap: $spacing-half;
 
 .card__link {
   overflow-wrap: anywhere;
-  text-decoration: none;
 
   &::after {
     content: '';
@@ -133,11 +132,6 @@ $item-gap: $spacing-half;
   &:focus {
     outline: 3px solid $color-black;
     outline-offset: 2px;
-  }
-
-  &:active,
-  &:hover {
-    text-decoration: underline;
   }
 }
 

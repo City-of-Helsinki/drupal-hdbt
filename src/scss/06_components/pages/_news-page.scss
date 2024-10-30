@@ -10,12 +10,6 @@
 
 .news-listing__link {
   display: block;
-  text-decoration: none;
-
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
 
   &::after {
     bottom: 0;
@@ -302,10 +296,6 @@
         padding-right: 0;
       }
     }
-  }
-
-  .news-listing__link {
-    text-decoration: underline;
   }
 
   .news-listing__title,

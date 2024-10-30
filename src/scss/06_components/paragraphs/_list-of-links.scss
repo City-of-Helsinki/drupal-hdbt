@@ -47,7 +47,6 @@ $-item-spacing: $spacing-triple;
     justify-content: center;
     min-height: 90px;
     overflow-wrap: anywhere;
-    text-decoration: none;
     width: 100%;
 
     @include breakpoint($breakpoint-s) {
@@ -72,30 +71,6 @@ $-item-spacing: $spacing-triple;
       display: block;
       inset: 0;
       position: absolute;
-    }
-
-    &::after {
-      --icon-size: 1.5rem;
-
-      @include pseudo-icon('arrow-right');
-      @include hover-link-arrow-transition;
-      content: '';
-      display: block;
-      flex-shrink: 0;
-      margin-left: -$spacing-quarter;
-      margin-top: $spacing-half;
-      transform: scaleX(var(--lang-direction, 1));
-
-      @include breakpoint($breakpoint-s) {
-        --icon-size: 3rem;
-        margin-left: -$spacing-half;
-        margin-top: $spacing;
-      }
-    }
-
-    &[data-is-external]::after {
-      content: none;
-      display: none;
     }
 
     .link__type {
@@ -184,10 +159,8 @@ $-item-spacing: $spacing-triple;
       flex-direction: row;
       justify-content: flex-start;
       min-height: auto;
-      text-decoration: underline;
 
-      .link__type,
-      &::after {
+      .link__type {
         align-self: flex-start;
         margin-inline-start: $spacing-half;
         margin-top: -2px; // Pull the arrow a bit higher to match the text line-height.
@@ -195,11 +168,6 @@ $-item-spacing: $spacing-triple;
         @include breakpoint($breakpoint-s) {
           margin-top: -8px; // Pull the arrow a bit higher to match the text line-height.
         }
-      }
-
-      &:focus,
-      &:hover {
-        text-decoration: none;
       }
     }
 

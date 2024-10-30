@@ -23,6 +23,7 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 .popular-service-item__links {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
   margin-top: $spacing - $-service-item-padding;
   padding-left: $spacing-and-half;
 
@@ -31,8 +32,25 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
   }
 }
 
-.link__style--highlight {
+.popular-service-item__link-wrapper {
+  // palluran kohdistus ja minimikorkeus klikattavalla alueella
   @include font($-service-item-font);
   margin-bottom: $spacing - 2 * $-service-item-padding;
+  margin-top: 0;
+  padding-block: $-service-item-padding;
+  vertical-align: top;
+}
+
+.link__style--highlight {
+  @include font($-service-item-font);
+  display: inline-block;
+  margin-block: ($-service-item-padding * -1); // palluran kohdistus ja minimikorkeus klikattavalla alueella
+  padding-block: $-service-item-padding;
   padding-left: $spacing-quarter;
+  vertical-align: top;
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: $spacing-quarter;
+  }
 }
