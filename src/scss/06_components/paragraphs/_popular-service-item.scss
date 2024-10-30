@@ -34,18 +34,23 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 }
 
 .popular-service-item__link-wrapper {
-  // palluran kohdistus ja minimikorkeus klikattavalla alueella
+  // The link wrapper needs to have the same font size and line-height as the link itself so that the list marker is
+  // shown in the correct position.
   @include font($-service-item-font);
   margin-bottom: $spacing - 2 * $-service-item-padding;
   margin-top: 0;
+  // The padding here is also to help align the list marker to correct position.
   padding-block: $-service-item-padding;
   vertical-align: top;
 }
 
 .link__style--highlight {
   @include font($-service-item-font);
+  // Display inline-block helps the external link icon to be displayed directly after the text.
   display: inline-block;
-  margin-block: ($-service-item-padding * -1); // palluran kohdistus ja minimikorkeus klikattavalla alueella
+  // This margin is used to negate the padding below and to position the list marker.
+  margin-block: ($-service-item-padding * -1);
+  // The padding below it are used to make the link correct minimum height for the WCAG AAA standard.
   padding-block: $-service-item-padding;
   padding-left: $spacing-quarter;
   vertical-align: top;
