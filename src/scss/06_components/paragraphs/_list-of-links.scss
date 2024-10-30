@@ -1,4 +1,6 @@
 $-item-spacing: $spacing-triple;
+// Lets calculate the padding size for the list of links item based on the line-height of the chosen font.
+$-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremify: true) );
 
 .list-of-links {
   display: flex;
@@ -39,18 +41,35 @@ $-item-spacing: $spacing-triple;
     }
   }
 
-  .list-of-links__item__link {
-    align-items: flex-start;
-    box-sizing: border-box;
+  .list-of-links__item__title {
+    @include heading-hyphens;
+    @include font('h4');
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 90px;
+    flex-direction: row;
+    margin-block: 0;
+    margin-inline-start: (100px + $spacing);
+    // There should be minimal height for the links with images so that the listings won't be too crammed.
+    min-height: calc(get-line-height('h4', $unremify: true) + $spacing-quadruple);
+
+    @include breakpoint($breakpoint-s) {
+      margin-inline-start: 0;
+      min-height: auto;
+    }
+  }
+
+  .list-of-links__item__link {
+    box-sizing: border-box;
+    display: inline-block;
     overflow-wrap: anywhere;
-    width: 100%;
+    // Make the clickable area conform with WCAG AAA standard and adjust the text slightly higher than
+    // the center to make it look balanced.
+    padding-bottom: calc($-item-link-padding * 0.666667);
+    padding-top: calc($-item-link-padding * 0.333334);
 
     @include breakpoint($breakpoint-s) {
       display: block;
+      min-height: calc(get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple);
     }
 
     &:focus,
@@ -72,39 +91,12 @@ $-item-spacing: $spacing-triple;
       inset: 0;
       position: absolute;
     }
-
-    .link__type {
-      --icon-size: 1.5rem;
-      display: block;
-      flex-shrink: 0;
-      height: var(--icon-size);
-      margin-inline-start: -$spacing-quarter;
-      margin-top: $spacing-half;
-      mask-size: var(--icon-size) var(--icon-size);
-      width: var(--icon-size);
-
-      @include breakpoint($breakpoint-s) {
-        --icon-size: 3rem;
-        margin-inline-start: -$spacing-half;
-        margin-top: $spacing;
-      }
-    }
-
-    &:focus .link__type--external,
-    &:hover .link__type--external {
-      transform: scaleX(var(--lang-direction, 1)) translate($spacing-quarter, - $spacing-quarter);
-
-      @media (prefers-reduced-motion) {
-        transform: scaleX(var(--lang-direction, 1));
-      }
-    }
   }
 
   .list-of-links__item__image {
     inset-block-start: 0;
     inset-inline-start: 0;
     position: absolute;
-
     // Size of thumbnails on mobile
     width: 90px;
 
@@ -123,24 +115,13 @@ $-item-spacing: $spacing-triple;
       padding-bottom: 100%;
     }
   }
-
-  .list-of-links__item__title {
-    @include heading-hyphens;
-    @include font('h4');
-    margin-block: 0;
-    margin-inline-start: (100px + $spacing);
-
-    @include breakpoint($breakpoint-s) {
-      margin-inline-start: 0;
-    }
-  }
 }
 
 // Without image variants
 .component--list-of-links-without-image {
   .list-of-links__item {
     align-self: flex-start;
-    min-height: 2rem;// Min-height is the same as the icon height.
+    min-height: 2rem; // Min-height is the same as the icon height.
     padding-bottom: 0;
 
     @include breakpoint($breakpoint-m) {
@@ -155,43 +136,14 @@ $-item-spacing: $spacing-triple;
     }
 
     .list-of-links__item__link {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       min-height: auto;
-
-      .link__type {
-        align-self: flex-start;
-        margin-inline-start: $spacing-half;
-        margin-top: -2px; // Pull the arrow a bit higher to match the text line-height.
-
-        @include breakpoint($breakpoint-s) {
-          margin-top: -8px; // Pull the arrow a bit higher to match the text line-height.
-        }
-      }
+      // Make the clickable area conform with WCAG AAA standard.
+      padding-block: calc($-item-link-padding * 0.5);
     }
 
     .list-of-links__item__title {
-      display: flex;
       margin-inline: 0;
-    }
-
-    .list-of-links__item__arrow {
-      // Pull the arrow a bit higher to match the text line-height.
-      margin: -2px 0 0 $spacing;
-
-      @include breakpoint($breakpoint-s) {
-        // Pull the arrow a bit higher to match the text line-height.
-        margin-top: -8px;
-      }
-
-      .hel-icon {
-        --icon-size: 2rem;
-
-        @include breakpoint($breakpoint-s) {
-          --icon-size: 3rem;
-        }
-      }
+      min-height: auto;
     }
   }
 }
@@ -202,11 +154,6 @@ $-item-spacing: $spacing-triple;
     .list-of-links__item__desc {
       @include font('body');
       color: $color-black-60;
-      margin-top: $spacing-half;
-
-      @include breakpoint($breakpoint-l) {
-        margin-top: $spacing-quarter;
-      }
     }
   }
 }
@@ -214,8 +161,6 @@ $-item-spacing: $spacing-triple;
 // Sidebar layout.
 .has-sidebar .main-content {
   .list-of-links__item {
-    padding-bottom: $spacing-and-half;
-
     @include breakpoint($breakpoint-l) {
       width: calc(50% - #{$-item-spacing});
     }

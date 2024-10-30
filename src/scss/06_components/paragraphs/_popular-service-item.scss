@@ -1,5 +1,6 @@
 $-service-item-font: 'special.large_link';
-$-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5; // Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+// Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+$-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5;
 
 .popular-service-item {
   background-color: $color-silver-light;
