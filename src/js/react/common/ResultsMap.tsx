@@ -44,7 +44,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const mapUrl = getMapUrl();
 
-  if (Drupal.eu_cookie_compliance && Drupal.eu_cookie_compliance.hasAgreed('preference') && Drupal.eu_cookie_compliance.hasAgreed('statistics')) {
+  if (Drupal.cookieConsent && Drupal.cookieConsent.getConsentStatus(['preference', 'statistics'])) {
     return (
       <div className='hdbt-search--react__map-container'>
         <div className='unit-search__result--map'>
@@ -64,10 +64,11 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const url = new URL(mapUrl);
 
+  // @todo UHF-10862 Remove policyUrl fallback once the HDBT cookie banner module is in use.
   return (
     <CookieComplianceStatement
       host={url.host}
-      policyUrl={drupalSettings.helfi_react_search.cookie_privacy_url}
+      policyUrl={drupalSettings.hdbt_cookie_banner.settingsPageUrl || drupalSettings.helfi_react_search.cookie_privacy_url}
       sourceUrl={mapUrl}
     />
   );
