@@ -16,7 +16,7 @@ $-card-spacing: $spacing-and-half;
 
 .content-card {
   background-color: $color-white;
-  margin-top: $spacing-quadruple;
+  margin-top: $spacing-double;
   position: relative;
 
   @include breakpoint($breakpoint-s) {
@@ -51,7 +51,6 @@ $-card-spacing: $spacing-and-half;
   @include heading-hyphens;
   @include font('h4');
   display: block;
-  margin-top: $spacing;
 }
 
 .content-card__date {
@@ -61,42 +60,12 @@ $-card-spacing: $spacing-and-half;
 .content-card__link {
   display: block;
   overflow: hidden;
-  text-decoration: none;
+  padding-block: $spacing;
 
   &::before {
     content: '';
     inset: 0;
     position: absolute;
-  }
-
-  &::after {
-    @include hover-link-arrow-transition;
-
-    --icon-size: 2rem;
-    margin-left: -2px; // Pull the arrow a bit to the left to align with text.
-    margin-top: $spacing;
-
-    @include pseudo-icon('arrow-right');
-
-    @include breakpoint($breakpoint-s) {
-      --icon-size: 3rem;
-      margin-left: -4px; // Pull the arrow a bit to the left to align with text.
-    }
-  }
-
-  &:focus,
-  &:hover {
-    .content-card__title {
-      text-decoration: underline;
-    }
-
-    &::after {
-      transform: translateX($spacing);
-
-      @media (prefers-reduced-motion) {
-        transform: none;
-      }
-    }
   }
 }
 
@@ -106,10 +75,6 @@ $-card-spacing: $spacing-and-half;
 
   .content-card__link {
     color: var(--color-error);
-
-    &::after {
-      background-color: var(--color-error);
-    }
   }
 }
 
@@ -148,6 +113,10 @@ $-card-spacing: $spacing-and-half;
     }
   }
 
+  .content-card {
+    margin-top: $spacing-triple;
+  }
+
   .component__container {
     grid-column: content;
     padding-top: $spacing;
@@ -159,7 +128,7 @@ $-card-spacing: $spacing-and-half;
   }
 
   .content-card__link {
-    padding: $spacing;
+    padding-inline: $spacing;
   }
 }
 
@@ -202,8 +171,10 @@ $-card-spacing: $spacing-and-half;
   }
 }
 
-// If the content-cards with grey design is just before footer.
-.layout-main-wrapper > *:last-child .component--content-cards-grey:last-child {
+// If the content-cards with grey design is just before footer on basic page or landing page. On TPR-content this is
+// almost impossible to achieve so we will leave this variant away since its quite hard to implement without html-changes.
+.page-type--landing-page .layout-main-wrapper > *:last-child .component--content-cards-grey:last-child,
+.page-type--page .layout-main-wrapper > *:last-child .components--lower > .component--content-cards-grey:last-child {
   margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 55px; // Leave enough room between the last card and footer.
+  padding-bottom: 96px; // Leave enough room between the last card and footer.
 }
