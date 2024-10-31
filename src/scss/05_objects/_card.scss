@@ -49,43 +49,6 @@ $item-gap: $spacing-half;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  &::after {
-    @include pseudo-icon('arrow-right');
-    @include hover-link-arrow-transition;
-
-    --icon-size: #{$spacing-double};
-    flex-grow: 1;
-    margin-top: $spacing;
-    mask-position: bottom center;
-    pointer-events: none;
-
-    @include breakpoint($breakpoint-m) {
-      --icon-size: #{$spacing-triple};
-    }
-  }
-
-  .card:focus-within &::after,
-  .card:hover &::after {
-    transform: translateX($spacing-quarter);
-
-    @media (prefers-reduced-motion) {
-      transform: none;
-    }
-  }
-
-  .card--external &::after {
-    @include pseudo-icon-replace('link-external');
-  }
-
-  .card--external:focus-within &::after,
-  .card--external:hover &::after {
-    transform: translate($spacing-quarter, -$spacing-quarter);
-
-    @media (prefers-reduced-motion) {
-      transform: none;
-    }
-  }
 }
 
 .card--unpublished {
@@ -100,10 +63,6 @@ $item-gap: $spacing-half;
   .card__text::after {
     background-color: var(--color-error);
   }
-}
-
-.card--external .link__type--external {
-  @include visually-hidden; // Avoid two arrows on card visually, but let screen readers see it.
 }
 
 .card .content-tags {
@@ -122,7 +81,7 @@ $item-gap: $spacing-half;
 .card__link {
   overflow-wrap: anywhere;
 
-  &::after {
+  &::before {
     content: '';
     inset: 0;
     position: absolute;
