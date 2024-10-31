@@ -8,7 +8,10 @@ export default class Events {
 
   static handleTableOfContentsHash = () => {
     window.addEventListener('hashchange', () => {
-      const {hash} = window.location;
+      const { hash } = window.location;
+      if(!hash || hash.length < 2) {
+        return;
+      }
 
       // Look for accordion headers for anchor links.
       let accordionItemFound = false;

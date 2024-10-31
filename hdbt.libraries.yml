@@ -74,7 +74,6 @@ embedded-content-cookie-compliance:
     - core/jquery
     - core/drupal
     - core/drupalSettings
-    - eu_cookie_compliance/eu_cookie_compliance
 
 global-styling:
   version: 1.x
@@ -102,12 +101,12 @@ matomo:
   header: true
   js:
     dist/js/matomo.min.js: {
+      weight: -10,
       minified: true
     }
   dependencies:
   - core/drupal
   - core/jquery
-  - eu_cookie_compliance/eu_cookie_compliance
 
 closable_announcements:
   version: 1.1

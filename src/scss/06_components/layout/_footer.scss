@@ -46,6 +46,7 @@
     &.footer-top__content__title {
       margin-top: $spacing-double;
 
+      /* stylelint-disable-next-line max-nesting-depth */
       @include breakpoint($breakpoint-m) {
         margin-top: 0;
       }
@@ -64,21 +65,18 @@
 
   .menu {
     @include font('body');
-    margin: $spacing 0 $spacing-double 0;
+    margin: $spacing-half 0 $spacing-double 0;
 
     @include breakpoint($breakpoint-m) {
       margin-bottom:0;
-      margin-top: $spacing-and-half;
+      margin-top: $spacing;
     }
   }
+}
 
-  .menu__item {
-    margin-top: $spacing;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
+footer.footer .menu__link {
+  display: inline-block;
+  padding-block: max(calc((#{$wcag-touch-target-size-aaa} - var(--line-height) * 1em) / 2) , #{$spacing-half});
 }
 
 .footer-top__content {
@@ -164,9 +162,9 @@
   align-items: center;
   align-self: flex-end;
   display: flex;
-  height: 40px; // Match footer logo height
   margin-left: auto; // Keeps link on the right side
   margin-right: $spacing-half;
+  min-height: $wcag-touch-target-size-aaa; // Match footer logo height
   text-decoration: none;
 
   @include breakpoint($breakpoint-m) {

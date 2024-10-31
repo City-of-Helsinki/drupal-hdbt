@@ -1049,6 +1049,32 @@ function hdbt_preprocess_paragraph__news_archive(&$variables) {
 }
 
 /**
+ * Implements hook_library_info_alter().
+ */
+function hdbt_library_info_alter(array &$libraries, string $extension): void {
+  // Add the "eu_cookie_compliance/eu_cookie_compliance" library as a
+  // dependency for the matomo and embedded content libraries if the
+  // EU Cookie compliance module is enabled.
+  if (
+    $extension !== 'hdbt' ||
+    !\Drupal::moduleHandler()->moduleExists('eu_cookie_compliance')
+  ) {
+    return;
+  }
+
+  $dependent_libraries = [
+    'matomo',
+    'embedded-content-cookie-compliance',
+  ];
+
+  foreach ($dependent_libraries as $dependent_library) {
+    if (isset($libraries[$dependent_library])) {
+      $libraries[$dependent_library]['dependencies'][] = 'eu_cookie_compliance/eu_cookie_compliance';
+    }
+  }
+}
+
+/**
  * Set site information as variables for templates.
  *
  * @param array $variables
@@ -1278,7 +1304,15 @@ function hdbt_preprocess_field(&$variables): void {
     case 'service_map_embed':
       $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
       $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-      $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
+
+      if (Drupal::moduleHandler()->moduleExists('hdbt_cookie_banner')) {
+        $cookie_settings = Drupal::service('hdbt_cookie_banner.cookie_settings');
+        $variables['privacy_policy_url'] = $cookie_settings->getCookieSettingsPageUrl();
+      }
+      // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+      elseif (Drupal::moduleHandler()->moduleExists('helfi_eu_cookie_compliance')) {
+        $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
+      }
       break;
   }
 }
@@ -1693,13 +1727,8 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
  */
 function hdbt_preprocess_paragraph__school_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/school-search';
-
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1707,13 +1736,8 @@ function hdbt_preprocess_paragraph__school_search(array &$variables): void {
  */
 function hdbt_preprocess_paragraph__health_station_search(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/health-station-search';
-
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1721,13 +1745,17 @@ function hdbt_preprocess_paragraph__health_station_search(array &$variables): vo
  */
 function hdbt_preprocess_paragraph__maternity_and_child_health_clini(array &$variables): void {
   $variables['#attached']['library'][] = 'hdbt/maternity-and-child-health-clinic-search';
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
+}
 
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
-  }
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
+  $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+  hdbt_set_legacy_privacy_policy_url($variables);
 }
 
 /**
@@ -1862,15 +1890,20 @@ function hdbt_preprocess_views_exposed_form(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Get privacy policy url from helfi_eu_cookie_compliance module.
+ *
+ * @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+ *
+ * @param array $variables
+ *   Variables array.
  */
-function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void {
-  $variables['#attached']['library'][] = 'hdbt/ploughing-schedule';
+function hdbt_set_legacy_privacy_policy_url(array &$variables): void {
+  if (Drupal::moduleHandler()->moduleExists('helfi_eu_cookie_compliance')) {
+    $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
 
-  $privacyUrl = helfi_eu_cookie_compliance_get_privacy_policy_url();
-
-  if ($privacyUrl instanceof Url) {
-    $privacyUrl->setAbsolute();
-    $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
+    if ($privacyUrl instanceof Url) {
+      $privacyUrl->setAbsolute();
+      $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
+    }
   }
 }
