@@ -14,15 +14,15 @@ $item-gap: $spacing-half;
   @include breakpoint($breakpoint-s) {
     display: flex;
     flex-direction: row-reverse;
-    gap: $spacing;
+    gap: $spacing-and-half;
     grid-template-areas: 'content img';
     grid-template-columns: 1fr 30%;
-    padding: $spacing;
+    padding: $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-m) {
-    gap: $spacing-and-half;
-    padding: $spacing-and-half;
+    gap: $spacing-double;
+    padding: $spacing-double;
   }
 }
 
@@ -42,6 +42,10 @@ $item-gap: $spacing-half;
 
   @include breakpoint($breakpoint-s) {
     margin-bottom: 0;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 1.5;
   }
 }
 

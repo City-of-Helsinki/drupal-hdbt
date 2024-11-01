@@ -94,7 +94,7 @@ $-button-height: 2px + $spacing + get-font-size('button', $unremify: true) * 1.1
   text-decoration: none;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline 2px;
   }
 
   &:focus,

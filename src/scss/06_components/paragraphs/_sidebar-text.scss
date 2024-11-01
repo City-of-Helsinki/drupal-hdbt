@@ -100,19 +100,19 @@
       padding: $spacing-and-half $spacing;
       text-decoration: none;
 
-      &:after {
+      &::after {
         @include pseudo-icon('arrow-right', $spacing-and-half, $color-black, inline-block);
         align-self: center;
         justify-self: end;
         order: 3;
       }
 
-      &[data-is-external]:after {
+      &[data-is-external]::after {
         display: none; // external links have their own icon already
       }
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: underline 2px;
       }
     }
   }

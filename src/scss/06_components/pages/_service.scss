@@ -75,11 +75,11 @@ $teaser-icon-size-desktop: 48px;
 }
 
 .service__link:hover {
-  text-decoration: underline;
+  text-decoration: underline 2px;
 }
 
 .service__link:hover .hel-icon {
-  text-decoration: underline;
+  text-decoration: underline 2px;
 
   @include breakpoint($breakpoint-l) {
     transform: translateX($spacing);

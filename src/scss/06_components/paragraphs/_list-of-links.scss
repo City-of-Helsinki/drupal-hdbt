@@ -1,4 +1,5 @@
 $-item-spacing: $spacing-triple;
+
 // Lets calculate the padding size for the list of links item based on the line-height of the chosen font.
 $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremify: true) );
 
@@ -49,6 +50,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
     flex-direction: row;
     margin-block: 0;
     margin-inline-start: (100px + $spacing);
+
     // There should be minimal height for the links with images so that the listings won't be too crammed.
     min-height: calc(get-line-height('h4', $unremify: true) + $spacing-quadruple);
 
@@ -62,10 +64,11 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
     box-sizing: border-box;
     display: inline-block;
     overflow-wrap: anywhere;
+
     // Make the clickable area conform with WCAG AAA standard and adjust the text slightly higher than
     // the center to make it look balanced.
-    padding-bottom: calc($-item-link-padding * 0.666667);
-    padding-top: calc($-item-link-padding * 0.333334);
+    padding-bottom: calc($-item-link-padding * 0.6667);
+    padding-top: calc($-item-link-padding * 0.3334);
 
     @include breakpoint($breakpoint-s) {
       display: block;
@@ -74,7 +77,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
 
     &:focus,
     &:hover {
-      text-decoration: underline;
+      text-decoration: underline 2px;
 
       &::after {
         transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
@@ -97,6 +100,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
     inset-block-start: 0;
     inset-inline-start: 0;
     position: absolute;
+
     // Size of thumbnails on mobile
     width: 90px;
 
@@ -137,6 +141,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
 
     .list-of-links__item__link {
       min-height: auto;
+
       // Make the clickable area conform with WCAG AAA standard.
       padding-block: calc($-item-link-padding * 0.5);
     }
@@ -146,15 +151,11 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
       min-height: auto;
     }
   }
-}
 
-// Without image but with description variant
-.component--list-of-links-without-image {
-  .list-of-links__item {
-    .list-of-links__item__desc {
-      @include font('body');
-      color: $color-black-60;
-    }
+  // Without image but with description variant
+  .list-of-links__item__desc {
+    @include font('body');
+    color: $color-black-60;
   }
 }
 
@@ -167,11 +168,9 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
   }
 
   // Without image.
-  .component--list-of-links-without-image {
-    .list-of-links__item {
-      @include breakpoint($breakpoint-l) {
-        width: calc(50% - #{$-item-spacing});
-      }
+  .component--list-of-links-without-image .list-of-links__item {
+    @include breakpoint($breakpoint-l) {
+      width: calc(50% - #{$-item-spacing});
     }
   }
 }

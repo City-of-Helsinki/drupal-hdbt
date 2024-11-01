@@ -168,7 +168,8 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 
   &:focus,
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline 2px;
+    text-underline-offset: 10%
   }
 }
 

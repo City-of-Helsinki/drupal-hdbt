@@ -235,7 +235,7 @@
     }
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: underline 2px;
     }
   }
 
@@ -300,7 +300,7 @@
     &:focus,
     &:hover {
       .unit__title {
-        text-decoration: underline;
+        text-decoration: underline 2px;
       }
 
       .unit__read-more {

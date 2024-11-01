@@ -10,6 +10,11 @@
 
   a {
     text-decoration: underline 1px;
+    text-underline-offset: 10%;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
   }
 
   .menu {
@@ -179,7 +184,7 @@ footer.footer .menu__link {
   }
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline 2px;
   }
 }
 

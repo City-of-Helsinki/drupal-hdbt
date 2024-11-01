@@ -55,7 +55,7 @@ $-otherlangs-min-width: 240px; // From design specs
     &:hover,
     &:active,
     &:focus {
-      text-decoration: underline;
+      text-decoration: underline 2px;
     }
   }
 }

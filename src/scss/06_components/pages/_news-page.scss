@@ -340,7 +340,7 @@
 
     &:focus,
     &:hover {
-      text-decoration: underline;
+      text-decoration: underline 2px;
 
       .hel-icon {
         transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);

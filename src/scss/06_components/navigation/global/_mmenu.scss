@@ -129,7 +129,7 @@ $-footerlink-target-size: 44px;
 
   &:hover,
   &:active {
-    text-decoration: underline;
+    text-decoration: underline 2px;
 
     &::before {
       transform: translateX(-4px);
@@ -232,7 +232,7 @@ $-footerlink-target-size: 44px;
 
   &:hover,
   &:active {
-    text-decoration: underline;
+    text-decoration: underline 2px;
   }
 
   // .mmenu__title-link[aria-current='page'],
@@ -247,7 +247,7 @@ $-footerlink-target-size: 44px;
   }
 
   &[aria-current='page']:focus {
-    text-decoration: underline;
+    text-decoration: underline 2px;
   }
 }
 
@@ -316,7 +316,7 @@ $-footerlink-target-size: 44px;
     $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
     display: block;
     @include font($-footer-link-font);
-    padding-bottom: $-footer-link-vertical-padding;   
+    padding-bottom: $-footer-link-vertical-padding;
     padding-left: $spacing;
     padding-right: $spacing;
     padding-top: $-footer-link-vertical-padding;
@@ -336,7 +336,7 @@ $-footerlink-target-size: 44px;
 
     &:hover,
     &:active {
-      text-decoration: underline;
+      text-decoration: underline 2px;
     }
 
     &:focus,
