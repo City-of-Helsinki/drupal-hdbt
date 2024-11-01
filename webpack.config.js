@@ -11,13 +11,14 @@ const { merge } = require('webpack-merge');
 // Entries for React searches.
 const REACT_SEARCHES = {
   'district-and-project-search': ['./src/js/react/apps/district-and-project-search/index.tsx'],
-  'job-search': ['./src/js/react/apps/job-search/index.tsx'],
-  linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
-  'school-search': ['./src/js/react/apps/school-search/index.tsx'],
-  'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
+  'grants-form': ['./src/js/react/apps/grants-form/index.tsx'],
   'health-station-search': ['./src/js/react/apps/health-station-search/index.tsx'],
+  'job-search': ['./src/js/react/apps/job-search/index.tsx'],
   'maternity-and-child-health-clinic-search': ['./src/js/react/apps/maternity-and-child-health-clinic-search/index.tsx'],
+  'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
   'ploughing-schedule': ['./src/js/react/apps/ploughing-schedule/index.tsx'],
+  'school-search': ['./src/js/react/apps/school-search/index.tsx'],
+  linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
 };
 
 // Handle entry points.

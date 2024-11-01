@@ -349,3 +349,13 @@ local-storage-cleanup:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+grants-form:
+  version: 1.0
+  js:
+    dist/js/grants-form.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

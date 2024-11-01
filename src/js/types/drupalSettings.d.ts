@@ -48,4 +48,8 @@ declare namespace drupalSettings {
     feed_base_url: string;
     title: string;
   };
+  const grants_react_form: {
+    form: string;
+    application_number: string;
+  }
 }
