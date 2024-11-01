@@ -1,4 +1,5 @@
 $-service-item-font: 'special.large_link';
+
 // Lets calculate the padding size for the service-item based on the line-height of the chosen font.
 $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5;
 
@@ -39,6 +40,7 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
   @include font($-service-item-font);
   margin-bottom: $spacing - 2 * $-service-item-padding;
   margin-top: 0;
+
   // The padding here is also to help align the list marker to correct position.
   padding-block: $-service-item-padding;
   vertical-align: top;
@@ -46,10 +48,13 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 
 .link__style--highlight {
   @include font($-service-item-font);
+
   // Display inline-block helps the external link icon to be displayed directly after the text.
   display: inline-block;
+
   // This margin is used to negate the padding below and to position the list marker.
   margin-block: ($-service-item-padding * -1);
+
   // The padding below it are used to make the link correct minimum height for the WCAG AAA standard.
   padding-block: $-service-item-padding;
   padding-left: $spacing-quarter;
