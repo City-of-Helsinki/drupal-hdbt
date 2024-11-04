@@ -41,6 +41,7 @@
   }
 
   &:hover {
-    text-decoration: underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }

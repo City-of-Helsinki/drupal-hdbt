@@ -39,7 +39,8 @@
 // The CKEditor link element dom doesn't have all the elements that the rendered version has so we are adding the
 // icons here for the links so that the links look similar as in the end result.
 .ck-content a {
-  text-decoration: underline 1px;
+  text-decoration: underline;
+  text-decoration-thickness: remify(1px);
   text-underline-offset: 10%;
 
   // E-mail link styles

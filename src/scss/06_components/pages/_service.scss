@@ -75,11 +75,13 @@ $teaser-icon-size-desktop: 48px;
 }
 
 .service__link:hover {
-  text-decoration: underline 2px;
+  text-decoration: underline;
+  text-decoration-thickness: remify(2px);
 }
 
 .service__link:hover .hel-icon {
-  text-decoration: underline 2px;
+  text-decoration: underline;
+  text-decoration-thickness: remify(2px);
 
   @include breakpoint($breakpoint-l) {
     transform: translateX($spacing);

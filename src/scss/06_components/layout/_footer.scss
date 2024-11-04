@@ -9,7 +9,8 @@
   }
 
   a {
-    text-decoration: underline 1px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(1px);
     text-underline-offset: 10%;
 
     &:hover {
@@ -184,7 +185,8 @@ footer.footer .menu__link {
   }
 
   &:hover {
-    text-decoration: underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }
 

@@ -129,7 +129,8 @@ $-footerlink-target-size: 44px;
 
   &:hover,
   &:active {
-    text-decoration: underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
 
     &::before {
       transform: translateX(-4px);
@@ -232,7 +233,8 @@ $-footerlink-target-size: 44px;
 
   &:hover,
   &:active {
-    text-decoration: underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   // .mmenu__title-link[aria-current='page'],
@@ -247,7 +249,8 @@ $-footerlink-target-size: 44px;
   }
 
   &[aria-current='page']:focus {
-    text-decoration: underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }
 
@@ -336,7 +339,8 @@ $-footerlink-target-size: 44px;
 
     &:hover,
     &:active {
-      text-decoration: underline 2px;
+      text-decoration: underline;
+      text-decoration-thickness: remify(2px);
     }
 
     &:focus,
