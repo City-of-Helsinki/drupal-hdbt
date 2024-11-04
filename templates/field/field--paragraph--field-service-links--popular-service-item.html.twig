@@ -1,5 +1,7 @@
-<ul class="popular-service-item__links">
-  {% for item in items %}
-    <li class="popular-service-item__link-wrapper">{{ item.content }}</li>
-  {% endfor %}
-</ul>
+{% if items is not empty %}
+  <ul class="popular-service-item__links">
+    {% for item in items %}
+      <li class="popular-service-item__link-wrapper">{{ item.content }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
