@@ -57,11 +57,6 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 
   // The padding below it are used to make the link correct minimum height for the WCAG AAA standard.
   padding-block: $-service-item-padding;
-  padding-left: $spacing-quarter;
+  padding-inline-start: $spacing-quarter;
   vertical-align: top;
-
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: $spacing-quarter;
-  }
 }
