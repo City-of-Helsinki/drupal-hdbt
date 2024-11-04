@@ -234,7 +234,8 @@
       width: 100%;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       text-decoration: underline;
       text-decoration-thickness: remify(2px);
     }

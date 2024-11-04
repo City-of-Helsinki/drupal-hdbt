@@ -111,7 +111,8 @@
         display: none; // external links have their own icon already
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         text-decoration: underline;
         text-decoration-thickness: remify(2px);
       }

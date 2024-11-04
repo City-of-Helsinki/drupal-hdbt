@@ -74,7 +74,8 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
-.service__link:hover {
+.service__link:hover
+.service__link:focus {
   text-decoration: underline;
   text-decoration-thickness: remify(2px);
 }

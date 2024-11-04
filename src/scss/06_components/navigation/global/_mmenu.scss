@@ -128,7 +128,8 @@ $-footerlink-target-size: 44px;
   }
 
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     text-decoration: underline;
     text-decoration-thickness: remify(2px);
 
@@ -141,10 +142,6 @@ $-footerlink-target-size: 44px;
   &:active {
     outline: 3px solid $color-black;
     outline-offset: -3px;
-
-    &::before {
-      transform: translateX(-4px);
-    }
   }
 }
 
@@ -168,8 +165,10 @@ $-footerlink-target-size: 44px;
   padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
 
   &:hover,
+  &:focus,
   &:active {
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   &:focus,
@@ -232,6 +231,7 @@ $-footerlink-target-size: 44px;
   }
 
   &:hover,
+  &:focus,
   &:active {
     text-decoration: underline;
     text-decoration-thickness: remify(2px);
