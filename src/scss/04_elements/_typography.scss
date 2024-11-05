@@ -58,12 +58,12 @@ h6 {
 a {
   color: var(--hdbt-default-link-color);
   overflow-wrap: break-word;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: remify(1px);
   text-underline-offset: 10%;
 
   &:hover,
   &:focus {
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: remify(2px);
   }
 }
 
