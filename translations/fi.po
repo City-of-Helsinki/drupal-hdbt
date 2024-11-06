@@ -735,8 +735,12 @@ msgid "The link opens in a new tab"
 msgstr "Linkki avautuu uuteen välilehteen"
 
 msgctxt "React search"
-msgid "An error occured while loading the content. Please reload page."
-msgstr "Sisällön lataamisessa tapahtui virhe. Kokeile ladata sivu uudelleen."
+msgid "An error occured while loading the content"
+msgstr "Sisällön lataamisessa tapahtui virhe."
+
+msgctxt "React search"
+msgid "Please reload the page or try again later."
+msgstr "Kokeile ladata sivu uudelleen tai yritä myöhemmin uudelleen."
 
 msgctxt "Unit services title"
 msgid "Services"
