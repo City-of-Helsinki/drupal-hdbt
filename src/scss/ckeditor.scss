@@ -40,6 +40,8 @@
 // icons here for the links so that the links look similar as in the end result.
 .ck-content a {
   text-decoration: underline;
+  text-decoration-thickness: remify(1px);
+  text-underline-offset: 10%;
 
   // E-mail link styles
   &[href^='mailto:']::after {

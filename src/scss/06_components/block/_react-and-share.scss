@@ -262,6 +262,8 @@
               .rns-label {
                 color: $color-black;
                 text-decoration: underline;
+                text-decoration-thickness: remify(2px);
+                text-underline-offset: 10%;
               }
             }
 
