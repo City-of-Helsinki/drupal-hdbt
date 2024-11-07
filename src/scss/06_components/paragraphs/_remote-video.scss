@@ -1,15 +1,12 @@
 .component--remote-video {
   @include hds-button-colors-on-dark-bg;
   @include component-side-padding;
-  background-color: $color-black;
+  background-color: $color-black-5;
 }
 
 .component--remote-video,
-.component--remote-video a:not(
-  .hds-button,
-  [data-hds-component='button']:not([class*='hds-button'])
-) {
-  color: $color-white;
+.component--remote-video a:not(.hds-button, [data-hds-component='button']:not([class*='hds-button'])) {
+  color: $color-black;
 }
 
 .component--remote-video + .component--remote-video.component--no-header {
@@ -22,7 +19,7 @@
 
   .responsive-video-container {
     aspect-ratio: 16/9;
-    background-color: $color-black-10; // Add color to show a "placeholder" while the video is loading.
+    background-color: $color-black-5; // Add color to show a "placeholder" while the video is loading.
     overflow: hidden;
 
     iframe {
@@ -38,10 +35,10 @@
 
 .remote-video__video-title {
   @include font('h4');
-  margin-top: $spacing-half; // Design has the title very close to the video above so that is why this needs adjustment.
+  margin-top: $spacing;
 
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing;
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-and-half;
   }
 }
 
