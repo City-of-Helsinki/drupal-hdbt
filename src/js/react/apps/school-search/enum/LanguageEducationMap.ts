@@ -71,6 +71,7 @@ const ontologyDetailsIdsToLang: OntologyDetailMap = {
     909: Drupal.t('Finnish-Russian', {}, { context: 'TPR Ontologyword details schools' }),
     910: Drupal.t('Language-enriched education (Finnish-English)', {}, { context: 'TPR Ontologyword details schools' }),
     911: Drupal.t('Language-enriched education (Finnish-Russian)', {}, { context: 'TPR Ontologyword details schools' }),
+    1041: Drupal.t('Finnish-Swedish', {}, { context: 'TPR Ontologyword details schools' }),
   },
 };
 
