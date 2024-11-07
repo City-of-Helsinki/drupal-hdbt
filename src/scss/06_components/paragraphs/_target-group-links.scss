@@ -52,19 +52,11 @@ $-title-spacing: calc(0.5 * (var(--icon-size) - var(--title-line-height))); // T
   padding-top: $-title-spacing;
 }
 
-.target-group-link__link {
-  text-decoration: none;
-
-  &::before {
-    content: '';
-    height: 100%;
-    inset: 0;
-    position: absolute;
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
+.target-group-link__link::before {
+  content: '';
+  height: 100%;
+  inset: 0;
+  position: absolute;
 }
 
 .target-group-link__subtitle {

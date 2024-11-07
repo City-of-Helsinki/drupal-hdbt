@@ -1,5 +1,7 @@
 $-service-item-font: 'special.large_link';
-$-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5; // Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+
+// Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+$-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5;
 
 .popular-service-item {
   background-color: $color-silver-light;
@@ -23,33 +25,38 @@ $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service
 .popular-service-item__links {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
   margin-top: $spacing - $-service-item-padding;
+  padding-left: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-and-half - $-service-item-padding;
   }
 }
 
-.link__style--highlight {
+.popular-service-item__link-wrapper {
+  // The link wrapper needs to have the same font size and line-height as the link itself so that the list marker is
+  // shown in the correct position.
   @include font($-service-item-font);
   margin-bottom: $spacing - 2 * $-service-item-padding;
+  margin-top: 0;
+
+  // The padding here is also to help align the list marker to correct position.
   padding-block: $-service-item-padding;
-  padding-inline-start: calc(var(--line-height) * 1em + $spacing-half);
+  vertical-align: top;
+}
 
-  &::before {
-    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em), currentColor, inline-block);
-    margin-inline-end: $spacing-half;
-    margin-inline-start: calc(var(--line-height) * -1em - $spacing-half);
-    transform: scaleX(var(--lang-direction, 1));
-  }
+.link__style--highlight {
+  @include font($-service-item-font);
 
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: calc(var(--line-height) * 1em + $spacing-half);
+  // Display inline-block helps the external link icon to be displayed directly after the text.
+  display: inline-block;
 
-    &::before {
-      margin-left: $spacing-half;
-      margin-right: calc(var(--line-height) * -1em - $spacing-half);
-    }
-  }
+  // This margin is used to negate the padding below and to position the list marker.
+  margin-block: ($-service-item-padding * -1);
+
+  // The padding below it are used to make the link correct minimum height for the WCAG AAA standard.
+  padding-block: $-service-item-padding;
+  padding-inline-start: $spacing-quarter;
+  vertical-align: top;
 }

@@ -67,6 +67,8 @@ $label-font: 'special.navigation.icon_label';
   .nav-toggle__button:hover &,
   .nav-toggle__button:active & {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
+    text-underline-offset: 10%
   }
 
   &:focus,

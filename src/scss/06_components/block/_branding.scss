@@ -26,5 +26,6 @@
   a:focus .city-name,
   a:hover .city-name {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }

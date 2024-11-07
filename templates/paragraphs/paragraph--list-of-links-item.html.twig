@@ -64,16 +64,13 @@
         </div>
       {% endif %}
 
-      {% set link_title %}
-        <span>{{ text }}</span>
-      {% endset %}
       {% set link_attributes = {
         'class': [
           'list-of-links__item__link',
         ],
         'target': target_new ? '_blank' : null,
       } %}
-      <div class="list-of-links__item__title">{{ link(link_title, url, link_attributes) }}</div>
+      <div class="list-of-links__item__title">{{ link(text, url, link_attributes) }}</div>
       {% if list_of_links_design == 'without-image' %}
         {% if desc %}
           <div class="list-of-links__item__desc">{{ desc }}</div>

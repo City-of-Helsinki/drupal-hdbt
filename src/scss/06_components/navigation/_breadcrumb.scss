@@ -28,15 +28,10 @@
 .breadcrumb__link {
   display: none;
   padding-block: $spacing-half;
-  text-decoration: underline;
 
   @include breakpoint($breakpoint-m) {
     display: block;
     padding-block: $spacing;
-  }
-
-  &:hover {
-    text-decoration: none;
   }
 
   &:last-of-type {
