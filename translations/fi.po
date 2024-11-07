@@ -1327,3 +1327,15 @@ msgstr "Haluatko antaa meille palautetta tästä sivusta?"
 msgctxt "React & Share cookie compliance"
 msgid "Enabling cookies that collect statistics will allow you to share your input."
 msgstr "Pääset antamaan palautetta, jos sallit evästeasetuksista tilastointiin liittyvät evästeet."
+
+msgctxt "Helsinki near you form input label"
+msgid "Address"
+msgstr "Osoite"
+
+msgctxt "Helsinki near you form placeholder"
+msgid "For example, Mannerheimintie 1"
+msgstr "Esim. Mannerheimintie 1"
+
+msgctxt "Helsinki near you form submit label"
+msgid "Search"
+msgstr "Etsi"

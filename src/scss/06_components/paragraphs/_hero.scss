@@ -395,3 +395,29 @@ $koro-height: 50px;
 .hero--with-search .helfi-search__form .hds-text-input__label {
   color: inherit;
 }
+
+.hero--with-helsinki-near-you {
+  .hero__container {
+    @include breakpoint($breakpoint-l) {
+      padding-top: $spacing-triple;
+    }
+  }
+
+  .hero__text-content {
+    max-width: $content-width-max;
+  }
+
+  .helfi-helsinki-near-you__form {
+    margin-top: $spacing-double;
+
+    .form-item {
+      margin-bottom: 0;
+    }
+  }
+
+  .helfi-search__submit-button {
+    margin-top: $spacing-and-half;
+    max-width: 280px;
+    width: 100%;
+  }
+}

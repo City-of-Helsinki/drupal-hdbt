@@ -1,13 +1,13 @@
-<form class="helfi-helsinki-near-you__form" action="{{ helfi_search_form_url }}" role="search">
+<form class="helfi-helsinki-near-you__form" action="{{ helfi_helsinki_near_you_form_url }}" role="search">
   <div class="form-item hds-text-input">
     {% if label %}
-      <label class="hds-text-input__label" for="search-form-{{search_id}}">{{ label }}</label>
+      <label class="hds-text-input__label" for="search-form-{{form_id}}">{{ label }}</label>
     {% endif %}
     <div class="hds-text-input__input-wrapper">
-      <input type="search" id="search-form-{{search_id}}" name="q" value="" class="form-text hds-text-input__input" {% if placeholder %}placeholder="{{ placeholder }}" {% endif %}>
+      <input type="search" id="search-form-{{form_id}}" name="q" value="" class="form-text hds-text-input__input" {% if placeholder %}placeholder="{{ placeholder }}" {% endif %}>
     </div>
   </div>
   <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">
-    <span class="hds-button__label">{{ 'Search'|t({}, {'context': 'Helsinki near you form submit'}) }}</span>
+    <span class="hds-button__label">{{ submit_button_label }}</span>
   </button>
 </form>
