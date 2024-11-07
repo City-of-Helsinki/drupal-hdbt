@@ -25,6 +25,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 /**
  * Retrieve possible theme color palette override.
@@ -71,9 +72,7 @@ function hdbt_preprocess_html(&$variables): void {
     ->getCurrentRequest()?->attributes->get('exception');
 
   // Check if the page is error-page and add class error-page for the body.
-  if (
-    $page_status?->getStatusCode() > 400
-  ) {
+  if ($page_status instanceof HttpExceptionInterface && $page_status->getStatusCode() > 400) {
     $variables['attributes']['class'][] = 'error-page';
   }
 
