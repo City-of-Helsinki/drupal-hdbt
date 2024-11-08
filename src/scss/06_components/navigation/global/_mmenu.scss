@@ -128,8 +128,10 @@ $-footerlink-target-size: 44px;
   }
 
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
 
     &::before {
       transform: translateX(-4px);
@@ -140,10 +142,6 @@ $-footerlink-target-size: 44px;
   &:active {
     outline: 3px solid $color-black;
     outline-offset: -3px;
-
-    &::before {
-      transform: translateX(-4px);
-    }
   }
 }
 
@@ -167,8 +165,10 @@ $-footerlink-target-size: 44px;
   padding: 5px 12px; // Top and bottom paddings are for handling focus ring 3px width + 2px offset
 
   &:hover,
+  &:focus,
   &:active {
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   &:focus,
@@ -231,8 +231,10 @@ $-footerlink-target-size: 44px;
   }
 
   &:hover,
+  &:focus,
   &:active {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   // .mmenu__title-link[aria-current='page'],
@@ -248,6 +250,7 @@ $-footerlink-target-size: 44px;
 
   &[aria-current='page']:focus {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }
 
@@ -316,7 +319,7 @@ $-footerlink-target-size: 44px;
     $-footer-link-vertical-padding: 0.5 * ($-footerlink-target-size - get-line-height($-footer-link-font, true));
     display: block;
     @include font($-footer-link-font);
-    padding-bottom: $-footer-link-vertical-padding;   
+    padding-bottom: $-footer-link-vertical-padding;
     padding-left: $spacing;
     padding-right: $spacing;
     padding-top: $-footer-link-vertical-padding;
@@ -337,6 +340,7 @@ $-footerlink-target-size: 44px;
     &:hover,
     &:active {
       text-decoration: underline;
+      text-decoration-thickness: remify(2px);
     }
 
     &:focus,

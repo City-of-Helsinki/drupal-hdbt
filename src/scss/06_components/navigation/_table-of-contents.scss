@@ -53,7 +53,6 @@
   @include font('special.large_link');
   display: inline-block;
   position: relative;
-  text-decoration: underline;
 
   // TODO: UHF-643 Unify focuses/hovers and other link styles (https://helsinkisolutionoffice.atlassian.net/browse/UHF-643).
   &:focus {

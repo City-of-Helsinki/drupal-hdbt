@@ -56,6 +56,7 @@ $-otherlangs-min-width: 240px; // From design specs
     &:active,
     &:focus {
       text-decoration: underline;
+      text-decoration-thickness: remify(2px);
     }
   }
 }

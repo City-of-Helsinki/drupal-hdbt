@@ -467,6 +467,8 @@ input[type='submit'].hds-button--small {
     margin: 0;
     padding: 0 $spacing-half 0 0;
     text-decoration: underline;
+    text-decoration-thickness: remify(1px);
+    text-underline-offset: 10%;
 
     .hds-button__label {
       line-height: $spacing-and-half; // To avoid too low link buttons
@@ -726,6 +728,7 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, transparent);
     line-height: $spacing-and-half; // To avoid too low link buttons
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
 
     &:hover {
       text-decoration: none;
