@@ -1,0 +1,21 @@
+.image-gallery {
+  display: grid;
+  gap: $spacing-double;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.image-gallery__item-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  img {
+    @include image-defaults($height: 100%, $width: 100%, $max-width: null);
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+}
