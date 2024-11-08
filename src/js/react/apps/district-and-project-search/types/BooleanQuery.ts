@@ -33,7 +33,7 @@ type BooleanQuery = {
         should: contentTypeQuery[];
         filter: {
           term: {
-            _language: 'fi' | 'en' | 'sv';
+            search_api_language: 'fi' | 'en' | 'sv';
           };
           terms: {
             content_type: string[];
