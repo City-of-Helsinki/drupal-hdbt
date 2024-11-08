@@ -10,7 +10,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       filter: [
         {
           term: {
-            _language: lang
+            search_api_language: lang
           }
         }
       ],

@@ -10,7 +10,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       filter: [
         {
           term: {
-            _language: lang
+            search_api_language: lang
           }
         }
       ],
@@ -41,7 +41,7 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
   if (coordinates && coordinates.length) {
     sort = [{ _score: 'desc' }, ...sort];
 
-    // Show closest station with Service in Swedish.
+    // Show the closest station with Service in Swedish.
     if (svOnly) {
       sort = [
         {

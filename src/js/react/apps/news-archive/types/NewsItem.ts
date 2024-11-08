@@ -15,7 +15,7 @@ type Result = {
   _click_id: number;
   _id: string;
   _index: string;
-  _language: string;
+  search_api_language: string;
   _score: number;
   _type: string;
 }
