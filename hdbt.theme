@@ -311,7 +311,7 @@ function hdbt_preprocess_node(&$variables): void {
  * @param string $image_caption
  *   Image caption field name.
  */
-function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption): void {
+function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption, string $photographer): void {
   $entity = $variables[$entity_type];
 
   if (!$entity instanceof ContentEntityInterface) {
@@ -330,7 +330,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
 
     // Combine photographer field value with caption.
     if (
-      $entity->{$image}->entity?->hasField('field_photographer') &&
+      $entity->{$image}->entity?->hasField($photographer ? $photographer : 'field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
     ) {
       // Get translated photographer text if available.
@@ -1906,4 +1906,18 @@ function hdbt_set_legacy_privacy_policy_url(array &$variables): void {
       $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void {
+    // Handle image caption preprocessing.
+  _hdbt_preprocess_image_caption(
+    $variables,
+    'paragraph',
+    'field_gallery_image',
+    'field_gallery_image_description',
+    photographer: 'field_gallery_image_photographer',
+  );
 }
