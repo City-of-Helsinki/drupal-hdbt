@@ -121,6 +121,10 @@ $koro-height: 50px;
   .hero .hds-button {
     @include hds-button-colors-on-dark-bg;
   }
+
+  .hds-text-input__label {
+    color: $color-white;
+  }
 }
 
 /**
