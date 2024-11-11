@@ -1,10 +1,14 @@
+{% set ratio = content.field_image_gallery_ratio[0]['#markup']|replace({":": "-"}) %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component--image-gallery' ],
       component_title: content.field_image_gallery_title,
       component_description: content.field_image_gallery_description,
-      component_content_class: 'image-gallery',
+      component_content_class: [
+        'image-gallery',
+        'image-gallery--' ~ ratio],
     }
   %}
     {% block component_content %}
