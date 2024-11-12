@@ -1321,15 +1321,3 @@ msgstr "Vill du ge oss feedback om denna sida?"
 msgctxt "React & Share cookie compliance"
 msgid "Enabling cookies that collect statistics will allow you to share your input."
 msgstr "Du kan ge oss feedback genom att aktivera statistikrelaterade cookies."
-
-msgctxt "Helsinki near you form input label"
-msgid "Address"
-msgstr "Adress"
-
-msgctxt "Helsinki near you form placeholder"
-msgid "For example, Mannerheimintie 1"
-msgstr "T.ex. Mannerheimvägen 1"
-
-msgctxt "Helsinki near you form submit label"
-msgid "Search"
-msgstr "Sök"

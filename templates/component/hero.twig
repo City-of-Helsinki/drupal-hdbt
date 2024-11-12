@@ -65,8 +65,7 @@
             design == "with-image-right" or
             design == "with-image-left" or
             design == "with-image-bottom" or
-            design == "diagonal" or
-            design == "with-helsinki-near-you"
+            design == "diagonal"
           %}
             <div class="hero__description user-edited-content">
               {{ description }}
@@ -74,13 +73,8 @@
           {% endif %}
         {% endif %}
 
-        {% if design == "with-helsinki-near-you" %}
-          {% include "@hdbt/component/helfi-helsinki-near-you-form.twig" with {
-            form_id: 'helsinki-near-you',
-            label: 'Address'|t({}, {'context': 'Helsinki near you form input label'}),
-            placeholder: 'For example, Mannerheimintie 1'|t({}, {'context': 'Helsinki near you form placeholder'}),
-            submit_button_label: 'Search'|t({}, {'context': 'Helsinki near you form submit label'})
-          } %}
+        {% if form %}
+          {{ form }}
         {% endif %}
 
         {% if published_time|render|striptags|trim is not empty and html_published_time|render|striptags|trim is not empty %}
