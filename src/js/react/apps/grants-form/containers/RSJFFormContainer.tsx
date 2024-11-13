@@ -1,9 +1,10 @@
 import Form from '@rjsf/core';
 import { RJSFSchema, RegistryFieldsType, RegistryWidgetsType, UiSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
+import { map } from 'zod';
+import React from 'react';
 import { TextArea, TextInput, SubmitButton } from '../components/Input';
 import { FieldsetWidget, ObjectFieldTemplate } from '../components/Templates';
-import { map } from 'zod';
 
 const schema: RJSFSchema = {
   title: 'Avustustiedot',
@@ -31,7 +32,6 @@ const schema: RJSFSchema = {
               title: 'Talkootyö tuntia',
             },
           },
-          required: ['mapName', 'size', 'voluntaryHours'],
         }
       }
     },
@@ -58,13 +58,25 @@ const widgets: RegistryWidgetsType = {
   TextWidget: TextInput,
 };
 
-const RJSFFormContainer = () => {
-  return (
+const RJSFFormContainer = () => (
     <div className='form-wrapper'>
       <Form
         className='grants-react-form'
+        method='POST'
         noHtml5Validate
-        onSubmit={(data, event) => console.log(data, event)}
+        onSubmit={async(data, event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+
+          const form = event.target;
+          if (form instanceof HTMLFormElement) {
+            const formData = new FormData(form);
+
+            const response = await fetch('/react/submit', {
+              method: 'POST',
+              body: formData,
+            });
+          }
+        }}
         schema={schema}
         templates={{ObjectFieldTemplate, ButtonTemplates: { SubmitButton }}}
         uiSchema={uiSchema}
@@ -72,7 +84,6 @@ const RJSFFormContainer = () => {
         widgets={widgets}
       />
     </div>
-  )
-}
+  );
 
 export default RJSFFormContainer;
