@@ -9,6 +9,7 @@ import { type FormConfig } from './types/FormConfig';
 import { FormNotFoundError } from './components/FormNotFoundError';
 import { ATVData } from './types/ATVData';
 import { Preview } from './components/Preview';
+import RJSFFormContainer from './containers/RSJFFormContainer';
 
 initSentry();
 
@@ -28,31 +29,26 @@ const addStaticPages = (config: FormConfig) => {
 const rootSelector: string = 'grants-react-form';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
 const { application_number: applicationNumber, form } = drupalSettings.grants_react_form;
-let formConfig: FormConfig|null = null;
+// let formConfig: FormConfig|null = null;
 let atvData: ATVData = null;
 
-try {
-  formConfig = addStaticPages(require(`./forms/${form}`).Form);
-  // @todo hydrate from ATV data if available
-  atvData = null;
-}
-catch (e) {
-  console.error(e);
-}
+// try {
+//   formConfig = addStaticPages(require(`./forms/${form}`).Form);
+//   // @todo hydrate from ATV data if available
+//   atvData = null;
+// }
+// catch (e) {
+//   console.error(e);
+// }
+
+const showError = false;
 
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      {!formConfig
+      {showError
         ? <FormNotFoundError />
-        : <FormContainer
-            {...{
-              applicationNumber,
-              atvData,
-              form,
-              formConfig
-            }}
-          />
+        : <RJSFFormContainer />
       }
     </React.StrictMode>,
     rootElement

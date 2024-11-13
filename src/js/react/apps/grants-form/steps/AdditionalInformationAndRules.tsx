@@ -1,6 +1,7 @@
-import { FileInput, TextArea } from 'hds-react';
+import { TextArea } from 'hds-react';
 import { z } from 'zod';
 import { FormField } from '../components/FormField';
+import { FileInput } from '../components/FileInput';
 
 export const AdditionalInformationAndRulesSchema = z.object({});
 
@@ -36,19 +37,14 @@ export const AdditionalInformationAndRules = () => {
             All the attachments listed below must be submitted for the processing of the grant application.
             The grant application may be rejected if the attachments are not submitted.
             If any of the attachments is missing, let us know in the Further clarification on attachments section of the application.
-            {/* <FormField
+            <FileInput
               id={fieldNames.community_rules}
               label={Drupal.t('Community Rules')}
               name={fieldNames.community_rules}
-              element={FileInput}
-            /> */}
+            />
           </div>
         </div>
       </section>
-      <input
-        type='file'
-        name={fieldNames.community_rules}
-      />
     </>
   )
 };
