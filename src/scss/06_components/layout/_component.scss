@@ -7,7 +7,8 @@
 // When components are full width and do not contain liftup-with-img-bg or content-cards,
 // they should have padding that keeps them from touching side.
 .components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey),
-.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey) {
+.page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey),
+.components--computed > .component {
   @include component-side-padding;
 }
 
@@ -83,7 +84,7 @@
 
 // Components on other pages than landing-page
 // need to be limited to content max-width to maintain readability.
-:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
+.wrapper:not(.page-type--landing-page) .components:not(.components--lower, .components--computed) {
   @include components-container-max-width;
   margin-left: auto;
   margin-right: auto;
