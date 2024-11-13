@@ -25,32 +25,9 @@
 
   img {
     @include image-defaults($height: 100%, $width: 100%, $max-width: null);
-    object-fit: cover;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 0;
   }
 }
 
 .image-gallery__item-meta {
   margin-top: $spacing-half;
-}
-
-.image-gallery--3-2 {
-  .image-gallery__item-image {
-    aspect-ratio: 3 / 2;
-  }
-}
-
-.image-gallery--1-1 {
-  .image-gallery__item-image {
-    aspect-ratio: 1 / 1;
-  }
-}
-
-.image-gallery--2-3 {
-  .image-gallery__item-image {
-    aspect-ratio: 2 / 3;
-  }
 }
