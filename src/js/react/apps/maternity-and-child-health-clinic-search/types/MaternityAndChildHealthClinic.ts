@@ -1,7 +1,7 @@
 import { ImageOverride } from '@/types/ImageOverride';
 
 export type MaternityAndChildHealthClinic = {
-  _language: string,
+  search_api_language: string,
   address: string[],
   id: string[],
   latitude: string[],

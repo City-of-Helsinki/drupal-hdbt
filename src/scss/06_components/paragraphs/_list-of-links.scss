@@ -1,4 +1,9 @@
+@use 'sass:math';
+
 $-item-spacing: $spacing-triple;
+
+// Lets calculate the padding size for the list of links item based on the line-height of the chosen font.
+$-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremify: true)) * 0.5;
 
 .list-of-links {
   display: flex;
@@ -39,24 +44,54 @@ $-item-spacing: $spacing-triple;
     }
   }
 
-  .list-of-links__item__link {
-    align-items: flex-start;
-    box-sizing: border-box;
+  .list-of-links__item__title {
+    @include heading-hyphens;
+    @include font('h4');
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    margin-block: 0;
+    margin-inline-start: (100px + $spacing);
+
+    // There should be minimal height for the links with images on small screens so that the item is always at least
+    // the height of the image. The image is 90px tall.
     min-height: 90px;
+
+    @include breakpoint($breakpoint-s) {
+      margin-inline-start: 0;
+      min-height: auto;
+    }
+  }
+
+  .list-of-links__item__link {
+    box-sizing: border-box;
+    display: inline-block;
     overflow-wrap: anywhere;
-    text-decoration: none;
-    width: 100%;
+
+    // Make the clickable area conform with WCAG AAA standard.
+    // Also adjust the text inside the link slightly higher than the center to make it look balanced by adding 2/3 of
+    // the padding to the bottom and 1/3 of it to the top.
+    padding-bottom: ($-item-link-padding * 2) * math.div(2, 3);
+    padding-top: ($-item-link-padding * 2) * math.div(1, 3);
 
     @include breakpoint($breakpoint-s) {
       display: block;
+
+      // In the layouts the list of links item with image is designed so that there is minimal height for it. This
+      // min-height is defined so that the link text is followed by 48px (spacing-quadruple) of empty space unless
+      // the text goes to multiple lines.
+      min-height: get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple;
+
+      // The paddings are no longer needed to conform with the WCAG AAA standard since the link has now min-height
+      // that is higher than the 44px defined as the minimum clickable area.
+      padding-bottom: 0;
+      padding-top: 0;
     }
 
     &:focus,
     &:hover {
       text-decoration: underline;
+      text-decoration-thickness: remify(2px);
 
       &::after {
         transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
@@ -72,56 +107,6 @@ $-item-spacing: $spacing-triple;
       display: block;
       inset: 0;
       position: absolute;
-    }
-
-    &::after {
-      --icon-size: 1.5rem;
-
-      @include pseudo-icon('arrow-right');
-      @include hover-link-arrow-transition;
-      content: '';
-      display: block;
-      flex-shrink: 0;
-      margin-left: -$spacing-quarter;
-      margin-top: $spacing-half;
-      transform: scaleX(var(--lang-direction, 1));
-
-      @include breakpoint($breakpoint-s) {
-        --icon-size: 3rem;
-        margin-left: -$spacing-half;
-        margin-top: $spacing;
-      }
-    }
-
-    &[data-is-external]::after {
-      content: none;
-      display: none;
-    }
-
-    .link__type {
-      --icon-size: 1.5rem;
-      display: block;
-      flex-shrink: 0;
-      height: var(--icon-size);
-      margin-inline-start: -$spacing-quarter;
-      margin-top: $spacing-half;
-      mask-size: var(--icon-size) var(--icon-size);
-      width: var(--icon-size);
-
-      @include breakpoint($breakpoint-s) {
-        --icon-size: 3rem;
-        margin-inline-start: -$spacing-half;
-        margin-top: $spacing;
-      }
-    }
-
-    &:focus .link__type--external,
-    &:hover .link__type--external {
-      transform: scaleX(var(--lang-direction, 1)) translate($spacing-quarter, - $spacing-quarter);
-
-      @media (prefers-reduced-motion) {
-        transform: scaleX(var(--lang-direction, 1));
-      }
     }
   }
 
@@ -148,24 +133,13 @@ $-item-spacing: $spacing-triple;
       padding-bottom: 100%;
     }
   }
-
-  .list-of-links__item__title {
-    @include heading-hyphens;
-    @include font('h4');
-    margin-block: 0;
-    margin-inline-start: (100px + $spacing);
-
-    @include breakpoint($breakpoint-s) {
-      margin-inline-start: 0;
-    }
-  }
 }
 
 // Without image variants
 .component--list-of-links-without-image {
   .list-of-links__item {
     align-self: flex-start;
-    min-height: 2rem;// Min-height is the same as the icon height.
+    min-height: 2rem; // Min-height is the same as the icon height.
     padding-bottom: 0;
 
     @include breakpoint($breakpoint-m) {
@@ -180,85 +154,37 @@ $-item-spacing: $spacing-triple;
     }
 
     .list-of-links__item__link {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       min-height: auto;
-      text-decoration: underline;
 
-      .link__type,
-      &::after {
-        align-self: flex-start;
-        margin-inline-start: $spacing-half;
-        margin-top: -2px; // Pull the arrow a bit higher to match the text line-height.
-
-        @include breakpoint($breakpoint-s) {
-          margin-top: -8px; // Pull the arrow a bit higher to match the text line-height.
-        }
-      }
-
-      &:focus,
-      &:hover {
-        text-decoration: none;
-      }
+      // Make the clickable area conform with WCAG AAA standard.
+      padding-block: $-item-link-padding;
     }
 
     .list-of-links__item__title {
-      display: flex;
       margin-inline: 0;
-    }
-
-    .list-of-links__item__arrow {
-      // Pull the arrow a bit higher to match the text line-height.
-      margin: -2px 0 0 $spacing;
-
-      @include breakpoint($breakpoint-s) {
-        // Pull the arrow a bit higher to match the text line-height.
-        margin-top: -8px;
-      }
-
-      .hel-icon {
-        --icon-size: 2rem;
-
-        @include breakpoint($breakpoint-s) {
-          --icon-size: 3rem;
-        }
-      }
+      min-height: auto;
     }
   }
-}
 
-// Without image but with description variant
-.component--list-of-links-without-image {
-  .list-of-links__item {
-    .list-of-links__item__desc {
-      @include font('body');
-      color: $color-black-60;
-      margin-top: $spacing-half;
-
-      @include breakpoint($breakpoint-l) {
-        margin-top: $spacing-quarter;
-      }
-    }
+  // Without image but with description variant
+  .list-of-links__item__desc {
+    @include font('body');
+    color: $color-black-60;
   }
 }
 
 // Sidebar layout.
 .has-sidebar .main-content {
   .list-of-links__item {
-    padding-bottom: $spacing-and-half;
-
     @include breakpoint($breakpoint-l) {
       width: calc(50% - #{$-item-spacing});
     }
   }
 
   // Without image.
-  .component--list-of-links-without-image {
-    .list-of-links__item {
-      @include breakpoint($breakpoint-l) {
-        width: calc(50% - #{$-item-spacing});
-      }
+  .component--list-of-links-without-image .list-of-links__item {
+    @include breakpoint($breakpoint-l) {
+      width: calc(50% - #{$-item-spacing});
     }
   }
 }

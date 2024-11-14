@@ -46,8 +46,10 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   &:focus {
@@ -69,8 +71,10 @@
     border-bottom: none;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   &:focus {

@@ -14,15 +14,15 @@ $item-gap: $spacing-half;
   @include breakpoint($breakpoint-s) {
     display: flex;
     flex-direction: row-reverse;
-    gap: $spacing;
+    gap: $spacing-and-half;
     grid-template-areas: 'content img';
     grid-template-columns: 1fr 30%;
-    padding: $spacing;
+    padding: $spacing-and-half;
   }
 
   @include breakpoint($breakpoint-m) {
-    gap: $spacing-and-half;
-    padding: $spacing-and-half;
+    gap: $spacing-double;
+    padding: $spacing-double;
   }
 }
 
@@ -37,11 +37,17 @@ $item-gap: $spacing-half;
     background-color: $color-black-5;
     display: block;
     height: auto;
+    object-fit: cover;
+    object-position: center;
     width: 100%;
   }
 
   @include breakpoint($breakpoint-s) {
     margin-bottom: 0;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 1.5;
   }
 }
 
@@ -49,43 +55,6 @@ $item-gap: $spacing-half;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  &::after {
-    @include pseudo-icon('arrow-right');
-    @include hover-link-arrow-transition;
-
-    --icon-size: #{$spacing-double};
-    flex-grow: 1;
-    margin-top: $spacing;
-    mask-position: bottom center;
-    pointer-events: none;
-
-    @include breakpoint($breakpoint-m) {
-      --icon-size: #{$spacing-triple};
-    }
-  }
-
-  .card:focus-within &::after,
-  .card:hover &::after {
-    transform: translateX($spacing-quarter);
-
-    @media (prefers-reduced-motion) {
-      transform: none;
-    }
-  }
-
-  .card--external &::after {
-    @include pseudo-icon-replace('link-external');
-  }
-
-  .card--external:focus-within &::after,
-  .card--external:hover &::after {
-    transform: translate($spacing-quarter, -$spacing-quarter);
-
-    @media (prefers-reduced-motion) {
-      transform: none;
-    }
-  }
 }
 
 .card--unpublished {
@@ -100,10 +69,6 @@ $item-gap: $spacing-half;
   .card__text::after {
     background-color: var(--color-error);
   }
-}
-
-.card--external .link__type--external {
-  @include visually-hidden; // Avoid two arrows on card visually, but let screen readers see it.
 }
 
 .card .content-tags {
@@ -121,9 +86,8 @@ $item-gap: $spacing-half;
 
 .card__link {
   overflow-wrap: anywhere;
-  text-decoration: none;
 
-  &::after {
+  &::before {
     content: '';
     inset: 0;
     position: absolute;
@@ -133,11 +97,6 @@ $item-gap: $spacing-half;
   &:focus {
     outline: 3px solid $color-black;
     outline-offset: 2px;
-  }
-
-  &:active,
-  &:hover {
-    text-decoration: underline;
   }
 }
 
