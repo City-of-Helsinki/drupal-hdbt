@@ -51,9 +51,11 @@ const ResultCard = ({
   }
 
   let languageEducation = ontologyword_ids?.reduce((acc: any, currentItem: any) => {
-    if ((currentItem >= 15 && currentItem <= 124) && ontologyDetailsIdsToLang[currentItem]) {
-      acc.push(ontologyDetailsIdsToLang[currentItem]);
-    }
+    (['a1', 'a2', 'b1', 'b2'] as const).forEach(option => {
+      if (ontologyDetailsIdsToLang[option][currentItem]) {
+        acc.push(ontologyDetailsIdsToLang[option][currentItem]);
+      }
+    });
     return acc;
   }, []);
 
@@ -61,8 +63,8 @@ const ResultCard = ({
   languageEducation = [...new Set(languageEducation)];
 
   const bilingualEducation = ontologyword_ids?.reduce((acc: any, currentItem: any) => {
-    if ((currentItem >= 293 && currentItem <= 911) && ontologyDetailsIdsToLang[currentItem]) {
-      acc.push(ontologyDetailsIdsToLang[currentItem]);
+    if (ontologyDetailsIdsToLang.bilingualEducation[currentItem]) {
+      acc.push(ontologyDetailsIdsToLang.bilingualEducation[currentItem]);
     }
     return acc;
   }, []);
