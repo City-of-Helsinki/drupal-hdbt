@@ -1,0 +1,15 @@
+<div class="components components--computed">
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+      'component--connected-accounts-form-container',
+    ],
+    }
+  %}
+    {% block component_content %}
+      <form{{ attributes }}>
+        {{ children }}
+      </form>
+    {% endblock component_content %}
+  {% endembed %}
+</div>
