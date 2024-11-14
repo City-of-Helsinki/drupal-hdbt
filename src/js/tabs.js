@@ -1,5 +1,9 @@
 // eslint-disable-next-line func-names
 (function ($, drupalSettings) {
+  // Module-level variables to store active tab state
+  let activeTabId = null;
+  let activeContentId = null;
+
   // Helper function to hide all tabbed content.
   function hideEverything(tabbedContent) {
     const allTabs = tabbedContent.querySelectorAll('.tab');
@@ -31,14 +35,14 @@
     }
   }
 
-  // Save the active tab and its content to session storage.
-  function addToActiveTabStorage(activeTab) {
+  // Save the active tab and its content to variables
+  function updateActiveTab(activeTab) {
     const tabId = activeTab.dataset.drupalSelector;
     const contentId = activeTab.getAttribute('aria-controls');
 
     if (tabId && contentId) {
-      window.sessionStorage.setItem('activeTab', tabId);
-      window.sessionStorage.setItem('activeContent', contentId);
+      activeTabId = tabId;
+      activeContentId = contentId;
     }
   }
 
@@ -74,12 +78,12 @@
         tab.addEventListener('click', function onTabClick() {
           // Toggle function.
           toggleTabs(this);
-          addToActiveTabStorage(this);
+          updateActiveTab(this);
         });
         tab.addEventListener('keydown', function onTabEnter(event) {
           if (event.which === 13) {
             toggleTabs(this);
-            addToActiveTabStorage(this);
+            updateActiveTab(this);
           }
         });
       }
@@ -89,18 +93,16 @@
   // Run after each ajax submit on the element that has tabs.
   $(document).ajaxComplete(function onDataLoaded(e, xhr, settings) {
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
-      const activeTab = window.sessionStorage.getItem('activeTab');
-      const activeContent = window.sessionStorage.getItem('activeContent');
-      initiateTabs(activeTab, activeContent);
+      initiateTabs(activeTabId, activeContentId);
     }
   });
 
   // Run after page is ready.
   // eslint-disable-next-line func-names
   $(document).ready(function () {
-    // Clear the session storage on page reload.
-    window.sessionStorage.removeItem('activeTab');
-    window.sessionStorage.removeItem('activeContent');
+    // Reset the active tab variables
+    activeTabId = null;
+    activeContentId = null;
     initiateTabs();
   });
 })(jQuery, drupalSettings);
