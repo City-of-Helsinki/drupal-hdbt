@@ -19,7 +19,8 @@
   function toggleTabs(tab) {
     const tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     const tabsContentId = tab.getAttribute('aria-controls');
-    const tabsContent = document.querySelector(`[data-drupal-selector=${tabsContentId}]`);
+    if (!tabsContentId) return;
+    const tabsContent = document.querySelector(`[data-drupal-selector="${tabsContentId}"]`);
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -31,7 +32,9 @@
     // Refresh the map view by submitting the search/filter form.
     if (tabsContentId.startsWith('tab-2')) {
       const filterForm = $('[id^=views-exposed-form-high-school-search-block]');
-      $('.form-submit', filterForm).trigger('click');
+      if (filterForm.length) {
+        $('.form-submit', filterForm).trigger('click');
+      }
     }
   }
 
@@ -49,6 +52,9 @@
   function initiateTabs(activeTab, activeContent) {
     const containers = document.querySelectorAll('[data-drupal-selector="tabbed-content"]');
 
+    // Guard clause if no containers found
+    if (!containers.length) return;
+
     // Loop through tabbed content containers.
     for (let i = 0; i < containers.length; i++) {
       const instance = containers[i];
@@ -62,8 +68,14 @@
       }
 
       // Find the active tab elements.
-      const activeTabElement = document.querySelector(`[data-drupal-selector=${activeTab}]`);
-      const activeContentElement = document.querySelector(`[data-drupal-selector=${activeContent}]`);
+      const activeTabElement = document.querySelector(`[data-drupal-selector="${activeTab}"]`);
+      const activeContentElement = document.querySelector(`[data-drupal-selector="${activeContent}"]`);
+
+      // Guard clause if elements not found
+      if (!activeTabElement || !activeContentElement) {
+        console.warn('Tab elements not found:', { activeTab, activeContent });
+        return;
+      }
 
       // Set them active with aria-attributes.
       activeTabElement.setAttribute('aria-selected', 'true');
