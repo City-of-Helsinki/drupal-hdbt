@@ -1,0 +1,17 @@
+<article{{ attributes }}>
+  {% if content %}
+    <div class="components components--computed">
+      {% embed "@hdbt/misc/component.twig" with
+        {
+          component_classes: [
+          'component--tfa-form-container',
+        ],
+        }
+      %}
+        {% block component_content %}
+           {{- content -}}
+        {% endblock component_content %}
+      {% endembed %}
+    </div>
+  {% endif %}
+</article>
