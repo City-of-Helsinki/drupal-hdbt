@@ -86,7 +86,7 @@ const getQueryString = (params: SearchParams, page: number) => {
       filter: [
         {
           term: {
-            _language: drupalSettings.path.currentLanguage
+            search_api_language: drupalSettings.path.currentLanguage
           }
         }
       ],

@@ -37,6 +37,8 @@ $item-gap: $spacing-half;
     background-color: $color-black-5;
     display: block;
     height: auto;
+    object-fit: cover;
+    object-position: center;
     width: 100%;
   }
 
