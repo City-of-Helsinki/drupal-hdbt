@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/_internal';
 import Global from '../enum/Global';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type UseIndexQueryProps = {
   // Uses _mquery endpoint if true
@@ -19,7 +20,7 @@ const useIndexQuery = ({ query, multi, ...rest }: UseIndexQueryProps) => {
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = `application/${multi ? 'x-ndjson' : 'json'}`;
 
-    return fetch(`${url}/${index}/${endpoint}`, {
+    return useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': contentType,
