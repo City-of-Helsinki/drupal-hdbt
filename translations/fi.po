@@ -1333,5 +1333,5 @@ msgid "Welcome to the content management of hel.fi Drupal. You will find instruc
 msgstr "Tervetuloa hel.fin Drupalin sisällönhallintaan. Ohjeet löydät"
 
 msgctxt "User info page"
-msgid "Hel.fi content producer's guide (in Finnish)""
+msgid "Hel.fi content producer's guide (in Finnish)"
 msgstr "Hel.fin sisällöntuottajan oppaasta"
