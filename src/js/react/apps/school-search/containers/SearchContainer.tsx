@@ -1,12 +1,15 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSetAtom } from 'jotai';
 
+import { ErrorBoundary } from '@sentry/react';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ProximityFormContainer from './ProximityFormContainer';
 import ProximityResultsContainer from './ProximityResultsContainer';
 import FeatureFormContainer from './FeatureFormContainer';
 import FeatureResultsContainer from './FeatureResultsContainer';
-import { paramsAtom } from '../store';
+import { paramsAtom, setConfigurationsAtom } from '../store';
+import UseConfigurationsQuery from '../hooks/UseConfigurationsQuery';
+import ResultsError from '@/react/common/ResultsError';
 
 const MODE_OPTIONS = {
   // Search by school features
@@ -16,8 +19,10 @@ const MODE_OPTIONS = {
 };
 
 const SearchContainer = () => {
+  const { data: configurations, error: configurationsError } = UseConfigurationsQuery();
   const [searchMode, setSearchMode] = useState<string>(MODE_OPTIONS.proximity);
   const setParams = useSetAtom(paramsAtom);
+  const setConfigurations = useSetAtom(setConfigurationsAtom);
 
   const changeSearchMode = (mode: string) => {
     if (mode === searchMode) {
@@ -27,6 +32,15 @@ const SearchContainer = () => {
     setParams({});
     setSearchMode(mode);
   };
+
+  useEffect(() => {
+    if (configurations) {
+      setConfigurations({
+        ...configurations,
+        error: configurationsError
+      });
+    }
+  }, [configurations]);
 
   return (
     <>
@@ -38,23 +52,27 @@ const SearchContainer = () => {
           {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
         </button>
       </div>
-      <Suspense fallback={
-        <div className='hdbt__loading-wrapper'>
-          <LoadingOverlay />
-        </div>
-      }>
-        {
-          searchMode === MODE_OPTIONS.proximity ?
-            <div>
-              <ProximityFormContainer />
-              <ProximityResultsContainer />
-            </div> :
-            <div>
-              <FeatureFormContainer />
-              <FeatureResultsContainer />
-            </div>
-        }
-      </Suspense>
+      <ErrorBoundary
+        fallback={<ResultsError error={new Error('Error loading school search results')} />}
+      >
+        <Suspense fallback={
+          <div className='hdbt__loading-wrapper'>
+            <LoadingOverlay />
+          </div>
+        }>
+          {
+            searchMode === MODE_OPTIONS.proximity ?
+              <div>
+                <ProximityFormContainer />
+                <ProximityResultsContainer />
+              </div> :
+              <div>
+                <FeatureFormContainer />
+                <FeatureResultsContainer />
+              </div>
+          }
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };

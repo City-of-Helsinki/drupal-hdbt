@@ -733,8 +733,12 @@ msgid "The link opens in a new tab"
 msgstr "Länken öppnas i en ny flik"
 
 msgctxt "React search"
-msgid "An error occured while loading the content. Please reload page."
-msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
+msgid "An error occured while loading the content"
+msgstr "Det uppstod ett fel vid inläsningen av innehållet"
+
+msgctxt "React search"
+msgid "Please reload the page or try again later."
+msgstr "Vänligen ladda om sidan eller försök igen senare."
 
 msgctxt "Unit services title"
 msgid "Services"

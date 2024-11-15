@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react';
+import { Notification } from 'hds-react';
 import { ForwardedRef, forwardRef } from 'react';
 
 type ResultsErrorProps = {
@@ -15,7 +16,12 @@ const ResultsError = forwardRef(({ error, className }: ResultsErrorProps, ref: F
 
   return (
     <div className={className} ref={ref}>
-      {Drupal.t('An error occured while loading the content. Please reload page.', {}, { context: 'React search' })}
+      <Notification
+        label={Drupal.t('An error occured while loading the content', {}, { context: 'React search' })}
+        type='error'
+      >
+        {Drupal.t('Please reload the page or try again later.', {}, {context: 'React search'})}
+      </Notification>
     </div>
   );
 });

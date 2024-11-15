@@ -16,6 +16,7 @@ import Settings from '../enum/Settings';
 import type URLParams from '../types/URLParams';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -33,7 +34,7 @@ const ResultsContainer = (): JSX.Element => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl;
 
-    return fetch(`${url}/${Settings.INDEX}/_search`, {
+    return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

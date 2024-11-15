@@ -6,51 +6,20 @@ import type OptionType from './types/OptionType';
 import AppSettings from './enum/AppSettings';
 import ontologyDetailsIdsToLang from './enum/LanguageEducationMap';
 
-type configurations = {
+type Configurations = {
   error: Error|null,
   aggs: any
   baseUrl: string;
 };
 
-export const configurationsAtom = atom(async(): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
-  const { index } = AppSettings;
 
-  const body = JSON.stringify(AGGREGATIONS);
-
-  return fetch(`${proxyUrl}/${index}/_search`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body,
-  })
-  .then(res => res.json())
-  .then(json => {
-    const aggregations = json?.aggregations;
-
-    if (!aggregations) {
-      return {
-        error: new Error(
-          'Initialization failed.'
-        ),
-        aggs: {},
-        baseUrl: proxyUrl
-      };
-    }
-
-    return {
-      error: null,
-      aggs: aggregations,
-      baseUrl: proxyUrl
-    };
-  })
-  .catch(error => ({
-    error,
-    aggs: {},
-    baseUrl: proxyUrl
-  }));
-
+export const configurationsAtom = atom<Configurations>({
+  error: null,
+  aggs: {},
+  baseUrl: ''
+});
+export const setConfigurationsAtom = atom(null, (_get, set, configurations: Configurations) => {
+  set(configurationsAtom, configurations);
 });
 
 export const a1Atom = atom(async (get) => {
