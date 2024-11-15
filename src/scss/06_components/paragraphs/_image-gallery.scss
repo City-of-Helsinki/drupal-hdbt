@@ -12,11 +12,15 @@
   }
 }
 
-.components--upper .image-gallery{
-  @include breakpoint($breakpoint-s) {
-    grid-template-columns: repeat(2, 1fr);
+.node--type-page,
+.service--full {
+  .components--upper .image-gallery{
+    @include breakpoint($breakpoint-s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
+
 
 .image-gallery__item-image {
   overflow: hidden;
