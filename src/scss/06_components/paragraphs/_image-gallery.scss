@@ -13,7 +13,8 @@
 }
 
 .node--type-page,
-.service--full {
+.service--full,
+.unit--full {
   .components--upper .image-gallery{
     @include breakpoint($breakpoint-s) {
       grid-template-columns: repeat(2, 1fr);
