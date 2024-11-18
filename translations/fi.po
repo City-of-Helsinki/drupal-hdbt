@@ -1331,3 +1331,11 @@ msgstr "Haluatko antaa meille palautetta tästä sivusta?"
 msgctxt "React & Share cookie compliance"
 msgid "Enabling cookies that collect statistics will allow you to share your input."
 msgstr "Pääset antamaan palautetta, jos sallit evästeasetuksista tilastointiin liittyvät evästeet."
+
+msgctxt "User info page"
+msgid "Welcome to the content management of hel.fi Drupal. You will find instructions in the"
+msgstr "Tervetuloa hel.fin Drupalin sisällönhallintaan. Ohjeet löydät"
+
+msgctxt "User info page"
+msgid "Hel.fi content producer's guide (in Finnish)"
+msgstr "Hel.fin sisällöntuottajan oppaasta"

@@ -1,5 +1,9 @@
 // eslint-disable-next-line func-names
 (function ($, drupalSettings) {
+  // Module-level variables to store active tab state
+  let activeTabId = null;
+  let activeContentId = null;
+
   // Helper function to hide all tabbed content.
   function hideEverything(tabbedContent) {
     const allTabs = tabbedContent.querySelectorAll('.tab');
@@ -15,7 +19,8 @@
   function toggleTabs(tab) {
     const tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     const tabsContentId = tab.getAttribute('aria-controls');
-    const tabsContent = document.querySelector(`[data-drupal-selector=${tabsContentId}]`);
+    if (!tabsContentId) return;
+    const tabsContent = document.querySelector(`[data-drupal-selector="${tabsContentId}"]`);
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -27,23 +32,28 @@
     // Refresh the map view by submitting the search/filter form.
     if (tabsContentId.startsWith('tab-2')) {
       const filterForm = $('[id^=views-exposed-form-high-school-search-block]');
-      $('.form-submit', filterForm).trigger('click');
+      if (filterForm.length) {
+        $('.form-submit', filterForm).trigger('click');
+      }
     }
   }
 
-  // Save the active tab and its content to session storage.
-  function addToActiveTabStorage(activeTab) {
+  // Save the active tab and its content to variables
+  function updateActiveTab(activeTab) {
     const tabId = activeTab.dataset.drupalSelector;
     const contentId = activeTab.getAttribute('aria-controls');
 
     if (tabId && contentId) {
-      window.sessionStorage.setItem('activeTab', tabId);
-      window.sessionStorage.setItem('activeContent', contentId);
+      activeTabId = tabId;
+      activeContentId = contentId;
     }
   }
 
   function initiateTabs(activeTab, activeContent) {
     const containers = document.querySelectorAll('[data-drupal-selector="tabbed-content"]');
+
+    // Guard clause if no containers found
+    if (!containers.length) return;
 
     // Loop through tabbed content containers.
     for (let i = 0; i < containers.length; i++) {
@@ -58,8 +68,14 @@
       }
 
       // Find the active tab elements.
-      const activeTabElement = document.querySelector(`[data-drupal-selector=${activeTab}]`);
-      const activeContentElement = document.querySelector(`[data-drupal-selector=${activeContent}]`);
+      const activeTabElement = document.querySelector(`[data-drupal-selector="${activeTab}"]`);
+      const activeContentElement = document.querySelector(`[data-drupal-selector="${activeContent}"]`);
+
+      // Guard clause if elements not found
+      if (!activeTabElement || !activeContentElement) {
+        console.warn('Tab elements not found:', { activeTab, activeContent });
+        return;
+      }
 
       // Set them active with aria-attributes.
       activeTabElement.setAttribute('aria-selected', 'true');
@@ -74,12 +90,12 @@
         tab.addEventListener('click', function onTabClick() {
           // Toggle function.
           toggleTabs(this);
-          addToActiveTabStorage(this);
+          updateActiveTab(this);
         });
         tab.addEventListener('keydown', function onTabEnter(event) {
           if (event.which === 13) {
             toggleTabs(this);
-            addToActiveTabStorage(this);
+            updateActiveTab(this);
           }
         });
       }
@@ -89,18 +105,16 @@
   // Run after each ajax submit on the element that has tabs.
   $(document).ajaxComplete(function onDataLoaded(e, xhr, settings) {
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
-      const activeTab = window.sessionStorage.getItem('activeTab');
-      const activeContent = window.sessionStorage.getItem('activeContent');
-      initiateTabs(activeTab, activeContent);
+      initiateTabs(activeTabId, activeContentId);
     }
   });
 
   // Run after page is ready.
   // eslint-disable-next-line func-names
   $(document).ready(function () {
-    // Clear the session storage on page reload.
-    window.sessionStorage.removeItem('activeTab');
-    window.sessionStorage.removeItem('activeContent');
+    // Reset the active tab variables
+    activeTabId = null;
+    activeContentId = null;
     initiateTabs();
   });
 })(jQuery, drupalSettings);
