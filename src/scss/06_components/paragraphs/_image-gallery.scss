@@ -1,0 +1,39 @@
+.image-gallery {
+  display: grid;
+  gap: $spacing-double;
+  grid-template-columns: repeat(1, 1fr);
+
+  @include breakpoint($breakpoint-s) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint($breakpoint-l) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.node--type-page,
+.service--full,
+.unit--full,
+.node--type-district,
+.node--type-news-article {
+  .components--upper .image-gallery{
+    @include breakpoint($breakpoint-s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.image-gallery__item-image {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  img {
+    @include image-defaults($height: 100%, $width: 100%, $max-width: null);
+  }
+}
+
+.image-gallery__item-meta {
+  margin-top: $spacing-half;
+}
