@@ -146,19 +146,12 @@
   margin-bottom: 80px;
 }
 
-// Remote videos have black background and white text so we need different styles for the
-// block when its inside the remote video paragraph.
+// Remote videos have been updated to use new background color black-05
+// Once the other components are updated, this can be removed
+// and the styles above can be used for all components.
+// Line 85 can then be changed to use $color-black-10.
 .remote-video .embedded-content-cookie-compliance {
-  background-color: $color-black-90;
-
-  .message {
-    background-color: $color-black;
-
-    [data-hds-component='button']:not([class*='hds-button']),
-    .hds-button {
-      @include hds-button-colors-on-dark-bg;
-    }
-  }
+  background-color: $color-black-10;
 }
 
 .react-and-share-cookie-compliance {
