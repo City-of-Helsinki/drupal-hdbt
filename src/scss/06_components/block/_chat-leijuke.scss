@@ -38,3 +38,9 @@
 #aca--widget-button {
   opacity: 0;
 }
+
+// Cookie banner adjustments to chat button positions.
+aca-chat-app-button .chat-button-wrapper,
+#chat-leijuke-wrapper {
+  bottom: calc(var(--hds-cookie-consent-height, -8px) + 8px); // If cookie banner is not visible, fallback bottom to 0 px (-8 + 8 = 0)
+}
