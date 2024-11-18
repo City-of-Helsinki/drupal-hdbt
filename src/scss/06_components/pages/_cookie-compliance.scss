@@ -82,7 +82,7 @@
 .helfi-charts-cookie-compliance {
   align-content: center;
   align-items: center;
-  background-color: $color-black-5;
+  background-color: $color-black-10;;
   display: flex;
   justify-content: center;
 
@@ -144,14 +144,6 @@
 
 .layout-main-wrapper > .block--react-and-share:last-child .message {
   margin-bottom: 80px;
-}
-
-// Remote videos have been updated to use new background color black-05
-// Once the other components are updated, this can be removed
-// and the styles above can be used for all components.
-// Line 85 can then be changed to use $color-black-10.
-.remote-video .embedded-content-cookie-compliance {
-  background-color: $color-black-10;
 }
 
 .react-and-share-cookie-compliance {
