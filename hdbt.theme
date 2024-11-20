@@ -1907,3 +1907,44 @@ function hdbt_set_legacy_privacy_policy_url(array &$variables): void {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void {
+  // Handle image caption preprocessing.
+  _hdbt_preprocess_image_caption(
+    $variables,
+    'paragraph',
+    'field_gallery_image',
+    'field_gallery_image_description',
+  );
+
+  $paragraph = $variables['paragraph'];
+  $parent = $paragraph->getParentEntity();
+
+  if ($parent->hasField('field_image_gallery_ratio') && !$parent->get('field_image_gallery_ratio')->isEmpty()) {
+    $ratio = $parent->field_image_gallery_ratio->value;
+
+    if ($paragraph->hasField('field_gallery_image') && !$paragraph->get('field_gallery_image')->isEmpty()) {
+      if ($ratio == 'ratio_2_3') {
+        $image_style = 'image_gallery_2_3';
+      }
+      elseif ($ratio == 'ratio_3_2') {
+        $image_style = 'image_gallery_3_2';
+      }
+      else {
+        $image_style = 'image_gallery_1_1';
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_gallery_image',
+        $image_style
+      );
+    }
+
+  }
+
+}
