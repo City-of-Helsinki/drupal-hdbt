@@ -82,7 +82,7 @@
 .helfi-charts-cookie-compliance {
   align-content: center;
   align-items: center;
-  background-color: $color-black-5;
+  background-color: $color-black-10;;
   display: flex;
   justify-content: center;
 
@@ -144,21 +144,6 @@
 
 .layout-main-wrapper > .block--react-and-share:last-child .message {
   margin-bottom: 80px;
-}
-
-// Remote videos have black background and white text so we need different styles for the
-// block when its inside the remote video paragraph.
-.remote-video .embedded-content-cookie-compliance {
-  background-color: $color-black-90;
-
-  .message {
-    background-color: $color-black;
-
-    [data-hds-component='button']:not([class*='hds-button']),
-    .hds-button {
-      @include hds-button-colors-on-dark-bg;
-    }
-  }
 }
 
 .react-and-share-cookie-compliance {
