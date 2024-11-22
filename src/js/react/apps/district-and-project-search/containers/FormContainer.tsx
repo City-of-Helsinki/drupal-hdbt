@@ -99,7 +99,7 @@ const FormContainer = () => {
           className='district-project-search-form__additional-filters'
           size='s'
           initiallyOpen={accordionInitiallyOpen}
-          headingLevel={4}
+          headingLevel={3}
           heading={Drupal.t('Refine the project search', {}, { context: 'District and project search' })}
           language={window.drupalSettings.path.currentLanguage || 'fi'}
           theme={{
