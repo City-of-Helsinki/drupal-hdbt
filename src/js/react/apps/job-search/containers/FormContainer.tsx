@@ -88,7 +88,7 @@ const FormContainer = () => {
     setSubmitted(false);
   };
 
-  const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) => setKeyword(value);
+  const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) => setKeyword(value.replace(/\s+/g, ' '));
 
   // Input values for native elements
   const taskAreaInputValue = taskAreaSelection.map((option: OptionType) => option.value);

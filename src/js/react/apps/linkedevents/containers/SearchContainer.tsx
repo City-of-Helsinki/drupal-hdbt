@@ -5,6 +5,7 @@ import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
 import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom } from '../store';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type ResponseType = {
   data: Event[];
@@ -46,7 +47,7 @@ const SearchContainer = () => {
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    const response = await fetch(reqUrl);
+    const response = await useTimeoutFetch(reqUrl);
 
     if (response.status === 200) {
       const result = await response.json();

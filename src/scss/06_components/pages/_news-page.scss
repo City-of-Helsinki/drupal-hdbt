@@ -10,12 +10,6 @@
 
 .news-listing__link {
   display: block;
-  text-decoration: none;
-
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
 
   &::after {
     bottom: 0;
@@ -304,10 +298,6 @@
     }
   }
 
-  .news-listing__link {
-    text-decoration: underline;
-  }
-
   .news-listing__title,
   .news-listing__datetime {
     margin-bottom: $spacing-half;
@@ -351,6 +341,7 @@
     &:focus,
     &:hover {
       text-decoration: underline;
+      text-decoration-thickness: remify(2px);
 
       .hel-icon {
         transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);

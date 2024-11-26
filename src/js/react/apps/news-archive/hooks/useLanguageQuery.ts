@@ -1,7 +1,7 @@
 export const useLanguageQuery = () => ({
   bool: {
     filter: [
-      { term: { _language: window.drupalSettings.path.currentLanguage || 'fi' } },
+      { term: { search_api_language: window.drupalSettings.path.currentLanguage || 'fi' } },
     ],
   },
 });

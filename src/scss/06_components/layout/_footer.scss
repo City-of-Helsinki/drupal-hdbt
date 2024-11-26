@@ -10,6 +10,13 @@
 
   a {
     text-decoration: underline;
+    text-decoration-thickness: remify(1px);
+    text-underline-offset: 10%;
+
+    &:hover,
+    &:focus {
+      text-decoration-thickness: remify(2px);
+    }
   }
 
   .menu {
@@ -178,8 +185,10 @@ footer.footer .menu__link {
     outline-offset: var(--outline-gutter);
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 }
 

@@ -1,0 +1,18 @@
+<article{{ attributes }}>
+  {% if content %}
+    <div class="components components--computed">
+      {% embed "@hdbt/misc/component.twig" with { component_classes: ['component--user-info-container'] } %}
+        {% block component_content %}
+          {% set link_title = "Hel.fi content producer's guide (in Finnish)"|t({}, {'context': 'User info page'}) %}
+          {% set link_url = 'https://www.hel.fi/fi/paatoksenteko-ja-hallinto/sisallonhallinta' %}
+          {% embed "@hdbt/misc/component.twig" with { component_classes: ['component--paragraph-text'] } %}
+            {% block component_content %}
+              <p>{{ "Welcome to the content management of hel.fi Drupal. You will find instructions in the"|t({}, {'context': 'User info page'}) }} {{ link(link_title, link_url) }}.</p>
+            {% endblock component_content %}
+          {% endembed %}
+          {{- content -}}
+        {% endblock component_content %}
+      {% endembed %}
+    </div>
+  {% endif %}
+</article>

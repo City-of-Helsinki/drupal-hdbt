@@ -6,51 +6,20 @@ import type OptionType from './types/OptionType';
 import AppSettings from './enum/AppSettings';
 import ontologyDetailsIdsToLang from './enum/LanguageEducationMap';
 
-type configurations = {
+type Configurations = {
   error: Error|null,
   aggs: any
   baseUrl: string;
 };
 
-export const configurationsAtom = atom(async(): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
-  const { index } = AppSettings;
 
-  const body = JSON.stringify(AGGREGATIONS);
-
-  return fetch(`${proxyUrl}/${index}/_search`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body,
-  })
-  .then(res => res.json())
-  .then(json => {
-    const aggregations = json?.aggregations;
-
-    if (!aggregations) {
-      return {
-        error: new Error(
-          'Initialization failed.'
-        ),
-        aggs: {},
-        baseUrl: proxyUrl
-      };
-    }
-
-    return {
-      error: null,
-      aggs: aggregations,
-      baseUrl: proxyUrl
-    };
-  })
-  .catch(error => ({
-    error,
-    aggs: {},
-    baseUrl: proxyUrl
-  }));
-
+export const configurationsAtom = atom<Configurations>({
+  error: null,
+  aggs: {},
+  baseUrl: ''
+});
+export const setConfigurationsAtom = atom(null, (_get, set, configurations: Configurations) => {
+  set(configurationsAtom, configurations);
 });
 
 export const a1Atom = atom(async (get) => {
@@ -62,8 +31,8 @@ export const a1Atom = atom(async (get) => {
 
   // A1 options.
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 15 && currentItem.key <= 26) && ontologyDetailsIdsToLang[currentItem.key]) {
-      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
+    if (ontologyDetailsIdsToLang.a1[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang.a1[currentItem.key], value: currentItem.key });
     }
 
     return acc;
@@ -80,8 +49,8 @@ export const a2Atom = atom(async (get) => {
 
   // A2 options.
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 27 && currentItem.key <= 38) && ontologyDetailsIdsToLang[currentItem.key]) {
-      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
+    if (ontologyDetailsIdsToLang.a2[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang.a2[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -97,8 +66,8 @@ export const b1Atom = atom(async (get) => {
 
   // B1 options.
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 101 && currentItem.key <= 112) && ontologyDetailsIdsToLang[currentItem.key]) {
-      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
+    if (ontologyDetailsIdsToLang.b1[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang.b1[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -114,8 +83,8 @@ export const b2Atom = atom(async (get) => {
 
   // B2 options.
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 113 && currentItem.key <= 124) && ontologyDetailsIdsToLang[currentItem.key]) {
-      acc.push({ label: ontologyDetailsIdsToLang[currentItem.key], value: currentItem.key });
+    if (ontologyDetailsIdsToLang.b2[currentItem.key]) {
+      acc.push({ label: ontologyDetailsIdsToLang.b2[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -146,10 +115,8 @@ export const bilingualEducationAtom = atom(async (get) => {
 
   // Bilingual education options.
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
-    if ((currentItem.key >= 293 && currentItem.key <= 911) || (currentItem.key >= 149 && currentItem.key <= 150) &&
-        ontologyDetailsIdsToLang[currentItem.key]) {
-
-      const label = ontologyDetailsIdsToLang[currentItem.key];
+    if (ontologyDetailsIdsToLang.bilingualEducation[currentItem.key]) {
+      const label = ontologyDetailsIdsToLang.bilingualEducation[currentItem.key];
 
       // Deduplicate options.
       if (!acc.some((item: any) => item.label === label)) {

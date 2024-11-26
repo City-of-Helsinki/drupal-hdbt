@@ -1,0 +1,10 @@
+.tfa-entry-form {
+  max-width: $content-width-max;
+
+  .form-actions input {
+    margin-bottom: $spacing-double;
+    margin-top: $spacing;
+    max-width: 280px;
+    width: 100%;
+  }
+}

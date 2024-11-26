@@ -8,7 +8,7 @@ type AdditionalFilters = {
 };
 
 export type School = {
-  _language: string,
+  search_api_language: string,
   additional_filters: AdditionalFilters[];
   address: string[],
   id: string[],

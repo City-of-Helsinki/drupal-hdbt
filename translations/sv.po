@@ -733,8 +733,12 @@ msgid "The link opens in a new tab"
 msgstr "Länken öppnas i en ny flik"
 
 msgctxt "React search"
-msgid "An error occured while loading the content. Please reload page."
-msgstr "Ett fel uppstod vid hämtning av innehållet. Vänligen ladda om sidan."
+msgid "An error occured while loading the content"
+msgstr "Det uppstod ett fel vid inläsningen av innehållet"
+
+msgctxt "React search"
+msgid "Please reload the page or try again later."
+msgstr "Vänligen ladda om sidan eller försök igen senare."
 
 msgctxt "Unit services title"
 msgid "Services"
@@ -1321,3 +1325,11 @@ msgstr "Vill du ge oss feedback om denna sida?"
 msgctxt "React & Share cookie compliance"
 msgid "Enabling cookies that collect statistics will allow you to share your input."
 msgstr "Du kan ge oss feedback genom att aktivera statistikrelaterade cookies."
+
+msgctxt "User info page"
+msgid "Welcome to the content management of hel.fi Drupal. You will find instructions in the"
+msgstr "Välkommen till innehållshanteringen av hel.fi Drupal. Du hittar instruktioner i"
+
+msgctxt "User info page"
+msgid "Hel.fi content producer's guide (in Finnish)"
+msgstr "Hel.fi innehållsproducentens guide (på finska)"

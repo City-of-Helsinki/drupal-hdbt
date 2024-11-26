@@ -4,6 +4,7 @@
   &:focus,
   &:hover {
     text-decoration: underline;
+    text-decoration-thickness: remify(2px);
   }
 
   &[aria-current='page'],
