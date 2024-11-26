@@ -110,7 +110,6 @@
     "mini-css-extract-plugin": "^2.0.0",
     "postcss": "^8.4.27",
     "postcss-preset-env": "^10.0.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^3.0.1",
     "process": "^0.11.10",
     "sass-loader": "^14.0.0",
