@@ -61,7 +61,8 @@
   },
   "lint-staged": {
     "src/scss/**/*.scss": [
-      "postcss *.scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map"
+      "stylelint",
+      "postcss *.scss --syntax postcss-scss --use css-declaration-sorter --no-map"
     ],
     "src/js/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
