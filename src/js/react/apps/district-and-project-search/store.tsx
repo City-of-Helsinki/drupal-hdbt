@@ -6,6 +6,7 @@ import IndexFields from './enum/IndexFields';
 import useAggregations from './hooks/useAggregations';
 import type URLParams from './types/URLParams';
 import type OptionType from './types/OptionType';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type configurations = {
   error: Error|null,
@@ -80,7 +81,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
 
   const body = JSON.stringify(AGGREGATIONS);
 
-  return fetch(`${url}/${Settings.INDEX}/_search`, {
+  return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

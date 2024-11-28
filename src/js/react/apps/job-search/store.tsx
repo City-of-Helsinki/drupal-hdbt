@@ -11,6 +11,7 @@ import type Term from './types/Term';
 import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
 import { getAreaInfo } from './helpers/Areas';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
@@ -132,7 +133,7 @@ export const configurationsAtom = atom(async(): Promise<configurations> => {
     JSON.stringify(PROMOTED_IDS)
     }\n`;
 
-  return fetch(`${url}/${index}/_msearch`, {
+  return useTimeoutFetch(`${url}/${index}/_msearch`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-ndjson',

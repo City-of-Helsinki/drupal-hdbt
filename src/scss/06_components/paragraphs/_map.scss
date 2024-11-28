@@ -1,6 +1,6 @@
 .component--map {
   @include component-side-padding;
-  background-color: $color-silver-light;
+  background-color: $color-black-5;
 }
 
 // Patch Siteimprove false positive color contrast issue to reduce noise

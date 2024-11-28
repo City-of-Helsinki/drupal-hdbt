@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Template\Attribute;
@@ -1150,19 +1151,21 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
     $entity->{$image}->entity->hasField('field_media_image') &&
     !$entity->{$image}->entity->field_media_image->first()->isEmpty()
   ) {
-    /** @var \Drupal\file\FileInterface $file */
-    $file = $entity->{$image}->entity;
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = $entity->{$image}->entity;
 
-    // Make sure we load the correct file translation, otherwise
+    // Make sure we load the correct media translation, otherwise
     // hdbt_preprocess_responsive_image_formatter() will receive an empty
     // 'altered_image_style' value for translated media entities.
-    if ($file->hasTranslation($variables['language']->getId())) {
-      $file = $file->getTranslation($variables['language']->getId());
+    if ($media->hasTranslation($variables['language']->getId())) {
+      $media = $media->getTranslation($variables['language']->getId());
     }
     // Set altered_image_style variable based on modified image style
     // for the responsive image preprocesses.
     // @phpstan-ignore-next-line
-    $file->field_media_image->first()->altered_image_style = $image_style;
+    $media->field_media_image->first()->altered_image_style = $image_style;
+    // @phpstan-ignore-next-line
+    $media->field_media_image->first()->altered_cache_tags = $entity->getCacheTags();
   }
 }
 
@@ -1196,6 +1199,13 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
   // Override responsive image style if alteration exists.
   if (!empty($variables['item']->altered_image_style)) {
     $variables['responsive_image']['#responsive_image_style_id'] = $variables['item']->altered_image_style;
+  }
+
+  if (!empty($variables['item']->altered_cache_tags)) {
+    $variables['responsive_image']['#cache']['tags'] = Cache::mergeTags(
+       $variables['item']->altered_cache_tags,
+       $variables['responsive_image']['#cache']['tags'] ?? []
+     );
   }
 
   $image_style = array_key_exists('#responsive_image_style_id', $variables['responsive_image'])
@@ -1906,4 +1916,45 @@ function hdbt_set_legacy_privacy_policy_url(array &$variables): void {
       $variables['#attached']['drupalSettings']['helfi_react_search']['cookie_privacy_url'] = $privacyUrl->toString();
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void {
+  // Handle image caption preprocessing.
+  _hdbt_preprocess_image_caption(
+    $variables,
+    'paragraph',
+    'field_gallery_image',
+    'field_gallery_image_description',
+  );
+
+  $paragraph = $variables['paragraph'];
+  $parent = $paragraph->getParentEntity();
+
+  if ($parent->hasField('field_image_gallery_ratio') && !$parent->get('field_image_gallery_ratio')->isEmpty()) {
+    $ratio = $parent->field_image_gallery_ratio->value;
+
+    if ($paragraph->hasField('field_gallery_image') && !$paragraph->get('field_gallery_image')->isEmpty()) {
+      if ($ratio == 'ratio_2_3') {
+        $image_style = 'image_gallery_2_3';
+      }
+      elseif ($ratio == 'ratio_3_2') {
+        $image_style = 'image_gallery_3_2';
+      }
+      else {
+        $image_style = 'image_gallery_1_1';
+      }
+
+      _hdbt_set_image_style(
+        $variables,
+        'paragraph',
+        'field_gallery_image',
+        $image_style
+      );
+    }
+
+  }
+
 }
