@@ -24,6 +24,8 @@
   {% set design_class = "hero--without-image-left" %}
 {% elseif design == "with-search" %}
   {% set design_class = "hero--with-search" %}
+{% elseif design == "with-helsinki-near-you" %}
+  {% set design_class = "hero--with-helsinki-near-you" %}
 {% endif %}
 
 
@@ -49,7 +51,7 @@
         <h1 class="hero__title hyphenate" aria-labelledby="page_title">{{ title }}</h1>
         <span class="is-hidden" id="page_title">{{ title }}</span>
 
-        {% if design == "with-search"%}
+        {% if design == "with-search" %}
           {% include "@hdbt/component/helfi-search-form.twig" with {
             label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
             search_id: 'hero',
@@ -69,6 +71,10 @@
               {{ description }}
             </div>
           {% endif %}
+        {% endif %}
+
+        {% if form %}
+          {{ form }}
         {% endif %}
 
         {% if published_time|render|striptags|trim is not empty and html_published_time|render|striptags|trim is not empty %}
