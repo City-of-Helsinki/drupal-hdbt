@@ -10,7 +10,10 @@ const initSentry = () => {
     // Setting ensures that 100% of transactions will be sent to Sentry, if it's too much it should be lowered.
     tracesSampleRate: 1.0,
     // Suppress the ResizeObserver loop limit exceeded error.
-    ignoreErrors: ['ResizeObserver loop limit exceeded']
+    ignoreErrors: [
+      'ResizeObserver loop limit exceeded',
+      'ResizeObserver loop completed with undelivered notifications.'
+    ]
 });
 };
 
