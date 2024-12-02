@@ -20,56 +20,63 @@ $config: deep-map-merge(
       h1: (
         font-size: remify(40px),
         font-weight: $font-weight-regular,
+        letter-spacing: remify(-0.8px),
         line-height: math.div(40, 40), // 1
         breakpoint_l: (
           font-size: remify(64px),
           font-weight: $font-weight-regular,
+          letter-spacing: remify(-1.2px),
           line-height: math.div(64, 64), // 1
         )
       ),
       h2: (
         font-size: remify(32px),
         font-weight: $font-weight-regular,
-        line-height: math.div(32, 32), // 1
+        letter-spacing: remify(-0.4px),
+        line-height: math.div(38, 32), // 1.1875
         breakpoint_l: (
           font-size: remify(48px),
           font-weight: $font-weight-regular,
+          letter-spacing: remify(-1px),
           line-height: math.div(48, 48), // 1
         )
       ),
       h3: (
         font-size: remify(24px),
         font-weight: $font-weight-medium,
+        letter-spacing: remify(-0.2px),
         line-height: math.div(32, 24), // 1.333..
         breakpoint_l: (
           font-size: remify(32px),
           font-weight: $font-weight-regular,
-          line-height: math.div(32, 32), // 1
+          letter-spacing: remify(-0.4px),
+          line-height: math.div(38, 32), // 1.1875
         )
       ),
       h4: (
         font-size: remify(20px),
         font-weight: $font-weight-medium,
-        line-height: math.div(26, 20), // 1.3
+        line-height: math.div(30, 20), // 1.5
         breakpoint_l: (
           font-size: remify(24px),
           font-weight: $font-weight-medium,
-          line-height: math.div(28, 24), // 1.1666..
+          line-height: math.div(30, 24), // 1.25
         )
       ),
       h5: (
         font-size: remify(18px),
-        font-weight: $font-weight-medium,
-        line-height: math.div(22, 18), // 1.222..
+        font-weight: $font-weight-bold,
+        line-height: math.div(28, 18), // 1.555..
         breakpoint_l: (
           font-size: remify(20px),
-          font-weight: $font-weight-medium,
+          font-weight: $font-weight-bold,
           line-height: math.div(30, 20), // 1.5
         )
       ),
       h6: (
         font-size: remify(16px),
         font-weight: $font-weight-bold,
+        letter-spacing: remify(0.2px),
         line-height: math.div(24, 16), // 1.5
         breakpoint_l: (
           font-size: remify(18px),
