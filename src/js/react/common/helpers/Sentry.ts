@@ -12,7 +12,8 @@ const initSentry = () => {
     // Suppress the ResizeObserver loop limit exceeded error.
     ignoreErrors: [
       'ResizeObserver loop limit exceeded',
-      'ResizeObserver loop completed with undelivered notifications.'
+      'ResizeObserver loop completed with undelivered notifications.',
+      'Non-Error promise rejection captured'
     ]
 });
 };
