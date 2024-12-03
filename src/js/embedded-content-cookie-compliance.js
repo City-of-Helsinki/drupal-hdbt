@@ -8,7 +8,7 @@
   const loadEmbeddedContent = () => {
     if (Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
       // eslint-disable-next-line no-restricted-syntax
-      for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
+      for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes || {})) {
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
