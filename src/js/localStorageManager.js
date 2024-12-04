@@ -4,17 +4,31 @@
  */
 export default class LocalStorageManager {
   constructor(storageKey) {
+    this.data = {};
     this.storageKey = storageKey;
     this.loadData();
   }
 
   loadData() {
-    const data = localStorage.getItem(this.storageKey);
+    let data = null;
+
+    try {
+      data = localStorage.getItem(this.storageKey);
+    }
+    catch(error) {
+      LocalStorageManager.handleError(error);
+    }
+
     this.data = data ? JSON.parse(data) : {};
   }
 
   saveData() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+    }
+    catch(error) {
+      LocalStorageManager.handleError(error);
+    }
   }
 
   setValue(key, value) {
@@ -52,4 +66,14 @@ export default class LocalStorageManager {
       }
     }
   }
+
+  static handleError(error) {
+    if (error instanceof ReferenceError) {
+      // Prevent security error caused by incognito-mode.
+    }
+    else {
+      throw error;
+    }
+  }
+
 }
