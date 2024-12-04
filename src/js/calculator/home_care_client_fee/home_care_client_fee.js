@@ -220,7 +220,14 @@ class HomeCareClientFee {
     });
 
     const update = () => {
+      const safetyphone = this.calculator.getFieldValue('safetyphone');
       const mealService = this.calculator.getFieldValue('meal_service');
+
+      if (safetyphone === '1') {
+        this.calculator.showGroup('safetyphone_group');
+      } else {
+        this.calculator.hideGroup('safetyphone_group');
+      }
 
       if (mealService === '1') {
         this.calculator.showGroup('meal_service_group');

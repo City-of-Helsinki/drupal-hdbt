@@ -82,6 +82,19 @@ function getFormData(id, t, { firstPerWeekPrice }) {
         },
       },
       {
+        group: {
+          id: 'safetyphone_group',
+          hide_group: true,
+          items: [
+            {
+              paragraph: {
+                text: t('safetyphone_emergency_visit_explanation'),
+              }
+            },
+          ],
+        },
+      },
+      {
         heading: {
           text: t('shopping_service_heading'),
           level: 4,
