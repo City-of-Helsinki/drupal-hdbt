@@ -486,7 +486,7 @@ class HelfiCalculator {
           <legend class="helfi-calculator__legend helfi-calculator__legend--level_{{level}}{{^level}}2{{/level}}">{{text}}</legend>
         `,
         paragraph: `
-          <p>{{text}}</p>
+          <p{{#class}} class="{{class}}"{{/class}}>{{text}}</p>
         `,
         hr: `
           <hr>
