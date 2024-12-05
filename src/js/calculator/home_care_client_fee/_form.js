@@ -89,6 +89,7 @@ function getFormData(id, t, { firstPerWeekPrice }) {
             {
               paragraph: {
                 text: t('safetyphone_emergency_visit_explanation'),
+                class: 'hdbt-helper-text',
               }
             },
           ],
