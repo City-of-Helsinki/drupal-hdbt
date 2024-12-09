@@ -56,6 +56,11 @@ const translations = {
     sv: 'Inkludera en trygghetstelefon och ett säkerhetsarmband i bedömningen',
     en: 'Include the safety phone and safety bracelet in the estimate',
   },
+  safetyphone_emergency_visit_explanation: {
+    fi: 'Huomiothan, että turvapalveluiden hälytyskäynti maksaa 23,25 € tai 46,50 € kerta tulorajoistasi riippuen. Kuukausittain laskutamme enintään 5 hälytyskäyntiä, eli tulorajoistasi riippuen enintään 116,25 € tai 232,50 € kuukaudessa.',
+    sv: 'Observera, att ett larmbesök från trygghetstjänsten kostar 23,25 € eller 46,50 € per gång, beroende på dina inkomstgränser. Vi fakturerar högst 5 larmbesök per månad. Det vill säga, beroende på dina inkomstgränser, max 116,25 € eller 232,50 € per månad.',
+    en: 'Please note that an emergency visit from the safety services costs EUR 23.25 or EUR 46.50 per visit, depending on your income limits. Each month, you will be billed for a maximum of five emergency visits, totalling no more than EUR 116.25 or EUR 232.50, depending on your income limits.',
+  },
   yes_calculate: {
     fi: 'Kyllä, laske arvioon.',
     sv: 'Ja, inkludera i bedömningen.',

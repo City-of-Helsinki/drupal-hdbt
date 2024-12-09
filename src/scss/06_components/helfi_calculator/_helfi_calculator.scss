@@ -86,6 +86,10 @@
       transition: none;
     }
 
+    .helfi-calculator__item > p:first-child {
+      margin-top: 0;
+    }
+
     & > :first-child {
       border-left: $spacing-half solid $color-black-20;
       padding-left: $spacing-and-half;
