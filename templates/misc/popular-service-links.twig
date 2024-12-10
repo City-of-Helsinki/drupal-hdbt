@@ -1,0 +1,11 @@
+{% if items is not empty %}
+  <ul class="popular-service-item__links">
+    {% for item in items %}
+      <li class="popular-service-item__link-wrapper">
+        {% block link %}
+          {{ link }}
+        {% endblock %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
