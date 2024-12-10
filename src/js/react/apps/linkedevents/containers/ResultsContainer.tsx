@@ -2,10 +2,10 @@ import { createRef } from 'react';
 import { useAtomValue } from 'jotai';
 
 import ResultsError from '@/react/common/ResultsError';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
+import CardGhost from '@/react/common/CardGhost';
 import SeeAllButton from '../components/SeeAllButton';
 import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
@@ -27,14 +27,6 @@ function ResultsContainer({ countNumber, events, loading, error }: ResultsContai
   const choices = Boolean(url);
   useScrollToResults(scrollTarget, choices);
 
-  if (loading) {
-    return (
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <ResultsError
@@ -49,24 +41,33 @@ function ResultsContainer({ countNumber, events, loading, error }: ResultsContai
   const addLastPage = countNumber > size && countNumber % size;
   const count = countNumber.toString();
 
-  return (
-    <div className='react-search__list-container'>
-      {events?.length > 0 ?
+  const getContent = () => {
+    if (loading && !events.length) {
+      return Array.from({ length: size }, (_, i) => <CardGhost key={i} />);
+    }
+    if (events.length > 0) {
+      return (
         <>
           <ResultsHeader
             resultText={
               <>
-                { Drupal.formatPlural(count, '1 event', '@count events',{},{context: 'Events search: result count'}) }
+                {Drupal.formatPlural(count, '1 event', '@count events', {}, {context: 'Events search: result count'})}
               </>
             }
             ref={scrollTarget}
           />
-          {events.map(event => <ResultCard key={event.id} {...event} />)}
+          {events.map(event => loading ? <CardGhost key={event.id} /> : <ResultCard key={event.id} {...event} />)}
           <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
         </>
-        :
-        <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />
-      }
+      );
+    }
+
+    return <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />;
+  };
+
+  return (
+    <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
+      {getContent()}
       <SeeAllButton />
     </div>
   );

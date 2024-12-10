@@ -23,6 +23,7 @@ const SWR_REFRESH_OPTIONS = {
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   refreshInterval: 6000000, // 10 minutes,in millis
+  keepPreviousData: true,
 };
 
 const SearchContainer = () => {
@@ -59,13 +60,12 @@ const SearchContainer = () => {
 
     throw new Error('Failed to get data from the API');
   };
-  const { data, error } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
-  const loading = !error && !data;
+  const { data, error, isLoading } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
 
   return (
     <>
       <FormContainer />
-      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={loading} events={data?.data || []} />
+      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={isLoading} events={data?.data || []} />
     </>
   );
 };
