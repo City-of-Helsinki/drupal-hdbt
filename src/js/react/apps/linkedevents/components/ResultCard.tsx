@@ -97,7 +97,21 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return <img alt='' {...imageProps} />;
   };
 
-  const image = images?.find(img => img.url);
+  const getImage = () => {
+    const image = images?.find(img => img.url);
+
+    if (image) {
+      return imageToElement(image);
+    }
+    if (imagePlaceholder) {
+      return parse(imagePlaceholder);
+    }
+
+    return (
+      <div className='image-placeholder'></div>
+    );
+  };
+
   const isRemote = location && location.id === INTERNET_EXCEPTION;
   const cardTags = getCardTags({keywords, currentLanguage});
 
@@ -105,7 +119,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     <CardItem
       cardUrl={url}
       cardTitle={resolvedName}
-      cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
+      cardImage={getImage()}
       cardTags={cardTags}
       cardUrlExternal
       location={isRemote ? 'Internet' : getLocation()}

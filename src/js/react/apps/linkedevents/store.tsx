@@ -49,7 +49,7 @@ const createBaseAtom = () => {
   const useFixtures = settings?.use_fixtures;
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
-  const eventsPublicUrl = settings?.events_public_url;
+  const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
