@@ -68,9 +68,11 @@ module.exports = (env, argv) => {
     entry() {
       return Entries();
     },
+    optimization: {
+      splitChunks: false,
+    },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js',
       pathinfo: isDev,
       filename: 'js/[name].min.js',
       publicPath: 'auto',
