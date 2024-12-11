@@ -4,6 +4,7 @@ import ExternalLink from '../../../common/ExternalLink';
 
 function SeeAllButton() {
   const eventsUrl = useAtomValue(eventsPublicUrl) || '';
+  const { seeAllButtonOverride } = drupalSettings?.helfi_events || null;
 
   return (
     <div className="event-list__see-all-button">
@@ -11,7 +12,7 @@ function SeeAllButton() {
         data-hds-component="button"
         data-hds-variant="secondary"
         href={eventsUrl}
-        title={Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })} />
+        title={seeAllButtonOverride || Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })} />
     </div>
   );
 }

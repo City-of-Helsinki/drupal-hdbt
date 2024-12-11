@@ -26,6 +26,10 @@ $item-gap: $spacing-half;
   }
 }
 
+.card--ghost {
+  background: $color-black-20;
+}
+
 .card__image {
   flex-basis: 30%;
   flex-shrink: 0;

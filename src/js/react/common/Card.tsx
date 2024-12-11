@@ -75,7 +75,11 @@ function CardItem({
   languageEducation,
   registrationRequired,
 }: CardItemProps): JSX.Element {
-  const cardClass = `card${cardModifierClass ? ` ${cardModifierClass}` : ''}${cardUrlExternal ? ' card--external' : ''}`;
+  const cardClass = `
+    card
+    ${cardModifierClass ? ` ${cardModifierClass}` : ''}
+    ${cardUrlExternal ? ' card--external' : ''}
+  `;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
 
   return (

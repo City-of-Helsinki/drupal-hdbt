@@ -28,10 +28,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const url = `${baseUrl}/${currentLanguage}/events/${id}`;
 
-  // Bail if no current language
-  if (!name[currentLanguage]) {
-    return null;
-  }
+  const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
 
   const getDate = () => {
     let startDate;
@@ -43,7 +40,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       endDate = new Date(end_time);
       isMultiDate = end_time ? overDayApart(startDate, endDate) : false;
     } catch (e) {
-      throw new Error('DATE ERROR');
+      throw new Error(`DATE ERROR ${e}`);
     }
 
     if (isMultiDate) {
@@ -100,16 +97,29 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     return <img alt='' {...imageProps} />;
   };
 
-  const image = images?.find(img => img.url);
+  const getImage = () => {
+    const image = images?.find(img => img.url);
+
+    if (image) {
+      return imageToElement(image);
+    }
+    if (imagePlaceholder) {
+      return parse(imagePlaceholder);
+    }
+
+    return (
+      <div className='image-placeholder'></div>
+    );
+  };
+
   const isRemote = location && location.id === INTERNET_EXCEPTION;
-  const title = name[currentLanguage] || '';
   const cardTags = getCardTags({keywords, currentLanguage});
 
   return (
     <CardItem
       cardUrl={url}
-      cardTitle={title}
-      cardImage={image ? imageToElement(image) : parse(imagePlaceholder) }
+      cardTitle={resolvedName}
+      cardImage={getImage()}
       cardTags={cardTags}
       cardUrlExternal
       location={isRemote ? 'Internet' : getLocation()}
