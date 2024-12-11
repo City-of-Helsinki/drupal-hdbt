@@ -40,7 +40,10 @@
   }
 }
 
-.dialog__header {
+// If there is close-button on the header it is printed first for accessibility reasons on dom.
+// To have them other way around visually we check that if there is more than one element in the dialog__header
+// and flip them around.
+.dialog__header:has(> :nth-child(2)) {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;

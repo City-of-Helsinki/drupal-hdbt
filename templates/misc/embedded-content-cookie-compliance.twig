@@ -1,4 +1,4 @@
-<div class="embedded-content-cookie-compliance media-{{ media_id }}">
+<div class="embedded-content-cookie-compliance media-{{ media_id }} hide-from-table-of-contents">
   <div class="message" {{ alternative_language ? create_attribute({'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir}) }}>
     {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
     <h2>{{ 'Content cannot be displayed'|t({}, {'context': 'Cookie compliance'}) }}</h2>

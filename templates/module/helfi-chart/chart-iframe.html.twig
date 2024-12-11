@@ -17,7 +17,7 @@
 
   <div class="helfi-charts-content" data-src="{{ url }}" data-title="{{ title }}"></div>
 
-  <div class="helfi-charts-cookie-compliance js-helfi-charts-cookie-compliance" style="display: none;">
+  <div class="helfi-charts-cookie-compliance js-helfi-charts-cookie-compliance hide-from-table-of-contents" style="display: none;">
     <div class="message">
       {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
       <h2>{{ 'Chart cannot be displayed'|t({}, {'context': 'Helfi Charts cookie compliance'}) }}</h2>

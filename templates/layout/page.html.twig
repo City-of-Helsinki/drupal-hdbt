@@ -159,7 +159,7 @@
     <div class="main-content">
 
       {% if has_sidebar_first %}
-        <div class="layout-sidebar-first">
+        <div class="layout-sidebar-first hide-from-table-of-contents">
           {% block page_sidebar_first %}
             {{ page.sidebar_first }}
           {% endblock page_sidebar_first %}
@@ -182,7 +182,7 @@
       </div>
 
       {% if has_sidebar_second %}
-        <aside class="layout-sidebar-second">
+        <aside class="layout-sidebar-second hide-from-table-of-contents">
           {% block page_sidebar_second %}
             {{ page.sidebar_second }}
           {% endblock page_sidebar_second %}
