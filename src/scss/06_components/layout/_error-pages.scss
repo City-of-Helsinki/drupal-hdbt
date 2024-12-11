@@ -89,9 +89,12 @@ body:has(.error-page__title) {
 }
 
 .error-page__illustration-container {
+  --illustration-large-width: 379px;
+
   @include breakpoint($breakpoint-m) {
-    align-items: flex-start;
+    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding-left: $spacing-triple;
     padding-right: $spacing-triple;
@@ -103,6 +106,7 @@ body:has(.error-page__title) {
 .error-page__illustration {
   display: block;
   height: auto;
+  margin-bottom: $spacing;
   margin-left: $spacing-double;
   margin-top: $spacing-triple;
   width: 264px;
@@ -111,6 +115,13 @@ body:has(.error-page__title) {
     margin-left: 0;
     margin-top: 0;
     max-width: 100%;
-    width: 379px;
+    width: var(--illustration-large-width);
+  }
+}
+
+.error-page__illustration__caption {
+  @include breakpoint($breakpoint-m) {
+    text-align: right;
+    width: var(--illustration-large-width);
   }
 }
