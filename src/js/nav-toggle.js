@@ -41,6 +41,7 @@ import MenuDropdown from './nav-global/menu';
       buttonSelector: `.js-${name}-button`,
       targetSelector: `#${name}`,
       onOpen: () => {
+        // Close all open menus before opening a new one.
         keys.forEach((menuName) => {
           if (menuName !== key) {
             AllElements[menuName].close();
@@ -51,6 +52,8 @@ import MenuDropdown from './nav-global/menu';
         }
         close();
         if (key === 'SearchDropdown') {
+          // Focus search field on open and delay focus
+          // until element is focusable.
           window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
         }
       },
@@ -70,8 +73,10 @@ import MenuDropdown from './nav-global/menu';
     });
   }
 
+  // Check if any menu instance is open.
   const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (Object.keys(MenuDropdown).length && MenuDropdown.isOpen());
 
+  // Close all open menus on click outside.
   const closeFromOutside = ({ target }) => {
     if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
       keys.forEach((key) => {
@@ -84,11 +89,22 @@ import MenuDropdown from './nav-global/menu';
     }
   };
 
+  // Prevent body scrolling when menus are open.
   const blockBrandingScroll = (e) => {
+    // Ignore touch events.
     if (e.touches?.length > 1) return true;
 
     const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
-    const preventBodyScrolling = isMobile() && isAnyMenuOpen() && (!e.target.closest('.nav-toggle-dropdown') || (scrolledPanel && !isScrollable(scrolledPanel)));
+
+    // Prevent scrolling when menu is open.
+    const preventBodyScrolling =
+      isMobile() &&
+      isAnyMenuOpen() &&
+      // Don't scroll body from shared header.
+      (!e.target.closest('.nav-toggle-dropdown') ||
+      // If element has no overflow, it has no overscroll containment.
+      // See overscroll-behavour CSS specs.
+      (scrolledPanel && !isScrollable(scrolledPanel)));
 
     if (preventBodyScrolling) {
       e.preventDefault();
@@ -97,8 +113,14 @@ import MenuDropdown from './nav-global/menu';
     }
   };
 
+
+  // Attach outside click listener to the whole header branding region area,
+  // so that other languages menu and mega menu can be closed when clicking
+  // outside of header branding region.
   document.addEventListener('click', closeFromOutside);
 
+  // Prevent body scroll through shared header element when
+  // full screen menu is open.
   const body = document.querySelector('body');
   body.addEventListener('wheel', blockBrandingScroll, { passive: false });
   body.addEventListener('scroll', blockBrandingScroll, { passive: false });
