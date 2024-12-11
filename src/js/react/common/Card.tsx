@@ -43,7 +43,6 @@ export type CardItemProps = {
   weightedEducation?: string;
   languageEducation?: string;
   registrationRequired?: boolean;
-  useBorderedCards?: boolean;
 };
 
 function CardItem({
