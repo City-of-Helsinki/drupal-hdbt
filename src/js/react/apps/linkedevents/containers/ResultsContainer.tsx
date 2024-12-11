@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai';
 
 import ResultsError from '@/react/common/ResultsError';
@@ -11,6 +11,7 @@ import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 
 type ResultsContainerProps = {
   countNumber: number;
@@ -20,12 +21,20 @@ type ResultsContainerProps = {
 };
 
 function ResultsContainer({ countNumber, events, loading, error }: ResultsContainerProps) {
+  const { useExperimentalGhosts } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
-  useScrollToResults(scrollTarget, choices);
+  const [initialized, setInitialized] = useState(false);
+  useScrollToResults(scrollTarget, initialized && choices && !loading);
+
+  useEffect(() => {
+    if (!initialized && !loading) {
+      setInitialized(true);
+    }
+  }, [initialized, setInitialized, loading]);
 
   if (error) {
     return (
@@ -33,6 +42,14 @@ function ResultsContainer({ countNumber, events, loading, error }: ResultsContai
         error={error}
         ref={scrollTarget}
       />
+    );
+  }
+
+  if (loading && !useExperimentalGhosts) {
+    return (
+      <div className='hdbt__loading-wrapper'>
+        <LoadingOverlay />
+      </div>
     );
   }
 

@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { useAtomValue, useAtom } from 'jotai';
 
+import { useEffect, useState } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
@@ -23,10 +24,10 @@ const SWR_REFRESH_OPTIONS = {
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   refreshInterval: 6000000, // 10 minutes,in millis
-  keepPreviousData: true,
 };
 
 const SearchContainer = () => {
+  const { useExperimentalGhosts } = drupalSettings.helfi_events;
   const initialUrl = useAtomValue(initialUrlAtom);
   const initialParams = useAtomValue(initialParamsAtom);
   const [params, setParams] = useAtom(paramsAtom);
@@ -60,7 +61,7 @@ const SearchContainer = () => {
 
     throw new Error('Failed to get data from the API');
   };
-  const { data, error, isLoading } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
+  const { data, error, isLoading } = useSWR(url, getEvents, {...SWR_REFRESH_OPTIONS, keepPreviousData: useExperimentalGhosts});
 
   return (
     <>
