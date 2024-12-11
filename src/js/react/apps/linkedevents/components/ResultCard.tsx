@@ -25,7 +25,7 @@ const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => key
 
 function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers }: Event) {
   const { currentLanguage } = drupalSettings.path;
-  const { baseUrl, imagePlaceholder, useBorderedCards } = drupalSettings.helfi_events;
+  const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const url = `${baseUrl}/${currentLanguage}/events/${id}`;
 
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
@@ -125,7 +125,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       location={isRemote ? 'Internet' : getLocation()}
       time={getDate()}
       registrationRequired={getOffers()}
-      useBorderedCards={useBorderedCards}
     />
   );
 }

@@ -3,7 +3,6 @@ $item-gap: $spacing-half;
 
 .card {
   background: $color-white;
-  border: 2px solid transparent;
   overflow-wrap: anywhere;
   padding: $spacing;
   position: relative;
@@ -29,11 +28,6 @@ $item-gap: $spacing-half;
 
 .card--ghost {
   background: $color-black-20;
-  border: none;
-}
-
-.card--bordered {
-  border: 2px solid $color-black-20;
 }
 
 .card__image {

@@ -75,13 +75,11 @@ function CardItem({
   weightedEducation,
   languageEducation,
   registrationRequired,
-  useBorderedCards,
 }: CardItemProps): JSX.Element {
   const cardClass = `
     card
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
     ${cardUrlExternal ? ' card--external' : ''}
-    ${useBorderedCards ? ' card--bordered' : ''}
   `;
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
 
