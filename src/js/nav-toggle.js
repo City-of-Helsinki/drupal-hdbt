@@ -1,39 +1,35 @@
-(async () => {
-  const {close, open} = await import(/* webpackChunkName: "toggleWidgets" */ './nav-toggle/toggle-widgets');
-  const NavToggle = await import(/* webpackChunkName: "navToggleDropdown" */ './nav-toggle/nav-toggle-dropdown');
-  const NavToggleDropdown = NavToggle.default;
+import { close, open } from './nav-toggle/toggle-widgets';
+import NavToggleDropdown from './nav-toggle/nav-toggle-dropdown';
+import MenuDropdown from './nav-global/menu';
 
-  const BRANDING_ELEMENTS = {};
-  let MENU;
-  let MenuDropdown = {};
+(() => {
+  const brandingElements = {};
+  const menu = drupalSettings.hdbt.global_menu ? MenuDropdown : undefined;
 
   // Check what features on header branding region are on.
-  if (drupalSettings.hdbt.profile_dropdown === true) {
-    BRANDING_ELEMENTS.ProfileDropdown = 'profile';
+  if (drupalSettings.hdbt.profile_dropdown) {
+    brandingElements.ProfileDropdown = 'profile';
   }
 
-  if (drupalSettings.hdbt.search_dropdown === true) {
-    BRANDING_ELEMENTS.SearchDropdown = 'search';
+  if (drupalSettings.hdbt.search_dropdown) {
+    brandingElements.SearchDropdown = 'search';
   }
 
-  if (drupalSettings.hdbt.otherlangs_dropdown === true) {
-    BRANDING_ELEMENTS.OtherLangsDropdown = 'otherlangs';
+  if (drupalSettings.hdbt.otherlangs_dropdown) {
+    brandingElements.OtherLangsDropdown = 'otherlangs';
   }
 
-  if (drupalSettings.hdbt.global_menu === true) {
-    MENU = await import(/* webpackChunkName: "globalMenu" */ './nav-global/menu');
-    MenuDropdown = MENU.default;
-  } else {
-    BRANDING_ELEMENTS.CssMenuDropdownDropdown = 'cssmenu';
+  if (!menu) {
+    brandingElements.CssMenuDropdownDropdown = 'cssmenu';
   }
 
-  function isScrollable(element) {
-    return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
-  }
+  const isScrollable = (element) => element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
 
-  const isMobile = () => window.matchMedia('(max-width: 768px)').matches; // Needs to be 768px as after that breakpoint user can scroll header almost offscreen, open menu accidentally and not be able to scroll back up.
+  // Needs to be 768px as after that breakpoint user can scroll header
+  // almost offscreen, open menu accidentally and not be able to scroll back up.
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
-  const AllElements = BRANDING_ELEMENTS;
+  const AllElements = brandingElements;
 
   const keys = Object.keys(AllElements);
 
@@ -51,19 +47,21 @@
             AllElements[menuName].close();
           }
         });
-        if (Object.keys(MenuDropdown).length !== 0) {
+        if (Object.keys(MenuDropdown).length) {
           MenuDropdown.close();
         }
         close();
         if (key === 'SearchDropdown') {
-          // Focus search field on open.
-          window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10); // Delay focus until element is focusable
+          // Focus search field on open and delay focus
+          // until element is focusable.
+          window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
         }
       },
       onClose: open
     });
   });
-  if (Object.keys(MenuDropdown).length !== 0) {
+
+  if (Object.keys(MenuDropdown).length) {
     MenuDropdown.init({
       onOpen: () => {
         keys.forEach((key) => {
@@ -75,61 +73,38 @@
     });
   }
 
-  /**
-   * See if menu instance is open
-   *
-   * @return boolean
-   */
+  // Check if any menu instance is open.
+  const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (Object.keys(MenuDropdown).length && MenuDropdown.isOpen());
 
-  const isAnyMenuOpen = () => {
-    let isOpen = false;
-
-    keys.forEach((key) => {
-      if (AllElements[key].dataset !== undefined && AllElements[key].isOpen()) {
-        isOpen = true;
-      }
-    });
-
-    if (Object.keys(MenuDropdown).length !== 0 && MenuDropdown.isOpen()) {
-      isOpen = true;
-    }
-
-    return isOpen;
-  };
-
+  // Close all open menus on click outside.
   const closeFromOutside = ({ target }) => {
-    if (target.closest('.desktop-menu, .header-top') || target.closest('.header') === null) {
+    if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
       keys.forEach((key) => {
         AllElements[key].close();
       });
-      if (Object.keys(MenuDropdown).length !== 0) {
+      if (Object.keys(MenuDropdown).length) {
         MenuDropdown.close();
       }
       open();
     }
   };
 
-  /**
-   * Blocks body scroll events when full screen menus are open.
-   * @param e
-   * @return boolean
-   */
-
+  // Prevent body scrolling when menus are open.
   const blockBrandingScroll = (e) => {
-    // gesture actions are excluded
-    if (e.touches && e.touches.length >1) {
-      return true;
-    }
+    // Ignore touch events.
+    if (e.touches?.length > 1) return true;
 
     const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
+
+    // Prevent scrolling when menu is open.
     const preventBodyScrolling =
       isMobile() &&
       isAnyMenuOpen() &&
-      // Don't scroll body from shared header
-      (e.target.closest('.nav-toggle-dropdown') === null ||
-        // If element has no overflow, it has no overscroll containment.
-        // See overscroll-behavour CSS specs
-        (scrolledPanel !== null && !isScrollable(scrolledPanel)));
+      // Don't scroll body from shared header.
+      (!e.target.closest('.nav-toggle-dropdown') ||
+      // If element has no overflow, it has no overscroll containment.
+      // See overscroll-behavour CSS specs.
+      (scrolledPanel && !isScrollable(scrolledPanel)));
 
     if (preventBodyScrolling) {
       e.preventDefault();
@@ -139,17 +114,14 @@
   };
 
 
-  /**
-   * Attach outside click listener to the whole header branding region area
-   * so that OtherLangs Menu and Mega menu
-   * can be closed when clicking outside of header branding region
-   */
-
-  // This used to load after DOM was loaded, but we added defer for the javascript.
+  // Attach outside click listener to the whole header branding region area,
+  // so that other languages menu and mega menu can be closed when clicking
+  // outside of header branding region.
   document.addEventListener('click', closeFromOutside);
 
-  // Prevent body scroll through shared header element when full screen  menu is open.
-  const body =   document.querySelector('body');
+  // Prevent body scroll through shared header element when
+  // full screen menu is open.
+  const body = document.querySelector('body');
   body.addEventListener('wheel', blockBrandingScroll, { passive: false });
   body.addEventListener('scroll', blockBrandingScroll, { passive: false });
   body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
