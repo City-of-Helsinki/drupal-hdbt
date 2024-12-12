@@ -18,63 +18,28 @@
   {% set card_unpublished_on = '-' %}
 {% endif %}
 
-{% if available_in_languages %}
-  {% embed '@hdbt/component/card.twig' with {
-    card_modifier_class: card_hearing_classes|join(' '),
-    card_title: content.title[0]['#context'].value,
-    card_title_lang: content.langcode[0]['#context'].value,
-    card_image: content.main_image,
-    card_url: content.url[0]['#context'].value,
-    card_url_external: true,
-    card_metas: [
-      {
-        icon: 'clock',
-        label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
-        content: card_published_on,
-      },
-      {
-        icon: 'clock',
-        label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
-        content: card_unpublished_on,
-      },
-      {
-        icon: 'speechbubble-text',
-        label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
-        content: card_hearing_comments,
-      },
-    ],
-    card_tags: [
-      {
-        tag: available_in_languages,
-        color: 'alert',
-      }
-    ],
-  } %}
-  {% endembed %}
-{% else %}
-  {% embed '@hdbt/component/card.twig' with {
-    card_modifier_class: card_hearing_classes|join(' '),
-    card_title: content.title[0]['#context'].value,
-    card_image: content.main_image,
-    card_url: content.url[0]['#context'].value,
-    card_url_external: true,
-    card_metas: [
-      {
-        icon: 'clock',
-        label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
-        content: card_published_on,
-      },
-      {
-        icon: 'clock',
-        label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
-        content: card_unpublished_on,
-      },
-      {
-        icon: 'speechbubble-text',
-        label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
-        content: card_hearing_comments,
-      },
-    ]
-  } %}
-  {% endembed %}
-{% endif %}
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: card_hearing_classes|join(' '),
+  card_title: content.title[0]['#context'].value,
+  card_image: content.main_image,
+  card_url: content.url[0]['#context'].value,
+  card_url_external: true,
+  card_metas: [
+    {
+      icon: 'clock',
+      label: 'Opened'|t({}, {'context': 'Label for hearing opened date'}),
+      content: card_published_on,
+    },
+    {
+      icon: 'clock',
+      label: 'Closes'|t({}, {'context': 'Label for hearing closes date'}),
+      content: card_unpublished_on,
+    },
+    {
+      icon: 'speechbubble-text',
+      label: 'Activity'|t({}, {'context': 'Label for hearing activity row'}),
+      content: card_hearing_comments,
+    },
+  ]
+} %}
+{% endembed %}
