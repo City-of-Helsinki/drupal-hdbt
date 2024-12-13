@@ -8,9 +8,12 @@
           </div>
           {{ page.content|without(page_title_block) }}
         </div>
-        <div class="user-login-page__illustration-container">
-          <img src="{{ theme_path }}/src/images/illustration_user_login_page.svg" alt="" class="user-login-page__illustration"/>
-        </div>
+        {% embed '@hdbt/misc/special-page-illustration.twig' with {
+          illustration_modifier_class: 'special-page__illustration-container--user-login',
+          illustration_url: theme_path ~ '/src/images/illustration_user_login_page.svg',
+          illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer'}),
+        } %}
+        {% endembed %}
       {% endblock container_content %}
     {% endembed %}
   {% endblock page_content %}

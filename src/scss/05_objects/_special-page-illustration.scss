@@ -1,0 +1,36 @@
+.special-page__illustration-container {
+  --illustration-large-width: 379px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @include breakpoint($breakpoint-m) {
+    max-width: 100%;
+    padding-left: $spacing-sextuple;
+    width: 50%;
+  }
+}
+
+.special-page__illustration {
+  display: block;
+  height: auto;
+  margin-bottom: $spacing;
+  margin-top: $spacing-triple;
+  max-width: var(--illustration-large-width);
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+.special-page__illustration__caption {
+  max-width: var(--illustration-large-width);
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    text-align: right;
+  }
+}

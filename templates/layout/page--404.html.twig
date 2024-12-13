@@ -23,10 +23,14 @@
           {% endset %}
           {{ link(feedback_link_title, error_page_feedback_link, link_attributes) }}
         </div>
-        <figure class="error-page__illustration-container">
-          <img src="{{ theme_path }}/src/images/illustration_error_page_404.svg" data-photographer="{{ illustration_caption }}" alt class="error-page__illustration" width="379" height="566" />
-          <figcaption class="error-page__illustration__caption">{{ 'Photo: @photographer'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer'}) }}</figcaption>
-        </figure>
+        {% embed '@hdbt/misc/special-page-illustration.twig' with {
+          illustration_modifier_class: 'special-page__illustration-container--error-page',
+          illustration_url: theme_path ~ '/src/images/illustration_error_page_404.svg',
+          illustration_width: '379',
+          illustration_height: '566',
+          illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer'}),
+        } %}
+        {% endembed %}
       {% endblock container_content %}
     {% endembed %}
   {% endblock page_content %}
