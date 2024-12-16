@@ -168,7 +168,7 @@ jobs:
         with:
           github_token: ${{ secrets.VISUAL_REGRESSION_TEST_DEPLOY_KEY }}
           external_repository: City-of-Helsinki/drupal-hdbt-visual-regression
-          branch: main
+          publish_branch: main
           publish_dir: ${{ env.THEME_FOLDER }}/backstop/full
           destination_dir: pull/${{github.event.number}}
 
