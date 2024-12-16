@@ -29,8 +29,4 @@
 .special-page__illustration__caption {
   max-width: var(--illustration-large-width);
   width: 100%;
-
-  @include breakpoint($breakpoint-m) {
-    text-align: right;
-  }
 }
