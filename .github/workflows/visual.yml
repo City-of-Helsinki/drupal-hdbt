@@ -166,7 +166,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         with:
-          github_token: ${{ secrets.VISUAL_REGRESSION_TEST_DEPLOY_KEY }}
+          personal_token: ${{ secrets.VISUAL_REGRESSION_TEST_DEPLOY_KEY }}
           external_repository: City-of-Helsinki/drupal-hdbt-visual-regression
           publish_branch: main
           publish_dir: ${{ env.THEME_FOLDER }}/backstop/full
