@@ -70,7 +70,6 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      chunkFilename: 'js/async/[name].chunk.js',
       pathinfo: isDev,
       filename: 'js/[name].min.js',
       publicPath: 'auto',
@@ -232,6 +231,7 @@ module.exports = (env, argv) => {
       mode: 'production',
       devtool: false,
       optimization: {
+        splitChunks: false,
         minimize: true,
         minimizer: [
           new TerserPlugin({

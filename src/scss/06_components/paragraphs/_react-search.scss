@@ -17,6 +17,36 @@
   margin-bottom: $spacing-double;
 }
 
+.react-search__list-container.loading .card {
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes loading {
+  0% {
+    transform: skewX(-10deg) translateX(-150%);
+  }
+
+  100% {
+    transform: skewX(-10deg) translateX(250%);
+  }
+}
+
+.react-search__list-container.loading .card::after {
+  animation: loading 1.2s infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    $color-white,
+    transparent,
+  );
+  bottom: 0;
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+};
+
 .react-search__results-stats {
   margin-bottom: $spacing;
 }

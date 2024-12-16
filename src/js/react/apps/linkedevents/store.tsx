@@ -8,7 +8,6 @@ import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
-import type Event from './types/Event';
 
 interface Options {
   [key: string]: string
@@ -50,18 +49,18 @@ const createBaseAtom = () => {
   const useFixtures = settings?.use_fixtures;
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
-  const eventsPublicUrl = settings?.events_public_url;
+  const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
 
   const filterSettings: FilterSettings = {
     showLocation: settings?.field_event_location,
     showTimeFilter: settings?.field_event_time,
     showFreeFilter: settings?.field_free_events,
     showRemoteFilter: settings?.field_remote_events,
-    showTopicsFilter: settings?.field_filter_keywords.length > 0,
+    showTopicsFilter: settings?.field_filter_keywords?.length > 0,
     eventCount: Number(settings?.field_event_count)
   };
   const locations = transformLocations(settings?.places);
-  const topics: Topic[] = settings?.field_filter_keywords.map(topic => ({
+  const topics: Topic[] = settings?.field_filter_keywords?.map(topic => ({
     value: topic.id,
     label: topic.name.charAt(0).toUpperCase() + topic.name.slice(1),
   }));

@@ -12,8 +12,15 @@
  * @see template_preprocess_region()
  */
 #}
+{%
+  set classes = [
+    'breadcrumb__container',
+    'hide-from-table-of-contents',
+  ]
+%}
+
 {% if content %}
-  <div{{ attributes.addClass('breadcrumb__container') }}>
+  <div{{ attributes.addClass(classes) }}>
     {{ content }}
   </div>
 {% endif %}

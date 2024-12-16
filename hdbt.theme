@@ -26,6 +26,7 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 /**
  * Retrieve possible theme color palette override.
@@ -72,9 +73,7 @@ function hdbt_preprocess_html(&$variables): void {
     ->getCurrentRequest()?->attributes->get('exception');
 
   // Check if the page is error-page and add class error-page for the body.
-  if (
-    $page_status?->getStatusCode() > 400
-  ) {
+  if ($page_status instanceof HttpExceptionInterface && $page_status->getStatusCode() > 400) {
     $variables['attributes']['class'][] = 'error-page';
   }
 
@@ -1838,40 +1837,6 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
 
     // Set the config back to the original language.
     $language_manager->setConfigOverrideLanguage($original_language);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_external_entity__helfi_hearings(array &$variables) {
-  $language = \Drupal::languageManager()
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-    ->getId();
-  $entity = $variables['external_entity'];
-  $hearingLangcode = $entity->get('langcode')->value;
-  if ($hearingLangcode && $hearingLangcode == $language) {
-    return;
-  }
-  $existingLanguages = explode(',', $entity->get('existing_translations')->value);
-
-  if (in_array("fi", $existingLanguages) && in_array("en", $existingLanguages) && count($existingLanguages) === 2) {
-    $variables['available_in_languages'] = t('Hearing only available in Finnish and English', [], ['context' => 'Hearing available in languages']);
-  }
-  if (in_array("fi", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
-    $variables['available_in_languages'] = t('Hearing only available in Finnish and Swedish', [], ['context' => 'Hearing available in languages']);
-  }
-  if (in_array("en", $existingLanguages) && in_array("sv", $existingLanguages) && count($existingLanguages) === 2) {
-    $variables['available_in_languages'] = t('Hearing only available in English and Swedish', [], ['context' => 'Hearing available in languages']);
-  }
-  if (in_array("fi", $existingLanguages) && count($existingLanguages) === 1) {
-    $variables['available_in_languages'] = t('Hearing only available in Finnish', [], ['context' => 'Hearing available in languages']);
-  }
-  if (in_array("en", $existingLanguages) && count($existingLanguages) === 1) {
-    $variables['available_in_languages'] = t('Hearing only available in English', [], ['context' => 'Hearing available in languages']);
-  }
-  if (in_array("sv", $existingLanguages) && count($existingLanguages) === 1) {
-    $variables['available_in_languages'] = t('Hearing only available in Swedish', [], ['context' => 'Hearing available in languages']);
   }
 }
 
