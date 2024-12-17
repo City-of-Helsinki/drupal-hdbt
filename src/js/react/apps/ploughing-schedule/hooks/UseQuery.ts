@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import SearchParams from '../types/SearchParams';
 import configurationsAtom from '../store';
 import getQueryString from '../helpers/GetQueryString';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 const UseQuery = (params: SearchParams) => {
   const { baseUrl, index } = useAtomValue(configurationsAtom);
@@ -15,7 +16,7 @@ const UseQuery = (params: SearchParams) => {
       return;
     }
 
-    return fetch(`${baseUrl}/${index}/_search`, {
+    return useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

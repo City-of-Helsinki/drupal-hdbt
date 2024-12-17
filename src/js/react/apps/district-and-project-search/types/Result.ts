@@ -4,7 +4,7 @@ type Result = {
   _id: string;
   _score: number;
   _source: any;
-  _language: string;
+  search_api_language: string;
   url: string[];
   nid: number[];
   content_type: string[];

@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/_internal';
 import Global from '../enum/Global';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type useIndexQueryProps = {
   // Dev purposes only, use this to debug certain requests
@@ -31,7 +32,7 @@ const useIndexQuery = ({debug, query, multi, key, ...rest}: useIndexQueryProps) 
       });
     }
 
-    return fetch(`${url}/${index}/${endpoint}`, {
+    return useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': contentType,

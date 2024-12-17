@@ -1,0 +1,7 @@
+{% if items is not empty %}
+  {% embed "@hdbt/misc/popular-service-links.twig" with { items: items } %}
+    {% block link %}
+      {{ item.content }}
+    {% endblock %}
+  {% endembed %}
+{% endif %}

@@ -1,10 +1,12 @@
 import useSWR from 'swr';
 import { useAtomValue, useAtom } from 'jotai';
 
+import { useEffect, useState } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
 import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom } from '../store';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type ResponseType = {
   data: Event[];
@@ -25,6 +27,7 @@ const SWR_REFRESH_OPTIONS = {
 };
 
 const SearchContainer = () => {
+  const { useExperimentalGhosts } = drupalSettings.helfi_events;
   const initialUrl = useAtomValue(initialUrlAtom);
   const initialParams = useAtomValue(initialParamsAtom);
   const [params, setParams] = useAtom(paramsAtom);
@@ -46,7 +49,7 @@ const SearchContainer = () => {
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    const response = await fetch(reqUrl);
+    const response = await useTimeoutFetch(reqUrl);
 
     if (response.status === 200) {
       const result = await response.json();
@@ -58,13 +61,12 @@ const SearchContainer = () => {
 
     throw new Error('Failed to get data from the API');
   };
-  const { data, error } = useSWR(url, getEvents, SWR_REFRESH_OPTIONS);
-  const loading = !error && !data;
+  const { data, error, isLoading } = useSWR(url, getEvents, {...SWR_REFRESH_OPTIONS, keepPreviousData: useExperimentalGhosts});
 
   return (
     <>
       <FormContainer />
-      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={loading} events={data?.data || []} />
+      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={isLoading} events={data?.data || []} />
     </>
   );
 };

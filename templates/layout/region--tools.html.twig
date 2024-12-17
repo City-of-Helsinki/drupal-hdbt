@@ -12,8 +12,16 @@
  * @see template_preprocess_region()
  */
 #}
+
+{%
+  set classes = [
+    'tools__container',
+    'hide-from-table-of-contents',
+  ]
+%}
+
 {% if content|render %}
-  <div{{ attributes.addClass('tools__container') }}>
+  <div{{ attributes.addClass(classes) }}>
     {{ content }}
   </div>
 {% endif %}

@@ -220,13 +220,18 @@ class HomeCareClientFee {
     });
 
     const update = () => {
-      const mealService = this.calculator.getFieldValue('meal_service');
+      const fields = [
+        { field: 'safetyphone', group: 'safetyphone_group' },
+        { field: 'meal_service', group: 'meal_service_group' },
+      ];
 
-      if (mealService === '1') {
-        this.calculator.showGroup('meal_service_group');
-      } else {
-        this.calculator.hideGroup('meal_service_group');
-      }
+      fields.forEach(({ field, group }) => {
+        if (this.calculator.getFieldValue(field) === '1') {
+          this.calculator.showGroup(group);
+        } else {
+          this.calculator.hideGroup(group);
+        }
+      });
     };
 
     const validate = () => {

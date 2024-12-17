@@ -1,22 +1,14 @@
 /**
  * @file
  * Load embedded content once the user has approved required cookie category.
- *
- * Depends on EU Cookie Compliance module.
  */
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
-  function loadEmbeddedContent() {
-    if (
-      typeof Drupal.eu_cookie_compliance === 'undefined' ||
-      !drupalSettings.embedded_media_attributes
-    ) {
-      return;
-    }
 
+  const loadEmbeddedContent = () => {
     if (
-      Drupal.eu_cookie_compliance.hasAgreed('preference') &&
-      Drupal.eu_cookie_compliance.hasAgreed('statistics')
+      Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics']) &&
+      drupalSettings.embedded_media_attributes
     ) {
       // eslint-disable-next-line no-restricted-syntax
       for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
@@ -68,18 +60,15 @@
             .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
         }
       }
-
-      // Only load the embedded content once.
-      $(document).off('eu_cookie_compliance.changeStatus', loadEmbeddedContent);
     }
-  }
-
-  // Run after choosing cookie settings.
-  $(document).on('eu_cookie_compliance.changeStatus', loadEmbeddedContent);
+  };
 
   // Remove noscript element.
   $('.embedded-content-cookie-compliance .js-remove').remove();
 
-  // Run after page is ready.
-  $(document).ready(loadEmbeddedContent);
+  if (Drupal.cookieConsent.initialized()) {
+    loadEmbeddedContent();
+  } else {
+    Drupal.cookieConsent.loadFunction(loadEmbeddedContent);
+  }
 })(jQuery, Drupal, drupalSettings);

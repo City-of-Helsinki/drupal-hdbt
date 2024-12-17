@@ -29,9 +29,12 @@ declare namespace drupalSettings {
         },
         use_fixtures: boolean
       }
-    }
+    },
+    seeAllButtonOverride: string,
+    useExperimentalGhosts: boolean,
   };
   const helfi_react_search: {
+    // @todo UHF-10862 Remove cookie_privacy_url once the HDBT cookie banner module is in use.
     cookie_privacy_url: string;
     elastic_proxy_url: string;
     sentry_dsn_react: string;
@@ -47,5 +50,8 @@ declare namespace drupalSettings {
     elastic_proxy_url: string;
     feed_base_url: string;
     title: string;
+  };
+  const hdbt_cookie_banner: {
+    settingsPageUrl: string;
   };
 }

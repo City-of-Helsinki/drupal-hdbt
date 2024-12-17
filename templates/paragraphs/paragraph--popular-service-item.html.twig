@@ -1,6 +1,5 @@
-<div class="popular-service-item">
-  <h3 class="popular-service-item__title">{{ content.field_service_title }}</h3>
-  <div class="popular-service-item__links">
+{% embed "@hdbt/misc/popular-service-item.twig" with { title: content.field_service_title } %}
+  {% block links %}
     {{ content.field_service_links }}
-  </div>
-</div>
+  {% endblock links %}
+{% endembed %}

@@ -1,11 +1,12 @@
 import useSWR from 'swr';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import SearchParams from '../types/SearchParams';
-import configurationsAtom from '../store';
+import { configurationsAtom } from '../store';
 import getQueryString from '../helpers/ProximityQuery';
 import AppSettings from '../enum/AppSettings';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type Result = {
   units?: number[]
@@ -48,17 +49,23 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    return fetch(`${baseUrl}/${index}/_search`, {
+    const result = await fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: getQueryString(ids, coordinates, page),
-    }).then((res) => res.json());
+    });
+
+    if (!result.ok) {
+      throw new Error('Failed to fetch proximity query');
+    }
+
+    return result.json();
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {
-    revalidateOnFocus: false
+  const { data, error, isLoading, isValidating } = useSWR(baseUrl === '' ? null : `_${Object.values(params).toString()}`, fetcher, {
+    revalidateOnFocus: false,
   });
 
   return {

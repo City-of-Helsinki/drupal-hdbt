@@ -1,6 +1,6 @@
 {% if toc_enabled|render|striptags|trim is not empty %}
   <div class="table-of-contents">
-    <div id="helfi-toc-table-of-contents" class="table-of-contents__container table-of-contents__js">
+    <div id="helfi-toc-table-of-contents" class="table-of-contents__container table-of-contents__js hide-from-table-of-contents">
       {% if toc_title|render %}
         {% set title_attributes = {
             'class': [

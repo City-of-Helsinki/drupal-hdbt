@@ -12,6 +12,15 @@ $tag-vertical-padding: 5px;
   @include component-side-padding;
 }
 
+.component--react-search.component--coordinates-based-event-list {
+  background-color: $color-white;
+}
+
+// Use experimental card border styles for this paragraph.
+.component--coordinates-based-event-list .card:not(.card--ghost) {
+  border: 2px solid $color-black-20;
+}
+
 .events-list__empty-subtext {
   margin-bottom: $spacing-and-half;
 }

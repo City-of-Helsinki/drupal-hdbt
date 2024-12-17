@@ -1,5 +1,5 @@
 export const IndexFields = {
-  LANGUAGE: '_language',
+  LANGUAGE: 'search_api_language',
 };
 
 export default IndexFields;

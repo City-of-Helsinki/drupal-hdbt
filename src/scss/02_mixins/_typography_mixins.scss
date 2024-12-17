@@ -12,11 +12,19 @@
   font-weight: get('#{$-path}.font-weight');
   line-height: var(--line-height);
 
+  @if get-check('#{$-path}.letter-spacing') {
+    letter-spacing: get('#{$-path}.letter-spacing'); // Conditional letter-spacing
+  }
+
   @if get-check('#{$-path}.breakpoint_m') {
     @include breakpoint($breakpoint-m) {
       --line-height: #{get('#{$-path}.breakpoint_m.line-height')};
       font-size: get('#{$-path}.breakpoint_m.font-size');
       font-weight: get('#{$-path}.breakpoint_m.font-weight');
+
+      @if get-check('#{$-path}.breakpoint_m.letter-spacing') {
+        letter-spacing: get('#{$-path}.breakpoint_m.letter-spacing'); // Conditional for medium breakpoint
+      }
     }
   }
 
@@ -25,6 +33,10 @@
       --line-height: #{get('#{$-path}.breakpoint_l.line-height')};
       font-size: get('#{$-path}.breakpoint_l.font-size');
       font-weight: get('#{$-path}.breakpoint_l.font-weight');
+
+      @if get-check('#{$-path}.breakpoint_l.letter-spacing') {
+        letter-spacing: get('#{$-path}.breakpoint_l.letter-spacing'); // Conditional for large breakpoint
+      }
     }
   }
 }
