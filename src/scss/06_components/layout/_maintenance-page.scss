@@ -61,25 +61,16 @@
   }
 }
 
-.maintenance-page__illustration-container {
+.special-page__illustration-container--maintenance-page {
+  --illustration-large-width: 350px;
+  margin-bottom: $spacing-triple;
+
   @include breakpoint($breakpoint-m) {
-    align-items: flex-start;
-    display: flex;
-    justify-content: center;
-    padding: $spacing-sextuple $spacing-triple;
-    width: 50%;
+    --illustration-large-width: 460px;
+    padding-inline: $spacing-triple;
   }
-}
 
-.maintenance-page__illustration {
-  display: block;
-  height: auto;
-  margin: $spacing-sextuple auto;
-  width: 350px;
-
-  @include breakpoint($breakpoint-m) {
-    margin: 0;
-    max-width: 100%;
-    width: 460px;
+  .special-page__illustration {
+    margin-top: $spacing-sextuple;
   }
 }

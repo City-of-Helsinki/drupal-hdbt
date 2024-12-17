@@ -88,29 +88,10 @@ body:has(.error-page__title) {
   // }
 }
 
-.error-page__illustration-container {
+.special-page__illustration-container--error-page {
   @include breakpoint($breakpoint-m) {
-    align-items: flex-start;
-    display: flex;
-    justify-content: center;
     padding-left: $spacing-triple;
     padding-right: $spacing-triple;
     padding-top: $spacing-sextuple;
-    width: 50%;
-  }
-}
-
-.error-page__illustration {
-  display: block;
-  height: auto;
-  margin-left: $spacing-double;
-  margin-top: $spacing-triple;
-  width: 264px;
-
-  @include breakpoint($breakpoint-m) {
-    margin-left: 0;
-    margin-top: 0;
-    max-width: 100%;
-    width: 379px;
   }
 }

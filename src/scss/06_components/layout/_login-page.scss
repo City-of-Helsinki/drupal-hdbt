@@ -1,5 +1,3 @@
-$illustration-max-width-mobile: 450px;
-
 .user-login-page {
   // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
   background-color: $color-silver-medium-light;
@@ -31,28 +29,19 @@ $illustration-max-width-mobile: 450px;
   }
 }
 
-.user-login-page__illustration-container {
-  align-items: center;
-  display: flex;
+.special-page__illustration-container--user-login {
+  --illustration-large-width: 450px;
   justify-content: center;
+  max-width: 600px; // Match the illustration container with the login form.
 
   @include breakpoint($breakpoint-m) {
-    padding-left: $spacing-sextuple;
-    width: 50%;
-  }
-}
-
-.user-login-page__illustration {
-  display: block;
-  height: auto;
-  margin-top: $spacing-triple;
-  max-width: $illustration-max-width-mobile;
-  width: 100%;
-
-  @include breakpoint($breakpoint-m) {
-    margin-left: 0;
-    margin-top: 0;
     max-width: unset;
+  }
+
+  .special-page__illustration {
+    @include breakpoint($breakpoint-m) {
+      max-width: unset;
+    }
   }
 }
 

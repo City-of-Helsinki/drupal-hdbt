@@ -53,8 +53,13 @@
 
       </main>
     </div>
-    <div class="maintenance-page__illustration-container">
-      <img src="https://hel.fi/etusivu-assets/themes/contrib/hdbt/src/images/illustration_maintenance_mode_page.svg" alt="" class="maintenance-page__illustration" width="379" height="566" />
-    </div>
+    {% embed '@hdbt/misc/special-page-illustration.twig' with {
+      illustration_modifier_class: 'special-page__illustration-container--maintenance-page',
+      illustration_url: 'https://hel.fi/etusivu-assets/themes/contrib/hdbt/src/images/illustration_maintenance_mode_page.svg',
+      illustration_width: '394',
+      illustration_height: '559',
+      illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer'}),
+    } %}
+    {% endembed %}
   {% endblock container_content %}
 {% endembed %}

@@ -1,0 +1,23 @@
+{#
+{% embed '@hdbt/misc/special-page-illustration.twig' with {
+    illustration_modifier_class: 'special-page__illustration-container--modifier-class',
+    illustration_url: '/url/to/illustration.svg',
+    illustration_width: '200',
+    illustration_height: '500',
+    illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Petra Photographer'}, {'context': 'Image photographer'}),
+  } %}
+{% endembed %}
+#}
+
+<figure class="special-page__illustration-container {{ illustration_modifier_class }}">
+  <img
+    src="{{ illustration_url }}"
+    class="special-page__illustration"
+    alt
+    {% if illustration_width %}width="{{ illustration_width }}"{% endif %}
+    {% if illustration_height %}height="{{ illustration_height }}"{% endif %}
+  />
+  <figcaption class="special-page__illustration__caption">
+    {{ illustration_caption }}
+  </figcaption>
+</figure>
