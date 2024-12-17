@@ -160,13 +160,15 @@ jobs:
           else
             echo "result=✅ Tests passed!" >> $GITHUB_OUTPUT
           fi
-          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
+          echo "report_url=You can check the output here: https://city-of-helsinki.github.io/drupal-hdbt-visual-regression/pull/${{ github.event.pull_request.number }}/html_report/" >> $GITHUB_OUTPUT
 
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v4
         if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.VISUAL_REGRESSION_TEST_DEPLOY_KEY }}
+          external_repository: City-of-Helsinki/drupal-hdbt-visual-regression
+          publish_branch: main
           publish_dir: ${{ env.THEME_FOLDER }}/backstop/full
           destination_dir: pull/${{github.event.number}}
 
