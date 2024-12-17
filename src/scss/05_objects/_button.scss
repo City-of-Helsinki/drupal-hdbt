@@ -823,13 +823,14 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   ){
     &::after{
       @include hover-link-arrow-transition;
+      transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
     }
 
     &:is(
       :focus-visible,
       :hover
     )::after {
-      transform: scaleX(var(--lang-direction, 1))  translateY(-50%) var(--external-icon-move);
+      transform: scaleX(var(--lang-direction, 1)) translateY(-50%) var(--external-icon-move);
     }
   }
 
