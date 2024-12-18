@@ -75,6 +75,12 @@ function getSiblings(n) {
   return getChildren(n.parentNode.firstChild, n);
 }
 
+function handleEscKey(event) {
+  if (event.key === 'Escape') {
+    closeOpenItems();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
   // Find all menu items with children menus.
   const itemsWithVisibleChildren = document.querySelectorAll('.desktop-menu .menu--level-0 > .menu__item--item-below');
@@ -91,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
       item.addEventListener('mouseleave', mouseLeave, false);
     }
   }
+
+  // Add keydown event listener to handle 'Esc' key
+  document.addEventListener('keydown', handleEscKey);
 });
 
 // Functionality when other menu item is clicked while one is open or
