@@ -563,7 +563,7 @@ const MobilePanel = {
      * Close menu on Escape button click if it is open.
      */
     document.addEventListener('keydown', (e) => {
-      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
+      if (e.key === 'Escape' && this.isOpen()) {
         this.close();
         this.toggleButton.focus();
       }
