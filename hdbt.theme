@@ -942,7 +942,7 @@ function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void 
   $paragraph = $variables['paragraph'];
   $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
-  // Get the unit entity and ensure it exists and has the correct translation
+  // Get the unit entity and ensure it exists and has the correct translation.
   $unit = $paragraph->get('field_unit_contact_unit')
     ?->first()
     ?->get('entity')
@@ -975,7 +975,8 @@ function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void 
   // unit name has been overridden.
   if (empty($heading_value) || $heading_value === 'default') {
     $variables['unit_contact_card']['heading'] = t('Contact information');
-  } elseif ($heading_value === 'unit_name') {
+  }
+  elseif ($heading_value === 'unit_name') {
     $variables['unit_contact_card']['heading'] = !empty($unit_translation?->get('name_override')->value)
       ? $unit_translation?->get('name_override')->view('unit_contact_card')
       : $unit_translation?->get('name')->view('unit_contact_card');
