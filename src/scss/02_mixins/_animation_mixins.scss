@@ -13,3 +13,11 @@
     transition: none;
   }
 }
+
+@mixin hover-external-arrow-transition() {
+  transition: mask-position 0.2s linear;
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}

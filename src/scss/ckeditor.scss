@@ -221,9 +221,37 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-extern
   position: static;
 }
 
-[data-is-external]::after {
-  mask-image: var(--hel-icon--link-external);
-  position: static;
+[data-is-external]{
+  &::after {
+    @include hover-external-arrow-transition;
+    mask-image: var(--hel-icon--link-external-part1), var(--hel-icon--link-external-part2);
+    position: static;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    $mask-move: 0.166666666em;
+    mask-position: center, $mask-move (-1 * $mask-move);
+  }
+}
+
+[data-protocol='mailto'],
+[data-protocol='tel'] {
+  &::after {
+    @include hover-link-arrow-transition;
+
+    --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(calc(15deg * var(--lang-direction, 1)));
+    transform: scaleX(var(--lang-direction, 1));
+
+    @media (prefers-reduced-motion) {
+      --external-icon-move: scaleX(var(--lang-direction, 1)); // This overrides the tel and mailto transitions
+    }
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: var(--external-icon-move);
+  }
 }
 
 [data-protocol='mailto']::after {

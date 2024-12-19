@@ -816,26 +816,40 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     padding-inline: $spacing;
   }
 
-  &:is(
-    [data-is-external],
-    [data-protocol='tel'],
-    [data-protocol='mailto']
-  ){
+  &[data-is-external]:not([data-protocol='tel'], [data-protocol='mailto']){
     &::after{
-      @include hover-link-arrow-transition;
+      @include hover-external-arrow-transition;
     }
 
     &:is(
       :focus-visible,
       :hover
     )::after {
-      transform: scaleX(var(--lang-direction, 1))  translateY(-50%) var(--external-icon-move);
+      $mask-move: 0.166666666em;
+      mask-position: center, $mask-move (-1 * $mask-move);
     }
   }
 
+  &:is(
+    [data-protocol='tel'],
+    [data-protocol='mailto']
+  ){
+    &::after{
+      @include hover-link-arrow-transition;
+      transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
+    }
+
+    &:is(
+      :focus-visible,
+      :hover
+    )::after {
+      transform: scaleX(var(--lang-direction, 1)) translateY(-50%) var(--external-icon-move);
+    }
+  }
 
   &[data-is-external]::after {
-    @include pseudo-icon-replace('link-external');
+    $icons: 'link-external-part1', 'link-external-part2';
+    @include pseudo-icon($icons, calc(var(--line-height) * 1em), currentColor, inline-block);
 
     --external-icon-move: translate(3px, -3px);
   }
