@@ -974,7 +974,7 @@ function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void 
   // value Contact information. If the unit name is used check if the
   // unit name has been overridden.
   if (empty($heading_value) || $heading_value === 'default') {
-    $variables['unit_contact_card']['heading'] = t('Contact information');
+    $variables['unit_contact_card']['heading'] = t('Contact information', [], ['context' => 'Unit contact card default heading']);
   }
   elseif ($heading_value === 'unit_name') {
     $variables['unit_contact_card']['heading'] = !empty($unit_translation?->get('name_override')->value)

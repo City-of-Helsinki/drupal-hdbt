@@ -1339,3 +1339,7 @@ msgstr "Tervetuloa hel.fin Drupalin sisällönhallintaan. Ohjeet löydät"
 msgctxt "User info page"
 msgid "Hel.fi content producer's guide (in Finnish)"
 msgstr "Hel.fin sisällöntuottajan oppaasta"
+
+msgctxt "Unit contact card default heading"
+msgid "Contact information"
+msgstr "Yhteystiedot"
