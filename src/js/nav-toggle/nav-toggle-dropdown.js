@@ -44,7 +44,7 @@ class NavToggleDropdown {
   addListeners() {
     // Close menu on ESC
     document.addEventListener('keydown', (e) => {
-      if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) && this.isOpen()) {
+      if (e.key === 'Escape' && this.isOpen()) {
         this.close();
         this.buttonInstance.focus();
       }
