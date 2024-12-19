@@ -75,6 +75,17 @@ import LocalStorageManager from './localStorageManager';
         }
       }
 
+      function focusToCookieBanner() {
+        // Check if the cookie banner exists and focus the appropriate button
+        const cookieBanner = document.querySelector('.hds-cc__target');
+        const shadowRoot = cookieBanner?.shadowRoot;
+        const cookieButton = shadowRoot.querySelector('.hds-cc__all-cookies-button');
+       
+        if (cookieBanner && cookieButton) {
+          cookieButton.focus();
+        }
+      }
+
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
         addToSurveyStorage();
@@ -82,6 +93,7 @@ import LocalStorageManager from './localStorageManager';
         survey.remove();
         toggleNoScroll(false);
         setBodyPaddingRight(false);
+        focusToCookieBanner();
       }
 
       if (surveyCloseButton) {
