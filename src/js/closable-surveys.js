@@ -60,21 +60,6 @@ import LocalStorageManager from './localStorageManager';
         }
       }
 
-      function showSurvey() {
-        const { uuid } = survey.dataset;
-        const hiddenSurveys = surveysToHide?.[surveyKey] || [];
-        const shouldShowSurvey = !uuid || !hiddenSurveys.includes(uuid);
-
-        if (shouldShowSurvey) {
-          survey.style.display = 'flex';
-          setBodyPaddingRight(true);
-          toggleNoScroll(true);
-          addFocusTrap();
-        } else {
-          survey.remove();
-        }
-      }
-
       function focusToCookieBanner() {
         // Check if the cookie banner exists and focus the appropriate button
         const cookieBanner = document.querySelector('.hds-cc__target');
@@ -86,6 +71,41 @@ import LocalStorageManager from './localStorageManager';
         }
       }
 
+      function toggleOtherContentVisibility() {
+        const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
+        const cookieBanner = document.querySelector('.hds-cc__target');
+
+        if (mainContent && !mainContent.hasAttribute('aria-hidden')) {
+          mainContent.setAttribute('aria-hidden', 'true');
+        } else {
+          mainContent.removeAttribute('aria-hidden');
+        }
+        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden')) {
+          cookieBanner.setAttribute('aria-hidden', 'true');
+        } else {
+          cookieBanner.removeAttribute('aria-hidden');
+        }
+      }
+
+      function showSurvey() {
+        const { uuid } = survey.dataset;
+        const hiddenSurveys = surveysToHide?.[surveyKey] || [];
+        const shouldShowSurvey = !uuid || !hiddenSurveys.includes(uuid);
+
+        if (shouldShowSurvey) {
+          survey.style.display = 'flex';
+          setBodyPaddingRight(true);
+          toggleNoScroll(true);
+          addFocusTrap();
+          toggleOtherContentVisibility();
+        } else {
+          survey.remove();
+          toggleOtherContentVisibility();
+          focusToCookieBanner();
+        }
+      }
+
+
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
         addToSurveyStorage();
@@ -94,6 +114,7 @@ import LocalStorageManager from './localStorageManager';
         toggleNoScroll(false);
         setBodyPaddingRight(false);
         focusToCookieBanner();
+        toggleOtherContentVisibility();
       }
 
       if (surveyCloseButton) {
