@@ -631,7 +631,13 @@ function hdbt_preprocess_block(&$variables): void {
         $front_page = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
         $uri_parts = parse_url($front_page->toString());
         $url = Url::fromUri('internal:' . $uri_parts['path']);
-        $params = $url->getRouteParameters();
+
+        try {
+          $params = $url->getRouteParameters();
+        }
+        catch(\Exception $e) {
+          $params = [];
+        }
 
         if (!empty($params)) {
           $entity_type = key($params);
