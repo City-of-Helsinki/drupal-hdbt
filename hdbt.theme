@@ -635,7 +635,7 @@ function hdbt_preprocess_block(&$variables): void {
         try {
           $params = $url->getRouteParameters();
         }
-        catch(\Exception $e) {
+        catch (\Exception $e) {
           $params = [];
         }
 
