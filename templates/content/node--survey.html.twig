@@ -4,7 +4,9 @@
     'dialog--survey',
     'hide-from-table-of-contents',
   ],
-  'id': 'helfi-survey'
+  'id': 'helfi-survey',
+  'aria-labelledby': 'helfi-survey__title helfi-survey__content',
+  'aria-modal': 'true',
 } %}
 
 {% if current_langcode != node_langcode %}
@@ -20,7 +22,7 @@
     <div class="dialog__header">
       <h2 class="dialog__title" id="helfi-survey__title">{{ label }}</h2>
     </div>
-    <div class="dialog__content">
+    <div class="dialog__content" id="helfi-survey__content">
       {{ content.body }}
     </div>
     <div class="dialog__actions">
