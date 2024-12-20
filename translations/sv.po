@@ -1333,3 +1333,7 @@ msgstr "Välkommen till innehållshanteringen av hel.fi Drupal. Du hittar instru
 msgctxt "User info page"
 msgid "Hel.fi content producer's guide (in Finnish)"
 msgstr "Hel.fi innehållsproducentens guide (på finska)"
+
+msgctxt "Unit contact card default heading"
+msgid "Contact information"
+msgstr "Kontaktuppgifter"

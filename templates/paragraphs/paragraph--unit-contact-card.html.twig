@@ -27,7 +27,7 @@
       {% endif %}
 
       <div class="unit-contact-card__info">
-        <h2 class="component__title">{{ unit_contact_card.title }}</h2>
+        <h2 class="component__title">{{ unit_contact_card.heading }}</h2>
 
         {% if unit_contact_card.address|render %}
           <div class="unit-contact-card__info-row unit-contact-card__info-row--address">
@@ -57,10 +57,10 @@
           </div>
         {% endif %}
 
-        {% if unit_contact_card.details|render %}
+        {% if unit_contact_card.highlights|render %}
           <div class="unit-contact-card__info-row unit-contact-card__info-row--details">
             <div class="unit-contact-card__info-row__title">{{ 'Additional details'|t }}:</div>
-            <div class="unit-contact-card__info-row__content">{{ unit_contact_card.details }}</div>
+            <div class="unit-contact-card__info-row__content">{{ unit_contact_card.highlights }}</div>
           </div>
         {% endif %}
 
