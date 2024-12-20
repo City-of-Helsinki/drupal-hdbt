@@ -47,7 +47,15 @@
   content: '';
   display: $display;
   height: $size;
-  mask-image: icon_url($icon);
+  @if type-of($icon) == list {
+    $mask-images: ();
+    @each $item in $icon {
+      $mask-images: append($mask-images, icon_url($item), comma);
+    }
+    mask-image: $mask-images;
+  } @else {
+    mask-image: icon_url($icon);
+  }
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: #{$size} #{$size};
