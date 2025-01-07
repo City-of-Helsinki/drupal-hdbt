@@ -944,103 +944,76 @@ function hdbt_preprocess_paragraph__unit_accessibility_information(&$variables) 
 /**
  * Implements hook_preprocess_paragraph__type().
  */
-function hdbt_preprocess_paragraph__unit_contact_card(&$variables) {
+function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void {
   $paragraph = $variables['paragraph'];
-  $langcode = \Drupal::languageManager()
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+  $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
+  // Get the unit entity and ensure it exists and has the correct translation.
   $unit = $paragraph->get('field_unit_contact_unit')
     ?->first()
     ?->get('entity')
     ?->getTarget()
     ?->getEntity();
 
-  if ($unit instanceof Unit && $unit->hasTranslation($langcode)) {
-    $unit_translation = $unit->getTranslation($langcode);
-    $variables['unit_contact_card'] = [];
+  if (!($unit instanceof Unit && $unit->hasTranslation($langcode))) {
+    return;
+  }
 
-    // Get title from paragraph settings.
-    if (!empty($paragraph_title = $paragraph->get('field_unit_contact_title')
-      ?->view('unit_contact_card'))) {
-      $variables['unit_contact_card']['title'] = $paragraph_title;
-    }
-    else {
-      $variables['unit_contact_card']['title'] = $unit_translation?->get('name')
-        ?->view('unit_contact_card');
-    }
+  $unit_translation = $unit->getTranslation($langcode);
+  $variables['unit_contact_card'] = [];
 
-    // Show address if chosen from paragraph settings.
-    if ($paragraph->get('field_unit_contact_use_address')->value === '1') {
-      $variables['unit_contact_card']['address'] = $unit_translation?->get('address')
-        ?->view('unit_contact_card');
-    }
+  // Save field values to variables for reuse to avoid repeated lookups.
+  $heading_value = $paragraph->get('field_unit_contact_heading')->value ?? '';
+  $use_fields = [
+    'address' => $paragraph->get('field_unit_contact_use_address')->value,
+    'address_postal' => $paragraph->get('field_unit_contact_use_postal')->value,
+    'phone' => $paragraph->get('field_unit_contact_use_phone')->value,
+    'opening_hours' => $paragraph->get('field_unit_contact_use_opening')->value,
+    'picture' => $paragraph->get('field_unit_contact_use_picture')->value,
+    'highlights' => $paragraph->get('field_unit_contact_use_details')->value,
+    'link' => $paragraph->get('field_unit_contact_use_link')->value,
+    'picture_override' => $paragraph->get('field_unit_contact_use_override')->value,
+  ];
 
-    // Show postal address if chosen from paragraph settings.
-    if ($paragraph->get('field_unit_contact_use_postal')->value === '1') {
-      $variables['unit_contact_card']['address_postal'] = $unit_translation?->get('address_postal')
-        ?->view('unit_contact_card');
-    }
+  // Heading is determined with a radiobutton selection.
+  // If nothing is selected (value is compulsory but can happen) use default
+  // value Contact information. If the unit name is used check if the
+  // unit name has been overridden.
+  if (empty($heading_value) || $heading_value === 'default') {
+    $variables['unit_contact_card']['heading'] = t('Contact information', [], ['context' => 'Unit contact card default heading']);
+  }
+  elseif ($heading_value === 'unit_name') {
+    $variables['unit_contact_card']['heading'] = !empty($unit_translation?->get('name_override')->value)
+      ? $unit_translation?->get('name_override')->view('unit_contact_card')
+      : $unit_translation?->get('name')->view('unit_contact_card');
+  }
 
-    // Show phone number if chosen from paragraph settings.
-    if ($paragraph->get('field_unit_contact_use_phone')->value === '1') {
-      $variables['unit_contact_card']['phone'] = $unit_translation?->get('phone')
-        ?->view('unit_contact_card');
+  // Fields that have a simple boolean selector to display or hide the fields
+  // value on the unit contact card.
+  $simple_fields = ['address', 'address_postal', 'phone', 'opening_hours', 'highlights'];
+  foreach ($simple_fields as $field) {
+    if ($use_fields[$field]) {
+      $variables['unit_contact_card'][$field] = $unit_translation?->get($field)?->view('unit_contact_card');
     }
+  }
 
-    // Show opening hours if chosen from paragraph settings.
-    if ($paragraph->get('field_unit_contact_use_opening')->value === '1') {
-      $variables['unit_contact_card']['opening_hours'] = $unit_translation?->get('opening_hours')
-        ?->view('unit_contact_card');
+  // Picture is also displayed using simple boolean selector, but
+  // the default picture of the unit can be overridden using the
+  // picture_url_override field so we need to check for that.
+  if ($use_fields['picture']) {
+    $variables['unit_contact_card']['picture_url'] = $unit_translation?->get('picture_url')?->view('unit_contact_card');
+    if ($use_fields['picture_override']) {
+      $variables['unit_contact_card']['picture_url_override'] = $unit_translation?->get('picture_url_override')?->view('unit_contact_card');
     }
+  }
 
-    // Show picture if chosen from paragraph settings.
-    if ($paragraph->get('field_unit_contact_use_picture')->value === '1') {
-      $variables['unit_contact_card']['picture_url'] = $unit_translation?->get('picture_url')
-        ?->view('unit_contact_card');
-      if ($paragraph->get('field_unit_contact_use_override')->value === '1') {
-        $variables['unit_contact_card']['picture_url_override'] = $unit_translation?->get('picture_url_override')
-          ?->view('unit_contact_card');
-      }
-    }
-
-    // Show highlight connections as additional information if chosen from
-    // paragraph settings.
-    if (
-      $paragraph->get('field_unit_contact_use_details')->value === '1' &&
-      $unit_translation->hasField('highlights')
-    ) {
-      $variables['unit_contact_card']['details'] = $unit_translation->get('highlights')
-        ?->view('unit_contact_card');
-    }
-
-    // Show link to unit page if chosen from paragraph settings and unit is
-    // published.
-    if (
-      $paragraph->get('field_unit_contact_use_link')->value === '1' &&
-      $unit_translation->isPublished()
-    ) {
-      $variables['unit_contact_card']['unit_url'] = !$unit_translation->isNew() ? $unit_translation->toUrl('canonical') : NULL;
-    }
-
-    // Check if the highlight content is printed on left or right column of
-    // unit content card.
-    if (
-      ($paragraph->get('field_unit_contact_use_picture')->value === '1') &&
-      ($paragraph->get('field_unit_contact_use_address')->value === '1') &&
-      (empty($variables['unit_contact_card']['address_postal']) && empty($variables['unit_contact_card']['phone']) && empty($variables['unit_contact_card']['opening_hours']))
-    ) {
-      $variables['unit_contact_card']['details_on_left'] = TRUE;
-    }
-
-    if (
-      empty($variables['unit_contact_card']['address']) &&
-      empty($variables['unit_contact_card']['address_postal']) &&
-      empty($variables['unit_contact_card']['phone']) &&
-      empty($variables['unit_contact_card']['opening_hours']) &&
-      empty($variables['unit_contact_card']['unit_url'])
-    ) {
-      $variables['unit_contact_card']['left_column_empty'] = TRUE;
-    }
+  // Build the unit url to be used in the unit contact card link.
+  // If the unit is not published the unit_url should be NULL because
+  // it's not possible for anonymous users to access the unit page.
+  if ($use_fields['link'] && $unit_translation->isPublished()) {
+    $variables['unit_contact_card']['unit_url'] = !$unit_translation->isNew()
+      ? $unit_translation->toUrl('canonical')
+      : NULL;
   }
 }
 
