@@ -16,13 +16,13 @@
 
 
 {% embed '@hdbt/component/card-teaser.twig' with {
-    card_image: content.main_image,
-    card_title: content.external_link[0]['#title'],
-    card_url: content.external_link[0]['#url'],
-    card_has_start_and_end: true,
-    card_start_timestamp: card_start_timestamp,
-    card_end_timestamp: card_end_timestamp,
-    card_html_start: html_start,
-    card_html_end: html_end,
-  } %}
+  card_image: content.main_image,
+  card_title: content.external_link[0]['#title'],
+  card_url: content.external_link[0]['#url'],
+  card_has_start_and_end: true,
+  card_start_timestamp: card_start_timestamp,
+  card_end_timestamp: card_end_timestamp,
+  card_html_start: html_start,
+  card_html_end: html_end,
+} %}
 {% endembed %}
