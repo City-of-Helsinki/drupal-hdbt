@@ -1,0 +1,107 @@
+.card-teaser__link {
+  display: block;
+
+  &::after {
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.card-teaser {
+    display: flex;
+    height: 100%;
+    position: relative;
+  
+    &:hover .hel-icon--arrow-right {
+      transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
+  
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+  
+    @include breakpoint($breakpoint-m) {
+      flex-direction: column;
+      padding-bottom: 0;
+    }
+  
+    .card-teaser__title {
+      @include font('h4');
+    }
+  
+    .card-teaser__img {
+      position: relative;
+      width: 40%;
+  
+      @include breakpoint($breakpoint-m) {
+        width: unset;
+      }
+  
+      img {
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+    }
+  
+    .image-placeholder {
+      aspect-ratio: 3/2;
+    }
+  
+    .card-teaser__text-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-inline-start: $spacing;
+      width: 60%;
+  
+      @include breakpoint($breakpoint-m) {
+        padding: $spacing 0 0 0;
+        width: unset;
+      }
+  
+      [dir='rtl'] & {
+        padding-left: 0;
+        padding-right: $spacing;
+  
+        @include breakpoint($breakpoint-m) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .card-teaser__title {
+      margin-top: 0;
+    }
+  
+    .card-teaser__title,
+    .card-teaser__datetime {
+      margin-bottom: $spacing-half;
+    }
+  
+    .card-teaser__datetime {
+      @include font('small');
+      color: $color-black-60;
+      display: flex;
+      flex-grow: 1;
+      gap: $spacing-quarter;
+    }
+  
+    .hel-icon--arrow-right {
+      @include hover-link-arrow-transition;
+      display: none;
+      height: $spacing-triple;
+      pointer-events: none;
+      transform: scaleX(var(--lang-direction, 1));
+      width: $spacing-triple;
+  
+      @include breakpoint($breakpoint-m) {
+        display: inline-block;
+      }
+    }
+  }

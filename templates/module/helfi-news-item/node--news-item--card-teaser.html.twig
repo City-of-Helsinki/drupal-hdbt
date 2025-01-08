@@ -1,33 +1,7 @@
-{# @todo Use a general component to create the card-teaser html #}
-{# https://helsinkisolutionoffice.atlassian.net/browse/UHF-10868 #}
-<div class="news-listing__content news-listing__card-teaser">
-  {# Main image #}
-    <div class="news-listing__img">
-      {% if content.field_main_image|render %}
-        {{ content.field_main_image }}
-      {% else %}
-        {% include "@hdbt/misc/image-placeholder.twig" %}
-      {% endif %}
-    </div>
-  {# Short title or Title #}
-  <div class="news-listing__text-container">
-    <h3 class="news-listing__title">
-      {% set link_attributes = {
-        'class': [
-          'news-listing__link',
-        ],
-        'rel': 'bookmark',
-      } %}
-      {{ link(short_title, node_url, link_attributes) }}
-    </h3>
-
-    {# Created date and modified date #}
-    {% if published_at is not empty %}
-      {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
-      <time datetime="{{ html_published_at }}" class="news-listing__datetime news-listing__datetime--published">
-        <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
-        {{ published_at|format_date('publication_date_format') }}
-      </time>
-    {% endif %}
-  </div>
-</div>
+{% embed '@hdbt/component/card-teaser.twig' with {
+    card_image: content.field_main_image,
+    card_title: short_title,
+    card_url: node_url,
+    card_published_at: published_at,
+  } %}
+{% endembed %}

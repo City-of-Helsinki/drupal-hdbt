@@ -1,43 +1,28 @@
-{# @todo Use a general component to create the card-teaser html #}
-{# https://helsinkisolutionoffice.atlassian.net/browse/UHF-10868 #}
-<div class="linkedevents-event">
-  <div class="linkedevents-event__img">
-    {{ content.main_image }}
-  </div>
-  <div class="linkedevents-event__text-container">
-    <h3 class="linkedevents-event__title">
-      {{ content.external_link }}
-    </h3>
-    <div class="linkedevents-event__date-container">
-      {% set is_multidate = start_timestamp|date('Y-m-d') != end_timestamp|date('Y-m-d') %}
-      {% set same_year = start_timestamp|date('Y') == end_timestamp|date('Y') %}
-      {% set html_start = start_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ start_timestamp|format_date('custom', 'H:i') %}
-      {% set html_end = end_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ end_timestamp|format_date('custom', 'H:i') %}
-      {% if is_multidate and not same_year %}
-        <time datetime="{{ html_start }}">
-          {{ start_timestamp|date('d.m.Y') }}
-        </time>
-        –
-        <time datetime="{{ html_end }}">
-          {{ end_timestamp|date('d.m.Y') }}
-        </time>
-      {% elseif is_multidate %}
-        <time datetime="{{ html_start }}">
-          {{ start_timestamp|date('d.m.') }}
-        </time>
-        –
-        <time datetime="{{ html_end }}">
-          {{ end_timestamp|date('d.m.Y') }}
-        </time>
-      {% else %}
-        <time datetime="{{ html_start }}">
-          {{ start_timestamp|format_date('publication_date_format') }}
-        </time>
-        –
-        <time datetime="{{ html_end }}">
-          {{ end_timestamp|format_date('custom', 'H:i') }}
-        </time>
-      {% endif %}
-    </div>
-  </div>
-</div>
+{% set is_multidate = start_timestamp|date('Y-m-d') != end_timestamp|date('Y-m-d') %}
+{% set same_year = start_timestamp|date('Y') == end_timestamp|date('Y') %}
+{% set html_start = start_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ start_timestamp|format_date('custom', 'H:i') %}
+{% set html_end = end_timestamp|format_date('custom', 'Y-m-d') ~ 'T' ~ end_timestamp|format_date('custom', 'H:i') %}
+
+{% if is_multidate and not same_year %}
+  {% set card_start_timestamp = start_timestamp|date('d.m.Y')%}
+  {% set card_end_timestamp = end_timestamp|date('d.m.Y')%}
+{% elseif is_multidate %}
+  {% set card_start_timestamp = start_timestamp|date('d.m.')%}
+  {% set card_end_timestamp = end_timestamp|date('d.m.Y')%}
+{% else %}
+  {% set card_start_timestamp = start_timestamp|format_date('publication_date_format') %}
+  {% set card_end_timestamp = end_timestamp|format_date('custom', 'H:i') %}
+{% endif %}
+
+
+{% embed '@hdbt/component/card-teaser.twig' with {
+    card_image: content.main_image,
+    card_title: content.external_link[0]['#title'],
+    card_url: content.external_link[0]['#url'],
+    card_has_start_and_end: true,
+    card_start_timestamp: card_start_timestamp,
+    card_end_timestamp: card_end_timestamp,
+    card_html_start: html_start,
+    card_html_end: html_end,
+  } %}
+{% endembed %}

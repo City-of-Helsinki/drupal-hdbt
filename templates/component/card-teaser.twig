@@ -1,0 +1,56 @@
+{#
+{% embed '@hdbt/component/card-teaser.twig' with {
+    card_image: card_image,
+    card_title: 'Otsikko',
+    card_url: 'https://www.hel.fi/fi/',
+    card_published_at: '2021-01-01T12:00:00',
+    card_has_start_and_end: true,
+    card_start_timestamp: '2021-01-01T12:00:00',
+    card_end_timestamp: '2021-01-01T12:00:00',
+  } %}
+{% endembed %}
+#}
+
+<div class="card-teaser__content card-teaser">
+  {# Main image #}
+    <div class="card-teaser__img">
+      {% if card_image|render %}
+        {{ card_image }}
+      {% else %}
+        {% include "@hdbt/misc/image-placeholder.twig" %}
+      {% endif %}
+    </div>
+  {# Short title or Title #}
+  <div class="card-teaser__text-container">
+    <h3 class="card-teaser__title">
+      {% set link_attributes = {
+        'class': [
+          'card-teaser__link',
+        ],
+        'rel': 'bookmark',
+      } %}
+      {{ link(card_title, card_url, link_attributes) }}
+    </h3>
+
+    {# Created date and modified date #}
+    {% if card_published_at is not empty or card_has_start_and_end %}
+      {% if card_has_start_and_end %}
+      <div class="card-teaser__datetime">
+        <time datetime="{{ card_html_start }}">
+          {{ card_start_timestamp }}
+        </time>
+        –
+        <time datetime="{{ card_html_end }}">
+          {{ card_end_timestamp }}
+        </time>
+      </div>
+      {% else %}
+        {% set html_published_at = card_published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+        <time datetime="{{ html_published_at }}" class="card-teaser__datetime card-teaser__datetime--published-at">
+          <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+          {{ card_published_at|format_date('publication_date_format') }}
+        </time>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
