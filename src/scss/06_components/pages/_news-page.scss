@@ -120,14 +120,6 @@
   }
 
   [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: $spacing + $spacing-quarter;
-
-    @include breakpoint($breakpoint-l) {
-      padding-left: 0;
-      padding-right: $spacing-and-half + $spacing-quarter;
-    }
-
     &::before {
       left: auto;
       right: 0;

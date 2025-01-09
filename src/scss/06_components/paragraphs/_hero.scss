@@ -86,6 +86,10 @@ $koro-height: 50px;
 // Hero image author styles.
 .hero__image-author {
   --arrow-element-width: 100px;
+
+  // We can't use the margin-inline-start here because the hero__image-author can have dir-attribute on the
+  // html-element and this will cause the margin to be on the wrong side since this spacing is here to avoid the
+  // image author text from going under the arrow in hero element.
   margin-left: var(--arrow-element-width);
   margin-top: $spacing;
   text-align: right;
