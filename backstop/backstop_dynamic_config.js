@@ -334,6 +334,15 @@ function getConfig(hostname, protocol, type) {
           'selectorExpansion': expandComponents,
         },
         {
+          'label': 'DC: Image Gallery',
+          'url': `${protocol}://${hostname}/en/dc-components/dc-image-gallery`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--image-gallery'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
           'label': 'DC: Liftup with image',
           'url': `${protocol}://${hostname}/en/dc-components/dc-liftup-with-image`,
           'removeSelectors': removeDefault,
