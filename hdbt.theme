@@ -683,7 +683,6 @@ function hdbt_preprocess_block(&$variables): void {
   $chat_blocks = [
     'ibm_chat_app',
     'telia_ace_widget',
-    'chat_leijuke',
   ];
 
   // Add the chat trigger handler JS to chat blocks.
