@@ -5,6 +5,7 @@
  * https://github.com/mnater/Hyphenopoly/blob/master/docs/Config.md.
  */
 document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
+  if (typeof Hyphenopoly === 'undefined') return;
   // eslint-disable-next-line no-undef
   Hyphenopoly.config({
     require: {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
       },
     },
     handleEvent: {
-      error (e) {
+      error(e) {
         e.preventDefault();
       }
     }
