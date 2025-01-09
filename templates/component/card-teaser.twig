@@ -15,13 +15,13 @@
 
 <div class="card-teaser__content card-teaser">
   {# Main image #}
-    <div class="card-teaser__img">
-      {% if card_image|render %}
-        {{ card_image }}
-      {% else %}
-        {% include "@hdbt/misc/image-placeholder.twig" %}
-      {% endif %}
-    </div>
+  <div class="card-teaser__img">
+    {% if card_image|render %}
+      {{ card_image }}
+    {% else %}
+      {% include "@hdbt/misc/image-placeholder.twig" %}
+    {% endif %}
+  </div>
   {# Short title or Title #}
   <div class="card-teaser__text-container">
     <h3 class="card-teaser__title">
