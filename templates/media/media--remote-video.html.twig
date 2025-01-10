@@ -36,29 +36,31 @@
 {% set service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
 
-{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
-  media_url: media_url,
-  media_id: media.id,
-  media_iframe_title: iframe_title,
-  media_service_url: service_url,
-  privacy_policy_url: privacy_policy_url,
-} %}
+{% if not media_attributes.src is null %}
+  {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+    media_url: media_url,
+    media_id: media.id,
+    media_iframe_title: iframe_title,
+    media_service_url: service_url,
+    privacy_policy_url: privacy_policy_url,
+  } %}
 
-{% set drupal_settings = {
-  '#attached': {
-    'drupalSettings': {
-      'embedded_media_attributes': {
-        (media.id): {
-          'src': media_attributes.src,
-          'height': media_attributes.height,
-          'width': media_attributes.width,
-          'title': 'Video: ' ~ iframe_title,
-          'type': 'video',
+  {% set drupal_settings = {
+    '#attached': {
+      'drupalSettings': {
+        'embedded_media_attributes': {
+          (media.id): {
+            'src': media_attributes.src,
+            'height': media_attributes.height,
+            'width': media_attributes.width,
+            'title': 'Video: ' ~ iframe_title,
+            'type': 'video',
+          }
         }
       }
     }
-  }
-} %}
+  } %}
 
-{{ drupal_settings }}
-{{ attach_library(media.getJsLibrary()) }}
+  {{ drupal_settings }}
+  {{ attach_library(media.getJsLibrary()) }}
+{% endif %}
