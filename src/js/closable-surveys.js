@@ -75,14 +75,14 @@ import LocalStorageManager from './localStorageManager';
         const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
         const cookieBanner = document.querySelector('.hds-cc__target');
 
-        if (mainContent && !mainContent.hasAttribute('aria-hidden')) {
+        if (mainContent && !mainContent.hasAttribute('aria-hidden') && survey) {
           mainContent.setAttribute('aria-hidden', 'true');
         } else {
           // eslint-disable-next-line no-unused-expressions
           mainContent && mainContent.removeAttribute('aria-hidden');
         }
 
-        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden')) {
+        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden') && survey) {
           cookieBanner.setAttribute('aria-hidden', 'true');
         } else {
           // eslint-disable-next-line no-unused-expressions
