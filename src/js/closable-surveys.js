@@ -64,8 +64,8 @@ import LocalStorageManager from './localStorageManager';
         // Check if the cookie banner exists and focus the appropriate button
         const cookieBanner = document.querySelector('.hds-cc__target');
         const shadowRoot = cookieBanner?.shadowRoot;
-        const cookieButton = shadowRoot.querySelector('.hds-cc__all-cookies-button');
-       
+        const cookieButton = shadowRoot?.querySelector('.hds-cc__all-cookies-button');
+
         if (cookieBanner && cookieButton) {
           cookieButton.focus();
         }
@@ -78,12 +78,15 @@ import LocalStorageManager from './localStorageManager';
         if (mainContent && !mainContent.hasAttribute('aria-hidden')) {
           mainContent.setAttribute('aria-hidden', 'true');
         } else {
-          mainContent.removeAttribute('aria-hidden');
+          // eslint-disable-next-line no-unused-expressions
+          mainContent && mainContent.removeAttribute('aria-hidden');
         }
+
         if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden')) {
           cookieBanner.setAttribute('aria-hidden', 'true');
         } else {
-          cookieBanner.removeAttribute('aria-hidden');
+          // eslint-disable-next-line no-unused-expressions
+          cookieBanner && cookieBanner.removeAttribute('aria-hidden');
         }
       }
 
