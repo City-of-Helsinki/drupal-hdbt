@@ -74,15 +74,16 @@ import LocalStorageManager from './localStorageManager';
       function toggleOtherContentVisibility() {
         const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
         const cookieBanner = document.querySelector('.hds-cc__target');
+        const surveyContainer = document.getElementById('helfi-survey__container');
 
-        if (mainContent && !mainContent.hasAttribute('aria-hidden') && survey) {
+        if (mainContent && !mainContent.hasAttribute('aria-hidden') && surveyContainer) {
           mainContent.setAttribute('aria-hidden', 'true');
         } else {
           // eslint-disable-next-line no-unused-expressions
           mainContent && mainContent.removeAttribute('aria-hidden');
         }
 
-        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden') && survey) {
+        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden') && surveyContainer) {
           cookieBanner.setAttribute('aria-hidden', 'true');
         } else {
           // eslint-disable-next-line no-unused-expressions
