@@ -4,7 +4,8 @@ import MenuDropdown from './nav-global/menu';
 
 (() => {
   const brandingElements = {};
-  const menu = drupalSettings.hdbt.global_menu ? MenuDropdown : undefined;
+  // Check if global menu is enabled.
+  const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
 
   // Check what features on header branding region are on.
   if (drupalSettings.hdbt.profile_dropdown) {
@@ -19,11 +20,14 @@ import MenuDropdown from './nav-global/menu';
     brandingElements.OtherLangsDropdown = 'otherlangs';
   }
 
-  if (!menu) {
+  if (!globalMenu) {
     brandingElements.CssMenuDropdownDropdown = 'cssmenu';
   }
 
-  const isScrollable = (element) => element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
+  // Checks if an element has scrollable overflow in either direction.
+  const isScrollable = (element) =>
+    element.scrollWidth > element.clientWidth ||
+    element.scrollHeight > element.clientHeight;
 
   // Needs to be 768px as after that breakpoint user can scroll header
   // almost offscreen, open menu accidentally and not be able to scroll back up.
@@ -47,13 +51,15 @@ import MenuDropdown from './nav-global/menu';
             AllElements[menuName].close();
           }
         });
-        if (Object.keys(MenuDropdown).length) {
-          MenuDropdown.close();
-        }
+        // Close global menu if it is open.
+        if (globalMenu) globalMenu.close();
+
+        // Close all third party dropdowns.
         close();
+
+        // Focus search field on open and delay focus
+        // until element is focusable.
         if (key === 'SearchDropdown') {
-          // Focus search field on open and delay focus
-          // until element is focusable.
           window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
         }
       },
@@ -61,8 +67,9 @@ import MenuDropdown from './nav-global/menu';
     });
   });
 
-  if (Object.keys(MenuDropdown).length) {
-    MenuDropdown.init({
+  // Initialize global menu if it is available.
+  if (globalMenu) {
+    globalMenu.init({
       onOpen: () => {
         keys.forEach((key) => {
           AllElements[key].close();
@@ -74,17 +81,20 @@ import MenuDropdown from './nav-global/menu';
   }
 
   // Check if any menu instance is open.
-  const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (Object.keys(MenuDropdown).length && MenuDropdown.isOpen());
+  const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (globalMenu && globalMenu.isOpen());
 
   // Close all open menus on click outside.
   const closeFromOutside = ({ target }) => {
     if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
+      // Close all open menus.
       keys.forEach((key) => {
         AllElements[key].close();
       });
-      if (Object.keys(MenuDropdown).length) {
-        MenuDropdown.close();
-      }
+
+      // Close global menu if it is open.
+      if (globalMenu) globalMenu.close();
+
+      // Reveal hidden UI elements.
       open();
     }
   };
@@ -103,7 +113,7 @@ import MenuDropdown from './nav-global/menu';
       // Don't scroll body from shared header.
       (!e.target.closest('.nav-toggle-dropdown') ||
       // If element has no overflow, it has no overscroll containment.
-      // See overscroll-behavour CSS specs.
+      // See overscroll-behavior CSS specifications.
       (scrolledPanel && !isScrollable(scrolledPanel)));
 
     if (preventBodyScrolling) {
