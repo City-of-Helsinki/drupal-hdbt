@@ -4,8 +4,8 @@ import MenuDropdown from './nav-global/menu';
 
 (() => {
   const brandingElements = {};
-  // Check if global navigation is enabled.
-  const globalNavigation = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
+  // Check if global menu is enabled.
+  const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
 
   // Check what features on header branding region are on.
   if (drupalSettings.hdbt.profile_dropdown) {
@@ -20,7 +20,7 @@ import MenuDropdown from './nav-global/menu';
     brandingElements.OtherLangsDropdown = 'otherlangs';
   }
 
-  if (!globalNavigation) {
+  if (!globalMenu) {
     brandingElements.CssMenuDropdownDropdown = 'cssmenu';
   }
 
@@ -51,8 +51,8 @@ import MenuDropdown from './nav-global/menu';
             AllElements[menuName].close();
           }
         });
-        // Close global navigation if it is open.
-        if (globalNavigation) globalNavigation.close();
+        // Close global menu if it is open.
+        if (globalMenu) globalMenu.close();
 
         // Close all third party dropdowns.
         close();
@@ -67,9 +67,9 @@ import MenuDropdown from './nav-global/menu';
     });
   });
 
-  // Initialize global navigation if it is available.
-  if (globalNavigation) {
-    globalNavigation.init({
+  // Initialize global menu if it is available.
+  if (globalMenu) {
+    globalMenu.init({
       onOpen: () => {
         keys.forEach((key) => {
           AllElements[key].close();
@@ -81,7 +81,7 @@ import MenuDropdown from './nav-global/menu';
   }
 
   // Check if any menu instance is open.
-  const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (globalNavigation && globalNavigation.isOpen());
+  const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (globalMenu && globalMenu.isOpen());
 
   // Close all open menus on click outside.
   const closeFromOutside = ({ target }) => {
@@ -91,8 +91,8 @@ import MenuDropdown from './nav-global/menu';
         AllElements[key].close();
       });
 
-      // Close global navigation if it is open.
-      if (globalNavigation) globalNavigation.close();
+      // Close global menu if it is open.
+      if (globalMenu) globalMenu.close();
 
       // Reveal hidden UI elements.
       open();
