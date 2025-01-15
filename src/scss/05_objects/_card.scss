@@ -129,12 +129,7 @@ $item-gap: $spacing-half;
 
 .card__meta {
   @include font('body');
-  padding-left: $spacing-double; // icon-size + gap
-
-  [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: $spacing-double; // icon-size + gap
-  }
+  padding-inline-start: $spacing-double; // icon-size + gap
 
   & + & {
     margin-top: $item-gap;
@@ -144,13 +139,7 @@ $item-gap: $spacing-half;
 .card__meta__icon {
   --icon-size: #{$spacing-and-half};
   display: inline-block;
-  margin-left: - $spacing-double;
-  margin-right: $spacing-half;
-
-  [dir='rtl'] & {
-    margin-left: $spacing-half;
-    margin-right: - $spacing-double;
-  }
+  margin-inline: - $spacing-double $spacing-half;
 }
 
 .card__meta__label {

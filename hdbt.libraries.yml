@@ -241,7 +241,8 @@ hyphenopoly-loader:
   js:
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
       minified: true,
-      preprocess: false
+      preprocess: false,
+      weight: -1
     }
 
 hyphenopoly:
@@ -249,8 +250,9 @@ hyphenopoly:
   header: true
   js:
     dist/js/hyphenopoly_settings.min.js: {
+      minified: true,
       preprocess: false,
-      minified: true
+      weight: 0
     }
   dependencies:
     - hdbt/hyphenopoly-loader
