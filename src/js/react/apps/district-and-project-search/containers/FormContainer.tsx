@@ -1,24 +1,33 @@
-import { useEffect } from 'react';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { Accordion, IconLocation, Button, TextInput, Combobox } from 'hds-react';
+import {useEffect} from 'react';
+import {useAtom, useAtomValue, useSetAtom} from 'jotai';
+import {
+  Accordion,
+  AccordionSize,
+  Button,
+  ButtonPresetTheme,
+  ButtonVariant,
+  IconLocation,
+  Select,
+  TextInput
+} from 'hds-react';
 
 import {
-  urlAtom,
-  urlUpdateAtom,
-  titleAtom,
   districtsAtom,
   districtSelectionAtom,
-  themesAtom,
-  themeSelectionAtom,
   phasesAtom,
   phaseSelectionAtom,
+  themesAtom,
+  themeSelectionAtom,
+  titleAtom,
   typesAtom,
-  typeSelectionAtom
+  typeSelectionAtom,
+  urlAtom,
+  urlUpdateAtom
 } from '../store';
 import SelectionsContainer from './SelectionsContainer';
 import SearchComponents from '../enum/SearchComponents';
 import transformDropdownsValues from '../helpers/Params';
-import { ComponentMap } from '../helpers/helpers';
+import {ComponentMap} from '../helpers/helpers';
 import type OptionType from '../types/OptionType';
 import URLParams from '../types/URLParams';
 
@@ -75,101 +84,101 @@ const FormContainer = () => {
             value={title}
             type='search'
           />
-          <Combobox
-            multiselect
-            id={SearchComponents.DISTRICTS}
-            // @ts-ignore
-            options={districtOptions}
-            value={districtSelection}
-            onChange={setDistrictFilter}
+          <Select
             icon={<IconLocation />}
-            label={residentialAreaLabel}
-            placeholder={Drupal.t('All areas', {}, { context: 'District and project search form label' })}
-            clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': residentialAreaLabel }, { context: 'React search clear selection label' })}
-            selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
-            toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
+            id={SearchComponents.DISTRICTS}
+            multiSelect
+            onChange={setDistrictFilter}
+            options={districtOptions}
             theme={{
+              '--checkbox-background-selected': 'var(--hdbt-color-black)',
               '--focus-outline-color': 'var(--hdbt-color-black)',
-              '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
               '--placeholder-color': 'var(--hdbt-color-black)',
             }}
+            texts={{
+              clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
+              clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
+              label: residentialAreaLabel,
+              placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
+            }}
+            value={districtSelection}
           />
         </div>
         <Accordion
           className='district-project-search-form__additional-filters'
-          size='s'
-          initiallyOpen={accordionInitiallyOpen}
           headingLevel={3}
           heading={Drupal.t('Refine the project search', {}, { context: 'District and project search' })}
+          initiallyOpen={accordionInitiallyOpen}
           language={window.drupalSettings.path.currentLanguage || 'fi'}
+          size={AccordionSize.Small}
           theme={{
             '--header-font-size': 'var(--fontsize-heading-xxs)',
             '--header-line-height': 'var(--lineheight-s)',
           }}
         >
           <div className='district-project-search-form__filters'>
-            <Combobox
-              multiselect
+            <Select
               id={SearchComponents.THEME}
-              // @ts-ignore
-              options={themeOptions}
-              value={themeSelection}
+              multiSelect
               onChange={setThemeFilter}
-              label={projectThemeLabel}
-              placeholder={Drupal.t('All themes', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectThemeLabel }, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
+              options={themeOptions}
               theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--placeholder-color': 'var(--hdbt-color-black)',
               }}
+              texts={{
+                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
+                label: projectThemeLabel,
+                placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
+              }}
+              value={themeSelection}
             />
-            <Combobox
-              multiselect
+            <Select
               id={SearchComponents.PHASE}
-              // @ts-ignore
-              options={phaseOptions}
-              value={phaseSelection}
+              multiSelect
               onChange={setPhaseFilter}
-              label={projectStageLabel}
-              placeholder={Drupal.t('All stages', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectStageLabel }, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
+              options={phaseOptions}
               theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--placeholder-color': 'var(--hdbt-color-black)',
               }}
+              texts={{
+                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
+                label: projectStageLabel,
+                placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
+              }}
+              value={phaseSelection}
             />
-            <Combobox
-              multiselect
+            <Select
               id={SearchComponents.TYPE}
-              // @ts-ignore
-              options={typeOptions}
-              value={typeSelection}
+              multiSelect
               onChange={setTypeFilter}
-              label={projectTypeLabel}
-              placeholder={Drupal.t('All types', {}, { context: 'District and project search form label' })}
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': projectTypeLabel }, { context: 'React search clear selection label' })}
-              selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search remove item aria label' })}
-              toggleButtonAriaLabel={Drupal.t('Open the combobox', {}, { context: 'React search open dropdown aria label' })}
+              options={typeOptions}
               theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
                 '--placeholder-color': 'var(--hdbt-color-black)',
               }}
+              texts={{
+                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
+                label: projectTypeLabel,
+                placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
+              }}
+              value={typeSelection}
             />
           </div>
         </Accordion>
         <div className='district-project-search-form__submit'>
           <Button
             className='district-project-search-form__submit-button'
+            theme={ButtonPresetTheme.Black}
             type='submit'
-            variant='primary'
-            theme='black'
+            variant={ButtonVariant.Primary}
           >
             {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
           </Button>
