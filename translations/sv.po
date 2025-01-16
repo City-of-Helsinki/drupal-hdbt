@@ -1135,10 +1135,6 @@ msgid "Last day of the time period"
 msgstr "Tidsperiodens sista dag"
 
 msgctxt "Events search"
-msgid "If you want to search for remote events, select only the option 'Internet (remote events)'"
-msgstr "Om du vill söka evenemang på distans, välj endast alternativet 'Internet (evenemang på distans)'"
-
-msgctxt "Events search"
 msgid "Select a venue"
 msgstr "Välj tidpunkt"
 
