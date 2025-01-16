@@ -32,8 +32,8 @@ type SubmitFormType = HTMLFormElement & {
 };
 
 const FeatureFormContainer = () => {
-  const [keywordValue, setKeywordValue] = useState<string|undefined>();
-  const stagedParams = useAtomValue(stagedParamsAtom);
+  const [keywordValue, setKeywordValue] = useState<string>('');
+  const stagedParams = useAtomValue(stagedParamsAtom) || {};
   const setParams = useSetAtom(updateParamsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
   const a1Options = useAtomValue(a1Atom);
@@ -103,9 +103,9 @@ const FeatureFormContainer = () => {
         id='keyword'
         label={Drupal.t('School\'s name or post code', {}, {context: 'School search: Feature input label'})}
         name='keyword'
-        onChange={({target: { value }}: { target: { value: string }}) => setKeywordValue(value)}
+        onChange={({ target: { value } }) => setKeywordValue(value)}
         type='search'
-        value={keywordValue}
+        value={keywordValue || ''} // Ensure value is always a string.
         placeholder={Drupal.t('E.g. Aurinkolahti Comprehensive School or 00990', {}, {context: 'School search: text input placeholder'})}
       />
       <div className='hdbt-search--react__checkbox-filter-container'>
