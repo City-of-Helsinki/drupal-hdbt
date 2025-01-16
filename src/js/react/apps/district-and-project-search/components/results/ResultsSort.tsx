@@ -24,20 +24,21 @@ const ResultsSort = () => {
   return (
     <div className="district-project-search-form__filter hdbt-search__filter">
       <Select
-        label={Drupal.t('Sort search results', {}, { context: 'District and project search form label' })}
-        options={sortOptions}
-        onChange={(option: OptionType) => {
-          setSort(option);
+        onChange={(_selectedOptions, clickedOption) => {
+          setSort(clickedOption);
           setUrlParams({
             ...urlParams,
-            sort: option.value,
+            sort: clickedOption.value, // @todo Check that this works correctly
           });
         }}
-        value={sort}
+        options={sortOptions}
         style={{ minWidth: '280px' }}
+        texts={{
+          label: Drupal.t('Sort search results', {}, { context: 'District and project search form label' }),
+        }}
+        value={[sort]}
       />
     </div>
-
   );
 };
 
