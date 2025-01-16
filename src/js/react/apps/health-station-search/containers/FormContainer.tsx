@@ -5,21 +5,21 @@ import { paramsAtom, stagedParamsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & {
-  keyword: HTMLInputElement;
+  address: HTMLInputElement;
 };
 
-const ProximityFormContainer = () => {
+const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParams }) => {
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { keyword, sv_only } = event.target as SubmitFormType;
+    const { address, sv_only } = event.target as SubmitFormType;
     const params: SearchParams = {};
 
-    if (keyword.value && keyword.value.length) {
-      params.keyword = keyword.value;
+    if (address.value && address.value.length) {
+      params.address = address.value;
     };
 
     params.sv_only = sv_only.checked;
@@ -33,9 +33,10 @@ const ProximityFormContainer = () => {
         className='hdbt-search__filter hdbt-search--react__text-field'
         helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}
         placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'React search: street input helper placeholder'})}
-        id='keyword'
+        id='address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address'})}
         type='search'
+        defaultValue={initialParams?.address || ''}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
