@@ -37,16 +37,22 @@ const FeatureFormContainer = () => {
   const setParams = useSetAtom(updateParamsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
   const a1Options = useAtomValue(a1Atom);
+  const [a1SelectOpen, setA1SelectOpen] = useState(false);
   const [a1Selection, setA1Filter] = useAtom(a1SelectionAtom);
   const a2Options = useAtomValue(a2Atom);
+  const [a2SelectOpen, setA2SelectOpen] = useState(false);
   const [a2Selection, setA2Filter] = useAtom(a2SelectionAtom);
   const b1Options = useAtomValue(b1Atom);
+  const [b1SelectOpen, setB1SelectOpen] = useState(false);
   const [b1Selection, setB1Filter] = useAtom(b1SelectionAtom);
   const b2Options = useAtomValue(b2Atom);
+  const [b2SelectOpen, setB2SelectOpen] = useState(false);
   const [b2Selection, setB2Filter] = useAtom(b2SelectionAtom);
   const weightedOptions = useAtomValue(weightedEducationAtom);
+  const [weightedOptionsSelectOpen, setWeightedOptionsSelectOpen] = useState(false);
   const [weightedSelection, setWeightedFilter] = useAtom(weightedEducationSelectionAtom);
   const bilingualOptions = useAtomValue(bilingualEducationAtom);
+  const [bilingualOptionsSelectOpen, setBilingualOptionsSelectOpen] = useState(false);
   const [bilingualSelection, setBilingualFilter] = useAtom(bilingualEducationSelectionAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -166,104 +172,131 @@ const FeatureFormContainer = () => {
         </fieldset>
       </div>
       <div className='hdbt-search--react__dropdown-filters'>
-        {/* @ts-ignore */}
         <Select
-          clearable
-          noTags
-          multiSelect
           className='hdbt-search--react__dropdown'
-          options={a1Options}
-          value={a1Selection}
+          clearable
           id={SearchComponents.A1}
+          multiSelect
+          noTags
+          onBlur={() => setA1SelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setA1Filter(selectedOptions);
+            if (clickedOption) setA1SelectOpen(true);
+          }}
+          open={a1SelectOpen}
+          options={a1Options}
           texts={{
             label: a1Label,
             placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
           }}
-          onChange={setA1Filter}
+          value={a1Selection}
         />
-        {/* @ts-ignore */}
         <Select
-          clearable
-          noTags
-          multiSelect
           className='hdbt-search--react__dropdown'
-          options={a2Options}
-          value={a2Selection}
+          clearable
           id={SearchComponents.A2}
-          texts={{
-            label: a2Label
-          }}
-          onChange={setA2Filter}
-        />
-        {/* @ts-ignore */}
-        <Select
-          clearable
-          noTags
           multiSelect
+          noTags
+          onBlur={() => setA2SelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setA2Filter(selectedOptions);
+            if (clickedOption) setA2SelectOpen(true);
+          }}
+          open={a2SelectOpen}
+          options={a2Options}
+          texts={{
+            label: a2Label,
+            placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
+            clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
+            clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
+          }}
+          value={a2Selection}
+        />
+        <Select
           className='hdbt-search--react__dropdown'
-          options={b1Options}
-          value={b1Selection}
+          clearable
           id={SearchComponents.B1}
+          multiSelect
+          noTags
+          onBlur={() => setB1SelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setB1Filter(selectedOptions);
+            if (clickedOption) setB1SelectOpen(true);
+          }}
+          open={b1SelectOpen}
+          options={b1Options}
           texts={{
             label: b1Label,
             placeholder: Drupal.t('All languages', {}, {context: 'School search: language placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' })
           }}
-          onChange={setB1Filter}
+          value={b1Selection}
         />
-        {/* @ts-ignore */}
         <Select
-          clearable
-          noTags
-          multiSelect
           className='hdbt-search--react__dropdown'
-          options={b2Options}
-          value={b2Selection}
+          clearable
           id={SearchComponents.B2}
+          multiSelect
+          noTags
+          onBlur={() => setB2SelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setB2Filter(selectedOptions);
+            if (clickedOption) setB2SelectOpen(true);
+          }}
+          open={b2SelectOpen}
+          options={b2Options}
           texts={{
             label: b2Label,
             placeholder: Drupal.t('All languages', {}, {context: 'School search: language placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' }),
           }}
-          onChange={setB2Filter}
+          value={b2Selection}
         />
-        {/* @ts-ignore */}
         <Select
-          clearable
-          noTags
-          multiSelect
           className='hdbt-search--react__dropdown'
-          options={weightedOptions}
-          value={weightedSelection}
+          clearable
           id={SearchComponents.WeightedEducation}
+          multiSelect
+          noTags
+          onBlur={() => setWeightedOptionsSelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setWeightedFilter(selectedOptions);
+            if (clickedOption) setWeightedOptionsSelectOpen(true);
+          }}
+          open={weightedOptionsSelectOpen}
+          options={weightedOptions}
           texts={{
             label: weightedEducationLabel,
             placeholder: Drupal.t('All', {}, {context: 'React search all placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' })
           }}
-          onChange={setWeightedFilter}
+          value={weightedSelection}
         />
-        {/* @ts-ignore */}
         <Select
-          clearable
-          noTags
-          multiSelect
           className='hdbt-search--react__dropdown'
-          options={bilingualOptions}
-          value={bilingualSelection}
+          clearable
           id={SearchComponents.BilingualEducation}
+          multiSelect
+          noTags
+          onBlur={() => setBilingualOptionsSelectOpen(false)}
+          onChange={(selectedOptions, clickedOption) => {
+            setBilingualFilter(selectedOptions);
+            if (clickedOption) setBilingualOptionsSelectOpen(true);
+          }}
+          open={bilingualOptionsSelectOpen}
+          options={bilingualOptions}
           texts={{
             label: bilingualEducationLabel,
             placeholder: Drupal.t('All', {}, {context: 'React search all placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' })
           }}
-          onChange={setBilingualFilter}
+          value={bilingualSelection}
         />
       </div>
       <div className='hdbt-search--react__submit'>
