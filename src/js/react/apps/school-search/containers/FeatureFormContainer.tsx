@@ -110,9 +110,9 @@ const FeatureFormContainer = () => {
         label={Drupal.t('School\'s name or post code', {}, {context: 'School search: Feature input label'})}
         name='keyword'
         onChange={({ target: { value } }) => setKeywordValue(value)}
+        placeholder={Drupal.t('E.g. Aurinkolahti Comprehensive School or 00990', {}, {context: 'School search: text input placeholder'})}
         type='search'
         value={keywordValue || ''} // Ensure value is always a string.
-        placeholder={Drupal.t('E.g. Aurinkolahti Comprehensive School or 00990', {}, {context: 'School search: text input placeholder'})}
       />
       <div className='hdbt-search--react__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
@@ -120,8 +120,8 @@ const FeatureFormContainer = () => {
             {Drupal.t('Language of instruction', {}, {context: 'School search: language options'})}
           </legend>
           <Checkbox
-            className='hdbt-search--react__checkbox'
             checked={stagedParams?.finnish_education || false}
+            className='hdbt-search--react__checkbox'
             id='finnish_education'
             label={Drupal.t('Finnish', {}, {context: 'School search: language option'})}
             name='finnish_education'
@@ -129,8 +129,8 @@ const FeatureFormContainer = () => {
             value={stagedParams?.finnish_education?.toString() || 'false'}
           />
           <Checkbox
-            className='hdbt-search--react__checkbox'
             checked={stagedParams?.swedish_education || false}
+            className='hdbt-search--react__checkbox'
             id='swedish_education'
             label={Drupal.t('Swedish', {}, {context: 'School search: language option'})}
             name='swedish_education'
@@ -143,8 +143,8 @@ const FeatureFormContainer = () => {
             {Drupal.t('Grade', {}, {context: 'School search: education level'})}
           </legend>
           <Checkbox
-            className='hdbt-search--react__checkbox'
             checked={stagedParams?.grades_1_6 || false}
+            className='hdbt-search--react__checkbox'
             id='grades_1_6'
             label={Drupal.t('School providing grades 1 to 6', {}, {context: 'School search: education level option'})}
             name='grades_1_6'
@@ -152,17 +152,17 @@ const FeatureFormContainer = () => {
             value={stagedParams?.grades_1_6?.toString() || 'false'}
           />
           <Checkbox
+            checked={stagedParams?.grades_1_9 || false}
             className='hdbt-search--react__checkbox'
             id='grades_1_9'
-            checked={stagedParams?.grades_1_9 || false}
             label={Drupal.t('School providing grades 1 to 9', {}, {context: 'School search: education level option'})}
             name='grades_1_9'
             onClick={() => setStagedParams({...stagedParams, grades_1_9: !stagedParams?.grades_1_9})}
             value={stagedParams?.grades_1_9?.toString() || 'false'}
           />
           <Checkbox
-            className='hdbt-search--react__checkbox'
             checked={stagedParams?.grades_7_9 || false}
+            className='hdbt-search--react__checkbox'
             id='grades_7_9'
             label={Drupal.t('School providing grades 7 to 9', {}, {context: 'School search: education level option'})}
             name='grades_7_9'
@@ -302,9 +302,9 @@ const FeatureFormContainer = () => {
       <div className='hdbt-search--react__submit'>
         <Button
           className='hdbt-search--react__submit-button'
+          theme={ButtonPresetTheme.Black}
           type='submit'
           variant={ButtonVariant.Primary}
-          theme={ButtonPresetTheme.Black}
         >
           {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
         </Button>
