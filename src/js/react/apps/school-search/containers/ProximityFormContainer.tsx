@@ -8,7 +8,7 @@ type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
 };
 
-const ProximityFormContainer = () => {
+const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) => {
   const setParams = useSetAtom(paramsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,6 +41,7 @@ const ProximityFormContainer = () => {
         id='keyword'
         label={Drupal.t('The child\'s home address', {}, { context: 'School search: input label'})}
         type='search'
+        defaultValue={initialAddress || ''}
       />
       <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search', {}, { context: 'React search: submit button label'})}</Button>
     </form>
