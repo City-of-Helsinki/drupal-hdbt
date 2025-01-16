@@ -34,7 +34,7 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
           values.push(option);
         }
       });
-    };
+    }
 
     return values;
   };
@@ -43,16 +43,14 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
     /* @ts-ignore */
     <Select
       clearable
-      clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': label }, { context: 'React search clear selection label' })}
-      label={label}
+      multiSelect
       onChange={onChange}
-      multiselect
-      selectedItemRemoveButtonAriaLabel={Drupal.t(
-        'Remove item',
-        {},
-        { context: 'React search remove item aria label' }
-      )}
       options={options}
+      texts={{
+        clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
+        clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
+        label,
+      }}
       value={getValue()}
       {...rest}
     />
