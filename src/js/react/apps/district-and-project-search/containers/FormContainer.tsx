@@ -6,6 +6,7 @@ import {
   Button,
   ButtonPresetTheme,
   ButtonVariant,
+  defaultFilter,
   IconLocation,
   Select,
   TextInput
@@ -85,6 +86,7 @@ const FormContainer = () => {
             type='search'
           />
           <Select
+            filter={defaultFilter}
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}
             multiSelect
@@ -118,6 +120,7 @@ const FormContainer = () => {
         >
           <div className='district-project-search-form__filters'>
             <Select
+              filter={defaultFilter}
               id={SearchComponents.THEME}
               multiSelect
               onChange={setThemeFilter}
@@ -136,6 +139,7 @@ const FormContainer = () => {
               value={themeSelection}
             />
             <Select
+              filter={defaultFilter}
               id={SearchComponents.PHASE}
               multiSelect
               onChange={setPhaseFilter}
@@ -154,6 +158,7 @@ const FormContainer = () => {
               value={phaseSelection}
             />
             <Select
+              filter={defaultFilter}
               id={SearchComponents.TYPE}
               multiSelect
               onChange={setTypeFilter}
