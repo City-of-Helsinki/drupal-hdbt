@@ -36,16 +36,18 @@ const ResultsSort = () => {
   return (
     <Select
       className='job-listing-search__sort'
-      label={Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' })}
-      options={options}
-      onChange={(option: OptionType) => {
-        setSort(option);
+      onChange={(_selectedOptions, clickedOption) => {
+        setSort(clickedOption);
         setUrlParams({
           ...urlParams,
-          sort: option.value,
+          sort: clickedOption.value, // @todo Check that this works correctly
         });
       }}
-      value={sort}
+      options={options}
+      texts={{
+        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' })
+      }}
+      value={[sort]}
     />
   );
 };
