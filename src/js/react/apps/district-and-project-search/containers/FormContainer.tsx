@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 import {
   Accordion,
@@ -6,6 +6,7 @@ import {
   Button,
   ButtonPresetTheme,
   ButtonVariant,
+  defaultFilter,
   IconLocation,
   Select,
   TextInput
@@ -37,12 +38,16 @@ const FormContainer = () => {
   const [title, setTitle] = useAtom(titleAtom);
   const districtOptions = useAtomValue(districtsAtom);
   const [districtSelection, setDistrictFilter] = useAtom(districtSelectionAtom);
+  const [districtSelectOpen, setDistrictSelectOpen] = useState(false);
   const themeOptions = useAtomValue(themesAtom);
   const [themeSelection, setThemeFilter] = useAtom(themeSelectionAtom);
+  const [themeSelectOpen, setThemeSelectOpen] = useState(false);
   const phaseOptions = useAtomValue(phasesAtom);
   const [phaseSelection, setPhaseFilter] = useAtom(phaseSelectionAtom);
+  const [phaseSelectOpen, setPhaseSelectOpen] = useState(false);
   const typeOptions = useAtomValue(typesAtom);
   const [typeSelection, setTypeFilter] = useAtom(typeSelectionAtom);
+  const [typeSelectOpen, setTypeSelectOpen] = useState(false);
 
   // Set form control values from url parameters on load
   useEffect(() => {
@@ -85,10 +90,17 @@ const FormContainer = () => {
             type='search'
           />
           <Select
+            filter={defaultFilter}
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}
             multiSelect
-            onChange={setDistrictFilter}
+            open={districtSelectOpen}
+            noTags
+            onChange={(selectedOptions, clickedOption) => {
+              setDistrictFilter(selectedOptions);
+              if (clickedOption) setDistrictSelectOpen(true);
+            }}
+            onBlur={() => setDistrictSelectOpen(false)}
             options={districtOptions}
             theme={{
               '--checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -118,9 +130,16 @@ const FormContainer = () => {
         >
           <div className='district-project-search-form__filters'>
             <Select
+              filter={defaultFilter}
               id={SearchComponents.THEME}
               multiSelect
-              onChange={setThemeFilter}
+              noTags
+              open={themeSelectOpen}
+              onChange={(selectedOptions, clickedOption) => {
+                setThemeFilter(selectedOptions);
+                if (clickedOption) setThemeSelectOpen(true);
+              }}
+              onBlur={() => setThemeSelectOpen(false)}
               options={themeOptions}
               theme={{
                 '--checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -136,9 +155,16 @@ const FormContainer = () => {
               value={themeSelection}
             />
             <Select
+              filter={defaultFilter}
               id={SearchComponents.PHASE}
               multiSelect
-              onChange={setPhaseFilter}
+              noTags
+              open={phaseSelectOpen}
+              onChange={(selectedOptions, clickedOption) => {
+                setPhaseFilter(selectedOptions);
+                if (clickedOption) setPhaseSelectOpen(true);
+              }}
+              onBlur={() => setPhaseSelectOpen(false)}
               options={phaseOptions}
               theme={{
                 '--checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -154,9 +180,16 @@ const FormContainer = () => {
               value={phaseSelection}
             />
             <Select
+              filter={defaultFilter}
               id={SearchComponents.TYPE}
               multiSelect
-              onChange={setTypeFilter}
+              noTags
+              open={typeSelectOpen}
+              onChange={(selectedOptions, clickedOption) => {
+                setTypeFilter(selectedOptions);
+                if (clickedOption) setTypeSelectOpen(true);
+              }}
+              onBlur={() => setTypeSelectOpen(false)}
               options={typeOptions}
               theme={{
                 '--checkbox-background-selected': 'var(--hdbt-color-black)',

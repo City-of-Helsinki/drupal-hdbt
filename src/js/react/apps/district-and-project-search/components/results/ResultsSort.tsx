@@ -24,11 +24,12 @@ const ResultsSort = () => {
   return (
     <div className="district-project-search-form__filter hdbt-search__filter">
       <Select
+        clearable={false}
         onChange={(_selectedOptions, clickedOption) => {
           setSort(clickedOption);
           setUrlParams({
             ...urlParams,
-            sort: clickedOption.value, // @todo Check that this works correctly
+            sort: clickedOption.value,
           });
         }}
         options={sortOptions}
