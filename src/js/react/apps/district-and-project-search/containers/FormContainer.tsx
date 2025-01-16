@@ -96,9 +96,9 @@ const FormContainer = () => {
             multiSelect
             open={districtSelectOpen}
             noTags
-            onChange={(selectedOptions) => {
+            onChange={(selectedOptions, clickedOption) => {
               setDistrictFilter(selectedOptions);
-              setDistrictSelectOpen(true);
+              if (clickedOption) setDistrictSelectOpen(true);
             }}
             onBlur={() => setDistrictSelectOpen(false)}
             options={districtOptions}
@@ -135,9 +135,9 @@ const FormContainer = () => {
               multiSelect
               noTags
               open={themeSelectOpen}
-              onChange={(selectedOptions) => {
+              onChange={(selectedOptions, clickedOption) => {
                 setThemeFilter(selectedOptions);
-                setThemeSelectOpen(true);
+                if (clickedOption) setThemeSelectOpen(true);
               }}
               onBlur={() => setThemeSelectOpen(false)}
               options={themeOptions}
@@ -160,9 +160,9 @@ const FormContainer = () => {
               multiSelect
               noTags
               open={phaseSelectOpen}
-              onChange={(selectedOptions) => {
+              onChange={(selectedOptions, clickedOption) => {
                 setPhaseFilter(selectedOptions);
-                setPhaseSelectOpen(true);
+                if (clickedOption) setPhaseSelectOpen(true);
               }}
               onBlur={() => setPhaseSelectOpen(false)}
               options={phaseOptions}
@@ -185,9 +185,9 @@ const FormContainer = () => {
               multiSelect
               noTags
               open={typeSelectOpen}
-              onChange={(selectedOptions) => {
+              onChange={(selectedOptions, clickedOption) => {
                 setTypeFilter(selectedOptions);
-                setTypeSelectOpen(true);
+                if (clickedOption) setTypeSelectOpen(true);
               }}
               onBlur={() => setTypeSelectOpen(false)}
               options={typeOptions}
