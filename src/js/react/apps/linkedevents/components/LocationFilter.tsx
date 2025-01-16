@@ -22,22 +22,23 @@ function LocationFilter() {
     <div className='hdbt-search__filter event-form__filter--location'>
       <Select
         className='hdbt-search__dropdown'
-        clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' })}
-        helper={locationHelper}
-        label={selectVenueLabel}
-        multiselect
-        // @ts-ignore
-        options={locationOptions}
-        value={locationSelection}
         id={SearchComponents.LOCATION}
+        multiSelect
         onChange={onChange}
+        options={locationOptions}
         placeholder={Drupal.t('All', {}, { context: 'React search: all available options' })}
-        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search: remove item aria label' })}
         theme={{
+          '--checkbox-background-selected': 'var(--hdbt-color-black)',
           '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
+        texts={{
+          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
+          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
+          label: selectVenueLabel,
+          placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
+        }}
+        value={locationSelection}
       />
     </div>
   );

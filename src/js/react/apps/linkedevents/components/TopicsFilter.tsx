@@ -21,21 +21,22 @@ function TopicsFilter() {
     <div className='hdbt-search__filter event-form__filter--topics'>
       <Select
         className='hdbt-search__dropdown'
-        clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' })}
-        label={selectLabel}
-        multiselect
-        // @ts-ignore
-        options={topics}
-        value={topicSelection}
         id={SearchComponents.TOPICS}
+        multiSelect
         onChange={onChange}
-        placeholder={Drupal.t('All topics', {}, { context: 'React search: topics filter' })}
-        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search: remove item aria label' })}
+        options={topics}
         theme={{
+          '--checkbox-background-selected': 'var(--hdbt-color-black)',
           '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
+        texts={{
+          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
+          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
+          label: selectLabel,
+          placeholder: Drupal.t('All topics', {}, { context: 'School search: language placeholder' }),
+        }}
+        value={topicSelection}
       />
     </div>
   );
