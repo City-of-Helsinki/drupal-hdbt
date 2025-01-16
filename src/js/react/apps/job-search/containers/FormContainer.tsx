@@ -115,58 +115,44 @@ const FormContainer = () => {
         id={SearchComponents.KEYWORD}
         label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
         name={SearchComponents.KEYWORD}
-        type='search'
         onChange={handleKeywordChange}
+        placeholder={Drupal.t('Eg. title, location, department', {}, { context: 'HELfi Rekry job search keyword placeholder' })}
+        type='search'
         value={keyword}
-        placeholder={Drupal.t(
-          'Eg. title, location, department',
-          {},
-          { context: 'HELfi Rekry job search keyword placeholder' }
-        )}
       />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
-            {/* @ts-ignore */}
             <Select
-              clearable
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' })}
               className='job-search-form__dropdown'
-              selectedItemRemoveButtonAriaLabel={Drupal.t(
-                'Remove item',
-                {},
-                { context: 'Job search remove item aria label' }
-              )}
-              placeholder={Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' })}
-              multiselect
-              label={taskAreasLabel}
-              options={taskAreasOptions}
-              value={taskAreaSelection}
+              clearable
               id={SearchComponents.TASK_AREAS}
+              multiSelect
               onChange={setTaskAreaFilter}
+              options={taskAreasOptions}
+              texts={{
+                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
+                label: taskAreasLabel,
+                placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
+              }}
+              value={taskAreaSelection}
             />
           </div>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
-            {/* @ts-ignore */}
             <Select
-              clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' })}
               className='job-search-form__dropdown'
-              selectedItemRemoveButtonAriaLabel={Drupal.t(
-                'Remove item',
-                {},
-                { context: 'Job search remove item aria label' }
-              )}
-              placeholder={Drupal.t(
-                'All types of employment',
-                {},
-                { context: 'Employment filter placeholder' }
-              )}
-              multiselect
-              label={employmentRelationshipLabel}
-              options={employmentOptions}
-              value={employmentSelection}
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
+              multiSelect
               onChange={setEmploymentFilter}
+              options={employmentOptions}
+              texts={{
+                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
+                label: employmentRelationshipLabel,
+                placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
+              }}
+              value={employmentSelection}
             />
           </div>
         </div>
@@ -176,10 +162,10 @@ const FormContainer = () => {
             <select
               aria-hidden
               multiple
-              value={taskAreaInputValue}
               name={SearchComponents.TASK_AREAS}
-              style={{ display: 'none' }}
               onChange={() => {}}
+              style={{ display: 'none' }}
+              value={taskAreaInputValue}
             >
               {taskAreaInputValue.map((value: string) => (
                 <option aria-hidden key={value} value={value} />
@@ -188,10 +174,10 @@ const FormContainer = () => {
             <select
               aria-hidden
               multiple
-              value={employmentInputValue}
               name={SearchComponents.EMPLOYMENT}
-              style={{ display: 'none' }}
               onChange={() => {}}
+              style={{ display: 'none' }}
+              value={employmentInputValue}
             >
               {employmentInputValue.map((value: string) => (
                 <option aria-hidden key={value} value={value} />
@@ -205,41 +191,37 @@ const FormContainer = () => {
           <div className='job-search-form__dropdowns__upper'>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
-                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' })}
                 className='job-search-form__dropdown'
                 clearable
-                selectedItemRemoveButtonAriaLabel={Drupal.t(
-                  'Remove item',
-                  {},
-                  { context: 'Job search remove item aria label' }
-                )}
-                placeholder={Drupal.t('All languages', {}, { context: 'Language placeholder' })}
-                label={languageLabel}
-                // @ts-ignore
-                options={languagesOptions}
-                value={languageSelection}
                 id={SearchComponents.LANGUAGE}
-                onChange={setLanguageFilter}
+                // @ts-ignore
+                onChange={setLanguageFilter} // @todo Check that this works without @ts-ignore
+                options={languagesOptions}
+                texts={{
+                  clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
+                  clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
+                  label: languageLabel,
+                  placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
+                }}
+                // @ts-ignore
+                value={languageSelection} // @todo Check that this works without @ts-ignore
               />
             </div>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
               <Select
-                clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' })}
                 className='job-search-form__dropdown'
                 clearable
-                multiselect
-                selectedItemRemoveButtonAriaLabel={Drupal.t(
-                  'Remove item',
-                  {},
-                  { context: 'Job search remove item aria label' }
-                )}
-                placeholder={Drupal.t('All areas', {}, { context: 'Location placeholder' })}
-                label={areaFilterLabel}
-                // @ts-ignore
+                id={SearchComponents.AREA_FILTER}
+                multiSelect
+                onChange={setAreaFilter}
                 options={areaFilterOptions}
                 value={areaFilterSelection}
-                id={SearchComponents.AREA_FILTER}
-                onChange={setAreaFilter}
+                texts={{
+                  clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
+                  clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
+                  label: areaFilterLabel,
+                  placeholder: Drupal.t('All areas', {}, { context: 'Location placeholder' }),
+                }}
               />
             </div>
           </div>
@@ -252,45 +234,45 @@ const FormContainer = () => {
           </legend>
           {showContinuous && (
             <Checkbox
-              className='job-search-form__checkbox'
-              label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
-              id={SearchComponents.CONTINUOUS}
-              onClick={() => setContinuous(!continuous)}
               checked={continuous}
+              className='job-search-form__checkbox'
+              id={SearchComponents.CONTINUOUS}
+              label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
               name={SearchComponents.CONTINUOUS}
+              onClick={() => setContinuous(!continuous)}
               value={continuous.toString()}
             />
           )}
           {showInternships && (
             <Checkbox
-              className='job-search-form__checkbox'
-              label={Drupal.t('Practical training', {}, { context: 'Job search' })}
-              id={SearchComponents.INTERNSHIPS}
-              onClick={() => setInternship(!internship)}
               checked={internship}
+              className='job-search-form__checkbox'
+              id={SearchComponents.INTERNSHIPS}
+              label={Drupal.t('Practical training', {}, { context: 'Job search' })}
               name={SearchComponents.INTERNSHIPS}
+              onClick={() => setInternship(!internship)}
               value={internship.toString()}
             />
           )}
           {showSummerJobs && (
             <Checkbox
-              className='job-search-form__checkbox'
-              label={Drupal.t('Summer jobs', {}, { context: 'Job search' })}
-              id={SearchComponents.SUMMER_JOBS}
-              onClick={() => setSummerJobs(!summerJobs)}
               checked={summerJobs}
+              className='job-search-form__checkbox'
+              id={SearchComponents.SUMMER_JOBS}
+              label={Drupal.t('Summer jobs', {}, { context: 'Job search' })}
               name={SearchComponents.SUMMER_JOBS}
+              onClick={() => setSummerJobs(!summerJobs)}
               value={summerJobs.toString()}
             />
           )}
           {showYouthSummerJobs && (
             <Checkbox
-              className='job-search-form__checkbox'
-              label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
-              id={SearchComponents.YOUTH_SUMMER_JOBS}
-              onClick={() => setYouthSummerJobs(!youthSummerJobs)}
               checked={youthSummerJobs}
+              className='job-search-form__checkbox'
+              id={SearchComponents.YOUTH_SUMMER_JOBS}
+              label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
               name={SearchComponents.YOUTH_SUMMER_JOBS}
+              onClick={() => setYouthSummerJobs(!youthSummerJobs)}
               value={youthSummerJobs.toString()}
             />
           )}
