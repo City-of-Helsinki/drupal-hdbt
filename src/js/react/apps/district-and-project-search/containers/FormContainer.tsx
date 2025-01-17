@@ -84,42 +84,42 @@ const FormContainer = () => {
           <TextInput
             id="district-or-project-name"
             label={Drupal.t('Name of residential area or project', {}, { context: 'District and project search form label' })}
-            placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             onChange={handleTitleChange}
-            value={title}
+            placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             type='search'
+            value={title}
           />
           <Select
             filter={defaultFilter}
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}
             multiSelect
-            open={districtSelectOpen}
             noTags
             onChange={(selectedOptions, clickedOption) => {
               setDistrictFilter(selectedOptions);
               if (clickedOption) setDistrictSelectOpen(true);
             }}
             onBlur={() => setDistrictSelectOpen(false)}
+            open={districtSelectOpen}
             options={districtOptions}
-            theme={{
-              '--checkbox-background-selected': 'var(--hdbt-color-black)',
-              '--focus-outline-color': 'var(--hdbt-color-black)',
-              '--placeholder-color': 'var(--hdbt-color-black)',
-            }}
             texts={{
               clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               label: residentialAreaLabel,
               placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
             }}
+            theme={{
+              '--checkbox-background-selected': 'var(--hdbt-color-black)',
+              '--focus-outline-color': 'var(--hdbt-color-black)',
+              '--placeholder-color': 'var(--hdbt-color-black)',
+            }}
             value={districtSelection}
           />
         </div>
         <Accordion
           className='district-project-search-form__additional-filters'
-          headingLevel={3}
           heading={Drupal.t('Refine the project search', {}, { context: 'District and project search' })}
+          headingLevel={3}
           initiallyOpen={accordionInitiallyOpen}
           language={window.drupalSettings.path.currentLanguage || 'fi'}
           size={AccordionSize.Small}
@@ -134,23 +134,23 @@ const FormContainer = () => {
               id={SearchComponents.THEME}
               multiSelect
               noTags
-              open={themeSelectOpen}
               onChange={(selectedOptions, clickedOption) => {
                 setThemeFilter(selectedOptions);
                 if (clickedOption) setThemeSelectOpen(true);
               }}
               onBlur={() => setThemeSelectOpen(false)}
+              open={themeSelectOpen}
               options={themeOptions}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 label: projectThemeLabel,
                 placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
+              }}
+              theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
+                '--focus-outline-color': 'var(--hdbt-color-black)',
+                '--placeholder-color': 'var(--hdbt-color-black)',
               }}
               value={themeSelection}
             />
@@ -159,23 +159,23 @@ const FormContainer = () => {
               id={SearchComponents.PHASE}
               multiSelect
               noTags
-              open={phaseSelectOpen}
               onChange={(selectedOptions, clickedOption) => {
                 setPhaseFilter(selectedOptions);
                 if (clickedOption) setPhaseSelectOpen(true);
               }}
               onBlur={() => setPhaseSelectOpen(false)}
+              open={phaseSelectOpen}
               options={phaseOptions}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 label: projectStageLabel,
                 placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
+              }}
+              theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
+                '--focus-outline-color': 'var(--hdbt-color-black)',
+                '--placeholder-color': 'var(--hdbt-color-black)',
               }}
               value={phaseSelection}
             />
@@ -184,23 +184,23 @@ const FormContainer = () => {
               id={SearchComponents.TYPE}
               multiSelect
               noTags
-              open={typeSelectOpen}
               onChange={(selectedOptions, clickedOption) => {
                 setTypeFilter(selectedOptions);
                 if (clickedOption) setTypeSelectOpen(true);
               }}
               onBlur={() => setTypeSelectOpen(false)}
+              open={typeSelectOpen}
               options={typeOptions}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 label: projectTypeLabel,
                 placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
+              }}
+              theme={{
+                '--checkbox-background-selected': 'var(--hdbt-color-black)',
+                '--focus-outline-color': 'var(--hdbt-color-black)',
+                '--placeholder-color': 'var(--hdbt-color-black)',
               }}
               value={typeSelection}
             />

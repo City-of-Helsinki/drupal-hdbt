@@ -32,15 +32,15 @@ const ResultsSort = () => {
       }
     }
   }, []);
-
   return (
     <Select
       className='job-listing-search__sort'
+      clearable={false}
       onChange={(_selectedOptions, clickedOption) => {
         setSort(clickedOption);
         setUrlParams({
           ...urlParams,
-          sort: clickedOption.value, // @todo Check that this works correctly
+          sort: clickedOption.value,
         });
       }}
       options={options}

@@ -1,6 +1,6 @@
 import { Button, Checkbox, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import bucketToMap from '@/react/common/helpers/Aggregations';
 import CustomIds from '../enum/CustomTermIds';
@@ -39,15 +39,18 @@ const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
   const [taskAreaSelection, setTaskAreaFilter] = useAtom(taskAreasSelectionAtom);
+  const [taskAreaSelectOpen, setTaskAreaSelectOpen] = useState(false);
   const taskAreasOptions = useAtomValue(taskAreasAtom);
   const employmentOptions = useAtomValue(employmentAtom);
   const [employmentSelection, setEmploymentFilter] = useAtom(employmentSelectionAtom);
+  const [employmentSelectOpen, setEmploymentSelectOpen] = useState(false);
   const languagesOptions = useAtomValue(languagesAtom);
   const [languageSelection, setLanguageFilter] = useAtom(languageSelectionAtom);
   const { employmentSearchIds } = useAtomValue(configurationsAtom);
   const employmentSearchIdMap = bucketToMap(employmentSearchIds);
   const areaFilterOptions = useAtomValue(areaFilterAtom);
   const [areaFilterSelection, setAreaFilter] = useAtom(areaFilterSelectionAtom);
+  const [areaFilterSelectOpen, setAreaFilterSelectOpen] = useState(false);
   const setSubmitted = useSetAtom(monitorSubmittedAtom);
 
   // Set form control values from url parameters on load
@@ -60,7 +63,10 @@ const FormContainer = () => {
     setInternship(!!urlParams?.internship);
     setSummerJobs(!!urlParams?.summer_jobs);
     setYouthSummerJobs(!!urlParams?.youth_summer_jobs);
-    setLanguageFilter(getInitialLanguage(urlParams?.language, languagesOptions));
+    const initialLanguage: OptionType[] = [
+      getInitialLanguage(urlParams?.language, languagesOptions) || { label: '', value: '' },
+    ];
+    setLanguageFilter(initialLanguage);
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +84,7 @@ const FormContainer = () => {
         return acc.concat(target);
       }, []),
       keyword,
-      language: languageSelection?.value,
+      language: languageSelection?.[0]?.value || undefined,
       continuous,
       internship,
       task_areas: taskAreaSelection.map((selection: OptionType) => selection.value),
@@ -128,7 +134,13 @@ const FormContainer = () => {
               clearable
               id={SearchComponents.TASK_AREAS}
               multiSelect
-              onChange={setTaskAreaFilter}
+              noTags
+              open={taskAreaSelectOpen}
+              onBlur={() => setTaskAreaSelectOpen(false)}
+              onChange={(selectedOptions, clickedOption) => {
+                setTaskAreaFilter(selectedOptions);
+                if (clickedOption) setTaskAreaSelectOpen(true);
+              }}
               options={taskAreasOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
@@ -144,7 +156,13 @@ const FormContainer = () => {
               className='job-search-form__dropdown'
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
               multiSelect
-              onChange={setEmploymentFilter}
+              noTags
+              open={employmentSelectOpen}
+              onChange={(selectedOptions, clickedOption) => {
+                setEmploymentFilter(selectedOptions);
+                if (clickedOption) setEmploymentSelectOpen(true);
+              }}
+              onBlur={() => setEmploymentSelectOpen(false)}
               options={employmentOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
@@ -194,8 +212,10 @@ const FormContainer = () => {
                 className='job-search-form__dropdown'
                 clearable
                 id={SearchComponents.LANGUAGE}
-                // @ts-ignore
-                onChange={setLanguageFilter} // @todo Check that this works without @ts-ignore
+                noTags
+                onChange={(selectedOptions) => {
+                  setLanguageFilter(selectedOptions);
+                }}
                 options={languagesOptions}
                 texts={{
                   clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
@@ -213,7 +233,13 @@ const FormContainer = () => {
                 clearable
                 id={SearchComponents.AREA_FILTER}
                 multiSelect
-                onChange={setAreaFilter}
+                noTags
+                open={areaFilterSelectOpen}
+                onChange={(selectedOptions, clickedOption) => {
+                  setAreaFilter(selectedOptions);
+                  if (clickedOption) setAreaFilterSelectOpen(true);
+                }}
+                onBlur={() => setAreaFilterSelectOpen(false)}
                 options={areaFilterOptions}
                 value={areaFilterSelection}
                 texts={{
