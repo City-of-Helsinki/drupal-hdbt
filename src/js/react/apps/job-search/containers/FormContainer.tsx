@@ -63,7 +63,10 @@ const FormContainer = () => {
     setInternship(!!urlParams?.internship);
     setSummerJobs(!!urlParams?.summer_jobs);
     setYouthSummerJobs(!!urlParams?.youth_summer_jobs);
-    setLanguageFilter(getInitialLanguage(urlParams?.language, languagesOptions));
+    const initialLanguage: OptionType[] = [
+      getInitialLanguage(urlParams?.language, languagesOptions) || { label: '', value: '' },
+    ];
+    setLanguageFilter(initialLanguage);
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -81,7 +84,7 @@ const FormContainer = () => {
         return acc.concat(target);
       }, []),
       keyword,
-      language: languageSelection?.value,
+      language: languageSelection?.[0]?.value || undefined,
       continuous,
       internship,
       task_areas: taskAreaSelection.map((selection: OptionType) => selection.value),
@@ -209,8 +212,10 @@ const FormContainer = () => {
                 className='job-search-form__dropdown'
                 clearable
                 id={SearchComponents.LANGUAGE}
-                // @ts-ignore
-                onChange={setLanguageFilter} // @todo Check that this works without @ts-ignore
+                noTags
+                onChange={(selectedOptions) => {
+                  setLanguageFilter(selectedOptions);
+                }}
                 options={languagesOptions}
                 texts={{
                   clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
