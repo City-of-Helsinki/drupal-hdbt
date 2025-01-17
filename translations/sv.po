@@ -924,7 +924,7 @@ msgctxt "React search: location label"
 msgid "Address"
 msgstr "Adress"
 
-msgctxt "React search: results count term"
+msgctxt "React search: schools result count"
 msgid "1 school"
 msgid_plural "@count schools"
 msgstr[0] "1 skola"
