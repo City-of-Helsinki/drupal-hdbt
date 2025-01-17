@@ -11,12 +11,6 @@ initSentry();
 const rootSelector: string = 'helfi-etusivu-news-search';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
 
-const paragraphTitle: HTMLElement | null = document.querySelector('.component--news-archive .component__title');
-
-if (paragraphTitle) {
-  paragraphTitle.textContent = drupalSettings?.helfi_news_archive?.title ?? Drupal.t('News archive', {}, { context: 'News archive fallback title' });
-}
-
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
