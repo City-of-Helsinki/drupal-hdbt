@@ -15,9 +15,17 @@ import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
+import OptionType from '@/types/OptionType';
 
-const ResultsContainer = (): JSX.Element => {
-  const size = Global.SIZE;
+type ResultsContainerProps = {
+  hidePagination?: boolean;
+};
+
+const ResultsContainer = ({
+  hidePagination = false
+}: ResultsContainerProps): JSX.Element => {
+  const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
+  const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
   const urlParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
@@ -69,26 +77,26 @@ const ResultsContainer = (): JSX.Element => {
 
   return (
     <div className="react-search__results">
-      <ResultsHeader
+      {hideForm || <ResultsHeader
         resultText={
           <>
             {Drupal.formatPlural(total, '1 search result', '@count search results', {}, {context: 'News archive'})}
           </>
         }
         ref={scrollTarget}
-      />
+      />}
       <div className='hdbt-search--react__results--container'>
         {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
         {results.map((hit: Result<NewsItem>) => (
           <ResultCard key={hit._id} {...hit._source} />
         ))}
-        <RssFeedLink />
-        <Pagination
+        {hideForm || <RssFeedLink />}
+        {hideForm || <Pagination
           currentPage={currentPage}
           pages={5}
           totalPages={addLastPage ? pages + 1 : pages}
           updatePage={updatePage}
-        />
+        />}
       </div>
     </div>
   );

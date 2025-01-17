@@ -5,7 +5,7 @@ import Global from '../enum/Global';
 
 const useQueryString = (urlParams: URLParams) => {
   const languageFilter = useLanguageQuery();
-  const size = Global.SIZE;
+  const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const must: any[] = [];
 

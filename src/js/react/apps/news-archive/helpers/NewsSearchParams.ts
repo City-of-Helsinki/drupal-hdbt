@@ -32,7 +32,7 @@ class NewsSearchParams extends URLSearchParams {
 
     Object.keys(arrayValues).forEach((key) => this.set(key, arrayValues[key].toString()));
   }
-  
+
   toInitialValue(): URLParams {
     const initialParams: URLParams = {
       groups: [],
@@ -75,7 +75,7 @@ class NewsSearchParams extends URLSearchParams {
       if (key === SearchComponents.RESULTS) {
         paramString = `${key}=${value}`;
       } else if (value && value.length) {
-        
+
         if (value.includes(',')) {
           const valueArray = value.split(',');
 

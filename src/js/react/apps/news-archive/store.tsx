@@ -3,7 +3,8 @@ import { atom } from 'jotai';
 import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
 
-const params = new NewsSearchParams(window.location.search);
+const initialParamString = drupalSettings.helfi_news_archive.default_query ?? window.location.search;
+const params = new NewsSearchParams(initialParamString);
 
 const initialParams = params.toInitialValue();
 
