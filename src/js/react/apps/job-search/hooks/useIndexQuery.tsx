@@ -4,6 +4,8 @@ import Global from '../enum/Global';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 type UseIndexQueryProps = {
+  // Keep previous result while revalidating from swr.
+  keepPreviousData?: boolean
   // Uses _mquery endpoint if true
   multi?: boolean;
   // Elastic query
