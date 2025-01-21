@@ -3,6 +3,15 @@
   position: relative;
 }
 
+.component--react-search.component--coordinates-based-list {
+  background-color: $color-white;
+}
+
+// Use experimental card border styles for this paragraph.
+.component--coordinates-based-list .card:not(.card--ghost) {
+  border: 2px solid $color-black-20;
+}
+
 // If the react search is just before footer it needs to function the same way as unit search.
 .layout-main-wrapper > *:last-child .component--react-search:last-child {
   padding-bottom: 0;
