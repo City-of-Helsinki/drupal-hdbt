@@ -19,8 +19,7 @@ type useIndexQueryProps = {
 const useIndexQuery = ({debug, query, multi, key, ...rest}: useIndexQueryProps) => {
   const fetcher = () => {
     const index = Global.INDEX;
-    const proxyUrl = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
-    const url: string|undefined = proxyUrl;
+    const url: string|undefined = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = multi ? 'application/x-ndjson' : 'application/json';
 

@@ -1,5 +1,6 @@
 {{ attach_library('hdbt/news-archive') }}
 {% block paragraph %}
+  {% set component_title = paragraph.field_news_archive_title.value ? paragraph.field_news_archive_title.value : 'News archive'|t({}, {'context': 'News archive fallback title'}) %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [
@@ -7,7 +8,7 @@
       'component--react-search',
       'component--news-archive',
     ],
-      component_title: 'News archive'|t({}, {'context': 'News archive fallback title'}),
+      component_title: component_title,
       component_description: content.field_news_archive_desc,
       component_content_class: 'news-archive',
     }

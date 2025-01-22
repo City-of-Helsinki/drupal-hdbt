@@ -48,8 +48,10 @@ declare namespace drupalSettings {
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;
+    default_query?: string
+    max_results?: number;
+    hide_form?: boolean
     feed_base_url: string;
-    title: string;
   };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;
