@@ -1,14 +1,12 @@
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
-import useQueryString from './useQueryString';
 
-const usePromotedQuery = (urlParams: URLParams): string => {
+const usePromotedQuery = (baseQuery: string, urlParams: URLParams): string => {
   const { size } = Global;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const baseQuery = useQueryString(urlParams);
   const promotedQuery = JSON.parse(baseQuery);
-  
+
   const promotedClause = {
     term: {
       [IndexFields.PROMOTED]: true
