@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
-import {Button} from 'hds-react';
+import {Button, ButtonPresetTheme, ButtonVariant} from 'hds-react';
 import useInitialQuery from '../hooks/useInitialQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import IndexFields from '../enum/IndexFields';
@@ -76,42 +76,42 @@ const FormContainer = () => {
       <div className='hdbt-search--react__dropdown-filters'>
         {topicOptions && <Filter
           label={topicLabel}
-          placeholder={Drupal.t('All topics', {}, {context: 'News archive topics placeholder'})}
           options={topicOptions}
+          placeholder={Drupal.t('All topics', {}, {context: 'News archive topics placeholder'})}
           stateKey='topic'
         />}
         {neighbourhoodOptions && <Filter
           label={neighbourhoodLabel}
+          options={neighbourhoodOptions}
           placeholder={Drupal.t(
             'All city districts',
             {},
             {context: 'News archive neighbourhoods placeholder'}
           )}
-          options={neighbourhoodOptions}
           stateKey='neighbourhoods'
         />}
         {groupOptions && <Filter
           label={groupLabel}
-          placeholder={Drupal.t('All target groups', {}, {context: 'News archive groups placeholder'})}
           options={groupOptions}
+          placeholder={Drupal.t('All target groups', {}, {context: 'News archive groups placeholder'})}
           stateKey='groups'
         />}
       </div>
       <div className='hdbt-search--react__submit'>
         <Button
           className='hdbt-search--react__submit-button'
-          type='submit'
-          variant='primary'
-          theme='black'
           disabled={loading}
+          theme={ButtonPresetTheme.Black}
+          type='submit'
+          variant={ButtonVariant.Primary}
         >
           {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
         </Button>
       </div>
       <SelectionsContainer
-        topic={topicOptions}
-        neighbourhoods={neighbourhoodOptions}
         groups={groupOptions}
+        neighbourhoods={neighbourhoodOptions}
+        topic={topicOptions}
       />
     </form>
 );

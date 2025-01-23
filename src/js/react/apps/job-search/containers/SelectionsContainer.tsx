@@ -68,7 +68,7 @@ const SelectionsContainer = () => {
           atom={languageSelectionAtom}
           valueKey={SearchComponents.LANGUAGE}
         />
-      )}      
+      )}
       {urlParams.area_filter && (
         <ListFilter
           updater={updateAreaFilter}

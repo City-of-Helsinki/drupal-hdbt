@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { Button, IconCross } from 'hds-react';
+import {Button, ButtonVariant, IconCross} from 'hds-react';
 
 type FilterButtonProps = {
   value: string;
@@ -18,8 +18,8 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { context: 'Search: remove item aria label' }
       )}
       className='hdbt-search__remove-selection-button'
-      iconRight={<IconCross className='hdbt-search__remove-selection-icon' />}
-      variant='supplementary'
+      iconEnd={<IconCross className='hdbt-search__remove-selection-icon' />}
+      variant={ButtonVariant.Supplementary}
       onClick={clearSelection}
     >
       {value}

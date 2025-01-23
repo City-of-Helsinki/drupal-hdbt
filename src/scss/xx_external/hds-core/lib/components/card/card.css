@@ -5,7 +5,6 @@
   --border-width: 2px;
   --padding-horizontal: var(--spacing-l);
   --padding-vertical: var(--spacing-m);
-
   background-color: var(--background-color);
   color: var(--color);
   padding: var(--padding-vertical) var(--padding-horizontal);
@@ -17,25 +16,23 @@
   border: var(--border-width) solid var(--border-color);
 }
 
+/* WITH BOX-SHADOW */
+
+.hds-card--box-shadow {
+  box-shadow: var(--box-shadow-m);
+}
+
 /* BODY */
 
 .hds-card__body {
   display: grid;
-  grid-gap: var(--spacing-m);
-  gap: var(--spacing-m);
+  grid-gap: var(--spacing-s);
+  gap: var(--spacing-s);
   margin-bottom: var(--spacing-l);
 }
 
 .hds-card__body:last-child {
   margin-bottom: 0;
-}
-
-/* HEADING */
-
-.hds-card__heading {
-  font-size: var(--fontsize-heading-m);
-  font-weight: bold;
-  line-height: var(--lineheight-m);
 }
 
 /* BODY TEXT */

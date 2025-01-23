@@ -12,9 +12,12 @@
     flex-wrap: wrap;
     gap: $spacing-and-half;
     justify-content: space-between;
+    width: 100%;
 
     > div {
       flex-basis: 100%;
+      // HDS has 420px max-width set for selects. This is OK when the form is limited to 860px width but not here.
+      max-width: unset;
     }
 
     @include breakpoint($breakpoint-m) {

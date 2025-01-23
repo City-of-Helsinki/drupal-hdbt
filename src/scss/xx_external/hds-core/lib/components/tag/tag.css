@@ -1,49 +1,225 @@
-.hds-tag {
-  --tag-background: var(--color-black-10);
-  --tag-color: var(--color-black-90);
-  --tag-focus-outline-color: var(--color-coat-of-arms);
-  --tag-height: 32px;
+.hds-icon {
+  background-color: currentcolor;
+  display: inline-block;
+  height: var(--icon-size);
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: auto;
+  mask-size: auto;
+  width: var(--icon-size);
+}
 
-  align-items: center;
-  background-color: var(--tag-background);
-  color: var(--tag-color);
+.hds-icon--size-xs {
+  --icon-size: var(--spacing-layout-2-xs);
+}
+
+.hds-icon--size-s {
+  --icon-size: var(--spacing-layout-xs);
+}
+
+.hds-icon--size-m {
+  --icon-size: var(--spacing-layout-s);
+}
+
+.hds-icon--size-l {
+  --icon-size: var(--spacing-layout-m);
+}
+
+.hds-icon--size-xl {
+  --icon-size: var(--spacing-layout-l);
+}
+
+[class*=hds-icon-start--]:before {
+  background-color: currentcolor;
+  content: "";
   display: inline-flex;
-  flex-direction: row-reverse;
-  font-size: var(--fontsize-body-s);
-  min-height: var(--tag-height);
-  line-height: var(--tag-height);
+  height: var(--icon-size, 24px);
+  -webkit-mask-image: var(--mask-image-before);
+  mask-image: var(--mask-image-before);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  width: var(--icon-size, 24px);
+}
+
+[class*=hds-icon-end--]:after {
+  background-color: currentcolor;
+  content: "";
+  display: inline-flex;
+  height: var(--icon-size, 24px);
+  -webkit-mask-image: var(--mask-image-after);
+  mask-image: var(--mask-image-after);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  width: var(--icon-size, 24px);
+}
+
+.hds-icon--cross {
+  --mask-image-cross: url("data:image/svg+xml;charset=utf-8,%3Csvg role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M18 7.5L13.5 12L18 16.5L16.5 18L12 13.5L7.5 18L6 16.5L10.5 12L6 7.5L7.5 6L12 10.5L16.5 6L18 7.5Z' fill='currentColor'%3E%3C/path%3E %3C/svg%3E");
+  --mask-image: var(--mask-image-cross);
+}
+
+.hds-icon-start--cross {
+  --mask-image-before: var(--mask-image-cross);
+}
+
+.hds-icon-end--cross {
+  --mask-image-after: var(--mask-image-cross);
+}
+
+.hds-tag {
+  /* logics, always falls back to previous (upper) if not given ->
+  (no) active color -> (no) hover color -> (no) focus color -> default color
+  */
+  --computed-background-color: var(--background-color, var(--color-black-10));
+  --computed-background-color-focus: var(--background-color-focus, var(--computed-background-color, transparent));
+  --computed-background-color-hover: var(--background-color-hover, var(--computed-background-color-focus, transparent));
+  --computed-background-color-active: var(--background-color-active, var(--computed-background-color-hover, transparent));
+  --computed-border-color: var(--border-color, var(--computed-background-color));
+  --computed-border-color-focus: var(--border-color-focus, var(--computed-border-color, transparent));
+  --computed-border-color-hover: var(--border-color-hover, var(--computed-border-color-focus, transparent));
+  --computed-border-color-active: var(--border-color-active, var(--computed-border-color-hover, transparent));
+  --computed-color: var(--color, --color-black-90);
+  --computed-color-focus: var(--color-focus, var(--computed-color, inherit));
+  --computed-color-hover: var(--color-hover, var(--computed-color-focus, inherit));
+  --computed-color-active: var(--color-active, var(--computed-color-hover, inherit));
+  --computed-outline-color: var(--outline-color, transparent);
+  --font-size: var(--fontsize-body-s);
+  --gap: var(--spacing-3-xs);
+  --height: 32px;
+  --icon-reposition: -4px;
+  --icon-size: 24px;
+  --outline-width: 2px;
+  --padding-horizontal: 12px;
+  --padding-vertical: 3px;
+  align-items: center;
+  background-color: var(--computed-background-color);
+  border-radius: calc(var(--height) / 2);
+  box-sizing: border-box;
+  color: var(--computed-color, inherit);
+  display: inline-flex;
+  flex-direction: row;
+  font-size: var(--font-size);
+  font-weight: 500;
+  grid-gap: var(--gap);
+  gap: var(--gap);
+  justify-content: center;
+  line-height: var(--lineheight-l);
+  max-width: 100%;
+  min-height: var(--height);
   outline: none;
+  outline-offset: 2px;
+  overflow: hidden;
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  /* repositioning the icons, after & before usage */
 }
 
-.hds-tag:focus,
-.hds-tag[focus-within] {
-  box-shadow: 0 0 0 3px var(--tag-focus-outline-color);
+.hds-tag:after {
+  flex-shrink: 0;
+  margin-right: var(--icon-reposition);
 }
 
-.hds-tag:focus,
-.hds-tag:focus-within {
-  box-shadow: 0 0 0 3px var(--tag-focus-outline-color);
+.hds-tag:before {
+  flex-shrink: 0;
+  margin-left: var(--icon-reposition);
 }
 
-.hds-tag[tabindex='0'] {
+.hds-tag > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hds-tag--large {
+  --font-size: var(--fontsize-body-m);
+  --gap: var(--spacing-2-xs);
+  --height: 48px;
+  --icon-reposition: -8px;
+  --outline-width: 3px;
+  --padding-horizontal: 20px;
+  --padding-vertical: 10px;
+}
+
+.hds-tag--action {
+  --border-color: var(--color-black-90);
+  border: 1px solid var(--computed-border-color);
+  padding: calc(var(--padding-vertical) - 1px) calc(var(--padding-horizontal) - 1px);
+}
+
+.hds-tag--multiline > span {
+  -webkit-hyphens: auto;
+          hyphens: auto;
+  white-space: initial;
+}
+
+.hds-tag--link {
+  text-decoration: underline;
+}
+
+.hds-tag--action, .hds-tag--link {
+  --background-color-hover: var(--color-black-20);
+  --outline-color: var(--color-focus-outline);
   cursor: pointer;
+  /* focus */
+  /* hover */
+  /* active */
 }
 
-.hds-tag__label {
-  line-height: var(--lineheight-m);
-  padding: var(--spacing-3-xs) var(--spacing-2-xs);
+.hds-tag--action.focus-visible, .hds-tag--link.focus-visible {
+  background-color: var(--computed-background-color-focus);
+  border-color: var(--computed-border-color-focus);
+  color: var(--computed-color-focus);
 }
 
-.hds-tag__label:not(:only-child) {
-  padding: 0 var(--spacing-2-xs) 0 0;
+.hds-tag--action:focus-visible, .hds-tag--link:focus-visible {
+  background-color: var(--computed-background-color-focus);
+  border-color: var(--computed-border-color-focus);
+  color: var(--computed-color-focus);
 }
 
-.hds-tag__delete-button {
- display: flex;
- outline: none;
+.hds-tag--action:hover, .hds-tag--link:hover {
+  background-color: var(--computed-background-color-hover);
+  border-color: var(--computed-border-color-hover);
+  color: var(--computed-color-hover);
 }
 
-.hds-tag__delete-button .hds-icon {
-  height: var(--spacing-m);
-  width: var(--spacing-m);
+.hds-tag--action:active, .hds-tag--link:active {
+  background-color: var(--computed-background-color-active);
+  border-color: var(--computed-border-color-active);
+  color: var(--computed-color-active);
+}
+
+.hds-tag--action.focus-visible, .hds-tag--action:active:hover, .hds-tag--link.focus-visible, .hds-tag--link:active:hover {
+  box-shadow: none;
+  outline: var(--outline-width) solid var(--computed-outline-color);
+}
+
+.hds-tag--action:focus-visible, .hds-tag--action:active:hover, .hds-tag--link:focus-visible, .hds-tag--link:active:hover {
+  box-shadow: none;
+  outline: var(--outline-width) solid var(--computed-outline-color);
+}
+
+.hds-tag__icon, .hds-icon.hds-tag__icon {
+  flex-shrink: 0;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.hds-tag__icon:first-child {
+  margin-left: var(--icon-reposition);
+}
+
+.hds-tag__icon:last-child {
+  margin-right: var(--icon-reposition);
 }

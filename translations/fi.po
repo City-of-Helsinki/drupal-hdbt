@@ -1133,10 +1133,6 @@ msgid "Last day of the time period"
 msgstr "Asti"
 
 msgctxt "Events search"
-msgid "If you want to search for remote events, select only the option 'Internet (remote events)'"
-msgstr "Jos haluat etsiä etätapahtumia, valitse vaihtoehto 'Internet (etätapahtumat)"
-
-msgctxt "Events search"
 msgid "Select a venue"
 msgstr "Valitse tapahtumapaikka"
 

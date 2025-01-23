@@ -1,6 +1,16 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 
-import { Button, Checkbox, TextInput, Notification, IconAngleUp, IconAngleDown } from 'hds-react';
+import {
+  Button,
+  ButtonPresetTheme,
+  ButtonVariant,
+  Checkbox,
+  IconAngleDown,
+  IconAngleUp,
+  Notification,
+  NotificationSize,
+  TextInput,
+} from 'hds-react';
 import React, { createRef, useEffect } from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
@@ -28,7 +38,6 @@ const SearchMonitorContainer = () => {
   // ElasticSearch query base64 encoded
   const queryEncoded = Buffer.from(query).toString('base64');
   const searchDescription = '-';
-  const lang = '';
 
   // Relative url for "query" parameter
   const currentPath = window.location.pathname;
@@ -116,6 +125,7 @@ const SearchMonitorContainer = () => {
 
     // Oops, error from backend
     if (!response.ok) {
+      // eslint-disable-next-line no-console
       console.log(response.statusText);
       seterrorMessage(Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }));
       if (submitButton) {
@@ -185,17 +195,17 @@ const SearchMonitorContainer = () => {
         <>
           <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
           <Button
-            type="button"
             aria-controls='job-search-form__search-monitor__content'
             aria-expanded={isFormVisible}
-            variant="supplementary"
-            theme="black"
-            iconLeft={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
+            iconStart={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
             onClick={(event: React.MouseEvent) => {
               event.preventDefault();
               setIsFormVisible(!isFormVisible);
             }}
             style={customButtonStyles}
+            theme={ButtonPresetTheme.Black}
+            type="button"
+            variant={ButtonVariant.Supplementary}
           >
             {isFormVisible ? closeLabel : openLabel}
           </Button>
@@ -208,11 +218,11 @@ const SearchMonitorContainer = () => {
 
             {errorMessage &&
               <Notification
-                type='error'
-                size='default'
-                label={errorLabel}
                 className='job-search-form__search-monitor__error'
+                label={errorLabel}
                 ref={scrollTarget}
+                size={NotificationSize.Medium}
+                type='error'
               >
                 {errorMessage}
               </Notification>
@@ -223,33 +233,33 @@ const SearchMonitorContainer = () => {
               id='job-search-form__search_monitor__email'
               label={emailLabel}
               name='job-search-form__search_monitor__email'
-              type='email'
               onChange={(event) => setEmail(event.target.value)}
-              value={email}
               required
               style={customEmailStyles}
+              type='email'
+              value={email}
             />
 
             <p><a href={tosLinkUrl} target='_blank' rel="noreferrer"  className='job-search-form__search-monitor__terms-link'>{tosLinkLabel} ({tosLinkSuffix})</a></p>
             <Checkbox
-              className='job-search-form__search-monitor__terms'
-              label={tosCheckboxLabel}
-              id='job-search-form__search_monitor__terms'
-              onChange={(event) => setTermsAgreed(event.target.checked)}
               checked={termsAgreed}
+              className='job-search-form__search-monitor__terms'
+              id='job-search-form__search_monitor__terms'
+              label={tosCheckboxLabel}
               name='job-search-form__search_monitor__terms'
+              onChange={(event) => setTermsAgreed(event.target.checked)}
               required
               style={customCheckboxStyles}
             />
 
             <Button
               className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
-              type='submit'
               id='job-search-form__search-monitor__submit-button'
               style={{
                 marginBottom: '0',
                 marginTop: 'var(--spacing-l)',
               }}
+              type='submit'
             >
               {buttonLabel}
             </Button>

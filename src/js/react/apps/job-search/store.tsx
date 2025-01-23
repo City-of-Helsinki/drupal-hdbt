@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 
+import {Option} from 'hds-react';
 import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
 import { getLanguageLabel } from './helpers/Language';
@@ -285,7 +286,7 @@ export const languagesAtom = atom(async(get) => {
     value: langcode,
   }));
 });
-export const languageSelectionAtom = atom<OptionType | null>(null);
+export const languageSelectionAtom = atom<OptionType[] | Option[] | null>(null);
 
 export const continuousAtom = atom<boolean>(false);
 export const internshipAtom = atom<boolean>(false);

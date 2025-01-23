@@ -1,44 +1,49 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { useState } from 'react';
+import type OptionType from '../types/OptionType';
 
 import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
 
-
 function LocationFilter() {
   const locationOptions = useAtomValue(locationAtom);
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
+  const [locationSelectOpen, setLocationSelectOpen] = useState(false);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const onChange = (value: any) => {
-    setLocationFilter(value);
-    updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+  const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
+    setLocationFilter(selectedOptions);
+    if (clickedOption) setLocationSelectOpen(true);
+    updateParams({ [ApiKeys.LOCATION]: selectedOptions.map((location: any) => location.value).join(',') });
   };
 
-  const locationHelper = Drupal.t('If you want to search for remote events, select only the option \'Internet (remote events)\'', {}, {context: 'Events search'});
   const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
       <Select
         className='hdbt-search__dropdown'
-        clearButtonAriaLabel={Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' })}
-        helper={locationHelper}
-        label={selectVenueLabel}
-        multiselect
-        // @ts-ignore
-        options={locationOptions}
-        value={locationSelection}
         id={SearchComponents.LOCATION}
+        multiSelect
+        noTags
+        onBlur={() => setLocationSelectOpen(false)}
         onChange={onChange}
-        placeholder={Drupal.t('All', {}, { context: 'React search: all available options' })}
-        selectedItemRemoveButtonAriaLabel={Drupal.t('Remove item', {}, { context: 'React search: remove item aria label' })}
+        open={locationSelectOpen}
+        options={locationOptions}
+        texts={{
+          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
+          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
+          label: selectVenueLabel,
+          placeholder: Drupal.t('All', {}, { context: 'React search: all available options' }),
+        }}
         theme={{
+          '--checkbox-background-selected': 'var(--hdbt-color-black)',
           '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--multiselect-checkbox-background-selected': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
+        value={locationSelection}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { ReactNode, MouseEventHandler, Children } from 'react';
 import type { DateTime } from 'luxon';
-import { Button, IconCross } from 'hds-react';
+import {Button, ButtonVariant, IconCross} from 'hds-react';
 
 type SelectionsWrapperProps = {
   showClearButton: string | number | boolean | true | DateTime | undefined;
@@ -25,10 +25,10 @@ const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsW
             <Button
               aria-hidden={!showClearButton}
               className='hdbt-search__clear-all-button'
-              iconLeft={<IconCross className='hdbt-search__clear-all-icon' />}
+              iconStart={<IconCross className='hdbt-search__clear-all-icon' />}
               onClick={resetForm}
               style={showClearButton ? {} : { visibility: 'hidden' }}
-              variant='supplementary'
+              variant={ButtonVariant.Supplementary}
             >
               {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
             </Button>
