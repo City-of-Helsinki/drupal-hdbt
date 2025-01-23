@@ -1,5 +1,5 @@
 type SearchParams = {
-  keyword?: string;
+  address?: string;
   page?: number;
   query?: string;
   sv_only?: boolean;

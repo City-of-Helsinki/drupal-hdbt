@@ -19,21 +19,21 @@ const UseProximityQuery = (params: SearchParams) => {
 
   const fetcher = async () => {
     const { index } = AppSettings;
-    const { keyword, sv_only } = params;
+    const { address, sv_only } = params;
 
     let coordinates = null;
     let ids = null;
 
-    if (keyword) {
-      let addresses = await getAddresses(getAddressUrls(keyword));
-      addresses = addresses.filter((address: any) => address.results.length);
+    if (address) {
+      let addresses = await getAddresses(getAddressUrls(address));
+      addresses = addresses.filter((_address: any) => _address.results.length);
 
       if (addresses.length) {
         coordinates = parseCoordinates(addresses);
       }
     }
 
-    if (keyword && !coordinates) {
+    if (address && !coordinates) {
       return null;
     }
 

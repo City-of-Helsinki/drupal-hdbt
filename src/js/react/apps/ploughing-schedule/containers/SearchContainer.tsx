@@ -1,13 +1,23 @@
-import { Suspense } from 'react';
-import { useAtomValue } from 'jotai';
+import { Suspense, useEffect } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
 
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import { paramsAtom } from '../store';
+import useInitialParams from '@/react/common/hooks/useInitialParams';
 
 const SearchContainer = () => {
-  const params = useAtomValue(paramsAtom);
+  const [params, setParams] = useAtom(paramsAtom);
+  const initialParams = useInitialParams({
+    address: '',
+  });
+
+  useEffect(() => {
+    if (initialParams) {
+      setParams(initialParams);
+    }
+  }, []);
 
   return (
     <Suspense fallback={
@@ -16,8 +26,8 @@ const SearchContainer = () => {
       </div>
     }>
       <div>
-        <FormContainer />
-        { params.keyword ? <ResultsContainer /> : '' }
+        <FormContainer initialParams={initialParams} />
+        { params.address ? <ResultsContainer /> : '' }
       </div>
     </Suspense>
   );

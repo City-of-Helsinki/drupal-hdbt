@@ -10,6 +10,7 @@ import FeatureResultsContainer from './FeatureResultsContainer';
 import { paramsAtom, setConfigurationsAtom } from '../store';
 import UseConfigurationsQuery from '../hooks/UseConfigurationsQuery';
 import ResultsError from '@/react/common/ResultsError';
+import useInitialParams from '@/react/common/hooks/useInitialParams';
 
 const MODE_OPTIONS = {
   // Search by school features
@@ -23,6 +24,9 @@ const SearchContainer = () => {
   const [searchMode, setSearchMode] = useState<string>(MODE_OPTIONS.proximity);
   const setParams = useSetAtom(paramsAtom);
   const setConfigurations = useSetAtom(setConfigurationsAtom);
+  const initialParams = useInitialParams({
+    address: '',
+  });
 
   const changeSearchMode = (mode: string) => {
     if (mode === searchMode) {
@@ -32,6 +36,15 @@ const SearchContainer = () => {
     setParams({});
     setSearchMode(mode);
   };
+
+  useEffect(() => {
+    if (initialParams.address) {
+      setParams({
+        keyword: initialParams.address
+      });
+      setSearchMode(MODE_OPTIONS.proximity);
+    }
+  }, [initialParams]);
 
   useEffect(() => {
     if (configurations) {
@@ -63,7 +76,7 @@ const SearchContainer = () => {
           {
             searchMode === MODE_OPTIONS.proximity ?
               <div>
-                <ProximityFormContainer />
+                <ProximityFormContainer initialAddress={initialParams?.address} />
                 <ProximityResultsContainer />
               </div> :
               <div>

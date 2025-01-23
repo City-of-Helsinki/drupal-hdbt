@@ -1,11 +1,11 @@
 import BooleanQuery from '@/types/BooleanQuery';
 
-const getQueryString = (keyword: string) => {
+const getQueryString = (address: string) => {
   const query: BooleanQuery = {
     bool: {
       must: [
         {
-          match: { street_name: keyword }
+          match: { street_name: address }
         }
       ]
     }

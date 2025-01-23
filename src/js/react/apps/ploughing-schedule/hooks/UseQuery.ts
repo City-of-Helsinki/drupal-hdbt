@@ -10,9 +10,9 @@ const UseQuery = (params: SearchParams) => {
   const { baseUrl, index } = useAtomValue(configurationsAtom);
 
   const fetcher = async () => {
-    const { keyword } = params;
+    const { address } = params;
 
-    if (!keyword) {
+    if (!address) {
       return;
     }
 
@@ -21,7 +21,7 @@ const UseQuery = (params: SearchParams) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: getQueryString(keyword),
+      body: getQueryString(address),
     }).then((res) => res.json());
   };
 

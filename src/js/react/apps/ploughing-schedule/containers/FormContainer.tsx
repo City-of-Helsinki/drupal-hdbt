@@ -10,17 +10,19 @@ type SuggestionItemType = {
   value: string;
 };
 
-const FormContainer = () => {
+const FormContainer = ({ initialParams }: { initialParams?: SearchParams}) => {
   const setParams = useSetAtom(paramsAtom);
-  const [keyword, setKeyword] = useState('');
+  const [address, setAddress] = useState(initialParams?.address);
   const { baseUrl, index } = useAtomValue(configurationsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const params: SearchParams = {};
-    params.keyword = keyword;
+    params.address = address;
     setParams(params);
   };
+
+  console.log(address, initialParams);
 
   const getSuggestions = (searchString: string) => new Promise<SuggestionItemType[]>((resolve, reject) => {
     const suggestions = fetch(`${baseUrl}/${index}/_search`, {
@@ -65,10 +67,11 @@ const FormContainer = () => {
         label={Drupal.t('Street name', {}, {context: 'Ploughing schedule: Input label'})}
         suggestionLabelField='value'
         getSuggestions={getSuggestions}
-        onSubmit={value => setKeyword(value)}
-        onChange={(value) => setKeyword(value)}
+        onSubmit={value => setAddress(value)}
+        onChange={(value) => setAddress(value)}
         visibleSuggestions={5}
         placeholder={Drupal.t('For example, Mannerheimintie', {}, {context: 'Ploughing schedule: Input placeholder'})}
+        value={address}
       />
       <Button className='hdbt-search--react__submit-button hdbt-search--ploughing-schedule__submit-button' type='submit'>
         {Drupal.t('See the ploughing schedule', {}, {context: 'Ploughing schedule: Form title / submit'})}

@@ -1,0 +1,32 @@
+
+const coerce = (value: string, type: string) => {
+  switch (type) {
+    case 'boolean':
+      return Boolean(value);
+    case 'number':
+      return Number(value);
+    default:
+      return value.toString();
+  }
+};
+
+const useInitialParams = <T extends Record<string, any>>(params: T) => {
+  const initialParams = new URLSearchParams(window.location.search);
+  const entries = initialParams.entries();
+  let result = entries.next();
+
+  while (!result.done) {
+    const [key, value] = result.value;
+
+    if (value && key in params) {
+      // @ts-ignore
+      params[key as keyof T] = coerce(value, typeof params[key as keyof T]);
+    }
+
+    result = entries.next();
+  }
+
+  return params;
+};
+
+export default useInitialParams;

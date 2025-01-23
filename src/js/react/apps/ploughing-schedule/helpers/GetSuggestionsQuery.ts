@@ -1,9 +1,9 @@
-const getSuggestionsQuery = (keyword: string) => {
+const getSuggestionsQuery = (address: string) => {
 
   const query = {
     match_phrase_prefix: {
       street_name: {
-        query: keyword
+        query: address
       }
     }
   };

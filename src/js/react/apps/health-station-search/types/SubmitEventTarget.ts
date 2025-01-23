@@ -1,5 +1,5 @@
 interface SubmitEventTarget extends EventTarget {
-  keyword: HTMLInputElement;
+  address: HTMLInputElement;
 }
 
 export default SubmitEventTarget;

@@ -1,5 +1,5 @@
 type SearchParams = {
-  keyword?: string;
+  address?: string;
 };
 
 export default SearchParams;
