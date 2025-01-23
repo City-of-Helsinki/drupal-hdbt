@@ -44,7 +44,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const mapUrl = getMapUrl();
 
-  if (Drupal.cookieConsent && Drupal.cookieConsent.getConsentStatus(['preference', 'statistics'])) {
+  if (Drupal.cookieConsent && Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
     return (
       <div className='hdbt-search--react__map-container'>
         <div className='unit-search__result--map'>
