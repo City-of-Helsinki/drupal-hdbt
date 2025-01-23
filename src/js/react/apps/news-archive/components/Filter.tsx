@@ -1,5 +1,6 @@
 import { Select } from 'hds-react';
 import { useAtom } from 'jotai';
+import { useState } from 'react';
 
 import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
@@ -14,14 +15,8 @@ type FilterProps = {
 
 const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
   const [params, setParams] = useAtom(stagedParamsAtom);
+  const [filterSelectOpen, setFilterSelectOpen] = useState(false);
   const valueIds = params?.[stateKey] || [];
-
-  const onChange = (value: any) => {
-    setParams({
-      ...params,
-      [stateKey]: value.map((option: OptionType) => Number(option.value))
-    });
-  };
 
   const getValue = () => {
     const values: OptionType[] = [];
@@ -34,25 +29,38 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
           values.push(option);
         }
       });
-    };
+    }
 
     return values;
+  };
+
+  const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
+    setParams({
+      ...params,
+      [stateKey]: selectedOptions.map((option: OptionType) => Number(option.value)),
+    });
+
+    // Keep dropdown open if an option is clicked
+    if (clickedOption) {
+      setFilterSelectOpen(true);
+    }
   };
 
   return (
     /* @ts-ignore */
     <Select
       clearable
-      clearButtonAriaLabel={Drupal.t('Clear @label selection', { '@label': label }, { context: 'React search clear selection label' })}
-      label={label}
+      multiSelect
+      noTags
+      onBlur={() => setFilterSelectOpen(false)}
       onChange={onChange}
-      multiselect
-      selectedItemRemoveButtonAriaLabel={Drupal.t(
-        'Remove item',
-        {},
-        { context: 'React search remove item aria label' }
-      )}
+      open={filterSelectOpen}
       options={options}
+      texts={{
+        clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
+        clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
+        label,
+      }}
       value={getValue()}
       {...rest}
     />

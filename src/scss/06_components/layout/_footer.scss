@@ -3,6 +3,7 @@
   margin: calc(#{$footer-koro-height} + #{$spacing-triple}) auto 0;
   max-width: 1920px;
   width: 100%;
+  z-index: 1; // Fixes issue with elements with position: relative; going over the footer koro.
 
   @include breakpoint($breakpoint-l) {
     margin-top: calc(#{$footer-koro-height} + #{$spacing-quadruple});
