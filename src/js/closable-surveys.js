@@ -74,20 +74,28 @@ import LocalStorageManager from './localStorageManager';
       function toggleOtherContentVisibility() {
         const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
         const cookieBanner = document.querySelector('.hds-cc__target');
+        const skipToMain = document.querySelector('.skip-link--skip-to-main');
         const surveyContainer = document.getElementById('helfi-survey__container');
 
-        if (mainContent && !mainContent.hasAttribute('aria-hidden') && surveyContainer) {
-          mainContent.setAttribute('aria-hidden', 'true');
+        if (mainContent && !mainContent.hasAttribute('inert') && surveyContainer) {
+          mainContent.setAttribute('inert', '');
         } else {
           // eslint-disable-next-line no-unused-expressions
-          mainContent && mainContent.removeAttribute('aria-hidden');
+          mainContent && mainContent.removeAttribute('inert');
         }
 
-        if (cookieBanner && !cookieBanner.hasAttribute('aria-hidden') && surveyContainer) {
-          cookieBanner.setAttribute('aria-hidden', 'true');
+        if (skipToMain && !skipToMain.hasAttribute('inert') && skipToMain) {
+          skipToMain.setAttribute('inert', '');
         } else {
           // eslint-disable-next-line no-unused-expressions
-          cookieBanner && cookieBanner.removeAttribute('aria-hidden');
+          skipToMain && skipToMain.removeAttribute('inert');
+        }
+
+        if (cookieBanner && !cookieBanner.hasAttribute('inert') && surveyContainer) {
+          cookieBanner.setAttribute('inert', '');
+        } else {
+          // eslint-disable-next-line no-unused-expressions
+          cookieBanner && cookieBanner.removeAttribute('inert');
         }
       }
 
