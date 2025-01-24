@@ -1314,6 +1314,14 @@ msgctxt "The helper text before the news article changed timestamp"
 msgid "updated"
 msgstr "uppdaterad"
 
+msgctxt "Curated event list title"
+msgid "Recommended events"
+msgstr "Rekommenderade evenemang"
+
+msgctxt "Curated events list empty message"
+msgid "Recommended events were not found"
+msgstr "Rekommenderade evenemang hittades inte."
+
 msgctxt "React & Share cookie compliance"
 msgid "Would you like to give feedback on this page?"
 msgstr "Vill du ge oss feedback om denna sida?"
