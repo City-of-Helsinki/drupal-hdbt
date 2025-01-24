@@ -84,7 +84,7 @@ import LocalStorageManager from './localStorageManager';
           mainContent && mainContent.removeAttribute('inert');
         }
 
-        if (skipToMain && !skipToMain.hasAttribute('inert') && skipToMain) {
+        if (skipToMain && !skipToMain.hasAttribute('inert') && surveyContainer) {
           skipToMain.setAttribute('inert', '');
         } else {
           // eslint-disable-next-line no-unused-expressions
