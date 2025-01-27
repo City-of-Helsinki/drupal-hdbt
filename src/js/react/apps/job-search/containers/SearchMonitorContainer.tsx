@@ -223,6 +223,7 @@ const SearchMonitorContainer = () => {
                 ref={scrollTarget}
                 size={NotificationSize.Medium}
                 type='error'
+                notificationAriaLabel={Drupal.t('Notification', {}, {context: 'Search monitor error message type for screen reader'})}
               >
                 {errorMessage}
               </Notification>

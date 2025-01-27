@@ -1292,6 +1292,10 @@ msgctxt "Search monitor error submitting"
 msgid "Saving search failed. Please try again."
 msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
 
+msgctxt "Search monitor error message type for screen reader"
+msgid "Notification"
+msgstr "Ilmoitus"
+
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"
