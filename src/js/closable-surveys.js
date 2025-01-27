@@ -125,8 +125,8 @@ import LocalStorageManager from './localStorageManager';
         survey.remove();
         toggleNoScroll(false);
         setBodyPaddingRight(false);
-        focusToCookieBanner();
         toggleOtherContentVisibility();
+        focusToCookieBanner();
       }
 
       if (surveyCloseButton) {
