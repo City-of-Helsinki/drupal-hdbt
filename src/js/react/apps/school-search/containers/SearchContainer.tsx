@@ -38,7 +38,7 @@ const SearchContainer = () => {
   };
 
   useEffect(() => {
-    if (initialParams.address) {
+    if (initialParams?.address) {
       setParams({
         keyword: initialParams.address
       });

@@ -10,7 +10,7 @@ type SuggestionItemType = {
   value: string;
 };
 
-const FormContainer = ({ initialParams }: { initialParams?: SearchParams}) => {
+const FormContainer = ({ initialParams }: { initialParams?: SearchParams|null}) => {
   const setParams = useSetAtom(paramsAtom);
   const [address, setAddress] = useState(initialParams?.address);
   const { baseUrl, index } = useAtomValue(configurationsAtom);
@@ -21,8 +21,6 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams}) => {
     params.address = address;
     setParams(params);
   };
-
-  console.log(address, initialParams);
 
   const getSuggestions = (searchString: string) => new Promise<SuggestionItemType[]>((resolve, reject) => {
     const suggestions = fetch(`${baseUrl}/${index}/_search`, {
