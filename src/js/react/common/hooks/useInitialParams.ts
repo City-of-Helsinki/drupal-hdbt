@@ -1,4 +1,3 @@
-
 const coerce = (value: string, type: string) => {
   switch (type) {
     case 'boolean':
@@ -14,11 +13,13 @@ const useInitialParams = <T extends Record<string, any>>(params: T) => {
   const initialParams = new URLSearchParams(window.location.search);
   const entries = initialParams.entries();
   let result = entries.next();
+  let hits = 0;
 
   while (!result.done) {
     const [key, value] = result.value;
 
     if (value && key in params) {
+      hits++;
       // @ts-ignore
       params[key as keyof T] = coerce(value, typeof params[key as keyof T]);
     }
@@ -26,7 +27,7 @@ const useInitialParams = <T extends Record<string, any>>(params: T) => {
     result = entries.next();
   }
 
-  return params;
+  return hits ? params : null;
 };
 
 export default useInitialParams;

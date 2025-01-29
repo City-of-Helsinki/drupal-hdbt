@@ -8,7 +8,7 @@ type SubmitFormType = HTMLFormElement & {
   address: HTMLInputElement;
 };
 
-const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParams }) => {
+const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParams|null }) => {
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
