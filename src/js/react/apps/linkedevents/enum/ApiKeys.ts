@@ -1,11 +1,13 @@
 export const ApiKeys = {
-  KEYWORDS: 'keyword_OR',
+  COORDINATES: 'dwithin_origin',
+  END: 'end',
   FREE: 'is_free',
+  KEYWORDS: 'keyword_OR',
   LOCATION: 'location',
   PAGESIZE: 'page_size',
+  RADIUS: 'dwithin_metres',
   REMOTE: 'internet_based',
   START: 'start',
-  END: 'end',
 };
 
 export default ApiKeys;

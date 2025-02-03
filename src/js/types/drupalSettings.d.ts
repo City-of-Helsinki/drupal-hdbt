@@ -27,7 +27,8 @@ declare namespace drupalSettings {
             }
           }
         },
-        use_fixtures: boolean
+        use_fixtures: boolean,
+        useLocationSearch: boolean,
       }
     },
     seeAllButtonOverride: string,

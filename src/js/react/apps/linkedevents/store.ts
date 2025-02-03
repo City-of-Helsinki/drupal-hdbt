@@ -8,6 +8,7 @@ import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
+import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 
 interface Options {
   [key: string]: string
@@ -52,12 +53,13 @@ const createBaseAtom = () => {
   const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
 
   const filterSettings: FilterSettings = {
-    showLocation: settings?.field_event_location,
-    showTimeFilter: settings?.field_event_time,
+    eventCount: Number(settings?.field_event_count),
     showFreeFilter: settings?.field_free_events,
+    showLocation: settings?.field_event_location,
     showRemoteFilter: settings?.field_remote_events,
+    showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
-    eventCount: Number(settings?.field_event_count)
+    useLocationSearch: settings?.useLocationSearch,
   };
   const locations = transformLocations(settings?.places);
   const topics: Topic[] = settings?.field_filter_keywords?.map(topic => ({
@@ -124,13 +126,14 @@ export const eventsPublicUrl = atom(
 
 export const settingsAtom = atom(
   (get) => get(baseAtom)?.settings || {
+    eventCount: 3,
     showFreeFilter: false,
     showLocation: false,
     showRemoteFilter: false,
     showTimeFilter: false,
     showTopicsFilter: false,
     topics: [],
-    eventCount: 3
+    useLocationSearch: false,
   }
 );
 
@@ -178,9 +181,17 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(urlAtom, get(initialUrlAtom));
 });
 
-export const updateUrlAtom = atom(null, (get, set) => {
+export const updateUrlAtom = atom(null, async(get, set) => {
   set(pageAtom, 1);
-  const params = get(paramsAtom);
+  const params = new URLSearchParams(get(paramsAtom));
+  const address = get(addressAtom);
+  const coordinates = await useAddressToCoordsQuery(address);
+
+  if (coordinates && coordinates?.length) {
+    params.set(ApiKeys.COORDINATES, coordinates.join(','));
+    params.set(ApiKeys.RADIUS, '2000');
+  }
+
   const baseUrl = get(baseUrlAtom);
   set(urlAtom, `${baseUrl}?${params.toString()}`);
 });
@@ -215,3 +226,6 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
   });
   set(paramsAtom, params);
 });
+
+// Strore address input. Converted to coordinates during form submit.
+export const addressAtom = atom<string|undefined|null>(undefined);

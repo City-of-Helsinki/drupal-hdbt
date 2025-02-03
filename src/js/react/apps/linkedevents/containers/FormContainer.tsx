@@ -17,6 +17,7 @@ import {
   updateUrlAtom,
 } from '../store';
 import TopicsFilter from '../components/TopicsFilter';
+import AddressSearch from '../components/AddressSearch';
 
 
 function FormContainer() {
@@ -31,6 +32,7 @@ function FormContainer() {
     showRemoteFilter,
     showTimeFilter,
     showTopicsFilter,
+    useLocationSearch,
   } = filterSettings;
 
   const onSubmit = () => {
@@ -63,16 +65,20 @@ function FormContainer() {
       <div className='event-form__filters-container'>
         <div className='event-form__filter-section-container'>
           {
+            useLocationSearch &&
+            <AddressSearch/>
+          }
+          {
             showTopicsFilter &&
             <TopicsFilter />
           }
           {
             showLocation &&
-              <LocationFilter />
+            <LocationFilter />
           }
           {
             showTimeFilter &&
-              <DateSelect />
+            <DateSelect />
           }
         </div>
         {

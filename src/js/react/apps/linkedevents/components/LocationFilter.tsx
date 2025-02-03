@@ -1,5 +1,5 @@
-import { Select } from 'hds-react';
-import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { Select, useSelectStorage } from 'hds-react';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import type OptionType from '../types/OptionType';
 
@@ -9,15 +9,26 @@ import ApiKeys from '../enum/ApiKeys';
 
 function LocationFilter() {
   const locationOptions = useAtomValue(locationAtom);
-  const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
+  const setLocationFilter = useSetAtom(locationSelectionAtom);
   const [locationSelectOpen, setLocationSelectOpen] = useState(false);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
-    setLocationFilter(selectedOptions);
-    if (clickedOption) setLocationSelectOpen(true);
-    updateParams({ [ApiKeys.LOCATION]: selectedOptions.map((location: any) => location.value).join(',') });
-  };
+  const storage = useSelectStorage({
+    id: SearchComponents.LOCATION,
+    onBlur: () => setLocationSelectOpen(false),
+    onChange: (value: OptionType[], clickedOption: OptionType) => {
+      setLocationFilter(value);
+      updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+
+      if (clickedOption) {
+        setLocationSelectOpen(true);
+      }
+    },
+    open: locationSelectOpen,
+    options: locationOptions?.map((option) => ({...option})) || [],
+    multiSelect: true,
+    noTags: true,
+  });
 
   const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
 
@@ -25,13 +36,6 @@ function LocationFilter() {
     <div className='hdbt-search__filter event-form__filter--location'>
       <Select
         className='hdbt-search__dropdown'
-        id={SearchComponents.LOCATION}
-        multiSelect
-        noTags
-        onBlur={() => setLocationSelectOpen(false)}
-        onChange={onChange}
-        open={locationSelectOpen}
-        options={locationOptions}
         texts={{
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
@@ -43,7 +47,7 @@ function LocationFilter() {
           '--focus-outline-color': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
-        value={locationSelection}
+        {...storage.getProps()}
       />
     </div>
   );
