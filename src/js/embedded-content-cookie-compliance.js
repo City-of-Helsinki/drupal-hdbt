@@ -35,7 +35,13 @@
         const containerElement = document.createElement('div');
         containerElement.appendChild(iframeElement);
 
-        if (attributes.type === 'map') {
+        if (attributes.type === 'video') {
+          containerElement.classList.add('responsive-video-container');
+          $(`.embedded-content-cookie-compliance.media-${id}`)
+            .empty()
+            .append(containerElement)
+            .removeClass(`media-${id}`);
+        } else if (attributes.type === 'map') {
           const $mapContainer = $(`.embedded-content-cookie-compliance.media-${id}`);
 
           // Extract the map name from the wrapping component element.
