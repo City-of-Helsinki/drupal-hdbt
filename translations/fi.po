@@ -487,6 +487,14 @@ msgctxt "Skip link before the map for the map paragraph"
 msgid "Continue below the map"
 msgstr "Siirry kartan alapuolelle"
 
+msgctxt "Skip link after the map for the map paragraph"
+msgid "Continue above the @map map"
+msgstr "Siirry kartan @map yläpuolelle"
+
+msgctxt "Skip link before the map for the map paragraph"
+msgid "Continue below the @map map"
+msgstr "Siirry kartan @map alapuolelle"
+
 msgctxt "District and project search"
 msgid "districts"
 msgstr "aluetta"

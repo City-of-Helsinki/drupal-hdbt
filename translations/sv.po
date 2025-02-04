@@ -485,6 +485,14 @@ msgctxt "Skip link before the map for the map paragraph"
 msgid "Continue below the map"
 msgstr "Gå förbi kartan nedåt"
 
+msgctxt "Skip link after the map for the map paragraph"
+msgid "Continue above the @map map"
+msgstr "Gå förbi kartan @map uppåt"
+
+msgctxt "Skip link before the map for the map paragraph"
+msgid "Continue below the @map map"
+msgstr "Gå förbi kartan @map nedåt"
+
 msgctxt "District and project search"
 msgid "districts"
 msgstr "områden"

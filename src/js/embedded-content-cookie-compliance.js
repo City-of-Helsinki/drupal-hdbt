@@ -4,7 +4,6 @@
  */
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
-
   const loadEmbeddedContent = () => {
     if (
       Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics']) &&
@@ -28,7 +27,6 @@
         skipLinkBefore.href = `#${attributes.skipLinkAfterId}`;
         skipLinkBefore.id = attributes.skipLinkBeforeId;
 
-
         const skipLinkAfter = document.createElement('a');
         skipLinkAfter.classList.add('focusable', 'skip-link');
         skipLinkAfter.href = `#${attributes.skipLinkBeforeId}`;
@@ -36,20 +34,28 @@
 
         const containerElement = document.createElement('div');
         containerElement.appendChild(iframeElement);
-        if (attributes.type === 'video') {
-          containerElement.classList.add('responsive-video-container');
-          $(`.embedded-content-cookie-compliance.media-${id}`)
-            .empty()
-            .append(containerElement)
-            .removeClass(`media-${id}`);
-        } else if (attributes.type === 'map') {
+
+        if (attributes.type === 'map') {
+          const $mapContainer = $(`.embedded-content-cookie-compliance.media-${id}`);
+
+          // Extract the map name from the wrapping component element.
+          // Fallback to empty if no title is set.
+          const mapName = $mapContainer.parent().prevAll('h2').first().text().trim() || '';
+
           containerElement.classList.add('responsive-map-container');
           skipLinkAfter.classList.add('skip-link--map--after');
           skipLinkBefore.classList.add('skip-link--map--before');
-          skipLinkAfter.text = Drupal.t('Continue above the map', {}, { context: 'Skip link after the map for the map paragraph' });
-          skipLinkBefore.text = Drupal.t('Continue below the map', {}, { context: 'Skip link before the map for the map paragraph' });
-          $(`.embedded-content-cookie-compliance.media-${id}`)
-            .replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+
+          // Adjust the skip link text based on whether mapName is found.
+          skipLinkAfter.text = mapName
+            ? Drupal.t('Continue above the @map map', { '@map': mapName }, { context: 'Skip link after the map for the map paragraph' })
+            : Drupal.t('Continue above the map', {}, { context: 'Skip link after the map for the map paragraph' });
+
+          skipLinkBefore.text = mapName
+            ? Drupal.t('Continue below the @map map', { '@map': mapName }, { context: 'Skip link before the map for the map paragraph' })
+            : Drupal.t('Continue below the map', {}, { context: 'Skip link before the map for the map paragraph' });
+
+          $mapContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
         } else if (attributes.type === 'journey_planner') {
           containerElement.classList.add('journey-planner-container');
           skipLinkAfter.classList.add('skip-link--planner--after');
