@@ -92,7 +92,7 @@ $-card-spacing: $spacing-and-half;
 }
 
 .component--content-cards-grey {
-  background: $color-silver-light;
+  background: $color-black-5;
   display: grid;
   grid-template-columns: [full-width-start] var(--component-gap, #{$spacing}) [content-start] 1fr [content-end] var(--component-gap, #{$spacing}) [full-width-end] ;
   grid-template-rows: [header-start] auto [header-end] auto;

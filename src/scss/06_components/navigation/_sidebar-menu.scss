@@ -220,7 +220,7 @@ $section-navigation-toggle-button-size: 54px;
 
 .sidebar-navigation--section-navigation {
   @include breakpoint(max-width $breakpoint-l) {
-    background-color: $color-silver-light;
+    background-color: $color-black-5;
     display: block;
   }
 
@@ -253,7 +253,7 @@ $section-navigation-toggle-button-size: 54px;
 .section-navigation__title {
   @include breakpoint(max-width $breakpoint-l) {
     @include font('h5');
-    background-color: $color-silver-light;
+    background-color: $color-black-5;
     border-bottom: 0 none;
     flex-grow: 1;
     margin-top: 0;

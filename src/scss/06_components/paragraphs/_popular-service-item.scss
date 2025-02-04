@@ -4,7 +4,7 @@ $-service-item-font: 'special.large_link';
 $-service-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-service-item-font, $unremify: true) ) * 0.5;
 
 .popular-service-item {
-  background-color: $color-silver-light;
+  background-color: $color-black-5;
   margin-bottom: $spacing-and-half;
   padding-bottom: $spacing-double;
   padding-left: $spacing-and-half;
