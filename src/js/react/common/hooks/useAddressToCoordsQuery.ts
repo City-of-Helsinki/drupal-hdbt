@@ -1,9 +1,5 @@
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
-
-/**
- * Serice map url for querying location data.
- */
-const serviceMapUrl = 'https://api.hel.fi/servicemap/v2/search';
+import ServiceMap from '../enum/ServiceMap';
 
 /**
  * Queries service map api to transform address top coordinates.
@@ -30,7 +26,7 @@ const useAddressToCoordsQuery = async(address: string|null|undefined, pageSize: 
   }));
 
   const results: Array<Promise<ServiceMapResponse<ServiceMapAddress>>> = params.map(param => {
-    const url = new URL(serviceMapUrl);
+    const url = new URL(ServiceMap.EVENTS_URL);
     url.search = param.toString();
 
     return fetch(url.toString()).then(response => response.json());

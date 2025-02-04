@@ -1,21 +1,6 @@
-import { ServiceMapAddress, ServiceMapResponse, TranslatedName } from '@/types/ServiceMap';
-import API_URL from '../enum/ServiceMap';
-
-const getNameTranslation = (names: TranslatedName, language: string|null) => {
-  if (language && names[language as 'fi'|'sv'|'en']) {
-    return names[language as 'fi'|'sv'|'en'];
-  }
-
-  if (names.fi) {
-    return names.fi;
-  }
-
-  if (names.sv) {
-    return names.sv;
-  }
-
-  throw new Error('No name found');
-};
+import { ServiceMapAddress, ServiceMapResponse, TranslatedString } from '@/types/ServiceMap';
+import ServiceMap from '../enum/ServiceMap';
+import { getNameTranslation } from '../helpers/ServiceMap';
 
 /**
  * Queries service map api for possible address names.
@@ -42,7 +27,7 @@ const useAddressQuery = async(address: string|null, pageSize: number|string = 10
   let addresses: string[] = [];
 
   params.forEach(async (param) => {
-    const url = new URL(API_URL);
+    const url = new URL(ServiceMap.EVENTS_URL);
     url.search = param.toString();
     const response = await fetch(url.toString());
 

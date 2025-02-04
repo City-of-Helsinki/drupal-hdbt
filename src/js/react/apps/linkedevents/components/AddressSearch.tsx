@@ -12,7 +12,7 @@ const AddressSearch = () => {
   };
 
   return (
-    <div className='hdbt-search__filter event-form__filter--location'>
+    <div className='hdbt-search__filter'>
       <TextInput
         className='hdbt-search__input'
         helperText={Drupal.t('placeholder', {}, {context: 'placeholder'})}
