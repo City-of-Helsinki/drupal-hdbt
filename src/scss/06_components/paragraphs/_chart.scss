@@ -1,16 +1,19 @@
-.helfi-charts-content iframe {
-  aspect-ratio: 16 / 9;
-  border: 0;
-  height: auto;
-  width: 100%;
-}
+.chart__container {
+  position: relative;
 
-.helfi-charts-noscript {
-  background: $color-silver;
-  padding: $spacing;
+  .responsive-chart-container {
+    aspect-ratio: 16 / 9;
+    background-color: $color-black-5; // Add color to show a "placeholder" while the video is loading.
+    overflow: hidden;
 
-  p:first-child {
-    margin-top: 0;
+    iframe {
+      border: 0;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
   }
 }
 
