@@ -81,7 +81,6 @@
 .react-and-share-cookie-compliance {
   align-content: center;
   align-items: center;
-  background-color: $color-black-10;;
   display: flex;
   justify-content: center;
 
@@ -140,6 +139,17 @@
       }
     }
   }
+}
+
+// Cookie compliance elements that are on a gray background need to have
+// darker shade of gray.
+.embedded-content-cookie-compliance {
+  background-color: $color-black-10;
+}
+
+.react-and-share-cookie-compliance,
+.helfi-charts-cookie-compliance {
+  background-color: $color-black-5;
 }
 
 .layout-main-wrapper > .block--react-and-share:last-child .message {
