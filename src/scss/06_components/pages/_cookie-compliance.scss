@@ -147,8 +147,11 @@
   background-color: $color-black-10;
 }
 
+// Elements that are not presented on gray background should have the default
+// light shade of gray.
 .react-and-share-cookie-compliance,
-.helfi-charts-cookie-compliance {
+.component--chart .embedded-content-cookie-compliance,
+.component--journey-planner.embedded-content-cookie-compliance {
   background-color: $color-black-5;
 }
 
