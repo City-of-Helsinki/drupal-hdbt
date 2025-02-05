@@ -15,6 +15,11 @@
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
         iframeElement.title = attributes.title;
+
+        if (attributes.allow) {
+          iframeElement.allow = attributes.allow;
+        }
+
         if (attributes.height) {
           iframeElement.height = attributes.height;
         }
