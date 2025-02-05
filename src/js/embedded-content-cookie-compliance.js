@@ -21,6 +21,12 @@
           return;
         }
 
+      const mediaContainers = $(`.embedded-content-cookie-compliance.media-${id}`);
+
+      // Each of the media type is grouped to their own mediaContainers so we need to iterate through them.
+      mediaContainers.each(function processMediaContainer() {
+        const mediaContainer = $(this);
+
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
@@ -49,8 +55,6 @@
 
         const containerElement = document.createElement('div');
         containerElement.appendChild(iframeElement);
-
-        const mediaContainer = $(`.embedded-content-cookie-compliance.media-${id}`);
 
         // Extract the media name from the wrapping component element.
         // Fallback to empty if no title is set. Currently only used in map.
@@ -96,6 +100,7 @@
           default:
             break;
         }
+      });
     });
   };
 
