@@ -5,9 +5,11 @@ const useScrollToResults = (ref: RefObject<HTMLElement>, shouldScrollOnRender: b
     const { current } = ref;
 
     if (current && shouldScrollOnRender) {
-      current.setAttribute('tabindex', '-1');
-      current.focus({preventScroll: true});
-      current.scrollIntoView({behavior: 'smooth', block: 'center'});
+      setTimeout(() => {
+        current.setAttribute('tabindex', '-1');
+        current.focus({ preventScroll: true });
+        current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50); // UHF-10235 Small delay to fix screen reader focus issue on safari
     }
   }, [ref, shouldScrollOnRender]);
 };
