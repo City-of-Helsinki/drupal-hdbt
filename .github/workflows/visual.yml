@@ -90,9 +90,7 @@ jobs:
         # Install the site from existing dump if the cache restoration was successful.
       - name: Install Drupal from existing dump
         working-directory: ${{ env.DRUPAL_ROOT }}
-        if: |
-          !contains(github.event.pull_request.labels.*.name, 'install-drupal-from-scratch') &&
-          steps.drupal-cache.outputs.cache-hit == 'true'
+        if: steps.drupal-cache.outputs.cache-hit == 'true'
         run: |
           docker compose exec app bash -c "mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < /app/public/sites/default/files/latest.sql"
           docker compose exec app bash -c "drush updb -y && drush cr"
@@ -102,9 +100,7 @@ jobs:
         # installation process and install Drupal using that dump from now on.
       - name: Install Drupal from scratch
         working-directory: ${{ env.DRUPAL_ROOT }}
-        if: |
-          contains(github.event.pull_request.labels.*.name, 'install-drupal-from-scratch') ||
-          steps.drupal-cache.outputs.cache-hit != 'true'
+        if: steps.drupal-cache.outputs.cache-hit != 'true'
         run: |
           docker compose exec app bash -c "drush si minimal -y"
           docker compose exec app bash -c "drush en redis -y"
