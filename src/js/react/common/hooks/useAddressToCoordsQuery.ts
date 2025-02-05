@@ -41,7 +41,7 @@ const useAddressToCoordsQuery = async(address: string|null|undefined, pageSize: 
 
       return false;
     })
-    // Rejected promises are filtered out, but map doesn't understand that.
+    // Rejected promises are filtered out but map doesn't understand that.
     // @ts-ignore
     .map((result: PromiseSettledResult<ServiceMapResponse<ServiceMapAddress>>) => result.value.results[0].location.coordinates);
 

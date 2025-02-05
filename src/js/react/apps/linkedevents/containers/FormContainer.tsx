@@ -18,6 +18,7 @@ import {
 } from '../store';
 import TopicsFilter from '../components/TopicsFilter';
 import AddressSearch from '../components/AddressSearch';
+import FullTopicsFilter from '../components/FullTopicsFilter';
 
 
 function FormContainer() {
@@ -27,11 +28,12 @@ function FormContainer() {
   const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const {
-    showLocation,
     showFreeFilter,
+    showLocation,
     showRemoteFilter,
     showTimeFilter,
     showTopicsFilter,
+    useFullTopicsFilter,
     useLocationSearch,
   } = filterSettings;
 
@@ -72,6 +74,10 @@ function FormContainer() {
           {
             showTopicsFilter &&
             <TopicsFilter />
+          }
+          {
+            (!showTopicsFilter && useFullTopicsFilter) &&
+            <FullTopicsFilter />
           }
           {
             showLocation &&

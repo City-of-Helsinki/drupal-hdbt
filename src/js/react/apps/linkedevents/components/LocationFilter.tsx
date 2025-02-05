@@ -1,6 +1,6 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -8,12 +8,11 @@ import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
 import { ServiceMapPlace } from '@/types/ServiceMap';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import ServiceMap from '@/react/common/enum/ServiceMap';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
+import LinkedEvents from '@/react/common/enum/LinkedEvents';
 
-function LocationFilter() {
+const LocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
-  const [locationSelectOpen, setLocationSelectOpen] = useState(false);
   const updateParams = useSetAtom(updateParamsAtom);
 
   const getLocations = async (
@@ -21,7 +20,7 @@ function LocationFilter() {
     selectedOptions: OptionType[],
     data: SelectData,
   ) => {
-    const url = new URL(ServiceMap.PLACES_URL);
+    const url = new URL(LinkedEvents.PLACES_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
       text: searchTerm,
@@ -58,22 +57,16 @@ function LocationFilter() {
       label: location.label
     })));
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
-
-    if (clickedOption) {
-      setLocationSelectOpen(true);
-    }
   };
 
   const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
 
   const storage = useSelectStorage({
     id: SearchComponents.LOCATION,
-    onBlur: () => setLocationSelectOpen(false),
     onChange,
-    open: locationSelectOpen,
     multiSelect: true,
     noTags: true,
-    onSearch: (searchTerm: string, selectedOptions: OptionType[], data: SelectData) => getLocations(searchTerm, selectedOptions, data),
+    onSearch: getLocations,
   });
 
   return (
@@ -95,6 +88,6 @@ function LocationFilter() {
       />
     </div>
   );
-}
+});
 
 export default LocationFilter;

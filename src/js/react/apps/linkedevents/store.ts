@@ -59,6 +59,7 @@ const createBaseAtom = () => {
     showRemoteFilter: settings?.field_remote_events,
     showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
+    useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
   };
   const locations = transformLocations(settings?.places);
@@ -78,6 +79,10 @@ const createBaseAtom = () => {
     baseUrl = eventsApiUrl;
     initialParams = new URLSearchParams();
   }
+
+  if (filterSettings.eventCount) {
+    initialParams.set('page_size', filterSettings.eventCount.toString());
+  };
 
   return {
     settings: filterSettings,
@@ -101,7 +106,12 @@ export const baseUrlAtom = atom(
 );
 
 export const initialUrlAtom = atom(
-  (get) => get(baseAtom)?.initialUrl
+  (get) => {
+    const baseUrl = get(baseAtom)?.initialUrl;
+    const initialParams = get(initialParamsAtom);
+
+    return `${baseUrl}?${initialParams.toString()}`;
+  }
 );
 
 export const initialParamsAtom = atom(
@@ -133,6 +143,7 @@ export const settingsAtom = atom(
     showTimeFilter: false,
     showTopicsFilter: false,
     topics: [],
+    useFullTopicsFilter: false,
     useLocationSearch: false,
   }
 );
