@@ -37,6 +37,7 @@
 {% set map_service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
 {% set iframe_title = media.getMediaTitle() %}
+{% set cookie_consent_groups = ['preferences', 'statistics'] %}
 
 {% set after_map_id = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
 {% set before_map_id = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
@@ -48,6 +49,7 @@
     media_iframe_title: iframe_title,
     media_service_url: map_service_url,
     privacy_policy_url: privacy_policy_url,
+    cookie_consent_groups: cookie_consent_groups,
   } %}
 
   {% if alternative_language %}
@@ -64,6 +66,7 @@
             'type': 'map',
             'skipLinkAfterId' : after_map_id,
             'skipLinkBeforeId' : before_map_id,
+            'cookieConsentGroups' : cookie_consent_groups,
           }
         }
       }

@@ -2,6 +2,7 @@
 {% set iframe_title = media.getMediaTitle() %}
 {% set service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
+{% set cookie_consent_groups = ['statistics'] %}
 
 {% if media_url %}
   <figure>
@@ -12,6 +13,7 @@
         media_iframe_title: iframe_title,
         media_service_url: service_url,
         privacy_policy_url: privacy_policy_url,
+        cookie_consent_groups: cookie_consent_groups,
       } %}
     </div>
     <figcaption class="chart__transcript">{{ content.field_helfi_chart_transcript }}</figcaption>
@@ -26,6 +28,7 @@
             'title': iframe_title,
             'type': 'chart',
             'allow': 'fullscreen',
+            'cookieConsentGroups' : cookie_consent_groups,
           }
         }
       }

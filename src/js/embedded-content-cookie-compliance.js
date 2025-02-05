@@ -4,13 +4,23 @@
  */
 // eslint-disable-next-line func-names
 (function ($, Drupal, drupalSettings) {
+
+  // Check whether the given cookie categories have been accepted.
+  const categoriesAgreed = (categories) => {
+    // Set default categories if none exists.
+    if (!categories) {
+      categories = ['preferences', 'statistics'];
+    }
+    return Drupal.cookieConsent.getConsentStatus(categories);
+  };
+
   const loadEmbeddedContent = () => {
-    if (
-      Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics']) &&
-      drupalSettings.embedded_media_attributes
-    ) {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const [id, attributes] of Object.entries(drupalSettings.embedded_media_attributes)) {
+    Object.entries(drupalSettings?.embedded_media_attributes || {})
+      .forEach(([id, attributes]) => {
+        if (!categoriesAgreed(attributes?.cookieConsentGroups)) {
+          return;
+        }
+
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
         iframeElement.src = attributes.src;
@@ -86,8 +96,7 @@
           default:
             break;
         }
-      }
-    }
+    });
   };
 
   // Remove noscript element.
