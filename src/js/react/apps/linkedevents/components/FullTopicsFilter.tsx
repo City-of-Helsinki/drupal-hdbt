@@ -12,6 +12,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 
 const FullTopicsFilter = memo(() => {
+  const [updateKey, setUpdateKey] = useState<string>('0');
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
@@ -64,9 +65,18 @@ const FullTopicsFilter = memo(() => {
     noTags: true,
     onChange,
     onSearch: getTopics,
+    updateKey,
   });
 
-  console.log('render');
+  const incrementUpdateKey = () => {
+    setUpdateKey((Number(updateKey) + 1).toString());
+  };
+
+  useEffect(() => {
+    window.addEventListener('eventsearch-clear', incrementUpdateKey);
+
+    return () => window.removeEventListener('eventsearch-clear', incrementUpdateKey);
+  });
 
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>
@@ -84,11 +94,6 @@ const FullTopicsFilter = memo(() => {
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
         {...storage.getProps()}
-        // onSearch={getTopics}
-        // open={topicsSelectOpen}
-        // onChange={onChange}
-        // multiSelect
-        // noTags
       />
     </div>
   );

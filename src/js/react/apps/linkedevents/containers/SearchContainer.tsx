@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
-import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom } from '../store';
+import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom, settingsAtom, addressAtom } from '../store';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import ApiKeys from '../enum/ApiKeys';
 
 type ResponseType = {
   data: Event[];
@@ -28,6 +29,7 @@ const SWR_REFRESH_OPTIONS = {
 
 const SearchContainer = () => {
   const { useExperimentalGhosts } = drupalSettings.helfi_events;
+  const settings = useAtomValue(settingsAtom);
   const initialUrl = useAtomValue(initialUrlAtom);
   const initialParams = useAtomValue(initialParamsAtom);
   const [params, setParams] = useAtom(paramsAtom);
@@ -61,12 +63,20 @@ const SearchContainer = () => {
 
     throw new Error('Failed to get data from the API');
   };
-  const { data, error, isLoading } = useSWR(url, getEvents, {...SWR_REFRESH_OPTIONS, keepPreviousData: useExperimentalGhosts});
+
+  const shouldFetch = !settings.useLocationSearch || url.includes(ApiKeys.COORDINATES);
+  const { data, error, isLoading } = useSWR(shouldFetch ? url : null, getEvents, {...SWR_REFRESH_OPTIONS, keepPreviousData: useExperimentalGhosts});
 
   return (
     <>
       <FormContainer />
-      <ResultsContainer error={error} countNumber={data?.meta.count || 0} loading={isLoading} events={data?.data || []} />
+      <ResultsContainer
+        addressRequired={!shouldFetch}
+        countNumber={data?.meta.count || 0}
+        error={error}
+        events={data?.data || []}
+        loading={isLoading}
+      />
     </>
   );
 };

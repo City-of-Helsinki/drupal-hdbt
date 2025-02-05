@@ -66,9 +66,7 @@ function FormContainer() {
       <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
       <div className='event-form__filters-container'>
         {useLocationSearch &&
-         <div className='event-form__filter-section-container'>
-            <AddressSearch />
-          </div>
+          <AddressSearch />
         }
         <div className='event-form__filter-section-container'>
           {

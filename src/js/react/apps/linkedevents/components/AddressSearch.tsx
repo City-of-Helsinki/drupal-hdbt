@@ -15,11 +15,11 @@ const AddressSearch = () => {
     <div className='hdbt-search__filter'>
       <TextInput
         className='hdbt-search__input'
-        helperText={Drupal.t('placeholder', {}, {context: 'placeholder'})}
         id='location'
-        label={Drupal.t('placeholder')}
+        label={Drupal.t('Address', {}, {context: 'Events search'})}
         type='search'
         onChange={onChange}
+        required
       />
     </div>
   );

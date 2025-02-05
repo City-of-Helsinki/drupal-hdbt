@@ -178,8 +178,6 @@ export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
-  const initialParams = get(initialParamsAtom);
-
   set(locationSelectionAtom, []);
   set(topicSelectionAtom, []);
   set(startDateAtom, undefined);
@@ -188,8 +186,23 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(remoteFilterAtom, false);
   set(freeFilterAtom, false);
   set(pageAtom, 1);
-  set(paramsAtom, new URLSearchParams(initialParams.toString()));
-  set(urlAtom, get(initialUrlAtom));
+
+  const newParams = new URLSearchParams(get(initialParamsAtom).toString());
+  const currentParams = new URLSearchParams(new URL(get(urlAtom) || '').search);
+
+  [ApiKeys.COORDINATES, ApiKeys.RADIUS].forEach((key) => {
+    const param = currentParams.get(key);
+    if (param) {
+      newParams.set(key, param);
+    }
+  });
+
+  const initialUrl = new URL(get(initialUrlAtom));
+  initialUrl.search = newParams.toString();
+  set(urlAtom, initialUrl.toString());
+
+  const clearEvent = new Event('eventsearch-clear');
+  window.dispatchEvent(clearEvent);
 });
 
 export const updateUrlAtom = atom(null, async(get, set) => {
@@ -220,8 +233,15 @@ export const updatePageParamAtom = atom(null, (get, set, page: number) => {
 export const resetParamAtom = atom(null, (get, set, option: string) => {
   const initialParams = get(initialParamsAtom);
   const params = get(paramsAtom);
+  const skipParams = [
+    ApiKeys.COORDINATES,
+    ApiKeys.RADIUS,
+  ];
 
-  if (Object.values(ApiKeys).indexOf(option) !== -1) {
+  if (
+    Object.values(ApiKeys).indexOf(option) !== -1 &&
+    skipParams.indexOf(option) === -1
+  ) {
     const initial = initialParams.get(option);
     initial ? params.set(option, initial) : params.delete(option);
     set(paramsAtom, params);

@@ -1,6 +1,6 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { memo, useState } from 'react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { memo, useEffect, useRef, useState } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -12,6 +12,7 @@ import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 
 const LocationFilter = memo(() => {
+  const [updateKey, setUpdateKey] = useState<string>('0');
   const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
@@ -51,7 +52,7 @@ const LocationFilter = memo(() => {
     return result;
   };
 
-  const onChange = (value: OptionType[], clickedOption: OptionType) => {
+  const onChange = (value: OptionType[], clickedOption: OptionType, data: SelectData) => {
     setLocationFilter(value.map((location: any) => ({
       value: location.value,
       label: location.label
@@ -63,10 +64,21 @@ const LocationFilter = memo(() => {
 
   const storage = useSelectStorage({
     id: SearchComponents.LOCATION,
-    onChange,
     multiSelect: true,
     noTags: true,
+    onChange,
     onSearch: getLocations,
+    updateKey,
+  });
+
+  const incrementUpdateKey = () => {
+    setUpdateKey((Number(updateKey) + 1).toString());
+  };
+
+  useEffect(() => {
+    window.addEventListener('eventsearch-clear', incrementUpdateKey);
+
+    return () => window.removeEventListener('eventsearch-clear', incrementUpdateKey);
   });
 
   return (
