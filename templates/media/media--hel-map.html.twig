@@ -39,8 +39,8 @@
 {% set iframe_title = media.getMediaTitle() %}
 {% set cookie_consent_groups = ['preferences', 'statistics'] %}
 
-{% set after_map_id = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
-{% set before_map_id = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
+{% set skip_link_after = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
+{% set skip_link_before = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
 
 {% if media_url %}
   {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
@@ -64,8 +64,8 @@
             'src': media_url,
             'title': media_attributes.value.0['title'],
             'type': 'map',
-            'skipLinkAfterId' : after_map_id,
-            'skipLinkBeforeId' : before_map_id,
+            'skipLinkAfterId' : skip_link_after,
+            'skipLinkBeforeId' : skip_link_before,
             'cookieConsentGroups' : cookie_consent_groups,
           }
         }
