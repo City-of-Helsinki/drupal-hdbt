@@ -1,13 +1,14 @@
 import useSWR from 'swr';
-import { useAtomValue, useAtom } from 'jotai';
+import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
-import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom, settingsAtom, addressAtom } from '../store';
+import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom, settingsAtom, addressAtom, updateUrlAtom } from '../store';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import ApiKeys from '../enum/ApiKeys';
+import useInitialParams from '@/react/common/hooks/useInitialParams';
 
 type ResponseType = {
   data: Event[];
@@ -34,7 +35,19 @@ const SearchContainer = () => {
   const initialParams = useAtomValue(initialParamsAtom);
   const [params, setParams] = useAtom(paramsAtom);
   const url = useAtomValue(urlAtom) || initialUrl;
+  const updateUrl = useSetAtom(updateUrlAtom);
+  const updateAddress = useSetAtom(addressAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
+  const { address } = useInitialParams({
+    address: '',
+  });
+
+  useEffect(() => {
+    if (address && address !== '') {
+      updateAddress(address);
+      updateUrl();
+    }
+  }, []);
 
   // If we have fixture data set, return that instead of an API call.
   if (fixtureData) {

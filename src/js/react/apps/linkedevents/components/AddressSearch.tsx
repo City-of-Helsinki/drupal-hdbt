@@ -1,19 +1,19 @@
 import { SearchInput } from 'hds-react';
-import { useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { addressAtom } from '../store';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from '@/react/common/enum/ServiceMap';
 
 const AddressSearch = () => {
-  const updateAddress = useSetAtom(addressAtom);
+  const [address, updateAddress] = useAtom(addressAtom);
 
   const onChange = (value: string) => {
     updateAddress(value);
   };
 
-  const getSuggestions = async(address: string|undefined) => {
-    if (!address || address === '') {
+  const getSuggestions = async(searchTerm: string|undefined) => {
+    if (!searchTerm || searchTerm === '') {
       return [];
     }
 
@@ -29,7 +29,7 @@ const AddressSearch = () => {
       language: lang,
       municipality: 'helsinki',
       page_size: '10',
-      q: address,
+      q: searchTerm,
       type: 'address',
     }));
 
@@ -61,6 +61,7 @@ const AddressSearch = () => {
         placeholder={Drupal.t('For example, Mannerheimintie 1', {}, {context: 'Helsinki near you'})}
         suggestionLabelField='value'
         visibleSuggestions={5}
+        value={address || ''}
       />
     </div>
   );
