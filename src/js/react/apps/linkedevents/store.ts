@@ -59,6 +59,7 @@ const createBaseAtom = () => {
     showRemoteFilter: settings?.field_remote_events,
     showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
+    useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
   };
@@ -143,6 +144,7 @@ export const settingsAtom = atom(
     showTimeFilter: false,
     showTopicsFilter: false,
     topics: [],
+    useFullLocationFilter: false,
     useFullTopicsFilter: false,
     useLocationSearch: false,
   }

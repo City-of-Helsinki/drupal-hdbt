@@ -19,6 +19,7 @@ import {
 import TopicsFilter from '../components/TopicsFilter';
 import AddressSearch from '../components/AddressSearch';
 import FullTopicsFilter from '../components/FullTopicsFilter';
+import FullLocationFilter from '../components/FullLocationFilter';
 
 
 function FormContainer() {
@@ -33,6 +34,7 @@ function FormContainer() {
     showRemoteFilter,
     showTimeFilter,
     showTopicsFilter,
+    useFullLocationFilter,
     useFullTopicsFilter,
     useLocationSearch,
   } = filterSettings;
@@ -74,12 +76,14 @@ function FormContainer() {
             <TopicsFilter />
           }
           {
-            (!showTopicsFilter && useFullTopicsFilter) &&
+            useFullTopicsFilter &&
             <FullTopicsFilter />
           }
           {
             showLocation &&
-            <LocationFilter />
+              useFullLocationFilter ?
+              <FullLocationFilter /> :
+              <LocationFilter />
           }
           {
             showTimeFilter &&

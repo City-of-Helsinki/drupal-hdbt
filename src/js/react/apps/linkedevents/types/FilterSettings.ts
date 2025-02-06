@@ -5,6 +5,7 @@ type FilterSettings = {
   showRemoteFilter: boolean,
   showTimeFilter: boolean,
   showTopicsFilter: boolean,
+  useFullLocationFilter: boolean,
   useFullTopicsFilter: boolean
   useLocationSearch: boolean,
 };

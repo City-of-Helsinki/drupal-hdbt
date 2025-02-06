@@ -16,7 +16,7 @@ const AddressSearch = () => {
       <TextInput
         className='hdbt-search__input'
         id='location'
-        label={Drupal.t('Address', {}, {context: 'Events search'})}
+        label={Drupal.t('Address', {}, {context: 'React search: location label'})}
         type='search'
         onChange={onChange}
         required

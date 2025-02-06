@@ -15,6 +15,7 @@ import {
   resetParamAtom,
   updateParamsAtom,
   updateUrlAtom,
+  settingsAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
@@ -32,6 +33,14 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
   const resetForm = useSetAtom(resetFormAtom);
+  const settings = useAtomValue(settingsAtom);
+  const {
+    showTopicsFilter,
+    showLocation,
+    showTimeFilter,
+    useFullLocationFilter,
+    useFullTopicsFilter,
+  } = settings;
 
   const showClearButton = locationSelection.length || topicsSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
@@ -41,18 +50,24 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
 
   return (
     <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={url}>
-      <ListFilterPills
-        updater={setTopicsSelection}
-        valueKey={ApiKeys.KEYWORDS}
-        values={topicsSelection}
-        url={url}
-      />
-      <ListFilterPills
-        updater={setLocationSelection}
-        valueKey={ApiKeys.LOCATION}
-        values={locationSelection}
-        url={url}
-      />
+      {
+        (showTopicsFilter && !useFullTopicsFilter) &&
+        <ListFilterPills
+          updater={setTopicsSelection}
+          valueKey={ApiKeys.KEYWORDS}
+          values={topicsSelection}
+          url={url}
+        />
+      }
+      {
+        (showLocation && !useFullLocationFilter) &&
+        <ListFilterPills
+          updater={setLocationSelection}
+          valueKey={ApiKeys.LOCATION}
+          values={locationSelection}
+          url={url}
+        />
+      }
       <DateFilterPill
         startDate={startDate}
         endDate={endDate}
