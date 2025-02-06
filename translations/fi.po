@@ -520,14 +520,6 @@ msgid "Continue below the @chart chart"
 msgstr "Siirry kaavion @chart alapuolelle"
 
 msgctxt "Skip links"
-msgid "Continue above the video"
-msgstr "Siirry videon yläpuolelle"
-
-msgctxt "Skip links"
-msgid "Continue below the video"
-msgstr "Siirry videon alapuolelle"
-
-msgctxt "Skip links"
 msgid "Continue above the @video video"
 msgstr "Siirry videon @video yläpuolelle"
 
