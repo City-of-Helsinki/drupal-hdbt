@@ -1,0 +1,46 @@
+{% set media_id = media.id() %}
+{% set media_url = media.field_helfi_chart_url.0.value.uri %}
+{% set iframe_title = media.getMediaTitle() %}
+{% set service_url = media.getServiceUrl() %}
+{% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
+{% set cookie_consent_groups = ['statistics'] %}
+
+{% set skip_link_after = 'chart-' ~ media_id ~ random() ~ '-after'|clean_id %}
+{% set skip_link_before = 'chart-' ~ media_id ~ random() ~ '-before'|clean_id %}
+
+{% if media_url %}
+  <figure>
+    <div class="chart__container">
+      {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+        media_url: media_url,
+        media_id: media.id,
+        media_iframe_title: iframe_title,
+        media_service_url: service_url,
+        privacy_policy_url: privacy_policy_url,
+        cookie_consent_groups: cookie_consent_groups,
+      } %}
+    </div>
+    <figcaption class="chart__transcript">{{ content.field_helfi_chart_transcript }}</figcaption>
+  </figure>
+
+  {% set drupal_settings = {
+    '#attached': {
+      'drupalSettings': {
+        'embedded_media_attributes': {
+          (media.id): {
+            'src': media_url,
+            'title': iframe_title,
+            'type': 'chart',
+            'allow': 'fullscreen',
+            'skipLinkAfterId' : skip_link_after,
+            'skipLinkBeforeId' : skip_link_before,
+            'cookieConsentGroups' : cookie_consent_groups,
+          }
+        }
+      }
+    }
+  } %}
+
+  {{ drupal_settings }}
+  {{ attach_library(media.getJsLibrary()) }}
+{% endif %}

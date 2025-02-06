@@ -78,14 +78,14 @@
 }
 
 .embedded-content-cookie-compliance,
-.react-and-share-cookie-compliance,
-.helfi-charts-cookie-compliance {
+.react-and-share-cookie-compliance {
   align-content: center;
   align-items: center;
   display: flex;
   justify-content: center;
 
   .map &,
+  .chart &,
   .remote-video & {
     aspect-ratio: 16 / 9; // Best guess for content size
   }
@@ -147,8 +147,11 @@
   background-color: $color-black-10;
 }
 
+// Elements that are not presented on gray background should have the default
+// light shade of gray.
 .react-and-share-cookie-compliance,
-.helfi-charts-cookie-compliance {
+.component--chart .embedded-content-cookie-compliance,
+.component--journey-planner .embedded-content-cookie-compliance {
   background-color: $color-black-5;
 }
 
