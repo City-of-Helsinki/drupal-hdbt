@@ -1,5 +1,6 @@
 type FilterSettings = {
   eventCount: number
+  hidePagination: boolean,
   showFreeFilter: boolean,
   showLocation: boolean,
   showRemoteFilter: boolean,

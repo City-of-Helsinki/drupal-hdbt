@@ -19,6 +19,7 @@ declare namespace drupalSettings {
           id: string,
           name: string,
         }[],
+        hidePagination: boolean,
         places: {
           [key:string]: {
             id: string,
@@ -34,6 +35,7 @@ declare namespace drupalSettings {
       }
     },
     seeAllButtonOverride: string,
+    seeAllNearYouLink: string;
     useExperimentalGhosts: boolean,
   };
   const helfi_react_search: {

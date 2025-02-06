@@ -22,7 +22,7 @@ type ResultsContainerProps = {
 };
 
 function ResultsContainer({ addressRequired, countNumber, events, loading, error }: ResultsContainerProps) {
-  const { useExperimentalGhosts } = drupalSettings.helfi_events;
+  const { useExperimentalGhosts, seeAllNearYouLink } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const params = useAtomValue(paramsAtom);
@@ -83,7 +83,9 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
             ref={scrollTarget}
           />
           {events.map(event => loading ? <CardGhost key={event.id} /> : <ResultCard key={event.id} {...event} />)}
-          <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+          {!settings.hidePagination &&
+            <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+          }
         </>
       );
     }
@@ -94,7 +96,17 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
   return (
     <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
       {getContent()}
-      <SeeAllButton />
+      {
+        seeAllNearYouLink ?
+        <a
+          data-hds-component="button"
+          href={seeAllNearYouLink}
+          className=''
+        >
+          {Drupal.t('See all events near you', {}, { context: 'Helsinki near you' })}
+        </a> :
+        <SeeAllButton />
+      }
     </div>
   );
 }
