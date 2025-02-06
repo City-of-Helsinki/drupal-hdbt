@@ -47,7 +47,7 @@
           const containerElement = document.createElement('div');
           containerElement.appendChild(iframeElement);
 
-          // Extract the media name from the wrapping component element or in
+          // Extract the media name from the wrapping component title or in
           // case of video, from the remote video - video title.
           // Fallback to empty if no title is set.
           let mediaName = '';
@@ -56,7 +56,7 @@
               mediaName = mediaContainer.parent().siblings('.remote-video__video-title').text().trim() || '';
               break;
             default:
-              mediaName = mediaContainer.parent().prevAll('h2').first().text().trim() || '';
+              mediaName = mediaContainer.closest(`.component__content.${attributes.type}`).siblings('.component__title').text().trim() || '';
               break;
           }
 
