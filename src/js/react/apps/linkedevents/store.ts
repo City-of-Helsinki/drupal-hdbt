@@ -3,7 +3,6 @@ import { DateTime } from 'luxon';
 
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
-import Location from './types/Location';
 import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
@@ -21,7 +20,7 @@ const transformLocations = (locations: any = null) => {
   }
 
   const { currentLanguage } = drupalSettings.path;
-  const locationOptions: Location[] = [];
+  const locationOptions: OptionType[] = [];
 
   const keys = Object.keys(locations);
   keys.forEach((id: string) => {
@@ -120,11 +119,11 @@ export const initialParamsAtom = atom(
 );
 
 export const locationAtom = atom(
-  (get) => get(baseAtom)?.locations
+  (get) => get(baseAtom)?.locations || []
 );
 
 export const topicsAtom = atom(
-  (get) => get(baseAtom)?.topics
+  (get) => get(baseAtom)?.topics || []
 );
 
 export const titleAtom = atom(

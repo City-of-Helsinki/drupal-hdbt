@@ -1,20 +1,25 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
-import { useAtomValue, useAtom, useSetAtom } from 'jotai';
-import { memo, useEffect, useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useAtomCallback } from 'jotai/utils';
 import type OptionType from '../types/OptionType';
 
-import { topicsAtom, topicSelectionAtom, updateParamsAtom} from '../store';
+import { topicSelectionAtom, updateParamsAtom} from '../store';
 import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import { LinkedEventsTopic } from '@/types/LinkedEvents';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
+import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 
 const FullTopicsFilter = memo(() => {
-  const [updateKey, setUpdateKey] = useState<string>('0');
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+
+  const getTopicsParamValue = useAtomCallback(
+    useCallback((get) => get(topicSelectionAtom), [])
+  );
 
   const getTopics = async (
     searchTerm: string,
@@ -55,6 +60,15 @@ const FullTopicsFilter = memo(() => {
   const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
     setTopicsFilter(selectedOptions);
     updateParams({ [ApiKeys.KEYWORDS]: selectedOptions.map((topic: any) => topic.value).join(',') });
+
+    storage.updateAllOptions((option, group, groupindex) => ({
+        ...option,
+        selected: selectedOptions.some(selection => selection.value === option.value),
+      }));
+
+    if (clickedOption) {
+      storage.setOpen(true);
+    }
   };
 
   const selectLabel: string = Drupal.t('Event topic', {}, { context: 'React search: topics filter' });
@@ -65,17 +79,24 @@ const FullTopicsFilter = memo(() => {
     noTags: true,
     onChange,
     onSearch: getTopics,
-    updateKey,
   });
 
-  const incrementUpdateKey = () => {
-    setUpdateKey((Number(updateKey) + 1).toString());
+  const clearAllSelections = () => {
+    clearAllSelectionsFromStorage(storage);
+  };
+
+  const updateSelections = () => {
+    updateSelectionsInStorage(storage, getTopicsParamValue());
   };
 
   useEffect(() => {
-    window.addEventListener('eventsearch-clear', incrementUpdateKey);
+    window.addEventListener('eventsearch-clear', clearAllSelections);
+    window.addEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
 
-    return () => window.removeEventListener('eventsearch-clear', incrementUpdateKey);
+    return () => {
+      window.addEventListener('eventsearch-clear', clearAllSelections);
+      window.removeEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
+    };
   });
 
   return (

@@ -1,6 +1,7 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { memo, useEffect, useRef, useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { memo, useCallback, useEffect, useState } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -10,11 +11,15 @@ import { ServiceMapPlace } from '@/types/ServiceMap';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
+import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 
 const FullLocationFilter = memo(() => {
-  const [updateKey, setUpdateKey] = useState<string>('0');
   const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+
+  const getLocationParamValue = useAtomCallback(
+    useCallback((get) => get(locationSelectionAtom), [])
+  );
 
   const getLocations = async (
     searchTerm: string,
@@ -24,6 +29,7 @@ const FullLocationFilter = memo(() => {
     const url = new URL(LinkedEvents.PLACES_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
+      // municipality: 'helsinki',
       text: searchTerm,
     });
     url.search = locationParams.toString();
@@ -53,11 +59,20 @@ const FullLocationFilter = memo(() => {
   };
 
   const onChange = (value: OptionType[], clickedOption: OptionType, data: SelectData) => {
-    setLocationFilter(value.map((location: any) => ({
-      value: location.value,
-      label: location.label
+    setLocationFilter(value.map(option => ({
+      label: option.label,
+      value: option.value,
     })));
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+
+    storage.updateAllOptions((option, group, groupindex) => ({
+        ...option,
+        selected: value.some(selection => selection.value === option.value),
+      }));
+
+    if (clickedOption) {
+      storage.setOpen(true);
+    }
   };
 
   const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
@@ -67,18 +82,26 @@ const FullLocationFilter = memo(() => {
     multiSelect: true,
     noTags: true,
     onChange,
-    onSearch: getLocations,
-    updateKey,
+    open: false,
+    onSearch: getLocations
   });
 
-  const incrementUpdateKey = () => {
-    setUpdateKey((Number(updateKey) + 1).toString());
+  const clearAllSelections = () => {
+    clearAllSelectionsFromStorage(storage);
+  };
+
+  const updateSelections = () => {
+    updateSelectionsInStorage(storage, getLocationParamValue());
   };
 
   useEffect(() => {
-    window.addEventListener('eventsearch-clear', incrementUpdateKey);
+    window.addEventListener('eventsearch-clear', clearAllSelections);
+    window.addEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
 
-    return () => window.removeEventListener('eventsearch-clear', incrementUpdateKey);
+    return () => {
+      window.addEventListener('eventsearch-clear', clearAllSelections);
+      window.removeEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
+    };
   });
 
   return (

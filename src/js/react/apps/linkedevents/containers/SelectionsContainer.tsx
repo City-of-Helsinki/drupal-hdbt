@@ -50,24 +50,18 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
 
   return (
     <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={url}>
-      {
-        (showTopicsFilter && !useFullTopicsFilter) &&
-        <ListFilterPills
-          updater={setTopicsSelection}
-          valueKey={ApiKeys.KEYWORDS}
-          values={topicsSelection}
-          url={url}
-        />
-      }
-      {
-        (showLocation && !useFullLocationFilter) &&
-        <ListFilterPills
-          updater={setLocationSelection}
-          valueKey={ApiKeys.LOCATION}
-          values={locationSelection}
-          url={url}
-        />
-      }
+      <ListFilterPills
+        updater={setTopicsSelection}
+        valueKey={ApiKeys.KEYWORDS}
+        values={topicsSelection}
+        url={url}
+      />
+      <ListFilterPills
+        updater={setLocationSelection}
+        valueKey={ApiKeys.LOCATION}
+        values={locationSelection}
+        url={url}
+      />
       <DateFilterPill
         startDate={startDate}
         endDate={endDate}
@@ -126,6 +120,9 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     updater(newValue);
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
+
+    const event = new Event(`eventsearch-clear-${valueKey}`);
+    window.dispatchEvent(event);
   };
 
   return (
