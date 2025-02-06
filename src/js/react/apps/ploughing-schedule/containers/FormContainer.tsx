@@ -22,8 +22,6 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams}) => {
     setParams(params);
   };
 
-  console.log(address, initialParams);
-
   const getSuggestions = (searchString: string) => new Promise<SuggestionItemType[]>((resolve, reject) => {
     const suggestions = fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',

@@ -1,7 +1,7 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -29,7 +29,7 @@ const FullLocationFilter = memo(() => {
     const url = new URL(LinkedEvents.PLACES_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
-      // municipality: 'helsinki',
+      municipality: 'helsinki',
       text: searchTerm,
     });
     url.search = locationParams.toString();
