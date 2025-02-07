@@ -57,6 +57,10 @@ $tag-vertical-padding: 5px;
   }
 }
 
+.event-form__filter-section-container .hdbt-search__dropdown {
+  max-width: none;
+}
+
 // Override HDS style for multiple checkboxes
 .event-form__filter-section-container .hdbt-search__checkbox:not(:first-of-type) {
   @include breakpoint($breakpoint-l) {
@@ -81,4 +85,8 @@ $tag-vertical-padding: 5px;
 
 .event-list__filter-title {
   @include font('h3');
+}
+
+.hdbt-search__input--address {
+  margin-bottom: $spacing-and-half;
 }

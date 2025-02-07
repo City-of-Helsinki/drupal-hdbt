@@ -51,7 +51,7 @@ const AddressSearch = () => {
   return (
     <div className='hdbt-search__filter'>
       <SearchInput
-        className='hdbt-search__input'
+        className='hdbt-search__input hdbt-search__input--address'
         getSuggestions={getSuggestions}
         hideSearchButton
         id='location'
