@@ -28,6 +28,7 @@ declare namespace drupalSettings {
             }
           }
         },
+        showHeading: boolean,
         use_fixtures: boolean,
         useFullLocationFilter: boolean,
         useFullTopicsFilter: boolean,

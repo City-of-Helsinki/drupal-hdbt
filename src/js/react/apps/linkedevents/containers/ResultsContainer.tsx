@@ -98,13 +98,14 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
       {getContent()}
       {
         seeAllNearYouLink ?
-        <a
-          data-hds-component="button"
-          href={seeAllNearYouLink}
-          className=''
-        >
-          {Drupal.t('See all events near you', {}, { context: 'Helsinki near you' })}
-        </a> :
+        <div className='event-list__see-all-button event-list__see-all-button--near-you'>
+          <a
+            data-hds-component="button"
+            href={seeAllNearYouLink}
+          >
+            {Drupal.t('See all events near you', {}, { context: 'Helsinki near you' })}
+          </a>
+        </div> :
         <SeeAllButton />
       }
     </div>

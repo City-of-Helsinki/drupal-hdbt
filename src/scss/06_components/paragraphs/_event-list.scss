@@ -27,7 +27,6 @@ $tag-vertical-padding: 5px;
   .event-form__filter-section-container {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-and-half;
     justify-content: space-between;
   }
 
@@ -74,6 +73,10 @@ $tag-vertical-padding: 5px;
   margin-inline: auto;
   margin-top: $spacing-double;
   text-align: center;
+}
+
+.event-list__see-all-button--near-you {
+  text-align: left;
 }
 
 .event-list__filter-title {

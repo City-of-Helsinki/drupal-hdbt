@@ -58,7 +58,7 @@ const AddressSearch = () => {
         label={Drupal.t('Address', {}, {context: 'React search: location label'})}
         onChange={onChange}
         onSubmit={onChange}
-        placeholder={Drupal.t('For example, Mannerheimintie 1', {}, {context: 'Helsinki near you'})}
+        placeholder={Drupal.t('For example, Kotikatu 1', {}, {context: 'Helsinki near you events search'})}
         suggestionLabelField='value'
         visibleSuggestions={5}
         value={address || ''}
