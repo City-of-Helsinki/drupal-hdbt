@@ -66,9 +66,14 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
     }
     if (addressRequired) {
       return (
-        <>
-          Start by typing your address
-        </>
+        <ResultsHeader
+          resultText={
+            <>
+              {Drupal.t('Start by searching with your address.', {}, {context: 'Helsinki near you events search'})}
+            </>
+          }
+          ref={scrollTarget}
+        />
       );
     }
     if (events.length > 0) {
