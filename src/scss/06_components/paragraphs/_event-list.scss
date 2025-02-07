@@ -86,7 +86,3 @@ $tag-vertical-padding: 5px;
 .event-list__filter-title {
   @include font('h3');
 }
-
-.hdbt-search__input--address {
-  margin-bottom: $spacing-and-half;
-}
