@@ -108,7 +108,7 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
             data-hds-component="button"
             href={seeAllNearYouLink}
           >
-            {Drupal.t('See all events near you', {}, { context: 'Helsinki near you' })}
+            {Drupal.t('See all events near you', {}, { context: 'Helsinki near you events search' })}
           </a>
         </div> :
         <SeeAllButton />
