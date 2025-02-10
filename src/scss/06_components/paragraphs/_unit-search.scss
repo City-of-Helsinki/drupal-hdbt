@@ -1,6 +1,6 @@
 .component--unit-search {
   @include component-side-padding;
-  background-color: $color-silver-light;
+  background-color: $color-black-5;
 }
 
 .component--unit-search .hds-checkbox__input {
@@ -9,7 +9,7 @@
 
 // Patch Siteimprove false positive color contrast issue to reduce noise
 .component--unit-search .hds-checkbox__label {
-  background-color: $color-silver-light;
+  background-color: $color-black-5;
 }
 
 // Give the checkboxes white background color. The hds-styles have the checkboxes bg transparent for some reason.

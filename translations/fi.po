@@ -479,13 +479,53 @@ msgctxt "The text for close accordion visibility button"
 msgid "Close"
 msgstr "Sulje"
 
-msgctxt "Skip link after the map for the map paragraph"
+msgctxt "Skip links"
 msgid "Continue above the map"
 msgstr "Siirry kartan yläpuolelle"
 
-msgctxt "Skip link before the map for the map paragraph"
+msgctxt "Skip links"
 msgid "Continue below the map"
 msgstr "Siirry kartan alapuolelle"
+
+msgctxt "Skip links"
+msgid "Continue above the @map map"
+msgstr "Siirry kartan @map yläpuolelle"
+
+msgctxt "Skip links"
+msgid "Continue below the @map map"
+msgstr "Siirry kartan @map alapuolelle"
+
+msgctxt "Skip links"
+msgid "Continue above the journey planner"
+msgstr "Siirry reittioppaan yläpuolelle"
+
+msgctxt "Skip links"
+msgid "Continue below the journey planner"
+msgstr "Siirry reittioppaan alapuolelle"
+
+msgctxt "Skip links"
+msgid "Continue above the chart"
+msgstr "Siirry kaavion yläpuolelle"
+
+msgctxt "Skip links"
+msgid "Continue below the chart"
+msgstr "Siirry kaavion alapuolelle"
+
+msgctxt "Skip links"
+msgid "Continue above the @chart chart"
+msgstr "Siirry kaavion @chart yläpuolelle"
+
+msgctxt "Skip links"
+msgid "Continue below the @chart chart"
+msgstr "Siirry kaavion @chart alapuolelle"
+
+msgctxt "Skip links"
+msgid "Continue above the @video video"
+msgstr "Siirry videon @video yläpuolelle"
+
+msgctxt "Skip links"
+msgid "Continue below the @video video"
+msgstr "Siirry videon @video alapuolelle"
 
 msgctxt "District and project search"
 msgid "districts"

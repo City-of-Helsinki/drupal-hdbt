@@ -21,7 +21,7 @@ function getConfig(hostname, protocol, type) {
     '.breadcrumb__container',
     '.block--react-and-share',
     '.footer',
-    '.sliding-popup-bottom',
+    '.hds-cc--banner',
     'iframe',
   ];
 

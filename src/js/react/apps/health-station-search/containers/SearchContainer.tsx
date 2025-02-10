@@ -17,7 +17,7 @@ const SearchContainer = () => {
     if (initialParams) {
       setParams(initialParams);
     }
-  }, [initialParams, setParams]);
+  }, []);
 
   return (
     <Suspense fallback={

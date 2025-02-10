@@ -43,12 +43,17 @@
       {% set link_title %}
         <span class="hds-button__label">{{ 'Change cookie settings'|t({}, {'context': 'Cookie compliance'}) }}</span>
       {% endset %}
+
+      {% if cookie_consent_groups is empty %}
+        {% set cookie_consent_groups = ['preferences', 'statistics'] %}
+      {% endif %}
+
       {% set link_attributes = {
         'class': [
           'hds-button',
           'hds-button--secondary',
         ],
-        'data-cookie-consent-groups': 'preferences, statistics',
+        'data-cookie-consent-groups': cookie_consent_groups|join(','),
         'onclick': 'window.hdsCookieConsentClickEvent(event, this)',
       } %}
       {% if privacy_policy_url %}

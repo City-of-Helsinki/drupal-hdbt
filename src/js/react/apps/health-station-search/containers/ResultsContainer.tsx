@@ -7,6 +7,7 @@ import ResultsList from '../components/ResultsList';
 const ProximityResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
   const setParams = useSetAtom(updateParamsAtom);
+
   const updatePage = (page: number) => {
     setParams({
       ...params,

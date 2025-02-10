@@ -30,11 +30,16 @@
  * @see template_preprocess_media()
  */
 #}
+{% set media_id = media.id() %}
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
 {% set iframe_title = media.getMediaTitle() %}
 {% set service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
+{% set cookie_consent_groups = ['preferences', 'statistics'] %}
+
+{% set skip_link_after = 'video-' ~ media_id ~ random() ~ '-after'|clean_id %}
+{% set skip_link_before = 'video-' ~ media_id ~ random() ~ '-before'|clean_id %}
 
 {% if not media_attributes.src is null %}
   {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
@@ -43,6 +48,7 @@
     media_iframe_title: iframe_title,
     media_service_url: service_url,
     privacy_policy_url: privacy_policy_url,
+    cookie_consent_groups: cookie_consent_groups,
   } %}
 
   {% set drupal_settings = {
@@ -55,6 +61,9 @@
             'width': media_attributes.width,
             'title': 'Video: ' ~ iframe_title,
             'type': 'video',
+            'skipLinkAfterId' : skip_link_after,
+            'skipLinkBeforeId' : skip_link_before,
+            'cookieConsentGroups' : cookie_consent_groups,
           }
         }
       }

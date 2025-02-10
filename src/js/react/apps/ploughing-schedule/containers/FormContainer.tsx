@@ -10,7 +10,7 @@ type SuggestionItemType = {
   value: string;
 };
 
-const FormContainer = ({ initialParams }: { initialParams?: SearchParams}) => {
+const FormContainer = ({ initialParams }: { initialParams?: SearchParams|null}) => {
   const setParams = useSetAtom(paramsAtom);
   const [address, setAddress] = useState(initialParams?.address);
   const { baseUrl, index } = useAtomValue(configurationsAtom);
