@@ -30,7 +30,7 @@ function FormContainer() {
   const updateUrl = useSetAtom(updateUrlAtom);
   const {
     showFreeFilter,
-    showHeading,
+    hideHeading,
     showLocation,
     showRemoteFilter,
     showTimeFilter,
@@ -67,7 +67,7 @@ function FormContainer() {
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
       {
-        showHeading &&
+        !hideHeading &&
         <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
       }
       <div className='event-form__filters-container'>

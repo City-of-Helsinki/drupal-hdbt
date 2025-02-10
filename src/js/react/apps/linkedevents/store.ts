@@ -54,7 +54,7 @@ const createBaseAtom = () => {
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
     showFreeFilter: settings?.field_free_events,
-    showHeading: settings?.showHeading,
+    hideHeading: settings?.hideHeading,
     showLocation: settings?.field_event_location,
     showRemoteFilter: settings?.field_remote_events,
     showTimeFilter: settings?.field_event_time,
@@ -140,7 +140,7 @@ export const settingsAtom = atom(
   (get) => get(baseAtom)?.settings || {
     eventCount: 3,
     showFreeFilter: false,
-    showHeading: true,
+    hideHeading: true,
     showLocation: false,
     showRemoteFilter: false,
     showTimeFilter: false,
