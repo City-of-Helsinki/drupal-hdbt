@@ -30,9 +30,9 @@ const SelectionsContainer = ({
         const newParams = {...params, page: 1};
         const index = newParams?.[key]?.indexOf(Number(option.value));
 
-        if (typeof index !== 'undefined' && !Number.isNaN(index) && newParams?.[key]?.length) {
-          newParams[key]?.splice(0, 1);
-          updateParams(newParams);
+        if (typeof index !== 'undefined' && !Number.isNaN(index) && index !== -1) {
+          newParams[key]?.splice(index, 1);
+          updateParams({...newParams});
         }
       }}
     />
