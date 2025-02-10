@@ -131,7 +131,7 @@ jobs:
       - name: Evaluate if we should re-create reference images
         id: evaluate-reference-images
         if: |
-          contains( github.event.pull_request.labels.*.name, 'recreate-reference-images') ||
+          contains(github.event.pull_request.labels.*.name, 'recreate-reference-images') ||
           hashFiles('backstop/full/bitmaps_reference/') != '' ||
           github.ref == 'refs/heads/main'
         run: echo "generate-references=true" >> $GITHUB_OUTPUT

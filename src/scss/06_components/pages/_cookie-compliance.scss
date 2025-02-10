@@ -78,15 +78,14 @@
 }
 
 .embedded-content-cookie-compliance,
-.react-and-share-cookie-compliance,
-.helfi-charts-cookie-compliance {
+.react-and-share-cookie-compliance {
   align-content: center;
   align-items: center;
-  background-color: $color-black-10;;
   display: flex;
   justify-content: center;
 
   .map &,
+  .chart &,
   .remote-video & {
     aspect-ratio: 16 / 9; // Best guess for content size
   }
@@ -140,6 +139,20 @@
       }
     }
   }
+}
+
+// Cookie compliance elements that are on a gray background need to have
+// darker shade of gray.
+.embedded-content-cookie-compliance {
+  background-color: $color-black-10;
+}
+
+// Elements that are not presented on gray background should have the default
+// light shade of gray.
+.react-and-share-cookie-compliance,
+.component--chart .embedded-content-cookie-compliance,
+.component--journey-planner .embedded-content-cookie-compliance {
+  background-color: $color-black-5;
 }
 
 .layout-main-wrapper > .block--react-and-share:last-child .message {

@@ -94,29 +94,33 @@ function FormContainer() {
             <DateSelect />
           }
         </div>
-        {
-          bothCheckboxes &&
-          <div className='event-form__checkboxes-label'>{showOnlyLabel}</div>
-        }
-        <div className='event-form__filter-checkbox-container'>
-          {
-            showRemoteFilter &&
-              <CheckboxFilter
-                id='remote-toggle'
-                label={remoteLabel}
-                atom={remoteFilterAtom}
-                valueKey={ApiKeys.REMOTE}
-              />
-          }
-          {
-            showFreeFilter &&
-              <CheckboxFilter
-                id='free-toggle'
-                label={freeLabel}
-                atom={freeFilterAtom}
-                valueKey={ApiKeys.FREE}
-              />
-          }
+        <div className='hdbt-search--react__checkbox-filter-container'>
+          <fieldset className='hdbt-search--react__fieldset'>
+            {
+              bothCheckboxes &&
+              <legend className='hdbt-search--react__legend'>
+                {showOnlyLabel}
+              </legend>
+            }
+            {
+              showRemoteFilter &&
+                <CheckboxFilter
+                  id='remote-toggle'
+                  label={remoteLabel}
+                  atom={remoteFilterAtom}
+                  valueKey={ApiKeys.REMOTE}
+                />
+            }
+            {
+              showFreeFilter &&
+                <CheckboxFilter
+                  id='free-toggle'
+                  label={freeLabel}
+                  atom={freeFilterAtom}
+                  valueKey={ApiKeys.FREE}
+                />
+            }
+          </fieldset>
         </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
         <SelectionsContainer url={url} />

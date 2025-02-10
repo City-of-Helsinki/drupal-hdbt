@@ -144,68 +144,6 @@
   }
 }
 
-// News listing using teasers.
-.news-listing--teasers {
-  max-width: $content-width-max;
-
-  .news-listing__item {
-    align-items: flex-start;
-    border-bottom: 1px solid $color-silver-light;
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: $spacing-and-half;
-    position: relative;
-
-    &:first-child {
-      margin-top: $spacing-and-half;
-    }
-
-    &:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-  }
-
-  .news-listing__content {
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      padding-inline-end: $spacing-and-half;
-      width: 75%;
-    }
-  }
-
-  .news-listing__content--with-image {
-    padding-inline-end: $spacing-and-half;
-    width: 75%;
-  }
-
-  .news-listing__img {
-    @include loading-image-background;
-    width: 25%;
-
-    img {
-      display: block;
-      height: auto;
-      width: 100%;
-    }
-  }
-
-  .news-listing__title {
-    @include font('h4');
-  }
-
-  .news-listing__datetime {
-    @include font(small);
-    display: block;
-    margin-top: $spacing-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing;
-    }
-  }
-}
-
 .news-listing--card-teasers {
   display: grid;
   gap: 0;

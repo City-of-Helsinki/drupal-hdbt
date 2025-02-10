@@ -38,13 +38,16 @@ const SearchContainer = () => {
   const updateUrl = useSetAtom(updateUrlAtom);
   const updateAddress = useSetAtom(addressAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
-  const { address } = useInitialParams({
+  const queryStringParams = useInitialParams({
     address: '',
   });
 
   useEffect(() => {
-    if (address && address !== '') {
-      updateAddress(address);
+    if (
+      queryStringParams?.address &&
+      queryStringParams?.address !== ''
+    ) {
+      updateAddress(queryStringParams.address);
       updateUrl();
     }
   }, []);

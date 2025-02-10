@@ -477,13 +477,53 @@ msgctxt "The text for close accordion visibility button"
 msgid "Close"
 msgstr "Stäng"
 
-msgctxt "Skip link after the map for the map paragraph"
+msgctxt "Skip links"
 msgid "Continue above the map"
 msgstr "Gå förbi kartan uppåt"
 
-msgctxt "Skip link before the map for the map paragraph"
+msgctxt "Skip links"
 msgid "Continue below the map"
 msgstr "Gå förbi kartan nedåt"
+
+msgctxt "Skip links"
+msgid "Continue above the @map map"
+msgstr "Gå förbi kartan @map uppåt"
+
+msgctxt "Skip links"
+msgid "Continue below the @map map"
+msgstr "Gå förbi kartan @map nedåt"
+
+msgctxt "Skip links"
+msgid "Continue above the journey planner"
+msgstr "Gå förbi reseplaneraren uppåt"
+
+msgctxt "Skip links"
+msgid "Continue below the journey planner"
+msgstr "Gå förbi reseplaneraren nedåt"
+
+msgctxt "Skip links"
+msgid "Continue above the chart"
+msgstr "Gå förbi diagram uppåt"
+
+msgctxt "Skip links"
+msgid "Continue below the chart"
+msgstr "Gå förbi diagram nedåt"
+
+msgctxt "Skip links"
+msgid "Continue above the @chart chart"
+msgstr "Gå förbi diagrammet @chart uppåt"
+
+msgctxt "Skip links"
+msgid "Continue below the @chart chart"
+msgstr "Gå förbi diagrammet @chart nedåt"
+
+msgctxt "Skip links"
+msgid "Continue above the @video video"
+msgstr "Gå förbi videon @video uppåt"
+
+msgctxt "Skip links"
+msgid "Continue below the @video video"
+msgstr "Gå förbi videon @video nedåt"
 
 msgctxt "District and project search"
 msgid "districts"

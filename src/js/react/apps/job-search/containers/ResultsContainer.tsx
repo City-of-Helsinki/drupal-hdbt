@@ -25,15 +25,16 @@ const ResultsContainer = () => {
   const scrollTarget = createRef<HTMLDivElement>();
   const { query, promoted, handleResults } = useResultsQuery(urlParams);
 
-  // Scroll to results when they change.
-  const choices = Boolean(Object.keys(urlParams).length);
-  useScrollToResults(scrollTarget, choices);
-
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
     query,
     multi: promoted
   });
+
+  // Scroll to results when they change.
+  const choices = Boolean(Object.keys(urlParams).length);
+  const shouldScrollOnRender = Boolean(choices && !isLoading && !isValidating);
+  useScrollToResults(scrollTarget, shouldScrollOnRender);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();

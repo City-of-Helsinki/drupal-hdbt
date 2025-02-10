@@ -5,7 +5,7 @@
 }
 
 .component--remote-video,
-.component--remote-video a:not(.hds-button, [data-hds-component='button']:not([class*='hds-button'])) {
+.component--remote-video a:not(.hds-button, [data-hds-component='button']:not([class*='hds-button']), .skip-link) {
   color: $color-black;
 }
 

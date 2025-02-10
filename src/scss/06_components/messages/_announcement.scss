@@ -5,7 +5,7 @@
 }
 
 .announcement__container {
-  --announcement-bg-color: #{$color-silver-light}; // Defaults to .announcement--notification styles
+  --announcement-bg-color: #{$color-black-5}; // Defaults to .announcement--notification styles
   --announcement-bg-size: #{$spacing-double};
   --announcement-color: #{$color-info}; // Defaults to .announcement--notification styles
   align-items: flex-start;
