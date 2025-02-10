@@ -3,11 +3,11 @@ import { DateTime } from 'luxon';
 
 import ROOT_ID from './enum/RootId';
 import FilterSettings from './types/FilterSettings';
-import Location from './types/Location';
 import OptionType from './types/OptionType';
 import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
+import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 
 interface Options {
   [key: string]: string
@@ -20,7 +20,7 @@ const transformLocations = (locations: any = null) => {
   }
 
   const { currentLanguage } = drupalSettings.path;
-  const locationOptions: Location[] = [];
+  const locationOptions: OptionType[] = [];
 
   const keys = Object.keys(locations);
   keys.forEach((id: string) => {
@@ -52,12 +52,17 @@ const createBaseAtom = () => {
   const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
 
   const filterSettings: FilterSettings = {
-    showLocation: settings?.field_event_location,
-    showTimeFilter: settings?.field_event_time,
+    eventCount: Number(settings?.field_event_count),
     showFreeFilter: settings?.field_free_events,
+    hideHeading: settings?.hideHeading,
+    showLocation: settings?.field_event_location,
     showRemoteFilter: settings?.field_remote_events,
+    showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
-    eventCount: Number(settings?.field_event_count)
+    hidePagination: settings?.hidePagination,
+    useFullLocationFilter: settings?.useFullLocationFilter,
+    useFullTopicsFilter: settings?.useFullTopicsFilter,
+    useLocationSearch: settings?.useLocationSearch,
   };
   const locations = transformLocations(settings?.places);
   const topics: Topic[] = settings?.field_filter_keywords?.map(topic => ({
@@ -76,6 +81,10 @@ const createBaseAtom = () => {
     baseUrl = eventsApiUrl;
     initialParams = new URLSearchParams();
   }
+
+  if (filterSettings.eventCount) {
+    initialParams.set('page_size', filterSettings.eventCount.toString());
+  };
 
   return {
     settings: filterSettings,
@@ -99,7 +108,12 @@ export const baseUrlAtom = atom(
 );
 
 export const initialUrlAtom = atom(
-  (get) => get(baseAtom)?.initialUrl
+  (get) => {
+    const baseUrl = get(baseAtom)?.initialUrl;
+    const initialParams = get(initialParamsAtom);
+
+    return `${baseUrl}?${initialParams.toString()}`;
+  }
 );
 
 export const initialParamsAtom = atom(
@@ -107,11 +121,11 @@ export const initialParamsAtom = atom(
 );
 
 export const locationAtom = atom(
-  (get) => get(baseAtom)?.locations
+  (get) => get(baseAtom)?.locations || []
 );
 
 export const topicsAtom = atom(
-  (get) => get(baseAtom)?.topics
+  (get) => get(baseAtom)?.topics || []
 );
 
 export const titleAtom = atom(
@@ -124,13 +138,18 @@ export const eventsPublicUrl = atom(
 
 export const settingsAtom = atom(
   (get) => get(baseAtom)?.settings || {
+    eventCount: 3,
     showFreeFilter: false,
+    hideHeading: true,
     showLocation: false,
     showRemoteFilter: false,
     showTimeFilter: false,
     showTopicsFilter: false,
+    hidePagination: false,
     topics: [],
-    eventCount: 3
+    useFullLocationFilter: false,
+    useFullTopicsFilter: false,
+    useLocationSearch: false,
   }
 );
 
@@ -164,8 +183,6 @@ export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
-  const initialParams = get(initialParamsAtom);
-
   set(locationSelectionAtom, []);
   set(topicSelectionAtom, []);
   set(startDateAtom, undefined);
@@ -174,13 +191,36 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(remoteFilterAtom, false);
   set(freeFilterAtom, false);
   set(pageAtom, 1);
-  set(paramsAtom, new URLSearchParams(initialParams.toString()));
-  set(urlAtom, get(initialUrlAtom));
+
+  const newParams = new URLSearchParams(get(initialParamsAtom).toString());
+  const currentParams = new URLSearchParams(new URL(get(urlAtom) || '').search);
+
+  [ApiKeys.COORDINATES, ApiKeys.RADIUS].forEach((key) => {
+    const param = currentParams.get(key);
+    if (param) {
+      newParams.set(key, param);
+    }
+  });
+
+  const initialUrl = new URL(get(initialUrlAtom));
+  initialUrl.search = newParams.toString();
+  set(urlAtom, initialUrl.toString());
+
+  const clearEvent = new Event('eventsearch-clear');
+  window.dispatchEvent(clearEvent);
 });
 
-export const updateUrlAtom = atom(null, (get, set) => {
+export const updateUrlAtom = atom(null, async(get, set) => {
   set(pageAtom, 1);
-  const params = get(paramsAtom);
+  const params = new URLSearchParams(get(paramsAtom));
+  const address = get(addressAtom);
+  const coordinates = await useAddressToCoordsQuery(address);
+
+  if (coordinates && coordinates?.length) {
+    params.set(ApiKeys.COORDINATES, coordinates.join(','));
+    params.set(ApiKeys.RADIUS, '2000');
+  }
+
   const baseUrl = get(baseUrlAtom);
   set(urlAtom, `${baseUrl}?${params.toString()}`);
 });
@@ -198,8 +238,15 @@ export const updatePageParamAtom = atom(null, (get, set, page: number) => {
 export const resetParamAtom = atom(null, (get, set, option: string) => {
   const initialParams = get(initialParamsAtom);
   const params = get(paramsAtom);
+  const skipParams = [
+    ApiKeys.COORDINATES,
+    ApiKeys.RADIUS,
+  ];
 
-  if (Object.values(ApiKeys).indexOf(option) !== -1) {
+  if (
+    Object.values(ApiKeys).indexOf(option) !== -1 &&
+    skipParams.indexOf(option) === -1
+  ) {
     const initial = initialParams.get(option);
     initial ? params.set(option, initial) : params.delete(option);
     set(paramsAtom, params);
@@ -215,3 +262,6 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
   });
   set(paramsAtom, params);
 });
+
+// Strore address input. Converted to coordinates during form submit.
+export const addressAtom = atom<string|undefined|null>(undefined);

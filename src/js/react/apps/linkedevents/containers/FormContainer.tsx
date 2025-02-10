@@ -17,6 +17,9 @@ import {
   updateUrlAtom,
 } from '../store';
 import TopicsFilter from '../components/TopicsFilter';
+import AddressSearch from '../components/AddressSearch';
+import FullTopicsFilter from '../components/FullTopicsFilter';
+import FullLocationFilter from '../components/FullLocationFilter';
 
 
 function FormContainer() {
@@ -26,11 +29,15 @@ function FormContainer() {
   const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const {
-    showLocation,
     showFreeFilter,
+    hideHeading,
+    showLocation,
     showRemoteFilter,
     showTimeFilter,
     showTopicsFilter,
+    useFullLocationFilter,
+    useFullTopicsFilter,
+    useLocationSearch,
   } = filterSettings;
 
   const onSubmit = () => {
@@ -59,46 +66,65 @@ function FormContainer() {
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
-      <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
+      {
+        !hideHeading &&
+        <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
+      }
       <div className='event-form__filters-container'>
+        {useLocationSearch &&
+          <AddressSearch />
+        }
         <div className='event-form__filter-section-container'>
           {
             showTopicsFilter &&
             <TopicsFilter />
           }
           {
+            useFullTopicsFilter &&
+            <FullTopicsFilter />
+          }
+          {
             showLocation &&
+              useFullLocationFilter ?
+              <FullLocationFilter /> :
               <LocationFilter />
           }
           {
             showTimeFilter &&
-              <DateSelect />
+            <DateSelect />
           }
         </div>
         {
-          bothCheckboxes &&
-          <div className='event-form__checkboxes-label'>{showOnlyLabel}</div>
+          (showFreeFilter || showRemoteFilter) &&
+          <div className='hdbt-search--react__checkbox-filter-container'>
+            <fieldset className='hdbt-search--react__fieldset'>
+              {
+                bothCheckboxes &&
+                <legend className='hdbt-search--react__legend'>
+                  {showOnlyLabel}
+                </legend>
+              }
+              {
+                showRemoteFilter &&
+                  <CheckboxFilter
+                    id='remote-toggle'
+                    label={remoteLabel}
+                    atom={remoteFilterAtom}
+                    valueKey={ApiKeys.REMOTE}
+                  />
+              }
+              {
+                showFreeFilter &&
+                  <CheckboxFilter
+                    id='free-toggle'
+                    label={freeLabel}
+                    atom={freeFilterAtom}
+                    valueKey={ApiKeys.FREE}
+                  />
+              }
+            </fieldset>
+          </div>
         }
-        <div className='event-form__filter-checkbox-container'>
-          {
-            showRemoteFilter &&
-              <CheckboxFilter
-                id='remote-toggle'
-                label={remoteLabel}
-                atom={remoteFilterAtom}
-                valueKey={ApiKeys.REMOTE}
-              />
-          }
-          {
-            showFreeFilter &&
-              <CheckboxFilter
-                id='free-toggle'
-                label={freeLabel}
-                atom={freeFilterAtom}
-                valueKey={ApiKeys.FREE}
-              />
-          }
-        </div>
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
         <SelectionsContainer url={url} />
       </div>

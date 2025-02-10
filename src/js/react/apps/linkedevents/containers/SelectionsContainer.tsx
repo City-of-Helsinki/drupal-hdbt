@@ -15,6 +15,7 @@ import {
   resetParamAtom,
   updateParamsAtom,
   updateUrlAtom,
+  settingsAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
@@ -32,6 +33,14 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
   const resetForm = useSetAtom(resetFormAtom);
+  const settings = useAtomValue(settingsAtom);
+  const {
+    showTopicsFilter,
+    showLocation,
+    showTimeFilter,
+    useFullLocationFilter,
+    useFullTopicsFilter,
+  } = settings;
 
   const showClearButton = locationSelection.length || topicsSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
@@ -111,6 +120,9 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     updater(newValue);
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
+
+    const event = new Event(`eventsearch-clear-${valueKey}`);
+    window.dispatchEvent(event);
   };
 
   return (

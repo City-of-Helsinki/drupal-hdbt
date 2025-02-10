@@ -1,3 +1,7 @@
+.hdbt-search__filter {
+  margin-bottom: $spacing-and-half;
+}
+
 // Checkbox styles need specific selectors to override HDS styles
 .hdbt-search__filter.hdbt-search__checkbox {
   --background-unselected: transparent;
@@ -13,14 +17,11 @@
   --icon-color-selected: var(--hdbt-text-color);
   --icon-color-disabled: var(--hdbt-text-color);
   --focus-outline-color: var(--hdbt-color-black);
+  margin-bottom: $spacing-half;
 }
 
 .hdbt-search__filter.hdbt-search__checkbox label {
   font-weight: $font-weight-regular;
-}
-
-.hdbt-search__filter {
-  margin-bottom: $spacing;
 }
 
 // Override HDBTs li+li
@@ -201,7 +202,7 @@ fieldset .hdbt-search--react__checkbox {
 }
 
 fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
-  margin-top: $spacing-double;
+  margin-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-l) {
     margin-left: $spacing;

@@ -1,12 +1,15 @@
-import Topic from './Topic';
-
 type FilterSettings = {
-  showLocation: boolean,
-  showTimeFilter: boolean,
-  showFreeFilter: boolean,
-  showRemoteFilter: boolean,
-  showTopicsFilter: boolean,
   eventCount: number
+  hidePagination: boolean,
+  showFreeFilter: boolean,
+  hideHeading: boolean,
+  showLocation: boolean,
+  showRemoteFilter: boolean,
+  showTimeFilter: boolean,
+  showTopicsFilter: boolean,
+  useFullLocationFilter: boolean,
+  useFullTopicsFilter: boolean
+  useLocationSearch: boolean,
 };
 
 export default FilterSettings;

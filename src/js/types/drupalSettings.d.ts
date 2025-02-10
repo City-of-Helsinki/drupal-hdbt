@@ -19,6 +19,7 @@ declare namespace drupalSettings {
           id: string,
           name: string,
         }[],
+        hidePagination: boolean,
         places: {
           [key:string]: {
             id: string,
@@ -27,10 +28,15 @@ declare namespace drupalSettings {
             }
           }
         },
-        use_fixtures: boolean
+        hideHeading: boolean,
+        use_fixtures: boolean,
+        useFullLocationFilter: boolean,
+        useFullTopicsFilter: boolean,
+        useLocationSearch: boolean,
       }
     },
     seeAllButtonOverride: string,
+    seeAllNearYouLink: string;
     useExperimentalGhosts: boolean,
   };
   const helfi_react_search: {
