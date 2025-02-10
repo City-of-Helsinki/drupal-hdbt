@@ -34,7 +34,7 @@ function CheckboxFilter({ id, label, atom, valueKey }: CheckboxFilterProps) {
   return (
     <Checkbox
       checked={checked}
-      className="hdbt-search__filter hdbt-search__checkbox"
+      className="hdbt-search--react__checkbox"
       id={id}
       label={label}
       onChange={(event) => toggleValue(event)}

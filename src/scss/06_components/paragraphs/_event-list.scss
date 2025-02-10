@@ -1,13 +1,3 @@
-// Image width from sketch
-$event-list-image-width: 325px;
-
-// Image height in mobile
-$event-list-image-mobile-height: 264px;
-
-// Padding values for tag elements
-$tag-horizontal-padding: 12px;
-$tag-vertical-padding: 5px;
-
 .component--event-list {
   @include component-side-padding;
 }
@@ -39,38 +29,10 @@ $tag-vertical-padding: 5px;
       flex-basis: 48%;
     }
   }
-
-  .event-form__filter-checkbox-container {
-    display: flex;
-    flex-direction: column;
-
-    .hdbt-search__checkbox {
-      margin-top: var(--spacing-2-xs);
-    }
-
-    @include breakpoint($breakpoint-m) {
-      flex-direction: row;
-      flex-wrap: wrap;
-
-      @include flex-gap($spacing-and-half);
-    }
-  }
 }
 
 .event-form__filter-section-container .hdbt-search__dropdown {
   max-width: none;
-}
-
-// Override HDS style for multiple checkboxes
-.event-form__filter-section-container .hdbt-search__checkbox:not(:first-of-type) {
-  @include breakpoint($breakpoint-l) {
-    margin-top: 0;
-  }
-}
-
-.event-form__checkboxes-label {
-  font-weight: $font-weight-medium;
-  margin-bottom: $spacing;
 }
 
 .event-list__see-all-button {
