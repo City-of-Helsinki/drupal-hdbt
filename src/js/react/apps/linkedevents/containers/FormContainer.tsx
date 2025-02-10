@@ -95,13 +95,13 @@ function FormContainer() {
           }
         </div>
         <div className='hdbt-search--react__checkbox-filter-container'>
-          {
-            bothCheckboxes &&
-            <legend className='hdbt-search--react__legend'>
-              {showOnlyLabel}
-            </legend>
-          }
           <fieldset className='hdbt-search--react__fieldset'>
+            {
+              bothCheckboxes &&
+              <legend className='hdbt-search--react__legend'>
+                {showOnlyLabel}
+              </legend>
+            }
             {
               showRemoteFilter &&
                 <CheckboxFilter
