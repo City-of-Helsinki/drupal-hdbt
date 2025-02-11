@@ -24,7 +24,7 @@
     "@dotenvx/dotenvx": "^1.15.0",
     "@nuxt/friendly-errors-webpack-plugin": "^2.5.1",
     "@react-aria/visually-hidden": "^3.8.0",
-    "@sentry/react": "^8.33.0",
+    "@sentry/react": "^9.0.0",
     "@sideway/address": "^5.0.0",
     "@sideway/formula": "^3.0.0",
     "@sideway/pinpoint": "^2.0.0",
