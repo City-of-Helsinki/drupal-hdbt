@@ -8,10 +8,11 @@
 @import 'pages/_index';
 @import 'paragraphs/_index';
 // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
+@import 'chat_widget';
+@import 'editorially';
 @import 'eu-cookie-compliance-banner';
 @import 'gin-toolbar';
 @import 'logo';
 @import 'metadata-wrapper';
 @import 'tags';
 @import 'throbber';
-@import 'editorially';

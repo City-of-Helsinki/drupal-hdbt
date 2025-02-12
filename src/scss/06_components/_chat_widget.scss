@@ -1,0 +1,18 @@
+.telia-chat-leijuke {
+  @include font('body');
+
+  align-items: center;
+  background: $color-black;
+  border: 2px solid $color-white;
+  border-radius: $spacing-half;
+  color: $color-white;
+  cursor: pointer;
+  display: flex;
+  flex: auto;
+  gap: $spacing-half;
+  padding: $spacing-half $spacing;
+
+  &.hidden {
+    display: none;
+  }
+}
