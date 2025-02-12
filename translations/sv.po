@@ -134,6 +134,12 @@ msgstr "Gå till extern webbplats"
 msgid "Service points"
 msgstr "Serviceställen"
 
+msgctxt "Service unit title"
+msgid "Service point"
+msgid_plural "Service points"
+msgstr[0] "Serviceställ"
+msgstr[1] "Serviceställer"
+
 msgctxt "Service units count"
 msgid "service point"
 msgid_plural "service points"

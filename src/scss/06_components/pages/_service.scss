@@ -116,8 +116,12 @@ $teaser-icon-size-desktop: 48px;
 
   .service__units__count-container {
     display: block;
-    margin-top: $spacing;
+    margin-top: $spacing-double;
     white-space: nowrap;
+
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-quadruple;
+    }
   }
 
   .service__units__list {

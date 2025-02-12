@@ -138,6 +138,12 @@ msgstr "Siirry ulkoiselle sivustolle"
 msgid "Service points"
 msgstr "Palvelupisteet"
 
+msgctxt "Service unit title"
+msgid "Service point"
+msgid_plural "Service points"
+msgstr[0] "Palvelupiste"
+msgstr[1] "Palvelupisteet"
+
 msgctxt "Service units count"
 msgid "service point"
 msgid_plural "service points"
