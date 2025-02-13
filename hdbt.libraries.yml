@@ -13,6 +13,8 @@ accordion:
       attributes: { defer: true },
       minified: true
     }
+  dependencies:
+    - helfi_toc/table_of_contents
 
 helfi_calculator:
   version: 1.x
