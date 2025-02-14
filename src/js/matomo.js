@@ -2,10 +2,14 @@
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
 
-    // If matomo_js_site_id value is set, use JS client for matomo analytics
-    const siteId = drupalSettings.matomo_js_site_id;
-    if (siteId && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
-      // eslint-disable-next-line no-console
+    /**
+     * Temporary hard-coded value for using Matomo js client.
+     * This will be reworked into a general feature, for now use this for testing.
+     *
+     * @todo implement a general feature
+     */
+    const instanceName = drupalSettings.helfi_instance_name;
+    if (instanceName === 'asuminen' && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
       const getLanguage = () => document.querySelector('html')?.attributes?.lang?.value || 'unkown';
@@ -31,7 +35,7 @@
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
         _paq.push(['setSiteId', '141']);
-        _paq.push(['addTracker', `${u}tracker.php`], siteId);
+        _paq.push(['addTracker', `${u}tracker.php`], '1098');
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
