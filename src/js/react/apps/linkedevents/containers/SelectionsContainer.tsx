@@ -188,7 +188,7 @@ const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => 
   );
 };
 
-const updateSelections = (prev: any, next: any) => {  
+const updateSelections = (prev: any, next: any) => {
   if (prev.url === next.url) {
     return true;
   }
