@@ -1,14 +1,11 @@
 // eslint-disable-next-line func-names
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
-    /**
-     * If the queryparameter is found, the script will be loaded
-     * regardless of cookie consents etc.
-     */
-    const useJSAPI = window.location.search === '?9mt5bfb2bGk=';
-    if (useJSAPI) {
+
+    // If matomo_js_api_key value is set, use JS client for matomo analytics
+    const jsApiKey = drupalSettings.matomo_js_api_key;
+    if (jsApiKey && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       // eslint-disable-next-line no-console
-      console.info('Using JavaScript Tracking');
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
       const getLanguage = () => document.querySelector('html')?.attributes?.lang?.value || 'unkown';
@@ -34,14 +31,14 @@
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
         _paq.push(['setSiteId', '141']);
+        _paq.push(['addTracker', `${u}tracker.php`], jsApiKey);
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
       })();
     }
-
-    // Load Matomo only if statistics cookies are allowed.
-    if (!useJSAPI && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+    // Use Matomo tag manager if statistics cookies are allowed.
+    else if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       // Matomo Tag Manager
       // eslint-disable-next-line no-multi-assign
       const _mtm = (window._mtm = window._mtm || []);
