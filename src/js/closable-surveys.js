@@ -1,7 +1,7 @@
 import LocalStorageManager from './localStorageManager';
 
 // eslint-disable-next-line func-names
-(function (Drupal) {
+((Drupal) => {
   Drupal.behaviors.closable_surveys = {
     attach: function attach() {
       // Move the DOM element with id 'block-surveys' right after the skip-to-main link if it is present.
@@ -30,6 +30,7 @@ import LocalStorageManager from './localStorageManager';
       try {
         surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error('Error parsing local storage data:', e);
       }
 
@@ -133,11 +134,13 @@ import LocalStorageManager from './localStorageManager';
         surveyCloseButton.addEventListener('click', removeSurvey);
       }
 
-      document.body.addEventListener('keydown', function(event) {
+      function handleEscapeKey(event) {
         if (event.key === 'Escape') {
           removeSurvey();
         }
-      });
+      }
+
+      document.body.addEventListener('keydown', handleEscapeKey);
 
       // Set a timeout to show the survey after the defined delay.
       setTimeout(showSurvey, surveyDelay);

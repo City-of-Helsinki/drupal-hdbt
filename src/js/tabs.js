@@ -73,6 +73,7 @@
 
       // Guard clause if elements not found
       if (!activeTabElement || !activeContentElement) {
+        // eslint-disable-next-line no-console
         console.warn('Tab elements not found:', { activeTab, activeContent });
         return;
       }
