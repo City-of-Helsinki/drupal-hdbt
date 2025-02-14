@@ -85,9 +85,10 @@ function FormContainer() {
           }
           {
             showLocation &&
-              useFullLocationFilter ?
-              <FullLocationFilter /> :
-              <LocationFilter />
+              (useFullLocationFilter ?
+                <FullLocationFilter /> :
+                <LocationFilter />
+              )
           }
           {
             showTimeFilter &&
