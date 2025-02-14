@@ -2,9 +2,9 @@
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
 
-    // If matomo_js_api_key value is set, use JS client for matomo analytics
-    const jsApiKey = drupalSettings.matomo_js_api_key;
-    if (jsApiKey && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+    // If matomo_js_site_id value is set, use JS client for matomo analytics
+    const siteId = drupalSettings.matomo_js_site_id;
+    if (siteId && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       // eslint-disable-next-line no-console
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
@@ -31,7 +31,7 @@
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
         _paq.push(['setSiteId', '141']);
-        _paq.push(['addTracker', `${u}tracker.php`], jsApiKey);
+        _paq.push(['addTracker', `${u}tracker.php`], siteId);
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
