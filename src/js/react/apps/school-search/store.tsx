@@ -1,9 +1,7 @@
 import { atom } from 'jotai';
 
-import { AGGREGATIONS } from './helpers/FeatureQuery';
 import SearchParams from './types/SearchParams';
 import type OptionType from './types/OptionType';
-import AppSettings from './enum/AppSettings';
 import ontologyDetailsIdsToLang from './enum/LanguageEducationMap';
 
 type Configurations = {

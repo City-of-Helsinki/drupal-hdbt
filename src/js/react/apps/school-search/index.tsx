@@ -1,11 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import { useSetAtom } from 'jotai';
 import { ErrorBoundary } from '@sentry/react';
 import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
-import configurationsAtom from './store';
 import ResultsError from '@/react/common/ResultsError';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 
