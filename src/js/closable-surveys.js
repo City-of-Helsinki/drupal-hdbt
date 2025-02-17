@@ -1,7 +1,6 @@
 import LocalStorageManager from './localStorageManager';
 
-// eslint-disable-next-line func-names
-((Drupal) => {
+(Drupal => {
   Drupal.behaviors.closable_surveys = {
     attach: function attach() {
       // Move the DOM element with id 'block-surveys' right after the skip-to-main link if it is present.
