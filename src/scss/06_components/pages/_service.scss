@@ -115,13 +115,10 @@ $teaser-icon-size-desktop: 48px;
   }
 
   .service__units__count-container {
-    @include font('lead');
-    display: block;
-    margin-top: $spacing;
-    white-space: nowrap;
+    margin-top: $spacing-double;
 
-    .service__units__count {
-      font-weight: $font-weight-bold;
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-quadruple;
     }
   }
 

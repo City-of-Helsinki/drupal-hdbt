@@ -138,6 +138,16 @@ msgstr "Siirry ulkoiselle sivustolle"
 msgid "Service points"
 msgstr "Palvelupisteet"
 
+msgctxt "Service units title"
+msgid "Service point"
+msgid_plural "Service points"
+msgstr[0] "Palvelupiste"
+msgstr[1] "Palvelupisteet"
+
+msgctxt "Service units count"
+msgid "service points"
+msgstr "palvelupistettä"
+
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Julkaisematon"

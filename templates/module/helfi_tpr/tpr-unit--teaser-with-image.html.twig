@@ -7,8 +7,6 @@
     {{ content.picture_url_override }}
   {% elseif content.picture_url|render %}
     {{ content.picture_url }}
-  {% else %}
-    {% include "@hdbt/misc/image-placeholder.twig" ignore missing %}
   {% endif %}
 {% endset %}
 

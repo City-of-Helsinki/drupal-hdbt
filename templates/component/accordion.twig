@@ -10,9 +10,10 @@
 
 {% set controlled_content_id = "accordion-item-content--" ~ random() %}
 {% set close_button_labelled_by_id = "accordion-item__button--close--" ~ random() %}
+{% set unique_id = heading[0]['#context']['value']|clean_class|clean_unique_id %}
 
-<div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
-  <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{heading[0]['#context']['value']|clean_class}}">
+<div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{unique_id}}">
+  <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{unique_id}}">
     <button type="button" class="accordion-item__button accordion-item__button--toggle helfi-accordion__header__button" aria-expanded="true" aria-controls="{{ controlled_content_id }}">
       {% if heading_icon %}
         <div class="accordion-item__icon">

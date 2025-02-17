@@ -134,6 +134,16 @@ msgstr "Gå till extern webbplats"
 msgid "Service points"
 msgstr "Serviceställen"
 
+msgctxt "Service units title"
+msgid "Service point"
+msgid_plural "Service points"
+msgstr[0] "Serviceställ"
+msgstr[1] "Serviceställerna"
+
+msgctxt "Service units count"
+msgid "service points"
+msgstr "serviceställer"
+
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
 msgstr "Opublicerad"

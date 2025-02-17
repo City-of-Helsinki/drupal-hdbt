@@ -19,7 +19,7 @@ export default class AccordionItem {
     this.parentCallback = parentCallback;
 
     // Use header id as this objects id since header id is unique.
-    this._id = element.querySelector('.helfi-accordion__header').id;
+    this._id = element.dataset.accordionId;
     this._isOpen = this.localState.loadItemState(this._id);
 
     this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload

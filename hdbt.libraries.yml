@@ -6,7 +6,7 @@ desktop-menu-toggle:
     }
 
 accordion:
-  version: 1.5
+  version: 1.6
   js:
     dist/js/accordion.min.js: {
       weight: -50,
