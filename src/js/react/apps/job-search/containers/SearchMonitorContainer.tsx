@@ -125,8 +125,7 @@ const SearchMonitorContainer = () => {
 
     // Oops, error from backend
     if (!response.ok) {
-      // eslint-disable-next-line no-console
-      console.log(response.statusText);
+      console.warn(response.statusText);
       seterrorMessage(Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }));
       if (submitButton) {
         submitButton.removeAttribute('disabled');
