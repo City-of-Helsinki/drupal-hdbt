@@ -29,7 +29,6 @@ import LocalStorageManager from './localStorageManager';
       try {
         surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.error('Error parsing local storage data:', e);
       }
 

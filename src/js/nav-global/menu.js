@@ -456,7 +456,6 @@ const MobilePanel = {
     try {
       await this.load();
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(
         'Unable to load menu API, using fallback menu instead',
         e,
@@ -536,7 +535,6 @@ const MobilePanel = {
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
      */
     if (this.running) {
-      // eslint-disable-next-line no-console
       console.warn('MobilePanel already initiated. Is it include more than once?');
       return;
     }
@@ -552,7 +550,6 @@ const MobilePanel = {
     // TODO: UHF-8791 Where is this #menu coming from? Maybe name it better (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8791).
     this.menu = document.querySelector('#menu');
     if (!this.menu) {
-      // eslint-disable-next-line no-console
       console.error('Panel not present in DOM. Cannot start JS mobile menu');
       return;
     }

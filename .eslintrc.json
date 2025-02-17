@@ -60,7 +60,8 @@
       "error",
       "after",
       { "overrides": { "?": "ignore", ":": "ignore" } }
-    ]
+    ],
+    "no-console": ["warn", { "allow": ["info", "debug", "warn", "error"] }]
   },
   "settings": {
     "react": {
