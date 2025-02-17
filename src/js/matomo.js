@@ -1,13 +1,15 @@
 // eslint-disable-next-line func-names
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
+
     /**
-     * If the queryparameter is found, the script will be loaded
-     * regardless of cookie consents etc.
+     * Temporary hard-coded value for using Matomo js client.
+     * This will be reworked into a general feature, for now use this for testing.
+     *
+     * @todo implement a general feature
      */
-    const useJSAPI = window.location.search === '?9mt5bfb2bGk=';
-    if (useJSAPI) {
-      console.info('Using JavaScript Tracking');
+    const instanceName = drupalSettings.helfi_instance_name;
+    if (instanceName === 'asuminen' && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
       const getLanguage = () => document.querySelector('html')?.attributes?.lang?.value || 'unkown';
@@ -33,14 +35,14 @@
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
         _paq.push(['setSiteId', '141']);
+        _paq.push(['addTracker', `${u}tracker.php`, '1098']);
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
       })();
     }
-
-    // Load Matomo only if statistics cookies are allowed.
-    if (!useJSAPI && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+    // Use Matomo tag manager if statistics cookies are allowed.
+    else if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
       // Matomo Tag Manager
       // eslint-disable-next-line no-multi-assign
       const _mtm = (window._mtm = window._mtm || []);

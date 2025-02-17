@@ -164,15 +164,6 @@ environment-indicator:
         minified: true
       }
 
-disable_genesys_button:
-  version: 1.x
-  js:
-    src/js/disable-genesys-button.js: {}
-  dependencies:
-  - core/jquery
-  - core/drupal
-  - core/drupalSettings
-
 nav-toggle:
   version: 1.x
   js:
