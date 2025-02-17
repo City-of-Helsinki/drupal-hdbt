@@ -102,9 +102,6 @@ function hdbt_preprocess_html(&$variables): void {
     $variables['#attached']['library'][] = 'hdbt/matomo';
   }
 
-  // Disable Genesys button if the chat element does not exist.
-  $variables['#attached']['library'][] = 'hdbt/disable_genesys_button';
-
   // Toggle between global and local navigation libraries for CSS and JS.
   $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
   $variables['#attached']['library'][] = $navigation_enabled ? 'hdbt/nav-global' : 'hdbt/nav-local';
