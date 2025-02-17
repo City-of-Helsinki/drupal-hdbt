@@ -7,7 +7,6 @@
      */
     const useJSAPI = window.location.search === '?9mt5bfb2bGk=';
     if (useJSAPI) {
-      // eslint-disable-next-line no-console
       console.info('Using JavaScript Tracking');
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;

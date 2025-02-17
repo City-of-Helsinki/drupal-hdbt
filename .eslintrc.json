@@ -61,7 +61,7 @@
       "after",
       { "overrides": { "?": "ignore", ":": "ignore" } }
     ],
-    "no-console": ["warn", { "allow": ["debug", "warn", "error"] }]
+    "no-console": ["warn", { "allow": ["info", "debug", "warn", "error"] }]
   },
   "settings": {
     "react": {
