@@ -109,7 +109,7 @@ export const baseUrlAtom = atom(
 
 export const initialUrlAtom = atom(
   (get) => {
-    const baseUrl = get(baseAtom)?.initialUrl;
+    const baseUrl = get(baseAtom)?.baseUrl;
     const initialParams = get(initialParamsAtom);
 
     return `${baseUrl}?${initialParams.toString()}`;
