@@ -15,7 +15,6 @@ import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
-import OptionType from '@/types/OptionType';
 
 type ResultsContainerProps = {
   hidePagination?: boolean;
@@ -29,7 +28,7 @@ const ResultsContainer = ({
   const urlParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
-  const { data, error, isLoading, isValidating } = useIndexQuery({
+  const { data, error } = useIndexQuery({
     keepPreviousData: true,
     query: queryString
   });

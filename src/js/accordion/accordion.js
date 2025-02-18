@@ -41,7 +41,6 @@ const callback = (mutations, observer) => {
       });
     }
     catch(e) {
-      // eslint-disable-next-line no-console
       console.error(e);
       observer.disconnect();
     }
@@ -53,4 +52,3 @@ const config = { attributes: true, childList: true, subtree: true };
 
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
-
