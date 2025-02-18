@@ -1,5 +1,5 @@
 import { SelectProps, SupportedLanguage, Texts } from 'hds-react';
-import { OptionIterator } from 'hds-react/utils-fbe4c21c';
+import { OptionIterator } from 'hds-react/utils-ba10fa35';
 import OptionType from '@/types/OptionType';
 
 type HDSStorage = {

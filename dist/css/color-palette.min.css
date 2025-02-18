@@ -1,1 +1,135 @@
-:root,.hdbt-theme--coat-of-arms{--hdbt-color-palette--primary: rgb(0, 114, 198);--hdbt-color-palette--secondary: rgb(232, 243, 252);--hdbt-color-palette--accent: rgb(245, 163, 199);--hdbt-color-palette-text--primary: #ffffff;--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: #ffffff;--hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--bus{--hdbt-color-palette--primary: rgb(0, 0, 191);--hdbt-color-palette--secondary: rgb(255, 240, 247);--hdbt-color-palette--accent: rgb(0, 215, 167);--hdbt-color-palette-text--primary: #ffffff;--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: #ffffff;--hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--copper{--hdbt-color-palette--primary: rgb(0, 215, 167);--hdbt-color-palette--secondary: rgb(232, 243, 252);--hdbt-color-palette--accent: rgb(245, 163, 199);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--engel{--hdbt-color-palette--primary: rgb(255, 233, 119);--hdbt-color-palette--secondary: rgb(240, 240, 255);--hdbt-color-palette--accent: rgb(0, 215, 167);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--gold{--hdbt-color-palette--primary: rgb(194, 162, 81);--hdbt-color-palette--secondary: rgb(232, 243, 252);--hdbt-color-palette--accent: rgb(253, 79, 0);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: #ffffff;--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--metro{--hdbt-color-palette--primary: rgb(253, 79, 0);--hdbt-color-palette--secondary: rgb(255, 240, 247);--hdbt-color-palette--accent: rgb(194, 162, 81);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--silver{--hdbt-color-palette--primary: rgb(222, 223, 225);--hdbt-color-palette--secondary: rgb(240, 240, 255);--hdbt-color-palette--accent: rgb(194, 162, 81);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--summer{--hdbt-color-palette--primary: rgb(255, 198, 30);--hdbt-color-palette--secondary: rgb(255, 249, 219);--hdbt-color-palette--accent: rgb(0, 135, 65);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: #ffffff;--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--suomenlinna{--hdbt-color-palette--primary: rgb(245, 163, 199);--hdbt-color-palette--secondary: rgb(240, 240, 255);--hdbt-color-palette--accent: rgb(0, 0, 191);--hdbt-color-palette-text--primary: var(--hdbt-color-black);--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: #ffffff;--hdbt-color-palette-button--primary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--primary: #ffffff;--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}.hdbt-theme--tram{--hdbt-color-palette--primary: rgb(0, 135, 65);--hdbt-color-palette--secondary: rgb(255, 249, 219);--hdbt-color-palette--accent: rgb(255, 198, 30);--hdbt-color-palette-text--primary: #ffffff;--hdbt-color-palette-text--secondary: var(--hdbt-color-black);--hdbt-color-palette-text--accent: var(--hdbt-color-black);--hdbt-color-palette-button--primary: #ffffff;--hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);--hdbt-color-palette-button--secondary: var(--hdbt-color-black);--hdbt-color-palette-button-contrast--secondary: #ffffff}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[5].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[5].use[3]!./src/scss/color-palette.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+:root,
+.hdbt-theme--coat-of-arms {
+  --hdbt-color-palette--primary: rgb(0, 114, 198);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(245, 163, 199);
+  --hdbt-color-palette-text--primary: #ffffff;
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: #ffffff;
+  --hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--bus {
+  --hdbt-color-palette--primary: rgb(0, 0, 191);
+  --hdbt-color-palette--secondary: rgb(255, 240, 247);
+  --hdbt-color-palette--accent: rgb(0, 215, 167);
+  --hdbt-color-palette-text--primary: #ffffff;
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: #ffffff;
+  --hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--copper {
+  --hdbt-color-palette--primary: rgb(0, 215, 167);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(245, 163, 199);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--engel {
+  --hdbt-color-palette--primary: rgb(255, 233, 119);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(0, 215, 167);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--gold {
+  --hdbt-color-palette--primary: rgb(194, 162, 81);
+  --hdbt-color-palette--secondary: rgb(232, 243, 252);
+  --hdbt-color-palette--accent: rgb(253, 79, 0);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: #ffffff;
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--metro {
+  --hdbt-color-palette--primary: rgb(253, 79, 0);
+  --hdbt-color-palette--secondary: rgb(255, 240, 247);
+  --hdbt-color-palette--accent: rgb(194, 162, 81);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--silver {
+  --hdbt-color-palette--primary: rgb(222, 223, 225);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(194, 162, 81);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--summer {
+  --hdbt-color-palette--primary: rgb(255, 198, 30);
+  --hdbt-color-palette--secondary: rgb(255, 249, 219);
+  --hdbt-color-palette--accent: rgb(0, 135, 65);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: #ffffff;
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--suomenlinna {
+  --hdbt-color-palette--primary: rgb(245, 163, 199);
+  --hdbt-color-palette--secondary: rgb(240, 240, 255);
+  --hdbt-color-palette--accent: rgb(0, 0, 191);
+  --hdbt-color-palette-text--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: #ffffff;
+  --hdbt-color-palette-button--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--primary: #ffffff;
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+.hdbt-theme--tram {
+  --hdbt-color-palette--primary: rgb(0, 135, 65);
+  --hdbt-color-palette--secondary: rgb(255, 249, 219);
+  --hdbt-color-palette--accent: rgb(255, 198, 30);
+  --hdbt-color-palette-text--primary: #ffffff;
+  --hdbt-color-palette-text--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-text--accent: var(--hdbt-color-black);
+  --hdbt-color-palette-button--primary: #ffffff;
+  --hdbt-color-palette-button-contrast--primary: var(--hdbt-color-black);
+  --hdbt-color-palette-button--secondary: var(--hdbt-color-black);
+  --hdbt-color-palette-button-contrast--secondary: #ffffff;
+}
+
+/*# sourceMappingURL=color-palette.min.css.map*/
