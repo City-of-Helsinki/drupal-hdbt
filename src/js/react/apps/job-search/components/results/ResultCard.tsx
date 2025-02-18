@@ -95,10 +95,10 @@ const ResultCard = ({
 
   const languageFilterActive = useAtomValue(urlAtom)?.language;
   // If no filtering by language, prefer showing current language translation
-  if (!languageFilterActive && innerHits.length > 1 && _language !== currentLanguage) {
+  if (!languageFilterActive && innerHits.length > 1 && !_language.includes(currentLanguage)) {
     // eslint-disable-next-line no-restricted-syntax
     for (const hit of innerHits) {
-      if (hit._source._language === currentLanguage) {
+      if (hit._source._language.includes(currentLanguage)) {
         return getResultCard(hit._source);
       }
     }
