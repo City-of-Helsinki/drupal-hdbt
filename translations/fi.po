@@ -1168,7 +1168,7 @@ msgstr "Virheellinen lopetuspäivämäärä"
 
 msgctxt "Events search"
 msgid "Select a time period in which the event takes place"
-msgstr "Valitse ajankohta, johon tapahtuma sijoittuu"
+msgstr "Valitse aikaväli, johon tapahtuma sijoittuu"
 
 msgctxt "Events search"
 msgid "The last day of the time period is the same as the first day"
@@ -1183,8 +1183,8 @@ msgid "Last day of the time period"
 msgstr "Asti"
 
 msgctxt "Events search"
-msgid "Select a venue"
-msgstr "Valitse tapahtumapaikka"
+msgid "Venue"
+msgstr "Tapahtumapaikka"
 
 msgctxt "Events search"
 msgid "Free-of-charge events"
@@ -1195,12 +1195,12 @@ msgid "Remote events"
 msgstr "Etätapahtumat"
 
 msgctxt "Events search"
-msgid "All"
-msgstr "Kaikki"
+msgid "All dates"
+msgstr "Kaikki ajankohdat"
 
 msgctxt "Events search"
-msgid "Refine search in tapahtumat.hel.fi"
-msgstr "Tarkenna hakua tapahtumat.hel.fi:ssä"
+msgid "Search for more events on the Events website"
+msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
 
 msgctxt "Events search: event type prefix"
 msgid "Show only"
@@ -1251,8 +1251,8 @@ msgid "at"
 msgstr "klo"
 
 msgctxt "React search: all available options"
-msgid "All"
-msgstr "Kaikki"
+msgid "All venues"
+msgstr "Kaikki tapahtumapaikat"
 
 msgctxt "React search: topics filter"
 msgid "Event topic"

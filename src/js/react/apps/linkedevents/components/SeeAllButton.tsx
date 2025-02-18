@@ -12,7 +12,7 @@ function SeeAllButton() {
         data-hds-component="button"
         data-hds-variant="secondary"
         href={eventsUrl}
-        title={seeAllButtonOverride || Drupal.t('Refine search in tapahtumat.hel.fi', {}, { context: 'Events search' })} />
+        title={seeAllButtonOverride || Drupal.t('Search for more events on the Events website', {}, { context: 'Events search' })} />
     </div>
   );
 }
