@@ -1,7 +1,7 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
-import {  useAtom, useSetAtom } from 'jotai';
+import { useSetAtom, useAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -12,7 +12,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 
-const FullLocationFilter = memo(() => {
+function FullLocationFilter () {
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const [locationSelectOpen, setLocationSelectOpen] = useState(false);
@@ -58,7 +58,7 @@ const FullLocationFilter = memo(() => {
     return result;
   };
 
-  const onChange = (value: OptionType[], clickedOption?: OptionType) => {
+  const onChange = (value: OptionType[], clickedOption: OptionType, data: SelectData) => {
     setLocationFilter(value);
     if (clickedOption) setLocationSelectOpen(true);
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
@@ -75,9 +75,9 @@ const FullLocationFilter = memo(() => {
         multiSelect
         noTags
         onChange={onChange}
-        onBlur={() => setLocationSelectOpen(false)}
         open={locationSelectOpen}
         onSearch={getLocations}
+        value={locationSelection}
         texts={{
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
@@ -92,6 +92,6 @@ const FullLocationFilter = memo(() => {
       />
     </div>
   );
-});
+};
 
 export default FullLocationFilter;
