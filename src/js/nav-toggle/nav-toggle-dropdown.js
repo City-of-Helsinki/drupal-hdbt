@@ -62,12 +62,10 @@ class NavToggleDropdown {
     this.buttonInstance = document.querySelector(this.buttonSelector);
     if (!this.buttonInstance) {
       this.running = false;
-      // eslint-disable-next-line no-console
       console.warn(`${name} button missing. Looking for ${this.buttonSelector}`);
       return;
     }
     if (this.running) {
-      // eslint-disable-next-line no-console
       console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }

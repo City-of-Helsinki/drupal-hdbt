@@ -19,7 +19,7 @@ const useInitialParams = <T extends Record<string, any>>(params: T) => {
     const [key, value] = result.value;
 
     if (value && key in params) {
-      hits++;
+      hits += 1;
       // @ts-ignore
       params[key as keyof T] = coerce(value, typeof params[key as keyof T]);
     }

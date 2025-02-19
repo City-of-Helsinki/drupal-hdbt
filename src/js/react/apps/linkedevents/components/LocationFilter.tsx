@@ -20,7 +20,7 @@ const LocationFilter = () => {
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
   };
 
-  const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
+  const selectVenueLabel: string = Drupal.t('Venue', {}, {context: 'Events search'});
 
   const storage = useSelectStorage({
     id: SearchComponents.LOCATION,
@@ -32,7 +32,7 @@ const LocationFilter = () => {
       clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
       clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
       label: selectVenueLabel,
-      placeholder: Drupal.t('All', {}, { context: 'React search: all available options' }),
+      placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
     },
     theme: {
       '--checkbox-background-selected': 'var(--hdbt-color-black)',
@@ -67,7 +67,7 @@ const LocationFilter = () => {
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           label: selectVenueLabel,
-          placeholder: Drupal.t('All', {}, { context: 'React search: all available options' }),
+          placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
         }}
         theme={{
           '--checkbox-background-selected': 'var(--hdbt-color-black)',

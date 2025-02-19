@@ -57,8 +57,7 @@ class HomeCareClientFee {
     const payment = calculator.clamp(0, referencePayment, maximumPayment);
 
     if (printDebug) {
-      // eslint-disable-next-line no-console
-      console.log(
+      console.debug(
         `maximumPayment\t${  maximumPayment}`,
         `\ngrossIncomeLimit\t${  grossIncomeLimit}`,
         `\npaymentPercentage\t${  paymentPercentage}`,
