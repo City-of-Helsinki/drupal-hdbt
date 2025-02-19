@@ -1,7 +1,7 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
-import { useSetAtom, useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationSelectionAtom, updateParamsAtom } from '../store';
@@ -11,11 +11,11 @@ import { ServiceMapPlace } from '@/types/ServiceMap';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
+import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 
-function FullLocationFilter () {
-  const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
+const FullLocationFilter = memo(() => {
+  const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const [locationSelectOpen, setLocationSelectOpen] = useState(false);
 
   const getLocationParamValue = useAtomCallback(
     useCallback((get) => get(locationSelectionAtom), [])
@@ -59,25 +59,56 @@ function FullLocationFilter () {
   };
 
   const onChange = (value: OptionType[], clickedOption: OptionType, data: SelectData) => {
-    setLocationFilter(value);
-    if (clickedOption) setLocationSelectOpen(true);
+    setLocationFilter(value.map(option => ({
+      label: option.label,
+      value: option.value,
+    })));
     updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+
+    storage.updateAllOptions((option, group, groupindex) => ({
+        ...option,
+        selected: value.some(selection => selection.value === option.value),
+      }));
+
+    if (clickedOption) {
+      storage.setOpen(true);
+    }
   };
 
   const selectVenueLabel: string = Drupal.t('Select a venue', {}, {context: 'Events search'});
 
+  const storage = useSelectStorage({
+    id: SearchComponents.LOCATION,
+    multiSelect: true,
+    noTags: true,
+    onChange,
+    open: false,
+    onSearch: getLocations
+  });
+
+  const clearAllSelections = () => {
+    clearAllSelectionsFromStorage(storage);
+  };
+
+  const updateSelections = () => {
+    updateSelectionsInStorage(storage, getLocationParamValue());
+  };
+
+  useEffect(() => {
+    window.addEventListener('eventsearch-clear', clearAllSelections);
+    window.addEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
+
+    return () => {
+      window.addEventListener('eventsearch-clear', clearAllSelections);
+      window.removeEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
+    };
+  });
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
+      {/* @ts-ignore */}
       <Select
         className='hdbt-search__dropdown'
-        id={SearchComponents.LOCATION}
-        multiSelect
-        noTags
-        onChange={onChange}
-        open={locationSelectOpen}
-        onSearch={getLocations}
-        value={locationSelection}
         texts={{
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
@@ -89,9 +120,10 @@ function FullLocationFilter () {
           '--focus-outline-color': 'var(--hdbt-color-black)',
           '--placeholder-color': 'var(--hdbt-color-black)',
         }}
+        {...storage.getProps()}
       />
     </div>
   );
-};
+});
 
 export default FullLocationFilter;
