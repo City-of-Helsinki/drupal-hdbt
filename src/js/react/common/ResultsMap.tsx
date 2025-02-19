@@ -1,5 +1,4 @@
 import bucketToMap from '@/react/common/helpers/Aggregations';
-import CookieComplianceStatement from '@/react/common/CookieComplianceStatement';
 import ExternalLink from '@/react/common/ExternalLink';
 import { AggregationItem } from '@/types/Aggregation';
 
@@ -44,33 +43,20 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   const mapUrl = getMapUrl();
 
-  if (Drupal.cookieConsent && Drupal.cookieConsent.getConsentStatus(['preferences', 'statistics'])) {
-    return (
-      <div className='hdbt-search--react__map-container'>
-        <div className='unit-search__result--map'>
-          <iframe
-            title='Palvelukartta - Etusivu'
-            className='unit-search__map'
-            src={mapUrl}
-          >
-          </iframe>
-        </div>
-        <div className='unit-search__map-actions'>
-          <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
-        </div>
-      </div>
-    );
-  }
-
-  const url = new URL(mapUrl);
-
-  // @todo UHF-10862 Remove policyUrl fallback once the HDBT cookie banner module is in use.
   return (
-    <CookieComplianceStatement
-      host={url.host}
-      policyUrl={drupalSettings.hdbt_cookie_banner.settingsPageUrl || drupalSettings.helfi_react_search.cookie_privacy_url}
-      sourceUrl={mapUrl}
-    />
+    <div className='hdbt-search--react__map-container'>
+      <div className='unit-search__result--map'>
+        <iframe
+          title='Palvelukartta - Etusivu'
+          className='unit-search__map'
+          src={mapUrl}
+        >
+        </iframe>
+      </div>
+      <div className='unit-search__map-actions'>
+        <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
+      </div>
+    </div>
   );
 };
 
