@@ -52,7 +52,6 @@ class HelfiCalculator {
     try {
       parsed = JSON.parse(settings);
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(`Problem with ${this.name} settings:`, settings);
       throw e;
     }
@@ -719,5 +718,3 @@ class HelfiCalculator {
 
 // module.exports = () => new HelfiCalculator();
 window.HelfiCalculator = (translations) => new HelfiCalculator(translations);
-
-

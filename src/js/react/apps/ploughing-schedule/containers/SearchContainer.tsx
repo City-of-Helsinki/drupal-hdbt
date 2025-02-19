@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from 'react';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import FormContainer from './FormContainer';
