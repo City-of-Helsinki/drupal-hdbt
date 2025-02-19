@@ -69,6 +69,7 @@ function TopicsFilter() {
 
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>
+      {/* @ts-ignore */}
       <Select
         className='hdbt-search__dropdown'
         {...storage.getProps()}

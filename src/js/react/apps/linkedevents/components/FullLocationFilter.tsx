@@ -106,6 +106,7 @@ const FullLocationFilter = memo(() => {
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
+      {/* @ts-ignore */}
       <Select
         className='hdbt-search__dropdown'
         texts={{
