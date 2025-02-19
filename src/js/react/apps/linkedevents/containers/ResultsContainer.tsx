@@ -1,5 +1,5 @@
 import { createRef, useEffect, useState } from 'react';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 
 import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
 import CardGhost from '@/react/common/CardGhost';
 import SeeAllButton from '../components/SeeAllButton';
-import { addressAtom, paramsAtom, settingsAtom, urlAtom } from '../store';
+import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -25,7 +25,6 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
   const { useExperimentalGhosts, seeAllNearYouLink } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-  const params = useAtomValue(paramsAtom);
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
