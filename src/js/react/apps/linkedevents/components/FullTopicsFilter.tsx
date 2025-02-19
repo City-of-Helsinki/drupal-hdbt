@@ -1,6 +1,6 @@
 import { Select, SelectData, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useAtomCallback } from 'jotai/utils';
 import type OptionType from '../types/OptionType';
 
