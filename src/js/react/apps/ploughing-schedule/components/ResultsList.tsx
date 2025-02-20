@@ -40,11 +40,12 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
 
   const results = data.hits.hits;
   const several = results.length > 1;
+  const address = params.address?.replace(/^(?![A-Za-z]\d+$)(.*?)(\s*\d+\w?)$/, '$1') ?? '';
 
   return (
     <div className='hdbt-search--react__results'>
       { results.length
-        ? <ResultCard {...getScheduleCard(results[0]._source.maintenance_class, several)} ref={scrollTarget} />
+        ? <ResultCard {...getScheduleCard(results[0]._source.maintenance_class, several)} address={address} ref={scrollTarget} />
         : <ResultCard {...getScheduleCard(0)} ref={scrollTarget} />
       }
     </div>
