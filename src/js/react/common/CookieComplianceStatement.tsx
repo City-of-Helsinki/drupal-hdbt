@@ -1,4 +1,11 @@
+import {Link} from 'hds-react';
 import ExternalLink from './ExternalLink';
+
+declare global {
+  interface Window {
+    hdsCookieConsentClickEvent: (event: Event, element: HTMLElement) => void;
+  }
+}
 
 type CookiCookieComplianceStatementProps = {
   host: string;
@@ -19,10 +26,29 @@ const CookieComplianceStatement = ({ host, policyUrl, sourceUrl }: CookiCookieCo
       </p>
       <div className='buttons'>
           {sourceUrl &&
-            <ExternalLink data-hds-component='button' data-hds-variant='primary' href={sourceUrl} title={Drupal.t('See content on external site', {}, { context: 'Cookie compliance' })} />
+            <ExternalLink
+              data-hds-component='button'
+              data-hds-variant='primary'
+              href={sourceUrl}
+              title={Drupal.t('See content on external site', {}, { context: 'Cookie compliance' })}
+            />
           }
           {policyUrl &&
-            <ExternalLink  data-hds-component='button' data-hds-variant='secondary' href={policyUrl} title={Drupal.t('Change cookie settings', {}, { context: 'Cookie compliance' })} />
+            <Link
+              data-hds-component='button'
+              data-hds-variant='secondary'
+              data-cookie-consent-groups='preferences, statistics'
+              href={policyUrl}
+              onClick={(event) => {
+                if (typeof window.hdsCookieConsentClickEvent === 'function') {
+                  window.hdsCookieConsentClickEvent(event.nativeEvent, event.currentTarget);
+                } else {
+                  console.warn('hdsCookieConsentClickEvent is not defined');
+                }
+              }}
+            >
+              {Drupal.t('Change cookie settings', {}, { context: 'Cookie compliance' })}
+            </Link>
           }
       </div>
     </div>
