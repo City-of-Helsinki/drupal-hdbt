@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 import {
   Accordion,
@@ -38,16 +38,12 @@ const FormContainer = () => {
   const [title, setTitle] = useAtom(titleAtom);
   const districtOptions = useAtomValue(districtsAtom);
   const [districtSelection, setDistrictFilter] = useAtom(districtSelectionAtom);
-  const [districtSelectOpen, setDistrictSelectOpen] = useState(false);
   const themeOptions = useAtomValue(themesAtom);
   const [themeSelection, setThemeFilter] = useAtom(themeSelectionAtom);
-  const [themeSelectOpen, setThemeSelectOpen] = useState(false);
   const phaseOptions = useAtomValue(phasesAtom);
   const [phaseSelection, setPhaseFilter] = useAtom(phaseSelectionAtom);
-  const [phaseSelectOpen, setPhaseSelectOpen] = useState(false);
   const typeOptions = useAtomValue(typesAtom);
   const [typeSelection, setTypeFilter] = useAtom(typeSelectionAtom);
-  const [typeSelectOpen, setTypeSelectOpen] = useState(false);
 
   // Set form control values from url parameters on load
   useEffect(() => {
@@ -95,12 +91,9 @@ const FormContainer = () => {
             id={SearchComponents.DISTRICTS}
             multiSelect
             noTags
-            onChange={(selectedOptions, clickedOption) => {
+            onChange={(selectedOptions) => {
               setDistrictFilter(selectedOptions);
-              if (clickedOption) setDistrictSelectOpen(true);
             }}
-            onBlur={() => setDistrictSelectOpen(false)}
-            open={districtSelectOpen}
             options={districtOptions}
             texts={{
               clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
@@ -134,12 +127,9 @@ const FormContainer = () => {
               id={SearchComponents.THEME}
               multiSelect
               noTags
-              onChange={(selectedOptions, clickedOption) => {
+              onChange={(selectedOptions) => {
                 setThemeFilter(selectedOptions);
-                if (clickedOption) setThemeSelectOpen(true);
               }}
-              onBlur={() => setThemeSelectOpen(false)}
-              open={themeSelectOpen}
               options={themeOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
@@ -159,12 +149,9 @@ const FormContainer = () => {
               id={SearchComponents.PHASE}
               multiSelect
               noTags
-              onChange={(selectedOptions, clickedOption) => {
+              onChange={(selectedOptions) => {
                 setPhaseFilter(selectedOptions);
-                if (clickedOption) setPhaseSelectOpen(true);
               }}
-              onBlur={() => setPhaseSelectOpen(false)}
-              open={phaseSelectOpen}
               options={phaseOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
@@ -184,12 +171,9 @@ const FormContainer = () => {
               id={SearchComponents.TYPE}
               multiSelect
               noTags
-              onChange={(selectedOptions, clickedOption) => {
+              onChange={(selectedOptions) => {
                 setTypeFilter(selectedOptions);
-                if (clickedOption) setTypeSelectOpen(true);
               }}
-              onBlur={() => setTypeSelectOpen(false)}
-              open={typeSelectOpen}
               options={typeOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),

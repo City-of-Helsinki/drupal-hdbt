@@ -37,22 +37,16 @@ const FeatureFormContainer = () => {
   const setParams = useSetAtom(updateParamsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
   const a1Options = useAtomValue(a1Atom);
-  const [a1SelectOpen, setA1SelectOpen] = useState(false);
   const [a1Selection, setA1Filter] = useAtom(a1SelectionAtom);
   const a2Options = useAtomValue(a2Atom);
-  const [a2SelectOpen, setA2SelectOpen] = useState(false);
   const [a2Selection, setA2Filter] = useAtom(a2SelectionAtom);
   const b1Options = useAtomValue(b1Atom);
-  const [b1SelectOpen, setB1SelectOpen] = useState(false);
   const [b1Selection, setB1Filter] = useAtom(b1SelectionAtom);
   const b2Options = useAtomValue(b2Atom);
-  const [b2SelectOpen, setB2SelectOpen] = useState(false);
   const [b2Selection, setB2Filter] = useAtom(b2SelectionAtom);
   const weightedOptions = useAtomValue(weightedEducationAtom);
-  const [weightedOptionsSelectOpen, setWeightedOptionsSelectOpen] = useState(false);
   const [weightedSelection, setWeightedFilter] = useAtom(weightedEducationSelectionAtom);
   const bilingualOptions = useAtomValue(bilingualEducationAtom);
-  const [bilingualOptionsSelectOpen, setBilingualOptionsSelectOpen] = useState(false);
   const [bilingualSelection, setBilingualFilter] = useAtom(bilingualEducationSelectionAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -178,12 +172,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.A1}
           multiSelect
           noTags
-          onBlur={() => setA1SelectOpen(false)}
-          onChange={(selectedOptions, clickedOption) => {
+          onChange={(selectedOptions) => {
             setA1Filter(selectedOptions);
-            if (clickedOption) setA1SelectOpen(true);
           }}
-          open={a1SelectOpen}
           options={a1Options}
           texts={{
             label: a1Label,
@@ -199,12 +190,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.A2}
           multiSelect
           noTags
-          onBlur={() => setA2SelectOpen(false)}
           onChange={(selectedOptions, clickedOption) => {
             setA2Filter(selectedOptions);
-            if (clickedOption) setA2SelectOpen(true);
           }}
-          open={a2SelectOpen}
           options={a2Options}
           texts={{
             label: a2Label,
@@ -220,12 +208,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.B1}
           multiSelect
           noTags
-          onBlur={() => setB1SelectOpen(false)}
-          onChange={(selectedOptions, clickedOption) => {
+          onChange={(selectedOptions) => {
             setB1Filter(selectedOptions);
-            if (clickedOption) setB1SelectOpen(true);
           }}
-          open={b1SelectOpen}
           options={b1Options}
           texts={{
             label: b1Label,
@@ -241,12 +226,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.B2}
           multiSelect
           noTags
-          onBlur={() => setB2SelectOpen(false)}
-          onChange={(selectedOptions, clickedOption) => {
+          onChange={(selectedOptions) => {
             setB2Filter(selectedOptions);
-            if (clickedOption) setB2SelectOpen(true);
           }}
-          open={b2SelectOpen}
           options={b2Options}
           texts={{
             label: b2Label,
@@ -262,12 +244,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.WeightedEducation}
           multiSelect
           noTags
-          onBlur={() => setWeightedOptionsSelectOpen(false)}
-          onChange={(selectedOptions, clickedOption) => {
+          onChange={(selectedOptions) => {
             setWeightedFilter(selectedOptions);
-            if (clickedOption) setWeightedOptionsSelectOpen(true);
           }}
-          open={weightedOptionsSelectOpen}
           options={weightedOptions}
           texts={{
             label: weightedEducationLabel,
@@ -283,12 +262,9 @@ const FeatureFormContainer = () => {
           id={SearchComponents.BilingualEducation}
           multiSelect
           noTags
-          onBlur={() => setBilingualOptionsSelectOpen(false)}
-          onChange={(selectedOptions, clickedOption) => {
+          onChange={(selectedOptions) => {
             setBilingualFilter(selectedOptions);
-            if (clickedOption) setBilingualOptionsSelectOpen(true);
           }}
-          open={bilingualOptionsSelectOpen}
           options={bilingualOptions}
           texts={{
             label: bilingualEducationLabel,

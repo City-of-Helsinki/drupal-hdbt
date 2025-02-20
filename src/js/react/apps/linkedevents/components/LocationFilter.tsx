@@ -1,6 +1,5 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
-import { useState } from 'react';
 import type OptionType from '../types/OptionType';
 
 import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
@@ -10,12 +9,10 @@ import ApiKeys from '../enum/ApiKeys';
 function LocationFilter() {
   const locationOptions = useAtomValue(locationAtom);
   const [locationSelection, setLocationFilter] = useAtom(locationSelectionAtom);
-  const [locationSelectOpen, setLocationSelectOpen] = useState(false);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
+  const onChange = (selectedOptions: OptionType[]) => {
     setLocationFilter(selectedOptions);
-    if (clickedOption) setLocationSelectOpen(true);
     updateParams({ [ApiKeys.LOCATION]: selectedOptions.map((location: any) => location.value).join(',') });
   };
 
@@ -28,9 +25,7 @@ function LocationFilter() {
         id={SearchComponents.LOCATION}
         multiSelect
         noTags
-        onBlur={() => setLocationSelectOpen(false)}
         onChange={onChange}
-        open={locationSelectOpen}
         options={locationOptions}
         texts={{
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),

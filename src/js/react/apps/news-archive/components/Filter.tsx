@@ -1,6 +1,5 @@
 import { Select } from 'hds-react';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
 
 import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
@@ -15,7 +14,6 @@ type FilterProps = {
 
 const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
   const [params, setParams] = useAtom(stagedParamsAtom);
-  const [filterSelectOpen, setFilterSelectOpen] = useState(false);
   const valueIds = params?.[stateKey] || [];
 
   const getValue = () => {
@@ -39,11 +37,6 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
       ...params,
       [stateKey]: selectedOptions.map((option: OptionType) => Number(option.value)),
     });
-
-    // Keep dropdown open if an option is clicked
-    if (clickedOption) {
-      setFilterSelectOpen(true);
-    }
   };
 
   return (
@@ -52,9 +45,7 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
       clearable
       multiSelect
       noTags
-      onBlur={() => setFilterSelectOpen(false)}
       onChange={onChange}
-      open={filterSelectOpen}
       options={options}
       texts={{
         clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
