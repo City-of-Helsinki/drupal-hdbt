@@ -47,7 +47,7 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     <div className='hdbt-search--react__map-container'>
       <div className='unit-search__result--map'>
         <iframe
-          title='Palvelukartta - Etusivu'
+          title={Drupal.t('Service Map - Front page', {}, {context: 'React search: result display'})}
           className='unit-search__map'
           src={mapUrl}
         >
