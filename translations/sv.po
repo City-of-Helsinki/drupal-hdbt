@@ -989,6 +989,10 @@ msgid "View in a map"
 msgstr "Visa på kartan"
 
 msgctxt "React search: result display"
+msgid "Service Map - Front page"
+msgstr "Servicekarta - Framsida"
+
+msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Öppna kartan i större format"
 

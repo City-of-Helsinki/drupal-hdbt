@@ -991,6 +991,10 @@ msgid "View in a map"
 msgstr "Näytä kartalla"
 
 msgctxt "React search: result display"
+msgid "Service Map - Front page"
+msgstr "Palvelukartta - Etusivu"
+
+msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Avaa kartta suurempana"
 
