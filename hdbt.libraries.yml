@@ -214,7 +214,7 @@ event-list:
     - core/drupal
 
 school-search:
-  version: 1.5.1
+  version: 1.5.2
   js:
     dist/js/school-search.min.js: {
       preprocess: false,
