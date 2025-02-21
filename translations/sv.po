@@ -208,14 +208,6 @@ msgctxt "Mobile navigation menu close button text"
 msgid "Close"
 msgstr "Stäng"
 
-msgctxt "Mobile navigation menu open button text for screen readers"
-msgid "Open navigation menu"
-msgstr "Öppna navigeringsmenyn"
-
-msgctxt "Mobile navigation menu close button text for screen readers"
-msgid "Close navigation menu"
-msgstr "Stäng navigeringsmenyn"
-
 msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Växla undermeny:"
@@ -311,17 +303,13 @@ msgctxt "Header search title"
 msgid "Search in City of Helsinki websites"
 msgstr "Sök på Helsingfors stads sidor"
 
-msgctxt "Mobile navigation search open button text for screen readers"
-msgid "Open search"
-msgstr "Öppna sök"
-
-msgctxt "Mobile navigation search close button text for screen readers"
-msgid "Close search"
-msgstr "Stäng sök"
-
 msgctxt "Helfi search input placeholder"
 msgid "Enter a search word"
 msgstr "Skriv sökord"
+
+msgctxt "Helfi menu search button"
+msgid "Search"
+msgstr "Sök"
 
 msgctxt "Helfi search button"
 msgid "Search"
