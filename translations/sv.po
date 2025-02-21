@@ -307,6 +307,10 @@ msgctxt "Helfi search input placeholder"
 msgid "Enter a search word"
 msgstr "Skriv sökord"
 
+msgctxt "Helfi menu search button"
+msgid "Search"
+msgstr "Sök"
+
 msgctxt "Helfi search button"
 msgid "Search"
 msgstr "Sök"

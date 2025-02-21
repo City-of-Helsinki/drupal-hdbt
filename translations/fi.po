@@ -309,9 +309,13 @@ msgctxt "Helfi search input placeholder"
 msgid "Enter a search word"
 msgstr "Kirjoita hakusana"
 
-msgctxt "Helfi search button"
+msgctxt "Helfi menu search button"
 msgid "Search"
 msgstr "Haku"
+
+msgctxt "Helfi search button"
+msgid "Search"
+msgstr "Hae"
 
 msgctxt "Header search, no javascript"
 msgid "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
