@@ -1021,16 +1021,16 @@ msgid "For example, Mannerheimintie"
 msgstr "T.ex. Mannerheimvägen"
 
 msgctxt "Ploughing schedule: Class 1"
-msgid "We will start to clear snow when there is three centimetres of snow. We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning. If it snows heavily and for a long time, clearing may be delayed."
-msgstr "Vi börjar ploga när det har fallit tre centimeter snö. Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen. Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit tre centimeter snö.<br>Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Class 2"
-msgid "We will start to clear snow when there is three centimetres of snow. We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning. If it snows heavily and for a long time, clearing may be delayed."
-msgstr "Vi börjar ploga när det har fallit tre centimeter snö. Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen. Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit tre centimeter snö.<br>Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Class 3"
-msgid "We will start to clear snow when there is five centimetres of snow. We will clear the street of snow within 12 hours. If snow has fallen in the evening or during the night (19.00–7.00), we will clear the street by seven the next evening. If it snows heavily and for a long time, clearing may be delayed."
-msgstr "Vi börjar ploga när det har fallit fem centimeter snö. Vi plogar gatan inom tolv timmar. Om snön har fallit på kvällen eller under natten (kl. 19.00–07.00) plogar vi gatan senast klockan sju nästa kväll. Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
+msgid "We will start to clear snow when there is five centimetres of snow.<br>We will clear the street of snow within 12 hours. If snow has fallen in the evening or during the night (19.00–7.00), we will clear the street by seven the next evening.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit fem centimeter snö.<br>Vi plogar gatan inom tolv timmar. Om snön har fallit på kvällen eller under natten (kl. 19.00–07.00) plogar vi gatan senast klockan sju nästa kväll.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Multiple streets"
 msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
