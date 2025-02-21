@@ -1011,16 +1011,16 @@ msgid "For example, Mannerheimintie"
 msgstr "Esim. Mannerheimintie"
 
 msgctxt "Ploughing schedule: Class 1"
-msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Auraamme kadun kello 7 mennessä aamulla</strong>, jos lunta on satanut illalla tai alkuyöllä. Kello 4–18 auraamme kadun 3 tunnin kuluessa lumisateen päättymisestä. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Aloitamme aurauksen, kun lunta on satanut kolme senttimetriä.<br>Auraamme kadun neljän tunnin kuluessa. Jos lumi on satanut illalla tai alkuyöstä (kello 19–03), auraamme kadun kello 7 mennessä aamulla.<br>Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
 
 msgctxt "Ploughing schedule: Class 2"
-msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Auraamme kadun kello 7 mennessä aamulla</strong>, jos lunta on satanut illalla tai alkuyöllä. Kello 3–17 auraamme kadun 4 tunnin kuluessa lumisateen päättymisestä. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Aloitamme aurauksen, kun lunta on satanut kolme senttimetriä.<br>Auraamme kadun neljän tunnin kuluessa. Jos lumi on satanut illalla tai alkuyöstä (kello 19–03), auraamme kadun kello 7 mennessä aamulla.<br>Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
 
 msgctxt "Ploughing schedule: Class 3"
-msgid "<strong>We will plough the street within three business days</strong>. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Auraamme kadun kolmen arkivuorokauden kuluessa</strong>. Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
+msgid "We will start to clear snow when there is five centimetres of snow.<br>We will clear the street of snow within 12 hours. If snow has fallen in the evening or during the night (19.00–7.00), we will clear the street by seven the next evening.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Aloitamme aurauksen, kun lunta on satanut viisi senttimetriä.<br>Auraamme kadun 12 tunnin kuluessa. Jos lumi on satanut illalla tai yöllä (kello 19–07), auraamme kadun seuraavaan iltaan kello 19 mennessä.<br>Jos lunta sataa paljon ja pitkään, voi auraus viivästyä."
 
 msgctxt "Ploughing schedule: Multiple streets"
 msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
