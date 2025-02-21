@@ -85,10 +85,10 @@ const FeatureFormContainer = () => {
   };
 
   const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'|'a1'|'a2'|'b1'|'b2'|'weighted_education'|'bilingual_education'>> = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];
-  const a1Label: string = Drupal.t('Foreign language starting in 1st grade (A1)', {}, { context: 'TPR Ontologyword details schools' });
-  const a2Label: string = Drupal.t('Optional foreign language starting in 3rd grade (A2)', {}, { context: 'TPR Ontologyword details schools' });
-  const b1Label: string = Drupal.t('Second national language starting in 6th grade (B1)', {}, { context: 'TPR Ontologyword details schools' });
-  const b2Label: string = Drupal.t('Optional foreign language starting in 8th grade (B2)', {}, { context: 'TPR Ontologyword details schools' });
+  const a1Label: string = Drupal.t('Language starting in Grade 1 (A1)', {}, { context: 'TPR Ontologyword details schools' });
+  const a2Label: string = Drupal.t('Language starting in Grade 3 (A2)', {}, { context: 'TPR Ontologyword details schools' });
+  const b1Label: string = Drupal.t('Language starting in Grade 6 (B1)', {}, { context: 'TPR Ontologyword details schools' });
+  const b2Label: string = Drupal.t('Language starting in Grade 7 or 8 (B2)', {}, { context: 'TPR Ontologyword details schools' });
   const weightedEducationLabel: string = Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' });
   const bilingualEducationLabel: string = Drupal.t('Bilingual education', {}, { context: 'TPR Ontologyword details schools' });
 
