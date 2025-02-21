@@ -3,7 +3,7 @@ description: Base theme for Helsinki Drupal instances.
 type: theme
 base theme: stable9
 tags: sub-theme
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 'interface translation project': hdbt
 'interface translation server pattern': themes/contrib/hdbt/translations/%language.po
 
