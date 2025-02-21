@@ -327,7 +327,7 @@ msgstr "Kirjoita hakusana"
 
 msgctxt "Helfi search button"
 msgid "Search"
-msgstr "Hae"
+msgstr "Haku"
 
 msgctxt "Header search, no javascript"
 msgid "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."
