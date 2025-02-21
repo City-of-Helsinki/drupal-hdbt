@@ -1,11 +1,19 @@
 {% set menu_open %}
-  <span aria-hidden="true">{{ open_label }}</span>
-  <span class="visually-hidden">{{ open_screenreader }}</span>
+  {% if open_screenreader %}
+    <span aria-hidden="true">{{ open_label }}</span>
+    <span class="visually-hidden">{{ open_screenreader }}</span>
+  {% else %}
+    <span>{{ open_label }}</span>
+  {% endif %}
 {% endset %}
 
 {% set menu_close %}
-  <span aria-hidden="true">{{ close_label }}</span>
-  <span class="visually-hidden">{{ close_screenreader }}</span>
+  {% if close_screenreader %}
+    <span aria-hidden="true">{{ close_label }}</span>
+    <span class="visually-hidden">{{ close_screenreader }}</span>
+  {% else %}
+    <span>{{ close_label }}</span>
+  {% endif %}
 {% endset %}
 
 {% if modifier_suffix == 'profile' %}

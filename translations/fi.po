@@ -210,14 +210,6 @@ msgctxt "Mobile navigation menu close button text"
 msgid "Close"
 msgstr "Sulje"
 
-msgctxt "Mobile navigation menu open button text for screen readers"
-msgid "Open navigation menu"
-msgstr "Avaa navigaatiovalikko"
-
-msgctxt "Mobile navigation menu close button text for screen readers"
-msgid "Close navigation menu"
-msgstr "Sulje navigaatiovalikko"
-
 msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Kytke alivalikko:"
@@ -313,17 +305,13 @@ msgctxt "Header search title"
 msgid "Search in City of Helsinki websites"
 msgstr "Hae Helsingin kaupungin sivuilta"
 
-msgctxt "Mobile navigation search open button text for screen readers"
-msgid "Open search"
-msgstr "Avaa haku"
-
-msgctxt "Mobile navigation search close button text for screen readers"
-msgid "Close search"
-msgstr "Sulje haku"
-
 msgctxt "Helfi search input placeholder"
 msgid "Enter a search word"
 msgstr "Kirjoita hakusana"
+
+msgctxt "Helfi menu search button"
+msgid "Search"
+msgstr "Haku"
 
 msgctxt "Helfi search button"
 msgid "Search"
@@ -989,6 +977,10 @@ msgstr "Näytä listana"
 msgctxt "React search: result display"
 msgid "View in a map"
 msgstr "Näytä kartalla"
+
+msgctxt "React search: result display"
+msgid "Service Map - Front page"
+msgstr "Palvelukartta - Etusivu"
 
 msgctxt "React search: result display"
 msgid "Open large version of the map"
