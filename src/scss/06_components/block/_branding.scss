@@ -30,6 +30,14 @@
     }
   }
 
+  .city-name__non-core {
+    text-wrap: wrap;
+
+    @include breakpoint(400px) {
+      text-wrap: nowrap;
+    }
+  }
+
   a:focus .city-name,
   a:hover .city-name {
     text-decoration: underline;
