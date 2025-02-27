@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+
+{% if content %}
+  <div{{ attributes.addClass(region|clean_class) }}>
+  {% set link_attributes = {
+      'class': [
+        'site-name__link',
+      ],
+    } %}
+    <div class="frontpage-instance-link__container">
+    {{ link(city_name, frontpage_instance_url, link_attributes) }}
+    </div>
+    {{ content }}
+  </div>
+{% endif %}
