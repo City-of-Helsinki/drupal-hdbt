@@ -9,7 +9,7 @@
     height: auto;
   }
 
-  .city-name__non-core,
+  .city-name--non-core,
   .city-name {
     @include font('special.navigation.city_name');
     color: $color-black;
@@ -30,7 +30,7 @@
     }
   }
 
-  .city-name__non-core {
+  .city-name--non-core {
     text-wrap: wrap;
 
     @include breakpoint(400px) {

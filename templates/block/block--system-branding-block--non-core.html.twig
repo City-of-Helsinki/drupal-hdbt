@@ -3,14 +3,6 @@
 /**
  * @file
  * Theme override for a branding block.
- *
- * Each branding element variable (logo, name, slogan) is only available if
- * enabled in the block configuration.
- *
- * Available variables:
- * - site_logo: Logo for site as defined in Appearance or theme settings.
- * - site_name: Name for site as defined in Site information settings.
- * - site_slogan: Slogan for site as defined in Site information settings.
  */
 #}
 
@@ -19,7 +11,7 @@
 {% block content %}
   {% set link_title %}
     {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-    <span class="city-name__non-core">{{ site_name }}</span>
+    <span class="city-name--non-core">{{ site_name }}</span>
   {% endset %}
   {% set link_attributes = {
     'class': [
