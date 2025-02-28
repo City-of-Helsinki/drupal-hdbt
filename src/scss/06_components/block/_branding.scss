@@ -10,7 +10,7 @@
   }
 
   .city-name__non-core,
-  .city-name__core {
+  .city-name {
     @include font('special.navigation.city_name');
     color: $color-black;
     margin-left: $spacing-half;
