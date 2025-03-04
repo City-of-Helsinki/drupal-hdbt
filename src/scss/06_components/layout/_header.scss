@@ -1,9 +1,7 @@
-$-language-block-height: 52px;
-
 // Header element directly under the wrapper element.
 .wrapper > .header {
   --branding-height: 65px;
-  --language-block-height: #{$-language-block-height};
+  --language-block-height: 52px;
   padding-top: calc(var(--branding-height) + var(--language-block-height));
 
   @include breakpoint($breakpoint-m) {
