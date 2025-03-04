@@ -1,9 +1,13 @@
+$-language-block-height: 52px;
+
 // Header element directly under the wrapper element.
 .wrapper > .header {
-  // TODO: UHF-8810 Try to find a way to remove this hard-coding.
-  padding-top: 114px; // Height of the navigation element
+  --branding-height: 65px;
+  --language-block-height: #{$-language-block-height};
+  padding-top: calc(var(--branding-height) + var(--language-block-height));
 
   @include breakpoint($breakpoint-m) {
+    --branding-height: 86px;
     padding-top: 0;
   }
 }
