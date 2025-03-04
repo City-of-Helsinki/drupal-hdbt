@@ -9,17 +9,32 @@
     height: auto;
   }
 
+  .city-name--non-core,
   .city-name {
+    @include font('special.navigation.city_name');
     color: $color-black;
-    display: none;
     margin-left: $spacing-half;
     margin-right: $spacing-half;
 
     @include breakpoint($breakpoint-l) {
-      @include font('special.navigation.city_name');
-      display: flex;
       margin-left: $spacing;
       margin-right: $spacing;
+    }
+  }
+
+  .city-name {
+    display: none;
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  .city-name--non-core {
+    text-wrap: wrap;
+
+    @include breakpoint(400px) {
+      text-wrap: nowrap;
     }
   }
 

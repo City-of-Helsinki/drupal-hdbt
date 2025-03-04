@@ -1072,6 +1072,7 @@ function _hdbt_set_site_information(array &$variables) {
     catch (\Exception $e) {
       // Set Etusivu absolute url as variable.
       $values['frontpage_instance_url'] = Url::fromUri("https://www.hel.fi/$language_id/");
+      $variables += $values;
       return;
     }
 
