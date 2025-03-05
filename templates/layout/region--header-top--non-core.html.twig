@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ */
+#}
+
+{% if content %}
+  <div{{ attributes.addClass(region|clean_class) }}>
+  {% set link_attributes = {
+      'class': [
+        'site-name__link',
+      ],
+    } %}
+    <div class="frontpage-instance-link__container">
+    {{ link(city_name, frontpage_instance_url, link_attributes) }}
+    </div>
+    {{ content }}
+  </div>
+{% endif %}
