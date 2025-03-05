@@ -1084,6 +1084,12 @@ msgctxt "Unit search count plural"
 msgid "results"
 msgstr "tulosta"
 
+msgctxt "Unit search count"
+msgid "result"
+msgid_plural "results"
+msgstr[0] "tulos"
+msgstr[1] "tulosta"
+
 msgctxt "Unit search no results title"
 msgid "No results"
 msgstr "Ei hakutuloksia"

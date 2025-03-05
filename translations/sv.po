@@ -1086,6 +1086,12 @@ msgctxt "Unit search count plural"
 msgid "results"
 msgstr "resultat"
 
+msgctxt "Unit search count"
+msgid "result"
+msgid_plural "results"
+msgstr[0] "resultat"
+msgstr[1] "resultat"
+
 msgctxt "Unit search no results title"
 msgid "No results"
 msgstr "Inga sökresultat"
