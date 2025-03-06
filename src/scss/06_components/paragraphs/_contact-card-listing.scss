@@ -1,11 +1,11 @@
-$contact-card-max-width: 200px;
-$contact-card-gap: $spacing-and-half;
+$-contact-card-max-width: 200px;
+$-contact-card-gap: $spacing-and-half;
 // The width when two cards don't fit next to each other anymore.
-$contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-mobile * 2) + $contact-card-gap);
+$contact-card-bp: calc(($-contact-card-max-width * 2) + ($component-side-padding-mobile * 2) + $-contact-card-gap);
 
 .contact-card-listing--container {
   align-items: flex-start;
-  column-gap: $contact-card-gap;
+  column-gap: $-contact-card-gap;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,14 +14,14 @@ $contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-
     margin-bottom: $spacing-triple;
 
     @include breakpoint($contact-card-bp) {
-      max-width: $contact-card-max-width;
+      max-width: $-contact-card-max-width;
     }
 
     @include breakpoint($breakpoint-s) {
       max-width: none;
       min-width: min-content;
       // Substract the gaps between the cards so that exactly 4 cards fit side by side.
-      width: calc(25% - ($contact-card-gap * 0.75));
+      width: calc(25% - ($-contact-card-gap * 0.75));
     }
   }
 }
@@ -30,11 +30,11 @@ $contact-card-bp: calc(($contact-card-max-width * 2) + ($component-side-padding-
 // four 200px (contact card min-width) wide elements with 24px gap on same row so we need to adjust
 // the column gap on the listing when displayed on region.
 .components--upper .contact-card-listing--container {
-  column-gap: calc($contact-card-gap - $spacing-quarter);
+  column-gap: calc($-contact-card-gap - $spacing-quarter);
 
   .contact-card {
     @include breakpoint($breakpoint-s) {
-      width: calc(25% - (($contact-card-gap - $spacing-quarter) * 0.75));
+      width: calc(25% - (($-contact-card-gap - $spacing-quarter) * 0.75));
     }
   }
 }

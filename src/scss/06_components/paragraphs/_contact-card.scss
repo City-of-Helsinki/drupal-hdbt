@@ -1,9 +1,17 @@
-$contact-card-image-size: 200px;
-$contact-card-color-line-width: 4px;
-$contact-card-max-width: $contact-card-image-size;
+$-contact-card-image-size: 200px;
+$-contact-card-font: small;
+$-contact-card-color-line-width: 4px;
+$-contact-card-max-width: $-contact-card-image-size;
+$-contact-card-link-padding: calc((44px - get-line-height($-contact-card-font, true)) / 2);
 
 .contact-card {
   display: flex;
+
+  a {
+    // This is not very nice but it gets us the phone numbers to remain inline and each on a new line.
+    display: table;
+    padding-block: $-contact-card-link-padding;
+  }
 }
 
 .contact-card--with-image {
@@ -15,29 +23,23 @@ $contact-card-max-width: $contact-card-image-size;
   margin-right: 0;
 
   img {
-    height: $contact-card-image-size;
-    width: $contact-card-image-size;
+    height: $-contact-card-image-size;
+    width: $-contact-card-image-size;
   }
-}
-
-.contact-card__person-phone-number a:not(:last-of-type)::after {
-  content: ',';
-  margin-right: 2px;
 }
 
 .contact-card__person-information {
-  @include font(small);
+  @include font($-contact-card-font);
   word-wrap: break-word;
   hyphens: auto;
-  margin-bottom: $spacing-half;
   overflow-wrap: break-word;
 
   @include breakpoint($breakpoint-s) {
-    min-width: $contact-card-max-width;
+    min-width: $-contact-card-max-width;
   }
 }
 .contact-card--color-line .contact-card__person-information {
-  min-width: calc($contact-card-image-size - $spacing-and-half - $spacing-quarter);
+  min-width: calc($-contact-card-image-size - $spacing-and-half - $spacing-quarter);
 }
 
 .contact-card__person-name {
@@ -68,7 +70,7 @@ $contact-card-max-width: $contact-card-image-size;
 .contact-card__color-line {
   background-color: var(--hdbt-color-palette--primary);
   margin-right: $spacing-and-half;
-  min-width: $contact-card-color-line-width;
+  min-width: $-contact-card-color-line-width;
 }
 
 .contact-card__person-description {
