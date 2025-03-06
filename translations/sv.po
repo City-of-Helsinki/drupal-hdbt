@@ -208,14 +208,6 @@ msgctxt "Mobile navigation menu close button text"
 msgid "Close"
 msgstr "Stäng"
 
-msgctxt "Mobile navigation menu open button text for screen readers"
-msgid "Open navigation menu"
-msgstr "Öppna navigeringsmenyn"
-
-msgctxt "Mobile navigation menu close button text for screen readers"
-msgid "Close navigation menu"
-msgstr "Stäng navigeringsmenyn"
-
 msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Växla undermeny:"
@@ -311,17 +303,13 @@ msgctxt "Header search title"
 msgid "Search in City of Helsinki websites"
 msgstr "Sök på Helsingfors stads sidor"
 
-msgctxt "Mobile navigation search open button text for screen readers"
-msgid "Open search"
-msgstr "Öppna sök"
-
-msgctxt "Mobile navigation search close button text for screen readers"
-msgid "Close search"
-msgstr "Stäng sök"
-
 msgctxt "Helfi search input placeholder"
 msgid "Enter a search word"
 msgstr "Skriv sökord"
+
+msgctxt "Helfi menu search button"
+msgid "Search"
+msgstr "Sök"
 
 msgctxt "Helfi search button"
 msgid "Search"
@@ -989,6 +977,10 @@ msgid "View in a map"
 msgstr "Visa på kartan"
 
 msgctxt "React search: result display"
+msgid "Service Map - Front page"
+msgstr "Servicekarta - Framsida"
+
+msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Öppna kartan i större format"
 
@@ -1017,16 +1009,16 @@ msgid "For example, Mannerheimintie"
 msgstr "T.ex. Mannerheimvägen"
 
 msgctxt "Ploughing schedule: Class 1"
-msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 18.00, we will plough the street within three hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 4–18 plogar vi gatan inom 3 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit tre centimeter snö.<br>Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Class 2"
-msgid "<strong>We will plough the street by 7.00</strong>, if it has snowed in the evening or during the early hours of the night. If it snows between 4.00 and 17.00, we will plough the street within four hours of the end of the snowfall. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Vi plogar gatan före klockan 7 på morgonen</strong>, om det har snöat på kvällen eller tidigt på natten. Klockan 3–17 plogar vi gatan inom 4 timmar från att snöfallet upphört.  Plogningen kan försenas om det snöar mycket och länge."
+msgid "We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit tre centimeter snö.<br>Vi plogar gatan inom fyra timmar. Om snön har fallit på kvällen eller sent på natten (kl. 19.00–03.00) plogar vi gatan senast klockan sju på morgonen.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Class 3"
-msgid "<strong>We will plough the street within three business days</strong>. Ploughing may be delayed if it snows a lot and for an extended period."
-msgstr "<strong>Vi plogar gatan inom tre vardagsdygn</strong>. Plogningen kan försenas om det snöar mycket och länge."
+msgid "We will start to clear snow when there is five centimetres of snow.<br>We will clear the street of snow within 12 hours. If snow has fallen in the evening or during the night (19.00–7.00), we will clear the street by seven the next evening.<br>If it snows heavily and for a long time, clearing may be delayed."
+msgstr "Vi börjar ploga när det har fallit fem centimeter snö.<br>Vi plogar gatan inom tolv timmar. Om snön har fallit på kvällen eller under natten (kl. 19.00–07.00) plogar vi gatan senast klockan sju nästa kväll.<br>Om det snöar kraftigt och under en längre tid kan plogningen bli försenad."
 
 msgctxt "Ploughing schedule: Multiple streets"
 msgid "The estimated ploughing schedules for the different parts of the street differ from each other. Below is the ploughing schedule for the longest part of the street."
@@ -1170,7 +1162,7 @@ msgstr "Ogiltigt slutdatum"
 
 msgctxt "Events search"
 msgid "Select a time period in which the event takes place"
-msgstr "Välj tidsperiod då evenemanget äger rum"
+msgstr "Sätt ut tidpunkterna inom vilka evenemanget ordnas"
 
 msgctxt "Events search"
 msgid "The last day of the time period is the same as the first day"
@@ -1185,8 +1177,8 @@ msgid "Last day of the time period"
 msgstr "Tidsperiodens sista dag"
 
 msgctxt "Events search"
-msgid "Select a venue"
-msgstr "Välj tidpunkt"
+msgid "Venue"
+msgstr "Evenmangsplats"
 
 msgctxt "Events search"
 msgid "Free-of-charge events"
@@ -1197,12 +1189,12 @@ msgid "Remote events"
 msgstr "Evenemang på distans"
 
 msgctxt "Events search"
-msgid "All"
-msgstr "Alla"
+msgid "All dates"
+msgstr "Alla tidpunkter"
 
 msgctxt "Events search"
-msgid "Refine search in tapahtumat.hel.fi"
-msgstr "Förfina sökningen i tapahtumat.hel.fi"
+msgid "Search for more events on the Events website"
+msgstr "Sök fler evenemang på webbplatsen Evenemang"
 
 msgctxt "Events search: event type prefix"
 msgid "Show only"
@@ -1253,8 +1245,8 @@ msgid "at"
 msgstr "klockan"
 
 msgctxt "React search: all available options"
-msgid "All"
-msgstr "Alla"
+msgid "All venues"
+msgstr "Alla evenmangsplatser"
 
 msgctxt "React search: topics filter"
 msgid "Event topic"

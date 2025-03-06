@@ -1,6 +1,6 @@
 import { Button, Checkbox, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import bucketToMap from '@/react/common/helpers/Aggregations';
 import CustomIds from '../enum/CustomTermIds';
@@ -39,18 +39,15 @@ const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
   const [taskAreaSelection, setTaskAreaFilter] = useAtom(taskAreasSelectionAtom);
-  const [taskAreaSelectOpen, setTaskAreaSelectOpen] = useState(false);
   const taskAreasOptions = useAtomValue(taskAreasAtom);
   const employmentOptions = useAtomValue(employmentAtom);
   const [employmentSelection, setEmploymentFilter] = useAtom(employmentSelectionAtom);
-  const [employmentSelectOpen, setEmploymentSelectOpen] = useState(false);
   const languagesOptions = useAtomValue(languagesAtom);
   const [languageSelection, setLanguageFilter] = useAtom(languageSelectionAtom);
   const { employmentSearchIds } = useAtomValue(configurationsAtom);
   const employmentSearchIdMap = bucketToMap(employmentSearchIds);
   const areaFilterOptions = useAtomValue(areaFilterAtom);
   const [areaFilterSelection, setAreaFilter] = useAtom(areaFilterSelectionAtom);
-  const [areaFilterSelectOpen, setAreaFilterSelectOpen] = useState(false);
   const setSubmitted = useSetAtom(monitorSubmittedAtom);
 
   // Set form control values from url parameters on load
@@ -135,11 +132,8 @@ const FormContainer = () => {
               id={SearchComponents.TASK_AREAS}
               multiSelect
               noTags
-              open={taskAreaSelectOpen}
-              onBlur={() => setTaskAreaSelectOpen(false)}
-              onChange={(selectedOptions, clickedOption) => {
+              onChange={(selectedOptions) => {
                 setTaskAreaFilter(selectedOptions);
-                if (clickedOption) setTaskAreaSelectOpen(true);
               }}
               options={taskAreasOptions}
               texts={{
@@ -157,12 +151,9 @@ const FormContainer = () => {
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
               multiSelect
               noTags
-              open={employmentSelectOpen}
-              onChange={(selectedOptions, clickedOption) => {
+              onChange={(selectedOptions) => {
                 setEmploymentFilter(selectedOptions);
-                if (clickedOption) setEmploymentSelectOpen(true);
               }}
-              onBlur={() => setEmploymentSelectOpen(false)}
               options={employmentOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
@@ -234,12 +225,9 @@ const FormContainer = () => {
                 id={SearchComponents.AREA_FILTER}
                 multiSelect
                 noTags
-                open={areaFilterSelectOpen}
-                onChange={(selectedOptions, clickedOption) => {
+                onChange={(selectedOptions) => {
                   setAreaFilter(selectedOptions);
-                  if (clickedOption) setAreaFilterSelectOpen(true);
                 }}
-                onBlur={() => setAreaFilterSelectOpen(false)}
                 options={areaFilterOptions}
                 value={areaFilterSelection}
                 texts={{

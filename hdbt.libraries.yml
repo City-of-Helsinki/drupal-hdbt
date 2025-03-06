@@ -202,7 +202,7 @@ nav-global:
     - hdbt/nav-toggle
 
 event-list:
-  version: 1.4.0
+  version: 1.4.1
   js:
     dist/js/linkedevents.min.js: {
       preprocess: false,
@@ -214,7 +214,7 @@ event-list:
     - core/drupal
 
 school-search:
-  version: 1.5.1
+  version: 1.5.3
   js:
     dist/js/school-search.min.js: {
       preprocess: false,
@@ -249,7 +249,7 @@ hyphenopoly:
     - hdbt/hyphenopoly-loader
 
 job-search:
-  version: 1.8.1
+  version: 1.8.2
   js:
     dist/js/job-search.min.js: {
       preprocess: false,
@@ -260,7 +260,7 @@ job-search:
     - core/drupal
 
 district-and-project-search:
-  version: 1.3.1
+  version: 1.3.2
   js:
     dist/js/district-and-project-search.min.js: {
       preprocess: false,
@@ -271,7 +271,7 @@ district-and-project-search:
     - core/drupal
 
 news-archive:
-  version: 1.3.1
+  version: 1.3.2
   js:
     dist/js/news-archive.min.js: {
       preprocess: false,
@@ -299,7 +299,7 @@ table-figcaption:
     - core/once
 
 health-station-search:
-  version: 1.3.1
+  version: 1.3.2
   js:
     dist/js/health-station-search.min.js: {
       preprocess: false,
@@ -310,7 +310,7 @@ health-station-search:
     - core/drupal
 
 maternity-and-child-health-clinic-search:
-  version: 1.2.1
+  version: 1.2.2
   js:
     dist/js/maternity-and-child-health-clinic-search.min.js: {
       preprocess: false,
@@ -321,7 +321,7 @@ maternity-and-child-health-clinic-search:
     - core/drupal
 
 ploughing-schedule:
-  version: 1.0.1
+  version: 1.0.2
   js:
     dist/js/ploughing-schedule.min.js: {
       preprocess: false,
