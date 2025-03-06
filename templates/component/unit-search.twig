@@ -8,6 +8,10 @@
   ]
 %}
 
+{% if modifier_class %}
+  {% set classes = classes|merge(modifier_class) %}
+{% endif %}
+
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title }}
