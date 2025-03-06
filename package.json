@@ -104,7 +104,7 @@
     "stylelint-scss": "^6.0.0",
     "svg-inline-loader": "^0.8.0",
     "svg-sprite": "https://github.com/svg-sprite/svg-sprite/archive/refs/tags/v3.0.0-beta3.tar.gz",
-    "swr": "2.3.2",
+    "swr": "2.3.3",
     "ts-loader": "^9.4.2",
     "typescript": "^5.1.6",
     "webpack": "^5.89.0",
