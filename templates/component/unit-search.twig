@@ -1,0 +1,57 @@
+{%
+  set classes = [
+    'views',
+    'views--' ~ id|clean_class,
+    'views--' ~ display_id|clean_class,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'unit-search__content'
+  ]
+%}
+
+{% if modifier_class %}
+  {% set classes = classes|merge(modifier_class) %}
+{% endif %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  <div class="unit-search__results" data-id-number="{{ dom_id }}">
+    <h3 class="unit-search__count-container">
+      {% block count_container%}
+        {%- if total_rows -%}
+          {{ total_rows }} {% trans with {'context': 'Unit search count'} %}result{% plural total_rows %}results{% endtrans %}
+        {%- else -%}
+          {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+        {%- endif -%}
+      {% endblock %}
+    </h3>
+
+    {%- if empty -%}
+      <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Unit search no results text'}) }}</p>
+    {%- endif -%}
+
+    {{ rows }}
+    {{ pager }}
+  </div>
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>
