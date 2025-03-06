@@ -1,11 +1,11 @@
 {%
   set classes = [
-  'views',
-  'views--' ~ id|clean_class,
-  'views--' ~ display_id|clean_class,
-  dom_id ? 'js-view-dom-id-' ~ dom_id,
-  'unit-search__content'
-]
+    'views',
+    'views--' ~ id|clean_class,
+    'views--' ~ display_id|clean_class,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'unit-search__content'
+  ]
 %}
 
 <div{{ attributes.addClass(classes) }}>
