@@ -114,11 +114,6 @@ $-contact-card-four-columns-spacing: calc(($-contact-card-gap / 4) * 3);
 .contact-card__person-link--social-media {
   display: flex;
   flex-direction: column;
-
-  .hel-icon {
-    height: $spacing-and-half;
-    width: $spacing-and-half;
-  }
 }
 
 .contact-card__person-description {
