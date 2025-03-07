@@ -7,6 +7,10 @@
 
   // Check whether the given cookie categories have been accepted.
   const categoriesAgreed = (categories) => {
+     // If the 'bypass' category is included, the content should be loaded
+     if (categories.includes('bypass')) {
+      return true;
+    }
     // Set default categories if none exists.
     if (!categories) {
       categories = ['preferences', 'statistics'];
