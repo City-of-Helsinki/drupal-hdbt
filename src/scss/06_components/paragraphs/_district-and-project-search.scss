@@ -37,11 +37,12 @@
       font-weight: 500;
     }
 
-    div[role='button'] {
-      width: auto;
+    button {
+      padding-block: $spacing-half; // This sets the link clickable area to be big enough for a11y.
 
-      svg {
-        margin-left: $spacing-half;
+      &:focus,
+      &:active {
+        outline: solid var(--color-black) 3px;
       }
     }
 
