@@ -882,19 +882,6 @@ function hdbt_preprocess_paragraph__map(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_media__type().
- */
-function hdbt_preprocess_media__hel_map(&$variables) {
-  $media = $variables['media'];
-  if ($media->hasField('field_media_hel_map')) {
-    $link = $media->get('field_media_hel_map')->uri;
-    if ($link) {
-      $variables['is_palvelukartta'] = str_contains($link, 'palvelukartta.hel.fi');
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_paragraph__type().
  */
 function hdbt_preprocess_paragraph__chart(&$variables) {
