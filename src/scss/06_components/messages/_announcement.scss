@@ -1,4 +1,4 @@
-$-announcement_link_padding: 12px;
+$-announcement_link_padding: $spacing-three-quarters;
 
 .announcement {
   @include font('small');
