@@ -428,9 +428,12 @@ function hdbt_preprocess_feed_icon(&$variables): void {
     return;
   }
 
-  if (in_array(strtolower($variables['title']), ['news', 'nyheter', 'uutiset'])) {
-    $variables['title'] = t('all news', [], ['context' => 'Feed icon altered title']);
+  if (is_string($variables['title'])) {
+    if (in_array(strtolower($variables['title']), ['news', 'nyheter', 'uutiset'])) {
+      $variables['title'] = t('all news', [], ['context' => 'Feed icon altered title']);
+    }
   }
+
 }
 
 /**
