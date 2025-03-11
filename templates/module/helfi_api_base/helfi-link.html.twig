@@ -2,63 +2,59 @@
   This twig is called only for certain links
   see conditions in \Drupal\helfi_api_base\Link\LinkProcessor::preRenderLink
 #}
-{% apply spaceless %}
+{% if alternative_language %}
+  {% set descriptive_lang = lang_attributes.fallback_lang %}
+  {% set descriptive_lang_dir = lang_attributes.fallback_dir %}
+{% else %}
+  {% set descriptive_lang = language.id %}
+  {% set descriptive_lang_dir = language.direction %}
+{% endif %}
 
-  {% if alternative_language %}
-    {% set descriptive_lang = lang_attributes.fallback_lang %}
-    {% set descriptive_lang_dir = lang_attributes.fallback_dir %}
-  {% else %}
-    {% set descriptive_lang = language.id %}
-    {% set descriptive_lang_dir = language.direction %}
+{# Check if we want to render old link icons, the new links with data-hds="button" use pseudo elements instead #}
+{% set render_old_link = false %}
+
+{% if
+  ('data-hds-component' not in attributes|keys or attributes['data-hds-component'] != 'button') and
+  ('data-hds-component' not in url.options.attributes|keys or url.options.attributes['data-hds-component'] != 'button')
+%}
+  {% set render_old_link = true %}
+{% endif %}
+
+{% if 'data-selected-icon' in url.options.attributes|keys %}
+  {% if render_old_link %}
+    {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
   {% endif %}
+{% endif %}
 
-  {# Check if we want to render old link icons, the new links with data-hds="button" use pseudo elements instead #}
-  {% set render_old_link = false %}
+{% if 'data-open-in-new-tab' in url.options.attributes|keys %}
+  <span class="visually-hidden">({{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.)</span>
+{% endif %}
 
-  {% if
-    ('data-hds-component' not in attributes|keys or attributes['data-hds-component'] != 'button') and
-    ('data-hds-component' not in url.options.attributes|keys or url.options.attributes['data-hds-component'] != 'button')
-  %}
-    {% set render_old_link = true %}
-  {% endif %}
+{% if 'data-is-external' in attributes|keys %}
+  {%- set attribute_icon -%}
+    {%- if render_old_link -%}
+      <span class="link__type link__type--external"></span>
+    {%- endif -%}
+    <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>
+  {%- endset -%}
+{% endif %}
 
-  {% if 'data-selected-icon' in url.options.attributes|keys %}
-    {% if render_old_link %}
-      {% set selected_icon -%}{% include '@hdbt/misc/icon.twig' ignore missing with {icon: url.options.attributes['data-selected-icon']} only %}{%- endset %}
-    {% endif %}
-  {% endif %}
-
-  {% if 'data-open-in-new-tab' in url.options.attributes|keys %}
-    <span class="visually-hidden">({{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.)</span>
-  {% endif %}
-
-  {% if 'data-is-external' in attributes|keys %}
+{% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
+  {% if attributes['data-protocol'] == 'tel' %}
     {%- set attribute_icon -%}
       {%- if render_old_link -%}
-        <span class="link__type link__type--external"></span>
+        <span class="link__type link__type--tel"></span>
       {%- endif -%}
-      <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link leads to external service'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link leads to an external service.'}) }})</span>
+      <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
+    {%- endset -%}
+  {% elseif attributes['data-protocol'] == 'mailto' %}
+    {%- set attribute_icon -%}
+      {%- if render_old_link -%}
+        <span class="link__type link__type--mailto"></span>
+      {%- endif -%}
+      <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
     {%- endset -%}
   {% endif %}
+{% endif %}
 
-  {% if 'data-protocol' in attributes|keys and attributes['data-protocol'] != 'false'%}
-    {% if attributes['data-protocol'] == 'tel' %}
-      {%- set attribute_icon -%}
-        {%- if render_old_link -%}
-          <span class="link__type link__type--tel"></span>
-        {%- endif -%}
-        <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link starts a phone call'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link starts a phone call.'}) }})</span>
-      {%- endset -%}
-    {% elseif attributes['data-protocol'] == 'mailto' %}
-      {%- set attribute_icon -%}
-        {%- if render_old_link -%}
-          <span class="link__type link__type--mailto"></span>
-        {%- endif -%}
-        <span class="visually-hidden" lang="{{ descriptive_lang }}" dir="{{ descriptive_lang_dir }}">({{ 'Link opens default mail program'|t({}, {'context': 'Explanation for screen-reader software that the icon visible next to this link means that the link opens default mail program.'}) }})</span>
-      {%- endset -%}
-    {% endif %}
-  {% endif %}
-
-  {{ selected_icon }}{{ title }}{{ attribute_icon }}
-
-{% endapply %}
+{{ selected_icon }}{{ title }}{{ attribute_icon }}

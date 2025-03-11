@@ -38,23 +38,17 @@
  * @ingroup themeable
  */
 #}
+{% set social_media = paragraph.getSocialMedia() %}
 
-{%
-  set classes = [
-    'social-media-link',
-  ]
-%}
+{%- block paragraph -%}
+  {% if social_media is not empty %}
+    {% set classes = ['social-media-link'] %}
+    {% set link_attributes = {
+      'data-selected-icon': social_media.social_media_icon
+    } %}
 
-{% set icon_name = paragraph.getIconName() %}
-
-{% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-   {% set link_title %}
-      {{ content.field_icon }}
-      <span class="visually-hidden">{{ icon_name }}</span>
-    {% endset %}
-    {% if content.field_social_media_link[0]['#url']|render %}
-      {{ link(link_title, content.field_social_media_link[0]['#url']) }}
-    {% endif %}
-  </div>
-{% endblock paragraph %}
+    <div{{ attributes.addClass(classes) }}>
+      {{ link(social_media.social_media_name, social_media.social_media_url, link_attributes) }}
+    </div>
+  {% endif %}
+{%- endblock paragraph -%}

@@ -1,7 +1,9 @@
 {% set icon_labelled_by = "hdbt-icon--" ~ random() %}
-
-<span class="hel-icon hel-icon--{{ icon }} {{ class }}" role="img" {% if label %} aria-labelledby="{{ icon_labelled_by }}" {% else %} aria-hidden="true" {% endif %}>
+{%- set icon_no_whitespace -%}
+  <span class="hel-icon hel-icon--{{ icon }} {{ class }}" role="img" {% if label %} aria-labelledby="{{ icon_labelled_by }}" {% else %} aria-hidden="true" {% endif %}>
   {% if label %}
     <span class="is-hidden" id="{{ icon_labelled_by }}">{{ label }}</span>
   {% endif %}
-</span>
+  </span>
+{%- endset -%}
+{{- icon_no_whitespace -}}
