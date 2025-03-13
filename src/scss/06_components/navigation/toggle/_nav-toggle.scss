@@ -134,7 +134,7 @@ $label-font: 'special.navigation.icon_label';
 .nav-toggle-dropdown__content {
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
-  display: none;
+  display: block;
 
   @supports (height: 100dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
@@ -161,6 +161,11 @@ $label-font: 'special.navigation.icon_label';
 
   @media (prefers-reduced-motion) {
     transition: none !important;
+  }
+
+  > * {
+    // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+    transition: all $-menu-transition-duration ease-in;
   }
 }
 
