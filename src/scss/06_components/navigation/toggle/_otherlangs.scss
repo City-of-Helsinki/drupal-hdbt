@@ -7,6 +7,14 @@
   }
 }
 
+.nav-toggle-dropdown--otherlangs .nav-toggle-dropdown__wrapper {
+  background-color: $color-black-5;
+
+  @include breakpoint($breakpoint-l) {
+    background-color: transparent;
+  }
+}
+
 // stylelint-disable-next-line no-descending-specificity
 .nav-toggle--otherlangs .nav-toggle__label {
   align-self: stretch;
@@ -38,5 +46,9 @@
 #otherlangs[data-target='true'] {
   & ~ * .nav-toggle--otherlangs .nav-toggle__label::after {
     transform: rotate(180deg);
+  }
+
+  & ~ * .nav-toggle-dropdown--otherlangs .nav-toggle-dropdown__content {
+    display: flex;
   }
 }

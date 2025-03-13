@@ -134,6 +134,7 @@ $label-font: 'special.navigation.icon_label';
 .nav-toggle-dropdown__content {
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
+  display: none;
 
   @supports (height: 100dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
@@ -154,7 +155,9 @@ $label-font: 'special.navigation.icon_label';
   overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
   pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
   transform: translateY(100%);
-  transition: transform $-menu-transition-duration ease-in;
+  // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+  transition: transform $-menu-transition-duration ease-in, display $-menu-transition-duration;
+  transition-behavior: allow-discrete;
 
   @media (prefers-reduced-motion) {
     transition: none !important;
@@ -167,12 +170,12 @@ $label-font: 'special.navigation.icon_label';
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
-      // Prevent overscrolling when full screen menu is open
-      overflow: hidden;
+      display: none;
+      overflow: hidden; // Prevent overscrolling when full screen menu is open
       // stylelint-disable-next-line plugin/no-low-performance-animation-properties
-      transition: display 0s linear 10s; // low performance property is ok here as it's just a toggle
-      // Hide other content when menu is visible, to block tabbing behind menu
-      visibility: hidden;
+      transition: visibility $-menu-transition-duration, display $-menu-transition-duration; // low performance property is ok here as it's just a toggle
+      transition-behavior: allow-discrete;
+      visibility: hidden; // Hide other content when menu is visible, to block tabbing behind menu
     }
   }
 }
@@ -213,8 +216,11 @@ $label-font: 'special.navigation.icon_label';
       }
 
       .nav-toggle-dropdown__content {
+        display: block;
         transform: translateY(0); // Animate content inside wrapper into view from bottom, generating a reveal effect
-        transition: transform $-menu-transition-duration ease-out;
+        // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+        transition: transform $-menu-transition-duration ease-out, display $-menu-transition-duration;
+        transition-behavior: allow-discrete;
       }
     }
   }
