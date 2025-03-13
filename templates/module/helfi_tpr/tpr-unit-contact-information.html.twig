@@ -15,6 +15,7 @@
   content.opening_hours|render or
   content.www|render
 %}
+  {% set provided_languages = content.provided_languages['#object'].getProvidedLanguageNames() %}
 
   <div class="unit__contact">
     {% if content.address|render %}
@@ -60,13 +61,13 @@
         {{ content.opening_hours }}
       </div>
     {% endif %}
-    {% if content.provided_languages['#object'].getProvidedLanguageNames() %}
+    {% if provided_languages %}
       <div class="unit__contact-row unit__contact-row--provided-languages">
         <label class="unit__contact-row__label">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'globe'} %}
           {{ 'Service language'|t({}, {'context': 'TPR unit contact information service language'}) }}:
         </label>
-        {{ content.provided_languages['#object'].getProvidedLanguageNames() }}
+        {{ provided_languages }}
       </div>
     {% endif %}
     {% if content.address_postal|render %}
