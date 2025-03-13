@@ -194,6 +194,8 @@
 #profile:target,
 #profile[data-target='true'] {
   & ~ * .nav-toggle-dropdown--profile .nav-toggle-dropdown__content {
-    display: flex;
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
   }
 }
