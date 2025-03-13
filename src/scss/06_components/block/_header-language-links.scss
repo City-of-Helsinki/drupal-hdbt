@@ -1,17 +1,5 @@
 $-otherlangs-min-width: 240px; // From design specs
 
-.nav-toggle-dropdown--otherlangs {
-  grid-area: langmenu;
-}
-
-.nav-toggle-dropdown--otherlangs .nav-toggle-dropdown__content {
-  @include breakpoint($breakpoint-l) {
-    display: flex;
-    justify-content: flex-end;
-    pointer-events: none;
-  }
-}
-
 .headerlanguagelinks__menu-dropdown {
   background-color: $color-black-5;
   height: auto; // Can not be 100% or the background will stop early on landscape mobile screens.
