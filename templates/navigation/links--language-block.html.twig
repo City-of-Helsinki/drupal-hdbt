@@ -43,7 +43,21 @@
           {{ create_attribute({'lang': lang}) }}
           {{ ariaCurrent }}
           {{ title }}
-        >{{ item.text|capitalize }}</{{ element }}>
+        >{{ item.text|capitalize }}
+
+
+      <div class="language-toast">
+        {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
+        <button class="language-toast__close" aria-labelledby="{{ language_toast_close_labelled_by }}">
+          <span id="{{language_toast_close_labelled_by}}" class="is-hidden">Close toast</span>
+        </button>
+        <div class="language-toast__content">
+          This page is not available in English. Go to the homepage to access the website's English-language content.
+          <a href="#" class="language-toast__link">Return to the front page</a>
+        </div>
+      </div>
+
+    </{{ element }}>
       {% endfor %}
     </div>
   </div>

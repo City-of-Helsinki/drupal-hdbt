@@ -1,0 +1,64 @@
+$-toast-top-border-height: $spacing-half;
+$-toast-arrow-height: $spacing-half;
+
+.language-toast {
+  background-color: var(--color-info-light);
+  border-top: $-toast-top-border-height solid var(--color-info);
+  color: var(--color-black-90);
+  display: flex;
+  flex-direction: row-reverse;
+  gap: $spacing;
+  padding: $spacing;
+  position: relative;
+
+  &::before {
+    border-bottom: $-toast-arrow-height solid var(--color-info);
+    border-left: $-toast-arrow-height solid transparent;
+    border-right: $-toast-arrow-height solid transparent;
+    content:"";
+    height: 0;
+    left: 50%;
+    position: absolute;
+    top: calc(($-toast-arrow-height + $-toast-top-border-height) * -1);
+    transform: translateX(-50%);
+    width: 0;
+  }
+}
+
+.language-toast__content {
+  @include font('special.navigation.header_top');
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-half;
+}
+
+.language-toast__link {
+  display: inline-block;
+}
+
+// MOVE TO GENERAL STYLE
+.language-toast__close {
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: $spacing-triple;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: -$spacing-half;
+  margin-top: -$spacing-half;
+  padding: 0;
+  width: $spacing-triple;
+
+  &::after {
+    --icon-size: #{$spacing-double};
+
+    @include pseudo-icon('cross');
+  }
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: -3px;
+  }
+}
