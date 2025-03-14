@@ -101,6 +101,7 @@ $-announcement_link_padding: $spacing-three-quarters;
   background: transparent;
   border: 0 none;
   cursor: pointer;
+  flex-shrink: 0;
   height: $spacing-triple;
   margin-bottom: 0;
   margin-left: 0;
