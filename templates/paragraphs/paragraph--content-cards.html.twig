@@ -16,23 +16,23 @@
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
 
-{% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [
-        'component--content-cards',
-        design_class,
-        has_koro ? 'component--has-koro',
-      ],
-      component_koro: has_koro ? { flip: true },
-      component_title: title,
-      component_content_class: 'content-cards',
-    }
-  %}
-    {% block component_content %}
-
-      {{ content|without('field_content_cards_design', 'field_content_cards_title') }}
-
-    {% endblock component_content %}
-  {% endembed %}
-{% endblock paragraph %}
+{% if paragraph.getBlockVisibility() %}
+  {% block paragraph %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--content-cards',
+          design_class,
+          has_koro ? 'component--has-koro',
+        ],
+        component_koro: has_koro ? { flip: true },
+        component_title: title,
+        component_content_class: 'content-cards',
+      }
+    %}
+      {% block component_content %}
+        {{ content|without('field_content_cards_design', 'field_content_cards_title') }}
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock paragraph %}
+{% endif %}
