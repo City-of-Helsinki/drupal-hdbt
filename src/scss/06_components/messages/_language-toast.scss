@@ -8,8 +8,12 @@ $-toast-arrow-height: $spacing-half;
   display: flex;
   flex-direction: row-reverse;
   gap: $spacing;
+  left: 50%;
   padding: $spacing;
-  position: relative;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 280px;
 
   &::before {
     border-bottom: $-toast-arrow-height solid var(--color-info);
@@ -17,12 +21,18 @@ $-toast-arrow-height: $spacing-half;
     border-right: $-toast-arrow-height solid transparent;
     content:"";
     height: 0;
-    left: 50%;
+    left: var(--toast-arrow-left, 50%);
     position: absolute;
+    right: var(--toast-arrow-right, auto);
     top: calc(($-toast-arrow-height + $-toast-top-border-height) * -1);
-    transform: translateX(-50%);
+    transform: translateX(var(--toast-arrow-transform, -50%));
     width: 0;
   }
+}
+
+.language-toast__closed {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .language-toast__content {

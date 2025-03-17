@@ -2,18 +2,22 @@ $-language-link-font: 'small';
 $-padding-size: ($wcag-touch-target-size-aaa - get-line-height($-language-link-font, $unremify: true) ) * 0.5; // Lets calculate the padding size for the language link based on the line-height of the chosen font.
 $-current-border-size: 3px;
 
+.language-link__wrapper {
+  margin-left: $spacing-half;
+  margin-right: $spacing-half;
+  position: relative;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
 .language-link {
   @include navigation_link_defaults;
   @include font($-language-link-font);
   color: $color-black-90;
   display: inline-block;
-  margin-left: $spacing-half;
-  margin-right: $spacing-half;
   padding-block: $-padding-size;
-
-  &:first-child {
-    margin-left: 0;
-  }
 
   &[aria-current='true'] {
     cursor: default;

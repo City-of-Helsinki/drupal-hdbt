@@ -1,4 +1,5 @@
 {% if links %}
+  {{ attach_library('hdbt/language-toast') }}
   <div {{ attributes.addClass('language-switcher', 'js-language-switcher') }}>
     <div class="language-links">
       {% for item in links %}
@@ -23,8 +24,8 @@
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
           {% set classes = classes|merge(['is-disabled']) %}
         {% else %}
-          {% set element = 'span' %}
-          {% set classes = classes|merge(['is-disabled']) %}
+          {% set element = 'button' %}
+          {% set classes = classes|merge(['is-disabled', 'has-toast']) %}
           {% if lang == 'en' %}
             {% set title = create_attribute({'title': 'There is no English translation for this page'}) %}
           {% elseif lang == 'fi' %}
@@ -34,9 +35,22 @@
           {% elseif lang == 'ru' %}
             {% set title = create_attribute({'title': 'Для этой страницы нет русского перевода'}) %}
           {% endif %}
+          {% set language_toast %}
+            <div class="language-toast language-toast__closed">
+              {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
+              <button class="language-toast__close" aria-labelledby="{{ language_toast_close_labelled_by }}">
+                <span id="{{language_toast_close_labelled_by}}" class="is-hidden">Close toast</span>
+              </button>
+              <div class="language-toast__content">
+                This page is not available in English. Go to the homepage to access the website's English-language content.
+                <a href="#" class="language-toast__link">Return to the front page</a>
+              </div>
+            </div>
+          {% endset %}
         {% endif %}
 
         {# Construct the element based on variables. #}
+      <span class="language-link__wrapper">
         <{{ element }}
           {{ create_attribute({'class': classes}) }}
           {{ language_link ? create_attribute({'href': language_link}) }}
@@ -44,20 +58,9 @@
           {{ ariaCurrent }}
           {{ title }}
         >{{ item.text|capitalize }}
-
-
-      <div class="language-toast">
-        {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
-        <button class="language-toast__close" aria-labelledby="{{ language_toast_close_labelled_by }}">
-          <span id="{{language_toast_close_labelled_by}}" class="is-hidden">Close toast</span>
-        </button>
-        <div class="language-toast__content">
-          This page is not available in English. Go to the homepage to access the website's English-language content.
-          <a href="#" class="language-toast__link">Return to the front page</a>
-        </div>
-      </div>
-
-    </{{ element }}>
+         </{{ element }}>
+        {{ language_toast }}
+      </span>
       {% endfor %}
     </div>
   </div>
