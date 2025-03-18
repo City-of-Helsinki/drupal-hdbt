@@ -9,7 +9,16 @@
      * @todo implement a general feature
      */
     const instanceName = drupalSettings.helfi_instance_name;
-    if (instanceName === 'asuminen' && Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+    const shouldUseJsClient = instanceName !== 'etusivu';
+
+    if (shouldUseJsClient && !drupalSettings.matomo_site_id) {
+      throw new Error('Missing Matomo site ID');
+    }
+
+    if (
+      shouldUseJsClient &&
+      Drupal.cookieConsent.getConsentStatus(['statistics'])
+    ) {
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
       const getLanguage = () => document.querySelector('html')?.attributes?.lang?.value || 'unkown';
@@ -34,8 +43,7 @@
       (function() {
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
-        _paq.push(['setSiteId', '141']);
-        _paq.push(['addTracker', `${u}tracker.php`, '1098']);
+        _paq.push(['setSiteId', drupalSettings.matomo_site_id]);
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
@@ -61,6 +69,7 @@
   }
 
   if (Drupal.cookieConsent.initialized()) {
+    window.loadMatomoAnalytics = loadMatomoAnalytics;
     loadMatomoAnalytics();
   } else {
     Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
