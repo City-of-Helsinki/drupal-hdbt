@@ -36,11 +36,17 @@ $-current-border-size: 3px;
   }
 
   &.is-disabled {
+    background-color: transparent;
+    border: 0 none;
     color: $color-black-60;
     cursor: not-allowed;
 
     &.is-alternative {
       display: none;
+    }
+
+    &.has-toast {
+      cursor: pointer;
     }
   }
 }
