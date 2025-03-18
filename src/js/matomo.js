@@ -11,13 +11,10 @@
     const instanceName = drupalSettings.helfi_instance_name;
     const shouldUseJsClient = instanceName !== 'etusivu';
 
-    if (shouldUseJsClient && !drupalSettings.matomo_site_id) {
-      throw new Error('Missing Matomo site ID');
-    }
-
     if (
       shouldUseJsClient &&
-      Drupal.cookieConsent.getConsentStatus(['statistics'])
+      Drupal.cookieConsent.getConsentStatus(['statistics']) &&
+      drupalSettings.matomo_site_id
     ) {
       const getViewportWidth = () => window.innerWidth;
       const getViewportHeight = () => window.innerHeight;
@@ -69,7 +66,6 @@
   }
 
   if (Drupal.cookieConsent.initialized()) {
-    window.loadMatomoAnalytics = loadMatomoAnalytics;
     loadMatomoAnalytics();
   } else {
     Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
