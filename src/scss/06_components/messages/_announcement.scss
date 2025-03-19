@@ -1,3 +1,5 @@
+$-announcement_link_padding: $spacing-three-quarters;
+
 .announcement {
   @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
@@ -53,7 +55,7 @@
   }
 }
 
-.announcenemnt__content-body {
+.announcement__content-body {
   & *:first-child {
     margin-top: 0;
   }
@@ -64,6 +66,15 @@
 
   &:first-child {
     margin-top: 0;
+  }
+
+  a {
+    padding-block: $-announcement_link_padding; // This sets the link clickable area to be big enough for a11y.
+  }
+
+  a:focus,
+  a:active {
+    outline: solid var(--color-black) 3px;
   }
 
   a::after {
@@ -90,18 +101,25 @@
   background: transparent;
   border: 0 none;
   cursor: pointer;
-  height: $spacing-double;
+  flex-shrink: 0;
+  height: $spacing-triple;
   margin-bottom: 0;
   margin-left: 0;
   margin-right: -$spacing-half;
   margin-top: -$spacing-half;
   padding: 0;
-  width: $spacing-double;
+  width: $spacing-triple;
 
   &::after {
     --icon-size: #{$spacing-double};
 
     @include pseudo-icon('cross');
+  }
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: -3px;
   }
 }
 
