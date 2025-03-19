@@ -40,7 +40,8 @@
       (function() {
         const u='//webanalytics.digiaiiris.com/js/';
         _paq.push(['setTrackerUrl', `${u}tracker.php`]);
-        _paq.push(['setSiteId', drupalSettings.matomo_site_id]);
+        _paq.push(['setSiteId', '141']);
+        _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
         const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
         // Consider integrity hash check
         g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
