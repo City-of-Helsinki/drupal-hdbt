@@ -33,6 +33,10 @@
   }
 }
 
+.nav-toggle-dropdown--search .nav-toggle-dropdown__wrapper {
+  background-color: $color-black-5;
+}
+
 .nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
   background-color: $color-white;
 }

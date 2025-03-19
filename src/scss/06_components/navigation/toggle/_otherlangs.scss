@@ -5,32 +5,51 @@
   @include breakpoint($breakpoint-l) {
     align-items: center;
   }
-}
 
-// stylelint-disable-next-line no-descending-specificity
-.nav-toggle--otherlangs .nav-toggle__label {
-  align-self: stretch;
-  grid-area: link;
-  grid-column: auto min-content;
-  grid-template-areas:
+  .nav-toggle__label {
+    align-self: stretch;
+    grid-area: link;
+    grid-column: auto min-content;
+    grid-template-areas:
     'icon arrow'
     'label .';
-  min-height: remify(5px + $-default-label-icon-size + 5px);
+    min-height: remify(5px + $-default-label-icon-size + 5px);
 
-  @include breakpoint($breakpoint-l) {
-    min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
+    @include breakpoint($breakpoint-l) {
+      min-height: remify(5px + $-default-label-icon-size + 5px) + get-line-height($label-font);
+    }
+
+    &::before {
+      @include pseudo-icon('globe', 24px, currentColor, block);
+    }
+
+    &::after {
+      @include rotating-icon-transition;
+      @include pseudo-icon('angle-down', 24px, $color-black);
+      align-self: end;
+      content: '';
+      grid-area: arrow;
+    }
+  }
+}
+
+.nav-toggle-dropdown--otherlangs {
+  grid-area: langmenu;
+
+  .nav-toggle-dropdown__content {
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
   }
 
-  &::before {
-    @include pseudo-icon('globe', 24px, currentColor, block);
-  }
+  .nav-toggle-dropdown__wrapper {
+    background-color: $color-black-5;
 
-  &::after {
-    @include rotating-icon-transition;
-    @include pseudo-icon('angle-down', 24px, $color-black);
-    align-self: end;
-    content: '';
-    grid-area: arrow;
+    @include breakpoint($breakpoint-l) {
+      background-color: transparent;
+    }
   }
 }
 
@@ -38,5 +57,9 @@
 #otherlangs[data-target='true'] {
   & ~ * .nav-toggle--otherlangs .nav-toggle__label::after {
     transform: rotate(180deg);
+  }
+
+  & ~ * .nav-toggle-dropdown--otherlangs .nav-toggle-dropdown__content {
+    display: flex;
   }
 }
