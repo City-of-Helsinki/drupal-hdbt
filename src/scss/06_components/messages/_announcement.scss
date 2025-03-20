@@ -13,7 +13,6 @@ $-announcement_link_padding: $spacing-three-quarters;
   align-items: flex-start;
   background: linear-gradient(90deg, var(--announcement-color) 0, var(--announcement-color) var(--announcement-bg-size), var(--announcement-bg-color) var(--announcement-bg-size));
   background-color: var(--announcement-bg-color);
-  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -111,7 +110,7 @@ $-announcement_link_padding: $spacing-three-quarters;
   width: $spacing-triple;
 
   &::after {
-    --icon-size: #{$spacing-double};
+    --icon-size: #{$spacing-and-half};
 
     @include pseudo-icon('cross');
   }
