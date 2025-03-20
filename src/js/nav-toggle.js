@@ -24,6 +24,10 @@ import MenuDropdown from './nav-global/menu';
     brandingElements.CssMenuDropdownDropdown = 'cssmenu';
   }
 
+  brandingElements.LanguageToastFi = 'language-toast--fi';
+  brandingElements.LanguageToastSv = 'language-toast--sv';
+  brandingElements.LanguageToastEn = 'language-toast--en';
+
   // Checks if an element has scrollable overflow in either direction.
   const isScrollable = (element) =>
     element.scrollWidth > element.clientWidth ||
@@ -43,6 +47,7 @@ import MenuDropdown from './nav-global/menu';
     AllElements[key].init({
       name: `${name} dropdown`,
       buttonSelector: `.js-${name}-button`,
+      dropdownSelector: `.js-${name}-dropdown`,
       targetSelector: `#${name}`,
       onOpen: () => {
         // Close all open menus before opening a new one.

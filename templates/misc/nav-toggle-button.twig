@@ -22,16 +22,19 @@
   {% set button_modified = 'nav-toggle__button--profile' %}
 {% endif %}
 
+{% set wrapper_classes = ['nav-toggle']|merge(modifier_class is iterable ? modifier_class : [modifier_class]) %}
+{% set anchor_classes = ['nav-toggle__anchor']|merge(anchor_modified is iterable ? anchor_modified : [anchor_modified]) %}
+{% set button_classes = ['nav-toggle__button', js_target]|merge(button_modified is iterable ? button_modified : [button_modified]) %}
 
-<div class="nav-toggle {{modifier_class}}">
+<div {{ create_attribute({'class': wrapper_classes}) }}>
   {# Fallback menu button #}
-  <div class="nav-toggle__anchor {{ anchor_modified }}">
+  <div {{ create_attribute({'class': anchor_classes}) }}>
     <a href="#" class="nav-toggle__label {{ label_modified }} nav-toggle__label--close">{{ menu_close }}</a>
     <a href="{{ anchor_target }}" class="nav-toggle__label {{ label_modified }} nav-toggle__label--open">{{ menu_open }}</a>
   </div>
 
   {# Slightly more accessible js enhanced menu button #}
-  <button class="nav-toggle__button {{ button_modified }} {{ js_target }}" aria-expanded="false" aria-controls="{{ controls }}">
+  <button {{ create_attribute({'class': button_classes}) }} aria-expanded="false" aria-controls="{{ controls }}">
     <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--open">{{ menu_open }}</span>
     <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--close">{{ menu_close }}</span>
   </button>

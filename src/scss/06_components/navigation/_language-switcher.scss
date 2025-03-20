@@ -3,8 +3,6 @@ $-padding-size: ($wcag-touch-target-size-aaa - get-line-height($-language-link-f
 $-current-border-size: 3px;
 
 .language-link__wrapper {
-  margin-left: $spacing-half;
-  margin-right: $spacing-half;
   position: relative;
 
   &:first-child {
@@ -17,7 +15,7 @@ $-current-border-size: 3px;
   @include font($-language-link-font);
   color: $color-black-90;
   display: inline-block;
-  padding-block: $-padding-size;
+  padding: $-padding-size $spacing-half;
 
   &[aria-current='true'] {
     cursor: default;
@@ -29,10 +27,17 @@ $-current-border-size: 3px;
       bottom: $-padding-size - $-current-border-size;
       content: '';
       display: block;
-      left: 0;
+      left: 50%;
       position: absolute;
-      right: 0;
+      transform: translateX(-50%);
+      width: calc(100% - $spacing);
     }
+  }
+
+  &:focus,
+  &:active {
+    outline: 3px solid $color-black;
+    outline-offset: 0;
   }
 
   &.is-disabled {
@@ -47,6 +52,30 @@ $-current-border-size: 3px;
 
     &.has-toast {
       cursor: pointer;
+    }
+  }
+}
+
+.nav-toggle--language-toast {
+  // Override default nav-toggle label styles.
+  .nav-toggle__label {
+    @include font($-language-link-font);
+    color: inherit;
+    padding: $-padding-size $spacing-half;
+  }
+
+  // The anchor and button are the "language-link" element of the disabled
+  // languages so they need the same padding for the clickable area to be
+  // tall enough.
+  .nav-toggle__anchor,
+  .nav-toggle__button {
+    &:focus .nav-toggle__label ,
+    &:active .nav-toggle__label {
+      outline-offset: 0;
+    }
+
+    &.is-alternative {
+      display: none;
     }
   }
 }

@@ -1,24 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const buttons = document.querySelectorAll('.language-link.has-toast');
-
-  function showToast(toast) {
-    toast.style.opacity = '1';
-    toast.classList.remove('language-toast__closed');
-  }
-
-  function closeToast(toast) {
-    toast.style.opacity = '0';
-    setTimeout(() => toast.classList.add('language-toast__closed'), 300);
-  }
-
-  function closeAllOpenToasts() {
-    document.querySelectorAll('.language-toast:not(.language-toast__closed)').forEach(toast => {
-      closeToast(toast);
-    });
-  }
+  const buttons = document.querySelectorAll('.nav-toggle__button.has-toast');
 
   function positionToast(button, toast) {
-    if (!toast || !toast.classList.contains('language-toast')) {
+    if (!toast || !toast.classList.contains('nav-toggle-dropdown--language-toast')) {
       return;
     }
 
@@ -53,50 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   buttons.forEach(button => {
     button.addEventListener('click', function () {
-      const toast = button.nextElementSibling;
+      const buttonParent = button.parentElement; // Get parent of the button
+      const toast = buttonParent.nextElementSibling;
 
-      if (!toast || !toast.classList.contains('language-toast')) {
+      if (!toast || !toast.classList.contains('nav-toggle-dropdown--language-toast')) {
         return;
       }
 
-      // If toast is already visible, hide it.
-      if (!toast.classList.contains('language-toast__closed')) {
-        closeToast(toast);
-        return;
-      }
-
-      // Hide any other visible toasts before showing a new one.
-      document.querySelectorAll('.language-toast:not(.language-toast__closed)').forEach(otherToast => {
-        closeToast(otherToast);
-      });
+      // Reset inline styles before applying new ones
+      toast.removeAttribute('style');
 
       // Position and after that show the toast.
       positionToast(button, toast);
-      showToast(toast);
     });
   });
 
   // Handle resize event to reposition open toasts.
   window.addEventListener('resize', function () {
-    document.querySelectorAll('.language-link.has-toast').forEach(button => {
-      const toast = button.nextElementSibling;
-      if (toast && !toast.classList.contains('language-toast__closed')) {
+    document.querySelectorAll('.nav-toggle__button.has-toast').forEach(button => {
+      const buttonParent = button.parentElement; // Get parent of the button
+      const toast = buttonParent.nextElementSibling;
+      if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
+        toast.removeAttribute('style');
         positionToast(button, toast);
       }
     });
-  });
-
-
-  document.body.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closeAllOpenToasts();
-    }
-  });
-
-  // Hide toast when clicking outside.
-  document.addEventListener('click', function (event) {
-    if (!event.target.matches('.language-link.has-toast') && !event.target.matches('.language-toast')) {
-      closeAllOpenToasts();
-    }
   });
 });
