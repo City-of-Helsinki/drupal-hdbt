@@ -201,6 +201,13 @@ nav-global:
     - hdbt/global-styling
     - hdbt/nav-toggle
 
+language-toast:
+  version: 1.0
+  js:
+    dist/js/language-toast.min.js: {
+      minified: true
+    }
+
 event-list:
   version: 1.4.1
   js:
