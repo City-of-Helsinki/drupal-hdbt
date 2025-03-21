@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Positioning if the toast doesn't fit on the left side.
-    if ((rect.left) < ((toastWidth / 2) - (buttonWidth / 2))) {
+    if ((rect.left) < ((toastWidth / 2) - (buttonWidth / 2) + gutter)) {
       const left = rect.left - gutter;
       const toastArrowLeft = (rect.left - gutter) + (buttonWidth / 2);
       toast.style.left = `-${left}px`;
