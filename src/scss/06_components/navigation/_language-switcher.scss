@@ -8,6 +8,16 @@ $-current-border-size: 3px;
   &:first-child {
     margin-left: 0;
   }
+
+  &:focus-within {
+    .nav-toggle__label {
+      outline: 3px solid $color-black;
+      outline-offset: 0;
+      text-decoration: underline;
+      text-decoration-thickness: remify(2px);
+      text-underline-offset: 10%
+    }
+  }
 }
 
 .language-link {

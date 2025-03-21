@@ -25,6 +25,19 @@
           {% set button_wrapper_classes = ['nav-toggle--language-toast', 'nav-toggle--language-toast--' ~ lang] %}
           {% set anchor_button_classes = ['is-disabled', 'has-toast', alternative_language ? 'is-alternative' : ''] %}
           {% set dropdown_wrapper_classes = ['nav-toggle-dropdown--language-toast', 'nav-toggle-dropdown--language-toast--' ~ lang] %}
+          {% if lang == 'en' %}
+            {% set text = "This page is not available in English. Go to the homepage to access the website's English-language content." %}
+            {% set link_title = 'Return to the front page' %}
+            {% set link_attributes = {'class': ['language-toast__link']} %}
+          {% elseif lang == 'fi' %}
+            {% set text = "Tätä sivua ei ole suomeksi. Löydät muuta suomenkielistä sisältöä etusivun kautta." %}
+            {% set link_title = 'Siirry etusivulle' %}
+            {% set link_attributes = {'class': ['language-toast__link']} %}
+          {% elseif lang == 'sv' %}
+            {% set text = "Denna sida finns inte på svenska. Gå till startsidan för att se annat material på svenska." %}
+            {% set link_title = 'Gå till startsidan' %}
+            {% set link_attributes = {'class': ['language-toast__link']} %}
+          {% endif %}
         {% endif %}
 
         {% if is_active %}
@@ -37,6 +50,8 @@
             >{{ item.text|capitalize }}
             </a>
           </span>
+
+        {# Hide the alterative languages from the html structure since they cause all sorts of trouble in the layout. #}
         {% elseif not alternative_language %}
           {% set dropdown_id = 'language-toast--' ~ lang ~ '-dropdown' %}
           <span class="language-link__wrapper">
@@ -60,11 +75,13 @@
                 <div class="language-toast" id="language-toast--{{ lang }}">
                   {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
                   <button class="language-toast__close js-language-toast--{{ lang }}-button" aria-labelledby="{{ language_toast_close_labelled_by }}" aria-expanded="false" aria-controls="{{ dropdown_id }}">
-                    <span id="{{language_toast_close_labelled_by}}" class="is-hidden">Close toast</span>
+                    <span id="{{language_toast_close_labelled_by}}" class="is-hidden">{{ 'Close the popup'|t({}, {'context': 'Language toast'}) }}</span>
                   </button>
-                  <div class="language-toast__content">
-                    This page is not available in English. Go to the homepage to access the website's English-language content.
-                    <a href="#" class="language-toast__link">Return to the front page</a>
+                  <div class="language-toast__content" lang="{{ lang }}">
+                    <div class="language-toast__text">
+                      {{ text }}
+                    </div>
+                    {{ link(link_title, 'internal:/' ~ path('<front>'), link_attributes) }}
                   </div>
                 </div>
               {% endblock %}

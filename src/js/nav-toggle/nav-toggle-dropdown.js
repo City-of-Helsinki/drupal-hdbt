@@ -16,12 +16,29 @@ class NavToggleDropdown {
     return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
   }
 
-  close() {
+  // The simpleClose function is for events such as closing all the
+  // other open instances before opening a new one.
+  simpleClose() {
     if (this.running) {
       this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'false'));
       this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
       this.targetNode.dataset.target = 'false';
 
+      if (this.onClose) {
+        this.onClose();
+      }
+    }
+  }
+
+  // The close function should be used on such occasions where you click on
+  close() {
+    // First call the simple close that can be called multiple times.
+    this.simpleClose();
+
+    // Then run the part where the button focus is determined.
+    // This should be run only once or the button to focus is
+    // lost and all kinds of unwanted behaviour will occur.
+    if (this.running) {
       // Find the correct button to focus
       let buttonToFocus = this.lastClickedButton;
 
@@ -31,9 +48,9 @@ class NavToggleDropdown {
       }
 
       // Move focus if a valid button is found
-      // if (buttonToFocus) {
-      //   setTimeout(() => buttonToFocus.focus(), 20);
-      // }
+      if (buttonToFocus) {
+        buttonToFocus.focus();
+      }
 
       if (this.onClose) {
         this.onClose();
@@ -56,20 +73,20 @@ class NavToggleDropdown {
     if (this.isOpen()) {
       this.close();
     } else {
-      // this.lastClickedButton = button;
+      this.lastClickedButton = button;
       this.open();
     }
   }
 
   addListeners() {
-    // Close menu on ESC
+    // Close element on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.isOpen()) {
         this.close();
       }
     });
 
-    // Toggle menu from each button
+    // Toggle element from each button
     this.buttonInstances.forEach(button => {
       button.addEventListener('click', () => {
         this.toggle(button); // Pass the clicked button

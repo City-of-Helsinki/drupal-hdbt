@@ -10,10 +10,6 @@ $-toast-arrow-height: $spacing-half;
   transform: translateX(-50%);
   width: 280px;
 
-  .nav-toggle-dropdown__wrapper {
-
-  }
-
   .nav-toggle-dropdown__content {
     padding-block-start: $-toast-arrow-height;
 
@@ -45,13 +41,21 @@ $-toast-arrow-height: $spacing-half;
 
 .language-toast__content {
   @include font('special.navigation.header_top');
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-half;
+  display: block;
+}
+
+.language-toast__text {
+  margin-block-end: $spacing-half;
 }
 
 .language-toast__link {
   display: inline-block;
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: 3px;
+  }
 }
 
 // MOVE TO GENERAL STYLE

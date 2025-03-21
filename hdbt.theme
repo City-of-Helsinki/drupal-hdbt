@@ -225,6 +225,13 @@ function hdbt_preprocess_page(&$variables): void {
   // without global navigation being enabled.
   $variables['use_search_block'] = $navigation_enabled;
 
+  // Check that language switcher is added to the header branding.
+  // Notice that the block machine name needs to be exactly same as here.
+  if (isset($variables['page']['header_branding']['hdbt_subtheme_language_switcher'])) {
+    $variables['use_language_switcher_block'] = TRUE;
+  }
+
+
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
   if (isset($variables['page']['header_branding']['external_header_language_links'])) {
@@ -666,6 +673,11 @@ function hdbt_preprocess_block(&$variables): void {
   // Attach "closable_surveys" library to "surveys" block.
   if ($variables['plugin_id'] == 'surveys') {
     $variables['#attached']['library'][] = 'hdbt/closable_surveys';
+  }
+
+  if ($variables['plugin_id'] == 'language_block:language_content') {
+    $variables['#attached']['drupalSettings']['hdbt']['language_toast_dropdown'] = TRUE;
+    $variables['#attached']['drupalSettings']['hdbt']['current_language'] = $variables['language']->getId();
   }
 
   if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {

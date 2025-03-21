@@ -253,9 +253,11 @@ $label-font: 'special.navigation.icon_label';
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 @include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
-@include button-toggle-rules('#language-toast--fi', '.nav-toggle--language-toast--fi', '.nav-toggle-dropdown--language-toast--fi');
-@include button-toggle-rules('#language-toast--sv', '.nav-toggle--language-toast--sv', '.nav-toggle-dropdown--language-toast--sv');
-@include button-toggle-rules('#language-toast--en', '.nav-toggle--language-toast--en', '.nav-toggle-dropdown--language-toast--en');
+
+@each $lang in fi, sv, en {
+  $suffix: 'language-toast--#{$lang}';
+  @include button-toggle-rules('##{$suffix}', '.nav-toggle--#{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
+}
 
 // toggleWidgets.js could maybe inject this
 // instead of this hanging around in random file corner
