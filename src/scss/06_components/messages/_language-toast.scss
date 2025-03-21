@@ -3,6 +3,7 @@ $-toast-arrow-height: $spacing-half;
 
 .nav-toggle-dropdown.nav-toggle-dropdown--language-toast {
   left: 50%;
+
   // The 3px in this calculation is the outline width
   // in the nav-toggle-button with focus. We don't want
   // the arrow to go over/under the focus ring.
@@ -58,29 +59,6 @@ $-toast-arrow-height: $spacing-half;
   }
 }
 
-// MOVE TO GENERAL STYLE
 .language-toast__close {
-  background: transparent;
-  border: 0 none;
-  cursor: pointer;
-  flex-shrink: 0;
-  height: $spacing-triple;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: -$spacing-half;
-  margin-top: -$spacing-half;
-  padding: 0;
-  width: $spacing-triple;
-
-  &::after {
-    --icon-size: #{$spacing-double};
-
-    @include pseudo-icon('cross');
-  }
-
-  &:focus,
-  &:active {
-    outline: solid var(--color-black) 3px;
-    outline-offset: -3px;
-  }
+  @include close-button;
 }

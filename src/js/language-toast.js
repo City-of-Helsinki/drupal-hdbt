@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const gutter = 16;
 
     // Positioning if the toast doesn't fit on the right side.
-    if ((viewportWidth - rect.right) < ((toastWidth / 2) - (buttonWidth / 2))) {
+    if ((viewportWidth - rect.right) < ((toastWidth / 2) - (buttonWidth / 2) + gutter)) {
       const right = viewportWidth - rect.right - gutter;
       const toastArrowRight = ((viewportWidth - rect.right) - gutter) + (buttonWidth / 2);
       toast.style.left = 'auto';

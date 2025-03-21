@@ -256,6 +256,7 @@ $label-font: 'special.navigation.icon_label';
 
 @each $lang in fi, sv, en {
   $suffix: 'language-toast--#{$lang}';
+
   @include button-toggle-rules('##{$suffix}', '.nav-toggle--#{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
 }
 
