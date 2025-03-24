@@ -34,7 +34,7 @@
   </div>
 
   {# Slightly more accessible js enhanced menu button #}
-  <button {{ create_attribute({'class': button_classes}) }} aria-expanded="false" aria-controls="{{ controls }}">
+  <button {{ create_attribute({'class': button_classes}) }} aria-expanded="false" aria-controls="{{ controls }}" {% if button_language %}lang="{{ button_language }}"{% endif %}>
     <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--open">{{ menu_open }}</span>
     <span class="nav-toggle__label {{ label_modified }} nav-toggle__label--close">{{ menu_close }}</span>
   </button>
