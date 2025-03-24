@@ -59,6 +59,14 @@ $-toast-arrow-height: $spacing-half;
   }
 }
 
-.language-toast__close {
+.nav-toggle__button.language-toast__close {
   @include close-button;
+  align-content: center;
+  justify-content: center;
+
+  // Override nav-toggle__button styles.
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+  }
 }
