@@ -121,7 +121,6 @@ class NavToggleDropdown {
       throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
     }
 
-    // Enhance no-js version with JavaScript
     this.targetNode.dataset.js = true;
     this.addListeners();
 

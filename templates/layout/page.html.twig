@@ -59,9 +59,9 @@
 {% endif %}
 
 {% if use_language_switcher_block %}
-  <div id="language-toast--fi" class="nav-toggle-target nav-toggle-target--toast"></div>
-  <div id="language-toast--sv" class="nav-toggle-target nav-toggle-target--toast"></div>
-  <div id="language-toast--en" class="nav-toggle-target nav-toggle-target--toast"></div>
+  {% for language in ['fi', 'sv', 'en'] %}
+    <div id="language-toast--{{ language }}" class="nav-toggle-target nav-toggle-target--toast"></div>
+  {% endfor %}
 {% endif %}
 
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>

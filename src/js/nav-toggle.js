@@ -2,7 +2,7 @@ import { close, open } from './nav-toggle/toggle-widgets';
 import NavToggleDropdown from './nav-toggle/nav-toggle-dropdown';
 import MenuDropdown from './nav-global/menu';
 
-(() => {
+((drupalSettings) => {
   const brandingElements = {};
   // Check if global menu is enabled.
   const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
@@ -168,4 +168,4 @@ import MenuDropdown from './nav-global/menu';
   body.addEventListener('wheel', blockBrandingScroll, { passive: false });
   body.addEventListener('scroll', blockBrandingScroll, { passive: false });
   body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
-})();
+})(drupalSettings);
