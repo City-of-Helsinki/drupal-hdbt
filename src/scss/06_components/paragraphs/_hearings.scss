@@ -4,12 +4,7 @@
 }
 
 .hearings__count-container {
-  @include font('lead');
   margin-bottom: $spacing-and-half;
-
-  .hearings__count {
-    font-weight: $font-weight-bold;
-  }
 }
 
 .hearings__list {
