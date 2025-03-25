@@ -59,6 +59,7 @@ $-toast-arrow-height: $spacing-half;
   }
 }
 
+.nav-toggle__anchor.language-toast__close,
 .nav-toggle__button.language-toast__close {
   @include close-button;
   align-content: center;
