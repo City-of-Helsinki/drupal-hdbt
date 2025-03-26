@@ -227,9 +227,12 @@ function hdbt_preprocess_page(&$variables): void {
   $variables['use_search_block'] = $navigation_enabled;
 
   // Check that language switcher is added to the header branding.
-  // Notice that the block machine name needs to be exactly same as here.
-  if (isset($variables['page']['header_branding']['hdbt_subtheme_language_switcher'])) {
-    $variables['use_language_switcher_block'] = TRUE;
+  if (isset($variables['page']['header_branding'])) {
+    $variables['use_language_switcher_block'] = array_filter(
+      array_keys($variables['page']['header_branding']
+    ), function ($key) {
+      return str_contains($key, 'language_switcher');
+    });
   }
 
   // Check if the otherlangs block is added to header branding.
