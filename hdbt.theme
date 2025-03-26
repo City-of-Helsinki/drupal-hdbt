@@ -230,7 +230,7 @@ function hdbt_preprocess_page(&$variables): void {
   if (isset($variables['page']['header_branding'])) {
     $variables['use_language_switcher_block'] = array_filter(
       array_keys($variables['page']['header_branding']
-      ), function($key) {
+    ), function ($key) {
       return str_contains($key, 'language_switcher');
     });
   }
