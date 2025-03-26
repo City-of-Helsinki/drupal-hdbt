@@ -1,0 +1,25 @@
+@mixin close-button {
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: $wcag-touch-target-size-aaa;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: -$spacing-half;
+  margin-top: -$spacing-half;
+  padding: 0;
+  width: $wcag-touch-target-size-aaa;
+
+  &::after {
+    --icon-size: #{$spacing-and-half};
+
+    @include pseudo-icon('cross');
+  }
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: -3px;
+  }
+}

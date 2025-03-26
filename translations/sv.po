@@ -1393,3 +1393,7 @@ msgstr "Hel.fi innehållsproducentens guide (på finska)"
 msgctxt "Unit contact card default heading"
 msgid "Contact information"
 msgstr "Kontaktuppgifter"
+
+msgctxt "Language toast"
+msgid "Close the popup"
+msgstr "Stäng popup-fönstret"

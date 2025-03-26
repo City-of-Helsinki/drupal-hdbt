@@ -1391,3 +1391,7 @@ msgstr "Hel.fin sisällöntuottajan oppaasta"
 msgctxt "Unit contact card default heading"
 msgid "Contact information"
 msgstr "Yhteystiedot"
+
+msgctxt "Language toast"
+msgid "Close the popup"
+msgstr "Sulje ponnahdusikkuna"
