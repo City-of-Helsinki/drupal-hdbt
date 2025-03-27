@@ -97,29 +97,7 @@ $-announcement_link_padding: $spacing-three-quarters;
 }
 
 .announcement__close {
-  background: transparent;
-  border: 0 none;
-  cursor: pointer;
-  flex-shrink: 0;
-  height: $spacing-triple;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: -$spacing-half;
-  margin-top: -$spacing-half;
-  padding: 0;
-  width: $spacing-triple;
-
-  &::after {
-    --icon-size: #{$spacing-and-half};
-
-    @include pseudo-icon('cross');
-  }
-
-  &:focus,
-  &:active {
-    outline: solid var(--color-black) 3px;
-    outline-offset: -3px;
-  }
+  @include close-button;
 }
 
 .js-announcement__close--disabled {

@@ -1,0 +1,73 @@
+$-toast-top-border-height: $spacing-half;
+$-toast-arrow-height: $spacing-half;
+
+.nav-toggle-dropdown.nav-toggle-dropdown--language-toast {
+  left: 50%;
+
+  // The 3px in this calculation is the outline width
+  // in the nav-toggle-button with focus. We don't want
+  // the arrow to go over/under the focus ring.
+  top: calc(100% + 3px);
+  transform: translateX(-50%);
+  width: 280px;
+
+  .nav-toggle-dropdown__content {
+    padding-block-start: $-toast-arrow-height;
+
+    &::before {
+      border-bottom: $-toast-arrow-height solid var(--color-info);
+      border-left: $-toast-arrow-height solid transparent;
+      border-right: $-toast-arrow-height solid transparent;
+      content:"";
+      height: 0;
+      left: var(--toast-arrow-left, 50%);
+      position: absolute;
+      right: var(--toast-arrow-right, auto);
+      top: 0;
+      transform: translateX(var(--toast-arrow-transform, -50%));
+      width: 0;
+    }
+  }
+}
+
+.language-toast {
+  background-color: var(--color-info-light);
+  border-top: $-toast-top-border-height solid var(--color-info);
+  color: var(--color-black-90);
+  display: flex;
+  flex-direction: row-reverse;
+  gap: $spacing;
+  padding: $spacing;
+}
+
+.language-toast__content {
+  @include font('special.navigation.header_top');
+  display: block;
+}
+
+.language-toast__text {
+  margin-block-end: $spacing-half;
+}
+
+.language-toast__link {
+  display: inline-block;
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: 3px;
+  }
+}
+
+.nav-toggle__anchor.language-toast__close,
+.nav-toggle__button.language-toast__close {
+  @include close-button;
+  align-content: center;
+  justify-content: center;
+
+  // Override nav-toggle__button styles.
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+  }
+}

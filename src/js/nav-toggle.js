@@ -2,7 +2,7 @@ import { close, open } from './nav-toggle/toggle-widgets';
 import NavToggleDropdown from './nav-toggle/nav-toggle-dropdown';
 import MenuDropdown from './nav-global/menu';
 
-(() => {
+((drupalSettings) => {
   const brandingElements = {};
   // Check if global menu is enabled.
   const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
@@ -24,6 +24,19 @@ import MenuDropdown from './nav-global/menu';
     brandingElements.CssMenuDropdownDropdown = 'cssmenu';
   }
 
+  if (drupalSettings.hdbt.language_toast_dropdown) {
+    const currentLanguage = drupalSettings.hdbt.current_language;
+    const supportedLanguages = ['fi', 'sv', 'en'];
+
+    supportedLanguages.forEach((language) => {
+      if (language !== currentLanguage) {
+        // The charAt(0).toUpperCase().slice(1) here capitalizes the first letter.
+        const key = `LanguageToast${language.charAt(0).toUpperCase()}${language.slice(1)}`;
+        brandingElements[key] = `language-toast--${language}`;
+      }
+    });
+  }
+
   // Checks if an element has scrollable overflow in either direction.
   const isScrollable = (element) =>
     element.scrollWidth > element.clientWidth ||
@@ -41,14 +54,15 @@ import MenuDropdown from './nav-global/menu';
     const name = AllElements[key];
     AllElements[key] = NavToggleDropdown();
     AllElements[key].init({
-      name: `${name} dropdown`,
       buttonSelector: `.js-${name}-button`,
-      targetSelector: `#${name}`,
+      dropdownSelector: `.js-${name}-dropdown`,
+      name: `${name} dropdown`,
+      onClose: open,
       onOpen: () => {
         // Close all open menus before opening a new one.
         keys.forEach((menuName) => {
           if (menuName !== key) {
-            AllElements[menuName].close();
+            AllElements[menuName].simpleClose();
           }
         });
         // Close global menu if it is open.
@@ -62,8 +76,27 @@ import MenuDropdown from './nav-global/menu';
         if (key === 'SearchDropdown') {
           window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
         }
+
+        if (key.startsWith('LanguageToast')) {
+          const dropdownInstance = AllElements[key];
+          const languageLinkWrapper = dropdownInstance?.dropdownInstance?.parentElement;
+
+          if (languageLinkWrapper) {
+            // Remove previous listener to avoid duplicates.
+            languageLinkWrapper.onfocusout = null;
+
+            languageLinkWrapper.addEventListener('focusout', () => {
+              setTimeout(() => {
+                const active = document.activeElement;
+                if (!languageLinkWrapper.contains(active)) {
+                  dropdownInstance.simpleClose();
+                }
+              }, 10);
+            });
+          }
+        }
       },
-      onClose: open
+      targetSelector: `#${name}`,
     });
   });
 
@@ -88,7 +121,7 @@ import MenuDropdown from './nav-global/menu';
     if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
       // Close all open menus.
       keys.forEach((key) => {
-        AllElements[key].close();
+        AllElements[key].simpleClose();
       });
 
       // Close global menu if it is open.
@@ -135,4 +168,4 @@ import MenuDropdown from './nav-global/menu';
   body.addEventListener('wheel', blockBrandingScroll, { passive: false });
   body.addEventListener('scroll', blockBrandingScroll, { passive: false });
   body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
-})();
+})(drupalSettings);

@@ -2,18 +2,30 @@ $-language-link-font: 'small';
 $-padding-size: ($wcag-touch-target-size-aaa - get-line-height($-language-link-font, $unremify: true) ) * 0.5; // Lets calculate the padding size for the language link based on the line-height of the chosen font.
 $-current-border-size: 3px;
 
+.language-link__wrapper {
+  position: relative;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:focus-within {
+    .nav-toggle__label {
+      outline: 3px solid $color-black;
+      outline-offset: 0;
+      text-decoration: underline;
+      text-decoration-thickness: remify(2px);
+      text-underline-offset: 10%
+    }
+  }
+}
+
 .language-link {
   @include navigation_link_defaults;
   @include font($-language-link-font);
   color: $color-black-90;
   display: inline-block;
-  margin-left: $spacing-half;
-  margin-right: $spacing-half;
-  padding-block: $-padding-size;
-
-  &:first-child {
-    margin-left: 0;
-  }
+  padding: $-padding-size $spacing-half;
 
   &[aria-current='true'] {
     cursor: default;
@@ -25,15 +37,52 @@ $-current-border-size: 3px;
       bottom: $-padding-size - $-current-border-size;
       content: '';
       display: block;
-      left: 0;
+      left: 50%;
       position: absolute;
-      right: 0;
+      transform: translateX(-50%);
+      width: calc(100% - $spacing);
     }
   }
 
+  &:focus,
+  &:active {
+    outline: 3px solid $color-black;
+    outline-offset: 0;
+  }
+
   &.is-disabled {
+    background-color: transparent;
+    border: 0 none;
     color: $color-black-60;
     cursor: not-allowed;
+
+    &.is-alternative {
+      display: none;
+    }
+
+    &.has-toast {
+      cursor: pointer;
+    }
+  }
+}
+
+.nav-toggle--language-toast {
+  // Override default nav-toggle label styles.
+  .nav-toggle__label {
+    @include font($-language-link-font);
+    color: inherit;
+    padding: $-padding-size $spacing-half;
+  }
+
+  // The anchor and button are the "language-link" element of the disabled
+  // languages so they need the same padding for the clickable area to be
+  // tall enough.
+  .nav-toggle__anchor,
+  .nav-toggle__button {
+    &:focus .nav-toggle__label ,
+    &:active .nav-toggle__label {
+      outline-offset: 0;
+    }
 
     &.is-alternative {
       display: none;

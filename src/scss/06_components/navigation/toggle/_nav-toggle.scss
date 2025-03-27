@@ -170,8 +170,8 @@ $label-font: 'special.navigation.icon_label';
 }
 
 // When any nav-toggle is active in mobile size, lets hide page content to avoid tabbing behind the dropdown
-.nav-toggle-target:target,
-.nav-toggle-target[data-target='true'] {
+.nav-toggle-target:target:not(.nav-toggle-target--toast),
+.nav-toggle-target[data-target='true']:not(.nav-toggle-target--toast) {
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
     @include breakpoint(max-width $breakpoint-l) {
@@ -231,7 +231,8 @@ $label-font: 'special.navigation.icon_label';
   }
 
   // When JS is enabled, switch to use button instead of anchor
-  #{$id}[data-js] ~ * #{$nav-toggle-modifier} {
+  #{$id}[data-js] ~ * #{$nav-toggle-modifier},
+  #{$id}[data-js] ~ * #{$nav-toggle-dropdown-modifier} {
     .nav-toggle__anchor {
       display: none;
     }
@@ -253,6 +254,12 @@ $label-font: 'special.navigation.icon_label';
 @include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 @include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
+
+@each $lang in fi, sv, en {
+  $suffix: 'language-toast--#{$lang}';
+
+  @include button-toggle-rules('##{$suffix}', '.nav-toggle--#{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
+}
 
 // toggleWidgets.js could maybe inject this
 // instead of this hanging around in random file corner

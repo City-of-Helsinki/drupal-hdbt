@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
@@ -224,6 +225,15 @@ function hdbt_preprocess_page(&$variables): void {
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
   $variables['use_search_block'] = $navigation_enabled;
+
+  // Check that language switcher is added to the header branding.
+  if (isset($variables['page']['header_branding'])) {
+    $variables['use_language_switcher_block'] = array_filter(
+      array_keys($variables['page']['header_branding']
+    ), function ($key) {
+      return str_contains($key, 'language_switcher');
+    });
+  }
 
   // Check if the otherlangs block is added to header branding.
   // Notice that the block machine name needs to be exactly same as here.
@@ -688,6 +698,40 @@ function hdbt_preprocess_block(&$variables): void {
   if (in_array($variables['plugin_id'], $chat_blocks)) {
     $variables['#attached']['library'][] = 'hdbt/chat-trigger';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_preprocess_links__language_block(&$variables): void {
+  $toast_languages = [
+    'en' => [
+      'toast_text' => "This page is not available in English. Go to the homepage to access the website's English-language content.",
+      'toast_link_title' => 'Return to the front page',
+    ],
+    'fi' => [
+      'toast_text' => 'Tätä sivua ei ole suomeksi. Löydät muuta suomenkielistä sisältöä etusivun kautta.',
+      'toast_link_title' => 'Siirry etusivulle',
+    ],
+    'sv' => [
+      'toast_text' => 'Denna sida finns inte på svenska. Gå till startsidan för att se annat material på svenska.',
+      'toast_link_title' => 'Gå till startsidan',
+    ],
+  ];
+
+  // Create URL-object for each language front page.
+  foreach ($toast_languages as $language => $toast_language) {
+    $toast_languages[$language]['toast_link_url'] = new Url(
+      '<front>',
+      options: ['language' => new Language(['id' => $language])],
+    );
+  }
+
+  $variables['toast_languages'] = $toast_languages;
+
+  $variables['#attached']['drupalSettings']['hdbt']['language_toast_dropdown'] = TRUE;
+  $variables['#attached']['drupalSettings']['hdbt']['current_language'] = $variables['language']->getId();
+  $variables['#attached']['library'][] = 'hdbt/language-toast';
 }
 
 /**
