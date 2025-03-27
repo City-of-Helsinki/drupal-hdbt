@@ -19,9 +19,23 @@ type ResultsContainerProps = {
   error?: Error;
   events: Event[];
   loading: boolean;
+  retriesExhausted?: boolean;
 };
 
-function ResultsContainer({ addressRequired, countNumber, events, loading, error }: ResultsContainerProps) {
+const Loader = () => (
+  <div className='hdbt__loading-wrapper'>
+    <LoadingOverlay />
+  </div>
+);
+
+function ResultsContainer({
+  addressRequired,
+  countNumber,
+  error,
+  events,
+  loading,
+  retriesExhausted
+}: ResultsContainerProps) {
   const { useExperimentalGhosts, seeAllNearYouLink } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
@@ -38,20 +52,17 @@ function ResultsContainer({ addressRequired, countNumber, events, loading, error
   }, [initialized, setInitialized, loading]);
 
   if (error) {
-    return (
+    return retriesExhausted ?
       <ResultsError
         error={error}
+        errorMessage={Drupal.t('Failed to fetch events. You can reload the page or try again later.', {}, {context: 'Events search: Fetch failed message'})}
         ref={scrollTarget}
-      />
-    );
+      /> :
+      <Loader />;
   }
 
   if (loading && !useExperimentalGhosts) {
-    return (
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
-    );
+    return <Loader />;
   }
 
   const size = settings.eventCount;

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
@@ -37,6 +37,7 @@ const SearchContainer = () => {
   const url = useAtomValue(urlAtom) || initialUrl;
   const updateUrl = useSetAtom(updateUrlAtom);
   const updateAddress = useSetAtom(addressAtom);
+  const [retriesExhausted, setRetriesExhausted] = useState(false);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const queryStringParams = useInitialParams({
     address: '',
@@ -67,7 +68,7 @@ const SearchContainer = () => {
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    const response = await useTimeoutFetch(reqUrl);
+    const response = await useTimeoutFetch(reqUrl, undefined, 10000);
 
     if (response.status === 200) {
       const result = await response.json();
@@ -81,7 +82,20 @@ const SearchContainer = () => {
   };
 
   const shouldFetch = !settings.useLocationSearch || url.includes(ApiKeys.COORDINATES);
-  const { data, error, isLoading } = useSWR(shouldFetch ? url : null, getEvents, {...SWR_REFRESH_OPTIONS, keepPreviousData: useExperimentalGhosts});
+  const { data, error, isLoading } = useSWR(shouldFetch ? url : null, getEvents, {
+    ...SWR_REFRESH_OPTIONS,
+    onErrorRetry(err, key, config, revalidate, revalidateOpts) {
+      if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
+        setRetriesExhausted(true);
+        return;
+      }
+
+      revalidate({
+        ...revalidateOpts
+      });
+    },
+    keepPreviousData: useExperimentalGhosts
+  });
 
   return (
     <>
@@ -92,6 +106,7 @@ const SearchContainer = () => {
         error={error}
         events={data?.data || []}
         loading={isLoading}
+        retriesExhausted={retriesExhausted}
       />
     </>
   );

@@ -1392,6 +1392,10 @@ msgctxt "Unit contact card default heading"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
+msgctxt "Events search: Fetch failed message"
+msgid "Failed to fetch events. You can reload the page or try again later."
+msgstr "Tapahtumien hakeminen epäonnistui. Vot ladata sivun uudelleen tai palata takaisin myöhemmin"
+
 msgctxt "Language toast"
 msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"

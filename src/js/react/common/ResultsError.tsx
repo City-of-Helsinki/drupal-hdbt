@@ -3,12 +3,18 @@ import { Notification } from 'hds-react';
 import { ForwardedRef, forwardRef } from 'react';
 
 type ResultsErrorProps = {
-  error: string|Error;
   className?: string;
+  error: string|Error;
+  errorMessage?: string;
   headingLevel?: number;
 }
 
-const ResultsError = forwardRef(({ error, className, headingLevel = 3 }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
+const ResultsError = forwardRef(({
+  className,
+  error,
+  errorMessage,
+  headingLevel = 3
+}: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
   console.warn(`Error loading data from Elastic: ${error}`);
 
   if (drupalSettings?.helfi_react_search?.sentry_dsn_react) {
@@ -22,7 +28,7 @@ const ResultsError = forwardRef(({ error, className, headingLevel = 3 }: Results
         type='error'
         headingLevel={headingLevel}
       >
-        {Drupal.t('Please reload the page or try again later.', {}, {context: 'React search'})}
+        {errorMessage || Drupal.t('Please reload the page or try again later.', {}, {context: 'React search'})}
       </Notification>
     </div>
   );
