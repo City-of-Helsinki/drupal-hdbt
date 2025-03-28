@@ -58,14 +58,14 @@
               js_target: 'js-language-toast--' ~ lang ~ '-dropdown',
             } %}
               {% block content %}
-                <div class="language-toast" id="language-toast--{{ lang }}">
+                <section class="language-toast" id="language-toast--{{ lang }}" aria-label="{{ item.text|capitalize }}" lang="{{ lang }}">
                   {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
                   <div class="language-toast__close-wrapper">
                     <a href="#" class="nav-toggle__anchor language-toast__close">
-                      <span class="is-hidden">{{ 'Close the popup'|t({}, {'context': 'Language toast'}) }}</span>
+                      <span class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
                     </a>
                     <button class="nav-toggle__button language-toast__close js-language-toast--{{ lang }}-button" aria-labelledby="{{ language_toast_close_labelled_by }}" aria-expanded="false" aria-controls="{{ dropdown_id }}">
-                      <span id="{{language_toast_close_labelled_by}}" class="is-hidden">{{ 'Close the popup'|t({}, {'context': 'Language toast'}) }}</span>
+                      <span id="{{language_toast_close_labelled_by}}" class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
                     </button>
                   </div>
                   <div class="language-toast__content" lang="{{ lang }}">
@@ -74,7 +74,7 @@
                     </div>
                     {{ link(toast_languages[lang].toast_link_title, toast_languages[lang].toast_link_url, {'class': ['language-toast__link']}) }}
                   </div>
-                </div>
+                </section>
               {% endblock %}
             {% endembed %}
           </span>

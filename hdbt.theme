@@ -708,14 +708,17 @@ function hdbt_preprocess_links__language_block(&$variables): void {
     'en' => [
       'toast_text' => "This page is not available in English. Go to the homepage to access the website's English-language content.",
       'toast_link_title' => 'Return to the front page',
+      'toast_close_button' => 'Close the popup',
     ],
     'fi' => [
       'toast_text' => 'Tätä sivua ei ole suomeksi. Löydät muuta suomenkielistä sisältöä etusivun kautta.',
       'toast_link_title' => 'Siirry etusivulle',
+      'toast_close_button' => 'Sulje ponnahdusikkuna',
     ],
     'sv' => [
       'toast_text' => 'Denna sida finns inte på svenska. Gå till startsidan för att se annat material på svenska.',
       'toast_link_title' => 'Gå till startsidan',
+      'toast_close_button' => 'Stäng popup-fönstret',
     ],
   ];
 
