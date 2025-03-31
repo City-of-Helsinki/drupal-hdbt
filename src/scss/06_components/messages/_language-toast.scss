@@ -9,7 +9,7 @@ $-toast-arrow-height: $spacing-half;
   // the arrow to go over/under the focus ring.
   top: calc(100% + 3px);
   transform: translateX(-50%);
-  width: 280px;
+  width: 284px; // As in the layouts.
 
   .nav-toggle-dropdown__content {
     padding-block-start: $-toast-arrow-height;
@@ -36,7 +36,7 @@ $-toast-arrow-height: $spacing-half;
   color: var(--color-black-90);
   display: flex;
   flex-direction: row-reverse;
-  gap: $spacing;
+  gap: 0;
   padding: $spacing;
 }
 
