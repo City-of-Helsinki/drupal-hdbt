@@ -7,10 +7,6 @@
   @include font('body');
   margin-top: $spacing;
 
-  @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-and-half;
-  }
-
   p:first-child {
     margin: 0;
   }
@@ -39,14 +35,19 @@
 }
 
 .component--banner .banner {
-  padding-bottom: $spacing-double;
-  padding-left: $spacing-double;
-  padding-right: $spacing-double;
-  padding-top: $spacing-double;
+  padding: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    padding: $spacing-double;
+  }
 }
 
 .component--banner .banner__content-wrapper > a[data-hds-component='button'] {
-  margin: $spacing-double auto 0;
+  margin: $spacing-and-half auto 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin: $spacing-double auto 0;
+  }
 }
 
 .component--banner-align-center {
