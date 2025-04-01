@@ -36,7 +36,7 @@ function ResultsContainer({
   loading,
   retriesExhausted
 }: ResultsContainerProps) {
-  const { useExperimentalGhosts, seeAllNearYouLink } = drupalSettings.helfi_events;
+  const { useExperimentalGhosts, seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const url = useAtomValue(urlAtom);
@@ -44,7 +44,6 @@ function ResultsContainer({
   const choices = Boolean(url);
   const [initialized, setInitialized] = useState(false);
   useScrollToResults(scrollTarget, initialized && choices && !loading);
-
   useEffect(() => {
     if (!initialized && !loading) {
       setInitialized(true);
@@ -97,7 +96,7 @@ function ResultsContainer({
             }
             ref={scrollTarget}
           />
-          {events.map(event => loading ? <CardGhost key={event.id} /> : <ResultCard key={event.id} {...event} />)}
+          {events.map(event => loading ? <CardGhost key={event.id} /> : <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />)}
           {!settings.hidePagination &&
             <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
           }

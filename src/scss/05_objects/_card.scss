@@ -1,15 +1,12 @@
 $section-gap: $spacing;
 $item-gap: $spacing-half;
+$-card-border-width: 2px;
 
 .card {
   background: $color-white;
   overflow-wrap: anywhere;
   padding: $spacing;
   position: relative;
-
-  & + & {
-    margin-top: $spacing;
-  }
 
   @include breakpoint($breakpoint-s) {
     display: flex;
@@ -24,10 +21,23 @@ $item-gap: $spacing-half;
     gap: $spacing-double;
     padding: $spacing-double;
   }
+
+  & + & {
+    margin-top: $spacing;
+  }
 }
 
-.card--ghost {
-  background: $color-black-20;
+.card--border {
+  border: $-card-border-width solid $color-black-20;
+  padding: calc($spacing - $-card-border-width);
+
+  @include breakpoint($breakpoint-s) {
+    padding: calc($spacing-and-half - $-card-border-width);
+  }
+
+  @include breakpoint($breakpoint-m) {
+    padding: calc($spacing-double - $-card-border-width);
+  }
 }
 
 .card__image {
@@ -152,4 +162,61 @@ $item-gap: $spacing-half;
 
 .card__tags {
   margin-top: $section-gap;
+}
+
+
+.card--ghost {
+  background: $color-white;
+
+  .card__image {
+    aspect-ratio: 1.5;
+    background-color: $color-black-50;
+  }
+
+  .card__title,
+  .card__description {
+    background-color: $color-black-50;
+    height: 20px; // As in the designs.
+
+    @include breakpoint($breakpoint-l) {
+      height: 24px; // As in the designs.
+    }
+  }
+
+  .card__title {
+    width: 100%;
+  }
+
+  .card__description {
+    width: calc((100% / 3) * 2);
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .11;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading .card {
+  overflow: hidden;
+  position: relative;
+
+  .card__image,
+  .card__title,
+  .card__description {
+    animation: loading 2400ms 0s 2 normal none;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  };
 }
