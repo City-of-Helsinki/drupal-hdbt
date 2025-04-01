@@ -707,7 +707,7 @@ function hdbt_preprocess_links__language_block(&$variables): void {
   $toast_languages = [
     'en' => [
       'toast_text' => "This page is not available in English. Go to the homepage to access the website's English-language content.",
-      'toast_link_title' => 'Go to the homepage',
+      'toast_link_title' => 'Please go to the homepage',
       'toast_close_button' => 'Close the popup',
     ],
     'fi' => [
