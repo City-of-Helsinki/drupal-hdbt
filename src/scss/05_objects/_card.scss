@@ -213,7 +213,7 @@ $-card-border-width: 2px;
   .card__image,
   .card__title,
   .card__description {
-    animation: loading 2400ms 0s infinite normal none;
+    animation: loading 2400ms ease-in-out 0s infinite normal none;
 
     @media (prefers-reduced-motion: reduce) {
       animation: none;
