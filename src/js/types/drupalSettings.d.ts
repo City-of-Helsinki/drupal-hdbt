@@ -38,6 +38,7 @@ declare namespace drupalSettings {
     seeAllButtonOverride: string,
     seeAllNearYouLink: string;
     useExperimentalGhosts: boolean,
+    cardsWithBorders: boolean,
   };
   const helfi_react_search: {
     // @todo UHF-10862 Remove cookie_privacy_url once the HDBT cookie banner module is in use.
@@ -58,6 +59,7 @@ declare namespace drupalSettings {
     max_results?: number;
     hide_form?: boolean
     feed_base_url: string;
+    cardsWithBorders: boolean,
   };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;

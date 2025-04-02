@@ -6,6 +6,10 @@ type ImageUrls = {
   [key: string]: string;
 };
 
+interface ResultCardProps extends NewsItem {
+  cardModifierClass?: string;
+}
+
 const ResultCard = ({
   alt,
   field_main_image_caption,
@@ -14,7 +18,8 @@ const ResultCard = ({
   title,
   published_at,
   url,
-}: NewsItem) => {
+  cardModifierClass,
+}: ResultCardProps) => {
   const getDate = () => {
     if (!published_at || !published_at.length) {
       return undefined;
@@ -69,7 +74,7 @@ const ResultCard = ({
     <CardItem
       cardImage={getImage()}
       cardTitle={title.toString()}
-      cardModifierClass='card--news-item'
+      cardModifierClass={`card--news-item${cardModifierClass ? ` ${cardModifierClass}` : ''}`}
       cardUrl={url.toString()}
       date={getDate()}
       dateLabel={Drupal.t('Published', {}, { context: 'News search' })}

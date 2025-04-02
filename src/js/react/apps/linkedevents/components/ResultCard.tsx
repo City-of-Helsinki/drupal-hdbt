@@ -23,7 +23,11 @@ const formatStartDate = (start: Date, end: Date) => {
 interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
 const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
 
-function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers }: Event) {
+interface ResultCardProps extends Event {
+  cardModifierClass?: string;
+}
+
+function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers, cardModifierClass, }: ResultCardProps) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const url = `${baseUrl}/${currentLanguage}/events/${id}`;
@@ -117,6 +121,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
 
   return (
     <CardItem
+      cardModifierClass={cardModifierClass}
       cardUrl={url}
       cardTitle={resolvedName}
       cardImage={getImage()}
