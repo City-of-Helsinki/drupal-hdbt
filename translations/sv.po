@@ -1393,3 +1393,11 @@ msgstr "Hel.fi innehållsproducentens guide (på finska)"
 msgctxt "Unit contact card default heading"
 msgid "Contact information"
 msgstr "Kontaktuppgifter"
+
+msgctxt "Events search: Fetch failed message"
+msgid "Failed to fetch events. You can reload the page or try again later."
+msgstr "Hämtning av händelser misslyckades. Du kan uppdatera sidan eller försöka igen senare."
+
+msgctxt "Language toast"
+msgid "Close the popup"
+msgstr "Stäng popup-fönstret"

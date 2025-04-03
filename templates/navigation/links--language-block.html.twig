@@ -9,41 +9,77 @@
         {% set alternative_language = not item.link['#options']['#primary_language'] %}
         {% set classes = ['language-link'] %}
         {% set ariaCurrent = null %}
-        {% set title = null %}
+        {% set is_active = false %}
 
         {# Check if link is part of alternative menu and set class accordingly. #}
         {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
         {% if not untranslated and not alternative_language and lang != language.id %}
-          {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
-          {% set element = 'a' %}
+          {% set is_active = true %}
         {% elseif lang == language.id and not nolink %}
-          {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
-          {% set element = 'a' %}
+          {% set is_active = true %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
           {% set classes = classes|merge(['is-disabled']) %}
         {% else %}
-          {% set element = 'span' %}
-          {% set classes = classes|merge(['is-disabled']) %}
-          {% if lang == 'en' %}
-            {% set title = create_attribute({'title': 'There is no English translation for this page'}) %}
-          {% elseif lang == 'fi' %}
-            {% set title = create_attribute({'title': 'Tästä sivusta ei ole suomenkielistä käännöstä'}) %}
-          {% elseif lang == 'sv' %}
-            {% set title = create_attribute({'title': 'Det finns ingen svensk översättning för denna sida'}) %}
-          {% elseif lang == 'ru' %}
-            {% set title = create_attribute({'title': 'Для этой страницы нет русского перевода'}) %}
-          {% endif %}
+          {% set button_wrapper_classes = ['nav-toggle--language-toast', 'nav-toggle--language-toast--' ~ lang] %}
+          {% set anchor_button_classes = ['is-disabled', 'has-toast', alternative_language ? 'is-alternative' : ''] %}
+          {% set dropdown_wrapper_classes = ['nav-toggle-dropdown--language-toast', 'nav-toggle-dropdown--language-toast--' ~ lang] %}
         {% endif %}
 
-        {# Construct the element based on variables. #}
-        <{{ element }}
-          {{ create_attribute({'class': classes}) }}
-          {{ language_link ? create_attribute({'href': language_link}) }}
-          {{ create_attribute({'lang': lang}) }}
-          {{ ariaCurrent }}
-          {{ title }}
-        >{{ item.text|capitalize }}</{{ element }}>
+        {% if is_active %}
+          <span class="language-link__wrapper">
+            <a
+              {{ create_attribute({'class': classes}) }}
+              {{ create_attribute({'href': path('<current>', {}, {'language': item.link['#options']['language']})}) }}
+              {{ create_attribute({'lang': lang}) }}
+              {{ ariaCurrent }}
+            >{{ item.text|capitalize }}
+            </a>
+          </span>
+        {# Hide the alterative languages from the html structure since they cause all sorts of trouble in the layout. #}
+        {% elseif not alternative_language %}
+          {% set dropdown_id = 'language-toast--' ~ lang ~ '-dropdown' %}
+          <span class="language-link__wrapper">
+            {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+              modifier_class: button_wrapper_classes,
+              anchor_modified: anchor_button_classes,
+              button_modified: anchor_button_classes,
+              controls: dropdown_id,
+              anchor_target: '#language-toast--' ~ lang,
+              js_target: 'js-language-toast--' ~ lang ~ '-button',
+              open_label: item.text|capitalize,
+              close_label: item.text|capitalize,
+              button_language: lang,
+            } %}
+            {% endembed %}
+            {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+              id: dropdown_id,
+              modifier_class: dropdown_wrapper_classes,
+              js_target: 'js-language-toast--' ~ lang ~ '-dropdown',
+            } %}
+              {% block content %}
+                <section class="language-toast" id="language-toast--{{ lang }}" aria-label="{{ item.text|capitalize }}" lang="{{ lang }}">
+                  {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
+                  <div class="language-toast__close-wrapper">
+                    <a href="#" class="nav-toggle__anchor language-toast__close">
+                      <span class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
+                    </a>
+                    <button class="nav-toggle__button language-toast__close js-language-toast--{{ lang }}-button" aria-labelledby="{{ language_toast_close_labelled_by }}" aria-expanded="false" aria-controls="{{ dropdown_id }}">
+                      <span id="{{language_toast_close_labelled_by}}" class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
+                    </button>
+                  </div>
+                  <div class="language-toast__content" lang="{{ lang }}">
+                    <div class="language-toast__text">
+                      {{ toast_languages[lang].toast_text }}
+                    </div>
+                    {{ link(toast_languages[lang].toast_link_title, toast_languages[lang].toast_link_url, {'class': ['language-toast__link']}) }}
+                  </div>
+                </section>
+              {% endblock %}
+            {% endembed %}
+          </span>
+        {% endif %}
+
       {% endfor %}
     </div>
   </div>

@@ -11,6 +11,10 @@
     if (!categories) {
       categories = ['preferences', 'statistics'];
     }
+    // If the 'bypass' category is included, the content should be loaded.
+    if (categories.includes('bypass')) {
+      return true;
+    }
     return Drupal.cookieConsent.getConsentStatus(categories);
   };
 

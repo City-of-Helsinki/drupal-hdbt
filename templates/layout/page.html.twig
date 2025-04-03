@@ -58,6 +58,12 @@
   <div id="profile" class="nav-toggle-target"></div>
 {% endif %}
 
+{% if use_language_switcher_block %}
+  {% for language in ['fi', 'sv', 'en'] %}
+    <div id="language-toast--{{ language }}" class="nav-toggle-target nav-toggle-target--toast"></div>
+  {% endfor %}
+{% endif %}
+
 <div{{ create_attribute( publishAttribute ).addClass(page_classes) }}>
   {% if page.header_top or page.header_bottom or page.header_branding %}
     <header role="banner" class="header">

@@ -37,7 +37,7 @@
 {% set map_service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
 {% set iframe_title = media.getMediaTitle() %}
-{% set cookie_consent_groups = ['preferences', 'statistics'] %}
+{% set cookie_consent_groups = media.getCookieConsentBypass ? ['bypass'] : ['preferences'] %}
 
 {% set skip_link_after = 'map-' ~ media_id ~ random() ~ '-after'|clean_id %}
 {% set skip_link_before = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}

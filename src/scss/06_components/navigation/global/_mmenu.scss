@@ -28,8 +28,10 @@ $-footerlink-target-size: 44px;
 
 .mmenu__loading {
   align-items: center;
+  background-color: $color-white;
   display: flex;
   justify-content: center;
+  padding-block: $spacing-and-half;
   text-align: center;
   width: 100vw;
 

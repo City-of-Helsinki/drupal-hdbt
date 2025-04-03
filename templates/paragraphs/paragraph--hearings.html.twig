@@ -16,10 +16,11 @@
       <div class="hearings__list">
         {% if content.list %}
           {% set hearings_count = content.list[0]['#helfi_hearings'].get('count')[0].value %}
-          <div class="hearings__count-container">
-            <span class="hearings__count">{{ hearings_count }}</span>
-            {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural hearings_count %}hearings open for commenting{% endtrans %}
-          </div>
+          {% if hearings_count > 1 %}
+            <h3 class="hearings__count-container">
+              {{ hearings_count }} {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural hearings_count %}hearings open for commenting{% endtrans %}
+            </h3>
+          {% endif %}
           {{ content.list }}
           <div class="hearings__link-wrapper">
             {% include '@hdbt/navigation/link-button.html.twig' with {

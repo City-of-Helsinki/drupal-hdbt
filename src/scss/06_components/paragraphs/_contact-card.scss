@@ -1,76 +1,126 @@
-$contact-card-image-size: 200px;
-$contact-card-color-line-width: 4px;
-$contact-card-max-width: $contact-card-image-size;
+$-contact-card-font: body;
+$-contact-card-padding: $spacing-and-half;
+$-contact-card-max-width: calc(250px + $-contact-card-padding * 2);
+$-contact-card-link-padding: calc((44px - get-line-height($-contact-card-font, true)) / 2);
 
-.contact-card {
+$-contact-card-gap: $spacing-and-half;
+$-contact-card-two-columns: calc(100% / 2);
+$-contact-card-two-columns-spacing: calc($-contact-card-gap / 2);
+$-contact-card-three-columns: calc(100% / 3);
+$-contact-card-three-columns-spacing: calc(($-contact-card-gap / 3) * 2);
+$-contact-card-four-columns: calc(100% / 4);
+$-contact-card-four-columns-spacing: calc(($-contact-card-gap / 4) * 3);
+
+.contact-card-listing--container {
   display: flex;
+  flex-direction: column;
+  gap: $-contact-card-gap;
+
+  @include breakpoint($breakpoint-s) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
-.contact-card--with-image {
+.contact-card {
+  background-color: $color-black-5;
+  display: flex;
   flex-direction: column;
+  max-width: $-contact-card-max-width;
+  padding: $-contact-card-padding;
+  width: 100%;
+
+  @include breakpoint($breakpoint-s) {
+    width: calc($-contact-card-two-columns - $-contact-card-two-columns-spacing);
+  }
+
+  @include breakpoint($breakpoint-m) {
+    width: calc($-contact-card-three-columns - $-contact-card-three-columns-spacing);
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    width: calc($-contact-card-four-columns - $-contact-card-four-columns-spacing);
+  }
+}
+
+// Column rules when the contact card listing is in the components upper region.
+.components--upper .contact-card-listing--container {
+  .contact-card {
+    @include breakpoint($breakpoint-xl) {
+      width: calc($-contact-card-three-columns - $-contact-card-three-columns-spacing);
+    }
+  }
+}
+
+// Column rules when the contact card listing is in the components upper region
+// AND there is sidebar visible.
+.has-sidebar--first .components--upper .contact-card-listing--container {
+  .contact-card {
+    @include breakpoint($breakpoint-l) {
+      width: calc($-contact-card-two-columns - $-contact-card-two-columns-spacing);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      width: calc($-contact-card-three-columns - $-contact-card-three-columns-spacing);
+    }
+  }
 }
 
 .contact-card__image-container {
-  margin-bottom: $spacing;
+  margin-bottom: $spacing-and-half;
   margin-right: 0;
 
+  picture,
   img {
-    height: $contact-card-image-size;
-    width: $contact-card-image-size;
+    @include image-defaults;
+    height: auto;
+    width: 100%;
   }
-}
-
-.contact-card__person-phone-number a:not(:last-of-type)::after {
-  content: ',';
-  margin-right: 2px;
-}
-
-.contact-card__person-information {
-  @include font(small);
-  word-wrap: break-word;
-  hyphens: auto;
-  margin-bottom: $spacing-half;
-  overflow-wrap: break-word;
-
-  @include breakpoint($breakpoint-s) {
-    min-width: $contact-card-max-width;
-  }
-}
-.contact-card--color-line .contact-card__person-information {
-  min-width: calc($contact-card-image-size - $spacing-and-half - $spacing-quarter);
 }
 
 .contact-card__person-name {
-  @include font('h5');
+  @include font('h4');
   margin-top: 0;
 }
 
-.contact-card__person-email {
-  word-break: break-all;
+.contact-card__person-title {
+  @include font($-contact-card-font);
 }
 
-.contact-card__person-social-media {
-  display: flex;
-  margin-bottom: $spacing;
-  margin-top: $spacing;
+.contact-card__person-links {
+  margin-top: $-contact-card-gap;
+}
 
-  .hel-icon {
-    height: $spacing-and-half;
-    margin-right: $spacing-half;
-    width: $spacing-and-half;
+.contact-card__person-link {
+  @include font($-contact-card-font);
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+
+  a {
+    // This is not very nice but it gets us the phone numbers to remain
+    // inline and each on a new line.
+    display: table;
+    padding-block: $-contact-card-link-padding;
   }
 }
 
-* + .contact-card__person-description {
-  margin-top: $spacing;
+.contact-card__person-link--email {
+  // This is because there are sometimes long emails and limited space.
+  // We don't want the email to break out of the box.
+  word-break: break-all;
 }
 
-.contact-card__color-line {
-  background-color: var(--hdbt-color-palette--primary);
-  margin-right: $spacing-and-half;
-  min-width: $contact-card-color-line-width;
+.contact-card__person-link--social-media {
+  display: flex;
+  flex-direction: column;
+
+  .hel-icon {
+    margin-inline-end: $spacing-quarter;
+    vertical-align: middle;
+  }
 }
 
 .contact-card__person-description {
-  color: #{$color-black-60};
+  margin-top: $-contact-card-gap;
 }

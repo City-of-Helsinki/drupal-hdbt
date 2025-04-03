@@ -65,7 +65,7 @@ hdbt-icons:
       dist/css/hdbt-icons.css: {}
 
 embedded-content-cookie-compliance:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/embedded-content-cookie-compliance.min.js: {
       minified: true
@@ -165,7 +165,7 @@ environment-indicator:
       }
 
 nav-toggle:
-  version: 1.x
+  version: 1.0
   js:
     dist/js/nav-toggle.min.js: {
       minified: true,
@@ -180,7 +180,7 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.x
+  version: 1.0
   css:
     theme:
       dist/css/nav_local.min.css: {
@@ -191,7 +191,7 @@ nav-local:
     - hdbt/nav-toggle
 
 nav-global:
-  version: 1.x
+  version: 1.0
   css:
     theme:
       dist/css/nav_global.min.css: {
@@ -199,6 +199,15 @@ nav-global:
       }
   dependencies:
     - hdbt/global-styling
+    - hdbt/nav-toggle
+
+language-toast:
+  version: 1.0
+  js:
+    dist/js/language-toast.min.js: {
+      minified: true
+    }
+  dependencies:
     - hdbt/nav-toggle
 
 event-list:
@@ -321,7 +330,7 @@ maternity-and-child-health-clinic-search:
     - core/drupal
 
 ploughing-schedule:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/ploughing-schedule.min.js: {
       preprocess: false,

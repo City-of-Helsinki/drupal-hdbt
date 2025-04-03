@@ -12,7 +12,7 @@ type SuggestionItemType = {
 
 const FormContainer = ({ initialParams }: { initialParams?: SearchParams|null}) => {
   const setParams = useSetAtom(paramsAtom);
-  const [address, setAddress] = useState(initialParams?.address);
+  const [address, setAddress] = useState(initialParams?.address || '');
   const { baseUrl, index } = useAtomValue(configurationsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {

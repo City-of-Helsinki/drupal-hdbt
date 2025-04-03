@@ -1,3 +1,5 @@
+$-announcement_link_padding: $spacing-three-quarters;
+
 .announcement {
   @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
@@ -11,7 +13,6 @@
   align-items: flex-start;
   background: linear-gradient(90deg, var(--announcement-color) 0, var(--announcement-color) var(--announcement-bg-size), var(--announcement-bg-color) var(--announcement-bg-size));
   background-color: var(--announcement-bg-color);
-  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -53,7 +54,7 @@
   }
 }
 
-.announcenemnt__content-body {
+.announcement__content-body {
   & *:first-child {
     margin-top: 0;
   }
@@ -64,6 +65,15 @@
 
   &:first-child {
     margin-top: 0;
+  }
+
+  a {
+    padding-block: $-announcement_link_padding; // This sets the link clickable area to be big enough for a11y.
+  }
+
+  a:focus,
+  a:active {
+    outline: solid var(--color-black) 3px;
   }
 
   a::after {
@@ -87,22 +97,7 @@
 }
 
 .announcement__close {
-  background: transparent;
-  border: 0 none;
-  cursor: pointer;
-  height: $spacing-double;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: -$spacing-half;
-  margin-top: -$spacing-half;
-  padding: 0;
-  width: $spacing-double;
-
-  &::after {
-    --icon-size: #{$spacing-double};
-
-    @include pseudo-icon('cross');
-  }
+  @include close-button;
 }
 
 .js-announcement__close--disabled {

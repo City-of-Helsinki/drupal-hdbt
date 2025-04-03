@@ -13,9 +13,11 @@
 {% endif %}
 
 <div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
+  {% if title %}
+    {{ title_prefix }}
+    <h2>{{ title }}</h2>
+    {{ title_suffix }}
+  {% endif %}
 
   {% if header %}
     <header>
