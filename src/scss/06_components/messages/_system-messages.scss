@@ -13,3 +13,28 @@
 .messages__container {
   padding-top: 0;
 }
+
+.hds-notification--success {
+  .hds-notification__label .hel-icon {
+    background-color: $color-success;
+  }
+}
+
+.hds-notification--info {
+  .hds-notification__label .hel-icon {
+    background-color: $color-info;
+  }
+}
+
+.hds-notification--alert {
+  .hds-notification__label .hel-icon {
+    background-color: $color-alert-dark;
+  }
+}
+
+.hds-notification--error {
+  .hds-notification__label .hel-icon {
+    background-color: $color-error;
+  }
+}
+
