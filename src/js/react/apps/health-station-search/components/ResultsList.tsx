@@ -13,6 +13,7 @@ import { paramsAtom } from '../store';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import { GhostList } from '@/react/common/GhostList';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 
 type ResultsListProps = {
   data: any;
@@ -32,10 +33,10 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
 
-  if ((isLoading || isValidating) && !useMap) {
-    return (
-      <GhostList count={size} />
-    );
+  if (isLoading || isValidating) {
+    return useMap ?
+      <LoadingOverlay /> :
+      <GhostList count={size} />;
   }
 
   if (error) {
