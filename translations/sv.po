@@ -1255,12 +1255,16 @@ msgid "All venues"
 msgstr "Alla evenmangsplatser"
 
 msgctxt "React search: all available options"
-msgid "Venue name"
-msgstr "Evenemangsplatsens namn"
+msgid "Search term"
+msgstr "Sökord"
 
 msgctxt "React search: all available options"
 msgid "For example, Oodi"
-msgstr "T.ex. Oodi"
+msgstr "T.ex. Ode"
+
+msgctxt "React search: all available options"
+msgid "For example, Music"
+msgstr "T.ex. Musik"
 
 msgctxt "React search: topics filter"
 msgid "Event topic"

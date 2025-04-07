@@ -1253,12 +1253,16 @@ msgid "All venues"
 msgstr "Kaikki tapahtumapaikat"
 
 msgctxt "React search: all available options"
-msgid "Venue name"
-msgstr "Tapahtumapaikan nimi"
+msgid "Search term"
+msgstr "Hakusana"
 
 msgctxt "React search: all available options"
 msgid "For example, Oodi"
 msgstr "Esim. Oodi"
+
+msgctxt "React search: all available options"
+msgid "For example, Music"
+msgstr "Esim. Musiikki"
 
 msgctxt "React search: topics filter"
 msgid "Event topic"
