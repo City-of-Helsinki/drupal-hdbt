@@ -1252,6 +1252,14 @@ msgctxt "React search: all available options"
 msgid "All venues"
 msgstr "Kaikki tapahtumapaikat"
 
+msgctxt "React search: all available options"
+msgid "Venue name"
+msgstr "Tapahtumapaikan nimi"
+
+msgctxt "React search: all available options"
+msgid "For example, Oodi"
+msgstr "Esim. Oodi"
+
 msgctxt "React search: topics filter"
 msgid "Event topic"
 msgstr "Tapahtuman aihe"
@@ -1266,7 +1274,7 @@ msgstr "Poista valinta"
 
 msgctxt "React search: clear selections"
 msgid "Clear selections"
-msgstr "Tyhjennä kaikki valinnat"
+msgstr "Tyhjennä valinnat"
 
 msgctxt "React search: date selection label"
 msgid "Date"

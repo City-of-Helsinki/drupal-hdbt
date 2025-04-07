@@ -114,6 +114,8 @@ const FullLocationFilter = memo(() => {
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           label: selectVenueLabel,
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
+          searchLabel: Drupal.t('Venue name', {}, { context: 'React search: all available options' }),
+          searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
         }}
         theme={{
           '--checkbox-background-selected': 'var(--hdbt-color-black)',
