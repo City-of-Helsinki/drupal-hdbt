@@ -13,8 +13,8 @@ import Global from '../enum/Global';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import RssFeedLink from '../components/RssFeedLink';
 import useIndexQuery from '../hooks/useIndexQuery';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
+import { GhostList } from '@/react/common/GhostList';
 
 type ResultsContainerProps = {
   hidePagination?: boolean;
@@ -50,9 +50,7 @@ const ResultsContainer = ({
 
   if (!data && !error) {
     return (
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
+      <GhostList count={size} />
     );
   }
 

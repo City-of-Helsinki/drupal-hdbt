@@ -5,7 +5,6 @@ import { SyntheticEvent, createRef } from 'react';
 import Result from '../types/Result';
 import Pagination from '@/react/common/Pagination';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
 import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
@@ -17,6 +16,7 @@ import type URLParams from '../types/URLParams';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import { GhostList } from '@/react/common/GhostList';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -49,9 +49,7 @@ const ResultsContainer = (): JSX.Element => {
 
   if (!data && !error) {
     return (
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
+      <GhostList count={size} />
     );
   }
 

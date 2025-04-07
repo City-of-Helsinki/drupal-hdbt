@@ -15,6 +15,7 @@ import ResultsList from '../components/results/ResultsList';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import SearchMonitorContainer from './SearchMonitorContainer';
+import { GhostList } from '@/react/common/GhostList';
 
 const ResultsContainer = () => {
   const { size } = Global;
@@ -43,7 +44,7 @@ const ResultsContainer = () => {
 
   const getResults = () => {
     if (!data && !error) {
-      return;
+      return <GhostList count={size} />;
     }
 
     if (error || initializationError || data.error) {

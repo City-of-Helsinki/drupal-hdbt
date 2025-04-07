@@ -5,13 +5,13 @@ import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
-import CardGhost from '@/react/common/CardGhost';
 import SeeAllButton from '../components/SeeAllButton';
 import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
+import { GhostList } from '@/react/common/GhostList';
 
 type ResultsContainerProps = {
   addressRequired?: boolean;
@@ -36,7 +36,7 @@ function ResultsContainer({
   loading,
   retriesExhausted
 }: ResultsContainerProps) {
-  const { useExperimentalGhosts, seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
+  const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const url = useAtomValue(urlAtom);
@@ -60,10 +60,6 @@ function ResultsContainer({
       <Loader />;
   }
 
-  if (loading && !useExperimentalGhosts) {
-    return <Loader />;
-  }
-
   const size = settings.eventCount;
   const pages = Math.floor(countNumber / size);
   const addLastPage = countNumber > size && countNumber % size;
@@ -71,7 +67,7 @@ function ResultsContainer({
 
   const getContent = () => {
     if (loading && !events.length) {
-      return Array.from({ length: size }, (_, i) => <CardGhost key={i} />);
+      return <GhostList count={size} />;
     }
     if (addressRequired) {
       return (
@@ -96,7 +92,10 @@ function ResultsContainer({
             }
             ref={scrollTarget}
           />
-          {events.map(event => loading ? <CardGhost key={event.id} /> : <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />)}
+          {loading ?
+            <GhostList count={size} /> :
+            events.map(event => <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />)
+          }
           {!settings.hidePagination &&
             <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
           }

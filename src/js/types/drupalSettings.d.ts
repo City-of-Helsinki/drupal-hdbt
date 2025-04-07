@@ -36,8 +36,7 @@ declare namespace drupalSettings {
       }
     },
     seeAllButtonOverride: string,
-    seeAllNearYouLink: string;
-    useExperimentalGhosts: boolean,
+    seeAllNearYouLink: string,
     cardsWithBorders: boolean,
   };
   const helfi_react_search: {
