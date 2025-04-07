@@ -164,9 +164,24 @@ $-card-border-width: 2px;
   margin-top: $section-gap;
 }
 
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .11;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 .card--ghost {
   background: $color-white;
+  overflow: hidden;
+  position: relative;
 
   .card__image {
     aspect-ratio: 1.5;
@@ -183,33 +198,6 @@ $-card-border-width: 2px;
     }
   }
 
-  .card__title {
-    width: 100%;
-  }
-
-  .card__description {
-    width: calc((100% / 3) * 2);
-  }
-}
-
-@keyframes loading {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: .11;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.loading .card {
-  overflow: hidden;
-  position: relative;
-
   .card__image,
   .card__title,
   .card__description {
@@ -219,4 +207,12 @@ $-card-border-width: 2px;
       animation: none;
     }
   };
+
+  .card__title {
+    width: 100%;
+  }
+
+  .card__description {
+    width: calc((100% / 3) * 2);
+  }
 }
