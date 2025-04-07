@@ -30,10 +30,10 @@ const ResultsContainer = (): JSX.Element => {
   const choices = Boolean(window.location.search?.length);
   useScrollToResults(scrollTarget, choices);
 
-  const fetcher = () => {
+  const fetcher = async() => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl;
-
+    
     return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
       headers: {

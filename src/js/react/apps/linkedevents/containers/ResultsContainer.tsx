@@ -10,7 +10,6 @@ import { settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import { GhostList } from '@/react/common/GhostList';
 
 type ResultsContainerProps = {
@@ -22,12 +21,6 @@ type ResultsContainerProps = {
   retriesExhausted?: boolean;
 };
 
-const Loader = () => (
-  <div className='hdbt__loading-wrapper'>
-    <LoadingOverlay />
-  </div>
-);
-
 function ResultsContainer({
   addressRequired,
   countNumber,
@@ -38,6 +31,7 @@ function ResultsContainer({
 }: ResultsContainerProps) {
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
+  const size = settings.eventCount;
   const scrollTarget = createRef<HTMLDivElement>();
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
@@ -57,10 +51,9 @@ function ResultsContainer({
         errorMessage={Drupal.t('Failed to fetch events. You can reload the page or try again later.', {}, {context: 'Events search: Fetch failed message'})}
         ref={scrollTarget}
       /> :
-      <Loader />;
+      <GhostList count={size} />;
   }
 
-  const size = settings.eventCount;
   const pages = Math.floor(countNumber / size);
   const addLastPage = countNumber > size && countNumber % size;
   const count = countNumber.toString();

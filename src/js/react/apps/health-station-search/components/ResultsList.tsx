@@ -32,7 +32,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
 
-  if (isLoading || isValidating) {
+  if ((isLoading || isValidating) && !useMap) {
     return (
       <GhostList count={size} />
     );
