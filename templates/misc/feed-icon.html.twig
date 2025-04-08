@@ -11,9 +11,11 @@
  *   - class: HTML classes to be applied to the feed link.
  */
 #}
-{% set link_title %}
-  {{ 'Subscribe to @title as RSS feed'|t({'@title': title|lower}, {'context': 'Default feed link text'}) }}
-{% endset %}
+{% if link_title is not defined %}
+  {% set link_title %}
+    {{ 'Subscribe to @title as RSS feed'|t({'@title': title|lower}, {'context': 'Default feed link text'}) }}
+  {% endset %}
+{% endif %}
 {% set link_attributes = {
   'class': [
     'feed-link',

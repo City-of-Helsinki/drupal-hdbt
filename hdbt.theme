@@ -1735,6 +1735,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
   $variables['#attached']['drupalSettings']['helfi_events']['imagePlaceholder'] = twig_render_template(
     $extensionPathResolver->getPath('theme', 'hdbt') . '/templates/misc/image-placeholder.twig',
     [
+      'directory' => 'themes/custom/hdbt',
       'image_placeholder' => 'calendar-clock',
       'theme_hook_original' => '',
     ]
