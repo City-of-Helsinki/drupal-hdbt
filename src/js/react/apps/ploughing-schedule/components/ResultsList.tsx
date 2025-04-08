@@ -2,11 +2,11 @@ import { createRef } from 'react';
 import { useAtomValue } from 'jotai';
 
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
 import ResultCard from './ResultCard';
 import { paramsAtom } from '../store';
 import getScheduleCard from '../helpers/GetScheduleCard';
-import { GhostList } from '@/react/common/GhostList';
 
 type ResultsListProps = {
   data: any;
@@ -23,7 +23,9 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
 
   if (isLoading || isValidating) {
     return (
-      <GhostList count={1} />
+      <div className='hdbt__loading-wrapper'>
+        <LoadingOverlay />
+      </div>
     );
   }
 
