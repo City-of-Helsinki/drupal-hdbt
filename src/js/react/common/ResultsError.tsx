@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/react';
 import { Notification } from 'hds-react';
 import { ForwardedRef, forwardRef } from 'react';
 
@@ -15,10 +14,15 @@ const ResultsError = forwardRef(({
   errorMessage,
   headingLevel = 3
 }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {
-  console.warn(`Error loading data from Elastic: ${error}`);
 
-  if (drupalSettings?.helfi_react_search?.sentry_dsn_react) {
-    Sentry.captureException(error);
+  // This error path is hit quite often if e.g. user goes back before the api
+  // network requests are finished, which causes a exception to be thrown.
+  // Suppress TypeError to reduce spam to Sentry.
+  //
+  // Possible network errors:
+  // https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch#exceptions
+  if (!(error instanceof TypeError)) {
+    console.error('Error loading data from Elastic:', error);
   }
 
   return (
