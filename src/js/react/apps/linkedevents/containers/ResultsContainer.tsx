@@ -51,7 +51,7 @@ function ResultsContainer({
         errorMessage={Drupal.t('Failed to fetch events. You can reload the page or try again later.', {}, {context: 'Events search: Fetch failed message'})}
         ref={scrollTarget}
       /> :
-      <GhostList count={size} />;
+      <GhostList bordered={cardsWithBorders} count={size} />;
   }
 
   const pages = Math.floor(countNumber / size);
@@ -60,7 +60,7 @@ function ResultsContainer({
 
   const getContent = () => {
     if (loading && !events.length) {
-      return <GhostList count={size} />;
+      return <GhostList bordered={cardsWithBorders} count={size} />;
     }
     if (addressRequired) {
       return (
@@ -86,7 +86,7 @@ function ResultsContainer({
             ref={scrollTarget}
           />
           {loading ?
-            <GhostList count={size} /> :
+            <GhostList bordered={cardsWithBorders} count={size} /> :
             events.map(event => <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />)
           }
           {!settings.hidePagination &&

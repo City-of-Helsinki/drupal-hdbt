@@ -50,7 +50,7 @@ const ResultsContainer = ({
 
   if (!data && !error) {
     return (
-      <GhostList count={size} />
+      <GhostList bordered={cardsWithBorders} count={size} />
     );
   }
 
