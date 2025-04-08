@@ -24,7 +24,7 @@ const ResultsError = forwardRef(({
   return (
     <div className={className} ref={ref}>
       <Notification
-        label={Drupal.t('An error occured while loading the content', {}, { context: 'React search' })}
+        label={Drupal.t('An error occurred while loading the content', {}, { context: 'React search' })}
         type='error'
         headingLevel={headingLevel}
       >
