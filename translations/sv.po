@@ -771,7 +771,7 @@ msgid "The link opens in a new tab"
 msgstr "Länken öppnas i en ny flik"
 
 msgctxt "React search"
-msgid "An error occured while loading the content"
+msgid "An error occurred while loading the content"
 msgstr "Det uppstod ett fel vid inläsningen av innehållet"
 
 msgctxt "React search"
