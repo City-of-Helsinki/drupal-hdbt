@@ -773,7 +773,7 @@ msgid "The link opens in a new tab"
 msgstr "Linkki avautuu uuteen välilehteen"
 
 msgctxt "React search"
-msgid "An error occured while loading the content"
+msgid "An error occurred while loading the content"
 msgstr "Sisällön lataamisessa tapahtui virhe."
 
 msgctxt "React search"
