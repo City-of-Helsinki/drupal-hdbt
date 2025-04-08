@@ -9,8 +9,12 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="{% if content.field_contact_image|render %}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
-      {{ content.field_contact_image }}
+    <div class="{% if content.field_contact_image|render or content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
+      {% if content.field_contact_image_reference|render %}
+        {{ content.field_contact_image_reference }}
+      {% elseif content.field_contact_image|render %}
+        {{ content.field_contact_image }}
+      {% endif %}
     </div>
     <div class="contact-card__information-container">
     {% if content.field_contact_name|render|striptags|trim %}
