@@ -1,11 +1,11 @@
 import { Suspense, useEffect } from 'react';
 import { useAtom } from 'jotai';
 
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import { paramsAtom } from '../store';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
+import { GhostList } from '@/react/common/GhostList';
 
 const SearchContainer = () => {
   const [params, setParams] = useAtom(paramsAtom);
@@ -21,9 +21,7 @@ const SearchContainer = () => {
 
   return (
     <Suspense fallback={
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
+      <GhostList count={1} />
     }>
       <div>
         <FormContainer initialParams={initialParams} />

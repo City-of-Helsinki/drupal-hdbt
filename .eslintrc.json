@@ -138,6 +138,7 @@
         "react/self-closing-comp": 0,
         "import/extensions": 0,
         "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
         // These rules are not needed with react 17 JSX transform.
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
