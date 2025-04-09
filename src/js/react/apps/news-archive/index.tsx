@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import initSentry from '@/react/common/helpers/Sentry';
 import ResultsContainer from './containers/ResultsContainer';
 import FormContainer from './containers/FormContainer';
+import { GhostList } from '@/react/common/GhostList';
+import GlobalSettings from './enum/Global';
 
 initSentry();
 
@@ -16,9 +17,7 @@ if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
       <Suspense fallback={
-        <div className='hdbt__loading-wrapper'>
-          <LoadingOverlay />
-        </div>
+        <GhostList count={GlobalSettings.SIZE} />
       }>
         {hideForm || <FormContainer />}
         <ResultsContainer />

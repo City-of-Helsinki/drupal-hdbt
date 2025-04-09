@@ -29,7 +29,6 @@ const SWR_REFRESH_OPTIONS = {
 };
 
 const SearchContainer = () => {
-  const { useExperimentalGhosts } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const initialUrl = useAtomValue(initialUrlAtom);
   const initialParams = useAtomValue(initialParamsAtom);
@@ -94,7 +93,7 @@ const SearchContainer = () => {
         ...revalidateOpts
       });
     },
-    keepPreviousData: useExperimentalGhosts
+    keepPreviousData: true
   });
 
   return (

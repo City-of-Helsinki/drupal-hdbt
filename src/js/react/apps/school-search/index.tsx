@@ -5,7 +5,8 @@ import { ErrorBoundary } from '@sentry/react';
 import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
 import ResultsError from '@/react/common/ResultsError';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
+import { GhostList } from '@/react/common/GhostList';
+import AppSettings from './enum/AppSettings';
 
 initSentry();
 
@@ -23,7 +24,7 @@ const start = () => {
     <React.StrictMode>
       <div className='component--react-search component--react-search--schools'>
         <ErrorBoundary fallback={<ResultsError error="School search initialization failed" />}>
-          <Suspense fallback={<LoadingOverlay />}>
+          <Suspense fallback={<GhostList count={AppSettings.size} />}>
             <SearchContainer />
           </Suspense>
         </ErrorBoundary>
