@@ -1,23 +1,18 @@
 .hds-checkbox {
-  --focus-outline-color: #{$color-black}; // We should use hdbt color theme instead of hds
-
-  > label {
-    @extend .hds-checkbox__label !optional; // TODO: UHF-8797 we should refactor to get rid of this extend (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8797).
-  }
+  --background-hover: #{$color-black};
+  --background-selected: #{$color-black};
+  --background-unselected: #{$color-white};
+  --border-color-selected-focus: #{$color-black};
+  --border-color-selected-hover: #{$color-black};
+  --border-color-selected: #{$color-black};
+  --focus-outline-color: #{$color-black};
 
   .hds-checkbox__input:focus {
-    outline: var(--outline-width) solid var(--focus-outline-color); // add a regular outline around checkbox
+    outline: var(--outline-width) solid var(--focus-outline-color); // Add a regular outline around checkbox
     outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast
 
     & + .hds-checkbox__label::before {
-      box-shadow: none; // remove hds outline as it causes false positives in accessibility tools
-    }
-  }
-
-  .hds-checkbox__input,
-  .hds-checkbox__input:hover {
-    &::before {
-      mask-image: icon_url('check');
+      box-shadow: none; // Remove hds outline as it causes false positives in accessibility tools
     }
   }
 }
