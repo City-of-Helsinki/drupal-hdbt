@@ -101,11 +101,9 @@ class NavToggleDropdown {
 
     if (this.buttonInstances.length === 0) {
       this.running = false;
-      console.warn(`${name} buttons missing. Looking for ${this.buttonSelector}`);
       return;
     }
     if (this.running) {
-      console.warn(`${name} already initiated. Is it included more than once?`);
       return;
     }
 

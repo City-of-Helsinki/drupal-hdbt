@@ -1,9 +1,6 @@
 // stylelint-disable scss/dollar-variable-empty-line-before
 // This file includes constraints used in the theme.
 
-// Container width variables from HDS.
-@import '~hds-design-tokens/lib/breakpoint/container-width'; // Notice, SCSS format
-
 $gutter: 16px;
 
 $spacing: $gutter; // 16px
@@ -26,3 +23,4 @@ $footer-koro-height: 50px;
 
 $wcag-touch-target-size-aa: 24px; // The minimum requirement for hel.fi is 24px, https://www.wcag.com/developers/2-5-8-target-size-minimum-level-aa
 $wcag-touch-target-size-aaa: 44px; // This is the recommended size for touch targets for AAA accessibility level.
+
