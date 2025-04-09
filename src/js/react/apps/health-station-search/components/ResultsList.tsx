@@ -4,7 +4,6 @@ import { useAtomValue } from 'jotai';
 import Result from '@/types/Result';
 import Pagination from '@/react/common/Pagination';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsMap from '@/react/common/ResultsMap';
 import AppSettings from '../enum/AppSettings';
@@ -13,6 +12,8 @@ import ResultCard from './ResultCard';
 import { paramsAtom } from '../store';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
+import { GhostList } from '@/react/common/GhostList';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 
 type ResultsListProps = {
   data: any;
@@ -33,11 +34,9 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
-    return (
-      <div className='hdbt__loading-wrapper'>
-        <LoadingOverlay />
-      </div>
-    );
+    return useMap ?
+      <LoadingOverlay /> :
+      <GhostList count={size} />;
   }
 
   if (error) {
