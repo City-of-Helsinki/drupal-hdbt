@@ -1,0 +1,20 @@
+.hds-radio-button {
+  // Theming the hds-radio-button to use Hel.fi brand color scheme.
+  --border-color-selected: #{$color-black};
+  --border-color-selected-hover: #{$color-black};
+  --border-color-selected-focus: #{$color-black};
+  --icon-color-selected: #{$color-black};
+  --icon-color-hover: #{$color-black};
+  --focus-outline-color: #{$color-black};
+
+  .hds-radio-button__input:focus {
+    & + .hds-radio-button__label::before {
+      // Remove hds outline as it causes false positives in accessibility tools.
+      box-shadow: none;
+
+      // Add an outline around the pseudo-element that is used to visually replace the actual radio-button.
+      outline: var(--outline-width) solid var(--focus-outline-color);
+      outline-offset: 2px;
+    }
+  }
+}
