@@ -1,6 +1,7 @@
 .hds-text-input__input-wrapper:focus-within .hds-text-input__input:not([readonly]) {
-  --focus-outline-color: #{$color-black}; // We should use hdbt color theme instead of hds
-  box-shadow: none; // remove hds outline as it causes false positives in accessibility tools
-  outline: var(--outline-width, 3px) solid var(--focus-outline-color); // add a regular outline around checkbox
-  outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast
+  // Theming the hds-checkbox to use Hel.fi brand color scheme.
+  --focus-outline-color: #{$color-black};
+  box-shadow: none; // Remove hds outline as it causes false positives in accessibility tools.
+  outline: var(--outline-width, 3px) solid var(--focus-outline-color); // Add a regular outline around checkbox.
+  outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast.
 }
