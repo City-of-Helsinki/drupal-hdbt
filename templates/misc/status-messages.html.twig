@@ -29,16 +29,16 @@
 
   {% if type == 'error' %}
     {% set section_classes = section_classes|merge(['hds-notification--error']) %}
-    {% set notification_icon = 'error-fill' %}
+    {% set notification_icon = 'error' %}
   {% elseif type == 'warning' %}
     {% set section_classes = section_classes|merge(['hds-notification--alert']) %}
-    {% set notification_icon = 'alert-circle-fill' %}
+    {% set notification_icon = 'alert-circle' %}
   {% elseif type == 'success' %}
     {% set section_classes = section_classes|merge(['hds-notification--success']) %}
-    {% set notification_icon = 'check-circle-fill' %}
+    {% set notification_icon = 'check' %}
   {% else %}
     {% set section_classes = section_classes|merge(['hds-notification--info']) %}
-    {% set notification_icon = 'info-circle-fill' %}
+    {% set notification_icon = 'info-circle' %}
   {% endif %}
 
   {% if size == 'large' %}
