@@ -4,6 +4,7 @@
 // Rows below strip only used bits from @import 'xx_external/hds-core/lib/components/all.min.css';
 
 // button.css contents have been moved inside 05_objects/_button.scss
+@import '~hds-core/lib/components/breadcrumb/breadcrumb';
 @import '~hds-core/lib/components/checkbox/checkbox';
 @import '~hds-core/lib/components/koros/koros';
 @import '~hds-core/lib/components/loading-spinner/loading-spinner';
