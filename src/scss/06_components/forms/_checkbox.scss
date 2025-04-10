@@ -1,4 +1,5 @@
 .hds-checkbox {
+  // Theming the hds-checkbox to use Hel.fi brand color scheme.
   --background-hover: #{$color-black};
   --background-selected: #{$color-black};
   --background-unselected: #{$color-white};
