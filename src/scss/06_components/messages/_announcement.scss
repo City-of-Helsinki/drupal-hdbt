@@ -1,4 +1,4 @@
-$-announcement_link_padding: $spacing-three-quarters;
+$-announcement-link-padding: $spacing-three-quarters;
 
 .announcement {
   @include font('small');
@@ -68,7 +68,7 @@ $-announcement_link_padding: $spacing-three-quarters;
   }
 
   a {
-    padding-block: $-announcement_link_padding; // This sets the link clickable area to be big enough for a11y.
+    padding-block: $-announcement-link-padding; // This sets the link clickable area to be big enough for a11y.
   }
 
   a:focus,
