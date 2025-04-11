@@ -459,6 +459,18 @@ function getConfig(hostname, protocol, type) {
           ],
           'selectorExpansion': expandComponents,
         },
+        // Form fields
+        {
+          'label': 'Form input fields',
+          'url': `${protocol}://${hostname}/en/helfi-test-content/helfi-test-content-form`,
+          'removeSelectors': removeDefault,
+        },
+        {
+          'label': 'Form input fields - focused',
+          'url': `${protocol}://${hostname}/en/helfi-test-content/helfi-test-content-form?focus`,
+          'removeSelectors': removeDefault,
+          'readySelector': '.hds-radio-button--simulate-focus',
+        },
       ],
       'mergeImgHack': true,
       'onBeforeScript': 'onBefore.js',

@@ -312,16 +312,17 @@ class HelfiCalculator {
     }, 1000);
   }
 
-  static renderNotification(element, notificationClass, result, notificationAriaLabel) {
+  static renderNotification(element, notificationClass, notificationIcon, result, notificationAriaLabel) {
     let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
-      message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
+      message = `<ul class="messages__list"><li class="messages__list__item">${result.message.join('</li><li class="messages__list__item">')}</li></ul>`;
     }
 
     element.innerHTML = `
       <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
+            <span class="hds-icon hds-icon--${notificationIcon}" aria-hidden="true"></span>
             <span>${result.title}</span>
           </h2>
           <div class="hds-notification__body">${message}</div>
@@ -329,16 +330,17 @@ class HelfiCalculator {
       </section>`;
   }
 
-  static renderReceipt(element, notificationClass, result, notificationAriaLabel) {
+  static renderReceipt(element, notificationClass, notificationIcon, result, notificationAriaLabel) {
     let { message } = result;
     if (Array.isArray(result.message) && result.message.length > 1) {
-      message = `<ul><li>${result.message.join('</li><li>')}</li></ul>`;
+      message = `<ul class="messages__list"><li class="messages__list__item">${result.message.join('</li><li class="messages__list__item">')}</li></ul>`;
     }
 
     const html = `
       <section aria-label="${notificationAriaLabel}" class="hds-notification ${notificationClass}">
         <div class="hds-notification__content">
           <h2 class="hds-notification__label">
+            <span class="hds-icon hds-icon--${notificationIcon}" aria-hidden="true"></span>
             <span>${result.title}</span>
           </h2>
           <div class="hds-notification__body">${message}</div>
@@ -360,7 +362,7 @@ class HelfiCalculator {
 
   renderResult(result) {
     if (result.error) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', result.error, this.translate('notification_aria_label_for_error'));
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--error`), 'hds-notification--error', 'error-fill', result.error, this.translate('notification_aria_label_for_error'));
       const titleElem = document.querySelector(`#${this.id} .helfi-calculator-notification--error .hds-notification__label`);
       titleElem.setAttribute('tabindex', '0');
       titleElem.focus();
@@ -378,9 +380,9 @@ class HelfiCalculator {
       element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' }); // Scroll receipt into view while it's animating.
       window.setTimeout(() => { this.focusReceiptHeading(element); }, this.receiptOpenMs + 10); // Add 10ms after animation so that title is in place when focusing into it.
     } else if (result.alert) {
-      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', result.alert, this.translate('notification_aria_label_for_alert'));
+      HelfiCalculator.renderNotification(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--alert', 'alert-circle-fill', result.alert, this.translate('notification_aria_label_for_alert'));
     } else if (result.info) {
-      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', result.info, this.translate('notification_aria_label_for_info'));
+      HelfiCalculator.renderReceipt(document.querySelector(`#${this.id} .helfi-calculator-notification--result`), 'hds-notification--info', 'info-circle-fill', result.info, this.translate('notification_aria_label_for_info'));
     }
   }
 

@@ -1,8 +1,8 @@
 $-button-height: 2px + $spacing + get-font-size('button', $unremify: true) * 1.15 + $spacing + 2px; // border + padding + font-size * hds-button line-height + padding + border
 
 .hds-pagination-container {
+  // Spacing for pager element needs to be added since hds doesn't set these values.
   margin-top: $spacing-double;
-  text-align: center;
 
   @include breakpoint($breakpoint-m) {
     margin-top: $spacing-quadruple;
@@ -10,115 +10,64 @@ $-button-height: 2px + $spacing + get-font-size('button', $unremify: true) * 1.1
 }
 
 .hds-pagination {
-  --active-page-background-color: var(--color-black);
+  // Theming the hds-pagination to use Hel.fi brand color scheme.
+  --active-page-background-color: #{$color-black};
+
+  // Make sure the clickable area is tall enough to meet the minimum height requirement for the WCAG AAA standard.
   --link-height: #{$wcag-touch-target-size-aaa};
 
   @include font('body');
-  display: inline-block; // Allows centering.
-  font-weight: $font-weight-bold;
-  position: relative; // Enables position absolute for btn--next.
-  transform: scaleY(-1); // Trick for flipping the list float direction from bottom to up.
+  font-weight: $font-weight-bold; // The body font doesn't have enough font weight so set it again here.
 
-  // Invisible, floated pseudo-element for reserving space for the hds-pagination__button-next,
-  // we can not use this position for the actual button as it's in incorrect source order for tabbing.
   &::before {
     @include font('button');
-    speak: never; // Removes this pseudo-element from screen readers where supported.
-    /* stylelint-disable-next-line order/properties-alphabetical-order */
-    content: attr(data-next); // Trick to keep floating element same size as btn--next.
-    content: attr(data-next) / ''; // Removes this pseudo-element from screen readers where supported.
-    display: block;
-    float: right; // Floated pseudo-element wraps the inline ul around it.
     line-height: $-button-height;
     padding-left: 34px; // 8px gap + 2px button border + 8px button padding + 16px span padding
     padding-right: 46px; // 4px gap + 24px icon + 8px icon margin + 8px button padding + 2px button border
     transform: scaleY(-1); // Helps debugging text position
-    visibility: hidden; // Remove this for debugging
   }
+}
+
+.hds-pagination__pages {
+  // Next & Previous button structure is different in the hds and hdbt templates of the pager so
+  // the numbers need to be a bit higher.
+  margin-top: 6px;
 }
 
 .hds-pagination__button-prev,
 .hds-pagination__button-next {
+  // The Drupal pager requires the ul-structure around the pager buttons so we need some
+  // extra styles to fight away the styling related to those wrapping elements.
   list-style: none;
   margin-bottom: 0;
   margin-top: 0;
   padding: 0;
-}
 
-.hds-pagination__button-prev {
-  float: left;
-  margin-right: 8px;
-  transform: scaleY(-1); // Flip the element back from upside down.
-  white-space: nowrap;
-}
-
-.hds-pagination__button-next {
-  position: absolute;
-  right: 0;
-  top: 0; // Remember that the position is flipped upside down, so this means actually bottom.
-  transform: scaleY(-1); // Flip the element back from upside down.
-  white-space: nowrap;
-}
-
-.hds-pagination__button-prev-label {
-  padding: $spacing $spacing $spacing 4px;
-}
-
-.hds-pagination__button-next-label {
-  padding: $spacing 4px $spacing $spacing;
-}
-
-.hds-pagination__pages {
-  display: inline-flex; // inline-flex allows floating it based on floated buttons when there is no more space.
-  flex-wrap: wrap; // Allow wrapping of the li-elements.
-  gap: var(--spacing-2-xs);
-  justify-content: center; // Center the li-elements.
-  list-style: none;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: 0;
-  padding-bottom: 5px;
-  transform: scaleY(-1); // Flip the element back from upside down.
-}
-
-.hds-pagination__item-link {
-  align-items: center;
-  border-radius: calc(var(--link-height) / 2);
-  color: var(--color-black-90);
-  display: flex;
-  height: var(--link-height);
-  justify-content: center;
-  min-width: var(--link-height); // This is different from hds-core since we are using border-box sizing and not content-box.
-  padding-left: var(--spacing-3-xs);
-  padding-right: var(--spacing-3-xs);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-thickness: remify(2px);
-  }
-
-  &:focus,
-  &:active {
-    outline: solid var(--color-coat-of-arms) 3px;
-    outline-offset: 1px;
-  }
-
-  &.hds-pagination__item-link--active {
-    background-color: var(--active-page-background-color);
-    color: var(--color-white);
+  .hds-button {
+    --border-color-focus: transparent; // Remove double outline from buttons.
+    --border-color-hover-focus: transparent;
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline; // Add underline as hover since background-color hover would not be visible with gray background.
     }
   }
 }
 
-.hds-pagination__item-ellipsis {
-  align-items: center;
-  color: var(--color-black-90);
-  display: flex;
-  height: var(--link-height);
-  justify-content: center;
-  width: 24px; // Width of the ellipsis element.
+// This is hdbt specific selector to fix issues with the pager button differences between hds.
+.hds-pagination__button-prev-label {
+  padding: $spacing $spacing $spacing 4px;
+}
+
+// This is hdbt specific selector to fix issues with the pager button differences between hds.
+.hds-pagination__button-next-label {
+  padding: $spacing 4px $spacing $spacing;
+}
+
+.hds-pagination__item-link {
+  min-width: var(--link-height); // This is different from hds-core since we are using border-box sizing and not content-box.
+
+  &:focus,
+  &:active {
+    --color-focus-outline: #{$color-black}; // Theming the hds-pager to use Hel.fi brand color scheme.
+  }
 }

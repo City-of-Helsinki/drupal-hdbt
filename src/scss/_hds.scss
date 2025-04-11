@@ -1,16 +1,16 @@
 // This file includes Helsinki Design System core packages.
 // These contents have been stripped to bare minimum that we use.
 
-// TODO: UHF-8792 We need improve this integration so that it is easier to keep up-to-date (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
-
 // Rows below strip only used bits from @import 'xx_external/hds-core/lib/components/all.min.css';
 
 // button.css contents have been moved inside 05_objects/_button.scss
-@import 'xx_external/hds-core/lib/components/checkbox/checkbox.min.css';
-@import 'xx_external/hds-core/lib/components/koros/koros.min.css';
-@import 'xx_external/hds-core/lib/components/loading-spinner/loading-spinner.min.css';
-@import 'xx_external/hds-core/lib/components/notification/notification.min.css';
-@import 'xx_external/hds-core/lib/components/radio-button/radio-button.min.css';
-@import 'xx_external/hds-core/lib/components/selection-group/selection-group.min.css';
-@import 'xx_external/hds-core/lib/components/status-label/status-label.min.css';
-@import 'xx_external/hds-core/lib/components/text-input/text-input.min.css';
+@import '~hds-core/lib/components/breadcrumb/breadcrumb';
+@import '~hds-core/lib/components/checkbox/checkbox';
+@import '~hds-core/lib/components/koros/koros';
+@import '~hds-core/lib/components/loading-spinner/loading-spinner';
+@import '~hds-core/lib/components/notification/notification';
+@import '~hds-core/lib/components/pagination/pagination';
+@import '~hds-core/lib/components/radio-button/radio-button';
+@import '~hds-core/lib/components/selection-group/selection-group';
+@import '~hds-core/lib/components/status-label/status-label';
+@import '~hds-core/lib/components/text-input/text-input';

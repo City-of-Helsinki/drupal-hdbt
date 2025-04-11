@@ -1,8 +1,5 @@
 // This file includes all imports
 
-// TODO: UHF-8792 The current hds integration of styles needs improving (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8792).
-@import 'hds';
-
 // Breakpoint helpers
 @import '~breakpoint-sass';
 
@@ -10,6 +7,9 @@
 @import '00_functions/_index';
 @import '01_variables/_index';
 @import '02_mixins/_index';
+
+// Import hds-core styles.
+@import 'hds';
 
 /* Content is created after this point */
 @import '03_generic/_index';

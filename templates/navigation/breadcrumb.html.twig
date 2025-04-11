@@ -9,21 +9,33 @@
  */
 #}
 {% if links %}
-  <nav class="breadcrumb" role="navigation" aria-label="{{ 'Breadcrumb'|t }}">
+  <nav class="hds-breadcrumb" role="navigation" aria-label="{{ 'Breadcrumb'|t }}">
+    <ol class="hds-breadcrumb__list hds-breadcrumb__list--desktop">
     {% for item in links %}
-      {% if not loop.first %}
-        {% include '@hdbt/misc/icon.twig' with {icon: 'angle-right'} %}
-      {% endif %}
-      {% if item.url.toString() is not empty %}
+      <li class="hds-breadcrumb__list-item {% if item.url.toString() is  empty %}hds-breadcrumb__list-item--active{% endif %}">
+        {% if item.url.toString() is not empty %}
+          {% set link_attributes = {'class': ['hds-breadcrumb__link']} %}
+          {{ link(item.text, item.url, link_attributes) }}
+        {% else %}
+          <span {{ loop.last ? 'aria-current="page"' }} class="hds-breadcrumb__link">{{ item.text|striptags }}</span>
+        {% endif %}
+        {% if not loop.last %}
+          {% include '@hdbt/misc/icon.twig' with {icon: 'angle-right', class: 'hds-breadcrumb__separator'} %}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ol>
+    <div class="hds-breadcrumb__list hds-breadcrumb__list--mobile">
+      {% include '@hdbt/misc/icon.twig' with {icon: 'angle-left', class: 'hds-breadcrumb__back-arrow'} %}
+      {% set second_to_last = links|slice(-2,1)|first %}
+        {% if second_to_last.url.toString() is not empty %}
         {% set link_attributes = {
           'class': [
-            'breadcrumb__link',
+            'hds-breadcrumb__link',
           ],
         } %}
-        {{ link(item.text, item.url, link_attributes) }}
-      {% else %}
-        <span {{ loop.last ? 'aria-current="page"' }} class="breadcrumb__current">{{ item.text|striptags }}</span>
+        {{ link(second_to_last.text, second_to_last.url, link_attributes) }}
       {% endif %}
-    {% endfor %}
+    </div>
   </nav>
 {% endif %}

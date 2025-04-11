@@ -1,63 +1,38 @@
-.breadcrumb {
-  @include font('special.breadcrumb.parent');
-  align-items: center;
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding-inline: $spacing;
+.hds-breadcrumb {
+  --horizontal-margin: #{$spacing};
+
+  @include font('special.breadcrumb.parent'); // Change the font to match Hel.fi brand.
+  padding: 0; // There is too much air around the breadcrumb element in hds.
 
   @include breakpoint($breakpoint-m) {
-    padding-inline: $spacing-and-half;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    padding-inline: $spacing-double;
-  }
-
-  .hel-icon {
-    display: none;
-
-    @include breakpoint($breakpoint-m) {
-      --icon-size: #{remify(14px)};
-      display: block;
-      margin: 0 $spacing-quarter * 0.5;
-    }
+    --horizontal-margin: #{$spacing-double};
   }
 }
 
-.breadcrumb__link {
-  display: none;
+.hds-breadcrumb__list-item {
+  margin-top: 0; // Remove spacing caused by hdbt li + li style.
+}
+
+.hds-breadcrumb__list-item--active {
+  padding: 0; // Remove active list item padding set by hds to match Hel.fi brand.
+}
+
+.hds-breadcrumb__link {
+  // Make the breadcrumb links clickable area meet the minimum height requirement for the WCAG AAA standard.
   padding-block: $spacing-half;
 
   @include breakpoint($breakpoint-m) {
-    display: block;
     padding-block: $spacing;
-  }
-
-  &:last-of-type {
-    align-items: center;
-    display: flex;
-    margin-left: -$spacing-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-left: 0;
-    }
-
-    &::before {
-      @include pseudo-icon('angle-left', $spacing-and-half);
-
-      @include breakpoint($breakpoint-m) {
-        display: none;
-      }
-    }
   }
 }
 
-.breadcrumb__current {
-  @include font('special.breadcrumb.current');
-  display: none;
+.hds-breadcrumb__separator.hds-breadcrumb__separator {
+  --icon-size: #{remify(14px)}; // Icons are styled smaller in Hel.fi breadcrumb.
+  margin-inline: 2px; // Icons have also a little bit more spacing around that in hds.
+}
 
-  @include breakpoint($breakpoint-m) {
-    display: block;
-  }
+.hds-breadcrumb__back-arrow.hds-breadcrumb__back-arrow {
+  // Position the back arrow a bit differently that how it is positioned in hds.
+  margin-left: -#{$spacing-half};
+  margin-right: 0;
 }

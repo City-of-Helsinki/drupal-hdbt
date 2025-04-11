@@ -1,7 +1,7 @@
 .hds-loading-spinner {
-  /* Can't do center:50% middle: 50%, so approximate it for a typical window size. */
-  left: 49%; /* LTR */
+  // Center the spinner to the middle of the screen.
+  left: calc(50% - (var(--spinner-size) / 2));
   position: fixed;
-  top: 48.5%;
+  top: calc(50% - (var(--spinner-size) / 2));
   z-index: 1000;
 }
