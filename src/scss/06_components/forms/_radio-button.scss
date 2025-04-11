@@ -7,8 +7,11 @@
   --icon-color-hover: #{$color-black};
   --focus-outline-color: #{$color-black};
 
-  .hds-radio-button__input:focus {
-    & + .hds-radio-button__label::before {
+  .hds-radio-button__input {
+    &:focus + .hds-radio-button__label::before,
+    // Focus styles for the visual regression tests.
+    // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+    & + .hds-radio-button--simulate-focus::before {
       // Remove hds outline as it causes false positives in accessibility tools.
       box-shadow: none;
 
