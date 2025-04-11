@@ -1,0 +1,42 @@
+.component--number-highlights {
+  .component__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.numbers-item__container {
+  padding-left: $spacing;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+
+  &::before {
+    background-color: $color-metro;
+    bottom: 0;
+    content: '';
+    display: flex;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $spacing-half;
+  }
+}
+
+.numbers-item__number {
+  font-size: remify(64px);
+  font-weight: $font-weight-bold;
+}
+
+.numbers-item__text {
+  @include font('lead');
+}
