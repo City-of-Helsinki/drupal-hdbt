@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import LoadingOverlay from './LoadingOverlay';
+import { GhostList } from './GhostList';
 
 type ResultWrapperProps = {
   className?: string;
@@ -11,7 +11,7 @@ const ResultWrapper = ({ className, children, loading }: ResultWrapperProps) => 
     <div
       className={`hdbt__loading-wrapper${className ? ` ${className}` : ''}`}
     >
-      {loading && <LoadingOverlay />}
+      {loading && <GhostList count={1} />}
       {children}
     </div>
   );

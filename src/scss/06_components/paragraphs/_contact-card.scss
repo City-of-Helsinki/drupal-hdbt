@@ -93,9 +93,9 @@ $-contact-card-four-columns-spacing: calc(($-contact-card-gap / 4) * 3);
 
 .contact-card__person-link {
   @include font($-contact-card-font);
-  word-wrap: break-word;
   hyphens: auto;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 
   a {
     // This is not very nice but it gets us the phone numbers to remain
@@ -105,9 +105,11 @@ $-contact-card-four-columns-spacing: calc(($-contact-card-gap / 4) * 3);
   }
 }
 
-.contact-card__person-link--email {
-  // This is because there are sometimes long emails and limited space.
-  // We don't want the email to break out of the box.
+.contact-card__person-link--email,
+.contact-card__person-link--phone,
+.contact-card__person-link--social-media {
+  // This is because there are sometimes long fields and limited space.
+  // We don't want the content to break out of the box.
   word-break: break-all;
 }
 

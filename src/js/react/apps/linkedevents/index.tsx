@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import SearchContainer from './containers/SearchContainer';
 import ROOT_ID from './enum/RootId';
+import { GhostList } from '@/react/common/GhostList';
 
 const start = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
@@ -16,9 +16,7 @@ const start = () => {
   ReactDOM.render(
     <React.StrictMode>
       <Suspense fallback={
-        <div className='hdbt__loading-wrapper'>
-          <LoadingOverlay />
-        </div>
+        <GhostList count={30} />
       }>
         <SearchContainer />
       </Suspense>

@@ -2,7 +2,6 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSetAtom } from 'jotai';
 
 import { ErrorBoundary } from '@sentry/react';
-import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ProximityFormContainer from './ProximityFormContainer';
 import ProximityResultsContainer from './ProximityResultsContainer';
 import FeatureFormContainer from './FeatureFormContainer';
@@ -11,6 +10,8 @@ import { paramsAtom, setConfigurationsAtom } from '../store';
 import UseConfigurationsQuery from '../hooks/UseConfigurationsQuery';
 import ResultsError from '@/react/common/ResultsError';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
+import { GhostList } from '@/react/common/GhostList';
+import AppSettings from '../enum/AppSettings';
 
 const MODE_OPTIONS = {
   // Search by school features
@@ -69,9 +70,7 @@ const SearchContainer = () => {
         fallback={<ResultsError error={new Error('Error loading school search results')} />}
       >
         <Suspense fallback={
-          <div className='hdbt__loading-wrapper'>
-            <LoadingOverlay />
-          </div>
+          <GhostList count={AppSettings.size} />
         }>
           {
             searchMode === MODE_OPTIONS.proximity ?

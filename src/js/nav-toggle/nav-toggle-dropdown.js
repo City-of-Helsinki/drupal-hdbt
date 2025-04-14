@@ -10,6 +10,8 @@ class NavToggleDropdown {
     this.onOpen = null;
     this.onClose = null;
     this.lastClickedButton = null; // Track the last clicked button
+    const params = new URLSearchParams(window.location.search);
+    this.debug = params.has('debug') && params.get('debug') === '';
   }
 
   isOpen() {
@@ -101,11 +103,15 @@ class NavToggleDropdown {
 
     if (this.buttonInstances.length === 0) {
       this.running = false;
-      console.warn(`${name} buttons missing. Looking for ${this.buttonSelector}`);
+      if (this.debug) {
+        console.warn(`${name} buttons missing. Looking for ${this.buttonSelector}`);
+      }
       return;
     }
     if (this.running) {
-      console.warn(`${name} already initiated. Is it included more than once?`);
+      if (this.debug) {
+        console.warn(`${name} already initiated. Is it included more than once?`);
+      }
       return;
     }
 
