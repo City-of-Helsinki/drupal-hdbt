@@ -1,42 +1,55 @@
 .component--number-highlights {
   .component__content {
-    display: flex;
-    flex-direction: column;
-    row-gap: $spacing;
+    display: grid;
+    gap: $spacing;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include breakpoint($breakpoint-s) {
+      flex-direction: row;
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     @include breakpoint($breakpoint-m) {
-      flex-direction: row;
-      flex-wrap: wrap;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include breakpoint($breakpoint-l) {
+      gap: $spacing-and-half;
+    }
+  }
+}
+
+.has-sidebar .main-content .component--number-highlights {
+  .component__content {
+    @include breakpoint($breakpoint-l) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
 
 .numbers-item__container {
-  padding-left: $spacing;
+  border-left: $spacing-half solid $color-metro;
+  padding-left: $spacing-and-half;
   position: relative;
 
-  @include breakpoint($breakpoint-m) {
-    width: 50%;
-  }
-
-  &::before {
-    background-color: $color-metro;
-    bottom: 0;
-    content: '';
-    display: flex;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: $spacing-half;
+  @include breakpoint($breakpoint-l) {
+    padding-left: $spacing-double;
   }
 }
 
 .numbers-item__number {
-  font-size: remify(64px);
+  font-size: remify(40px);
   font-weight: $font-weight-bold;
+
+  @include breakpoint($breakpoint-l) {
+    font-size: remify(64px);
+  }  
 }
 
 .numbers-item__text {
-  @include font('lead');
+  @include font('body');
 }
