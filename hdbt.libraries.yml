@@ -339,3 +339,14 @@ ploughing-schedule:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+allu-decisions-search:
+  version: 0.0.1
+  js:
+    dist/js/allu-decisions-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal

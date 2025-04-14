@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 import { DateInput } from 'hds-react';
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
 
-import Collapsible from './Collapsible';
+import Collapsible from '@/react/common/Collapsible';
 import CheckboxFilter from './CheckboxFilter';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
