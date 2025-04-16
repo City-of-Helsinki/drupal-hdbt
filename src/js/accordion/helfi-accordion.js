@@ -41,6 +41,22 @@ export default class HelfiAccordion {
     Array.from(accordionItems).forEach((element) => {
       this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
     });
+
+    // Initialize hidden="until-found" functionality if it is supported.
+    if ('onbeforematch' in document.body) {
+      this.enableHiddenUntilFound();
+    }
+  };
+
+  /**
+   * Make it possible for the browser search find content inside the closed accordions.
+   */
+  enableHiddenUntilFound = () => {
+    this.accordionItems.forEach(item => {
+      item.element.onbeforematch = function (event) {
+        item.element.open();
+      };
+    });
   };
 
   addEventListeners = () => {
@@ -86,7 +102,7 @@ export default class HelfiAccordion {
    * Open all own and child accordion's items.
    */
   openAll = () => {
-    this.accordionItems.forEach(item=> item.open());
+    this.accordionItems.forEach(item => item.open());
     this.childAccordion?.openAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();

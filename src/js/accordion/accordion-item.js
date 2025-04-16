@@ -80,8 +80,14 @@ export default class AccordionItem {
 
   setHidden = () => {
     const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
-    // eslint-disable-next-line no-unused-expressions
-    this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
+    // Use the hidden="until-found" if the browser supports it.
+    if ('onbeforematch' in document.body) {
+      // eslint-disable-next-line no-unused-expressions
+      this.isOpen ? contentElement.removeAttribute('hidden') : contentElement.hidden = 'until-found';
+    } else {
+      // eslint-disable-next-line no-unused-expressions
+      this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
+    }
   };
 
   changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
