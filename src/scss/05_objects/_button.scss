@@ -121,7 +121,10 @@ button.hds-button,
 // HDBT focus outline styles differ from HDS on purpose as outline focus ring is
 // better than the after-pseudoelement stuff HDS is using
 .hds-button:focus-visible,
-.hds-button:active {
+.hds-button:active,
+// Simulate focus styles for visual tests using the "simulate-focus" class.
+// See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+.hds-button.simulate-focus {
   background-color: var(--background-color-focus, transparent);
   box-shadow: 0 0 0 calc(var(--outline-gutter, 2px) + var(--outline-width, 3px)) var(--submit-input-focus-gutter-color, transparent);
   color: var(--color-focus);
@@ -517,6 +520,13 @@ input[type='submit'].hds-button--small {
     &.hdbt-icon::before {
       margin-right: $spacing;
     }
+  }
+
+  // Simulate focus styles for visual tests using the "simulate-focus" class.
+  // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+  &.simulate-focus {
+    // Simulate: &:not(:disabled):focus-visible
+    border-color: var(--border-color-focus, transparent);
   }
 }
 

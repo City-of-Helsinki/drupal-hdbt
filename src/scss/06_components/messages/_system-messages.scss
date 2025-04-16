@@ -3,13 +3,13 @@
   margin-bottom: $spacing;
 }
 
-.hds-notification__label {
-  .hel-icon {
-    --icon-size: 24px;
-    margin-right: $spacing-half;
+// Style the unordered lists inside notification body.
+.hds-notification__body {
+  .messages__list {
+    margin-block: 0;
   }
-}
 
-.messages__container {
-  padding-top: 0;
+  .messages__list__item:not(:first-child) {
+    margin-top: $spacing-half;
+  }
 }
