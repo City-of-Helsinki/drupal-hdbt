@@ -8,7 +8,10 @@
   --border-color-selected: #{$color-black};
   --focus-outline-color: #{$color-black};
 
-  .hds-checkbox__input:focus {
+  .hds-checkbox__input:focus,
+  // Simulate focus styles for visual tests using the "simulate-focus" class.
+  // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+  .hds-checkbox__input.simulate-focus {
     outline: var(--outline-width) solid var(--focus-outline-color); // Add a regular outline around checkbox.
     outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast.
 
