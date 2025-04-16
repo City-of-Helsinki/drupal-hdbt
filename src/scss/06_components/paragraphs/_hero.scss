@@ -116,7 +116,7 @@ $koro-height: 50px;
   }
 }
 
-// HDS-button coloring depending on the theme selected
+// HDS-button and text-input coloring depending on the theme selected.
 .hdbt-theme--coat-of-arms,
 .hdbt-theme--brick,
 .hdbt-theme--bus,
@@ -124,6 +124,19 @@ $koro-height: 50px;
   .hero [data-hds-component='button']:not([class*='hds-button']),
   .hero .hds-button {
     @include hds-button-colors-on-dark-bg;
+  }
+
+  // Focus ring around text inputs should be white to have enough contrast.
+  .hero .hds-text-input__input-wrapper:focus-within .hds-text-input__input:not([readonly]) {
+    --focus-outline-color: #{$color-white};
+    --input-border-color-focus: #{$color-white};
+  }
+
+  // Keep the text input border color in hover as the same as in default state
+  // because the contrast of black is not very noticeable and the background of the
+  // input is already white so hover with white doesn't work so well either.
+  .hero .hds-text-input__input-wrapper:hover .hds-text-input__input {
+    --input-border-color-hover: #{$color-black-50};
   }
 }
 
@@ -396,7 +409,8 @@ $koro-height: 50px;
   }
 }
 
-.hero--with-search .helfi-search__form .hds-text-input__label {
+.hero--with-search .helfi-search__form .hds-text-input__label,
+.hero--with-helsinki-near-you .helfi-etusivu-near-you-form .hds-text-input__label {
   color: inherit;
 }
 
