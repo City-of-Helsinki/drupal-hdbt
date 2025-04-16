@@ -56,11 +56,11 @@ function DateSelect() {
     <DateRangeSelect
       endDate={endDate?.toFormat(HDS_DATE_FORMAT)}
       id={SearchComponents.DATE}
-      label={Drupal.t('Date', {}, { context: 'Events search' })}
+      label={Drupal.t('Date', {}, {context: 'React search: date selection label'})}
       setEnd={(d) => setEndDate(d ? DateTime.fromFormat(d, HDS_DATE_FORMAT) : undefined)}
       setStart={(d) => setStartDate(d ? DateTime.fromFormat(d, HDS_DATE_FORMAT) : undefined)}
       startDate={startDate?.toFormat(HDS_DATE_FORMAT)}
-      title={Drupal.t('Date', {}, { context: 'Events search' })}
+      title={Drupal.t('Date', {}, {context: 'Events search'})}
     />
   );
 

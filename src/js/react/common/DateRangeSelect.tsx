@@ -6,7 +6,7 @@ import Collapsible from './Collapsible';
 import getDateString from './helpers/GetDateString';
 import { HDS_DATE_FORMAT } from './enum/HDSDateFormat';
 
-const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, {context: 'Events search'});
+const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, {context: 'React search: date range select'});
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
 // End date must be after start date. But only if both are defined.
@@ -36,7 +36,8 @@ export const DateRangeSelect = ({
   endDate,
   endDateHelperText = dateHelperText,
   endDateId = 'end-date',
-  endDateLabel = Drupal.t('Last day of the time period', {}, {context: 'Events search'}),
+  endDateLabel = Drupal.t('Last day of the time period', {}, {context: 'React search: date range select'}),
+  helperText = Drupal.t('Select a time period in which the event takes place', {}, {context: 'React search: date range select'}),
   id,
   label,
   language = 'fi',
@@ -45,13 +46,14 @@ export const DateRangeSelect = ({
   startDate,
   startDateHelperText = dateHelperText,
   startDateId = 'start-date',
-  startDateLabel = Drupal.t('First day of the time period', {}, {context: 'Events search'}),
+  startDateLabel = Drupal.t('First day of the time period', {}, {context: 'React search: date range select'}),
   title,
 }: {
   endDate?: string,
   endDateHelperText?: string,
   endDateId?: string,
   endDateLabel?: string,
+  helperText?: string,
   id: string,
   label: string,
   language?: 'fi' | 'en' | 'sv',
@@ -72,13 +74,13 @@ export const DateRangeSelect = ({
     }
   }, [endDate, endDisabled]);
 
-  const collapibleTitle = getDateString({
+  const collapsibleTitle = getDateString({
     endDate: endDate ? DateTime.fromFormat(endDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
     startDate: startDate ? DateTime.fromFormat(startDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
   });
 
-  const startDateErrorText = Drupal.t('Invalid start date', {}, {context: 'Events search'});
-  const endDateErrorText = Drupal.t('Invalid end date', {}, {context: 'Events search'});
+  const startDateErrorText = Drupal.t('Invalid start date', {}, {context: 'React search: date range select'});
+  const endDateErrorText = Drupal.t('Invalid end date', {}, {context: 'React search: date range select'});
 
   const onStartChange = (d: string) => {
     const end = endDate ? getDateTimeFromHDSFormat(endDate) : undefined;
@@ -127,7 +129,7 @@ export const DateRangeSelect = ({
 
   return (
     <div className='hdbt-search__filter event-form__filter--date'>
-      <Collapsible {...{id, label}} title={collapibleTitle} >
+      <Collapsible {...{id, label}} helper={helperText} title={collapsibleTitle} >
         <div className='event-form__date-container'>
           <DateInput
             className='hdbt-search__filter hdbt-search__date-input'
@@ -143,7 +145,7 @@ export const DateRangeSelect = ({
           <Checkbox
             checked={endDisabled}
             id='date-range-select__end-date-disabled'
-            label={Drupal.t('The last day of the time period is the same as the first day', {}, {context: 'Events search'})}
+            label={Drupal.t('The last day of the time period is the same as the first day', {}, {context: 'React search: date range select'})}
             onChange={() => setEndDisabled(!endDisabled)}
           />
           {!endDisabled &&
