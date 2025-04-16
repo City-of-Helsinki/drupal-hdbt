@@ -1,4 +1,4 @@
-import { DateInput } from 'hds-react';
+import { Checkbox, DateInput } from 'hds-react';
 import { useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 
@@ -40,7 +40,8 @@ export const DateRangeSelect = ({
   id,
   label,
   language = 'fi',
-  onChange,
+  setEnd,
+  setStart,
   startDate,
   startDateHelperText = dateHelperText,
   startDateId = 'start-date',
@@ -54,37 +55,39 @@ export const DateRangeSelect = ({
   id: string,
   label: string,
   language?: 'fi' | 'en' | 'sv',
-  onChange: (start: string|undefined, end: string|undefined) => void,
+  setEnd: (d?: string) => void,
+  setStart: (d?: string) => void,
   startDate?: string,
   startDateHelperText?: string,
   startDateId?: string,
   startDateLabel?: string,
   title: string,
 }) => {
-  const [endDateValue, setEndDateValue] = useState(startDate);
-  const [startDateValue, setStartDateValue] = useState(startDate);
+  const [endDisabled, setEndDisabled] = useState<boolean>(false);
   const [errors, setErrors] = useState<{start?: string, end?: string}>({});
 
   useEffect(() => {
-    onChange(startDateValue, endDateValue);
-  }, [startDateValue, endDateValue]);
+    if (endDisabled && endDate) {
+      setEnd(undefined);
+    }
+  }, [endDate, endDisabled]);
 
   const collapibleTitle = getDateString({
-    endDate: endDateValue ? DateTime.fromFormat(endDateValue, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
-    startDate: startDateValue ? DateTime.fromFormat(startDateValue, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
+    endDate: endDate ? DateTime.fromFormat(endDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
+    startDate: startDate ? DateTime.fromFormat(startDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
   });
 
   const startDateErrorText = Drupal.t('Invalid start date', {}, {context: 'Events search'});
   const endDateErrorText = Drupal.t('Invalid end date', {}, {context: 'Events search'});
 
-  const setStart = (d: string) => {
-    const end = endDateValue ? getDateTimeFromHDSFormat(endDateValue) : undefined;
+  const onStartChange = (d: string) => {
+    const end = endDate ? getDateTimeFromHDSFormat(endDate) : undefined;
     const start = getDateTimeFromHDSFormat(d);
 
     if (INVALID_DATE(start)) {
       console.warn('invalid start date', { start, end });
       if (d.length === 0) {
-        setStartDateValue(undefined);
+        setStart(undefined);
         setErrors({ ...errors, start: undefined });
       } else {
         setErrors({ ...errors, start: startDateErrorText });
@@ -92,31 +95,31 @@ export const DateRangeSelect = ({
     } else {
       if (isOutOfRange({ startDate: start, endDate: end }) && end) {
         console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
-        setEndDateValue(start.plus({ 'days': 1 }).toFormat(HDS_DATE_FORMAT));
+        setEnd(start.plus({ 'days': 1 }).toFormat(HDS_DATE_FORMAT));
       }
-      setStartDateValue(start.toFormat(HDS_DATE_FORMAT));
+      setStart(start.toFormat(HDS_DATE_FORMAT));
       setErrors({ ...errors, start: undefined });
     }
   };
 
-  const setEnd = (d: string) => {
-    const start = startDateValue ? getDateTimeFromHDSFormat(startDateValue) : undefined;
+  const onEndChange = (d: string) => {
+    const start = startDate ? getDateTimeFromHDSFormat(startDate) : undefined;
     const end = getDateTimeFromHDSFormat(d);
 
     if (INVALID_DATE(end)) {
       console.warn('invalid end date', { end, d });
       if (d.length === 0) {
         setErrors({ ...errors, end: undefined });
-        setEndDateValue(undefined);
+        setEnd(undefined);
       } else {
         setErrors({ ...errors, end: endDateErrorText });
       }
     } else {
       if (isOutOfRange({ startDate: start, endDate: end }) && start) {
         console.warn('Selected end date is out of range, setting end date to next day after start date.');
-        setEndDateValue(start.plus({ 'days': 1 }).toFormat(HDS_DATE_FORMAT));
+        setEnd(start.plus({ 'days': 1 }).toFormat(HDS_DATE_FORMAT));
       } else {
-        setEndDateValue(end.toFormat(HDS_DATE_FORMAT));
+        setEnd(end.toFormat(HDS_DATE_FORMAT));
       }
       setErrors({ ...errors, end: undefined });
     }
@@ -134,20 +137,28 @@ export const DateRangeSelect = ({
             invalid={!!errors.start}
             label={startDateLabel}
             language={language}
-            onChange={setStart}
-            value={startDateValue}
+            onChange={onStartChange}
+            value={startDate}
           />
-          <DateInput
-            className='hdbt-search__filter hdbt-search__date-input'
-            errorText={errors.end}
-            helperText={endDateHelperText}
-            id={endDateId}
-            invalid={!!errors.end}
-            label={endDateLabel}
-            language={language}
-            onChange={setEnd}
-            value={endDateValue}
+          <Checkbox
+            checked={endDisabled}
+            id='date-range-select__end-date-disabled'
+            label={Drupal.t('The last day of the time period is the same as the first day', {}, {context: 'Events search'})}
+            onChange={() => setEndDisabled(!endDisabled)}
           />
+          {!endDisabled &&
+            <DateInput
+              className='hdbt-search__filter hdbt-search__date-input'
+              errorText={errors.end}
+              helperText={endDateHelperText}
+              id={endDateId}
+              invalid={!!errors.end}
+              label={endDateLabel}
+              language={language}
+              onChange={onEndChange}
+              value={endDate}
+            />
+          }
         </div>
       </Collapsible>
     </div>
