@@ -1,0 +1,15 @@
+.component--recommendations {
+  @include component-margin-top();
+  background-color:  $color-black-5;
+  margin-left: $spacing;
+  margin-right: $spacing;
+  padding: $spacing-double $spacing $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding: $spacing-triple $spacing-double $spacing-triple;
+  }
+
+  .empty-text {
+    @include font(body);
+  }
+}
