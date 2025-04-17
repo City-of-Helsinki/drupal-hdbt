@@ -47,7 +47,7 @@
         </time>
       </div>
       {% else %}
-        {% set html_published_at = card_published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
+        {% set html_published_at = card_published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ card_published_at|format_date('custom', 'H:i') %}
         <time datetime="{{ html_published_at }}" class="card-teaser__datetime card-teaser__datetime--published-at">
           <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
           {{ card_published_at|format_date('publication_date_format') }}
