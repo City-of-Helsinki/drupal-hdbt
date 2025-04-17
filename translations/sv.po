@@ -1154,31 +1154,31 @@ msgctxt "Job search"
 msgid "Search"
 msgstr "Sök"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Use the format D.M.YYYY"
 msgstr "Ange i formen D.M.ÅÅÅÅ"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid start date"
 msgstr "Ogiltigt startdatum"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid end date"
 msgstr "Ogiltigt slutdatum"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Select a time period in which the event takes place"
 msgstr "Sätt ut tidpunkterna inom vilka evenemanget ordnas"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
 msgstr "Tidsperiodens sista dag är samma som första"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "First day of the time period"
 msgstr "Tidsperiodens första dag"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Last day of the time period"
 msgstr "Tidsperiodens sista dag"
 
