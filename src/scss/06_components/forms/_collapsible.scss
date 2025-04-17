@@ -66,6 +66,10 @@ $collapsible-height: 56px;
   pointer-events: none;
 }
 
+.collapsible__label {
+  font-weight: bold;
+}
+
 .collapsible__children {
   background-color: $color-white;
   border-top: none;
