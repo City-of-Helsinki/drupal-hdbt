@@ -67,7 +67,7 @@ $collapsible-height: 56px;
 }
 
 .collapsible__label {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .collapsible__children {
