@@ -24,8 +24,7 @@ $select-max-width: 420px;
   }
 
   .event-form__filter--location,
-  .event-form__filter--topics,
-  .event-form__filter--date {
+  .event-form__filter--topics {
     flex-basis: 100%;
 
     @include breakpoint($breakpoint-m) {

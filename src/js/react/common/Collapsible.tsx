@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import Icon from '@/react/common/Icon';
-import useOutsideClick from '../hooks/useOutsideClick';
+import useOutsideClick from './hooks/useOutsideClick';
 
 type Props = {
   active?: boolean;
