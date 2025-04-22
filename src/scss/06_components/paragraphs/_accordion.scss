@@ -1,10 +1,13 @@
-.accordion__wrapper {
+.accordion {
   --js-accordion-open-time: 200ms;
-  border-bottom: 1px solid $color-black-20;
 
   @media (prefers-reduced-motion) {
     --js-accordion-open-time: 0s!important;
   }
+}
+
+.accordion__wrapper {
+  border-bottom: 1px solid $color-black-20;
 }
 
 .accordion-item__header {
@@ -171,11 +174,12 @@
 .accordion-item__content {
   border: none;
   display: grid!important; // Has to be important to battle the default hiding that blocks animation
-  grid-template-rows: 1fr;
-  transition: grid-template-rows var(--js-accordion-open-time) linear;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--js-accordion-open-time) ease-in, visibility 0s linear var(--js-accordion-open-time);
 
   .accordion-item__content__animator {
-    overflow: hidden;
+    min-height: 0;
   }
 
   .accordion-item__content__inner {
@@ -187,16 +191,19 @@
       padding-top: $spacing-and-half;
     }
   }
+}
 
-  &.is-hidden {
-    grid-template-rows: 0fr; // This allows animation of height
+/* Hide the content when the accordion is closed and hidden-until-found is not supported */
+.helfi-accordion-item:not(.accordion-item--hidden-until-found) > .accordion-item__content:not(:has(:target)) {
+  visibility: hidden;
+}
 
-    .accordion-item__content__animator {
-      // stylelint-disable-next-line plugin/no-low-performance-animation-properties
-      transition: visibility 0s linear var(--js-accordion-open-time);  // Delay visibility hidden right after animation
-      visibility: hidden;
-    }
-  }
+
+.helfi-accordion-item:has(>.accordion-item__header>.accordion-item__button[aria-expanded="true"]) > .accordion-item__content,
+.helfi-accordion-item:not(.accordion-item--hidden-until-found) .accordion-item__content:has(:target) {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--js-accordion-open-time) ease-in, visibility 0s linear var(--js-accordion-open-time);
+  visibility: visible;
 }
 
 .accordion-item__content__inner {

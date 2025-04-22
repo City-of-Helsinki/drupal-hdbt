@@ -53,8 +53,9 @@ export default class HelfiAccordion {
    */
   enableHiddenUntilFound = () => {
     this.accordionItems.forEach(item => {
+      item.element.classList.add('accordion-item--hidden-until-found');
       item.element.onbeforematch = function (event) {
-        item.element.open();
+        item.open(true);
       };
     });
   };

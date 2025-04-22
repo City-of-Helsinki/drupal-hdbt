@@ -22,18 +22,27 @@ export default class AccordionItem {
     this._id = element.dataset.accordionId;
     this._isOpen = this.localState.loadItemState(this._id);
 
-    this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
+    // Do not animate accordions on pageload.
+    const accordionElement = this.element.closest('.accordion');
+    accordionElement.style.setProperty('--js-accordion-open-time', '0s');
+
     this.setHidden();
     this.addEventListeners();
     this.handleLinkAnchor(urlHash);
     this.setAriaOpen();
-    this.element.style = null; // allow animating accordions after pageload
+
+    // Allow animating accordions after pageload.
+    accordionElement.style.removeProperty('--js-accordion-open-time');
   }
 
-  open = () => {
+  open = (hasBeenFound) => {
     this._isOpen = true;
     this.setAriaOpen();
-    this.setHidden();
+    if (hasBeenFound) {
+      this.setHidden(hasBeenFound);
+    } else {
+      this.setHidden();
+    }
     this.parentCallback();
     this.localState.saveItemState(this.id, this.isOpen);
   };
@@ -78,15 +87,29 @@ export default class AccordionItem {
     });
   };
 
-  setHidden = () => {
-    const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
-    // Use the hidden="until-found" if the browser supports it.
-    if ('onbeforematch' in document.body) {
+  setHidden = (hasBeenFound) => {
+    const accordionContentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
+
+    // First check if the accordion is opened by click or by search.
+    if (hasBeenFound) {
+      // Disable animation when the accordion opening is triggered by search.
+      this.element.style.setProperty('--js-accordion-open-time', '0s');
       // eslint-disable-next-line no-unused-expressions
-      this.isOpen ? contentElement.removeAttribute('hidden') : contentElement.hidden = 'until-found';
+      this.isOpen ? accordionContentElement.removeAttribute('hidden') : accordionContentElement.hidden = 'until-found';
+      // Restore the animation after the accordion is opened.
+      setTimeout(() => {
+        this.element.style.removeProperty('--js-accordion-open-time');
+      }, 10);
+    } else if (this.isOpen) {
+      accordionContentElement.removeAttribute('hidden');
     } else {
-      // eslint-disable-next-line no-unused-expressions
-      this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
+      const accordionElement = this.element.closest('.accordion');
+      // Get the animation duration from the css.
+      const accordionAnimationDuration = parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
+      // Delay the attribute change until the animation has been completed.
+      setTimeout(() => {
+        accordionContentElement.hidden = 'until-found';
+      }, accordionAnimationDuration);
     }
   };
 
