@@ -1,0 +1,55 @@
+.component--number-highlights {
+  .component__content {
+    display: grid;
+    gap: $spacing;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include breakpoint($breakpoint-s) {
+      flex-direction: row;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint($breakpoint-m) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include breakpoint($breakpoint-l) {
+      gap: $spacing-and-half;
+    }
+  }
+}
+
+.has-sidebar .main-content .component--number-highlights {
+  .component__content {
+    @include breakpoint($breakpoint-l) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.numbers-item__container {
+  border-left: $spacing-half solid $color-metro;
+  padding-left: $spacing-and-half;
+  position: relative;
+
+  @include breakpoint($breakpoint-l) {
+    padding-left: $spacing-double;
+  }
+}
+
+.numbers-item__number {
+  font-size: remify(40px);
+  font-weight: $font-weight-bold;
+
+  @include breakpoint($breakpoint-l) {
+    font-size: remify(64px);
+  }  
+}
+
+.numbers-item__text {
+  @include font('body');
+}

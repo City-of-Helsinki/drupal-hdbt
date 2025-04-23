@@ -459,6 +459,30 @@ function getConfig(hostname, protocol, type) {
           ],
           'selectorExpansion': expandComponents,
         },
+        // Form fields
+        {
+          'label': 'Form input fields',
+          'url': `${protocol}://${hostname}/en/helfi-test-content/helfi-test-content-form`,
+          'removeSelectors': removeDefault,
+        },
+        {
+          'label': 'Form input fields - focused',
+          'url': `${protocol}://${hostname}/en/helfi-test-content/helfi-test-content-form?focus`,
+          'removeSelectors': removeDefault,
+          'readySelector': '.simulate-focus',
+        },
+        // User login.
+        {
+          'label': 'User login',
+          'url': `${protocol}://${hostname}/en/user/login`,
+          'removeSelectors': removeDefault,
+        },
+        // 404 page.
+        {
+          'label': '404 page',
+          'url': `${protocol}://${hostname}/en/abcd1234`,
+          'removeSelectors': removeDefault,
+        },
       ],
       'mergeImgHack': true,
       'onBeforeScript': 'onBefore.js',

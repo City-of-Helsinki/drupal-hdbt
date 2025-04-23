@@ -64,7 +64,10 @@
       display: none;
     }
 
-    &:focus {
+    &:focus,
+    // Simulate focus styles for visual tests using the "simulate-focus" class.
+    // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+    &.simulate-focus {
       outline: var(--outline-width) solid var(--focus-outline-color);
       outline-offset: 4px;
     }

@@ -10,10 +10,6 @@
 @import '01_variables/_index';
 @import '02_mixins/_index';
 
-// The hds-button styles depend on hds_base variables.
-// TODO: UHF-8794 We should fix the 05_objects/_button to use our own variables and not hds variables (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8794).
-@import '03_generic/_hds_base';
-
 .ck-content {
   @import '03_generic/_index';
 
