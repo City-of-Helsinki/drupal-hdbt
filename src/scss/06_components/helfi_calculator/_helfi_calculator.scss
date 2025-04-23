@@ -51,23 +51,9 @@
     scroll-margin-top: 16px + 56px + 32px + 16px + 32px;// 16px for space above button, button height, margin below button before receipt, 16px for receipt koro, 32px for receipt top padding before heading
   }
 
-  .helfi-calculator-notification .hds-notification__body > ul {
-    margin-block: 0;
-  }
-
-  .helfi-calculator-notification .hds-notification__body li {
-    margin-top: $spacing-half;
-  }
-
   .hds-notification__label {
+    // The label is heading-element in calculator so the margin needs to be removed.
     margin-top: 0;
-  }
-
-  .hds-notification--error .hds-notification__label::before {
-    --icon-size: #{$spacing-and-half};
-    @include pseudo-icon('error-fill', $color: $color-error);
-    margin-right: $spacing-half;
-    margin-top: -3px;
   }
 
   .helfi-calculator-required {
