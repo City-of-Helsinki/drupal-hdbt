@@ -193,13 +193,13 @@
   }
 }
 
-/* Hide the content when the accordion is closed and hidden-until-found is not supported */
+// Hide the content when the accordion is closed and hidden-until-found is not supported.
 .helfi-accordion-item:not(.accordion-item--hidden-until-found) > .accordion-item__content:not(:has(:target)) {
   visibility: hidden;
 }
 
-
-.helfi-accordion-item:has(>.accordion-item__header>.accordion-item__button[aria-expanded="true"]) > .accordion-item__content,
+// The animated styles for the open accordion content.
+.helfi-accordion-item:has(> .accordion-item__header > .accordion-item__button[aria-expanded="true"]) > .accordion-item__content,
 .helfi-accordion-item:not(.accordion-item--hidden-until-found) .accordion-item__content:has(:target) {
   grid-template-rows: 1fr;
   transition: grid-template-rows var(--js-accordion-open-time) ease-in, visibility 0s linear var(--js-accordion-open-time);
