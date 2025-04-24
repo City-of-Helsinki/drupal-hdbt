@@ -7,9 +7,9 @@ type ResultsHeaderProps = {
   actionsClass?: string;
 }
 
-const ResultsHeader = forwardRef(({ resultText, optionalResultsText, actions, actionsClass }: ResultsHeaderProps, ref: ForwardedRef<HTMLDivElement>) => (
+const ResultsHeader = forwardRef(({ resultText, optionalResultsText, actions, actionsClass }: ResultsHeaderProps, ref: ForwardedRef<HTMLHeadingElement>) => (
   <div className='hdbt-search--react__result-top-area'>
-      <h3 className='hdbt-search--react__results--title' ref={ref} >
+      <h3 className='hdbt-search--react__results--title' ref={ref}>
         {resultText} {optionalResultsText && (<>({optionalResultsText})</> )}
       </h3>
     {actions && (
