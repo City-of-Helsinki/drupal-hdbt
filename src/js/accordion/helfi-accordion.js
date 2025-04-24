@@ -52,11 +52,34 @@ export default class HelfiAccordion {
    * Make it possible for the browser search find content inside the closed accordions.
    */
   enableHiddenUntilFound = () => {
-    this.accordionItems.forEach(item => {
-      item.element.classList.add('accordion-item--hidden-until-found');
-      item.element.onbeforematch = function (event) {
-        item.open(true);
-      };
+    this.accordionItems.forEach(accordionItem => {
+      accordionItem.element.classList.add('accordion-item--hidden-until-found');
+      const accordionItemContent = accordionItem.element.querySelector('.accordion-item__content');
+
+      // If item is defined in the state as open, don't close it.
+      if (!accordionItem.isOpen) {
+        accordionItemContent.hidden = 'until-found';
+      }
+
+      // Add event listener to the beforematch event what is triggered when browser finds something or
+      // highlight is found on the url parameters.
+      accordionItem.element.addEventListener('beforematch', () => {
+
+        // Disable animations on the accordion on these events.
+        accordionItem.element.style.setProperty('--js-accordion-open-time', '0s');
+
+        // Force a reflow to ensure the style change takes effect.
+        // eslint-disable-next-line no-void
+        void accordionItem.element.offsetHeight;
+
+        // Open the accordion that contains the found text.
+        accordionItem.open();
+
+        // Enable the animations again after the accordion has been opened.
+        setTimeout(() => {
+          accordionItem.element.style.removeProperty('--js-accordion-open-time');
+        }, 10);
+      });
     });
   };
 
