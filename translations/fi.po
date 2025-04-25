@@ -1232,6 +1232,10 @@ msgctxt "React search"
 msgid "Language"
 msgstr "Kieli"
 
+msgctxt "React search"
+msgid "Clear"
+msgstr "Tyhjennä"
+
 msgctxt "React search pager"
 msgid "Go to page @key"
 msgstr "Siirry sivulle @key"
