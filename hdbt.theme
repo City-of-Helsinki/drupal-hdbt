@@ -264,6 +264,15 @@ function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
+  // Change news archive teasers to use h4 headers instead of the default h3.
+  if (
+    !empty($variables['view']) &&
+    is_object($variables['view']) &&
+    $variables['view']->current_display === 'news_archive_block'
+  ) {
+    $variables['node_header_level'] = 'h4';
+  }
+
   // Add current node langcode for easy access.
   $variables['node_langcode'] = $node->get('langcode')->value;
 
