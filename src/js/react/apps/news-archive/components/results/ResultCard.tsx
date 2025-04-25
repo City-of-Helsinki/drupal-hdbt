@@ -8,6 +8,7 @@ type ImageUrls = {
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;
+  cardTitleLevel?: 2 | 3 | 4 | 5 | 6;
 }
 
 const ResultCard = ({
@@ -19,6 +20,7 @@ const ResultCard = ({
   published_at,
   url,
   cardModifierClass,
+  cardTitleLevel,
 }: ResultCardProps) => {
   const getDate = () => {
     if (!published_at || !published_at.length) {
@@ -62,7 +64,7 @@ const ResultCard = ({
     <CardItem
       cardImage={getImage()}
       cardTitle={title.toString()}
-      cardTitleLevel={4}
+      cardTitleLevel={cardTitleLevel || 4}
       cardModifierClass={`card--news-item${cardModifierClass ? ` ${cardModifierClass}` : ''}`}
       cardUrl={url.toString()}
       date={getDate()}

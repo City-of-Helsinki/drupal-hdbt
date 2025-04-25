@@ -86,7 +86,12 @@ const ResultsContainer = ({
       <div className='hdbt-search--react__results--container'>
         {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
         {results.map((hit: Result<NewsItem>) => (
-          <ResultCard key={hit._id} {...hit._source} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+          <ResultCard
+            key={hit._id}
+            {...hit._source}
+            {...(cardsWithBorders && { cardModifierClass: 'card--border' })}
+            {...(hideForm && { cardTitleLevel: 3 })}
+          />
         ))}
         {hideForm || <RssFeedLink />}
         {hideForm || <Pagination
