@@ -339,3 +339,10 @@ ploughing-schedule:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+card-helper:
+  version: 1.0
+  js:
+    dist/js/card-helper.min.js: {
+      minified: true
+    }

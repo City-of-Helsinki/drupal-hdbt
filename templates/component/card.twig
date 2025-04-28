@@ -40,6 +40,8 @@
 {% endembed %}
 #}
 
+{{ attach_library('hdbt/card-helper') }}
+
 {% set card_external_class = card_url_external ? 'card--external' : '' %}
 
 <div class="card {{ card_modifier_class }} {{ card_external_class }}">
