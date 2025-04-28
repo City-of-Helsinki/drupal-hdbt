@@ -1,5 +1,6 @@
 const SearchComponents = {
   TOPICS: 'topics',
+  LANGUAGE: 'language',
   LOCATION: 'location',
   DATE: 'date',
   END_DISABLED: 'end_disabled',
