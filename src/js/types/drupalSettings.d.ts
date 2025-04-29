@@ -12,9 +12,10 @@ declare namespace drupalSettings {
         field_event_list_title: string,
         field_event_location: boolean,
         field_event_time: boolean,
-        field_free_events: boolean,
-        field_remote_events: boolean,
         field_event_count: string,
+        field_free_events: boolean,
+        field_language: boolean,
+        field_remote_events: boolean,
         field_filter_keywords: {
           id: string,
           name: string,

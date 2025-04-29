@@ -3,6 +3,7 @@ export const ApiKeys = {
   END: 'end',
   FREE: 'is_free',
   KEYWORDS: 'keyword_OR',
+  LANGUAGE: 'language',
   LOCATION: 'location',
   PAGESIZE: 'page_size',
   RADIUS: 'dwithin_metres',

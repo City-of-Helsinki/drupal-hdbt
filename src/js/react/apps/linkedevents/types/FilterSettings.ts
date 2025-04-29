@@ -3,6 +3,7 @@ type FilterSettings = {
   hidePagination: boolean,
   showFreeFilter: boolean,
   hideHeading: boolean,
+  showLanguageFilter: boolean;
   showLocation: boolean,
   showRemoteFilter: boolean,
   showTimeFilter: boolean,

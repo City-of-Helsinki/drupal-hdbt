@@ -1726,6 +1726,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       'field_event_time',
       'field_free_events',
       'field_remote_events',
+      'field_language',
     ];
 
     foreach ($booleanFields as $field) {
