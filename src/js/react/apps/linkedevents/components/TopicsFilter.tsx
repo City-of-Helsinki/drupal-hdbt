@@ -29,8 +29,6 @@ function TopicsFilter() {
     onChange,
     options: selectedOptions,
     texts: {
-      clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
-      clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
       label: selectLabel,
       placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
     },
