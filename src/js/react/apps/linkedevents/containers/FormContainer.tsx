@@ -20,6 +20,7 @@ import TopicsFilter from '../components/TopicsFilter';
 import AddressSearch from '../components/AddressSearch';
 import FullTopicsFilter from '../components/FullTopicsFilter';
 import FullLocationFilter from '../components/FullLocationFilter';
+import { LanguageFilter } from '../components/LanguageFilter';
 
 
 function FormContainer() {
@@ -31,6 +32,7 @@ function FormContainer() {
   const {
     showFreeFilter,
     hideHeading,
+    showLanguageFilter,
     showLocation,
     showRemoteFilter,
     showTimeFilter,
@@ -93,6 +95,10 @@ function FormContainer() {
           {
             showTimeFilter &&
             <DateSelect />
+          }
+          {
+            showLanguageFilter &&
+            <LanguageFilter />
           }
         </div>
         {
