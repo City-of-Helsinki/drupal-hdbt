@@ -87,6 +87,10 @@ const createBaseAtom = () => {
     initialParams.set('page_size', filterSettings.eventCount.toString());
   };
 
+  if (filterSettings.showLanguageFilter) {
+    initialParams.delete('language');
+  }
+
   return {
     settings: filterSettings,
     baseUrl,
@@ -208,6 +212,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   const initialUrl = new URL(get(initialUrlAtom));
   initialUrl.search = newParams.toString();
   set(urlAtom, initialUrl.toString());
+  set(paramsAtom, newParams);
 
   const clearEvent = new Event('eventsearch-clear');
   window.dispatchEvent(clearEvent);
