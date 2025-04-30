@@ -62,6 +62,7 @@ const AddressSearch = () => {
         suggestionLabelField='value'
         visibleSuggestions={5}
         value={address || ''}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
       />
     </div>
   );
