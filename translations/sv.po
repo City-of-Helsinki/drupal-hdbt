@@ -855,8 +855,16 @@ msgid "All fields"
 msgstr "Alla yrkesbranscher"
 
 msgctxt "Employment filter label"
-msgid "Type of employment"
+msgid "Employment type"
 msgstr "Typ av anställningsförhållande"
+
+msgctxt "Employment filter value"
+msgid "Permanent"
+msgstr "Fast anställning"
+
+msgctxt "Employment filter value"
+msgid "Fixed-term"
+msgstr "Visstidsanställning"
 
 msgctxt "Employment filter placeholder"
 msgid "All types of employment"
