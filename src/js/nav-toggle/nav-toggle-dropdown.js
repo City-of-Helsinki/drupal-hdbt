@@ -117,6 +117,7 @@ class NavToggleDropdown {
 
     this.dropdownSelector = dropdownSelector;
     this.dropdownInstance = this.dropdownSelector ? document.querySelector(this.dropdownSelector) : null;
+    this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;

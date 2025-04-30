@@ -1,5 +1,12 @@
+import { positionDropdown } from './position-dropdown';
+
 const OPEN_CLASS = 'menu__item--open';
 const HOVER_CLASS = 'menu__item--hover';
+
+// Helper function for clearing element styles.
+function clearStyles(element) {
+  element.removeAttribute('style');
+}
 
 function updateFirstChildAriaExpanded(item) {
   let state = 'false';
@@ -37,6 +44,11 @@ function toggleDesktopMenuLevel(item) {
     toggleButton.addEventListener('click', function toggleOpen() {
       item.classList.toggle(OPEN_CLASS);
       updateFirstChildAriaExpanded(item);
+      if (item.classList.contains(OPEN_CLASS)) {
+        positionDropdown(toggleButton, item,12);
+      } else {
+        clearStyles(item.querySelector('.menu--level-1'));
+      }
     });
   }
 }
@@ -44,12 +56,17 @@ function toggleDesktopMenuLevel(item) {
 function mouseOver() {
   closeOpenItems(this.closest('.menu__item--children'));
   const item = this.closest('.menu__item--children');
+  const toggleButton = item.querySelector('.menu__toggle-button');
   item.classList.add(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
+  positionDropdown(toggleButton, item,12);
 }
 
 function mouseLeave() {
   this.classList.remove(HOVER_CLASS);
+  if (!this.classList.contains(OPEN_CLASS)) {
+    clearStyles(this.querySelector('.menu--level-1'));
+  }
   updateFirstChildAriaExpanded(this);
 }
 
@@ -59,7 +76,6 @@ function mouseLeaveButton() {
   item.classList.remove(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
 }
-
 
 // Utility functions
 // Gets the children of the given element and skips the one that is given
@@ -129,4 +145,17 @@ window.addEventListener('click', function onMainNavigationClick(event) {
   } else {
     closeOpenItems();
   }
+});
+
+// Handle resize event to reposition open drop downs.
+window.addEventListener('resize', function mainNavigationOnResize() {
+  document.querySelectorAll('.menu__toggle-button').forEach(button => {
+    const buttonParent = button.parentElement;
+    const dropDown = buttonParent.nextElementSibling;
+    const menuItem = buttonParent.parentElement;
+
+    if (dropDown && menuItem.classList.contains('menu__item--open')) {
+      positionDropdown(button, menuItem,12);
+    }
+  });
 });

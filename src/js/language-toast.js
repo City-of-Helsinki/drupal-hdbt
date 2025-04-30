@@ -13,11 +13,8 @@ document.addEventListener('DOMContentLoaded', function languageToastPositioning(
         return;
       }
 
-      // Reset inline styles before applying new ones.
-      toast.removeAttribute('style');
-
       // Position and after that show the toast.
-      positionDropdown(button);
+      positionDropdown(button, button,16,{ isToast: true });
     });
   });
 
@@ -28,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function languageToastPositioning(
       const toast = buttonParent.nextElementSibling;
 
       if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
-        toast.removeAttribute('style');
-        positionDropdown(button);
+        positionDropdown(button, button,16,{ isToast: true });
       }
     });
   });
