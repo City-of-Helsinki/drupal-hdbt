@@ -84,6 +84,7 @@ const FormContainer = () => {
             placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             type='search'
             value={title}
+            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
           />
           <Select
             filter={defaultFilter}

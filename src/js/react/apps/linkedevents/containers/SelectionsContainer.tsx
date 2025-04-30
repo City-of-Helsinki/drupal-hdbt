@@ -15,6 +15,7 @@ import {
   resetParamAtom,
   updateParamsAtom,
   updateUrlAtom,
+  languageAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
@@ -31,9 +32,10 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
+  const [languageSelection, setLanguageSelection] = useAtom(languageAtom);
   const resetForm = useSetAtom(resetFormAtom);
 
-  const showClearButton = locationSelection.length || topicsSelection.length || startDate || endDate || freeFilter || remoteFilter;
+  const showClearButton = locationSelection.length || topicsSelection.length || languageSelection.length || startDate || endDate || freeFilter || remoteFilter;
 
   if (!url) {
     return null;
@@ -51,6 +53,12 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
         updater={setLocationSelection}
         valueKey={ApiKeys.LOCATION}
         values={locationSelection}
+        url={url}
+      />
+      <ListFilterPills
+        updater={setLanguageSelection}
+        valueKey={ApiKeys.LANGUAGE}
+        values={languageSelection}
         url={url}
       />
       <DateFilterPill

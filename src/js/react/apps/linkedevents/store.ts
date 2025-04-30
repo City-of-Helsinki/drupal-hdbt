@@ -55,6 +55,7 @@ const createBaseAtom = () => {
     eventCount: Number(settings?.field_event_count),
     showFreeFilter: settings?.field_free_events,
     hideHeading: settings?.hideHeading,
+    showLanguageFilter: settings?.field_language,
     showLocation: settings?.field_event_location,
     showRemoteFilter: settings?.field_remote_events,
     showTimeFilter: settings?.field_event_time,
@@ -85,6 +86,10 @@ const createBaseAtom = () => {
   if (filterSettings.eventCount) {
     initialParams.set('page_size', filterSettings.eventCount.toString());
   };
+
+  if (filterSettings.showLanguageFilter) {
+    initialParams.delete('language');
+  }
 
   return {
     settings: filterSettings,
@@ -141,6 +146,7 @@ export const settingsAtom = atom(
     eventCount: 3,
     showFreeFilter: false,
     hideHeading: true,
+    showLanguageFilter: false,
     showLocation: false,
     showRemoteFilter: false,
     showTimeFilter: false,
@@ -185,6 +191,7 @@ export const remoteFilterAtom = atom<boolean>(false);
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
   set(topicSelectionAtom, []);
+  set(languageAtom, []);
   set(startDateAtom, undefined);
   set(endDateAtom, undefined);
   set(endDisabledAtom, false);
@@ -205,6 +212,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   const initialUrl = new URL(get(initialUrlAtom));
   initialUrl.search = newParams.toString();
   set(urlAtom, initialUrl.toString());
+  set(paramsAtom, newParams);
 
   const clearEvent = new Event('eventsearch-clear');
   window.dispatchEvent(clearEvent);
@@ -265,3 +273,5 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
 
 // Strore address input. Converted to coordinates during form submit.
 export const addressAtom = atom<string|undefined|null>(undefined);
+
+export const languageAtom = atom<OptionType[]>([]);

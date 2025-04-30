@@ -1,6 +1,10 @@
-.hds-text-input__input-wrapper:focus-within .hds-text-input__input:not([readonly]) {
-  --focus-outline-color: #{$color-black}; // We should use hdbt color theme instead of hds
-  box-shadow: none; // remove hds outline as it causes false positives in accessibility tools
-  outline: var(--outline-width, 3px) solid var(--focus-outline-color); // add a regular outline around checkbox
-  outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast
+.hds-text-input__input-wrapper:focus-within .hds-text-input__input:not([readonly]),
+  // Simulate focus styles for visual tests using the "simulate-focus" class.
+  // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
+.hds-text-input__input-wrapper .hds-text-input__input.simulate-focus:not([readonly]) {
+  // Theming the hds-text-input to use Hel.fi brand color scheme.
+  --focus-outline-color: #{$color-black};
+  box-shadow: none; // Remove hds outline as it causes false positives in accessibility tools.
+  outline: var(--outline-width, 3px) solid var(--focus-outline-color); // Add a regular outline around text input.
+  outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast.
 }

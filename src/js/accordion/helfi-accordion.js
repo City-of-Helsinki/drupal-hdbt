@@ -41,6 +41,46 @@ export default class HelfiAccordion {
     Array.from(accordionItems).forEach((element) => {
       this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
     });
+
+    // Initialize hidden="until-found" functionality if it is supported.
+    if ('onbeforematch' in document.body) {
+      this.enableHiddenUntilFound();
+    }
+  };
+
+  /**
+   * Make it possible for the browser search find content inside the closed accordions.
+   */
+  enableHiddenUntilFound = () => {
+    this.accordionItems.forEach(accordionItem => {
+      accordionItem.element.classList.add('accordion-item--hidden-until-found');
+      const accordionItemContent = accordionItem.element.querySelector('.accordion-item__content');
+
+      // If item is defined in the state as open, don't close it.
+      if (!accordionItem.isOpen) {
+        accordionItemContent.hidden = 'until-found';
+      }
+
+      // Add event listener to the beforematch event what is triggered when browser finds something or
+      // highlight is found on the url parameters.
+      accordionItem.element.addEventListener('beforematch', () => {
+
+        // Disable animations on the accordion on these events.
+        accordionItem.element.style.setProperty('--js-accordion-open-time', '0s');
+
+        // Force a reflow to ensure the style change takes effect.
+        // eslint-disable-next-line no-void
+        void accordionItem.element.offsetHeight;
+
+        // Open the accordion that contains the found text.
+        accordionItem.open();
+
+        // Enable the animations again after the accordion has been opened.
+        setTimeout(() => {
+          accordionItem.element.style.removeProperty('--js-accordion-open-time');
+        }, 10);
+      });
+    });
   };
 
   addEventListeners = () => {
@@ -86,7 +126,7 @@ export default class HelfiAccordion {
    * Open all own and child accordion's items.
    */
   openAll = () => {
-    this.accordionItems.forEach(item=> item.open());
+    this.accordionItems.forEach(item => item.open());
     this.childAccordion?.openAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();

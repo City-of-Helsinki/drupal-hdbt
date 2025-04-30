@@ -23,9 +23,8 @@ $select-max-width: 420px;
     justify-content: space-between;
   }
 
-  .event-form__filter--location,
-  .event-form__filter--topics,
-  .event-form__filter--date {
+  .hdbt-search__filter,
+  .hdbt-search--react__dropdown {
     flex-basis: 100%;
 
     @include breakpoint($breakpoint-m) {

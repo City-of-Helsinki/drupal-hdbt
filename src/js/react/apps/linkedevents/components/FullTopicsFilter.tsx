@@ -105,10 +105,10 @@ const FullTopicsFilter = memo(() => {
       <Select
         className='hdbt-search__dropdown'
         texts={{
-          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
-          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
           label: selectLabel,
           placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
+          searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
+          searchPlaceholder: Drupal.t('For example, Music', {}, { context: 'React search: all available options' }),
         }}
         theme={{
           '--checkbox-background-selected': 'var(--hdbt-color-black)',

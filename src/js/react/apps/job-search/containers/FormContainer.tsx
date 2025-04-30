@@ -122,6 +122,7 @@ const FormContainer = () => {
         placeholder={Drupal.t('Eg. title, location, department', {}, { context: 'HELfi Rekry job search keyword placeholder' })}
         type='search'
         value={keyword}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
       />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>

@@ -110,10 +110,10 @@ const FullLocationFilter = memo(() => {
       <Select
         className='hdbt-search__dropdown'
         texts={{
-          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
-          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectVenueLabel}, { context: 'React search clear selection label' }),
           label: selectVenueLabel,
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
+          searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
+          searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
         }}
         theme={{
           '--checkbox-background-selected': 'var(--hdbt-color-black)',

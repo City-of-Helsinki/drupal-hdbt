@@ -1168,31 +1168,31 @@ msgctxt "Job search"
 msgid "Search"
 msgstr "Etsi"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Use the format D.M.YYYY"
 msgstr "Käytä muotoa P.K.VVVV"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid start date"
 msgstr "Virheellinen aloituspäivämäärä"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid end date"
 msgstr "Virheellinen lopetuspäivämäärä"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Select a time period in which the event takes place"
 msgstr "Valitse aikaväli, johon tapahtuma sijoittuu"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
 msgstr "Aikavälin viimeinen päivä on sama kuin ensimmäinen"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "First day of the time period"
 msgstr "Alkaen"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Last day of the time period"
 msgstr "Asti"
 
@@ -1248,6 +1248,10 @@ msgctxt "React search"
 msgid "Language"
 msgstr "Kieli"
 
+msgctxt "React search"
+msgid "Clear"
+msgstr "Tyhjennä"
+
 msgctxt "React search pager"
 msgid "Go to page @key"
 msgstr "Siirry sivulle @key"
@@ -1268,6 +1272,18 @@ msgctxt "React search: all available options"
 msgid "All venues"
 msgstr "Kaikki tapahtumapaikat"
 
+msgctxt "React search: all available options"
+msgid "Search term"
+msgstr "Hakusana"
+
+msgctxt "React search: all available options"
+msgid "For example, Oodi"
+msgstr "Esim. Oodi"
+
+msgctxt "React search: all available options"
+msgid "For example, Music"
+msgstr "Esim. Musiikki"
+
 msgctxt "React search: topics filter"
 msgid "Event topic"
 msgstr "Tapahtuman aihe"
@@ -1282,7 +1298,7 @@ msgstr "Poista valinta"
 
 msgctxt "React search: clear selections"
 msgid "Clear selections"
-msgstr "Tyhjennä kaikki valinnat"
+msgstr "Tyhjennä valinnat"
 
 msgctxt "React search: date selection label"
 msgid "Date"

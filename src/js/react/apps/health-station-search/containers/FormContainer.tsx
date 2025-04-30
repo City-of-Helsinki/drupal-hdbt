@@ -37,6 +37,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
         label={Drupal.t('Home address', {}, { context: 'React search: home address'})}
         type='search'
         defaultValue={initialParams?.address || ''}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>

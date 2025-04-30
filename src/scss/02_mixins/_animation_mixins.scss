@@ -1,21 +1,21 @@
-@mixin rotating-icon-transition() {
-  transition: transform 0.2s ease-in;
+@mixin rotating-icon-transition($duration: 0.2s) {
+  transition: transform $duration ease-in;
 
   @media (prefers-reduced-motion) {
     transition: none;
   }
 }
 
-@mixin hover-link-arrow-transition() {
-  transition: transform 0.2s linear;
+@mixin hover-link-arrow-transition($duration: 0.2s) {
+  transition: transform $duration linear;
 
   @media (prefers-reduced-motion) {
     transition: none;
   }
 }
 
-@mixin hover-external-arrow-transition() {
-  transition: mask-position 0.2s linear;
+@mixin hover-external-arrow-transition($duration: 0.2s) {
+  transition: mask-position $duration linear;
 
   @media (prefers-reduced-motion) {
     transition: none;

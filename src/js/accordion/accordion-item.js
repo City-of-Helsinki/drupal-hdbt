@@ -22,12 +22,11 @@ export default class AccordionItem {
     this._id = element.dataset.accordionId;
     this._isOpen = this.localState.loadItemState(this._id);
 
-    this.element.style = '--js-accordion-open-time:0s'; // do not animate accordions on pageload
-    this.setHidden();
+    // Do not animate accordions on page load so adding the noAnimation to true.
+    this.setHidden(true);
     this.addEventListeners();
     this.handleLinkAnchor(urlHash);
     this.setAriaOpen();
-    this.element.style = null; // allow animating accordions after pageload
   }
 
   open = () => {
@@ -78,10 +77,43 @@ export default class AccordionItem {
     });
   };
 
-  setHidden = () => {
-    const contentElement = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
-    // eslint-disable-next-line no-unused-expressions
-    this.isOpen ? contentElement.classList.remove('is-hidden') : contentElement.classList.add('is-hidden');
+
+  // Show/hide the accordion content with the hidden-attribute.
+  setHidden = (noAnimation) => {
+    const accordionElement = this.element.closest('.accordion');
+    const accordionItemContent = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
+
+    // No animation version of show/hide functionality.
+    if (noAnimation) {
+      // Set the animation duration with css-variable to 0 before adjusting the hidden-attribute.
+      accordionElement.style.setProperty('--js-accordion-open-time', '0s');
+
+      // Force a reflow to ensure the style change takes effect
+      // eslint-disable-next-line no-void
+      void document.body.offsetHeight;
+
+      // eslint-disable-next-line no-unused-expressions
+      this.isOpen ? accordionItemContent.removeAttribute('hidden') : accordionItemContent.hidden = 'until-found';
+
+      // Remove the css-property to enable animations again.
+      setTimeout(() => {
+        accordionElement.style.removeProperty('--js-accordion-open-time');
+      }, 10);
+
+      return;
+    }
+
+    if (!this.isOpen) {
+      // Get the show/hide animation duration from the css.
+      const accordionAnimationDuration = parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
+
+      // Delay the attribute change until the animation has been completed.
+      setTimeout(() => {
+        accordionItemContent.hidden = 'until-found';
+      }, accordionAnimationDuration);
+    } else {
+      accordionItemContent.removeAttribute('hidden');
+    }
   };
 
   changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();

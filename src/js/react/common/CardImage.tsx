@@ -10,7 +10,7 @@ const CardImage = (props: CardImageProps) => {
   return (
     <img
       src={src}
-      alt={alt && alt !== '""' ? alt : ''}
+      alt=''
       data-photographer={photographer}
       {...rest}
     />

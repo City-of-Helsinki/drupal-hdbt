@@ -29,16 +29,16 @@
 
   {% if type == 'error' %}
     {% set section_classes = section_classes|merge(['hds-notification--error']) %}
-    {% set notification_icon = 'error' %}
+    {% set notification_icon = 'error-fill' %}
   {% elseif type == 'warning' %}
     {% set section_classes = section_classes|merge(['hds-notification--alert']) %}
-    {% set notification_icon = 'alert-circle' %}
+    {% set notification_icon = 'alert-circle-fill' %}
   {% elseif type == 'success' %}
     {% set section_classes = section_classes|merge(['hds-notification--success']) %}
-    {% set notification_icon = 'check' %}
+    {% set notification_icon = 'check-circle-fill' %}
   {% else %}
     {% set section_classes = section_classes|merge(['hds-notification--info']) %}
-    {% set notification_icon = 'info-circle' %}
+    {% set notification_icon = 'info-circle-fill' %}
   {% endif %}
 
   {% if size == 'large' %}
@@ -54,12 +54,12 @@
       {% if is_message_with_title or is_message_with_icon %}
         {% if is_message_with_title %}
           <div class="hds-notification__label" role="heading" aria-level="2">
-            {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
+            <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
             <span id="{{ title_ids[type] }}">{{ status_headings[type] }}</span>
           </div>
         {% else %}
           <div class="hds-notification__label" role="heading" aria-hidden="true">
-            {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
+            <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
           </div>
         {% endif %}
       {% endif %}
@@ -67,7 +67,7 @@
         {% if messages|length > 1 %}
           <ul class="messages__list">
             {% for message in messages %}
-              <li class="messages__item">{{ message }}</li>
+              <li class="messages__list__item">{{ message }}</li>
             {% endfor %}
           </ul>
         {% else %}

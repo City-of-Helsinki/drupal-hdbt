@@ -176,8 +176,8 @@ jobs:
         if: steps.evaluate-reference-images.outputs.generate-references != 'true'
         uses: thollander/actions-comment-pull-request@v3
         with:
-          comment_tag: status
-          pr_number: ${{ github.event.number }}
+          comment-tag: status
+          pr-number: ${{ github.event.number }}
           message: "${{join(steps.run-tests.outputs.*, '  ')}}"
 
       - name: Export container logs

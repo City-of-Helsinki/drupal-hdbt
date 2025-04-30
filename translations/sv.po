@@ -1170,31 +1170,31 @@ msgctxt "Job search"
 msgid "Search"
 msgstr "Sök"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Use the format D.M.YYYY"
 msgstr "Ange i formen D.M.ÅÅÅÅ"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid start date"
 msgstr "Ogiltigt startdatum"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Invalid end date"
 msgstr "Ogiltigt slutdatum"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Select a time period in which the event takes place"
 msgstr "Sätt ut tidpunkterna inom vilka evenemanget ordnas"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
 msgstr "Tidsperiodens sista dag är samma som första"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "First day of the time period"
 msgstr "Tidsperiodens första dag"
 
-msgctxt "Events search"
+msgctxt "React search: date range select"
 msgid "Last day of the time period"
 msgstr "Tidsperiodens sista dag"
 
@@ -1204,11 +1204,11 @@ msgstr "Evenmangsplats"
 
 msgctxt "Events search"
 msgid "Free-of-charge events"
-msgstr "Kostnadsfria evenemang"
+msgstr "Avgiftsfria evenemang"
 
 msgctxt "Events search"
 msgid "Remote events"
-msgstr "Evenemang på distans"
+msgstr "Distansevenemang"
 
 msgctxt "Events search"
 msgid "All dates"
@@ -1250,6 +1250,10 @@ msgctxt "React search"
 msgid "Language"
 msgstr "Språk"
 
+msgctxt "React search"
+msgid "Clear"
+msgstr "Rensa"
+
 msgctxt "React search pager"
 msgid "Go to page @key"
 msgstr "Gå till sidan @key"
@@ -1270,6 +1274,18 @@ msgctxt "React search: all available options"
 msgid "All venues"
 msgstr "Alla evenmangsplatser"
 
+msgctxt "React search: all available options"
+msgid "Search term"
+msgstr "Sökord"
+
+msgctxt "React search: all available options"
+msgid "For example, Oodi"
+msgstr "T.ex. Ode"
+
+msgctxt "React search: all available options"
+msgid "For example, Music"
+msgstr "T.ex. Musik"
+
 msgctxt "React search: topics filter"
 msgid "Event topic"
 msgstr "Evenemangets ämne"
@@ -1284,11 +1300,11 @@ msgstr "Töm valda"
 
 msgctxt "React search: clear selections"
 msgid "Clear selections"
-msgstr "Rensa alla"
+msgstr "Töm val"
 
 msgctxt "React search: date selection label"
 msgid "Date"
-msgstr "Tidsperiod"
+msgstr "Tidpunkt"
 
 msgctxt "Event search: event type prefix"
 msgid "Show only"
