@@ -868,6 +868,14 @@ msgctxt "Employment filter value"
 msgid "Fixed-term"
 msgstr "Määräaikainen"
 
+msgctxt "Employment filter selection value"
+msgid "Permanent contract and service employment"
+msgstr "Vakinainen työ- ja virkasuhde"
+
+msgctxt "Employment filter selection value"
+msgid "Fixed-term contract and service employment"
+msgstr "Määräaikainen työ- ja virkasuhde"
+
 msgctxt "Employment filter placeholder"
 msgid "All types of employment"
 msgstr "Kaikki työsuhteen tyypit"

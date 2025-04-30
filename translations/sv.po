@@ -866,6 +866,14 @@ msgctxt "Employment filter value"
 msgid "Fixed-term"
 msgstr "Visstidsanställning"
 
+msgctxt "Employment filter selection value"
+msgid "Permanent contract and service employment"
+msgstr "Fast anställning och tjänsteförhållande"
+
+msgctxt "Employment filter selection value"
+msgid "Fixed-term contract and service employment"
+msgstr "Visstidsanställning och tjänsteförhållande"
+
 msgctxt "Employment filter placeholder"
 msgid "All types of employment"
 msgstr "Alla typer av anställningsförhållande"

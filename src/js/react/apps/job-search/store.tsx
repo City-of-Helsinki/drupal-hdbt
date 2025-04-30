@@ -235,6 +235,7 @@ export const employmentAtom = atom(async(get) => {
       let count = 0;
       let additionalValue = null;
       let label = `${term._source.name} (${count})`;
+      let simpleLabel = term._source.name;
 
       if (!customId) {
         return;
@@ -248,6 +249,7 @@ export const employmentAtom = atom(async(get) => {
         additionalValue = permanentService;
         count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
         label = `${Drupal.t('Permanent', {}, {context: 'Employment filter value'})} (${count})`;
+        simpleLabel = Drupal.t('Permanent contract and service employment', {}, {context: 'Employment filter selection value'});
       }
       else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
@@ -256,6 +258,7 @@ export const employmentAtom = atom(async(get) => {
         additionalValue = fixedService;
         count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
         label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value'})} (${count})`;
+        simpleLabel = Drupal.t('Fixed-term contract and service employment', {}, { context: 'Employment filter selection value'});
       }
       else {
         count = combinedAggs.get(tid) || 0;
@@ -266,7 +269,7 @@ export const employmentAtom = atom(async(get) => {
         additionalValue,
         count,
         label,
-        simpleLabel: term._source.name,
+        simpleLabel,
         value: tid,
       };
     })

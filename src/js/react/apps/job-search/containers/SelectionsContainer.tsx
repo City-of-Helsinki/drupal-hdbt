@@ -41,7 +41,7 @@ const SelectionsContainer = () => {
     urlParams?.language ||
     urlParams?.summer_jobs ||
     urlParams?.youth_summer_jobs ||
-    urlParams.employment?.length;
+    urlParams?.employment?.length;
 
   const showTaskAreas = Boolean(urlParams.task_areas?.length && urlParams.task_areas.length > 0);
   const showEmployment = Boolean(urlParams.employment?.length && urlParams.employment?.length > 0);
