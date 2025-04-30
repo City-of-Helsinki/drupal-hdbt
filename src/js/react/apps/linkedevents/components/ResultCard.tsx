@@ -88,12 +88,6 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       imageProps.src = image.url;
     }
 
-    if (image.alt_text) {
-      imageProps.alt = image.alt_text;
-    } else if (name[currentLanguage]) {
-      imageProps.alt = name[currentLanguage]?.trim();
-    }
-
     if (image.photographer_name) {
       imageProps['data-photographer'] = image.photographer_name;
     }
