@@ -153,6 +153,7 @@ const FormContainer = () => {
               multiSelect
               noTags
               onChange={(selectedOptions) => {
+                // @todo Refactor to work without additional values 
                 // Create a new array that matches selected options with employment options
                 const updatedEmploymentSelection = selectedOptions.map((selectedOption) => {
                   const matchedOption = employmentOptions.find(
