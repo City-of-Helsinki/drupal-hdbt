@@ -228,12 +228,14 @@ export const employmentAtom = atom(async(get) => {
       ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0])
   );
 
-  return visibleOptions
+  const options =  visibleOptions
     .map((term: Result<Term>) => {
       const tid = term._source.tid[0];
       const customId = term._source.field_search_id?.[0];
       let count = 0;
       let additionalValue = null;
+      let label = `${term._source.name} (${count})`;
+      let simpleLabel = term._source.name;
 
       if (!customId) {
         return;
@@ -246,6 +248,8 @@ export const employmentAtom = atom(async(get) => {
         )?._source.tid[0];
         additionalValue = permanentService;
         count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
+        label = `${Drupal.t('Permanent', {}, {context: 'Employment filter value'})} (${count})`;
+        simpleLabel = Drupal.t('Permanent contract and service employment', {}, {context: 'Employment filter selection value'});
       }
       else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
@@ -253,20 +257,24 @@ export const employmentAtom = atom(async(get) => {
         )?._source.tid[0];
         additionalValue = fixedService;
         count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
+        label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value'})} (${count})`;
+        simpleLabel = Drupal.t('Fixed-term contract and service employment', {}, { context: 'Employment filter selection value'});
       }
       else {
         count = combinedAggs.get(tid) || 0;
       }
 
+
       return {
         additionalValue,
         count,
-        label: `${term._source.name} (${count})`,
-        simpleLabel: term._source.name,
+        label,
+        simpleLabel,
         value: tid,
       };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
+    return options;
 });
 export const employmentSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
