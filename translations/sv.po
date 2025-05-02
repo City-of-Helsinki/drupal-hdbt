@@ -1183,8 +1183,8 @@ msgid "Invalid end date"
 msgstr "Ogiltigt slutdatum"
 
 msgctxt "React search: date range select"
-msgid "Select a time period in which the event takes place"
-msgstr "Sätt ut tidpunkterna inom vilka evenemanget ordnas"
+msgid "Select a time period in which the event takes place."
+msgstr "Sätt ut tidpunkterna inom vilka evenemanget ordnas."
 
 msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
@@ -1197,6 +1197,14 @@ msgstr "Tidsperiodens första dag"
 msgctxt "React search: date range select"
 msgid "Last day of the time period"
 msgstr "Tidsperiodens sista dag"
+
+msgctxt "React search: date range select"
+msgid "Selected time period: @period"
+msgstr "Vald tidsperiod: @period"
+
+msgctxt "React search: date range select"
+msgid "Choose date"
+msgstr "Välj datum"
 
 msgctxt "Events search"
 msgid "Venue"
@@ -1213,6 +1221,18 @@ msgstr "Distansevenemang"
 msgctxt "Events search"
 msgid "All dates"
 msgstr "Alla tidpunkter"
+
+msgctxt "Events search"
+msgid "From @date"
+msgstr "Från @date"
+
+msgctxt "Events search"
+msgid "Until @date"
+msgstr "Till @date"
+
+msgctxt "Events search"
+msgid "From @date until @date2"
+msgstr "Från @date till @date2"
 
 msgctxt "Events search"
 msgid "Search for more events on the Events website"

@@ -211,7 +211,7 @@ language-toast:
     - hdbt/nav-toggle
 
 event-list:
-  version: 1.4.1
+  version: 1.4.2
   js:
     dist/js/linkedevents.min.js: {
       preprocess: false,
