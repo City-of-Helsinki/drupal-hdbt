@@ -1,10 +1,8 @@
 $-item-gap: $spacing;
 $-item-padding: $spacing-and-half;
-$-item-padding--desktop: $spacing-double;
+$-item-padding-l: $spacing-double;
 $-item-padding-left: 68px;
-$-item-padding-left--desktop: $spacing-sextuple;
-$-item-padding-left--ol: 80px;
-$-item-padding-left--ol-l: $spacing-sextuple;
+$-item-padding-left-l: $spacing-sextuple;
 $-circle-size: $spacing;
 $-circle-size--ol: 40px;
 $-circle-size--ol-l: $spacing-triple;
@@ -32,9 +30,9 @@ $-circle-size--ol-l: $spacing-triple;
   position: relative;
 
   @include breakpoint($breakpoint-l) {
-    --p-left: #{$-item-padding-left--desktop};
-    padding-block: $-item-padding--desktop;
-    padding-inline: var(--p-left) $-item-padding--desktop;
+    --p-left: #{$-item-padding-left-l};
+    padding-block: $-item-padding-l;
+    padding-inline: var(--p-left) $-item-padding-l;
   }
 
   &:not(:last-of-type) {
@@ -63,7 +61,7 @@ $-circle-size--ol-l: $spacing-triple;
     top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
 
     @include breakpoint($breakpoint-l) {
-      top: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+      top: calc($-item-padding-l + var(--item-title-lineheight) * 0.5);
     }
   }
 
@@ -71,7 +69,7 @@ $-circle-size--ol-l: $spacing-triple;
     height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
 
     @include breakpoint($breakpoint-l) {
-      height: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+      height: calc($-item-padding-l + var(--item-title-lineheight) * 0.5);
     }
   }
 
@@ -90,18 +88,18 @@ $-circle-size--ol-l: $spacing-triple;
     z-index: 1;
 
     @include breakpoint($breakpoint-l) {
-      top: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+      top: calc($-item-padding-l + var(--item-title-lineheight) * 0.5);
     }
   }
 }
 
 .phasing__item--with-numbers {
   --circle-size: #{$-circle-size--ol};
-  --p-left: #{$-item-padding-left--ol};
+  --p-left: #{$-item-padding-left};
 
   @include breakpoint($breakpoint-l) {
     --circle-size: #{$-circle-size--ol-l};
-    --p-left: #{$-item-padding-left--ol-l};
+    --p-left: #{$-item-padding-left-l};
   }
 
   &::before {
