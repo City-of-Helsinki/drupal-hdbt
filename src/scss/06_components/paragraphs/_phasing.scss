@@ -1,6 +1,8 @@
 $-item-gap: $spacing;
-$-item-padding: $spacing-double;
-$-item-padding-left: 72px;
+$-item-padding: $spacing-and-half;
+$-item-padding--desktop: $spacing-double;
+$-item-padding-left: 68px;
+$-item-padding-left--desktop: $spacing-sextuple;
 $-item-padding-left--ol: 80px;
 $-item-padding-left--ol-l: $spacing-sextuple;
 $-circle-size: $spacing;
@@ -29,6 +31,12 @@ $-circle-size--ol-l: $spacing-triple;
   padding-inline: var(--p-left) $-item-padding;
   position: relative;
 
+  @include breakpoint($breakpoint-l) {
+    --p-left: #{$-item-padding-left--desktop};
+    padding-block: $-item-padding--desktop;
+    padding-inline: var(--p-left) $-item-padding--desktop;
+  }
+
   &:not(:last-of-type) {
     margin-bottom: $-item-gap;
   }
@@ -53,10 +61,18 @@ $-circle-size--ol-l: $spacing-triple;
   &:first-of-type::after {
     height: 100%;
     top: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+
+    @include breakpoint($breakpoint-l) {
+      top: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+    }
   }
 
   &:last-of-type::after {
     height: calc($-item-padding + var(--item-title-lineheight) * 0.5);
+
+    @include breakpoint($breakpoint-l) {
+      height: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+    }
   }
 
   &:only-child::after {
@@ -72,6 +88,10 @@ $-circle-size--ol-l: $spacing-triple;
     transform: translate(calc(var(--lang-direction) * -50%), -50%);
     width: var(--circle-size);
     z-index: 1;
+
+    @include breakpoint($breakpoint-l) {
+      top: calc($-item-padding--desktop + var(--item-title-lineheight) * 0.5);
+    }
   }
 }
 
