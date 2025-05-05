@@ -50,8 +50,8 @@ function Collapsible({ active, ariaControls, dialogLabel, helper, id, label, tit
       >
         <span id={`${id}-title`} className='collapsible__title'>
           { title }
-          {getHandle()}
         </span>
+        {getHandle()}
       </button>
       {isActive &&
         <div

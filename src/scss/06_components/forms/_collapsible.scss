@@ -63,11 +63,16 @@ $collapsible-height: 56px;
 }
 
 .collapsible__handle {
+  height: $spacing-and-half;
   pointer-events: none;
+  width: $spacing-and-half;
 }
 
 .collapsible__label {
-  font-weight: $font-weight-bold;
+  color: $color-black;
+  display: block;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-quarter;
 }
 
 .collapsible__children {
