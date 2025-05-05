@@ -1,0 +1,16 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--org-chart' ],
+      component_title: content.field_org_chart_title,
+      component_description: content.field_org_chart_desc,
+    }
+  %}
+    {% block component_content %}
+
+      {# TODO: UHF-11178 #}
+      {{ org_chart_data }}
+
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}
