@@ -108,7 +108,7 @@ const FormContainer = () => {
 
   const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label' });
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
-  const employmentRelationshipLabel: string = Drupal.t('Type of employment', {}, { context: 'Employment filter label' });
+  const employmentRelationshipLabel: string = Drupal.t('Employment type', {}, { context: 'Employment filter label' });
   const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
   return (
@@ -122,6 +122,7 @@ const FormContainer = () => {
         placeholder={Drupal.t('Eg. title, location, department', {}, { context: 'HELfi Rekry job search keyword placeholder' })}
         type='search'
         value={keyword}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
       />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
@@ -148,11 +149,21 @@ const FormContainer = () => {
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
             <Select
               className='job-search-form__dropdown'
+              clearable
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
               multiSelect
               noTags
               onChange={(selectedOptions) => {
-                setEmploymentFilter(selectedOptions);
+                // @todo UHF-11807 Refactor to work without additional values 
+                // Create a new array that matches selected options with employment options
+                const updatedEmploymentSelection = selectedOptions.map((selectedOption) => {
+                  const matchedOption = employmentOptions.find(
+                    // @ts-ignore
+                    (option) => option.value === selectedOption.value
+                  );
+                  return matchedOption || selectedOption;
+                });
+                setEmploymentFilter(updatedEmploymentSelection);
               }}
               options={employmentOptions}
               texts={{

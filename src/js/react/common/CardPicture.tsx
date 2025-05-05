@@ -78,7 +78,7 @@ const CardPicture = (props: CardPictureProps) => {
       ))}
       <img
         src={derivedSrc}
-        alt={alt || imageOverride?.alt || ''}
+        alt=''
         data-photographer={photographer || imageOverride?.photographer}
         {...rest}
       />

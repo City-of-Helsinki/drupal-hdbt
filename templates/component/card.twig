@@ -40,6 +40,8 @@
 {% endembed %}
 #}
 
+{{ attach_library('hdbt/card-helper') }}
+
 {% set card_external_class = card_url_external ? 'card--external' : '' %}
 
 <div class="card {{ card_modifier_class }} {{ card_external_class }}">
@@ -50,9 +52,9 @@
   {% endif %}
 
   <div class="card__text">
-    <{{ card_title_level|default('h3') }} class="card__title" {% if card_title_lang %}lang="{{ card_title_lang }}"{% endif %}>
+    <{{ card_title_level|default('h4') }} class="card__title" {% if card_title_lang %}lang="{{ card_title_lang }}"{% endif %}>
       {{ link(card_title, card_url, { 'class':['card__link'], 'rel':'bookmark' }) }}
-    </{{ card_title_level|default('h3') }}>
+    </{{ card_title_level|default('h4') }}>
 
     {% if card_category_tag %}
       <div class="card__category">

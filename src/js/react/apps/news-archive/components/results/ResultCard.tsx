@@ -8,6 +8,7 @@ type ImageUrls = {
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;
+  cardTitleLevel?: 2 | 3 | 4 | 5 | 6;
 }
 
 const ResultCard = ({
@@ -19,6 +20,7 @@ const ResultCard = ({
   published_at,
   url,
   cardModifierClass,
+  cardTitleLevel,
 }: ResultCardProps) => {
   const getDate = () => {
     if (!published_at || !published_at.length) {
@@ -33,18 +35,6 @@ const ResultCard = ({
       hour: '2-digit',
       minute: '2-digit'
     });
-  };
-
-  const getAlt = () => {
-    if (field_main_image_caption && field_main_image_caption.length) {
-      return field_main_image_caption[0];
-    }
-
-    if (!alt?.length || alt[0] === '""') {
-      return '';
-    }
-
-    return alt[0];
   };
 
   const getImage = () => {
@@ -63,7 +53,7 @@ const ResultCard = ({
 
     return (
       <CardPicture
-        alt={getAlt()}
+        alt=''
         photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
         imageUrls={imageUrls}
       />
@@ -74,6 +64,7 @@ const ResultCard = ({
     <CardItem
       cardImage={getImage()}
       cardTitle={title.toString()}
+      cardTitleLevel={cardTitleLevel || 4}
       cardModifierClass={`card--news-item${cardModifierClass ? ` ${cardModifierClass}` : ''}`}
       cardUrl={url.toString()}
       date={getDate()}

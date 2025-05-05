@@ -857,8 +857,24 @@ msgid "All fields"
 msgstr "Kaikki ammattialat"
 
 msgctxt "Employment filter label"
-msgid "Type of employment"
-msgstr "Työsuhteen tyyppi"
+msgid "Employment type"
+msgstr "Palvelussuhteen tyyppi"
+
+msgctxt "Employment filter value"
+msgid "Permanent"
+msgstr "Vakinainen"
+
+msgctxt "Employment filter value"
+msgid "Fixed-term"
+msgstr "Määräaikainen"
+
+msgctxt "Employment filter selection value"
+msgid "Permanent contract and service employment"
+msgstr "Vakinainen työ- ja virkasuhde"
+
+msgctxt "Employment filter selection value"
+msgid "Fixed-term contract and service employment"
+msgstr "Määräaikainen työ- ja virkasuhde"
 
 msgctxt "Employment filter placeholder"
 msgid "All types of employment"
@@ -1231,6 +1247,10 @@ msgstr "Teema"
 msgctxt "React search"
 msgid "Language"
 msgstr "Kieli"
+
+msgctxt "React search"
+msgid "Clear"
+msgstr "Tyhjennä"
 
 msgctxt "React search pager"
 msgid "Go to page @key"

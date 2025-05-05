@@ -18,7 +18,7 @@ export type CardItemProps = {
   cardModifierClass?: string;
   cardImage?: string | JSX.Element | JSX.Element[];
   cardTitle: string | JSX.Element;
-  cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 3
+  cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
   cardUrl: string;
   cardUrlExternal?: boolean;
   cardCategoryTag?: TagType;
@@ -80,7 +80,7 @@ function CardItem({
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
     ${cardUrlExternal ? ' card--external' : ''}
   `;
-  const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h3';
+  const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h4';
 
   return (
     <div className={cardClass}>

@@ -258,7 +258,7 @@ hyphenopoly:
     - hdbt/hyphenopoly-loader
 
 job-search:
-  version: 1.8.2
+  version: 1.8.3
   js:
     dist/js/job-search.min.js: {
       preprocess: false,
@@ -339,3 +339,10 @@ ploughing-schedule:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+card-helper:
+  version: 1.0
+  js:
+    dist/js/card-helper.min.js: {
+      minified: true
+    }
