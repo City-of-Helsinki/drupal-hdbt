@@ -24,6 +24,7 @@ class NavToggleDropdown {
     if (this.running) {
       this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'false'));
       this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
+      this.dropdownInstance?.removeAttribute('style');
       this.targetNode.dataset.target = 'false';
 
       if (this.onClose) {

@@ -4,8 +4,9 @@
  * go under the browser window when close to it.
  */
 
-const positionDropdown = (button, relativeElement, gutter = 16, options = {}) => {
+const positionDropdown = (button, relativeElement, options = {}) => {
   const { isToast = false } = options;
+  const { gutter = 16 } = options;
   const buttonParent = button.parentElement;
   const dropDown = buttonParent.nextElementSibling;
 
@@ -15,18 +16,6 @@ const positionDropdown = (button, relativeElement, gutter = 16, options = {}) =>
   const buttonRect = button.getBoundingClientRect();
   const buttonWidth = button.offsetWidth;
   const viewportWidth = document.documentElement.clientWidth;
-  //
-  // console.log('Dropdown rect.left', dropDownRect.left);
-  // console.log('gutter', gutter);
-  // console.log('Button rect.left', relativeElementRect.left);
-  // console.log('buttonWidth', buttonWidth);
-  // console.log('dropDownWidth', dropDownWidth);
-  // console.log('viewportWidth', viewportWidth);
-  //
-  // console.log('viewportWidth - dropDownRect.left', viewportWidth - dropDownRect.left);
-
-  // Reset inline styles before applying new ones.
-  // dropDown.removeAttribute('style');
 
   // Positioning if the dropdown doesn't fit on the right side.
   if ((viewportWidth - dropDownRect.right) < gutter) {

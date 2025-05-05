@@ -31,6 +31,7 @@ function closeOpenItems(element) {
         return;
       }
       item.classList.remove(OPEN_CLASS);
+      clearStyles(item.querySelector('.menu--level-1'));
       updateFirstChildAriaExpanded(item);
     }
   }
@@ -45,7 +46,7 @@ function toggleDesktopMenuLevel(item) {
       item.classList.toggle(OPEN_CLASS);
       updateFirstChildAriaExpanded(item);
       if (item.classList.contains(OPEN_CLASS)) {
-        positionDropdown(toggleButton, item,12);
+        positionDropdown(toggleButton, item,{gutter: 12});
       } else {
         clearStyles(item.querySelector('.menu--level-1'));
       }
@@ -59,7 +60,7 @@ function mouseOver() {
   const toggleButton = item.querySelector('.menu__toggle-button');
   item.classList.add(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
-  positionDropdown(toggleButton, item,12);
+  positionDropdown(toggleButton, item,{gutter: 12});
 }
 
 function mouseLeave() {
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function startDesktopMenu() {
 });
 
 // Functionality when other menu item is clicked while one is open or
-// when the user clicks outside of the menu.
+// when the user clicks outside the menu.
 window.addEventListener('click', function onMainNavigationClick(event) {
   // First make sure that clicks inside the menu are ignored unless the
   // click is to a menu-link that needs to open another sub menu.
@@ -147,7 +148,7 @@ window.addEventListener('click', function onMainNavigationClick(event) {
   }
 });
 
-// Handle resize event to reposition open drop downs.
+// Handle resize event to reposition open dropdowns.
 window.addEventListener('resize', function mainNavigationOnResize() {
   document.querySelectorAll('.menu__toggle-button').forEach(button => {
     const buttonParent = button.parentElement;
@@ -155,7 +156,7 @@ window.addEventListener('resize', function mainNavigationOnResize() {
     const menuItem = buttonParent.parentElement;
 
     if (dropDown && menuItem.classList.contains('menu__item--open')) {
-      positionDropdown(button, menuItem,12);
+      positionDropdown(button, menuItem,{gutter: 12});
     }
   });
 });

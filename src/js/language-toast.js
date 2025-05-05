@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function languageToastPositioning(
       }
 
       // Position and after that show the toast.
-      positionDropdown(button, button,16,{ isToast: true });
+      positionDropdown(button, button,{ isToast: true });
     });
   });
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function languageToastPositioning(
       const toast = buttonParent.nextElementSibling;
 
       if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
-        positionDropdown(button, button,16,{ isToast: true });
+        positionDropdown(button, button,{ isToast: true });
       }
     });
   });
