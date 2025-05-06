@@ -10,13 +10,18 @@ type Props = {
   helper?: string;
   id: string;
   label: string;
+  dialogLabel?: string;
   showHandle?: boolean;
   title: string | React.ReactNode;
 };
 
-function Collapsible({ active, ariaControls, helper, id, label, title, children, showHandle }: Props) {
+function Collapsible({ active, ariaControls, dialogLabel, helper, id, label, title, children, showHandle }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const helperIds = [
+    helper ? `${id}-helper` : undefined,
+    `${id}-title`,
+  ].filter(Boolean);
 
   const getHandle = () => {
     if (showHandle !== false) {
@@ -39,18 +44,26 @@ function Collapsible({ active, ariaControls, helper, id, label, title, children,
         className='collapsible__element collapsible__control'
         aria-controls={ariaControls}
         aria-expanded={isActive}
+        aria-describedby={helperIds.join(' ')}
+        aria-haspopup='dialog'
         onClick={() => setActive(!isActive)}
       >
-        <span className='collapsible__title'>{ title }</span>
+        <span id={`${id}-title`} className='collapsible__title'>
+          { title }
+        </span>
         {getHandle()}
       </button>
       {isActive &&
-        <div className='collapsible__element collapsible__children'>
+        <div
+          className='collapsible__element collapsible__children'
+          role='dialog'
+          aria-label={dialogLabel}
+        >
           {children}
         </div>
       }
       {helper &&
-        <div aria-hidden className='collapsible__helper'>{helper}</div>
+        <div id={`${id}-helper`} className='collapsible__helper'>{helper}</div>
       }
     </div>
   );

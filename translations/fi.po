@@ -1181,8 +1181,8 @@ msgid "Invalid end date"
 msgstr "Virheellinen lopetuspäivämäärä"
 
 msgctxt "React search: date range select"
-msgid "Select a time period in which the event takes place"
-msgstr "Valitse aikaväli, johon tapahtuma sijoittuu"
+msgid "Select a time period in which the event takes place."
+msgstr "Valitse aikaväli, johon tapahtuma sijoittuu."
 
 msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
@@ -1195,6 +1195,14 @@ msgstr "Alkaen"
 msgctxt "React search: date range select"
 msgid "Last day of the time period"
 msgstr "Asti"
+
+msgctxt "React search: date range select"
+msgid "Selected time period: @period"
+msgstr "Valittu aikaväli: @period"
+
+msgctxt "React search: date range select"
+msgid "Choose date"
+msgstr "Valitse päivämäärä"
 
 msgctxt "Events search"
 msgid "Venue"
@@ -1211,6 +1219,18 @@ msgstr "Etätapahtumat"
 msgctxt "Events search"
 msgid "All dates"
 msgstr "Kaikki ajankohdat"
+
+msgctxt "Events search"
+msgid "From @date"
+msgstr "@date alkaen"
+
+msgctxt "Events search"
+msgid "Until @date"
+msgstr "@date asti"
+
+msgctxt "Events search"
+msgid "From @date until @date2"
+msgstr "@date alkaen, @date2 asti"
 
 msgctxt "Events search"
 msgid "Search for more events on the Events website"
