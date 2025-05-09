@@ -1,0 +1,101 @@
+.org-chart__container {
+  --item-indentation: #{$spacing};
+  --item-gap: #{$spacing};
+  --item-padding-block: #{$spacing-double};
+  --item-padding-inline: #{$spacing};
+  --item-relation-indicator-width: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include breakpoint($breakpoint-m) {
+    --item-indentation: #{$spacing-double};
+  }
+}
+
+.org-chart__container--inner {
+  padding-inline-start: var(--item-indentation);
+}
+
+.org-chart__item {
+  margin-block-end: 0;
+  margin-block-start: var(--item-gap);
+  margin-inline: 0;
+  overflow: visible;
+  position: relative;
+
+  &::before,
+  &:last-child::after {
+    content: "";
+    display: block;
+    position: absolute;
+  }
+
+  // This before draws the vertical line from item to item.
+  &::before {
+    background-color: $color-black;
+    height: calc(100% + var(--item-gap));
+    left: calc(var(--item-indentation) * -1);
+    top: calc(var(--item-gap) * -1);
+    width: var(--item-relation-indicator-width);
+  }
+
+  // This after hides the end of the vertical line when the last item is reached.
+  &:last-child::after {
+    background-color: $color-white;
+    bottom: 0;
+    height: calc(100% - var(--item-gap) - var(--item-padding-block));
+    left: calc(var(--item-indentation) * -1);
+    width: var(--item-indentation);
+  }
+}
+
+// First level exceptions
+.org-chart__container:not(.org-chart__container--inner) > .org-chart__item {
+  // The very first item doesn't need margin on top.
+  &:first-child {
+    margin-block-start: 0;
+  }
+
+  // The first level doesn't need the item relation indicators eiter.
+  &::before,
+  > .org-chart__item__title::after {
+    display: none;
+  }
+}
+
+.org-chart__item__title {
+  background-color: var(--hdbt-color-palette--secondary);
+  display: block;
+  margin: 0;
+  padding: var(--item-padding-block) var(--item-padding-inline);
+  position: relative;
+
+  // This after adds the horizontal line that connects the vertical line to each item.
+  &::after {
+    border-top: var(--item-relation-indicator-width) solid $color-black;
+    content: "";
+    display: block;
+    height: 50%;
+    left: calc(var(--item-indentation) * -1);
+    position: absolute;
+    top: calc(var(--item-gap) + var(--item-padding-block) - var(--item-relation-indicator-width));
+    width: var(--item-indentation);
+  }
+}
+
+.org-chart__item__title--level-1 {
+  @include font('h3');
+}
+
+.org-chart__item__title--level-2 {
+  @include font('h4');
+}
+
+.org-chart__item__title--level-3 {
+  @include font('h5');
+}
+
+.org-chart__item__title--level-4 {
+  @include font('h6');
+}
