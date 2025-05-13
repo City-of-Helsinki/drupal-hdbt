@@ -67,10 +67,26 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         }
         actions={
           <div className='hdbt-search--react__results--tablist' role='tablist'>
-            <button type='button' className='tablist-tab' role='tab' aria-selected={!useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(false)}>
+            <button
+              id='school-search-results-tab-list'
+              type='button'
+              className='tablist-tab'
+              role='tab'
+              aria-selected={!useMap}
+              aria-controls='school-search-results-tabpanel-list'
+              onClick={() => setUseMap(false)}
+            >
               { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
             </button>
-            <button type='button' className='tablist-tab' role='tab' aria-selected={useMap} aria-controls='hdbt-search--react__results--tabpanel' onClick={() => setUseMap(true)}>
+            <button
+              id='school-search-results-tab-map'
+              type='button'
+              className='tablist-tab'
+              role='tab'
+              aria-selected={useMap}
+              aria-controls='school-search-results-tabpanel-map'
+              onClick={() => setUseMap(true)}
+            >
               { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
             </button>
           </div>
@@ -78,7 +94,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         actionsClass="hdbt-search--react__results--sort"
         ref={scrollTarget}
       />
-      <div id='hdbt-search--react__results--tabpanel' role="tabpanel">
+      <div
+        id={`school-search-results-tabpanel-${useMap ? 'map' : 'list'}`}
+        role="tabpanel"
+        aria-labelledby={`school-search-results-tab-${useMap ? 'map' : 'list'}`}
+      >
         {
           useMap ?
             <ResultsMap ids={data?.aggregations?.ids?.buckets} />
