@@ -21,6 +21,8 @@ const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) 
     }
 
     setParams(params);
+    // Trigger scroll to results even if the form is submitted empty.
+    sessionStorage.setItem('scrollToResults', 'true');
   };
 
   return (
