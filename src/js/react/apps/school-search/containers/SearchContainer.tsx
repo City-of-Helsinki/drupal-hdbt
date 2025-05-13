@@ -59,10 +59,26 @@ const SearchContainer = () => {
   return (
     <>
       <div className='hdbt-search--react__results--tablist' role='tablist'>
-        <button id='school-search-tab-proximity' type='button' className='tablist-tab' role='tab' aria-selected={searchMode === MODE_OPTIONS.proximity} aria-controls='school-search-tabpanel-proximity' onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}>
+        <button
+          id='school-search-tab-proximity'
+          type='button'
+          className='tablist-tab'
+          role='tab'
+          aria-selected={searchMode === MODE_OPTIONS.proximity}
+          aria-controls='school-search-tabpanel-proximity'
+          onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}
+        >
           {Drupal.t('Search for your local school', {}, {context: 'School search: local search title'})}
         </button>
-        <button id='school-search-tab-feature' type='button' className='tablist-tab' role='tab' aria-selected={searchMode === MODE_OPTIONS.feature} aria-controls='school-search-tabpanel-feature' onClick={() => changeSearchMode(MODE_OPTIONS.feature)}>
+        <button
+          id='school-search-tab-feature'
+          type='button'
+          className='tablist-tab'
+          role='tab'
+          aria-selected={searchMode === MODE_OPTIONS.feature}
+          aria-controls='school-search-tabpanel-feature'
+          onClick={() => changeSearchMode(MODE_OPTIONS.feature)}
+        >
           {Drupal.t('Search with school information', {}, {context: 'School search: Feature form title'})}
         </button>
       </div>
