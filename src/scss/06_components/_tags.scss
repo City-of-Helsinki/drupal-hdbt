@@ -6,38 +6,32 @@
   @include tag-parent;
 }
 
-.content-tags__tags__tag a,
-.content-tags__tags__tag span,
-.content-tags__tags--static li {
-  @include tag('base');
-}
-
 .content-tags__tags--interactive a {
   @include tag('interactive');
 }
 
-.content-tags__tags--static .content-tags__tags__tag--coat-of-arms span {
+.content-tags__tags--static .content-tags__tags__tag--coat-of-arms {
   background-color: $color-coat-of-arms-medium-light;
 }
 
-.content-tags__tags--static .content-tags__tags__tag--gold span {
+.content-tags__tags--static .content-tags__tags__tag--gold {
   background-color: $color-gold-medium-light;
 }
 
-.content-tags__tags--static .content-tags__tags__tag--bus span {
+.content-tags__tags--static .content-tags__tags__tag--bus {
   background-color: $color-bus-medium-light;
 }
 
-.content-tags__tags--static .content-tags__tags__tag--success span {
+.content-tags__tags--static .content-tags__tags__tag--success {
   background-color: $color-success;
   color: $color-white;
 }
 
-.content-tags__tags--static .content-tags__tags__tag--alert span {
+.content-tags__tags--static .content-tags__tags__tag--alert {
   background-color: $color-alert;
 }
 
-.content-tags__tags--static .content-tags__tags__tag--error span {
+.content-tags__tags--static .content-tags__tags__tag--error {
   background-color: $color-error;
   color: $color-white;
 }
