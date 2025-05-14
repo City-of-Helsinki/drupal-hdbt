@@ -120,7 +120,7 @@ closable_announcements:
   - core/drupalSettings
 
 closable_surveys:
-  version: 1.0
+  version: 1.1
   js:
     dist/js/closable-surveys.min.js: {
       minified: true
