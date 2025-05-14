@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import {Button, ButtonVariant, IconCross} from 'hds-react';
+import {Tag, TagSize} from 'hds-react';
 
 type FilterButtonProps = {
   value: string;
@@ -11,19 +11,28 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
     className='content-tags__tags__tag content-tags__tags--interactive'
     key={`${value.toString()}`}
   >
-    <Button
+    <Tag
+      className='hdbt-search__remove-selection-button'
+      /* @ts-ignore */
+      onDelete={clearSelection}
+      size={TagSize.Large}
       aria-label={Drupal.t(
         'Remove @item from search results',
         { '@item': value.toString() },
         { context: 'Search: remove item aria label' }
       )}
-      className='hdbt-search__remove-selection-button'
-      iconEnd={<IconCross className='hdbt-search__remove-selection-icon' />}
-      variant={ButtonVariant.Supplementary}
-      onClick={clearSelection}
-    >
+      theme={{
+        '--background-color-hover': 'var(--hdbt-color-black)',
+        '--background-color': 'var(--background-color-disabled)',
+        /* @ts-ignore */
+        '--color-hover': 'var(--color-white)',
+        '--outline-color': 'var(--hdbt-color-black)',
+        '--outline-color-hover': 'var(--hdbt-color-black)',
+        '--border-color-hover': 'var(--hdbt-color-black)',
+      }}
+      >
       {value}
-    </Button>
+    </Tag>
   </li>
 );
 

@@ -16,10 +16,6 @@
   @include tag('interactive');
 }
 
-.content-tags__tags--static span {
-  @include tag('static');
-}
-
 .content-tags__tags--static .content-tags__tags__tag--coat-of-arms span {
   background-color: $color-coat-of-arms-medium-light;
 }
