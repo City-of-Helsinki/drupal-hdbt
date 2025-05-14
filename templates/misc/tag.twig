@@ -5,9 +5,9 @@
     {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
   {% endif %}
 
-  <li class="content-tags__tags__tag hds-tag {{ tag_color_class }}">
+  <li class="content-tags__tags__tag">
     {% if addSpan %}
-      <span>{{ tag }}</span>
+      <span class="hds-tag {{ tag_color_class }}">{{ tag }}</span>
     {% else %}
       {{ tag }}
     {% endif %}

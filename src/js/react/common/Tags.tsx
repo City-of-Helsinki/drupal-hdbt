@@ -24,10 +24,12 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
     },
     <ul className={`content-tags__tags ${typeClass}`}>
       {tags.map((item: TagType, key: number) => (
-        <li key={`{item.tag}-${key}`} className={`content-tags__tags__tag ${item.color ? `content-tags__tags__tag--${item.color}` : ''}`} {...langAttribute}>
+        <li key={`{item.tag}-${key}`} className="content-tags__tags__tag" {...langAttribute}>
           {/* @todo UHF-11117 Check if this works after react is updated */}
           {/* @ts-ignore */} 
-          <Tag>
+          <Tag
+            className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}
+          >
             {item.tag}
           </Tag>
         </li>
