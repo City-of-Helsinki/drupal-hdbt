@@ -6,10 +6,6 @@
   @include tag-parent;
 }
 
-.content-tags__tags--interactive a {
-  @include tag('interactive');
-}
-
 .content-tags__tags--static .content-tags__tags__tag--coat-of-arms {
   background-color: $color-coat-of-arms-medium-light;
 }
