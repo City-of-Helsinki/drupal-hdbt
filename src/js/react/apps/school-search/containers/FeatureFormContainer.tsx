@@ -76,6 +76,8 @@ const FeatureFormContainer = () => {
     params.bilingual_education = bilingualSelection.flatMap((selection: OptionType) => selection.value.split(','));
 
     setParams(params);
+    // Trigger scroll to results even if the form is submitted empty.
+    sessionStorage.setItem('scrollToResults', 'true');
   };
 
   const keys: Array<keyof Omit<SearchParams, 'keyword'|'page'|'query'|'a1'|'a2'|'b1'|'b2'|'weighted_education'|'bilingual_education'>> = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];

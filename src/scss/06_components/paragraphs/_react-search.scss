@@ -52,6 +52,12 @@
   @include breakpoint($breakpoint-l) {
     margin-bottom: 0;
   }
+
+  &:active,
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: 2px;
+  }
 }
 
 .hdbt-search--react__results--tablist {
