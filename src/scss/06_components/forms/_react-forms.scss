@@ -107,27 +107,6 @@
   text-align: center;
 }
 
-// Use a very specific selector here to override hds styles
-button.hdbt-search__remove-selection-button:not(:disabled) {
-  @include tag('interactive--deletable');
-
-  --color-hover-focus: var(--hdbt-text-color);
-  color: var(--hdbt-color-black);
-}
-
-// Neagate HDS-defined paddings for span-element inside button
-.hdbt-search__remove-selection-button span {
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-}
-
-// Negate HDS-defined margin for icon inside remove button
-.hdbt-search__selections-wrapper button.hdbt-search__remove-selection-button > div {
-  margin-right: 0;
-}
-
 .hdbt-search__selections-container {
   list-style-type: none;
 }

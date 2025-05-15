@@ -1,7 +1,4 @@
 $-tag-gap: $spacing-half;
-$-tag-static-padding: $spacing-half $spacing 10px;
-$-tag-interactive-padding: $spacing 20px 18px;
-$-tag-interactive--deletable-padding: 12px 20px 12px;
 
 // Renders styles for tags container
 @mixin tag-container() {
@@ -19,63 +16,4 @@ $-tag-interactive--deletable-padding: 12px 20px 12px;
   list-style: none;
   margin-bottom: $-tag-gap;
   margin-top: 0;
-}
-
-// Renders tag styles based on $style parameter
-@mixin tag($style) {
-  @if $style == 'base' {
-    @include font('special.helper_text');
-    display: inline-block;
-    line-height: 1;
-    text-decoration: none;
-    transition: 0.2s ease-in-out background-color, 0.2s ease-in-out border-color;
-  }
-
-  @if $style == 'static' {
-    background-color: $color-silver;
-    border-radius: $spacing;
-    padding: $-tag-static-padding;
-  }
-
-  @if $style == 'interactive' {
-    background-color: transparent;
-    border: 1px solid $color-black;
-    border-radius: $spacing-triple;
-    padding: $-tag-interactive-padding;
-
-    &:hover,
-    &:active {
-      background-color: $color-black;
-      border-color: $color-black;
-      color: $color-white;
-    }
-
-    &:focus,
-    &:active {
-      border-color: $color-black;
-      outline: 2px solid $color-black;
-      outline-offset: 2px;
-    }
-  }
-
-  @if $style == 'interactive--deletable' {
-    background-color: transparent;
-    border: 1px solid $color-black;
-    border-radius: $spacing-triple;
-    padding: $-tag-interactive--deletable-padding;
-
-    &:hover,
-    &:active {
-      background-color: $color-black;
-      border-color: $color-black;
-      color: $color-white;
-    }
-
-    &:focus,
-    &:active {
-      border-color: $color-black;
-      outline: 2px solid $color-black;
-      outline-offset: 2px;
-    }
-  }
 }
