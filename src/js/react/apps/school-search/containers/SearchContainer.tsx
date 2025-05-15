@@ -94,7 +94,7 @@ const SearchContainer = () => {
                 <ProximityFormContainer initialAddress={initialParams?.address} />
                 <ProximityResultsContainer />
               </div> :
-              <div id='school-search-tabpanel-feature' role='tabpanel' aria-labelledby='school-search-tab-proximity'>
+              <div id='school-search-tabpanel-feature' role='tabpanel' aria-labelledby='school-search-tab-feature'>
                 <FeatureFormContainer />
                 <FeatureResultsContainer />
               </div>

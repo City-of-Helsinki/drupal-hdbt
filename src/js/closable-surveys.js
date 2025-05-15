@@ -20,7 +20,7 @@ import LocalStorageManager from './localStorageManager';
 
       const root = document.documentElement;
       const surveyDelay = 2000;
-      const surveyCloseButton = document.getElementById('helfi-survey__close-button');
+      const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
       const surveyKey = 'hidden-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveysToHide = null;
@@ -52,8 +52,7 @@ import LocalStorageManager from './localStorageManager';
 
       function setBodyPaddingRight(enable) {
         if (enable) {
-          const scrollBarWidth = `${window.innerWidth - document.documentElement.clientWidth}px`;
-          document.body.style.paddingRight = scrollBarWidth;
+          document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
         } else {
           document.body.style.removeProperty('padding-right');
         }
@@ -128,8 +127,10 @@ import LocalStorageManager from './localStorageManager';
         focusToCookieBanner();
       }
 
-      if (surveyCloseButton) {
-        surveyCloseButton.addEventListener('click', removeSurvey);
+      if (surveyButtons) {
+        surveyButtons.forEach(
+          button => button.addEventListener('click', removeSurvey)
+        );
       }
 
       function handleEscapeKey(event) {
