@@ -261,9 +261,7 @@ export const employmentAtom = atom(async(get) => {
         simpleLabel = Drupal.t('Fixed-term contract and service employment', {}, { context: 'Employment filter selection value'});
       }
       else {
-        console.log(combinedAggs);
         count = combinedAggs.get(tid) || 0;
-        console.log(count);
         label = `${term._source.name} (${count})`;
       }
 
