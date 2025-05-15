@@ -234,7 +234,7 @@ export const employmentAtom = atom(async(get) => {
       const customId = term._source.field_search_id?.[0];
       let count = 0;
       let additionalValue = null;
-      let label = `${term._source.name} (${count})`;
+      let label = '';
       let simpleLabel = term._source.name;
 
       if (!customId) {
@@ -262,6 +262,7 @@ export const employmentAtom = atom(async(get) => {
       }
       else {
         count = combinedAggs.get(tid) || 0;
+        label = `${term._source.name} (${count})`;
       }
 
 
