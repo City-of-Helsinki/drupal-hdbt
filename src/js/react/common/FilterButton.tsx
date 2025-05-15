@@ -13,6 +13,7 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
   >
     <Tag
       className='hdbt-search__remove-selection-button'
+      /* @todo UHF-11117 Check if this works after react is updated */
       /* @ts-ignore */
       onDelete={clearSelection}
       size={TagSize.Large}
