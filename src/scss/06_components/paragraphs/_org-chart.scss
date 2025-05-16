@@ -2,6 +2,8 @@
   --item-indentation: #{$spacing};
   --item-gap: #{$spacing};
   --item-padding-block: #{$spacing-double};
+  --item-lvl-3-padding-block: #{$spacing-and-half};
+  --item-lvl-4-padding-block: #{$spacing};
   --item-padding-inline: #{$spacing};
   --item-relation-indicator-width: 2px;
   list-style: none;
@@ -10,6 +12,7 @@
 
   @include breakpoint($breakpoint-m) {
     --item-indentation: #{$spacing-double};
+    --item-padding-inline: #{$spacing-double};
   }
 }
 
@@ -94,8 +97,10 @@
 
 .org-chart__item__title--level-3 {
   @include font('h5');
+  padding-block: var(--item-lvl-3-padding-block);
 }
 
 .org-chart__item__title--level-4 {
   @include font('h6');
+  padding-block: var(--item-lvl-4-padding-block);
 }
