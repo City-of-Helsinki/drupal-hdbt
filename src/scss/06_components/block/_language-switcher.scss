@@ -45,6 +45,11 @@
   display: flex; // disables wrapping to multiple lines for now
 }
 
+// This mixin is used to remove the overflow hidden from language
+// switcher items when they are opened. The overflow:hidden
+// is placed on the items to avoid horizontal scroll bar appearing
+// on the pages when the language switcher is close to the right
+// end of the page.
 @mixin language-switcher-overflow-prevention($id, $wrapper-modifier) {
   #{$id}:target,
   #{$id}[data-target='true'] {
