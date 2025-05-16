@@ -2,12 +2,12 @@ import { close, open } from './nav-toggle/toggle-widgets';
 import NavToggleDropdown from './nav-toggle/nav-toggle-dropdown';
 import MenuDropdown from './nav-global/menu';
 
+// Not using 'once()' here because NavToggleDropdown manages its own init state via 'this.running'.
+// Using 'once()' would interfere with dropdown lifecycle and cause skipped or incomplete setups.
+
 (function navToggle (Drupal, drupalSettings) {
   Drupal.behaviors.navToggle = {
-    attach(context) {
-      // Prevent multiple initializations.
-      if (context !== document) return;
-
+    attach() {
       const brandingElements = {};
       // Check if global menu is enabled.
       const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
