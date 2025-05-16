@@ -44,3 +44,22 @@
 .language-links {
   display: flex; // disables wrapping to multiple lines for now
 }
+
+@mixin language-switcher-overflow-prevention($id, $wrapper-modifier) {
+  #{$id}:target,
+  #{$id}[data-target='true'] {
+    & ~ * #{$wrapper-modifier} {
+      overflow: visible;
+    }
+  }
+}
+
+@each $lang in fi, sv, en {
+  $suffix: 'language-toast--#{$lang}';
+
+  @include language-switcher-overflow-prevention('##{$suffix}', '.language-link__wrapper--#{$lang}');
+
+  .language-link__wrapper--#{$lang} {
+    overflow: hidden;
+  }
+}

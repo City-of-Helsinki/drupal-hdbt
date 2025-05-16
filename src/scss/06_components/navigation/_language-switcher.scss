@@ -47,7 +47,7 @@ $-current-border-size: 3px;
   &:focus,
   &:active {
     outline: 3px solid $color-black;
-    outline-offset: 0;
+    outline-offset: -3px;
   }
 
   &.is-disabled {
@@ -81,7 +81,7 @@ $-current-border-size: 3px;
   .nav-toggle__button {
     &:focus .nav-toggle__label ,
     &:active .nav-toggle__label {
-      outline-offset: 0;
+      outline-offset: -3px;
     }
 
     &.is-alternative {
