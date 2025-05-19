@@ -5,23 +5,27 @@ import MenuDropdown from './nav-global/menu';
 // Not using 'once()' here because NavToggleDropdown manages its own init state via 'this.running'.
 // Using 'once()' would interfere with dropdown lifecycle and cause skipped or incomplete setups.
 
-(function navToggle (Drupal, drupalSettings) {
+((Drupal) => {
   Drupal.behaviors.navToggle = {
-    attach() {
+    attach(context, settings) {
+      if (context !== document || window.navToggleInitialized) {
+        return;
+      }
+
       const brandingElements = {};
       // Check if global menu is enabled.
-      const globalMenu = drupalSettings.hdbt.global_menu ? MenuDropdown : false;
+      const globalMenu = settings.hdbt.global_menu ? MenuDropdown : false;
 
       // Check what features on header branding region are on.
-      if (drupalSettings.hdbt.profile_dropdown) {
+      if (settings.hdbt.profile_dropdown) {
         brandingElements.ProfileDropdown = 'profile';
       }
 
-      if (drupalSettings.hdbt.search_dropdown) {
+      if (settings.hdbt.search_dropdown) {
         brandingElements.SearchDropdown = 'search';
       }
 
-      if (drupalSettings.hdbt.otherlangs_dropdown) {
+      if (settings.hdbt.otherlangs_dropdown) {
         brandingElements.OtherLangsDropdown = 'otherlangs';
       }
 
@@ -29,8 +33,8 @@ import MenuDropdown from './nav-global/menu';
         brandingElements.CssMenuDropdownDropdown = 'cssmenu';
       }
 
-      if (drupalSettings.hdbt.language_toast_dropdown) {
-        const currentLanguage = drupalSettings.hdbt.current_language;
+      if (settings.hdbt.language_toast_dropdown) {
+        const currentLanguage = settings.hdbt.current_language;
         const supportedLanguages = ['fi', 'sv', 'en'];
 
         supportedLanguages.forEach((language) => {
@@ -165,14 +169,15 @@ import MenuDropdown from './nav-global/menu';
       // Attach outside click listener to the whole header branding region area,
       // so that other languages menu and mega menu can be closed when clicking
       // outside of header branding region.
-      document.addEventListener('click', closeFromOutside);
+      context.addEventListener('click', closeFromOutside);
 
       // Prevent body scroll through shared header element when
       // full screen menu is open.
-      const body = document.querySelector('body');
+      const body = context.querySelector('body');
       body.addEventListener('wheel', blockBrandingScroll, { passive: false });
       body.addEventListener('scroll', blockBrandingScroll, { passive: false });
       body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
+      window.navToggleInitialized = true;
     }
   };
-})(Drupal, drupalSettings);
+})(Drupal);

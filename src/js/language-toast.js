@@ -1,12 +1,14 @@
 import { positionDropdown } from './position-dropdown';
 
-(function languageToastPositioning (Drupal) {
+((Drupal) => {
   Drupal.behaviors.languageToastPositioning = {
     attach(context) {
-      const $context = context || document;
+      if (context !== document || window.languageToastInitialized) {
+        return;
+      }
 
       // Handle click event and position the toast correctly before opening it.
-      const buttons = $context.querySelectorAll('.nav-toggle__button.has-toast');
+      const buttons = context.querySelectorAll('.nav-toggle__button.has-toast');
 
       buttons.forEach(button => {
         // Prevent attaching multiple listeners (important for AJAX/BigPipe re-runs)
@@ -41,6 +43,8 @@ import { positionDropdown } from './position-dropdown';
 
         window.__toastResizeBound = true;
       }
+
+      window.languageToastInitialized = true;
     }
   };
 })(Drupal);
