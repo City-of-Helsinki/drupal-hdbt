@@ -1,0 +1,91 @@
+{#
+  Status message template.
+
+  Example usage:
+
+  {% include "@hdbt/misc/status-message.twig" with
+    {
+      type: 'error',
+      size: 'large',
+      title: title_variable
+      alternative_language: {
+        'fallback_lang': 'en',
+        'fallback_dir': 'ltr',
+      },
+      messages: [
+        message_variable,
+      ]
+    }
+  %}
+#}
+
+{% set section_attributes = create_attribute({
+  'data-drupal-messages': '',
+  'aria-label': 'Notification'|t,
+  'type': 'button',
+  'class': [
+    'hds-notification',
+  ],
+}) %}
+
+{% if alternative_language %}
+  {% set section_attributes = section_attributes
+    .setAttribute('lang', alternative_language.fallback_lang)
+    .setAttribute('dir', alternative_language.fallback_dir)
+  %}
+{% endif %}
+
+{% set wrapper_attributes = create_attribute({
+  'class': [
+    'hds-notification__content',
+  ],
+}) %}
+
+{% if type == 'error' %}
+  {% set section_attributes = section_attributes.addClass('hds-notification--error') %}
+  {% set notification_icon = 'error-fill' %}
+{% elseif type == 'warning' %}
+  {% set section_attributes = section_attributes.addClass(['hds-notification--alert']) %}
+  {% set notification_icon = 'alert-circle-fill' %}
+{% elseif type == 'success' %}
+  {% set section_attributes = section_attributes.addClass(['hds-notification--success']) %}
+  {% set notification_icon = 'check-circle-fill' %}
+{% else %}
+  {% set section_attributes = section_attributes.addClass(['hds-notification--info']) %}
+  {% set notification_icon = 'info-circle-fill' %}
+{% endif %}
+
+{% if size == 'large' %}
+  {% set section_attributes = section_attributes.addClass(['hds-notification--large']) %}
+{% elseif size == 'small' %}
+  {% set section_attributes = section_attributes.addClass(['hds-notification--small']) %}
+{% endif %}
+
+<section{{ section_attributes }}>
+  {% set is_message_with_icon = type in ['error', 'default', 'warning', 'success'] %}
+  <div{{ wrapper_attributes }}>
+    {% if title or is_message_with_icon %}
+      {% if title %}
+        <div class="hds-notification__label" role="heading" aria-level="2">
+          <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
+          <span>{{ title }}</span>
+        </div>
+      {% else %}
+        <div class="hds-notification__label" role="heading" aria-hidden="true">
+          <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
+        </div>
+      {% endif %}
+    {% endif %}
+    <div class="hds-notification__body">
+      {% if messages|length > 1 %}
+        <ul class="messages__list">
+          {% for message in messages %}
+            <li class="messages__list__item">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        {{ messages|first }}
+      {% endif %}
+    </div>
+  </div>
+</section>

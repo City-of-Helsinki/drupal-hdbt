@@ -22,60 +22,18 @@
  * @see claro_preprocess_status_messages().
  */
 #}
-{% set classes = ['hds-notification__content'] %}
 
 {% for type, messages in message_list %}
-  {% set section_classes = ['hds-notification'] %}
-
-  {% if type == 'error' %}
-    {% set section_classes = section_classes|merge(['hds-notification--error']) %}
-    {% set notification_icon = 'error-fill' %}
-  {% elseif type == 'warning' %}
-    {% set section_classes = section_classes|merge(['hds-notification--alert']) %}
-    {% set notification_icon = 'alert-circle-fill' %}
-  {% elseif type == 'success' %}
-    {% set section_classes = section_classes|merge(['hds-notification--success']) %}
-    {% set notification_icon = 'check-circle-fill' %}
-  {% else %}
-    {% set section_classes = section_classes|merge(['hds-notification--info']) %}
-    {% set notification_icon = 'info-circle-fill' %}
-  {% endif %}
-
-  {% if size == 'large' %}
-    {% set section_classes = section_classes|merge(['hds-notification--large']) %}
-  {% elseif size == 'small' %}
-    {% set section_classes = section_classes|merge(['hds-notification--small']) %}
-  {% endif %}
-
-  <section data-drupal-messages aria-label="{{ 'Notification'|t }}" class="{{ section_classes|without('messages-list')|join(' ') }}" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
-    {% set is_message_with_title = status_headings[type] %}
-    {% set is_message_with_icon = type in ['error', 'default', 'warning', 'success'] %}
-    <div class="{{ classes|without('messages-list__item')|join(' ') }}">
-      {% if is_message_with_title or is_message_with_icon %}
-        {% if is_message_with_title %}
-          <div class="hds-notification__label" role="heading" aria-level="2">
-            <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
-            <span id="{{ title_ids[type] }}">{{ status_headings[type] }}</span>
-          </div>
-        {% else %}
-          <div class="hds-notification__label" role="heading" aria-hidden="true">
-            <span class="hds-icon hds-icon--{{ notification_icon }}" aria-hidden="true"></span>
-          </div>
-        {% endif %}
-      {% endif %}
-      <div class="hds-notification__body">
-        {% if messages|length > 1 %}
-          <ul class="messages__list">
-            {% for message in messages %}
-              <li class="messages__list__item">{{ message }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          {{ messages|first }}
-        {% endif %}
-      </div>
-    </div>
-    {# Remove type specific classes. #}
-    {% set attributes = attributes.removeClass(classes) %}
-  </section>
+  {% include "@hdbt/misc/status-message.twig" ignore missing with
+    {
+      type: type,
+      size: size,
+      title: status_headings[type],
+      alternative_language: {
+        'fallback_lang': lang_attributes.fallback_lang,
+        'fallback_dir': lang_attributes.fallback_dir,
+      },
+      messages: messages,
+    }
+  %}
 {% endfor %}

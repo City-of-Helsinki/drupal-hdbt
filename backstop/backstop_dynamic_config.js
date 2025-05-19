@@ -388,6 +388,15 @@ function getConfig(hostname, protocol, type) {
           'selectorExpansion': expandComponents,
         },
         {
+          'label': 'DC: Organization Chart',
+          'url': `${protocol}://${hostname}/en/dc-components/dc-org-chart`,
+          'removeSelectors': removeDefault,
+          'selectors': [
+            '.component--org-chart'
+          ],
+          'selectorExpansion': expandComponents,
+        },
+        {
           'label': 'DC: Phasing',
           'url': `${protocol}://${hostname}/en/dc-components/dc-phasing`,
           'removeSelectors': removeDefault,

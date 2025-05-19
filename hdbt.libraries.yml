@@ -260,7 +260,7 @@ hyphenopoly:
     - hdbt/hyphenopoly-loader
 
 job-search:
-  version: 1.8.4
+  version: 1.8.5
   js:
     dist/js/job-search.min.js: {
       preprocess: false,
