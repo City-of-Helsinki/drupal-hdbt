@@ -1,32 +1,50 @@
 import { positionDropdown } from './position-dropdown';
 
-document.addEventListener('DOMContentLoaded', function languageToastPositioning() {
-  const buttons = document.querySelectorAll('.nav-toggle__button.has-toast');
-
-  // Handle click event and position the toast correctly before opening it.
-  buttons.forEach(button => {
-    button.addEventListener('click', function languageToastClick() {
-      const buttonParent = button.parentElement;
-      const toast = buttonParent.nextElementSibling;
-
-      if (!toast || !toast.classList.contains('nav-toggle-dropdown--language-toast')) {
+((Drupal) => {
+  Drupal.behaviors.languageToastPositioning = {
+    attach(context) {
+      if (context !== document || window.languageToastInitialized) {
         return;
       }
 
-      // Position and after that show the toast.
-      positionDropdown(button, button,{ isToast: true });
-    });
-  });
+      // Handle click event and position the toast correctly before opening it.
+      const buttons = context.querySelectorAll('.nav-toggle__button.has-toast');
 
-  // Handle resize event to reposition open toasts.
-  window.addEventListener('resize', function languageToastResize() {
-    document.querySelectorAll('.nav-toggle__button.has-toast').forEach(button => {
-      const buttonParent = button.parentElement;
-      const toast = buttonParent.nextElementSibling;
+      buttons.forEach(button => {
+        // Prevent attaching multiple listeners (important for AJAX/BigPipe re-runs)
+        if (button.dataset.toastInitialized) return;
 
-      if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
-        positionDropdown(button, button,{ isToast: true });
+        button.addEventListener('click', () => {
+          const buttonParent = button.parentElement;
+          const toast = buttonParent?.nextElementSibling;
+
+          if (!toast || !toast.classList.contains('nav-toggle-dropdown--language-toast')) {
+            return;
+          }
+
+          positionDropdown(button, button, { isToast: true });
+        });
+
+        button.dataset.toastInitialized = 'true'; // Mark as initialized
+      });
+
+      // Ensure only one resize listener is added globally.
+      if (!window.__toastResizeBound) {
+        window.addEventListener('resize', () => {
+          document.querySelectorAll('.nav-toggle__button.has-toast').forEach(button => {
+            const buttonParent = button.parentElement;
+            const toast = buttonParent?.nextElementSibling;
+
+            if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
+              positionDropdown(button, button, { isToast: true });
+            }
+          });
+        });
+
+        window.__toastResizeBound = true;
       }
-    });
-  });
-});
+
+      window.languageToastInitialized = true;
+    }
+  };
+})(Drupal);
