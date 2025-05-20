@@ -100,6 +100,8 @@ function hdbt_preprocess_html(&$variables): void {
     }
   }
   if ($add_matomo) {
+    $settingsService = \Drupal::service('settings');
+    $variables['#attached']['drupalSettings']['matomo_site_id'] = $settingsService->get('matomo_site_id');
     $variables['#attached']['library'][] = 'hdbt/matomo';
   }
 
@@ -123,6 +125,10 @@ function hdbt_preprocess_html(&$variables): void {
 
       $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
         ->getName();
+
+      if ($add_matomo) {
+        $variables['#attached']['drupalSettings']['helfi_environment'] = $service->getActiveEnvironmentName();
+      }
     }
     catch (\InvalidArgumentException) {
     }

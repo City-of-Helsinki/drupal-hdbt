@@ -27,10 +27,9 @@ function getBrowserSize() {
 // eslint-disable-next-line func-names
 (function ($, Drupal) {
   function loadMatomoAnalytics() {
-    const { helfi_instance_name: instanceName } = drupalSettings;
-    const hasId = drupalSettings.matomo_site_id || instanceName === 'etusivu';
+    const { helfi_environment: environment } = drupalSettings;
 
-    if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && hasId)) {
+    if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
       return;
     }
 
@@ -57,10 +56,10 @@ function getBrowserSize() {
     (function() {
       const u='//webanalytics.digiaiiris.com/js/';
       _paq.push(['setTrackerUrl', `${u}tracker.php`]);
-      _paq.push(['setSiteId', '141']);
+      _paq.push(['setSiteId', environment === 'production' ? '141' : '1292']);
 
-      // Etusivu ID is 141. Duplicate tracking for other sites.
-      if (instanceName !== 'etusivu') {
+      // Etusivu ID is 141 (1292 in testing). Duplicate tracking for other sites.
+      if (!['141', '1292'].includes(drupalSettings.matomo_site_id.toString())) {
         _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
       }
 
