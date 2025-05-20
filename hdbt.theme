@@ -123,6 +123,10 @@ function hdbt_preprocess_html(&$variables): void {
 
       $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
         ->getName();
+
+      if ($add_matomo) {
+        $variables['#attached']['drupalSettings']['helfi_environment'] = $service->getActiveEnvironmentName();
+      }
     }
     catch (\InvalidArgumentException) {
     }
