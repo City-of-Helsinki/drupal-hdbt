@@ -1,3 +1,13 @@
+/**
+ * As a result of UHF-11765 there is no point in refactoring this file. We've overwritten so many
+ * hds-button styles that it would be a major work to import button.css from hds-core without it
+ * breaking many styles. The refactoring should be done in the hds-core package instead.
+ * Largest variations form hds-core are:
+ *   - how we handle icons
+ *   - how we add attributes to the button/links that appear like buttons
+ *   - how we add paddings and how text wraps in the button
+ */
+
 @mixin hds-button-colors-on-light-bg(){
   --theme-fg1: var(--color-white);
   --theme-fg2: var(--color-black);
@@ -835,6 +845,7 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
       :focus-visible,
       :hover
     )::after {
+      /* stylelint-disable-next-line number-max-precision */
       $mask-move: 0.166666666em;
       mask-position: center, $mask-move (-1 * $mask-move);
     }
@@ -859,6 +870,7 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
 
   &[data-is-external]::after {
     $icons: 'link-external-part1', 'link-external-part2';
+
     @include pseudo-icon($icons, calc(var(--line-height) * 1em), currentColor, inline-block);
 
     --external-icon-move: translate(3px, -3px);
