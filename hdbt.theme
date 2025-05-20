@@ -100,8 +100,6 @@ function hdbt_preprocess_html(&$variables): void {
     }
   }
   if ($add_matomo) {
-    $settingsService = \Drupal::service('settings');
-    $variables['#attached']['drupalSettings']['matomo_site_id'] = $settingsService->get('matomo_site_id');
     $variables['#attached']['library'][] = 'hdbt/matomo';
   }
 
