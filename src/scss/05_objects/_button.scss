@@ -1,11 +1,12 @@
-/* As a result of UHF-11765 there is no point in refactoring this file. We've overritten so many
+/**
+ * As a result of UHF-11765 there is no point in refactoring this file. We've overwritten so many
  * hds-button styles that it would be a major work to import button.css from hds-core without it
  * breaking many styles. The refactoring should be done in the hds-core package instead.
  * Largest variations form hds-core are:
-  * - how we handle icons
-  * - how we add attributes to the button/links that appear like buttons
-  * - how we add paddings and how text wraps in the button
-*/
+ *   - how we handle icons
+ *   - how we add attributes to the button/links that appear like buttons
+ *   - how we add paddings and how text wraps in the button
+ */
 
 @mixin hds-button-colors-on-light-bg(){
   --theme-fg1: var(--color-white);
