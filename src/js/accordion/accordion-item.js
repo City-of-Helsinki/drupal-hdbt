@@ -123,7 +123,13 @@ export default class AccordionItem {
     toggleElement.addEventListener('mouseup', this.toggle);
     toggleElement.addEventListener('keypress', this.toggle);
 
-    const closeElement = this.element.getElementsByClassName(AccordionItem.closeElement)[0];
+    // There might be multiple closeElements inside an AccordionItem
+    // if there is accordions nested. There is however just one close
+    // button inside an accordion so we should select the last one
+    // since it is the correct one that we want to bind the event
+    // listeners.
+    const closeElements = this.element.getElementsByClassName(AccordionItem.closeElement);
+    const closeElement = closeElements[closeElements.length - 1];
     closeElement.addEventListener('mouseup', this.close);
     closeElement.addEventListener('keypress', this.close);
   };
