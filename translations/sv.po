@@ -798,6 +798,14 @@ msgctxt "TPR unit contact information service language"
 msgid "Service language"
 msgstr "Servicespråk"
 
+msgctxt "TPR unit contact information website label"
+msgid "Website"
+msgstr "Webbplats"
+
+msgctxt "TPR unit contact information website link"
+msgid "Go to the website"
+msgstr "Gå till webbplatsen"
+
 msgctxt "TPR unit contact information HSL Journey Planner link"
 msgid "Show the route in the HSL Journey Planner"
 msgstr "Visa rutten i HRT:s reseplaneraren"
