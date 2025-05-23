@@ -5,14 +5,13 @@ const HOVER_CLASS = 'menu__item--hover';
 
 // Helper function for clearing element styles.
 const clearStyles = (element) => {
-  element.removeAttribute('style');
+  if (element) {
+    element.removeAttribute('style');
+  }
 };
 
 const updateFirstChildAriaExpanded = (item) => {
-  let state = 'false';
-  if (item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS)) {
-    state = 'true';
-  }
+  const state = item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS) ? 'true' : 'false';
   const firstChild = item.querySelector(':first-child .menu__toggle-button');
   if (firstChild) {
     firstChild.setAttribute('aria-expanded', state);
@@ -22,22 +21,15 @@ const updateFirstChildAriaExpanded = (item) => {
 const closeOpenItems = (element) => {
   const allOpenItems = document.querySelectorAll(`.desktop-menu .${OPEN_CLASS}`);
 
-  if (allOpenItems) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const item of allOpenItems) {
-      // Check that the item we are about to close is not the
-      // element-variable given to the function.
-      if (item === element) {
-        return;
-      }
-      item.classList.remove(OPEN_CLASS);
-      const dropdown = item.querySelector('.menu--level-1');
-      if (dropdown) {
-        clearStyles(dropdown);
-      }
-      updateFirstChildAriaExpanded(item);
-    }
-  }
+  // Check that the item we are about to close is not the
+  // element-variable given to the function.
+  allOpenItems.forEach((item) => {
+    if (item === element) return;
+
+    item.classList.remove(OPEN_CLASS);
+    clearStyles(item.querySelector('.menu--level-1'));
+    updateFirstChildAriaExpanded(item);
+  });
 };
 
 const toggleDesktopMenuLevel = (item) => {
@@ -45,16 +37,13 @@ const toggleDesktopMenuLevel = (item) => {
 
   // Check if there was menu toggle button under the menu item.
   if (toggleButton !== null) {
-    toggleButton.addEventListener('click', function toggleOpen() {
+    toggleButton.addEventListener('click', () => {
       item.classList.toggle(OPEN_CLASS);
       updateFirstChildAriaExpanded(item);
       if (item.classList.contains(OPEN_CLASS)) {
-        positionDropdown(toggleButton, item,{gutter: 12});
+        positionDropdown(toggleButton, item, { gutter: 12 });
       } else {
-        const dropdown = item.querySelector('.menu--level-1');
-        if (dropdown) {
-          clearStyles(dropdown);
-        }
+        clearStyles(item.querySelector('.menu--level-1'));
       }
     });
   }
@@ -63,10 +52,9 @@ const toggleDesktopMenuLevel = (item) => {
 const mouseOver = (event) => {
   const item = event.currentTarget.closest('.menu__item--children');
   closeOpenItems(item);
-  const toggleButton = item.querySelector('.menu__toggle-button');
   item.classList.add(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
-  positionDropdown(toggleButton, item, { gutter: 12 });
+  positionDropdown(item.querySelector('.menu__toggle-button'), item, { gutter: 12 });
 };
 
 const mouseLeave = (event) => {
@@ -74,10 +62,7 @@ const mouseLeave = (event) => {
   item.classList.remove(HOVER_CLASS);
 
   if (!item.classList.contains(OPEN_CLASS)) {
-    const dropdown = item.querySelector('.menu--level-1');
-    if (dropdown) {
-      clearStyles(dropdown);
-    }
+    clearStyles(item.querySelector('.menu--level-1'));
   }
 
   updateFirstChildAriaExpanded(item);
@@ -95,7 +80,9 @@ const mouseLeaveButton = (event) => {
 // to it as an option for skipMe.
 const getChildren = (n, skipMe) => {
   const r = [];
-  for (; n; n = n.nextSibling) if (n.nodeType === 1 && n !== skipMe) r.push(n);
+  for (; n; n = n.nextSibling) {
+    if (n.nodeType === 1 && n !== skipMe) r.push(n);
+  }
   return r;
 };
 
@@ -111,47 +98,36 @@ const handleEscKey = (event) => {
 ((Drupal) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
-      if (context !== document) {
-        return;
-      }
+      const itemsWithVisibleChildren = context.querySelectorAll(
+        '.desktop-menu .menu--level-0 > .menu__item--item-below'
+      );
 
-      if (!window.desktopMenuInitialized) {
-        window.desktopMenuInitialized = true;
-
-        const itemsWithVisibleChildren = context.querySelectorAll(
-          '.desktop-menu .menu--level-0 > .menu__item--item-below'
+      itemsWithVisibleChildren.forEach((item) => {
+        const firstLevelItem = item.querySelector(
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a'
+        );
+        const firstLevelItemButton = item.querySelector(
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button'
         );
 
-        itemsWithVisibleChildren.forEach((item) => {
-          if (!item) {
-            return;
-          }
+        toggleDesktopMenuLevel(item);
 
-          const firstLevelItem = item.querySelector(
-            '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a'
-          );
-          const firstLevelItemButton = item.querySelector(
-            '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button'
-          );
+        if (firstLevelItem) {
+          firstLevelItem.addEventListener('mouseover', mouseOver, false);
+        }
 
-          toggleDesktopMenuLevel(item);
+        if (firstLevelItemButton) {
+          firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
+        }
 
-          if (firstLevelItem) {
-            firstLevelItem.addEventListener('mouseover', mouseOver, false);
-          }
+        item.addEventListener('mouseleave', mouseLeave, false);
+      });
 
-          if (firstLevelItemButton) {
-            firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
-          }
-
-          item.addEventListener('mouseleave', mouseLeave, false);
-        });
+      // Add the global event listeners only once.
+      if (context === document && !window.desktopMenuInitialized) {
+        window.desktopMenuInitialized = true;
 
         document.addEventListener('keydown', handleEscKey);
-      }
-
-      if (!window.desktopMenuClickHandlerAdded) {
-        window.desktopMenuClickHandlerAdded = true;
 
         window.addEventListener('click', (event) => {
           const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
@@ -178,10 +154,6 @@ const handleEscKey = (event) => {
             closeOpenItems();
           }
         });
-      }
-
-      if (!window.desktopMenuResizeHandlerAdded) {
-        window.desktopMenuResizeHandlerAdded = true;
 
         window.addEventListener('resize', () => {
           document.querySelectorAll('.menu__toggle-button').forEach((button) => {
@@ -189,7 +161,7 @@ const handleEscKey = (event) => {
             const dropDown = buttonParent.nextElementSibling;
             const menuItem = buttonParent.parentElement;
 
-            if (dropDown && menuItem.classList.contains('menu__item--open')) {
+            if (dropDown && menuItem.classList.contains(OPEN_CLASS)) {
               positionDropdown(button, menuItem, { gutter: 12 });
             }
           });
