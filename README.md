@@ -226,6 +226,41 @@ Remember to update library version number when making changes to react search e.
 React libraries should have a `preprocess: false` setting that it won't be merged to other JS files.
 In that way if there's an error in some JS file it won't break every JS functionality on the site.
 
+## Stylelint
+
+You can use stylelint to check if the scss you have written is up to par with the rules we have set for it
+`.stylelintrc.yml` file. Run the commands under the theme that you want to check the files for.
+
+Running the command for one file:
+```
+npx stylelint path/to/file.scss
+```
+
+Running for a folder:
+```
+npx stylelint path/to/folder/*
+```
+
+Recommended way is to add the stylelinter to run on your IDE so that every time you edit the scss-files it
+lets you know if there is some issues with the styles you are editing/producing. This can be done in
+PhpStorm from Settings > Languages & Frameworks > Style Sheets > Stylelint. There you can enable the stylelinting.
+
+For the Stylelint package get the path under node_modules. Its something like this for example on the
+drupal-helfi-etusivu:
+```
+~/Projects/drupal-helfi-etusivu/public/themes/contrib/hdbt/node_modules/stylelint
+```
+For the configuration file find similar path to the `.stylelintrc.yml` file. It is something similar to this
+on the drupal-helfi-etusivu:
+```
+/Users/your.name/Projects/drupal-helfi-etusivu/public/themes/contrib/hdbt/.stylelintrc.yaml
+```
+And finally - you want to run it for scss-files so add this to the Run for files part:
+```
+**/* {scss}
+```
+Now you should be set. Just press Apply and PhpStorm should start scanning the files usint the stylelint
+rules provided.
 ## ESLint
 
 We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
@@ -237,7 +272,6 @@ Extend as necessary.
  - root eslint rules (inside instance) might be very old
  - instance gitignore excludes subsequent eslints
  - when developing modules/themes under instance, the rules might chain in an unpredictable way
-
 
 ### How to use the eslint rules
 - please use formatting and lint rules included in this repository
