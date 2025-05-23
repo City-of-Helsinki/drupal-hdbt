@@ -2,7 +2,7 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
   const toggleButton = item.querySelector('.menu__toggle-button');
 
   // Check if there was menu toggle button under the menu item.
-  if (toggleButton !== null) {
+  if (toggleButton && !toggleButton.dataset.listenerAdded) {
     toggleButton.addEventListener('click', (event) => {
       item.classList.toggle(cssClass);
       toggleButton.setAttribute(
@@ -11,16 +11,13 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       );
       event.stopPropagation();
     });
+    toggleButton.dataset.listenerAdded = 'true';
   }
 };
 
 ((Drupal) => {
   Drupal.behaviors.toggleSidebarNavigation = {
     attach(context) {
-      if (context !== document || window.sidebarNavigationInitialized) {
-        return;
-      }
-
       // Find all menu items with children menus.
       const sidebarNavigation = context.querySelector('.sidebar-navigation');
 
@@ -36,8 +33,6 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       sectionNavigations.forEach((item) => {
         toggleSidebarMenuVisibility(item, 'sidebar-navigation--section-navigation--open');
       });
-
-      window.sidebarNavigationInitialized = true;
     }
   };
 })(Drupal);
