@@ -800,6 +800,14 @@ msgctxt "TPR unit contact information service language"
 msgid "Service language"
 msgstr "Palvelukieli"
 
+msgctxt "TPR unit contact information website label"
+msgid "Website"
+msgstr "Verkkosivut"
+
+msgctxt "TPR unit contact information website link"
+msgid "Go to the website"
+msgstr "Siirry verkkosivuille"
+
 msgctxt "TPR unit contact information HSL Journey Planner link"
 msgid "Show the route in the HSL Journey Planner"
 msgstr "Näytä reitti HSL-reittioppaassa"

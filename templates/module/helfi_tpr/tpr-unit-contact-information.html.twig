@@ -82,10 +82,10 @@
     {% if content.www|render and show_www == true %}
       <div class="unit__contact-row unit__contact-row--www">
         <label class="unit__contact-row__label">
-          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'arrow-right'} %}
-          {{ 'Website link'|t }}:
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'link'} %}
+          {{ 'Website'|t({}, {'context': 'TPR unit contact information website label'}) }}:
         </label>
-        {{ content.www }}
+        {{ link('Go to the website'|t({}, {'context': 'TPR unit contact information website link'}), entity.getWebsiteUrl()) }}
       </div>
     {% endif %}
     {% if content.address|render %}
