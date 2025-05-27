@@ -901,68 +901,25 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 /**
  * Implements hook_preprocess_paragraph__type().
  */
-function hdbt_preprocess_paragraph__remote_video(&$variables) {
+function hdbt_preprocess_paragraph(&$variables) {
   $paragraph = $variables['paragraph'];
+  $type = $paragraph->getType();
 
-  if (
-    $paragraph->hasField('field_remote_video') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_remote_video')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = t('Embedded video');
-      }
-    }
+
+  switch ($type) {
+    case 'rempote_video':
+      $paragraph->getIframeTitle();
+      break;
+
+    case 'map':
+      $paragraph->getIframeTitle();
+      break;
+
+    case 'chart':
+      $paragraph->getIframeTitle();
+      break;
   }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__map(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  if (
-    $paragraph->hasField('field_map_map') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_map_map')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = t('Location on map');
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__chart(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  // Chart paragraph.
-  if (
-    $paragraph->hasField('field_chart_chart') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_chart_chart')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = t('Data chart');
-      }
-    }
-  }
+  
 }
 
 /**
