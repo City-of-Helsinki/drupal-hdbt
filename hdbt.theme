@@ -1689,17 +1689,8 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     /** @var \Drupal\helfi_react_search\Entity\EventList $paragraph */
     $paragraph = $variables['paragraph'];
     $settings = [];
-
-    if ($paragraph->hasField('field_event_list_title') && !$paragraph->get('field_event_list_title')->isEmpty()) {
-      $settings['field_event_list_title'] = $paragraph->get('field_event_list_title')->first()->getValue()['value'];
-    }
-
-    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
-      $settings['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
-    }
-    else {
-      $settings['field_event_count'] = '3';
-    }
+    $settings['field_event_list_title'] = $paragraph->getTitle();
+    $settings['field_event_count'] = (string) $paragraph->getCount();
 
     $langcode = \Drupal::languageManager()
       ->getCurrentLanguage()
@@ -1726,19 +1717,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       }
     }
 
-    $booleanFields = [
-      'field_event_location',
-      'field_event_time',
-      'field_free_events',
-      'field_remote_events',
-      'field_language',
-    ];
-
-    foreach ($booleanFields as $field) {
-      if ($paragraph->hasField($field) && !$paragraph->get($field)->isEmpty()) {
-        $settings[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
-      }
-    }
+    $settings += $paragraph->getFilterSettings();
 
     $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
   }
