@@ -8,7 +8,7 @@ import MenuDropdown from './nav-global/menu';
 ((Drupal) => {
   Drupal.behaviors.navToggle = {
     attach(context, settings) {
-      if (context !== document || window.navToggleInitialized) {
+      if (window.navToggleInitialized && context === document) {
         return;
       }
 
@@ -173,7 +173,7 @@ import MenuDropdown from './nav-global/menu';
 
       // Prevent body scroll through shared header element when
       // full screen menu is open.
-      const body = context.querySelector('body');
+      const body = document.querySelector('body');
       body.addEventListener('wheel', blockBrandingScroll, { passive: false });
       body.addEventListener('scroll', blockBrandingScroll, { passive: false });
       body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
