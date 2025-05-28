@@ -901,30 +901,6 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 /**
  * Implements hook_preprocess_paragraph__type().
  */
-function hdbt_preprocess_paragraph(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $type = $paragraph->getType();
-
-
-  switch ($type) {
-    case 'rempote_video':
-      $paragraph->getIframeTitle();
-      break;
-
-    case 'map':
-      $paragraph->getIframeTitle();
-      break;
-
-    case 'chart':
-      $paragraph->getIframeTitle();
-      break;
-  }
-  
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
 function hdbt_preprocess_paragraph__calculator(&$variables) {
   $variables['theme_path'] = _hdbt_get_theme_path();
 }
