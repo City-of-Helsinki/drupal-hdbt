@@ -1697,9 +1697,9 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       ->getId();
 
     $settings['field_filter_keywords'] = array_map(static fn ($term) => [
-      'id' => $term->get('field_keyword_id')->getString(),
-      'name' => $term->getName(),
-    ], $paragraph->getFilterKeywords($langcode));
+      'id' => $term->id,
+      'name' => $term->name[$langcode] ?? $term->name['fi'],
+    ], $paragraph->getFilterKeywords());
 
     if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
       /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
