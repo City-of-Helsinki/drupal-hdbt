@@ -415,7 +415,7 @@ function hdbt_theme_suggestions_form_element_alter(array &$suggestions, array $v
  */
 function hdbt_theme_suggestions_form_element_label_alter(array &$suggestions, array $variables): void {
   if (isset($variables['element']['#id']) && strpos($variables['element']['#id'], 'edit-unit-search') === 0) {
-    $suggestions[] = $variables['theme_hook_original'] . '__' . 'unit_search';
+    $suggestions[] = $variables['theme_hook_original'] . '__unit_search';
   }
 }
 
@@ -895,73 +895,6 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 
     // Set image caption variable to render array for the template.
     $variables['image_caption'] = $caption;
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__remote_video(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  if (
-    $paragraph->hasField('field_remote_video') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_remote_video')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_remote_video')->entity->get('field_media_oembed_video')->iframe_title = t('Embedded video');
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__map(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  if (
-    $paragraph->hasField('field_map_map') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_map_map')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_map_map')->entity->get('field_media_hel_map')->title = t('Location on map');
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__chart(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  // Chart paragraph.
-  if (
-    $paragraph->hasField('field_chart_chart') &&
-    $paragraph->hasField('field_iframe_title')
-  ) {
-    $iframe_title = $paragraph->get('field_iframe_title')->value;
-    if (!$paragraph->get('field_chart_chart')->isEmpty()) {
-      if ($iframe_title) {
-        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = $iframe_title;
-      }
-      else {
-        $paragraph->get('field_chart_chart')->entity->get('field_helfi_chart_title')->value = t('Data chart');
-      }
-    }
   }
 }
 
