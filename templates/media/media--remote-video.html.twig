@@ -33,7 +33,7 @@
 {% set media_id = media.id() %}
 {% set media_url = media.field_media_oembed_video.0.value %}
 {% set media_attributes = content.field_media_oembed_video.0['#attributes'] %}
-{% set iframe_title = media.iframe_title %}
+{% set iframe_title = media.iframeTitle %}
 {% set service_url = media.getServiceUrl() %}
 {% set privacy_policy_url = media.getPrivacyPolicyUrl() %}
 {% set cookie_consent_groups = ['preferences', 'statistics'] %}
