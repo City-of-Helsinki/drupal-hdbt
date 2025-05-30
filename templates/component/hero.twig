@@ -120,12 +120,6 @@
           'hero__image-author',
         ]
       }%}
-      {% if alternative_language %}
-        {% set figcaption_attributes = figcaption_attributes|merge({
-          'dir': lang_attributes.fallback_dir,
-          'lang': lang_attributes.fallback_lang
-        })%}
-      {% endif %}
       <figcaption {{ create_attribute(figcaption_attributes) }}>
         {{ image_author }}
       </figcaption>

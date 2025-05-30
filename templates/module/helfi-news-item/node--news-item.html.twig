@@ -12,7 +12,7 @@
   {% if published_at is not empty %}
     {% if date(published_at) < date('-365days') %}
       {% set tag_content %}
-        <span {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>{{ 'Published over a year ago'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+        <span>{{ 'Published over a year ago'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
       {% endset %}
       {% embed '@hdbt/misc/tag-list.twig'%}
         {% block content %}
@@ -23,7 +23,7 @@
           {% endblock content %}
       {% endembed %}
     {% endif %}
-    <div class="content-date" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+    <div class="content-date">
       {% set html_published_at = published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') %}
       <time datetime="{{ html_published_at }}" class="content-date__datetime content-date__datetime--published">
         <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
