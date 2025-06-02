@@ -41,27 +41,32 @@ export default class LocalStorageManager {
     this.data = data ? JSON.parse(data) : {};
   }
 
-  saveData() {
+  /**
+   * Save data to localstorage.
+   */
+  saveData = () => {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+      this.triggerSaveEvent();
     }
     catch(error) {
       LocalStorageManager.handleError(error);
     }
   }
 
-  setValue(key, value) {
+  /**
+   * Update an existing value from localstorage.
+   */
+  setValue = (key, value) => {
     // Directly set the value, assumes handling of objects
     this.data[key] = value;
     this.saveData();
   }
 
-  getValue(key) {
-    // Returns the value which could be an object
-    return this.data[key] || null;
-  }
-
-  addValue(key, value) {
+  /**
+   * Add a new value to localstorage.
+   */
+  addValue = (key, value) => {
     if (!this.data[key]) {
       this.data[key] = [];
     }
@@ -72,11 +77,25 @@ export default class LocalStorageManager {
     }
   }
 
-  getValues(key) {
+  /**
+   * Get a single value from localstorage
+   */
+  getValue = (key) => {
+    // Returns the value which could be an object
     return this.data[key] || null;
   }
 
-  removeValue(key, value) {
+  /**
+   * Get a single value from localstorage
+   */
+  getValues = (key) => {
+    return this.data[key] || null;
+  }
+
+  /**
+   * Remove an existing value from localstorage.
+   */
+  removeValue = (key, value) => {
     if (this.data[key]) {
       const index = this.data[key].indexOf(value);
       if (index > -1) {
