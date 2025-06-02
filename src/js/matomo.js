@@ -56,7 +56,7 @@ function getBrowserSize() {
     (function() {
       const u='//webanalytics.digiaiiris.com/js/';
       _paq.push(['setTrackerUrl', `${u}tracker.php`]);
-      _paq.push(['setSiteId', environment === 'production' ? '141' : '1292']);
+      _paq.push(['setSiteId', environment === 'prod' ? '141' : '1292']);
 
       // Etusivu ID is 141 (1292 in testing). Duplicate tracking for other sites.
       if (!['141', '1292'].includes(drupalSettings.matomo_site_id.toString())) {
