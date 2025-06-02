@@ -3,11 +3,16 @@
  * Use this class if you need to update for example helfi-settings.
  */
 export default class LocalStorageManager {
+
+  saveEventKey = 'localstorage-save-event';
+
   constructor(storageKey) {
     this.data = {};
     this.storageKey = storageKey;
     this.loadData();
-    addEventListener('localstorage-save-event', this.loadOnChange)
+
+    // eslint-disable-next-line
+    addEventListener(this.saveEventKey, this.loadOnChange);
   }
 
   /**
@@ -15,15 +20,12 @@ export default class LocalStorageManager {
    */
   loadOnChange = () => {
     this.loadData();
-  }
+  };
 
   /**
    * Trigger custom save event, prevent other instances from overriding data.
    */
-  triggerSaveEvent = () => {
-    const event = new CustomEvent('localstorage-save-event');
-    document.dispatchEvent(event);
-  }
+  triggerSaveEvent = () => dispatchEvent(new CustomEvent(this.saveEventKey));
 
   /**
    * Load data from localstorage by storage key.
@@ -39,7 +41,7 @@ export default class LocalStorageManager {
     }
 
     this.data = data ? JSON.parse(data) : {};
-  }
+  };
 
   /**
    * Save data to localstorage.
@@ -52,7 +54,7 @@ export default class LocalStorageManager {
     catch(error) {
       LocalStorageManager.handleError(error);
     }
-  }
+  };
 
   /**
    * Update an existing value from localstorage.
@@ -61,7 +63,7 @@ export default class LocalStorageManager {
     // Directly set the value, assumes handling of objects
     this.data[key] = value;
     this.saveData();
-  }
+  };
 
   /**
    * Add a new value to localstorage.
@@ -75,22 +77,17 @@ export default class LocalStorageManager {
       this.data[key].push(value);
       this.saveData();
     }
-  }
+  };
 
   /**
    * Get a single value from localstorage
    */
-  getValue = (key) => {
-    // Returns the value which could be an object
-    return this.data[key] || null;
-  }
+  getValue = (key) => this.data[key] || null;
 
   /**
    * Get a single value from localstorage
    */
-  getValues = (key) => {
-    return this.data[key] || null;
-  }
+  getValues = (key) => this.data[key] || null;
 
   /**
    * Remove an existing value from localstorage.
@@ -103,7 +100,7 @@ export default class LocalStorageManager {
         this.saveData();
       }
     }
-  }
+  };
 
   static handleError(error) {
     if (error instanceof ReferenceError) {
