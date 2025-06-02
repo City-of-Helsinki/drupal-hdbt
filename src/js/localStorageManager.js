@@ -16,14 +16,14 @@ export default class LocalStorageManager {
   }
 
   /**
-   * Callback to prevent overriding data when a page has multiple instances of this object.
+   * Callback to prevent overwriting data when a page has multiple instances of this object.
    */
   loadOnChange = () => {
     this.loadData();
   };
 
   /**
-   * Trigger custom save event, prevent other instances from overriding data.
+   * Trigger custom save event, prevent other instances from overwriting data.
    */
   triggerSaveEvent = () => {
     dispatchEvent(new CustomEvent(this.saveEventKey));
