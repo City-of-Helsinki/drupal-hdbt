@@ -7,9 +7,28 @@ export default class LocalStorageManager {
     this.data = {};
     this.storageKey = storageKey;
     this.loadData();
+    addEventListener('localstorage-save-event', this.loadOnChange)
   }
 
-  loadData() {
+  /**
+   * Callback to prevent overriding data when a page has multiple instances of this object.
+   */
+  loadOnChange = () => {
+    this.loadData();
+  }
+
+  /**
+   * Trigger custom save event, prevent other instances from overriding data.
+   */
+  triggerSaveEvent = () => {
+    const event = new CustomEvent('localstorage-save-event');
+    document.dispatchEvent(event);
+  }
+
+  /**
+   * Load data from localstorage by storage key.
+   */
+  loadData = () => {
     let data = null;
 
     try {
