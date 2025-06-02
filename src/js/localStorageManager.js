@@ -25,11 +25,10 @@ export default class LocalStorageManager {
   /**
    * Trigger custom save event, prevent other instances from overriding data.
    */
-  triggerSaveEvent = () => dispatchEvent(new CustomEvent(this.saveEventKey));
+  triggerSaveEvent = () => {
+    dispatchEvent(new CustomEvent(this.saveEventKey));
+  };
 
-  /**
-   * Load data from localstorage by storage key.
-   */
   loadData = () => {
     let data = null;
 
@@ -43,9 +42,6 @@ export default class LocalStorageManager {
     this.data = data ? JSON.parse(data) : {};
   };
 
-  /**
-   * Save data to localstorage.
-   */
   saveData = () => {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.data));
@@ -56,18 +52,12 @@ export default class LocalStorageManager {
     }
   };
 
-  /**
-   * Update an existing value from localstorage.
-   */
   setValue = (key, value) => {
     // Directly set the value, assumes handling of objects
     this.data[key] = value;
     this.saveData();
   };
 
-  /**
-   * Add a new value to localstorage.
-   */
   addValue = (key, value) => {
     if (!this.data[key]) {
       this.data[key] = [];
@@ -79,19 +69,10 @@ export default class LocalStorageManager {
     }
   };
 
-  /**
-   * Get a single value from localstorage
-   */
   getValue = (key) => this.data[key] || null;
 
-  /**
-   * Get a single value from localstorage
-   */
   getValues = (key) => this.data[key] || null;
 
-  /**
-   * Remove an existing value from localstorage.
-   */
   removeValue = (key, value) => {
     if (this.data[key]) {
       const index = this.data[key].indexOf(value);
