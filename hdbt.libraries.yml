@@ -8,7 +8,7 @@ desktop-menu-toggle:
     - core/drupal
 
 accordion:
-  version: 1.6
+  version: 1.7
   js:
     dist/js/accordion.min.js: {
       weight: -50,
@@ -113,7 +113,7 @@ matomo:
   - core/jquery
 
 closable_announcements:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/closable-announcements.min.js: {
       minified: true
@@ -124,7 +124,7 @@ closable_announcements:
   - core/drupalSettings
 
 closable_surveys:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/closable-surveys.min.js: {
       minified: true
