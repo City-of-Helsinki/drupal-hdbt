@@ -1,13 +1,3 @@
 {% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [ 'component', 'component--recommendations' ],
-      component_title: 'You might be interested in'|t({}, {'context': 'Front page news of interest title'}),
-      use_component_title_lang_fallback: alternative_language ?? false,
-    }
-  %}
-    {% block component_content %}
-      {{ content }}
-    {% endblock component_content %}
-  {% endembed %}
+  {{ content }}
 {% endblock paragraph %}
