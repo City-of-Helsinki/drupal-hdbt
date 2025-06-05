@@ -14,6 +14,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
 use Drupal\helfi_tpr\Entity\Service;
@@ -22,7 +23,6 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\language\ConfigurableLanguageManagerInterface;
-use Drupal\link\LinkItemInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
@@ -1621,57 +1621,31 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
   if (isset($variables['paragraph'])) {
     /** @var \Drupal\helfi_react_search\Entity\EventList $paragraph */
     $paragraph = $variables['paragraph'];
-    $settings = [];
-
-    if ($paragraph->hasField('field_event_list_title') && !$paragraph->get('field_event_list_title')->isEmpty()) {
-      $settings['field_event_list_title'] = $paragraph->get('field_event_list_title')->first()->getValue()['value'];
-    }
-
-    if ($paragraph->hasField('field_event_count') && !$paragraph->get('field_event_count')->isEmpty()) {
-      $settings['field_event_count'] = $paragraph->get('field_event_count')->first()->getValue()['value'];
-    }
-    else {
-      $settings['field_event_count'] = '3';
-    }
 
     $langcode = \Drupal::languageManager()
       ->getCurrentLanguage()
       ->getId();
 
+    $settings = [];
+    $settings['field_event_list_title'] = $paragraph->getTitle();
+    $settings['field_event_count'] = (string) $paragraph->getCount();
     $settings['field_filter_keywords'] = array_map(static fn ($term) => [
-      'id' => $term->get('field_keyword_id')->getString(),
-      'name' => $term->getName(),
-    ], $paragraph->getFilterKeywords($langcode));
+      'id' => $term->id,
+      'name' => $term->name[$langcode] ?? $term->name['fi'],
+    ], $paragraph->getFilterKeywords());
 
-    if ($paragraph->hasField('field_api_url') && !$paragraph->get('field_api_url')->isEmpty()) {
-      /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
-      $linkedEvents = Drupal::service(LinkedEvents::class);
-      $link_field = $events_public_url = $paragraph->get('field_api_url')->first();
-      assert($link_field instanceof LinkItemInterface);
-      $events_public_url = $link_field->getUrl()->toString();
-      $settings['events_public_url'] = $events_public_url;
-      $params = $linkedEvents->parseParams($events_public_url);
-      $eventUrl = $linkedEvents->getEventsRequest($params, $settings['field_event_count']);
-      $settings['events_api_url'] = $eventUrl;
-      $settings['use_fixtures'] = $linkedEvents->getFixture();
-      if (!empty($paragraph->get('field_event_location')->getValue()) && $paragraph->get('field_event_location')->first()->getValue()['value']) {
-        $settings['places'] = $linkedEvents->getPlaceslist($eventUrl);
-      }
-    }
+    $settings['events_public_url'] = $paragraph->getEventsPublicUrl();
+    $settings['events_api_url'] = $paragraph->getApiUrl();
 
-    $booleanFields = [
-      'field_event_location',
-      'field_event_time',
-      'field_free_events',
-      'field_remote_events',
-      'field_language',
-    ];
+    /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
+    $linkedEvents = \Drupal::service(LinkedEvents::class);
+    $settings['use_fixtures'] = $linkedEvents->getFixture();
 
-    foreach ($booleanFields as $field) {
-      if ($paragraph->hasField($field) && !$paragraph->get($field)->isEmpty()) {
-        $settings[$field] = (boolean) $paragraph->get($field)->first()->getValue()['value'];
-      }
-    }
+    /** @var \Symfony\Component\Serializer\SerializerInterface $serializer */
+    $serializer = \Drupal::service('serializer');
+    $settings['places'] = array_map(fn (LinkedEventsItem $item) => $serializer->serialize($item, 'json'), $paragraph->getPlaces());
+
+    $settings += $paragraph->getFilterSettings();
 
     $variables['#attached']['drupalSettings']['helfi_events']['data'][$paragraph->id()] = $settings;
   }
