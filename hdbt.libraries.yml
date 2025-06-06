@@ -219,7 +219,7 @@ language-toast:
     - hdbt/nav-toggle
 
 event-list:
-  version: 1.4.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/linkedevents.min.js: {
       preprocess: false,
@@ -231,7 +231,7 @@ event-list:
     - core/drupal
 
 school-search:
-  version: 1.5.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/school-search.min.js: {
       preprocess: false,
@@ -244,7 +244,7 @@ school-search:
 # Load the Hyphenopoly library loader javascript separately to make sure
 # the global hyphenopoly object is defined before trying to configure it.
 hyphenopoly-loader:
-  version: 6.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   header: true
   js:
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
@@ -254,7 +254,7 @@ hyphenopoly-loader:
     }
 
 hyphenopoly:
-  version: 6.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   header: true
   js:
     dist/js/hyphenopoly_settings.min.js: {
@@ -266,7 +266,7 @@ hyphenopoly:
     - hdbt/hyphenopoly-loader
 
 job-search:
-  version: 1.8.5
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/job-search.min.js: {
       preprocess: false,
@@ -277,7 +277,7 @@ job-search:
     - core/drupal
 
 district-and-project-search:
-  version: 1.3.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/district-and-project-search.min.js: {
       preprocess: false,
@@ -288,7 +288,7 @@ district-and-project-search:
     - core/drupal
 
 news-archive:
-  version: 1.3.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/news-archive.min.js: {
       preprocess: false,
@@ -299,7 +299,7 @@ news-archive:
     - core/drupal
 
 search-helper:
-  version: 1.x
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/search-helper.min.js: {
       minified: true
@@ -316,7 +316,7 @@ table-figcaption:
     - core/once
 
 health-station-search:
-  version: 1.3.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/health-station-search.min.js: {
       preprocess: false,
@@ -327,7 +327,7 @@ health-station-search:
     - core/drupal
 
 maternity-and-child-health-clinic-search:
-  version: 1.2.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/maternity-and-child-health-clinic-search.min.js: {
       preprocess: false,
@@ -338,7 +338,7 @@ maternity-and-child-health-clinic-search:
     - core/drupal
 
 ploughing-schedule:
-  version: 1.0.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/ploughing-schedule.min.js: {
       preprocess: false,
