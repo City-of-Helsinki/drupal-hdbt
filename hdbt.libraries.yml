@@ -1,12 +1,14 @@
 desktop-menu-toggle:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/desktop-menu-toggle.min.js: {
       minified: true
     }
+  dependencies:
+    - core/drupal
 
 accordion:
-  version: 1.6
+  version: 1.7
   js:
     dist/js/accordion.min.js: {
       weight: -50,
@@ -37,11 +39,13 @@ throbber:
     - core/drupal
 
 sidebar-menu-toggle:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/sidebar-menu-toggle.min.js: {
       minified: true
     }
+  dependencies:
+    - core/drupal
 
 chat-trigger:
   version: 1.0
@@ -109,7 +113,7 @@ matomo:
   - core/jquery
 
 closable_announcements:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/closable-announcements.min.js: {
       minified: true
@@ -120,7 +124,7 @@ closable_announcements:
   - core/drupalSettings
 
 closable_surveys:
-  version: 1.1
+  version: 1.2
   js:
     dist/js/closable-surveys.min.js: {
       minified: true
@@ -165,7 +169,7 @@ environment-indicator:
       }
 
 nav-toggle:
-  version: 1.0.1
+  version: 1.0.2
   js:
     dist/js/nav-toggle.min.js: {
       minified: true,
@@ -181,24 +185,26 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.0
+  version: 1.0.1
   css:
     theme:
       dist/css/nav_local.min.css: {
         minified: true
       }
   dependencies:
+    - core/drupal
     - hdbt/global-styling
     - hdbt/nav-toggle
 
 nav-global:
-  version: 1.0
+  version: 1.0.1
   css:
     theme:
       dist/css/nav_global.min.css: {
         minified: true
       }
   dependencies:
+    - core/drupal
     - hdbt/global-styling
     - hdbt/nav-toggle
 

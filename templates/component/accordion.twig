@@ -10,7 +10,11 @@
 
 {% set controlled_content_id = "accordion-item-content--" ~ random() %}
 {% set close_button_labelled_by_id = "accordion-item__button--close--" ~ random() %}
-{% set unique_id = heading[0]['#context']['value']|clean_class|clean_unique_id %}
+{% if (heading[0]['#context']['value']) %}
+  {% set unique_id = heading[0]['#context']['value']|clean_class|clean_unique_id %}
+{% else %}
+  {% set unique_id = 'accordion-id'|clean_unique_id %}
+{% endif %}
 
 <div class="accordion__wrapper helfi-accordion-item" data-accordion-id="{{unique_id}}">
   <{{ heading_level|default('h2') }} class="accordion-item__header helfi-accordion__header" data-accordion-id="{{unique_id}}">

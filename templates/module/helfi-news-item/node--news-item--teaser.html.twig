@@ -1,7 +1,7 @@
 {# Created date and modified date #}
 {% if published_at is not empty %}
   {% set html_published_at  %}
-    <time datetime="{{ published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+    <time datetime="{{ published_at|format_date('custom', 'Y-m-d') ~ 'T' ~ published_at|format_date('custom', 'H:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': language.code, 'dir': language.direction })) }}>
       <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
       {{ published_at|format_date('publication_date_format') }}
     </time>
