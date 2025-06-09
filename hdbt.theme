@@ -1641,9 +1641,10 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     $linkedEvents = \Drupal::service(LinkedEvents::class);
     $settings['use_fixtures'] = $linkedEvents->getFixture();
 
-    /** @var \Symfony\Component\Serializer\SerializerInterface $serializer */
-    $serializer = \Drupal::service('serializer');
-    $settings['places'] = array_map(fn (LinkedEventsItem $item) => $serializer->serialize($item, 'json'), $paragraph->getPlaces());
+    $settings['places'] = array_map(fn (LinkedEventsItem $item) => [
+      "id" => $item->id,
+      "name" => $item->name,
+    ], $paragraph->getPlaces());
 
     $settings += $paragraph->getFilterSettings();
 
