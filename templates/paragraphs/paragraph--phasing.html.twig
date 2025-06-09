@@ -1,4 +1,5 @@
 {% set phasing_title_level = paragraph.getHeadingLevel() %}
+{% set show_numbers = paragraph.getShowNumbers() %}
 
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
@@ -8,7 +9,7 @@
       component_title_level: phasing_title_level,
       component_description: content.field_description,
       component_content_class: 'phasing',
-      component_content_tag: 'ol',
+      component_content_tag: show_numbers ? 'ol' : 'ul',
     }
   %}
     {% block component_content %}
