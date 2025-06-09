@@ -1132,6 +1132,42 @@ msgid_plural "@count events"
 msgstr[0] "1 tapahtuma"
 msgstr[1] "@count tapahtumaa"
 
+msgctxt "Label for remote events"
+msgid "Remote participation"
+msgstr "Etäosallistuminen"
+
+msgctxt "Label for free events"
+msgid "Free"
+msgstr "Maksuton"
+
+msgctxt "Event search: type filter label"
+msgid "Type"
+msgstr "Tyyppi"
+
+msgctxt "Event search: events type"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Event search: hobbies type"
+msgid "Hobbies"
+msgstr "Harrastukset"
+
+msgctxt "Event search: event tag"
+msgid "Event"
+msgstr "Tapahtuma"
+
+msgctxt "Event search: hobby tag"
+msgid "Hobby"
+msgstr "Harrastus"
+
+msgctxt "Events search"
+msgid "Search for more events on the Hobbies website"
+msgstr "Etsi lisää harrastuksia Harrastukset-sivustolta"
+
+msgctxt "Event signup period"
+msgid "Registration time"
+msgstr "Ilmoittautumisaika"
+
 msgctxt "Accordion open all"
 msgid "Open all"
 msgstr "Avaa kaikki"

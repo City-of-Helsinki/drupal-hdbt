@@ -8,6 +8,7 @@ import FormErrors from './types/FormErrors';
 import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
 import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
+import { EventTypeOption } from './types/EventTypeOption';
 
 interface Options {
   [key: string]: string
@@ -53,6 +54,7 @@ const createBaseAtom = () => {
 
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
+    eventListType: settings?.event_list_type,
     showFreeFilter: settings?.field_free_events,
     hideHeading: settings?.hideHeading,
     showLanguageFilter: settings?.field_language,
@@ -144,6 +146,7 @@ export const eventsPublicUrl = atom(
 export const settingsAtom = atom(
   (get) => get(baseAtom)?.settings || {
     eventCount: 3,
+    eventListType: 'events',
     showFreeFilter: false,
     hideHeading: true,
     showLanguageFilter: false,
@@ -185,7 +188,6 @@ export const formErrorsAtom = atom<FormErrors>({
 });
 
 export const freeFilterAtom = atom<boolean>(false);
-
 export const remoteFilterAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
@@ -197,6 +199,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(endDisabledAtom, false);
   set(remoteFilterAtom, false);
   set(freeFilterAtom, false);
+  set(eventTypeAtom, []);
   set(pageAtom, 1);
 
   const newParams = new URLSearchParams(get(initialParamsAtom).toString());
@@ -275,3 +278,5 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
 export const addressAtom = atom<string|undefined|null>(undefined);
 
 export const languageAtom = atom<OptionType[]>([]);
+
+export const eventTypeAtom = atom<EventTypeOption[]>([]);

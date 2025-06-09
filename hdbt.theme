@@ -1703,6 +1703,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
 
     $settings['events_public_url'] = $paragraph->getEventsPublicUrl();
     $settings['events_api_url'] = $paragraph->getApiUrl();
+    $settings['event_list_type'] = $paragraph->getEventListType();
 
     /** @var \Drupal\helfi_react_search\LinkedEvents $linkedEvents */
     $linkedEvents = \Drupal::service(LinkedEvents::class);
