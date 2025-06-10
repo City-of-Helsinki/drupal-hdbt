@@ -71,7 +71,7 @@ const FullTopicsFilter = memo(() => {
     }
   };
 
-  const selectLabel: string = Drupal.t('Event topic', {}, { context: 'React search: topics filter' });
+  const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
     id: SearchComponents.TOPICS,

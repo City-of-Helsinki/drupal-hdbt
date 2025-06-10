@@ -56,8 +56,8 @@ function FormContainer() {
 
   const bothCheckboxes = showFreeFilter && showRemoteFilter;
   const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Events search: event type prefix' });
-  const freeTranslation = Drupal.t('Free-of-charge events', {}, { context: 'Events search' });
-  const remoteTranslation = Drupal.t('Remote events', {}, { context: 'Events search' });
+  const freeTranslation = Drupal.t('Free-of-charge', {}, { context: 'Events search: free filter label' });
+  const remoteTranslation = Drupal.t('Remote participation', {}, { context: 'Events search: remote filter label' });
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
@@ -68,11 +68,25 @@ function FormContainer() {
     return null;
   }
 
+  let heading = '';
+  switch (eventListType) {
+    case 'events':
+      heading = Drupal.t('Filter events', {}, { context: 'Events search: search form title' });
+      break;
+    case 'hobbies':
+      heading = Drupal.t('Filter hobbies', {}, { context: 'Events search: search form title' });
+      break;
+    case 'events_and_hobbies':
+      heading = Drupal.t('Filter events and hobbies', {}, { context: 'Events search: search form title' });
+      break;
+    default: break;
+  }
+
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
       {
         !hideHeading &&
-        <HeadingTag className='event-list__filter-title'>{Drupal.t('Filter events', {}, { context: 'Events search: search form title' })}</HeadingTag>
+        <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>
       }
       <div className='event-form__filters-container'>
         {useLocationSearch &&
