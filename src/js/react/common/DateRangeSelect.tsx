@@ -146,7 +146,7 @@ export const DateRangeSelect = ({
   };
 
   return (
-    <div className='hdbt-search--react__dropdown'>
+    <div className='hdbt-search__filter hdbt-search--react__dropdown'>
       <Collapsible {...{id, label, dialogLabel}} helper={helperText} title={collapsibleTitle} >
         <div className='event-form__date-container'>
           <DateInput
