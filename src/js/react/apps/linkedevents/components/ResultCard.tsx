@@ -2,6 +2,7 @@ import parse from 'html-react-parser';
 
 import type { Event, EventImage } from '../types/Event';
 import CardItem from '@/react/common/Card';
+import { hobbiesPublicUrl } from '../store';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
@@ -39,10 +40,8 @@ function ResultCard({
 }: ResultCardProps) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const url = `${baseUrl}/${currentLanguage}/events/${id}`;
-
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
-
+  
   const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDate = () => {
@@ -170,11 +169,19 @@ function ResultCard({
     return `${startString} - ${endDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, {context: 'Indication that events take place in a certain timeframe' })} ${formatTime(endDate)}`;
   };
 
+  const getUrl = () => {
+    if (type_id && type_id === 'Course') {
+      return `${hobbiesPublicUrl}/${currentLanguage}/courses/${id}`;
+    }
+
+    return `${baseUrl}/${currentLanguage}/events/${id}`;
+  };
+
   return (
     <CardItem
       cardCategoryTag={getCardCategoryTag()}
       cardModifierClass={cardModifierClass}
-      cardUrl={url}
+      cardUrl={getUrl()}
       cardTitle={resolvedName}
       cardImage={getImage()}
       cardTags={getCardTags()}

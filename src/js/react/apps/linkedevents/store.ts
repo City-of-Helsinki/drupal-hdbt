@@ -37,6 +37,8 @@ const transformLocations = (locations: any = null) => {
   return locationOptions;
 };
 
+export const hobbiesPublicUrl = 'https://harrastukset.hel.fi';
+
 const createBaseAtom = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
   const paragraphId = rootElement?.dataset?.paragraphId;

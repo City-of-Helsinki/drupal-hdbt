@@ -1,13 +1,11 @@
 import { useAtomValue} from 'jotai';
-import { eventsPublicUrl, settingsAtom } from '../store';
+import { eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
 import ExternalLink from '../../../common/ExternalLink';
 
 function SeeAllButton() {
   const filterSettings = useAtomValue(settingsAtom);
   const eventsUrl = useAtomValue(eventsPublicUrl) || '';
-  const hobbiesPublicUrl = 'https://harrastukset.hel.fi';
   const { seeAllButtonOverride } = drupalSettings?.helfi_events || null;
-
   const { eventListType } = filterSettings;
 
   return (
