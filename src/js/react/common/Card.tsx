@@ -15,65 +15,67 @@ const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
 );
 
 export type CardItemProps = {
-  cardModifierClass?: string;
-  cardImage?: string | JSX.Element | JSX.Element[];
-  cardTitle: string | JSX.Element;
-  cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
-  cardUrl: string;
-  cardUrlExternal?: boolean;
   cardCategoryTag?: TagType;
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
   cardHelptext?: string;
   cardHelptextHtml?: boolean;
+  cardImage?: string | JSX.Element | JSX.Element[];
+  cardModifierClass?: string;
   cardTags?: Array<TagType>;
-  location?: string | JSX.Element;
-  locationLabel?: string;
+  cardTitle: string | JSX.Element;
+  cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
+  cardUrl: string;
+  cardUrlExternal?: boolean;
   date?: string;
   dateLabel?: string;
   daterange?: string | JSX.Element;
   dateRangeLabel?: string;
-  theme?: string;
-  themeLabel?: string;
   langAttribute?: any;
   language?: string;
+  languageEducation?: string;
   languageLabel?: string;
+  location?: string | JSX.Element;
+  locationLabel?: string;
+  registrationRequired?: boolean;
+  signUp?: string | JSX.Element;
+  theme?: string;
+  themeLabel?: string;
   time?: string;
   timeLabel?: string;
   weightedEducation?: string;
-  languageEducation?: string;
-  registrationRequired?: boolean;
 };
 
 function CardItem({
-  cardModifierClass,
-  cardImage,
-  cardTitle,
-  cardTitleLevel,
-  cardUrl,
-  cardUrlExternal=false,
   cardCategoryTag,
   cardDescription,
   cardDescriptionHtml,
   cardHelptext,
   cardHelptextHtml,
+  cardImage,
+  cardModifierClass,
   cardTags,
-  location,
-  locationLabel,
+  cardTitle,
+  cardTitleLevel,
+  cardUrl,
+  cardUrlExternal=false,
   date,
   dateLabel,
-  theme,
-  themeLabel,
   daterange,
   dateRangeLabel,
   langAttribute,
   language,
+  languageEducation,
   languageLabel,
+  location,
+  locationLabel,
+  registrationRequired,
+  signUp,
+  theme,
+  themeLabel,
   time,
   timeLabel,
   weightedEducation,
-  languageEducation,
-  registrationRequired,
 }: CardItemProps): JSX.Element {
   const cardClass = `
     card
@@ -148,6 +150,9 @@ function CardItem({
           }
           {time &&
             <Metarow icon="calendar" label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })} content={time} />
+          }
+          {signUp &&
+            <Metarow icon="bell" label={Drupal.t('Registration time', {}, {context: 'Event signup period'})} content={signUp} langAttribute={langAttribute} />
           }
           {registrationRequired &&
             <Metarow icon="info-circle" label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })} content={Drupal.t('The event requires registration or a ticket.', {}, { context: 'Event additional information value' })} />

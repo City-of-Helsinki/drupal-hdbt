@@ -21,6 +21,7 @@ import AddressSearch from '../components/AddressSearch';
 import FullTopicsFilter from '../components/FullTopicsFilter';
 import FullLocationFilter from '../components/FullLocationFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
+import { EventTypeFilter } from '../components/EventTypeFilter';
 
 
 function FormContainer() {
@@ -30,6 +31,7 @@ function FormContainer() {
   const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const {
+    eventListType,
     showFreeFilter,
     hideHeading,
     showLanguageFilter,
@@ -59,7 +61,7 @@ function FormContainer() {
   const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
   const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
-  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter || showTopicsFilter;
+  const showForm = showLocation || showFreeFilter || showTimeFilter || showRemoteFilter || showTopicsFilter || eventListType === 'events_and_hobbies';
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
   if (!showForm) {
@@ -101,6 +103,17 @@ function FormContainer() {
             <LanguageFilter />
           }
         </div>
+        {
+          eventListType === 'events_and_hobbies' &&
+          <div className='hdbt-search--react__checkbox-filter-container'>
+            <fieldset className='hdbt-search--react__fieldset'>
+              <legend className='hdbt-search--react__legend'>
+                {Drupal.t('Type', {}, { context: 'Event search: type filter label' })}
+              </legend>
+              <EventTypeFilter />
+            </fieldset>
+          </div>
+        }
         {
           (showFreeFilter || showRemoteFilter) &&
           <div className='hdbt-search--react__checkbox-filter-container'>

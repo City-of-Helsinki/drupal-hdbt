@@ -7,38 +7,39 @@ declare namespace drupalSettings {
     imagePlaceholder: string;
     data: {
       [key: string]: {
-        events_api_url: string,
-        events_public_url: string,
-        field_event_list_title: string,
-        field_event_location: boolean,
-        field_event_time: boolean,
-        field_event_count: string,
-        field_free_events: boolean,
-        field_language: boolean,
-        field_remote_events: boolean,
+        event_list_type: 'events' | 'hobbies' | 'events_and_hobbies';
+        events_api_url: string;
+        events_public_url: string;
+        field_event_list_title: string;
+        field_event_location: boolean;
+        field_event_time: boolean;
+        field_event_count: string;
+        field_free_events: boolean;
+        field_language: boolean;
+        field_remote_events: boolean;
         field_filter_keywords: {
-          id: string,
-          name: string,
-        }[],
-        hidePagination: boolean,
+          id: string;
+          name: string;
+        }[];
+        hidePagination: boolean;
         places: {
           [key:string]: {
-            id: string,
+            id: string;
             name: {
               [key: string]: string
-            }
+            };
           }
-        },
-        hideHeading: boolean,
-        use_fixtures: boolean,
-        useFullLocationFilter: boolean,
-        useFullTopicsFilter: boolean,
-        useLocationSearch: boolean,
+        };
+        hideHeading: boolean;
+        use_fixtures: boolean;
+        useFullLocationFilter: boolean;
+        useFullTopicsFilter: boolean;
+        useLocationSearch: boolean;
       }
     },
-    seeAllButtonOverride: string,
-    seeAllNearYouLink: string,
-    cardsWithBorders: boolean,
+    seeAllButtonOverride: string;
+    seeAllNearYouLink: string;
+    cardsWithBorders: boolean;
   };
   const helfi_react_search: {
     // @todo UHF-10862 Remove cookie_privacy_url once the HDBT cookie banner module is in use.

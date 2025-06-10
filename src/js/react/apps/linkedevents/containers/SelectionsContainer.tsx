@@ -16,10 +16,13 @@ import {
   updateParamsAtom,
   updateUrlAtom,
   languageAtom,
+  eventTypeAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 import getDateString from '../helpers/GetDate';
+import { EventTypeOption } from '../types/EventTypeOption';
+import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 
 type SelectionsContainerProps = {
   url: string | undefined;
@@ -33,9 +36,18 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
   const [languageSelection, setLanguageSelection] = useAtom(languageAtom);
+  const eventTypeSelection = useAtomValue(eventTypeAtom);
   const resetForm = useSetAtom(resetFormAtom);
 
-  const showClearButton = locationSelection.length || topicsSelection.length || languageSelection.length || startDate || endDate || freeFilter || remoteFilter;
+  const showClearButton =
+    locationSelection.length ||
+    topicsSelection.length ||
+    languageSelection.length ||
+    eventTypeSelection.length ||
+    startDate ||
+    endDate ||
+    freeFilter ||
+    remoteFilter;
 
   if (!url) {
     return null;
@@ -80,6 +92,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
         url={url}
         value={freeFilter}
       />
+      <TypeFilterPills {...{eventTypeSelection, url}}/>
     </FilterBulletsWrapper>
   );
 };
@@ -172,6 +185,42 @@ type DateFilterBulletProps = {
   url: string | null;
 };
 
+const TypeFilterBullets = ({
+  eventTypeSelection,
+  url,
+}: {
+  eventTypeSelection: EventTypeOption[];
+  url: string|null;
+}) => {
+  const setEventTypeSelection = useSetAtom(eventTypeAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
+
+  if (!eventTypeSelection.length) {
+    return null;
+  }
+
+  return (
+    <>
+      {eventTypeSelection.map((selection: EventTypeOption) => (
+        <FilterButton
+          clearSelection={() => {
+            const value = eventTypeSelection.filter((type) => type !== selection);
+            setEventTypeSelection(value);
+            updateParams({[ApiKeys.EVENT_TYPE]: typeSelectionsToString(value)});
+            updateUrl();
+          }}
+          key={selection}
+          value={selection === 'General' ?
+            Drupal.t('Events', {}, {context: 'Event search: events type'}) :
+            Drupal.t('Hobbies', {}, {context: 'Event search: hobbies type'})
+          }
+        />
+      ))}
+    </>
+  );
+};
+
 const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => {
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
@@ -208,4 +257,5 @@ const FilterBulletsWrapper = memo(FilterBullets, updateSelections);
 const ListFilterPills = memo(ListFilterBullets, updateSelections);
 const CheckboxFilterPill = memo(CheckboxFilterBullet, updateSelections);
 const DateFilterPill = memo(DateFilterBullet, updateSelections);
+const TypeFilterPills = memo(TypeFilterBullets, updateSelections);
 export default memo(SelectionsContainer, updateSelections);
