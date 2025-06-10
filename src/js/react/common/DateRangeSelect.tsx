@@ -38,7 +38,7 @@ export const DateRangeSelect = ({
   endDateHelperText = dateHelperText,
   endDateId = 'end-date',
   endDateLabel = Drupal.t('Last day of the time period', {}, {context: 'React search: date range select'}),
-  helperText = Drupal.t('Select a time period in which the event takes place.', {}, {context: 'React search: date range select'}),
+  helperText = Drupal.t('Select a time period for the event', {}, {context: 'React search: date range select'}),
   id,
   label,
   language = 'fi',

@@ -80,7 +80,7 @@ function ResultsContainer({
           <ResultsHeader
             resultText={
               <>
-                {Drupal.formatPlural(count, '1 event', '@count events', {}, {context: 'Events search: result count'})}
+                {Drupal.formatPlural(count, '1 result', '@count results', {}, {context: 'Events search: result count'})}
               </>
             }
             ref={scrollTarget}
