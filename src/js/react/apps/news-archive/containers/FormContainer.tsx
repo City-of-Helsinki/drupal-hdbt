@@ -8,6 +8,7 @@ import AggregationItem from '../types/AggregationItem';
 import Filter from '../components/Filter';
 import { stagedParamsAtom, urlUpdateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';
+import { SearchInput } from '../components/SearchInput';
 
 const parseAggData = (data: AggregationItem[]) => {
   if (!data.length) {
@@ -73,6 +74,7 @@ const FormContainer = () => {
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+      <SearchInput />
       <div className='hdbt-search--react__dropdown-filters'>
         {topicOptions && <Filter
           label={topicLabel}

@@ -49,7 +49,7 @@ class NewsSearchParams extends URLSearchParams {
 
       if (matchedKey) {
         const arrayValue = value.split(',');
-        initialParams[matchedKey as keyof Omit<URLParams, 'page'>] = arrayValue.map((id) => Number(id));
+        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'q'>] = arrayValue.map((id) => Number(id));
       }
 
       result = entries.next();
@@ -58,6 +58,11 @@ class NewsSearchParams extends URLSearchParams {
     const initialPage = this.get('page');
     if (initialPage) {
       initialParams.page = Number(initialPage);
+    }
+
+    const initialKeyword = this.get('q');
+    if (initialKeyword) {
+      initialParams.q = initialKeyword;
     }
 
     return initialParams;
@@ -72,7 +77,7 @@ class NewsSearchParams extends URLSearchParams {
       const [key, value] = result.value;
       let paramString = '';
 
-      if (key === SearchComponents.RESULTS) {
+      if (key === SearchComponents.RESULTS || key === SearchComponents.KEYWORD) {
         paramString = `${key}=${value}`;
       } else if (value && value.length) {
 

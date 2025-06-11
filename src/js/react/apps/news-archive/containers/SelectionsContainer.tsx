@@ -12,7 +12,7 @@ type SelectionsContainerProps = {
   groups?: OptionType[];
 };
 
-type ParamsKey = keyof Omit<URLParams, 'page'>;
+type ParamsKey = keyof Omit<URLParams, 'page' | 'q'>;
 
 const SelectionsContainer = ({
   topic,

@@ -42,6 +42,35 @@ const useQueryString = (urlParams: URLParams) => {
     });
   }
 
+  if (urlParams?.q?.length) {
+    must.push({
+      bool: {
+        should: [
+          {
+            match_phrase_prefix: {
+              [IndexFields.TITLE]: urlParams.q
+            }
+          },
+          {
+            combined_fields: {
+              query: urlParams.q.toString().toLowerCase(),
+              fields: [
+                `${IndexFields.TITLE}^2`,
+                `${IndexFields.FIELD_LEAD_IN}^1.5`,
+                `${IndexFields.TEXT_CONTENT}^1`
+              ]
+            }
+          },
+          {
+            wildcard: {
+              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.q}*`
+            }
+          }
+        ]
+      }
+    });
+  }
+
   const query: any = {
     ...languageFilter
   };
