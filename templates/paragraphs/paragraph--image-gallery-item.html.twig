@@ -1,10 +1,12 @@
 {% block paragraph %}
-  <div class="image-gallery__item">
+  <figure class="image-gallery__item">
     <div class="image-gallery__item-image">
       {{content.field_gallery_image}}
     </div>
-    <div class="image-gallery__item-meta">
-      {{ gallery_image_description }}
-    </div>
-  </div>
+    {% if gallery_image_description|render %}
+      <figcaption class="image-gallery__item-meta">
+        {{ gallery_image_description }}
+      </figcaption>
+    {% endif %}
+  </figure>
 {% endblock paragraph %}
