@@ -59,7 +59,7 @@
     "eslint-config-prettier": "^10.0.0",
     "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsdoc": "^50.0.0",
+    "eslint-plugin-jsdoc": "^51.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "expose-loader": "^5.0.0",
     "focus-trap": "^7.5.4",
