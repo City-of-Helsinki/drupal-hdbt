@@ -6,6 +6,9 @@ export default class LocalStorageManager {
 
   saveEventKey = 'localstorage-save-event';
 
+  /**
+   * @param {string} storageKey - The key used to store data in localStorage.
+   */
   constructor(storageKey) {
     this.data = {};
     this.storageKey = storageKey;
@@ -16,19 +19,29 @@ export default class LocalStorageManager {
   }
 
   /**
-   * Callback to prevent overwriting data when a page has multiple instances of this object.
+   * Callback to prevent overwriting data when a page has multiple
+   * instances of this object.
+   *
+   * @return {void}
    */
   loadOnChange = () => {
     this.loadData();
   };
 
   /**
-   * Trigger custom save event, prevent other instances from overwriting data.
+   * Trigger custom save event to notify other instances.
+   *
+   * @return {void}
    */
   triggerSaveEvent = () => {
     dispatchEvent(new CustomEvent(this.saveEventKey));
   };
 
+  /**
+   * Load data from localStorage.
+   *
+   * @return {void}
+   */
   loadData = () => {
     let data = null;
 
@@ -42,6 +55,11 @@ export default class LocalStorageManager {
     this.data = data ? JSON.parse(data) : {};
   };
 
+  /**
+   * Save data to localStorage.
+   *
+   * @return {void}
+   */
   saveData = () => {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.data));
@@ -52,12 +70,26 @@ export default class LocalStorageManager {
     }
   };
 
+  /**
+   * Set a value in localStorage data.
+   *
+   * @param {string} key - The key to set.
+   * @param {*} value - The value to store.
+   * @return {void}
+   */
   setValue = (key, value) => {
     // Directly set the value, assumes handling of objects
     this.data[key] = value;
     this.saveData();
   };
 
+  /**
+   * Add a string value to an array under the given key.
+   *
+   * @param {string} key - The key for the array.
+   * @param {string} value - The value to add.
+   * @return {void}
+   */
   addValue = (key, value) => {
     if (!this.data[key]) {
       this.data[key] = [];
@@ -69,10 +101,29 @@ export default class LocalStorageManager {
     }
   };
 
+  /**
+   * Get a value by key.
+   *
+   * @param {string} key - The key to retrieve.
+   * @return {*} The stored value or null.
+   */
   getValue = (key) => this.data[key] || null;
 
+  /**
+   * Get a list of values by key.
+   *
+   * @param {string} key - The key to retrieve.
+   * @return {Array|null} The array of values or null.
+   */
   getValues = (key) => this.data[key] || null;
 
+  /**
+   * Remove a value from an array under the given key.
+   *
+   * @param {string} key - The key for the array.
+   * @param {string} value - The value to remove.
+   * @return {void}
+   */
   removeValue = (key, value) => {
     if (this.data[key]) {
       const index = this.data[key].indexOf(value);
@@ -83,6 +134,12 @@ export default class LocalStorageManager {
     }
   };
 
+  /**
+   * Handle an error thrown by localStorage.
+   *
+   * @param {Error} error - The error to handle.
+   * @return {void}
+   */
   static handleError(error) {
     if (error instanceof ReferenceError) {
       // Prevent security error caused by incognito-mode.
@@ -91,5 +148,4 @@ export default class LocalStorageManager {
       throw error;
     }
   }
-
 }
