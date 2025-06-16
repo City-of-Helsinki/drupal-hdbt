@@ -106,35 +106,8 @@ $teaser-icon-size-desktop: 48px;
     padding-block: $spacing-quadruple;
   }
 
-  .service__units__header {
-    display: block;
-  }
-
-  .service__units__title {
+  .unit-search__content,
+  .unit-search__content > h2 {
     margin-top: 0;
-  }
-
-  .service__units__count-container {
-    margin-top: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-quadruple;
-    }
-  }
-
-  .service__units__list {
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-triple;
-    }
-  }
-
-  .unit.unit--teaser {
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing;
-    }
   }
 }
