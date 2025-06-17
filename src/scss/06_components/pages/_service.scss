@@ -40,7 +40,8 @@ $teaser-icon-size-desktop: 48px;
   display: block;
   height: 100%;
   margin-top: $spacing-half;
-  padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
+  padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half
+    $spacing-and-half;
   position: relative;
   text-decoration: none;
 
@@ -74,8 +75,7 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
-.service__link:hover
-.service__link:focus {
+.service__link:hover .service__link:focus {
   text-decoration: underline;
   text-decoration-thickness: remify(2px);
 }
@@ -110,7 +110,7 @@ $teaser-icon-size-desktop: 48px;
   .unit-search__content > h2 {
     margin-top: 0;
   }
-  
+
   .unit-search__results {
     margin-block-start: $spacing-double;
 
