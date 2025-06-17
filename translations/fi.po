@@ -145,8 +145,10 @@ msgstr[0] "Palvelupiste"
 msgstr[1] "Palvelupisteet"
 
 msgctxt "Service units count"
-msgid "service points"
-msgstr "palvelupistettä"
+msgid "service point"
+msgid_plural "service points"
+msgstr[0] "palvelupiste"
+msgstr[1] "palvelupistettä"
 
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"

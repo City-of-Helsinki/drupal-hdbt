@@ -8,7 +8,7 @@
 }%}
   {% block count_container%}
     {%- if total_rows -%}
-      {{ total_rows }} {% trans with {'context': 'Service units count'}%}service points{% endtrans %}
+      {{ total_rows }} {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
     {%- else -%}
       {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
     {%- endif -%}
