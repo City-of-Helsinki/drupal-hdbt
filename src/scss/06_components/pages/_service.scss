@@ -110,4 +110,12 @@ $teaser-icon-size-desktop: 48px;
   .unit-search__content > h2 {
     margin-top: 0;
   }
+  
+  .unit-search__results {
+    margin-block-start: $spacing-double;
+
+    @include breakpoint($breakpoint-l) {
+      margin-block-start: $spacing-quadruple;
+    }
+  }
 }
