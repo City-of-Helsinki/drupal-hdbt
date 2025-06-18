@@ -6,6 +6,7 @@ export const ApiKeys = {
   KEYWORDS: 'keyword_OR',
   LANGUAGE: 'in_language',
   LOCATION: 'location',
+  NEGATE_KEYWORDS: 'keyword!',
   PAGESIZE: 'page_size',
   RADIUS: 'dwithin_metres',
   REMOTE: 'internet_based',

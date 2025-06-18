@@ -22,6 +22,7 @@ import FullTopicsFilter from '../components/FullTopicsFilter';
 import FullLocationFilter from '../components/FullLocationFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
 import { EventTypeFilter } from '../components/EventTypeFilter';
+import { TargetGroupFilter } from '../components/TargetGroupFilter';
 
 
 function FormContainer() {
@@ -42,6 +43,7 @@ function FormContainer() {
     useFullLocationFilter,
     useFullTopicsFilter,
     useLocationSearch,
+    useTargetGroupFilter,
   } = filterSettings;
 
   const onSubmit = () => {
@@ -100,6 +102,10 @@ function FormContainer() {
           {
             useFullTopicsFilter &&
             <FullTopicsFilter />
+          }
+          {
+            useTargetGroupFilter &&
+            <TargetGroupFilter />
           }
           {
             showLocation &&

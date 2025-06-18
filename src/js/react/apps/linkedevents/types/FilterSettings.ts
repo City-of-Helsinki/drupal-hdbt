@@ -9,9 +9,11 @@ type FilterSettings = {
   showRemoteFilter: boolean;
   showTimeFilter: boolean;
   showTopicsFilter: boolean;
+  removeBloatingEvents: boolean;
   useFullLocationFilter: boolean;
   useFullTopicsFilter: boolean;
   useLocationSearch: boolean;
+  useTargetGroupFilter: boolean;
 };
 
 export default FilterSettings;

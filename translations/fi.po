@@ -1503,3 +1503,43 @@ msgstr "Tapahtumien hakeminen epäonnistui. Vot ladata sivun uudelleen tai palat
 msgctxt "Language toast"
 msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"
+
+msgctxt "Event search: target group label"
+msgid "Event target group"
+msgstr "Tapahtuman kohderyhmä"
+
+msgctxt "Event search: target group placeholder"
+msgid "All target groups"
+msgstr "Kaikki kohderyhmät"
+
+msgctxt "Event search: target group"
+msgid "Families with babies"
+msgstr "Vauvaperheet"
+
+msgctxt "Event search: target group"
+msgid "Children"
+msgstr "Lapset"
+
+msgctxt "Event search: target group"
+msgid "Youth"
+msgstr "Nuoret"
+
+msgctxt "Event search: target group"
+msgid "Adults"
+msgstr "Aikuiset"
+
+msgctxt "Event search: target group"
+msgid "Seniors"
+msgstr "Ikääntyneet"
+
+msgctxt "Event search: target group"
+msgid "Immigrants"
+msgstr "Maahanmuuttajat"
+
+msgctxt "Event search: target group"
+msgid "Unemployed"
+msgstr "Työttömät"
+
+msgctxt "Event search: target group"
+msgid "Tourists"
+msgstr "Matkailijat"

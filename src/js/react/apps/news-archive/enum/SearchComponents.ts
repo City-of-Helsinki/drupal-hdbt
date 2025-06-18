@@ -3,6 +3,7 @@ export const SearchComponents = {
   NEWS_GROUPS: 'groups',
   RESULTS: 'page',
   SUBMIT: 'submit',
+  TARGET_GROUPS: 'target_groups',
   TOPIC: 'topic',
 };
 
