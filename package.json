@@ -19,8 +19,15 @@
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
     "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve"
   },
+  "@comment dependencies": [
+    "The following packages were updated manually.",
+    "Remove this section once the dependencies have been updated in their respective upstream packages.",
+    {
+      "tar-fs": ">=3.0.9, dependency of backstopjs"
+    }
+  ],
   "dependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.27.4",
     "@babel/eslint-parser": "^7.26.8",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/preset-env": "^7.23.2",
@@ -47,6 +54,7 @@
     "babel-loader": "^10.0.0",
     "babel-preset-react": "^6.5.0",
     "backstopjs": "^6.2.2",
+    "brace-expansion": ">=2.0.2",
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^4.0.0",
     "classnames": "^2.3.1",
@@ -105,6 +113,7 @@
     "svg-inline-loader": "^0.8.0",
     "svg-sprite": "https://github.com/svg-sprite/svg-sprite/archive/refs/tags/v3.0.0-beta3.tar.gz",
     "swr": "2.3.3",
+    "tar-fs": ">=3.0.9",
     "ts-loader": "^9.4.2",
     "typescript": "^5.1.6",
     "webpack": "^5.89.0",
