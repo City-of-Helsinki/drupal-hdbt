@@ -7,6 +7,7 @@ const SearchComponents = {
   FREE: 'is_free',
   REMOTE: 'internet_based',
   RESULTS: 'page',
+  TARGET_GROUPS: 'target_groups',
 };
 
 export default SearchComponents;

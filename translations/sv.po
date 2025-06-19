@@ -1507,3 +1507,43 @@ msgstr "Hämtning av händelser misslyckades. Du kan uppdatera sidan eller förs
 msgctxt "Language toast"
 msgid "Close the popup"
 msgstr "Stäng popup-fönstret"
+
+msgctxt "Event search: target group label"
+msgid "Event target group"
+msgstr "Evenemangets målgrupp"
+
+msgctxt "Event search: target group placeholder"
+msgid "All target groups"
+msgstr "Alla målgrupper"
+
+msgctxt "Event search: target group"
+msgid "Families with babies"
+msgstr "Småbarnsfamiljer"
+
+msgctxt "Event search: target group"
+msgid "Children"
+msgstr "Barn"
+
+msgctxt "Event search: target group"
+msgid "Youth"
+msgstr "Unga"
+
+msgctxt "Event search: target group"
+msgid "Adults"
+msgstr "Vuxna"
+
+msgctxt "Event search: target group"
+msgid "Seniors"
+msgstr "Äldre"
+
+msgctxt "Event search: target group"
+msgid "Immigrants"
+msgstr "Invandrare"
+
+msgctxt "Event search: target group"
+msgid "Unemployed"
+msgstr "Arbetslösa"
+
+msgctxt "Event search: target group"
+msgid "Tourists"
+msgstr "Turister"

@@ -9,6 +9,7 @@ import ApiKeys from './enum/ApiKeys';
 import Topic from './types/Topic';
 import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 import { EventTypeOption } from './types/EventTypeOption';
+import { BloatingTargetGroups } from './enum/TargetGroups';
 
 interface Options {
   [key: string]: string
@@ -65,9 +66,11 @@ const createBaseAtom = () => {
     showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
     hidePagination: settings?.hidePagination,
+    removeBloatingEvents: settings?.removeBloatingEvents,
     useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
+    useTargetGroupFilter: settings?.useTargetGroupFilter,
   };
   const locations = transformLocations(settings?.places);
   const topics: Topic[] = settings?.field_filter_keywords?.map(topic => ({
@@ -93,6 +96,10 @@ const createBaseAtom = () => {
 
   if (filterSettings.showLanguageFilter) {
     initialParams.delete('language');
+  }
+
+  if (filterSettings.removeBloatingEvents) {
+    initialParams.set('keyword!', BloatingTargetGroups.join(','));
   }
 
   return {
@@ -158,9 +165,11 @@ export const settingsAtom = atom(
     showTopicsFilter: false,
     hidePagination: false,
     topics: [],
+    removeBloatingEvents: false,
     useFullLocationFilter: false,
     useFullTopicsFilter: false,
     useLocationSearch: false,
+    useTargetGroupFilter: false,
   }
 );
 
@@ -282,3 +291,5 @@ export const addressAtom = atom<string|undefined|null>(undefined);
 export const languageAtom = atom<OptionType[]>([]);
 
 export const eventTypeAtom = atom<EventTypeOption[]>([]);
+
+export const targetGroupsAtom = atom<OptionType[]>([]);
