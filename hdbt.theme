@@ -1255,19 +1255,6 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
  */
 function hdbt_preprocess_field(&$variables): void {
   switch ($variables['field_name']) {
-    case 'field_service_links':
-      foreach ($variables['items'] as &$item) {
-        $existing = $item['content']['#url']->getOption('attributes');
-        $attributes = array_merge($existing ?? [], [
-          'class' => [
-            'link__style--highlight',
-          ],
-        ]);
-
-        $item['content']['#url']->setOption('attributes', $attributes);
-      }
-      break;
-
     case 'service_map_embed':
       $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
       $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
