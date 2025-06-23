@@ -1129,16 +1129,6 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_image(&$variables): void {
-  // Convert double double quotes to empty string for image alt-texts.
-  if (isset($variables['alt']) && $variables['alt'] === '""') {
-    $variables['attributes']['alt'] = '';
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_responsive_image_formatter(&$variables): void {
   if (!$variables['item'] instanceof ImageItem) {
     return;
