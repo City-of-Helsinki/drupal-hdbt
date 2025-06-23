@@ -1012,6 +1012,7 @@ function hdbt_library_info_alter(array &$libraries, string $extension): void {
   // Add the "eu_cookie_compliance/eu_cookie_compliance" library as a
   // dependency for the matomo and embedded content libraries if the
   // EU Cookie compliance module is enabled.
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
   if (
     $extension !== 'hdbt' ||
     !\Drupal::moduleHandler()->moduleExists('eu_cookie_compliance')
