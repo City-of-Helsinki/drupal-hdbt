@@ -11,7 +11,6 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
@@ -22,7 +21,6 @@ use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
@@ -1551,50 +1549,6 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
       $variables['maintenance_page_feedback_link'] = 'https://palautteet.hel.fi/en';
       $variables['maintenance_page_copy_link'] = 'https://kopio.hel.fi/en.html';
       break;
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_social_media_links(&$variables): void {
-  // Convert Attributes to strings.
-  if (isset($variables['elements'])) {
-    foreach ($variables['elements'] as $key => &$element) {
-      // Convert href attribute to URL.
-      if (
-        $element['api'] instanceof Attribute &&
-        $element['api']->offsetExists('href')
-      ) {
-        $element['url'] = $element['api']
-          ->offsetGet('href')
-          ->__toString();
-      }
-      // Convert class attribute to classes.
-      if (
-        $element['attr']['class'] instanceof Attribute &&
-        $element['attr']['class']->offsetExists('class')
-      ) {
-        $element['classes'][] = $element['attr']['class']
-          ->offsetGet('class')
-          ->__toString();
-      }
-
-      /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
-      $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
-
-      $languageManager = \Drupal::languageManager();
-      assert($languageManager instanceof ConfigurableLanguageManagerInterface);
-
-      // Add lang and dir attributes if the link text is not translated.
-      if ($key === 'email' && $defaultLanguageResolver->isAltLanguage($variables['language']->getId())) {
-        if (!isset($languageManager->getLanguageConfigOverride($variables['language']->getId(), 'social_media.settings')->get('social_media')['email']['text'])) {
-          $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
-          $element['attr']['lang'] = $attributes['lang'];
-          $element['attr']['dir'] = $attributes['dir'];
-        }
-      }
-    }
   }
 }
 
