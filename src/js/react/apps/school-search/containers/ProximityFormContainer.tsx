@@ -1,5 +1,4 @@
 import { Button } from 'hds-react';
-import { createRef } from 'react';
 import { useAtom, useSetAtom } from 'jotai';
 
 import { AddressSearch } from '@/react/common/AddressSearch';
@@ -7,7 +6,6 @@ import { keywordAtom, paramsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
 
 const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) => {
-  const formRef = createRef<HTMLFormElement>();
   const setParams = useSetAtom(paramsAtom);
   const [keyword, setKeyword] = useAtom(keywordAtom);
 
@@ -28,7 +26,6 @@ const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) 
     <form
       className='hdbt-search--react__form-container'
       onSubmit={onSubmit}
-      ref={formRef}
       role='search'
     >
       <h3>
@@ -44,15 +41,11 @@ const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) 
       <AddressSearch
         className='hdbt-search__filter'
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
-        defaultValue={initialAddress || ''}
         helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}
         id='keyword'
         label={Drupal.t('The child\'s home address', {}, { context: 'School search: input label'})}
         onChange={(value: string) => setKeyword(value)}
-        onSubmit={(value: string) => {
-          setKeyword(value);
-          formRef.current?.requestSubmit();
-        }}
+        onSubmit={(value: string) => setKeyword(value)}
         visibleSuggestions={5}
         value={keyword}
       />
