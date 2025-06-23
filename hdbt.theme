@@ -1717,17 +1717,9 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
 /**
  * Implements hook_theme_suggestions_alter() for container.
  */
-function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$variables) {
-  $name = '';
-  $type = '';
-  if (isset($variables['element']['#name'])) {
-    $name = $variables['element']['#name'];
-  }
-
-  if (isset($variables['element']['#type'])) {
-    $type = $variables['element']['#type'];
-  }
-
+function hdbt_theme_suggestions_container_alter(array &$suggestions, array $variables): void {
+  $name = $variables['element']['#name'] ?? '';
+  $type = $variables['element']['#type'] ?? '';
   array_unshift($suggestions, 'container__' . $type . '__' . $name);
 }
 
