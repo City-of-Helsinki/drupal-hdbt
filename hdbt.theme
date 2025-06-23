@@ -1251,27 +1251,6 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_field(&$variables): void {
-  switch ($variables['field_name']) {
-    case 'service_map_embed':
-      $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
-      $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-
-      if (Drupal::moduleHandler()->moduleExists('hdbt_cookie_banner')) {
-        $cookie_settings = Drupal::service('hdbt_cookie_banner.cookie_settings');
-        $variables['privacy_policy_url'] = $cookie_settings->getCookieSettingsPageUrl();
-      }
-      // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
-      elseif (Drupal::moduleHandler()->moduleExists('helfi_eu_cookie_compliance')) {
-        $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
-      }
-      break;
-  }
-}
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_theme_suggestions_views_view_alter(array &$suggestions, array $variables): void {
