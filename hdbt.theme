@@ -1662,24 +1662,6 @@ function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_node__announcement(array &$variables) {
-  $type = $variables['node']->get('field_announcement_type')->value;
-
-  $type_label = match($type) {
-    'alert' => t('Alert'),
-    'attention' => t('Attention'),
-    default => t('Notification')
-  };
-
-  $close_label = t('Close');
-
-  $variables['type_label'] = $type_label;
-  $variables['close_label'] = $close_label;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_paragraph__job_search(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
