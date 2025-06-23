@@ -6,6 +6,7 @@ import SearchParams from '../types/SearchParams';
 import { configurationsAtom } from '../store';
 import getQueryString from '../helpers/ProximityQuery';
 import AppSettings from '../enum/AppSettings';
+import getNameTranslation from '@/react/common/helpers/ServiceMap';
 
 type Result = {
   units?: number[]
@@ -21,13 +22,15 @@ const UseProximityQuery = (params: SearchParams) => {
     const { keyword } = params;
 
     let coordinates = null;
+    let resolvedName = null;
     let ids = null;
 
     if (keyword) {
       let addresses = await getAddresses(getAddressUrls(keyword));
-      addresses = addresses.filter((address: any) => address.results.length);
+      addresses = addresses.filter(address => address.results.length);
 
       if (addresses.length) {
+        resolvedName = getNameTranslation(addresses[0].results[0].name, drupalSettings.path.currentLanguage);
         coordinates = parseCoordinates(addresses);
       }
     }
@@ -60,7 +63,12 @@ const UseProximityQuery = (params: SearchParams) => {
       throw new Error('Failed to fetch proximity query');
     }
 
-    return result.json();
+    const json = await result.json();
+
+    return {
+      addressName: resolvedName,
+      ...json,
+    };
   };
 
   const { data, error, isLoading, isValidating } = useSWR(baseUrl === '' ? null : `_${Object.values(params).toString()}`, fetcher, {
