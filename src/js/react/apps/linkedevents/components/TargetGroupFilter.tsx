@@ -19,7 +19,7 @@ export const TargetGroupFilter = () => {
   const getOptions = () => Object.entries(TargetGroups).map(([label, value]) => ({
     label,
     value: label,
-  }));
+  })).sort((a, b) => a.label.localeCompare(b.label));
 
   const selectLabel = Drupal.t('Event target group', {}, {context: 'Event search: target group label'});
 
