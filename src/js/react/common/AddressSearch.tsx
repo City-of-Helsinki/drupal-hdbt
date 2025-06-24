@@ -7,6 +7,8 @@ import getNameTranslation from './helpers/ServiceMap';
 export const AddressSearch = ({
   className,
   searchInputClassname,
+  loadingSpinnerFinishedText = Drupal.t('Finished loading suggestions', {}, { context: 'Loading finished indicator for suggestive search' }),
+  loadingSpinnerText = Drupal.t('Loading suggestions...', {}, { context: 'Loading indicator for suggestive search' }),
   ...rest
 }: {
   className?: string;
@@ -55,6 +57,8 @@ export const AddressSearch = ({
       <SearchInput
         {...{
           getSuggestions,
+          loadingSpinnerText,
+          loadingSpinnerFinishedText,
           ...rest,
         }}
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
