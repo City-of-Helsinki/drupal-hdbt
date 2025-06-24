@@ -4,11 +4,12 @@ import { useSetAtom } from 'jotai';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
-import { paramsAtom } from '../store';
+import { keywordAtom, paramsAtom } from '../store';
 import { GhostList } from '@/react/common/GhostList';
 import AppSettings from '../enum/AppSettings';
 
 const SearchContainer = () => {
+  const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const initialParams = useInitialParams({
     address: '',
@@ -17,6 +18,9 @@ const SearchContainer = () => {
   useEffect(() => {
     if (initialParams) {
       setParams(initialParams);
+    }
+    if (initialParams?.address) {
+      setKeyword(initialParams.address);
     }
   }, []);
 

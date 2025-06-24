@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 
-import configurationsAtom from '../store';
+import { configurationsAtom } from '../store';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/FeatureQuery';
 import SearchParams from '../types/SearchParams';

@@ -1545,3 +1545,15 @@ msgstr "Työttömät"
 msgctxt "Event search: target group"
 msgid "Tourists"
 msgstr "Matkailijat"
+
+msgctxt "School search: result display"
+msgid "using address"
+msgstr "osoitteella"
+
+msgctxt "Loading indicator for suggestive search"
+msgid "Loading suggestions..."
+msgstr "Ladataan ehdotuksia..."
+
+msgctxt "Loading finished indicator for suggestive search"
+msgid "Finished loading suggestions"
+msgstr "Ehdotuksien lataus valmis"

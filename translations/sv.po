@@ -1547,3 +1547,15 @@ msgstr "Arbetslösa"
 msgctxt "Event search: target group"
 msgid "Tourists"
 msgstr "Turister"
+
+msgctxt "School search: result display"
+msgid "using address"
+msgstr "med address"
+
+msgctxt "Loading indicator for suggestive search"
+msgid "Loading suggestions..."
+msgstr "Laddar förslag..."
+
+msgctxt "Loading finished indicator for suggestive search"
+msgid "Finished loading suggestions"
+msgstr "Förslagsladdning klar"
