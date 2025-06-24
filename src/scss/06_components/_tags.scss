@@ -4,6 +4,7 @@
 
 .content-tags__tags__tag {
   @include tag-parent;
+  max-width: 100%;
 }
 
 .content-tags__tags--static {
