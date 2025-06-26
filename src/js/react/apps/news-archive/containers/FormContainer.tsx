@@ -73,7 +73,7 @@ const FormContainer = () => {
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
-      <div className='hdbt-search--react__dropdown-filters'>
+      <div className='hdbt-search--react__dropdown-filters test'>
         {topicOptions && <Filter
           label={topicLabel}
           options={topicOptions}
