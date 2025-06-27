@@ -1010,6 +1010,10 @@ msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Öppna kartan i större format"
 
+msgctxt "React search: results loading"
+msgid "Search results are loading"
+msgstr "Sökresultat laddas"
+
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
