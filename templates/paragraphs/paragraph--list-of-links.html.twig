@@ -15,12 +15,13 @@
         design_class,
       ],
       component_title: title,
+      component_description: content.field_list_of_links_description,
       component_content_class: 'list-of-links',
     }
   %}
     {% block component_content %}
 
-      {{ content|without('field_list_of_links_design', 'field_list_of_links_title') }}
+      {{ content|without('field_list_of_links_design', 'field_list_of_links_title', 'field_list_of_links_description') }}
 
     {% endblock component_content %}
   {% endembed %}
