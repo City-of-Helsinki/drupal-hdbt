@@ -12,7 +12,7 @@ type FilterProps = {
   stateKey: keyof URLParams;
 };
 
-const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
+const Filter = ({label, options, placeholder, stateKey, ...rest}: FilterProps) =>  {
   const [params, setParams] = useAtom(stagedParamsAtom);
   const valueIds = params?.[stateKey] || [];
 
@@ -51,6 +51,7 @@ const Filter = ({label, options, stateKey, ...rest}: FilterProps) =>  {
         clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
         clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
         label,
+        placeholder,
       }}
       value={getValue()}
       {...rest}
