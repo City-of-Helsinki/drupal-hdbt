@@ -2,7 +2,7 @@ type URLParams = {
   groups?: number[];
   neighbourhoods?: number[];
   page?: number;
-  q?: string;
+  keyword?: string;
   topic?: number[];
 }
 

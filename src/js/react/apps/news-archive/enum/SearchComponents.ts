@@ -1,5 +1,5 @@
 export const SearchComponents = {
-  KEYWORD: 'q',
+  KEYWORD: 'keyword',
   NEIGHBOURHOODS: 'neighbourhoods',
   NEWS_GROUPS: 'groups',
   RESULTS: 'page',

@@ -10,9 +10,12 @@ export const SearchInput = () => {
     className='hdbt-search__filter hdbt-search--react__text-field'
     id={SearchComponents.KEYWORD}
     label={Drupal.t('Search term', {}, {context: 'Search keyword label'})}
-    onChange={(e) => setParams({[SearchComponents.KEYWORD]: e.target.value })}
-    placeholder={Drupal.t('For example, Oodi', {}, {context: 'React seach: all available options'})}
+    onChange={(e) => setParams({
+      ...params,
+      [SearchComponents.KEYWORD]: e.target.value }
+    )}
+    placeholder={Drupal.t('For example, budget proposal', {}, {context: 'News archive: keyword placeholder'})}
     type='search'
-    value={params?.q || ''}
+    value={params?.keyword || ''}
   />;
 };

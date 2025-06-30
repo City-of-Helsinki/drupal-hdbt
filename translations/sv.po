@@ -1563,3 +1563,7 @@ msgstr "Laddar förslag..."
 msgctxt "Loading finished indicator for suggestive search"
 msgid "Finished loading suggestions"
 msgstr "Förslagsladdning klar"
+
+msgctxt "News archive: keyword placeholder"
+msgid "For example, budget proposal"
+msgstr "T.ex. budgeten"

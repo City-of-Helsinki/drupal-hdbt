@@ -38,7 +38,7 @@ const ResultsContainer = ({
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
     Boolean(urlParams.page) ||
-    Boolean(urlParams.q?.length) ||
+    Boolean(urlParams.keyword?.length) ||
     Boolean(urlParams.topic?.length);
 
   useScrollToResults(scrollTarget, choices);
