@@ -68,44 +68,27 @@ class NewsSearchParams extends URLSearchParams {
     return initialParams;
   }
 
+  /**
+   * Convert native search params to PHP style.
+   *
+   * @return {string} - The resulting string.
+   */
   toString(): string {
-    let allParamsString = '';
-    const entries = this.entries();
-    let result = entries.next();
+    const resultingParams = new URLSearchParams();
 
-    while (!result.done) {
-      const [key, value] = result.value;
-      let paramString = '';
-
-      if (key === SearchComponents.RESULTS || key === SearchComponents.KEYWORD) {
-        paramString = `${key}=${value}`;
-      } else if (value && value.length) {
-
-        if (value.includes(',')) {
-          const valueArray = value.split(',');
-
-          for (let i = 0; i < valueArray.length; i++) {
-            if (paramString.length) {
-              paramString += '&';
-            }
-
-            paramString += `${key}[${i}]=${valueArray[i].replaceAll(' ', '+').toLowerCase()}`;
-          }
-        }
-        else {
-          paramString += `${key}[0]=${value.toString()}`;
-        }
+    ['page', 'keyword'].forEach(key => {
+      if (this.get(key)) {
+        resultingParams.set(key, this.get(key) as string);
       }
+    });
 
-      allParamsString += allParamsString.length ? `&${paramString}` : paramString;
-      result = entries.next();
-    }
+    ['topic', 'neighbourhoods', 'groups'].forEach(key => {
+      const values = this.get(key)?.split(',') ?? [];
 
-    if (allParamsString.length) {
-      allParamsString = `?${  allParamsString}`;
-    }
+      values.forEach((id, index) => resultingParams.append(`${key}[${index}]`, id));
+    });
 
-    return allParamsString;
+    return resultingParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
   }
 }
 
