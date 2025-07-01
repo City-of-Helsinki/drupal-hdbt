@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai';
-import { Notification } from 'hds-react';
-import { LoadingSpinner } from 'hds-react';
 import useSWR from 'swr';
-import { roadworksApiUrlAtom } from '../store';
+
+import ResultsError from '@/react/common/ResultsError';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import { useTimeoutFetch } from '@/react/common/hooks/useTimeoutFetch';
 import RoadworkCard from '../components/RoadworkCard';
+import { roadworksApiUrlAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
+import { GhostList } from '@/react/common/GhostList';
+
+const SWR_REFRESH_OPTIONS = {
+  refreshInterval: 0,
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  errorRetryCount: 3,
+};
 
 type ResponseType = {
   data: Roadwork[];
@@ -14,44 +25,101 @@ type ResponseType = {
     count: number;
     title?: string;
     see_all_url?: string;
-    error?: string;
-  }
+  };
 };
 
-const SWR_REFRESH_OPTIONS = {
-  errorRetryCount: 3,
-  revalidateOnMount: true,
-  revalidateIfStale: false,
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  refreshInterval: 600000, // 10 minutes in millis
+type ResultsContainerProps = {
+  countNumber: number;
+  error?: Error;
+  roadworks: Roadwork[];
+  loading: boolean;
+  retriesExhausted?: boolean;
+  seeAllUrl?: string;
 };
+
+function ResultsContainer({
+  countNumber,
+  error,
+  roadworks,
+  loading,
+  retriesExhausted,
+  seeAllUrl
+}: ResultsContainerProps) {
+  const scrollTarget = createRef<HTMLDivElement>();
+  const size = 3; // Default roadwork count
+  const count = countNumber;
+  
+  if (error || retriesExhausted) {
+    return (
+      <ResultsError
+        error={error}
+        retriesExhausted={retriesExhausted}
+        wrapperClass='roadwork-list__error'
+        ref={scrollTarget}
+      />
+    );
+  }
+
+  const getContent = () => {
+    if (loading && !roadworks.length) {
+      return <GhostList bordered={false} count={size} />;
+    }
+    
+    if (roadworks.length > 0) {
+      return (
+        <>
+          <ResultsHeader
+            resultText={
+              <>
+                {Drupal.formatPlural(count, '1 result', '@count results', {}, {context: 'Roadworks search: result count'})}
+              </>
+            }
+            ref={scrollTarget}
+          />
+          {loading ?
+            <GhostList bordered={false} count={size} /> :
+            roadworks.map(roadwork => <RoadworkCard key={roadwork.id} roadwork={roadwork} />)
+          }
+        </>
+      );
+    }
+
+    return <ResultsEmpty wrapperClass='roadwork-list__no-results' ref={scrollTarget} />;
+  };
+
+  return (
+    <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
+      {getContent()}
+      {
+        seeAllUrl ?
+        <div className='roadwork-list__see-all-button roadwork-list__see-all-button--near-you'>
+          <a
+            data-hds-component="button"
+            href={seeAllUrl}
+          >
+            {Drupal.t('See all roadworks near you', {}, { context: 'Helsinki near you roadworks search' })}
+          </a>
+        </div> : null
+      }
+    </div>
+  );
+}
 
 const SearchContainer: React.FC = () => {
-  const roadworksApiUrl = useAtomValue(roadworksApiUrlAtom);
   const [retriesExhausted, setRetriesExhausted] = useState(false);
+  const roadworksApiUrl = useAtomValue(roadworksApiUrlAtom);
+  const [initialized, setInitialized] = useState(false);
 
-  console.log('🚀 SearchContainer render:', {
-    roadworksApiUrl,
-  });
-  
-  console.log('🌍 drupalSettings check:', window.drupalSettings);
-  console.log('🗺️ Roadworks settings:', (window as any).drupalSettings?.helfi_roadworks);
+  console.log('🚀 SearchContainer render:', { roadworksApiUrl });
+  console.log('🌍 drupalSettings check:', drupalSettings);
+  console.log('🗺️ Roadworks settings:', (drupalSettings as any).helfi_roadworks);
 
   const getRoadworks = async (reqUrl: string): Promise<ResponseType | null> => {
     console.log('📡 Making API call to:', reqUrl);
     
     try {
-      // Use regular fetch temporarily to debug
-      const response = await fetch(reqUrl, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await useTimeoutFetch(reqUrl, undefined, 10000);
       console.log('📡 Response status:', response.status, response.statusText);
-      console.log('📡 Response headers:', response.headers);
       
       if (response.status === 200) {
         const result = await response.json();
@@ -94,65 +162,28 @@ const SearchContainer: React.FC = () => {
         setRetriesExhausted(true);
         return;
       }
-      setTimeout(() => revalidate({ retryCount: revalidateOpts.retryCount }), 5000);
+      revalidate({
+        ...revalidateOpts
+      });
     },
+    keepPreviousData: true
   });
 
-  if (isLoading) {
-    return (
-      <div className="roadworks-loading">
-        <LoadingSpinner />
-        <span>Ladataan katutöitä...</span>
-      </div>
-    );
-  }
-
-  if (error || retriesExhausted) {
-    return (
-      <Notification
-        type="error"
-        label="Virhe"
-        className="roadworks-error"
-      >
-        {error?.message || 'Katutöiden haku epäonnistui. Yritä uudelleen.'}
-      </Notification>
-    );
-  }
-
-  if (!shouldFetch) {
-    return (
-      <Notification
-        type="info"
-        label="Huomio"
-        className="roadworks-no-coordinates"
-      >
-        Sijaintitietoja ei saatavilla. Katutöitä ei voida näyttää.
-      </Notification>
-    );
-  }
-
-  const roadworks = data?.data || [];
-
-  if (roadworks.length === 0) {
-    return (
-      <Notification
-        type="info"
-        label="Ei tuloksia"
-        className="roadworks-empty"
-      >
-        Ei katutöitä lähistöllä.
-      </Notification>
-    );
-  }
+  useEffect(() => {
+    if (shouldFetch && !initialized) {
+      setInitialized(true);
+    }
+  }, [shouldFetch, initialized]);
 
   return (
-    <div className="roadworks-search-container">
-      <div className="roadworks-list">
-        {roadworks.map((roadwork: Roadwork) => (
-          <RoadworkCard key={roadwork.id} roadwork={roadwork} />
-        ))}
-      </div>
-    </div>
+    <ResultsContainer
+      countNumber={data?.meta.count || 0}
+      error={error}
+      roadworks={data?.data || []}
+      loading={isLoading}
+      retriesExhausted={retriesExhausted}
+      seeAllUrl={data?.meta.see_all_url}
+    />
   );
 };
 
