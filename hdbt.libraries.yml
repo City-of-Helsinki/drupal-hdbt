@@ -230,6 +230,18 @@ event-list:
     - core/jquery
     - core/drupal
 
+roadwork-list:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/roadworks.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - core/drupal
+
 school-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
