@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import { roadworksApiUrlAtom } from '../store';
+import { roadworksApiUrlAtom, settingsAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
 import ResultsContainer from './ResultsContainer';
 
@@ -26,6 +26,7 @@ type ResponseType = {
 const SearchContainer: React.FC = () => {
   const [retriesExhausted, setRetriesExhausted] = useState(false);
   const url = useAtomValue(roadworksApiUrlAtom);
+  const settings = useAtomValue(settingsAtom);
 
   const getRoadworks = async (reqUrl: string): Promise<ResponseType> => {
     const response = await useTimeoutFetch(reqUrl, undefined, 10000);
@@ -65,6 +66,7 @@ const SearchContainer: React.FC = () => {
       loading={isLoading}
       retriesExhausted={retriesExhausted}
       seeAllUrl={data?.meta.see_all_url}
+      size={settings.roadworkCount}
     />
   );
 };

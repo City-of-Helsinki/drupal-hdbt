@@ -22,7 +22,7 @@ const createBaseAtom = () => {
 
   const roadworksApiUrl = settings.roadworks_api_url || '';
   const fieldRoadworkCount = Number(settings.field_roadwork_count) || 3;
-  const hidePagination = settings.hidePagination || false;
+  const hidePagination = settings.hidePagination === true;
 
   console.log('Extracted data:', {
     roadworksApiUrl,
@@ -44,5 +44,15 @@ const baseAtom = atom(createBaseAtom());
 export const roadworksApiUrlAtom = atom((get) => get(baseAtom)?.roadworksApiUrl || '');
 export const fieldRoadworkCountAtom = atom((get) => get(baseAtom)?.fieldRoadworkCount || 3);
 export const hidePaginationAtom = atom((get) => get(baseAtom)?.hidePagination || false);
+
+export const settingsAtom = atom(
+  (get) => {
+    const base = get(baseAtom);
+    return {
+      roadworkCount: base?.fieldRoadworkCount || 3,
+      hidePagination: base?.hidePagination || false,
+    };
+  }
+);
 
 export const addressAtom = atom('');

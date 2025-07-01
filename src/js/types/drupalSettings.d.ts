@@ -64,6 +64,16 @@ declare namespace drupalSettings {
     feed_base_url: string;
     cardsWithBorders: boolean,
   };
+  const helfi_roadworks: {
+    data: {
+      [key: string]: {
+        roadworks_api_url: string;
+        field_roadwork_count: number;
+        hidePagination: boolean;
+      }
+    },
+    cardsWithBorders: boolean;
+  };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;
   };
