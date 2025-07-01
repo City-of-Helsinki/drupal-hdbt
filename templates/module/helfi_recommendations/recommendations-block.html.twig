@@ -13,7 +13,7 @@
       {% endset %}
     {% endif %}
 
-    {% if entity_type == 'news_item' %}
+    {% if entity_type == 'news_item' or entity_type == 'news_article' %}
       {% embed '@hdbt/component/card.twig' with {
         card_image: row.image,
         card_title: row.title,
