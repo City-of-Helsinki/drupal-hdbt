@@ -1569,3 +1569,17 @@ msgstr "Ehdotuksien lataus valmis"
 msgctxt "News archive: keyword placeholder"
 msgid "For example, budget proposal"
 msgstr "Esim. talousarvio"
+
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 hakutulos"
+msgstr[1] "@count hakutulosta"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "See all roadworks near you"
+msgstr "Katso kaikki katutyöt lähelläsi"
+
+msgctxt "Roadworks search: Fetch failed message"
+msgid "Failed to fetch roadworks. You can reload the page or try again later."
+msgstr "Katutöiden haku epäonnistui. Voit päivittää sivun tai yrittää myöhemmin uudelleen."

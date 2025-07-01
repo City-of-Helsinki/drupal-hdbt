@@ -1571,3 +1571,17 @@ msgstr "Förslagsladdning klar"
 msgctxt "News archive: keyword placeholder"
 msgid "For example, budget proposal"
 msgstr "T.ex. budgeten"
+
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 sökresultat"
+msgstr[1] "@count sökresultat"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "See all roadworks near you"
+msgstr "Se alla gatuarbeten nära dig"
+
+msgctxt "Roadworks search: Fetch failed message"
+msgid "Failed to fetch roadworks. You can reload the page or try again later."
+msgstr "Misslyckades att hämta gatuarbeten. Du kan ladda om sidan eller försöka igen senare."
