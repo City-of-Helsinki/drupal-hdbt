@@ -95,7 +95,7 @@ function ResultsContainer({
       {getContent()}
       {
         seeAllUrl && settings.hidePagination ?
-        <div className='roadwork-list__see-all-button roadwork-list__see-all-button--near-you'>
+        <div className='event-list__see-all-button event-list__see-all-button--near-you'>
           <a
             href={seeAllUrl}
             className='hds-button hds-button--primary'
