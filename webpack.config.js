@@ -13,6 +13,7 @@ const REACT_SEARCHES = {
   'district-and-project-search': ['./src/js/react/apps/district-and-project-search/index.tsx'],
   'job-search': ['./src/js/react/apps/job-search/index.tsx'],
   linkedevents: ['./src/js/react/apps/linkedevents/index.tsx'],
+  roadworks: ['./src/js/react/apps/roadworks/index.tsx'],
   'school-search': ['./src/js/react/apps/school-search/index.tsx'],
   'news-archive': ['./src/js/react/apps/news-archive/index.tsx'],
   'health-station-search': ['./src/js/react/apps/health-station-search/index.tsx'],
