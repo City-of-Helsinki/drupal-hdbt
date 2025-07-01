@@ -1,23 +1,30 @@
 import { createRef, useEffect, useState } from 'react';
+import { useAtomValue } from 'jotai';
 
 import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import Pagination from '../components/Pagination';
 import RoadworkCard from '../components/RoadworkCard';
+import { settingsAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import { GhostList } from '@/react/common/GhostList';
 
 type ResultsContainerProps = {
+  addressRequired?: boolean;
   countNumber: number;
   error?: Error;
   roadworks: Roadwork[];
   loading: boolean;
   retriesExhausted?: boolean;
   seeAllUrl?: string;
+  size: number;
+  pages?: number;
 };
 
 function ResultsContainer({
+  addressRequired,
   countNumber,
   error,
   roadworks,
@@ -25,7 +32,10 @@ function ResultsContainer({
   retriesExhausted,
   seeAllUrl
 }: ResultsContainerProps) {
-  const size = 3; // Default roadwork count
+  const { cardsWithBorders } = drupalSettings.helfi_roadworks;
+
+  const settings = useAtomValue(settingsAtom);
+  const size = settings.roadworkCount;
   const scrollTarget = createRef<HTMLDivElement>();
   const [initialized, setInitialized] = useState(false);
   
@@ -64,9 +74,15 @@ function ResultsContainer({
             ref={scrollTarget}
           />
           {loading ?
-            <GhostList bordered={false} count={size} /> :
-            roadworks.map((roadwork, index) => <RoadworkCard key={`roadwork-${index}`} roadwork={roadwork} />)
+            <GhostList bordered={cardsWithBorders} count={size} /> :
+            roadworks.map((roadwork, index) => {
+              const cardProps = cardsWithBorders ? { cardModifierClass: 'card--border' } : {};
+              return <RoadworkCard key={`roadwork-${index}`} roadwork={roadwork} {...cardProps} />;
+            })
           }
+          {!settings.hidePagination && (
+            <Pagination pages={5} totalPages={10} />
+          )}
         </>
       );
     }
@@ -78,7 +94,7 @@ function ResultsContainer({
     <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
       {getContent()}
       {
-        seeAllUrl ?
+        seeAllUrl && settings.hidePagination ?
         <div className='roadwork-list__see-all-button roadwork-list__see-all-button--near-you'>
           <a
             href={seeAllUrl}
