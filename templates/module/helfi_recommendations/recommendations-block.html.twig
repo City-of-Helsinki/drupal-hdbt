@@ -13,20 +13,40 @@
       {% endset %}
     {% endif %}
 
-    {% embed '@hdbt/component/card.twig' with {
-      card_image: row.image,
-      card_title: row.title,
-      card_title_level: 'h3',
-      card_url: row.url,
-      card_helptext: row.helptext,
-      card_metas: row.published_at ? [
-        {
-          icon: 'clock',
-          label: 'Published'|t({}, {'context': 'Label for news card published time'}),
-          content: html_published_at
-        },
-      ] : [],
-    } %}
-    {% endembed %}
+    {% if entity_type == 'news_item' %}
+      {% embed '@hdbt/component/card.twig' with {
+        card_image: row.image,
+        card_title: row.title,
+        card_title_level: 'h3',
+        card_url: row.url,
+        card_helptext: row.helptext,
+        card_metas: row.published_at ? [
+          {
+            icon: 'clock',
+            label: 'Published'|t({}, {'context': 'Label for news card published time'}),
+            content: html_published_at
+          },
+        ] : [],
+      } %}
+      {% endembed %}
+    {% else %}
+      {% set published_information %}
+        {{ 'News'|t({}, {'context': 'Label for tiny news card content type'}) }}{{ html_published_at }}
+      {% endset %}
+      {% embed '@hdbt/component/card.twig' with {
+        card_modifier_class: 'card--tiny',
+        card_title: row.title,
+        card_title_level: 'h3',
+        card_url: row.url,
+        card_helptext: row.helptext,
+        card_metas: row.published_at ? [
+          {
+            content: published_information
+          },
+        ] : [],
+      } %}
+      {% endembed %}
+    {% endif %}
+
   {% endfor %}
 {% endif %}

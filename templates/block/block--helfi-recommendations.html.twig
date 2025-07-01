@@ -1,8 +1,9 @@
+{{ dump() }}
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
       component_classes: [ 'component', 'component--recommendations' ],
-      component_title: 'You might be interested in'|t({}, {'context': 'Recommendations block title'}),
+      component_title: 'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
       component_description: 'Recommendations are generated automatically based on content.'|t({}, {'context': 'Recommendations block description'}),
       use_component_title_lang_fallback: alternative_language ?? false,
     }
