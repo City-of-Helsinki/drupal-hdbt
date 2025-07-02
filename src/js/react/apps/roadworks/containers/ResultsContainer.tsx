@@ -37,6 +37,7 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.roadworkCount;
   const scrollTarget = createRef<HTMLDivElement>();
+  
   const [initialized, setInitialized] = useState(false);
   
   // Client-side pagination state

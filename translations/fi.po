@@ -1580,6 +1580,14 @@ msgctxt "Helsinki near you roadworks search"
 msgid "See all roadworks near you"
 msgstr "Katso kaikki katutyöt lähelläsi"
 
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgstr "1 tulos"
+
+msgctxt "Roadworks search: result count"
+msgid "@count results"
+msgstr "@count tulosta"
+
 msgctxt "Roadworks search: Fetch failed message"
 msgid "Failed to fetch roadworks. You can reload the page or try again later."
 msgstr "Katutöiden haku epäonnistui. Voit päivittää sivun tai yrittää myöhemmin uudelleen."
