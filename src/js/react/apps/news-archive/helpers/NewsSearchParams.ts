@@ -82,9 +82,9 @@ class NewsSearchParams extends URLSearchParams {
     });
 
     ['topic', 'neighbourhoods', 'groups'].forEach(key => {
-      const values = this.get(key)?.split(',') ?? [];
-
-      values.forEach((id, index) => resultingParams.append(`${key}[${index}]`, id));
+      if (this.has(key) && this.get(key) !== '') {
+        this.get(key)?.split(',').forEach((id, index) => resultingParams.append(`${key}[${index}]`, id));
+      }
     });
 
     return resultingParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
