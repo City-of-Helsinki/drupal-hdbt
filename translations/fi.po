@@ -1578,7 +1578,7 @@ msgstr[1] "@count hakutulosta"
 
 msgctxt "Helsinki near you roadworks search"
 msgid "See all roadworks near you"
-msgstr "Katso kaikki katutyöt lähelläsi"
+msgstr "Katso kaikki katu- ja puistohankkeet lähelläsi"
 
 msgctxt "Roadworks search: result count"
 msgid "1 result"
