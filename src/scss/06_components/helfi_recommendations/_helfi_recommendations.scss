@@ -18,8 +18,7 @@
   }
 }
 
-.page-type--page .component--recommendations,
-.page-type--service .component--recommendations {
+.component--recommendations--tiny-cards {
   @include breakpoint($breakpoint-m) {
     padding: $spacing-double;
   }

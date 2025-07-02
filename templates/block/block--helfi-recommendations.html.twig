@@ -1,14 +1,1 @@
-{% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [ 'component', 'component--recommendations', 'hide-from-table-of-contents' ],
-      component_title: 'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
-      component_description: 'Recommendations are generated automatically based on content.'|t({}, {'context': 'Recommendations block description'}),
-      use_component_title_lang_fallback: alternative_language ?? false,
-    }
-  %}
-    {% block component_content %}
-      {{ content }}
-    {% endblock component_content %}
-  {% endembed %}
-{% endblock paragraph %}
+{{ content }}

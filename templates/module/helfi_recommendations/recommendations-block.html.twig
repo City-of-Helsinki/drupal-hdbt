@@ -1,52 +1,67 @@
-{% if rows is empty %}
-  <div class="empty-text">
-    {{ no_results_message }}
-  </div>
-{% else %}
-  {% for row in rows %}
-    {% if row.published_at %}
-      {% set html_published_at  %}
-        <time datetime="{{ row.published_at|format_date('custom', 'Y-m-d\\TH:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
-          <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
-          {{ row.published_at|format_date('publication_date_format') }}
-        </time>
-      {% endset %}
-    {% endif %}
+{% set tiny_cards = TRUE %}
 
-    {% if entity_type == 'news_item' or entity_type == 'news_article' %}
-      {% embed '@hdbt/component/card.twig' with {
-        card_image: row.image,
-        card_title: row.title,
-        card_title_level: 'h3',
-        card_url: row.url,
-        card_helptext: row.helptext,
-        card_metas: row.published_at ? [
-          {
-            icon: 'clock',
-            label: 'Published'|t({}, {'context': 'Label for news card published time'}),
-            content: html_published_at
-          },
-        ] : [],
-      } %}
-      {% endembed %}
-    {% else %}
-      {% set published_information %}
-        {{ 'News'|t({}, {'context': 'Label for tiny news card content type'}) }}{{ html_published_at }}
-      {% endset %}
-      {% embed '@hdbt/component/card.twig' with {
-        card_modifier_class: 'card--tiny',
-        card_title: row.title,
-        card_title_level: 'div',
-        card_url: row.url,
-        card_helptext: row.helptext,
-        card_metas: row.published_at ? [
-          {
-            content: published_information
-          },
-        ] : [],
-      } %}
-      {% endembed %}
-    {% endif %}
+{% if entity_type == 'news_item' or entity_type == 'news_article' %}
+  {% set tiny_cards = FALSE %}
+{% endif %}
 
-  {% endfor %}
+{% if rows is not empty %}
+  {% block paragraph %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component', 'component--recommendations', 'hide-from-table-of-contents', tiny_cards ? 'component--recommendations--tiny-cards' : '' ],
+        component_title: 'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
+        component_description: 'Recommendations are generated automatically based on content.'|t({}, {'context': 'Recommendations block description'}),
+        use_component_title_lang_fallback: alternative_language ?? false,
+      }
+    %}
+      {% block component_content %}
+        {% for row in rows %}
+          {% if row.published_at %}
+            {% set html_published_at  %}
+              <time datetime="{{ row.published_at|format_date('custom', 'Y-m-d\\TH:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+                <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
+                {{ row.published_at|format_date('publication_date_format') }}
+              </time>
+            {% endset %}
+          {% endif %}
+
+          {% if tiny_cards %}
+            {% set published_information %}
+              {{ 'News'|t({}, {'context': 'Label for tiny news card content type'}) }}{{ html_published_at }}
+            {% endset %}
+            {% embed '@hdbt/component/card.twig' with {
+              card_modifier_class: 'card--tiny',
+              card_title: row.title,
+              card_title_level: 'div',
+              card_url: row.url,
+              card_helptext: row.helptext,
+              card_metas: row.published_at ? [
+                {
+                  content: published_information
+                },
+              ] : [],
+            } %}
+            {% endembed %}
+          {% else %}
+            {% embed '@hdbt/component/card.twig' with {
+              card_image: row.image,
+              card_title: row.title,
+              card_title_level: 'h3',
+              card_url: row.url,
+              card_helptext: row.helptext,
+              card_metas: row.published_at ? [
+                {
+                  icon: 'clock',
+                  label: 'Published'|t({}, {'context': 'Label for news card published time'}),
+                  content: html_published_at
+                },
+              ] : [],
+            } %}
+            {% endembed %}
+          {% endif %}
+
+        {% endfor %}
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock paragraph %}
 {% endif %}
