@@ -10,13 +10,9 @@ const createBaseAtom = () => {
     return;
   }
 
-  console.log('Creating base atom with:', { rootElement, paragraphId });
-
   const settings = (drupalSettings as any).helfi_roadworks?.data?.[paragraphId];
-  console.log('Roadworks settings:', settings);
-
+  
   if (!settings) {
-    console.warn('No roadworks settings found in drupalSettings');
     return {};
   }
 
@@ -24,13 +20,9 @@ const createBaseAtom = () => {
   const fieldRoadworkCount = Number(settings.field_roadwork_count) || 3;
   const hidePagination = settings.hidePagination === true;
 
-  console.log('Extracted data:', {
-    roadworksApiUrl,
-    fieldRoadworkCount,
-    hidePagination,
-  });
-
   return {
+    rootElement,
+    paragraphId,
     roadworksApiUrl,
     fieldRoadworkCount,
     hidePagination,
@@ -50,9 +42,18 @@ export const settingsAtom = atom(
     const base = get(baseAtom);
     return {
       roadworkCount: base?.fieldRoadworkCount || 3,
-      hidePagination: base?.hidePagination || false,
+      hidePagination: base?.hidePagination === true,
     };
   }
 );
+
+// Client-side pagination atoms
+export const currentPageAtom = atom<number>(1);
+export const itemsPerPageAtom = atom<number>(10); // Default 10 roadworks per page
+
+// Reset to first page when needed
+export const resetPageAtom = atom(null, (get, set) => {
+  set(currentPageAtom, 1);
+});
 
 export const addressAtom = atom('');
