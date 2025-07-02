@@ -122,8 +122,8 @@ function ResultsContainer({
         seeAllUrl && settings.hidePagination ?
         <div className='event-list__see-all-button event-list__see-all-button--near-you'>
           <a
+            data-hds-component="button"
             href={seeAllUrl}
-            className='hds-button hds-button--primary'
           >
             {Drupal.t('See all roadworks near you', {}, { context: 'Helsinki near you roadworks search' })}
           </a>
