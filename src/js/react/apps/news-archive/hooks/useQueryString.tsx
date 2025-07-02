@@ -54,7 +54,7 @@ const useQueryString = (urlParams: URLParams): string => {
               fields: [
                 `${IndexFields.TITLE}^2`,
                 `${IndexFields.FIELD_LEAD_IN}^1.5`,
-                `${IndexFields.TEXT_CONTENT}^1.1`,
+                `${IndexFields.TEXT_CONTENT}^.1`,
               ]
             }
           },
