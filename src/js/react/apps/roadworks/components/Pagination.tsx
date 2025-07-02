@@ -1,26 +1,24 @@
 import React from 'react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 
 import { Pagination as CommonPagination } from '@/react/common/Pagination';
+import { currentPageAtom } from '../store';
 
 type PaginationProps = {
-  pages: number;
   totalPages: number;
+  pages?: number;
 };
 
-export const Pagination = ({ pages, totalPages }: PaginationProps) => {
-  // For now, we'll use simple state management
-  // TODO: Add proper atom-based page management similar to events
-  const [currentPage, setCurrentPage] = React.useState(1);
+export const Pagination = ({ totalPages, pages = 5 }: PaginationProps) => {
+  const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
 
-  if (!Number.isFinite(totalPages)) {
+  if (!Number.isFinite(totalPages) || totalPages <= 1) {
     return null;
   }
 
-  const updatePage = (e: React.MouseEvent<HTMLElement>, index: number) => {
+  const updatePage = (e: React.MouseEvent<HTMLElement>, page: number) => {
     e.preventDefault();
-    setCurrentPage(index);
-    // TODO: Add URL parameter update logic
+    setCurrentPage(page);
   };
 
   return (
