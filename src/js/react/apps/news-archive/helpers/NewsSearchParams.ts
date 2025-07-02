@@ -1,4 +1,3 @@
-import SearchComponents from '../enum/SearchComponents';
 import URLParams from '../types/URLParams';
 
 class NewsSearchParams extends URLSearchParams {
