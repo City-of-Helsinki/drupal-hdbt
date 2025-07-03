@@ -35,9 +35,10 @@ const ResultsContainer = ({
   });
   const scrollTarget = createRef<HTMLDivElement>();
   const choices =
-    Boolean(urlParams.page) ||
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
+    Boolean(urlParams.page) ||
+    Boolean(urlParams.keyword?.length) ||
     Boolean(urlParams.topic?.length);
 
   useScrollToResults(scrollTarget, choices);

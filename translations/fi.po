@@ -1012,6 +1012,10 @@ msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Avaa kartta suurempana"
 
+msgctxt "React search: results loading"
+msgid "Search results are loading"
+msgstr "Hakutuloksia ladataan"
+
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "Esim. Aurinkolahden peruskoulu tai 00990"
@@ -1561,3 +1565,7 @@ msgstr "Ladataan ehdotuksia..."
 msgctxt "Loading finished indicator for suggestive search"
 msgid "Finished loading suggestions"
 msgstr "Ehdotuksien lataus valmis"
+
+msgctxt "News archive: keyword placeholder"
+msgid "For example, budget proposal"
+msgstr "Esim. talousarvio"
