@@ -16,10 +16,15 @@ import {
   updateParamsAtom,
   updateUrlAtom,
   languageAtom,
+  eventTypeAtom,
+  targetGroupsAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 import getDateString from '../helpers/GetDate';
+import { EventTypeOption } from '../types/EventTypeOption';
+import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
+import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 
 type SelectionsContainerProps = {
   url: string | undefined;
@@ -32,10 +37,20 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const endDate = useAtomValue(endDateAtom);
   const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
+  const targetGroups = useAtomValue(targetGroupsAtom);
   const [languageSelection, setLanguageSelection] = useAtom(languageAtom);
+  const eventTypeSelection = useAtomValue(eventTypeAtom);
   const resetForm = useSetAtom(resetFormAtom);
 
-  const showClearButton = locationSelection.length || topicsSelection.length || languageSelection.length || startDate || endDate || freeFilter || remoteFilter;
+  const showClearButton =
+    locationSelection.length ||
+    topicsSelection.length ||
+    languageSelection.length ||
+    eventTypeSelection.length ||
+    startDate ||
+    endDate ||
+    freeFilter ||
+    remoteFilter;
 
   if (!url) {
     return null;
@@ -47,6 +62,10 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
         updater={setTopicsSelection}
         valueKey={ApiKeys.KEYWORDS}
         values={topicsSelection}
+        url={url}
+      />
+      <TargetGroupPills
+        targetGroups={targetGroups}
         url={url}
       />
       <ListFilterPills
@@ -80,6 +99,7 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
         url={url}
         value={freeFilter}
       />
+      <TypeFilterPills {...{eventTypeSelection, url}}/>
     </FilterBulletsWrapper>
   );
 };
@@ -172,6 +192,42 @@ type DateFilterBulletProps = {
   url: string | null;
 };
 
+const TypeFilterBullets = ({
+  eventTypeSelection,
+  url,
+}: {
+  eventTypeSelection: EventTypeOption[];
+  url: string|null;
+}) => {
+  const setEventTypeSelection = useSetAtom(eventTypeAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
+
+  if (!eventTypeSelection.length) {
+    return null;
+  }
+
+  return (
+    <>
+      {eventTypeSelection.map((selection: EventTypeOption) => (
+        <FilterButton
+          clearSelection={() => {
+            const value = eventTypeSelection.filter((type) => type !== selection);
+            setEventTypeSelection(value);
+            updateParams({[ApiKeys.EVENT_TYPE]: typeSelectionsToString(value)});
+            updateUrl();
+          }}
+          key={selection}
+          value={selection === 'General' ?
+            Drupal.t('Events', {}, {context: 'Event search: events type'}) :
+            Drupal.t('Hobbies', {}, {context: 'Event search: hobbies type'})
+          }
+        />
+      ))}
+    </>
+  );
+};
+
 const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => {
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
@@ -196,6 +252,36 @@ const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => 
   );
 };
 
+const TargetGroupsBullets = ({ targetGroups, url }: {
+  targetGroups: OptionType[],
+  url: string|null
+}) => {
+  const setTargetGroups = useSetAtom(targetGroupsAtom);
+  const updateParams = useSetAtom(updateParamsAtom);
+  const updateUrl = useSetAtom(updateUrlAtom);
+
+  if (!targetGroups.length) {
+    return null;
+  }
+
+  return (
+    <>
+      {targetGroups.map((selection: OptionType) => (
+        <FilterButton
+          clearSelection={() => {
+            const value = targetGroups.filter((targetGroup) => targetGroup.value !== selection.value);
+            setTargetGroups(value);
+            updateParams(targetGroupsToParams(value));
+            updateUrl();
+          }}
+          key={selection.value}
+          value={selection.value}
+        />
+      ))}
+    </>
+  );
+};
+
 const updateSelections = (prev: any, next: any) => {
   if (prev.url === next.url) {
     return true;
@@ -208,4 +294,6 @@ const FilterBulletsWrapper = memo(FilterBullets, updateSelections);
 const ListFilterPills = memo(ListFilterBullets, updateSelections);
 const CheckboxFilterPill = memo(CheckboxFilterBullet, updateSelections);
 const DateFilterPill = memo(DateFilterBullet, updateSelections);
+const TypeFilterPills = memo(TypeFilterBullets, updateSelections);
+const TargetGroupPills = memo(TargetGroupsBullets, updateSelections);
 export default memo(SelectionsContainer, updateSelections);

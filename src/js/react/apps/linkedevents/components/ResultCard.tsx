@@ -1,8 +1,8 @@
 import parse from 'html-react-parser';
 
-import type { Event, EventImage, EventKeyword } from '../types/Event';
+import type { Event, EventImage } from '../types/Event';
 import CardItem from '@/react/common/Card';
-import type TagType from '@/types/TagType';
+import { hobbiesPublicUrl } from '../store';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
@@ -20,19 +20,29 @@ const formatStartDate = (start: Date, end: Date) => {
   return start.toLocaleDateString('fi-FI');
 };
 
-interface KeywordsForLanguage { keywords: EventKeyword[], currentLanguage: string }
-const getCardTags = ({ keywords, currentLanguage }: KeywordsForLanguage ) => keywords?.map((item: any) => ({ tag: item.name[currentLanguage], color: 'silver' })).filter((keyword: any) => keyword.tag !== undefined) as TagType[];
-
 interface ResultCardProps extends Event {
   cardModifierClass?: string;
 }
 
-function ResultCard({ end_time, id, location, name, keywords=[], start_time, images, offers, cardModifierClass, }: ResultCardProps) {
+function ResultCard({
+  cardModifierClass,
+  end_time,
+  enrolment_end_time,
+  enrolment_start_time,
+  id,
+  images,
+  keywords=[],
+  location,
+  name,
+  offers,
+  start_time,
+  type_id,
+}: ResultCardProps) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const url = `${baseUrl}/${currentLanguage}/events/${id}`;
-
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
+  
+  const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDate = () => {
     let startDate;
@@ -51,7 +61,7 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
       return `${formatStartDate(startDate, endDate)} - ${endDate.toLocaleDateString('fi-FI')}`;
     }
 
-    return `${startDate.toLocaleDateString('fi-FI')}, ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${startDate.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' })} - ${endDate.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' })}`;
+    return `${startDate.toLocaleDateString('fi-FI')}, ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)} - ${formatTime(endDate)}`;
   };
 
   const getLocation = () => {
@@ -110,20 +120,76 @@ function ResultCard({ end_time, id, location, name, keywords=[], start_time, ima
     );
   };
 
+  const getCardCategoryTag = () => {
+    if (!type_id || type_id === 'Volunteering') {
+      return;
+    }
+
+    return type_id === 'Course' ?
+      {tag: Drupal.t('Hobby', {}, {context: 'Event search: hobby tag'}), color: 'gold'} :
+      {tag: Drupal.t('Event', {}, {context: 'Event search: event tag'}), color: 'fog-medium-light'};
+  };
+
   const isRemote = location && location.id === INTERNET_EXCEPTION;
-  const cardTags = getCardTags({keywords, currentLanguage});
+  const isFree = offers?.some(({ is_free }) => is_free);
+  const getCardTags = () => {
+    const tags = [];
+
+    if (isRemote) {
+      tags.push({
+        tag: Drupal.t('Remote participation', {}, { context: 'Label for remote events' }),
+        color: 'silver',
+      });
+    }
+
+    if (isFree) {
+      tags.push({
+        tag: Drupal.t('Free', {}, { context: 'Label for free events' }),
+        color: 'silver',
+      });
+    }
+
+    return tags;
+  };
+
+  const getSignUp = () => {
+    if (!enrolment_end_time && !enrolment_start_time) {
+      return;
+    }
+
+    const startDate = new Date(enrolment_start_time);
+    const startString = `${startDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, {context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)}`;
+
+    // There should never be a case where we have end date but no start date.
+    if (!enrolment_end_time) {
+      return startString;
+    }
+
+    const endDate = new Date(enrolment_end_time);
+    return `${startString} - ${endDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, {context: 'Indication that events take place in a certain timeframe' })} ${formatTime(endDate)}`;
+  };
+
+  const getUrl = () => {
+    if (type_id && type_id === 'Course') {
+      return `${hobbiesPublicUrl}/${currentLanguage}/courses/${id}`;
+    }
+
+    return `${baseUrl}/${currentLanguage}/events/${id}`;
+  };
 
   return (
     <CardItem
+      cardCategoryTag={getCardCategoryTag()}
       cardModifierClass={cardModifierClass}
-      cardUrl={url}
+      cardUrl={getUrl()}
       cardTitle={resolvedName}
       cardImage={getImage()}
-      cardTags={cardTags}
+      cardTags={getCardTags()}
       cardUrlExternal
       location={isRemote ? 'Internet' : getLocation()}
       time={getDate()}
       registrationRequired={getOffers()}
+      signUp={getSignUp()}
     />
   );
 }

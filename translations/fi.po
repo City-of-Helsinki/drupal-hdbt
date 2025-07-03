@@ -145,8 +145,10 @@ msgstr[0] "Palvelupiste"
 msgstr[1] "Palvelupisteet"
 
 msgctxt "Service units count"
-msgid "service points"
-msgstr "palvelupistettä"
+msgid "service point"
+msgid_plural "service points"
+msgstr[0] "palvelupiste"
+msgstr[1] "palvelupistettä"
 
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
@@ -1010,6 +1012,10 @@ msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Avaa kartta suurempana"
 
+msgctxt "React search: results loading"
+msgid "Search results are loading"
+msgstr "Hakutuloksia ladataan"
+
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "Esim. Aurinkolahden peruskoulu tai 00990"
@@ -1135,10 +1141,46 @@ msgid "Time"
 msgstr "Aika"
 
 msgctxt "Events search: result count"
-msgid "1 event"
-msgid_plural "@count events"
-msgstr[0] "1 tapahtuma"
-msgstr[1] "@count tapahtumaa"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 hakutulos"
+msgstr[1] "@count hakutulosta"
+
+msgctxt "Label for remote events"
+msgid "Remote participation"
+msgstr "Etäosallistuminen"
+
+msgctxt "Label for free events"
+msgid "Free"
+msgstr "Maksuton"
+
+msgctxt "Event search: type filter label"
+msgid "Type"
+msgstr "Tyyppi"
+
+msgctxt "Event search: events type"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Event search: hobbies type"
+msgid "Hobbies"
+msgstr "Harrastukset"
+
+msgctxt "Event search: event tag"
+msgid "Event"
+msgstr "Tapahtuma"
+
+msgctxt "Event search: hobby tag"
+msgid "Hobby"
+msgstr "Harrastus"
+
+msgctxt "Events search"
+msgid "Search for more events on the Hobbies website"
+msgstr "Etsi lisää harrastuksia Harrastukset-sivustolta"
+
+msgctxt "Event signup period"
+msgid "Registration time"
+msgstr "Ilmoittautumisaika"
 
 msgctxt "Accordion open all"
 msgid "Open all"
@@ -1189,8 +1231,8 @@ msgid "Invalid end date"
 msgstr "Virheellinen lopetuspäivämäärä"
 
 msgctxt "React search: date range select"
-msgid "Select a time period in which the event takes place."
-msgstr "Valitse aikaväli, johon tapahtuma sijoittuu."
+msgid "Select a time period for the event"
+msgstr "Valitse aikaväli, johon tilaisuus sijoittuu"
 
 msgctxt "React search: date range select"
 msgid "The last day of the time period is the same as the first day"
@@ -1214,15 +1256,15 @@ msgstr "Valitse päivämäärä"
 
 msgctxt "Events search"
 msgid "Venue"
-msgstr "Tapahtumapaikka"
+msgstr "Paikka"
 
-msgctxt "Events search"
-msgid "Free-of-charge events"
-msgstr "Maksuttomat tapahtumat"
+msgctxt "Events search: free filter label"
+msgid "Free-of-charge"
+msgstr "Maksuttomat"
 
-msgctxt "Events search"
-msgid "Remote events"
-msgstr "Etätapahtumat"
+msgctxt "Events search: remote filter label"
+msgid "Remote participation"
+msgstr "Etäosallistuttavat"
 
 msgctxt "Events search"
 msgid "All dates"
@@ -1251,6 +1293,14 @@ msgstr "Näytä vain"
 msgctxt "Events search: search form title"
 msgid "Filter events"
 msgstr "Etsi tapahtumia"
+
+msgctxt "Events search: search form title"
+msgid "Filter hobbies"
+msgstr "Etsi harrastuksia"
+
+msgctxt "Events search: search form title"
+msgid "Filter events and hobbies"
+msgstr "Etsi tapahtumia ja harrastuksia"
 
 msgctxt "React search: submit button label"
 msgid "Search"
@@ -1298,7 +1348,7 @@ msgstr "klo"
 
 msgctxt "React search: all available options"
 msgid "All venues"
-msgstr "Kaikki tapahtumapaikat"
+msgstr "Kaikki paikat"
 
 msgctxt "React search: all available options"
 msgid "Search term"
@@ -1313,8 +1363,8 @@ msgid "For example, Music"
 msgstr "Esim. Musiikki"
 
 msgctxt "React search: topics filter"
-msgid "Event topic"
-msgstr "Tapahtuman aihe"
+msgid "Topic"
+msgstr "Aihe"
 
 msgctxt "React search: topics filter"
 msgid "All topics"
@@ -1339,6 +1389,10 @@ msgstr "Näytä vain"
 msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Julkaistu"
+
+msgctxt "Label for tiny news card content type"
+msgid "News"
+msgstr "Uutinen"
 
 msgctxt "Search monitor header"
 msgid "Receive search results by email"
@@ -1459,3 +1513,59 @@ msgstr "Tapahtumien hakeminen epäonnistui. Vot ladata sivun uudelleen tai palat
 msgctxt "Language toast"
 msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"
+
+msgctxt "Event search: target group label"
+msgid "Event target group"
+msgstr "Tapahtuman kohderyhmä"
+
+msgctxt "Event search: target group placeholder"
+msgid "All target groups"
+msgstr "Kaikki kohderyhmät"
+
+msgctxt "Event search: target group"
+msgid "Families with babies"
+msgstr "Vauvaperheet"
+
+msgctxt "Event search: target group"
+msgid "Children"
+msgstr "Lapset"
+
+msgctxt "Event search: target group"
+msgid "Youth"
+msgstr "Nuoret"
+
+msgctxt "Event search: target group"
+msgid "Adults"
+msgstr "Aikuiset"
+
+msgctxt "Event search: target group"
+msgid "Seniors"
+msgstr "Ikääntyneet"
+
+msgctxt "Event search: target group"
+msgid "Immigrants"
+msgstr "Maahanmuuttajat"
+
+msgctxt "Event search: target group"
+msgid "Unemployed"
+msgstr "Työttömät"
+
+msgctxt "Event search: target group"
+msgid "Tourists"
+msgstr "Matkailijat"
+
+msgctxt "School search: result display"
+msgid "using address"
+msgstr "osoitteella"
+
+msgctxt "Loading indicator for suggestive search"
+msgid "Loading suggestions..."
+msgstr "Ladataan ehdotuksia..."
+
+msgctxt "Loading finished indicator for suggestive search"
+msgid "Finished loading suggestions"
+msgstr "Ehdotuksien lataus valmis"
+
+msgctxt "News archive: keyword placeholder"
+msgid "For example, budget proposal"
+msgstr "Esim. talousarvio"

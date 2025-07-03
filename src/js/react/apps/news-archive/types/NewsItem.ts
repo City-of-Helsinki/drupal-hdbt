@@ -8,6 +8,7 @@ type Result = {
   field_photographer?: string[];
   highlight?: string[];
   main_image_url?: { [key: string]: string };
+  original_title: string[];
   published_at?: number[];
   title: string[];
   url: string[];

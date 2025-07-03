@@ -20,7 +20,7 @@ function TopicsFilter() {
     updateParams({ [ApiKeys.KEYWORDS]: value.map((topic: any) => topic.value).join(',') });
   };
 
-  const selectLabel: string = Drupal.t('Event topic', {}, { context: 'React search: topics filter' });
+  const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
     id: SearchComponents.TOPICS,

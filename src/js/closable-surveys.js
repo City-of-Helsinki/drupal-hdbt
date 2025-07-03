@@ -27,6 +27,7 @@ import LocalStorageManager from './localStorageManager';
       let surveyFocusTrap = null;
 
       try {
+        // @todo Use the storageManager instead.
         surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
       } catch (e) {
         console.error('Error parsing local storage data:', e);

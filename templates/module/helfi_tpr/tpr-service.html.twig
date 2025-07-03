@@ -21,7 +21,8 @@
       </div>
     {% endif %}
 
-    {% if content.errand_services|render %}
+
+    {% if content.errand_services|render and not content.field_hide_errand_services['#items'].value %}
       <div class="enriched-content service__errand-services">
         {{ content.errand_services }}
       </div>

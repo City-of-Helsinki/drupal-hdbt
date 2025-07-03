@@ -4,6 +4,7 @@
 
 .content-tags__tags__tag {
   @include tag-parent;
+  max-width: 100%;
 }
 
 .content-tags__tags--static {
@@ -31,5 +32,9 @@
   .content-tags__tags__tag--error {
     background-color: $color-error;
     color: $color-white;
+  }
+
+  .content-tags__tags__tag--fog-medium-light {
+    background-color: $color-fog-medium-light;
   }
 }

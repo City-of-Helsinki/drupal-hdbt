@@ -139,6 +139,7 @@
 
   @include font($-button-font);
   align-items: center;
+  color: $color-black;
   display: flex;
   inset-inline-end: -1px; // To adjust the positioning so that the element lines up nicely.
   margin-block-start: $spacing-half;

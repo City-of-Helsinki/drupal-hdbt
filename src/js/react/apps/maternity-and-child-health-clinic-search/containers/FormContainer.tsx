@@ -1,25 +1,27 @@
-import { Button, Checkbox, TextInput } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { Button, Checkbox } from 'hds-react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
-import { paramsAtom, stagedParamsAtom } from '../store';
+import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
+import { AddressSearch } from '@/react/common/AddressSearch';
 
 type SubmitFormType = HTMLFormElement & {
-  address: HTMLInputElement;
+  sv_only: HTMLInputElement;
 };
 
 const ProximityFormContainer = ({ initialParams }: {initialParams: SearchParams|null}) => {
+  const [keyword, setKeyword] = useAtom(keywordAtom);
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { address, sv_only } = event.target as SubmitFormType;
+    const { sv_only } = event.target as SubmitFormType;
     const params: SearchParams = {};
 
-    if (address.value && address.value.length) {
-      params.address = address.value;
+    if (keyword && keyword.length) {
+      params.address = keyword;
     };
 
     params.sv_only = sv_only.checked;
@@ -29,15 +31,16 @@ const ProximityFormContainer = ({ initialParams }: {initialParams: SearchParams|
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
-      <TextInput
+      <AddressSearch
         className='hdbt-search__filter hdbt-search--react__text-field'
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        defaultValue={initialParams?.address || ''}
         helperText={Drupal.t('Enter the street name and house number', {}, { context: 'React search: street input helper'})}
-        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'React search: street input helper placeholder'})}
         id='address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address'})}
-        type='search'
-        defaultValue={initialParams?.address || ''}
-        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        onChange={(address: string) => setKeyword(address)}
+        onSubmit={(address: string) => setKeyword(address)}
+        placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'React search: street input helper placeholder'})}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>

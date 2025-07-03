@@ -1,27 +1,16 @@
-{%
-  set classes = [
-  'views',
-  'views--' ~ id|clean_class,
-  'views--' ~ display_id|clean_class,
-  dom_id ? 'js-view-dom-id-' ~ dom_id,
-  'service__units__content'
-]
-%}
+{% set service_points_title %}
+  {% trans with {'context': 'Service units title'}%}Service point{% plural total_rows %}Service points{% endtrans %}
+{% endset %}
+  
 
-<div{{attributes.addClass(classes)}}>
-  <div class="service__units__header">
-    <h2 class="service__units__title">{% trans with {'context': 'Service units title'}%}Service point{% plural total_rows %}Service points{% endtrans %}</h2>
-    {%  if total_rows > pager_items_per_page and total_rows > 1 %}
-      <h3 class="service__units__count-container">
-        {{ total_rows }} {% trans with {'context': 'Service units count'}%}service points{% endtrans %}
-      </h3>
-    {% endif %}
-  </div>
-
-  <div class="service__units__list">
-    {{ rows }}
-  </div>
-
-  {{ empty }}
-  {{ pager }}
-</div>
+{% embed '@hdbt/component/content-list-with-count.twig' with { 
+   title: service_points_title,
+}%}
+  {% block count_container%}
+    {%- if total_rows -%}
+      {{ total_rows }} {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
+    {%- else -%}
+      {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+    {%- endif -%}
+  {% endblock count_container %}
+{% endembed %}

@@ -64,14 +64,12 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
+  const resultHeader = Drupal.formatPlural(total, '1 school', '@count schools',{},{context: 'React search: schools result count'});
+
   return (
     <div className='react-search__results'>
       <ResultsHeader
-        resultText={
-          <>
-            { Drupal.formatPlural(total, '1 school', '@count schools',{},{context: 'React search: schools result count'}) }
-          </>
-        }
+        resultText={data.addressName ? `${resultHeader} ${Drupal.t('using address', {}, {context: 'School search: result display'})} ${data.addressName}` : resultHeader}
         actions={
           <div className='hdbt-search--react__results--tablist' role='tablist'>
             <button

@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 
 import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import SearchParams from '../types/SearchParams';
-import configurationsAtom from '../store';
+import { configurationsAtom } from '../store';
 import getQueryString from '../helpers/ProximityQuery';
 import AppSettings from '../enum/AppSettings';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';

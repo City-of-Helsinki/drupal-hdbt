@@ -40,7 +40,8 @@ $teaser-icon-size-desktop: 48px;
   display: block;
   height: 100%;
   margin-top: $spacing-half;
-  padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half $spacing-and-half;
+  padding: $spacing-and-half calc(#{$spacing-and-half} + #{$teaser-icon-size-mobile} + #{$spacing}) $spacing-and-half
+    $spacing-and-half;
   position: relative;
   text-decoration: none;
 
@@ -74,8 +75,7 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
-.service__link:hover
-.service__link:focus {
+.service__link:hover .service__link:focus {
   text-decoration: underline;
   text-decoration-thickness: remify(2px);
 }
@@ -106,35 +106,16 @@ $teaser-icon-size-desktop: 48px;
     padding-block: $spacing-quadruple;
   }
 
-  .service__units__header {
-    display: block;
-  }
-
-  .service__units__title {
+  .unit-search__content,
+  .unit-search__content > h2 {
     margin-top: 0;
   }
 
-  .service__units__count-container {
-    margin-top: $spacing-double;
+  .unit-search__results {
+    margin-block-start: $spacing-double;
 
     @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-quadruple;
-    }
-  }
-
-  .service__units__list {
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-l) {
-      margin-top: $spacing-triple;
-    }
-  }
-
-  .unit.unit--teaser {
-    margin-top: $spacing-and-half;
-
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing;
+      margin-block-start: $spacing-quadruple;
     }
   }
 }

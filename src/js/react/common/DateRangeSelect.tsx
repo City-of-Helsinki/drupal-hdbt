@@ -38,7 +38,7 @@ export const DateRangeSelect = ({
   endDateHelperText = dateHelperText,
   endDateId = 'end-date',
   endDateLabel = Drupal.t('Last day of the time period', {}, {context: 'React search: date range select'}),
-  helperText = Drupal.t('Select a time period in which the event takes place.', {}, {context: 'React search: date range select'}),
+  helperText = Drupal.t('Select a time period for the event', {}, {context: 'React search: date range select'}),
   id,
   label,
   language = 'fi',
@@ -146,7 +146,7 @@ export const DateRangeSelect = ({
   };
 
   return (
-    <div className='hdbt-search--react__dropdown'>
+    <div className='hdbt-search__filter hdbt-search--react__dropdown'>
       <Collapsible {...{id, label, dialogLabel}} helper={helperText} title={collapsibleTitle} >
         <div className='event-form__date-container'>
           <DateInput

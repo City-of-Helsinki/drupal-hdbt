@@ -153,4 +153,4 @@ export const updateParamsAtom = atom(null, (get, set, params: SearchParams) => {
   set(paramsAtom, {...params, query});
 });
 
-export default configurationsAtom;
+export const keywordAtom = atom<string|undefined>('');

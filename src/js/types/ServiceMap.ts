@@ -1,73 +1,73 @@
 export type TranslatedString = {
+  en?: string;
   fi?: string;
   sv?: string;
-  en?: string;
 }
 
 export type ServiceMapAddress = {
-  object_type: string;
-  name: TranslatedString;
-  number?: number;
-  number_end?: number;
   letter: string;
-  modified_at: string;
-  municipality: {
-    id: string;
-    name: TranslatedString;
-  }
-  street: {
-    name: TranslatedString;
-  }
   location: {
     type: string;
     coordinates: [number, number];
   }
+  modified_at: string;
+  name: TranslatedString;
+  number_end?: number;
+  number?: number;
+  municipality: {
+    id: string;
+    name: TranslatedString;
+  }
+  object_type: string;
+  street: {
+    name: TranslatedString;
+  }
 };
 
 export type ServiceMapPlace = {
-  id: string;
-  has_user_editable_resources: boolean;
-  data_source: string;
-  publisher: string;
-  divisions: AdministrativeDivision[];
-  created_time: null;
-  last_modified_time: string;
-  custom_data: null;
-  email: string;
-  contact_type: null;
-  address_region: null;
-  postal_code: string;
-  post_office_box_num: null;
   address_country: null;
-  deleted: boolean;
-  has_upcoming_events: boolean;
-  n_events: number;
-  image: number;
-  parent: null;
-  replaced_by: null;
-  position: TranslatedString;
   address_locality: TranslatedString;
+  address_region: null;
+  contact_type: null;
+  created_time: null;
+  custom_data: null;
+  data_source: string;
+  deleted: boolean;
   description: null;
+  divisions: AdministrativeDivision[];
+  email: string;
+  has_upcoming_events: boolean;
+  has_user_editable_resources: boolean;
+  id: string;
+  image: number;
   info_url: TranslatedString;
+  last_modified_time: string;
+  n_events: number;
   name: TranslatedString;
+  parent: null;
+  position: TranslatedString;
+  post_office_box_num: null;
+  postal_code: string;
+  publisher: string;
+  replaced_by: null;
   street_address: TranslatedString;
   telephone: TranslatedString;
 }
 
 export type AdministrativeDivision = {
-  id: number;
-  origin_id: string;
-  ocd_id: string;
-  service_point_id: string;
-  units: number[];
-  start: string;
   end: string;
-  modified_at: string;
   extra: any;
-  type: string;
-  name: TranslatedString;
-  parent: number;
+  id: number;
+  modified_at: string;
   municipality: string;
+  name: TranslatedString;
+  ocd_id: string;
+  origin_id: string;
+  parent: number;
+  service_point_id: string;
+  start: string;
+  type: string;
+  units: number[];
 }
 
 export type ServiceMapResponse<T> = {

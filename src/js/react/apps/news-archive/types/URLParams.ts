@@ -1,8 +1,9 @@
 type URLParams = {
-  topic?: number[];
-  neighbourhoods?: number[];
   groups?: number[];
+  neighbourhoods?: number[];
   page?: number;
+  keyword?: string;
+  topic?: number[];
 }
 
 export default URLParams;

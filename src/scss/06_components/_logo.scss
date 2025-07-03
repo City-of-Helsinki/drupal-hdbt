@@ -35,6 +35,7 @@ $-logo-sv-aspect-ratio: math.div(78, 28); // sv and ru logo size from svg file
   $padding-size: 0.5 * ($wcag-touch-target-size-aaa - $logo-size);
   margin-top: calc($spacing-half - #{$padding-size});
   padding-block: $padding-size;
+  width: fit-content;
 
   @include breakpoint($breakpoint-m) {
     margin-right: $spacing;

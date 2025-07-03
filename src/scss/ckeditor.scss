@@ -287,8 +287,3 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-extern
 .ck-editor .ck.ck-toolbar>.ck-toolbar__items>:not(.ck-toolbar__line-break) {
   margin-right: var(--ck-spacing-tiny);
 }
-
-// Gin overrides.
-.quote::before {
-  border-radius: 0;
-}

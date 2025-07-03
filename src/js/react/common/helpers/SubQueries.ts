@@ -1,4 +1,5 @@
 import GlobalSettings from '@/react/common/enum/GlobalSettings';
+import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 
 export const getAddressUrls = (address: string) => {
   const { addressBaseUrl } = GlobalSettings;
@@ -18,13 +19,13 @@ export const getAddressUrls = (address: string) => {
   return urls;
 };
 
-export const getAddresses = (urls: string[]) => {
+export const getAddresses = (urls: string[]): Promise<ServiceMapResponse<ServiceMapAddress>[]> => {
   const promises = urls.map(async (url: string) => fetch(url).then((res) => res.json()));
 
   return Promise.all(promises);
 };
 
-export const parseCoordinates = (addressData: any) => {
+export const parseCoordinates = (addressData: ServiceMapResponse<ServiceMapAddress>[]) => {
   const [lon, lat]: number[] = addressData[0].results[0].location.coordinates;
   return [lat, lon];
 };

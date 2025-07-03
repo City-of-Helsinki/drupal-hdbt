@@ -1,4 +1,3 @@
-import SearchComponents from '../enum/SearchComponents';
 import URLParams from '../types/URLParams';
 
 class NewsSearchParams extends URLSearchParams {
@@ -49,7 +48,7 @@ class NewsSearchParams extends URLSearchParams {
 
       if (matchedKey) {
         const arrayValue = value.split(',');
-        initialParams[matchedKey as keyof Omit<URLParams, 'page'>] = arrayValue.map((id) => Number(id));
+        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'keyword'>] = arrayValue.map((id) => Number(id));
       }
 
       result = entries.next();
@@ -60,47 +59,35 @@ class NewsSearchParams extends URLSearchParams {
       initialParams.page = Number(initialPage);
     }
 
+    const initialKeyword = this.get('keyword');
+    if (initialKeyword) {
+      initialParams.keyword = initialKeyword;
+    }
+
     return initialParams;
   }
 
+  /**
+   * Convert native search params to PHP style.
+   *
+   * @return {string} - The resulting string.
+   */
   toString(): string {
-    let allParamsString = '';
-    const entries = this.entries();
-    let result = entries.next();
+    const resultingParams = new URLSearchParams();
 
-    while (!result.done) {
-      const [key, value] = result.value;
-      let paramString = '';
-
-      if (key === SearchComponents.RESULTS) {
-        paramString = `${key}=${value}`;
-      } else if (value && value.length) {
-
-        if (value.includes(',')) {
-          const valueArray = value.split(',');
-
-          for (let i = 0; i < valueArray.length; i++) {
-            if (paramString.length) {
-              paramString += '&';
-            }
-
-            paramString += `${key}[${i}]=${valueArray[i].replaceAll(' ', '+').toLowerCase()}`;
-          }
-        }
-        else {
-          paramString += `${key}[0]=${value.toString()}`;
-        }
+    ['page', 'keyword'].forEach(key => {
+      if (this.get(key)) {
+        resultingParams.set(key, this.get(key) as string);
       }
+    });
 
-      allParamsString += allParamsString.length ? `&${paramString}` : paramString;
-      result = entries.next();
-    }
+    ['topic', 'neighbourhoods', 'groups'].forEach(key => {
+      if (this.has(key) && this.get(key) !== '') {
+        this.get(key)?.split(',').forEach((id, index) => resultingParams.append(`${key}[${index}]`, id));
+      }
+    });
 
-    if (allParamsString.length) {
-      allParamsString = `?${  allParamsString}`;
-    }
-
-    return allParamsString;
+    return resultingParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
   }
 }
 
