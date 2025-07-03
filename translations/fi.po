@@ -1390,6 +1390,10 @@ msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Julkaistu"
 
+msgctxt "Label for tiny news card content type"
+msgid "News"
+msgstr "Uutinen"
+
 msgctxt "Search monitor header"
 msgid "Receive search results by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"

@@ -1392,6 +1392,10 @@ msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Publicerad"
 
+msgctxt "Label for tiny news card content type"
+msgid "News"
+msgstr "Nyhet"
+
 msgctxt "Search monitor header"
 msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
