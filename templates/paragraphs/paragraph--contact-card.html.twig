@@ -9,7 +9,7 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="{% if content.field_contact_image|render or content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
+    <div class="{% if content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
       {% if content.field_contact_image_reference|render %}
         {{ content.field_contact_image_reference }}
       {% endif %}
