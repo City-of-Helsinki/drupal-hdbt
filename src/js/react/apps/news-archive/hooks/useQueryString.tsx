@@ -1,13 +1,15 @@
-import useLanguageQuery from '../hooks/useLanguageQuery';
+import { estypes } from '@elastic/elasticsearch';
+
+import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
-import Global from '../enum/Global';
+import useLanguageQuery from '../hooks/useLanguageQuery';
 
-const useQueryString = (urlParams: URLParams) => {
+const useQueryString = (urlParams: URLParams): string => {
   const languageFilter = useLanguageQuery();
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const must: any[] = [];
+  const must: estypes.QueryDslQueryContainer[] = [];
 
   // Add entity type filteration to languageFilter so that only nodes are listed on results.
   if (languageFilter?.bool?.filter) {
@@ -42,6 +44,31 @@ const useQueryString = (urlParams: URLParams) => {
     });
   }
 
+  if (urlParams?.keyword?.length) {
+    must.push({
+      bool: {
+        should: [
+          {
+            query_string: {
+              query: `${urlParams.keyword.toString().toLowerCase()}~`,
+              fields: [
+                `${IndexFields.TITLE}^2`,
+                `${IndexFields.FIELD_LEAD_IN}^1.5`,
+                `${IndexFields.TEXT_CONTENT}^.1`,
+              ]
+            }
+          },
+          {
+            wildcard: {
+              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword}*`
+            }
+          }
+        ],
+        minimum_should_match: 1,
+      }
+    });
+  }
+
   const query: any = {
     ...languageFilter
   };
@@ -50,16 +77,19 @@ const useQueryString = (urlParams: URLParams) => {
     query.bool.must = must;
   }
 
-  return JSON.stringify({
-    size,
+  const result: estypes.SearchRequest = {
     from: size * (page - 1),
     query,
     sort: [
+      '_score',
       {
         [IndexFields.PUBLISHED_AT]: 'desc'
       }
-    ]
-  });
+    ],
+    size,
+  };
+
+  return JSON.stringify(result);
 };
 
 export default useQueryString;

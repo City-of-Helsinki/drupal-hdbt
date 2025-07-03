@@ -1561,3 +1561,7 @@ msgstr "Ladataan ehdotuksia..."
 msgctxt "Loading finished indicator for suggestive search"
 msgid "Finished loading suggestions"
 msgstr "Ehdotuksien lataus valmis"
+
+msgctxt "News archive: keyword placeholder"
+msgid "For example, budget proposal"
+msgstr "Esim. talousarvio"

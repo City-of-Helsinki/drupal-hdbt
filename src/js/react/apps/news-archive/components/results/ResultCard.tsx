@@ -13,14 +13,14 @@ interface ResultCardProps extends NewsItem {
 
 const ResultCard = ({
   alt,
-  field_main_image_caption,
-  main_image_url,
-  field_photographer,
-  title,
-  published_at,
-  url,
   cardModifierClass,
   cardTitleLevel,
+  field_main_image_caption,
+  field_photographer,
+  main_image_url,
+  original_title,
+  published_at,
+  url,
 }: ResultCardProps) => {
   const getDate = () => {
     if (!published_at || !published_at.length) {
@@ -63,7 +63,7 @@ const ResultCard = ({
   return (
     <CardItem
       cardImage={getImage()}
-      cardTitle={title.toString()}
+      cardTitle={original_title.toString()}
       cardTitleLevel={cardTitleLevel || 4}
       cardModifierClass={`card--news-item${cardModifierClass ? ` ${cardModifierClass}` : ''}`}
       cardUrl={url.toString()}

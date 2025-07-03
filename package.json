@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.18.6",
     "@dotenvx/dotenvx": "^1.15.0",
+    "@elastic/elasticsearch": "^9.0.2",
     "@nuxt/friendly-errors-webpack-plugin": "^2.5.1",
     "@react-aria/visually-hidden": "^3.8.0",
     "@sentry/react": "^9.0.0",
