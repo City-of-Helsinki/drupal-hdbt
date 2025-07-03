@@ -27,7 +27,7 @@
         {{ content.field_contact_title }}
       </div>
     {% endif %}
-    {% if content.field_phone_number|render|striptags|trim or content.field_email|render|striptags|trim or content.field_contact_social_media|render|striptags|trim or content.field_contact_social_media_link|render|striptags|trim %}
+    {% if content.field_phone_number|render|striptags|trim or content.field_email|render|striptags|trim or content.field_contact_social_media_link|render|striptags|trim %}
       <div class="contact-card__person-links">
         {% if content.field_phone_number|render|striptags|trim %}
           <div class="contact-card__person-link contact-card__person-link--phone">
