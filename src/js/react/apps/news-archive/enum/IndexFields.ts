@@ -9,6 +9,7 @@ export const IndexFields = {
   FIELD_NEWS_ITEM_TAGS: 'field_news_item_tags',
   FIELD_NEWS_NEIGHBOURHOODS: 'field_news_neighbourhoods',
   FIELD_PHOTOGRAPHER: 'field_photographer',
+  FULLTEXT_TITLE: 'fulltext_title',
   HIGHLIGHT: 'highlight',
   NEIGHBOURHOODS: 'neighbourhoods',
   NEWS_GROUPS: 'news_groups',

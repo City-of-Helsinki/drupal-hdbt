@@ -52,7 +52,7 @@ const useQueryString = (urlParams: URLParams): string => {
             query_string: {
               query: `${urlParams.keyword.toString().toLowerCase()}~`,
               fields: [
-                `${IndexFields.TITLE}^2`,
+                `${IndexFields.FULLTEXT_TITLE}^2`,
                 `${IndexFields.FIELD_LEAD_IN}^1.5`,
                 `${IndexFields.TEXT_CONTENT}^.1`,
               ]
