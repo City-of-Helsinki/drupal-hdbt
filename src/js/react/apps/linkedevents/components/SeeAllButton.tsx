@@ -9,9 +9,9 @@ function SeeAllButton() {
   const { eventListType } = filterSettings;
 
   return (
-    <div className='event-list__see-all-container'>
+    <div className='see-all-button__container'>
       {['events', 'events_and_hobbies'].includes(eventListType) &&
-        <div className="event-list__see-all-button">
+        <div className="see-all-button see-all-button--centered">
           <ExternalLink
             data-hds-component="button"
             data-hds-variant="secondary"
@@ -21,7 +21,7 @@ function SeeAllButton() {
         </div>
       }
       {['hobbies', 'events_and_hobbies'].includes(eventListType) &&
-        <div className="event-list__see-all-button">
+        <div className="see-all-button see-all-button--centered">
           <ExternalLink
             data-hds-component='button'
             data-hds-variant="secondary"

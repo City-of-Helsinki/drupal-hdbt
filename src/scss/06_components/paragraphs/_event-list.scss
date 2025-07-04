@@ -41,33 +41,6 @@ $select-max-width: 420px;
   }
 }
 
-.event-list__see-all-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: $spacing-double;
-  margin-top: $spacing-double;
-
-  @include breakpoint($breakpoint-l) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-.event-list__see-all-button {
-  text-align: center;
-  width: 100%;
-
-  @include breakpoint($breakpoint-l) {
-    width: auto;
-  }
-}
-
-.event-list__see-all-button--near-you {
-  text-align: left;
-}
-
 .event-list__filter-title {
   @include font('h3');
 }

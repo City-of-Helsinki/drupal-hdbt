@@ -104,7 +104,7 @@ function ResultsContainer({
       {getContent()}
       {
         seeAllNearYouLink ?
-        <div className='event-list__see-all-button event-list__see-all-button--near-you'>
+        <div className='see-all-button see-all-button--near-results'>
           <a
             data-hds-component="button"
             href={seeAllNearYouLink}

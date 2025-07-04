@@ -5,7 +5,7 @@ import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import RoadworkCard from '../components/RoadworkCard';
-import { roadworksApiUrlAtom, settingsAtom, addressAtom, currentPageAtom, itemsPerPageAtom } from '../store';
+import { settingsAtom, currentPageAtom, itemsPerPageAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -24,7 +24,6 @@ type ResultsContainerProps = {
 };
 
 function ResultsContainer({
-  addressRequired,
   countNumber,
   error,
   roadworks,
@@ -37,22 +36,22 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.roadworkCount;
   const scrollTarget = createRef<HTMLDivElement>();
-  
+
   const [initialized, setInitialized] = useState(false);
-  
+
   // Client-side pagination state
   const [currentPage] = useAtom(currentPageAtom);
   const itemsPerPage = useAtomValue(itemsPerPageAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
-  
+
   useScrollToResults(scrollTarget, initialized && !loading);
-  
+
   useEffect(() => {
     if (!initialized && !loading) {
       setInitialized(true);
     }
   }, [initialized, setInitialized, loading]);
-  
+
   // Reset to page 1 when roadworks data changes (only on paginated pages)
   useEffect(() => {
     if (!settings.hidePagination && roadworks.length > 0) {
@@ -78,16 +77,16 @@ function ResultsContainer({
     if (loading && !roadworks.length) {
       return <GhostList bordered={false} count={size} />;
     }
-    
+
     if (roadworks.length > 0) {
       // Calculate pagination for client-side paging (only on full listing page)
       const totalPages = Math.ceil(roadworks.length / itemsPerPage);
       const shouldPaginate = !settings.hidePagination;
-      
-      const paginatedRoadworks = shouldPaginate 
+
+      const paginatedRoadworks = shouldPaginate
         ? roadworks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
         : roadworks.slice(0, 5); // Main page: show max 5 items
-      
+
       return (
         <>
           <ResultsHeader
@@ -120,7 +119,7 @@ function ResultsContainer({
       {getContent()}
       {
         seeAllUrl && settings.hidePagination ?
-        <div className='event-list__see-all-button event-list__see-all-button--near-you'>
+        <div className='see-all-button see-all-button--near-results'>
           <a
             data-hds-component="button"
             href={seeAllUrl}

@@ -1,6 +1,4 @@
 import React from 'react';
-import { IconClock, IconLocation, IconCogwheel } from 'hds-react';
-
 import type Roadwork from '../types/Roadwork';
 import CardItem from '@/react/common/Card';
 
@@ -20,9 +18,9 @@ const RoadworkCard: React.FC<RoadworkCardProps> = ({ roadwork, cardModifierClass
       cardDescription={description}
       cardModifierClass={cardModifierClass}
       location={location}
-      locationLabel="Sijainti"
+      locationLabel={Drupal.t('Location', {}, {context: 'Roadworks search: card location label'})}
       time={schedule}
-      timeLabel="Aikataulu"
+      timeLabel={Drupal.t('Schedule', {}, {context: 'Roadworks search: card schedule label'})}
     />
   );
 };

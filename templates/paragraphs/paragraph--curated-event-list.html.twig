@@ -26,12 +26,14 @@
             {% endfor %}
           </ul>
         {% endif %}
-        {% include '@hdbt/navigation/link-button.html.twig' with {
-          label: content.field_all_events_link.0['#title'],
-          open_in_a_new_window: content.field_all_events_link.0.options.target_new,
-          type: 'primary',
-          url: content.field_all_events_link.0['#url'],
-        } %}
+        <div class="see-all-button see-all-button--near-results">
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            label: content.field_all_events_link.0['#title'],
+            open_in_a_new_window: content.field_all_events_link.0.options.target_new,
+            type: 'primary',
+            url: content.field_all_events_link.0['#url'],
+          } %}
+        </div>
       </div>
     {% endblock %}
   {% endembed %}
