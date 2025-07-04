@@ -195,6 +195,7 @@ $-card-border-width: 2px;
 
   .card__meta {
     @include font('small');
+    color: $color-black-60;
     padding-inline-start: 0;
   }
 
