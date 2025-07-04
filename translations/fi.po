@@ -1591,3 +1591,11 @@ msgstr "@count tulosta"
 msgctxt "Roadworks search: Fetch failed message"
 msgid "Failed to fetch roadworks. You can reload the page or try again later."
 msgstr "Katutöiden haku epäonnistui. Voit päivittää sivun tai yrittää myöhemmin uudelleen."
+
+msgctxt "Roadworks search: card location label"
+msgid "Location"
+msgstr "Sijainti"
+
+msgctxt "Roadworks search: card schedule label"
+msgid "Schedule"
+msgstr "Aikataulu"

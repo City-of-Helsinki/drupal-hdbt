@@ -1585,3 +1585,11 @@ msgstr "Se alla gatuarbeten nära dig"
 msgctxt "Roadworks search: Fetch failed message"
 msgid "Failed to fetch roadworks. You can reload the page or try again later."
 msgstr "Misslyckades att hämta gatuarbeten. Du kan ladda om sidan eller försöka igen senare."
+
+msgctxt "Roadworks search: card location label"
+msgid "Location"
+msgstr "Plats"
+
+msgctxt "Roadworks search: card schedule label"
+msgid "Schedule"
+msgstr "Tidsplan"

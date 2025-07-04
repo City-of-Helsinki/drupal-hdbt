@@ -1,0 +1,42 @@
+.see-all-button__container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: $spacing-double;
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-l) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  // Buttons that are inside container don't need margin
+  // since the container handles the spacing.
+  .see-all-button {
+    margin-block-start: 0;
+  }
+}
+
+.see-all-button {
+  margin-block-start: $spacing-double;
+  text-align: left;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    margin-block-start: $spacing-triple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    width: auto;
+  }
+}
+
+.see-all-button--centered {
+  margin-block-start: $spacing-double;
+  text-align: center;
+}
+
+.see-all-button--near-results {
+  margin-block-start: $spacing-and-half;
+}

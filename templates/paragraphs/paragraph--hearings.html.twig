@@ -22,7 +22,7 @@
             </h3>
           {% endif %}
           {{ content.list }}
-          <div class="hearings__link-wrapper">
+          <div class="see-all-button">
             {% include '@hdbt/navigation/link-button.html.twig' with {
               type: 'primary',
               label: 'See all hearings'|t({},{'context': 'See all hearings link text'}),
@@ -32,7 +32,7 @@
           </div>
         {% else %}
           <p>{{ "At the moment there is no open hearings for commenting."|t }}</p>
-          <div class="hearings__link-wrapper">
+          <div class="see-all-button">
             {% include '@hdbt/navigation/link-button.html.twig' with {
               type: 'primary',
               label: 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}),
