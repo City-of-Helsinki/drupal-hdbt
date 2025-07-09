@@ -31,10 +31,7 @@ function ResultsContainer({
   retriesExhausted,
   seeAllUrl
 }: ResultsContainerProps) {
-  const { cardsWithBorders } = drupalSettings.helfi_roadworks;
-
   const settings = useAtomValue(settingsAtom);
-  const size = settings.roadworkCount;
   const scrollTarget = createRef<HTMLDivElement>();
 
   const [initialized, setInitialized] = useState(false);
@@ -68,14 +65,22 @@ function ResultsContainer({
       <ResultsError
         error={error}
         errorMessage={Drupal.t('Failed to fetch roadworks. You can reload the page or try again later.', {}, {context: 'Roadworks search: Fetch failed message'})}
-        ref={scrollTarget}
+        ref={settings.scrollToTarget ? scrollTarget : undefined}
       /> :
-      <GhostList bordered={false} count={size} />;
+      <GhostList
+        bordered={settings.cardsWithBorders || undefined}
+        count={settings.roadworkCount ?? 10}
+      />;
   }
 
   const getContent = () => {
     if (loading && !roadworks.length) {
-      return <GhostList bordered={false} count={size} />;
+      return (
+        <GhostList
+          bordered={settings.cardsWithBorders || undefined}
+          count={settings.roadworkCount ?? 10}
+        />
+      );
     }
 
     if (roadworks.length > 0) {
@@ -95,12 +100,16 @@ function ResultsContainer({
                 {Drupal.formatPlural(countNumber.toString(), '1 result', '@count results', {}, {context: 'Roadworks search: result count'})}
               </>
             }
-            ref={!settings.hidePagination ? scrollTarget : undefined}
+
+            ref={settings.scrollToTarget ? scrollTarget : undefined}
           />
           {loading ?
-            <GhostList bordered={cardsWithBorders} count={size} /> :
+            <GhostList
+              bordered={settings.cardsWithBorders || undefined}
+              count={settings.roadworkCount ?? 10}
+            /> :
             paginatedRoadworks.map((roadwork, index) => {
-              const cardProps = cardsWithBorders ? { cardModifierClass: 'card--border' } : {};
+              const cardProps = settings.cardsWithBorders ? { cardModifierClass: 'card--border' } : {};
               return <RoadworkCard key={`roadwork-${index}`} roadwork={roadwork} {...cardProps} />;
             })
           }
@@ -113,7 +122,7 @@ function ResultsContainer({
 
     return (
       <ResultsEmpty
-        ref={!settings.hidePagination ? scrollTarget : undefined}
+        ref={settings.scrollToTarget ? scrollTarget : undefined}
       />
     );
   };

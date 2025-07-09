@@ -66,7 +66,7 @@ const SearchContainer: React.FC = () => {
       loading={isLoading}
       retriesExhausted={retriesExhausted}
       seeAllUrl={data?.meta.see_all_url}
-      size={settings.roadworkCount}
+      size={settings.roadworkCount ?? 10}
     />
   );
 };

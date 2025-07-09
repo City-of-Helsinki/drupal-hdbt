@@ -65,14 +65,13 @@ declare namespace drupalSettings {
     cardsWithBorders: boolean,
   };
   const helfi_roadworks: {
-    data: {
-      [key: string]: {
-        roadworks_api_url: string;
-        field_roadwork_count: number;
-        hidePagination: boolean;
-      }
-    },
-    cardsWithBorders: boolean;
+    [key: string]: {
+      roadworksApiUrl: string;
+      roadworkCount: number;
+      hidePagination: boolean;
+      cardsWithBorders: boolean;
+      scrollToTarget: boolean;
+    }
   };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;

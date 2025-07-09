@@ -10,22 +10,26 @@ const createBaseAtom = () => {
     return;
   }
 
-  const settings = (drupalSettings as any).helfi_roadworks?.data?.[paragraphId];
-  
+  const settings = (drupalSettings as any).helfi_roadworks?.[paragraphId];
+
   if (!settings) {
     return {};
   }
 
-  const roadworksApiUrl = settings.roadworks_api_url || '';
-  const fieldRoadworkCount = Number(settings.field_roadwork_count) || 3;
-  const hidePagination = settings.hidePagination === true;
+  const roadworksApiUrl = settings.roadworksApiUrl || '';
+  const roadworkCount = Number(settings.roadworkCount) || 10;
+  const hidePagination = settings.hidePagination ?? false;
+  const cardsWithBorders = settings.cardsWithBorders ?? false;
+  const scrollToTarget = settings.scrollToTarget ?? true;
 
   return {
     rootElement,
     paragraphId,
     roadworksApiUrl,
-    fieldRoadworkCount,
+    roadworkCount,
     hidePagination,
+    cardsWithBorders,
+    scrollToTarget,
   };
 };
 
@@ -33,16 +37,16 @@ const createBaseAtom = () => {
 const baseAtom = atom(createBaseAtom());
 
 // Export API URL atom directly (following linkedevents pattern)
-export const roadworksApiUrlAtom = atom((get) => get(baseAtom)?.roadworksApiUrl || '');
-export const fieldRoadworkCountAtom = atom((get) => get(baseAtom)?.fieldRoadworkCount || 3);
-export const hidePaginationAtom = atom((get) => get(baseAtom)?.hidePagination || false);
+export const roadworksApiUrlAtom = atom((get) => get(baseAtom)?.roadworksApiUrl);
 
 export const settingsAtom = atom(
   (get) => {
     const base = get(baseAtom);
     return {
-      roadworkCount: base?.fieldRoadworkCount || 3,
-      hidePagination: base?.hidePagination === true,
+      roadworkCount: base?.roadworkCount,
+      hidePagination: base?.hidePagination,
+      cardsWithBorders: base?.cardsWithBorders,
+      scrollToTarget: base?.scrollToTarget,
     };
   }
 );
@@ -50,10 +54,3 @@ export const settingsAtom = atom(
 // Client-side pagination atoms
 export const currentPageAtom = atom<number>(1);
 export const itemsPerPageAtom = atom<number>(10); // Default 10 roadworks per page
-
-// Reset to first page when needed
-export const resetPageAtom = atom(null, (get, set) => {
-  set(currentPageAtom, 1);
-});
-
-export const addressAtom = atom('');
