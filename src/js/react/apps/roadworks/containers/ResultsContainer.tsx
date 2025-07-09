@@ -95,7 +95,7 @@ function ResultsContainer({
                 {Drupal.formatPlural(countNumber.toString(), '1 result', '@count results', {}, {context: 'Roadworks search: result count'})}
               </>
             }
-            ref={scrollTarget}
+            ref={!settings.hidePagination ? scrollTarget : undefined}
           />
           {loading ?
             <GhostList bordered={cardsWithBorders} count={size} /> :
@@ -111,7 +111,11 @@ function ResultsContainer({
       );
     }
 
-    return <ResultsEmpty ref={scrollTarget} />;
+    return (
+      <ResultsEmpty
+        ref={!settings.hidePagination ? scrollTarget : undefined}
+      />
+    );
   };
 
   return (
