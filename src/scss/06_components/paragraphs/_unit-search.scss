@@ -32,7 +32,7 @@
 
   .form-actions [data-hds-component='button']:not([class*='hds-button']):where(
     :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
-    [data-hds-variant='primary'],
+    [data-hds-variant='primary']
   ),
   .form-actions .hds-button--primary {
     margin-top: $spacing;
