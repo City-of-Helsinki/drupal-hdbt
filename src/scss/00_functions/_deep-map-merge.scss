@@ -1,4 +1,5 @@
-@use 'sass:map';
+@use "sass:map";
+@use "sass:meta";
 
 /// Merge all maps inside map non destructively. Parent map details will be merged with child map details where leafs overlap.
 /// @param {map} $parent-map: base map
@@ -7,7 +8,7 @@
   $result: $parent-map;
 
   @each $key, $value in $child-map {
-    @if not map-has-key($result, $key) or (type-of(map.get($result, $key)) != type-of($value)) or (not (type-of(map.get($result, $key)) == map and type-of($value) == map)) {
+    @if not map.has-key($result, $key) or (meta.type-of(map.get($result, $key)) != meta.type-of($value)) or (not (meta.type-of(map.get($result, $key)) == map and meta.type-of($value) == map)) {
       $result: map.merge($result, ($key: $value));
     } @else {
       $result: map.merge($result, ($key: deep-map-merge(map.get($result, $key), $value)));

@@ -81,8 +81,9 @@ $-card-border-width: 2px;
 }
 
 .card__title {
-  @include font('h3');
   margin: 0;
+
+  @include font('h3');
 }
 
 .card__link {

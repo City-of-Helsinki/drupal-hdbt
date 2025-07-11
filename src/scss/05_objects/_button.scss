@@ -488,12 +488,12 @@ input[type='submit'].hds-button--small {
     &:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
-
-      @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
-      @include hover-link-arrow-transition;
       order: 3;
       position: static;
       transform: scaleX(var(--lang-direction, 1));
+
+      @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
+      @include hover-link-arrow-transition;
     }
 
     // Handle animation for above on focus and hover
@@ -838,8 +838,9 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     [data-protocol='mailto']
   ){
     &::after{
-      @include hover-link-arrow-transition;
       transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
+
+      @include hover-link-arrow-transition;
     }
 
     &:is(
@@ -882,15 +883,15 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     [data-protocol='tel'],
     [data-protocol='mailto']
   )::after {
-    @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
-    @include hover-link-arrow-transition;
-
     --external-icon-move: translateX(#{$spacing-quarter});
     inset-inline-end: 8px;
     margin-block: -2px;
     position: absolute;
     top: 50%;
     transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
+
+    @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
+    @include hover-link-arrow-transition;
 
     @media (prefers-reduced-motion) {
       --external-icon-move: translateX(0);
