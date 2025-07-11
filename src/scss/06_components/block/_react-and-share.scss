@@ -1,7 +1,8 @@
 // React & Share block
 .block--react-and-share {
-  @include component-margin-top;
   width: 100%;
+
+  @include component-margin-top;
 
   &:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
   &:last-child {

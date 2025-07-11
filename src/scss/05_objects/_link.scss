@@ -22,15 +22,16 @@ a:hover .link__type {
 
 a:focus .link__type--external,
 a:hover .link__type--external {
+  /* stylelint-disable-next-line number-max-precision */
   $mask-move: 0.166666666em;
   mask-position: center, $mask-move (-1 * $mask-move);
 }
 
 .link__type--tel,
 .link__type--mailto {
-  @include hover-link-arrow-transition;
-
   --external-icon-move: scaleX(var(--lang-direction, 1)) rotate(calc(15deg * var(--lang-direction, 1)));
+
+  @include hover-link-arrow-transition;
 }
 
 .link__type--tel {

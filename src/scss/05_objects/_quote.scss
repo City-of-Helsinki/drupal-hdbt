@@ -1,11 +1,12 @@
 blockquote[data-helfi-quote],
 .quote {
-  @include font('special.quote');
   display: block;
   margin: $spacing-triple 0;
   padding-block: $spacing-half;
   padding-inline-start: $spacing-and-half;
   position: relative;
+
+  @include font('special.quote');
 
   @include breakpoint($breakpoint-l) {
     margin: $spacing-quadruple 0;
