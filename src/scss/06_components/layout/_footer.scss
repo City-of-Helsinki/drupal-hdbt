@@ -131,21 +131,18 @@ footer.footer .menu__link {
 
   .menu {
     @include font('small');
+    column-gap: $spacing-half;
     display: flex;
     flex-wrap: wrap;
+
+    @include breakpoint($breakpoint-l) {
+      column-gap: $spacing;
+    }
   }
 
   .menu__item {
     align-items: center;
     display: flex;
-
-    &::after {
-      content: '';
-      display: block;
-      height: 15px;
-      margin: 0 $spacing-half;
-      width: 1px;
-    }
 
     // Menu item with <nolink>.
     &.menu__item--nolink {

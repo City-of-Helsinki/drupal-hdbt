@@ -1,5 +1,5 @@
 import { FormEvent } from 'react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import LocationFilter from '../components/LocationFilter';
 import ApiKeys from '../enum/ApiKeys';
@@ -15,16 +15,19 @@ import {
   remoteFilterAtom,
   formErrorsAtom,
   updateUrlAtom,
+  addressAtom,
 } from '../store';
 import TopicsFilter from '../components/TopicsFilter';
-import AddressSearch from '../components/AddressSearch';
 import FullTopicsFilter from '../components/FullTopicsFilter';
 import FullLocationFilter from '../components/FullLocationFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
 import { EventTypeFilter } from '../components/EventTypeFilter';
+import { TargetGroupFilter } from '../components/TargetGroupFilter';
+import { AddressSearch } from '@/react/common/AddressSearch';
 
 
 function FormContainer() {
+  const [address, updateAddress] = useAtom(addressAtom);
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
   const errors = useAtomValue(formErrorsAtom);
@@ -42,6 +45,7 @@ function FormContainer() {
     useFullLocationFilter,
     useFullTopicsFilter,
     useLocationSearch,
+    useTargetGroupFilter,
   } = filterSettings;
 
   const onSubmit = () => {
@@ -90,7 +94,17 @@ function FormContainer() {
       }
       <div className='event-form__filters-container'>
         {useLocationSearch &&
-          <AddressSearch />
+          <AddressSearch
+            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+            hideSearchButton
+            id='location'
+            label={Drupal.t('Address', {}, {context: 'React search: location label'})}
+            onChange={(value: string) => updateAddress(value)}
+            onSubmit={(value: string) => updateAddress(value)}
+            placeholder={Drupal.t('For example, Kotikatu 1', {}, {context: 'Helsinki near you events search'})}
+            value={address || ''}
+            visibleSuggestions={5}
+          />
         }
         <div className='event-form__filter-section-container'>
           {
@@ -100,6 +114,10 @@ function FormContainer() {
           {
             useFullTopicsFilter &&
             <FullTopicsFilter />
+          }
+          {
+            useTargetGroupFilter &&
+            <TargetGroupFilter />
           }
           {
             showLocation &&

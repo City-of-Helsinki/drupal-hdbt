@@ -93,7 +93,7 @@
     {% if card_metas %}
       <div class="card__metas">
         {% for card_meta in card_metas %}
-            <div class="card__meta"><span class="card__meta__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_meta.icon} only %}</span><span class="card__meta__label">{{ card_meta.label }}: </span><span class="card__meta__content">{{ card_meta.content }}</span>
+            <div class="card__meta">{% if card_meta.icon %}<span class="card__meta__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_meta.icon} only %}</span>{% endif %}{% if card_meta.label %}<span class="card__meta__label">{{ card_meta.label }}: </span>{% endif %}<span class="card__meta__content">{{ card_meta.content }}</span>
             </div>
         {% endfor %}
       </div>

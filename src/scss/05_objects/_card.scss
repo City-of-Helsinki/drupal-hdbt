@@ -27,19 +27,6 @@ $-card-border-width: 2px;
   }
 }
 
-.card--border {
-  border: $-card-border-width solid $color-black-20;
-  padding: calc($spacing - $-card-border-width);
-
-  @include breakpoint($breakpoint-s) {
-    padding: calc($spacing-and-half - $-card-border-width);
-  }
-
-  @include breakpoint($breakpoint-m) {
-    padding: calc($spacing-double - $-card-border-width);
-  }
-}
-
 .card__image {
   flex-basis: 30%;
   flex-shrink: 0;
@@ -175,6 +162,60 @@ $-card-border-width: 2px;
 
   100% {
     opacity: 1;
+  }
+}
+
+.card--border {
+  border: $-card-border-width solid $color-black-20;
+  padding: calc($spacing - $-card-border-width);
+
+  @include breakpoint($breakpoint-s) {
+    padding: calc($spacing-and-half - $-card-border-width);
+  }
+
+  @include breakpoint($breakpoint-m) {
+    padding: calc($spacing-double - $-card-border-width);
+  }
+}
+
+.card--tiny {
+  padding: $spacing;
+
+  @include breakpoint($breakpoint-m) {
+    padding: $spacing-and-half;
+  }
+
+  .card__title {
+    @include font('special.card_tiny_title');
+  }
+
+  .card__metas {
+    margin-top: $spacing-half;
+  }
+
+  .card__meta {
+    @include font('small');
+    color: $color-black-60;
+    padding-inline-start: 0;
+  }
+
+  .news-listing__datetime--published::before {
+    background-color: currentcolor;
+    content: "";
+    display: inline-block;
+    height: 1em;
+    margin-bottom: -3px;
+    margin-left: $spacing-quarter;
+    margin-right: $spacing-quarter;
+    width: 1px;
+  }
+
+  & + & {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing;
+    }
   }
 }
 
