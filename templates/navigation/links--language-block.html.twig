@@ -40,7 +40,7 @@
         {% elseif not alternative_language %}
           {% set dropdown_id = 'language-toast--' ~ lang ~ '-dropdown' %}
           <span class="language-link__wrapper language-link__wrapper--{{ lang }}">
-            {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+            {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
               modifier_class: button_wrapper_classes,
               anchor_modified: anchor_button_classes,
               button_modified: anchor_button_classes,
