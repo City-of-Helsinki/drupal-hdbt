@@ -1,9 +1,12 @@
-.component--recommendations {
-  @include component-margin-top();
+.components--recommendations {
+  @include component-side-padding;
+}
+
+.component.component--recommendations {
+  @include component-margin-top;
   background-color:  $color-black-5;
-  margin-left: $spacing;
-  margin-right: $spacing;
-  padding: $spacing-double $spacing $spacing-double;
+  max-width: $content-width-max;
+  padding: $spacing-and-half $spacing;
 
   @include breakpoint($breakpoint-m) {
     padding: $spacing-triple $spacing-double $spacing-triple;
@@ -11,5 +14,19 @@
 
   .empty-text {
     @include font(body);
+  }
+
+  .component__description {
+    @include font(small);
+  }
+}
+
+.component--recommendations--tiny-cards {
+  @include breakpoint($breakpoint-m) {
+    padding: $spacing-double;
+  }
+
+  .component__title {
+    @include font(h3);
   }
 }

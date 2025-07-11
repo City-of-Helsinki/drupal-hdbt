@@ -31,10 +31,12 @@ declare namespace drupalSettings {
           }
         };
         hideHeading: boolean;
+        removeBloatingEvents: boolean;
         use_fixtures: boolean;
         useFullLocationFilter: boolean;
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
+        useTargetGroupFilter: boolean;
       }
     },
     seeAllButtonOverride: string;

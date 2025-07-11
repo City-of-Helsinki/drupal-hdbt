@@ -141,8 +141,10 @@ msgstr[0] "Serviceställ"
 msgstr[1] "Serviceställerna"
 
 msgctxt "Service units count"
-msgid "service points"
-msgstr "serviceställer"
+msgid "service point"
+msgid_plural "service points"
+msgstr[0] "serviceställ"
+msgstr[1] "serviceställer"
 
 msgctxt "Short description for editors about current page being unpublished"
 msgid "Unpublished"
@@ -1008,6 +1010,10 @@ msgctxt "React search: result display"
 msgid "Open large version of the map"
 msgstr "Öppna kartan i större format"
 
+msgctxt "React search: results loading"
+msgid "Search results are loading"
+msgstr "Sökresultat laddas"
+
 msgctxt "School search: text input placeholder"
 msgid "E.g. Aurinkolahti Comprehensive School or 00990"
 msgstr "t.ex. Grundskolan Aurinkolahden peruskoulu eller 00990"
@@ -1386,6 +1392,10 @@ msgctxt "Label for news card published time"
 msgid "Published"
 msgstr "Publicerad"
 
+msgctxt "Label for tiny news card content type"
+msgid "News"
+msgstr "Nyhet"
+
 msgctxt "Search monitor header"
 msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
@@ -1505,3 +1515,59 @@ msgstr "Hämtning av händelser misslyckades. Du kan uppdatera sidan eller förs
 msgctxt "Language toast"
 msgid "Close the popup"
 msgstr "Stäng popup-fönstret"
+
+msgctxt "Event search: target group label"
+msgid "Event target group"
+msgstr "Evenemangets målgrupp"
+
+msgctxt "Event search: target group placeholder"
+msgid "All target groups"
+msgstr "Alla målgrupper"
+
+msgctxt "Event search: target group"
+msgid "Families with babies"
+msgstr "Småbarnsfamiljer"
+
+msgctxt "Event search: target group"
+msgid "Children"
+msgstr "Barn"
+
+msgctxt "Event search: target group"
+msgid "Youth"
+msgstr "Unga"
+
+msgctxt "Event search: target group"
+msgid "Adults"
+msgstr "Vuxna"
+
+msgctxt "Event search: target group"
+msgid "Seniors"
+msgstr "Äldre"
+
+msgctxt "Event search: target group"
+msgid "Immigrants"
+msgstr "Invandrare"
+
+msgctxt "Event search: target group"
+msgid "Unemployed"
+msgstr "Arbetslösa"
+
+msgctxt "Event search: target group"
+msgid "Tourists"
+msgstr "Turister"
+
+msgctxt "School search: result display"
+msgid "using address"
+msgstr "med address"
+
+msgctxt "Loading indicator for suggestive search"
+msgid "Loading suggestions..."
+msgstr "Laddar förslag..."
+
+msgctxt "Loading finished indicator for suggestive search"
+msgid "Finished loading suggestions"
+msgstr "Förslagsladdning klar"
+
+msgctxt "News archive: keyword placeholder"
+msgid "For example, budget proposal"
+msgstr "T.ex. budgeten"

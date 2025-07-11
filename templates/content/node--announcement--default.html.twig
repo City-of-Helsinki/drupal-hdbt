@@ -1,11 +1,5 @@
-{% if node.field_announcement_type.value == 'alert' %}
-  {% set block_modifier = 'announcement--alert' %}
-{% elseif node.field_announcement_type.value == 'attention' %}
-  {% set block_modifier = 'announcement--attention' %}
-{% else %}
-  {% set block_modifier = 'announcement--notification' %}
-{% endif %}
-
+{% set block_modifier = 'announcement--' ~ node.getAnnouncementType() %}
+{% set labels = node.getLabels() %}
 {% set announcement_attributes = {
   'class': [
     'announcement__container',
@@ -25,11 +19,11 @@
 
 {% set link = content.field_announcement_link[0] %}
 
-<section aria-label="{{ announcement_title }} {{ type_label }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
+<section aria-label="{{ announcement_title }} {{ labels.type }}" class="announcement js-announcement {{ block_modifier }} container" data-uuid="{{ node.uuid.value }}">
   <div {{ create_attribute(announcement_attributes) }}>
     {% set announcement_close_labelled_by = "announcement__close__aria-label--" ~ random() %}
     <button type="button" class="announcement__close js-announcement__close--disabled" aria-labelledby="{{announcement_close_labelled_by}}">
-      <span id="{{announcement_close_labelled_by}}" class="is-hidden">{{ [announcement_title, close_label, type_label|lower]|join(" ") }}</span>
+      <span id="{{announcement_close_labelled_by}}" class="is-hidden">{{ [announcement_title, labels.close, labels.type|lower]|join(" ") }}</span>
     </button>
     <div class="announcement__content">
       {% if content.body|render != null %}

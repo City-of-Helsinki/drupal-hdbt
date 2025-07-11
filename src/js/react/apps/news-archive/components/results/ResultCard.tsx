@@ -13,14 +13,14 @@ interface ResultCardProps extends NewsItem {
 
 const ResultCard = ({
   alt,
+  cardModifierClass,
+  cardTitleLevel,
   field_main_image_caption,
-  main_image_url,
   field_photographer,
+  main_image_url,
   title,
   published_at,
   url,
-  cardModifierClass,
-  cardTitleLevel,
 }: ResultCardProps) => {
   const getDate = () => {
     if (!published_at || !published_at.length) {

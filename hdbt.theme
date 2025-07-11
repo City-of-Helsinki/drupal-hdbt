@@ -11,7 +11,6 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
@@ -22,7 +21,6 @@ use Drupal\helfi_tpr\Entity\TprEntityBase;
 use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
@@ -908,32 +906,6 @@ function hdbt_preprocess_paragraph__calculator(&$variables) {
 /**
  * Implements hook_preprocess_paragraph__type().
  */
-function hdbt_preprocess_paragraph__unit_accessibility_information(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $langcode = \Drupal::languageManager()
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-
-  if ($paragraph->hasField('field_unit_accessibility_unit')) {
-    // Get the information from the unit entity.
-    $unit = $paragraph->get('field_unit_accessibility_unit')
-      ?->first()
-      ?->get('entity')
-      ?->getTarget()
-      ?->getEntity();
-
-    if ($unit instanceof Unit && $unit->hasTranslation($langcode)) {
-
-      $variables['unit_accessbility_information'] = $unit
-        ->getTranslation($langcode)
-        ?->get('accessibility_sentences')
-        ?->view('full');
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
 function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void {
   $paragraph = $variables['paragraph'];
   $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
@@ -1014,6 +986,7 @@ function hdbt_library_info_alter(array &$libraries, string $extension): void {
   // Add the "eu_cookie_compliance/eu_cookie_compliance" library as a
   // dependency for the matomo and embedded content libraries if the
   // EU Cookie compliance module is enabled.
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
   if (
     $extension !== 'hdbt' ||
     !\Drupal::moduleHandler()->moduleExists('eu_cookie_compliance')
@@ -1131,16 +1104,6 @@ function _hdbt_set_image_style(array &$variables, string $entity_type, string $i
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_image(&$variables): void {
-  // Convert double double quotes to empty string for image alt-texts.
-  if (isset($variables['alt']) && $variables['alt'] === '""') {
-    $variables['attributes']['alt'] = '';
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_responsive_image_formatter(&$variables): void {
   if (!$variables['item'] instanceof ImageItem) {
     return;
@@ -1250,40 +1213,6 @@ function hdbt_preprocess_imagecache_external_responsive(&$variables) {
     $variables['height'],
     $variables['img_element'],
   );
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_field(&$variables): void {
-  switch ($variables['field_name']) {
-    case 'field_service_links':
-      foreach ($variables['items'] as &$item) {
-        $existing = $item['content']['#url']->getOption('attributes');
-        $attributes = array_merge($existing ?? [], [
-          'class' => [
-            'link__style--highlight',
-          ],
-        ]);
-
-        $item['content']['#url']->setOption('attributes', $attributes);
-      }
-      break;
-
-    case 'service_map_embed':
-      $url_parts = parse_url($variables['items'][0]['content']['iframe']['#attributes']['src']);
-      $variables['map_service_url'] = $url_parts['scheme'] . "://" . $url_parts['host'];
-
-      if (Drupal::moduleHandler()->moduleExists('hdbt_cookie_banner')) {
-        $cookie_settings = Drupal::service('hdbt_cookie_banner.cookie_settings');
-        $variables['privacy_policy_url'] = $cookie_settings->getCookieSettingsPageUrl();
-      }
-      // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
-      elseif (Drupal::moduleHandler()->moduleExists('helfi_eu_cookie_compliance')) {
-        $variables['privacy_policy_url'] = helfi_eu_cookie_compliance_get_privacy_policy_url();
-      }
-      break;
-  }
 }
 
 /**
@@ -1557,50 +1486,6 @@ function hdbt_preprocess_maintenance_page(&$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_social_media_links(&$variables): void {
-  // Convert Attributes to strings.
-  if (isset($variables['elements'])) {
-    foreach ($variables['elements'] as $key => &$element) {
-      // Convert href attribute to URL.
-      if (
-        $element['api'] instanceof Attribute &&
-        $element['api']->offsetExists('href')
-      ) {
-        $element['url'] = $element['api']
-          ->offsetGet('href')
-          ->__toString();
-      }
-      // Convert class attribute to classes.
-      if (
-        $element['attr']['class'] instanceof Attribute &&
-        $element['attr']['class']->offsetExists('class')
-      ) {
-        $element['classes'][] = $element['attr']['class']
-          ->offsetGet('class')
-          ->__toString();
-      }
-
-      /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
-      $defaultLanguageResolver = Drupal::service('helfi_api_base.default_language_resolver');
-
-      $languageManager = \Drupal::languageManager();
-      assert($languageManager instanceof ConfigurableLanguageManagerInterface);
-
-      // Add lang and dir attributes if the link text is not translated.
-      if ($key === 'email' && $defaultLanguageResolver->isAltLanguage($variables['language']->getId())) {
-        if (!isset($languageManager->getLanguageConfigOverride($variables['language']->getId(), 'social_media.settings')->get('social_media')['email']['text'])) {
-          $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
-          $element['attr']['lang'] = $attributes['lang'];
-          $element['attr']['dir'] = $attributes['dir'];
-        }
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_pager(&$variables): void {
   $element = $variables['pager']['#element'];
 
@@ -1708,24 +1593,6 @@ function hdbt_preprocess_paragraph__ploughing_schedule(array &$variables): void 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_preprocess_node__announcement(array &$variables) {
-  $type = $variables['node']->get('field_announcement_type')->value;
-
-  $type_label = match($type) {
-    'alert' => t('Alert'),
-    'attention' => t('Attention'),
-    default => t('Notification')
-  };
-
-  $close_label = t('Close');
-
-  $variables['type_label'] = $type_label;
-  $variables['close_label'] = $close_label;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function hdbt_preprocess_paragraph__job_search(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
@@ -1781,17 +1648,9 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
 /**
  * Implements hook_theme_suggestions_alter() for container.
  */
-function hdbt_theme_suggestions_container_alter(array &$suggestions, array &$variables) {
-  $name = '';
-  $type = '';
-  if (isset($variables['element']['#name'])) {
-    $name = $variables['element']['#name'];
-  }
-
-  if (isset($variables['element']['#type'])) {
-    $type = $variables['element']['#type'];
-  }
-
+function hdbt_theme_suggestions_container_alter(array &$suggestions, array $variables): void {
+  $name = $variables['element']['#name'] ?? '';
+  $type = $variables['element']['#type'] ?? '';
   array_unshift($suggestions, 'container__' . $type . '__' . $name);
 }
 

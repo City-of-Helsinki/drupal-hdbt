@@ -6,7 +6,7 @@ import ProximityFormContainer from './ProximityFormContainer';
 import ProximityResultsContainer from './ProximityResultsContainer';
 import FeatureFormContainer from './FeatureFormContainer';
 import FeatureResultsContainer from './FeatureResultsContainer';
-import { paramsAtom, setConfigurationsAtom } from '../store';
+import { keywordAtom, paramsAtom, setConfigurationsAtom } from '../store';
 import UseConfigurationsQuery from '../hooks/UseConfigurationsQuery';
 import ResultsError from '@/react/common/ResultsError';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
@@ -23,6 +23,7 @@ const MODE_OPTIONS = {
 const SearchContainer = () => {
   const { data: configurations, error: configurationsError } = UseConfigurationsQuery();
   const [searchMode, setSearchMode] = useState<string>(MODE_OPTIONS.proximity);
+  const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const setConfigurations = useSetAtom(setConfigurationsAtom);
   const initialParams = useInitialParams({
@@ -43,6 +44,7 @@ const SearchContainer = () => {
       setParams({
         keyword: initialParams.address
       });
+      setKeyword(initialParams.address);
       setSearchMode(MODE_OPTIONS.proximity);
     }
   }, [initialParams]);

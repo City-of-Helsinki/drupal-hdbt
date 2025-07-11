@@ -9,11 +9,9 @@
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="{% if content.field_contact_image|render or content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
+    <div class="{% if content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
       {% if content.field_contact_image_reference|render %}
         {{ content.field_contact_image_reference }}
-      {% elseif content.field_contact_image|render %}
-        {{ content.field_contact_image }}
       {% endif %}
     </div>
     <div class="contact-card__information-container">
@@ -29,7 +27,7 @@
         {{ content.field_contact_title }}
       </div>
     {% endif %}
-    {% if content.field_phone_number|render|striptags|trim or content.field_email|render|striptags|trim or content.field_contact_social_media|render|striptags|trim or content.field_contact_social_media_link|render|striptags|trim %}
+    {% if content.field_phone_number|render|striptags|trim or content.field_email|render|striptags|trim or content.field_contact_social_media_link|render|striptags|trim %}
       <div class="contact-card__person-links">
         {% if content.field_phone_number|render|striptags|trim %}
           <div class="contact-card__person-link contact-card__person-link--phone">
@@ -41,11 +39,6 @@
           <div class="contact-card__person-link contact-card__person-link--email">
             <div class="label visually-hidden">{{ 'Email'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
             {{ content.field_email }}
-          </div>
-        {% endif %}
-        {% if content.field_contact_social_media|render|striptags|trim %}
-          <div class="contact-card__person-link contact-card__person-link--social-media">
-            {{ content.field_contact_social_media }}
           </div>
         {% endif %}
         {% if content.field_contact_social_media_link|render|striptags|trim %}

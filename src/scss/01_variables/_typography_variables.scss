@@ -120,6 +120,11 @@ $config: deep-map-merge(
             line-height: math.div(42, 34), // 1.2352..
           )
         ),
+        card_tiny_title: (
+          font-size: remify(20px),
+          font-weight: $font-weight-medium,
+          line-height: math.div(32, 20), // 1.6
+        ),
         helper_text: (
           font-size: remify(14px),
           font-weight: $font-weight-medium,
