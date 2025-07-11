@@ -2,7 +2,7 @@ import { globSync } from 'glob';
 import path from 'path';
 import fs from 'fs';
 
-export default async function themeBuilderStatic(opts = {}) {
+export default async function themeBuilderCopy(opts = {}) {
 
   const { staticFiles } = opts;
   const isGlob = (pattern) => /[*?[{\]]/.test(pattern);
