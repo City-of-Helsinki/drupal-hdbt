@@ -5,7 +5,7 @@ import { globSync } from 'glob';
 import { performance } from 'perf_hooks';
 import themeBuilderIcons from './themeBuilder/themeBuilder.icons.mjs';
 import themeBuilderCopy from './themeBuilder/themeBuilder.copy.mjs';
-import themeBuilderCss from './themeBuilder/themeBuilder.css.mjs';
+import { themeBuilderCss, findStylesForFile } from './themeBuilder/themeBuilder.css.mjs';
 import { themeBuilderJs, themeBuilderJsSingle } from './themeBuilder/themeBuilder.js.mjs';
 
 const __dirname = path.resolve();
@@ -105,12 +105,14 @@ const buildAll = () =>
 
 // Watch for changes.
 if (isWatch) {
-  buildAll().catch((e) => {
-    console.error('❌ Build failed:', e);
-    process.exit(1);
-  });
-
-  console.warn('👀 Watching for changes…');
+  buildAll()
+    .catch((e) => {
+      console.error('❌ Build failed:', e);
+      process.exit(1);
+    })
+    .then(() => {
+      console.warn('\n👀 Watching for changes…');
+    });
 
   const watcher = chokidar.watch(['src/js', 'src/scss'], {
     ignored: /node_modules|dist/,
@@ -124,23 +126,23 @@ if (isWatch) {
 
     // Handle SCSS and JS separately.
     if (ext === '.scss') {
-      themeBuilderCss({ isDev, styles, outDir });
-    } else if (['.js', '.ts', '.tsx', '.jsx'].includes(ext)) {
-      const entryName = Object.entries(entries).find(
-        ([, inputPath]) => path.resolve(inputPath) === path.resolve(filePath)
-      )?.[0];
-
-      if (entryName) {
-        const entry = entries[entryName];
-        themeBuilderJsSingle({
-          entryName,
-          entry,
-          isDev,
-          outDir
-        }).then(() => {});
+      const matched = findStylesForFile({filePath, styles});
+      if (matched.length > 0) {
+        withTimer('CSS', () =>
+          themeBuilderCss({ isDev, styles: matched, outDir }).then(() => Promise.resolve())
+        );
       } else {
-        console.warn(`⚠️ No matching JS entry for ${filePath}`);
+        withTimer('CSS', () =>
+          themeBuilderCss({ isDev, styles, outDir }).then(() => {})
+        );
       }
+    } else if (['.js', '.ts', '.tsx', '.jsx'].includes(ext)) {
+      themeBuilderJs({ entries, isDev, outDir })
+        .then(() => {
+          Promise.resolve();
+          console.warn('✅ Rebuilt JS.');
+        });
+
     }
   });
 } else {
