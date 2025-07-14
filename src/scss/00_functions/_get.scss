@@ -70,8 +70,7 @@
 @function str-explode($string, $delimiter: '') {
   @if meta.type-of($string) != 'string' {
     @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
-  }
-  @else if meta.type-of($delimiter) != 'string' {
+  } @else if meta.type-of($delimiter) != 'string' {
     @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
   }
 

@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth */
 // React & Share block
 .block--react-and-share {
   width: 100%;
@@ -20,10 +21,11 @@
 }
 
 .rns {
-  @include components-container-max-width;
-  @include component-side-padding;
   margin-left: auto;
   margin-right: auto;
+
+  @include components-container-max-width;
+  @include component-side-padding;
 
   .rns-plugin {
     font-family: $base-font-family;
@@ -41,8 +43,9 @@
       max-width: 688px; // Abstract width from the designs.
 
       .rns-header {
-        @include font('h4');
         margin-bottom: 0;
+
+        @include font('h4');
       }
 
       .reactions {
@@ -172,8 +175,9 @@
       padding: 0 calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font('h5');
         margin-bottom: 0;
+
+        @include font('h5');
       }
 
       .rns-shares-list {
@@ -304,30 +308,32 @@
       padding: calc(#{$spacing-and-half} / 4); // Padding to make it possible for the focus outlines to be visible.
 
       .rns-header {
-        @include font('h5');
         margin-bottom: 0;
+
+        @include font('h5');
       }
 
       .rns-input-description {
-        @include font('small');
         color: $color-black-60;
         margin: $spacing-and-half 0 0;
         opacity: 1;
+
+        @include font('small');
       }
 
       .rns-input-field {
-        @include font('body');
         border: 2px solid $color-black-50;
         font-family: $base-font-family;
         height: 188px; // Abstract width from designs.
         margin-top: $spacing-and-half;
         padding: $spacing;
+
+        @include font('body');
       }
     }
   }
 
   .rns-plugin .rns-inputs .rns-form-submit {
-    @include font('button');
     background-color: $color-black;
     border: 2px solid $color-black;
     color: $color-white;
@@ -336,9 +342,12 @@
     padding: $spacing $spacing-and-half;
     position: relative;
 
+    @include font('button');
+
     &::after {
-      @include pseudo-icon('arrow-right', $spacing-and-half, $color-white, flex);
       margin-left: $spacing;
+
+      @include pseudo-icon('arrow-right', $spacing-and-half, $color-white, flex);
     }
 
     &::before {

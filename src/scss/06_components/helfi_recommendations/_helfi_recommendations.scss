@@ -3,10 +3,11 @@
 }
 
 .component.component--recommendations {
-  @include component-margin-top;
   background-color:  $color-black-5;
   max-width: $content-width-max;
   padding: $spacing-and-half $spacing;
+
+  @include component-margin-top;
 
   @include breakpoint($breakpoint-m) {
     padding: $spacing-triple $spacing-double $spacing-triple;

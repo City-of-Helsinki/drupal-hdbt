@@ -85,9 +85,10 @@
 // Components on other pages than landing-page
 // need to be limited to content max-width to maintain readability.
 .wrapper:not(.page-type--landing-page) .components:not(.components--lower, .components--computed) {
-  @include components-container-max-width;
   margin-left: auto;
   margin-right: auto;
+
+  @include components-container-max-width;
 
   @include breakpoint($breakpoint-m) {
     @include component-side-padding;

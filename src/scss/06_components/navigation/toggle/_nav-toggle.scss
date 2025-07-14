@@ -135,6 +135,16 @@ $label-font: 'special.navigation.icon_label';
   --menu-height: 100vh;
   --menu-max-height: calc(var(--menu-height) - var(--drupal-toolbar-height, 0px) - var(--branding-height) - 1px); // Full viewport height - header-branding height - 1px for rounding errors
   display: block;
+  height: var(--menu-height);
+  max-height: var(--menu-max-height);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
+  pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
+  transform: translateY(100%);
+  // stylelint-disable-next-line plugin/no-low-performance-animation-properties
+  transition: transform $-menu-transition-duration ease-in, display $-menu-transition-duration;
+  transition-behavior: allow-discrete;
 
   @supports (height: 100dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
@@ -148,16 +158,6 @@ $label-font: 'special.navigation.icon_label';
     --menu-height: auto;
     --menu-max-height: none;
   }
-  height: var(--menu-height);
-  max-height: var(--menu-max-height);
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
-  pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
-  transform: translateY(100%);
-  // stylelint-disable-next-line plugin/no-low-performance-animation-properties
-  transition: transform $-menu-transition-duration ease-in, display $-menu-transition-duration;
-  transition-behavior: allow-discrete;
 
   @media (prefers-reduced-motion) {
     transition: none !important;

@@ -114,10 +114,11 @@ $-footerlink-target-size: 44px;
   width: 100%;
 
   &::before {
-    @include pseudo-icon('angle-left', $spacing-double, black);
-    @include hover-link-arrow-transition;
     grid-area: icon;
     margin-top: 0.5 * ($-back-icon-bg-size - $-back-icon-size);
+
+    @include pseudo-icon('angle-left', $spacing-double, black);
+    @include hover-link-arrow-transition;
   }
 
   &::after {

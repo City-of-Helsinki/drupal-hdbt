@@ -1,10 +1,11 @@
 .link__type {
   $icons: 'link-external-part1', 'link-external-part2';
-  @include pseudo-icon($icons, calc(var(--line-height) * 1em), currentColor, inline-block);
 
   --external-icon-move: scaleX(var(--lang-direction, 1));
   overflow: hidden;
   transform: scaleX(var(--lang-direction, 1));
+
+  @include pseudo-icon($icons, calc(var(--line-height) * 1em), currentColor, inline-block);
 
   @media (prefers-reduced-motion) {
     --external-icon-move: scaleX(var(--lang-direction, 1)); // This overrides the tel and mailto transitions

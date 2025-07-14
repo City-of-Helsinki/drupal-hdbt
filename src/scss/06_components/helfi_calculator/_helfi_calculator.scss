@@ -118,11 +118,12 @@
   // Animate all added slots
   [data-item-count] .helfi-calculator__dynamic-slot,
   .helfi-calculator__receipt {
+    display: grid;
+    overflow: hidden;
+
     @media (prefers-reduced-motion: no-preference) {
       animation: append-animate 0.3s linear;
     }
-    display: grid;
-    overflow: hidden;
 
     & > div {
       align-self: start;
@@ -205,7 +206,6 @@
     padding-left: calc($spacing + var(--icon-size) + var(--spacing-2-xs));
     position: relative;
 
-    /* stylelint-disable-next-line max-nesting-depth */
     &::before {
       @include pseudo-icon('error-fill', $color: $color-error);
       left: $spacing;
@@ -271,27 +271,31 @@
   }
 
   .helfi-calculator__receipt-total__prefix {
-    @include font('lead');
     display: block;
+
+    @include font('lead');
   }
 
   .helfi-calculator__receipt-total__value {
-    @include font('h1');
     display: block;
     margin-top: $spacing-and-half;
+
+    @include font('h1');
   }
 
   .helfi-calculator__receipt-total__suffix {
-    @include font('h6');
     display: block;
+
+    @include font('h6');
   }
 
   .helfi-calculator__receipt-total-explanation {
-    @include font('body');
     display: flex;
     gap: $spacing-half;
     margin-left: $spacing-half;
     padding-top: $spacing-quarter;
+
+    @include font('body');
 
     &::before {
       @include pseudo-icon('info-circle');
@@ -321,8 +325,9 @@
     }
 
     .helfi-calculator__receipt-subtotal-sum {
-      @include font('h4');
       grid-area: sum;
+
+      @include font('h4');
     }
 
     @include breakpoint($breakpoint-s) {
