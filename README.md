@@ -1,13 +1,13 @@
 # HDBT-theme
 ## Introduction
 
-HDBT theme is a base theme for the City of Helsinki. It is based on the core theme stable9. The abbrevation comes from
+HDBT theme is a base theme for the City of Helsinki. It is based on the core theme stable9. The abbreviation comes from
 the words Helsinki Drupal Base Theme. Style follows the [BEM methodology](http://getbem.com/) and javascript is written
 as ES6. The JS and SCSS files are compiled and minified with webpack.
 
 ## Requirements
 
-This theme requires Drupal core >= 9.1.0.
+This theme requires Drupal core >= 10.5.
 
 Requirements for developing:
 - [NodeJS](https://nodejs.org/en/)
@@ -99,7 +99,7 @@ more about using libraries in Drupal from for example from
 
 ### Usage as a base-theme
 
-When building new projects using the drupal-helfi-platform you are provided with this theme. To maintain upgradeability
+When building new projects using the drupal-helfi-platform you are provided with this theme. To maintain upgrade-ability
 of this theme you should never add it to your version control and/or make changes to this theme directly, but instead
 create a sub-theme that uses this HDBT-theme as the base theme for your project. You can read more about building sub-themes here:
 [https://www.drupal.org/docs/theming-drupal/creating-sub-themes](https://www.drupal.org/docs/theming-drupal/creating-sub-themes).
