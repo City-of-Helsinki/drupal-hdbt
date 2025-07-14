@@ -81,9 +81,8 @@ $-card-border-width: 2px;
 }
 
 .card__title {
-  margin: 0;
-
   @include font('h3');
+  margin: 0;
 }
 
 .card__link {
@@ -107,9 +106,8 @@ $-card-border-width: 2px;
 }
 
 .card__helptext {
-  color: $color-black-60;
-
   @include font('small');
+  color: $color-black-60;
 }
 
 .card__description,
@@ -127,9 +125,8 @@ $-card-border-width: 2px;
 }
 
 .card__meta {
-  padding-inline-start: $spacing-double; // icon-size + gap
-
   @include font('body');
+  padding-inline-start: $spacing-double; // icon-size + gap
 
   & + & {
     margin-top: $item-gap;
@@ -197,10 +194,9 @@ $-card-border-width: 2px;
   }
 
   .card__meta {
+    @include font('small');
     color: $color-black-60;
     padding-inline-start: 0;
-
-    @include font('small');
   }
 
   .news-listing__datetime--published::before {

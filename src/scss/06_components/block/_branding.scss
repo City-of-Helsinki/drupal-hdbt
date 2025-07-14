@@ -11,11 +11,10 @@
 
   .city-name--non-core,
   .city-name {
+    @include font('special.navigation.city_name');
     color: $color-black;
     margin-left: $spacing-half;
     margin-right: $spacing-half;
-
-    @include font('special.navigation.city_name');
 
     @include breakpoint($breakpoint-l) {
       margin-left: $spacing;

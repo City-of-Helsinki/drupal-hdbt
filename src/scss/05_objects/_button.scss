@@ -32,13 +32,13 @@
 
 // Content from HDS button.css starts
 .hds-button {
+  @include font('button');
+
   --border-width: 2px;
   --color: inherit;
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-
-  @include font('button');
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
@@ -488,12 +488,12 @@ input[type='submit'].hds-button--small {
     &:not([data-selected-icon], [data-is-external])::before,
     &[data-selected-icon]:not([data-is-external])::after {
       --icon-size: #{$spacing-and-half};
-      order: 3;
-      position: static;
-      transform: scaleX(var(--lang-direction, 1));
 
       @include pseudo-icon('arrow-right', var(--icon-size), var(--color), inline-block);
       @include hover-link-arrow-transition;
+      order: 3;
+      position: static;
+      transform: scaleX(var(--lang-direction, 1));
     }
 
     // Handle animation for above on focus and hover
@@ -563,6 +563,8 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
 [data-hds-component='button']:not(a,[class*='hds-button']),
 a[href][data-hds-component='button']:not([class*='hds-button']) {
+  @include font('button');
+
   --border-width: 2px;
   --button-gap: #{$spacing}; // New style specific
   --color: inherit;
@@ -570,8 +572,6 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
-
-  @include font('button');
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
@@ -838,9 +838,8 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     [data-protocol='mailto']
   ){
     &::after{
-      transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
-
       @include hover-link-arrow-transition;
+      transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
     }
 
     &:is(
@@ -883,15 +882,15 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     [data-protocol='tel'],
     [data-protocol='mailto']
   )::after {
+    @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
+    @include hover-link-arrow-transition;
+
     --external-icon-move: translateX(#{$spacing-quarter});
     inset-inline-end: 8px;
     margin-block: -2px;
     position: absolute;
     top: 50%;
     transform: scaleX(var(--lang-direction, 1)) translateY(-50%);
-
-    @include pseudo-icon('arrow-right', $size: $spacing-and-half, $color: currentColor, $display: inline-block);
-    @include hover-link-arrow-transition;
 
     @media (prefers-reduced-motion) {
       --external-icon-move: translateX(0);

@@ -62,19 +62,17 @@
   }
 
   .card-teaser__title {
+    @include font('h4');
     margin-bottom: $spacing-half;
     margin-top: 0;
-
-    @include font('h4');
   }
 
   .card-teaser__datetime {
+    @include font('small');
     color: $color-black-60;
     display: flex;
     flex-grow: 1;
     gap: $spacing-quarter;
     margin-bottom: $spacing-half;
-
-    @include font('small');
   }
 }
