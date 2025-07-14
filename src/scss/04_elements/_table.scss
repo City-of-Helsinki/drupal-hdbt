@@ -93,7 +93,6 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 }
 
 .user-edited-content table {
-  @include font('body');
   background: $color-white;
   border: 2px solid $color-black-50;
   border-collapse: collapse;
@@ -101,6 +100,8 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
   margin: $spacing 0 0 0;
   padding: 0;
   width: auto;
+
+  @include font('body');
 
   tr:not(tbody:last-child *:last-child) {
     border-bottom: 1px solid $color-black-50;

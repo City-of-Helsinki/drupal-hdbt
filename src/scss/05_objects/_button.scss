@@ -32,13 +32,13 @@
 
 // Content from HDS button.css starts
 .hds-button {
-  @include font('button');
-
   --border-width: 2px;
   --color: inherit;
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
+
+  @include font('button');
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.
@@ -563,8 +563,6 @@ p > a.hds-button.hds-button--supplementary:first-child {
 
 [data-hds-component='button']:not(a,[class*='hds-button']),
 a[href][data-hds-component='button']:not([class*='hds-button']) {
-  @include font('button');
-
   --border-width: 2px;
   --button-gap: #{$spacing}; // New style specific
   --color: inherit;
@@ -572,6 +570,8 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   --min-size: 44px;
   --outline-gutter: 2px;
   --outline-width: 3px;
+
+  @include font('button');
 
   // Normalize.css rules
   // Correct the inability to style clickable types in iOS and Safari.

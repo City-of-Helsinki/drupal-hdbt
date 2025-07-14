@@ -107,8 +107,9 @@ $-card-border-width: 2px;
 }
 
 .card__helptext {
-  @include font('small');
   color: $color-black-60;
+
+  @include font('small');
 }
 
 .card__description,
@@ -126,8 +127,9 @@ $-card-border-width: 2px;
 }
 
 .card__meta {
-  @include font('body');
   padding-inline-start: $spacing-double; // icon-size + gap
+
+  @include font('body');
 
   & + & {
     margin-top: $item-gap;
@@ -195,9 +197,10 @@ $-card-border-width: 2px;
   }
 
   .card__meta {
-    @include font('small');
     color: $color-black-60;
     padding-inline-start: 0;
+
+    @include font('small');
   }
 
   .news-listing__datetime--published::before {

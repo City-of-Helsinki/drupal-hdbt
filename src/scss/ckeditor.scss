@@ -11,12 +11,13 @@
 @import '02_mixins/_index';
 
 .ck-content {
-  @import '03_generic/_index';
-
   // Text paragraph styles as written in 03_generic/_base.scss and '06_components/paragraphs/text'.
-  @include font('body');
   color: $color-black-90;
   font-family: $base-font-family;
+
+  @import '03_generic/_index';
+
+  @include font('body');
 
   // Giving the max-width value here makes sure all the content inside is limited to this max-width.
   > * {
@@ -103,16 +104,16 @@
   // CKEditor sets a background color and padding for the figcaption and aligns the text to center.
   // These lines change the layout similar to what we have on the layout.
   figure > figcaption {
-    @include font('h4');
     background-color: transparent;
     margin-top: $spacing-triple;
     padding: 0;
     text-align: left;
+
+    @include font('h4');
   }
 
   // CKEditor sets border styles for the tables. Changing that to the design we have.
   figure > table {
-    @include font('body');
     background: $color-white;
     border: 2px solid $color-black-50;
     border-collapse: collapse;
@@ -120,6 +121,8 @@
     margin: $spacing 0 0 0;
     padding: 0;
     width: auto;
+
+    @include font('body');
 
     // Gin sets this after element for .field-multiple-table thead element but because of the selectors
     // inaccuracy it also is visible on the editor. Hiding it with this.
