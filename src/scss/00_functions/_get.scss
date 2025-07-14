@@ -88,8 +88,7 @@
   @while $running {
     $index: string.index($string, $delimiter);
 
-    /* stylelint-disable-next-line scss/at-if-no-null */
-    @if $index != null {
+    @if $index {
       $item: string.slice($string, 1, ($index - 1));
       $result: list.append($result, $item);
       $string: string.slice($string, ($index + string.length($delimiter)));
