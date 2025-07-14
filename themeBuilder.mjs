@@ -6,7 +6,7 @@ import { performance } from 'perf_hooks';
 import themeBuilderIcons from './themeBuilder/themeBuilder.icons.mjs';
 import themeBuilderCopy from './themeBuilder/themeBuilder.copy.mjs';
 import { themeBuilderCss, findStylesForFile } from './themeBuilder/themeBuilder.css.mjs';
-import { themeBuilderJs, themeBuilderJsSingle } from './themeBuilder/themeBuilder.js.mjs';
+import themeBuilderJs from './themeBuilder/themeBuilder.js.mjs';
 
 const __dirname = path.resolve();
 const isDev = process.argv.includes('--dev');
