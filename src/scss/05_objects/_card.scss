@@ -81,9 +81,8 @@ $-card-border-width: 2px;
 }
 
 .card__title {
-  margin: 0;
-
   @include font('h3');
+  margin: 0;
 }
 
 .card__link {

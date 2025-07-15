@@ -20,8 +20,7 @@
 
   // Initialize variables
   $best-alpha: 0;
-  /* stylelint-disable-next-line color-function-alias-notation */
-  $best-color: rgba(0 0 0 / 0%);
+  $best-color: rgb(0 0 0 / 0%);
   $min-difference: 255 * 3; // Maximum possible difference
 
   @for $alpha from 1 through 1000 {

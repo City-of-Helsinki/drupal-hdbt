@@ -1,6 +1,5 @@
 $table-bg-color: $color-white;
-/* stylelint-disable-next-line color-function-alias-notation */
-$table-bg-color-transparent: rgba(255 255 255 / 0%);
+$table-bg-color-transparent: rgb(255 255 255 / 0%);
 $table-shadow-color: rgb(0 0 0 / 40%);
 $table-shadow-color-transparent: rgb(0 0 0 / 0%);
 $table-color-black-5-alpha: find-alpha-color($color-black-5, $color-white); // Find matching alpha color for black-5 to allow shadow to show through
@@ -16,12 +15,11 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
   overflow-x: auto;
 
   caption {
+    @include font('h4');
     background: $color-black-10;
     font-weight: $font-weight-bold;
     padding: $spacing $spacing-and-half 0;
     text-align: start;
-
-    @include font('h4');
 
     strong {
       font-weight: $font-weight-bold;
@@ -55,14 +53,13 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 }
 
 .user-edited-content figure figcaption {
+  @include font('h4');
   background: var(--user-edited-content-background-color, #{$table-bg-color});
   left: 0;
   margin-top: 0;
   padding-bottom: $spacing;
   padding-top: $spacing-quadruple;
   position: sticky; // Since we do not have other wrapper for tables than figure and we do not want figcaption to scroll away
-
-  @include font('h4');
 }
 
 .user-edited-content figure:not(:has(figcaption)) {
