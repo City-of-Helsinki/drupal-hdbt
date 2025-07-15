@@ -3,10 +3,10 @@ import { rmSync } from 'fs';
 import path from 'path';
 import { globSync } from 'glob';
 import { performance } from 'perf_hooks';
-import themeBuilderIcons from './themeBuilder/themeBuilder.icons.mjs';
-import themeBuilderCopy from './themeBuilder/themeBuilder.copy.mjs';
-import { themeBuilderCss, findStylesForFile } from './themeBuilder/themeBuilder.css.mjs';
-import { themeBuilderJs, themeBuilderJsSingle } from './themeBuilder/themeBuilder.js.mjs';
+import themeBuilderIcons from '@hdbt/theme-builder/icons';
+import themeBuilderCopy from '@hdbt/theme-builder/copy';
+import { themeBuilderCss, findStylesForFile } from '@hdbt/theme-builder/css';
+import themeBuilderJs from '@hdbt/theme-builder/js';
 
 const __dirname = path.resolve();
 const isDev = process.argv.includes('--dev');
