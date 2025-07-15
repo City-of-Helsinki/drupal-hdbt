@@ -2,10 +2,12 @@ import chokidar from 'chokidar';
 import { rmSync } from 'fs';
 import path from 'path';
 import { performance } from 'perf_hooks';
+/* eslint-disable import/extensions */
 import themeBuilderIcons from './icons.mjs';
 import themeBuilderCopy from './copy.mjs';
 import themeBuilderJs from './js.mjs';
 import { themeBuilderCss, findStylesForFile } from './css.mjs';
+/* eslint-enable import/extensions */
 
 // Time the builds.
 async function withTimer(label, fn) {
@@ -25,15 +27,34 @@ const cleanDist = (outDir) => {
 
 /**
  * Build everything once.
+ *
+ * @param {Object}  config                   Build options
+ * @param {string}  config.outDir            Output directory
+ * @param {Object} [config.iconsConfig]      Icon‑sprite options (optional)
+ * @param {Array}  [config.staticFiles=[]]   Static files to copy (optional)
+ * @param {Object}  config.jsConfig          JS‑build options
+ * @param {Object}  config.cssConfig         CSS‑build options
+ * @return {Promise<void>}                  Resolves when all tasks finish
  */
 export async function buildAll(config) {
   const { outDir, iconsConfig, staticFiles, jsConfig, cssConfig } = config;
-  await withTimer('Everything', () => Promise.resolve()
-    .then(() => cleanDist(outDir))
-    .then(() => withTimer('Icons',  () => themeBuilderIcons(iconsConfig)))
-    .then(() => withTimer('Static', () => themeBuilderCopy({ staticFiles })))
-    .then(() => withTimer('JS',     () => themeBuilderJs(jsConfig)))
-    .then(() => withTimer('CSS',    () => themeBuilderCss(cssConfig))));
+
+  await withTimer('Everything', async () => {
+    cleanDist(outDir);
+
+    // Run only when an iconsConfig object is provided
+    if (iconsConfig) {
+      await withTimer('Icons', () => themeBuilderIcons(iconsConfig));
+    }
+
+    // Run only when staticFiles is a non‑empty array
+    if (staticFiles && staticFiles.length) {
+      await withTimer('Static', () => themeBuilderCopy({ staticFiles }));
+    }
+
+    await withTimer('JS', () => themeBuilderJs(jsConfig));
+    await withTimer('CSS', () => themeBuilderCss(cssConfig));
+  });
 }
 
 /**
