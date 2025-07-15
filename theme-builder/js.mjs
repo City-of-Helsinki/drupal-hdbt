@@ -7,8 +7,7 @@ async function stripUseStrict(file) {
   await fs.writeFile(file, stripped, 'utf8');
 }
 
-
-export async function themeBuilderJs(opts = {}) {
+async function themeBuilderJs(opts = {}) {
   const { entries, isDev, outDir } = opts;
 
   await Promise.all(
@@ -41,29 +40,4 @@ export async function themeBuilderJs(opts = {}) {
   );
 }
 
-export async function themeBuilderJsSingle(opts = {}) {
-  const { entryName, entry, isDev, outDir } = opts;
-  const outfile = `${outDir}/js/${entryName}.min.js`;
-
-  try {
-    await esbuild.build({
-      entryPoints: [entry],
-      bundle: true,
-      minify: !isDev,
-      target: 'es2020',
-      format: 'iife',
-      outfile,
-      define: {
-        'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
-      },
-      charset: 'utf8',
-      external: ['Drupal', 'drupalSettings'],
-      logLevel: 'silent',
-      legalComments: 'none',
-    });
-
-    await stripUseStrict(outfile);
-  } catch (e) {
-    console.error(`❌ Error building ${entryName}:`, e.message);
-  }
-}
+export default themeBuilderJs;

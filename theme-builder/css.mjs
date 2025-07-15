@@ -10,7 +10,7 @@ import postcssNested from 'postcss-nested';
 import postcssNesting from 'postcss-nesting';
 import postcssImport from 'postcss-import';
 import cssnano from 'cssnano';
-import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './themeBuilder.css.plugins.mjs';
+import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins';
 
 /**
  * Builds all CSS files in parallel using Sass & PostCSS.
