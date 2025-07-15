@@ -7,6 +7,32 @@ async function stripUseStrict(file) {
   await fs.writeFile(file, stripped, 'utf8');
 }
 
+const drupalGlobals = {
+  name: 'drupal-globals',
+  setup(build) {
+    // Handle bare import "Drupal"
+    build.onResolve({ filter: /^Drupal$/ }, () => ({
+      path: 'Drupal',
+      namespace: 'Drupal',
+    }));
+
+    // Handle bare import "drupalSettings"
+    build.onResolve({ filter: /^drupalSettings$/ }, () => ({
+      path: 'drupalSettings',
+      namespace: 'drupalSettings',
+    }));
+
+    // Provide virtual module code for both
+    build.onLoad({ filter: /.*/, namespace: 'drupal' }, (args) => {
+      const globalName = args.path;            // "Drupal" or "drupalSettings"
+      return {
+        contents: `export default globalThis.${globalName};`,
+        loader: 'js',
+      };
+    });
+  },
+};
+
 async function themeBuilderJs(opts = {}) {
   const { entries, isDev, outDir } = opts;
 
@@ -30,6 +56,9 @@ async function themeBuilderJs(opts = {}) {
           outfile,
           sourcemap: isDev,
           target: 'es2020',
+          plugins: [
+            drupalGlobals,
+          ],
         });
 
         await stripUseStrict(outfile);
