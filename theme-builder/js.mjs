@@ -30,6 +30,7 @@ async function themeBuilderJs(opts = {}) {
           outfile,
           sourcemap: isDev,
           target: 'es2020',
+          keepNames: true,
         });
 
         await stripUseStrict(outfile);
