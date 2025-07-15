@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./builder": "./builder.mjs",
     "./copy": "./copy.mjs",
     "./css": "./css.mjs",
     "./icons": "./icons.mjs",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "breakpoint-sass": "^3.0.0",
+    "chokidar": "^4.0.3",
     "cli-progress": "^3.12.0",
     "css-declaration-sorter": "^7.2.0",
     "cssnano": "^7.0.7",

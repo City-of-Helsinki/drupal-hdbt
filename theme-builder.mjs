@@ -1,16 +1,11 @@
-import chokidar from 'chokidar';
-import { rmSync } from 'fs';
 import path from 'path';
 import { globSync } from 'glob';
-import { performance } from 'perf_hooks';
-import themeBuilderIcons from '@hdbt/theme-builder/icons';
-import themeBuilderCopy from '@hdbt/theme-builder/copy';
-import { themeBuilderCss, findStylesForFile } from '@hdbt/theme-builder/css';
-import themeBuilderJs from '@hdbt/theme-builder/js';
+import { buildAll, watchAndBuild } from '@hdbt/theme-builder/builder';
 
 const __dirname = path.resolve();
 const isDev = process.argv.includes('--dev');
 const isWatch = process.argv.includes('--watch');
+const watchPaths = ['src/js', 'src/scss'];
 const outDir = path.resolve(__dirname, 'dist');
 
 // React apps.
@@ -63,10 +58,10 @@ const staticFiles = [
   ['src/fonts/**/*.{woff,eot,ttf,svg}', `${outDir}/fonts`],
 ];
 
-// JS files.
+// Builder configurations.
 const entries = { ...REACT_APPS, ...jsFiles };
-
-// Icons configuration..
+const jsConfig = { entries, isDev, outDir };
+const cssConfig   = { styles, isDev, outDir };
 const iconsConfig = {
   inputPattern: 'src/icons/**/*.svg',
   outDir,
@@ -76,77 +71,15 @@ const iconsConfig = {
   jsonOut: 'icons.json',
   iconClass: 'hel',
 };
+const buildArguments   = { outDir, iconsConfig, staticFiles, jsConfig, cssConfig };
 
-// Empty the dist folder.
-const cleanDist = () => {
-  console.warn('🧹 Cleaning dist...');
-  rmSync(outDir, { recursive: true, force: true });
-};
-
-// Time the builds.
-async function withTimer(label, fn) {
-  const start = performance.now();
-  const result = await fn();
-  const end = performance.now();
-  const duration = Math.round(end - start);
-  console.warn(`⏱️ ${label} built in ${duration}ms`);
-  return result;
-}
-
-// Build all types of assets.
-const buildAll = () =>
-  withTimer('Everything', () => Promise.resolve()
-    .then(cleanDist)
-    .then(() => withTimer('Icons', () => themeBuilderIcons(iconsConfig)))
-    .then(() => withTimer('Static', () => themeBuilderCopy({ staticFiles })))
-    .then(() => withTimer('JS', () => themeBuilderJs({ entries, isDev, outDir })))
-    .then(() => withTimer('CSS', () => themeBuilderCss({ isDev, styles, outDir })))
-  );
-
-// Watch for changes.
 if (isWatch) {
-  buildAll()
-    .catch((e) => {
-      console.error('❌ Build failed:', e);
-      process.exit(1);
-    })
-    .then(() => {
-      console.warn('\n👀 Watching for changes…');
-    });
-
-  const watcher = chokidar.watch(['src/js', 'src/scss'], {
-    ignored: /node_modules|dist/,
-    ignoreInitial: true,
-  });
-
-  watcher.on('all', (event, filePath) => {
-    console.warn(`🔄 ${event}: ${filePath}`);
-
-    const ext = path.extname(filePath);
-
-    // Handle SCSS and JS separately.
-    if (ext === '.scss') {
-      const matched = findStylesForFile({filePath, styles});
-      if (matched.length > 0) {
-        withTimer('CSS', () =>
-          themeBuilderCss({ isDev, styles: matched, outDir }).then(() => Promise.resolve())
-        );
-      } else {
-        withTimer('CSS', () =>
-          themeBuilderCss({ isDev, styles, outDir }).then(() => {})
-        );
-      }
-    } else if (['.js', '.ts', '.tsx', '.jsx'].includes(ext)) {
-      themeBuilderJs({ entries, isDev, outDir })
-        .then(() => {
-          Promise.resolve();
-          console.warn('✅ Rebuilt JS.');
-        });
-
-    }
+  watchAndBuild({
+    buildArguments,
+    watchPaths,
   });
 } else {
-  buildAll().catch((e) => {
+  buildAll(buildArguments).catch((e) => {
     console.error('❌ Build failed:', e);
     process.exit(1);
   });

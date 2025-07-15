@@ -16,11 +16,11 @@ import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './cs
 /**
  * Builds all CSS files in parallel using Sass & PostCSS.
  *
- * @param {boolean} isDev - true if development mode
  * @param {Array<[string, string]>} styles - list of [input.scss, output.css] pairs
+ * @param {boolean} isDev - true if development mode
  * @param {string} outDir - output directory
  */
-export async function themeBuilderCss({ isDev, styles, outDir }) {
+export async function themeBuilderCss({ styles, isDev, outDir }) {
   console.warn('🎨 Building CSS…');
 
   const debugVar = `$debug_mode: ${isDev};\n`;
@@ -75,7 +75,7 @@ export async function themeBuilderCss({ isDev, styles, outDir }) {
         style: 'compressed',
         loadPaths: ['src/scss', 'node_modules'],
         quietDeps: true,
-        silenceDeprecations: ['import'],
+        silenceDeprecations: ['import', 'mixed-decls'],
         sourceMap: isDev,
         charset: false
       });
