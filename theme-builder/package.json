@@ -15,6 +15,12 @@
     "css-declaration-sorter": "^7.2.0",
     "cssnano": "^7.0.7",
     "esbuild": "^0.25.6",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsdoc": "^51.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "glob": "^11.0.0",
     "md5": "^2.3.0",
     "postcss": "^8.5.6",
@@ -25,6 +31,12 @@
     "postcss-preset-env": "^10.2.4",
     "sass": "^1.89.2",
     "sass-embedded": "^1.89.2",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^15.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-high-performance-animation": "^1.9.0",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.1",
     "svg-sprite": "https://github.com/svg-sprite/svg-sprite/archive/refs/tags/v3.0.0-beta3.tar.gz"
   }
 }
