@@ -56,9 +56,7 @@ async function themeBuilderJs(opts = {}) {
           outfile,
           sourcemap: isDev,
           target: 'es2020',
-          plugins: [
-            drupalGlobals,
-          ],
+          plugins: [drupalGlobals],
         });
 
         await stripUseStrict(outfile);
