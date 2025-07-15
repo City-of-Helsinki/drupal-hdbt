@@ -10,7 +10,8 @@ import postcssNested from 'postcss-nested';
 import postcssNesting from 'postcss-nesting';
 import postcssImport from 'postcss-import';
 import cssnano from 'cssnano';
-import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins';
+// eslint-disable-next-line import/extensions
+import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins.mjs';
 
 /**
  * Builds all CSS files in parallel using Sass & PostCSS.
