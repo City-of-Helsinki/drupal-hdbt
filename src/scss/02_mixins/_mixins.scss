@@ -1,6 +1,8 @@
 // Use Dart Sass math module to perform calculations.
 // https://sass-lang.com/documentation/modules/math
 @use 'sass:math';
+@use 'sass:meta';
+@use 'sass:list';
 
 ////
 // To give different styles depending on how many items a wrapper has you can use this mixing to assign the styles
@@ -17,7 +19,7 @@
 ////
 @mixin content_count($number_of_items...) {
   @each $item in $number_of_items {
-    @if type-of($item) == number {
+    @if meta.type-of($item) == number {
       @for $i from 1 through $item {
         &:nth-child(#{$i}):nth-last-child(#{$item - $i + 1}) {
           @content;
@@ -47,20 +49,22 @@
   content: '';
   display: $display;
   height: $size;
-  @if type-of($icon) == list {
-    $mask-images: ();
-    @each $item in $icon {
-      $mask-images: append($mask-images, icon_url($item), comma);
-    }
-    mask-image: $mask-images;
-  } @else {
-    mask-image: icon_url($icon);
-  }
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: #{$size} #{$size};
   vertical-align: bottom;
   width: $size;
+
+  @if meta.type-of($icon) == list {
+    $mask-images: ();
+
+    @each $item in $icon {
+      $mask-images: list.append($mask-images, icon_url($item), comma);
+    }
+    mask-image: $mask-images;
+  } @else {
+    mask-image: icon_url($icon);
+  }
 }
 
 ////

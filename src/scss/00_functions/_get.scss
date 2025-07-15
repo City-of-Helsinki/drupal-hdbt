@@ -1,3 +1,9 @@
+/* stylelint-disable scss/comment-no-empty */
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "sass:list";
+
 // https://itnext.io/advanced-use-of-sass-maps-bd5a47ca0d1a
 
 // ---------------------------------------------------------
@@ -62,32 +68,36 @@
 // @return List
 // ---------------------------------------------------------
 @function str-explode($string, $delimiter: '') {
-  @if type-of($string) != 'string' {
+  @if meta.type-of($string) != 'string' {
+    @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
+  } @else if meta.type-of($delimiter) != 'string' {
     @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
   }
-  @else if type-of($delimiter) != 'string' {
-    @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
-  }
+
   $result: ();
   $running: true;
-  @if str-length($delimiter) == 0 {
-    @for $i from 1 through str-length($string) {
-      $result: append($result, str-slice($string, $i, $i));
+
+  @if string.length($delimiter) == 0 {
+    @for $i from 1 through string.length($string) {
+      $result: list.append($result, string.slice($string, $i, $i));
     }
+
     @return $result;
   }
+
   @while $running {
-    $index: str-index($string, $delimiter);
-    @if $index != null {
-      $item: str-slice($string, 1, ($index - 1));
-      $result: append($result, $item);
-      $string: str-slice($string, ($index + str-length($delimiter)));
-    }
-    @else {
+    $index: string.index($string, $delimiter);
+
+    @if $index {
+      $item: string.slice($string, 1, ($index - 1));
+      $result: list.append($result, $item);
+      $string: string.slice($string, ($index + string.length($delimiter)));
+    } @else {
       $running: false;
     }
   }
-  @return append($result, $string);
+
+  @return list.append($result, $string);
 }
 
 // ---------------------------------------------------------
@@ -104,15 +114,18 @@
 // @return Bool
 // ---------------------------------------------------------
 @function deep-map-check($map, $keys...) {
-  @if type-of($map) != 'map' {
+  @if meta.type-of($map) != 'map' {
     @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
   }
+
   @each $key in $keys {
-    @if not map-has-key($map, $key) {
+    @if not map.has-key($map, $key) {
       @return false;
     }
-    $map: map-get($map, $key);
+
+    $map: map.get($map, $key);
   }
+
   @return true;
 }
 
@@ -130,11 +143,13 @@
 // @return Unspecified (it may return anything as a result)
 // ---------------------------------------------------------
 @function deep-map-get($map, $keys...) {
-  @if type-of($map) != 'map' {
+  @if meta.type-of($map) != 'map' {
     @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
   }
+
   @each $key in $keys {
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
+
   @return $map;
 }
