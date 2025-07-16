@@ -39,6 +39,7 @@
     "stylelint-high-performance-animation": "^1.9.0",
     "stylelint-order": "^7.0.0",
     "stylelint-scss": "^6.12.1",
-    "svg-sprite": "https://github.com/svg-sprite/svg-sprite/archive/refs/tags/v3.0.0-beta3.tar.gz"
+    "svg-sprite": "https://github.com/svg-sprite/svg-sprite/archive/refs/tags/v3.0.0-beta3.tar.gz",
+    "terser": "^5.43.1"
   }
 }
