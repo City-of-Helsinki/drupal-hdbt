@@ -65,8 +65,6 @@ export async function buildAll(config) {
 
     // Run only when cssConfig is a non-empty object.
     if (Object.keys(cssConfig.styles).length > 0) {
-      console.log('cssConfig', Object.keys(cssConfig.styles).length);
-      console.log('cssConfig', cssConfig);
       await withTimer('CSS', () => themeBuilderCss(cssConfig));
     }
   });
