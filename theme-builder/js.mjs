@@ -1,43 +1,116 @@
 import esbuild from 'esbuild';
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
+import { minify } from 'terser';
 
+/**
+ * Removes "use strict" directives from a JS file.
+ *
+ * @param {string} file - Path to the JS file to process.
+ * @return {Promise<void>} - Resolves when the file is written.
+ * @see: https://www.drupal.org/i/3336143
+ */
 async function stripUseStrict(file) {
   const content = await fs.readFile(file, 'utf8');
   const stripped = content.replace(/["']use strict["'];?/g, '');
   await fs.writeFile(file, stripped, 'utf8');
 }
 
-const drupalGlobals = {
-  name: 'drupal-globals',
-  setup(build) {
-    // Handle bare import "Drupal"
-    build.onResolve({ filter: /^Drupal$/ }, () => ({
-      path: 'Drupal',
-      namespace: 'Drupal',
-    }));
+/**
+ * Reverts renamed Drupal global identifiers back to 'Drupal' after bundling.
+ *
+ * Some bundlers (f.e. Esbuild, SWC, Rollup) renames the `Drupal` parameter
+ * in IIFEs to avoid collisions when transpiling arrow functions into
+ * `function` syntax, even if the reserved list includes 'Drupal'.
+ *
+ * This function fixes such unintended renaming by replacing occurrences of
+ * `Drupal2` with `Drupal` in the bundled output and then re-minifies the file
+ * to clean up formatting.
+ *
+ * We need this because the Drupal locale system relies on the global Drupal
+ * object being named exactly Drupal (e.g., Drupal.t()). Renaming it would
+ * prevent the locale module from finding translations and loading them
+ * into the window.drupalTranslations variable.
+ *
+ * @param {string} file - Path to the JS file to process.
+ * @return {Promise<void>} - Resolves when the file is written.
+ *
+ * @see https://github.com/evanw/esbuild/blob/492e299ce6fa15ee237234887711e3f461fff415/internal/renamer/renamer.go#L580
+ */
+async function revertDrupalGlobal(file) {
+  const content = await fs.readFile(file, 'utf8');
+  const replaced = content.replace(
+    /\b(Drupal|drupalSettings)\d+\b/g,
+    '$1'
+  );
+  const { code } = await minify(replaced, {
+    compress: false,
+    ecma: 2020,
+    format: {
+      comments: false,
+    },
+    mangle: {
+      reserved: ['Drupal', 'drupalSettings'],
+    },
+  });
+  await fs.writeFile(file, code, 'utf8');
+}
 
-    // Handle bare import "drupalSettings"
-    build.onResolve({ filter: /^drupalSettings$/ }, () => ({
-      path: 'drupalSettings',
-      namespace: 'drupalSettings',
-    }));
-
-    // Provide virtual module code for both
-    build.onLoad({ filter: /.*/, namespace: 'drupal' }, (args) => {
-      const globalName = args.path;            // "Drupal" or "drupalSettings"
-      return {
-        contents: `export default globalThis.${globalName};`,
-        loader: 'js',
-      };
-    });
-  },
-};
-
-async function themeBuilderJs(opts = {}) {
-  const { entries, isDev, outDir } = opts;
+/**
+ * Builds vanilla JS files.
+ *
+ * @param {Object} config - Configuration object.
+ * @param {Object} config.jsFiles - An object where keys are file names and values are file paths.
+ * @param {string} config.outDir - Output directory.
+ * @param {boolean} [config.isDev=false] - Whether to build in development mode.
+ * @return {Promise<void>} - Resolves when all files are built.
+ */
+export async function buildVanillaJs(config = {}) {
+  const { jsFiles, outDir, isDev = false } = config;
 
   await Promise.all(
-    Object.entries(entries).map(async ([name, entry]) => {
+    Object.entries(jsFiles).map(async ([name, entry]) => {
+      const outfile = `${outDir}/js/${name}.min.js`;
+
+      try {
+        await esbuild.build({
+          bundle: true,
+          charset: 'utf8',
+          define: {
+            'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
+          },
+          entryPoints: [entry],
+          format: 'iife',
+          // outfile,
+          outfile: `${outDir}/js/${name}.min.js`,
+          sourcemap: isDev,
+          target: 'es2020',
+          keepNames: true,
+          legalComments: 'none',
+          logLevel: 'silent',
+        });
+
+        await stripUseStrict(outfile);
+        await revertDrupalGlobal(outfile);
+      } catch (err) {
+        console.error(`❌ Error bundling ${name}:`, err.message);
+      }
+    })
+  );
+}
+
+/**
+ * Builds React apps.
+ *
+ * @param {Object} config - Configuration object.
+ * @param {Object} config.reactApps - An object where keys are app names and values are entry points.
+ * @param {string} config.outDir - Output directory.
+ * @param {boolean} [config.isDev=false] - Whether to build in development mode.
+ * @return {Promise<void>} - Resolves when all apps are built.
+ */
+export async function buildReactApps(config = {}) {
+  const { reactApps, outDir, isDev = false } = config;
+  await Promise.all(
+    Object.entries(reactApps).map(async ([name, entry]) => {
       const outfile = `${outDir}/js/${name}.min.js`;
 
       try {
@@ -50,21 +123,18 @@ async function themeBuilderJs(opts = {}) {
           entryPoints: [entry],
           external: ['Drupal', 'drupalSettings'],
           format: 'iife',
-          logLevel: 'silent',
-          legalComments: 'none',
+          keepNames: true,
           minify: !isDev,
+          legalComments: 'none',
+          logLevel: 'silent',
           outfile,
           sourcemap: isDev,
           target: 'es2020',
-          plugins: [drupalGlobals],
         });
-
         await stripUseStrict(outfile);
-      } catch (e) {
-        console.error(`❌ Error building ${name}:`, e.message);
+      } catch (err) {
+        console.error(`❌ Error bundling React app ${name}:`, err.message);
       }
     })
   );
 }
-
-export default themeBuilderJs;
