@@ -32,7 +32,7 @@
 
   {# This template renders either button or menu as they're needed in two separate locations #}
   {% if renderButton %}
-    {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+    {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
       modifier_class: 'nav-toggle--otherlangs',
       controls: dropdown_id,
       anchor_target: '#otherlangs',
@@ -46,7 +46,7 @@
     } %}
     {% endembed %}
   {% else %}
-    {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+    {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
       id: dropdown_id,
       modifier_class: 'nav-toggle-dropdown--otherlangs',
       description: 'Information in other languages menu'|t({}, {'context': 'Other languages-navigation'}),
