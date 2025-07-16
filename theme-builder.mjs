@@ -71,7 +71,7 @@ const iconsConfig = {
   jsonOut: 'icons.json',
   iconClass: 'hel',
 };
-const buildArguments   = { outDir, iconsConfig, staticFiles, jsConfig, reactConfig, cssConfig };
+const buildArguments = { outDir, iconsConfig, staticFiles, jsConfig, reactConfig, cssConfig };
 
 if (isWatch) {
   watchAndBuild({
