@@ -38,30 +38,35 @@ const cleanDist = (outDir) => {
  * @return {Promise<void>}                  Resolves when all tasks finish
  */
 export async function buildAll(config) {
-  const { outDir, iconsConfig, staticFiles, jsConfig, reactConfig, cssConfig } = config;
+  const { outDir, iconsConfig = {}, staticFiles= {}, jsConfig = {}, reactConfig = {}, cssConfig = {}} = config;
 
   await withTimer('Everything', async () => {
     cleanDist(outDir);
 
     // Run only when an iconsConfig object is provided
-    if (iconsConfig && Object.keys(iconsConfig)[0].length) {
+    if (Object.keys(iconsConfig).length > 0) {
       await withTimer('Icons', () => themeBuilderIcons(iconsConfig));
     }
 
     // Run only when staticFiles is a non‑empty array
-    if (staticFiles && staticFiles.length) {
+    if (staticFiles.length) {
       await withTimer('Static', () => themeBuilderCopy({ staticFiles }));
     }
 
-    if (jsConfig && Object.keys(jsConfig)[0].length) {
+    // Run only when jsConfig is a non-empty object.
+    if (Object.keys(jsConfig.jsFiles).length > 0) {
       await withTimer('JS', () => buildVanillaJs(jsConfig));
     }
 
-    if (reactConfig && Object.keys(reactConfig)[0].length) {
+    // Run only when reactConfig is a non-empty object.
+    if (Object.keys(reactConfig.reactApps).length > 0) {
       await withTimer('React', () => buildReactApps(reactConfig));
     }
 
-    if (cssConfig && Object.keys(cssConfig)[0].length) {
+    // Run only when cssConfig is a non-empty object.
+    if (Object.keys(cssConfig.styles).length > 0) {
+      console.log('cssConfig', Object.keys(cssConfig.styles).length);
+      console.log('cssConfig', cssConfig);
       await withTimer('CSS', () => themeBuilderCss(cssConfig));
     }
   });
