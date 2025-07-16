@@ -34,7 +34,7 @@
 
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  <nav role="navigation" aria-label="{{ 'Quick links'|t({}, {'context': 'Header top navigation screen reader name'}) }}"{{ attributes|without('role', 'aria-labelledby', 'id', 'aria-label') }}>
+  <nav aria-label="{{ 'Quick links'|t({}, {'context': 'Header top navigation screen reader name'}) }}"{{ attributes|without('role', 'aria-labelledby', 'id', 'aria-label') }}>
 
     {# Menu. #}
     {% block content %}
