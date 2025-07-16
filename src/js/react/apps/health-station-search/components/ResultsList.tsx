@@ -65,7 +65,8 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
       <ResultsHeader
         resultText={
           <>
-            { Drupal.formatPlural(total, '1 health station', '@count health stations',{},{context: 'Health station search: result count'}) }
+            {Drupal.formatPlural(total, '1 health station', '@count health stations',{},{context: 'Health station search: result count'})}
+            {params.address ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${params.address}` : ''}
           </>
         }
         actions={

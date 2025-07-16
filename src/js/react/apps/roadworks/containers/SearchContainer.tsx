@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import useSWR from 'swr';
 
+import { useAtomCallback } from 'jotai/utils';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import { roadworksApiUrlAtom, settingsAtom } from '../store';
+import { coordinatesAtom, keywordAtom, roadworksApiUrlAtom, settingsAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
 import ResultsContainer from './ResultsContainer';
+import { FormContainer } from './FormContainer';
+import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
+import { GracefulError } from '../enum/GracefulError';
 
 const SWR_REFRESH_OPTIONS = {
   refreshInterval: 0,
@@ -18,6 +22,7 @@ type ResponseType = {
   data: Roadwork[];
   meta: {
     count: number;
+    error?: string;
     title?: string;
     see_all_url?: string;
   };
@@ -27,8 +32,39 @@ const SearchContainer: React.FC = () => {
   const [retriesExhausted, setRetriesExhausted] = useState(false);
   const url = useAtomValue(roadworksApiUrlAtom);
   const settings = useAtomValue(settingsAtom);
+  const readKeyword = useAtomCallback((get) => get(keywordAtom));
+  const setCoordinates = useSetAtom(coordinatesAtom);
+  const readCoordinates = useAtomCallback((get) => get(coordinatesAtom));
 
-  const getRoadworks = async (reqUrl: string): Promise<ResponseType> => {
+  const getRoadworks = async (reqUrl: string): Promise<ResponseType|null> => {
+    const currentCoordinates = readCoordinates();
+    const keyword = readKeyword();
+
+    if (!keyword || keyword === '') {
+      return Promise.resolve(null);
+    }
+
+    const coordinates = currentCoordinates || await useAddressToCoordsQuery(keyword);
+
+    if (!coordinates) {
+      return Promise.resolve({
+        data: [],
+        meta: {
+          count: 0,
+          error: GracefulError.NO_COORDINATES,
+        }
+      });
+    }
+
+    if (!currentCoordinates) {
+      setCoordinates(coordinates);
+      const newUrl = new URL(reqUrl);
+      const [lon, lat] = coordinates;
+      newUrl.searchParams.set('lat', lat.toString());
+      newUrl.searchParams.set('lon', lon.toString());
+      reqUrl = newUrl.toString();
+    }
+
     const response = await useTimeoutFetch(reqUrl, undefined, 10000);
 
     if (response.status === 200) {
@@ -59,15 +95,19 @@ const SearchContainer: React.FC = () => {
   });
 
   return (
-    <ResultsContainer
-      countNumber={data?.meta.count || 0}
-      error={error}
-      roadworks={data?.data || []}
-      loading={isLoading}
-      retriesExhausted={retriesExhausted}
-      seeAllUrl={data?.meta.see_all_url}
-      size={settings.roadworkCount ?? 10}
-    />
+    <>
+      {!settings.isShortList && <FormContainer />}
+      <ResultsContainer
+        countNumber={data?.meta.count || 0}
+        error={error}
+        gracefulError={data?.meta?.error}
+        loading={isLoading}
+        retriesExhausted={retriesExhausted}
+        roadworks={data?.data || []}
+        seeAllUrl={data?.meta.see_all_url}
+        size={settings.roadworkCount ?? 10}
+      />
+    </>
   );
 };
 

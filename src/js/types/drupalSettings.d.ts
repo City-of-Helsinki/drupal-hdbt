@@ -66,10 +66,10 @@ declare namespace drupalSettings {
   };
   const helfi_roadworks: {
     [key: string]: {
-      roadworksApiUrl: string;
-      roadworkCount: number;
-      hidePagination: boolean;
       cardsWithBorders: boolean;
+      isShortList: boolean;
+      roadworkCount: number;
+      roadworksApiUrl: string;
       scrollToTarget: boolean;
     }
   };

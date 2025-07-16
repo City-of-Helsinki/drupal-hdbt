@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import ROOT_ID from './enum/RootId';
+import { RoadworksApi } from './enum/RoadworksApi';
 
 const createBaseAtom = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
@@ -10,7 +11,7 @@ const createBaseAtom = () => {
     return;
   }
 
-  const settings = (drupalSettings as any).helfi_roadworks?.[paragraphId];
+  const settings = drupalSettings.helfi_roadworks?.[paragraphId];
 
   if (!settings) {
     return {};
@@ -18,7 +19,7 @@ const createBaseAtom = () => {
 
   const roadworksApiUrl = settings.roadworksApiUrl || '';
   const roadworkCount = Number(settings.roadworkCount) || 10;
-  const hidePagination = settings.hidePagination ?? false;
+  const isShortList = settings.isShortList ?? false;
   const cardsWithBorders = settings.cardsWithBorders ?? false;
   const scrollToTarget = settings.scrollToTarget ?? true;
 
@@ -27,7 +28,7 @@ const createBaseAtom = () => {
     paragraphId,
     roadworksApiUrl,
     roadworkCount,
-    hidePagination,
+    isShortList,
     cardsWithBorders,
     scrollToTarget,
   };
@@ -36,21 +37,47 @@ const createBaseAtom = () => {
 // Store all needed data to 'master' atom
 const baseAtom = atom(createBaseAtom());
 
-// Export API URL atom directly (following linkedevents pattern)
-export const roadworksApiUrlAtom = atom((get) => get(baseAtom)?.roadworksApiUrl);
-
 export const settingsAtom = atom(
   (get) => {
     const base = get(baseAtom);
     return {
       roadworkCount: base?.roadworkCount,
-      hidePagination: base?.hidePagination,
+      isShortList: base?.isShortList,
       cardsWithBorders: base?.cardsWithBorders,
       scrollToTarget: base?.scrollToTarget,
     };
   }
 );
 
-// Client-side pagination atoms
+
+const urlParams = new URLSearchParams(window.location.search);
+
 export const currentPageAtom = atom<number>(1);
-export const itemsPerPageAtom = atom<number>(10); // Default 10 roadworks per page
+export const itemsPerPageAtom = atom<number>(10);
+
+const initializeKeyword = (): string => urlParams.get('q') || '';
+export const keywordAtom = atom<string>(initializeKeyword());
+export const coordinatesAtom = atom<[number, number, string]|null>(null);
+
+const formApiUrl = (coordinates: [number, number, string]|null, address: string|null) => {
+  const url = new URL(`${window.location.origin}/${drupalSettings.path.currentLanguage}/${RoadworksApi.API_URL}`);
+
+  if (coordinates) {
+    const [lon, lat] =  coordinates;
+    url.searchParams.set('lat', lat.toString());
+    url.searchParams.set('lon', lon.toString());
+  }
+
+  if (address) {
+    url.searchParams.set('q', address);
+  }
+
+  return url.toString();
+};
+export const updateUrlAtom = atom(null, (_get, _set) => {
+  const [currentCoordinates, currentKeyword] = [_get(coordinatesAtom), _get(keywordAtom)];
+
+  _set(roadworksApiUrlAtom, formApiUrl(currentCoordinates, currentKeyword));
+});
+
+export const roadworksApiUrlAtom = atom<string>(formApiUrl(null, initializeKeyword()));

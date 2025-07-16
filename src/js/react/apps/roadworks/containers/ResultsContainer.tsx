@@ -1,45 +1,49 @@
 import { createRef, useEffect, useState } from 'react';
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 
 import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import RoadworkCard from '../components/RoadworkCard';
-import { settingsAtom, currentPageAtom, itemsPerPageAtom } from '../store';
+import { settingsAtom, currentPageAtom, itemsPerPageAtom, keywordAtom, coordinatesAtom } from '../store';
 import type Roadwork from '../types/Roadwork';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import { GhostList } from '@/react/common/GhostList';
+import { GracefulError } from '../enum/GracefulError';
+import { AddressNotFound } from '@/react/common/AddressNotFound';
 
 type ResultsContainerProps = {
   addressRequired?: boolean;
   countNumber: number;
   error?: Error;
-  roadworks: Roadwork[];
+  gracefulError?: string;
   loading: boolean;
+  pages?: number;
   retriesExhausted?: boolean;
+  roadworks: Roadwork[];
   seeAllUrl?: string;
   size: number;
-  pages?: number;
 };
 
 function ResultsContainer({
   countNumber,
   error,
-  roadworks,
+  gracefulError,
   loading,
   retriesExhausted,
+  roadworks,
   seeAllUrl
 }: ResultsContainerProps) {
   const settings = useAtomValue(settingsAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
-
+  const scrollTarget = createRef<HTMLHeadingElement>();
   const [initialized, setInitialized] = useState(false);
-
-  // Client-side pagination state
   const [currentPage] = useAtom(currentPageAtom);
   const itemsPerPage = useAtomValue(itemsPerPageAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+  const readKeyword = useAtomCallback((get) => get(keywordAtom));
+  const readCoordinates = useAtomCallback((get) => get(coordinatesAtom));
 
   useScrollToResults(scrollTarget, initialized && !loading);
 
@@ -51,14 +55,14 @@ function ResultsContainer({
 
   // Reset to page 1 when roadworks data changes (only on paginated pages)
   useEffect(() => {
-    if (!settings.hidePagination && roadworks.length > 0) {
+    if (!settings.isShortList && roadworks.length > 0) {
       const totalPages = Math.ceil(roadworks.length / itemsPerPage);
       if (currentPage > totalPages) {
         // Reset to page 1 if current page is beyond available pages
         setCurrentPage(1);
       }
     }
-  }, [roadworks.length, currentPage, itemsPerPage, setCurrentPage, settings.hidePagination]);
+  }, [roadworks.length, currentPage, itemsPerPage, setCurrentPage, settings.isShortList]);
 
   if (error) {
     return retriesExhausted ?
@@ -86,21 +90,22 @@ function ResultsContainer({
     if (roadworks.length > 0) {
       // Calculate pagination for client-side paging (only on full listing page)
       const totalPages = Math.ceil(roadworks.length / itemsPerPage);
-      const shouldPaginate = !settings.hidePagination;
+      const shouldPaginate = !settings.isShortList;
 
       const paginatedRoadworks = shouldPaginate
         ? roadworks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
         : roadworks.slice(0, 5); // Main page: show max 5 items
 
+      const currentCoords = readCoordinates();
+      const heading = `
+        ${Drupal.formatPlural(countNumber.toString(), '1 result', '@count results', {}, {context: 'Roadworks search: result count'})}
+        ${currentCoords ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${currentCoords[2]}` : ''}
+      `;
+
       return (
         <>
           <ResultsHeader
-            resultText={
-              <>
-                {Drupal.formatPlural(countNumber.toString(), '1 result', '@count results', {}, {context: 'Roadworks search: result count'})}
-              </>
-            }
-
+            resultText={<span>{heading}</span>}
             ref={settings.scrollToTarget ? scrollTarget : undefined}
           />
           {loading ?
@@ -113,11 +118,25 @@ function ResultsContainer({
               return <RoadworkCard key={`roadwork-${index}`} roadwork={roadwork} {...cardProps} />;
             })
           }
-          {!settings.hidePagination && (
+          {!settings.isShortList && (
             <Pagination totalPages={totalPages} />
           )}
         </>
       );
+    }
+
+    const keyword = readKeyword();
+    if (keyword === '') {
+      return (
+        <ResultsHeader
+          ref={settings.scrollToTarget ? scrollTarget : undefined}
+          resultText={<span>{Drupal.t('Start by searching with your address.', {}, {context: 'React search: Address required hint'})}</span>}
+        />
+      );
+    }
+
+    if (gracefulError && gracefulError === GracefulError.NO_COORDINATES) {
+      return <AddressNotFound ref={settings.scrollToTarget ? scrollTarget : undefined} />;
     }
 
     return (
@@ -131,7 +150,7 @@ function ResultsContainer({
     <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
       {getContent()}
       {
-        seeAllUrl && settings.hidePagination ?
+        seeAllUrl && settings.isShortList ?
         <div className='see-all-button see-all-button--near-results'>
           <a
             data-hds-component="button"
