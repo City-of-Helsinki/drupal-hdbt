@@ -212,7 +212,7 @@
     {% set footer_variant = 'footer--light' %}
   {% endif %}
 
-  <footer role="contentinfo" class="footer {{ footer_variant }}">
+  <footer class="footer {{ footer_variant }}">
     {% include '@hdbt/misc/koro.twig' with { flip: false } %}
     {% if page.footer_top %}
       {{ page.footer_top }}
