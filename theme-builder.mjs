@@ -9,7 +9,7 @@ const watchPaths = ['src/js', 'src/scss'];
 const outDir = path.resolve(__dirname, 'dist');
 
 // React apps.
-const REACT_APPS = {
+const reactApps = {
   'district-and-project-search': './src/js/react/apps/district-and-project-search/index.tsx',
   'job-search': './src/js/react/apps/job-search/index.tsx',
   'linkedevents': './src/js/react/apps/linkedevents/index.tsx',
@@ -59,8 +59,8 @@ const staticFiles = [
 ];
 
 // Builder configurations.
-const entries = { ...REACT_APPS, ...jsFiles };
-const jsConfig = { entries, isDev, outDir };
+const reactConfig = { reactApps, isDev, outDir };
+const jsConfig = { jsFiles, isDev, outDir };
 const cssConfig   = { styles, isDev, outDir };
 const iconsConfig = {
   inputPattern: 'src/icons/**/*.svg',
@@ -71,7 +71,7 @@ const iconsConfig = {
   jsonOut: 'icons.json',
   iconClass: 'hel',
 };
-const buildArguments   = { outDir, iconsConfig, staticFiles, jsConfig, cssConfig };
+const buildArguments   = { outDir, iconsConfig, staticFiles, jsConfig, reactConfig, cssConfig };
 
 if (isWatch) {
   watchAndBuild({
