@@ -78,6 +78,10 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
     }
   }
 
+  .js-menu__toggle-button {
+    display: none;
+  }
+
   .menu__toggle-button-icon {
     @include rotating-icon-transition;
   }

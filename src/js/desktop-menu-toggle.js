@@ -32,6 +32,11 @@ const closeOpenItems = (element) => {
   });
 };
 
+// Show toggle button if js is enabled.
+document.querySelectorAll('.js-menu__toggle-button').forEach((button) => {
+  button.style.display = 'block';
+});
+
 const toggleDesktopMenuLevel = (item) => {
   const toggleButton = item.querySelector('.menu__toggle-button');
 
