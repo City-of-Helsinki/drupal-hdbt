@@ -77,10 +77,10 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
     &:focus {
       outline: solid 3px $color-black;
     }
-  }
 
-  .js-show-menu__toggle-button {
-    display: block;
+    &.js-show-menu__toggle-button {
+      display: block;
+    }
   }
 
   .menu__toggle-button-icon {
@@ -138,8 +138,8 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
     }
   }
 
-  // Handle menu link focus style when it has children
-  .menu__item--item-below .menu__link:focus::after {
+  // Handle menu link focus style when it has children and the js toggle button is present.
+  .menu__item--item-below .menu__link-wrapper:has(.js-show-menu__toggle-button) .menu__link:focus::after {
     left: -2px;
     width: calc(100% - #{$spacing-and-half}); // Width of the dropdown button and padding.
   }
