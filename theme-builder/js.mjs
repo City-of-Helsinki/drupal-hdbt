@@ -32,11 +32,12 @@ async function stripUseStrict(file) {
  * into the window.drupalTranslations variable.
  *
  * @param {string} file - Path to the JS file to process.
+ * @param {boolean} isDev - true if development mode
  * @return {Promise<void>} - Resolves when the file is written.
  *
  * @see https://github.com/evanw/esbuild/blob/492e299ce6fa15ee237234887711e3f461fff415/internal/renamer/renamer.go#L580
  */
-async function revertDrupalGlobal(file) {
+async function revertDrupalGlobal(file, isDev = false) {
   const content = await fs.readFile(file, 'utf8');
   const replaced = content.replace(
     /\b(Drupal|drupalSettings)\d+\b/g,
@@ -52,7 +53,7 @@ async function revertDrupalGlobal(file) {
       reserved: ['Drupal', 'drupalSettings'],
     },
   });
-  await fs.writeFile(file, code, 'utf8');
+  await fs.writeFile(file, isDev ? replaced : code, 'utf8');
 }
 
 /**
@@ -90,7 +91,7 @@ export async function buildVanillaJs(config = {}) {
         });
 
         await stripUseStrict(outfile);
-        await revertDrupalGlobal(outfile);
+        await revertDrupalGlobal(outfile, isDev);
       } catch (err) {
         console.error(`❌ Error bundling ${name}:`, err.message);
       }
