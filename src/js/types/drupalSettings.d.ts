@@ -69,7 +69,11 @@ declare namespace drupalSettings {
       cardsWithBorders: boolean;
       isShortList: boolean;
       roadworkCount: number;
-      roadworksApiUrl: string;
+      initialData: {
+        lat?: string;
+        lon?: string;
+        q?: string;
+      },
       scrollToTarget: boolean;
     }
   };

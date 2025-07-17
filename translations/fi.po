@@ -1597,8 +1597,8 @@ msgid "Location"
 msgstr "Sijainti"
 
 msgctxt "Roadworks search: card schedule label"
-msgid "Schedule"
-msgstr "Aikataulu"
+msgid "Planned schedule"
+msgstr "Arvioitu aikataulu"
 
 msgctxt "React search: Address required hint"
 msgid "Start by searching with your address."
@@ -1611,3 +1611,7 @@ msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
 msgctxt "React search: Address not found hint"
 msgid "Make sure the address is written correctly. You can also search using a nearby street number."
 msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
+
+msgctxt "React search"
+msgid "Distance"
+msgstr "Etäisyys"

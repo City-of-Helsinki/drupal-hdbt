@@ -40,7 +40,7 @@ export const FormContainer = () => {
         value={keyword}
       />
       <Button
-        className='hdbt-search--react__button'
+        className='hdbt-search--react__submit-button'
         theme={ButtonPresetTheme.Black}
         type='submit'
         variant={ButtonVariant.Primary}

@@ -2,22 +2,20 @@ import { atom } from 'jotai';
 import ROOT_ID from './enum/RootId';
 import { RoadworksApi } from './enum/RoadworksApi';
 
+const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+const paragraphId = rootElement?.dataset?.paragraphId;
+
+if (!rootElement || !paragraphId) {
+  throw new Error('Paragraph id not found in source HTML');
+}
+
+const settings = drupalSettings.helfi_roadworks?.[paragraphId];
+
 const createBaseAtom = () => {
-  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-  const paragraphId = rootElement?.dataset?.paragraphId;
-
-  if (!rootElement || !paragraphId) {
-    console.warn('Paragraph id not found in source HTML');
-    return;
-  }
-
-  const settings = drupalSettings.helfi_roadworks?.[paragraphId];
-
   if (!settings) {
     return {};
   }
 
-  const roadworksApiUrl = settings.roadworksApiUrl || '';
   const roadworkCount = Number(settings.roadworkCount) || 10;
   const isShortList = settings.isShortList ?? false;
   const cardsWithBorders = settings.cardsWithBorders ?? false;
@@ -26,7 +24,6 @@ const createBaseAtom = () => {
   return {
     rootElement,
     paragraphId,
-    roadworksApiUrl,
     roadworkCount,
     isShortList,
     cardsWithBorders,
@@ -57,7 +54,15 @@ export const itemsPerPageAtom = atom<number>(10);
 
 const initializeKeyword = (): string => urlParams.get('q') || '';
 export const keywordAtom = atom<string>(initializeKeyword());
-export const coordinatesAtom = atom<[number, number, string]|null>(null);
+
+const initializeCoordinates = (): [number, number, string]|null => {
+  if (!settings.initialData?.lat || !settings.initialData?.lon) {
+    return null;
+  }
+
+  return [Number(settings.initialData.lon), Number(settings.initialData.lat), settings.initialData.q || ''];
+};
+export const coordinatesAtom = atom<[number, number, string]|null>(initializeCoordinates());
 
 const formApiUrl = (coordinates: [number, number, string]|null, address: string|null) => {
   const url = new URL(`${window.location.origin}/${drupalSettings.path.currentLanguage}/${RoadworksApi.API_URL}`);
@@ -80,4 +85,4 @@ export const updateUrlAtom = atom(null, (_get, _set) => {
   _set(roadworksApiUrlAtom, formApiUrl(currentCoordinates, currentKeyword));
 });
 
-export const roadworksApiUrlAtom = atom<string>(formApiUrl(null, initializeKeyword()));
+export const roadworksApiUrlAtom = atom<string>(formApiUrl(initializeCoordinates(), initializeKeyword()));

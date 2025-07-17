@@ -1591,7 +1591,7 @@ msgid "Location"
 msgstr "Plats"
 
 msgctxt "Roadworks search: card schedule label"
-msgid "Schedule"
+msgid "Planned schedule"
 msgstr "Tidsplan"
 
 msgctxt "React search: Address required hint"
@@ -1605,3 +1605,7 @@ msgstr "Den adress som du angett gav inga resultat"
 msgctxt "React search: Address not found hint"
 msgid "Make sure the address is written correctly. You can also search using a nearby street number."
 msgstr "Se till att adressen är skriven korrekt. Du kan också söka med ett närliggande gatunummer."
+
+msgctxt "React search"
+msgid "Distance"
+msgstr "Avstånd"

@@ -65,7 +65,7 @@ const SearchContainer: React.FC = () => {
       reqUrl = newUrl.toString();
     }
 
-    const response = await useTimeoutFetch(reqUrl, undefined, 10000);
+    const response = await useTimeoutFetch(reqUrl, undefined, 12000);
 
     if (response.status === 200) {
       const result = await response.json();

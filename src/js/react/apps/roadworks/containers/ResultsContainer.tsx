@@ -88,13 +88,10 @@ function ResultsContainer({
     }
 
     if (roadworks.length > 0) {
-      // Calculate pagination for client-side paging (only on full listing page)
       const totalPages = Math.ceil(roadworks.length / itemsPerPage);
-      const shouldPaginate = !settings.isShortList;
-
-      const paginatedRoadworks = shouldPaginate
-        ? roadworks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-        : roadworks.slice(0, 5); // Main page: show max 5 items
+      const paginatedRoadworks = settings.isShortList ?
+        roadworks.slice(0, 3) :
+        roadworks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
       const currentCoords = readCoordinates();
       const heading = `
@@ -104,10 +101,12 @@ function ResultsContainer({
 
       return (
         <>
-          <ResultsHeader
-            resultText={<span>{heading}</span>}
-            ref={settings.scrollToTarget ? scrollTarget : undefined}
-          />
+          {!settings.isShortList &&
+            <ResultsHeader
+              resultText={<span>{heading}</span>}
+              ref={settings.scrollToTarget ? scrollTarget : undefined}
+            />
+          }
           {loading ?
             <GhostList
               bordered={settings.cardsWithBorders || undefined}
