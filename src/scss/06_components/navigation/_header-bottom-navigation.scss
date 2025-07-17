@@ -65,6 +65,7 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
   .menu__toggle-button {
     background-color: $color-black-5;
     border: none;
+    display: none;
     margin-left: $spacing-quarter;
     padding: 0;
 
@@ -78,8 +79,8 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
     }
   }
 
-  .js-menu__toggle-button {
-    display: none;
+  .js-show-menu__toggle-button {
+    display: block;
   }
 
   .menu__toggle-button-icon {
