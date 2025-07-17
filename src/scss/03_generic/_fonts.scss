@@ -5,11 +5,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: normal;
   font-weight: $font-weight-regular;
-  src: url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-Regular.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-Regular.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-Regular.svg#HelsinkiGrotesk-Regular') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-Regular.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-Regular.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-Regular.svg#HelsinkiGrotesk-Regular') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -18,11 +18,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: italic;
   font-weight: $font-weight-regular;
-  src: url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-RegularItalic.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-RegularItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-RegularItalic.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-RegularItalic.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Regular/HelsinkiGrotesk-RegularItalic.svg#HelsinkiGrotesk-RegularItalic') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-RegularItalic.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-RegularItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-RegularItalic.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-RegularItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-RegularItalic.svg#HelsinkiGrotesk-RegularItalic') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -31,11 +31,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: normal;
   font-weight: $font-weight-medium;
-  src: url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-Medium.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-Medium.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-Medium.svg#HelsinkiGrotesk-Medium') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-Medium.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-Medium.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-Medium.svg#HelsinkiGrotesk-Medium') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -44,11 +44,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: italic;
   font-weight: $font-weight-medium;
-  src: url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-MediumItalic.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-MediumItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-MediumItalic.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-MediumItalic.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Medium/HelsinkiGrotesk-MediumItalic.svg#HelsinkiGrotesk-MediumItalic') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-MediumItalic.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-MediumItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-MediumItalic.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-MediumItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-MediumItalic.svg#HelsinkiGrotesk-MediumItalic') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -57,11 +57,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: normal;
   font-weight: $font-weight-bold;
-  src: url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-Bold.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-Bold.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-Bold.svg#HelsinkiGrotesk-Bold') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-Bold.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-Bold.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-Bold.svg#HelsinkiGrotesk-Bold') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -70,11 +70,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: italic;
   font-weight: $font-weight-bold;
-  src: url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-BoldItalic.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-BoldItalic.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-BoldItalic.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Bold/HelsinkiGrotesk-BoldItalic.svg#HelsinkiGrotesk-BoldItalic') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-BoldItalic.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-BoldItalic.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-BoldItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-BoldItalic.svg#HelsinkiGrotesk-BoldItalic') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -83,11 +83,11 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: normal;
   font-weight: $font-weight-black;
-  src: url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-Black.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-Black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-Black.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-Black.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-Black.svg#HelsinkiGrotesk-Black') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-Black.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-Black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-Black.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-Black.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-Black.svg#HelsinkiGrotesk-Black') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }
 
@@ -96,10 +96,10 @@ $font-path: '../fonts';
   font-family: 'HelsinkiGrotesk';
   font-style: italic;
   font-weight: $font-weight-black;
-  src: url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-BlackItalic.eot'); /* IE9 Compat Modes */
-  src: url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-BlackItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-BlackItalic.woff') format('woff'), /* Modern Browsers */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-BlackItalic.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('#{$font-path}/HelsinkiGrotesk-Black/HelsinkiGrotesk-BlackItalic.svg#HelsinkiGrotesk-BlackItalic') format('svg'); /* Legacy iOS */
+  src: url('#{$font-path}/HelsinkiGrotesk-BlackItalic.eot'); /* IE9 Compat Modes */
+  src: url('#{$font-path}/HelsinkiGrotesk-BlackItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$font-path}/HelsinkiGrotesk-BlackItalic.woff') format('woff'), /* Modern Browsers */
+       url('#{$font-path}/HelsinkiGrotesk-BlackItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('#{$font-path}/HelsinkiGrotesk-BlackItalic.svg#HelsinkiGrotesk-BlackItalic') format('svg'); /* Legacy iOS */
   text-rendering: optimizeLegibility;
 }

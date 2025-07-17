@@ -66,6 +66,14 @@
   "settings": {
     "react": {
       "version": "17.x"
+    },
+    "import/resolver": {
+      "node": {
+        // extensions ESLint should try when resolving
+        "extensions": [".js", ".mjs", ".ts", ".tsx"],
+        // (optional) root dirs it should search; node_modules is default
+        "moduleDirectory": ["node_modules"]
+      }
     }
   },
   // Using ts overrides rules from eslint-config-react-app.

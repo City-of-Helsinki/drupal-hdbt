@@ -3,7 +3,7 @@ import { estypes } from '@elastic/elasticsearch';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import URLParams from '../types/URLParams';
-import useLanguageQuery from '../hooks/useLanguageQuery';
+import useLanguageQuery from './useLanguageQuery';
 
 const useQueryString = (urlParams: URLParams): string => {
   const languageFilter = useLanguageQuery();
