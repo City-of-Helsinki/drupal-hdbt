@@ -2,10 +2,12 @@
   <div class="table-of-contents">
     <div id="helfi-toc-table-of-contents" class="table-of-contents__container table-of-contents__js hide-from-table-of-contents">
       {% if toc_title|render %}
+        {% set toc_id = 'table-of-contents__title'%}
         {% set title_attributes = {
             'class': [
               'table-of-contents__title',
-            ]
+            ],
+            'id': toc_id,
           }
         %}
         {% if alternative_language %}
@@ -17,7 +19,7 @@
         {% endif %}
         <h2 {{ create_attribute(title_attributes) }}>{{ toc_title }}</h2>
       {% endif %}
-      <nav id="helfi-toc-table-of-contents-list" class="table-of-contents__content">
+      <nav id="helfi-toc-table-of-contents-list" class="table-of-contents__content" aria-labelledby="{{ toc_id }}">
         <ul class="table-of-contents__list">
           <li class="js-remove table-of-contents__item">{{ 'Loading table of contents'|t }}</li>
         </ul>

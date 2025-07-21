@@ -30,10 +30,8 @@
     width: 100%;
   }
 
-  .form-actions [data-hds-component='button']:not([class*='hds-button']):where(
-    :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
-    [data-hds-variant='primary'],
-  ),
+  // When variant is not defined, we fallback to primary styles
+  .form-actions [data-hds-component='button']:not([class*='hds-button']):where(:not([data-hds-variant]), [data-hds-variant='primary']),
   .form-actions .hds-button--primary {
     margin-top: $spacing;
     max-width: 280px; // Max-width for button from hds/designs.

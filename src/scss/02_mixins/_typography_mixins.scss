@@ -2,6 +2,7 @@
 @mixin font($style) {
   // Show debug information in browser inspector tools when run with `npm run dev`
   @if $debug_mode {
+    /* stylelint-disable-next-line custom-property-pattern */
     --DEBUG-FONT-TOKEN: '#{$style}';
   }
 

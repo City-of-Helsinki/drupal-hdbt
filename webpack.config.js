@@ -76,6 +76,12 @@ module.exports = (env, argv) => {
       publicPath: 'auto',
       clean: true,
     },
+    ignoreWarnings: [
+      warning =>
+        typeof warning.message === 'string' &&
+        warning.message.includes('@import') &&
+        warning.message.includes('deprecated'),
+    ],
     module: {
       rules: [
         {
@@ -139,6 +145,10 @@ module.exports = (env, argv) => {
               options: {
                 sourceMap: isDev,
                 additionalData: '$debug_mode: ' + isDev + ';',
+                sassOptions: {
+                  quietDeps: true,
+                  silenceDeprecations: ['import','mixed-decls'],
+                }
               },
             },
           ],

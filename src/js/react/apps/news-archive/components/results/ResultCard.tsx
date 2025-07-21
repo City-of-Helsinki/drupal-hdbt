@@ -18,7 +18,7 @@ const ResultCard = ({
   field_main_image_caption,
   field_photographer,
   main_image_url,
-  original_title,
+  title,
   published_at,
   url,
 }: ResultCardProps) => {
@@ -63,7 +63,7 @@ const ResultCard = ({
   return (
     <CardItem
       cardImage={getImage()}
-      cardTitle={original_title.toString()}
+      cardTitle={title.toString()}
       cardTitleLevel={cardTitleLevel || 4}
       cardModifierClass={`card--news-item${cardModifierClass ? ` ${cardModifierClass}` : ''}`}
       cardUrl={url.toString()}
