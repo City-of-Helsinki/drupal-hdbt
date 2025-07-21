@@ -1,5 +1,7 @@
 import esbuild from 'esbuild';
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { createRequire } from 'module';
 import { minify } from 'terser';
 
 /**
@@ -110,12 +112,29 @@ export async function buildVanillaJs(config = {}) {
  */
 export async function buildReactApps(config = {}) {
   const { reactApps, outDir, isDev = false } = config;
+  const projectRoot = process.cwd();
+  const require = createRequire(import.meta.url);
+
   await Promise.all(
     Object.entries(reactApps).map(async ([name, entry]) => {
       const outfile = `${outDir}/js/${name}.min.js`;
 
       try {
         await esbuild.build({
+          plugins: [
+            {
+              name: 'dedupe-react',
+              setup(build) {
+                // Match imports for 'react' or 'react-dom' and convert
+                // the import name to its actual file path.
+                // This is needed to prevent esbuild from using the 'react'
+                // or 'react-dom' dependency from two different packages.
+                build.onResolve({ filter: /^react(-dom)?$/ }, args => ({
+                  path: require.resolve(args.path),
+                }));
+              }
+            }
+          ],
           bundle: true,
           charset: 'utf8',
           define: {
@@ -128,6 +147,7 @@ export async function buildReactApps(config = {}) {
           minify: !isDev,
           legalComments: 'none',
           logLevel: 'silent',
+          tsconfig: path.resolve(projectRoot, 'tsconfig.json'),
           outfile,
           sourcemap: isDev,
           target: 'es2020',
