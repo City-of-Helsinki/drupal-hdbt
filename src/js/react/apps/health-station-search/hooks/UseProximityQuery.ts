@@ -52,7 +52,7 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    const result = useTimeoutFetch(`${baseUrl}/${index}/_search`, {
+    const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
