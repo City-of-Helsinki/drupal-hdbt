@@ -1,8 +1,8 @@
 // Initialize $config variable.
 $config: ();
 
-@import '~hds-design-tokens/lib/all';
-@import '~hds-design-tokens/lib/all.css';
+@import 'hds-design-tokens/lib/all';
+@import 'hds-design-tokens/lib/all.css';
 @import 'color_variables';
 @import 'constraint_variables';
 @import 'typography_variables';

@@ -37,7 +37,7 @@
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if not use_global_navigation %}
 
-  {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+  {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
     modifier_class: 'nav-toggle--cssmenu',
     controls: dropdown_id,
     anchor_target: '#cssmenu',
@@ -47,7 +47,7 @@
   } %}
   {% endembed %}
 
-  {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+  {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
     id: dropdown_id,
     modifier_class: 'nav-toggle-dropdown--cssmenu',
     description: 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'}),

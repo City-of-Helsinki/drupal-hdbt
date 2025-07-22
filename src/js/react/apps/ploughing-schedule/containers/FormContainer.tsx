@@ -17,35 +17,41 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams|null}) 
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const params: SearchParams = {};
-    params.address = address;
+    const params: SearchParams = { address };
     setParams(params);
   };
 
-  const getSuggestions = (searchString: string) => new Promise<SuggestionItemType[]>((resolve, reject) => {
-    const suggestions = fetch(`${baseUrl}/${index}/_search`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: getSuggestionsQuery(searchString),
-    })
+  const getSuggestions = (searchString: string): Promise<SuggestionItemType[]> => fetch(`${baseUrl}/${index}/_search`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: getSuggestionsQuery(searchString),
+  })
     .then(res => res.json())
     .then(data => {
-      const streetNames: any[] = data?.hits?.hits.map((hit: any) => ({ value: hit.fields.street_name[0] }));
+      if (data?.error?.type === 'index_not_found_exception') {
+        console.warn(
+          `[Ploughing Schedule] Elasticsearch index "${index}" not found. ` +
+          `Reason: ${data.error.reason}`
+        );
+        return [];
+      }
 
-      // Remove street name duplicates.
-      return streetNames.filter((item, indx, self) =>
-        indx === self.findIndex((curr) => curr.value === item.value)
+      const hits = data?.hits?.hits ?? [];
+      const streetNames: SuggestionItemType[] = hits.map((hit: any) => ({
+        value: hit.fields.street_name[0],
+      }));
+
+      // Remove duplicates
+      return streetNames.filter((item, itemIndex, self) =>
+        itemIndex === self.findIndex(curr => curr.value === item.value)
       );
     })
     .catch(error => {
-      console.warn(error);
+      console.warn('[Ploughing Schedule] Failed to fetch suggestions.', error);
       return [];
     });
-
-    resolve(suggestions);
-  });
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>

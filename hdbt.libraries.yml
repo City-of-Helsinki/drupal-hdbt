@@ -8,7 +8,7 @@ desktop-menu-toggle:
     - core/drupal
 
 accordion:
-  version: 1.7
+  version: 1.7.0
   js:
     dist/js/accordion.min.js: {
       weight: -50,
@@ -19,7 +19,7 @@ accordion:
     - helfi_toc/table_of_contents
 
 helfi_calculator:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/helfi_calculator.min.js: {
       minified: true
@@ -29,7 +29,7 @@ helfi_calculator:
     - core/drupalSettings
 
 throbber:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/throbber.min.js: {
       minified: true
@@ -39,7 +39,7 @@ throbber:
     - core/drupal
 
 sidebar-menu-toggle:
-  version: 1.0.0
+  version: 1.0.1
   js:
     dist/js/sidebar-menu-toggle.min.js: {
       minified: true
@@ -48,14 +48,14 @@ sidebar-menu-toggle:
     - core/drupal
 
 chat-trigger:
-  version: 1.0
+  version: 1.0.0
   js:
     dist/js/chat-trigger.min.js: {
       minified: true
     }
 
 color-palette:
-  version: 1.0
+  version: 1.0.0
   css:
     theme:
       dist/css/color-palette.min.css: {
@@ -63,13 +63,13 @@ color-palette:
       }
 
 hdbt-icons:
-  version: 1.2
+  version: 1.3.0
   css:
     theme:
       dist/css/hdbt-icons.css: {}
 
 embedded-content-cookie-compliance:
-  version: 1.2
+  version: 1.2.0
   js:
     dist/js/embedded-content-cookie-compliance.min.js: {
       minified: true
@@ -80,7 +80,7 @@ embedded-content-cookie-compliance:
     - core/drupalSettings
 
 global-styling:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       dist/css/styles.min.css: {
@@ -92,7 +92,7 @@ global-styling:
 
 # TODO: UHF-8773 Convert branding mobile to its own library (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8773).
 global-scripting:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/branding-mobile.min.js: {
       minified: true
@@ -101,7 +101,7 @@ global-scripting:
     - core/drupal
 
 matomo:
-  version: 1.x
+  version: 1.0.0
   header: true
   js:
     dist/js/matomo.min.js: {
@@ -113,7 +113,7 @@ matomo:
   - core/jquery
 
 closable_announcements:
-  version: 1.2
+  version: 1.2.0
   js:
     dist/js/closable-announcements.min.js: {
       minified: true
@@ -124,7 +124,7 @@ closable_announcements:
   - core/drupalSettings
 
 closable_surveys:
-  version: 1.2
+  version: 1.2.0
   js:
     dist/js/closable-surveys.min.js: {
       minified: true
@@ -151,7 +151,7 @@ focus-trap:
     - hdbt/tabbable
 
 tabs:
-  version: 1.x
+  version: 1.0.0
   js:
     dist/js/tabs.min.js: {
       minified: true
@@ -161,7 +161,7 @@ tabs:
     - core/drupalSettings
 
 environment-indicator:
-  version: 1.x
+  version: 1.0.0
   css:
     theme:
       dist/css/environment-indicator.min.css: {
@@ -169,7 +169,7 @@ environment-indicator:
       }
 
 nav-toggle:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/nav-toggle.min.js: {
       minified: true,
@@ -185,7 +185,7 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.0.1
+  version: 1.0.2
   css:
     theme:
       dist/css/nav_local.min.css: {
@@ -197,7 +197,7 @@ nav-local:
     - hdbt/nav-toggle
 
 nav-global:
-  version: 1.0.1
+  version: 1.0.2
   css:
     theme:
       dist/css/nav_global.min.css: {
@@ -209,7 +209,7 @@ nav-global:
     - hdbt/nav-toggle
 
 language-toast:
-  version: 1.0.1
+  version: 1.0.2
   js:
     dist/js/language-toast.min.js: {
       minified: true
@@ -318,7 +318,7 @@ search-helper:
     }
 
 table-figcaption:
-  version: 1.0.0
+  version: 1.0.1
   js:
     dist/js/handle-figcaption-source-order.min.js: {
       minified: true
@@ -361,7 +361,7 @@ ploughing-schedule:
     - core/drupal
 
 card-helper:
-  version: 1.0
+  version: 1.1.0
   js:
     dist/js/card-helper.min.js: {
       minified: true

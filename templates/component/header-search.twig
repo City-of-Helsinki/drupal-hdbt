@@ -1,6 +1,6 @@
 {% set dropdown_id = 'search-dropdown' %}
 
-{% embed "@hdbt/misc/nav-toggle-button.twig" with {
+{% embed "@hdbt/navigation/nav-toggle-button.twig" with {
   modifier_class: 'nav-toggle--search',
   controls: dropdown_id,
   anchor_target: '#search',
@@ -10,7 +10,7 @@
 } %}
 {% endembed %}
 
-{% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+{% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
   id: dropdown_id,
   modifier_class: 'nav-toggle-dropdown--search',
 } %}

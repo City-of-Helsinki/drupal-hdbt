@@ -1,5 +1,3 @@
 dist/**/*
 node_modules/**/*
-webpack.config.js
-webpack.svgToSprite.js
 src/js/calculator/*/tests/*
