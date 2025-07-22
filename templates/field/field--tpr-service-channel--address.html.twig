@@ -12,7 +12,7 @@
   {% set administrative_area = { 'code': item.content.administrative_area['#value'] } %}
   {% set locality = { 'code': item.content.locality['#value'] } %}
 
-  {% include '@hdbt/misc/address-plain.html.twig' with {
+  {% include '@hdbt/module/helfi_tpr/address-plain.html.twig' with {
     given_name: item.content.given_name['#value'],
     family_name: item.content.family_name['#value'],
     organization: item.content.organization['#value'],

@@ -27,10 +27,10 @@
         {{ content.address }}
 
         {% if content.accessibility_sentences|render %}
-          {% include '@hdbt/misc/accessibility-link.twig' %}
+          {% include '@hdbt/module/helfi_tpr/accessibility-link.twig' %}
         {% endif %}
         {% if content.service_map_embed|render %}
-          {% include '@hdbt/misc/location-link.twig' %}
+          {% include '@hdbt/module/helfi_tpr/location-link.twig' %}
         {% endif %}
       </div>
     {% endif %}
