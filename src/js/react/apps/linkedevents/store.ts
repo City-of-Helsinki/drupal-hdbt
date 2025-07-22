@@ -239,8 +239,11 @@ export const updateUrlAtom = atom(null, async(get, set) => {
   const coordinates = await useAddressToCoordsQuery(address);
 
   if (coordinates && coordinates?.length) {
-    params.set(ApiKeys.COORDINATES, coordinates.join(','));
+    params.set(ApiKeys.COORDINATES, coordinates.slice(0, 2).join(','));
     params.set(ApiKeys.RADIUS, '2000');
+
+    const [, ,addressName] = coordinates;
+    set(addressAtom, addressName);
   }
 
   const baseUrl = get(baseUrlAtom);

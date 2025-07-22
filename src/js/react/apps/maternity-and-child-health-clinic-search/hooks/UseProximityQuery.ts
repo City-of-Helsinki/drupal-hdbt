@@ -22,6 +22,7 @@ const UseProximityQuery = (params: SearchParams) => {
     const { address, sv_only } = params;
 
     let coordinates = null;
+    let resolvedName = null;
     let ids = null;
 
     if (address) {
@@ -29,6 +30,7 @@ const UseProximityQuery = (params: SearchParams) => {
       addresses = addresses.filter((_address: any) => _address.results.length);
 
       if (addresses.length) {
+        resolvedName = getNameTranslation(addresses[0].results[0].name, drupalSettings.path.currentLanguage);
         coordinates = parseCoordinates(addresses);
       }
     }
@@ -49,13 +51,20 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    return useTimeoutFetch(`${baseUrl}/${index}/_search`, {
+    const result = useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: getQueryString(ids, coordinates, page, sv_only),
-    }).then((res) => res.json());
+    });
+
+    const json = await result.json();
+
+    return {
+      addressName: resolvedName,
+      ...json
+    };
   };
 
   const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {

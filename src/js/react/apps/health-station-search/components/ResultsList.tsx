@@ -66,7 +66,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         resultText={
           <>
             {Drupal.formatPlural(total, '1 health station', '@count health stations',{},{context: 'Health station search: result count'})}
-            {params.address ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${params.address}` : ''}
+            {data?.addressName ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${data?.addressName}` : ''}
           </>
         }
         actions={
