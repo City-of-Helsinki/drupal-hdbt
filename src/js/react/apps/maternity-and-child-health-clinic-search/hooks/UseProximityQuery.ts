@@ -7,6 +7,7 @@ import { configurationsAtom } from '../store';
 import getQueryString from '../helpers/ProximityQuery';
 import AppSettings from '../enum/AppSettings';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import getNameTranslation from '@/react/common/helpers/ServiceMap';
 
 type Result = {
   units?: number[]
@@ -51,13 +52,17 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    const result = useTimeoutFetch(`${baseUrl}/${index}/_search`, {
+    const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: getQueryString(ids, coordinates, page, sv_only),
     });
+
+    if (!result.ok) {
+      throw new Error('Failed to fetch data.');
+    }
 
     const json = await result.json();
 
