@@ -38,6 +38,7 @@ function getBrowserSize() {
     const getLanguage = () => document.querySelector('html')?.attributes?.lang?.value || 'unkown';
     const getPublishedTime = () => document.querySelector('meta[property="article:published_time"]')?.content || '';
     const getUpdatedTime = () => document.querySelector('meta[property="og:updated_time"]')?.content || '';
+    const newsTaxonomyTermIds = () => drupalSettings.news_taxonomy_term_ids;
     // eslint-disable-next-line no-multi-assign
     const _paq = window._paq = window._paq || [];
     // eslint-disable-next-line no-useless-escape
@@ -61,6 +62,11 @@ function getBrowserSize() {
       // Etusivu ID is 141 (1292 in testing). Duplicate tracking for other sites.
       if (!['141', '1292'].includes(drupalSettings.matomo_site_id.toString())) {
         _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
+      }
+
+      if (['141', '1292'].includes(drupalSettings.matomo_site_id.toString()) && newsTaxonomyTermIds()) {
+        _paq.push(['setCustomDimension', 9, newsTaxonomyTermIds()]);
+        _paq.push(['trackPageView']);
       }
 
       const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
