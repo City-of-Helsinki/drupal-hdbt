@@ -1554,7 +1554,7 @@ msgctxt "Event search: target group"
 msgid "Tourists"
 msgstr "Matkailijat"
 
-msgctxt "School search: result display"
+msgctxt "React search: Address result display"
 msgid "using address"
 msgstr "osoitteella"
 
@@ -1569,3 +1569,49 @@ msgstr "Ehdotuksien lataus valmis"
 msgctxt "News archive: keyword placeholder"
 msgid "For example, budget proposal"
 msgstr "Esim. talousarvio"
+
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 hakutulos"
+msgstr[1] "@count hakutulosta"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "See all roadworks near you"
+msgstr "Katso kaikki katu- ja puistohankkeet lähelläsi"
+
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgstr "1 tulos"
+
+msgctxt "Roadworks search: result count"
+msgid "@count results"
+msgstr "@count tulosta"
+
+msgctxt "Roadworks search: Fetch failed message"
+msgid "Failed to fetch roadworks. You can reload the page or try again later."
+msgstr "Katutöiden haku epäonnistui. Voit päivittää sivun tai yrittää myöhemmin uudelleen."
+
+msgctxt "Roadworks search: card location label"
+msgid "Location"
+msgstr "Sijainti"
+
+msgctxt "Roadworks search: card schedule label"
+msgid "Planned schedule"
+msgstr "Arvioitu aikataulu"
+
+msgctxt "React search: Address required hint"
+msgid "Start by searching with your address."
+msgstr "Aloita kirjoittamalla osoitteesi."
+
+msgctxt "React search: Address not found title"
+msgid "No results for the address entered"
+msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
+
+msgctxt "React search: Address not found hint"
+msgid "Make sure the address is written correctly. You can also search using a nearby street number."
+msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
+
+msgctxt "React search"
+msgid "Distance"
+msgstr "Etäisyys"

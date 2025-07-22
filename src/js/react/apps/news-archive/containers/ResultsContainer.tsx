@@ -60,7 +60,7 @@ const ResultsContainer = ({
       <ResultsError
         error={error}
         className='react-search__results'
-        ref={scrollTarget}
+        ref={!hideForm ? scrollTarget : undefined}
       />
     );
   }
