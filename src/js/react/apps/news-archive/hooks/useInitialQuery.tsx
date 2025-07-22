@@ -1,4 +1,4 @@
-import useLanguageQuery from '../hooks/useLanguageQuery';
+import useLanguageQuery from './useLanguageQuery';
 import IndexFields from '../enum/IndexFields';
 
 const termFilter = {

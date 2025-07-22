@@ -9,18 +9,18 @@
 /// @return {Color} - The best color with smallest alpha value to simulate target color on top of background color.
 @function find-alpha-color($target, $background) {
   // Extract RGB components from the target color
-  $r1: color.red($target);
-  $g1: color.green($target);
-  $b1: color.blue($target);
+  $r1: color.channel($target, "red");
+  $g1: color.channel($target, "green");
+  $b1: color.channel($target, "blue");
 
   // Extract RGB components from the background color
-  $r2: color.red($background);
-  $g2: color.green($background);
-  $b2: color.blue($background);
+  $r2: color.channel($background, "red");
+  $g2: color.channel($background, "green");
+  $b2: color.channel($background, "blue");
 
   // Initialize variables
   $best-alpha: 0;
-  $best-color: rgba(0 0 0 / 0%);
+  $best-color: rgb(0 0 0 / 0%);
   $min-difference: 255 * 3; // Maximum possible difference
 
   @for $alpha from 1 through 1000 {

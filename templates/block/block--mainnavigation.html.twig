@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
+<nav aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
   <span class="is-hidden" id="{{ heading_id }}">{{ 'Main navigation'|t({}, {'context': 'Aria label for main navigation'}) }}</span>
   {# Menu. #}
   {% block content %}

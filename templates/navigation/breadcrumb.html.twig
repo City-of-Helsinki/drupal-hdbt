@@ -9,7 +9,7 @@
  */
 #}
 {% if links %}
-  <nav class="hds-breadcrumb" role="navigation" aria-label="{{ 'Breadcrumb'|t }}">
+  <nav class="hds-breadcrumb" aria-label="{{ 'Breadcrumb'|t }}">
     <ol class="hds-breadcrumb__list hds-breadcrumb__list--desktop">
     {% for item in links %}
       <li class="hds-breadcrumb__list-item {% if item.url.toString() is  empty %}hds-breadcrumb__list-item--active{% endif %}">

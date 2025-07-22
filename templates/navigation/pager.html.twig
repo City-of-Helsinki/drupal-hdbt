@@ -32,7 +32,7 @@
 #}
 {% if items %}
   <div class="hds-pagination-container">
-    <nav class="hds-pagination pager" role="navigation" aria-label="{{ 'Pagination'|t({}, {'context': 'Pagination aria-label'}) }}" data-next="{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}">
+    <nav class="hds-pagination pager" aria-label="{{ 'Pagination'|t({}, {'context': 'Pagination aria-label'}) }}" data-next="{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}">
       {# Print previous item if we are not on the first page. #}
       {% if items.previous %}
         {% set prev_button_classes = [

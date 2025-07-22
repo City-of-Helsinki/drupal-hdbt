@@ -1,10 +1,9 @@
 // stylelint-disable at-rule-empty-line-before
-// stylelint-disable no-invalid-position-at-import-rule
 // This file includes styling for WYSIWYG editor.
 
 @import 'hds';
 
-@import '~breakpoint-sass';
+@import 'breakpoint-sass/stylesheets/breakpoint';
 
 @import '00_functions/_index';
 @import '01_variables/_index';
@@ -54,7 +53,6 @@
   }
 
   // Button styles rely on data-attributes which are not available in CKE5.
-  // TODO: UHF-8794 We should fix the 05_objects/_button to drop the support for data-attributes like data-selected-icon (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8794).
   &.hds-button:not([data-selected-icon], [data-is-external='true'])::before {
     content: none !important;
   }
