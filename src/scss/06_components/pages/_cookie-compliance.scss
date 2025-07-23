@@ -1,15 +1,3 @@
-// @todo UHF-10862 Remove this style once the HDBT cookie banner module is in use.
-.cookie-compliance--lead-in__container {
-  @include components-container-max-width;
-  @include component-side-padding;
-  padding-top: 0;
-
-  h1 {
-    margin-bottom: $spacing-double;
-    margin-top: 0;
-  }
-}
-
 .cookie-compliance-block {
   @include components-container-max-width;
 
