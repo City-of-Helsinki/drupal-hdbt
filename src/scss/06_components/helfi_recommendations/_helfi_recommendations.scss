@@ -3,11 +3,6 @@
   @include component-side-padding;
   margin-left: auto;
   margin-right: auto;
-
-  @include breakpoint($breakpoint-m) {
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 .component.component--recommendations {
