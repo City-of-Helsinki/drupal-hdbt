@@ -65,7 +65,8 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
       <ResultsHeader
         resultText={
           <>
-            { Drupal.formatPlural(total, '1 clinic', '@count clinics',{},{context: 'React search: Maternity and child health clinic result count'}) }
+            {Drupal.formatPlural(total, '1 clinic', '@count clinics',{},{context: 'React search: Maternity and child health clinic result count'})}
+            {data?.addressName ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${data?.addressName}` : ''}
           </>
         }
         actions={
