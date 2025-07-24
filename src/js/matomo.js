@@ -64,6 +64,7 @@ function getBrowserSize() {
         _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
       }
 
+      // If the site is Etusivu-instance and there are newsTaxonomyTermIds set, sent them to custom dimension.
       if (['141', '1292'].includes(drupalSettings.matomo_site_id.toString()) && newsTaxonomyTermIds()) {
         _paq.push(['setCustomDimension', 9, newsTaxonomyTermIds()]);
         _paq.push(['trackPageView']);
