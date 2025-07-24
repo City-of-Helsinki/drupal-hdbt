@@ -1,5 +1,6 @@
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from '../enum/ServiceMap';
+import getNameTranslation from '../helpers/ServiceMap';
 
 /**
  * Queries service map api to transform address top coordinates.
@@ -10,9 +11,12 @@ import ServiceMap from '../enum/ServiceMap';
  *
  * @return {Promise} Promise resolvingto an array containing coordinates.
  */
-const useAddressToCoordsQuery = async(address: string|null|undefined, pageSize: number|string = 1) => {
+const useAddressToCoordsQuery = async(
+  address: string|null|undefined,
+  pageSize: number|string = 1,
+): Promise<[number, number, string]|null> => {
   if (!address) {
-    return [];
+    return null;
   }
 
   const params = ['fi', 'sv'].map(lang => new URLSearchParams({
@@ -32,20 +36,16 @@ const useAddressToCoordsQuery = async(address: string|null|undefined, pageSize: 
     return fetch(url.toString()).then(response => response.json());
   });
 
-  const fulfilled = await Promise.allSettled(results);
-  const coordinates = fulfilled
-    .filter(result => {
-      if (result.status === 'fulfilled' && result.value.results.length) {
-        return true;
-      }
+  const settled = await Promise.allSettled(results);
+  const fulfilled = settled.filter((result: PromiseSettledResult<ServiceMapResponse<ServiceMapAddress>>) => (
+    result.status === 'fulfilled' && result?.value.results?.length
+  ));
 
-      return false;
-    })
-    // Rejected promises are filtered out but map doesn't understand that.
-    // @ts-ignore
-    .map((result: PromiseSettledResult<ServiceMapResponse<ServiceMapAddress>>) => result.value.results[0].location.coordinates);
+  const coordinates: Array<[number, number, string]> = (fulfilled as Array<PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>>>).map(result => (
+    [...result.value.results[0].location.coordinates, getNameTranslation(result.value.results[0].name, drupalSettings.path.currentLanguage) || '']
+  ));
 
-  return coordinates.length ? coordinates[0] : [];
+  return coordinates.length ? coordinates[0] : null;
 };
 
 export default useAddressToCoordsQuery;

@@ -20,7 +20,7 @@
 {{ drupal_block('helfi_platform_config_social_sharing_block') }}
 
 {# Tags #}
-{% include "@hdbt/misc/news-tags.twig" with
+{% include "@hdbt/module/helfi_node_news_item/news-tags.twig" with
   {
     tags: content.field_news_item_tags,
     neighbourhoods: content.field_news_neighbourhoods,

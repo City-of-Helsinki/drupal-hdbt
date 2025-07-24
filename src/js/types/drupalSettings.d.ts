@@ -44,8 +44,6 @@ declare namespace drupalSettings {
     cardsWithBorders: boolean;
   };
   const helfi_react_search: {
-    // @todo UHF-10862 Remove cookie_privacy_url once the HDBT cookie banner module is in use.
-    cookie_privacy_url: string;
     elastic_proxy_url: string;
     sentry_dsn_react: string;
     hakuvahti_url_set: boolean;
@@ -63,6 +61,19 @@ declare namespace drupalSettings {
     hide_form?: boolean
     feed_base_url: string;
     cardsWithBorders: boolean,
+  };
+  const helfi_roadworks: {
+    [key: string]: {
+      cardsWithBorders: boolean;
+      isShortList: boolean;
+      roadworkCount: number;
+      initialData: {
+        lat?: string;
+        lon?: string;
+        q?: string;
+      },
+      scrollToTarget: boolean;
+    }
   };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;

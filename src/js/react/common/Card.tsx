@@ -31,6 +31,7 @@ export type CardItemProps = {
   dateLabel?: string;
   daterange?: string | JSX.Element;
   dateRangeLabel?: string;
+  distance?: string;
   langAttribute?: any;
   language?: string;
   languageEducation?: string;
@@ -63,6 +64,7 @@ function CardItem({
   dateLabel,
   daterange,
   dateRangeLabel,
+  distance,
   langAttribute,
   language,
   languageEducation,
@@ -129,6 +131,9 @@ function CardItem({
         <div className="card__metas">
           {location &&
             <Metarow icon="location" label={locationLabel || Drupal.t('Location', {}, { context: 'React search'})} content={location} />
+          }
+          {distance &&
+            <Metarow icon="map" label={Drupal.t('Distance', {}, { context: 'React search'})} content={distance} />        
           }
           {date &&
             <Metarow icon="clock" label={dateLabel || Drupal.t('Date', {}, { context: 'React search'})} content={date} />

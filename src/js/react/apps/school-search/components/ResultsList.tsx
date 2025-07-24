@@ -69,7 +69,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   return (
     <div className='react-search__results'>
       <ResultsHeader
-        resultText={data.addressName ? `${resultHeader} ${Drupal.t('using address', {}, {context: 'School search: result display'})} ${data.addressName}` : resultHeader}
+        resultText={data.addressName ? `${resultHeader} ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${data.addressName}` : resultHeader}
         actions={
           <div className='hdbt-search--react__results--tablist' role='tablist'>
             <button

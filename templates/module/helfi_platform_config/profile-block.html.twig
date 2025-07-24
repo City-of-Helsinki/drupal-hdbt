@@ -7,7 +7,7 @@
 
   {% set dropdown_id = 'profile-dropdown' %}
 
-  {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+  {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
     modifier_class: 'nav-toggle--profile',
     controls: dropdown_id,
     anchor_target: '#profile',
@@ -22,7 +22,7 @@
   } %}
   {% endembed %}
 
-  {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+  {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
     id: dropdown_id,
     modifier_class: 'nav-toggle-dropdown--profile',
   } %}

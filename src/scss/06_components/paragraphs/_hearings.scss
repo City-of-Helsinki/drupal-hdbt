@@ -10,11 +10,3 @@
 .hearings__list {
   margin-top: $spacing-and-half;
 }
-
-.hearings__link-wrapper {
-  margin-top: $spacing-double;
-
-  @include breakpoint($breakpoint-m) {
-    margin-top: $spacing-quadruple;
-  }
-}

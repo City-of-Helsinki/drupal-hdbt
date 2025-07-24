@@ -1,12 +1,13 @@
 import { createRef, useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai';
 
+import { useAtomCallback } from 'jotai/utils';
 import ResultsError from '@/react/common/ResultsError';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import { settingsAtom, urlAtom } from '../store';
+import { addressAtom, settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -33,6 +34,7 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
   const scrollTarget = createRef<HTMLDivElement>();
+  const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
@@ -54,6 +56,7 @@ function ResultsContainer({
       <GhostList bordered={cardsWithBorders} count={size} />;
   }
 
+  const address = readAddress();
   const pages = Math.floor(countNumber / size);
   const addLastPage = countNumber > size && countNumber % size;
   const count = countNumber.toString();
@@ -81,6 +84,7 @@ function ResultsContainer({
             resultText={
               <>
                 {Drupal.formatPlural(count, '1 result', '@count results', {}, {context: 'Events search: result count'})}
+                {settings.useLocationSearch && address ? ` ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${address}` : ''}
               </>
             }
             ref={scrollTarget}
@@ -104,7 +108,7 @@ function ResultsContainer({
       {getContent()}
       {
         seeAllNearYouLink ?
-        <div className='event-list__see-all-button event-list__see-all-button--near-you'>
+        <div className='see-all-button see-all-button--near-results'>
           <a
             data-hds-component="button"
             href={seeAllNearYouLink}

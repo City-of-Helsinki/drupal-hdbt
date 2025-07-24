@@ -1,7 +1,0 @@
-{# @todo UHF-10862 Remove cookie_consent_intro once the HDBT cookie banner module is in use. #}
-{% embed "@hdbt/misc/container.twig" with {container_element: 'cookie-compliance--lead-in'} %}
-  {% block container_content %}
-    {{ content }}
-    <h2>{{ 'Consent management'|t }}</h2>
-  {% endblock container_content %}
-{% endembed %}
