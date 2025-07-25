@@ -1,0 +1,62 @@
+.hds-koros:not(.hds-koros--has-inner),
+.hds-koros__inner{
+  // The functionality that scales the size and number of repeating koro elements.
+  // Smallest supported viewport is 320px.
+  // Size of the repeating koro element is 67px * 50px (width * height).
+  // 320px / 67 ~= 4,8 --> 5
+  // Jump to 6 elements comes between 368px and 369px.
+  // Largest height needed for koro: 50px * (368px / 5) / 67px ~= 54.9px --> 55px
+  // Smalles height needed for koro: 50px * (369px / 6) / 67px ~= 45,9px --> 46px
+  --bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='100'><rect x='0' y='49' width='67' height='50' /></svg>");
+  --mask-height: 50px;
+  background-color: currentColor;
+  height: var(--mask-height);
+  mask-image: var(--url), var(--bg);
+  mask-position: top left;
+  mask-repeat: round no-repeat;
+  width: 100%;
+}
+
+.hds-koros__inner {
+  // Make the actual koro visible from the wrapper element when using the has-inner structure.
+  margin-top: calc( -1 * var(--mask-height) );
+}
+
+.hds-koros--has-inner {
+  @include breakpoint($breakpoint-l) {
+    background-color: currentColor;
+    mask: none;
+    position: absolute;
+    top: auto;
+    z-index: 10;
+  }
+}
+
+.footer .hds-koros {
+  margin-top: calc( -1 * var(--mask-height) );
+}
+
+.hds-koros--basic {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><path d='M 67 70 V 30.32 h 0 C 50.25 30.32 50.25 20 33.5 20 S 16.76 30.32 0 30.32 H 0 V 70 Z'></path></svg>");
+}
+
+.hds-koros--beat {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><path d='M 67 52 v -5 h -0.14 c -8.59 0 -11.79 -8 -11.79 -8 S 45.79 10.82 45.7 10.61 A 13 13 0 0 0 33.53 2 C 24.28 2 21.35 10.61 21.35 10.61 L 12 38.71 A 12.94 12.94 0 0 1 0 47.06 V 52 Z'></path></svg>");
+}
+
+.hds-koros--pulse {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><path d='M 67 63.5 V 35.86 C 50.4 35.74 50.35 13.5 33.65 13.5 S 16.91 35.87 0.17 35.87 H 0 V 63.5 Z'></path></svg>");
+}
+
+.hds-koros--vibration {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><polygon points='67 50 67 42.36 33.5 8.5 0 42.36 0 42.36 0 50 67 50'></polygon></svg>");
+}
+
+.hds-koros--wave {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><path d='M 67 63.5 V 36.89 h 0 c -15 0 -27.91 -9.64 -33.46 -23.34 C 27.93 27.23 15 36.81 0 36.79 V 63.5 Z'></path></svg>");
+}
+
+.hds-koros--calm {
+  --url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='67' height='50'><rect width='67' height='50' /></svg>");
+}
+
