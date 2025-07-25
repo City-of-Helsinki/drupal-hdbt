@@ -1,5 +1,8 @@
 .components--recommendations {
+  @include components-container-max-width;
   @include component-side-padding;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .component.component--recommendations {
