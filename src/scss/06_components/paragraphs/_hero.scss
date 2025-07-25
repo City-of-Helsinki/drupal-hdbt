@@ -346,37 +346,16 @@ $koro-height: 50px;
     .hds-koros {
       display: block;
       position: absolute;
-      top: -1px; // To avoid occasional 1px line on top of the koro when being scaled.
+      top: auto;
       z-index: 1;
 
       @include breakpoint($breakpoint-l) {
-        bottom: 50%;
-        left: 5%;
-        top: auto;
+        bottom: 0;
+        height: 1500px;
+        right: 54%;
         transform: scaleX(var(--lang-direction, 1)) rotate(135deg);
         transform-origin: center;
-        width: 100%;
-      }
-
-      @include breakpoint($breakpoint-xl) {
-        left: 0%;
-      }
-
-      &::after {
-        @include breakpoint($breakpoint-l) {
-          background-color: currentColor;
-          content: '';
-          display: block;
-          height: 1000px;
-          left: 15%;
-          position: absolute;
-          top: $koro-height - 2px; // Koro-element height - 2px
-          width: 1500px;
-        }
-
-        @include breakpoint($breakpoint-xl) {
-          left: 25%;
-        }
+        width: 1000px;
       }
     }
 
