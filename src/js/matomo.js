@@ -56,16 +56,19 @@ function getBrowserSize() {
     // eslint-disable-next-line func-names
     (function() {
       const u='//webanalytics.digiaiiris.com/js/';
+      // Etusivu ID is 141 (1292 in testing).
+      const frontPage = ['141', '1292'];
+
       _paq.push(['setTrackerUrl', `${u}tracker.php`]);
       _paq.push(['setSiteId', environment === 'prod' ? '141' : '1292']);
 
-      // Etusivu ID is 141 (1292 in testing). Duplicate tracking for other sites.
-      if (!['141', '1292'].includes(drupalSettings.matomo_site_id.toString())) {
+      // Duplicate tracking of other sites to front page as well.
+      if (!frontPage.includes(drupalSettings.matomo_site_id.toString())) {
         _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
       }
 
       // If the site is Etusivu-instance and there are newsTaxonomyTermIds set, sent them to custom dimension.
-      if (['141', '1292'].includes(drupalSettings.matomo_site_id.toString()) && newsTaxonomyTermIds()) {
+      if (frontPage.includes(drupalSettings.matomo_site_id.toString()) && newsTaxonomyTermIds()) {
         _paq.push(['setCustomDimension', 9, newsTaxonomyTermIds()]);
         _paq.push(['trackPageView']);
       }
