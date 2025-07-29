@@ -1,4 +1,4 @@
-
+{{ attach_library('hdbt/koro-helper') }}
 {% set koro = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.koro')|default('basic') %}
 {% set koros = ['basic', 'beat', 'pulse', 'vibration', 'wave', 'calm'] %}
 {% if koro in koros %}
@@ -12,9 +12,7 @@
     koro_class,
   ]
 } %}
-
 <div{{ create_attribute(koro_wrapper_attributes) }} {% if color %}style="color: {{ color }};"{% endif %} >
-  {% if extraContainer %}
-    <div class="hds-koros__inner"></div>
-  {% endif %}
+  <div class="hds-koros__inner"></div>
+  <div class="hds-koros__cover"></div>
 </div>
