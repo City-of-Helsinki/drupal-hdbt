@@ -5,7 +5,8 @@ $koro-height: 50px;
   color: var(--hdbt-color-palette-text--primary);
 
   > .hds-koros {
-    color: $color-white;
+    background-color: var(--color-white);
+    color: var(--hdbt-color-palette--primary);
   }
 }
 
@@ -112,7 +113,8 @@ $koro-height: 50px;
   }
 
   .hero > .hds-koros {
-    color: $color-black-5;
+    background-color: $color-black-5;
+    color: var(--hdbt-color-palette--primary);
   }
 }
 
