@@ -5,11 +5,11 @@
   // Each koro has its own base cover height requirement that can be determined from the koro type.
   function getKoroConfig(wrapper) {
     const koroTypesValues = {
-      'basic': { baseCoverHeight: 19, scaleBoost: 2 },
-      'beat': { baseCoverHeight: 3, scaleBoost: 10 },
-      'pulse': { baseCoverHeight: 14, scaleBoost: 3 },
-      'vibration': { baseCoverHeight: 7, scaleBoost: 8 },
-      'wave': { baseCoverHeight: 13, scaleBoost: 4 },
+      'basic': { baseCoverHeight: 19, scaleBoost: 0 },
+      'beat': { baseCoverHeight: 3, scaleBoost: 4 },
+      'pulse': { baseCoverHeight: 14, scaleBoost: 1 },
+      'vibration': { baseCoverHeight: 7, scaleBoost: 3 },
+      'wave': { baseCoverHeight: 13, scaleBoost: 1 },
     };
 
     const koroTypes = Object.keys(koroTypesValues);
