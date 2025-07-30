@@ -1,19 +1,7 @@
 .hds-koros {
-  --bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='67' height='100'><rect fill='red' x='0' y='49' width='67' height='50' /></svg>");
   --mask-height: 50px;
   position: relative;
   z-index: 0;
-}
-
-.hds-koros__cover {
-  background-color: currentColor;
-  bottom: 0;
-  height: var(--cover-height); // This height will be set dynamically
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
 }
 
 .hds-koros__inner {
@@ -28,31 +16,38 @@
   height: var(--mask-height);
   mask-image: var(--url);
   mask-position: top left;
-  mask-repeat: repeat-x;
-  mask-size: var(--pattern-width) var(--mask-height);
+  mask-repeat: round no-repeat;
   width: 100%;
 }
 
+.hds-koros__cover {
+  background-color: currentColor;
+  bottom: 0;
+  height: var(--cover-height); // This height will be set dynamically
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
 
-.hds-koros--has-inner {
+.hds-koros--diagonal {
+  @include breakpoint($breakpoint-l) {
+    background-color: currentColor;
+    mask: none;
+    position: absolute;
+    top: auto;
+    z-index: 3;
+  }
+
   .hds-koros__inner {
-    // Make the actual koro visible from the wrapper element when using the has-inner structure.
+    // Make the actual koro visible from the wrapper element when using the diagonal structure.
     margin-top: calc(-1 * var(--mask-height));
   }
 
   .hds-koros__cover {
     bottom: auto;
     top: calc(-1 * var(--cover-height));
-  }
-}
-
-.hds-koros--has-inner {
-  @include breakpoint($breakpoint-l) {
-    background-color: currentColor;
-    mask: none;
-    position: absolute;
-    top: auto;
-    z-index: 10;
   }
 }
 

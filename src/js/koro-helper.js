@@ -1,8 +1,9 @@
-// Base values: 67px tile width and 8px seam height at that size.
-const baseTileWidth = 67;
+// Base values: 67px koro pattern width.
+const baseKoroPatternWidth = 67;
 
-function determineBaseSeamHeight(wrapper) {
-  const koroTypes = {
+// Each koro has its own base cover height requirement that can be determined from the koro type.
+function determineBaseCoverHeight(wrapper) {
+  const koroTypesValues = {
     'basic': 19,
     'beat': 3,
     'pulse': 14,
@@ -10,11 +11,11 @@ function determineBaseSeamHeight(wrapper) {
     'wave': 13,
   };
 
-  const keys = Object.keys(koroTypes);
-  for (let i = 0; i < keys.length; i++) {
-    const type = keys[i];
-    if (wrapper.classList.contains(`hds-koros--${type}`)) {
-      return koroTypes[type];
+  const koroTypes = Object.koroTypes(koroTypesValues);
+  for (let i = 0; i < koroTypes.length; i++) {
+    const koroType = koroTypes[i];
+    if (wrapper.classList.contains(`hds-koros--${koroType}`)) {
+      return koroTypesValues[koroType];
     }
   }
 
@@ -22,45 +23,48 @@ function determineBaseSeamHeight(wrapper) {
   return 8;
 }
 
-function adjustKorosPattern(wrapper, tileWidth) {
+// Adjust dynamically the height of the cover based on the scaled pattern.
+function adjustCoverHeight(wrapper, koroPatternWidth) {
   const koros = wrapper.querySelector('.hds-koros__inner');
   if (!koros) return;
 
-  const baseSeamHeight = determineBaseSeamHeight(wrapper);
+  const baseCoverHeight = determineBaseCoverHeight(wrapper);
 
+  // Calculate the adjusted width of the koro pattern being displayed.
   const width = koros.offsetWidth;
-  const repeatCount = Math.max(1, Math.round(width / tileWidth));
+  const repeatCount = Math.max(1, Math.round(width / koroPatternWidth));
   const adjustedWidth = width / repeatCount;
 
-  koros.style.setProperty('--pattern-width', `${adjustedWidth}px`);
+  // Based on the adjusted width calculate a scale factor.
+  const scaleFactor = adjustedWidth / koroPatternWidth;
+  // Using the scale factor calculate the adjusted cover height so that it is good size to cover the gaps
+  // caused by Safaris inconsistent rendering of the mask-repeat: round no-repeat; declaration.
+  const adjustedCoverHeight = baseCoverHeight * scaleFactor;
 
-  const scaleFactor = adjustedWidth / tileWidth;
-  const adjustedSeamHeight = baseSeamHeight * scaleFactor;
-
-  const seamBlocker = wrapper.querySelector('.hds-koros__cover');
-  if (seamBlocker) {
-    seamBlocker.style.setProperty('--cover-height', `${adjustedSeamHeight}px`);
+  // Apply the cover height variable to the cover element.
+  const cover = wrapper.querySelector('.hds-koros__cover');
+  if (cover) {
+    cover.style.setProperty('--cover-height', `${adjustedCoverHeight}px`);
   }
 }
 
-function updateAllKoros(tileWidth) {
+function updateAllKoros(koroPatternWidth) {
   document.querySelectorAll('.hds-koros').forEach(wrapper => {
-    adjustKorosPattern(wrapper, tileWidth);
+    adjustCoverHeight(wrapper, koroPatternWidth);
   });
 }
 
-function observeKoros(tileWidth) {
+function observeKoros(koroPatternWidth) {
   document.querySelectorAll('.hds-koros').forEach(wrapper => {
     const koros = wrapper.querySelector('.hds-koros__inner');
     if (koros) {
-      const ro = new ResizeObserver(() => {
-        adjustKorosPattern(wrapper, tileWidth);
+      const resizeObserver = new ResizeObserver(() => {
+        adjustCoverHeight(wrapper, koroPatternWidth);
       });
-      ro.observe(koros);
+      resizeObserver.observe(koros);
     }
   });
 }
 
-// Kick it off
-updateAllKoros(baseTileWidth);
-observeKoros(baseTileWidth);
+updateAllKoros(baseKoroPatternWidth);
+observeKoros(baseKoroPatternWidth);
