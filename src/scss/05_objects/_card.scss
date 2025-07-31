@@ -11,15 +11,12 @@ $-card-border-width: 2px;
   @include breakpoint($breakpoint-s) {
     display: flex;
     flex-direction: row-reverse;
-    gap: $spacing-and-half;
-    grid-template-areas: 'content img';
-    grid-template-columns: 1fr 30%;
-    padding: $spacing-and-half;
+    gap: $spacing;
   }
 
   @include breakpoint($breakpoint-m) {
-    gap: $spacing-double;
-    padding: $spacing-double;
+    gap: $spacing-and-half;
+    padding: $spacing-and-half;
   }
 
   & + & {
@@ -28,9 +25,12 @@ $-card-border-width: 2px;
 }
 
 .card__image {
-  flex-basis: 30%;
-  flex-shrink: 0;
   margin-bottom: $section-gap;
+
+  @include breakpoint($breakpoint-s) {
+    flex-basis: 25%;
+    flex-shrink: 0;
+  }
 
   picture,
   img {
@@ -81,7 +81,7 @@ $-card-border-width: 2px;
 }
 
 .card__title {
-  @include font('h3');
+  @include font('h4');
   margin: 0;
 }
 
