@@ -1,22 +1,24 @@
 $section-gap: $spacing;
 $item-gap: $spacing-half;
+$-card-spacing-mobile: $spacing;
+$-card-spacing-desktop: $spacing-and-half;
 $-card-border-width: 2px;
 
 .card {
   background: $color-white;
   overflow-wrap: anywhere;
-  padding: $spacing;
+  padding: $-card-spacing-mobile;
   position: relative;
 
   @include breakpoint($breakpoint-s) {
     display: flex;
     flex-direction: row-reverse;
-    gap: $spacing;
+    gap: $-card-spacing-mobile;
   }
 
   @include breakpoint($breakpoint-m) {
-    gap: $spacing-and-half;
-    padding: $spacing-and-half;
+    gap: $-card-spacing-desktop;
+    padding: $-card-spacing-desktop;
   }
 
   & + & {
@@ -167,14 +169,10 @@ $-card-border-width: 2px;
 
 .card--border {
   border: $-card-border-width solid $color-black-20;
-  padding: calc($spacing - $-card-border-width);
-
-  @include breakpoint($breakpoint-s) {
-    padding: calc($spacing-and-half - $-card-border-width);
-  }
+  padding: calc($-card-spacing-mobile - $-card-border-width);
 
   @include breakpoint($breakpoint-m) {
-    padding: calc($spacing-double - $-card-border-width);
+    padding: calc($-card-spacing-desktop - $-card-border-width);
   }
 }
 
