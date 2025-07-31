@@ -1523,7 +1523,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     ]
   );
 
-  $variables['#attached']['library'][] = 'hdbt/event-list';
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
 }
 
@@ -1552,9 +1551,6 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     }
   }
 
-  // Attach job search library.
-  $variables['#attached']['library'][] = 'hdbt/job-search';
-
   // Hakuvahti server url, expose to react if it's enabled or not.
   $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
@@ -1580,13 +1576,6 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     // Set the config back to the original language.
     $language_manager->setConfigOverrideLanguage($original_language);
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_paragraph__school_search(array &$variables) {
-  $variables['#attached']['library'][] = 'hdbt/school-search';
 }
 
 /**
