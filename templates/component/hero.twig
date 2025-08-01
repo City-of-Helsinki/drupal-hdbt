@@ -103,12 +103,16 @@
   %}
     {% if image|render %}
       <div class="hero__image-container">
-        {% include '@hdbt/misc/koro.twig' with { flip: true } %}
+        {% if design == "diagonal" %}
+          {% include '@hdbt/misc/koro.twig' with { flip: true, diagonal: true } %}
+        {% else %}
+          {% include '@hdbt/misc/koro.twig' with { flip: true } %}
+        {% endif %}
         {{ image }}
       </div>
     {% endif %}
   {% endif %}
-  {% include '@hdbt/misc/koro.twig' with { flip: false } %}
+  {% include '@hdbt/misc/koro.twig' with { flip: true } %}
 </div>
 
 {# Add figcaption image_author is set #}

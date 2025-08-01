@@ -1,17 +1,18 @@
-
+{{ attach_library('hdbt/koro-helper') }}
 {% set koro = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.koro')|default('basic') %}
 {% set koros = ['basic', 'beat', 'pulse', 'vibration', 'wave', 'calm'] %}
-{% set koro_path = '@hdbt/misc/koros/koro-' ~ koro ~ '.twig' %}
+{% if koro in koros %}
+  {% set koro_class = 'hds-koros--' ~ koro %}
+{% endif %}
 {% set koro_wrapper_attributes = {
   'class': [
     'hds-koros',
     flip ? 'hds-koros--180deg',
+    diagonal ? 'hds-koros--diagonal',
+    koro_class,
   ]
 } %}
-
-
 <div{{ create_attribute(koro_wrapper_attributes) }} {% if color %}style="color: {{ color }};"{% endif %} >
-  {% if koro_path and koro in koros %}
-    {% include koro_path  %}
-  {% endif %}
+  <div class="hds-koros__inner"></div>
+  <div class="hds-koros__cover"></div>
 </div>
