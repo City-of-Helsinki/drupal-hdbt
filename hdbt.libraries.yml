@@ -366,3 +366,10 @@ card-helper:
     dist/js/card-helper.min.js: {
       minified: true
     }
+
+koro-helper:
+  version: 1.0.0
+  js:
+    dist/js/koro-helper.min.js: {
+      minified: true
+    }
