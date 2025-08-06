@@ -58,7 +58,9 @@
 
     {% if card_category_tag %}
       <div class="card__category">
-        {% embed '@hdbt/misc/tag-list.twig'%}
+        {% embed '@hdbt/misc/tag-list.twig' with {
+          tag_container_class: 'content-tags--card'
+        }%}
           {% block content %}
             {% include '@hdbt/misc/tag.twig' with {
               tag: card_category_tag.tag,
