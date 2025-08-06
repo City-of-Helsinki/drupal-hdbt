@@ -103,7 +103,7 @@
   %}
     {% if image|render %}
       <div class="hero__image-container">
-        {% if design == "diagonal" %}
+        {% if design == "diagonal" or design == "with-search" %}
           {% include '@hdbt/misc/koro.twig' with { flip: true, diagonal: true } %}
         {% else %}
           {% include '@hdbt/misc/koro.twig' with { flip: true } %}
