@@ -79,7 +79,7 @@ $-card-border-width: 2px;
 }
 
 .card__category {
-  margin-top: 12px; // Comes from specs
+  margin-top: $spacing;
 }
 
 .card__title {
