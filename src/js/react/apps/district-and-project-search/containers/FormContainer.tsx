@@ -88,6 +88,7 @@ const FormContainer = () => {
           />
           <Select
             filter={defaultFilter}
+            clearable
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}
             multiSelect
@@ -124,8 +125,8 @@ const FormContainer = () => {
         >
           <div className='district-project-search-form__filters'>
             <Select
-              filter={defaultFilter}
               id={SearchComponents.THEME}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
@@ -146,8 +147,8 @@ const FormContainer = () => {
               value={themeSelection}
             />
             <Select
-              filter={defaultFilter}
               id={SearchComponents.PHASE}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
@@ -168,8 +169,8 @@ const FormContainer = () => {
               value={phaseSelection}
             />
             <Select
-              filter={defaultFilter}
               id={SearchComponents.TYPE}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
