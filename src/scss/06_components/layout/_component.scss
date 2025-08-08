@@ -26,6 +26,16 @@
   background-color: $color-black-5;
 }
 
+// If the component with gray background is just before footer it needs to go visually under the footer.
+.component--gray-bg:last-child {
+  padding-bottom: 0;
+
+  .component__container {
+    margin-bottom: -115px; // Enough to get the block under the footer.
+    padding-bottom: 115px; // Leave enough room between the last card and footer.
+  }
+}
+
 .component__container {
   margin-left: auto;
   margin-right: auto;
