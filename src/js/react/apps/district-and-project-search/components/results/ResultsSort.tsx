@@ -5,6 +5,7 @@ import { useEffect , useState } from 'react';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import sortOptions from '../../enum/SortOptions';
 import type OptionType from '../../types/OptionType';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 const ResultsSort = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -36,6 +37,7 @@ const ResultsSort = () => {
         style={{ minWidth: '280px' }}
         texts={{
           label: Drupal.t('Sort search results', {}, { context: 'District and project search form label' }),
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage)
         }}
         value={[sort]}
       />
