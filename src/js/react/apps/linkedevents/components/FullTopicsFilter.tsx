@@ -12,6 +12,8 @@ import { LinkedEventsTopic } from '@/types/LinkedEvents';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
@@ -106,6 +108,7 @@ const FullTopicsFilter = memo(() => {
         className='hdbt-search__dropdown'
         texts={{
           label: selectLabel,
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
           searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
           searchPlaceholder: Drupal.t('For example, Music', {}, { context: 'React search: all available options' }),

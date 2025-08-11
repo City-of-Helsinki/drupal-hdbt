@@ -5,6 +5,7 @@ import type OptionType from '../types/OptionType';
 import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 function LocationFilter() {
   const locationOptions = useAtomValue(locationAtom);
@@ -29,6 +30,7 @@ function LocationFilter() {
         options={locationOptions}
         texts={{
           label: selectVenueLabel,
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
         }}
         theme={{
