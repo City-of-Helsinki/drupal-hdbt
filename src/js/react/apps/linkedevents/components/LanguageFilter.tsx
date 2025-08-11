@@ -6,6 +6,7 @@ import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 import { LanguageOptions } from '../enum/LanguageOptions';
 import SearchComponents from '../enum/SearchComponents';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 export const LanguageFilter = () => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
@@ -36,6 +37,7 @@ export const LanguageFilter = () => {
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLanguageLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLanguageLabel}, { context: 'React search clear selection label' }),
           label: selectLanguageLabel,
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
         }}
         theme={{

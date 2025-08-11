@@ -8,6 +8,7 @@ import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
 import useSelectedOptions from '@/react/common/hooks/useSelectedOptions';
 import { clearAllSelectionsFromStorage } from '@/react/common/helpers/HDS';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 function TopicsFilter() {
   const topics = useAtomValue(topicsAtom);
@@ -30,6 +31,7 @@ function TopicsFilter() {
     options: selectedOptions,
     texts: {
       label: selectLabel,
+      language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
     },
     theme: {

@@ -9,7 +9,6 @@ import {
   defaultFilter,
   IconLocation,
   Select,
-  SupportedLanguage,
   TextInput
 } from 'hds-react';
 
@@ -32,6 +31,7 @@ import transformDropdownsValues from '../helpers/Params';
 import {ComponentMap} from '../helpers/helpers';
 import type OptionType from '../types/OptionType';
 import URLParams from '../types/URLParams';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -73,11 +73,7 @@ const FormContainer = () => {
   const projectThemeLabel: string = Drupal.t('Project theme', {}, { context: 'District and project search form label' });
   const projectStageLabel: string = Drupal.t('Project stage', {}, { context: 'District and project search form label' });
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
-  const rawLanguage = window.drupalSettings.path.currentLanguage;
-  const currentLanguage: SupportedLanguage =
-    rawLanguage === 'fi' || rawLanguage === 'sv' || rawLanguage === 'en'
-      ? rawLanguage
-      : 'fi';
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     <form onSubmit={handleSubmit} role='search'>

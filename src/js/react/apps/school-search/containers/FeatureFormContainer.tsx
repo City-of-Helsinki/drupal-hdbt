@@ -22,6 +22,7 @@ import type SearchParams from '../types/SearchParams';
 import SelectionsContainer from './SelectionsContainer';
 import SearchComponents from '../enum/SearchComponents';
 import OptionType from '../types/OptionType';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
@@ -87,6 +88,7 @@ const FeatureFormContainer = () => {
   const b2Label: string = Drupal.t('Language starting in Grade 7 or 8 (B2)', {}, { context: 'TPR Ontologyword details schools' });
   const weightedEducationLabel: string = Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' });
   const bilingualEducationLabel: string = Drupal.t('Bilingual education', {}, { context: 'TPR Ontologyword details schools' });
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
@@ -181,6 +183,7 @@ const FeatureFormContainer = () => {
           options={a1Options}
           texts={{
             label: a1Label,
+            language: currentLanguage,
             placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
@@ -199,6 +202,7 @@ const FeatureFormContainer = () => {
           options={a2Options}
           texts={{
             label: a2Label,
+            language: currentLanguage,
             placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
@@ -217,6 +221,7 @@ const FeatureFormContainer = () => {
           options={b1Options}
           texts={{
             label: b1Label,
+            language: currentLanguage,
             placeholder: Drupal.t('All languages', {}, {context: 'School search: language placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' })
@@ -235,6 +240,7 @@ const FeatureFormContainer = () => {
           options={b2Options}
           texts={{
             label: b2Label,
+            language: currentLanguage,
             placeholder: Drupal.t('All languages', {}, {context: 'School search: language placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' }),
@@ -253,6 +259,7 @@ const FeatureFormContainer = () => {
           options={weightedOptions}
           texts={{
             label: weightedEducationLabel,
+            language: currentLanguage,
             placeholder: Drupal.t('All', {}, {context: 'React search all placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' })
@@ -271,6 +278,7 @@ const FeatureFormContainer = () => {
           options={bilingualOptions}
           texts={{
             label: bilingualEducationLabel,
+            language: currentLanguage,
             placeholder: Drupal.t('All', {}, {context: 'React search all placeholder'}),
             clearButtonAriaLabel_one: Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' }),
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' })

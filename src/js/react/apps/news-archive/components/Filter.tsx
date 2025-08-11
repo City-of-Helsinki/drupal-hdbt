@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
 import URLParams from '../types/URLParams';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 type FilterProps = {
   label: string;
@@ -51,6 +52,7 @@ const Filter = ({label, options, placeholder, stateKey, ...rest}: FilterProps) =
         clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
         clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': label}, { context: 'React search clear selection label' }),
         label,
+        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
         placeholder,
       }}
       value={getValue()}

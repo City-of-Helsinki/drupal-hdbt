@@ -12,6 +12,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 
 const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
@@ -111,6 +112,7 @@ const FullLocationFilter = memo(() => {
         className='hdbt-search__dropdown'
         texts={{
           label: selectVenueLabel,
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
           searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
           searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
