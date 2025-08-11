@@ -9,6 +9,7 @@ import {
   defaultFilter,
   IconLocation,
   Select,
+  SupportedLanguage,
   TextInput
 } from 'hds-react';
 
@@ -72,6 +73,11 @@ const FormContainer = () => {
   const projectThemeLabel: string = Drupal.t('Project theme', {}, { context: 'District and project search form label' });
   const projectStageLabel: string = Drupal.t('Project stage', {}, { context: 'District and project search form label' });
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
+  const rawLanguage = window.drupalSettings.path.currentLanguage;
+  const currentLanguage: SupportedLanguage =
+    rawLanguage === 'fi' || rawLanguage === 'sv' || rawLanguage === 'en'
+      ? rawLanguage
+      : 'fi';
 
   return (
     <form onSubmit={handleSubmit} role='search'>
@@ -101,6 +107,7 @@ const FormContainer = () => {
               clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               label: residentialAreaLabel,
+              language: currentLanguage,
               placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
             }}
             theme={{
@@ -137,6 +144,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 label: projectThemeLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
               }}
               theme={{
@@ -159,6 +167,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 label: projectStageLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
               }}
               theme={{
@@ -181,6 +190,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 label: projectTypeLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
               }}
               theme={{
