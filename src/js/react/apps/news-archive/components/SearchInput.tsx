@@ -1,5 +1,6 @@
 import { TextInput } from 'hds-react';
 import { useAtom } from 'jotai';
+import { CSSProperties } from 'react';
 import { stagedParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
 
@@ -17,5 +18,10 @@ export const SearchInput = () => {
     placeholder={Drupal.t('For example, budget proposal', {}, {context: 'News archive: keyword placeholder'})}
     type='search'
     value={params?.keyword || ''}
+    style={
+      {
+        '--color-focus-outline': 'var(--hdbt-color-black)',
+      } as CSSProperties
+    }
   />;
 };

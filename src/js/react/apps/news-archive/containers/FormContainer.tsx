@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
-import {Button, ButtonPresetTheme, ButtonVariant} from 'hds-react';
+import {Button, ButtonVariant} from 'hds-react';
 import useInitialQuery from '../hooks/useInitialQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import IndexFields from '../enum/IndexFields';
@@ -103,7 +103,21 @@ const FormContainer = () => {
         <Button
           className='hdbt-search--react__submit-button'
           disabled={loading}
-          theme={ButtonPresetTheme.Black}
+          theme={{
+            '--background-color': 'var(--hdbt-color-black)',
+            '--background-color-focus': 'var(--hdbt-color-black)',
+            '--background-color-hover': 'var(--hdbt-color-black)',
+            '--background-color-active': 'var(--hdbt-color-black)',
+            '--border-color': 'var(--hdbt-color-black)',
+            '--border-color-focus': 'var(--hdbt-color-black)',
+            '--border-color-hover': 'var(--hdbt-color-black)',
+            '--border-color-active': 'var(--hdbt-color-black)',
+            '--color': 'var(--color-white)',
+            '--color-focus': 'var(--color-white)',
+            '--color-hover': 'var(--color-white)',
+            '--color-active': 'var(--color-white)',
+            '--outline-color-focus': 'var(--hdbt-color-black)',
+          }}
           type='submit'
           variant={ButtonVariant.Primary}
         >
