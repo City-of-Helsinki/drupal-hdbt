@@ -29,7 +29,9 @@
   margin-top: 0;
 }
 
-.hdbt-search__filter label {
+// This needs to be quite generic but we don't want it to affect
+// labels deeper down on the filters like for example inside dropdowns.
+.hdbt-search__filter > * > label {
   color: $color-black;
   display: block;
   font-weight: $font-weight-medium;

@@ -4,6 +4,7 @@
 .hds-text-input__input-wrapper .hds-text-input__input.simulate-focus:not([readonly]) {
   // Theming the hds-text-input to use Hel.fi brand color scheme.
   --focus-outline-color: #{$color-black};
+  --outline-gutter: 0;
   box-shadow: none; // Remove hds outline as it causes false positives in accessibility tools.
   outline: var(--outline-width, 3px) solid var(--focus-outline-color); // Add a regular outline around text input.
   outline-offset: var(--outline-gutter, 2px); // Add some offset to handle black border vs black outline contrast.

@@ -1,5 +1,5 @@
 import { Checkbox, DateInput } from 'hds-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, CSSProperties } from 'react';
 import { DateTime } from 'luxon';
 
 import Collapsible from './Collapsible';
@@ -159,6 +159,11 @@ export const DateRangeSelect = ({
             language={language}
             onChange={onStartChange}
             value={startDate}
+            style={
+              {
+                '--color-focus-outline': 'var(--hdbt-color-black)',
+              } as CSSProperties
+            }
           />
           <Checkbox
             checked={endDisabled}
@@ -177,6 +182,11 @@ export const DateRangeSelect = ({
               language={language}
               onChange={onEndChange}
               value={endDate}
+              style={
+                {
+                  '--color-focus-outline': 'var(--hdbt-color-black)',
+                } as CSSProperties
+              }
             />
           }
         </div>
