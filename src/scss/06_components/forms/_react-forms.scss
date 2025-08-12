@@ -2,8 +2,7 @@
   margin-bottom: $spacing-and-half;
 }
 
-// Checkbox styles need specific selectors to override HDS styles
-.hdbt-search__filter.hdbt-search__checkbox {
+.hdbt-search--react__checkbox {
   --background-unselected: transparent;
   --background-selected: var(--hdbt-color-black);
   --background-hover: var(--hdbt-color-black);
@@ -18,9 +17,13 @@
   --icon-color-disabled: var(--hdbt-text-color);
   --focus-outline-color: var(--hdbt-color-black);
   margin-bottom: $spacing-half;
+
+  input[type="checkbox"] {
+    background-color: $color-white;
+  }
 }
 
-.hdbt-search__filter.hdbt-search__checkbox label {
+.hdbt-search--react__checkbox label {
   font-weight: $font-weight-regular;
 }
 

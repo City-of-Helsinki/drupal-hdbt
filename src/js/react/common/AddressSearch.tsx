@@ -1,4 +1,5 @@
 import { SearchInput } from 'hds-react';
+import { CSSProperties } from 'react';
 
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
@@ -56,7 +57,7 @@ export const AddressSearch = ({
 
       return {label: resolvedName};
     });
-    
+
 
     const [fiResults, svResults] = await results;
 
@@ -89,6 +90,14 @@ export const AddressSearch = ({
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
         onSubmit={handleSubmit}
         suggestionLabelField='label'
+        style={
+          {
+            '--focus-outline-color': 'var(--hdbt-color-black)',
+            '--color-focus-outline': 'var(--hdbt-color-black)',
+            '--menu-item-background-hover': 'var(--hdbt-color-black)',
+            '--menu-item-color-hover': 'var(--color-white)',
+          } as CSSProperties
+        }
       />
     </div>
   );
