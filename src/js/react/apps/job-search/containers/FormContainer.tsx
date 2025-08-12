@@ -28,6 +28,7 @@ import {
 } from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -105,6 +106,7 @@ const FormContainer = () => {
   const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
   const employmentRelationshipLabel: string = Drupal.t('Employment type', {}, { context: 'Employment filter label' });
   const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     <form className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
@@ -136,6 +138,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
                 label: taskAreasLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
               }}
               value={taskAreaSelection}
@@ -154,6 +157,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
                 label: employmentRelationshipLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
               }}
               value={employmentSelection}
@@ -207,6 +211,7 @@ const FormContainer = () => {
                   clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
                   clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
                   label: languageLabel,
+                  language: currentLanguage,
                   placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
                 }}
                 // @ts-ignore
@@ -229,6 +234,7 @@ const FormContainer = () => {
                   clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
                   clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
                   label: areaFilterLabel,
+                  language: currentLanguage,
                   placeholder: Drupal.t('All areas', {}, { context: 'Location placeholder' }),
                 }}
               />

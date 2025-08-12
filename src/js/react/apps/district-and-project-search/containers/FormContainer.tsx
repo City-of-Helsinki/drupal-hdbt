@@ -31,6 +31,7 @@ import transformDropdownsValues from '../helpers/Params';
 import {ComponentMap} from '../helpers/helpers';
 import type OptionType from '../types/OptionType';
 import URLParams from '../types/URLParams';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -72,6 +73,7 @@ const FormContainer = () => {
   const projectThemeLabel: string = Drupal.t('Project theme', {}, { context: 'District and project search form label' });
   const projectStageLabel: string = Drupal.t('Project stage', {}, { context: 'District and project search form label' });
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     <form onSubmit={handleSubmit} role='search'>
@@ -88,6 +90,7 @@ const FormContainer = () => {
           />
           <Select
             filter={defaultFilter}
+            clearable
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}
             multiSelect
@@ -100,6 +103,7 @@ const FormContainer = () => {
               clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
               label: residentialAreaLabel,
+              language: currentLanguage,
               placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
             }}
             theme={{
@@ -124,8 +128,8 @@ const FormContainer = () => {
         >
           <div className='district-project-search-form__filters'>
             <Select
-              filter={defaultFilter}
               id={SearchComponents.THEME}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
@@ -136,6 +140,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
                 label: projectThemeLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
               }}
               theme={{
@@ -146,8 +151,8 @@ const FormContainer = () => {
               value={themeSelection}
             />
             <Select
-              filter={defaultFilter}
               id={SearchComponents.PHASE}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
@@ -158,6 +163,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
                 label: projectStageLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
               }}
               theme={{
@@ -168,8 +174,8 @@ const FormContainer = () => {
               value={phaseSelection}
             />
             <Select
-              filter={defaultFilter}
               id={SearchComponents.TYPE}
+              clearable
               multiSelect
               noTags
               onChange={(selectedOptions) => {
@@ -180,6 +186,7 @@ const FormContainer = () => {
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
                 label: projectTypeLabel,
+                language: currentLanguage,
                 placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
               }}
               theme={{

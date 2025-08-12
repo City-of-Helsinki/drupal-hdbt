@@ -5,6 +5,7 @@ import { useEffect , useState } from 'react';
 import Global from '../../enum/Global';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import type OptionType from '../../types/OptionType';
+import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -45,7 +46,8 @@ const ResultsSort = () => {
       }}
       options={options}
       texts={{
-        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' })
+        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
+        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
       value={[sort]}
     />

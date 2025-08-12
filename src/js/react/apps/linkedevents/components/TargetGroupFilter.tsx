@@ -6,6 +6,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { TargetGroups } from '../enum/TargetGroups';
 import OptionType from '../types/OptionType';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 
 export const TargetGroupFilter = () => {
   const [targetGroupSelection, setTargetGroups] = useAtom(targetGroupsAtom);
@@ -35,6 +36,7 @@ export const TargetGroupFilter = () => {
           clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
           clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
           label: selectLabel,
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All target groups', {}, {context: 'Event search: target group placeholder'}),
         }}
         theme={{
