@@ -267,11 +267,10 @@ export const employmentAtom = atom(async(get) => {
 
 
       return {
-        additionalValue,
         count,
         label,
         simpleLabel,
-        value: tid,
+        value: additionalValue ? [tid, additionalValue] : tid,
       };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
