@@ -5,7 +5,7 @@ import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
 import URLParams from '../types/URLParams';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import {defaultMultiSelectTheme, defaultSelectTheme} from '@/react/common/constants/selectTheme';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 type FilterProps = {
   label: string;

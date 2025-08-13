@@ -13,7 +13,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import {defaultMultiSelectTheme, defaultSelectTheme} from '@/react/common/constants/selectTheme';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
