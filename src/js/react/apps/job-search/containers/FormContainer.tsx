@@ -75,12 +75,7 @@ const FormContainer = () => {
     event.preventDefault();
     setUrlParams({
       area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
-      employment: employmentSelection.reduce((acc: any, curr: any) => {
-        const target = curr.additionalValue
-          ? [curr.additionalValue.toString(), curr.value.toString()]
-          : [curr.value.toString()];
-        return acc.concat(target);
-      }, []),
+      employment: employmentSelection.reduce((acc: any, curr: any) => acc.concat(curr.value), []),
       keyword,
       language: languageSelection?.[0]?.value || undefined,
       continuous,
@@ -156,18 +151,7 @@ const FormContainer = () => {
               id={SearchComponents.EMPLOYMENT_RELATIONSHIP}
               multiSelect
               noTags
-              onChange={(selectedOptions) => {
-                // @todo UHF-11807 Refactor to work without additional values
-                // Create a new array that matches selected options with employment options
-                const updatedEmploymentSelection = selectedOptions.map((selectedOption) => {
-                  const matchedOption = employmentOptions.find(
-                    // @ts-ignore
-                    (option) => option.value === selectedOption.value
-                  );
-                  return matchedOption || selectedOption;
-                });
-                setEmploymentFilter(updatedEmploymentSelection);
-              }}
+              onChange={(selectedOptions) => setEmploymentFilter(selectedOptions)}
               options={employmentOptions}
               texts={{
                 clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
