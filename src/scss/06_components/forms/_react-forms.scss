@@ -65,10 +65,7 @@
 }
 
 .hdbt-search--react__submit-button {
-  margin-bottom: $spacing-double;
-  margin-top: $spacing;
-  max-width: 280px;
-  width: 100%;
+  @include form_submit_defaults;
 }
 
 // Need specific selector here to override HDS styles
@@ -153,8 +150,7 @@
 }
 
 .hdbt-search--react__form-container {
-  margin-bottom: $spacing-double;
-  max-width: $content-width-max;
+  @include form_container_defaults;
 }
 
 .hdbt-search--react__text-field {

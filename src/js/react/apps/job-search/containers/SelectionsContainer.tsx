@@ -127,7 +127,7 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
     updater(newValue);
     setUrlParams({
       ...urlParams,
-      [valueKey]: newValue.map((selection: OptionType) => selection.value),
+      [valueKey]: newValue.map((selection: OptionType) => selection.value).flat(),
     });
   };
 

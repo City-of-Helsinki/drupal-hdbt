@@ -5,10 +5,18 @@ const transformDropdownsValues = (paramOptions: string[] | undefined = [], avail
 
   paramOptions.forEach((selection: string) => {
     const matchedOption = availableOptions.find(
-      (option: OptionType) => option.value.toString() === selection.toString()
+      (option: OptionType) => {
+        // Handle cases for employment options where option.value can be an array
+        if (Array.isArray(option.value)) {
+          return option.value.includes(parseInt(selection, 10));
+        }
+        // For other options, compare the string representation
+        return option.value.toString() === (selection.toString());
+      }
     );
 
-    if (matchedOption) {
+    // If a matching option is found and it's not in the transformed options yet, add it to the transformed options
+    if (matchedOption && !transformedOptions.some((option) => option.value === matchedOption.value)) {
       transformedOptions.push(matchedOption);
     }
   });

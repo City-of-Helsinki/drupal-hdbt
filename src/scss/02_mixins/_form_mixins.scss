@@ -1,0 +1,11 @@
+@mixin form_submit_defaults() {
+  margin-bottom: $spacing-double;
+  margin-top: $spacing;
+  max-width: 280px;
+  width: 100%;
+}
+
+@mixin form_container_defaults() {
+  margin-bottom: $spacing-double;
+  max-width: $content-width-max;
+}
