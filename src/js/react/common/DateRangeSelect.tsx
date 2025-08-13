@@ -161,7 +161,7 @@ export const DateRangeSelect = ({
             value={startDate}
             style={
               {
-                '--color-focus-outline': 'var(--hdbt-color-black)',
+                '--color-focus-outline': 'var(--color-coat-of-arms)',
               } as CSSProperties
             }
           />
@@ -184,7 +184,7 @@ export const DateRangeSelect = ({
               value={endDate}
               style={
                 {
-                  '--color-focus-outline': 'var(--hdbt-color-black)',
+                  '--color-focus-outline': 'var(--color-coat-of-arms)',
                 } as CSSProperties
               }
             />

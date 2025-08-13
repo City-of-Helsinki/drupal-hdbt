@@ -20,7 +20,7 @@ export const SearchInput = () => {
     value={params?.keyword || ''}
     style={
       {
-        '--color-focus-outline': 'var(--hdbt-color-black)',
+        '--color-focus-outline': 'var(--color-coat-of-arms)',
       } as CSSProperties
     }
   />;

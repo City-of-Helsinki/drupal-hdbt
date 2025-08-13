@@ -13,7 +13,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import {defaultMultiSelectTheme, defaultSelectTheme} from '@/react/common/constants/selectTheme';
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
@@ -113,7 +113,7 @@ const FullTopicsFilter = memo(() => {
           searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
           searchPlaceholder: Drupal.t('For example, Music', {}, { context: 'React search: all available options' }),
         }}
-        theme={defaultSelectTheme}
+        theme={defaultMultiSelectTheme}
         {...storage.getProps()}
       />
     </div>

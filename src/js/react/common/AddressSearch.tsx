@@ -92,8 +92,8 @@ export const AddressSearch = ({
         suggestionLabelField='label'
         style={
           {
-            '--focus-outline-color': 'var(--hdbt-color-black)',
-            '--color-focus-outline': 'var(--hdbt-color-black)',
+            '--focus-outline-color': 'var(--color-coat-of-arms)',
+            '--color-focus-outline': 'var(--color-coat-of-arms)',
             '--menu-item-background-hover': 'var(--hdbt-color-black)',
             '--menu-item-color-hover': 'var(--color-white)',
           } as CSSProperties

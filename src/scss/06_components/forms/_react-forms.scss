@@ -71,16 +71,16 @@
 // Need specific selector here to override HDS styles
 .hdbt-search--react__submit-button:not(:disabled) {
   --background-color: var(--hdbt-color-black);
-  --background-color-hover: var(--hdbt-text-color);
-  --background-color-focus: var(--hdbt-text-color);
-  --background-color-hover-focus: var(--hdbt-text-color);
+  --background-color-hover: transparent;
+  --background-color-focus: var(--hdbt-color-black);
+  --background-color-hover-focus: transparent;
   --border-color: var(--hdbt-color-black);
   --border-color-hover: var(--hdbt-color-black);
   --border-color-focus: var(--hdbt-color-black);
   --border-color-hover-focus: var(--hdbt-color-black);
   --color: var(--hdbt-text-color);
   --color-hover: var(--hdbt-color-black);
-  --color-focus: var(--hdbt-color-black);
+  --color-focus: var(--hdbt-text-color);
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
   margin-bottom: $spacing-double;
