@@ -4,8 +4,6 @@ import {
   Accordion,
   AccordionSize,
   Button,
-  ButtonPresetTheme,
-  ButtonVariant,
   defaultFilter,
   IconLocation,
   Select,

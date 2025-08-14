@@ -5,6 +5,7 @@ import { DateTime } from 'luxon';
 import Collapsible from './Collapsible';
 import getDateString from './helpers/GetDateString';
 import { HDS_DATE_FORMAT } from './enum/HDSDateFormat';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, {context: 'React search: date range select'});
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
@@ -170,6 +171,7 @@ export const DateRangeSelect = ({
             id='date-range-select__end-date-disabled'
             label={Drupal.t('The last day of the time period is the same as the first day', {}, {context: 'React search: date range select'})}
             onChange={() => setEndDisabled(!endDisabled)}
+            style={defaultCheckboxStyle}
           />
           {!endDisabled &&
             <DateInput
