@@ -5,7 +5,8 @@ import { useEffect , useState } from 'react';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import sortOptions from '../../enum/SortOptions';
 import type OptionType from '../../types/OptionType';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 const ResultsSort = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -34,6 +35,7 @@ const ResultsSort = () => {
           });
         }}
         options={sortOptions}
+        theme={defaultSelectTheme}
         style={{ minWidth: '280px' }}
         texts={{
           label: Drupal.t('Sort search results', {}, { context: 'District and project search form label' }),
