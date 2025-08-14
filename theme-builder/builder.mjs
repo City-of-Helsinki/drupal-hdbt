@@ -83,7 +83,7 @@ export function watchAndBuild({
   }).then(() => console.warn('\n👀 Watching for changes…'));
 
   const watcher = chokidar.watch(watchPaths, {
-    ignored: /node_modules|dist|theme-buidler/,
+    ignored: /node_modules|^dist$|theme-buidler/,
     ignoreInitial: true,
   });
 
