@@ -1,9 +1,9 @@
 import { SearchInput } from 'hds-react';
-import { CSSProperties } from 'react';
 
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
 import getNameTranslation from './helpers/ServiceMap';
+import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 
 type SubmitHandler<T> = T extends true ? (address: {label: string, value: [number, number, string]}) => void : (address: string) => void;
 
@@ -90,14 +90,7 @@ export const AddressSearch = ({
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
         onSubmit={handleSubmit}
         suggestionLabelField='label'
-        style={
-          {
-            '--focus-outline-color': 'var(--color-coat-of-arms)',
-            '--color-focus-outline': 'var(--color-coat-of-arms)',
-            '--menu-item-background-hover': 'var(--hdbt-color-black)',
-            '--menu-item-color-hover': 'var(--color-white)',
-          } as CSSProperties
-        }
+        style={defaultSearchInputStyle}
       />
     </div>
   );

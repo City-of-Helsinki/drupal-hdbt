@@ -3,7 +3,7 @@
   // See: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/blob/main/modules/helfi_test_content/assets/js/focus.js
 .hds-text-input__input-wrapper .hds-text-input__input.simulate-focus:not([readonly]) {
   // Theming the hds-text-input to use Hel.fi brand color scheme.
-  --focus-outline-color: #{$color-black};
+  --focus-outline-color: #{$color-coat-of-arms};
   --outline-gutter: 0;
   box-shadow: none; // Remove hds outline as it causes false positives in accessibility tools.
   outline: var(--outline-width, 3px) solid var(--focus-outline-color); // Add a regular outline around text input.
