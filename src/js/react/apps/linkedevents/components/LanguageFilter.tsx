@@ -6,7 +6,8 @@ import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
 import { LanguageOptions } from '../enum/LanguageOptions';
 import SearchComponents from '../enum/SearchComponents';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 export const LanguageFilter = () => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
@@ -40,11 +41,7 @@ export const LanguageFilter = () => {
           language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
         }}
-        theme={{
-          '--checkbox-background-selected': 'var(--hdbt-color-black)',
-          '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--placeholder-color': 'var(--hdbt-color-black)',
-        }}
+        theme={defaultMultiSelectTheme}
         value={languageSelection}
       />
     </div>

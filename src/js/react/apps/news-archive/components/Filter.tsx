@@ -4,7 +4,8 @@ import { useAtom } from 'jotai';
 import OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
 import URLParams from '../types/URLParams';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 type FilterProps = {
   label: string;
@@ -55,6 +56,7 @@ const Filter = ({label, options, placeholder, stateKey, ...rest}: FilterProps) =
         language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
         placeholder,
       }}
+      theme={defaultMultiSelectTheme}
       value={getValue()}
       {...rest}
     />

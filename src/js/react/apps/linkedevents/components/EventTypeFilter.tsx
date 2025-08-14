@@ -4,6 +4,7 @@ import { eventTypeAtom, updateParamsAtom } from '../store';
 import ApiKeys from '../enum/ApiKeys';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import { EventTypeOption } from '../types/EventTypeOption';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 export const EventTypeFilter = () => {
   const [typeSelections, setTypes] = useAtom(eventTypeAtom);
@@ -25,6 +26,7 @@ export const EventTypeFilter = () => {
         id='event-type-toggle'
         label={Drupal.t('Events', {}, { context: 'Event search: events type' })}
         onChange={toggleValue}
+        style={defaultCheckboxStyle}
       />
       <Checkbox
         checked={typeSelections.includes('Course')}
@@ -32,7 +34,8 @@ export const EventTypeFilter = () => {
         id='hobby-type-toggle'
         label={Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })}
         onChange={toggleValue}
+        style={defaultCheckboxStyle}
       />
-    </> 
+    </>
   );
 };

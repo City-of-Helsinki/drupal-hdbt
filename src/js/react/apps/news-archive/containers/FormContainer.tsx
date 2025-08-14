@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SyntheticEvent } from 'react';
-import {Button, ButtonPresetTheme, ButtonVariant} from 'hds-react';
+import {Button, ButtonVariant} from 'hds-react';
 import useInitialQuery from '../hooks/useInitialQuery';
 import useIndexQuery from '../hooks/useIndexQuery';
 import IndexFields from '../enum/IndexFields';
@@ -103,7 +103,6 @@ const FormContainer = () => {
         <Button
           className='hdbt-search--react__submit-button'
           disabled={loading}
-          theme={ButtonPresetTheme.Black}
           type='submit'
           variant={ButtonVariant.Primary}
         >

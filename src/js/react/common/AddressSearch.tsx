@@ -3,6 +3,7 @@ import { SearchInput } from 'hds-react';
 import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
 import getNameTranslation from './helpers/ServiceMap';
+import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 
 type SubmitHandler<T> = T extends true ? (address: {label: string, value: [number, number, string]}) => void : (address: string) => void;
 
@@ -56,7 +57,7 @@ export const AddressSearch = ({
 
       return {label: resolvedName};
     });
-    
+
 
     const [fiResults, svResults] = await results;
 
@@ -89,6 +90,7 @@ export const AddressSearch = ({
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
         onSubmit={handleSubmit}
         suggestionLabelField='label'
+        style={defaultSearchInputStyle}
       />
     </div>
   );

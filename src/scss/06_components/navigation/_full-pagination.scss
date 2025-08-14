@@ -38,17 +38,24 @@ $-button-height: 2px + $spacing + get-font-size('button', $unremify: true) * 1.1
 .hds-pagination__button-next {
   // The Drupal pager requires the ul-structure around the pager buttons so we need some
   // extra styles to fight away the styling related to those wrapping elements.
+  --border-color-focus: transparent;
+  --border-color-hover-focus: transparent;
   list-style: none;
   margin-bottom: 0;
   margin-top: 0;
   padding: 0;
 
+  &:hover {
+    text-decoration: underline; // Add underline as hover here since background-color hover would not be visible with gray background.
+  }
+
+  // Numbers
   .hds-button {
     --border-color-focus: transparent; // Remove double outline from buttons.
     --border-color-hover-focus: transparent;
 
     &:hover {
-      text-decoration: underline; // Add underline as hover since background-color hover would not be visible with gray background.
+      text-decoration: underline; // Add underline as hover here since background-color hover would not be visible with gray background.
     }
   }
 }

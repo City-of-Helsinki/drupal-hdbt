@@ -2,6 +2,7 @@ import { Checkbox } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 
 import { resetParamAtom, updateParamsAtom } from '../store';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 type CheckboxFilterProps = {
   id: string;
@@ -38,6 +39,7 @@ function CheckboxFilter({ id, label, atom, valueKey }: CheckboxFilterProps) {
       id={id}
       label={label}
       onChange={(event) => toggleValue(event)}
+      style={defaultCheckboxStyle}
     />
   );
 }

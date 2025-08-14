@@ -13,6 +13,7 @@ import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
@@ -117,11 +118,7 @@ const FullLocationFilter = memo(() => {
           searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
           searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
         }}
-        theme={{
-          '--checkbox-background-selected': 'var(--hdbt-color-black)',
-          '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--placeholder-color': 'var(--hdbt-color-black)',
-        }}
+        theme={defaultSelectTheme}
         {...storage.getProps()}
       />
     </div>
