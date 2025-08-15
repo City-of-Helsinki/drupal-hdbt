@@ -101,6 +101,11 @@ $-card-border-width: 2px;
     outline: 3px solid $color-black;
     outline-offset: 2px;
   }
+
+  /* stylelint-disable-next-line at-rule-no-vendor-prefix */
+  @-moz-document url-prefix() {
+    display: inline-block;
+  }
 }
 
 .card__description {
