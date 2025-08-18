@@ -49,7 +49,12 @@ const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string}) 
         visibleSuggestions={5}
         value={keyword}
       />
-      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search', {}, { context: 'React search: submit button label'})}</Button>
+      <Button
+        className='hdbt-search--react__submit-button'
+        type='submit'
+      >
+        {Drupal.t('Search', {}, { context: 'React search: submit button label'})}
+      </Button>
     </form>
   );
 };
