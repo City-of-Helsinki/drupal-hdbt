@@ -4,6 +4,7 @@ type CSSWithVars = Properties<string | number> & Record<string, string>;
 
 export const defaultCheckboxStyle: CSSWithVars = {
   '--background-selected': 'var(--hdbt-color-black)',
+  '--background-unselected': 'var(--color-white)',
   '--background-hover': 'var(--hdbt-color-black)',
   '--border-color-selected': 'var(--hdbt-color-black)',
   '--border-color-selected-hover': 'var(--hdbt-color-black)',

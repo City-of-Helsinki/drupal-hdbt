@@ -5,7 +5,8 @@ import { useEffect , useState } from 'react';
 import Global from '../../enum/Global';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import type OptionType from '../../types/OptionType';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -50,6 +51,7 @@ const ResultsSort = () => {
         language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
       value={[sort]}
+      theme={defaultSelectTheme}
     />
   );
 };

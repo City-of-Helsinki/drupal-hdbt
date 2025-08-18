@@ -17,10 +17,6 @@
   --icon-color-disabled: var(--hdbt-text-color);
   --focus-outline-color: var(--hdbt-color-black);
   margin-bottom: $spacing-half;
-
-  input[type="checkbox"] {
-    background-color: $color-white;
-  }
 }
 
 .hdbt-search--react__checkbox label {
