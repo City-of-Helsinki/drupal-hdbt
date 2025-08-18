@@ -31,6 +31,7 @@ import SelectionsContainer from './SelectionsContainer';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import { defaultMultiSelectTheme, defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -122,6 +123,7 @@ const FormContainer = () => {
         type='search'
         value={keyword}
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        style={defaultTextInputStyle}
       />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>

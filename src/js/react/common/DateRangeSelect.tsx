@@ -160,11 +160,9 @@ export const DateRangeSelect = ({
             language={language}
             onChange={onStartChange}
             value={startDate}
-            style={
-              {
-                '--color-focus-outline': 'var(--color-coat-of-arms)',
-              } as CSSProperties
-            }
+            style={{
+              '--color-focus-outline': 'var(--color-coat-of-arms)',
+            } as CSSProperties }
           />
           <Checkbox
             checked={endDisabled}
@@ -184,11 +182,9 @@ export const DateRangeSelect = ({
               language={language}
               onChange={onEndChange}
               value={endDate}
-              style={
-                {
-                  '--color-focus-outline': 'var(--color-coat-of-arms)',
-                } as CSSProperties
-              }
+              style={{
+                '--color-focus-outline': 'var(--color-coat-of-arms)',
+              } as CSSProperties }
             />
           }
         </div>
