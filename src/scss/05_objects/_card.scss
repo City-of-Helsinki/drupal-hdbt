@@ -102,6 +102,7 @@ $-card-border-width: 2px;
     outline-offset: 2px;
   }
 
+  // Fixes link focus styles on firefox
   /* stylelint-disable-next-line at-rule-no-vendor-prefix */
   @-moz-document url-prefix() {
     display: inline-block;
