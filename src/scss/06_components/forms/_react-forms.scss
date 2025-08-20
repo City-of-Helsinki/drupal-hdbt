@@ -2,8 +2,7 @@
   margin-bottom: $spacing-and-half;
 }
 
-// Checkbox styles need specific selectors to override HDS styles
-.hdbt-search__filter.hdbt-search__checkbox {
+.hdbt-search--react__checkbox {
   --background-unselected: transparent;
   --background-selected: var(--hdbt-color-black);
   --background-hover: var(--hdbt-color-black);
@@ -20,7 +19,7 @@
   margin-bottom: $spacing-half;
 }
 
-.hdbt-search__filter.hdbt-search__checkbox label {
+.hdbt-search--react__checkbox label {
   font-weight: $font-weight-regular;
 }
 
@@ -29,7 +28,9 @@
   margin-top: 0;
 }
 
-.hdbt-search__filter label {
+// This needs to be quite generic but we don't want it to affect
+// labels deeper down on the filters like for example inside dropdowns.
+.hdbt-search__filter > * > label {
   color: $color-black;
   display: block;
   font-weight: $font-weight-medium;
@@ -66,18 +67,19 @@
 // Need specific selector here to override HDS styles
 .hdbt-search--react__submit-button:not(:disabled) {
   --background-color: var(--hdbt-color-black);
-  --background-color-hover: var(--hdbt-text-color);
-  --background-color-focus: var(--hdbt-text-color);
-  --background-color-hover-focus: var(--hdbt-text-color);
+  --background-color-hover: transparent;
+  --background-color-focus: var(--hdbt-color-black);
+  --background-color-hover-focus: transparent;
   --border-color: var(--hdbt-color-black);
   --border-color-hover: var(--hdbt-color-black);
   --border-color-focus: var(--hdbt-color-black);
   --border-color-hover-focus: var(--hdbt-color-black);
   --color: var(--hdbt-text-color);
   --color-hover: var(--hdbt-color-black);
-  --color-focus: var(--hdbt-color-black);
+  --color-focus: var(--hdbt-text-color);
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
+  --outline-color-focus: var(--hdbt-color-black);
   margin-bottom: $spacing-double;
   margin-top: $spacing;
 }
