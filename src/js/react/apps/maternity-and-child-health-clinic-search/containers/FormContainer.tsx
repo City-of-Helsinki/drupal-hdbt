@@ -4,6 +4,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import SearchParams from '../types/SearchParams';
 import { AddressSearch } from '@/react/common/AddressSearch';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 type SubmitFormType = HTMLFormElement & {
   sv_only: HTMLInputElement;
@@ -52,10 +53,16 @@ const ProximityFormContainer = ({ initialParams }: {initialParams: SearchParams|
             value='sv_only'
             onClick={() => setStagedParams({...stagedParams, sv_only: !stagedParams?.sv_only})}
             label={Drupal.t('Show the nearest service location where service is available in Swedish.', {}, { context: 'React search: checkbox label swedish'})}
+            style={defaultCheckboxStyle}
           />
         </fieldset>
       </div>
-      <Button className='hdbt-search--react__submit-button' type='submit'>{Drupal.t('Search', {}, { context: 'React search: submit button label' })}</Button>
+      <Button
+        className='hdbt-search--react__submit-button'
+        type='submit'
+      >
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
+      </Button>
     </form>
   );
 };
