@@ -14,6 +14,56 @@
   }
 }
 
+.hds-tag__alert,
+.hds-tag__info,
+.hds-tag__success,
+.hds-tag__error {
+  position: relative;
+
+  &::before {
+    margin-left: 0;
+  }
+}
+
+.hds-tag__info,
+.hds-tag__success,
+.hds-tag__error {
+  color: $color-white;
+}
+
+.hds-tag__alert {
+  background-color: $color-alert;
+
+
+  &::before {
+    @include pseudo-icon('alert-circle', $spacing-and-half);
+  }
+}
+
+.hds-tag__info {
+  background-color: $color-info;
+
+  &::before {
+    @include pseudo-icon('info-circle', $spacing-and-half, $color-white);
+  }
+}
+
+.hds-tag__success {
+  background-color: $color-success;
+
+  &::before {
+    @include pseudo-icon('check-circle', $spacing-and-half, $color-white);
+  }
+}
+
+.hds-tag__error {
+  background-color: $color-error;
+
+  &::before {
+    @include pseudo-icon('error', $spacing-and-half, $color-white);
+  }
+}
+
 .content-tags__tags--static {
   .content-tags__tags__tag--coat-of-arms {
     background-color: $color-coat-of-arms-medium-light;
