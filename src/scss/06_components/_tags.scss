@@ -10,7 +10,7 @@
 .hds-tag--link {
   &:focus-visible,
   &:focus {
-    outline: 2px solid $color-black;
+    outline-color: $color-black;
   }
 }
 
