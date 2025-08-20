@@ -7,6 +7,13 @@
   max-width: 100%;
 }
 
+.hds-tag--link {
+  &:focus-visible,
+  &:focus {
+    outline: 2px solid $color-black;
+  }
+}
+
 .content-tags__tags--static {
   .content-tags__tags__tag--coat-of-arms {
     background-color: $color-coat-of-arms-medium-light;
