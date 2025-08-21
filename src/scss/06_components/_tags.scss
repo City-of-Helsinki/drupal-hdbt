@@ -11,6 +11,7 @@
   &:focus-visible,
   &:focus {
     outline-color: $color-black;
+    text-decoration-thickness: auto;
   }
 }
 
@@ -21,6 +22,7 @@
   position: relative;
 
   &::before {
+    // Overrides HDS styles
     margin-left: 0;
   }
 }
