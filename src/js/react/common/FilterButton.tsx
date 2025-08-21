@@ -23,12 +23,12 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { context: 'Search: remove item aria label' }
       )}
       style={{
-        '--background-color-hover': 'var(--hdbt-color-black)',
-        '--background-color': 'var(--background-color-disabled)',
+        '--background-color-hover': 'var(--color-black-20)',
+        '--background-color': 'var(--color-black-10)',
         '--border-color-focus': 'var(--hdbt-color-black)',
         '--border-color-hover': 'var(--hdbt-color-black)',
         '--color-focus': 'var(--hdbt-color-black)',
-        '--color-hover': 'var(--color-white)',
+        '--color-hover': 'var(--hdbt-color-black)',
         '--outline-color': 'var(--hdbt-color-black)',
         '--outline-color-hover': 'var(--hdbt-color-black)',
       } as CSSProperties }
