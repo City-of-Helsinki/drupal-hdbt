@@ -8,16 +8,12 @@
 }
 
 .hds-tag--link {
+  --computed-outline-color: var(--color-black-90);
+
   &:focus-visible,
   &:focus,
   &:hover {
     text-decoration-thickness: auto;
-  }
-
-  &:focus-visible,
-  &:focus,
-  &:active {
-    outline-color: $color-black-90;
   }
 }
 
