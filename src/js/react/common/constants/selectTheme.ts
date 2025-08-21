@@ -1,0 +1,29 @@
+export const defaultSelectTheme = {
+  '--focus-outline-color': 'var(--color-coat-of-arms)',
+  '--menu-item-border-color-focus': 'var(--color-coat-of-arms)',
+  '--menu-item-background-color-hover': 'var(--color-black-5)',
+  '--menu-item-background-color-selected': 'var(--hdbt-color-black)',
+  '--menu-item-background-color-selected-hover': 'var(--color-black-80)',
+  '--menu-item-color-hover': 'var(--hdbt-color-black)',
+  '--menu-item-color-selected': 'var(--color-white)',
+  '--menu-item-color-selected-hover': 'var(--color-white)',
+  '--menu-item-icon-color-selected': 'var(--color-white)',
+  '--text-color-focus-outline': 'var(--color-coat-of-arms)',
+} as const;
+
+export const defaultMultiSelectTheme = {
+  '--checkbox-background-selected': 'var(--hdbt-color-black)',
+  '--checkbox-background-hover': 'var(--hdbt-color-black)',
+  '--checkbox-border-color-selected': 'var(--hdbt-color-black)',
+  '--checkbox-border-color-selected-hover': 'var(--hdbt-color-black)',
+  '--checkbox-border-color-selected-focus': 'var(--hdbt-color-black)',
+  '--focus-outline-color': 'var(--color-coat-of-arms)',
+  '--menu-item-border-color-focus': 'var(--color-coat-of-arms)',
+  '--menu-item-background-color-hover': 'var(--color-black-5)',
+  '--menu-item-background-color-selected': 'var(--color-white)',
+  '--menu-item-background-color-selected-hover': 'var(--color-black-5)',
+  '--menu-item-color-hover': 'var(--hdbt-color-black)',
+  '--menu-item-color-selected': 'var(--hdbt-color-black)',
+  '--menu-item-color-selected-hover': 'var(--hdbt-color-black)',
+  '--text-color-focus-outline': 'var(--color-coat-of-arms)',
+} as const;
