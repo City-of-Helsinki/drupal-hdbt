@@ -122,6 +122,7 @@
 
 // Need a specific selector to override hds styles
 .hdbt-search__clear-all .hdbt-search__clear-all-button {
+  --background-color: transparent;
   --background-color-hover: transparent;
   --background-color-focus: transparent;
   --background-color-hover-focus: transparent;
@@ -133,6 +134,7 @@
   --color-focus: var(--hdbt-color-black);
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
+  --outline-color-focus: var(--hdbt-color-black);
 }
 
 // Remove margin from pill buttons
