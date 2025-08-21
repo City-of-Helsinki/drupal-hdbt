@@ -9,9 +9,15 @@
 
 .hds-tag--link {
   &:focus-visible,
-  &:focus {
-    outline-color: $color-black;
+  &:focus,
+  &:hover {
     text-decoration-thickness: auto;
+  }
+
+  &:focus-visible,
+  &:focus,
+  &:active {
+    outline-color: $color-black-90;
   }
 }
 
@@ -35,7 +41,6 @@
 
 .hds-tag__alert {
   background-color: $color-alert;
-
 
   &::before {
     @include pseudo-icon('alert-circle', $spacing-and-half);
