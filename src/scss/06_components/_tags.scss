@@ -7,6 +7,61 @@
   max-width: 100%;
 }
 
+.hds-tag--link {
+  --computed-outline-color: var(--color-black-90);
+
+  &:focus-visible,
+  &:focus,
+  &:hover {
+    text-decoration-thickness: auto;
+  }
+}
+
+.hds-tag--alert,
+.hds-tag--info,
+.hds-tag--success,
+.hds-tag--error {
+  position: relative;
+}
+
+.hds-tag--info,
+.hds-tag--success,
+.hds-tag--error {
+  color: $color-white;
+}
+
+.hds-tag--alert {
+  background-color: $color-alert;
+
+  &::before {
+    @include pseudo-icon('alert-circle', $spacing-and-half);
+  }
+}
+
+.hds-tag--info {
+  background-color: $color-info;
+
+  &::before {
+    @include pseudo-icon('info-circle', $spacing-and-half, $color-white);
+  }
+}
+
+.hds-tag--success {
+  background-color: $color-success;
+
+  &::before {
+    @include pseudo-icon('check-circle', $spacing-and-half, $color-white);
+  }
+}
+
+.hds-tag--error {
+  background-color: $color-error;
+
+  &::before {
+    @include pseudo-icon('error', $spacing-and-half, $color-white);
+  }
+}
+
 .content-tags__tags--static {
   .content-tags__tags__tag--coat-of-arms {
     background-color: $color-coat-of-arms-medium-light;
