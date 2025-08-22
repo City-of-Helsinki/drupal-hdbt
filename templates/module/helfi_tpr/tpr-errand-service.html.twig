@@ -21,11 +21,7 @@
 
       <div{{ content_attributes.addClass('errand-service__header') }}>
         <h2{{ title_attributes.addClass('errand-service__title') }}>
-          {% if content.name_override %}
-            {{ content.name_override }}
-          {% else %}
-            {{ content.name }}
-          {% endif %}
+          {{ entity.label() }}
         </h2>
       </div>
 
