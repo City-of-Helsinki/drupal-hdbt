@@ -4,12 +4,15 @@
   {% if color %}
     {% set tag_color_class = 'content-tags__tags__tag--' ~ color %}
   {% endif %}
+  {% if type %}
+    {% set type_class = 'hds-tag--' ~ type %}
+  {% endif %}
 
   <li class="content-tags__tags__tag">
     {% if addSpan %}
-      <span class="hds-tag {{ tag_color_class }}">{{ tag }}</span>
+      <span class="hds-tag {{ tag_color_class }} {{ type_class }}">{{ tag }}</span>
     {% else %}
-      <div class="hds-tag {{ tag_color_class }}">{{ tag }}</div>
+      <div class="hds-tag {{ tag_color_class }} {{ type_class }}">{{ tag }}</div>
     {% endif %}
   </li>
 {% endif %}
