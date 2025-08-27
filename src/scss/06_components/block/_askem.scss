@@ -129,7 +129,7 @@
         }
 
         &:hover {
-          background-color: $color-black;
+          background-color: $color-black-90;
           top: auto;
 
           .askem-label {
@@ -144,7 +144,7 @@
         .askem-label {
           @include font('button');
           align-items: center;
-          color: $color-black;
+          color: $color-black-90;
           display: flex;
           justify-content: center;
           min-width: max-content;
@@ -251,11 +251,11 @@
 
       &:hover {
         background-color: transparent;
-        color: $color-black;
+        color: $color-black-90;
         top: auto;
 
         &::after {
-          background-color: $color-black;
+          background-color: $color-black-90;
         }
       }
     }
