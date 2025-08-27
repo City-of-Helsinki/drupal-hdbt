@@ -59,5 +59,11 @@ $-branding-icon-size-desktop: $spacing-double;
 
   .toolbar-vertical & {
     top: var(--drupal-toolbar-height);
+
+    // Reset the header-branding top position on breakpoint m.
+    // Affects only on logged-in users.
+    @include breakpoint($breakpoint-m) {
+      top: 0;
+    }
   }
 }
