@@ -1,5 +1,5 @@
-import { MouseEventHandler } from 'react';
-import {Tag, TagSize} from 'hds-react';
+import { CSSProperties, MouseEventHandler } from 'react';
+import { Tag, TagSize } from 'hds-react';
 
 type FilterButtonProps = {
   value: string;
@@ -22,15 +22,16 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
         { '@item': value.toString() },
         { context: 'Search: remove item aria label' }
       )}
-      theme={{
-        '--background-color-hover': 'var(--hdbt-color-black)',
-        '--background-color': 'var(--background-color-disabled)',
-        /* @ts-ignore */
-        '--color-hover': 'var(--color-white)',
-        '--outline-color': 'var(--hdbt-color-black)',
-        '--outline-color-hover': 'var(--hdbt-color-black)',
-        '--border-color-hover': 'var(--hdbt-color-black)',
-      }}
+      style={{
+        '--background-color-hover': 'var(--color-black-20)',
+        '--background-color': 'var(--color-black-10)',
+        '--border-color-focus': 'var(--color-black-90)',
+        '--border-color-hover': 'var(--color-black-90)',
+        '--color-focus': 'var(--hdbt-color-black)',
+        '--color-hover': 'var(--hdbt-color-black)',
+        '--outline-color': 'var(--color-black-90)',
+        '--outline-color-hover': 'var(--color-black-90)',
+      } as CSSProperties }
       >
       {value}
     </Tag>

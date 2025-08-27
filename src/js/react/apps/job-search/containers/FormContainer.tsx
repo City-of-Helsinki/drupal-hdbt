@@ -28,7 +28,10 @@ import {
 } from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultMultiSelectTheme, defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -120,6 +123,7 @@ const FormContainer = () => {
         type='search'
         value={keyword}
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        style={defaultTextInputStyle}
       />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
@@ -142,6 +146,7 @@ const FormContainer = () => {
                 placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
               }}
               value={taskAreaSelection}
+              theme={defaultMultiSelectTheme}
             />
           </div>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
@@ -161,6 +166,7 @@ const FormContainer = () => {
                 placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
               }}
               value={employmentSelection}
+              theme={defaultMultiSelectTheme}
             />
           </div>
         </div>
@@ -216,6 +222,7 @@ const FormContainer = () => {
                 }}
                 // @ts-ignore
                 value={languageSelection} // @todo Check that this works without @ts-ignore
+                theme={defaultSelectTheme}
               />
             </div>
             <div className='job-search-form__filter job-search-form__dropdown--upper'>
@@ -237,6 +244,7 @@ const FormContainer = () => {
                   language: currentLanguage,
                   placeholder: Drupal.t('All areas', {}, { context: 'Location placeholder' }),
                 }}
+                theme={defaultMultiSelectTheme}
               />
             </div>
           </div>
@@ -256,6 +264,7 @@ const FormContainer = () => {
               name={SearchComponents.CONTINUOUS}
               onClick={() => setContinuous(!continuous)}
               value={continuous.toString()}
+              style={defaultCheckboxStyle}
             />
           )}
           {showInternships && (
@@ -267,6 +276,7 @@ const FormContainer = () => {
               name={SearchComponents.INTERNSHIPS}
               onClick={() => setInternship(!internship)}
               value={internship.toString()}
+              style={defaultCheckboxStyle}
             />
           )}
           {showSummerJobs && (
@@ -278,6 +288,7 @@ const FormContainer = () => {
               name={SearchComponents.SUMMER_JOBS}
               onClick={() => setSummerJobs(!summerJobs)}
               value={summerJobs.toString()}
+              style={defaultCheckboxStyle}
             />
           )}
           {showYouthSummerJobs && (
@@ -289,11 +300,15 @@ const FormContainer = () => {
               name={SearchComponents.YOUTH_SUMMER_JOBS}
               onClick={() => setYouthSummerJobs(!youthSummerJobs)}
               value={youthSummerJobs.toString()}
+              style={defaultCheckboxStyle}
             />
           )}
         </fieldset>
       )}
-      <Button className='hdbt-search--react__submit-button job-search-form__submit-button' type='submit'>
+      <Button
+        className='hdbt-search--react__submit-button job-search-form__submit-button'
+        type='submit'
+      >
         {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
       <SelectionsContainer />

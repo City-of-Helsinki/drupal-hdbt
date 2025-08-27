@@ -7,6 +7,7 @@ import { TargetGroups } from '../enum/TargetGroups';
 import OptionType from '../types/OptionType';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 export const TargetGroupFilter = () => {
   const [targetGroupSelection, setTargetGroups] = useAtom(targetGroupsAtom);
@@ -30,6 +31,7 @@ export const TargetGroupFilter = () => {
         className='hdbt-search__dropdown'
         id={SearchComponents.TARGET_GROUPS}
         noTags
+        clearable
         onChange={onChange}
         options={getOptions()}
         texts={{
@@ -39,11 +41,7 @@ export const TargetGroupFilter = () => {
           language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All target groups', {}, {context: 'Event search: target group placeholder'}),
         }}
-        theme={{
-          '--checkbox-background-selected': 'var(--hdbt-color-black)',
-          '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--placeholder-color': 'var(--hdbt-color-black)',
-        }}
+        theme={defaultSelectTheme}
         value={targetGroupSelection}
       />
     </div>

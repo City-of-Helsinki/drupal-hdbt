@@ -11,12 +11,14 @@ import {
   NotificationSize,
   TextInput,
 } from 'hds-react';
-import React, { createRef, useEffect } from 'react';
+import React, {createRef, CSSProperties, useEffect} from 'react';
 import { Buffer } from 'buffer';
 import URLParams from '../types/URLParams';
 import useQueryString from '../hooks/useQueryString';
 import { urlAtom, monitorSubmittedAtom } from '../store';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 // Define new atom for scroll state
 const shouldScrollAtom = atom(false);
@@ -173,21 +175,6 @@ const SearchMonitorContainer = () => {
   const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
   const tosLinkSuffix: string = Drupal.t('The link opens in a new tab', {}, {context: 'Explanation for users that the link opens in a new tab instead of the expected current tab'});
 
-  const customEmailStyles = {
-    marginTop: 'var(--spacing-m)',
-  };
-
-  const customCheckboxStyles = {
-    '--background-unselected': 'var(--color-white)',
-    '--background-selected': 'var(--color-black)',
-    marginTop: 'var(--spacing-m)',
-  };
-
-  const customButtonStyles = {
-    '--border-color-focus': 'var(--color-black)',
-    backgroundColor: 'transparent',
-  };
-
   return (
     <form onSubmit={onSubmit} className="job-search-form__search-monitor">
       {!submitted && (
@@ -201,7 +188,13 @@ const SearchMonitorContainer = () => {
               event.preventDefault();
               setIsFormVisible(!isFormVisible);
             }}
-            style={customButtonStyles}
+            style={{
+              '--border-color-focus': 'var(--hdbt-color-black)',
+              '--background-color': 'transparent',
+              '--background-color-hover': 'trasparent',
+              '--outline-color-focus': 'var(--hdbt-color-black)',
+              marginTop: 'var(--spacing-2-xs)',
+            } as CSSProperties }
             theme={ButtonPresetTheme.Black}
             type="button"
             variant={ButtonVariant.Supplementary}
@@ -235,7 +228,10 @@ const SearchMonitorContainer = () => {
               name='job-search-form__search_monitor__email'
               onChange={(event) => setEmail(event.target.value)}
               required
-              style={customEmailStyles}
+              style={{
+                ...defaultTextInputStyle,
+                marginTop: 'var(--spacing-m)',
+              }}
               type='email'
               value={email}
             />
@@ -249,7 +245,7 @@ const SearchMonitorContainer = () => {
               name='job-search-form__search_monitor__terms'
               onChange={(event) => setTermsAgreed(event.target.checked)}
               required
-              style={customCheckboxStyles}
+              style={defaultCheckboxStyle}
             />
 
             <Button

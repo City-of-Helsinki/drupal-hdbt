@@ -1,6 +1,9 @@
 import { useAtomValue, useSetAtom, useAtom } from 'jotai';
-import { Button, ButtonVariant, ButtonPresetTheme, Checkbox, TextInput, Select, } from 'hds-react';
+import { Button, Checkbox, TextInput, Select, } from 'hds-react';
 import { useState } from 'react';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 import {
   stagedParamsAtom,
@@ -112,6 +115,7 @@ const FeatureFormContainer = () => {
         type='search'
         value={keywordValue || ''} // Ensure value is always a string.
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        style={defaultTextInputStyle}
       />
       <div className='hdbt-search--react__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
@@ -126,6 +130,7 @@ const FeatureFormContainer = () => {
             name='finnish_education'
             onClick={() => setStagedParams({...stagedParams, finnish_education: !stagedParams?.finnish_education})}
             value={stagedParams?.finnish_education?.toString() || 'false'}
+            style={defaultCheckboxStyle}
           />
           <Checkbox
             checked={stagedParams?.swedish_education || false}
@@ -135,6 +140,7 @@ const FeatureFormContainer = () => {
             name='swedish_education'
             onClick={() => setStagedParams({...stagedParams, swedish_education: !stagedParams?.swedish_education})}
             value={stagedParams?.swedish_education?.toString() || 'false'}
+            style={defaultCheckboxStyle}
           />
         </fieldset>
         <fieldset className='hdbt-search--react__fieldset'>
@@ -149,6 +155,7 @@ const FeatureFormContainer = () => {
             name='grades_1_6'
             onClick={() => setStagedParams({...stagedParams, grades_1_6: !stagedParams?.grades_1_6})}
             value={stagedParams?.grades_1_6?.toString() || 'false'}
+            style={defaultCheckboxStyle}
           />
           <Checkbox
             checked={stagedParams?.grades_1_9 || false}
@@ -158,6 +165,7 @@ const FeatureFormContainer = () => {
             name='grades_1_9'
             onClick={() => setStagedParams({...stagedParams, grades_1_9: !stagedParams?.grades_1_9})}
             value={stagedParams?.grades_1_9?.toString() || 'false'}
+            style={defaultCheckboxStyle}
           />
           <Checkbox
             checked={stagedParams?.grades_7_9 || false}
@@ -167,6 +175,7 @@ const FeatureFormContainer = () => {
             name='grades_7_9'
             onClick={() => setStagedParams({...stagedParams, grades_7_9: !stagedParams?.grades_7_9})}
             value={stagedParams?.grades_7_9?.toString() || 'false'}
+            style={defaultCheckboxStyle}
           />
         </fieldset>
       </div>
@@ -189,6 +198,7 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
           }}
           value={a1Selection}
+          theme={defaultMultiSelectTheme}
         />
         <Select
           className='hdbt-search--react__dropdown'
@@ -208,6 +218,7 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': a2Label}, { context: 'React search clear selection label' }),
           }}
           value={a2Selection}
+          theme={defaultMultiSelectTheme}
         />
         <Select
           className='hdbt-search--react__dropdown'
@@ -227,6 +238,7 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b1Label}, { context: 'React search clear selection label' })
           }}
           value={b1Selection}
+          theme={defaultMultiSelectTheme}
         />
         <Select
           className='hdbt-search--react__dropdown'
@@ -246,6 +258,7 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': b2Label}, { context: 'React search clear selection label' }),
           }}
           value={b2Selection}
+          theme={defaultMultiSelectTheme}
         />
         <Select
           className='hdbt-search--react__dropdown'
@@ -265,6 +278,7 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': weightedEducationLabel }, { context: 'React search clear selection label' })
           }}
           value={weightedSelection}
+          theme={defaultMultiSelectTheme}
         />
         <Select
           className='hdbt-search--react__dropdown'
@@ -284,14 +298,13 @@ const FeatureFormContainer = () => {
             clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', { '@label': bilingualEducationLabel }, { context: 'React search clear selection label' })
           }}
           value={bilingualSelection}
+          theme={defaultMultiSelectTheme}
         />
       </div>
       <div className='hdbt-search--react__submit'>
         <Button
           className='hdbt-search--react__submit-button'
-          theme={ButtonPresetTheme.Black}
           type='submit'
-          variant={ButtonVariant.Primary}
         >
           {Drupal.t('Search', {}, {context: 'React search: submit button label'})}
         </Button>

@@ -1,11 +1,9 @@
-import {useEffect} from 'react';
-import {useAtom, useAtomValue, useSetAtom} from 'jotai';
+import { useEffect } from 'react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
   Accordion,
   AccordionSize,
   Button,
-  ButtonPresetTheme,
-  ButtonVariant,
   defaultFilter,
   IconLocation,
   Select,
@@ -28,10 +26,12 @@ import {
 import SelectionsContainer from './SelectionsContainer';
 import SearchComponents from '../enum/SearchComponents';
 import transformDropdownsValues from '../helpers/Params';
-import {ComponentMap} from '../helpers/helpers';
+import { ComponentMap } from '../helpers/helpers';
 import type OptionType from '../types/OptionType';
 import URLParams from '../types/URLParams';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -87,6 +87,7 @@ const FormContainer = () => {
             type='search'
             value={title}
             clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+            style={defaultTextInputStyle}
           />
           <Select
             filter={defaultFilter}
@@ -106,11 +107,7 @@ const FormContainer = () => {
               language: currentLanguage,
               placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
             }}
-            theme={{
-              '--checkbox-background-selected': 'var(--hdbt-color-black)',
-              '--focus-outline-color': 'var(--hdbt-color-black)',
-              '--placeholder-color': 'var(--hdbt-color-black)',
-            }}
+            theme={defaultMultiSelectTheme}
             value={districtSelection}
           />
         </div>
@@ -143,11 +140,7 @@ const FormContainer = () => {
                 language: currentLanguage,
                 placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
               }}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
+              theme={defaultMultiSelectTheme}
               value={themeSelection}
             />
             <Select
@@ -166,11 +159,7 @@ const FormContainer = () => {
                 language: currentLanguage,
                 placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
               }}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
+              theme={defaultMultiSelectTheme}
               value={phaseSelection}
             />
             <Select
@@ -189,21 +178,15 @@ const FormContainer = () => {
                 language: currentLanguage,
                 placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
               }}
-              theme={{
-                '--checkbox-background-selected': 'var(--hdbt-color-black)',
-                '--focus-outline-color': 'var(--hdbt-color-black)',
-                '--placeholder-color': 'var(--hdbt-color-black)',
-              }}
+              theme={defaultMultiSelectTheme}
               value={typeSelection}
             />
           </div>
         </Accordion>
         <div className='district-project-search-form__submit'>
           <Button
-            className='district-project-search-form__submit-button'
-            theme={ButtonPresetTheme.Black}
+            className='hdbt-search--react__submit-button district-project-search-form__submit-button'
             type='submit'
-            variant={ButtonVariant.Primary}
           >
             {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
           </Button>

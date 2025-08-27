@@ -2,6 +2,7 @@ import { TextInput } from 'hds-react';
 import { useAtom } from 'jotai';
 import { stagedParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 export const SearchInput = () => {
   const [params, setParams] = useAtom(stagedParamsAtom);
@@ -17,5 +18,6 @@ export const SearchInput = () => {
     placeholder={Drupal.t('For example, budget proposal', {}, {context: 'News archive: keyword placeholder'})}
     type='search'
     value={params?.keyword || ''}
+    style={defaultTextInputStyle}
   />;
 };

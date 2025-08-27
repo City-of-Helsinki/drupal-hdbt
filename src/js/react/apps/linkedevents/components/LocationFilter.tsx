@@ -5,7 +5,8 @@ import type OptionType from '../types/OptionType';
 import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
 import ApiKeys from '../enum/ApiKeys';
-import {getCurrentLanguage} from '@/react/common/helpers/GetCurrentLanguage';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
 function LocationFilter() {
   const locationOptions = useAtomValue(locationAtom);
@@ -33,11 +34,7 @@ function LocationFilter() {
           language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
         }}
-        theme={{
-          '--checkbox-background-selected': 'var(--hdbt-color-black)',
-          '--focus-outline-color': 'var(--hdbt-color-black)',
-          '--placeholder-color': 'var(--hdbt-color-black)',
-        }}
+        theme={defaultMultiSelectTheme}
         value={locationSelection}
       />
     </div>
