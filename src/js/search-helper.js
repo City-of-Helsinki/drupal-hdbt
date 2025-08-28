@@ -7,27 +7,17 @@
   }
 
   Drupal.behaviors.focusSearchResults = {
-    attach: function attachFocusSearchResults(context, settings) {
-      // Focus the first results title in the current context
+    attach: function attachFocusSearchResults(context) {
+      // Focus to titles using the hdbt-search__results__title class.
       const titles = context.querySelectorAll('.hdbt-search__results__title');
       if (titles.length) {
         focusElement(titles[0]);
       }
 
-      // Handle result count from Views AJAX
-      if (settings.views && settings.views.ajaxViews) {
-        Object.values(settings.views.ajaxViews).forEach((viewDataArray) => {
-          viewDataArray.forEach((viewData) => {
-            const resultsContainer = context.querySelector(
-              `[data-id-number="${viewData.view_dom_id}"]`
-            );
-            if (resultsContainer) {
-              const resultCountEl = resultsContainer.querySelector('[class$="__count-container"]');
-              focusElement(resultCountEl);
-            }
-          });
-        });
-      }
+      // Focus to the result count element. This is usually used in
+      // views based searches.
+      const resultCountEl = context.querySelector('[class$="__count-container"]');
+      focusElement(resultCountEl);
     }
   };
 })(Drupal);
