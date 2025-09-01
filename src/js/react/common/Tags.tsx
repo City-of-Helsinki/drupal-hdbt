@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tag} from 'hds-react';
+import { Tag } from 'hds-react';
 import type TagType from '@/types/TagType';
 
 interface TagsProps {
@@ -26,12 +26,13 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
       {tags.map((item: TagType, key: number) => (
         <li key={`{item.tag}-${key}`} className="content-tags__tags__tag" {...langAttribute}>
           {/* @todo UHF-11117 Check if this works after react is updated */}
-          {/* @ts-ignore */} 
+          {/* @ts-ignore */}
           <Tag
             className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}
+            {...(item.icon && { iconStart: item.icon })}
           >
             {item.tag}
-          </Tag>
+           </Tag>
         </li>
       ),
       )}

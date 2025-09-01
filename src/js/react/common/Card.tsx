@@ -81,11 +81,11 @@ function CardItem({
   timeLabel,
   weightedEducation,
 }: CardItemProps): JSX.Element {
-  const cardClass = `
-    card
-    ${cardModifierClass ? ` ${cardModifierClass}` : ''}
-    ${cardUrlExternal ? ' card--external' : ''}
-  `;
+  const cardClass = [
+    'card',
+    cardModifierClass,
+    cardUrlExternal && 'card--external',
+  ].filter(Boolean).join(' ');
   const HeadingTag = cardTitleLevel ? `h${cardTitleLevel}` as keyof JSX.IntrinsicElements : 'h4';
 
   const metaRows = [

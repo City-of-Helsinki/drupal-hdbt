@@ -75,6 +75,22 @@
     background-color: $color-bus-medium-light;
   }
 
+  .content-tags__tags__tag--silver {
+    background-color: $color-silver-medium-light;
+  }
+
+  .content-tags__tags__tag--copper {
+    background-color: $color-copper-medium-light;
+  }
+
+  .content-tags__tags__tag--engel {
+    background-color: $color-engel-medium-light;
+  }
+
+  .content-tags__tags__tag--fog-medium-light {
+    background-color: $color-fog-medium-light;
+  }
+
   .content-tags__tags__tag--success {
     background-color: $color-success;
     color: $color-white;
@@ -87,9 +103,5 @@
   .content-tags__tags__tag--error {
     background-color: $color-error;
     color: $color-white;
-  }
-
-  .content-tags__tags__tag--fog-medium-light {
-    background-color: $color-fog-medium-light;
   }
 }
