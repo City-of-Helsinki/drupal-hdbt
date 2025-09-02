@@ -1,4 +1,4 @@
-(function (Drupal) {
+((Drupal) => {
   Drupal.behaviors.cardHelper = {
     attach (context) {
       const cardImages = once('cardHelper', '.card .card__image img', context);
