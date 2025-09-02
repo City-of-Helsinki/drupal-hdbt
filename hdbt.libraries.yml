@@ -366,6 +366,9 @@ card-helper:
     dist/js/card-helper.min.js: {
       minified: true
     }
+  dependencies:
+    - core/drupal
+    - core/once
 
 koro-helper:
   version: 1.0.0
