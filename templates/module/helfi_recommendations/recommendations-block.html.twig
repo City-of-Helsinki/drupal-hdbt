@@ -20,7 +20,6 @@
             {% if row.published_at %}
               {% set html_published_at  %}
                 <time datetime="{{ row.published_at|format_date('custom', 'Y-m-d\\TH:i') }}" class="news-listing__datetime news-listing__datetime--published" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
-                  <span class="visually-hidden">{{ 'Published'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
                   {{ row.published_at|format_date('publication_date_format') }}
                 </time>
               {% endset %}
