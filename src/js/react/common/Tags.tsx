@@ -32,7 +32,7 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
             {...(item.icon && { iconStart: item.icon })}
           >
             {item.tag}
-           </Tag>
+          </Tag>
         </li>
       ),
       )}
