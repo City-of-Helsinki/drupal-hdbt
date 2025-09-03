@@ -1,9 +1,9 @@
-.helfi-etusivu-autocomplete {
+.helfi-location-autocomplete {
   position: relative;
   width: 100%;
 }
 
-.helfi-etusivu-autocomplete input.hds-text-input__input {
+.helfi-location-autocomplete input.hds-text-input__input {
   padding-right: $spacing-triple;
 }
 
@@ -32,11 +32,11 @@
   top: unset;
 }
 
-.helfi-etusivu-autocomplete [data-autocomplete-live-region] {
+.helfi-location-autocomplete [data-autocomplete-live-region] {
   @include visually-hidden;
 }
 
-.helfi-etusivu-near-you-form__address-input [data-autocomplete-item-list] {
+.helfi-location-autocomplete [data-autocomplete-item-list] {
   border-color: $color-black-50;
   border-style: solid;
   border-top: none;
@@ -48,15 +48,15 @@
   position: absolute;
 }
 
-.helfi-etusivu-near-you-form__address-input [data-autocomplete-item] {
+.helfi-location-autocomplete [data-autocomplete-item] {
   background-color: $color-white;
   cursor: pointer;
   padding: $spacing;
 }
 
-.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:hover,
-.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:focus,
-.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
+.helfi-location-autocomplete [data-autocomplete-item]:hover,
+.helfi-location-autocomplete [data-autocomplete-item]:focus,
+.helfi-location-autocomplete [data-autocomplete-item]:active {
   background-color: var(--hdbt-color-black);
   color: var(--color-white);
   outline: none;
