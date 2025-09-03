@@ -32,4 +32,8 @@
   .component__title {
     @include font(h3);
   }
+
+  .card--tiny+.card--tiny {
+    margin-top: $spacing-half;
+  }
 }
