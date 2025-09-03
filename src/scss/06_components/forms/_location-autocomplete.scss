@@ -1,0 +1,67 @@
+.helfi-etusivu-autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.helfi-etusivu-autocomplete input.hds-text-input__input {
+  padding-right: $spacing-triple;
+}
+
+.helfi-etusivu-autocomplete__loader {
+  align-items: center;
+  display: none;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  width: $spacing-triple;
+}
+
+.helfi-etusivu-autocomplete__wrapper:has(.location-loading) input.hds-text-input__input {
+  background-color: $color-black-5;
+  pointer-events: none;
+}
+
+.helfi-etusivu-autocomplete__wrapper:has(.location-loading) .helfi-etusivu-autocomplete__loader {
+  display: flex;
+}
+
+.helfi-etusivu-autocomplete__loader .hds-loading-spinner {
+  left: unset;
+  position: relative;
+  top: unset;
+}
+
+.helfi-etusivu-near-you-form__errors .hds-notification {
+  margin-top: $spacing
+}
+
+.helfi-etusivu-autocomplete [data-autocomplete-live-region] {
+  @include visually-hidden;
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item-list] {
+  border-color: $color-black-50;
+  border-style: solid;
+  border-top: none;
+  border-width: 2px;
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+  position: absolute;
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item] {
+  background-color: $color-white;
+  cursor: pointer;
+  padding: $spacing;
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:hover,
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:focus,
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
+  background-color: var(--hdbt-color-black);
+  color: var(--color-white);
+  outline: none;
+}
