@@ -7,7 +7,7 @@
   padding-right: $spacing-triple;
 }
 
-.helfi-etusivu-autocomplete__loader {
+.helfi-location-autocomplete__loader {
   align-items: center;
   display: none;
   height: 100%;
@@ -17,23 +17,19 @@
   width: $spacing-triple;
 }
 
-.helfi-etusivu-autocomplete__wrapper:has(.location-loading) input.hds-text-input__input {
+.helfi-location-autocomplete__wrapper:has(.loading) input.hds-text-input__input {
   background-color: $color-black-5;
   pointer-events: none;
 }
 
-.helfi-etusivu-autocomplete__wrapper:has(.location-loading) .helfi-etusivu-autocomplete__loader {
+.helfi-location-autocomplete__wrapper:has(.loading) .helfi-location-autocomplete__loader {
   display: flex;
 }
 
-.helfi-etusivu-autocomplete__loader .hds-loading-spinner {
+.helfi-location-autocomplete__loader .hds-loading-spinner {
   left: unset;
   position: relative;
   top: unset;
-}
-
-.helfi-etusivu-near-you-form__errors .hds-notification {
-  margin-top: $spacing
 }
 
 .helfi-etusivu-autocomplete [data-autocomplete-live-region] {
