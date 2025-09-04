@@ -18,13 +18,9 @@
     {% endblock %}
 
 		{% block component_content %}
-      {% if content.news_list %}
-        <ul class="news-listing news-listing--latest-medium-teasers">
-          {{ content.news_list }}
-        </ul>
-      {% else %}
-        <p class="news-listing news-listing--no-news">{{ 'No related news.'|t({}, {'context': 'When newslist component does not have any news to list'}) }}</p>
-      {% endif %}
+      <ul class="news-listing news-listing--latest-medium-teasers">
+        {{ content.news_list }}
+      </ul>
 
 			{% set link_title %}
         {% if content.field_helfi_news_groups|render or content.field_helfi_news_tags|render or content.field_helfi_news_neighbourhoods|render %}
