@@ -367,10 +367,6 @@ msgctxt "TPR unit result card"
 msgid "Opening hours"
 msgstr "Aukioloaika"
 
-msgctxt "When newslist component does not have any news to list"
-msgid "No related news."
-msgstr "Ei uutisia tästä aiheesta."
-
 msgctxt "Profile information-menu close button text for screen readers"
 msgid "Close profile information menu"
 msgstr "Sulje käyttäjä-valikko"
