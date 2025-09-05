@@ -29,15 +29,8 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-  const [wasSubmitted, setWasSubmitted] = useState(false);
-  useScrollToResults(scrollTarget, wasSubmitted);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('scrollToResults') === 'true') {
-      setWasSubmitted(true);
-      sessionStorage.removeItem('scrollToResults');
-    }
-  }, [params]);
+  const choices = Boolean(Object.keys(params).length);
+  useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
     return useMap ?
