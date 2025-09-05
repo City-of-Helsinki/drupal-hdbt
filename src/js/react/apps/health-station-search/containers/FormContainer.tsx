@@ -23,7 +23,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
 
     if (keyword && keyword.length) {
       params.address = keyword;
-    };
+    }
 
     params.sv_only = sv_only.checked;
 
@@ -31,7 +31,11 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
   };
 
   return (
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      className='hdbt-search--react__form-container'
+      role='search'
+      onSubmit={onSubmit}
+    >
       <AddressSearch
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
         defaultValue={initialParams?.address || ''}
