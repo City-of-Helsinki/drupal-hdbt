@@ -1448,6 +1448,10 @@ msgctxt "Search monitor error email"
 msgid "This field is mandatory: Email address"
 msgstr "Fältet är obligatoriskt: E-postadress"
 
+msgctxt "Search monitor error email"
+msgid "The email address is not in correct format"
+msgstr "Den angivna e-postadressen är ogiltig"
+
 msgctxt "Search monitor error submitting"
 msgid "Saving search failed. Please try again."
 msgstr "Sparad sökning misslyckades. Var god att försök igen."
