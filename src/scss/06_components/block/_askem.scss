@@ -53,7 +53,6 @@
     }
 
     .askem-reactions {
-      animation: none;
       max-width: 688px; // Abstract width from the designs.
     }
 
@@ -272,4 +271,9 @@
       margin-top: $spacing-quadruple;
     }
   }
+}
+
+// Make sure that reactions are visible even after selecting a reaction.
+.askem .askem-plugin.stage-reacted .askem-reactions:not(.show-statistics) {
+  animation: none;
 }
