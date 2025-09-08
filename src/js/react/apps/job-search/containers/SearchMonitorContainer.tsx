@@ -72,6 +72,13 @@ const SearchMonitorContainer = () => {
       return;
     }
 
+    // Prevent invalid email address
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(email)) {
+      seterrorMessage(Drupal.t('The email address is not in correct format', {}, { context: 'Search monitor error email' }));
+      return;
+    }
+
     // Make submit button disabled after submitting to prevent double submits
     const submitButton = document.getElementById('job-search-form__search-monitor__submit-button');
     if (submitButton) {
