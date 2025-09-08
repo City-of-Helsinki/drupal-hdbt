@@ -17,7 +17,6 @@ const reactApps = {
   'maternity-and-child-health-clinic-search': './src/js/react/apps/maternity-and-child-health-clinic-search/index.tsx',
   'news-archive': './src/js/react/apps/news-archive/index.tsx',
   'ploughing-schedule': './src/js/react/apps/ploughing-schedule/index.tsx',
-  'roadworks': './src/js/react/apps/roadworks/index.tsx',
   'school-search': './src/js/react/apps/school-search/index.tsx',
 };
 

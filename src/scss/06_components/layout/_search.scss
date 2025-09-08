@@ -1,0 +1,27 @@
+.hdbt-search__form-container {
+  @include form_container_defaults;
+}
+
+.hdbt-search__results__header {
+  margin-bottom: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.hdbt-search__results__title {
+  margin-bottom: $spacing-three-quarters;
+  margin-top: 0;
+
+  @include breakpoint($breakpoint-l) {
+    margin-bottom: 0;
+  }
+
+  &:active,
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: 2px;
+  }
+}

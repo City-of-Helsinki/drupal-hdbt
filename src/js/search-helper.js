@@ -1,16 +1,23 @@
-// eslint-disable-next-line func-names
-(function ($) {
+(function focusSearchResultsBehavior(Drupal) {
+  function focusElement(element) {
+    if (!element) return;
+    element.setAttribute('tabindex', '-1');
+    element.focus();
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
-  // Set focus on search result count
-  $(document).ajaxComplete(function onDataLoaded(e, xhr, settings) {
-    // Check form ID to prevent mixing on multi-form page
-    const viewDomId = settings.extraData.view_dom_id;
-    const resultsContainerEl = $(`[data-id-number=${  viewDomId  }]`);
-    const resultCountEl = $('[class$="__count-container"]', resultsContainerEl[0])[0];
+  Drupal.behaviors.focusSearchResults = {
+    attach: function attachFocusSearchResults(context) {
+      // Focus to titles using the hdbt-search__results__title class.
+      const titles = context.querySelectorAll('.hdbt-search__results__title');
+      if (titles.length) {
+        focusElement(titles[0]);
+      }
 
-    if (!resultCountEl) return;
-    resultCountEl.setAttribute('tabindex', '-1');
-    resultCountEl.focus();
-    resultCountEl.scrollIntoView({behavior: 'smooth', block: 'center'});
-  });
-})(jQuery);
+      // Focus to the result count element. This is usually used in
+      // views based searches.
+      const resultCountEl = context.querySelector('[class$="__count-container"]');
+      focusElement(resultCountEl);
+    }
+  };
+})(Drupal);
