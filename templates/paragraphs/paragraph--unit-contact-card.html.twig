@@ -69,11 +69,13 @@
             {% set link_title %}
               {{- 'See details'|t({}, {'context': 'Unit contact card'}) -}}
             {% endset %}
+            {% set aria_label_id = 'unit-contact-card__more-link-aria-label--' ~ paragraph.id()|clean_id %}
             {% set unit_link_attributes = {
               'class': [ 'unit-contact-card__link' ],
-              'aria-label': paragraph.getAriaLabel(),
+              'aria-labelledby': aria_label_id,
             } %}
             {{ link(link_title, unit_contact_card.unit_url, unit_link_attributes) }}
+            <span class="is-hidden" id="{{ aria_label_id }}">{{ paragraph.getAriaLabel() }}</span>
           </div>
         {% endif %}
       </div>
