@@ -41,7 +41,7 @@ function ResultCard({
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
-  
+
   const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDate = () => {
@@ -171,10 +171,20 @@ function ResultCard({
 
   const getUrl = () => {
     if (type_id && type_id === 'Course') {
-      return `${hobbiesPublicUrl}/${currentLanguage}/courses/${id}`;
+      const type = {
+        'fi': 'kurssit',
+        'sv': 'kurser'
+      }[currentLanguage] ?? 'courses';
+
+      return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
-    return `${baseUrl}/${currentLanguage}/events/${id}`;
+    const type = {
+      'fi': 'tapahtumat',
+      'sv': 'kurser'
+    }[currentLanguage] ?? 'events';
+
+    return `${baseUrl}/${currentLanguage}/${type}/${id}`;
   };
 
   return (
