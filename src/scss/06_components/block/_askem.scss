@@ -277,3 +277,12 @@
 .askem .askem-plugin.stage-reacted .askem-reactions:not(.show-statistics) {
   animation: none;
 }
+
+// Make sure the feedback button label doesn't disappear when sending the feedback.
+.askem .askem-plugin.stage-feedback-sent .askem-form-submit .askem-form-submit-label {
+  opacity: 1;
+}
+
+.askem .askem-plugin:not(.settings-preview).stage-feedback-sent .askem-input-sent {
+  margin-block: $spacing-double;
+}
