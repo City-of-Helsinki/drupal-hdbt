@@ -1,0 +1,288 @@
+/* The animation code */
+/* stylelint-disable plugin/no-low-performance-animation-properties */
+@keyframes show-element {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  70% {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  100% {
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+.block--askem {
+  @include component-margin-top;
+  width: 100%;
+
+  &:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
+  &:last-child {
+    background: $color-black-5;
+
+    .askem .askem-plugin {
+      padding-block-end: 112px;
+    }
+  }
+}
+
+.js .block--askem:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
+.js .block--askem:last-child {
+  margin-block-end: -112px;
+}
+
+/* stylelint-disable max-nesting-depth */
+.askem {
+  @include components-container-max-width;
+  @include component-side-padding;
+  margin-inline: auto;
+
+  .askem-plugin:not(.settings-preview) {
+    font-family: $base-font-family;
+    margin: 0;
+    overflow: visible;
+    padding-block: 80px;
+
+    @media only screen and (width <= 680px) {
+      width: 100%;
+    }
+
+    .askem-reactions {
+      max-width: 688px; // Abstract width from the designs.
+    }
+
+    .askem-header {
+      @include font('h4');
+      margin-block-end: 0;
+    }
+
+    // Reactions
+    .askem-reactions-group {
+      margin-block: $spacing-and-half 0;
+
+      @media only screen and (width >= 681px) {
+        column-gap: $spacing-and-half;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .askem-reaction {
+        flex-grow: 0;
+        margin: 0;
+        max-width: 190px; // Abstract width from the designs.
+        padding: 0;
+
+        @media only screen and (width <= 680px) {
+          max-width: 100%;
+        }
+
+        // Mobile styles
+        @media only screen and (width <= 680px) {
+          margin: $spacing 0 0;
+          padding: 0;
+          width: 100%;
+        }
+
+        &::before {
+          display: none;
+        }
+
+        &:first-child {
+          @media only screen and (width <= 680px) {
+            margin-block-start: 0;
+          }
+        }
+      }
+
+      .askem-reaction-button {
+        background: none;
+        border: 2px solid $color-black-90;
+        border-radius: 0;
+        padding: 14px $spacing-double;
+        position: relative;
+        transition: none;
+
+        &::after,
+        &::before {
+          display: none;
+        }
+
+        &:focus,
+        &:focus-visible {
+          background-color: transparent;
+          box-shadow: none;
+          color: $color-black-90;
+          outline: 2px solid $color-black-90;
+          outline-offset: 2px;
+          text-shadow: none;
+          top: auto;
+
+          .askem-label {
+            color: $color-black-90;
+          }
+        }
+
+        &:hover {
+          background-color: $color-black-90;
+          top: auto;
+
+          .askem-label {
+            color: $color-white;
+
+            &::after {
+              background-color: $color-white;
+            }
+          }
+        }
+
+        .askem-label {
+          @include font('button');
+          align-items: center;
+          color: $color-black-90;
+          display: flex;
+          justify-content: center;
+          min-width: max-content;
+          transition: none;
+          width: 100%;
+
+          &::after {
+            @include pseudo-icon('face-neutral', $spacing-and-half, $color-black-90, flex);
+            margin-left: 16px;
+          }
+        }
+      }
+
+      .askem-reaction.icon-check-mark .askem-label::after {
+        @include pseudo-icon-replace('face-smile');
+      }
+
+      .askem-reaction.icon-question-mark .askem-label::after {
+        @include pseudo-icon-replace('face-sad');
+      }
+
+      .askem-reaction.selected .askem-reaction-button {
+        background-color: $color-black-90;
+        border-color: $color-black-90;
+        box-shadow: none;
+
+        .askem-label {
+          color: $color-white;
+          opacity: 1;
+
+          &::after {
+            background-color: $color-white;
+          }
+        }
+      }
+    }
+
+    .after-reaction.active {
+      animation: show-element .7s;
+      opacity: 1;
+      position: static;
+    }
+
+    // Inputs
+    .askem-inputs {
+      margin-block-start: $spacing-triple;
+      max-width: 688px; // Abstract width from designs.
+
+      .askem-header {
+        @include font('h5');
+        margin-block-end: 0;
+      }
+
+      .askem-input-field {
+        @include font('body');
+        border: 2px solid $color-black-50;
+        border-radius: 0;
+        font-family: $base-font-family;
+        height: 188px; // Abstract width from designs.
+        margin-block-start: $spacing-and-half;
+        padding: $spacing;
+
+        &:focus,
+        &:focus-visible {
+          outline: 2px solid $color-black-90;
+          outline-offset: 2px;
+        }
+      }
+    }
+
+    // Form submit
+    .askem-form-submit {
+      @include font('button');
+      background: $color-black-90;
+      border: 2px solid $color-black-90;
+      border-radius: 0;
+      color: $color-white;
+      display: inline-flex;
+      margin-top: $spacing-and-half;
+      padding: $spacing $spacing-and-half;
+      position: relative;
+      top: auto;
+      transition: none;
+
+      &::after {
+        @include pseudo-icon('arrow-right', $spacing-and-half, $color-white, flex);
+        background: none $color-white;
+        margin-left: $spacing;
+        opacity: 1;
+        position: static;
+      }
+
+      &::before {
+        display: none;
+      }
+
+      &:focus,
+      &:focus-visible {
+        box-shadow: none;
+        outline: 2px solid $color-black-90;
+        outline-offset: 2px;
+        top: auto;
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: $color-black-90;
+        top: auto;
+
+        &::after {
+          background-color: $color-black-90;
+        }
+      }
+    }
+
+    .askem-form-submit:not(.disabled):focus,
+    .askem-form-submit:not(.disabled):focus-visible,
+    .askem-form-submit:not(.disabled):hover {
+      top: auto;
+    }
+
+    .askem-input-sent {
+      @include font('h5');
+      display: block;
+      margin-top: $spacing-quadruple;
+    }
+  }
+}
+
+// Make sure that reactions are visible even after selecting a reaction.
+.askem .askem-plugin.stage-reacted .askem-reactions:not(.show-statistics) {
+  animation: none;
+}
+
+// Make sure the feedback button label doesn't disappear when sending the feedback.
+.askem .askem-plugin.stage-feedback-sent .askem-form-submit .askem-form-submit-label {
+  opacity: 1;
+}
+
+.askem .askem-plugin:not(.settings-preview).stage-feedback-sent .askem-input-sent {
+  margin-block: $spacing-double;
+}
