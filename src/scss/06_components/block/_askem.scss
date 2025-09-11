@@ -214,6 +214,17 @@
       }
     }
 
+    .askem-input-disclaimer {
+      @include font('small');
+      color: $color-black-70;
+      margin: $spacing-and-half 0 0;
+      opacity: 1;
+
+      p:first-child {
+        margin-top: 0;
+      }
+    }
+
     // Form submit
     .askem-form-submit {
       @include font('button');
