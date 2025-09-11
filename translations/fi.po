@@ -1446,6 +1446,10 @@ msgctxt "Search monitor error email"
 msgid "This field is mandatory: Email address"
 msgstr "Kenttä on pakollinen: Sähköpostiosoite"
 
+msgctxt "Search monitor error email"
+msgid "The email address you entered is not in the right format"
+msgstr "Kirjoittamasi sähköpostiosoite ei ole oikeassa muodossa"
+
 msgctxt "Search monitor error submitting"
 msgid "Saving search failed. Please try again."
 msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
