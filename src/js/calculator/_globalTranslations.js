@@ -62,9 +62,9 @@ const globalTranslations = {
     en: 'The data on the form has now been cleared.',
   },
   missing_input: {
-    fi: 'Tarkistathan vielä nämä kohdat',
-    sv: 'Kontrollera ännu dessa punkter',
-    en: 'Please check these items',
+    fi: 'Täytäthän puuttuvat tiedot.',
+    sv: 'Fyll i uppgifterna som saknas.',
+    en: 'Please fill in the missing information.',
   },
   error_with_link: {
     fi: '${error}: ${labelLink}.',
@@ -112,9 +112,9 @@ const globalTranslations = {
     en: 'Result',
   },
   notification_aria_label_for_error: {
-    fi: 'Virheilmoitus',
-    sv: 'Felanmälan',
-    en: 'Error message',
+    fi: 'Siirry täytettäviin kohtiin linkeistä.',
+    sv: 'Klicka på länkarna för att gå till uppgifterna som ska fyllas i.',
+    en: 'The links will direct you to the required fields.',
   },
   notification_aria_label_for_alert: {
     fi: 'Varoitus',
