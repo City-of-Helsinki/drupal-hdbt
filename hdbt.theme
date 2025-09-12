@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
+use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
@@ -64,6 +65,15 @@ function _hdbt_get_theme_path(): string {
 }
 
 /**
+ * Implements hook_csp_policy_alter().
+ */
+function hdbt_csp_policy_alter(Csp $policy): void {
+  // Rules needed for Matomo analytics.
+  $policy->fallbackAwareAppendIfEnabled('connect-src', 'https://webanalytics.digiaiiris.com');
+  $policy->fallbackAwareAppendIfEnabled('script-src', 'https://webanalytics.digiaiiris.com');
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_html(&$variables): void {
@@ -99,18 +109,6 @@ function hdbt_preprocess_html(&$variables): void {
   }
   if ($add_matomo) {
     $variables['#attached']['library'][] = 'hdbt/matomo';
-
-    // Add CSP for Matomo.
-    if (\Drupal::service('module_handler')->moduleExists('csp')) {
-      $variables['#attached']['csp'] = [
-        'connect-src' => [
-          'https://webanalytics.digiaiiris.com',
-        ],
-        'script-src' => [
-          'https://webanalytics.digiaiiris.com',
-        ],
-      ];
-    }
   }
 
   // Toggle between global and local navigation libraries for CSS and JS.
