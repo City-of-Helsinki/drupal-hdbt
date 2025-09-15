@@ -28,6 +28,8 @@ import ClientHelpers from './client-helpers';
       let surveysToHide = null;
       let surveyFocusTrap = null;
 
+      // Check if there is helfi_no_survey cookie set. This check is for Siteimprove so that
+      // surveys are not set when the crawler is checking the site to avoid bug reports that are real issues.
       const siteimproveCrawler = ClientHelpers.isCookieSet('helfi_no_survey');
 
       try {
