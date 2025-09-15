@@ -1,6 +1,6 @@
 import AccordionItem from './accordion-item';
 import Translations from './translations';
-import State from './state';
+import ClientHelpers from '../client-helpers';
 
 export default class HelfiAccordion {
 
@@ -19,7 +19,7 @@ export default class HelfiAccordion {
     this.type = type;
 
     this.isSingleItemAccordion = false;
-    this.currentLanguage = State.getCurrentLanguage();
+    this.currentLanguage = ClientHelpers.getCurrentLanguage();
     this.accordion = accordion;
     this.localState = state;
     this.accordionItems = [];

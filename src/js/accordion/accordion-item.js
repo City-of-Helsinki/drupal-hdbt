@@ -20,7 +20,7 @@ export default class AccordionItem {
 
     // Use header id as this objects id since header id is unique.
     this._id = element.dataset.accordionId;
-    this._isOpen = this.localState.loadItemState(this._id);
+    this._isOpen = this.localState.loadAccordionItemState(this._id);
 
     // Do not animate accordions on page load so adding the noAnimation to true.
     this.setHidden(true);
@@ -34,7 +34,7 @@ export default class AccordionItem {
     this.setAriaOpen();
     this.setHidden();
     this.parentCallback();
-    this.localState.saveItemState(this.id, this.isOpen);
+    this.localState.saveAccordionItemState(this.id, this.isOpen);
   };
 
   close = () => {
@@ -43,7 +43,7 @@ export default class AccordionItem {
     this.changeFocus();
     this.setHidden();
     this.parentCallback();
-    this.localState.saveItemState(this.id, this.isOpen);
+    this.localState.saveAccordionItemState(this.id, this.isOpen);
   };
 
   closeWithoutFocus = () => {
@@ -51,7 +51,7 @@ export default class AccordionItem {
     this.setAriaOpen();
     this.setHidden();
     this.parentCallback();
-    this.localState.saveItemState(this.id, this.isOpen);
+    this.localState.saveAccordionItemState(this.id, this.isOpen);
   };
 
   toggle = (event) => {
