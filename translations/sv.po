@@ -1572,10 +1572,6 @@ msgctxt "News archive: keyword placeholder"
 msgid "For example, budget proposal"
 msgstr "T.ex. budgeten"
 
-msgctxt "Helsinki near you roadworks search"
-msgid "See all roadworks near you"
-msgstr "Se alla gatuarbeten nära dig"
-
 msgctxt "Roadworks search: card location label"
 msgid "Location"
 msgstr "Plats"
