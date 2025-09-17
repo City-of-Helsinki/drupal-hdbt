@@ -9,6 +9,7 @@ export const defaultSelectTheme = {
   '--menu-item-color-selected-hover': 'var(--color-white)',
   '--menu-item-icon-color-selected': 'var(--color-white)',
   '--text-color-focus-outline': 'var(--color-coat-of-arms)',
+  '--computed-assistive-color': 'var(--color-black-60)',
 } as const;
 
 export const defaultMultiSelectTheme = {
@@ -26,4 +27,5 @@ export const defaultMultiSelectTheme = {
   '--menu-item-color-selected': 'var(--hdbt-color-black)',
   '--menu-item-color-selected-hover': 'var(--hdbt-color-black)',
   '--text-color-focus-outline': 'var(--color-coat-of-arms)',
+  '--computed-assistive-color': 'var(--color-black-60)',
 } as const;

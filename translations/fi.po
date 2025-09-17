@@ -1355,6 +1355,10 @@ msgid "For example, Oodi"
 msgstr "Esim. Oodi"
 
 msgctxt "React search: all available options"
+msgid "Results are not shown from venues that are more than two kilometres from the address"
+msgstr "Tuloksia ei näytetä paikoista, jotka ovat yli kahden kilometrin etäisyydellä osoitteesta"
+
+msgctxt "React search: all available options"
 msgid "For example, Music"
 msgstr "Esim. Musiikki"
 
@@ -1515,8 +1519,8 @@ msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"
 
 msgctxt "Event search: target group label"
-msgid "Event target group"
-msgstr "Tapahtuman kohderyhmä"
+msgid "Target group"
+msgstr "Kohderyhmä"
 
 msgctxt "Event search: target group placeholder"
 msgid "All target groups"
