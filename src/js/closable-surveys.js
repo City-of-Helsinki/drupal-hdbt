@@ -1,17 +1,19 @@
 import LocalStorageManager from './localStorageManager';
+import ClientHelpers from './client-helpers';
 
 (Drupal => {
   Drupal.behaviors.closable_surveys = {
     attach: function attach() {
-      // Move the DOM element with id 'block-surveys' right after the skip-to-main link if it is present.
-      // If not move it as first element inside the body element.
+      // Move the DOM element with id 'block-surveys' right after the dialog-off-canvas-main-canvas if it is present.
+      // If not move it as last element inside the body element so that the header (h1, h2, etc.) structure will be
+      // correct.
       const blockSurveys = document.getElementById('block-surveys');
-      const skipToMainLink = document.getElementById('skip-to-main');
+      const offCanvas = document.getElementById('dialog-off-canvas-main-canvas');
       if (blockSurveys) {
-        if (skipToMainLink) {
-          skipToMainLink.parentNode.insertBefore(blockSurveys, skipToMainLink.nextSibling);
+        if (offCanvas) {
+          offCanvas.parentNode.insertBefore(blockSurveys, offCanvas.nextSibling);
         } else {
-          document.body.insertBefore(blockSurveys, document.body.firstChild);
+          document.body.insertBefore(blockSurveys, document.body.lastChild);
         }
       }
 
@@ -25,6 +27,10 @@ import LocalStorageManager from './localStorageManager';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveysToHide = null;
       let surveyFocusTrap = null;
+
+      // Check if there is helfi_no_survey cookie set. This check is for Siteimprove so that
+      // surveys are not set when the crawler is checking the site to avoid bug reports that are real issues.
+      const siteimproveCrawler = ClientHelpers.isCookieSet('helfi_no_survey');
 
       try {
         // @todo Use the storageManager instead.
@@ -142,8 +148,12 @@ import LocalStorageManager from './localStorageManager';
 
       document.body.addEventListener('keydown', handleEscapeKey);
 
-      // Set a timeout to show the survey after the defined delay.
-      setTimeout(showSurvey, surveyDelay);
+      // Make sure that its not Siteimprove Crawler viewing the site.
+      if (!siteimproveCrawler) {
+        // Set a timeout to show the survey after the defined delay.
+        setTimeout(showSurvey, surveyDelay);
+      }
+
     }
   };
 })(Drupal);
