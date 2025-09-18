@@ -1357,8 +1357,8 @@ msgid "For example, Oodi"
 msgstr "T.ex. Ode"
 
 msgctxt "React search: all available options"
-msgid "Results are not shown from venues that are more than two kilometres from the address"
-msgstr "Resultat visas inte från platser som ligger mer än två kilometer från adressen"
+msgid "Events are shown only from venues less than two kilometres from the address"
+msgstr "Evenemang visas endast från platser som ligger mindre än två kilometer från adressen"
 
 msgctxt "React search: all available options"
 msgid "For example, Music"
