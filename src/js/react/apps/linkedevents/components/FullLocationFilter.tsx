@@ -117,6 +117,7 @@ const FullLocationFilter = memo(() => {
           placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
           searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
           searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
+          assistive: Drupal.t('Events are shown only from venues less than two kilometres from the address', {}, { context: 'React search: all available options' }),
         }}
         theme={defaultSelectTheme}
         {...storage.getProps()}

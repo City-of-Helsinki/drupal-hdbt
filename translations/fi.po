@@ -1355,6 +1355,10 @@ msgid "For example, Oodi"
 msgstr "Esim. Oodi"
 
 msgctxt "React search: all available options"
+msgid "Events are shown only from venues less than two kilometres from the address"
+msgstr "Tapahtumia näytetään vain paikoista, jotka ovat alle kahden kilometrin päässä osoitteesta"
+
+msgctxt "React search: all available options"
 msgid "For example, Music"
 msgstr "Esim. Musiikki"
 
@@ -1515,8 +1519,8 @@ msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"
 
 msgctxt "Event search: target group label"
-msgid "Event target group"
-msgstr "Tapahtuman kohderyhmä"
+msgid "Target group"
+msgstr "Kohderyhmä"
 
 msgctxt "Event search: target group placeholder"
 msgid "All target groups"
@@ -1569,10 +1573,6 @@ msgstr "Ehdotuksien lataus valmis"
 msgctxt "News archive: keyword placeholder"
 msgid "For example, budget proposal"
 msgstr "Esim. talousarvio"
-
-msgctxt "Helsinki near you roadworks search"
-msgid "See all roadworks near you"
-msgstr "Katso kaikki katu- ja puistohankkeet lähelläsi"
 
 msgctxt "Roadworks search: card location label"
 msgid "Location"
