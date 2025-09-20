@@ -21,7 +21,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsdoc": "^54.0.0",
+    "eslint-plugin-jsdoc": "^59.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "glob": "^11.0.0",
     "md5": "^2.3.0",
