@@ -80,7 +80,7 @@ embedded-content-cookie-compliance:
     - core/drupalSettings
 
 global-styling:
-  version: 1.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/styles.min.css: {
