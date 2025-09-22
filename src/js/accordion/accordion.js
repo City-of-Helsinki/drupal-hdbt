@@ -1,10 +1,10 @@
 import HelfiAccordion from './helfi-accordion';
-import State from './state';
+import AccordionState from './accordion-state';
 import Events from './events';
 
 window.helfiAccordions = [];
 
-const state = new State();
+const state = new AccordionState();
 // eslint-disable-next-line no-unused-vars
 const events = new Events();
 const {hash} = window.location;
