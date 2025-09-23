@@ -14,6 +14,13 @@
         focusElement(titles[0]);
       }
 
+      // Don't move the focus on views based searchers first page load
+      // where the search hasn't been submitted yet. The actual check is
+      // done where the javascript is attached.
+      if (!drupalSettings.theme || !drupalSettings.theme.searchActive) {
+        return;
+      }
+
       // Focus to the result count element. This is usually used in
       // views based searches.
       const resultCountEl = context.querySelector('[class$="__count-container"]');
