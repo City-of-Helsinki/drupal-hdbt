@@ -18,6 +18,7 @@ import {
   languageAtom,
   eventTypeAtom,
   targetGroupsAtom,
+  loadableUrlAtom,
 } from '../store';
 import OptionType from '../types/OptionType';
 import ApiKeys from '../enum/ApiKeys';
@@ -26,11 +27,8 @@ import { EventTypeOption } from '../types/EventTypeOption';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 
-type SelectionsContainerProps = {
-  url: string | undefined;
-};
-
-const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
+const SelectionsContainer = () => {
+  const [urlData] = useAtom(loadableUrlAtom);
   const freeFilter = useAtomValue(freeFilterAtom);
   const remoteFilter = useAtomValue(remoteFilterAtom);
   const startDate = useAtomValue(startDateAtom);
@@ -43,63 +41,64 @@ const SelectionsContainer = ({ url }: SelectionsContainerProps) => {
   const resetForm = useSetAtom(resetFormAtom);
 
   const showClearButton =
-    locationSelection.length ||
-    topicsSelection.length ||
-    languageSelection.length ||
     eventTypeSelection.length ||
-    startDate ||
+    languageSelection.length ||
+    locationSelection.length ||
+    targetGroups.length ||
+    topicsSelection.length ||
     endDate ||
     freeFilter ||
-    remoteFilter;
+    remoteFilter ||
+    startDate;
 
-  if (!url) {
+  if (!urlData.data) {
     return null;
   }
 
   return (
-    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={url}>
+    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={urlData.data}>
       <ListFilterPills
         updater={setTopicsSelection}
         valueKey={ApiKeys.KEYWORDS}
         values={topicsSelection}
-        url={url}
+        url={urlData.data}
       />
       <TargetGroupPills
         targetGroups={targetGroups}
-        url={url}
+        url={urlData.data}
       />
       <ListFilterPills
         updater={setLocationSelection}
         valueKey={ApiKeys.LOCATION}
         values={locationSelection}
-        url={url}
+        url={urlData.data}
       />
       <ListFilterPills
         updater={setLanguageSelection}
         valueKey={ApiKeys.LANGUAGE}
         values={languageSelection}
-        url={url}
+        url={urlData.data}
       />
       <DateFilterPill
         startDate={startDate}
         endDate={endDate}
-        url={url}
+        url={urlData.data}
       />
       <CheckboxFilterPill
         label={Drupal.t('Remote events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.REMOTE}
         atom={remoteFilterAtom}
-        url={url}
+        url={urlData.data}
         value={remoteFilter}
       />
       <CheckboxFilterPill
         label={Drupal.t('Free-of-charge events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.FREE}
         atom={freeFilterAtom}
-        url={url}
+        url={urlData.data}
         value={freeFilter}
       />
-      <TypeFilterPills {...{eventTypeSelection, url}}/>
+      <TypeFilterPills {...{eventTypeSelection}} url={urlData.data}/>
     </FilterBulletsWrapper>
   );
 };
