@@ -69,9 +69,7 @@ function Collapsible({
         aria-haspopup='dialog'
         onClick={() => setActive(!isActive)}
       >
-        <span id={`${id}-title`} className='collapsible__title'>
-          { titleElement }
-        </span>
+        { titleElement }
         {getHandle()}
       </button>
       {isActive &&
