@@ -163,3 +163,19 @@
   --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
   --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
 }
+
+.hdbt-theme--fog {
+  --hdbt-color-palette--primary: rgb(159, 201, 235);
+  --hdbt-color-palette--secondary: rgb(255, 249, 219);
+  --hdbt-color-palette--accent: rgb(253, 79, 0);
+
+  --hdbt-color-palette-text--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-text--accent: #{$hdbt-color-black};
+
+  --hdbt-color-palette-button--primary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--primary: #{$hdbt-color-white};
+
+  --hdbt-color-palette-button--secondary: #{$hdbt-color-black};
+  --hdbt-color-palette-button-contrast--secondary: #{$hdbt-color-white};
+}
