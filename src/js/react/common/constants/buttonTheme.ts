@@ -2,8 +2,8 @@ import type { Properties } from 'csstype';
 
 type CSSWithVars = Properties<string | number> & Record<string, string>;
 
-export const primaryButtonStyle: CSSWithVars = {
-  '--background-color': 'var(--theme-bg1, var(--color-bus))',
+export const primaryButtonTheme: CSSWithVars = {
+  '--background-color': 'var(--color-black-90)',
   '--background-color-hover': 'var(--theme-bg2, var(--color-bus-dark))',
   '--background-color-focus': 'var(--theme-bg1, var(--color-bus))',
   '--background-color-hover-focus': 'var(--theme-bg2, var(--color-bus-dark))',
@@ -18,25 +18,25 @@ export const primaryButtonStyle: CSSWithVars = {
   '--color-focus': 'var(--theme-fg1, var(--color-white))',
   '--color-hover-focus': 'var(--theme-fg2, var(--color-white))',
   '--color-disabled': 'var(--color-white)',
-  '--focus-outline-color': 'var(--theme-focus, var(--color-coat-of-arms))',
+  '--outline-color-focus': 'var(--color-black-90)',
   '--submit-input-focus-gutter-color': 'var(--theme-focus-gutter-color, var(--color-white))',
 };
 
-export const secondaryButtonStyle: CSSWithVars = {
+export const secondaryButtonTheme: CSSWithVars = {
   '--background-color': 'transparent',
-  '--background-color-hover': 'var(--hdbt-color-palette-button--secondary)',
+  '--background-color-hover': 'var(--color-black-90)',
   '--background-color-focus': 'transparent',
-  '--background-color-hover-focus': 'var(--hdbt-color-palette-button--secondary)',
+  '--background-color-hover-focus': 'var(--color-black-90)',
   '--background-color-disabled': 'transparent',
-  '--border-color': 'var(--hdbt-color-palette-button--secondary)',
-  '--border-color-hover': 'var(--hdbt-color-palette-button--secondary)',
-  '--border-color-focus': 'var(--hdbt-color-palette-button--secondary)',
-  '--border-color-hover-focus': 'var(--hdbt-color-palette-button--secondary)',
-  '--border-color-disabled': 'var(--hdbt-color-palette-button--secondary)',
-  '--color': 'var(--hdbt-color-palette-button--secondary)',
-  '--color-hover': 'var(--hdbt-color-palette-button-contrast--secondary)',
-  '--color-focus': 'var(--hdbt-color-palette-button--secondary)',
-  '--color-hover-focus': 'var(--hdbt-color-palette-button-contrast--secondary)',
-  '--focus-outline-color': 'var(--hdbt-color-palette-button--secondary)',
+  '--border-color': 'var(--color-black-90)',
+  '--border-color-hover': 'var(--color-black-90)',
+  '--border-color-focus': 'var(--color-black-90)',
+  '--border-color-hover-focus': 'var(--color-black-90)',
+  '--border-color-disabled': 'var(--color-black-90)',
+  '--color': 'var(--color-black-90)',
+  '--color-hover': 'var(--color-white)',
+  '--color-focus': 'var(--color-black-90)',
+  '--color-hover-focus': 'var(--color-black-90)',
+  '--outline-color-focus': 'var(--color-black-90)',
 };
 
