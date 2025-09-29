@@ -39,4 +39,3 @@ export const secondaryButtonTheme: CSSWithVars = {
   '--color-hover-focus': 'var(--color-black-90)',
   '--outline-color-focus': 'var(--color-black-90)',
 };
-
