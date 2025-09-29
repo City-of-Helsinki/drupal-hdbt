@@ -9,7 +9,6 @@ import CheckboxFilter from '../components/CheckboxFilter';
 import SelectionsContainer from './SelectionsContainer';
 import {
   settingsAtom,
-  urlAtom,
   titleAtom,
   freeFilterAtom,
   remoteFilterAtom,
@@ -31,7 +30,6 @@ function FormContainer() {
   const filterSettings = useAtomValue(settingsAtom);
   const eventListTitle = useAtomValue(titleAtom);
   const errors = useAtomValue(formErrorsAtom);
-  const url = useAtomValue(urlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const {
     eventListType,
@@ -178,7 +176,7 @@ function FormContainer() {
           </div>
         }
         <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
-        <SelectionsContainer url={url} />
+        <SelectionsContainer />
       </div>
     </form>
   );

@@ -1,17 +1,18 @@
 import { Checkbox, DateInput } from 'hds-react';
-import { useEffect, useState, CSSProperties } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 
 import Collapsible from './Collapsible';
 import getDateString from './helpers/GetDateString';
 import { HDS_DATE_FORMAT } from './enum/HDSDateFormat';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultDatePickerStyle } from '@/react/common/constants/datePickerStyle';
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, {context: 'React search: date range select'});
 const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
 // End date must be after start date. But only if both are defined.
-const isOutOfRange = ({ endDate, startDate }: DateSelectDateTimes): boolean => !!(startDate && endDate && startDate.startOf('day') >= endDate.startOf('day'));
+const isOutOfRange = ({ endDate, startDate }: DateSelectDateTimes): boolean => !!(startDate && endDate && startDate.startOf('day') >= endDate.endOf('day'));
 
 type DateSelectDateTimes = {
   startDate: DateTime | undefined;
@@ -21,15 +22,12 @@ type DateSelectDateTimes = {
 // Date must be in within the next 1000 years or so....
 // This also validates that the string is not too long even though it might be valid.
 const INVALID_DATE = (dt: DateTime | undefined): boolean => {
-
   if (!dt) {
     return false;
   }
-
   if (dt.year > 9999) {
     return true;
   }
-
   return !dt.isValid;
 };
 
@@ -138,7 +136,7 @@ export const DateRangeSelect = ({
     } else {
       if (isOutOfRange({ startDate: start, endDate: end }) && start) {
         console.warn('Selected end date is out of range, setting end date to next day after start date.');
-        setEnd(start.plus({ 'days': 1 }).toFormat(HDS_DATE_FORMAT));
+        setEnd(start.toFormat(HDS_DATE_FORMAT));
       } else {
         setEnd(end.toFormat(HDS_DATE_FORMAT));
       }
@@ -148,7 +146,12 @@ export const DateRangeSelect = ({
 
   return (
     <div className='hdbt-search__filter hdbt-search--react__dropdown'>
-      <Collapsible {...{id, label, dialogLabel}} helper={helperText} title={collapsibleTitle} >
+      <Collapsible
+        {...{id, label, dialogLabel}}
+        isPlaceholder={!startDate && !endDate}
+        helper={helperText}
+        title={collapsibleTitle}
+      >
         <div className='event-form__date-container'>
           <DateInput
             className='hdbt-search__filter hdbt-search__date-input'
@@ -160,9 +163,7 @@ export const DateRangeSelect = ({
             language={language}
             onChange={onStartChange}
             value={startDate}
-            style={{
-              '--color-focus-outline': 'var(--color-coat-of-arms)',
-            } as CSSProperties }
+            style={defaultDatePickerStyle}
           />
           <Checkbox
             checked={endDisabled}
@@ -182,9 +183,7 @@ export const DateRangeSelect = ({
               language={language}
               onChange={onEndChange}
               value={endDate}
-              style={{
-                '--color-focus-outline': 'var(--color-coat-of-arms)',
-              } as CSSProperties }
+              style={defaultDatePickerStyle}
             />
           }
         </div>

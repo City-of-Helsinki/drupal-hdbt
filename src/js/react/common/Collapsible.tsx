@@ -7,15 +7,27 @@ type Props = {
   active?: boolean;
   ariaControls?: string;
   children: React.ReactElement;
+  dialogLabel?: string;
   helper?: string;
   id: string;
+  isPlaceholder?: boolean;
   label: string;
-  dialogLabel?: string;
   showHandle?: boolean;
   title: string | React.ReactNode;
 };
 
-function Collapsible({ active, ariaControls, dialogLabel, helper, id, label, title, children, showHandle }: Props) {
+function Collapsible({
+  active,
+  ariaControls,
+  children,
+  dialogLabel,
+  helper,
+  id,
+  isPlaceholder,
+  label,
+  showHandle,
+  title,
+}: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
   const helperIds = [
@@ -35,6 +47,15 @@ function Collapsible({ active, ariaControls, dialogLabel, helper, id, label, tit
     setActive(false);
   });
 
+  const titleElement = React.createElement(
+    'span',
+    {
+      id: `${id}-title`,
+      className: `collapsible__title${isPlaceholder ? ' collapsible__title--placeholder' : ''}`,
+    },
+    title
+  );
+
   return (
     <div className='collapsible-wrapper' ref={ref}>
       <label className='collapsible__label' htmlFor={id}>{label}</label>
@@ -48,9 +69,7 @@ function Collapsible({ active, ariaControls, dialogLabel, helper, id, label, tit
         aria-haspopup='dialog'
         onClick={() => setActive(!isActive)}
       >
-        <span id={`${id}-title`} className='collapsible__title'>
-          { title }
-        </span>
+        { titleElement }
         {getHandle()}
       </button>
       {isActive &&

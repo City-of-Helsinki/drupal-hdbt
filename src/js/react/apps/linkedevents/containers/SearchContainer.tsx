@@ -1,14 +1,13 @@
 import useSWR from 'swr';
-import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import { useEffect, useState } from 'react';
 import ResultsContainer from './ResultsContainer';
 import FormContainer from './FormContainer';
 import type Event from '../types/Event';
-import { initialUrlAtom, urlAtom, initialParamsAtom, paramsAtom, useFixturesAtom, settingsAtom, addressAtom, updateUrlAtom } from '../store';
+import { useFixturesAtom, settingsAtom, loadableUrlAtom, updateUrlAtom } from '../store';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import ApiKeys from '../enum/ApiKeys';
-import useInitialParams from '@/react/common/hooks/useInitialParams';
 
 type ResponseType = {
   data: Event[];
@@ -29,25 +28,16 @@ const SWR_REFRESH_OPTIONS = {
 };
 
 const SearchContainer = () => {
-  const settings = useAtomValue(settingsAtom);
-  const initialUrl = useAtomValue(initialUrlAtom);
-  const initialParams = useAtomValue(initialParamsAtom);
-  const [params, setParams] = useAtom(paramsAtom);
-  const url = useAtomValue(urlAtom) || initialUrl;
-  const updateUrl = useSetAtom(updateUrlAtom);
-  const updateAddress = useSetAtom(addressAtom);
   const [retriesExhausted, setRetriesExhausted] = useState(false);
+  const settings = useAtomValue(settingsAtom);
+  const [urlData] = useAtom(loadableUrlAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
-  const queryStringParams = useInitialParams({
-    address: '',
-  });
+
+  const updateUrl = useSetAtom(updateUrlAtom);
 
   useEffect(() => {
-    if (
-      queryStringParams?.address &&
-      queryStringParams?.address !== ''
-    ) {
-      updateAddress(queryStringParams.address);
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('address')) {
       updateUrl();
     }
   }, []);
@@ -60,10 +50,6 @@ const SearchContainer = () => {
         <ResultsContainer countNumber={fixtureData?.meta.count || 0} loading={false} events={fixtureData?.data || []} />
       </>
     );
-  }
-
-  if (!params.toString()) {
-    setParams(new URLSearchParams(initialParams.toString()));
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
@@ -80,15 +66,16 @@ const SearchContainer = () => {
     throw new Error('Failed to get data from the API');
   };
 
-  const shouldFetch = !settings.useLocationSearch || url.includes(ApiKeys.COORDINATES);
-  const { data, error, isLoading } = useSWR(shouldFetch ? url : null, getEvents, {
+  
+  const shouldFetch = urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
+  const { data, error, isLoading } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
     ...SWR_REFRESH_OPTIONS,
     onErrorRetry(err, key, config, revalidate, revalidateOpts) {
       if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
         setRetriesExhausted(true);
         return;
       }
-
+      
       revalidate({
         ...revalidateOpts
       });
@@ -104,7 +91,7 @@ const SearchContainer = () => {
         countNumber={data?.meta.count || 0}
         error={error}
         events={data?.data || []}
-        loading={isLoading}
+        loading={urlData.loading || isLoading}
         retriesExhausted={retriesExhausted}
       />
     </>
