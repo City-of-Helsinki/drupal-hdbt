@@ -241,6 +241,11 @@ function getConfig(hostname, protocol, type) {
           'url': `${protocol}://${hostname}/en/dc-colors/dc-metro`,
           'removeSelectors': removeDefault
         },
+        {
+          'label': 'DC: Fog',
+          'url': `${protocol}://${hostname}/en/dc-colors/dc-fog`,
+          'removeSelectors': removeDefault
+        },
 
         // Components
         {
