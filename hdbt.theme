@@ -1608,6 +1608,12 @@ function hdbt_theme_suggestions_container_alter(array &$suggestions, array $vari
  */
 function hdbt_preprocess_views_exposed_form(array &$variables) {
   $variables['#attached']['library'][] = 'hdbt/search-helper';
+
+  // Check that a query has been made so that the focus doesn't move
+  // on the initial page load.
+  if (!empty(\Drupal::request()->query->all())) {
+    $variables['#attached']['drupalSettings']['theme']['searchActive'] = TRUE;
+  }
 }
 
 /**

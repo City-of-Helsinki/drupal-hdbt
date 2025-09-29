@@ -1,38 +1,38 @@
 # [UHF-0000](https://helsinkisolutionoffice.atlassian.net/browse/UHF-0000)
-<!-- What problem does this solve? -->
 
 ## What was done
-<!-- Describe what was done -->
-
-* This thing was fixed
+<!-- Describe what was done, f.e. fixed bug in accordion javascript. -->
+* 
 
 ## How to install
-
-* Make sure your instance is up and running on latest dev branch.
-  * `git pull origin dev`
+<!-- Describe steps how to install the features. Default steps are provided. -->
+* Make sure your instance is up and running on latest dev-branch
+  * `git checkout dev && git pull origin dev`
   * `make fresh`
 * Update the HDBT theme
   * `composer require drupal/hdbt:dev-UHF-0000_insert_correct_branch`
-* Run `make drush-cr`
+* Run code updates
+  * `make drush-locale-update drush-cr`
 
 ## How to test
-<!-- Describe steps how to test the features, add as many steps as you want to be tested -->
+<!-- Describe steps how to test the features. Add as many steps as you want to be tested -->
+* [ ] 
+* [ ] Check that the code follows our standards
+* [ ] Check that the differences in visual regression tests are appropriate
 
-* [ ] Check that this feature works
-* [ ] Check that code follows our standards
+<!-- 
+Check list for the developer
 
-## Continuous documentation
-<!-- One of the checkboxes below needs to be checked like this: `[x]` (or click when not in edit mode) -->
+Privacy  
+- Do the changes you made have an impact on privacy? If you are unsure, please check the checklist at: https://helsinkisolutionoffice.atlassian.net/wiki/spaces/HEL/pages/9930473479/Tietosuojan+tarkistuslista+kehitt+jille
 
-* [ ] This feature has been documented/the documentation has been updated
-* [ ] This change doesn't require updates to the documentation
+Documentation
+- Check the documentation exists and is up to date. Add link if the documentation is not included in the PR.
 
-## Translations
-<!-- The checkbox below needs to be checked like this: `[x]` (or click when not in edit mode). Not needed if the translations were not affected. -->
+Translations
+- Make sure all necessary translations have been added.
+-->
 
-* [ ] Translations have been added to .po -files and included in this PR
-
-## Other PRs
-<!-- For example an related PR in another repository -->
-
-* Link to other PR
+## Links to related PRs
+<!-- F.e. a related PR in another repository -->
+* 

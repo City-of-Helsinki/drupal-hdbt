@@ -8,7 +8,7 @@
 // they should have padding that keeps them from touching side.
 .components--lower > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey),
 .page-type--landing-page.no-sidebar .components--upper > .component:not(.component--liftup-with-image-bg, .component--content-cards-grey),
-.components--computed > .component {
+.components--computed > .component:not(.component--no-side-padding) {
   @include component-side-padding;
 }
 
