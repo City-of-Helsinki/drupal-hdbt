@@ -1,5 +1,5 @@
 import { Checkbox, DateInput } from 'hds-react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 
 import Collapsible from './Collapsible';
@@ -37,11 +37,13 @@ export const DateRangeSelect = ({
   endDateHelperText = dateHelperText,
   endDateId = 'end-date',
   endDateLabel = Drupal.t('Last day of the time period', {}, {context: 'React search: date range select'}),
+  endDisabled,
   helperText = Drupal.t('Select a time period for the event', {}, {context: 'React search: date range select'}),
   id,
   label,
   language = 'fi',
   setEnd,
+  setEndDisabled,
   setStart,
   startDate,
   startDateHelperText = dateHelperText,
@@ -54,11 +56,13 @@ export const DateRangeSelect = ({
   endDateHelperText?: string,
   endDateId?: string,
   endDateLabel?: string,
+  endDisabled?: boolean,
   helperText?: string,
   id: string,
   label: string,
   language?: 'fi' | 'en' | 'sv',
   setEnd: (d?: string) => void,
+  setEndDisabled: (disabled: boolean) => void,
   setStart: (d?: string) => void,
   startDate?: string,
   startDateHelperText?: string,
@@ -66,14 +70,7 @@ export const DateRangeSelect = ({
   startDateLabel?: string,
   title: string,
 }) => {
-  const [endDisabled, setEndDisabled] = useState<boolean>(false);
   const [errors, setErrors] = useState<{start?: string, end?: string}>({});
-
-  useEffect(() => {
-    if (endDisabled && endDate) {
-      setEnd(undefined);
-    }
-  }, [endDate, endDisabled]);
 
   const collapsibleTitleText = getDateString({
     endDate: endDate ? DateTime.fromFormat(endDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
