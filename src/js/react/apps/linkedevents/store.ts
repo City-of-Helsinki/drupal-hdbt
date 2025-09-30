@@ -189,20 +189,68 @@ export const topicSelectionAtom = atom<Topic[]>([]);
 
 export const startDateAtom = atom<DateTime|undefined>(undefined);
 export const endDateAtom = atom<DateTime|undefined>(undefined);
-export const updateDateAtom = atom(null, (get, set, date: DateTime|undefined, key: string) => {
-  const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
+export const endDisabledAtom = atom<boolean>(false);
 
-  const getIsoTime = () => {
-    if (!date) {
-      return undefined;
+const getIsoTime = (date: DateTime, key: string) => {
+  if (!date) {
+    return undefined;
+  }
+  return key === 'start' ? date.startOf('day').toISO() : date.endOf('day').toISO();
+};
+
+const getDateParams = (dates: {
+  start?: DateTime
+  end?: DateTime
+}) => {
+  const dateParams = {};
+
+  ['end', 'start'].forEach(key => {
+    if (dates[key]) {
+      dateParams[key] = getIsoTime(dates[key], key);
     }
-    return key === 'start' ? date.startOf('day').toISO() : date.endOf('day').toISO();
+    else {
+      dateParams[key] = undefined;
+    }
+  });
+
+  return dateParams;
+};
+
+export const setEndDisabledAtom = atom(null, (get, set, disabled: boolean) => {
+  const start = get(startDateAtom);
+  const end = get(endDateAtom);
+
+  const dates = {
+    start,
   };
 
+  if (disabled) {
+    dates.end = start;
+  }
+  else {
+    dates.end = end;
+  }
+
+  const dateParams = getDateParams(dates);
+
+  set(updateParamsAtom, dateParams);
+  set(endDisabledAtom, disabled);
+});
+export const updateDateAtom = atom(null, (get, set, date: DateTime|undefined, key: string) => {
+  const endDisabled = get(endDisabledAtom);
+  const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
+  const dates = {
+    [key]: date,
+  };
+
+  if (key === 'start' && endDisabled) {
+    dates.end = date;
+  }
+
+  const dateParams = getDateParams(dates);
+
   set(dateAtom, date);
-  set(updateParamsAtom, {
-    [key]: getIsoTime(),
-  });
+  set(updateParamsAtom, dateParams);
 });
 
 export const formErrorsAtom = atom<FormErrors>({
