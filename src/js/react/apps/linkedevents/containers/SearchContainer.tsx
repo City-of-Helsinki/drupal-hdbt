@@ -68,7 +68,7 @@ const SearchContainer = () => {
 
   
   const shouldFetch = urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
-  const { data, error, isLoading } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
+  const { data, error, isLoading, isValidating  } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
     ...SWR_REFRESH_OPTIONS,
     onErrorRetry(err, key, config, revalidate, revalidateOpts) {
       if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
@@ -92,6 +92,7 @@ const SearchContainer = () => {
         error={error}
         events={data?.data || []}
         loading={urlData.loading || isLoading}
+        validating={isValidating}
         retriesExhausted={retriesExhausted}
       />
     </>

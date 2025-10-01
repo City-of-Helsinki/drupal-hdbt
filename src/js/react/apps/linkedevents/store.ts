@@ -363,3 +363,5 @@ export const languageAtom = atom<OptionType[]>([]);
 export const eventTypeAtom = atom<EventTypeOption[]>([]);
 
 export const targetGroupsAtom = atom<OptionType[]>([]);
+
+export const initializedAtom = atom<boolean>(false);
