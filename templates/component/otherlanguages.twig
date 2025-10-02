@@ -48,7 +48,7 @@
   {% else %}
     {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
       id: dropdown_id,
-      modifier_class: 'nav-toggle-dropdown--otherlangs',
+      modifier_class: 'nav-toggle-dropdown--otherlangs js-otherlangs-dropdown',
       description: 'Information in other languages menu'|t({}, {'context': 'Other languages-navigation'}),
     } %}
       {% block content %}
