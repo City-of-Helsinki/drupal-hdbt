@@ -59,6 +59,21 @@ import MenuDropdown from './nav-global/menu';
 
       const keys = Object.keys(AllElements);
 
+      // Checks if an element has scrollable overflow in either direction.
+      const closeOnFocusOut = (wrapper, dropdownClose) => {
+        // Clear any old focusout handlers.
+        wrapper.onfocusout = null;
+        // Close dropdown on focusout.
+        wrapper.addEventListener('focusout', () => {
+          setTimeout(() => {
+            const active = document.activeElement;
+            if (!wrapper.contains(active)) {
+              dropdownClose();
+            }
+          }, 10);
+        });
+      };
+
       keys.forEach((key) => {
         const name = AllElements[key];
         AllElements[key] = NavToggleDropdown();
@@ -86,24 +101,18 @@ import MenuDropdown from './nav-global/menu';
               window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
             }
 
+            const dropdownInstance = AllElements[key];
+            let menuWrapper = dropdownInstance?.dropdownInstance;
+
+            // Language toast dropdown is inside language link wrapper.
             if (key.startsWith('LanguageToast')) {
-              const dropdownInstance = AllElements[key];
-              const languageLinkWrapper = dropdownInstance?.dropdownInstance?.parentElement;
-
-              if (languageLinkWrapper) {
-                // Remove previous listener to avoid duplicates.
-                languageLinkWrapper.onfocusout = null;
-
-                languageLinkWrapper.addEventListener('focusout', () => {
-                  setTimeout(() => {
-                    const active = document.activeElement;
-                    if (!languageLinkWrapper.contains(active)) {
-                      dropdownInstance.simpleClose();
-                    }
-                  }, 10);
-                });
-              }
+              menuWrapper = dropdownInstance?.dropdownInstance?.parentElement;
             }
+
+            if (menuWrapper) {
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose());
+            }
+
           },
           targetSelector: `#${name}`,
         });
@@ -116,6 +125,10 @@ import MenuDropdown from './nav-global/menu';
             keys.forEach((key) => {
               AllElements[key].close();
             });
+            const wrapper = document.getElementById('nav-toggle-dropdown--menu');
+            if (wrapper) {
+              closeOnFocusOut(wrapper, () => globalMenu.close());
+            }
             close();
           },
           onClose: open
