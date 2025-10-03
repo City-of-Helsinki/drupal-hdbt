@@ -2,6 +2,12 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+msgid "Accessibility information"
+msgstr "Esteettömyystiedot"
+
+msgid "All accessibility information for the service location"
+msgstr "Kaikki toimipisteen esteettömyystiedot"
+
 msgctxt "Cookie compliance"
 msgid "Change cookie settings"
 msgstr "Muokkaa evästeasetuksia"
