@@ -241,6 +241,13 @@
               {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--paragraph-text' ] } %}
                 {% block component_content %}
                   {{ content.accessibility_sentences }}
+                  {% if
+                    content.accessibility_www|render and
+                    content.accessibility_www[0]['#url'] is defined and
+                    content.accessibility_www[0]['#url'] is not empty
+                  %}
+                    {{ link('All accessibility information for the service location'|t(), content.accessibility_www[0]['#url']) }}
+                  {% endif %}
                 {% endblock component_content %}
               {% endembed %}
 
