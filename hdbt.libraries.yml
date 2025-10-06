@@ -16,7 +16,7 @@ accordion:
       minified: true
     }
   dependencies:
-    - helfi_platform_config/header_id_injector
+    - helfi_platform_config/heading_id_injector
 
 helfi_calculator:
   version: 1.0.0

@@ -1,6 +1,6 @@
 $-icon-size: calc($spacing-and-half - $spacing-quarter);
 
-.header-anchor-button {
+.heading-anchor-button {
   background: transparent;
   border: none;
   margin-block: 0;
@@ -17,8 +17,8 @@ $-icon-size: calc($spacing-and-half - $spacing-quarter);
   }
 }
 
-.js-header-with-anchor:hover .header-anchor-button,
-.header-anchor-button:focus {
+.js-heading-with-anchor:hover .heading-anchor-button,
+.heading-anchor-button:focus {
   display: inline-flex;
   vertical-align: middle;
 
@@ -27,7 +27,7 @@ $-icon-size: calc($spacing-and-half - $spacing-quarter);
   }
 }
 
-.header-anchor-button:focus.header-anchor-button--success {
+.heading-anchor-button:focus.heading-anchor-button--success {
   outline-color: $color-success;
 
   &::after {
@@ -35,7 +35,7 @@ $-icon-size: calc($spacing-and-half - $spacing-quarter);
   }
 }
 
-.header-anchor-button:focus.header-anchor-button--error {
+.heading-anchor-button:focus.heading-anchor-button--error {
   outline-color: $color-error;
 
   &::after {
@@ -44,8 +44,8 @@ $-icon-size: calc($spacing-and-half - $spacing-quarter);
 }
 
 // White coloring for titles on dark background colors.
-.js-header-with-anchor:hover .header-anchor-button.header-anchor-button--white,
-.header-anchor-button:focus.header-anchor-button--white {
+.js-heading-with-anchor:hover .heading-anchor-button.heading-anchor-button--white,
+.heading-anchor-button:focus.heading-anchor-button--white {
   outline-color: $color-white;
 
   &::after {
