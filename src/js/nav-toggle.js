@@ -51,9 +51,9 @@ import MenuDropdown from './nav-global/menu';
         element.scrollWidth > element.clientWidth ||
         element.scrollHeight > element.clientHeight;
 
-      // Needs to be 768px as after that breakpoint user can scroll header
+      // Needs to be 992px as after that breakpoint user can scroll header
       // almost offscreen, open menu accidentally and not be able to scroll back up.
-      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
       const AllElements = brandingElements;
 
@@ -61,17 +61,27 @@ import MenuDropdown from './nav-global/menu';
 
       // Checks if an element has scrollable overflow in either direction.
       const closeOnFocusOut = (wrapper, dropdownClose) => {
-        // Clear any old focusout handlers.
-        wrapper.onfocusout = null;
-        // Close dropdown on focusout.
-        wrapper.addEventListener('focusout', () => {
+        const handler = () => {
           setTimeout(() => {
             const active = document.activeElement;
             if (!wrapper.contains(active)) {
               dropdownClose();
             }
           }, 10);
-        });
+        };
+
+        const attachHandler = () => {
+          wrapper.removeEventListener('focusout', handler);
+
+          if (!isMobile()) {
+            wrapper.addEventListener('focusout', handler);
+          }
+        };
+
+        attachHandler();
+
+        // Keep it in sync on resize
+        window.addEventListener('resize', attachHandler);
       };
 
       keys.forEach((key) => {
