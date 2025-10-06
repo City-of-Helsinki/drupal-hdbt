@@ -60,7 +60,7 @@ import MenuDropdown from './nav-global/menu';
       const keys = Object.keys(AllElements);
 
       // Checks if an element has scrollable overflow in either direction.
-      const closeOnFocusOut = (wrapper, dropdownClose) => {
+      const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
         const handler = () => {
           setTimeout(() => {
             const active = document.activeElement;
@@ -73,7 +73,7 @@ import MenuDropdown from './nav-global/menu';
         const attachHandler = () => {
           wrapper.removeEventListener('focusout', handler);
 
-          if (!isMobile()) {
+          if (!isMobile() || instance?.startsWith('LanguageToast')) {
             wrapper.addEventListener('focusout', handler);
           }
         };
@@ -120,7 +120,7 @@ import MenuDropdown from './nav-global/menu';
             }
 
             if (menuWrapper) {
-              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose());
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
             }
 
           },
