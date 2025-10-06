@@ -59,7 +59,7 @@ import MenuDropdown from './nav-global/menu';
 
       const keys = Object.keys(AllElements);
 
-      // Checks if an element has scrollable overflow in either direction.
+      // Function to close dropdown when focus moves outside of it.
       const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
         const handler = () => {
           setTimeout(() => {
@@ -80,7 +80,6 @@ import MenuDropdown from './nav-global/menu';
 
         attachHandler();
 
-        // Keep it in sync on resize
         window.addEventListener('resize', attachHandler);
       };
 
