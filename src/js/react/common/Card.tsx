@@ -6,9 +6,16 @@ import Tags from './Tags';
 import Icon from './Icon';
 import ExternalLink from '@/react/common/ExternalLink';
 
-const Metarow = ({ icon, label, content, langAttribute } : MetadataType) => (
+export const Metarow = ({
+  icon,
+  label,
+  content,
+  langAttribute
+}: MetadataType) => (
   <div className="card__meta">
-    <span className="card__meta__icon"><Icon icon={icon} /></span>
+    <span className="card__meta__icon">
+      {typeof icon === 'string' ? <Icon icon={icon} /> : icon}
+    </span>
     <span className="card__meta__label">{label}: </span>
     <span className="card__meta__content" {...langAttribute}>{content}</span>
   </div>
@@ -27,6 +34,10 @@ export type CardItemProps = {
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
   cardUrl: string;
   cardUrlExternal?: boolean;
+  customMetaRows?: {
+    bottom?: JSX.Element[];
+    top?: JSX.Element[];
+  };
   date?: string;
   dateLabel?: string;
   daterange?: string | JSX.Element;
@@ -59,7 +70,8 @@ function CardItem({
   cardTitle,
   cardTitleLevel,
   cardUrl,
-  cardUrlExternal=false,
+  cardUrlExternal = false,
+  customMetaRows,
   date,
   dateLabel,
   daterange,
@@ -129,6 +141,9 @@ function CardItem({
         }
 
         <div className="card__metas">
+          {customMetaRows?.top && customMetaRows.top.length > 0 &&
+            customMetaRows.top
+          }
           {location &&
             <Metarow icon="location" label={locationLabel || Drupal.t('Location', {}, { context: 'React search'})} content={location} />
           }
@@ -167,6 +182,12 @@ function CardItem({
         {cardTags && cardTags.length > 0 &&
           <div className="card__tags">
             <Tags tags={cardTags} langAttribute={langAttribute} insideCard />
+          </div>
+        }
+
+        {customMetaRows?.bottom && customMetaRows.bottom.length > 0 &&
+          <div className="card__metas card__metas--bottom">
+            {customMetaRows.bottom}
           </div>
         }
       </div>
