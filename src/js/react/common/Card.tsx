@@ -177,17 +177,12 @@ function CardItem({
           {registrationRequired &&
             <Metarow icon="info-circle" label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })} content={Drupal.t('The event requires registration or a ticket.', {}, { context: 'Event additional information value' })} />
           }
+          {customMetaRows?.bottom && customMetaRows.bottom.length > 0 && customMetaRows.bottom}
         </div>
 
         {cardTags && cardTags.length > 0 &&
           <div className="card__tags">
             <Tags tags={cardTags} langAttribute={langAttribute} insideCard />
-          </div>
-        }
-
-        {customMetaRows?.bottom && customMetaRows.bottom.length > 0 &&
-          <div className="card__metas card__metas--bottom">
-            {customMetaRows.bottom}
           </div>
         }
       </div>
