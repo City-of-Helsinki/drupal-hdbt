@@ -1,64 +1,48 @@
-import { useEffect } from 'react';
 import { DateTime } from 'luxon';
-import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
-import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
 import {
   startDateAtom,
   endDateAtom,
-  endDisabledAtom,
   formErrorsAtom,
-  resetParamAtom,
-  updateParamsAtom,
+  updateDateAtom,
+  endDisabledAtom,
+  setEndDisabledAtom,
 } from '../store';
 import { DateRangeSelect } from '@/react/common/DateRangeSelect';
 
 function DateSelect() {
-  const endDisabled = useAtomValue(endDisabledAtom);
-  const [startDate, setStartDate] = useAtom(startDateAtom);
-  const [endDate, setEndDate] = useAtom(endDateAtom);
+  const startDate = useAtomValue(startDateAtom);
+  const endDate = useAtomValue(endDateAtom);
+  const updateDate = useSetAtom(updateDateAtom);
   const [errors, setErrors] = useAtom(formErrorsAtom);
-  const resetParam = useSetAtom(resetParamAtom);
-  const updateParams = useSetAtom(updateParamsAtom);
-;
-  useEffect(() => {
-    const setDate = (key: string, date: DateTime | undefined) => {
-      if (!date || !date.isValid) {
-        resetParam(key);
-        return;
-      }
-      if (date.isValid) {
-        updateParams({ [key]: date.toISODate() });
-      } else {
-        console.warn('invalid date given to setDate', { date });
-      }
-    };
+  const endDisabled = useAtomValue(endDisabledAtom);
+  const setEndDisabled = useSetAtom(setEndDisabledAtom);
 
-    setDate(ApiKeys.START, startDate);
-
-    if (endDisabled) {
-      setDate(ApiKeys.END, startDate);
-      setEndDate(startDate);
-      setErrors({ ...errors, invalidEndDate: false });
+  const setDate = (dateString: string|undefined, key: string) => {
+    const errorKey = key === 'start' ? 'invalidStartDate' : 'invalidEndDate';
+    
+    if (!dateString) {
+      updateDate(undefined, key);
+    }
+    else {
+      updateDate(DateTime.fromFormat(dateString, HDS_DATE_FORMAT), key);
     }
 
-    if (!endDisabled) {
-      setDate(ApiKeys.END, endDate);
-      setEndDate(endDate);
-      setErrors({ ...errors, invalidEndDate: false });
-    }
-
-  }, [startDate, endDate, endDisabled]);
+    setErrors({...errors, [errorKey]: Boolean(date.invalid)});
+  };
 
   return (
     <DateRangeSelect
       endDate={endDate?.toFormat(HDS_DATE_FORMAT)}
+      endDisabled={endDisabled}
       id={SearchComponents.DATE}
       label={Drupal.t('Date', {}, {context: 'React search: date selection label'})}
-      setEnd={(d) => setEndDate(d ? DateTime.fromFormat(d, HDS_DATE_FORMAT) : undefined)}
-      setStart={(d) => setStartDate(d ? DateTime.fromFormat(d, HDS_DATE_FORMAT) : undefined)}
+      setEnd={(d) => setDate(d, 'end')}
+      setEndDisabled={setEndDisabled}
+      setStart={(d) => setDate(d ,'start')}
       startDate={startDate?.toFormat(HDS_DATE_FORMAT)}
       title={Drupal.t('Date', {}, {context: 'Events search'})}
     />

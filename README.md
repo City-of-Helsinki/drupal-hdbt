@@ -42,7 +42,7 @@ Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.
 - `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
 - `theme-builder/` : The theme builder tools.
-- `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme. 
+- `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme.
 
 ## Structure for files and folders
 
@@ -73,7 +73,7 @@ The `./translations` folder includes translations for all the translatable strin
 ## Theme builder entries
 
 Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder.
-Typescript entrypoints must be added separately. See theme-builder.mjs.
+Typescript entry points must be added separately. See theme-builder.mjs.
 
 ### How to use entries in Drupal libraries
 
@@ -300,7 +300,7 @@ Full test is a more comprehensive test that covers multiple variants, edge cases
 3. Check the results from the link given at the end of the test.
 
 ### Adding a new component to the test
-1. Add the component to the `helfi_test_content` module following the instuctions in its README.
+1. Add the component to the `helfi_test_content` module following the instructions in its README.
 2. Add a test scenario for the component following the example of existing scenarios.
 
 ### Filtering components to test

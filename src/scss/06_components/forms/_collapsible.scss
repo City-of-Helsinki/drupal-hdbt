@@ -21,6 +21,10 @@ $collapsible-height: 56px;
   width: calc(100% - $spacing-and-half);
 }
 
+.collapsible__title--placeholder {
+  color: $color-black-60;
+}
+
 .collapsible__control {
   @include font('body');
   align-items: center;

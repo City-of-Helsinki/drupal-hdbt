@@ -1,19 +1,21 @@
 import { SearchInput } from 'hds-react';
+import { useMemo } from 'react';
 
-import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
-import ServiceMap from './enum/ServiceMap';
-import getNameTranslation from './helpers/ServiceMap';
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
+import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
+import getNameTranslation from './helpers/ServiceMap';
+import ServiceMap from './enum/ServiceMap';
 
 type SubmitHandler<T> = T extends true ? (address: {label: string, value: [number, number, string]}) => void : (address: string) => void;
 
 export const AddressSearch = ({
   className,
   includeCoordinates = false,
-  searchInputClassname,
   loadingSpinnerFinishedText = Drupal.t('Finished loading suggestions', {}, { context: 'Loading finished indicator for suggestive search' }),
   loadingSpinnerText = Drupal.t('Loading suggestions...', {}, { context: 'Loading indicator for suggestive search' }),
   onSubmit,
+  searchInputClassname,
+  value,
   ...rest
 }: {
   className?: string;
@@ -78,13 +80,14 @@ export const AddressSearch = ({
     }
   };
 
-  return (
-    <div className={className || 'hdbt-search__filter'}>
+  const searchInput = useMemo(
+    () => (
       <SearchInput
         {...{
           getSuggestions,
           loadingSpinnerText,
           loadingSpinnerFinishedText,
+          value,
           ...rest,
         }}
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
@@ -92,6 +95,13 @@ export const AddressSearch = ({
         suggestionLabelField='label'
         style={defaultSearchInputStyle}
       />
+    ),
+    [value, getSuggestions]
+  );
+
+  return (
+    <div className={className || 'hdbt-search__filter'}>
+      {searchInput}
     </div>
   );
 };

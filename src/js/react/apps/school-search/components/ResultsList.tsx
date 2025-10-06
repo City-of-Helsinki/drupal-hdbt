@@ -1,4 +1,4 @@
-import { SyntheticEvent, createRef, useState, useEffect } from 'react';
+import { SyntheticEvent, createRef, useState } from 'react';
 import { useAtomValue } from 'jotai';
 
 import Result from '@/types/Result';
