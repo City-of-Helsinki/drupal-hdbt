@@ -51,8 +51,6 @@ import MenuDropdown from './nav-global/menu';
         element.scrollWidth > element.clientWidth ||
         element.scrollHeight > element.clientHeight;
 
-      // Needs to be 992px as after that breakpoint user can scroll header
-      // almost offscreen, open menu accidentally and not be able to scroll back up.
       const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
       const AllElements = brandingElements;
